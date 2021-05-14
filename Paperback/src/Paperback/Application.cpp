@@ -58,7 +58,7 @@ namespace Paperback
 			//	system_timer[id] = mTimer->ComputeTime(starting_time);
 			//#endif
 			}
-
+			//test
 			++counter;
 			if (counter == 10)
 				PPB_ASSERT_MSG(counter != 11, "Not equal to 11");
