@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Components">
+      <UniqueIdentifier>{6B7DD516-5735-1764-C03C-F0BFAC13B254}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Events">
+      <UniqueIdentifier>{3A8963B1-262B-8E87-0FE6-A1DBFB2615D8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{B34CFEBD-9F19-59C9-C832-4771B45E8E57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{AFF4887C-9B2B-8A0D-4418-7010302E060F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Paperback">
+      <UniqueIdentifier>{8E704B7F-FADA-FFF5-4319-B19BAFC2DD4A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Components\Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\KeyCodes.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\MouseCodes.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Types.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events\EventBus.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\ComponentManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\EntityManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\ResourceManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Managers\SystemManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Vector.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback.h" />
+    <ClInclude Include="src\Paperback\Application.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback\Core.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback\Events.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback\IComponent.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback\IManager.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback\ISystem.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback\Log.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback\Utilities.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paperback\Window.h">
+      <Filter>Paperback</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PaperbackPCH.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Components\Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\EntityManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\ResourceManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Managers\SystemManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paperback\Application.cpp">
+      <Filter>Paperback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paperback\IComponent.cpp">
+      <Filter>Paperback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paperback\ISystem.cpp">
+      <Filter>Paperback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paperback\Log.cpp">
+      <Filter>Paperback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paperback\Utilities.cpp">
+      <Filter>Paperback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paperback\Window.cpp">
+      <Filter>Paperback</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PaperbackPCH.cpp" />
+  </ItemGroup>
+</Project>
