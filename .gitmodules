@@ -1,9 +1,0 @@
-[submodule "Paperback/vendor/spdlog"]
-	path = Paperback/vendor/spdlog
-	url = https://github.com/gabime/spdlog
-[submodule "Paperback/vendor/GLFW"]
-	path = Paperback/vendor/GLFW
-	url = https://github.com/glfw/glfw
-[submodule "Paperback/vendor/GLEW"]
-	path = Paperback/vendor/GLEW
-	url = https://github.com/nigels-com/glew
