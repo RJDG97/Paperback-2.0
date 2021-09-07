@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\PCH.cpp">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\xcore\src\xcore.cpp">
+      <Filter>Dependencies\xCore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\xcore\src\xcore_profiler_1.cpp">
+      <Filter>Dependencies\xCore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\xcore\src\xcore_profiler_2.cpp">
+      <Filter>Dependencies\xCore</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\paperback_bitset.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_clock.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_component.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_coordinator.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_entity.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_event.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_logger.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_pool.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_query.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_settings.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_system.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_types.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\PCH.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_bitset_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_clock_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_component_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_coordinator_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_entity_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_event_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_logger_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_pool_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_query_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_system_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Transform.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Timer.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Rigidbody.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Bullet.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\BufferRefresh.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\BulletLogicSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\BulletRenderingSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\PhysicsSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\component_includes.h">
+      <Filter>Source\Gameplay Code\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\system_includes.h">
+      <Filter>Source\Gameplay Code\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Paperback.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Settings\PropertyConfig.h">
+      <Filter>Source\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Settings\xcore_user_settings.h">
+      <Filter>Source\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\xcore\src\xcore.h">
+      <Filter>Dependencies\xCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Vector.h">
+      <Filter>Source\Tools</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{a1e17279-6fea-45fd-8599-0d901353c1b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Paperback Engine">
+      <UniqueIdentifier>{95b49e3c-ce34-4c83-9254-ece3c8b04a63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Paperback Engine\Details">
+      <UniqueIdentifier>{9c7373c7-5795-4683-bc13-3ccb0d53052e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools">
+      <UniqueIdentifier>{9168c1d4-2557-4661-8774-3bf712749c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code">
+      <UniqueIdentifier>{f051333f-983a-41e4-bba7-36b79aae1832}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Components">
+      <UniqueIdentifier>{f3e3ea70-c0e9-488a-9768-9a77dfeb49cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Components\Details">
+      <UniqueIdentifier>{7dfc94ad-7052-494b-bc09-d8cc579187fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Systems">
+      <UniqueIdentifier>{a2d2287b-e6dc-4266-a3b7-9e095e42c227}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Systems\Details">
+      <UniqueIdentifier>{09029f42-abf2-4722-a46d-089c12d2a0f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Settings">
+      <UniqueIdentifier>{ee989d91-93a3-4ecc-9e2d-f82577c24ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies">
+      <UniqueIdentifier>{04ff870a-9419-4146-b92d-0bebdcd92813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\xCore">
+      <UniqueIdentifier>{c03e3f9a-be85-4373-a306-b146345600e8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
