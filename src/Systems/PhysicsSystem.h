@@ -1,38 +1,38 @@
 #pragma once
 
-struct PhysicsSystem : paperback::system::instance
+struct physics_system : paperback::system::instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
     {
-        .m_pName = "PhysicsSystem"
+        .m_pName = "physics_system"
     };
 
-    void operator()( Transform& transform, Rigidbody& rigidbody )
+    void operator()( transform& Transform, rigidbody& RigidBody )
     {
-        transform.m_Position += rigidbody.m_Velocity * m_Coordinator.DeltaTime();
+        Transform.m_Position += RigidBody.m_Velocity * m_Coordinator.DeltaTime();
 
         // X-Out-Of-Bounds
-        if (transform.m_Position.m_X < 0.0f)
+        if (Transform.m_Position.m_X < 0.0f)
         {
-            transform.m_Position.m_X = 0.0f;
-            rigidbody.m_Velocity.m_X = -rigidbody.m_Velocity.m_X;
+            Transform.m_Position.m_X = 0.0f;
+            RigidBody.m_Velocity.m_X = -RigidBody.m_Velocity.m_X;
         }
-        else if (transform.m_Position.m_X >= m_Engine.m_Width)
+        else if (Transform.m_Position.m_X >= m_Engine.m_Width)
         {
-            transform.m_Position.m_X = m_Engine.m_Width;
-            rigidbody.m_Velocity.m_X = -rigidbody.m_Velocity.m_X;
+            Transform.m_Position.m_X = m_Engine.m_Width;
+            RigidBody.m_Velocity.m_X = -RigidBody.m_Velocity.m_X;
         }
 
         // Y-Out-Of-Bounds
-        if (transform.m_Position.m_Y < 0.0f)
+        if (Transform.m_Position.m_Y < 0.0f)
         {
-            transform.m_Position.m_Y = 0.0f;
-            rigidbody.m_Velocity.m_Y = -rigidbody.m_Velocity.m_Y;
+            Transform.m_Position.m_Y = 0.0f;
+            RigidBody.m_Velocity.m_Y = -RigidBody.m_Velocity.m_Y;
         }
-        else if (transform.m_Position.m_Y >= m_Engine.m_Height)
+        else if (Transform.m_Position.m_Y >= m_Engine.m_Height)
         {
-            transform.m_Position.m_Y = m_Engine.m_Height;
-            rigidbody.m_Velocity.m_Y = -rigidbody.m_Velocity.m_Y;
+            Transform.m_Position.m_Y = m_Engine.m_Height;
+            RigidBody.m_Velocity.m_Y = -RigidBody.m_Velocity.m_Y;
         }
     }
 };

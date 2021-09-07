@@ -1,5 +1,75 @@
 #pragma once
 
+/*
+To Use:
+
+	**Note:
+	- For short functions, use PPB_INLINE
+
+	1. Create a System:
+		
+		struct my_system : paperback::system::instance
+		{
+			constexpr static auto typedef_v = paperback::system::type::update
+			{
+				.m_pName = "my_system"
+			};
+		};
+
+
+	2. Define System Main Loop
+		
+		// 1. Either use operator() - Parameters are the Components required for each system update loop on a SINGLE entity - O( 1 )
+
+		PPB_INLINE
+		void operator()( paperback::component::entity& Entity, Transform& transform, Timer& timer, Bullet& bullet ) const noexcept
+		{
+			// System Update Code - FOR A SINGLE ENTITY
+		}
+
+		// 2. Or use a manual update - This is mainly used where more controlled iteration is required - E.g. Collision Checking
+
+		PPB_INLINE
+		void Update( void )
+		{
+			// System Update Code - Can be for a Single Archetype / N^2 Loop
+		}
+
+
+	3. Register System - Order of registering matters
+		
+		PPB.RegisterSystems<
+			my_system
+		>();
+
+
+	4. More Advanced Iteration - Place this code inside the System Loop ( Either operator() or Update() )
+		
+		// tools::query::m_Must   - The Archetype that is selected MUST have all Components listed within the tuple ( Parameter Type = & )
+		// tools::query::m_OneOf  - The Archetype that is selected MUST have AT LEAST ONE of the Components listed within the tuple ( Parameter Type = * ) - Not recommended unless necessary (Single purpose systems)
+		// tools::query::m_NoneOf - The Archetype that is selected MUST have NONE of the Components listed within the tuple
+
+		tools::query Query;
+        Query.m_Must.AddFromComponents< Transform >();
+
+		// Return bool for the lambda terminates the ForEach loop on a "return true" statement
+		// 2 Variants of ForEach, one iterates all Entities within the the Archetypes returned from Search( Query ), other terminates on "return true"
+        m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( paperback::component::entity& Entity, transform& Transform ) noexcept -> bool
+        {
+			
+		}
+
+
+	5. More Advanced Update Handling - Define these functions within your System ( Use PPB_INLINE )
+
+		void OnSystemCreated ( void ) noexcept {}	// When RegisterSystem is called - Manual Initialization
+        void OnFrameStart    ( void ) noexcept {}	// At the start of the frame
+        void PreUpdate       ( void ) noexcept {}	// Before Update()
+		void Update		     ( void ) noexcept {}	// Recommended to use operator() if only performing a single loop - E.g. No comparing of entities against other entities
+		void PostUpdate      ( void ) noexcept {}	// After Update()
+		void OnFrameEnd      ( void ) noexcept {}	// At the end of the frame
+*/
+
 namespace paperback::system
 {
 	//-----------------------------------

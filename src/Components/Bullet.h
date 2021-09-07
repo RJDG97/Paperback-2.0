@@ -1,10 +1,10 @@
 #pragma once
 
-struct Bullet
+struct bullet
 {
     constexpr static auto typedef_v = paperback::component::type::data
     {
-        .m_pName = "Bullet"
+        .m_pName = "bullet"
     };
 
 	paperback::component::entity m_Owner;

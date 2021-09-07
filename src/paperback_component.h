@@ -1,5 +1,28 @@
 #pragma once
 
+/*
+To Use:
+
+	1. Create a Component - In the future there will be data / tag / shared component types:
+		
+		struct my_component
+        {
+            constexpr static auto typedef_v = paperback::component::type::data
+            {
+                .m_pName = "my_component"
+            };
+
+	        // Data members
+        };
+
+
+	2. Register Component
+		
+		PPB.RegisterComponents<
+			my_component
+		>();
+*/
+
 namespace paperback::component
 {
     namespace type

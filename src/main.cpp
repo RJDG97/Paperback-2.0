@@ -10,7 +10,7 @@
 //      Forward Declarations
 //-----------------------------------
 using namespace paperback;
-void timer(int value);
+void GlutTimer(int value);
 void InitializeGame();
 
 
@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
         glScalef( 1, -1, 1 );
         glTranslatef( 0, -h, 0 );
     });
-    glutTimerFunc( 0, timer, 0 );
+    glutTimerFunc( 0, GlutTimer, 0 );
     glutMainLoop();
 
     // Termination
@@ -67,11 +67,11 @@ int main(int argc, char* argv[])
 
 
 
-void timer( int value )
+void GlutTimer( int value )
 {
     UNREFERENCED_PARAMETER( value );
     glutPostRedisplay();
-    glutTimerFunc( 15, timer, 0 );
+    glutTimerFunc( 15, GlutTimer, 0 );
 }
 
 void InitializeGame()
@@ -79,22 +79,22 @@ void InitializeGame()
     // Register Components
     {
        PPB.RegisterComponents<
-            Bullet,
-            Rigidbody,
-            Transform,
-            Timer
+            bullet,
+            rigidbody,
+            transform,
+            timer
         >();
     }
 
     // Register Systems
     {
         PPB.RegisterSystems<
-            PhysicsSystem,
-            ShipLogicSystem,
-            BulletLogicSystem,
-            ShipRenderingSystem,
-            BulletRenderingSystem,
-            BufferRefreshSystem
+            physics_system,
+            ship_logic_system,
+            bullet_logic_system,
+            ship_rendering_system,
+            bullet_rendering_system,
+            buffer_refresh_system
         >();
     }
 
@@ -102,17 +102,17 @@ void InitializeGame()
     {
         for (int i = 0; i < 4000; ++i)
         {
-            PPB.CreateEntity( [&]( component::entity& Entity, Transform& transform, Rigidbody& rigidbody, Timer& timer )
+            PPB.CreateEntity( [&]( component::entity& Entity, transform& Transform, rigidbody& RigidBody, timer& Timer )
                               {
                                   Entity.m_GlobalIndex = 0;
                               
-                                  transform.m_Position.m_X = std::rand() % m_Engine.m_Width;
-                                  transform.m_Position.m_Y = std::rand() % m_Engine.m_Height;
+                                  Transform.m_Position.m_X = std::rand() % m_Engine.m_Width;
+                                  Transform.m_Position.m_Y = std::rand() % m_Engine.m_Height;
                               
-                                  rigidbody.m_Velocity.m_X = ( std::rand() % 40 );
-                                  rigidbody.m_Velocity.m_Y = ( std::rand() % 40 );
+                                  RigidBody.m_Velocity.m_X = ( std::rand() % 40 );
+                                  RigidBody.m_Velocity.m_Y = ( std::rand() % 40 );
                               
-                                  timer.m_Timer = (std::rand() / (float)RAND_MAX) * 8;
+                                  Timer.m_Timer = (std::rand() / (float)RAND_MAX) * 8;
                               });
         }
     }

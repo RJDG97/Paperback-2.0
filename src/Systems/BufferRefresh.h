@@ -1,10 +1,10 @@
 #pragma once
 
-struct BufferRefreshSystem : paperback::system::instance
+struct buffer_refresh_system : paperback::system::instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
     {
-        .m_pName = "BufferRefreshSystem"
+        .m_pName = "buffer_refresh_system"
     };
 
     PPB_FORCEINLINE

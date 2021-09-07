@@ -1,10 +1,10 @@
 #pragma once
 
-struct Timer
+struct timer
 {
     constexpr static auto typedef_v = paperback::component::type::data
     {
-        .m_pName = "Timer"
+        .m_pName = "timer"
     };
 
 	float m_Timer = 0.0f;

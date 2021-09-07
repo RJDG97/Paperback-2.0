@@ -1,18 +1,18 @@
 #pragma once
 
-struct BulletLogicSystem : paperback::system::instance
+struct bullet_logic_system : paperback::system::instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
     {
-        .m_pName = "BulletLogicSystem"
+        .m_pName = "bullet_logic_system"
     };
 
-    void operator()( paperback::component::entity& Entity, Transform& transform, Timer& timer, Bullet& bullet ) const noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, timer& Timer, bullet& Bullet ) const noexcept
     {
         if (Entity.IsZombie()) return;
 
-        timer.m_Timer -= m_Coordinator.DeltaTime();
-        if (timer.m_Timer <= 0.0f)
+        Timer.m_Timer -= m_Coordinator.DeltaTime();
+        if ( Timer.m_Timer <= 0.0f )
         {
             m_Coordinator.DeleteEntity(Entity);
             return;
@@ -20,17 +20,17 @@ struct BulletLogicSystem : paperback::system::instance
 
         // Check collisions
         tools::query Query;
-        Query.m_Must.AddFromComponents<Transform>();
+        Query.m_Must.AddFromComponents<transform>();
 
-        m_Coordinator.ForEach( m_Coordinator.Search(Query), [&]( paperback::component::entity& Dynamic_Entity, Transform& xform ) noexcept -> bool
+        m_Coordinator.ForEach( m_Coordinator.Search(Query), [&]( paperback::component::entity& Dynamic_Entity, transform& xform ) noexcept -> bool
         {
             assert(Entity.IsZombie() == false );
 
             // Do not check against self
-            if ( ( &Entity == &Dynamic_Entity) || ( Dynamic_Entity.IsZombie() ) || ( bullet.m_Owner.m_GlobalIndex == Dynamic_Entity.m_GlobalIndex ) ) return false;
+            if ( ( &Entity == &Dynamic_Entity) || ( Dynamic_Entity.IsZombie() ) || ( Bullet.m_Owner.m_GlobalIndex == Dynamic_Entity.m_GlobalIndex ) ) return false;
 
             constexpr auto min_distance_v = 4;
-            if ((transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
+            if ((Transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
             {
                 m_Coordinator.DeleteEntity( Entity );
                 m_Coordinator.DeleteEntity( Dynamic_Entity );
