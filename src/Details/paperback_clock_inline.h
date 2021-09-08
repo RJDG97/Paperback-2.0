@@ -1,5 +1,3 @@
-#include "Paperback_Clock.h"
-
 namespace tools
 {
 	clock::clock(float TimeScale) noexcept :

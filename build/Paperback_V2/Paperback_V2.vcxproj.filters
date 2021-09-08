@@ -2,9 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp" />
-    <ClCompile Include="..\..\src\PCH.cpp">
-      <Filter>Source\Paperback Engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\dependencies\xcore\src\xcore.cpp">
       <Filter>Dependencies\xCore</Filter>
     </ClCompile>
@@ -13,6 +10,9 @@
     </ClCompile>
     <ClCompile Include="..\..\dependencies\xcore\src\xcore_profiler_2.cpp">
       <Filter>Dependencies\xCore</Filter>
+    </ClCompile>
+    <ClCompile Include="paperback_pch.cpp">
+      <Filter>Source\Paperback Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,9 +50,6 @@
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\paperback_types.h">
-      <Filter>Source\Paperback Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\PCH.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_bitset_inline.h">
@@ -135,6 +132,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Vector.h">
       <Filter>Source\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="paperback_pch.h">
+      <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

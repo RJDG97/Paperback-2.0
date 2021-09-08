@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PAPERBACK_PCH_H
+#define PAPERBACK_PCH_H
 
 #include <memory>
 #include <thread>
@@ -21,4 +22,6 @@
 #include <unordered_set>
 #include <unordered_map>
 
-#include <Windows.h>
+//#include <Windows.h>
+
+#endif

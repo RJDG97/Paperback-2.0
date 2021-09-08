@@ -115,7 +115,7 @@ namespace paperback::vm
 			{
 				auto pRaw = &pData[ paperback::settings::virtual_page_size_v * LastPage ];
 				auto b = VirtualFree( pRaw, paperback::settings::virtual_page_size_v, MEM_DECOMMIT );
-				assert(b);
+				assert( b );
 			}
 		}
 

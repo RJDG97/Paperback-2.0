@@ -88,7 +88,7 @@ namespace paperback::component
 
         const type::guid       m_Guid;
         const type::id         m_TypeID;
-        mutable int            m_UID;
+        mutable u32            m_UID;
         mutable u32            m_Size;
         Constructor*           m_Constructor;
         Destructor*            m_Destructor;

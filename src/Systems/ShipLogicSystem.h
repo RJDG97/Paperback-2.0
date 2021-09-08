@@ -38,6 +38,8 @@ struct ship_logic_system : paperback::system::instance
 
                 m_Engine.m_Coordinator.CreateEntity([&]( paperback::component::entity& Bullet_Entity, transform& New_Transform, rigidbody& New_RigidBody, timer& New_Timer, bullet& New_Bullet)
                 {
+                    UNREFERENCED_PARAMETER( Bullet_Entity );
+
                     Direction /= std::sqrt(DistanceSq);
                     New_RigidBody.m_Velocity = Direction * 80.0f;
                     New_Transform.m_Position = Transform.m_Position;

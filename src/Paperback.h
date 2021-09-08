@@ -1,6 +1,6 @@
+#pragma once
 #ifndef PAPERBACK_H
 #define PAPERBACK_H
-#pragma once
 
 //----------------------------------
 // Defines

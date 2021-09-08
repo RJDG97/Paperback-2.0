@@ -17,16 +17,31 @@ namespace tools
         using TimePoint = HRClock::time_point;
         using Duration = std::chrono::duration<float>;
 
+        PPB_INLINE
         clock( float TimeScale = 1.0f ) noexcept;
+
+        PPB_INLINE
         ~clock() = default;
 
+        PPB_INLINE
         uint32_t FPS() noexcept;
+
+        PPB_INLINE
         void     Tick() noexcept;
+
+        PPB_INLINE
         float    DeltaTime() const noexcept;
+
+        PPB_INLINE
         auto     Now() noexcept -> decltype( HRClock::now() );
+
+        PPB_INLINE
         float    ComputeTime( TimePoint StartingTime ) noexcept;
 
+        PPB_INLINE
         void     TimeScale( const float s = 1.0f ) noexcept;
+
+        PPB_INLINE
         float    TimeScale() const noexcept;
 
     private:
