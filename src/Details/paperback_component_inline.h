@@ -2,7 +2,9 @@
 
 namespace paperback::component
 {
-    // Info
+    //-----------------------------------
+    //        Component Info
+    //-----------------------------------
     namespace details
     {
         template< typename T_COMPONENT >
@@ -40,6 +42,9 @@ namespace paperback::component
         }
 
 
+        //-----------------------------------
+        //        Component Sorting
+        //-----------------------------------
         template< typename T_COMPONENT_A, typename T_COMPONENT_B >
         struct component_comparator
         {
@@ -51,7 +56,9 @@ namespace paperback::component
         using sort_tuple_t = xcore::types::tuple_sort_t< details::component_comparator, T_TUPLE >;
 
 
-        // Find Component Index in Container
+        //-----------------------------------
+        //           Find Index
+        //-----------------------------------
         template < typename T_CONTAINER >
         static constexpr auto find_component_index_v = [&]( T_CONTAINER& Container, component::info* Info, size_t Count )
         {
@@ -67,6 +74,9 @@ namespace paperback::component
         };
     }
 
+    //-----------------------------------
+    //   Get array of Component Info
+    //-----------------------------------
     template< paperback::concepts::TupleSpecialization T_TUPLE >
     static constexpr auto sorted_info_array_v = []<typename...T>( std::tuple<T...>* ) constexpr
     {
@@ -74,21 +84,10 @@ namespace paperback::component
         else                               return std::array{ &component::info_v<T>... };
     }( xcore::types::null_tuple_v< sort_tuple_t<T_TUPLE> > );
 
-	
-    // Manager
-    template< paperback::component::concepts::ValidComponent T_COMPONENT >
-    void manager::RegisterComponent( void ) noexcept
-    {
-        if (component::info_v<T_COMPONENT>.m_UID == component::info::invalid_id_v)
-            component::info_v<T_COMPONENT>.m_UID = m_ComponentUID++;
-    }
 
-    template< typename... T_COMPONENTS >
-    void manager::RegisterComponents( void ) noexcept
-    {
-        ( (RegisterComponent<T_COMPONENTS>()), ... );
-    }
-
+    //-----------------------------------
+    //        Component: Entity
+    //-----------------------------------
     constexpr bool entity::Validation::operator == ( const Validation& V ) const noexcept
     {
         return m_UID == V.m_UID;

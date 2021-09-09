@@ -61,11 +61,13 @@ namespace paperback
 #include "paperback_clock.h"
 #include "paperback_event.h"
 #include "paperback_component.h"
+#include "paperback_component_mgr.h"
 #include "paperback_bitset.h"
 #include "paperback_query.h"
 #include "paperback_pool.h"
 #include "paperback_entity.h"
 #include "paperback_system.h"
+#include "paperback_system_mgr.h"
 #include "paperback_coordinator.h"
 
 //----------------------------------
@@ -75,7 +77,9 @@ namespace paperback
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_clock_inline.h"
 #include "Details/paperback_component_inline.h"
+#include "Details/paperback_component_mgr_inline.h"
 #include "Details/paperback_system_inline.h"
+#include "Details/paperback_system_mgr_inline.h"
 #include "Details/paperback_pool_inline.h"
 #include "Details/paperback_entity_inline.h"
 #include "Details/paperback_query_inline.h"

@@ -11,7 +11,7 @@ struct ship_logic_system : paperback::system::instance
         paperback::query::none_of<bullet>
     >;
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, timer& Timer ) const noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, timer& Timer ) noexcept
     {
         if ( Timer.m_Timer > 0.0f )
         {
@@ -23,7 +23,7 @@ struct ship_logic_system : paperback::system::instance
         tools::query Query;
         Query.m_NoneOf.AddFromComponents<bullet>();
 
-        m_Coordinator.ForEach( m_Coordinator.Search(Query), [&]( transform& xform ) noexcept -> bool
+        ForEach( Search(Query), [&]( transform& xform ) noexcept -> bool
         {
             if (&Transform == &xform) return false;
 

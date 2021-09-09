@@ -7,7 +7,7 @@ struct physics_system : paperback::system::instance
         .m_pName = "physics_system"
     };
 
-    void operator()( transform& Transform, rigidbody& RigidBody )
+    void operator()( transform& Transform, rigidbody& RigidBody ) noexcept
     {
         Transform.m_Position += RigidBody.m_Velocity * m_Coordinator.DeltaTime();
 

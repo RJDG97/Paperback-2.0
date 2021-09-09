@@ -7,7 +7,7 @@ struct bullet_logic_system : paperback::system::instance
         .m_pName = "bullet_logic_system"
     };
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, timer& Timer, bullet& Bullet ) const noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, timer& Timer, bullet& Bullet ) noexcept
     {
         if (Entity.IsZombie()) return;
 
@@ -22,7 +22,7 @@ struct bullet_logic_system : paperback::system::instance
         tools::query Query;
         Query.m_Must.AddFromComponents<transform>();
 
-        m_Coordinator.ForEach( m_Coordinator.Search(Query), [&]( paperback::component::entity& Dynamic_Entity, transform& xform ) noexcept -> bool
+        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& xform ) noexcept -> bool
         {
             assert(Entity.IsZombie() == false );
 

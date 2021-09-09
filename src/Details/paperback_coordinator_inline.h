@@ -18,7 +18,7 @@ namespace paperback::coordinator
 		XCORE_PERF_FRAME_MARK()
 		XCORE_PERF_FRAME_MARK_START("paperback::Frame")
 
-		m_SystemMgr.Run( *this );
+		m_SystemMgr.Run( /**this*/ );
 
 		XCORE_PERF_FRAME_MARK_END("paperback::Frame")
 	}
@@ -36,7 +36,7 @@ namespace paperback::coordinator
 	}
 
 	template < typename... T_COMPONENTS >
-	archetype::instance& instance::GetOrCreateArchetype() noexcept
+	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
 		return m_EntityMgr.GetOrCreateArchetype<T_COMPONENTS...>( *this );
 	}

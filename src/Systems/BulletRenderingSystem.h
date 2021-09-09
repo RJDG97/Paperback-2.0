@@ -11,7 +11,7 @@ struct bullet_rendering_system : paperback::system::instance
         paperback::query::must<bullet>
     >;
 
-    void operator()( transform& Transform, rigidbody& RigidBody )
+    void operator()( transform& Transform, rigidbody& RigidBody ) noexcept
     {
         constexpr auto ScaleX = 1 / 24.0f;
         constexpr auto ScaleY = 3 / 24.0f;

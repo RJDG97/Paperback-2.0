@@ -11,7 +11,7 @@ struct ship_rendering_system : paperback::system::instance
         paperback::query::none_of<bullet>
     >;
 
-    void operator()( transform& Transform, timer& Timer )
+    void operator()( transform& Transform, timer& Timer ) noexcept
     {
         constexpr auto Scale = 3;
         glBegin( GL_QUADS );

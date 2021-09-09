@@ -136,6 +136,18 @@
     <ClInclude Include="paperback_pch.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_system_mgr.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_component_mgr_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_component_mgr.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

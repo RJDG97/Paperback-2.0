@@ -104,7 +104,7 @@ namespace paperback::system
 
 		struct info
 		{
-			using RunSystem = void( coordinator::instance&, system::instance&, type::call );
+			using RunSystem = void( system::instance&, type::call );
 
 			const type::guid             m_Guid;
 			const type::id               m_TypeID;
@@ -155,7 +155,49 @@ namespace paperback::system
 		instance( coordinator::instance& Coordinator ) noexcept;
 		instance( const instance& ) = delete;
 
-		coordinator::instance& m_Coordinator;
+
+		//-----------------------------------
+		//    Extra System Functionality
+		//-----------------------------------
+		template < typename... T_COMPONENTS >
+		archetype::instance& GetOrCreateArchetype( void ) noexcept;
+
+		template< typename T_FUNCTION >
+		void CreateEntity( T_FUNCTION&& Function ) noexcept;
+
+		template< typename T_FUNCTION >
+		void CreateEntities( T_FUNCTION&& Function
+						   , const u32 Count ) noexcept;
+
+		PPB_INLINE
+		void DeleteEntity( component::entity& Entity ) noexcept;
+
+		template < typename... T_COMPONENTS >
+        std::vector<archetype::instance*> Search() const noexcept;
+
+		PPB_INLINE
+        std::vector<archetype::instance*> Search( const tools::query& Query ) const noexcept;
+
+		template < concepts::Callable_Void T_FUNCTION >
+        void ForEach( const std::vector<archetype::instance*>& ArchetypeList
+					, T_FUNCTION&& Function ) noexcept;
+
+        template < concepts::Callable_Bool T_FUNCTION >
+        void ForEach( const std::vector<archetype::instance*>& ArchetypeList
+					, T_FUNCTION&& Function ) noexcept;
+
+		template< typename T_SYSTEM >
+		T_SYSTEM* FindSystem( void ) noexcept;
+
+		template< typename T_SYSTEM >
+		T_SYSTEM& GetSystem( void ) noexcept;
+
+		PPB_FORCEINLINE
+		float DeltaTime() const noexcept;
+
+
+		// Private This After
+		paperback::coordinator::instance& m_Coordinator;
 	};
 
 	namespace details
@@ -167,40 +209,7 @@ namespace paperback::system
 			completed( coordinator::instance& Coordinator ) noexcept;
 
 			PPB_FORCEINLINE
-			void Run( coordinator::instance&, const paperback::system::type::call ) noexcept;
+			void Run( const paperback::system::type::call ) noexcept;
 		};
 	}
-	
-
-
-	//-----------------------------------
-	//          System Manager
-	//-----------------------------------
-	struct manager
-	{
-		using SystemMap  = std::unordered_map< system::type::guid, system::instance* >;
-		using SystemList = std::vector< std::pair< const system::type::info*, std::unique_ptr<system::instance> > >;
-
-		manager( tools::clock& Clock );
-		manager( const manager& ) = delete;
-		~manager() = default;
-
-		template < typename... T_SYSTEMS >
-		constexpr void RegisterSystems( coordinator::instance& Coordinator ) noexcept;
-
-		template < typename T_SYSTEM >
-		constexpr T_SYSTEM& RegisterSystem( coordinator::instance& Coordinator_ ) noexcept;
-
-		template < typename T_SYSTEM >
-		T_SYSTEM* FindSystem( void ) noexcept;
-
-		PPB_INLINE
-		void Run( coordinator::instance& Coordinator ) noexcept;
-
-
-		// bool m_bPaused;
-		tools::clock&			m_SystemClock;
-		SystemMap				m_SystemMap;
-		SystemList				m_Systems;
-	};
 }

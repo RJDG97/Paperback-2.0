@@ -40,7 +40,7 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		template < typename... T_COMPONENTS >
-		archetype::instance& GetOrCreateArchetype() noexcept;
+		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
 		template< typename T_FUNCTION >
 		void CreateEntity( T_FUNCTION&& Function ) noexcept;

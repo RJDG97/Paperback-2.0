@@ -2,6 +2,9 @@
 
 namespace paperback::system
 {
+	//-----------------------------------
+	//    System Info Initialization
+	//-----------------------------------
 	namespace details
     {
         template< typename T_SYSTEM >
@@ -13,9 +16,9 @@ namespace paperback::system
                                    ? T_SYSTEM::typedef_v.m_Guid
                                    : type::guid{ __FUNCSIG__ }
             ,   .m_TypeID        = T_SYSTEM::typedef_v.id_v
-			,	.m_RunSystem   = []( coordinator::instance& Coordinator, system::instance& pSystem, system::type::call UpdateType )
+			,	.m_RunSystem   = []( system::instance& pSystem, system::type::call UpdateType )
 							     {
-								     static_cast<system::details::completed<T_SYSTEM>&>( pSystem ).Run( Coordinator, UpdateType );
+								     static_cast<system::details::completed<T_SYSTEM>&>( pSystem ).Run( UpdateType );
 							     }
 			,	.m_pName		   = T_SYSTEM::typedef_v.m_pName
             };
@@ -23,21 +26,24 @@ namespace paperback::system
 	}
 
 
-
+	//-----------------------------------
+	//        System Instance
+	//-----------------------------------
 	instance::instance( coordinator::instance& Coordinator ) noexcept : 
 		m_Coordinator{ Coordinator }
 	{ }
 	
-	//void instance::Execute( coordinator::instance& Coordinator ) noexcept
-	//{ }
-	
+
+	//-----------------------------------
+	//         System Details
+	//-----------------------------------
 	template < typename USER_SYSTEM >
 	details::completed<USER_SYSTEM>::completed( coordinator::instance& Coordinator ) noexcept :
 		USER_SYSTEM{ Coordinator }
 	{ }
 	
 	template < typename USER_SYSTEM >
-	void details::completed<USER_SYSTEM>::Run( coordinator::instance& Coordinator, const paperback::system::type::call Type ) noexcept
+	void details::completed<USER_SYSTEM>::Run( const paperback::system::type::call Type ) noexcept
 	{
 		switch ( Type )
 		{
@@ -76,7 +82,7 @@ namespace paperback::system
 					tools::query Query;
 					Query.AddQueryFromTuple( reinterpret_cast<typename USER_SYSTEM::query*>(nullptr) );
 					Query.AddQueryFromFunction( *this );
-					Coordinator.ForEach( Coordinator.Search(Query), *this );
+					USER_SYSTEM::m_Coordinator.ForEach( USER_SYSTEM::m_Coordinator.Search(Query), *this );
 				}
 				break;
 			}
@@ -100,55 +106,73 @@ namespace paperback::system
 	}
 
 
-
-	manager::manager( tools::clock& Clock ) :
-		m_SystemClock{ Clock }
-	{ }
-	
-	template < typename... T_SYSTEMS >
-	constexpr void manager::RegisterSystems( coordinator::instance& Coordinator ) noexcept
+	//-----------------------------------
+	//   System Instance Functionality
+	//-----------------------------------
+	template < typename... T_COMPONENTS >
+	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
-		( (RegisterSystem<T_SYSTEMS>( Coordinator )), ... );
+		return m_Coordinator.GetOrCreateArchetype<T_COMPONENTS...>();
 	}
 
-	template < typename T_SYSTEM >
-	constexpr T_SYSTEM& manager::RegisterSystem( coordinator::instance& Coordinator ) noexcept
+	template< typename T_FUNCTION >
+	void instance::CreateEntity( T_FUNCTION&& Function ) noexcept
 	{
-		m_Systems.push_back({ &system::info_v<T_SYSTEM>, std::make_unique< system::details::completed<T_SYSTEM> >(Coordinator) });
-		auto* pInfo   = m_Systems.back().first;
-		auto* pSystem = m_Systems.back().second.get();
-		pInfo->m_RunSystem( Coordinator, *pSystem, system::type::call::CREATED );
-		m_SystemMap.emplace( std::make_pair( system::info_v<T_SYSTEM>.m_Guid, pSystem ) );
-
-		return *( static_cast<T_SYSTEM*>( pSystem ) );
+		m_Coordinator.CreateEntity( Function );
 	}
 
-	template < typename T_SYSTEM >
-	T_SYSTEM* manager::FindSystem( void ) noexcept
+	template< typename T_FUNCTION >
+	void instance::CreateEntities( T_FUNCTION&& Function
+					   , const u32 Count ) noexcept
 	{
-		return m_SystemMap.find( system::info_v<T_SYSTEM>.m_Guid ) != m_SystemMap.end()
-			   ? m_SystemMap.find( system::info_v<T_SYSTEM>.m_Guid )->second
-			   : nullptr;
+		m_Coordinator.CreateEntities( Function, Count );
 	}
 
-	void manager::Run( coordinator::instance& Coordinator ) noexcept
+	void instance::DeleteEntity( component::entity& Entity ) noexcept
 	{
-		// Track Frame Time
-		m_SystemClock.Tick();
+		m_Coordinator.DeleteEntity( Entity );
+	}
 
-		for ( const auto& [ Info, System ] : m_Systems )
-			Info->m_RunSystem( Coordinator, *System, system::type::call::FRAME_START );
+	template < typename... T_COMPONENTS >
+    std::vector<archetype::instance*> instance::Search() const noexcept
+	{
+		return m_Coordinator.Search<T_COMPONENTS...>();
+	}
 
-		for ( const auto& [ Info, System ] : m_Systems )
-			Info->m_RunSystem( Coordinator, *System, system::type::call::PRE_UPDATE );
+    std::vector<archetype::instance*> instance::Search( const tools::query& Query ) const noexcept
+	{
+		return m_Coordinator.Search( Query );
+	}
 
-		for ( const auto& [ Info, System ] : m_Systems )
-			Info->m_RunSystem( Coordinator, *System, system::type::call::UPDATE );
+	template < concepts::Callable_Void T_FUNCTION>
+    void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList
+						  , T_FUNCTION&& Function ) noexcept
+	{
+		m_Coordinator.ForEach<T_FUNCTION>( ArchetypeList, std::forward<T_FUNCTION&&>( Function ) );
+	}
 
-		for ( const auto& [ Info, System ] : m_Systems )
-			Info->m_RunSystem( Coordinator, *System, system::type::call::POST_UPDATE );
+    template < concepts::Callable_Bool T_FUNCTION>
+    void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList
+						  , T_FUNCTION&& Function ) noexcept
+	{
+		m_Coordinator.ForEach<T_FUNCTION>( ArchetypeList, std::forward<T_FUNCTION&&>( Function ) );
+	}
 
-		for ( const auto& [ Info, System ] : m_Systems )
-			Info->m_RunSystem( Coordinator, *System, system::type::call::FRAME_END );
+	template< typename T_SYSTEM >
+	T_SYSTEM* instance::FindSystem( void ) noexcept
+	{
+		return m_Coordinator.FindSystem<T_SYSTEM>();
+	}
+
+	template< typename T_SYSTEM >
+	T_SYSTEM& instance::GetSystem( void ) noexcept
+	{
+		return m_Coordinator.GetSystem();
+	}
+
+	PPB_FORCEINLINE
+	float instance::DeltaTime() const noexcept
+	{
+		return m_Coordinator.DeltaTime();
 	}
 }
