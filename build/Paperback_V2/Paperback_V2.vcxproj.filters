@@ -14,6 +14,21 @@
     <ClCompile Include="paperback_pch.cpp">
       <Filter>Source\Paperback Engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_demo.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_draw.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_tables.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_widgets.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -148,6 +163,27 @@
     <ClInclude Include="..\..\src\paperback_component_mgr.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\IconsFontAwesome5.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imconfig.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui_internal.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imstb_rectpack.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imstb_textedit.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -185,6 +221,9 @@
     </Filter>
     <Filter Include="Dependencies\xCore">
       <UniqueIdentifier>{c03e3f9a-be85-4373-a306-b146345600e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\dearImGui">
+      <UniqueIdentifier>{ab5fc4d1-e197-495a-986e-aea405eef5b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

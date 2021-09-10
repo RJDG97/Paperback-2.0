@@ -11,6 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_tables.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_widgets.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\dependencies\xcore\src\xcore.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -27,6 +42,13 @@
     <ClCompile Include="paperback_pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\dependencies\dearImGui\IconsFontAwesome5.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imconfig.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui_internal.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imstb_rectpack.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imstb_textedit.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h" />
     <ClInclude Include="..\..\dependencies\xcore\src\xcore.h" />
     <ClInclude Include="..\..\src\Components\Bullet.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
@@ -111,7 +133,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
+    <IncludePath>../../dependencies/dearImGui;$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -121,14 +143,15 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../dependencies;../../src;../../dependencies/spdlog/include;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;$(ProjectDir)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,7 +163,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;PAPERBACK_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>../../dependencies;../../src;../../dependencies/spdlog/include;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rapidjson;../../dependencies;../../src;../../dependencies/rttr/include;../../dependencies/spdlog/include;$(ProjectDir)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -149,7 +172,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
+      <AdditionalDependencies>librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -29,16 +29,6 @@ rmdir "../dependencies/glut" /S /Q
 git clone https://github.com/markkilgard/glut.git "../dependencies/glut"
 if %ERRORLEVEL% GEQ 1 goto :PAUSE
 
-echo.
-rmdir "../dependencies/dearImGui" /S /Q
-git clone --branch docking https://github.com/ocornut/imgui.git "../dependencies/dearImGui"
-if %ERRORLEVEL% GEQ 1 goto :PAUSE
-
-echo.
-rmdir "../dependencies/RTTR" /S /Q
-git clone https://github.com/rttrorg/rttr.git "../dependencies/RTTR"
-if %ERRORLEVEL% GEQ 1 goto :PAUSE
-
 :FIND_VSTUDIO
 powershell write-host -fore White ------------------------------------------------------------------------------------------------------
 powershell write-host -fore White PAPERBACK ENGINE - FINDING VISUAL STUDIO / MSBuild
