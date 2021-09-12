@@ -95,7 +95,8 @@ void InitializeGame()
             bullet_logic_system,
             ship_rendering_system,
             bullet_rendering_system,
-            buffer_refresh_system
+            buffer_refresh_system,
+            imgui_system
         >();
     }
 

@@ -51,7 +51,9 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h" />
     <ClInclude Include="..\..\dependencies\xcore\src\xcore.h" />
     <ClInclude Include="..\..\src\Components\Bullet.h" />
+    <ClInclude Include="..\..\src\Components\Components.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
+    <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
     <ClInclude Include="..\..\src\Components\Timer.h" />
     <ClInclude Include="..\..\src\Components\Transform.h" />
@@ -68,6 +70,9 @@
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
+    <ClInclude Include="..\..\src\Json\JsonFile.h" />
+    <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
     <ClInclude Include="..\..\src\Paperback.h" />
     <ClInclude Include="..\..\src\paperback_bitset.h" />
     <ClInclude Include="..\..\src\paperback_clock.h" />
@@ -89,6 +94,7 @@
     <ClInclude Include="..\..\src\Systems\BufferRefresh.h" />
     <ClInclude Include="..\..\src\Systems\BulletLogicSystem.h" />
     <ClInclude Include="..\..\src\Systems\BulletRenderingSystem.h" />
+    <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h" />

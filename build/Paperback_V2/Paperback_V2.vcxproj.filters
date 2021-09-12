@@ -190,6 +190,24 @@
     <ClInclude Include="..\..\src\paperback_entity_mgr.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Systems\ImguiSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Reflect.h">
+      <Filter>Source\Tools\Reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Components.h">
+      <Filter>Source\Gameplay Code\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\JsonDeserialize.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\JsonFile.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\JsonSerialize.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -230,6 +248,12 @@
     </Filter>
     <Filter Include="Dependencies\dearImGui">
       <UniqueIdentifier>{ab5fc4d1-e197-495a-986e-aea405eef5b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Json">
+      <UniqueIdentifier>{bb2bbc20-9024-4e81-b173-c9a8188b6a84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Reflect">
+      <UniqueIdentifier>{824a889a-c634-4e38-95ec-e8bd32cfb6c3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
