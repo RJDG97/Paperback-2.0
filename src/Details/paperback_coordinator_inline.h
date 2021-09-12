@@ -7,24 +7,31 @@ namespace paperback::coordinator
 		m_CompMgr.RegisterComponent<paperback::component::entity>();
 	}
 
-	instance& instance::GetInstance() noexcept
+	instance& instance::GetInstance( void ) noexcept
 	{
 		static instance Instance;
 		return Instance;
 	}
 
-	void instance::Update() noexcept
+	void instance::Terminate( void ) noexcept
+	{
+		m_SystemMgr.Terminate();
+		m_EntityMgr.Terminate();
+		m_CompMgr.Terminate();
+	}
+
+	void instance::Update( void ) noexcept
 	{
 		XCORE_PERF_FRAME_MARK()
 		XCORE_PERF_FRAME_MARK_START("paperback::Frame")
 
-		m_SystemMgr.Run( /**this*/ );
+		m_SystemMgr.Run( );
 
 		XCORE_PERF_FRAME_MARK_END("paperback::Frame")
 	}
 
 	template < concepts::System... T_SYSTEMS >
-	constexpr void instance::RegisterSystems() noexcept
+	constexpr void instance::RegisterSystems( void ) noexcept
 	{
 		m_SystemMgr.RegisterSystems<T_SYSTEMS...>( *this );
 	}
@@ -108,50 +115,50 @@ namespace paperback::coordinator
 	{
 		using func_traits = xcore::function::traits<T_FUNCTION>;
 
-		for (const auto& Archetype : ArchetypeList)
+		for ( const auto& Archetype : ArchetypeList )
 		{
-			// Temporarily using only pool Index[0] - To replace with linked list implementation
-			auto& Pool = Archetype->m_ComponentPool[0];
-
-			auto ComponentPtrs = [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
+			for ( auto& Pool : Archetype->m_ComponentPool )
 			{
-				return std::array
+				auto ComponentPtrs = [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
 				{
-					[&]< typename T_C >( std::tuple<T_C>* ) constexpr noexcept
-					{
-						const auto I = Pool.GetComponentIndex(component::info_v<T_C>.m_UID);
-						if constexpr (std::is_pointer_v<T_C>)	return (I < 0) ? nullptr : Pool.m_ComponentPool[I];
-						else									return Pool.m_ComponentPool[I];
-					}( xcore::types::make_null_tuple_v<T_COMPONENTS> )
-						...
-				};
-			}( xcore::types::null_tuple_v< func_traits::args_tuple > );
+					 return std::array
+					 {
+					 	 [&]< typename T_C >( std::tuple<T_C>* ) constexpr noexcept
+					 	 {
+					 	 	const auto I = Pool.GetComponentIndex(component::info_v<T_C>.m_UID);
+					 	 	if constexpr (std::is_pointer_v<T_C>)	return (I < 0) ? nullptr : Pool.m_ComponentPool[ I ];
+					 	 	else									return Pool.m_ComponentPool[ I ];
+					 	 }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
+					 	 	...
+					 };
+				}( xcore::types::null_tuple_v< func_traits::args_tuple > );
 
-			Archetype->AccessGuard([&]
-			{
-				for (int i = Pool.m_CurrentEntityCount; i; --i)
+				Archetype->AccessGuard( [&]
 				{
-					[&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
+					for (int i = Pool.m_CurrentEntityCount; i; --i)
 					{
+						[&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
+						{
 
-						Function( [&]<typename T_C>( std::tuple<T_C>* ) constexpr noexcept -> T_C
-								  {
-									  auto& pComponent = ComponentPtrs[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
-								  
-									  if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
-								  
-									  auto p = pComponent;
-									  pComponent += sizeof(std::decay_t<T_C>);
-								  
-									  if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
-									  else										return reinterpret_cast<T_C>(*p);
-								  
-								  }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
-						... );
+							Function( [&]<typename T_C>( std::tuple<T_C>* ) constexpr noexcept -> T_C
+									  {
+										  auto& pComponent = ComponentPtrs[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
+				
+										  if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
+				
+										  auto p = pComponent;
+										  pComponent += sizeof(std::decay_t<T_C>);
+				
+										  if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
+										  else										return reinterpret_cast<T_C>(*p);
+				
+									  }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
+							... );
 
-					}( xcore::types::null_tuple_v< func_traits::args_tuple > );
-				}
-			});
+						}( xcore::types::null_tuple_v< func_traits::args_tuple > );
+					}
+				});
+			}
 		}
 	}
 
@@ -162,53 +169,54 @@ namespace paperback::coordinator
 
 		for ( const auto& Archetype : ArchetypeList )
 		{
-			// Temporarily using only pool Index[0] - To replace with linked list implementation
-			auto& Pool = Archetype->m_ComponentPool[0];
-
-			auto ComponentPtrs = [&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
-			{
-				return std::array
-				{
-					[&]< typename T_C >( std::tuple<T_C>* ) constexpr noexcept
-					{
-						const auto I = Pool.GetComponentIndex( component::info_v<T_C>.m_UID );
-						if constexpr ( std::is_pointer_v<T_C> )	return ( I < 0 ) ? nullptr : Pool.m_ComponentPool[I];
-						else									return Pool.m_ComponentPool[I];
-					}( xcore::types::make_null_tuple_v<T_COMPONENTS> )
-						...
-				};
-			}( xcore::types::null_tuple_v< func_traits::args_tuple > );
-
 			bool bBreak = false;
 
-			Archetype->AccessGuard([&]
+			for ( auto& Pool : Archetype->m_ComponentPool )
 			{
-				for (int i = Pool.m_CurrentEntityCount; i; --i)
+				auto ComponentPtrs = [&]< typename... T_COMPONENTS >(std::tuple<T_COMPONENTS...>*) constexpr noexcept
 				{
-					if ( [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
-					{
-						return Function( [&]<typename T_C>(std::tuple<T_C>*) constexpr noexcept -> T_C
-										 {
-						                 	  auto& pComponent = ComponentPtrs[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
-						                 	  
-						                 	  if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
-						                 	  
-						                 	  auto p = pComponent;
-						                 	  pComponent += sizeof(std::decay_t<T_C>);
-						                 	  
-						                 	  if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
-						                 	  else										return reinterpret_cast<T_C>(*p);
+					 return std::array
+					 {
+					 	 [&] < typename T_C >(std::tuple<T_C>*) constexpr noexcept
+					 	 {
+					 	 	const auto I = Pool.GetComponentIndex(component::info_v<T_C>.m_UID);
+					 	 	if constexpr (std::is_pointer_v<T_C>)	return (I < 0) ? nullptr : Pool.m_ComponentPool[I];
+					 	 	else									return Pool.m_ComponentPool[I];
+					 	 }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
+					 	    ...
+					 };
+				}( xcore::types::null_tuple_v< func_traits::args_tuple > );
 
-										 }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
-						... );
-					}( xcore::types::null_tuple_v< func_traits::args_tuple > ) )
+				Archetype->AccessGuard( [&]
+				{
+					for (int i = Pool.m_CurrentEntityCount; i; --i)
 					{
-						bBreak = true;
-						break;
+						if ([&]<typename... T_COMPONENTS>(std::tuple<T_COMPONENTS...>*) constexpr noexcept
+						{
+							return Function([&]<typename T_C>(std::tuple<T_C>*) constexpr noexcept -> T_C
+							{
+								auto& pComponent = ComponentPtrs[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
+
+								if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
+
+								auto p = pComponent;
+								pComponent += sizeof(std::decay_t<T_C>);
+
+								if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
+								else										return reinterpret_cast<T_C>(*p);
+
+							}(xcore::types::make_null_tuple_v<T_COMPONENTS>)
+								...);
+						}(xcore::types::null_tuple_v< func_traits::args_tuple >))
+						{
+							bBreak = true;
+							break;
+						}
 					}
-				}
-			});
+				});
 
+				if ( bBreak ) break;
+			}
 			if (bBreak) break;
 		}
 	}

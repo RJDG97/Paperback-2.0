@@ -102,6 +102,14 @@ namespace paperback::system
 				}
 				break;
 			}
+			case system::type::call::TERMINATED:
+			{
+				if constexpr ( &USER_SYSTEM::OnSystemTerminated != &system_interface::OnSystemTerminated )
+				{
+					USER_SYSTEM::OnSystemTerminated();
+				}
+				break;
+			}
 		}
 	}
 

@@ -14,4 +14,9 @@ namespace paperback::component
     {
         ( ( RegisterComponent<T_COMPONENTS>() ), ... );
     }
+
+    void manager::Terminate( void ) noexcept
+    {
+        // Clear Components Maybe
+    }
 }

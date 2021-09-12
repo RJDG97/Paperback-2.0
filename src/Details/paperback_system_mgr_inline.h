@@ -59,4 +59,13 @@ namespace paperback::system
 		for ( const auto& [ Info, System ] : m_Systems )
 			Info->m_RunSystem( *System, system::type::call::FRAME_END );
 	}
+
+	void manager::Terminate( void ) noexcept
+	{
+		for ( const auto& [ Info, System ] : m_Systems )
+			Info->m_RunSystem( *System, system::type::call::TERMINATED );
+
+		m_SystemMap.clear();
+		m_Systems.clear();
+	}
 }
