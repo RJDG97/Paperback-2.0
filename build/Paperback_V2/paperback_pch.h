@@ -24,4 +24,10 @@
 
 //#include <Windows.h>
 
+#include "fmod/core/inc/fmod.hpp"
+#include "fmod/core/inc/fmod_common.h"
+
+#include "fmod/studio/inc/fmod_studio.hpp"
+#include "fmod/studio/inc/fmod_studio_common.h"
+
 #endif

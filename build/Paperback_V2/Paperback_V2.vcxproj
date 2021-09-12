@@ -31,6 +31,7 @@
     <ClInclude Include="..\..\src\Components\Bullet.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
+    <ClInclude Include="..\..\src\Components\Sound.h" />
     <ClInclude Include="..\..\src\Components\Timer.h" />
     <ClInclude Include="..\..\src\Components\Transform.h" />
     <ClInclude Include="..\..\src\Details\paperback_bitset_inline.h" />
@@ -70,6 +71,7 @@
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h" />
+    <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
     <ClInclude Include="..\..\src\Vector.h" />
     <ClInclude Include="paperback_pch.h" />
@@ -110,10 +112,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -131,7 +135,12 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore</AdditionalLibraryDirectories>
+      <AdditionalDependencies>fmodL_vc.lib;fmodstudioL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -152,7 +161,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
+      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
