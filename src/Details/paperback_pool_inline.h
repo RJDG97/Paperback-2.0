@@ -47,7 +47,7 @@ namespace paperback::vm
 
 	u32 instance::Append() noexcept
 	{
-		assert( m_CurrentEntityCount < settings::max_entities_v - 1 );
+		assert( m_CurrentEntityCount < settings::max_entities_v );
 
 		// For each valid component
 		for (size_t i = 0, end = m_ComponentInfo.size(); i < end; i++)

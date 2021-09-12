@@ -16,10 +16,13 @@ namespace paperback::coordinator
 		instance( const instance& ) = delete;
 
 		PPB_INLINE
-		static instance& GetInstance() noexcept;
+		static instance& GetInstance( void ) noexcept;
 
 		PPB_INLINE
-		void Update() noexcept;
+		void Update( void ) noexcept;
+
+		PPB_INLINE
+		void Terminate( void ) noexcept;
 
 
 

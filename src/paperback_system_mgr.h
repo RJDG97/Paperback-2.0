@@ -26,6 +26,9 @@ namespace paperback::system
 		PPB_INLINE
 		void Run( void ) noexcept;
 
+		PPB_INLINE
+		void Terminate( void ) noexcept;
+
 
 		// bool m_bPaused;
 		tools::clock&			m_SystemClock;

@@ -39,6 +39,7 @@
     <ClInclude Include="..\..\src\Details\paperback_component_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_coordinator_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_entity_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_entity_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_logger_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_pool_inline.h" />
@@ -52,6 +53,7 @@
     <ClInclude Include="..\..\src\paperback_component_mgr.h" />
     <ClInclude Include="..\..\src\paperback_coordinator.h" />
     <ClInclude Include="..\..\src\paperback_entity.h" />
+    <ClInclude Include="..\..\src\paperback_entity_mgr.h" />
     <ClInclude Include="..\..\src\paperback_event.h" />
     <ClInclude Include="..\..\src\paperback_logger.h" />
     <ClInclude Include="..\..\src\paperback_pool.h" />

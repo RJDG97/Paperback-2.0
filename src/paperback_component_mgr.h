@@ -21,5 +21,8 @@ namespace paperback::component
 
         template< typename... T_COMPONENTS >
         void RegisterComponents( void ) noexcept;
+
+        PPB_INLINE
+        void Terminate( void ) noexcept;
     };
 }

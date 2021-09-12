@@ -92,6 +92,7 @@ namespace paperback::system
 		,	UPDATE
 		,	POST_UPDATE
 		,	FRAME_END
+		,	TERMINATED
 		};
 
 		struct update
@@ -135,12 +136,13 @@ namespace paperback::system
 	//-----------------------------------
 	struct system_interface
 	{
-		void OnSystemCreated ( void ) noexcept {}	// When RegisterSystem is called - Manual Initialization
-        void OnFrameStart    ( void ) noexcept {}
-        void PreUpdate       ( void ) noexcept {}
-		void Update		     ( void ) noexcept {}
-		void PostUpdate      ( void ) noexcept {}
-		void OnFrameEnd      ( void ) noexcept {}
+		void OnSystemCreated    ( void ) noexcept {}	// When RegisterSystem is called - Manual Initialization
+        void OnFrameStart       ( void ) noexcept {}
+        void PreUpdate          ( void ) noexcept {}
+		void Update		        ( void ) noexcept {}
+		void PostUpdate         ( void ) noexcept {}
+		void OnFrameEnd         ( void ) noexcept {}
+		void OnSystemTerminated ( void ) noexcept {}	// When Game is Terminated / Reloaded
 	};
 
 	struct instance : system_interface

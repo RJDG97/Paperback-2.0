@@ -15,7 +15,7 @@ void GlutTimer(int value);
 void InitializeGame();
 
 
-int main(int argc, char* argv[])
+int main( int argc, char* argv[] )
 {
 #if defined( PAPERBACK_DEBUG ) | defined( PAPERBACK_DEBUG )
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
@@ -25,8 +25,7 @@ int main(int argc, char* argv[])
 #endif
 
     // Initialization
-    xcore::Init( "Starting xCore");
-    // Create stuff in game
+    xcore::Init( "Initializing Paperback Engine");
     InitializeGame();
 
     // Game Loop - To be replaced with purely PPB.Update()
@@ -54,6 +53,7 @@ int main(int argc, char* argv[])
     glutMainLoop();
 
     // Termination
+    PPB.Terminate();
     xcore::Kill();
 }
 
@@ -101,12 +101,10 @@ void InitializeGame()
 
     // Entity Creation
     {
-        for (int i = 0; i < 4000; ++i)
+        for (int i = 0; i < 2000; ++i)
         {
-            PPB.CreateEntity( [&]( component::entity& Entity, transform& Transform, rigidbody& RigidBody, timer& Timer )
+            PPB.CreateEntity( [&]( transform& Transform, rigidbody& RigidBody, timer& Timer )
                               {
-                                  Entity.m_GlobalIndex = 0;
-                              
                                   Transform.m_Position.m_X = std::rand() % m_Engine.m_Width;
                                   Transform.m_Position.m_Y = std::rand() % m_Engine.m_Height;
                               
