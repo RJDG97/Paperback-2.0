@@ -83,7 +83,8 @@ void InitializeGame()
             bullet,
             rigidbody,
             transform,
-            timer
+            timer,
+            sound
         >();
     }
 
@@ -96,7 +97,8 @@ void InitializeGame()
             ship_rendering_system,
             bullet_rendering_system,
             buffer_refresh_system,
-            imgui_system
+            imgui_system,
+            sound_system
         >();
     }
 
