@@ -3,7 +3,7 @@
 struct sound_system : paperback::system::instance
 {
 
-    FMOD::System* m_p_SoundSystem = nullptr;
+    FMOD::System* m_pSoundSystem = nullptr;
 
     constexpr static auto typedef_v = paperback::system::type::update
     {
