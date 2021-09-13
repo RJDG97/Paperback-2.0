@@ -14,8 +14,8 @@ struct sound_system : paperback::system::instance
     void OnSystemCreated( void ) noexcept
     {
         // set up system aka fmod required stuff
-        FMOD::System_Create(&m_p_SoundSystem);
-        m_p_SoundSystem->init(32, FMOD_INIT_NORMAL, m_p_SoundSystem);
+        FMOD::System_Create(&m_pSoundSystem);
+        m_pSoundSystem->init(32, FMOD_INIT_NORMAL, m_pSoundSystem);
     }
 
     PPB_FORCEINLINE
