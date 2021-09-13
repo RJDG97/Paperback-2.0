@@ -165,7 +165,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore</AdditionalLibraryDirectories>
       <AdditionalDependencies>fmodL_vc.lib;fmodstudioL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
