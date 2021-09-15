@@ -8,4 +8,5 @@ struct sound
     };
 
 	std::string m_SoundID;
+    size_t m_SoundPlayTag; // assigned during run time to determine if currently playing
 };
