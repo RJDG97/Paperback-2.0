@@ -33,13 +33,15 @@ public:
     {
 
         FMOD::Studio::Bank* result;
-        m_pStudioSystem->loadBankFile(filename, FMOD_STUDIO_LOAD_BANK_NORMAL, &result);
+        FMOD_RESULT res = m_pStudioSystem->loadBankFile(filename, FMOD_STUDIO_LOAD_BANK_NORMAL, &result);
 
         if (!result) 
         {
 
-            std::cout << "Bad read\n" << std::endl;
+            std::cout << "Bad read: " << filename << std::endl;
         }
+
+        std::cout << "bank load status: " << res << "\n\n";
     }
 
     void RemoveAllBanks() 
@@ -58,7 +60,7 @@ public:
         
         if (m_pStudioSystem->getEvent(path, &event) == FMOD_OK) 
         {
-            std::cout << "event found\n";
+
             m_SoundFiles.push_back({});
             m_SoundFiles.back().m_ID = ++m_SoundCounter;
 
@@ -69,10 +71,12 @@ public:
             std::cout << result << std::endl;
             m_SoundFiles.back().m_pSound->setVolume(1.0f);
 
+            //in case of extra load case to debug log
             FMOD_STUDIO_PLAYBACK_STATE be;
             m_SoundFiles.back().m_pSound->getPlaybackState(&be);
 
-            std::cout << be << std::endl;
+            if (be != 0)
+                std::cout << be << std::endl;
         }
         else {
 
@@ -128,28 +132,20 @@ public:
         m_pStudioSystem->getCoreSystem(&m_pFMODSystem);
 
         //add master bank file
-        AddBank("Master.bank");
-        AddBank("Master.strings.bank");
+        //AddBank("Master.bank");
+        //AddBank("Master.strings.bank");
+        AddBank("TestBank/Master.bank");
+        AddBank("TestBank/Master.strings.bank");
+        AddBank("TestBank/Dialogue_EN.bank");
+        AddBank("TestBank/Music.bank");
+        AddBank("TestBank/SFX.bank");
+        AddBank("TestBank/Vehicles.bank");
+        AddBank("TestBank/VO.bank");
 
-        PlaySoundEvent("event:/Abang", false);
+        //PlaySoundEvent("event:/Abang", false);
+        PlaySoundEvent("event:/Music/Level 01", false);
 
         m_SoundCounter = {};
-    }
-
-
-    PPB_FORCEINLINE
-    void Update( void ) noexcept
-    {
-        // call fmod default stuff IF there's something that needs to be "globally" called 
-        m_pStudioSystem->update();
-
-        for (SoundFile& sound : m_SoundFiles) {
-
-            FMOD_STUDIO_PLAYBACK_STATE be;
-            sound.m_pSound->getPlaybackState(&be);
-
-            std::cout << be << std::endl;
-        }
     }
 
     // entity that is processed by soundsystem will specifically have sound and timer components
@@ -198,13 +194,33 @@ public:
     //dtor to clean system
     //StopSound("All", true);
 
-    // Terminate system
     PPB_FORCEINLINE
     void OnFrameEnd(void) noexcept 
+    {
+        // call fmod default stuff IF there's something that needs to be "globally" called 
+        m_pStudioSystem->update();
+
+        for (SoundFile& sound : m_SoundFiles) {
+
+            FMOD_STUDIO_PLAYBACK_STATE be;
+            sound.m_pSound->getPlaybackState(&be);
+
+            //if sound has stopped, mark for removal
+            if (be == 2) {
+
+                sound.m_ID = 0;
+            }
+        }
+
+        //remove all sound files tagged with id 0 since 0 is default tag value which should have been replaced with non-zero from start
+        std::remove_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [](SoundFile& sound) { return sound.m_ID == 0; });
+    }
+
+    // Terminate system
+    PPB_FORCEINLINE
+    void OnSystemTerminated(void) noexcept 
     {
         m_pStudioSystem->unloadAll();
         m_pStudioSystem->release();
     }
-
-
 };
