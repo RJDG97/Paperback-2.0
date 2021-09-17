@@ -74,6 +74,7 @@
     <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
     <ClInclude Include="..\..\src\Json\JsonFile.h" />
     <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
+    <ClInclude Include="..\..\src\Mono.h" />
     <ClInclude Include="..\..\src\Paperback.h" />
     <ClInclude Include="..\..\src\paperback_bitset.h" />
     <ClInclude Include="..\..\src\paperback_clock.h" />
@@ -97,6 +98,7 @@
     <ClInclude Include="..\..\src\Systems\BulletRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
+    <ClInclude Include="..\..\src\Systems\ScriptingSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />

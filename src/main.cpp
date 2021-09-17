@@ -98,7 +98,8 @@ void InitializeGame()
             bullet_rendering_system,
             buffer_refresh_system,
             imgui_system,
-            sound_system
+            sound_system,
+            scripting_system
         >();
     }
 
