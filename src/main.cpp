@@ -1,11 +1,19 @@
 #include "paperback_pch.h"
 #include "Paperback.h"
 
+// for testing purposes
+#include "Json/JsonFile.h"
+#include <string>
+#include <rttr/type>
+
 //-----------------------------------
 //       Component & Systems
 //-----------------------------------
 #include "Components/component_includes.h"
 #include "Systems/system_includes.h"
+
+
+#include "Components/Reflect.h"
 
 //-----------------------------------
 //      Forward Declarations
@@ -63,11 +71,6 @@ int main( int argc, char* argv[] )
 
 
 
-
-
-
-
-
 void GlutTimer( int value )
 {
     UNREFERENCED_PARAMETER( value );
@@ -101,21 +104,47 @@ void InitializeGame()
             sound_system
         >();
     }
-
+    //PPB.m_EntityMgr.GetComponent<T_COMPONENT> ->   access entity manager (PPB.m_EntityMgr) | (.GetComponent<T_COMPONENT>) Get the list of components
     // Entity Creation
     {
-        for (int i = 0; i < 2000; ++i)
-        {
-            PPB.CreateEntity( [&]( transform& Transform, rigidbody& RigidBody, timer& Timer )
-                              {
-                                  Transform.m_Position.m_X = std::rand() % m_Engine.m_Width;
-                                  Transform.m_Position.m_Y = std::rand() % m_Engine.m_Height;
+         for (int i = 0; i < 5; ++i)
+         {
+             PPB.CreateEntity( [&]( transform& Transform, rigidbody& RigidBody, timer& Timer )
+                               {
+                                   Transform.m_Position.m_X = std::rand() % m_Engine.m_Width;
+                                   Transform.m_Position.m_Y = std::rand() % m_Engine.m_Height;
                               
-                                  RigidBody.m_Velocity.m_X = ( std::rand() % 40 );
-                                  RigidBody.m_Velocity.m_Y = ( std::rand() % 40 );
+                                   RigidBody.m_Velocity.m_X = ( std::rand() % 40 );
+                                   RigidBody.m_Velocity.m_Y = ( std::rand() % 40 );
                               
-                                  Timer.m_Timer = (std::rand() / (float)RAND_MAX) * 8;
-                              });
+                                   Timer.m_Timer = (std::rand() / (float)RAND_MAX) * 8;
+                               });
+         }
+
+         //PPB.m_EntityMgr.GetComponent<T_COMPONENT>
+         //(*PPB.m_EntityMgr.m_EntityInfos)[i].m_PoolDetails -> Access components of the archetype???
+
+         for (int i = 0; i < 5; ++i)
+         {
+             auto trans = (PPB.m_EntityMgr.m_EntityInfos)[i].m_pArchetype->GetComponent<transform>((PPB.m_EntityMgr.m_EntityInfos)[i].m_PoolDetails); //returns component ref
+             std::cout << trans.m_Position.m_X << std::endl;
+             
+         }
+
+
+        paperback::JsonFile j;
+        for (int i = 0; i < 5; ++i){
+
+            transform r;
+            
+            std::string a  = rttr::type::get(r).get_name().to_string();
+
+            j.StartWriter("test.json");
+            //j.WriteEntities();
+            j.StartObject().WriteKey("test").StartArray().StartObject().WriteKey(a).StartObject().EndObject().EndObject().EndArray();
+            //j.EndObject();
+            j.EndWriter();
         }
     }
 }
+

@@ -9,11 +9,8 @@
 #include <rapidjson/document.h>
 #include <rttr/type>
 
-#include "JsonSerialize/JsonSerialize.h"
-#include "JsonSerialize/JsonDeserialize.h"
-
-using namespace rttr;
-using namespace rapidjson;
+#include "Json/JsonSerialize.h"
+#include "Json/JsonDeserialize.h"
 
 namespace paperback 
 {
@@ -21,10 +18,10 @@ namespace paperback
     {
         char* buffer { nullptr };
         FILE* fp { nullptr };
-        FileWriteStream* wstream {nullptr};
-        FileReadStream* rstream {nullptr};
-        PrettyWriter<rapidjson::FileWriteStream>* writer {nullptr};
-        Document* doc {nullptr};
+        rapidjson::FileWriteStream* wstream {nullptr};
+        rapidjson::FileReadStream* rstream {nullptr};
+        rapidjson::PrettyWriter<rapidjson::FileWriteStream>* writer {nullptr};
+        rapidjson::Document* doc {nullptr};
 
         public:
         //-----------------------------------
@@ -36,8 +33,8 @@ namespace paperback
             assert(fp == nullptr);
             fopen_s(&fp, file.c_str(), "wb");
             buffer = new char[65536] {};
-            wstream = new FileWriteStream(fp, buffer, 65536);
-            writer = new PrettyWriter<FileWriteStream>(*wstream);
+            wstream = new rapidjson::FileWriteStream(fp, buffer, 65536);
+            writer = new rapidjson::PrettyWriter<rapidjson::FileWriteStream>(*wstream);
 
             return *this;
         }
@@ -84,18 +81,18 @@ namespace paperback
            return *this;
         }
 
-        JsonFile& Write(instance obj)
+        JsonFile& Write(rttr::instance obj)
         {
             serialize::Write(obj, *writer);
             return *this;
         }
 
-        JsonFile& WriteArray(const variant_sequential_view& view)
+        JsonFile& WriteArray(const rttr::variant_sequential_view& view)
         {
             serialize::WriteArray(view, *writer);
         }
 
-        JsonFile& WriteAssociativeContainers(const variant_associative_view& view)
+        JsonFile& WriteAssociativeContainers(const rttr::variant_associative_view& view)
         {
             serialize::Write(view, *writer);
             return *this;
@@ -110,8 +107,8 @@ namespace paperback
             assert(fp == nullptr);
             fopen_s(&fp, file.c_str(), "rb");
             buffer = new char[65536]; buffer;
-            rstream = new FileReadStream(fp, buffer, 65536);
-            doc = new Document();
+            rstream = new rapidjson::FileReadStream(fp, buffer, 65536);
+            doc = new rapidjson::Document();
             assert(!doc->ParseStream(*rstream).HasParseError());
 
             return *this;
@@ -128,13 +125,13 @@ namespace paperback
             return *this;
         }
 
-        JsonFile& LoadArray(variant_sequential_view& view, Value& json_array_value)
+        JsonFile& LoadArray(rttr::variant_sequential_view& view, rapidjson::Value& json_array_value)
         {
             deserialize::ReadArray(view, json_array_value);
             return *this;
         }
 
-        JsonFile& LoadAssociativeArray(variant_associative_view &view, Value& json_array_value)
+        JsonFile& LoadAssociativeArray(rttr::variant_associative_view &view, rapidjson::Value& json_array_value)
         {
             deserialize::ReadAssociative(view, json_array_value);
             return *this;
@@ -142,14 +139,14 @@ namespace paperback
 
         JsonFile& LoadEntities(const char* archetype)
         {
-            Value::MemberIterator it = doc->FindMember(archetype);
+            rapidjson::Value::MemberIterator it = doc->FindMember(archetype);
             //if (it != doc->MemberEnd())
             // deserialize::ReadEntities(it);
 
             return *this;
         }
 
-        JsonFile& LoadObject(instance obj)
+        JsonFile& LoadObject(rttr::instance obj)
         {
             deserialize::ReadObject(obj, *doc);
             return *this;

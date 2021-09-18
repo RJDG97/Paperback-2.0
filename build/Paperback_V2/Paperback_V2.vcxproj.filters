@@ -29,6 +29,21 @@
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_widgets.cpp">
       <Filter>Dependencies\dearImGui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.cpp">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImCurveEdit.cpp">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImGradient.cpp">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImGuizmo.cpp">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImSequencer.cpp">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -214,6 +229,27 @@
     <ClInclude Include="..\..\src\Systems\SoundSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="samplecomponent.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.h">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImCurveEdit.h">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImGradient.h">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImGuizmo.h">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImSequencer.h">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImZoomSlider.h">
+      <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -260,6 +296,9 @@
     </Filter>
     <Filter Include="Source\Tools\Reflect">
       <UniqueIdentifier>{824a889a-c634-4e38-95ec-e8bd32cfb6c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\dearImGui\ImGuizmo">
+      <UniqueIdentifier>{cc497d3e-2dee-43e4-8327-01d021cc70c9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

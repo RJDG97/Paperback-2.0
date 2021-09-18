@@ -228,4 +228,18 @@ namespace paperback::vm
 		}
 		return -1;
 	}
+
+	void instance::SerializePoolComponentsAtEntityIndex(const u32 Index) noexcept
+	{
+		JsonFile jfile;
+
+		for (size_t i = 0, max = m_ComponentInfo.size(); i < max; ++i)
+		{
+			jfile.StartArray();
+			//using c_Info = m_ComponentInfo[i];
+			auto ComponentIndex = GetComponentIndex(m_ComponentInfo[i]->m_UID);
+			m_ComponentInfo[i]->m_Serialize(&m_ComponentPool[ComponentIndex][Index * m_ComponentInfo[ComponentIndex]->m_Size]);
+			jfile.EndArray();
+		}
+	}
 }

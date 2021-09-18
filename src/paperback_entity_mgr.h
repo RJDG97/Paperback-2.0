@@ -1,4 +1,13 @@
 #pragma once
+// Method 1 (Sorted):
+// entity manager -> get list of archetypes -> iterate each archetype -> access entity info list in archetypes
+// ( Need to add to Archetype as data ) -> access m_ComponentInfos to access GUID which determines component type
+
+// Method 2 (Unsorted):
+// entity manager -> entity info list -> iterate all entity info's pool details -> access component infos same as on top
+
+//component::info_v<T_COMPONENT>::m_UID -> Component ID
+
 
 namespace paperback::entity
 {

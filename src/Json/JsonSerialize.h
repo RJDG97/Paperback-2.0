@@ -6,39 +6,44 @@
 #include <rttr/type>
 #include <iostream>
 #include <string>
+#include <vector>
+#include "Components/component_includes.h"
 
-using namespace rttr;
-using namespace rapidjson;
+//using namespace rttr;
+//using namespace rapidjson;
 
 namespace paperback::serialize
 {
-    bool WriteAtomic( const type &t, const variant &var, PrettyWriter<FileWriteStream> &writer )
+    //Forward Declaration
+    bool WriteVariant(const rttr::variant& var, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer);
+
+    bool WriteAtomic( const rttr::type &t, const rttr::variant &var, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer )
     {
         if ( t.is_arithmetic() )
         {
-            if ( t == type::get<bool>() )
+            if ( t == rttr::type::get<bool>() )
             writer.Bool( var.to_bool() );
-            else if ( t == type::get<char>() )
+            else if ( t == rttr::type::get<char>() )
             writer.Bool( var.to_bool() );
-            else if ( t == type::get<int8_t>() )
+            else if ( t == rttr::type::get<int8_t>() )
             writer.Int( var.to_int8() );
-            else if ( t == type::get<int16_t>() )
+            else if ( t == rttr::type::get<int16_t>() )
             writer.Int( var.to_int16() );
-            else if ( t == type::get<int32_t>() )
+            else if ( t == rttr::type::get<int32_t>() )
             writer.Int( var.to_int32() );
-            else if ( t == type::get<int64_t>() )
+            else if ( t == rttr::type::get<int64_t>() )
             writer.Int64( var.to_int64() );
-            else if ( t == type::get<uint8_t>() )
+            else if ( t == rttr::type::get<uint8_t>() )
             writer.Uint( var.to_uint8() );
-            else if ( t == type::get<uint16_t>() )
+            else if ( t == rttr::type::get<uint16_t>() )
             writer.Uint( var.to_uint16() );
-            else if ( t == type::get<uint32_t>() )
+            else if ( t == rttr::type::get<uint32_t>() )
             writer.Uint( var.to_uint32() );
-            else if ( t == type::get<uint64_t>() )
+            else if ( t == rttr::type::get<uint64_t>() )
             writer.Uint64( var.to_uint64() );
-            else if ( t == type::get<float>() )
+            else if ( t == rttr::type::get<float>() )
             writer.Double( var.to_double() );
-            else if ( t == type::get<double>() )
+            else if ( t == rttr::type::get<double>() )
             writer.Double( var.to_double() );
 
             return true;
@@ -61,7 +66,7 @@ namespace paperback::serialize
 
             return true;
         }
-        else if ( t == type::get<std::string>() )
+        else if ( t == rttr::type::get<std::string>() )
         {
             writer.String( var.to_string() );
             return true;
@@ -72,57 +77,21 @@ namespace paperback::serialize
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    bool WriteVariant( const variant &var, PrettyWriter<FileWriteStream> &writer )
-    {
-        auto value_type = var.get_type();
-        auto wrapped_type = value_type.is_wrapper() ? value_type.get_wrapped_type() : value_type;
-        bool is_wrapper = wrapped_type != value_type;
-
-        if ( WriteAtomic( is_wrapper ? wrapped_type : value_type,
-            is_wrapper ? var.extract_wrapped_value() : var, writer ) )
-        {}
-        else if (var.is_sequential_container())
-            WriteArray(var.create_sequential_view(), writer);
-        else if (var.is_associative_container())
-            WriteAssociative(var.create_associative_view(), writer);
-        else
-        {
-            auto child_props = is_wrapper ? wrapped_type.get_properties() : value_type.get_properties();
-            if ( !child_props.empty() )
-            WriteRecursive( var, writer );
-            else
-            {
-                bool ok = false;
-                auto text = var.to_string( &ok );
-                if ( !ok )
-                {
-                    writer.String( text );
-                    return false;
-                }
-
-                writer.String( text );
-            }
-        }
-        return true;
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-
-    void WriteRecursive( const instance &obj2, PrettyWriter<FileWriteStream> &writer )
+    void WriteRecursive( const rttr::instance &obj2, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer )
     {
         writer.StartObject();
 
-        instance obj = obj2.get_type().get_raw_type().is_wrapper() ? obj2.get_wrapped_instance() : obj2;
+        rttr::instance obj = obj2.get_type().get_raw_type().is_wrapper() ? obj2.get_wrapped_instance() : obj2;
 
         auto prop_list = obj.get_derived_type().get_properties();
         for ( auto prop : prop_list )
         {
-            variant prop_value = prop.get_value( obj );
+            rttr::variant prop_value = prop.get_value( obj );
             if ( !prop_value )
             continue; // cannot serialize, because we cannot retrieve the value
 
             const auto name = prop.get_name();
-            writer.String( name.data(), static_cast<SizeType>( name.length() ), false );
+            writer.String( name.data(), static_cast<rapidjson::SizeType>( name.length() ), false );
             if ( !WriteVariant( prop_value, writer ) )
             std::cerr << "cannot serialize property: " << name << std::endl;
         }
@@ -132,28 +101,28 @@ namespace paperback::serialize
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    void Write ( instance object, PrettyWriter<FileWriteStream> &writer )
+    void Write ( rttr::instance object, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer )
     {
-        instance obj = object.get_type().get_raw_type().is_wrapper() ? object.get_wrapped_instance() : object;
+        rttr::instance obj = object.get_type().get_raw_type().is_wrapper() ? object.get_wrapped_instance() : object;
 
         auto prop_list = obj.get_derived_type().get_properties();
         for ( auto prop : prop_list )
         {
-            variant prop_value = prop.get_value( obj );
+            rttr::variant prop_value = prop.get_value( obj );
             if ( !prop_value )
             continue; // cannot serialize, because we cannot retrieve the value
 
             const auto name = prop.get_name();
-            writer.String( name.data(), static_cast<SizeType>( name.length() ), false );
+            writer.String( name.data(), static_cast<rapidjson::SizeType>( name.length() ), false );
             if ( !WriteVariant( prop_value, writer ) )
             std::cerr << "cannot serialize property: " << name << std::endl;
         }
-        }
+    }
 
-        /////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
 
-        void WriteArray(const variant_sequential_view& view, PrettyWriter<FileWriteStream>& writer)
-        {
+    void WriteArray(const rttr::variant_sequential_view& view, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer)
+    {
         writer.StartArray();
 
         for (const auto& item : view)
@@ -161,9 +130,9 @@ namespace paperback::serialize
             WriteArray(item.create_sequential_view(), writer);
             else
             {
-                variant wrapped_var = item.extract_wrapped_value();
-                type value_type = wrapped_var.get_type();
-                if (value_type.is_arithmetic() || value_type == type::get<std::string>() || value_type.is_enumeration())
+                rttr::variant wrapped_var = item.extract_wrapped_value();
+                rttr::type value_type = wrapped_var.get_type();
+                if (value_type.is_arithmetic() || value_type == rttr::type::get<std::string>() || value_type.is_enumeration())
                 {
                     WriteAtomic(value_type, wrapped_var, writer);
                 }
@@ -178,10 +147,10 @@ namespace paperback::serialize
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    void WriteAssociative(const variant_associative_view& view, PrettyWriter<FileWriteStream>& writer)
+    void WriteAssociative(const rttr::variant_associative_view& view, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer)
     {
-        static const string_view key_name("key");
-        static const string_view value_name("value");
+        static const rttr::string_view key_name("key");
+        static const rttr::string_view value_name("value");
 
         writer.StartArray();
 
@@ -192,11 +161,11 @@ namespace paperback::serialize
             for (auto& item : view)
             {
                 writer.StartObject();
-                writer.String(key_name.data(), static_cast<SizeType>(key_name.length()), false);
+                writer.String(key_name.data(), static_cast<rapidjson::SizeType>(key_name.length()), false);
 
                 WriteVariant(item.first, writer);
 
-                writer.String(value_name.data(), static_cast<SizeType>(value_name.length()), false);
+                writer.String(value_name.data(), static_cast<rapidjson::SizeType>(value_name.length()), false);
 
                 WriteVariant(item.second, writer);
 
@@ -207,29 +176,41 @@ namespace paperback::serialize
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////
-
-    void WriteEntities (/*EntityManager Em, (Ask JP)*/ PrettyWriter<FileWriteStream> &writer)
+    bool WriteVariant(const rttr::variant& var, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer)
     {
-        // to do 
-    }
+        auto value_type = var.get_type();
+        auto wrapped_type = value_type.is_wrapper() ? value_type.get_wrapped_type() : value_type;
+        bool is_wrapper = wrapped_type != value_type;
 
-    void WriteObject( instance object, PrettyWriter<FileWriteStream> &writer )
-    {
-        instance obj = object.get_type().get_raw_type().is_wrapper() ? object.get_wrapped_instance() : object;
-
-        auto prop_list = obj.get_derived_type().get_properties();
-        for ( auto prop : prop_list )
+        if (WriteAtomic(is_wrapper ? wrapped_type : value_type,
+            is_wrapper ? var.extract_wrapped_value() : var, writer))
         {
-            variant prop_value = prop.get_value( obj );
-            if ( !prop_value )
-            continue; // cannot serialize, because we cannot retrieve the value
-
-            const auto name = prop.get_name();
-            writer.String( name.data(), static_cast<SizeType>( name.length() ), false );
-            if ( !WriteVariant( prop_value, writer ) )
-                assert( "Cannot serialize property {}", name.data() ); //update to engine assert
         }
+        else if (var.is_sequential_container())
+            WriteArray(var.create_sequential_view(), writer);
+        else if (var.is_associative_container())
+            WriteAssociative(var.create_associative_view(), writer);
+        else
+        {
+            auto child_props = is_wrapper ? wrapped_type.get_properties() : value_type.get_properties();
+            if (!child_props.empty())
+                WriteRecursive(var, writer);
+            else
+            {
+                bool ok = false;
+                auto text = var.to_string(&ok);
+                if (!ok)
+                {
+                    writer.String(text);
+                    return false;
+                }
+
+                writer.String(text);
+            }
+        }
+        return true;
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////
 
 }

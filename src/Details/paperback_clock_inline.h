@@ -1,3 +1,4 @@
+#pragma once
 namespace tools
 {
 	clock::clock(float TimeScale) noexcept :

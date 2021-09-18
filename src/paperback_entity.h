@@ -57,6 +57,9 @@ namespace paperback
             PPB_INLINE
             void UpdateStructuralChanges() noexcept;
 
+            PPB_INLINE
+            void SerializeAllEntities(void) noexcept;
+
             // Private Stuff
             PPB_INLINE
             vm::instance& GetPoolWithIndex( const uint32_t EntityPoolIndex ) noexcept;

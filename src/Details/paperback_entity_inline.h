@@ -1,3 +1,4 @@
+#include "..\paperback_entity.h"
 #pragma once
 
 namespace paperback
@@ -91,7 +92,25 @@ namespace paperback
             m_DeleteList.clear();
         }
 
-        template < typename T_COMPONENT >
+        void instance::SerializeAllEntities(void) noexcept
+        {
+            JsonFile jfile;
+            for (paperback::u32 j = 0; j < m_EntityCount; ++j)
+            {
+                auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, j });
+
+                auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
+                jfile.StartObject();
+                jfile.Write(EntityInfo); // im not super sure what we wanna store here,probably using EntityInfo to store m_PoolDetails? for pool indexing stuffs
+
+                m_ComponentPool[0].SerializePoolComponentsAtEntityIndex(j); // Pool Index 0 Only For Now
+
+                jfile.EndArray();
+                jfile.EndObject();
+            }
+        }
+
+        template < typename T_COMPONENT > 
         T_COMPONENT& instance::GetComponent( const PoolDetails Details ) noexcept
         {
             return m_ComponentPool[ Details.m_Key ].GetComponent<T_COMPONENT>( Details.m_PoolIndex );
@@ -179,6 +198,7 @@ namespace paperback
 
         //    }( reinterpret_cast<func_traits::args_tuple*>( nullptr ) );
         //}
+
 
         vm::instance& instance::GetPoolWithIndex( const uint32_t EntityPoolIndex ) noexcept
         {

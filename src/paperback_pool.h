@@ -55,5 +55,8 @@ namespace paperback::vm
 		
 		PPB_INLINE
 		int GetComponentIndexFromGUIDInSequence( const component::type::guid Guid, const int Sequence ) const noexcept;
+
+		PPB_INLINE
+		void SerializePoolComponentsAtEntityIndex(const u32 Index) noexcept;
 	};
 }

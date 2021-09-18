@@ -98,9 +98,10 @@ namespace paperback::component
     {
         static constexpr auto invalid_id_v = 0xffff;
 
-        using Constructor   =  void( std::byte* ) noexcept;
-        using Destructor    =  void( std::byte* ) noexcept;
-        using Move          =  void( std::byte* Destination, std::byte* Source ) noexcept;
+        using Constructor = void(std::byte*) noexcept;
+        using Destructor = void(std::byte*) noexcept;
+        using Move = void(std::byte* Destination, std::byte* Source) noexcept;
+        using Serialize = void(std::byte*) noexcept;
 
         const type::guid       m_Guid;
         const type::id         m_TypeID;
@@ -109,6 +110,7 @@ namespace paperback::component
         Constructor*           m_Constructor;
         Destructor*            m_Destructor;
         Move*                  m_Move;
+        Serialize*             m_Serialize;
         const char*            m_pName;
     };
 

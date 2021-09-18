@@ -8,12 +8,12 @@
 #define REGISTER_COMPONENT(TYPE) static void Serialize(rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer, void* ptr)\
 {\
     TYPE t = *static_cast<TYPE*>(ptr);\
-    serialize::WriteObject(writer, t);\
+    paperback::serialize::WriteObject(t, writer);\
 }\
-static void Deserialize(/*entitymanager em, EntityID id,*/ rttr::variant var)\
-{\
-    TYPE t = var.get_value<TYPE>();\
-    //add component
-}
+//static void Deserialize(/*EntityManager& em, EntityID id,*/ rttr::variant var)\
+//{\
+//	TYPE t = var.get_value<TYPE>();\
+//	/*em.add_component<TYPE>( id, t );\*/
+//}
 
 

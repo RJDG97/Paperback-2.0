@@ -5,29 +5,32 @@
 #include <rttr/type>
 #include <string>
 
-using namespace rapidjson;
-using namespace rttr;
-
 namespace paperback::deserialize 
 {
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //Forward Declaration
 
-    variant ExtractBasicType(Value& json_value)
+    void ReadRecursive(rttr::instance obj2, rapidjson::Value& json_object);
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    rttr::variant ExtractBasicType(rapidjson::Value& json_value)
     {
         switch(json_value.GetType())
         {
-            case kStringType:
+            case rapidjson::kStringType:
             {
                 return std::string(json_value.GetString());
                 break;
             }
-            case kNullType:     break;
-            case kFalseType:
-            case kTrueType:
+            case rapidjson::kNullType:     break;
+            case rapidjson::kFalseType:
+            case rapidjson::kTrueType:
             {
                 return json_value.GetBool();
                 break;
             }
-            case kNumberType:
+            case rapidjson::kNumberType:
             {
                 if (json_value.IsInt())
                     return json_value.GetInt();
@@ -42,20 +45,19 @@ namespace paperback::deserialize
                 break;
             }
             // we handle only the basic types here
-            case kObjectType:
-            case kArrayType: return variant();
+            case rapidjson::kObjectType:
+            case rapidjson::kArrayType: return rttr::variant();
         }
 
-        return variant();
+        return rttr::variant();
     }
-
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    void ReadArray(variant_sequential_view& view, Value& json_array_value)
+    void ReadArray(rttr::variant_sequential_view& view, rapidjson::Value& json_array_value)
     {
         view.set_size(json_array_value.Size());
-        for (SizeType i = 0; i < json_array_value.Size(); ++i)
+        for (rapidjson::SizeType i = 0; i < json_array_value.Size(); ++i)
         {
             auto& json_index_value = json_array_value[i];
             if (json_index_value.IsArray())
@@ -65,31 +67,31 @@ namespace paperback::deserialize
             }
             else if (json_index_value.IsObject())
             {
-                variant var_tmp = view.get_value(i);
-                variant wrapped_var = var_tmp.extract_wrapped_value();
+                rttr::variant var_tmp = view.get_value(i);
+                rttr::variant wrapped_var = var_tmp.extract_wrapped_value();
                 ReadRecursive(wrapped_var, json_index_value);
                 view.set_value(i, wrapped_var);
             }
             else
             {
-                const type array_type = view.get_rank_type(i);
-                variant extracted_value = ExtractBasicType(json_index_value);
+                const rttr::type array_type = view.get_rank_type(i);
+                rttr::variant extracted_value = ExtractBasicType(json_index_value);
                 if (extracted_value.convert(array_type))
                     view.set_value(i, extracted_value);
             }
         }
     }
 
-    variant extract_value(Value::MemberIterator& itr, const type& t)
+    rttr::variant extract_value (rapidjson::Value::MemberIterator& itr, const rttr::type& t)
     {
         auto& json_value = itr->value;
-        variant extracted_value = ExtractBasicType(json_value);
+        rttr::variant extracted_value = ExtractBasicType(json_value);
         const bool could_convert = extracted_value.convert(t);
         if (!could_convert)
         {
             if (json_value.IsObject())
             {
-                constructor ctor = t.get_constructor();
+                rttr::constructor ctor = t.get_constructor();
                 for (auto& item : t.get_constructors())
                     if (item.get_instantiated_type() == t)
                         ctor = item;
@@ -101,15 +103,15 @@ namespace paperback::deserialize
         return extracted_value;
     }
 
-    void ReadAssociative(variant_associative_view& view, Value& json_array_value)
+    void ReadAssociative(rttr::variant_associative_view& view, rapidjson::Value& json_array_value)
     {
-        for (SizeType i = 0; i < json_array_value.Size(); ++i)
+        for (rapidjson::SizeType i = 0; i < json_array_value.Size(); ++i)
         {
             auto& json_index_value = json_array_value[i];
             if (json_index_value.IsObject()) // a key-value associative view
             {
-                Value::MemberIterator key_itr = json_index_value.FindMember("key");
-                Value::MemberIterator value_itr = json_index_value.FindMember("value");
+                rapidjson::Value::MemberIterator key_itr = json_index_value.FindMember("key");
+                rapidjson::Value::MemberIterator value_itr = json_index_value.FindMember("value");
 
                 if (key_itr != json_index_value.MemberEnd() &&
                     value_itr != json_index_value.MemberEnd())
@@ -124,7 +126,7 @@ namespace paperback::deserialize
             }
             else // a key-only associative view
             {
-                variant extracted_value = ExtractBasicType(json_index_value);
+                rttr::variant extracted_value = ExtractBasicType(json_index_value);
                 if (extracted_value && extracted_value.convert(view.get_key_type()))
                     view.insert(extracted_value);
             }
@@ -133,23 +135,23 @@ namespace paperback::deserialize
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
-    void ReadRecursive(instance obj2, Value& json_object)
+    void ReadRecursive(rttr::instance obj2, rapidjson::Value& json_object)
     {
-        instance obj = obj2.get_type().get_raw_type().is_wrapper() ? obj2.get_wrapped_instance() : obj2;
+        rttr::instance obj = obj2.get_type().get_raw_type().is_wrapper() ? obj2.get_wrapped_instance() : obj2;
         const auto prop_list = obj.get_derived_type().get_properties();
         for (auto prop : prop_list)
         {
-            Value::MemberIterator ret = json_object.FindMember(prop.get_name().data());
+            rapidjson::Value::MemberIterator ret = json_object.FindMember(prop.get_name().data());
             if (ret == json_object.MemberEnd())
                 continue;
-            const type value_t = prop.get_type();
+            const rttr::type value_t = prop.get_type();
 
             auto& json_value = ret->value;
             switch(json_value.GetType())
             {
-                case kArrayType:
+                case rapidjson::kArrayType:
                 {
-                    variant var;
+                    rttr::variant var;
                     if (value_t.is_sequential_container())
                     {
                         var = prop.get_value(obj);
@@ -166,16 +168,16 @@ namespace paperback::deserialize
                     prop.set_value(obj, var);
                     break;
                 }
-                case kObjectType:
+                case rapidjson::kObjectType:
                 {
-                    variant var = prop.get_value(obj);
+                    rttr::variant var = prop.get_value(obj);
                     ReadRecursive(var, json_value);
                     prop.set_value(obj, var);
                     break;
                 }
                 default:
                 {
-                    variant extracted_value = ExtractBasicType(json_value);
+                    rttr::variant extracted_value = ExtractBasicType(json_value);
                     if (extracted_value.convert(value_t)) 
                         prop.set_value(obj, extracted_value);
                 }
@@ -183,12 +185,12 @@ namespace paperback::deserialize
         }
     }
 
-    void ReadObject( instance obj, Document& doc)
+    void ReadObject( rttr::instance obj, rapidjson::Document& doc)
     {
         ReadRecursive(obj, doc);
     }
 
-    void ReadEntity( Value::MemberIterator it) 
+    void ReadEntity( rapidjson::Value::MemberIterator it) 
     {
         // to do link to the creating entity
     }

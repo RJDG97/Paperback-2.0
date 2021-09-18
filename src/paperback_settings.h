@@ -1,3 +1,4 @@
+#pragma once
 namespace paperback::settings
 {
 	constexpr auto max_component_types_v			= 128;

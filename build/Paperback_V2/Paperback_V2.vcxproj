@@ -14,6 +14,21 @@
     <ClCompile Include="..\..\dependencies\dearImGui\imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImCurveEdit.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImGradient.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImGuizmo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImSequencer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_demo.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -45,6 +60,12 @@
     <ClInclude Include="..\..\dependencies\dearImGui\IconsFontAwesome5.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imconfig.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imgui.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImCurveEdit.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImGradient.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImGuizmo.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImSequencer.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImZoomSlider.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imgui_internal.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_rectpack.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_textedit.h" />
@@ -103,6 +124,7 @@
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
     <ClInclude Include="..\..\src\Vector.h" />
     <ClInclude Include="paperback_pch.h" />
+    <ClInclude Include="samplecomponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -159,6 +181,7 @@
       <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;$(ProjectDir)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
+      <ProgramDataBaseFileName>$(OutDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,7 +189,7 @@
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore</AdditionalLibraryDirectories>
-      <AdditionalDependencies>fmodL_vc.lib;fmodstudioL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmodL_vc.lib;fmodstudioL_vc.lib;librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
@@ -193,8 +216,8 @@ xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(Ou
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
       <AdditionalDependencies>librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
-      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
+      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"

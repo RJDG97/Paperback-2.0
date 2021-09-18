@@ -36,7 +36,8 @@ namespace paperback::coordinator
 		template< typename... T_COMPONENTS >
 		constexpr void RegisterComponents( void ) noexcept;
 
-		
+		PPB_INLINE
+		void SaveScene(const std::string& FilePath) noexcept;
 
 		//-----------------------------------
 		//    Archetype / Entity Methods

@@ -6,8 +6,8 @@
 // Defines
 //----------------------------------
 #ifdef PAPERBACK_DEBUG
-#define PPB_INLINE
-#define PPB_FORCEINLINE
+#define PPB_INLINE inline
+#define PPB_FORCEINLINE __inline
 #else
 #define PPB_INLINE inline
 #define PPB_FORCEINLINE __inline
@@ -70,6 +70,9 @@ namespace paperback
 #include "paperback_system.h"
 #include "paperback_system_mgr.h"
 #include "paperback_coordinator.h"
+
+#include "Components/Components.h" // For Components serialization
+#include "Json/JsonFile.h"
 
 //----------------------------------
 // Inline Files

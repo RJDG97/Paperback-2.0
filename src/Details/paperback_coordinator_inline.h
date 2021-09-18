@@ -42,6 +42,26 @@ namespace paperback::coordinator
 		m_CompMgr.RegisterComponents<T_COMPONENTS...>();
 	}
 
+	PPB_INLINE
+	void instance::SaveScene(const std::string& FilePath) noexcept
+	{
+		JsonFile jfile;
+
+		jfile.StartWriter(FilePath);
+		jfile.StartObject();
+		jfile.StartArray();
+
+		for (auto& Archetype : m_EntityMgr.m_pArchetypeList)
+		{
+			//jfile.WriteKey(Archetype); // probably write like entity count and other relevant data for tracking?
+			Archetype->SerializeAllEntities();
+		}
+
+		jfile.EndArray();
+		jfile.EndObject();
+		jfile.EndWriter();
+	}
+
 	template < typename... T_COMPONENTS >
 	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
