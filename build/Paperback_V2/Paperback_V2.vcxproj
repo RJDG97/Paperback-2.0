@@ -171,12 +171,14 @@
       <AdditionalDependencies>mono-2.0-sgen.lib;fmodL_vc.lib;fmodstudioL_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
-xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
-xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s</Command>
+xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -203,12 +205,14 @@ xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.
       <AdditionalDependencies>mono-2.0-sgen.lib;fmod_vc.lib;fmodstudio_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"
-xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
-xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s</Command>
+xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
