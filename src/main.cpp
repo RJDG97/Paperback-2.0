@@ -84,7 +84,8 @@ void InitializeGame()
             rigidbody,
             transform,
             timer,
-            sound
+            sound,
+            mesh
         >();
     }
 
@@ -98,7 +99,8 @@ void InitializeGame()
             bullet_rendering_system,
             buffer_refresh_system,
             imgui_system,
-            sound_system
+            sound_system,
+            render_system
         >();
     }
 
