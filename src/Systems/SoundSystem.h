@@ -1,4 +1,6 @@
 #pragma once
+#include "Components/Transform.h"
+#include "Components//Rigidbody.h"
 #include "Components/Sound.h"
 #include "Components/Timer.h"
 
@@ -53,7 +55,7 @@ public:
     //play event 
     // helper function
     // loads and plays an event from the current loaded bank
-    void PlaySoundEvent(const char* path, bool loop) 
+    void PlaySoundEvent(const char* path) 
     {
 
         FMOD::Studio::EventDescription* event = nullptr;
@@ -112,6 +114,99 @@ public:
         }
     }
 
+    //convert transform & vel to fmod 3d attribute
+    //helper function
+    //to modify when 3d switch
+    void ConvertSystemToFMOD3D(FMOD_3D_ATTRIBUTES& attribute, const transform& transform, const rigidbody& rigidbody)
+    {
+        //2d now, to change to 3d when shifted to 3d
+        xcore::vector2 normal_vec = rigidbody.m_Velocity;
+        normal_vec.Normalize();
+
+        attribute.forward.x = normal_vec.m_X;
+        attribute.forward.y = normal_vec.m_Y;
+
+        //attribute.up.z = 0.0f;
+
+        attribute.position.x = transform.m_Position.m_X;
+        attribute.position.y = transform.m_Position.m_Y;
+
+        attribute.velocity.x = rigidbody.m_Velocity.m_X;
+        attribute.velocity.y = rigidbody.m_Velocity.m_Y;
+    }
+
+    //set player 3d attributes
+    // helper function
+    // sets the player's FMOD 3d attributes for 3D sound
+    void UpdatePlayer3DAttributes(const transform& transform, const rigidbody& rigidbody) 
+    {
+
+        FMOD_3D_ATTRIBUTES attribute{};
+        ConvertSystemToFMOD3D(attribute, transform, rigidbody);
+
+        m_pStudioSystem->setListenerAttributes(0, &attribute);
+    }
+
+    //set 3D attributes
+    // helper function
+    // sets a sound instance's 3d attributes
+    void UpdateEvent3DAttributes(FMOD::Studio::EventInstance* instance, const transform& transform, const rigidbody& rigidbody)
+    {
+
+        FMOD_3D_ATTRIBUTES attribute{};
+        ConvertSystemToFMOD3D(attribute, transform, rigidbody);
+
+        instance->set3DAttributes(&attribute);
+    }
+
+    //pause/unpause all sounds
+    // helper function
+    // pauses/unpauses all currently playing sounds
+    void PauseCurrentSounds(const bool pause_status)
+    {
+
+        for (SoundFile& sound : m_SoundFiles) {
+
+            FMOD_STUDIO_PLAYBACK_STATE be;
+            sound.m_pSound->getPlaybackState(&be);
+
+            //if sound is not stopped, set pause status
+            if (be != 2) {
+
+                sound.m_pSound->setPaused(pause_status);
+            }
+        }
+    }
+
+    //Change Event Parameter
+    // helper function
+    // changes the value of a currently playing event
+    // ideally has a separate logic calling this when required
+    void ChangeEventParameters(FMOD::Studio::EventInstance* instance, const char* param_name, const float value)
+    {
+
+        instance->setParameterByName(param_name, value);
+    }
+
+
+    //Debug test bank loader
+    // helper function
+    // used for debug loading of a test bank
+    void LoadDebugBank()
+    {
+
+        AddBank("TestBank/Master.bank");
+        AddBank("TestBank/Master.strings.bank");
+        AddBank("TestBank/Dialogue_EN.bank");
+        AddBank("TestBank/Music.bank");
+        AddBank("TestBank/SFX.bank");
+        AddBank("TestBank/Vehicles.bank");
+        AddBank("TestBank/VO.bank");
+
+        //PlaySoundEvent("event:/Abang", false);
+        PlaySoundEvent("event:/Music/Level 01");
+    }
+
     constexpr static auto typedef_v = paperback::system::type::update
     {
         .m_pName = "sound_system"
@@ -134,24 +229,19 @@ public:
         //add master bank file
         //AddBank("Master.bank");
         //AddBank("Master.strings.bank");
-        AddBank("TestBank/Master.bank");
-        AddBank("TestBank/Master.strings.bank");
-        AddBank("TestBank/Dialogue_EN.bank");
-        AddBank("TestBank/Music.bank");
-        AddBank("TestBank/SFX.bank");
-        AddBank("TestBank/Vehicles.bank");
-        AddBank("TestBank/VO.bank");
-
-        //PlaySoundEvent("event:/Abang", false);
-        PlaySoundEvent("event:/Music/Level 01", false);
+        //LoadDebugBank();
 
         m_SoundCounter = {};
+
+        m_pStudioSystem->setNumListeners(1);
     }
 
     // entity that is processed by soundsystem will specifically have sound and timer components
     PPB_FORCEINLINE
-        void operator()(paperback::component::entity& Entity, timer& timer, sound& sound) noexcept
+    void operator()(paperback::component::entity& Entity, timer& timer, sound& sound, transform& transform, rigidbody& rigidbody) noexcept
     {
+        //to change from & to * for transform & rigidbody, worst case make a system that is derived from this one
+
         // System Update Code - FOR A SINGLE ENTITY
 
         //check if id already exists 
@@ -159,12 +249,21 @@ public:
         {
 
             //if no, then create new entry and add into record of currently playing sounds
-            PlaySoundEvent(sound.m_SoundID.c_str(), false);
+            PlaySoundEvent(sound.m_SoundID.c_str());
             sound.m_SoundPlayTag = m_SoundCounter;
         }
 
 
         //process sound based on position of listener
+        if (sound.m_Is3DSound)//  && transform && rigidbody)
+        {
+
+            //file should exist, no need to error check
+            auto soundfile = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [sound](const SoundFile& soundfile) { return sound.m_SoundPlayTag == soundfile.m_ID; });
+            
+            UpdateEvent3DAttributes(soundfile->m_pSound, transform, rigidbody);
+        }
+
 
         //once lifetime over remove sound
         timer.m_Timer -= (timer.m_Timer > 0.0f) ? DeltaTime() : 0.0f;
@@ -194,9 +293,39 @@ public:
     //dtor to clean system
     //StopSound("All", true);
 
+    //debug timer for event parameter modification
+    float m_TimeTest{ 3.0f };
+
+    //debug function to demonstrate parameter triggered event changes with example fmod bank
+    void DebugSoundParameterTest(FMOD::Studio::EventInstance* sound) {
+
+        //debug timer event toggle
+        if (m_TimeTest > 0.0f)
+        {
+
+            m_TimeTest -= DeltaTime();
+        }
+
+        if (m_TimeTest < 0.0f)
+        {
+
+            //value 74 if parameter does not exist
+            FMOD_RESULT err = sound->setParameterByName("Progression", 1.0f);
+
+            std::cout << "\tParameter get result: " << err << std::endl;
+
+        }
+        else
+        {
+            std::cout << "\tYet to trigger\n";
+        }
+    }
+
+
     PPB_FORCEINLINE
     void OnFrameEnd(void) noexcept 
     {
+
         // call fmod default stuff IF there's something that needs to be "globally" called 
         m_pStudioSystem->update();
 
@@ -210,6 +339,11 @@ public:
 
                 sound.m_ID = 0;
             }
+            else
+            {
+
+                //DebugSoundParameterTest(sound.m_pSound);
+            }
         }
 
         //remove all sound files tagged with id 0 since 0 is default tag value which should have been replaced with non-zero from start
@@ -220,6 +354,14 @@ public:
     PPB_FORCEINLINE
     void OnSystemTerminated(void) noexcept 
     {
+
+        for (SoundFile& sound : m_SoundFiles) {
+
+            StopSoundEvent(sound.m_pSound);
+        }
+
+        m_SoundFiles.clear();
+
         m_pStudioSystem->unloadAll();
         m_pStudioSystem->release();
     }
