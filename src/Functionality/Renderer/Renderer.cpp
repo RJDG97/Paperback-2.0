@@ -24,7 +24,7 @@ Renderer::Renderer() :
 
 	glBindVertexArray(0);
 
-	m_Resources.LoadShader("Simple", "../Graphics/Assets/Shaders/Simple.vert", "../Graphics/Assets/Shaders/Simple.frag");
+	m_Resources.LoadShader("Simple", "Simple.vert", "Simple.frag");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -66,7 +66,7 @@ void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat
 		// Render all model's submeshes
 		for (auto& submesh : SubMeshes)
 		{
-			m_Resources.m_Shaders["Simple"].SetUniform("uTextured", false);
+			m_Resources.m_Shaders["Simple"].SetUniform("uTexturedDiffuse", false);
 
 			// Set model submesh's textures
 			/*if (m_Resources.m_Textures.find(Texture) == m_Resources.m_Textures.end())

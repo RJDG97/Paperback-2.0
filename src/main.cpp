@@ -34,6 +34,16 @@ int main( int argc, char* argv[] )
     glutInit( &argc, argv );
     glutInitDisplayMode( GLUT_DOUBLE );
     glutCreateWindow( "Paperback Engine" );
+
+    // Init glew
+    GLenum Err = glewInit();
+
+    // Check that glew have no error
+    if (GLEW_OK != Err)
+        throw std::exception{ reinterpret_cast<const char*>(glewGetErrorString(Err)) };
+
+    std::cout << "Using GLEW Version: " << glewGetString(GLEW_VERSION) << std::endl;
+
     glutDisplayFunc([]
     {
         PPB.Update();
