@@ -268,6 +268,9 @@
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h">
       <Filter>Source\Tools\Functionality\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="WindowSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

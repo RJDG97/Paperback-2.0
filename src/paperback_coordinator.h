@@ -143,8 +143,8 @@ namespace paperback::coordinator
 static struct engine
 {
 	paperback::coordinator::instance& m_Coordinator = paperback::coordinator::instance::GetInstance();
-	int m_Width = 1024;
-	int m_Height = 800;
+	int m_Width = 1280;
+	int m_Height = 720;
 } m_Engine;
 
 #define PPB m_Engine.m_Coordinator

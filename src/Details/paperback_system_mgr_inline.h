@@ -35,7 +35,7 @@ namespace paperback::system
 	T_SYSTEM* manager::FindSystem( void ) noexcept
 	{
 		return m_SystemMap.find( system::info_v<T_SYSTEM>.m_Guid ) != m_SystemMap.end()
-			   ? m_SystemMap.find( system::info_v<T_SYSTEM>.m_Guid )->second
+			   ? static_cast<T_SYSTEM*>(m_SystemMap.find( system::info_v<T_SYSTEM>.m_Guid )->second)
 			   : nullptr;
 	}
 

@@ -11,7 +11,6 @@
 //      Forward Declarations
 //-----------------------------------
 using namespace paperback;
-void GlutTimer(int value);
 void InitializeGame();
 
 
@@ -27,40 +26,8 @@ int main( int argc, char* argv[] )
     // Initialization
     xcore::Init( "Initializing Paperback Engine");
     InitializeGame();
-
-    // Game Loop - To be replaced with purely PPB.Update()
-    // when rendering system is up
-    glutInitWindowSize( m_Engine.m_Width, m_Engine.m_Height );
-    glutInit( &argc, argv );
-    glutInitDisplayMode( GLUT_DOUBLE );
-    glutCreateWindow( "Paperback Engine" );
-
-    // Init glew
-    GLenum Err = glewInit();
-
-    // Check that glew have no error
-    if (GLEW_OK != Err)
-        throw std::exception{ reinterpret_cast<const char*>(glewGetErrorString(Err)) };
-
-    std::cout << "Using GLEW Version: " << glewGetString(GLEW_VERSION) << std::endl;
-
-    glutDisplayFunc([]
-    {
-        PPB.Update();
-    });
-    glutReshapeFunc([](int w, int h)
-    {
-        m_Engine.m_Width = w;
-        m_Engine.m_Height = h;
-        glViewport( 0, 0, w, h );
-        glMatrixMode( GL_PROJECTION );
-        glLoadIdentity();
-        glOrtho( 0, w, 0, h, -1, 1 );
-        glScalef( 1, -1, 1 );
-        glTranslatef( 0, -h, 0 );
-    });
-    glutTimerFunc( 0, GlutTimer, 0 );
-    glutMainLoop();
+    
+    PPB.Update();
 
     // Termination
     PPB.Terminate();
@@ -78,12 +45,6 @@ int main( int argc, char* argv[] )
 
 
 
-void GlutTimer( int value )
-{
-    UNREFERENCED_PARAMETER( value );
-    glutPostRedisplay();
-    glutTimerFunc( 15, GlutTimer, 0 );
-}
 
 void InitializeGame()
 {
@@ -105,11 +66,9 @@ void InitializeGame()
             physics_system,
             ship_logic_system,
             bullet_logic_system,
-            ship_rendering_system,
-            bullet_rendering_system,
-            buffer_refresh_system,
             imgui_system,
             sound_system,
+            window_system,
             render_system
         >();
     }

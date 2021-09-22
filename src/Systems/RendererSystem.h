@@ -1,13 +1,22 @@
 #pragma once
 #include "../Functionality/Renderer/Renderer.h"
 #include "glm/inc/gtx/transform.hpp"
+#include "WindowSystem.h"
 
 struct render_system : paperback::system::instance
 {
+	GLFWwindow* m_pWindow;
+
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
 		.m_pName = "render_system"
 	};
+
+	PPB_FORCEINLINE
+	void OnSystemCreated(void) noexcept
+	{
+		m_pWindow = GetSystem<window_system>().m_pWindow;
+	}
 
 	PPB_FORCEINLINE
 	void PreUpdate( void ) noexcept
@@ -46,6 +55,6 @@ struct render_system : paperback::system::instance
 		// Post processes
 
 		// Swap buffer
-		//glfwSwapBuffers(m_Window);
+		glfwSwapBuffers(m_pWindow);
 	}
 };

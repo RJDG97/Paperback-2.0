@@ -6,4 +6,5 @@
 #include "BufferRefresh.h"
 #include "ImguiSystem.h"
 #include "SoundSystem.h"
+#include "WindowSystem.h"
 #include "RendererSystem.h"

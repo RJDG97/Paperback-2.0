@@ -22,12 +22,15 @@ namespace paperback::coordinator
 
 	void instance::Update( void ) noexcept
 	{
-		XCORE_PERF_FRAME_MARK()
-		XCORE_PERF_FRAME_MARK_START("paperback::Frame")
+		while (m_GameActive)
+		{
+			XCORE_PERF_FRAME_MARK()
+			XCORE_PERF_FRAME_MARK_START("paperback::Frame")
 
-		m_SystemMgr.Run( );
+			m_SystemMgr.Run();
 
-		XCORE_PERF_FRAME_MARK_END("paperback::Frame")
+			XCORE_PERF_FRAME_MARK_END("paperback::Frame")
+		}
 	}
 
 	template < concepts::System... T_SYSTEMS >
