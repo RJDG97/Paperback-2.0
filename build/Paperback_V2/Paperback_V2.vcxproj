@@ -74,6 +74,12 @@
     <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
     <ClInclude Include="..\..\src\Json\JsonFile.h" />
     <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
+    <ClInclude Include="..\..\src\Math\MathUtils.h" />
+    <ClInclude Include="..\..\src\Math\Mtx4x4.h" />
+    <ClInclude Include="..\..\src\Math\Mtx4x4.hpp" />
+    <ClInclude Include="..\..\src\Math\Vector3f.h" />
+    <ClInclude Include="..\..\src\Math\Vector3f.hpp" />
+    <ClInclude Include="..\..\src\Math\Vector3fData.h" />
     <ClInclude Include="..\..\src\Mono.h" />
     <ClInclude Include="..\..\src\Paperback.h" />
     <ClInclude Include="..\..\src\paperback_bitset.h" />

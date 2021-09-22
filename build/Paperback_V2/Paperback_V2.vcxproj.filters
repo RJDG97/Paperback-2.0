@@ -220,6 +220,24 @@
     <ClInclude Include="..\..\src\Mono.h">
       <Filter>Source\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Math\MathUtils.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Mtx4x4.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Mtx4x4.hpp">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Vector3f.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Vector3f.hpp">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Vector3fData.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -266,6 +284,9 @@
     </Filter>
     <Filter Include="Source\Tools\Reflect">
       <UniqueIdentifier>{824a889a-c634-4e38-95ec-e8bd32cfb6c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Math">
+      <UniqueIdentifier>{f06d46f1-f0b8-4d23-b9bf-0b986eeea40f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
