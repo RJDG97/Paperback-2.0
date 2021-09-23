@@ -95,6 +95,13 @@
     <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
     <ClInclude Include="..\..\src\Json\JsonFile.h" />
     <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
+    <ClInclude Include="..\..\src\Math\MathUtils.h" />
+    <ClInclude Include="..\..\src\Math\Mtx4x4.h" />
+    <ClInclude Include="..\..\src\Math\Mtx4x4.hpp" />
+    <ClInclude Include="..\..\src\Math\Vector3f.h" />
+    <ClInclude Include="..\..\src\Math\Vector3f.hpp" />
+    <ClInclude Include="..\..\src\Math\Vector3fData.h" />
+    <ClInclude Include="..\..\src\Mono.h" />
     <ClInclude Include="..\..\src\Paperback.h" />
     <ClInclude Include="..\..\src\paperback_bitset.h" />
     <ClInclude Include="..\..\src\paperback_clock.h" />
@@ -118,6 +125,7 @@
     <ClInclude Include="..\..\src\Systems\BulletRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
+    <ClInclude Include="..\..\src\Systems\ScriptingSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
@@ -161,14 +169,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;$(ProjectDir)..\..\dependencies\mono\include\</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>../../dependencies/dearImGui;$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;$(ProjectDir)..\..\dependencies\mono\include\</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -189,12 +197,18 @@
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore</AdditionalLibraryDirectories>
-      <AdditionalDependencies>fmodL_vc.lib;fmodstudioL_vc.lib;librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mono-2.0-sgen.lib;fmodL_vc.lib;fmodstudioL_vc.lib;librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
-xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
+xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -217,12 +231,18 @@ xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(Ou
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
       <AdditionalDependencies>librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
-      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mono-2.0-sgen.lib;fmod_vc.lib;fmodstudio_vc.lib;librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"
-xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
+xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
