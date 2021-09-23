@@ -75,6 +75,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\Input\Input.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="paperback_pch.cpp" />
   </ItemGroup>
@@ -116,6 +120,7 @@
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />
     <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h" />
+    <ClInclude Include="..\..\src\Input\Input.h" />
     <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
     <ClInclude Include="..\..\src\Json\JsonFile.h" />
     <ClInclude Include="..\..\src\Json\JsonSerialize.h" />

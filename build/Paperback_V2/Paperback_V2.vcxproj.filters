@@ -53,6 +53,9 @@
     <ClCompile Include="..\..\src\Functionality\Renderer\Renderer.cpp">
       <Filter>Source\Tools\Functionality\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Input\Input.cpp">
+      <Filter>Source\Tools\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -271,6 +274,9 @@
     <ClInclude Include="WindowSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Input\Input.h">
+      <Filter>Source\Tools\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -335,6 +341,9 @@
     </Filter>
     <Filter Include="Source\Tools\Functionality\Renderer">
       <UniqueIdentifier>{a66abb8d-86cf-4755-baa0-56dcff7207cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Input">
+      <UniqueIdentifier>{5c11195e-dac3-439a-b149-cb11d8fc289a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #pragma once
 #include "paperback_pch.h"
+#include "Input/Input.h"
 
 struct window_system : paperback::system::instance
 {
@@ -39,8 +40,8 @@ struct window_system : paperback::system::instance
         glfwMakeContextCurrent(m_pWindow);
         glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         
-        //glfwSetKeyCallback(m_Window, KeyboardCallback);
-        //glfwSetMouseButtonCallback(m_Window, MouseCallback);
+        glfwSetKeyCallback(m_pWindow, KeyboardCallback);
+        glfwSetMouseButtonCallback(m_pWindow, MouseCallback);
 
         // Init glew
         GLenum Err = glewInit();
@@ -58,12 +59,28 @@ struct window_system : paperback::system::instance
     PPB_FORCEINLINE
     void Update(void) noexcept
     {
-
+        Input::GetInstance().UpateInputs();
+        glfwPollEvents();
     }
 
     PPB_FORCEINLINE
     void Terminated(void) noexcept
     {
         glfwTerminate();
+    }
+
+    static void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+        (void)window;
+        (void)scancode;
+        (void)mods;
+        Input::GetInstance().SetKey(key, action);
+    }
+
+    static void MouseCallback(GLFWwindow* window, int key, int action, int mods)
+    {
+        (void)window;
+        (void)mods;
+        Input::GetInstance().SetMouse(key, action);
     }
 };
