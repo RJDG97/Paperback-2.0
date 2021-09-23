@@ -211,7 +211,7 @@ namespace paperback::vm
 
 	int instance::GetComponentIndexFromGUID( const component::type::guid Guid ) const noexcept
 	{
-		for ( int i = 0, max = static_cast<int>(m_ComponentInfo.size()); i < max; ++i )
+		for ( int i = 0, max = static_cast<int>( m_ComponentInfo.size() ); i < max; ++i )
 		{
 			if ( m_ComponentInfo[i]->m_Guid.m_Value == Guid.m_Value )
 				return i;
@@ -221,7 +221,7 @@ namespace paperback::vm
 
 	int instance::GetComponentIndexFromGUIDInSequence( const component::type::guid Guid, const int Sequence ) const noexcept
 	{
-		for ( int i = Sequence, max = static_cast<int>(m_ComponentInfo.size()); i < max; ++i )
+		for ( int i = Sequence, max = static_cast<int>( m_ComponentInfo.size() ); i < max; ++i )
 		{
 			if ( m_ComponentInfo[i]->m_Guid.m_Value == Guid.m_Value )
 				return i;
@@ -229,17 +229,32 @@ namespace paperback::vm
 		return -1;
 	}
 
-	void instance::SerializePoolComponentsAtEntityIndex(const u32 Index) noexcept
+	void instance::SerializePoolComponentsAtEntityIndex( const u32 Index, paperback::JsonFile& Jfile ) noexcept
 	{
-		JsonFile jfile;
-
+		//here access to each component in the pool and serializes them
 		for (size_t i = 0, max = m_ComponentInfo.size(); i < max; ++i)
 		{
-			jfile.StartArray();
-			//using c_Info = m_ComponentInfo[i];
-			auto ComponentIndex = GetComponentIndex(m_ComponentInfo[i]->m_UID);
-			m_ComponentInfo[i]->m_Serialize(&m_ComponentPool[ComponentIndex][Index * m_ComponentInfo[ComponentIndex]->m_Size]);
-			jfile.EndArray();
+			rttr::instance Component = GetComponentInstance( m_ComponentInfo[i]->m_Guid, Index );
+			Jfile.WriteKey( Component.get_type().get_name().to_string() ).StartObject();
+			Jfile.Write( Component );
+			Jfile.EndObject();
+
 		}
 	}
+
+	rttr::instance instance::GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept
+	{
+
+		if ( Comp_Guid.m_Value == component::info_v< component::entity >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< component::entity >( Index ));
+		else if ( Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< transform >( Index ));
+		else if ( Comp_Guid.m_Value == component::info_v< rigidbody >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< rigidbody >( Index ));
+		else if ( Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< timer >( Index ));
+		else
+			return rttr::instance();
+	}	
+
 }

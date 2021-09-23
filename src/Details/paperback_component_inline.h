@@ -15,8 +15,8 @@ namespace paperback::component
                 .m_Guid = std::is_same_v< component::entity, T_COMPONENT >
                                  ? type::guid{ nullptr }
                                  : T_COMPONENT::typedef_v.m_Guid.m_Value
-                                     ? T_COMPONENT::typedef_v.m_Guid
-                                     : type::guid{ __FUNCSIG__ }
+                                 ? T_COMPONENT::typedef_v.m_Guid
+                                 : type::guid{ __FUNCSIG__ }
             ,   .m_TypeID = T_COMPONENT::typedef_v.id_v
             ,   .m_UID = info::invalid_id_v
             ,   .m_Size = static_cast<uint32_t>(sizeof(T_COMPONENT))
@@ -38,11 +38,7 @@ namespace paperback::component
                                    {
                                        *reinterpret_cast<T_COMPONENT*>(d) = std::move(*reinterpret_cast<T_COMPONENT*>(s));
                                    }
-            ,   .m_Serialize = [](std::byte* p) noexcept
-                                 {
-                                     paperback::JsonFile j;
-                                     j.Write(*reinterpret_cast<T_COMPONENT*>(p));
-                                 }
+            ,   .m_pName = T_COMPONENT::typedef_v.m_pName
             };
         }
         //-----------------------------------

@@ -58,7 +58,7 @@ namespace paperback
             void UpdateStructuralChanges() noexcept;
 
             PPB_INLINE
-            void SerializeAllEntities(void) noexcept;
+            void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
 
             // Private Stuff
             PPB_INLINE

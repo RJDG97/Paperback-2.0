@@ -52,6 +52,12 @@ namespace paperback
 }
 
 //----------------------------------
+// Reflection
+//----------------------------------
+#include <rttr/registration>
+#include "Components/Reflect.h"
+
+//----------------------------------
 // Files
 //----------------------------------
 #include "paperback_logger.h"
@@ -62,6 +68,7 @@ namespace paperback
 #include "paperback_event.h"
 #include "paperback_component.h"
 #include "paperback_component_mgr.h"
+#include "Json/JsonFile.h" 
 #include "paperback_bitset.h"
 #include "paperback_query.h"
 #include "paperback_pool.h"
@@ -71,8 +78,6 @@ namespace paperback
 #include "paperback_system_mgr.h"
 #include "paperback_coordinator.h"
 
-#include "Components/Components.h" // For Components serialization
-#include "Json/JsonFile.h"
 
 //----------------------------------
 // Inline Files
@@ -91,5 +96,6 @@ namespace paperback
 #include "Details/paperback_bitset_inline.h"
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_coordinator_inline.h"
+
 
 #endif

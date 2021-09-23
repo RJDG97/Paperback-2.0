@@ -92,21 +92,19 @@ namespace paperback
             m_DeleteList.clear();
         }
 
-        void instance::SerializeAllEntities(void) noexcept
+        void instance::SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept
         {
-            JsonFile jfile;
-            for (paperback::u32 j = 0; j < m_EntityCount; ++j)
+            for (u32 j = 0; j < m_EntityCount; ++j)
             {
                 auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, j });
 
                 auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
-                jfile.StartObject();
-                jfile.Write(EntityInfo); // im not super sure what we wanna store here,probably using EntityInfo to store m_PoolDetails? for pool indexing stuffs
+                Jfile.StartObject();
+                //jfile.Write(EntityInfo); // im not super sure what we wanna store here,probably using EntityInfo to store m_PoolDetails? for pool indexing stuffs
 
-                m_ComponentPool[0].SerializePoolComponentsAtEntityIndex(j); // Pool Index 0 Only For Now
+                m_ComponentPool[0].SerializePoolComponentsAtEntityIndex( j, Jfile ); // Pool Index 0 Only For Now
 
-                jfile.EndArray();
-                jfile.EndObject();
+                Jfile.EndObject();
             }
         }
 

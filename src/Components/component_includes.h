@@ -3,4 +3,3 @@
 #include "Rigidbody.h"
 #include "Transform.h"
 #include "Sound.h"
-#include "samplecomponent.h"

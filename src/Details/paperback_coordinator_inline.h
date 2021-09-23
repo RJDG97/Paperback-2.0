@@ -48,13 +48,13 @@ namespace paperback::coordinator
 		JsonFile jfile;
 
 		jfile.StartWriter(FilePath);
-		jfile.StartObject();
+		jfile.StartObject().WriteKey("Entities");
 		jfile.StartArray();
 
 		for (auto& Archetype : m_EntityMgr.m_pArchetypeList)
 		{
 			//jfile.WriteKey(Archetype); // probably write like entity count and other relevant data for tracking?
-			Archetype->SerializeAllEntities();
+			Archetype->SerializeAllEntities(jfile);
 		}
 
 		jfile.EndArray();

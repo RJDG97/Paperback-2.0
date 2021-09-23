@@ -1,19 +1,12 @@
 #include "paperback_pch.h"
 #include "Paperback.h"
 
-// for testing purposes
-#include "Json/JsonFile.h"
-#include <string>
-#include <rttr/type>
 
 //-----------------------------------
 //       Component & Systems
 //-----------------------------------
 #include "Components/component_includes.h"
 #include "Systems/system_includes.h"
-
-
-#include "Components/Reflect.h"
 
 //-----------------------------------
 //      Forward Declarations
@@ -67,10 +60,6 @@ int main( int argc, char* argv[] )
 
 
 
-
-
-
-
 void GlutTimer( int value )
 {
     UNREFERENCED_PARAMETER( value );
@@ -104,7 +93,6 @@ void InitializeGame()
             sound_system
         >();
     }
-    //PPB.m_EntityMgr.GetComponent<T_COMPONENT> ->   access entity manager (PPB.m_EntityMgr) | (.GetComponent<T_COMPONENT>) Get the list of components
     // Entity Creation
     {
          for (int i = 0; i < 5; ++i)
@@ -121,30 +109,8 @@ void InitializeGame()
                                });
          }
 
-         //PPB.m_EntityMgr.GetComponent<T_COMPONENT>
-         //(*PPB.m_EntityMgr.m_EntityInfos)[i].m_PoolDetails -> Access components of the archetype???
 
-         for (int i = 0; i < 5; ++i)
-         {
-             auto trans = (PPB.m_EntityMgr.m_EntityInfos)[i].m_pArchetype->GetComponent<transform>((PPB.m_EntityMgr.m_EntityInfos)[i].m_PoolDetails); //returns component ref
-             std::cout << trans.m_Position.m_X << std::endl;
-             
-         }
-
-
-        paperback::JsonFile j;
-        for (int i = 0; i < 5; ++i){
-
-            transform r;
-            
-            std::string a  = rttr::type::get(r).get_name().to_string();
-
-            j.StartWriter("test.json");
-            //j.WriteEntities();
-            j.StartObject().WriteKey("test").StartArray().StartObject().WriteKey(a).StartObject().EndObject().EndObject().EndArray();
-            //j.EndObject();
-            j.EndWriter();
-        }
+         PPB.SaveScene("test.json");
     }
 }
 

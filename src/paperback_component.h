@@ -110,7 +110,6 @@ namespace paperback::component
         Constructor*           m_Constructor;
         Destructor*            m_Destructor;
         Move*                  m_Move;
-        Serialize*             m_Serialize;
         const char*            m_pName;
     };
 
@@ -180,4 +179,17 @@ namespace paperback::component
         constexpr bool operator == ( const entity& Entity ) const noexcept;
     };
     static_assert( sizeof(entity) == sizeof(uint64_t) );
+
+    namespace RR_Entity
+    {
+        RTTR_REGISTRATION
+        {
+            rttr::registration::class_< entity >( entity::typedef_v.m_pName )
+                .property( "Global Index", &entity::m_GlobalIndex )
+                .property( "Validation", &entity::m_Validation );
+
+            rttr::registration::class_< entity::Validation >( "Valid" )
+                .property( "Validation ID", &entity::Validation::m_UID );
+        }
+    }
 }

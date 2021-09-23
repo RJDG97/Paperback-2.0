@@ -1,5 +1,6 @@
 #pragma once
 #define RAPIDJSON_HAS_STDSTRING 1
+//change spacing & remove ref before monke beat mi
 
 #include <string>
 #include <iostream>
@@ -28,10 +29,10 @@ namespace paperback
         //          Serialization
         //-----------------------------------
 
-        JsonFile& StartWriter(std::string file)
+        JsonFile& StartWriter(std::string File)
         {
             assert(fp == nullptr);
-            fopen_s(&fp, file.c_str(), "wb");
+            fopen_s(&fp, File.c_str(), "wb");
             buffer = new char[65536] {};
             wstream = new rapidjson::FileWriteStream(fp, buffer, 65536);
             writer = new rapidjson::PrettyWriter<rapidjson::FileWriteStream>(*wstream);
@@ -75,26 +76,26 @@ namespace paperback
             return *this;
         }
 
-        JsonFile& WriteKey(std::string str)
+        JsonFile& WriteKey( std::string Str )
         {
-           writer->String( str );
+           writer->String( Str );
            return *this;
         }
 
-        JsonFile& Write(rttr::instance obj)
+        JsonFile& Write( rttr::instance Obj )
         {
-            serialize::Write(obj, *writer);
+            serialize::Write(Obj, *writer);
             return *this;
         }
 
-        JsonFile& WriteArray(const rttr::variant_sequential_view& view)
+        JsonFile& WriteArray( const rttr::variant_sequential_view& View )
         {
-            serialize::WriteArray(view, *writer);
+            serialize::WriteArray(View, *writer);
         }
 
-        JsonFile& WriteAssociativeContainers(const rttr::variant_associative_view& view)
+        JsonFile& WriteAssociativeContainers(const rttr::variant_associative_view& View)
         {
-            serialize::Write(view, *writer);
+            serialize::Write(View, *writer);
             return *this;
         }
 
@@ -102,10 +103,10 @@ namespace paperback
         //         Deserialization
         //-----------------------------------
 
-        JsonFile& StartReader(std::string file)
+        JsonFile& StartReader(std::string File)
         {
             assert(fp == nullptr);
-            fopen_s(&fp, file.c_str(), "rb");
+            fopen_s(&fp, File.c_str(), "rb");
             buffer = new char[65536]; buffer;
             rstream = new rapidjson::FileReadStream(fp, buffer, 65536);
             doc = new rapidjson::Document();
@@ -125,30 +126,30 @@ namespace paperback
             return *this;
         }
 
-        JsonFile& LoadArray(rttr::variant_sequential_view& view, rapidjson::Value& json_array_value)
+        JsonFile& LoadArray(rttr::variant_sequential_view& View, rapidjson::Value& Json_array_value)
         {
-            deserialize::ReadArray(view, json_array_value);
+            deserialize::ReadArray(View, Json_array_value);
             return *this;
         }
 
-        JsonFile& LoadAssociativeArray(rttr::variant_associative_view &view, rapidjson::Value& json_array_value)
+        JsonFile& LoadAssociativeArray(rttr::variant_associative_view &View, rapidjson::Value& Json_array_value)
         {
-            deserialize::ReadAssociative(view, json_array_value);
+            deserialize::ReadAssociative(View, Json_array_value);
             return *this;
         }
 
-        JsonFile& LoadEntities(const char* archetype)
+        JsonFile& LoadEntities(const char* Archetype)
         {
-            rapidjson::Value::MemberIterator it = doc->FindMember(archetype);
+            rapidjson::Value::MemberIterator it = doc->FindMember(Archetype);
             //if (it != doc->MemberEnd())
             // deserialize::ReadEntities(it);
 
             return *this;
         }
 
-        JsonFile& LoadObject(rttr::instance obj)
+        JsonFile& LoadObject(rttr::instance Obj)
         {
-            deserialize::ReadObject(obj, *doc);
+            deserialize::ReadObject(Obj, *doc);
             return *this;
         }
     };
