@@ -30,10 +30,10 @@ struct render_system : paperback::system::instance
 		std::unordered_map<std::string, std::vector<glm::mat4>> objects;
 
 		glm::mat4 t{ 1.0f };
-		t = glm::translate(t, glm::vec3{ 0,0,0 });
+		t = glm::translate(t, glm::vec3{ 0,0,-10 });
 		t = glm::scale(t, glm::vec3{ 1,1,1 });
 
-		objects["Quad"].push_back(t);
+		objects["Backpack"].push_back(t);
 
 		Renderer::GetInstanced().Render(objects);
 		//tool::query Query;

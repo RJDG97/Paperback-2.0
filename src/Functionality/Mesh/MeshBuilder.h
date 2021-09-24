@@ -18,13 +18,6 @@
 
 #include "Model.h"
 
-struct Vertex
-{
-	glm::vec3 m_Position;
-	glm::vec3 m_Normal;
-	glm::vec2 m_UV;
-};
-
 class MeshBuilder
 {
 public:
@@ -42,7 +35,7 @@ public:
 	static Model BuildScreenMesh();
 
 private:
-	static Model::SubMesh ProcessSubMesh(aiMesh* SubMesh);
+	static Model::SubMesh ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene);
 	static void ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh);
 };
 

@@ -11,20 +11,29 @@ Renderer::Renderer() :
 
 	// Set vao attribute values
 	glEnableVertexArrayAttrib(m_VAO, 0);
-	glVertexArrayAttribFormat(m_VAO, 0, 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, m_Position));
+	glVertexArrayAttribFormat(m_VAO, 0, 3, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_Position));
 	glVertexArrayAttribBinding(m_VAO, 0, 0);
 
 	glEnableVertexArrayAttrib(m_VAO, 1);
-	glVertexArrayAttribFormat(m_VAO, 1, 3, GL_FLOAT, GL_FALSE, offsetof(Vertex, m_Normal));
+	glVertexArrayAttribFormat(m_VAO, 1, 3, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_Normal));
 	glVertexArrayAttribBinding(m_VAO, 1, 0);
 
 	glEnableVertexArrayAttrib(m_VAO, 2);
-	glVertexArrayAttribFormat(m_VAO, 2, 2, GL_FLOAT, GL_FALSE, offsetof(Vertex, m_UV));
+	glVertexArrayAttribFormat(m_VAO, 2, 2, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_UV));
 	glVertexArrayAttribBinding(m_VAO, 2, 0);
+
+	glEnableVertexArrayAttrib(m_VAO, 3);
+	glVertexArrayAttribFormat(m_VAO, 3, 3, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_Tangent));
+	glVertexArrayAttribBinding(m_VAO, 3, 0);
+
+	glEnableVertexArrayAttrib(m_VAO, 4);
+	glVertexArrayAttribFormat(m_VAO, 4, 3, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_BiTangent));
+	glVertexArrayAttribBinding(m_VAO, 4, 0);
 
 	glBindVertexArray(0);
 
-	m_Resources.LoadShader("Simple", "Simple.vert", "Simple.frag");
+	m_Resources.LoadShader("Simple", "../../resources/shaders/Simple.vert", "../../resources/shaders/Simple.frag");
+	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -54,44 +63,76 @@ void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat
 	glm::mat4 view = Camera::GetInstanced().GetView();
 	glm::mat4 projection = Camera::GetInstanced().GetProjection();
 
-	m_Resources.m_Shaders["Simple"].SetUniform("uView", const_cast<glm::mat4&>(view));
-	m_Resources.m_Shaders["Simple"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
+	//RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uModel", const_cast<glm::mat4&>(model));
+	RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uView", const_cast<glm::mat4&>(view));
+	RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
 
-	// Loop through all models 
-	for (const auto& object : Objects)
+	for (const auto& model : Objects)
 	{
-		// Get model's submesh
-		auto& SubMeshes = m_Resources.m_Models[object.first].GetSubMeshes();
+		auto& SubMeshes = RenderResourceManager::GetInstanced().m_Models[model.first].GetSubMeshes();
 
-		// Render all model's submeshes
 		for (auto& submesh : SubMeshes)
 		{
-			m_Resources.m_Shaders["Simple"].SetUniform("uTexturedDiffuse", false);
-
-			// Set model submesh's textures
-			/*if (m_Resources.m_Textures.find(Texture) == m_Resources.m_Textures.end())
+			Model::Material& material = RenderResourceManager::GetInstanced().m_Materials[submesh.m_Material];
+			// Send textures
+			if (!material.m_Diffuse.empty())
 			{
-				m_Resources.m_Shaders["Simple"].SetUniform("uTextured", false);
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedDiffuse", true);
+
+				glBindTextureUnit(0, RenderResourceManager::GetInstanced().m_Textures[material.m_Diffuse]);
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uDiffuse", 0);
 			}
 			else
 			{
-				m_Resources.m_Shaders["Simple"].SetUniform("uTextured", true);
-				glBindTextureUnit(0, m_Resources.m_Textures[Texture]);
-				m_Resources.m_Shaders["Simple"].SetUniform("uTex", 0);
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedDiffuse", false);
+			}
+
+			/*if (!material.m_Ambient.empty())
+			{
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedAmbient", true);
+
+				glBindTextureUnit(1, RenderResourceManager::GetInstanced().m_Textures[material.m_Ambient]);
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uAmbient", 1);
+			}
+			else
+			{
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedAmbient", false);
+			}
+
+			if (!material.m_Specular.empty())
+			{
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedSpecular", true);
+
+				glBindTextureUnit(2, RenderResourceManager::GetInstanced().m_Textures[material.m_Specular]);
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uSpecular", 2);
+			}
+			else
+			{
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedSpecular", false);
+			}
+
+			if (!material.m_Normal.empty())
+			{
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedNormal", true);
+
+				glBindTextureUnit(3, RenderResourceManager::GetInstanced().m_Textures[material.m_Normal]);
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uMat.Normal", 3);
+			}
+			else
+			{
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedNormal", false);
 			}*/
 
 			// Set model vbo handle to vao
-			glVertexArrayVertexBuffer(m_VAO, 0, submesh.m_VBO, 0, sizeof(Vertex));
+			glVertexArrayVertexBuffer(m_VAO, 0, submesh.m_VBO, 0, sizeof(Model::Vertex));
 			glVertexArrayElementBuffer(m_VAO, submesh.m_EBO);
 
-			// Loop through each unique transform of current model
-			for (const auto& transform : object.second)
+			for (const auto& transform : model.second)
 			{
-				// Sent transform
-				m_Resources.m_Shaders["Simple"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
+				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
 				// Draw object
-				glDrawElements(m_Resources.m_Models[object.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+				glDrawElements(RenderResourceManager::GetInstanced().m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 			}
 		}
 	}

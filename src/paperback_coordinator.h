@@ -5,6 +5,7 @@ namespace paperback::coordinator
 	struct instance final
 	{
 		tools::clock				m_Clock;
+		Input						m_Input;
 		component::manager			m_CompMgr;
 		entity::manager				m_EntityMgr;
 		system::manager				m_SystemMgr{ m_Clock };

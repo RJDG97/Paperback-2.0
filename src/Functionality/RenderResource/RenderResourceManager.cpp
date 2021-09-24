@@ -17,6 +17,9 @@ RenderResourceManager::~RenderResourceManager()
 	// Clean up textures
 	UnloadAllTextures();
 
+	// Clean up materials
+	UnloadAllMaterials();
+
 	// Clean up models
 	UnloadAllMeshes();
 }
@@ -43,16 +46,59 @@ void RenderResourceManager::UnloadAllMeshes()
 	m_Models.clear();
 }
 
-void RenderResourceManager::LoadTextures(const std::string& Mesh, const std::string& File)
+void RenderResourceManager::UnloadAllMaterials()
 {
-	if (m_Textures.find(Mesh) == m_Textures.end())
-		m_Textures[Mesh] = TextureLoader::LoadTexture(File);
+	m_Materials.clear();
+}
+
+std::string RenderResourceManager::LoadTextures(const std::string& Texture, const std::string& File)
+{
+	if (m_Textures.find(Texture) == m_Textures.end())
+		m_Textures[Texture] = TextureLoader::LoadTexture(File);
+
+	return Texture;
 }
 
 void RenderResourceManager::UnloadTextures(const std::string& Mesh)
 {
 	glDeleteTextures(1, &m_Textures[Mesh]);
 	m_Textures.erase(Mesh);
+}
+
+std::string RenderResourceManager::LoadMaterial(const std::string& Material, aiMaterial* AiMat)
+{
+	if (m_Materials.find(Material) == m_Materials.end())
+	{
+		std::string file;
+		aiString str;
+		Model::Material mat;
+
+		AiMat->GetTexture(aiTextureType_DIFFUSE, 0, &str);
+		file = "../../resources/textures/" + std::string{ str.C_Str() };
+		mat.m_Diffuse = LoadTextures(str.C_Str(), file);
+
+		str.Clear();
+
+		AiMat->GetTexture(aiTextureType_AMBIENT, 0, &str);
+		file = "../../resources/textures/" + std::string{ str.C_Str() };
+		mat.m_Ambient = LoadTextures(str.C_Str(), file);
+
+		str.Clear();
+
+		AiMat->GetTexture(aiTextureType_SPECULAR, 0, &str);
+		file = "../../resources/textures/" + std::string{ str.C_Str() };
+		mat.m_Specular = LoadTextures(str.C_Str(), file);
+
+		str.Clear();
+
+		AiMat->GetTexture(aiTextureType_HEIGHT, 0, &str);
+		file = "../../resources/textures/" + std::string{ str.C_Str() };
+		mat.m_Normal = LoadTextures(str.C_Str(), file);
+
+		m_Materials[Material] = mat;
+	}
+
+	return Material;
 }
 
 void RenderResourceManager::Load3DMesh(const std::string& Mesh, const std::string& File)

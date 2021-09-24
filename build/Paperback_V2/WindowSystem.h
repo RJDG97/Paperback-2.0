@@ -1,6 +1,5 @@
 #pragma once
 #include "paperback_pch.h"
-#include "Input/Input.h"
 
 struct window_system : paperback::system::instance
 {
@@ -59,7 +58,7 @@ struct window_system : paperback::system::instance
     PPB_FORCEINLINE
     void Update(void) noexcept
     {
-        Input::GetInstance().UpateInputs();
+        m_Coordinator.m_Input.UpateInputs();
         glfwPollEvents();
     }
 
@@ -74,13 +73,13 @@ struct window_system : paperback::system::instance
         (void)window;
         (void)scancode;
         (void)mods;
-        Input::GetInstance().SetKey(key, action);
+        PPB.m_Input.SetKey(key, action);
     }
 
     static void MouseCallback(GLFWwindow* window, int key, int action, int mods)
     {
         (void)window;
         (void)mods;
-        Input::GetInstance().SetMouse(key, action);
+        PPB.m_Input.SetMouse(key, action);
     }
 };

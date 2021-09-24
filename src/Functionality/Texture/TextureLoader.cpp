@@ -23,11 +23,35 @@ GLuint TextureLoader::LoadTexture(const std::string File)
 
 	if (data)
 	{
+		GLenum format = GL_RGB, internalformat = GL_RGB;
+
+		switch (channels)
+		{
+		case 1:
+		{
+			format = GL_RED;
+			internalformat = GL_R8;
+		}
+		break;
+		case 3:
+		{
+			format = GL_RGB;
+			internalformat = GL_RGB8;
+		}
+		break;
+		case 4:
+		{
+			format = GL_RGBA;
+			internalformat = GL_RGBA8;
+		}
+		break;
+		}
+
 		// Generate texture
 		GLuint texture;
 		glCreateTextures(GL_TEXTURE_2D, 1, &texture);
-		glTextureStorage2D(texture, 1, GL_RGBA8, width, height);
-		glTextureSubImage2D(texture, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glTextureStorage2D(texture, 1, internalformat, width, height);
+		glTextureSubImage2D(texture, 0, 0, 0, width, height, format, GL_UNSIGNED_BYTE, data);
 
 		glTextureParameteri(texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 		glTextureParameteri(texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

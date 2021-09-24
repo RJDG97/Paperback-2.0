@@ -7,14 +7,37 @@
 class Model
 {
 public:
+	struct Vertex
+	{
+		glm::vec3 m_Position;
+		glm::vec3 m_Normal;
+		glm::vec2 m_UV;
+		glm::vec3 m_Tangent;
+		glm::vec3 m_BiTangent;
+	};
+
+	struct Material
+	{
+		std::string m_Ambient;
+		std::string m_Diffuse;
+		std::string m_Specular;
+		std::string m_Normal;
+	};
+
 	struct SubMesh
 	{
+		std::vector<Vertex> m_Vertices;
+		std::vector<GLushort> m_Indices;
+
 		// Vertex buffer
 		GLuint m_VBO;
 		// Index buffer
 		GLuint m_EBO;
 		// Draw count
 		GLuint m_DrawCount;
+
+		// Submesh material
+		std::string m_Material;
 	};
 
 	Model() = default;
