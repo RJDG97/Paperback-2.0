@@ -8,35 +8,35 @@ namespace paperback::component
     namespace details
     {
         template< typename T_COMPONENT >
-        consteval info CreateInfo(void) noexcept
+        consteval info CreateInfo( void ) noexcept
         {
             return info
             {
-                .m_Guid = std::is_same_v< component::entity, T_COMPONENT >
+                .m_Guid        = std::is_same_v< component::entity, T_COMPONENT >
                                  ? type::guid{ nullptr }
                                  : T_COMPONENT::typedef_v.m_Guid.m_Value
-                                 ? T_COMPONENT::typedef_v.m_Guid
-                                 : type::guid{ __FUNCSIG__ }
-            ,   .m_TypeID = T_COMPONENT::typedef_v.id_v
-            ,   .m_UID = info::invalid_id_v
-            ,   .m_Size = static_cast<uint32_t>(sizeof(T_COMPONENT))
+                                     ? T_COMPONENT::typedef_v.m_Guid
+                                     : type::guid{ __FUNCSIG__ }
+            ,   .m_TypeID      = T_COMPONENT::typedef_v.id_v
+            ,   .m_UID         = info::invalid_id_v
+            ,   .m_Size        = static_cast<uint32_t>( sizeof(T_COMPONENT) )
             ,   .m_Constructor = std::is_trivially_constructible_v<T_COMPONENT>
                                  ? nullptr
-                                 : [](std::byte* p) noexcept
+                                 : []( std::byte* p ) noexcept
                                    {
                                        new(p) T_COMPONENT;
                                    }
-            ,   .m_Destructor = std::is_trivially_destructible_v<T_COMPONENT>
+            ,   .m_Destructor  = std::is_trivially_destructible_v<T_COMPONENT>
                                  ? nullptr
-                                 : [](std::byte* p) noexcept
+                                 : []( std::byte* p ) noexcept
                                    {
-                                       std::destroy_at(reinterpret_cast<T_COMPONENT*>(p));
+                                       std::destroy_at( reinterpret_cast<T_COMPONENT*>(p) );
                                    }
-            ,   .m_Move = std::is_trivially_move_assignable_v<T_COMPONENT>
+            ,   .m_Move        = std::is_trivially_move_assignable_v<T_COMPONENT>
                                  ? nullptr
                                  : [](std::byte* d, std::byte* s) noexcept
                                    {
-                                       *reinterpret_cast<T_COMPONENT*>(d) = std::move(*reinterpret_cast<T_COMPONENT*>(s));
+                                       *reinterpret_cast<T_COMPONENT*>(d) = std::move( *reinterpret_cast<T_COMPONENT*>(s) );
                                    }
             ,   .m_pName = T_COMPONENT::typedef_v.m_pName
             };

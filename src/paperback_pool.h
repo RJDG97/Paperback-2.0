@@ -14,7 +14,7 @@ namespace paperback::vm
 
 		std::span<const component::info* const>										m_ComponentInfo				{   };
 		std::array<std::byte*, paperback::settings::max_components_per_entity_v>	m_ComponentPool				{   };
-		uint32_t																	m_CurrentEntityCount		{ 0 };
+		u32						        											m_CurrentEntityCount		{ 0 };
 
 		PPB_INLINE
 		u32 GetPageIndex( const size_t LocalComponentIndex, const u32 Count ) const noexcept;

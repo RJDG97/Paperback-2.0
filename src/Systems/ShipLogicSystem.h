@@ -11,7 +11,7 @@ struct ship_logic_system : paperback::system::instance
         paperback::query::none_of<bullet>
     >;
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, timer& Timer ) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, timer& Timer/*, sample_tag_component& sample */) noexcept
     {
         if ( Timer.m_Timer > 0.0f )
         {

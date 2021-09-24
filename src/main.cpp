@@ -57,6 +57,7 @@ void InitializeGame()
             transform,
             timer,
             sound,
+            sample_tag_component,
             mesh
         >();
     }

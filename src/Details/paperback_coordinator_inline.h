@@ -142,19 +142,7 @@ namespace paperback::coordinator
 		{
 			for ( auto& Pool : Archetype->m_ComponentPool )
 			{
-				auto ComponentPtrs = [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
-				{
-					 return std::array
-					 {
-					 	 [&]< typename T_C >( std::tuple<T_C>* ) constexpr noexcept
-					 	 {
-					 	 	const auto I = Pool.GetComponentIndex(component::info_v<T_C>.m_UID);
-					 	 	if constexpr (std::is_pointer_v<T_C>)	return (I < 0) ? nullptr : Pool.m_ComponentPool[ I ];
-					 	 	else									return Pool.m_ComponentPool[ I ];
-					 	 }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
-					 	 	...
-					 };
-				}( xcore::types::null_tuple_v< func_traits::args_tuple > );
+				auto ComponentArray = Archetype->GetComponentArray( Pool, 0, xcore::types::null_tuple_v< func_traits::args_tuple > );
 
 				Archetype->AccessGuard( [&]
 				{
@@ -165,7 +153,7 @@ namespace paperback::coordinator
 
 							Function( [&]<typename T_C>( std::tuple<T_C>* ) constexpr noexcept -> T_C
 									  {
-										  auto& pComponent = ComponentPtrs[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
+										  auto& pComponent = ComponentArray[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
 				
 										  if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
 				
@@ -196,19 +184,7 @@ namespace paperback::coordinator
 
 			for ( auto& Pool : Archetype->m_ComponentPool )
 			{
-				auto ComponentPtrs = [&]< typename... T_COMPONENTS >(std::tuple<T_COMPONENTS...>*) constexpr noexcept
-				{
-					 return std::array
-					 {
-					 	 [&] < typename T_C >(std::tuple<T_C>*) constexpr noexcept
-					 	 {
-					 	 	const auto I = Pool.GetComponentIndex(component::info_v<T_C>.m_UID);
-					 	 	if constexpr (std::is_pointer_v<T_C>)	return (I < 0) ? nullptr : Pool.m_ComponentPool[I];
-					 	 	else									return Pool.m_ComponentPool[I];
-					 	 }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
-					 	    ...
-					 };
-				}( xcore::types::null_tuple_v< func_traits::args_tuple > );
+				auto ComponentArray = Archetype->GetComponentArray( Pool, 0, xcore::types::null_tuple_v< func_traits::args_tuple > );
 
 				Archetype->AccessGuard( [&]
 				{
@@ -218,7 +194,7 @@ namespace paperback::coordinator
 						{
 							return Function([&]<typename T_C>(std::tuple<T_C>*) constexpr noexcept -> T_C
 							{
-								auto& pComponent = ComponentPtrs[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
+								auto& pComponent = ComponentArray[ xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple > ];
 
 								if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
 

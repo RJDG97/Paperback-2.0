@@ -84,10 +84,27 @@ namespace paperback::component
                                                >;
                 constexpr static auto value = decltype( VerifyComponent<T_COMPONENT>(nullptr) )::value;
             };
+
+            template< typename T_COMPONENT >
+            struct is_valid_data_component
+            {
+                template< auto Class >         struct Check;
+                template< typename >           static std::false_type VerifyComponent( ... );
+                template< typename COMPONENT > static auto VerifyComponent( Check<&COMPONENT::typedef_v>* ) -> std::conditional_t
+                                               <
+                                                  ( std::is_same_v< const data, decltype( COMPONENT::typedef_v ) > )
+                                               ,    std::true_type
+                                               ,    std::false_type
+                                               >;
+                constexpr static auto value = decltype( VerifyComponent<T_COMPONENT>(nullptr) )::value;
+            };
         }
 
         template< typename T_COMPONENT >
-        constexpr bool is_valid_v = details::is_valid< xcore::types::decay_full_t<T_COMPONENT> >::value;
+        constexpr bool is_valid_v = details::is_valid< paperback::BaseType<T_COMPONENT> >::value;
+
+        template< typename T_COMPONENT >
+        constexpr bool is_valid_data_v = details::is_valid_data_component< paperback::BaseType<T_COMPONENT> >::value;
     }
 
 
@@ -98,10 +115,9 @@ namespace paperback::component
     {
         static constexpr auto invalid_id_v = 0xffff;
 
-        using Constructor = void(std::byte*) noexcept;
-        using Destructor = void(std::byte*) noexcept;
-        using Move = void(std::byte* Destination, std::byte* Source) noexcept;
-        using Serialize = void(std::byte*) noexcept;
+        using Constructor   =  void( std::byte* ) noexcept;
+        using Destructor    =  void( std::byte* ) noexcept;
+        using Move          =  void( std::byte* Destination, std::byte* Source ) noexcept;
 
         const type::guid       m_Guid;
         const type::id         m_TypeID;
@@ -127,7 +143,7 @@ namespace paperback::component
     }
 
     template< typename T_COMPONENT >
-    constexpr auto& info_v = details::info_v< std::decay_t<T_COMPONENT> >;
+    constexpr auto& info_v = details::info_v< paperback::BaseType<T_COMPONENT> >;
 
 
     //-----------------------------------

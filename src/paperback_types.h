@@ -37,27 +37,30 @@ namespace paperback
 	using f64 = double;
 
 	// Unique ptr
-	template <typename T>
-	using Scope = std::shared_ptr<T>;
+	template < typename T >
+	using Scope = std::shared_ptr< T >;
 
-	template <typename T, typename ...Args>
-	constexpr Scope<T> CreateScope(Args&& ...args) { return std::make_unique<T>(std::forward<Args>(args)...); }
+	template < typename T, typename ...Args >
+	constexpr Scope< T > CreateScope( Args&& ...args ) { return std::make_unique< T >( std::forward<Args>( args )... ); }
 
 	// Shared ptr
 	template <typename T>
-	using Ref = std::shared_ptr<T>;
+	using Ref = std::shared_ptr< T >;
 
 	template <typename T, typename ...Args>
-	constexpr Ref<T> CreateRef(Args&& ...args) { return std::make_shared<T>(std::forward<Args>(args)...); }
+	constexpr Ref<T> CreateRef( Args&& ...args ) { return std::make_shared<T>( std::forward<Args>( args )... ); }
 
 	// No-Return fn
-	template <typename... Args>
+	template < typename... Args >
 	using Action = std::function< void( Args... ) >;
 
 	// Return fn
-	template <typename Result, typename... Args>
+	template < typename Result, typename... Args >
 	using Func = std::function< Result( Args... ) >;
 
+	// Remove cvref
+	template<typename T>
+	using BaseType = std::remove_const_t< std::remove_pointer_t< std::decay_t<T> >>;
 
 	//----------------------------------
 	// Function Typedefs

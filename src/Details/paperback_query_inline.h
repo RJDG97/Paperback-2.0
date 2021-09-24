@@ -46,7 +46,7 @@ namespace tools
 	
 			( Component_Query(reinterpret_cast<std::tuple<T_COMPONENTS>*>( nullptr )), ... );
 	
-		}( reinterpret_cast<func_traits::args_tuple*>( nullptr ) );
+		}( reinterpret_cast<typename func_traits::args_tuple*>( nullptr ) );
 	}
 	
 	template<typename... T_QUERIES >

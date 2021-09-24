@@ -337,6 +337,9 @@
     <ClInclude Include="..\..\src\Details\paperback_input_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Components\SampleTagComponent.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

@@ -36,7 +36,7 @@ namespace paperback::entity
             const auto Details   = Archetype.CreateEntity( Function );
 
 		    RegisterEntity( Details, Archetype );
-	    }( reinterpret_cast<func_traits::args_tuple*>(nullptr) );
+	    }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
 
     void manager::RemoveEntity( const u32 SwappedGlobalIndex, const component::entity DeletedEntity ) noexcept
