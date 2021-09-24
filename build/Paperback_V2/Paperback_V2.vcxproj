@@ -43,6 +43,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_glfw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_tables.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -108,6 +114,9 @@
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImGuizmo.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImSequencer.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImZoomSlider.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_opengl3_loader.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imgui_internal.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_rectpack.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_textedit.h" />
