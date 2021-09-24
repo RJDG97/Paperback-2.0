@@ -5,6 +5,7 @@ namespace paperback::coordinator
 	struct instance final
 	{
 		tools::clock				m_Clock;
+		Input						m_Input;
 		component::manager			m_CompMgr;
 		entity::manager				m_EntityMgr;
 		system::manager				m_SystemMgr{ m_Clock };
@@ -144,8 +145,8 @@ namespace paperback::coordinator
 static struct engine
 {
 	paperback::coordinator::instance& m_Coordinator = paperback::coordinator::instance::GetInstance();
-	int m_Width = 1024;
-	int m_Height = 800;
+	int m_Width = 1280;
+	int m_Height = 720;
 } m_Engine;
 
 #define PPB m_Engine.m_Coordinator

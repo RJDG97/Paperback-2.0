@@ -44,6 +44,30 @@
     <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\ImSequencer.cpp">
       <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Details\paperback_camera.cpp">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Mesh\MeshBuilder.cpp">
+      <Filter>Source\Tools\Functionality\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Mesh\Model.cpp">
+      <Filter>Source\Tools\Functionality\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Shader\ShaderBuilder.cpp">
+      <Filter>Source\Tools\Functionality\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Shader\ShaderProgram.cpp">
+      <Filter>Source\Tools\Functionality\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Texture\TextureLoader.cpp">
+      <Filter>Source\Tools\Functionality\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\RenderResource\RenderResourceManager.cpp">
+      <Filter>Source\Tools\Functionality\RenderResource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Renderer\Renderer.cpp">
+      <Filter>Source\Tools\Functionality\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -274,6 +298,45 @@
     <ClInclude Include="..\..\src\Math\Vector3fData.h">
       <Filter>Source\Gameplay Code\Math</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\paperback_camera.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h">
+      <Filter>Source\Tools\Functionality\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Mesh\Model.h">
+      <Filter>Source\Tools\Functionality\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h">
+      <Filter>Source\Tools\Functionality\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h">
+      <Filter>Source\Tools\Functionality\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h">
+      <Filter>Source\Tools\Functionality\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\RendererSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceManager.h">
+      <Filter>Source\Tools\Functionality\RenderResource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Mesh.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h">
+      <Filter>Source\Tools\Functionality\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_input.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_input_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -326,6 +389,27 @@
     </Filter>
     <Filter Include="Source\Gameplay Code\Math">
       <UniqueIdentifier>{f06d46f1-f0b8-4d23-b9bf-0b986eeea40f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality">
+      <UniqueIdentifier>{03255925-799a-4a98-8c6d-26191e70d296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\Mesh">
+      <UniqueIdentifier>{5de86767-52e7-4203-beeb-f233bfdce4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\Shader">
+      <UniqueIdentifier>{4dde33cf-6de9-4540-a359-19236f36ae06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\Texture">
+      <UniqueIdentifier>{ef76f5f6-7550-474a-8404-15ec346f1042}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\RenderResource">
+      <UniqueIdentifier>{417fc25d-b05e-47b3-8b3b-f8d5d326cf1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\Renderer">
+      <UniqueIdentifier>{a66abb8d-86cf-4755-baa0-56dcff7207cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Input">
+      <UniqueIdentifier>{5c11195e-dac3-439a-b149-cb11d8fc289a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

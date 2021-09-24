@@ -30,4 +30,9 @@
 #include "fmod/studio/inc/fmod_studio.hpp"
 #include "fmod/studio/inc/fmod_studio_common.h"
 
+#include "glew/inc/glew.h"
+#include "glfw/inc/glfw3.h"
+#include "glm/inc/glm.hpp"
+#include "glm/inc/gtx/transform.hpp"
+
 #endif

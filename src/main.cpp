@@ -12,7 +12,6 @@
 //      Forward Declarations
 //-----------------------------------
 using namespace paperback;
-void GlutTimer(int value);
 void InitializeGame();
 
 
@@ -29,29 +28,7 @@ int main( int argc, char* argv[] )
     xcore::Init( "Initializing Paperback Engine");
     InitializeGame();
 
-    // Game Loop - To be replaced with purely PPB.Update()
-    // when rendering system is up
-    glutInitWindowSize( m_Engine.m_Width, m_Engine.m_Height );
-    glutInit( &argc, argv );
-    glutInitDisplayMode( GLUT_DOUBLE );
-    glutCreateWindow( "Paperback Engine" );
-    glutDisplayFunc([]
-    {
-        PPB.Update();
-    });
-    glutReshapeFunc([](int w, int h)
-    {
-        m_Engine.m_Width = w;
-        m_Engine.m_Height = h;
-        glViewport( 0, 0, w, h );
-        glMatrixMode( GL_PROJECTION );
-        glLoadIdentity();
-        glOrtho( 0, w, 0, h, -1, 1 );
-        glScalef( 1, -1, 1 );
-        glTranslatef( 0, -h, 0 );
-    });
-    glutTimerFunc( 0, GlutTimer, 0 );
-    glutMainLoop();
+    PPB.Update();
 
     // Termination
     PPB.Terminate();
@@ -60,12 +37,15 @@ int main( int argc, char* argv[] )
 
 
 
-void GlutTimer( int value )
-{
-    UNREFERENCED_PARAMETER( value );
-    glutPostRedisplay();
-    glutTimerFunc( 15, GlutTimer, 0 );
-}
+
+
+
+
+
+
+
+
+
 
 void InitializeGame()
 {
@@ -76,7 +56,8 @@ void InitializeGame()
             rigidbody,
             transform,
             timer,
-            sound
+            sound,
+            mesh
         >();
     }
 
@@ -86,12 +67,11 @@ void InitializeGame()
             physics_system,
             ship_logic_system,
             bullet_logic_system,
-            ship_rendering_system,
-            bullet_rendering_system,
-            buffer_refresh_system,
             imgui_system,
             sound_system,
-            scripting_system
+            scripting_system,
+            window_system,
+            render_system
         >();
     }
     // Entity Creation
@@ -102,10 +82,10 @@ void InitializeGame()
                                {
                                    Transform.m_Position.m_X = std::rand() % m_Engine.m_Width;
                                    Transform.m_Position.m_Y = std::rand() % m_Engine.m_Height;
-                              
+
                                    RigidBody.m_Velocity.m_X = ( std::rand() % 40 );
                                    RigidBody.m_Velocity.m_Y = ( std::rand() % 40 );
-                              
+
                                    Timer.m_Timer = (std::rand() / (float)RAND_MAX) * 8;
                                });
          }
@@ -114,4 +94,3 @@ void InitializeGame()
          PPB.SaveScene("test.json");
     }
 }
-

@@ -7,3 +7,5 @@
 #include "ImguiSystem.h"
 #include "SoundSystem.h"
 #include "ScriptingSystem.h"
+#include "WindowSystem.h"
+#include "RendererSystem.h"

@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\dependencies\dearImGui\imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -31,15 +32,19 @@
     </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_demo.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_draw.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_tables.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_widgets.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\dependencies\xcore\src\xcore.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -50,6 +55,38 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\dependencies\xcore\src\xcore_profiler_2.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Details\paperback_camera.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Mesh\MeshBuilder.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Mesh\Model.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Renderer\Renderer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\RenderResource\RenderResourceManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Shader\ShaderBuilder.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Shader\ShaderProgram.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Texture\TextureLoader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -74,6 +111,7 @@
     <ClInclude Include="..\..\src\Components\Bullet.h" />
     <ClInclude Include="..\..\src\Components\Components.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
+    <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
     <ClInclude Include="..\..\src\Components\Sound.h" />
@@ -87,11 +125,19 @@
     <ClInclude Include="..\..\src\Details\paperback_entity_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_entity_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_input_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_logger_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_pool_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
+    <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
+    <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h" />
+    <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceManager.h" />
+    <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
+    <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />
+    <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h" />
     <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
     <ClInclude Include="..\..\src\Json\JsonFile.h" />
     <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
@@ -104,6 +150,7 @@
     <ClInclude Include="..\..\src\Mono.h" />
     <ClInclude Include="..\..\src\Paperback.h" />
     <ClInclude Include="..\..\src\paperback_bitset.h" />
+    <ClInclude Include="..\..\src\paperback_camera.h" />
     <ClInclude Include="..\..\src\paperback_clock.h" />
     <ClInclude Include="..\..\src\paperback_component.h" />
     <ClInclude Include="..\..\src\paperback_component_mgr.h" />
@@ -111,6 +158,7 @@
     <ClInclude Include="..\..\src\paperback_entity.h" />
     <ClInclude Include="..\..\src\paperback_entity_mgr.h" />
     <ClInclude Include="..\..\src\paperback_event.h" />
+    <ClInclude Include="..\..\src\paperback_input.h" />
     <ClInclude Include="..\..\src\paperback_logger.h" />
     <ClInclude Include="..\..\src\paperback_pool.h" />
     <ClInclude Include="..\..\src\paperback_query.h" />
@@ -126,6 +174,7 @@
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
     <ClInclude Include="..\..\src\Systems\ScriptingSystem.h" />
+    <ClInclude Include="..\..\src\Systems\RendererSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h" />
     <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
@@ -133,6 +182,7 @@
     <ClInclude Include="..\..\src\Vector.h" />
     <ClInclude Include="paperback_pch.h" />
     <ClInclude Include="samplecomponent.h" />
+    <ClInclude Include="WindowSystem.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -169,14 +219,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;$(ProjectDir)..\..\dependencies\mono\include\</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;$(ProjectDir)..\..\dependencies\mono\include\../../dependencies</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>../../dependencies/dearImGui;$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;$(ProjectDir)..\..\dependencies\mono\include\</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;../../dependencies$(ProjectDir)..\..\dependencies\mono\include\</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -197,7 +247,7 @@
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/xcore/dependencies/zstd/build/VS2010/bin/x64_Debug;../../dependencies/glut/x64/Debug;../../dependencies/xcore</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mono-2.0-sgen.lib;fmodL_vc.lib;fmodstudioL_vc.lib;librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>mono-2.0-sgen.lib;fmodL_vc.lib;fmodstudioL_vc.lib;assimp-vc142-mtd.lib;glew32.lib;glfw3.lib;opengl32.lib;soil2.lib;librttr_core_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>
@@ -230,8 +280,8 @@ xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(Ou
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
       <AdditionalDependencies>librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>../../dependencies/rttr/lib;../../dependencies/glut/x64/Release;../../dependencies/xcore</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mono-2.0-sgen.lib;fmod_vc.lib;fmodstudio_vc.lib;librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../dependencies/glut/x64/Release;../../dependencies/xcore;../../dependencies/rttr/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mono-2.0-sgen.lib;fmod_vc.lib;fmodstudio_vc.lib;assimp-vc142-mtd.lib;glew32.lib;glfw3.lib;opengl32.lib;soil2.lib;librttr_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>

@@ -175,7 +175,7 @@ namespace paperback::system
 	template< typename T_SYSTEM >
 	T_SYSTEM& instance::GetSystem( void ) noexcept
 	{
-		return m_Coordinator.GetSystem();
+		return m_Coordinator.GetSystem<T_SYSTEM>();
 	}
 
 	PPB_FORCEINLINE
