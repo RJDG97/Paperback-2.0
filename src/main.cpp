@@ -67,11 +67,12 @@ void InitializeGame()
             physics_system,
             ship_logic_system,
             bullet_logic_system,
-            imgui_system,
             sound_system,
             scripting_system,
             window_system,
-            render_system
+            render_system,
+            imgui_system
+
         >();
     }
     // Entity Creation

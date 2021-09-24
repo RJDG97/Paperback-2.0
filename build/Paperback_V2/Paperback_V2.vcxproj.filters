@@ -68,6 +68,12 @@
     <ClCompile Include="..\..\src\Functionality\Renderer\Renderer.cpp">
       <Filter>Source\Tools\Functionality\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_glfw.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -336,6 +342,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_input_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_glfw.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_opengl3_loader.h">
+      <Filter>Dependencies\dearImGui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
