@@ -51,10 +51,10 @@ void RenderResourceManager::UnloadAllMaterials()
 	m_Materials.clear();
 }
 
-std::string RenderResourceManager::LoadTextures(const std::string& Texture, const std::string& File)
+std::string RenderResourceManager::LoadTextures(const std::string& Texture, const std::string& File, const bool& GammaCorrect)
 {
 	if (m_Textures.find(Texture) == m_Textures.end())
-		m_Textures[Texture] = TextureLoader::LoadTexture(File);
+		m_Textures[Texture] = TextureLoader::LoadTexture(File, GammaCorrect);
 
 	return Texture;
 }
@@ -75,25 +75,25 @@ std::string RenderResourceManager::LoadMaterial(const std::string& Material, aiM
 
 		AiMat->GetTexture(aiTextureType_DIFFUSE, 0, &str);
 		file = "../../resources/textures/" + std::string{ str.C_Str() };
-		mat.m_Diffuse = LoadTextures(str.C_Str(), file);
+		mat.m_Diffuse = LoadTextures(str.C_Str(), file, true);
 
 		str.Clear();
 
 		AiMat->GetTexture(aiTextureType_AMBIENT, 0, &str);
 		file = "../../resources/textures/" + std::string{ str.C_Str() };
-		mat.m_Ambient = LoadTextures(str.C_Str(), file);
+		mat.m_Ambient = LoadTextures(str.C_Str(), file, true);
 
 		str.Clear();
 
 		AiMat->GetTexture(aiTextureType_SPECULAR, 0, &str);
 		file = "../../resources/textures/" + std::string{ str.C_Str() };
-		mat.m_Specular = LoadTextures(str.C_Str(), file);
+		mat.m_Specular = LoadTextures(str.C_Str(), file, true);
 
 		str.Clear();
 
 		AiMat->GetTexture(aiTextureType_HEIGHT, 0, &str);
 		file = "../../resources/textures/" + std::string{ str.C_Str() };
-		mat.m_Normal = LoadTextures(str.C_Str(), file);
+		mat.m_Normal = LoadTextures(str.C_Str(), file, false);
 
 		m_Materials[Material] = mat;
 	}

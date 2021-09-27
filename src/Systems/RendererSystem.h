@@ -27,6 +27,7 @@ struct render_system : paperback::system::instance
 	PPB_FORCEINLINE
 	void Update( void ) noexcept
 	{
+		// Populate map to render objects
 		std::unordered_map<std::string, std::vector<glm::mat4>> objects;
 
 		glm::mat4 t{ 1.0f };
@@ -36,6 +37,14 @@ struct render_system : paperback::system::instance
 		objects["Backpack"].push_back(t);
 
 		Renderer::GetInstanced().Render(objects);
+
+		// Add points to render lines
+		//std::vector<glm::vec3> points;
+
+		//points.push_back(glm::vec3{ 0,-5,0 });
+		//points.push_back(glm::vec3{ 0,5,0 });
+
+		//Renderer::GetInstanced().DebugRender(points);
 		//tool::query Query;
 		//Query.m_Must.AddFromComponents<transform, mesh>();
 
