@@ -186,6 +186,7 @@
     <ClInclude Include="..\..\src\Systems\BufferRefresh.h" />
     <ClInclude Include="..\..\src\Systems\BulletLogicSystem.h" />
     <ClInclude Include="..\..\src\Systems\BulletRenderingSystem.h" />
+    <ClInclude Include="..\..\src\Systems\DebugSystem.h" />
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
     <ClInclude Include="..\..\src\Systems\ScriptingSystem.h" />
