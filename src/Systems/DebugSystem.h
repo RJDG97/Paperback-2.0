@@ -1,5 +1,7 @@
 #pragma once
 #include "Components/Transform.h"
+#include "../Functionality/Renderer/Renderer.h"
+#include "Math/Vector3f.h"
 
 struct debug_system : paperback::system::instance
 {
@@ -60,6 +62,33 @@ struct debug_system : paperback::system::instance
         return m_PercentageTimePerSystem;
     }
 
+    //helper function to convert Vector3f to glm::vec3
+    glm::vec3 ConvertMathVecToGLMVec(const paperback::Vector3f& vec3)
+    {
+
+        return { vec3.x, vec3.y, vec3.z };
+    }
+
+    // draws a "cube" depending on given data
+    // data has to be pairs of vectors
+    void DrawDebugLines(std::vector<paperback::Vector3f> vec)
+    {
+
+        //assume passed vector contains vector3f in pairs
+
+        //convert to glm vector
+        std::vector<glm::vec3> input{};
+
+        for (paperback::Vector3f& vec3 : vec)
+        {
+
+            input.push_back(ConvertMathVecToGLMVec(vec3));
+        }
+
+        // send to render
+        Renderer::GetInstanced().DebugRender(input);
+    }
+
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
@@ -70,10 +99,24 @@ struct debug_system : paperback::system::instance
         m_TimePerSystem.resize(m_NumSystems);
     }
 
+
+    //test debug draw function
+    std::vector<paperback::Vector3f> testvec = { { -25, -25, -25 }, { 25, 25, 25 }, { 25, -25, -25 }, { -25, 25, 25 } };
+    void TestDrawDebug()
+    {
+
+        //draw test vec
+        DrawDebugLines(testvec);
+
+        //test conversion of nonpaired vector
+
+    }
+
+
     PPB_FORCEINLINE
     void Update(void) 
     {
-
+        //TestDrawDebug();
     }
 
 

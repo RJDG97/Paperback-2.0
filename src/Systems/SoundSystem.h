@@ -307,10 +307,10 @@ public:
             {
 
                 StopSoundEvent(current_event->m_pSound);
-            }
 
-            //remove event from event vector
-            m_SoundFiles.erase(current_event);
+                //remove event from event vector
+                m_SoundFiles.erase(current_event);
+            }
 
             //delete instance
             PPB.DeleteEntity(Entity);
