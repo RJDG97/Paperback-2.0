@@ -2,6 +2,19 @@
 
 namespace paperback
 {
+
+	//------ Returns a rotated vector by an angle (radians)
+	Vector3f Vector3f::RotateRad(float Angle) const					
+	{
+		return Mtx4x4::RotRad2D(Angle) * *this;
+	}
+
+	//------ Returns a rotated vector by an angle (degrees)
+	Vector3f Vector3f::RotateDeg(float Angle) const					
+	{
+		return Mtx4x4::RotDeg2D(Angle) * *this;
+	}
+
 	// -- Copy assignment operator
 	inline Mtx4x4& Mtx4x4::operator=(const Mtx4x4& rhs)
 	{

@@ -24,7 +24,7 @@ public:
 
 	TextureLoader& operator=(const TextureLoader&) = delete;
 
-	static GLuint LoadTexture(const std::string File);
+	static GLuint LoadTexture(const std::string File, const bool& GammaCorrect);
 	static void FreeTexture(unsigned char* Pixels);
 };
 

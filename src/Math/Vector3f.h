@@ -68,14 +68,14 @@ namespace paperback
 		inline Vector3f ScaleToLength(float Salar) const;			//------ Returns a scaled vector of desired length
 		inline Vector3f Reflect(const Vector3f& Normal) const;		//------ Reflects a vector about a surface
 		inline Vector3f Normal2D() const;							//------ Gets the 2D normal vector
-		Vector3f RotateRad(float Angle) const						//------ Returns a rotated vector by an angle (radians)
-		{
-			return Mtx4x4::RotRad2D(Angle) * *this;
-		}
-		Vector3f RotateDeg(float Angle) const						//------ Returns a rotated vector by an angle (degrees)
-		{
-			return Mtx4x4::RotDeg2D(Angle) * *this;
-		}
+		Vector3f RotateRad(float Angle) const;						//------ Returns a rotated vector by an angle (radians)
+		//{
+		//	return Mtx4x4::RotRad2D(Angle) * *this;
+		//}
+		Vector3f RotateDeg(float Angle) const;						//------ Returns a rotated vector by an angle (degrees)
+		//{
+		//	return Mtx4x4::RotDeg2D(Angle) * *this;
+		//}
 		inline Vector3f RotateAboutPoint(const Vector3f& Point,		//------ Rotates a point about a 
 			const Vector3f& Center,	//------ desired centre point with
 			float Degrees);			//------ a desired angle.

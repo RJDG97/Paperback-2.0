@@ -9,3 +9,5 @@
 #include "ScriptingSystem.h"
 #include "WindowSystem.h"
 #include "RendererSystem.h"
+
+#include "DebugSystem.h"

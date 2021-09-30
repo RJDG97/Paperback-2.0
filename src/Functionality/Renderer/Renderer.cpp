@@ -32,7 +32,16 @@ Renderer::Renderer() :
 
 	glBindVertexArray(0);
 
-	m_Resources.LoadShader("Simple", "../../resources/shaders/Simple.vert", "../../resources/shaders/Simple.frag");
+	glCreateVertexArrays(1, &m_DebugVAO);
+
+	glEnableVertexArrayAttrib(m_DebugVAO, 0);
+	glVertexArrayAttribFormat(m_DebugVAO, 0, 3, GL_FLOAT, GL_FALSE, 0);
+	glVertexArrayAttribBinding(m_DebugVAO, 0, 0);
+
+	glBindVertexArray(0);
+
+	m_Resources.LoadShader("Light", "../../resources/shaders/Lighting.vert", "../../resources/shaders/Lighting.frag");
+	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
 	m_Resources.Load3DMesh("Box", "../../resources/models/box.fbx");
 	m_Resources.Load3DMesh("Plane", "../../resources/models/plane.obj");
@@ -41,89 +50,95 @@ Renderer::Renderer() :
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	// Enable depth testing
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glDepthMask(GL_TRUE);
 
+	// Enable face cullling
 	glEnable(GL_CULL_FACE);
 }
 
 Renderer::~Renderer()
 {
 	glDeleteVertexArrays(1, &m_VAO);
+	glDeleteVertexArrays(1, &m_DebugVAO);
 }
 
 void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects)
 {
 	// Bind shader
-	m_Resources.m_Shaders["Simple"].Use();
+	m_Resources.m_Shaders["Light"].Use();
 
 	// Bind vao
 	glBindVertexArray(m_VAO);
 
-	// Sent view and projection matrix
 	glm::mat4 view = Camera::GetInstanced().GetView();
 	glm::mat4 projection = Camera::GetInstanced().GetProjection();
 
-	//RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uModel", const_cast<glm::mat4&>(model));
-	RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uView", const_cast<glm::mat4&>(view));
-	RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
+	m_Resources.m_Shaders["Light"].SetUniform("uView", const_cast<glm::mat4&>(view));
+	m_Resources.m_Shaders["Light"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
+
+	m_Resources.m_Shaders["Light"].SetUniform("uLight.Direction", 0.f, -1.f, 0.f);
+	m_Resources.m_Shaders["Light"].SetUniform("uLight.Ambient", 0.2f, 0.2f, 0.2f);
+	m_Resources.m_Shaders["Light"].SetUniform("uLight.Diffuse", 0.5f, 0.5f, 0.5f);
+	m_Resources.m_Shaders["Light"].SetUniform("uLight.Specular", 1.0f, 1.0f, 1.0f);
 
 	for (const auto& model : Objects)
 	{
-		auto& SubMeshes = RenderResourceManager::GetInstanced().m_Models[model.first].GetSubMeshes();
+		auto& SubMeshes = m_Resources.m_Models[model.first].GetSubMeshes();
 
 		for (auto& submesh : SubMeshes)
 		{
-			Model::Material& material = RenderResourceManager::GetInstanced().m_Materials[submesh.m_Material];
+			Model::Material& material = m_Resources.m_Materials[submesh.m_Material];
 			// Send textures
 			if (!material.m_Diffuse.empty())
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedDiffuse", true);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedDiffuse", true);
 
-				glBindTextureUnit(0, RenderResourceManager::GetInstanced().m_Textures[material.m_Diffuse]);
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uDiffuse", 0);
+				glBindTextureUnit(0, m_Resources.m_Textures[material.m_Diffuse]);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.Diffuse", 0);
 			}
 			else
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedDiffuse", false);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedDiffuse", false);
 			}
 
-			/*if (!material.m_Ambient.empty())
+			if (!material.m_Ambient.empty())
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedAmbient", true);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedAmbient", true);
 
-				glBindTextureUnit(1, RenderResourceManager::GetInstanced().m_Textures[material.m_Ambient]);
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uAmbient", 1);
+				glBindTextureUnit(1, m_Resources.m_Textures[material.m_Ambient]);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.Ambient", 1);
 			}
 			else
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedAmbient", false);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedAmbient", false);
 			}
 
 			if (!material.m_Specular.empty())
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedSpecular", true);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedSpecular", true);
 
-				glBindTextureUnit(2, RenderResourceManager::GetInstanced().m_Textures[material.m_Specular]);
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uSpecular", 2);
+				glBindTextureUnit(2, m_Resources.m_Textures[material.m_Specular]);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.Specular", 2);
 			}
 			else
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedSpecular", false);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedSpecular", false);
 			}
 
 			if (!material.m_Normal.empty())
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedNormal", true);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedNormal", true);
 
-				glBindTextureUnit(3, RenderResourceManager::GetInstanced().m_Textures[material.m_Normal]);
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uMat.Normal", 3);
+				glBindTextureUnit(3, m_Resources.m_Textures[material.m_Normal]);
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.Normal", 3);
 			}
 			else
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uTexturedNormal", false);
-			}*/
+				m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedNormal", false);
+			}
 
 			// Set model vbo handle to vao
 			glVertexArrayVertexBuffer(m_VAO, 0, submesh.m_VBO, 0, sizeof(Model::Vertex));
@@ -131,27 +146,54 @@ void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat
 
 			for (const auto& transform : model.second)
 			{
-				RenderResourceManager::GetInstanced().m_Shaders["Simple"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
+				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
 				// Draw object
-				glDrawElements(RenderResourceManager::GetInstanced().m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+				glDrawElements(m_Resources.m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 			}
 		}
 	}
-
-	// Model transformation
-	//glm::mat4 model{ 1.0f };
-	//model = glm::translate(model, Position);
-	//model = glm::rotate(model, glm::radians(Rotation.x), glm::vec3(1.f, 0.f, 0.f));
-	//model = glm::rotate(model, glm::radians(Rotation.y), glm::vec3(0.f, 1.f, 0.f));
-	//model = glm::rotate(model, glm::radians(Rotation.z), glm::vec3(0.f, 0.f, 1.f));
-	//model = glm::scale(model, Scale);
 
 	// Unbind vao
 	glBindVertexArray(0);
 
 	// Unbind shader
-	m_Resources.m_Shaders["Simple"].UnUse();
+	m_Resources.m_Shaders["Light"].UnUse();
+}
+
+void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
+{
+	// Create vbo for debug lines
+	GLuint vbo;
+	glCreateBuffers(1, &vbo);
+	glNamedBufferStorage(vbo, sizeof(glm::vec3) * Points.size(), Points.data(), GL_DYNAMIC_STORAGE_BIT);
+
+	// Bind shader
+	m_Resources.m_Shaders["Debug"].Use();
+
+	// Bind vao
+	glBindVertexArray(m_DebugVAO);
+	// Bind vbo to vao
+	glVertexArrayVertexBuffer(m_DebugVAO, 0, vbo, 0, sizeof(glm::vec3));
+
+	glm::mat4 transform = Camera::GetInstanced().GetProjection() * Camera::GetInstanced().GetView();
+
+	m_Resources.m_Shaders["Debug"].SetUniform("uTransform", transform);
+
+	glLineWidth(5.f);
+
+	glDrawArrays(GL_LINES, 0, static_cast<GLsizei>(Points.size()));
+
+	glLineWidth(1.f);
+
+	// Destroy vbo
+	glDeleteBuffers(1, &vbo);
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	// Unbind shader
+	m_Resources.m_Shaders["Debug"].UnUse();
 }
 
 void Renderer::StartFrame()

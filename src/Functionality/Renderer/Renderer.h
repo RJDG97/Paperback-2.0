@@ -17,14 +17,17 @@ public:
 	// Render object
 	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
 
+	// Render debug objects
+	void DebugRender(const std::vector<glm::vec3>& Points);
+
 	// Prep the start of draw frame
 	void StartFrame();
 
 	// Draw frame
-	void Draw();
+	//void Draw();
 
 	// Used for hotswapping framebuffer output
-	void DebugDraw();
+	//void DebugDraw();
 
 	// Default drawing without effects
 	//void DefaultDraw(GameobjectFactory::Entity Object);
@@ -61,10 +64,11 @@ private:
 
 	// VAO for rendering
 	GLuint m_VAO;
+	// VAO for debug objects
+	GLuint m_DebugVAO;
 
 	RenderResourceManager& m_Resources;
-	//// VAO for debug objects
-	//GLuint m_DebugVAO;
+
 };
 
 #endif

@@ -22,7 +22,7 @@ public:
 	void UnloadAllMeshes();
 
 	// Load textures
-	std::string LoadTextures(const std::string& Mesh, const std::string& File);
+	std::string LoadTextures(const std::string& Texture, const std::string& File, const bool& GammaCorrect);
 	// Unload textures
 	void UnloadTextures(const std::string& Mesh);
 

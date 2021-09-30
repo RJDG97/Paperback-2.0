@@ -13,7 +13,7 @@
 #include "TextureLoader.h"
 #include "soil/inc/SOIL2.h"
 
-GLuint TextureLoader::LoadTexture(const std::string File)
+GLuint TextureLoader::LoadTexture(const std::string File, const bool& GammaCorrect)
 {
 	int width, height, channels;
 	GLfloat anisotropy;
@@ -36,13 +36,13 @@ GLuint TextureLoader::LoadTexture(const std::string File)
 		case 3:
 		{
 			format = GL_RGB;
-			internalformat = GL_RGB8;
+			internalformat = GammaCorrect ? GL_SRGB8 : GL_RGB8;
 		}
 		break;
 		case 4:
 		{
 			format = GL_RGBA;
-			internalformat = GL_RGBA8;
+			internalformat = GammaCorrect ? GL_SRGB8_ALPHA8 : GL_RGBA8;
 		}
 		break;
 		}

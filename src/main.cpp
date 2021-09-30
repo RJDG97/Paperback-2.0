@@ -72,8 +72,8 @@ void InitializeGame()
             scripting_system,
             window_system,
             render_system,
-            imgui_system
-
+            imgui_system,
+            debug_system
         >();
     }
     // Entity Creation

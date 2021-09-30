@@ -355,6 +355,9 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_opengl3_loader.h">
       <Filter>Dependencies\dearImGui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Systems\DebugSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
