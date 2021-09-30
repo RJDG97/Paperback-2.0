@@ -7,10 +7,10 @@ struct transform
 		.m_pName = "Transform"
 	};
 
-	xcore::vector2	 m_Offset;
-	xcore::vector2	 m_Position;
-	xcore::vector2	 m_Rotation;
-	xcore::vector2	 m_LocalScale;
+	xcore::vector3	 m_Offset;
+	xcore::vector3	 m_Position;
+	xcore::vector3	 m_Rotation;
+	xcore::vector3	 m_LocalScale;
 };
 
 namespace RR_Transform

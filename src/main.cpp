@@ -78,19 +78,34 @@ void InitializeGame()
     }
     // Entity Creation
     {
-         for (int i = 0; i < 5; ++i)
-         {
-             PPB.CreateEntity( [&]( transform& Transform, rigidbody& RigidBody, timer& Timer )
-                               {
-                                   Transform.m_Position.m_X = std::rand() % m_Engine.m_Width;
-                                   Transform.m_Position.m_Y = std::rand() % m_Engine.m_Height;
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+            {
+                Transform.m_Position.m_X = 5;// std::rand() % (m_Engine.m_Width / 2);
+                Transform.m_Position.m_Y = 2.5;// std::rand() % (m_Engine.m_Height / 2);
+                Transform.m_Position.m_Z = -10;
 
-                                   RigidBody.m_Velocity.m_X = ( std::rand() % 40 );
-                                   RigidBody.m_Velocity.m_Y = ( std::rand() % 40 );
+                Mesh.m_Model = "Box";
+            });
 
-                                   Timer.m_Timer = (std::rand() / (float)RAND_MAX) * 8;
-                               });
-         }
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+            {
+                Transform.m_Position.m_X = -4;// std::rand() % (m_Engine.m_Width / 2);
+                Transform.m_Position.m_Y = -2;// std::rand() % (m_Engine.m_Height / 2);
+                Transform.m_Position.m_Z = -10;
+
+
+                Mesh.m_Model = "Box";
+            });
+
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+            {
+                Transform.m_Position.m_X = -0.01;// std::rand() % (m_Engine.m_Width / 2);
+                Transform.m_Position.m_Y = -4;// std::rand() % (m_Engine.m_Height / 2);
+                Transform.m_Position.m_Z = -10;
+
+
+                Mesh.m_Model = "Plane";
+            });
 
 
          PPB.SaveScene("test.json");

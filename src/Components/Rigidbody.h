@@ -7,7 +7,7 @@ struct rigidbody
         .m_pName = "Rigidbody"
     };
 
-	xcore::vector2		m_Velocity;
+	xcore::vector3		m_Velocity;
 	float				m_Mass;
 };
 

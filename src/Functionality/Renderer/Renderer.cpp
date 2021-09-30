@@ -34,6 +34,8 @@ Renderer::Renderer() :
 
 	m_Resources.LoadShader("Simple", "../../resources/shaders/Simple.vert", "../../resources/shaders/Simple.frag");
 	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
+	m_Resources.Load3DMesh("Box", "../../resources/models/box.fbx");
+	m_Resources.Load3DMesh("Plane", "../../resources/models/plane.obj");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
