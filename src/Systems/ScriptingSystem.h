@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "Mono.h"
+#include "paperback_camera.h"
+#include "paperback_input.h"
 
 struct scripting_system : paperback::system::instance
 {
@@ -21,6 +23,56 @@ struct scripting_system : paperback::system::instance
 	void Update(void) noexcept 
 	{
 		//m_pMono->externaltest();
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_W))
+		{
+			Camera::GetInstanced().MoveForward();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_S))
+		{
+			Camera::GetInstanced().MoveBackward();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_A))
+		{
+			Camera::GetInstanced().MoveLeft();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_D))
+		{
+			Camera::GetInstanced().MoveRight();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_Q))
+		{
+			Camera::GetInstanced().MoveUp();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_E))
+		{
+			Camera::GetInstanced().MoveDown();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_UP))
+		{
+			Camera::GetInstanced().RotateUp();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_DOWN))
+		{
+			Camera::GetInstanced().RotateDown();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_LEFT))
+		{
+			Camera::GetInstanced().RotateLeft();
+		}
+
+		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_RIGHT))
+		{
+			Camera::GetInstanced().RotateRight();
+		}
 	}
 
 	void OnSystemTerminated(void) noexcept 
