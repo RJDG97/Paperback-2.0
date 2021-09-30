@@ -121,7 +121,7 @@ public:
     void ConvertSystemToFMOD3D(FMOD_3D_ATTRIBUTES& attribute, const transform* transform, const rigidbody* rigidbody)
     {
         //2d now, to change to 3d when shifted to 3d
-        xcore::vector2 normal_vec = rigidbody->m_Velocity;
+        xcore::vector3 normal_vec = rigidbody->m_Velocity;
         normal_vec.Normalize();
 
         attribute.forward.x = normal_vec.m_X;
