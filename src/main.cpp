@@ -15,17 +15,17 @@ using namespace paperback;
 void InitializeGame();
 
 
-int main( int argc, char* argv[] )
+int main(int argc, char* argv[])
 {
 #if defined( PAPERBACK_DEBUG ) | defined( PAPERBACK_DEBUG )
-    _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-    ShowWindow( GetConsoleWindow(), SW_SHOW );
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    ShowWindow(GetConsoleWindow(), SW_SHOW);
 #else
     ShowWindow(GetConsoleWindow(), SW_HIDE);
 #endif
 
     // Initialization
-    xcore::Init( "Initializing Paperback Engine");
+    xcore::Init("Initializing Paperback Engine");
     InitializeGame();
 
     PPB.Update();
@@ -51,7 +51,7 @@ void InitializeGame()
 {
     // Register Components
     {
-       PPB.RegisterComponents<
+        PPB.RegisterComponents<
             bullet,
             rigidbody,
             transform,
@@ -107,7 +107,32 @@ void InitializeGame()
                 Mesh.m_Model = "Plane";
             });
 
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+            {
+                Transform.m_Position.m_X = 2;// std::rand() % (m_Engine.m_Width / 2);
+                Transform.m_Position.m_Y = 2;// std::rand() % (m_Engine.m_Height / 2);
+                Transform.m_Position.m_Z = -4;
+                Transform.fakebox.MinMax[0].Set(paperback::Vector3f(2.f - 2.f, 2.f - 2.f, -4.f - 2.f));
+                Transform.fakebox.MinMax[1].Set(paperback::Vector3f(2.f + 2.f, 2.f + 2.f, -4.f + 2.f));
+                Transform.fakeSphere.Set(paperback::Vector3f(2.f, 2.f, -4.f), 1.f);
 
-         PPB.SaveScene("test.json");
+
+                Mesh.m_Model = "Box";
+            });
+
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+            {
+                Transform.m_Position.m_X = 5;// std::rand() % (m_Engine.m_Width / 2);
+                Transform.m_Position.m_Y = -1;// std::rand() % (m_Engine.m_Height / 2);
+                Transform.m_Position.m_Z = -7;
+                Transform.fakebox.MinMax[0].Set(paperback::Vector3f(5.f - 2.f, -1.f - 2.f, -7.f - 2.f));
+                Transform.fakebox.MinMax[1].Set(paperback::Vector3f(5.f + 2.f, -1.f + 2.f, -7.f + 2.f));
+                Transform.fakeSphere.Set(paperback::Vector3f(5.f, -1.f, -7.f), 1.f);
+
+                Mesh.m_Model = "Box";
+            });
+
+
+        PPB.SaveScene("test.json");
     }
 }

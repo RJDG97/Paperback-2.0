@@ -2,6 +2,8 @@
 
 #include "Math/Vector3f.h"
 #include "Math/Mtx4x4.h"
+#include "Shapes/BoundingBox.h"
+#include "Shapes/Sphere.h"
 
 struct transform
 {
@@ -10,28 +12,32 @@ struct transform
 		.m_pName = "Transform"
 	};
 
-	paperback::Vector3f	 m_Offset;								
-	paperback::Vector3f	 m_Position;							// -- Position vector
-	paperback::Vector3f	 m_Rotation;							// -- Angle of this transform
-	paperback::Vector3f	 m_LocalScale;							// -- Scale vector
+	xcore::vector3	 m_Offset;
+	xcore::vector3	 m_Position;							// -- Position vector
+	xcore::vector3	 m_Rotation;							// -- Angle of this transform
+	xcore::vector3	 m_LocalScale;							// -- Scale vector
+	BoundingBox fakebox;
+	Sphere fakeSphere;
 
-	paperback::Mtx4x4 m_mtxTrans;								// -- The translatation matrix
-	paperback::Mtx4x4 m_mtxRot;									// -- The rotation matrix
-	paperback::Mtx4x4 m_mtxScale;								// -- The scale matrix
-	static paperback::Mtx4x4 m_mtxConversion;					// -- Matrix that converts coordinates from NDC to actual
+	//paperback::Mtx4x4 m_mtxTrans;								// -- The translatation matrix
+	//paperback::Mtx4x4 m_mtxRot;									// -- The rotation matrix
+	//paperback::Mtx4x4 m_mtxScale;								// -- The scale matrix
+	//static paperback::Mtx4x4 m_mtxConversion;					// -- Matrix that converts coordinates from NDC to actual
 
 
 };
 
 namespace RR_Transform
-{    
-    RTTR_REGISTRATION
-    {
-       rttr::registration::class_<transform>( transform::typedef_v.m_pName )
+{
+	RTTR_REGISTRATION
+	{
+	   rttr::registration::class_<transform>(transform::typedef_v.m_pName)
 		   .constructor()(rttr::policy::ctor::as_object)
-		   .property( "Offset", &transform::m_Offset )
-		   .property( "Position", &transform::m_Position )
-		   .property( "Rotation", &transform::m_Rotation )
-		   .property( "Scale", &transform::m_LocalScale );
-    }
+		   .property("Offset", &transform::m_Offset)
+		   .property("Position", &transform::m_Position)
+		   .property("Rotation", &transform::m_Rotation)
+		   .property("Scale", &transform::m_LocalScale);
+			//.property("Scale", &transform::fakebox)
+			//.property("Scale", &transform::fakeSphere);
+	}
 }

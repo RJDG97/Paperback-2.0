@@ -8,7 +8,7 @@
 
 
 
-struct IntersectionType
+namespace IntersectionType
 {
     enum Type { Coplanar = 0, Outside, Inside, Overlaps, NotImplemented };
     static const char* Names[] = { "Coplanar", "Outside", "Inside", "Overlaps", "NotImplemented" };

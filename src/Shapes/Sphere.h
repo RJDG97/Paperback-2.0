@@ -18,6 +18,14 @@ private:													// ----- Private members
 	float				m_surfaceArea;
 	float				m_Volume;
 public:														// ----- Public members
+	Sphere()												// ----- default constructor
+		: m_ptCenter(paperback::Vector3f{})
+		, m_fRadius(0.f)
+		, m_surfaceArea(0.f)
+		, m_Volume(0.f)
+	{
+
+	}
 	Sphere(const paperback::Vector3f& center, float radius)			// ----- Sphere constructor
 		: m_ptCenter(center)
 		, m_fRadius(radius)

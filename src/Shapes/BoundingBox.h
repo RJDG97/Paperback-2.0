@@ -11,8 +11,14 @@ struct BoundingBox
 		.m_pName = "BoundingBox"
 	};
 
-private:													// ----- Private members
+public:													// ----- Private members
 	paperback::Vector3f MinMax[2];
+	BoundingBox()
+	{
+		MinMax[0] = MinMax[1] = paperback::Vector3f{};
+	}
+	
+
 };
 // -- To do:
 //		center of BoundingBox

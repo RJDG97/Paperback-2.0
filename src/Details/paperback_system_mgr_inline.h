@@ -38,7 +38,9 @@ namespace paperback::system
 			   ? static_cast< T_SYSTEM* >( m_SystemMap.find( system::info_v<T_SYSTEM>.m_Guid )->second )
 			   : nullptr;
 	}
-
+	//****jy running of all related systems in gam engine
+	//*****
+	//******
 	void manager::Run( void ) noexcept
 	{
 		// Track Frame Time

@@ -1,9 +1,7 @@
-#ifndef Vector4f_H
-#define Vector4f_H
+#ifndef VECTOR4F_H
+#define VECTOR4F_H
 
-#include "Vector3fData.h"
 #include <stdio.h>
-#include <cmath>
 
 #define ErrorIf(...) ((void)0)
 
@@ -33,15 +31,10 @@ namespace paperback
         return lhs > rhs ? rhs : lhs;
     }
 
-    const Vector4f Vector4f::cZero(0.0f, 0.0f, 0.0f, 0.0f);
-    const Vector4f Vector4f::cXAxis(1.0f, 0.0f, 0.0f, 0.0f);
-    const Vector4f Vector4f::cYAxis(0.0f, 1.0f, 0.0f, 0.0f);
-    const Vector4f Vector4f::cZAxis(0.0f, 0.0f, 1.0f, 0.0f);
-    const Vector4f Vector4f::cWAxis(0.0f, 0.0f, 0.0f, 1.0f);
-
     struct Vector4f
     {
         Vector4f() {};
+
         explicit Vector4f(float x_, float y_, float z_, float w_)
         {
             x = x_;
@@ -299,7 +292,7 @@ namespace paperback
     {
         return vect.Normalized();
     }
-    float Normalize(Vector4f* vect)
+    float Normalize(Vector4f* vect = nullptr)
     {
         ErrorIf(vect == NULL, "Vector4 - Null pointer passed for vector.");
         return vect->Normalize();
@@ -316,7 +309,7 @@ namespace paperback
     }
     Vector4f Negated(const Vector4f& vec)
     {
-        return Vector4f(-vec.x, -vec.y, -vec.z, -vec.w);
+        return Vector4f{ -vec.x, -vec.y, -vec.z, -vec.w };
     }
     Vector4f Abs(const Vector4f& vec)
     {
@@ -344,6 +337,12 @@ namespace paperback
             start[2] + tValue * (end[2] - start[2]),
             start[3] + tValue * (end[3] - start[3]));
     }
+
+    const Vector4f Vector4f::cZero(0.0f, 0.0f, 0.0f, 0.0f);
+    const Vector4f Vector4f::cXAxis(1.0f, 0.0f, 0.0f, 0.0f);
+    const Vector4f Vector4f::cYAxis(0.0f, 1.0f, 0.0f, 0.0f);
+    const Vector4f Vector4f::cZAxis(0.0f, 0.0f, 1.0f, 0.0f);
+    const Vector4f Vector4f::cWAxis(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 //#include "Vector3f.hpp"

@@ -1,5 +1,5 @@
 #pragma once
-
+// physics************************************************************ boundary system aka map
 struct physics_system : paperback::system::instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
@@ -7,6 +7,7 @@ struct physics_system : paperback::system::instance
         .m_pName = "physics_system"
     };
 
+    // map check collision out of bounds check
     void operator()( transform& Transform, rigidbody& RigidBody ) noexcept
     {
         Transform.m_Position += RigidBody.m_Velocity * m_Coordinator.DeltaTime();

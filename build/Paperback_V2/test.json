@@ -8,33 +8,12 @@
                 }
             },
             "Transform": {
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Position": {
-                    "x": 41.0,
-                    "y": 467.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Scale": {
-                    "x": 0.0,
-                    "y": 0.0
-                }
+                "Offset": "",
+                "Position": "",
+                "Rotation": "",
+                "Scale": ""
             },
-            "Rigidbody": {
-                "Velocity": {
-                    "x": 14.0,
-                    "y": 20.0
-                },
-                "Mass": 0.0
-            },
-            "Timer": {
-                "Timer": 4.680074691772461
-            }
+            "": {}
         },
         {
             "Entity": {
@@ -44,33 +23,12 @@
                 }
             },
             "Transform": {
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Position": {
-                    "x": 364.0,
-                    "y": 678.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Scale": {
-                    "x": 0.0,
-                    "y": 0.0
-                }
+                "Offset": "",
+                "Position": "",
+                "Rotation": "",
+                "Scale": ""
             },
-            "Rigidbody": {
-                "Velocity": {
-                    "x": 38.0,
-                    "y": 2.0
-                },
-                "Mass": 0.0
-            },
-            "Timer": {
-                "Timer": 5.972838401794434
-            }
+            "": {}
         },
         {
             "Entity": {
@@ -80,33 +38,12 @@
                 }
             },
             "Transform": {
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Position": {
-                    "x": 585.0,
-                    "y": 65.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Scale": {
-                    "x": 0.0,
-                    "y": 0.0
-                }
+                "Offset": "",
+                "Position": "",
+                "Rotation": "",
+                "Scale": ""
             },
-            "Rigidbody": {
-                "Velocity": {
-                    "x": 1.0,
-                    "y": 27.0
-                },
-                "Mass": 0.0
-            },
-            "Timer": {
-                "Timer": 2.4319589138031008
-            }
+            "": {}
         },
         {
             "Entity": {
@@ -116,33 +53,12 @@
                 }
             },
             "Transform": {
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Position": {
-                    "x": 491.0,
-                    "y": 115.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Scale": {
-                    "x": 0.0,
-                    "y": 0.0
-                }
+                "Offset": "",
+                "Position": "",
+                "Rotation": "",
+                "Scale": ""
             },
-            "Rigidbody": {
-                "Velocity": {
-                    "x": 22.0,
-                    "y": 27.0
-                },
-                "Mass": 0.0
-            },
-            "Timer": {
-                "Timer": 1.3271889686584473
-            }
+            "": {}
         },
         {
             "Entity": {
@@ -152,33 +68,12 @@
                 }
             },
             "Transform": {
-                "Offset": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Position": {
-                    "x": 391.0,
-                    "y": 204.0
-                },
-                "Rotation": {
-                    "x": 0.0,
-                    "y": 0.0
-                },
-                "Scale": {
-                    "x": 0.0,
-                    "y": 0.0
-                }
+                "Offset": "",
+                "Position": "",
+                "Rotation": "",
+                "Scale": ""
             },
-            "Rigidbody": {
-                "Velocity": {
-                    "x": 22.0,
-                    "y": 33.0
-                },
-                "Mass": 0.0
-            },
-            "Timer": {
-                "Timer": 0.0712912380695343
-            }
+            "": {}
         }
     ]
 }

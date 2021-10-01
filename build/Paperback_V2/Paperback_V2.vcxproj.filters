@@ -358,6 +358,48 @@
     <ClInclude Include="..\..\src\Systems\DebugSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Math\Math_includes.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\PhysicsMaterial.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Circle.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Shapes_includes.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\LineSegment.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Sphere.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\Physics_includes.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Triangle.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Polygon_shape.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\BoundingBox.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\AABB.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\geometry.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Vector4f.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Plane.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -431,6 +473,12 @@
     </Filter>
     <Filter Include="Source\Tools\Input">
       <UniqueIdentifier>{5c11195e-dac3-439a-b149-cb11d8fc289a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Physics">
+      <UniqueIdentifier>{64a2a4dd-86a9-4868-bf39-88a543793add}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Shapes">
+      <UniqueIdentifier>{a2d06752-6c23-4f40-8586-3d02077b3cb0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
