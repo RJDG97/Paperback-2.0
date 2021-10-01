@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Math/Vector3f.h"
+#include "Math/Mtx4x4.h"
+
 struct transform
 {
 	constexpr static auto typedef_v = paperback::component::type::data
@@ -7,10 +10,17 @@ struct transform
 		.m_pName = "Transform"
 	};
 
-	xcore::vector3	 m_Offset;
-	xcore::vector3	 m_Position;
-	xcore::vector3	 m_Rotation;
-	xcore::vector3	 m_LocalScale;
+	paperback::Vector3f	 m_Offset;								
+	paperback::Vector3f	 m_Position;							// -- Position vector
+	paperback::Vector3f	 m_Rotation;							// -- Angle of this transform
+	paperback::Vector3f	 m_LocalScale;							// -- Scale vector
+
+	paperback::Mtx4x4 m_mtxTrans;								// -- The translatation matrix
+	paperback::Mtx4x4 m_mtxRot;									// -- The rotation matrix
+	paperback::Mtx4x4 m_mtxScale;								// -- The scale matrix
+	static paperback::Mtx4x4 m_mtxConversion;					// -- Matrix that converts coordinates from NDC to actual
+
+
 };
 
 namespace RR_Transform
