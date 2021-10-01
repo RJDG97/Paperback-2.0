@@ -91,7 +91,7 @@ namespace paperback::component
     {
         return m_UID == V.m_UID;
     }
-
+    // jy clear entity list
     constexpr bool entity::IsZombie( void ) const noexcept
     {
         return m_Validation.m_bZombie;

@@ -99,5 +99,9 @@ namespace paperback
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_coordinator_inline.h"
 
+//----------------------------------
+// Math files
+//----------------------------------
+//#include "Math/Math_includes.h"
 
 #endif
