@@ -2,13 +2,17 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-#include"Math/Vector3f.h"
+#include "Math/Vector3f.h"
+#include "Math/Vector4f.h"
+#include "Shapes/Plane.h"
 
-namespace IntersectionType
+
+
+struct IntersectionType
 {
     enum Type { Coplanar = 0, Outside, Inside, Overlaps, NotImplemented };
     static const char* Names[] = { "Coplanar", "Outside", "Inside", "Overlaps", "NotImplemented" };
-}
+};
 
 paperback::Vector3f ProjectPointOnPlane(const paperback::Vector3f& point, const paperback::Vector3f& normal, float planeDistance)
 {
@@ -75,10 +79,10 @@ bool BarycentricCoordinates(const paperback::Vector3f& point, const paperback::V
     return false;
 }
 
-IntersectionType::Type PointPlane(const paperback::Vector3f& point, const Vector4& plane, float epsilon)
+IntersectionType::Type PointPlane(const paperback::Vector3f& point, const paperback::Vector4f& plane, float epsilon)
 {
     //ok
-    float w = Vector4(point.x, point.y, point.z, -1.f).Dot(plane);
+    float w = paperback::Vector4f(point.x, point.y, point.z, -1.f).Dot(plane);
     if (w > epsilon)
         return IntersectionType::Inside;
     else
@@ -106,7 +110,7 @@ bool PointAabb(const paperback::Vector3f& point, const paperback::Vector3f& aabb
 }
 
 bool RayPlane(const paperback::Vector3f& rayStart, const paperback::Vector3f& rayDir,
-    const Vector4& plane, float& t, float epsilon)
+    const paperback::Vector4f& plane, float& t, float epsilon)
 {
     //1     Statistics.mRayPlaneTests
     paperback::Vector3f n = paperback::Vector3f(plane.x, plane.y, plane.z);
@@ -215,7 +219,7 @@ bool RayAabb(const paperback::Vector3f& rayStart, const paperback::Vector3f& ray
     return true;
 }
 
-IntersectionType::Type PlaneTriangle(const Vector4& plane,
+IntersectionType::Type PlaneTriangle(const paperback::Vector4f& plane,
     const paperback::Vector3f& triP0, const paperback::Vector3f& triP1, const paperback::Vector3f& triP2,
     float epsilon)
 {
@@ -256,7 +260,7 @@ IntersectionType::Type PlaneTriangle(const Vector4& plane,
         return IntersectionType::Overlaps;
 }
 
-IntersectionType::Type PlaneSphere(const Vector4& plane,
+IntersectionType::Type PlaneSphere(const paperback::Vector4f& plane,
     const paperback::Vector3f& sphereCenter, float sphereRadius)
 {
     //-         Statistics.mPlaneSphereTests
@@ -267,7 +271,7 @@ IntersectionType::Type PlaneSphere(const Vector4& plane,
     return type;
 }
 
-IntersectionType::Type PlaneAabb(const Vector4& plane,
+IntersectionType::Type PlaneAabb(const paperback::Vector4f& plane,
     const paperback::Vector3f& aabbMin, const paperback::Vector3f& aabbMax)
 {
     //1     Statistics.mPlaneAabbTests
@@ -280,7 +284,7 @@ IntersectionType::Type PlaneAabb(const Vector4& plane,
     return PlaneSphere(plane, point_c, rad);
 }
 
-IntersectionType::Type FrustumTriangle(const Vector4 planes[6],
+IntersectionType::Type FrustumTriangle(const paperback::Vector4f planes[6],
     const paperback::Vector3f& triP0, const paperback::Vector3f& triP1, const paperback::Vector3f& triP2,
     float epsilon)
 {
@@ -303,7 +307,7 @@ IntersectionType::Type FrustumTriangle(const Vector4 planes[6],
         return IntersectionType::Overlaps;
 }
 
-IntersectionType::Type FrustumSphere(const Vector4 planes[6],
+IntersectionType::Type FrustumSphere(const paperback::Vector4f planes[6],
     const paperback::Vector3f& sphereCenter, float sphereRadius, size_t& lastAxis)
 {
     //-            //ok     Statistics.mFrustumSphereTests
@@ -329,7 +333,7 @@ IntersectionType::Type FrustumSphere(const Vector4 planes[6],
         return IntersectionType::Overlaps;
 }
 
-IntersectionType::Type FrustumAabb(const Vector4 planes[6],
+IntersectionType::Type FrustumAabb(const paperback::Vector4f planes[6],
     const paperback::Vector3f& aabbMin, const paperback::Vector3f& aabbMax, size_t& lastAxis)
 {
     //-1    Statistics.mFrustumAabbTests
