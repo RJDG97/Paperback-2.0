@@ -6,5 +6,7 @@
 #include "Sphere.h"
 #include "Triangle.h"
 #include "Polygon_shape.h"
+#include "BoundingBox.h"
+
 
 #endif

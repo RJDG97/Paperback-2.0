@@ -1,11 +1,11 @@
 // ----- Start of header guard
-#ifndef CIRCLE_H
-#define CIRCLE_H
+#ifndef SPHERE_H
+#define SPHERE_H
 
 #include "Math/Vector3f.h"
 #include "Math/MathUtils.h"
 
-struct Spheres
+struct Sphere
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{
@@ -18,7 +18,7 @@ private:													// ----- Private members
 	float				m_surfaceArea;
 	float				m_Volume;
 public:														// ----- Public members
-	Spheres(const paperback::Vector3f& center, float radius)			// ----- Sphere constructor
+	Sphere(const paperback::Vector3f& center, float radius)			// ----- Sphere constructor
 		: m_ptCenter(center)
 		, m_fRadius(radius)
 		, m_surfaceArea((4 * PIf) * (m_fRadius * m_fRadius))
@@ -36,5 +36,8 @@ public:														// ----- Public members
 	void setCenter(const paperback::Vector3f& lhs) { m_ptCenter = lhs; }// ----- set the point center of the Sphere
 	void setRadius(float raii) { m_fRadius = raii; }			// ----- set the radius of the Sphere
 };
+
+//		this will mainly be used as a 1st/2nd step collision check
+
 // ----- End of header guard
 #endif

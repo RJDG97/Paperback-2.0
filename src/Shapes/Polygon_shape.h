@@ -10,7 +10,7 @@ struct Polygon_shape
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{
-		.m_pName = "Polygon"
+		.m_pName = "Polygon_shape"
 	};
 
 private:													// ----- Private members
