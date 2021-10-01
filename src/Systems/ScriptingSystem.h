@@ -23,8 +23,8 @@ struct scripting_system : paperback::system::instance
 
 	void Update(void) noexcept 
 	{
-		//m_pMono->externaltest();
-		Mono::GetInstanced().externaltest();
+		//m_pMono->ExternalMain();
+		Mono::GetInstanced().ExternalMain();
 	}
 
 	void OnSystemTerminated(void) noexcept 

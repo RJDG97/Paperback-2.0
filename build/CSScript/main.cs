@@ -9,9 +9,9 @@ using System.Runtime.CompilerServices;
 
 namespace CSScript
 {
-    public class Test
+    public class CameraControls
     {
-        public void externaltest()
+        static public void cameracontrols()
         {
             if (Inputs.IsKeyPressDown(Inputs.PB_W))
                 Camera.MoveForward();
@@ -37,13 +37,12 @@ namespace CSScript
     }
     public class Main
     {
+        // Need to return an instance of the class for external calls
+        public static Main getInst()
+        { return new Main(); }
         public static void main()
         {
-            //Test.print("C# Main");
+            CameraControls.cameracontrols();
         }
-
-        // Need to return an instance of the class for external calls
-        public static Test testinst()
-        { return new Test(); }
     }
 }

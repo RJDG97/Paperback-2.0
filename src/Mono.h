@@ -18,14 +18,11 @@
 #include "Scripts/MonoExternal.h"
 
 struct Mono_Class{
-	MonoClass* mainclass = nullptr;
-	MonoClass* testclass = nullptr;
-
+	MonoClass* main = nullptr;
 }monoclass;
 
 struct Mono_External_Calls {
-	MonoMethod* mono_externaltest = nullptr;
-
+	MonoMethod* main = nullptr;
 }monoextern;
 
 class Mono 
@@ -37,7 +34,6 @@ class Mono
 public:
 
 	uint32_t Mono_Handler_;
-	
 	// Interface
 	MonoObject* mono_obj_;
 
@@ -61,11 +57,11 @@ public:
 				// Add classes
 				Mono_Add_Classes();
 
-				if (monoclass.mainclass) {
+				if (monoclass.main) {
 					// Describe Method for main
-					MonoMethodDesc* mono_main_desc = mono_method_desc_new(".Main:testinst()", false);
+					MonoMethodDesc* mono_main_desc = mono_method_desc_new(".Main:getInst()", false);
 					if (mono_main_desc) {
-						MonoMethod* mono_main_method = mono_method_desc_search_in_class(mono_main_desc, monoclass.mainclass);
+						MonoMethod* mono_main_method = mono_method_desc_search_in_class(mono_main_desc, monoclass.main);
 						if (mono_main_method) {
 							// Call main method
 							MonoObject* mono_exception = nullptr;
@@ -109,14 +105,13 @@ public:
 		}
 	}
 
-	/*************To be Removed **********************/
-	void externaltest()
+	void ExternalMain()
 	{
-		if (monoextern.mono_externaltest)
+		if (monoextern.main)
 		{
 			MonoObject* exception = nullptr;
 			// Get function
-			mono_runtime_invoke(monoextern.mono_externaltest, mono_obj_, nullptr, &exception);
+			mono_runtime_invoke(monoextern.main, mono_obj_, nullptr, &exception);
 
 			/*
 			//Get function (return)
@@ -130,23 +125,20 @@ public:
 			Mono_Exception(exception);
 		}
 	}
-	/*************To be Removed **********************/
 
 	void Mono_Add_Classes()
 	{
-		monoclass.mainclass = mono_class_from_name(MonoImageptr, "CSScript", "Main");
-		monoclass.testclass = mono_class_from_name(MonoImageptr, "CSScript", "Test");
+		monoclass.main = mono_class_from_name(MonoImageptr, "CSScript", "Main");
 	}
 
 	void Mono_External_Call()
 	{
 		// description of function
-		MonoMethodDesc* mono_extern_methoddesc = mono_method_desc_new(".Test:externaltest()", false);
+		MonoMethodDesc* mono_extern_methoddesc = mono_method_desc_new(".Main:main()", false);
 		// get function	
-		MonoMethod* vitrualMethod = mono_method_desc_search_in_class(mono_extern_methoddesc, monoclass.testclass);
+		MonoMethod* vitrualMethod = mono_method_desc_search_in_class(mono_extern_methoddesc, monoclass.main);
 		if (vitrualMethod)
-			monoextern.mono_externaltest = mono_object_get_virtual_method(mono_obj_, vitrualMethod);
-
+			monoextern.main = mono_object_get_virtual_method(mono_obj_, vitrualMethod);
 		// Free
 		mono_method_desc_free(mono_extern_methoddesc);
 	}
