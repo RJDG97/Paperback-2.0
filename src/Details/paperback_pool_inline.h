@@ -242,6 +242,16 @@ namespace paperback::vm
 		}
 	}
 
+	std::vector<rttr::instance> instance::GetComponents( const u32 Index ) noexcept
+	{
+		std::vector< rttr::instance > ComponentList = {};
+
+		for (size_t i = 0, max = m_ComponentInfo.size(); i < max; ++i)
+			ComponentList.push_back(GetComponentInstance(m_ComponentInfo[i]->m_Guid, Index));
+
+		return ComponentList;
+	}
+
 	rttr::instance instance::GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept
 	{
 

@@ -2,6 +2,8 @@
 #include "paperback_pch.h"
 #include "WindowSystem.h"
 
+#include <IconsFontAwesome5.h>
+#include <sstream>
 //----------------------------------
 // ImGui Headers
 //----------------------------------
@@ -12,11 +14,15 @@
 struct imgui_system : paperback::system::instance
 {
     GLFWwindow* m_pWindow;
+    ImFont* m_Imgfont;
+    //paperback::archetype::instance* m_pEntity; //refers back to the archetype that the entity is referencing to
+    std::vector <rttr::instance> m_Components = {};
+    paperback::u32 m_EntityNum;
 
     ImGuiDockNodeFlags m_Dockspaceflags;
     ImGuiWindowFlags m_Windowflags;
 
-    bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui;
+    bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
 
 
     constexpr static auto typedef_v = paperback::system::type::update
@@ -28,10 +34,12 @@ struct imgui_system : paperback::system::instance
     PPB_INLINE
         void OnSystemCreated(void) noexcept
     {
-        m_pWindow = GetSystem<window_system>().m_pWindow; //Get window ptr
-        //m_bImgui = true;
-        ImGuiContext();
+        m_pWindow = GetSystem< window_system >().m_pWindow; //Get window ptr
+        ImGuiContext(); //Setup ImGui Context
         m_bImgui = true;
+        m_bDemoWindow = false;
+        //m_pEntity = nullptr;
+        m_EntityNum = -1;
     }
 
     //Handle Imgui Main Loop Here (For all the windows)
@@ -48,23 +56,7 @@ struct imgui_system : paperback::system::instance
 
             if (m_bDockspaceopen)
             {
-                m_bFullscreen = m_bFullscreenpersistant;
-                if (m_bFullscreen) {
-
-                    ImGuiViewport* viewport = ImGui::GetMainViewport();
-
-                    ImGui::SetNextWindowPos(viewport->Pos);
-                    ImGui::SetNextWindowSize(viewport->Size);
-                    ImGui::SetNextWindowViewport(viewport->ID);
-                    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
-                    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-
-                    m_Windowflags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-                    m_Windowflags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
-                }
-
-                if (m_Dockspaceflags & ImGuiDockNodeFlags_PassthruCentralNode)
-                    m_Windowflags |= ImGuiWindowFlags_NoBackground;
+                ImGuiDockingSetup();
 
                 ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
                 ImGui::SetNextWindowBgAlpha(0.0f); // set the transparency of the docking central node
@@ -74,9 +66,8 @@ struct imgui_system : paperback::system::instance
                 if (m_bFullscreen)
                     ImGui::PopStyleVar(2);
 
-                //ImguiMenuBar();
+                EditorMenuBar();
                 //Popups();
-                ImGui::ShowDemoWindow();
 
                 if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable) {
 
@@ -84,37 +75,22 @@ struct imgui_system : paperback::system::instance
                     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), m_Dockspaceflags);
                 }
 
-                ImGui::Begin("Hey");
-                ImGui::Text("Nui");
-                ImGui::End();
+                //ImGui::Begin("Hey");
+                //ImGui::Text("Nui");
+                //ImGui::End();
 
-                ImGui::End();
+                //Call Windows Here
+                InspectorPanel();
+
+                if (m_bDemoWindow)
+                    ImGui::ShowDemoWindow();
+
+                ImGui::End(); //End of Docking Space
             }
 
-            ImGui::Render();
-            int display_w, display_h;
-            glfwGetFramebufferSize(m_pWindow, &display_w, &display_h);
-            glViewport(0, 0, display_w, display_h);
-
-            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-            // Update and Render additional Platform Windows
-            // (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
-            if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-
-                GLFWwindow* backup_current_context = glfwGetCurrentContext();
-                ImGui::UpdatePlatformWindows();
-                ImGui::RenderPlatformWindowsDefault();
-                glfwMakeContextCurrent(backup_current_context);
-            }
+            ImGuiRender();
         }
     }
-
-    PPB_INLINE
-        void OnFrameStart(void) noexcept {}
-
-    PPB_INLINE
-        void OnFrameEnd(void) noexcept {}
 
     PPB_INLINE
         void Terminated(void) noexcept
@@ -123,6 +99,199 @@ struct imgui_system : paperback::system::instance
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
     }
+
+    void EditorMenuBar()
+    {
+        if (ImGui::BeginMenuBar())
+        {
+            ImGui::PushFont(m_Imgfont);
+
+            if (ImGui::BeginMenu(ICON_FA_FOLDER " File"))
+            {
+                if (ImGui::MenuItem(ICON_FA_TIMES " New Scene"))
+                {
+
+                }
+
+                if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Open Scene"))
+                {
+
+                }
+
+                if (ImGui::MenuItem(ICON_FA_SAVE " Save"))
+                {
+
+                }
+
+                if (ImGui::MenuItem("Save Scene As..."))
+                {
+
+                }
+
+                if (ImGui::MenuItem(ICON_FA_REPLY " Return to Menu"))
+                {
+
+                }
+
+                if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
+                {
+
+                }
+
+                ImGui::EndMenu();
+            }
+
+            ImGui::PopFont();
+        }
+
+        if (ImGui::Selectable("Show Demo Window"))
+            m_bDemoWindow = !m_bDemoWindow;
+
+        ImGui::EndMenuBar();
+    }
+
+
+    void InspectorPanel()
+    {
+        ImGui::Begin("Entity Inspector");
+        ImGui::PushFont(m_Imgfont);
+
+
+        //entityinfo has a archetype::instance*
+        //for (int i = 0; i < PPB.m_EntityMgr.m_pArchetypeList.size(); ++i)
+        //{
+        //    bool b_Selected = (Selection_Mask & (1 << i)) != 0;
+
+        //    if (b_Selected) NodeFlags |= ImGuiTreeNodeFlags_Selected;
+
+        //    b_NodeOpen = ImGui::TreeNodeEx((void*)(intptr_t)i, NodeFlags, "Entity %d", i);
+        //    if (ImGui::IsItemClicked())
+        //    {
+        //        Components = PPB.m_EntityMgr.m_pArchetypeList[i].GetEntityComponents();
+        //    }
+
+        //    if (b_NodeOpen)
+        //    {
+        //        std::cout << "opened" << std::endl;
+        //        ImGui::TreePop();
+        //    }
+        //    std::stringstream ss;
+        //    ss << ICON_FA_CUBE << " Entity (" << std::to_string(i) << ")";
+        //    if (ImGui::Selectable(ss.str().c_str()))
+        //    {
+        //    }
+
+
+        //}
+
+
+        bool b_NodeOpen{ false };
+        for (auto& Archetype : PPB.m_EntityMgr.m_pArchetypeList)
+        {
+            for (paperback::u32 i = 0; i < Archetype->m_EntityCount; ++i)
+            {
+
+                ImGuiTreeNodeFlags NodeFlags = (m_EntityNum == i ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
+
+                std::stringstream ss; ss << "Entity (" << i << ")";
+
+                b_NodeOpen = ImGui::TreeNodeEx((void*)(size_t)i, NodeFlags, ss.str().c_str());
+
+                if (ImGui::IsItemClicked())
+                {
+                    m_EntityNum = i; //Using the index to access the components for each entity
+                    std::cout << m_EntityNum << std::endl;
+
+                    m_Components = Archetype->GetEntityComponents(m_EntityNum);
+
+                }
+
+                if (b_NodeOpen)
+                {
+                    // for spawning entities etc 
+                    ImGui::Text("To handle spawning of entities and stuff");
+                    ImGui::TreePop();
+                }
+            }
+        }
+
+        ImGui::Separator();
+
+        if (!m_Components.empty())
+        {
+            for (auto& ComponentInstance : m_Components)
+            {
+                for (auto& property : ComponentInstance.get_type().get_properties())
+                {
+                    auto propertyType = property.get_type();
+                    auto propertyName = property.get_name().to_string();
+                    //ImGui::Text(ComponentInstance.get_type().get_name().to_string().c_str());
+
+                    propertyName.assign(propertyName + ComponentInstance.get_type().get_name().to_string());
+                    ImGui::Text(propertyName.c_str());
+
+                    //if ()
+
+                    //if (propertyType == rttr::type::get())
+                }
+            }
+        }
+        ImGui::PopFont();
+        ImGui::End();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
     void ImGuiContext()
     {
@@ -152,6 +321,12 @@ struct imgui_system : paperback::system::instance
         ImGui_ImplGlfw_InitForOpenGL(m_pWindow, true);
         ImGui_ImplOpenGL3_Init(NULL);
 
+        //Load Custom Fonts
+        io.FontDefault = io.Fonts->AddFontFromFileTTF("../../resources/fonts/FredokaOne-Regular.ttf", 16.0f);
+        static const ImWchar iconranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
+        ImFontConfig iconsconfig; iconsconfig.MergeMode = true; iconsconfig.PixelSnapH = true;
+        m_Imgfont = io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 14.0f, &iconsconfig, iconranges);
+
         //////////// End iof ImGui Context Setup///////////////////////////
 
         m_bDockspaceopen = true;
@@ -161,4 +336,47 @@ struct imgui_system : paperback::system::instance
         m_Dockspaceflags = ImGuiDockNodeFlags_PassthruCentralNode;
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
     }
+
+    void ImGuiRender()
+    {
+        ImGui::Render();
+        int display_w, display_h;
+        glfwGetFramebufferSize(m_pWindow, &display_w, &display_h);
+        glViewport(0, 0, display_w, display_h);
+
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+        // Update and Render additional Platform Windows
+        // (Platform functions may change the current OpenGL context, so we save/restore it to make it easier to paste this code elsewhere.
+        if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+
+            GLFWwindow* backup_current_context = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(backup_current_context);
+        }
+    }
+
+    void ImGuiDockingSetup()
+    {
+        m_bFullscreen = m_bFullscreenpersistant;
+        if (m_bFullscreen) {
+
+            ImGuiViewport* viewport = ImGui::GetMainViewport();
+
+            ImGui::SetNextWindowPos(viewport->Pos);
+            ImGui::SetNextWindowSize(viewport->Size);
+            ImGui::SetNextWindowViewport(viewport->ID);
+            ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+            ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+
+            m_Windowflags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+            m_Windowflags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+        }
+
+        if (m_Dockspaceflags & ImGuiDockNodeFlags_PassthruCentralNode)
+            m_Windowflags |= ImGuiWindowFlags_NoBackground;
+    }
+
+
 };

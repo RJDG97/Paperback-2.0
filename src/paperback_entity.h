@@ -60,6 +60,9 @@ namespace paperback::archetype
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
 
+        PPB_INLINE
+        std::vector <rttr::instance> GetEntityComponents( const u32 Index ) noexcept;
+
         // Private Stuff
         PPB_INLINE
         vm::instance& GetPoolWithIndex( const uint32_t EntityPoolIndex ) noexcept;

@@ -108,6 +108,11 @@ namespace paperback
             }
         }
 
+        std::vector <rttr::instance> instance::GetEntityComponents( const u32 Index ) noexcept
+        {
+            return m_ComponentPool[0].GetComponents(Index);  // Pool Index 0 Only For Now
+        }
+
         template < typename T_COMPONENT > 
         T_COMPONENT& instance::GetComponent( const PoolDetails Details ) noexcept
         {
