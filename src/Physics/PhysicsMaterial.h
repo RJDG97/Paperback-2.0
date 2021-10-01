@@ -17,7 +17,8 @@ public:
 		ICE,
 		WOOD,
 		METAL,
-		MUD
+		MUD,
+		TESTING
 	};
 
 	// material variable
@@ -90,6 +91,13 @@ private:
 			dynamic_friction = 1.0f;
 			bounciness = 0.0f;
 			material = MUD;
+			break;
+
+		case TESTING:
+			static_friction = 1.0f;
+			dynamic_friction = 1.0f;
+			bounciness = 0.0f;
+			material = TESTING;
 			break;
 
 		default:
