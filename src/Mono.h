@@ -14,6 +14,9 @@
 
 #include <mono/metadata/appdomain.h>
 
+#include "Scripts/MonoInternal.h"
+#include "Scripts/MonoExternal.h"
+
 struct Mono_Class{
 	MonoClass* mainclass = nullptr;
 	MonoClass* testclass = nullptr;
@@ -53,8 +56,8 @@ public:
 			MonoImageptr = mono_assembly_get_image(MonoAssemblyptr);
 			if (MonoImageptr) {
 				// Add internal calls (Expose to C# script)
-				Mono_Add_Internal_Call();
-
+				MONO_INTERNALS::Mono_Add_Internal_Call();
+				
 				// Add classes
 				Mono_Add_Classes();
 
@@ -107,19 +110,6 @@ public:
 	}
 
 	/*************To be Removed **********************/
-	static MONO_EXPORT MonoString* internaltest()
-	{
-		MonoString* str = nullptr;
-		const char* func = "Mono Internal Test";
-		str = mono_string_new(mono_domain_get(), func);
-		return str;
-	}
-
-	static MONO_EXPORT void print(MonoString* str)
-	{
-		std::cout << mono_string_to_utf8(str) << std::endl;
-	}
-
 	void externaltest()
 	{
 		if (monoextern.mono_externaltest)
@@ -141,12 +131,6 @@ public:
 		}
 	}
 	/*************To be Removed **********************/
-
-	void Mono_Add_Internal_Call()
-	{
-		mono_add_internal_call("CSScript.Test::print(string)", &Mono::print);
-		mono_add_internal_call("CSScript.Test::internaltest()", &Mono::internaltest);
-	}
 
 	void Mono_Add_Classes()
 	{
@@ -174,5 +158,11 @@ public:
 
 		if (MonoDomainptr)
 			mono_jit_cleanup(MonoDomainptr);
+	}
+
+	static Mono& GetInstanced()
+	{
+		static Mono mono;
+		return mono;
 	}
 };

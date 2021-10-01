@@ -358,6 +358,18 @@
     <ClInclude Include="..\..\src\Systems\DebugSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\MonoInternal.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\MonoExternal.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -431,6 +443,9 @@
     </Filter>
     <Filter Include="Source\Tools\Input">
       <UniqueIdentifier>{5c11195e-dac3-439a-b149-cb11d8fc289a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Scripts">
+      <UniqueIdentifier>{25f1021e-2315-4e11-8e8e-36f3861c37c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
