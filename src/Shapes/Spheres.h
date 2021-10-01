@@ -5,7 +5,7 @@
 #include "Math/Vector3f.h"
 #include "Math/MathUtils.h"
 
-struct Sphere
+struct Spheres
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{
@@ -18,7 +18,7 @@ private:													// ----- Private members
 	float				m_surfaceArea;
 	float				m_Volume;
 public:														// ----- Public members
-	Sphere(const paperback::Vector3f& center, float radius)			// ----- Sphere constructor
+	Spheres(const paperback::Vector3f& center, float radius)			// ----- Sphere constructor
 		: m_ptCenter(center)
 		, m_fRadius(radius)
 		, m_surfaceArea((4 * PIf) * (m_fRadius * m_fRadius))
