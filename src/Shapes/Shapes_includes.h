@@ -4,5 +4,7 @@
 #include "LineSegment.h"
 #include "Circle.h"
 #include "Sphere.h"
+#include "Triangle.h"
+#include "Polygon_shape.h"
 
 #endif

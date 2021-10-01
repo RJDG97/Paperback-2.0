@@ -4,7 +4,7 @@
 
 #include "Math/Vector3f.h"
 
-// -- Important Note: All line segments must follow and close the polygon shape in a 
+// -- Important Note: All line segments must follow and close the polygon shape in a anti-clockwise manner
 struct LineSegment
 {
 	constexpr static auto typedef_v = paperback::component::type::data
