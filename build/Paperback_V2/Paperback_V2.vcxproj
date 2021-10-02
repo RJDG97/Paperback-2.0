@@ -197,7 +197,6 @@
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
     <ClInclude Include="..\..\src\Vector.h" />
     <ClInclude Include="paperback_pch.h" />
-    <ClInclude Include="samplecomponent.h" />
     <ClInclude Include="WindowSystem.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

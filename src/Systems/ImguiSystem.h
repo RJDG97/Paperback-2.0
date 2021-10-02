@@ -39,7 +39,7 @@ struct imgui_system : paperback::system::instance
         m_bImgui = true;
         m_bDemoWindow = false;
         //m_pEntity = nullptr;
-        m_EntityNum = -1;
+        m_EntityNum = -1; //need to update this initialization
     }
 
     //Handle Imgui Main Loop Here (For all the windows)
@@ -58,7 +58,7 @@ struct imgui_system : paperback::system::instance
             {
                 ImGuiDockingSetup();
 
-                ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+                ImGui::PushStyleVar( ImGuiStyleVar_WindowPadding, ImVec2( 0.0f, 0.0f ) );
                 ImGui::SetNextWindowBgAlpha(0.0f); // set the transparency of the docking central node
                 ImGui::Begin("DockSpace", &m_bDockspaceopen, m_Windowflags);
                 ImGui::PopStyleVar();
@@ -72,15 +72,17 @@ struct imgui_system : paperback::system::instance
                 if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable) {
 
                     ImGuiID dockspace_id = ImGui::GetID("DockSpace");
-                    ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), m_Dockspaceflags);
+                    ImGui::DockSpace( dockspace_id, ImVec2( 0.0f, 0.0f ), m_Dockspaceflags );
                 }
 
-                //ImGui::Begin("Hey");
-                //ImGui::Text("Nui");
-                //ImGui::End();
 
                 //Call Windows Here
+                ImGui::PushFont(m_Imgfont);
+
                 InspectorPanel();
+                ComponentInspector();
+
+                ImGui::PopFont();
 
                 if (m_bDemoWindow)
                     ImGui::ShowDemoWindow();
@@ -106,34 +108,34 @@ struct imgui_system : paperback::system::instance
         {
             ImGui::PushFont(m_Imgfont);
 
-            if (ImGui::BeginMenu(ICON_FA_FOLDER " File"))
+            if (ImGui::BeginMenu( ICON_FA_FOLDER " File" ))
             {
-                if (ImGui::MenuItem(ICON_FA_TIMES " New Scene"))
+                if (ImGui::MenuItem( ICON_FA_TIMES " New Scene" ))
+                {
+                    
+                }
+
+                if (ImGui::MenuItem( ICON_FA_FOLDER_OPEN " Open Scene" ))
                 {
 
                 }
 
-                if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Open Scene"))
+                if (ImGui::MenuItem( ICON_FA_SAVE " Save" ))
+                {
+                    //link the file browser here
+                }
+
+                if (ImGui::MenuItem( "Save Scene As..." ))
+                {
+                    //link the file browser here
+                }
+
+                if (ImGui::MenuItem( ICON_FA_REPLY " Return to Menu" ))
                 {
 
                 }
 
-                if (ImGui::MenuItem(ICON_FA_SAVE " Save"))
-                {
-
-                }
-
-                if (ImGui::MenuItem("Save Scene As..."))
-                {
-
-                }
-
-                if (ImGui::MenuItem(ICON_FA_REPLY " Return to Menu"))
-                {
-
-                }
-
-                if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
+                if (ImGui::MenuItem( ICON_FA_POWER_OFF " Exit" ))
                 {
 
                 }
@@ -154,7 +156,7 @@ struct imgui_system : paperback::system::instance
     void InspectorPanel()
     {
         ImGui::Begin("Entity Inspector");
-        ImGui::PushFont(m_Imgfont);
+        //ImGui::PushFont(m_Imgfont);
 
 
         //entityinfo has a archetype::instance*
@@ -215,31 +217,53 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        ImGui::Separator();
+        //ImGui::PopFont();
+        ImGui::End();
+    }
 
+
+    void ComponentInspector()
+    {
+        ImGui::Begin("Component Inspector");
         if (!m_Components.empty())
         {
             for (auto& ComponentInstance : m_Components)
             {
-                for (auto& property : ComponentInstance.get_type().get_properties())
+                if (ImGui::CollapsingHeader(ComponentInstance.get_type().get_name().to_string().c_str()))
                 {
-                    auto propertyType = property.get_type();
-                    auto propertyName = property.get_name().to_string();
-                    //ImGui::Text(ComponentInstance.get_type().get_name().to_string().c_str());
+                    for (auto& property : ComponentInstance.get_type().get_properties())
+                    {
+                        rttr::variant propValue = property.get_value(ComponentInstance);
 
-                    propertyName.assign(propertyName + ComponentInstance.get_type().get_name().to_string());
-                    ImGui::Text(propertyName.c_str());
+                        if (!propValue) continue;
 
-                    //if ()
+                        auto propertyType = property.get_type(); //etc vector 3, std::string etc
+                        auto propertyName = property.get_name().to_string();
 
-                    //if (propertyType == rttr::type::get())
+                        //propertyName.assign(propertyName + ComponentInstance.get_type().get_name().to_string());
+
+                        if (propertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
+                        {
+                            auto& ref = propValue.get_value<std::reference_wrapper<xcore::vector3>>().get();
+                            ImGui::Text(propertyName.c_str());
+                            ImGui::DragFloat4(("##" + propertyName).c_str(), (float*)&ref, 0.01f);
+
+                        }
+
+                        if (propertyType == rttr::type::get<std::string>())
+                        {
+                            auto& str = propValue.get_value<std::string>();
+                            ImGui::Text((propertyName + ": ").c_str()); ImGui::SameLine();
+                            ImGui::Text(str.c_str());
+                        }
+
+                    }
                 }
             }
         }
-        ImGui::PopFont();
+
         ImGui::End();
     }
-
 
 
 

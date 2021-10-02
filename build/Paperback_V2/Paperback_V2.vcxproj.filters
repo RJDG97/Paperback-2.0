@@ -259,9 +259,6 @@
     <ClInclude Include="..\..\src\Systems\SoundSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
-    <ClInclude Include="samplecomponent.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.h">
       <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
     </ClInclude>

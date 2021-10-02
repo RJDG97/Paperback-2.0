@@ -263,6 +263,8 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< rigidbody >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< timer >( Index ));
+		else if ( Comp_Guid.m_Value == component::info_v< mesh >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< mesh >( Index ));
 		else
 			return rttr::instance();
 	}	
