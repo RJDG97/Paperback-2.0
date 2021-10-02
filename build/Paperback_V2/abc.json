@@ -1,0 +1,115 @@
+{
+    "Entities": [
+        {
+            "Entity": {
+                "Global Index": 0,
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Transform": {
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Position": {
+                    "x": 5.0,
+                    "y": 2.5,
+                    "z": -10.0,
+                    "w": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Scale": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                }
+            },
+            "Mesh": {
+                "Model Mesh": "Box"
+            }
+        },
+        {
+            "Entity": {
+                "Global Index": 1,
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Transform": {
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Position": {
+                    "x": -4.0,
+                    "y": -2.0,
+                    "z": -10.0,
+                    "w": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Scale": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                }
+            },
+            "Mesh": {
+                "Model Mesh": "Box"
+            }
+        },
+        {
+            "Entity": {
+                "Global Index": 2,
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Transform": {
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Position": {
+                    "x": -0.009999999776482582,
+                    "y": -4.0,
+                    "z": -10.0,
+                    "w": 0.0
+                },
+                "Rotation": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                },
+                "Scale": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "w": 0.0
+                }
+            },
+            "Mesh": {
+                "Model Mesh": "Plane"
+            }
+        }
+    ]
+}

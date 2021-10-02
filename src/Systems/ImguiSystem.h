@@ -10,6 +10,15 @@
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
+#include <ImGuiFileBrowser.h>
+
+enum FileExplorer
+{
+    NONE = 0,
+    OPEN,
+    SAVE,
+    SAVEAS
+};
 
 struct imgui_system : paperback::system::instance
 {
@@ -18,11 +27,15 @@ struct imgui_system : paperback::system::instance
     //paperback::archetype::instance* m_pEntity; //refers back to the archetype that the entity is referencing to
     std::vector <rttr::instance> m_Components = {};
     paperback::u32 m_EntityNum;
+    std::string m_FilePath, m_FileName;
+    FileExplorer m_Action;
+    imgui_addons::ImGuiFileBrowser m_FileDialog; // to access the file dialog addon
 
     ImGuiDockNodeFlags m_Dockspaceflags;
     ImGuiWindowFlags m_Windowflags;
 
-    bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
+    bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow, m_bFileExplorer;
+    bool m_bFileSave;
 
 
     constexpr static auto typedef_v = paperback::system::type::update
@@ -32,14 +45,16 @@ struct imgui_system : paperback::system::instance
 
     //Handle Imgui Initialization Here
     PPB_INLINE
-        void OnSystemCreated(void) noexcept
+    void OnSystemCreated(void) noexcept
     {
         m_pWindow = GetSystem< window_system >().m_pWindow; //Get window ptr
         ImGuiContext(); //Setup ImGui Context
+
         m_bImgui = true;
-        m_bDemoWindow = false;
-        //m_pEntity = nullptr;
+        m_bDemoWindow = m_bFileExplorer = m_bFileSave = false;
+        m_FilePath = m_FileName = {};
         m_EntityNum = -1; //need to update this initialization
+        m_Action = FileExplorer::NONE;
     }
 
     //Handle Imgui Main Loop Here (For all the windows)
@@ -117,17 +132,21 @@ struct imgui_system : paperback::system::instance
 
                 if (ImGui::MenuItem( ICON_FA_FOLDER_OPEN " Open Scene" ))
                 {
+                    m_bFileExplorer = true;
+                    m_Action = FileExplorer::OPEN;
 
                 }
 
                 if (ImGui::MenuItem( ICON_FA_SAVE " Save" ))
                 {
-                    //link the file browser here
+                    //m_bFileExplorer = true;
+                    m_Action = FileExplorer::SAVE;
                 }
 
                 if (ImGui::MenuItem( "Save Scene As..." ))
                 {
-                    //link the file browser here
+                    m_bFileExplorer = true;
+                    m_Action = FileExplorer::SAVEAS;
                 }
 
                 if (ImGui::MenuItem( ICON_FA_REPLY " Return to Menu" ))
@@ -143,6 +162,41 @@ struct imgui_system : paperback::system::instance
                 ImGui::EndMenu();
             }
 
+            if (m_bFileExplorer && m_Action == FileExplorer::OPEN)
+                ImGui::OpenPopup("Open Scene");
+
+            if (m_FileDialog.showFileDialog("Open Scene", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2{ 700, 310 }))
+            {
+                m_FilePath = m_FileDialog.selected_path;
+                m_FileName = m_FileDialog.selected_fn;
+            }
+            else
+                m_bFileExplorer = false;
+
+            if ( m_Action == FileExplorer::SAVE )
+            {
+                if ( !m_FilePath.empty() )
+                    PPB.SaveScene(m_FilePath);
+                else
+                {
+                    m_bFileExplorer = true;
+                }
+
+                if (m_bFileExplorer)
+                    ImGui::OpenPopup("Save Scene");
+
+                if (m_FileDialog.showFileDialog("Save Scene", imgui_addons::ImGuiFileBrowser::DialogMode::SAVE, ImVec2{ 700, 310 }))
+                {
+                    m_FilePath = m_FileDialog.selected_path;
+                    m_FileName = m_FileDialog.selected_fn;
+                }
+                else
+                    m_bFileExplorer = false;
+
+                if (!m_FilePath.empty())
+                    PPB.SaveScene(m_FilePath);
+            }
+
             ImGui::PopFont();
         }
 
@@ -152,39 +206,9 @@ struct imgui_system : paperback::system::instance
         ImGui::EndMenuBar();
     }
 
-
     void InspectorPanel()
     {
         ImGui::Begin("Entity Inspector");
-        //ImGui::PushFont(m_Imgfont);
-
-
-        //entityinfo has a archetype::instance*
-        //for (int i = 0; i < PPB.m_EntityMgr.m_pArchetypeList.size(); ++i)
-        //{
-        //    bool b_Selected = (Selection_Mask & (1 << i)) != 0;
-
-        //    if (b_Selected) NodeFlags |= ImGuiTreeNodeFlags_Selected;
-
-        //    b_NodeOpen = ImGui::TreeNodeEx((void*)(intptr_t)i, NodeFlags, "Entity %d", i);
-        //    if (ImGui::IsItemClicked())
-        //    {
-        //        Components = PPB.m_EntityMgr.m_pArchetypeList[i].GetEntityComponents();
-        //    }
-
-        //    if (b_NodeOpen)
-        //    {
-        //        std::cout << "opened" << std::endl;
-        //        ImGui::TreePop();
-        //    }
-        //    std::stringstream ss;
-        //    ss << ICON_FA_CUBE << " Entity (" << std::to_string(i) << ")";
-        //    if (ImGui::Selectable(ss.str().c_str()))
-        //    {
-        //    }
-
-
-        //}
 
 
         bool b_NodeOpen{ false };
@@ -202,7 +226,6 @@ struct imgui_system : paperback::system::instance
                 if (ImGui::IsItemClicked())
                 {
                     m_EntityNum = i; //Using the index to access the components for each entity
-                    std::cout << m_EntityNum << std::endl;
 
                     m_Components = Archetype->GetEntityComponents(m_EntityNum);
 
@@ -244,17 +267,15 @@ struct imgui_system : paperback::system::instance
 
                         if (propertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
                         {
-                            auto& ref = propValue.get_value<std::reference_wrapper<xcore::vector3>>().get();
                             ImGui::Text(propertyName.c_str());
-                            ImGui::DragFloat4(("##" + propertyName).c_str(), (float*)&ref, 0.01f);
+                            ImGui::DragFloat4(("##" + propertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()), 0.01f);
 
                         }
 
                         if (propertyType == rttr::type::get<std::string>())
                         {
-                            auto& str = propValue.get_value<std::string>();
                             ImGui::Text((propertyName + ": ").c_str()); ImGui::SameLine();
-                            ImGui::Text(str.c_str());
+                            ImGui::Text(propValue.get_value<std::string>().c_str());
                         }
 
                     }

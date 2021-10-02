@@ -107,7 +107,5 @@ void InitializeGame()
                 Mesh.m_Model = "Plane";
             });
 
-
-         PPB.SaveScene("test.json");
     }
 }

@@ -74,6 +74,9 @@
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.cpp">
       <Filter>Dependencies\dearImGui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -354,6 +357,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Systems\DebugSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
+      <Filter>Dependencies\dearImGui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

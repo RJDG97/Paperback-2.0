@@ -39,7 +39,7 @@ namespace imgui_addons
         is_dir = false;
         filter_dirty = true;
         is_appearing = true;
-        show_files_with_valid_extensions = true;
+        show_files_with_valid_extensions = false;
         show_all_files = false;
 
         col_items_limit = 12;
@@ -286,7 +286,7 @@ namespace imgui_addons
                 {
                     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(1.0f, 1.0f, 1.0f, 0.01f));
                     ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.0f, 1.0f, 1.0f,1.0f));
-                    ImGui::ArrowButtonEx("##Right", ImGuiDir_Right, ImVec2(frame_height, frame_height), ImGuiButtonFlags_Disabled);
+                    ImGui::ArrowButtonEx("##Right", ImGuiDir_Right, ImVec2(frame_height, frame_height), ImGuiButtonFlags_None);
                     ImGui::SameLine(0,0);
                     ImGui::PopStyleColor(2);
                 }
