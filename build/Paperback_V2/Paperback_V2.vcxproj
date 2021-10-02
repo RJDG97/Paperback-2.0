@@ -186,6 +186,10 @@
     <ClInclude Include="..\..\src\paperback_system.h" />
     <ClInclude Include="..\..\src\paperback_system_mgr.h" />
     <ClInclude Include="..\..\src\paperback_types.h" />
+    <ClInclude Include="..\..\src\Scripts\MonoExternal.h" />
+    <ClInclude Include="..\..\src\Scripts\MonoInternal.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />
     <ClInclude Include="..\..\src\Systems\BufferRefresh.h" />

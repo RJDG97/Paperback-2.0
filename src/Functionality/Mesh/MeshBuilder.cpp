@@ -101,7 +101,14 @@ Model MeshBuilder::Build2DMesh()
 Model MeshBuilder::Build3DMesh(const std::string& File)
 {
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(File, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_CalcTangentSpace);
+	const aiScene* scene = importer.ReadFile(File, aiProcess_Triangulate |
+												   aiProcess_LimitBoneWeights |
+												   aiProcess_FindInstances |
+												   aiProcess_GenSmoothNormals |
+												   aiProcess_CalcTangentSpace |
+												   aiProcess_JoinIdenticalVertices |
+												   aiProcess_RemoveRedundantMaterials |
+												   aiProcess_FindInvalidData);
 
 	Model model;
 
