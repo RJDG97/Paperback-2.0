@@ -21,7 +21,6 @@ struct render_system : paperback::system::instance
 	PPB_FORCEINLINE
 	void PreUpdate( void ) noexcept
 	{
-		Renderer::GetInstanced().StartFrame();
 	}
 
 	PPB_FORCEINLINE
@@ -30,13 +29,13 @@ struct render_system : paperback::system::instance
 		// Populate map to render objects
 		std::unordered_map<std::string, std::vector<glm::mat4>> objects;
 
-		glm::mat4 t{ 1.0f };
+		/*glm::mat4 t{ 1.0f };
 		t = glm::translate(t, glm::vec3{ 0,0,-10 });
 		t = glm::scale(t, glm::vec3{ 1,1,1 });
 
 		objects["Backpack"].push_back(t);
 
-		Renderer::GetInstanced().Render(objects);
+		Renderer::GetInstanced().Render(objects);*/
 		
 		//just testing stuff
 		tools::query Query;
