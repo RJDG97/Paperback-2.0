@@ -27,15 +27,15 @@ struct imgui_system : paperback::system::instance
     //paperback::archetype::instance* m_pEntity; //refers back to the archetype that the entity is referencing to
     std::vector <rttr::instance> m_Components = {};
     paperback::u32 m_EntityNum;
-    std::string m_FilePath, m_FileName;
+    std::string m_FilePath, m_FileName, m_LoadedPath;
     FileExplorer m_Action;
     imgui_addons::ImGuiFileBrowser m_FileDialog; // to access the file dialog addon
 
     ImGuiDockNodeFlags m_Dockspaceflags;
     ImGuiWindowFlags m_Windowflags;
 
-    bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow, m_bFileExplorer;
-    bool m_bFileSave;
+    bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
+    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs;
 
 
     constexpr static auto typedef_v = paperback::system::type::update
@@ -51,8 +51,8 @@ struct imgui_system : paperback::system::instance
         ImGuiContext(); //Setup ImGui Context
 
         m_bImgui = true;
-        m_bDemoWindow = m_bFileExplorer = m_bFileSave = false;
-        m_FilePath = m_FileName = {};
+        m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = false;
+        m_FilePath = m_FileName = m_LoadedPath = {};
         m_EntityNum = -1; //need to update this initialization
         m_Action = FileExplorer::NONE;
     }
@@ -132,70 +132,36 @@ struct imgui_system : paperback::system::instance
 
                 if (ImGui::MenuItem( ICON_FA_FOLDER_OPEN " Open Scene" ))
                 {
-                    m_bFileExplorer = true;
-                    m_Action = FileExplorer::OPEN;
-
+                    m_bFileOpen = true;
                 }
 
                 if (ImGui::MenuItem( ICON_FA_SAVE " Save" ))
                 {
-                    //m_bFileExplorer = true;
-                    m_Action = FileExplorer::SAVE;
+                    if ( !m_LoadedPath.empty() )
+                        PPB.SaveScene( m_LoadedPath );
+                    else
+                        m_bFileSaveAs = true;
                 }
 
                 if (ImGui::MenuItem( "Save Scene As..." ))
                 {
-                    m_bFileExplorer = true;
-                    m_Action = FileExplorer::SAVEAS;
+                    m_bFileSaveAs = true;
                 }
 
                 if (ImGui::MenuItem( ICON_FA_REPLY " Return to Menu" ))
                 {
-
+                    //m_bImgui = false;
                 }
 
                 if (ImGui::MenuItem( ICON_FA_POWER_OFF " Exit" ))
                 {
-
+                    //m_bImgui = false;
                 }
 
                 ImGui::EndMenu();
             }
 
-            if (m_bFileExplorer && m_Action == FileExplorer::OPEN)
-                ImGui::OpenPopup("Open Scene");
-
-            if (m_FileDialog.showFileDialog("Open Scene", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2{ 700, 310 }))
-            {
-                m_FilePath = m_FileDialog.selected_path;
-                m_FileName = m_FileDialog.selected_fn;
-            }
-            else
-                m_bFileExplorer = false;
-
-            if ( m_Action == FileExplorer::SAVE )
-            {
-                if ( !m_FilePath.empty() )
-                    PPB.SaveScene(m_FilePath);
-                else
-                {
-                    m_bFileExplorer = true;
-                }
-
-                if (m_bFileExplorer)
-                    ImGui::OpenPopup("Save Scene");
-
-                if (m_FileDialog.showFileDialog("Save Scene", imgui_addons::ImGuiFileBrowser::DialogMode::SAVE, ImVec2{ 700, 310 }))
-                {
-                    m_FilePath = m_FileDialog.selected_path;
-                    m_FileName = m_FileDialog.selected_fn;
-                }
-                else
-                    m_bFileExplorer = false;
-
-                if (!m_FilePath.empty())
-                    PPB.SaveScene(m_FilePath);
-            }
+            OpenSaveFile();
 
             ImGui::PopFont();
         }
@@ -210,8 +176,8 @@ struct imgui_system : paperback::system::instance
     {
         ImGui::Begin("Entity Inspector");
 
-
         bool b_NodeOpen{ false };
+
         for (auto& Archetype : PPB.m_EntityMgr.m_pArchetypeList)
         {
             for (paperback::u32 i = 0; i < Archetype->m_EntityCount; ++i)
@@ -228,7 +194,6 @@ struct imgui_system : paperback::system::instance
                     m_EntityNum = i; //Using the index to access the components for each entity
 
                     m_Components = Archetype->GetEntityComponents(m_EntityNum);
-
                 }
 
                 if (b_NodeOpen)
@@ -240,7 +205,6 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        //ImGui::PopFont();
         ImGui::End();
     }
 
@@ -248,6 +212,7 @@ struct imgui_system : paperback::system::instance
     void ComponentInspector()
     {
         ImGui::Begin("Component Inspector");
+
         if (!m_Components.empty())
         {
             for (auto& ComponentInstance : m_Components)
@@ -265,19 +230,30 @@ struct imgui_system : paperback::system::instance
 
                         //propertyName.assign(propertyName + ComponentInstance.get_type().get_name().to_string());
 
-                        if (propertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
+                        if ( propertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>() )
+                        {
+                            ImGui::Text( propertyName.c_str() );
+                            ImGui::DragFloat4( ("##" + propertyName).c_str(), (float*) &(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()), 0.01f );
+
+                        }
+                        if ( propertyType == rttr::type::get <std::reference_wrapper<float>>() )
                         {
                             ImGui::Text(propertyName.c_str());
-                            ImGui::DragFloat4(("##" + propertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()), 0.01f);
-
+                            ImGui::DragFloat(("##" + propertyName).c_str(), &(propValue.get_value<std::reference_wrapper<float>>().get()), 0.01f);
                         }
 
-                        if (propertyType == rttr::type::get<std::string>())
+                        if ( propertyType == rttr::type::get<std::reference_wrapper<int>>() )
                         {
-                            ImGui::Text((propertyName + ": ").c_str()); ImGui::SameLine();
-                            ImGui::Text(propValue.get_value<std::string>().c_str());
+                            ImGui::Text(propertyName.c_str());
+                            ImGui::DragInt(("##" + propertyName).c_str(), &(propValue.get_value<std::reference_wrapper<int>>().get()), 1);
+
                         }
 
+                        if ( propertyType == rttr::type::get<std::string>() )
+                        {
+                            ImGui::Text( (propertyName + ": ").c_str() ); ImGui::SameLine();
+                            ImGui::Text( propValue.get_value< std::string >().c_str() );
+                        }
                     }
                 }
             }
@@ -286,9 +262,40 @@ struct imgui_system : paperback::system::instance
         ImGui::End();
     }
 
+    void OpenSaveFile()
+    {
+        if (m_bFileOpen)
+            ImGui::OpenPopup("Open Scene");
 
+        if (m_FileDialog.showFileDialog("Open Scene", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2{ 700, 310 }))
+        {
+            m_FilePath = m_FileDialog.selected_path;
+            m_FileName = m_FileDialog.selected_fn;
 
+            m_LoadedPath = m_FilePath;
+        }
+        else
+            m_bFileOpen = false;
 
+        if (m_bFileSaveAs)
+            ImGui::OpenPopup("Save Scene As");
+
+        if (m_FileDialog.showFileDialog("Save Scene As", imgui_addons::ImGuiFileBrowser::DialogMode::SAVE, ImVec2{ 700, 310 }))
+        {
+            m_FilePath = m_FileDialog.selected_path;
+            m_FileName = m_FileDialog.selected_fn;
+
+            if (!m_FilePath.empty())
+                PPB.SaveScene(m_FilePath);
+        }
+        else
+            m_bFileSaveAs = false;
+    }
+
+    void PopUps()
+    {
+
+    }
 
 
 
