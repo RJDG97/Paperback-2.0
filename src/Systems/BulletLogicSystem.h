@@ -31,6 +31,7 @@ struct bullet_logic_system : paperback::system::instance
             // Do not check against self
             if ( ( &Entity == &Dynamic_Entity) || ( Dynamic_Entity.IsZombie() ) /* || (Bullet.m_Owner.m_GlobalIndex == Dynamic_Entity.m_GlobalIndex)*/) return false;
 
+            // collision detection part
             if (AabbAabb(Transform.fakebox.MinMax[0], Transform.fakebox.MinMax[1], xform.fakebox.MinMax[0], xform.fakebox.MinMax[1]))
                 std::cout << "Aabb collided" << std::endl;
             else std::cout << "no collide Aabb" << std::endl;
