@@ -8,6 +8,8 @@ layout (location=3) in vec3 tLightPosition;
 layout (location=4) in vec3 tViewPosition;
 layout (location=5) in vec3 tFragPosition;
 
+layout (location=6) in vec4 lFragPosition;
+
 layout (location=0) out vec4 fFragClr;
 
 struct Material
@@ -30,11 +32,41 @@ struct Light
 	vec3 Ambient;
 	vec3 Diffuse;
 	vec3 Specular;
+
+	mat4 Transform;
 };
 
-uniform vec3 uCameraPosition;
 uniform Material uMat;
 uniform Light uLight;
+uniform sampler2D uShadowMap;
+uniform vec3 uCameraPosition;
+
+float ShadowValue(vec4 lFragPosition, vec3 Normal, vec3 LightDir)
+{
+	vec3 ProjectedCoords = lFragPosition.xyz / lFragPosition.w;
+	ProjectedCoords = ProjectedCoords * 0.5 + 0.5;
+
+	float CurrentDepth = ProjectedCoords.z;
+
+	float Bias = max(0.05 * (1.0 - dot(Normal, LightDir)), 0.005);
+	float Shadow = 0.0;
+	vec2 TexelSize = 1.0 / textureSize(uShadowMap, 0);
+	
+	for(int x = -1; x <= 1; ++x)
+	{
+		for(int y = -1; y <= 1; ++y)
+		{
+			float PCF = texture(uShadowMap, ProjectedCoords.xy + vec2(x,y) * TexelSize).r;
+			Shadow += CurrentDepth - Bias > PCF ? 1.0 : 0.0;
+		}
+	}
+	Shadow /= 9.0;
+
+	if(ProjectedCoords.z > 1.0)
+		Shadow = 0.0;
+
+	return Shadow;
+}
 
 void main()
 {
@@ -91,7 +123,9 @@ void main()
 			Specular = uLight.Specular * Spec;
 		}
 
-		vec3 Final = pow(Ambient + Diffuse + Specular, vec3(1.0/2.2));
+		float Shadow = ShadowValue(lFragPosition, normalize(vNormal), normalize(-uLight.Direction));
+
+		vec3 Final = pow(Ambient + (1.0 - Shadow) * (Diffuse + Specular), vec3(1.0/2.2));
 		fFragClr = vec4(Final, 1.0);
 	}
 	else

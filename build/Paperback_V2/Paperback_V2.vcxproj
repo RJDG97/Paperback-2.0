@@ -186,6 +186,10 @@
     <ClInclude Include="..\..\src\Physics\geometry.h" />
     <ClInclude Include="..\..\src\Physics\PhysicsMaterial.h" />
     <ClInclude Include="..\..\src\Physics\Physics_includes.h" />
+    <ClInclude Include="..\..\src\Scripts\MonoExternal.h" />
+    <ClInclude Include="..\..\src\Scripts\MonoInternal.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />
     <ClInclude Include="..\..\src\Shapes\AABB.h" />

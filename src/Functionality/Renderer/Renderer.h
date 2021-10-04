@@ -40,27 +40,35 @@ public:
 private:
 	Renderer();
 
-	// Helper function to create framebuffers
-	//void SetUpFramebuffer();
-
 	// Frame buffer type
-	//struct FrameBuffer
-	//{
-	//	std::vector<GLuint> m_FrameBuffer;
-	//	std::vector<GLuint> m_BufferTexture;
-	//};
+	struct FrameBuffer
+	{
+		std::vector<GLuint> m_FrameBuffer;
+		std::vector<GLuint> m_BufferTexture;
+	};
 
-	//// G-pass buffer
-	//FrameBuffer m_GPassBuffer;
-	//// Composite buffer
-	//FrameBuffer m_CompositePassBuffer;
-	//// Bright pass buffer
-	//FrameBuffer m_BrightPassBuffer;
-	//// Blur pass buffer
-	//FrameBuffer m_BlurPassBuffer;
+	// Light
+	struct Light
+	{
+		glm::vec3 m_Position;
+		glm::vec3 m_Direction;
 
-	// Attachments for framebuffer
-	//unsigned int m_Attachments[3];
+		glm::mat4 m_Projection;
+		glm::mat4 m_View;
+		glm::mat4 m_Transform;
+	};
+
+	// Helper function to create framebuffers
+	void SetUpFramebuffer();
+
+	void ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
+	void RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
+
+	// Shadow buffer
+	FrameBuffer m_ShadowBuffer;
+
+	// Light source
+	Light m_Light;
 
 	// VAO for rendering
 	GLuint m_VAO;
@@ -68,7 +76,6 @@ private:
 	GLuint m_DebugVAO;
 
 	RenderResourceManager& m_Resources;
-
 };
 
 #endif
