@@ -9,40 +9,30 @@ using System.Runtime.CompilerServices;
 
 namespace CSScript
 {
-    public class CameraControls
+
+    public class Test
     {
-        static public void cameracontrols()
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static void print(string str);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static string internaltest();
+
+        public void externaltest()
         {
-            if (Inputs.IsKeyPressDown(Inputs.PB_W))
-                Camera.MoveForward();
-            if (Inputs.IsKeyPressDown(Inputs.PB_S))
-                Camera.MoveBackward();
-            if (Inputs.IsKeyPressDown(Inputs.PB_A))
-                Camera.MoveLeft();
-            if (Inputs.IsKeyPressDown(Inputs.PB_D))
-                Camera.MoveRight();
-            if (Inputs.IsKeyPressDown(Inputs.PB_Q))
-                Camera.MoveUp();
-            if (Inputs.IsKeyPressDown(Inputs.PB_E))
-                Camera.MoveDown();
-            if (Inputs.IsKeyPressDown(Inputs.PB_UP))
-                Camera.RotateUp();
-            if (Inputs.IsKeyPressDown(Inputs.PB_DOWN))
-                Camera.RotateDown();
-            if (Inputs.IsKeyPressDown(Inputs.PB_LEFT))
-                Camera.RotateLeft();
-            if (Inputs.IsKeyPressDown(Inputs.PB_RIGHT))
-                Camera.RotateRight();
+            print(internaltest());
+            print("Mono External test");
         }
     }
     public class Main
     {
-        // Need to return an instance of the class for external calls
-        public static Main getInst()
-        { return new Main(); }
         public static void main()
         {
-            CameraControls.cameracontrols();
+            Test.print("C# Main");
         }
+
+        // Need to return an instance of the class for external calls
+        public static Test testinst()
+        { return new Test(); }
     }
 }

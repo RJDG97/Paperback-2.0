@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp" />
@@ -399,17 +399,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Plane.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
-    <ClInclude Include="..\..\src\Scripts\MonoInternal.h">
-      <Filter>Source\Gameplay Code\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h">
-      <Filter>Source\Gameplay Code\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h">
-      <Filter>Source\Gameplay Code\Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Scripts\MonoExternal.h">
-      <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -490,8 +479,6 @@
     </Filter>
     <Filter Include="Source\Gameplay Code\Shapes">
       <UniqueIdentifier>{a2d06752-6c23-4f40-8586-3d02077b3cb0}</UniqueIdentifier>
-    <Filter Include="Source\Gameplay Code\Scripts">
-      <UniqueIdentifier>{25f1021e-2315-4e11-8e8e-36f3861c37c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
