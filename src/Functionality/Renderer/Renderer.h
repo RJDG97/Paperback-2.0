@@ -15,22 +15,13 @@ public:
 	//void UpdateFramebufferSize(int Width, int Height);
 
 	// Render object
-	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
+	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points = nullptr);
 
 	// Render debug objects
 	void DebugRender(const std::vector<glm::vec3>& Points);
 
 	// Prep the start of draw frame
 	void StartFrame();
-
-	// Draw frame
-	//void Draw();
-
-	// Used for hotswapping framebuffer output
-	//void DebugDraw();
-
-	// Default drawing without effects
-	//void DefaultDraw(GameobjectFactory::Entity Object);
 
 	// Singleton
 	static Renderer& GetInstanced();
@@ -63,9 +54,15 @@ private:
 
 	void ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
 	void RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
+	void BlurPass();
+	void CompositePass();
 
 	// Shadow buffer
 	FrameBuffer m_ShadowBuffer;
+	// Lighting/BrightPass buffer
+	FrameBuffer m_LightingBuffer;
+	// Blur buffer
+	FrameBuffer m_BlurBuffer;
 
 	// Light source
 	Light m_Light;

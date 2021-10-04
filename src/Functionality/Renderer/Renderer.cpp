@@ -43,6 +43,8 @@ Renderer::Renderer() :
 
 	m_Resources.LoadShader("Shadow", "../../resources/shaders/Shadow.vert", "../../resources/shaders/Shadow.frag");
 	m_Resources.LoadShader("Light", "../../resources/shaders/Lighting.vert", "../../resources/shaders/Lighting.frag");
+	m_Resources.LoadShader("Blur", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Blur.frag");
+	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 
 	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
@@ -55,8 +57,6 @@ Renderer::Renderer() :
 
 	// Enable depth testing
 	glEnable(GL_DEPTH_TEST);
-	//glDepthFunc(GL_LEQUAL);
-	//glDepthMask(GL_TRUE);
 
 	// Enable face cullling
 	glEnable(GL_CULL_FACE);
@@ -78,6 +78,12 @@ Renderer::~Renderer()
 
 	glDeleteFramebuffers(m_ShadowBuffer.m_FrameBuffer.size(), m_ShadowBuffer.m_FrameBuffer.data());
 	glDeleteTextures(m_ShadowBuffer.m_BufferTexture.size(), m_ShadowBuffer.m_FrameBuffer.data());
+
+	glDeleteFramebuffers(m_LightingBuffer.m_FrameBuffer.size(), m_LightingBuffer.m_FrameBuffer.data());
+	glDeleteTextures(m_LightingBuffer.m_BufferTexture.size(), m_LightingBuffer.m_FrameBuffer.data());
+
+	glDeleteFramebuffers(m_BlurBuffer.m_FrameBuffer.size(), m_BlurBuffer.m_FrameBuffer.data());
+	glDeleteTextures(m_BlurBuffer.m_BufferTexture.size(), m_BlurBuffer.m_FrameBuffer.data());
 }
 
 void Renderer::SetUpFramebuffer()
@@ -103,16 +109,86 @@ void Renderer::SetUpFramebuffer()
 	glNamedFramebufferReadBuffer(shadowFBO, GL_NONE);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+	// Add framebuffer and texture to framebuffer object
 	m_ShadowBuffer.m_FrameBuffer.push_back(shadowFBO);
 	m_ShadowBuffer.m_BufferTexture.push_back(shadowDepth);
+
+	int width = 1280, height = 720;
+
+	// Create light framebuffer
+	GLuint lightFbo;
+	glCreateFramebuffers(1, &lightFbo);
+
+	// Create light textures
+	GLuint lightTexture[3];
+	glCreateTextures(GL_TEXTURE_2D, 3, lightTexture);
+
+	for (size_t i = 0; i < 2; ++i)
+	{
+		glTextureStorage2D(lightTexture[i], 1, GL_RGBA16F, width, height);
+		glTextureParameteri(lightTexture[i], GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(lightTexture[i], GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTextureParameteri(lightTexture[i], GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTextureParameteri(lightTexture[i], GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		// Attach texture to framebuffer
+		glNamedFramebufferTexture(lightFbo, static_cast<GLenum>(GL_COLOR_ATTACHMENT0 + i), lightTexture[i], 0);
+
+		// Add texture to framebuffer object
+		m_LightingBuffer.m_BufferTexture.push_back(lightTexture[i]);
+	}
+
+	// Attach depth texture to frmaebuffer
+	glTextureStorage2D(lightTexture[2], 1, GL_DEPTH_COMPONENT32F, width, height);
+	glNamedFramebufferTexture(lightFbo, GL_DEPTH_ATTACHMENT, lightTexture[2], 0);
+
+	GLenum attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
+	glNamedFramebufferDrawBuffers(lightFbo, 2, attachments);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	// Add framebuffer and texture to framebuffer object
+	m_LightingBuffer.m_BufferTexture.push_back(lightTexture[2]);
+	m_LightingBuffer.m_FrameBuffer.push_back(lightFbo);
+
+	// Create blur framebuffer
+	GLuint blurFBO[2];
+	glCreateFramebuffers(2, blurFBO);
+
+	// Create blur texture
+	GLuint blurTexture[2];
+	glCreateTextures(GL_TEXTURE_2D, 2, blurTexture);
+
+	for (size_t i = 0; i < 2; ++i)
+	{
+		glTextureStorage2D(blurTexture[i], 1, GL_RGBA16F, width, height);
+		glTextureParameteri(blurTexture[i], GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(blurTexture[i], GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTextureParameteri(blurTexture[i], GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTextureParameteri(blurTexture[i], GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		// Attach texture to framebuffer
+		glNamedFramebufferTexture(blurFBO[i], GL_COLOR_ATTACHMENT0, blurTexture[i], 0);
+
+		// Add framebuffer and texture to framebuffer object
+		m_BlurBuffer.m_FrameBuffer.push_back(blurFBO[i]);
+		m_BlurBuffer.m_BufferTexture.push_back(blurTexture[i]);
+	}
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects)
+void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	ShadowPass(Objects);
-	RenderPass(Objects);
+	RenderPass(Objects);	
+	if (Points)
+	{
+		DebugRender(*Points);
+	}
+	BlurPass();
+	CompositePass();
 }
 
 void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
@@ -152,8 +228,13 @@ void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
 
 void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects)
 {
+	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
+
+	// Change to fit shadow texture size
 	glViewport(0, 0, 1024, 1024);
+
+	// Clear shadow depth buffer
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glCullFace(GL_FRONT);
 
@@ -196,8 +277,13 @@ void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm:
 
 void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects)
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	// Bind to lighting frame buffer
+	glBindFramebuffer(GL_FRAMEBUFFER, m_LightingBuffer.m_FrameBuffer[0]);
+
+	// Change to fit window size
 	glViewport(0, 0, 1280, 720);
+
+	// Clear depth and color buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Bind shader
@@ -208,9 +294,11 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 
 	glm::mat4 view = Camera::GetInstanced().GetView();
 	glm::mat4 projection = Camera::GetInstanced().GetProjection();
+	glm::vec3 position = Camera::GetInstanced().GetPosition();
 
 	m_Resources.m_Shaders["Light"].SetUniform("uView", const_cast<glm::mat4&>(view));
 	m_Resources.m_Shaders["Light"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
+	m_Resources.m_Shaders["Light"].SetUniform("uCameraPosition", const_cast<glm::vec3&>(position));
 
 	glBindTextureUnit(4, m_ShadowBuffer.m_BufferTexture[0]);
 	m_Resources.m_Shaders["Light"].SetUniform("uShadowMap", 4);
@@ -299,14 +387,94 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 	m_Resources.m_Shaders["Light"].UnUse();
 }
 
-void Renderer::StartFrame()
+void Renderer::BlurPass()
 {
+	glDisable(GL_DEPTH_TEST);
+	bool horizontal = true, first = true;
+
+	// Bind shader
+	m_Resources.m_Shaders["Blur"].Use();
+
+	// Bind vao
+	glBindVertexArray(m_VAO);
+
+	// Set screen model
+	const auto& screen = m_Resources.m_Models["Screen"];
+	glVertexArrayVertexBuffer(m_VAO, 0, screen.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
+	glVertexArrayElementBuffer(m_VAO, screen.GetSubMeshes()[0].m_EBO);
+
+	for (size_t i = 0; i < 10; ++i)
+	{
+		// Bind blur frame buffer
+		glBindFramebuffer(GL_FRAMEBUFFER, m_BlurBuffer.m_FrameBuffer[horizontal]);
+		m_Resources.m_Shaders["Blur"].SetUniform("uHorizontal", horizontal);
+
+		// Bind texture to blur
+		glBindTextureUnit(0, first ? m_LightingBuffer.m_BufferTexture[1] : m_BlurBuffer.m_BufferTexture[!horizontal]);
+		m_Resources.m_Shaders["Blur"].SetUniform("uImage", 0);
+
+		glDrawElements(screen.GetPrimitive(), screen.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+
+		// Flip orientation
+		horizontal = !horizontal;
+
+		if (first)
+			first = false;
+	}
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	// Unbind shader
+	m_Resources.m_Shaders["Blur"].UnUse();
+}
+
+void Renderer::CompositePass()
+{
+	// Bind default frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	// Clear back buffer
+	// Clear depth and color buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	GLfloat one = 1.f;
-	glClearBufferfv(GL_DEPTH, 0, &one);
+
+	// Bind shader
+	m_Resources.m_Shaders["Composite"].Use();
+
+	// Bind vao
+	glBindVertexArray(m_VAO);
+
+	// Set screen model
+	const auto& screen = m_Resources.m_Models["Screen"];
+	glVertexArrayVertexBuffer(m_VAO, 0, screen.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
+	glVertexArrayElementBuffer(m_VAO, screen.GetSubMeshes()[0].m_EBO);
+
+	glBindTextureUnit(0, m_LightingBuffer.m_BufferTexture[0]);
+	m_Resources.m_Shaders["Composite"].SetUniform("uImage", 0);
+
+	glBindTextureUnit(1, m_BlurBuffer.m_BufferTexture[0]);
+	m_Resources.m_Shaders["Composite"].SetUniform("uBlur", 1);
+
+	m_Resources.m_Shaders["Composite"].SetUniform("uExposure", 1.f);
+
+	glDrawElements(screen.GetPrimitive(), screen.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	// Unbind shader
+	m_Resources.m_Shaders["Composite"].UnUse();
+
+	glEnable(GL_DEPTH_TEST);
+}
+
+void Renderer::StartFrame()
+{
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	//// Clear back buffer
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//GLfloat one = 1.f;
+	//glClearBufferfv(GL_DEPTH, 0, &one);
 }
 
 Renderer& Renderer::GetInstanced()

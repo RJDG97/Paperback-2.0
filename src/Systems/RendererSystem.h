@@ -29,54 +29,44 @@ struct render_system : paperback::system::instance
 		// Populate map to render objects
 		std::unordered_map<std::string, std::vector<glm::mat4>> objects;
 
-		/*glm::mat4 t{ 1.0f };
-		t = glm::translate(t, glm::vec3{ 0,0,-10 });
-		t = glm::scale(t, glm::vec3{ 1,1,1 });
+		//glm::mat4 t{ 1.0f };
+		//t = glm::mat4{ 1.0f };
+		//t = glm::translate(t, glm::vec3{ 0,-10,-10 });
+		//t = glm::scale(t, glm::vec3{ 5,5,5 });
 
-		objects["Backpack"].push_back(t);
+		//objects["Box"].push_back(t);
 
-		Renderer::GetInstanced().Render(objects);*/
-		
+		//t = glm::mat4{ 1.0f };
+		//t = glm::translate(t, glm::vec3{ 0,0,-10 });
+		//t = glm::scale(t, glm::vec3{ 1,1,1 });
+
+		//objects["Backpack"].push_back(t);
+		//Renderer::GetInstanced().Render(objects);
+
 		//just testing stuff
 		tools::query Query;
 		Query.m_Must.AddFromComponents<transform, mesh>();
 
 		ForEach( Search( Query ), [&]( transform& xform, mesh& mesh) noexcept
 		{
-			objects.clear();
 			glm::mat4 t{ 1.0f };
 			t = glm::translate(t, glm::vec3{xform.m_Position.m_X, xform.m_Position.m_Y, xform.m_Position.m_Z});
 			t = glm::scale(t, glm::vec3{ 1,1,1 });
 			objects[mesh.m_Model].push_back(t);
-			Renderer::GetInstanced().Render(objects);
 		});
 	 
-
 		// Add points to render lines
 		//std::vector<glm::vec3> points;
 
 		//points.push_back(glm::vec3{ 0,-5,0 });
 		//points.push_back(glm::vec3{ 0,5,0 });
 
-		//Renderer::GetInstanced().DebugRender(points);
-		//tool::query Query;
-		//Query.m_Must.AddFromComponents<transform, mesh>();
-
-		//ForEach( Search( Query ), [&]( transform& xform, mesh& mesh ) noexcept
-		//{
-		//	Make map of [Object][Vector<Mat4>]
-		//}
-	 //
-	 // Call render with map
-		//Renderer::GetInstanced().Render(objects);
+		Renderer::GetInstanced().Render(objects);
 	}
 
 	PPB_FORCEINLINE
 	void PostUpdate ( void ) noexcept
 	{
-		// Composite
-		// Post processes
-
 		// Swap buffer
 		glfwSwapBuffers(m_pWindow);
 	}
