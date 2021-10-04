@@ -5,6 +5,7 @@
 
 #include "Physics/PhysicsMaterial.h"
 #include "Math/Vector3f.h"
+#include "Math/MathUtils.h"
 
 // -------------------- Any object without a mass shall not be moveable by forces
 // -- Rate of decay of the forces shall be VERY HIGH VERY VERY HIGH 
@@ -42,6 +43,10 @@ struct rigidbody
     // -- uni-direction for now
     void AddForce(const paperback::Vector3f& force)		// -- Applies a force
     {
+        // -- No need to apply forces on objects with no mass
+        if (paperback::MathUtils::IsEqualf(m_Mass, 0.f))
+            return;
+
         m_Forces += force;
     }
     //void AddImpulse(const paperback::Vector3f impulse);		// -- Applies an impulse
@@ -52,6 +57,10 @@ struct rigidbody
     }
     void AddMomentum(const paperback::Vector3f& moment)		// -- Applies a force
     {
+        // -- No need to apply forces on objects with no mass
+        if (paperback::MathUtils::IsEqualf(m_Mass, 0.f))
+            return;
+
         m_Momentum += moment;
     }
     void ResetMomentum()										// -- Resets all forces
