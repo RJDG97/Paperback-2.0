@@ -46,8 +46,8 @@ public:
 	void AddSubMesh(const SubMesh& Mesh);
 	void RemoveAllSubMesh();
 	void SetPrimitive(const int& Primitive);
-	int GetPrimitive();
-	std::vector<SubMesh>& GetSubMeshes();
+	int GetPrimitive() const;
+	const std::vector<SubMesh>& GetSubMeshes() const;
 
 private:
 	std::vector<SubMesh> m_SubMesh;

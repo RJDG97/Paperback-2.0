@@ -11,6 +11,7 @@ layout (location=5) in vec3 tFragPosition;
 layout (location=6) in vec4 lFragPosition;
 
 layout (location=0) out vec4 fFragClr;
+layout (location=1) out vec4 fBrightClr;
 
 struct Material
 {
@@ -125,11 +126,20 @@ void main()
 
 		float Shadow = ShadowValue(lFragPosition, normalize(vNormal), normalize(-uLight.Direction));
 
-		vec3 Final = pow(Ambient + (1.0 - Shadow) * (Diffuse + Specular), vec3(1.0/2.2));
+		// Calculate final color and extract bright colors
+		vec3 Final = Ambient + (1.0 - Shadow) * (Diffuse + Specular);
+		float Brightness = dot(Final, vec3(0.2126, 0.7152, 0.0722));
+
+		if(Brightness > 1.0)
+			fBrightClr = vec4(Final, 1.0);
+		else
+			fBrightClr = vec4(0.0, 0.0, 0.0, 1.0);
+
 		fFragClr = vec4(Final, 1.0);
 	}
 	else
 	{
+		fBrightClr = vec4(0.0, 0.0, 0.0, 1.0);
 		fFragClr = vec4(1.0, 0.0, 0.5, 1.0);
 	}
 }

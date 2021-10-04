@@ -28,6 +28,11 @@ glm::mat4 Camera::GetProjection() const
 	return m_Projection;
 }
 
+glm::vec3 Camera::GetPosition() const
+{
+	return m_Position;
+}
+
 void Camera::MoveForward()
 {
 	glm::vec3 translate = m_Front * 0.1f;

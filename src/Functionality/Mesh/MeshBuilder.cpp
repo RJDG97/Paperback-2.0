@@ -105,6 +105,7 @@ Model MeshBuilder::Build3DMesh(const std::string& File)
 												   aiProcess_LimitBoneWeights |
 												   aiProcess_FindInstances |
 												   aiProcess_GenSmoothNormals |
+												   aiProcess_FlipUVs |
 												   aiProcess_CalcTangentSpace |
 												   aiProcess_JoinIdenticalVertices |
 												   aiProcess_RemoveRedundantMaterials |

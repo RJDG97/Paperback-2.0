@@ -11,6 +11,7 @@ public:
 
 	glm::mat4 GetView() const;
 	glm::mat4 GetProjection() const;
+	glm::vec3 GetPosition() const;
 
 	void MoveForward();
 	void MoveBackward();

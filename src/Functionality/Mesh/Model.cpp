@@ -26,12 +26,12 @@ void Model::SetPrimitive(const int& Primitive)
 	m_Type = Primitive;
 }
 
-int Model::GetPrimitive()
+int Model::GetPrimitive() const
 {
 	return m_Type;
 }
 
-std::vector<Model::SubMesh>& Model::GetSubMeshes()
+const std::vector<Model::SubMesh>& Model::GetSubMeshes() const
 {
 	return m_SubMesh;
 }
