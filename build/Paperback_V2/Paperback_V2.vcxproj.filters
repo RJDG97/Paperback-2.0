@@ -74,6 +74,9 @@
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.cpp">
       <Filter>Dependencies\dearImGui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -259,9 +262,6 @@
     <ClInclude Include="..\..\src\Systems\SoundSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
-    <ClInclude Include="samplecomponent.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.h">
       <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
     </ClInclude>
@@ -357,6 +357,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Systems\DebugSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
+      <Filter>Dependencies\dearImGui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>

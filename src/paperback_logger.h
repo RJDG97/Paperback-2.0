@@ -32,6 +32,7 @@ namespace paperback
 
 #ifdef PAPERBACK_DEBUG
 
+
 	// Writer Methods
 	#define TRACE_PRINT( ... ) ::paperback::logger::GetWriter()->trace( __VA_ARGS__ )
 	#define DEBUG_PRINT( ... ) ::paperback::logger::GetWriter()->debug( __VA_ARGS__ )

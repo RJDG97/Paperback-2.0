@@ -31,7 +31,7 @@ namespace paperback
 
         JsonFile& StartWriter(std::string File)
         {
-            assert(fp == nullptr);
+            PPB_ASSERT(fp == nullptr);
             fopen_s(&fp, File.c_str(), "wb");
             buffer = new char[65536] {};
             wstream = new rapidjson::FileWriteStream(fp, buffer, 65536);
@@ -105,12 +105,12 @@ namespace paperback
 
         JsonFile& StartReader(std::string File)
         {
-            assert(fp == nullptr);
+            PPB_ASSERT(fp == nullptr);
             fopen_s(&fp, File.c_str(), "rb");
             buffer = new char[65536]; buffer;
             rstream = new rapidjson::FileReadStream(fp, buffer, 65536);
             doc = new rapidjson::Document();
-            assert(!doc->ParseStream(*rstream).HasParseError());
+            PPB_ASSERT(!doc->ParseStream(*rstream).HasParseError());
 
             return *this;
         }

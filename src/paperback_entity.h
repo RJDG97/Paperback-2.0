@@ -31,7 +31,7 @@ namespace paperback::archetype
         void Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept;
 
         template< typename T_CALLBACK = paperback::empty_lambda >
-        PoolDetails CreateEntity( T_CALLBACK&& Function ) noexcept;
+        PoolDetails CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
         
         PPB_INLINE
         u32 DeleteEntity( const PoolDetails Details ) noexcept;
@@ -64,6 +64,12 @@ namespace paperback::archetype
 
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
+
+        PPB_INLINE
+        std::vector <rttr::instance> GetEntityComponents( const u32 Index ) noexcept;
+
+        PPB_INLINE 
+        archetype::instance* GetArchetypePointer( const u32 Index ) noexcept;
 
         // Private Stuff
         PPB_INLINE

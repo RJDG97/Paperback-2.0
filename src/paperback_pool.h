@@ -62,6 +62,9 @@ namespace paperback::vm
 
 		PPB_INLINE
 		void SerializePoolComponentsAtEntityIndex( const u32 Index, paperback::JsonFile& Jfile ) noexcept;
+		
+		PPB_INLINE
+		std::vector<rttr::instance> GetComponents( const u32 Index ) noexcept;
 
 		PPB_INLINE
 		rttr::instance GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept;

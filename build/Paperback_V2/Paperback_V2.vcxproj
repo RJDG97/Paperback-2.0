@@ -15,6 +15,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -110,6 +116,7 @@
     <ClInclude Include="..\..\dependencies\dearImGui\IconsFontAwesome5.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imconfig.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imgui.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImCurveEdit.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImGradient.h" />
@@ -203,7 +210,6 @@
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
     <ClInclude Include="..\..\src\Vector.h" />
     <ClInclude Include="paperback_pch.h" />
-    <ClInclude Include="samplecomponent.h" />
     <ClInclude Include="WindowSystem.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

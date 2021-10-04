@@ -289,6 +289,16 @@ namespace paperback::vm
 		}
 	}
 
+	std::vector<rttr::instance> instance::GetComponents( const u32 Index ) noexcept
+	{
+		std::vector< rttr::instance > ComponentList = {};
+
+		for (size_t i = 0, max = m_ComponentInfo.size(); i < max; ++i)
+			ComponentList.push_back(GetComponentInstance(m_ComponentInfo[i]->m_Guid, Index));
+
+		return ComponentList;
+	}
+
 	rttr::instance instance::GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept
 	{
 
@@ -300,6 +310,10 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< rigidbody >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< timer >( Index ));
+		else if ( Comp_Guid.m_Value == component::info_v< mesh >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< mesh >( Index ));
+		else if ( Comp_Guid.m_Value == component::info_v< sound >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< sound >(Index));
 		else
 			return rttr::instance();
 	}	

@@ -9,7 +9,7 @@ namespace paperback
 
 	void logger::Init()
 	{
-		spdlog::set_pattern( "%^[%T] %n: %v%$" );
+        spdlog::set_pattern("%^[%T] %n: %v%$");
 
 		auto GetCurrent = []() -> std::string
 								  {
