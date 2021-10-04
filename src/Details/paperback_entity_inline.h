@@ -113,6 +113,15 @@ namespace paperback
             return m_ComponentPool[0].GetComponents(Index);  // Pool Index 0 Only For Now
         }
 
+        archetype::instance* instance::GetArchetypePointer( const u32 Index ) noexcept
+        {
+            auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, Index });
+            auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
+
+            return EntityInfo.m_pArchetype;
+
+        }
+
         template < typename T_COMPONENT > 
         T_COMPONENT& instance::GetComponent( const PoolDetails Details ) noexcept
         {

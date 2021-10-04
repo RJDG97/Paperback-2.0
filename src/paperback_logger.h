@@ -32,21 +32,22 @@ namespace paperback
 
 #ifdef PAPERBACK_DEBUG
 
+
 	// Writer Methods
-	#define TRACE_PRINT( ... ) ::Paperback::Log::GetWriter()->trace( __VA_ARGS__ )
-	#define DEBUG_PRINT( ... ) ::Paperback::Log::GetWriter()->debug( __VA_ARGS__ )
-	#define INFO_PRINT( ... ) ::Paperback::Log::GetWriter()->info( __VA_ARGS__ )
-	#define WARN_PRINT( ... ) ::Paperback::Log::GetWriter()->warn( __VA_ARGS__ )
-	#define ERROR_PRINT( ... ) ::Paperback::Log::GetWriter()->error( __VA_ARGS__ )
-	#define CRITICAL_PRINT( ... ) ::Paperback::Log::GetWriter()->critical( __VA_ARGS__ )
+	#define TRACE_PRINT( ... ) ::paperback::logger::GetWriter()->trace( __VA_ARGS__ )
+	#define DEBUG_PRINT( ... ) ::paperback::logger::GetWriter()->debug( __VA_ARGS__ )
+	#define INFO_PRINT( ... ) ::paperback::logger::GetWriter()->info( __VA_ARGS__ )
+	#define WARN_PRINT( ... ) ::paperback::logger::GetWriter()->warn( __VA_ARGS__ )
+	#define ERROR_PRINT( ... ) ::paperback::logger::GetWriter()->error( __VA_ARGS__ )
+	#define CRITICAL_PRINT( ... ) ::paperback::logger::GetWriter()->critical( __VA_ARGS__ )
 
 	// Logger Methods
-	#define TRACE_LOG( ... ) ::Paperback::Log::GetLogger()->trace( __VA_ARGS__ )
-	#define DEBUG_LOG( ... ) ::Paperback::Log::GetLogger()->debug( __VA_ARGS__ )
-	#define INFO_LOG( ... ) ::Paperback::Log::GetLogger()->info( __VA_ARGS__ )
-	#define WARN_LOG( ... ) ::Paperback::Log::GetLogger()->warn( __VA_ARGS__ )
-	#define ERROR_LOG( ... ) ::Paperback::Log::GetLogger()->error( __VA_ARGS__ )
-	#define CRITICAL_LOG( ... ) ::Paperback::Log::GetLogger()->critical( __VA_ARGS__ )
+	#define TRACE_LOG( ... ) ::paperback::logger::GetLogger()->trace( __VA_ARGS__ )
+	#define DEBUG_LOG( ... ) ::paperback::logger::GetLogger()->debug( __VA_ARGS__ )
+	#define INFO_LOG( ... ) ::paperback::logger::GetLogger()->info( __VA_ARGS__ )
+	#define WARN_LOG( ... ) ::paperback::logger::GetLogger()->warn( __VA_ARGS__ )
+	#define ERROR_LOG( ... ) ::paperback::logger::GetLogger()->error( __VA_ARGS__ )
+	#define CRITICAL_LOG( ... ) ::paperback::logger::GetLogger()->critical( __VA_ARGS__ )
 
 	// Assertion Methods
 	#define PPB_ASSERT( expr )														\

@@ -7,12 +7,22 @@ namespace paperback::coordinator
 		m_CompMgr.RegisterComponent<paperback::component::entity>();
 	}
 
+	instance::~instance(void) noexcept
+	{
+
+	}
+
 	instance& instance::GetInstance( void ) noexcept
 	{
 		static instance Instance;
 		return Instance;
 	}
 
+	void instance::Initialize(void) noexcept
+	{
+		paperback::logger::Init();
+		INFO_PRINT( "Initialized Engine" );
+	}
 	void instance::Terminate( void ) noexcept
 	{
 		m_SystemMgr.Terminate();

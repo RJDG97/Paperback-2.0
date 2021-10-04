@@ -20,6 +20,12 @@ namespace paperback::coordinator
 		static instance& GetInstance( void ) noexcept;
 
 		PPB_INLINE
+		~instance( void ) noexcept;
+
+		PPB_INLINE
+		void Initialize( void ) noexcept;
+
+		PPB_INLINE
 		void Update( void ) noexcept;
 
 		PPB_INLINE
