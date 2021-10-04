@@ -3,7 +3,7 @@
 // for my knowledge only : jy -> transform shall store bounding shape
 //                                  rigidbody shall store the velocity
 
-#include "Physics/PhysicsMaterial.h"
+//#include "Physics/PhysicsMaterial.h"
 #include "Math/Vector3f.h"
 
 struct rigidbody

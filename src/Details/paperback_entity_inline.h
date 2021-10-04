@@ -10,11 +10,15 @@ namespace paperback
             m_ComponentBits{ ComponentBits }
         { }
 
-        void instance::Init( std::span<const component::info* const> Types ) noexcept
+        void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept
         {
-            m_ComponentInfos = Types;
+            // Deep copy infos
+            for ( u32 i = 0; i < NumComponents; ++i )
+                m_ComponentInfos[i] = Types[i];
+            m_NumberOfComponents = NumComponents;
+
             for ( size_t i = 0, max = m_ComponentPool.size(); i < max; ++i )
-                m_ComponentPool[ i ].Init( Types );
+                m_ComponentPool[ i ].Init( std::span{ m_ComponentInfos.data(), m_NumberOfComponents }, m_NumberOfComponents );
         }
 
         template< typename T_CALLBACK >
@@ -89,7 +93,19 @@ namespace paperback
                 m_Coordinator.RemoveEntity( DeleteEntity( Info.m_PoolDetails ), Entity );
             }
 
+            std::sort( m_MoveList.begin(), m_MoveList.end(), []( vm::PoolDetails a, vm::PoolDetails b )
+                                                             {
+                                                                 return a.m_PoolIndex > b.m_PoolIndex;
+                                                             }
+            );
+
+            for ( auto& [Key, PoolIndex] : m_MoveList )
+            {
+                m_ComponentPool[ Key ].RemoveTransferredEntity( PoolIndex );
+            }
+
             m_DeleteList.clear();
+            m_MoveList.clear();
         }
 
         void instance::SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept
@@ -188,39 +204,32 @@ namespace paperback
             return ComponentArray;
         }
 
-        //template < typename T_FUNCTION >
-        //component::entity& instance::TransferExistingEntity( component::entity& Entity, T_FUNCTION&& Function ) noexcept
-        //{
-        //    using func_traits = xcore::function::traits<T_FUNCTION>;
+        template < typename T_FUNCTION >
+        component::entity instance::TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function ) noexcept
+        {
+            using func_traits = xcore::function::traits<T_FUNCTION>;
 
-        //    auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity.m_GlobalIndex );
-        //    const auto NewPoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].TransferExistingComponents
-        //    (
-        //        EntityInfo.m_PoolDetails
-        //    ,   EntityInfo.m_pArchetype.m_ComponentPool[ EntityInfo.m_PoolDetails.m_Key ]
-        //    );
+            // Get info of Entity that is to be transferred to "new archetype" aka this one
+            auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity.m_GlobalIndex );
 
-        //    EntityInfo.m_pArchetype = this;
-        //    EntityInfo.m_PoolDetails.m_Key = m_PoolAllocationIndex;
-        //    EntityInfo.m_PoolDetails.m_PoolIndex = NewPoolIndex;
+            // Transfer matching components over - m_ComponentPool[ 0 ].TransferExistingComponents
+            const auto NewPoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].TransferExistingComponents( EntityInfo.m_PoolDetails                                                      // Entity's Pool Key & Index
+                                                                                                         , EntityInfo.m_pArchetype->m_ComponentPool[ EntityInfo.m_PoolDetails.m_Key ] ); // Entity's Pool
 
-        //    // TEMP
-        //    [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* )
-        //    {
-        //        assert( m_ComponentBits.Has( component::info_v<T_COMPONENTS>.m_UID ) && ... );
-        //
-        //        // const auto PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].Append();
+            // Testing Replacement - Adding to move list to reoganize afterwards
+            EntityInfo.m_pArchetype->m_MoveList.push_back( EntityInfo.m_PoolDetails );
 
-        //        if ( !std::is_same_v<empty_lambda, T_FUNCTION> )
-        //        {
-        //            Function( m_ComponentPool[m_PoolAllocationIndex].GetComponent<T_COMPONENTS>(NewPoolIndex) ... );
-        //        }
+            // Update Entity Info
+            EntityInfo.m_pArchetype = this;
+            EntityInfo.m_PoolDetails.m_Key = m_PoolAllocationIndex;
+            EntityInfo.m_PoolDetails.m_PoolIndex = NewPoolIndex;
+            ++m_EntityCount;
 
-        //        // GOTTA RETURN ENTITY COMPONENT WITH UPDATED INDEX
+            // Initialize stuff with the lambda function
 
-        //    }( reinterpret_cast<func_traits::args_tuple*>( nullptr ) );
-        //}
-
+            // Temporary Return
+            return m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<component::entity>( NewPoolIndex );
+        }
 
         vm::instance& instance::GetPoolWithIndex( const uint32_t EntityPoolIndex ) noexcept
         {

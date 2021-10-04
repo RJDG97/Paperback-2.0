@@ -139,7 +139,6 @@ struct debug_system : paperback::system::instance
             percentage /= m_TotalTime;
             percentage *= 100;
         }
-
         //DebugPrint();
     }
 

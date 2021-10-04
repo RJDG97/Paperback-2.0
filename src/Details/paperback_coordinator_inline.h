@@ -7,10 +7,35 @@ namespace paperback::coordinator
 		m_CompMgr.RegisterComponent<paperback::component::entity>();
 	}
 
+	instance::~instance( void ) noexcept
+	{
+		
+	}
+
 	instance& instance::GetInstance( void ) noexcept
 	{
 		static instance Instance;
 		return Instance;
+	}
+
+	void instance::Initialize( void ) noexcept
+	{
+		paperback::logger::Init();
+		INFO_PRINT( "Initialized Engine" );
+	}
+
+	void instance::Update( void ) noexcept
+	{
+		while ( m_GameActive )
+		{
+			XCORE_PERF_FRAME_MARK()
+			XCORE_PERF_FRAME_MARK_START( "paperback::frame" )
+
+			m_SystemMgr.Run();
+			ERROR_LOG( "FPS: " + std::to_string( m_Clock.FPS() ) );
+
+			XCORE_PERF_FRAME_MARK_END( "paperback::frame" )
+		}
 	}
 
 	void instance::Terminate( void ) noexcept
@@ -18,19 +43,6 @@ namespace paperback::coordinator
 		m_SystemMgr.Terminate();
 		m_EntityMgr.Terminate();
 		m_CompMgr.Terminate();
-	}
-
-	void instance::Update( void ) noexcept
-	{
-		while (m_GameActive)
-		{
-			XCORE_PERF_FRAME_MARK()
-			XCORE_PERF_FRAME_MARK_START("paperback::Frame")
-
-			m_SystemMgr.Run();
-
-			XCORE_PERF_FRAME_MARK_END("paperback::Frame")
-		}
 	}
 
 	template < concepts::System... T_SYSTEMS >
@@ -83,7 +95,7 @@ namespace paperback::coordinator
 		// To define
 	}
 
-	void instance::DeleteEntity( component::entity& Entity ) noexcept
+	void instance::DeleteEntity( component::entity& Entity ) noexcept // Change it to call "archetype manager" -> delete entity ( Handle all checks there instead )
 	{
 		assert( Entity.IsZombie() == false );
 		auto& Info = GetEntityInfo( Entity );
@@ -99,22 +111,13 @@ namespace paperback::coordinator
 	template < concepts::TupleSpecialization T_TUPLE_ADD
 			 , concepts::TupleSpecialization T_TUPLE_REMOVE
 			 , concepts::Callable T_FUNCTION >
-	component::entity AddOrRemoveComponents( component::entity Entity
-										   , T_FUNCTION&& Function ) noexcept
+	component::entity instance::AddOrRemoveComponents( const component::entity Entity
+													 , T_FUNCTION&& Function ) noexcept
 	{
-		if constexpr ( std::is_same_v< T_FUNCTION, empty_lambda > )
-            return AddOrRemoveComponents
-            ( Entity
-            , component::sorted_info_array_v<T_TUPLE_ADD>
-            , component::sorted_info_array_v<T_TUPLE_REMOVE>
-            );
-        else
-            return AddOrRemoveComponents
-            ( Entity
-            , component::sorted_info_array_v<T_TUPLE_ADD>
-            , component::sorted_info_array_v<T_TUPLE_REMOVE>
-            , Function
-            );
+        return m_EntityMgr.AddOrRemoveComponents( Entity
+												, component::sorted_info_array_v<T_TUPLE_ADD>
+												, component::sorted_info_array_v<T_TUPLE_REMOVE>
+												, Function );
 	}
 
 	template < typename... T_COMPONENTS >
@@ -150,7 +153,6 @@ namespace paperback::coordinator
 					{
 						[&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
 						{
-
 							Function( [&]<typename T_C>( std::tuple<T_C>* ) constexpr noexcept -> T_C
 									  {
 										  auto& pComponent = ComponentArray[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
@@ -165,7 +167,6 @@ namespace paperback::coordinator
 				
 									  }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
 							... );
-
 						}( xcore::types::null_tuple_v< func_traits::args_tuple > );
 					}
 				});
@@ -180,6 +181,7 @@ namespace paperback::coordinator
 
 		for ( const auto& Archetype : ArchetypeList )
 		{
+			//if ( Archetype->m_EntityCount == 0 ) continue;
 			bool bBreak = false;
 
 			for ( auto& Pool : Archetype->m_ComponentPool )
@@ -205,7 +207,7 @@ namespace paperback::coordinator
 								else										return reinterpret_cast<T_C>(*p);
 
 							}(xcore::types::make_null_tuple_v<T_COMPONENTS>)
-								...);
+							...);
 						}(xcore::types::null_tuple_v< func_traits::args_tuple >))
 						{
 							bBreak = true;
@@ -248,92 +250,6 @@ namespace paperback::coordinator
 	{
 		m_EntityMgr.FreeEntitiesInArchetype( Archetype );
 	}
-
-	/*
-	template < concepts::Callable T_FUNCTION >
-	component::entity instance::AddOrRemoveComponents ( const component::entity Entity, 
-													    std::span<const component::info* const> Add,
-													    std::span<const component::info* const> Remove,
-													    T_FUNCTION&& Function ) noexcept
-	{
-		assert( Entity.IsZombie() == false );
-		auto& EntityInfo             = GetEntityInfo( Entity.m_GlobalIndex );
-		auto  UpdatedEntitySignature = EntityInfo.m_pArchetype->m_ComponentBits;
-		assert( EntityInfo.m_Validation.m_bZombie == false );
-
-		for ( const auto& CToAdd : Add )
-		{
-			assert( CToAdd.m_UID != 0 );
-			UpdatedEntitySignature.Set( CToAdd.m_UID );
-		}
-
-		for ( const auto& CToRemove : Remove )
-		{
-			assert( CToRemove.m_UID != 0 );
-			UpdatedEntitySignature.Remove( CToRemove.m_UID );
-		}
-
-		auto Archetype = Search( UpdatedEntitySignature );
-
-		// Archetype already Exists
-		if ( Archetype )
-		{
-			if ( std::is_same_v<T_FUNCTION, empty_lambda> ) Archetype->TransferExistingEntity( Entity );
-			else											Archetype->TransferExistingEntity( Entity, Function );
-
-			// Do sth with delete queue to remove the old entity's remaining components not affected by move ctor
-		}
-		// Create a new Archetype to fit
-		else
-		{
-			int Count = 0;
-			std::array<const component::info*, settings::max_components_per_entity_v > ComponentList;
-
-			auto IsDupeInfo = [&]( const component::info* Info ) -> bool
-			{
-				for ( const auto& CInfo : ComponentList )
-				{
-					if ( CInfo.m_UID == Info->m_UID )
-						return true;
-				}
-				return false;
-			};
-
-			for ( auto& CInfo : Archetype.m_ComponentInfos )
-				ComponentList[Count++] = CInfo;
-			for ( auto& CInfo : Add )
-			{
-				const auto Index = component::details::find_component_index_v( ComponentList, CInfo, Count );
-				assert( Index > 0 );
-
-				if ( ComponentList[ Count-1 ] == CInfo ) continue;
-
-				if ( Index != Count )
-					std::memmove( &ComponentList[ Index+1 ], &ComponentList[ Index ], (Count - Index) * sizeof(component::info*) );
-
-				ComponentList[ Index ] = CInfo;
-				++Count;
-			}
-			for ( auto& CInfo : Remove )
-			{
-				const auto Index = component::details::find_component_index_v(ComponentList, CInfo, Count);
-				assert(Index > 0);
-
-				if ( ComponentList[Index-1] == CInfo )
-				{
-					std::memmove( &ComponentList[ Index-1 ], &ComponentList[ Index ], (Count - Index) * sizeof(component::info*) );
-					--Count;
-				}
-			}
-
-			auto& Archetype = m_EntityMgr.CreateArchetype( *this, UpdatedEntitySignature );
-			Archetype.Init( ComponentList );
-
-			if constexpr ( std::is_same_v<T_FUNCTION, empty_lambda> ) return Archetype.TransferExistingEntity( Entity );
-			else                                                      return Archetype.TransferExistingEntity( Entity, Function );
-		}
-	}
-	*/
 
 	float instance::DeltaTime() const noexcept
 	{

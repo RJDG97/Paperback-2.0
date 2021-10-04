@@ -1,13 +1,4 @@
 #pragma once
-// Method 1 (Sorted):
-// entity manager -> get list of archetypes -> iterate each archetype -> access entity info list in archetypes
-// ( Need to add to Archetype as data ) -> access m_ComponentInfos to access GUID which determines component type
-
-// Method 2 (Unsorted):
-// entity manager -> entity info list -> iterate all entity info's pool details -> access component infos same as on top
-
-//component::info_v<T_COMPONENT>::m_UID -> Component ID
-
 
 namespace paperback::entity
 {
@@ -26,11 +17,15 @@ namespace paperback::entity
         using ArchetypeBitsList = std::vector<tools::bits>;
         using ArchetypeList     = std::vector<std::unique_ptr<archetype::instance>>;
 
-        EntityInfoList            m_EntityInfos       = std::make_unique<entity::info[]>( settings::max_entities_v );
-        ArchetypeList             m_pArchetypeList    {   };
-        ArchetypeBitsList         m_ArchetypeBits     {   };
-        uint32_t                  m_EntityIDTracker   { 0 };
-        EntityListHead            m_AvailableIndexes  {   };
+        EntityInfoList                      m_EntityInfos       = std::make_unique<entity::info[]>( settings::max_entities_v );
+        ArchetypeList                       m_pArchetypeList    {   };
+        ArchetypeBitsList                   m_ArchetypeBits     {   };
+        uint32_t                            m_EntityIDTracker   { 0 };
+        EntityListHead                      m_AvailableIndexes  {   };
+        paperback::coordinator::instance&   m_Coordinator;
+
+        PPB_INLINE
+        manager( paperback::coordinator::instance& Coordinator );
 
         PPB_INLINE
         void RegisterEntity( const PoolDetails Details, archetype::instance& Archetype ) noexcept;
@@ -44,7 +39,7 @@ namespace paperback::entity
         template < typename... T_COMPONENTS >
         archetype::instance& GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept;
 
-        template < typename... T_COMPONENTS > // PRIVATE FN
+        // PRIVATE FN
         archetype::instance& CreateArchetype( coordinator::instance& Coordinator, const tools::bits& Signature ) noexcept;
 
         PPB_INLINE
@@ -67,6 +62,12 @@ namespace paperback::entity
 
         PPB_INLINE
         std::vector<archetype::instance*> Search( const tools::query& Query ) const noexcept;
+
+        template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
+	    component::entity AddOrRemoveComponents( const component::entity Entity
+								               , std::span<const component::info* const> Add
+								               , std::span<const component::info* const> Remove
+								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
         PPB_INLINE
         void Terminate( void ) noexcept;

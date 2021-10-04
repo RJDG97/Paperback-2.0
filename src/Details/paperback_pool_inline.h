@@ -31,12 +31,13 @@ namespace paperback::vm
 		}
 	}
 
-	void instance::Init( std::span<const component::info* const> Types ) noexcept
+	void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept
 	{
-		m_ComponentInfo = Types;
+		m_ComponentInfo		 = Types;
+		m_NumberOfComponents = NumComponents;
 
 		// Reserve memory required for MaxEntites
-		for ( std::size_t i = 0; i < m_ComponentInfo.size(); i++ )
+		for ( std::size_t i = 0; i < m_NumberOfComponents; i++ )
 		{
 			auto nPages = GetPageIndex( *m_ComponentInfo[i], settings::max_entities_v ) + 1;
 			m_ComponentPool[i] = reinterpret_cast<std::byte*>( VirtualAlloc(nullptr, nPages * paperback::settings::virtual_page_size_v, MEM_RESERVE, PAGE_NOACCESS) );
@@ -50,7 +51,7 @@ namespace paperback::vm
 		assert( m_CurrentEntityCount < settings::max_entities_v );
 
 		// For each valid component
-		for (size_t i = 0, end = m_ComponentInfo.size(); i < end; i++)
+		for (size_t i = 0, end = m_NumberOfComponents; i < end; i++)
 		{
 			auto CInfo	   = *m_ComponentInfo[i];
 			auto iCurPage  =  GetPageIndex( CInfo, m_CurrentEntityCount );
@@ -83,7 +84,7 @@ namespace paperback::vm
 		// Return back to the current index
 		--m_CurrentEntityCount;
 
-		for ( size_t i = 0; i < m_ComponentInfo.size(); ++i )
+		for ( size_t i = 0; i < m_NumberOfComponents; ++i )
 		{
 			const auto& pInfo = *m_ComponentInfo[i];
 			auto		pData =  m_ComponentPool[i];
@@ -124,6 +125,52 @@ namespace paperback::vm
 				 : GetComponent<component::entity>( PoolIndex ).m_GlobalIndex;
 	}
 
+	void instance::RemoveTransferredEntity( const u32 PoolIndex ) noexcept
+	{
+		assert( PoolIndex >= 0 );
+
+		// Backtrack to last valid entity
+		while ( m_CurrentEntityCount )
+        {
+			--m_CurrentEntityCount;
+            if ( GetComponent<paperback::component::entity>( m_CurrentEntityCount ).IsZombie() == false ) break;
+        }
+
+		if ( PoolIndex >= m_CurrentEntityCount )
+			return;
+
+		for ( size_t i = 0; i < m_NumberOfComponents; ++i )
+		{
+			const auto& pInfo = *m_ComponentInfo[i];
+			auto		pData =  m_ComponentPool[i];
+
+			// If moving last entity - Ignore
+			if ( PoolIndex == m_CurrentEntityCount )
+				return;
+			// Moving any other entity - Copy memory and shift forward
+			else
+			{
+				if ( pInfo.m_Move )
+				{
+					pInfo.m_Move( &pData[PoolIndex * pInfo.m_Size], &pData[m_CurrentEntityCount * pInfo.m_Size] );
+				}
+				else
+				{
+					memcpy( &pData[PoolIndex * pInfo.m_Size], &pData[m_CurrentEntityCount * pInfo.m_Size], pInfo.m_Size );
+				}
+			}
+
+			// Free the page if empty
+			const auto LastPage = GetPageIndex( pInfo, m_CurrentEntityCount + 1 );
+			if ( LastPage != GetPageIndex(pInfo, m_CurrentEntityCount) )
+			{
+				auto pRaw = &pData[ paperback::settings::virtual_page_size_v * LastPage ];
+				auto b = VirtualFree( pRaw, paperback::settings::virtual_page_size_v, MEM_DECOMMIT );
+				assert( b );
+			}
+		}
+	}
+
 	u32 instance::TransferExistingComponents( const PoolDetails& Details, vm::instance& FromPool ) noexcept
 	{
 		const u32 NewPoolIndex = Append();
@@ -133,57 +180,57 @@ namespace paperback::vm
 
         while( true )
         {
-			// If Component Already Exists
-            if( FromPool.m_ComponentInfo[ iPoolFrom ] == m_ComponentInfo[ iPoolTo ] )
+			// Component exists in both - Copy existing component
+            if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_Guid == m_ComponentInfo[ iPoolTo ]->m_Guid )
             {
-                auto& Info = *( FromPool.m_ComponentInfo[iPoolFrom] );
+                auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
+
                 if( Info.m_Move )
                 {
-                    Info.m_Move
-                    (
-                        &m_ComponentPool[ iPoolTo ][ Info.m_Size* NewPoolIndex ]
-                    ,   &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size* Details.m_PoolIndex ]
-                    );
+                    Info.m_Move( &m_ComponentPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]					    // Destination
+							   , &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] ); // Source
                 }
                 else
                 {
-                    std::memcpy
-                    ( 
-                        &m_ComponentPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]
-                    ,   &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ]
-                    ,   Info.m_Size
-                    );
+                    std::memcpy( &m_ComponentPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]						// Destination
+                               , &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ]	// Source
+                               , Info.m_Size );																	// Number of bytes to copy
                 }
-                //iPoolFrom++;
-                //iPoolTo++;
-                if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() || ++iPoolTo >= m_ComponentInfo.size()) break;
+
+				// If either pool's components is maxed out
+                if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() || ++iPoolTo >= m_ComponentInfo.size() ) break;
             }
-			// If Component exists in old pool but NOT new pool, delete it
-            else if( FromPool.m_ComponentInfo[ iPoolFrom ]->m_UID < m_ComponentInfo[ iPoolTo ]->m_UID )
+			// Component has been removed in new archetype - Destroy old component
+            else if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_UID < m_ComponentInfo[ iPoolTo ]->m_UID )
             {
                 auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
-                if( Info.m_Destructor ) Info.m_Destructor( &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
-                //++iPoolFrom;
+
+                if( Info.m_Destructor )
+					Info.m_Destructor( &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
+
                 if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
             }
-			// If Component exists in new pool but NOT old pool, do nothing
+			// Component does not exist in old pool - Continue
             else
             {
-                //++iPoolTo;
                 if ( ++iPoolTo >= m_ComponentInfo.size() ) break;
             }
         }
 
-        // Remove any remaining Components
+        // Remove components from previous archetype post iterating last component from new archetype
         while ( iPoolFrom < FromPool.m_ComponentInfo.size() )
         {
             auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
-            if ( Info.m_Destructor ) Info.m_Destructor( &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
-            //++iPoolFrom;
+
+            if ( Info.m_Destructor )
+				Info.m_Destructor( &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
+            
             if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
         }
 
-        // Put the deleted entity into the move deleted linklist (Need to change to GUID and implement linked list deletion first)
+		// Update moved entity to be a zombie
+		auto& MovedEntity				   = FromPool.GetComponent<paperback::component::entity>( Details.m_PoolIndex );
+		MovedEntity.m_Validation.m_bZombie = true;
 
         return NewPoolIndex;
 	}
@@ -202,7 +249,7 @@ namespace paperback::vm
 	int instance::GetComponentIndex( const u32 UIDComponent ) const noexcept
 	{
 		// Find index of component within m_ComponentPool
-		for ( size_t i = 0, end = m_ComponentInfo.size(); i < end; ++i )
+		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
 			if ( m_ComponentInfo[i]->m_UID == UIDComponent ) { return static_cast<int>(i); }
 
 		assert( false );
@@ -211,17 +258,17 @@ namespace paperback::vm
 
 	int instance::GetComponentIndexFromGUID( const component::type::guid Guid ) const noexcept
 	{
-		for ( int i = 0, max = static_cast<int>( m_ComponentInfo.size() ); i < max; ++i )
+		for ( u32 i = 0, max = m_NumberOfComponents; i < max; ++i )
 		{
 			if ( m_ComponentInfo[i]->m_Guid.m_Value == Guid.m_Value )
 				return i;
 		}
-		return -1;
+		return -1; // Replace with an error - No Crash
 	}
 
 	int instance::GetComponentIndexFromGUIDInSequence( const component::type::guid Guid, const int Sequence ) const noexcept
 	{
-		for ( int i = Sequence, max = static_cast<int>( m_ComponentInfo.size() ); i < max; ++i )
+		for ( u32 i = Sequence, max = m_NumberOfComponents; i < max; ++i )
 		{
 			if ( m_ComponentInfo[i]->m_Guid.m_Value == Guid.m_Value )
 				return i;
@@ -232,7 +279,7 @@ namespace paperback::vm
 	void instance::SerializePoolComponentsAtEntityIndex( const u32 Index, paperback::JsonFile& Jfile ) noexcept
 	{
 		//here access to each component in the pool and serializes them
-		for (size_t i = 0, max = m_ComponentInfo.size(); i < max; ++i)
+		for ( u32 i = 0, max = m_NumberOfComponents; i < max; ++i )
 		{
 			rttr::instance Component = GetComponentInstance( m_ComponentInfo[i]->m_Guid, Index );
 			Jfile.WriteKey( Component.get_type().get_name().to_string() ).StartObject();
