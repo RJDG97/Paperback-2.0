@@ -1,6 +1,6 @@
 #pragma once
 #include "Components/Transform.h"
-#include "../Functionality/Renderer/Renderer.h"
+#include "Functionality/Renderer/Renderer.h"
 #include "Math/Vector3f.h"
 
 struct debug_system : paperback::system::instance
@@ -60,6 +60,13 @@ struct debug_system : paperback::system::instance
     {
 
         return m_PercentageTimePerSystem;
+    }
+
+    //helper function to convert xcore::vector3 to Vector3f
+    paperback::Vector3f ConvertXcoreVecTo3f(const xcore::vector3& vec)
+    {
+
+        return { vec.m_X, vec.m_Y, vec.m_Z };
     }
 
     //helper function to convert Vector3f to glm::vec3
@@ -200,8 +207,8 @@ struct debug_system : paperback::system::instance
         paperback::Vector3f front_top_left, front_top_right, front_bottom_left, front_bottom_right,
                             back_top_left, back_top_right, back_bottom_left, back_bottom_right, diff;
 
-        front_top_right = front_top_left = front_bottom_left = front_bottom_right = transform.fakebox.MinMax[1];
-        back_bottom_left = back_top_left = back_top_right = back_bottom_right = transform.fakebox.MinMax[0];
+        front_top_right = front_top_left = front_bottom_left = front_bottom_right = transform.fakebox.MinMax[1] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        back_bottom_left = back_top_left = back_top_right = back_bottom_right = transform.fakebox.MinMax[0] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
         diff = front_top_right - back_bottom_left;
 
         front_top_left -= paperback::Vector3f{ diff.x, 0.0f, 0.0f };

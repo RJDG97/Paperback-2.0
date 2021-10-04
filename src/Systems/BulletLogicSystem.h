@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Physics/geometry.h"
+#include "Systems/DebugSystem.h"
 
 struct bullet_logic_system : paperback::system::instance
 {
@@ -9,7 +10,7 @@ struct bullet_logic_system : paperback::system::instance
         .m_pName = "bullet_logic_system"
     };
     // Entity to test component -> jp side
-    void operator()( /*paperback::component::entity& Entity,*/ transform& Transform, /*timer& Timer, rigidbody& rb,*/ paperback::component::entity& Entity) noexcept
+    void operator()( /*paperback::component::entity& Entity,*/ transform& Transform, /*timer& Timer,*/ rigidbody& rb, paperback::component::entity& Entity) noexcept
     {
         if ( Entity.IsZombie() ) return;
 
@@ -22,9 +23,9 @@ struct bullet_logic_system : paperback::system::instance
 
         // Check collisions
         tools::query Query;
-        Query.m_Must.AddFromComponents<transform>();
+        Query.m_Must.AddFromComponents<transform, rigidbody>();
 
-        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& xform ) noexcept -> bool
+        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& xform, rigidbody& rb) noexcept -> bool
         {
             assert( Entity.IsZombie() == false );
 
@@ -48,5 +49,8 @@ struct bullet_logic_system : paperback::system::instance
             }
             return false;
         });
+
+        GetSystem<debug_system>().DrawSphereCollision(Transform);
+        GetSystem<debug_system>().DrawCubeCollision(Transform);
     }
 };
