@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Physics/geometry.h"
+#include "Systems/DebugSystem.h"
 
 struct bullet_logic_system : paperback::system::instance
 {
@@ -49,5 +50,8 @@ struct bullet_logic_system : paperback::system::instance
                 }
                 return false;
             });
+
+        GetSystem<debug_system>().DrawSphereCollision(Transform);
+        GetSystem<debug_system>().DrawCubeCollision(Transform);
     }
 };
