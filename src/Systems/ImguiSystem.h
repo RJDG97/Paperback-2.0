@@ -37,7 +37,6 @@ struct imgui_system : paperback::system::instance
         .m_pName = "imgui_system"
     };
 
-    //Handle Imgui Initialization Here
     PPB_INLINE
     void OnSystemCreated(void) noexcept
     {
@@ -163,21 +162,37 @@ struct imgui_system : paperback::system::instance
 
     void InspectorPanel()
     {
-        int NumEntities = 0;
+        int NumEntities = 0, test = 0;
 
         ImGui::Begin("Entity Inspector");
 
         bool b_NodeOpen{ false };
 
+        std::string ArchetypeName;
+        char Buffer[256];
+         
+        //Test if can edit the names 
+
         for (auto& Archetype : PPB.m_EntityMgr.m_pArchetypeList)
         {
+            ++test;
+            ImGui::Text(Archetype->m_pName.c_str());
+            memset(Buffer, 0, sizeof(Buffer));
+            strcpy_s(Buffer, sizeof(Buffer), ArchetypeName.c_str());
+
+            if ( ImGui::InputText( ("##ArchetypeName" + std::to_string(test)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue) )
+            {
+                std::cout << Buffer << std::endl;
+                Archetype->m_pName = std::string(Buffer);
+            }
+
             ImGui::Separator(); //to clearly see which entities are of the same type?
 
             for (paperback::u32 i = 0; i < Archetype->m_EntityCount; ++i)
             {
                 ++NumEntities;
 
-                ImGuiTreeNodeFlags NodeFlags = (m_EntityNum == i ? ImGuiTreeNodeFlags_Selected : 0);
+                ImGuiTreeNodeFlags NodeFlags = (m_EntityNum == i ? ImGuiTreeNodeFlags_Selected : 0); //update this
                 NodeFlags |= ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
                 std::stringstream ss; ss << "Entity (" << i << ")";
@@ -281,7 +296,6 @@ struct imgui_system : paperback::system::instance
                             {
                                 ImGui::Text(propertyName.c_str()); ImGui::SameLine();
                                 ImGui::Text("%d", propValue.get_value<bool>());
-
                             }
                         }
                     }

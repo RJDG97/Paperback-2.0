@@ -15,9 +15,11 @@ namespace paperback::archetype
         ComponentInfos                m_ComponentInfos           {   };                           // Component Infos
         DeleteList                    m_DeleteList               {   };                           // List of entities to be deleted
         tools::bits                   m_ComponentBits            {   };                           // Component Signature
-        uint32_t                      m_EntityCount              { 0 };                           // Number of Entities within Archetype
-        uint32_t                      m_PoolAllocationIndex      { 0 };                           // Determines which pool to allocate to - 0 Default      ( TO FIX )
-        uint32_t                      m_ProcessReference         { 0 };                           // Set to 1 when Archetype is updating
+        std::string                   m_pName                    { "Unnamed Archetype" };         // Archetype name for reflecting in Editor
+        u32                           m_EntityCount              { 0 };                           // Number of Entities within Archetype
+        u32                           m_PoolAllocationIndex      { 0 };                           // Determines which pool to allocate to - 0 Default      ( TO FIX )
+        u32                           m_ProcessReference         { 0 };                           // Set to 1 when Archetype is updating
+        u32                           m_NumberOfComponents       { 0 };                           // Number of components
 
         PPB_INLINE
         instance( coordinator::instance& Coordinator, const tools::bits& ComponentBits ) noexcept;
