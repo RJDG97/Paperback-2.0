@@ -141,5 +141,45 @@ void InitializeGame()
                 Sound.m_SoundID = "event:/Music/Level 01";
             });
         
+        // jjyy
+        //PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        //    {
+        //        Transform.m_Position.m_X = 2;// std::rand() % (m_Engine.m_Width / 2);
+        //        Transform.m_Position.m_Y = 2;// std::rand() % (m_Engine.m_Height / 2);
+        //        Transform.m_Position.m_Z = -4;
+        //        Transform.fakebox.MinMax[0].Set(paperback::Vector3f(
+        //            Transform.m_Position.m_X - 2.f,
+        //            Transform.m_Position.m_Y - 2.f,
+        //            Transform.m_Position.m_Z - 2.f));
+        //        Transform.fakebox.MinMax[1].Set(paperback::Vector3f(
+        //            Transform.m_Position.m_X + 2.f,
+        //            Transform.m_Position.m_Y + 2.f,
+        //            Transform.m_Position.m_Z + 2.f));
+        //        Transform.fakeSphere.Set(paperback::Vector3f(
+        //            Transform.m_Position.m_X,
+        //            Transform.m_Position.m_Y,
+        //            Transform.m_Position.m_Z), 1.f);
+        //
+        //        Mesh.m_Model = "Box";
+        //    });
+        //
+        //PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        //    {
+        //        Transform.m_Position.m_X = 5;// std::rand() % (m_Engine.m_Width / 2);
+        //        Transform.m_Position.m_Y = -1;// std::rand() % (m_Engine.m_Height / 2);
+        //        Transform.m_Position.m_Z = -7;
+        //        Transform.fakebox.MinMax[0].Set(paperback::Vector3f(Transform.m_Position.m_X - 2.f,
+        //            Transform.m_Position.m_Y - 2.f,
+        //            Transform.m_Position.m_Z - 2.f));
+        //        Transform.fakebox.MinMax[1].Set(paperback::Vector3f(Transform.m_Position.m_X + 2.f,
+        //            Transform.m_Position.m_Y + 2.f,
+        //            Transform.m_Position.m_Z + 2.f));
+        //        Transform.fakeSphere.Set(paperback::Vector3f(Transform.m_Position.m_X,
+        //            Transform.m_Position.m_Y,
+        //            Transform.m_Position.m_Z),
+        //            1.f);
+        //
+        //        Mesh.m_Model = "Box";
+        //    });
     }
 }
