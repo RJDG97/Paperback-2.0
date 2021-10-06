@@ -124,18 +124,18 @@ void InitializeGame()
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
             {
                 Transform.m_Position.m_X = -4;
-                Transform.m_Position.m_Y = -2;
+                Transform.m_Position.m_Y = 2.5;
                 Transform.m_Position.m_Z = -10;
 
 
                 Mesh.m_Model = "Box";
             });
 
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
-            {
-                Transform.m_Position.m_X = -0.01;;
-                Transform.m_Position.m_Y = -4;
-                Transform.m_Position.m_Z = -10;
+        //PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        //    {
+        //        Transform.m_Position.m_X = -0.01;;
+        //        Transform.m_Position.m_Y = -4;
+        //        Transform.m_Position.m_Z = -10;
 
 
         //        Mesh.m_Model = "Plane";
