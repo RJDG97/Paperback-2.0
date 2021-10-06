@@ -1,7 +1,6 @@
 #include "paperback_pch.h"
 #include "Paperback.h"
 
-
 //-----------------------------------
 //       Component & Systems
 //-----------------------------------
@@ -14,25 +13,30 @@
 using namespace paperback;
 void InitializeGame();
 
-
 int main( int argc, char* argv[] )
 {
 #if defined( PAPERBACK_DEBUG ) | defined( PAPERBACK_DEBUG )
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
     ShowWindow( GetConsoleWindow(), SW_SHOW );
 #else
-    ShowWindow(GetConsoleWindow(), SW_HIDE);
+    ShowWindow(GetConsoleWindow(), SW_SHOW);
 #endif
 
-    // Initialization
+    /*
+        Initialization
+    */
     xcore::Init( "Initializing Paperback Engine");
     InitializeGame();
-
     PPB.Initialize();
 
+    /*
+        Main Loop
+    */
     PPB.Update();
 
-    // Termination
+    /*
+        Terminate
+    */
     PPB.Terminate();
     xcore::Kill();
 }

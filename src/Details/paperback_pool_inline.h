@@ -2,6 +2,9 @@
 
 namespace paperback::vm
 {
+	//-----------------------------------
+	//              Helper
+	//-----------------------------------
 	u32 instance::GetPageIndex( const size_t LocalComponentIndex, const u32 Count ) const noexcept
 	{
 		return ( m_ComponentInfo[LocalComponentIndex]->m_Size * Count ) / settings::virtual_page_size_v;
@@ -20,6 +23,10 @@ namespace paperback::vm
 		}
 	}
 
+
+	//-----------------------------------
+	//            Default
+	//-----------------------------------
 	instance::~instance() noexcept
 	{
 		Clear();
@@ -46,6 +53,9 @@ namespace paperback::vm
 	}
 
 
+	//-----------------------------------
+	//         Create / Delete
+	//-----------------------------------
 	u32 instance::Append() noexcept
 	{
 		assert( m_CurrentEntityCount < settings::max_entities_v );
@@ -171,6 +181,10 @@ namespace paperback::vm
 		}
 	}
 
+
+	//-----------------------------------
+	//             Transfer
+	//-----------------------------------
 	u32 instance::TransferExistingComponents( const PoolDetails& Details, vm::instance& FromPool ) noexcept
 	{
 		const u32 NewPoolIndex = Append();

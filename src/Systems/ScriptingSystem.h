@@ -17,12 +17,16 @@ struct scripting_system : paperback::system::instance
 	void OnSystemCreated(void) noexcept
 	{
 		// Set up Mono
-		m_pMono = &Mono::GetInstanced();	
+		m_pMono = &Mono::GetInstanced();
+
+		PPB_ASSERT_MSG( m_pMono == nullptr
+					  , "Invalid Mono Instance" );
 	}
 
-	void Update(void) noexcept 
+	void Update(void) noexcept
 	{
-		m_pMono->ExternalMain();
+		if ( m_pMono )
+			m_pMono->ExternalMain();
 	}
 
 	void OnSystemTerminated(void) noexcept 

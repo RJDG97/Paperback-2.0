@@ -89,3 +89,20 @@ namespace paperback
 	#define PPB_ASSERT_MSG( expr, ... )
 
 #endif
+
+// Critical Assertion Methods
+#define PPB_CRITICAL_ASSERT( expr )												\
+	if (expr) {																	\
+		CRITICAL_PRINT("Assertion occured at {}: Line {}", __FILE__, __LINE__);	\
+		CRITICAL_LOG("Assertion occured at {}: Line {}", __FILE__, __LINE__);	\
+		DEBUG_BREAK();															\
+	}
+
+#define PPB_CRITICAL_ASSERT_MSG( expr, ... )									\
+	if (expr) {																	\
+		CRITICAL_PRINT("Assertion occured at {}: Line {}", __FILE__, __LINE__);	\
+		CRITICAL_PRINT(__VA_ARGS__);											\
+		CRITICAL_LOG("Assertion occured at {}: Line {}", __FILE__, __LINE__);	\
+		CRITICAL_LOG(__VA_ARGS__);												\
+		DEBUG_BREAK();															\
+	}

@@ -2,8 +2,12 @@
 
 namespace paperback::coordinator
 {
+	//-----------------------------------
+	//            Default
+	//-----------------------------------
 	instance::instance( void ) noexcept
 	{
+		paperback::logger::Init();
 		m_CompMgr.RegisterComponent<paperback::component::entity>();
 	}
 
@@ -18,9 +22,9 @@ namespace paperback::coordinator
 		return Instance;
 	}
 
+
 	void instance::Initialize( void ) noexcept
 	{
-		paperback::logger::Init();
 		INFO_PRINT( "Initialized Engine" );
 	}
 
@@ -45,6 +49,10 @@ namespace paperback::coordinator
 		m_CompMgr.Terminate();
 	}
 
+
+	//-----------------------------------
+	//          Registration
+	//-----------------------------------
 	template < concepts::System... T_SYSTEMS >
 	constexpr void instance::RegisterSystems( void ) noexcept
 	{
@@ -57,8 +65,12 @@ namespace paperback::coordinator
 		m_CompMgr.RegisterComponents<T_COMPONENTS...>();
 	}
 
+
+	//-----------------------------------
+	//           Save Scene
+	//-----------------------------------
 	PPB_INLINE
-	void instance::SaveScene(const std::string& FilePath) noexcept
+	void instance::SaveScene( const std::string& FilePath ) noexcept
 	{
 		JsonFile jfile;
 
@@ -77,6 +89,10 @@ namespace paperback::coordinator
 		jfile.EndWriter();
 	}
 
+
+	//-----------------------------------
+	//       Entity / Archetype
+	//-----------------------------------
 	template < typename... T_COMPONENTS >
 	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
@@ -108,6 +124,10 @@ namespace paperback::coordinator
 		m_EntityMgr.RemoveEntity( SwappedGlobalIndex, Entity );
 	}
 
+
+	//-----------------------------------
+	//      Add Remove Components
+	//-----------------------------------
 	template < concepts::TupleSpecialization T_TUPLE_ADD
 			 , concepts::TupleSpecialization T_TUPLE_REMOVE
 			 , concepts::Callable T_FUNCTION >
@@ -120,6 +140,10 @@ namespace paperback::coordinator
 												, Function );
 	}
 
+
+	//-----------------------------------
+	//             Query
+	//-----------------------------------
 	template < typename... T_COMPONENTS >
 	std::vector<archetype::instance*> instance::Search() const noexcept
 	{
@@ -136,10 +160,16 @@ namespace paperback::coordinator
 		return m_EntityMgr.Search( Query );
 	}
 
+
+	//-----------------------------------
+	//            Game Loop
+	//-----------------------------------
 	template < concepts::Callable_Void T_FUNCTION>
 	void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList, T_FUNCTION&& Function ) noexcept
 	{
 		using func_traits = xcore::function::traits<T_FUNCTION>;
+
+		std::cout << ArchetypeList.size() << std::endl;
 
 		for ( const auto& Archetype : ArchetypeList )
 		{
@@ -222,6 +252,10 @@ namespace paperback::coordinator
 		}
 	}
 
+
+	//-----------------------------------
+	//             Getters
+	//-----------------------------------
 	entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
 	{
 		return m_EntityMgr.GetEntityInfo( Entity );
@@ -246,11 +280,18 @@ namespace paperback::coordinator
 		return *p;
 	}
 	
+	//-----------------------------------
+	//         Helper Function
+	//-----------------------------------
 	void instance::FreeEntitiesInArchetype( archetype::instance* Archetype ) noexcept
 	{
 		m_EntityMgr.FreeEntitiesInArchetype( Archetype );
 	}
 
+
+	//-----------------------------------
+	//              Clock
+	//-----------------------------------
 	float instance::DeltaTime() const noexcept
 	{
 		return m_Clock.DeltaTime();

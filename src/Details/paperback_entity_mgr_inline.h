@@ -128,6 +128,16 @@ namespace paperback::entity
     {
         std::vector<archetype::instance*> ValidArchetypes;
 
+        std::cout << "----------------------------------------------------------" << std::endl;
+
+        std::cout << "Bits List: " << m_ArchetypeBits.size() << std::endl;
+        std::cout << "Archetype List: " << m_pArchetypeList.size() << std::endl;
+
+        for ( size_t i = 0; i < m_pArchetypeList.size(); ++i )
+            std::cout << "    Entity Count: " << m_pArchetypeList[i]->m_EntityCount << std::endl;
+
+        std::cout << "----------------------------------------------------------" << std::endl;
+
         // Search for all Archetypes with valid Bit Signatures
         for ( const auto& ArchetypeBits : m_ArchetypeBits )
         {

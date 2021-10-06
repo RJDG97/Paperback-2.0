@@ -299,7 +299,9 @@
       <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
 xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
-xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"</Command>
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"
+xcopy /y "$(ProjectDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(OutDir)"
+xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -333,7 +335,9 @@ xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(Ou
       <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
 xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"
-xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"</Command>
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"
+xcopy /y "$(ProjectDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(OutDir)"
+xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

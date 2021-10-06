@@ -13,6 +13,9 @@ namespace paperback::coordinator
 
 	//public:
 
+		//-----------------------------------
+		//             Default
+		//-----------------------------------
 		instance( void ) noexcept;
 		instance( const instance& ) = delete;
 		~instance( void ) noexcept;

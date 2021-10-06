@@ -14,6 +14,8 @@ struct bullet_logic_system : paperback::system::instance
     {
         if (Entity.IsZombie()) return;
 
+        ERROR_PRINT( "Bullet System" );
+
         //Timer.m_Timer -= m_Coordinator.DeltaTime();
         //if ( Timer.m_Timer <= 0.0f )
         //{
