@@ -41,10 +41,11 @@ public:
         if (!result) 
         {
 
-            std::cout << "Bad read: " << filename << std::endl;
+            //std::cout << "Bad read: " << filename << std::endl;
+            WARN_LOG("Bad Read for Sound Bank");
         }
 
-        std::cout << "bank load status: " << res << "\n\n";
+        //std::cout << "bank load status: " << res << "\n\n";
     }
 
     void RemoveAllBanks() 
@@ -198,11 +199,14 @@ public:
 
         AddBank("TestBank/Master.bank");
         AddBank("TestBank/Master.strings.bank");
-        AddBank("TestBank/Dialogue_EN.bank");
+        /*AddBank("TestBank/Dialogue_EN.bank");
         AddBank("TestBank/Music.bank");
         AddBank("TestBank/SFX.bank");
         AddBank("TestBank/Vehicles.bank");
         AddBank("TestBank/VO.bank");
+        */
+
+
 
         //PlaySoundEvent("event:/Abang", false);
         //PlaySoundEvent("event:/Music/Level 01");
@@ -231,7 +235,7 @@ public:
         //AddBank("Master.bank");
         //AddBank("Master.strings.bank");
         
-        //LoadDebugBank();
+        LoadDebugBank();
 
         m_SoundCounter = {};
 
@@ -242,7 +246,6 @@ public:
     void OnFrameStart(void) noexcept
     {
 
-        GetSystem<debug_system>().BeginTime(0);
     }
 
     // entity that is processed by soundsystem will specifically have sound and timer components
@@ -377,7 +380,6 @@ public:
         std::remove_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [](SoundFile& sound) { return sound.m_ID == 0; });
 
 
-        GetSystem<debug_system>().EndTime(0);
     }
 
     // Terminate system

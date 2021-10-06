@@ -174,6 +174,43 @@ struct debug_system : paperback::system::instance
 
         ConvertVerticesToCircleDraw(debugdraw, top, bottom, right, left, top_right, bottom_right, top_left, bottom_left);
 
+        //horizontal top circle
+        top = center + paperback::Vector3f{ 0.0f, .707f * radius, -.707f * radius };
+        top_right = center + paperback::Vector3f{ .5f * radius, .707f * radius, -.5f * radius };
+        right = center + paperback::Vector3f{ .707f * radius, .707f * radius, 0.0f };
+        bottom_right = center + paperback::Vector3f{ .5f * radius, .707f * radius, .5f * radius };
+        bottom = center + paperback::Vector3f{ 0.0f, .707f * radius, .707f * radius };
+        bottom_left = center + paperback::Vector3f{ -.5f * radius, .707f * radius, .5f * radius };
+        left = center + paperback::Vector3f{ -.707f * radius, .707f * radius, 0.0f };
+        top_left = center + paperback::Vector3f{ -.5f * radius, .707f * radius, -.5f * radius };
+
+        ConvertVerticesToCircleDraw(debugdraw, top, bottom, right, left, top_right, bottom_right, top_left, bottom_left);
+
+        //horizontal middle circle
+        top = center + paperback::Vector3f{ 0.0f, 0.0f, -radius };
+        top_right = center + paperback::Vector3f{ .707f * radius, 0.0f, -.707f * radius };
+        right = center + paperback::Vector3f{ radius, 0.0f, 0.0f };
+        bottom_right = center + paperback::Vector3f{ .707f * radius, 0.0f, .707f * radius };
+        bottom = center + paperback::Vector3f{ 0.0f, 0.0f, radius };
+        bottom_left = center + paperback::Vector3f{ -.707f * radius, 0.0f, .707f * radius };
+        left = center + paperback::Vector3f{ -radius, 0.0f, 0.0f };
+        top_left = center + paperback::Vector3f{ -.707f * radius, 0.0f, -.707f * radius };
+
+        ConvertVerticesToCircleDraw(debugdraw, top, bottom, right, left, top_right, bottom_right, top_left, bottom_left);
+
+        //horizontal bottom circle
+        top = center + paperback::Vector3f{ 0.0f, -.707f * radius, -.707f * radius };
+        top_right = center + paperback::Vector3f{ .5f * radius, -.707f * radius, -.5f * radius };
+        right = center + paperback::Vector3f{ .707f * radius, -.707f * radius, 0.0f };
+        bottom_right = center + paperback::Vector3f{ .5f * radius, -.707f * radius, .5f * radius };
+        bottom = center + paperback::Vector3f{ 0.0f, -.707f * radius, .707f * radius };
+        bottom_left = center + paperback::Vector3f{ -.5f * radius, -.707f * radius, .5f * radius };
+        left = center + paperback::Vector3f{ -.707f * radius, -.707f * radius, 0.0f };
+        top_left = center + paperback::Vector3f{ -.5f * radius, -.707f * radius, -.5f * radius };
+
+        ConvertVerticesToCircleDraw(debugdraw, top, bottom, right, left, top_right, bottom_right, top_left, bottom_left);
+
+
         DrawDebugLines(debugdraw);
     }
 
