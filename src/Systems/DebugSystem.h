@@ -33,7 +33,6 @@ struct debug_system : paperback::system::instance
     void EndTime(size_t system_index)
     {
 
-        //m_RawTimePerSystem[system_index] 
         m_TimePerSystem[system_index] = static_cast<std::chrono::duration<float>>(PPB.m_Clock.Now() - m_RawTimePerSystem[system_index]).count();
     }
 
@@ -43,9 +42,9 @@ struct debug_system : paperback::system::instance
     void DebugPrint()
     {
 
-        std::cout << "Total time: " << m_TotalTime << std::endl;
+        /*std::cout << "Total time: " << m_TotalTime << std::endl;
         std::cout << "\tSystem 1: " << m_PercentageTimePerSystem[0] << std::endl;
-        std::cout << "\tSystem 2: " << m_PercentageTimePerSystem[1] << std::endl;
+        std::cout << "\tSystem 2: " << m_PercentageTimePerSystem[1] << std::endl;*/
     }
 
     // returns a reference to the vector of time taken per system in seconds
