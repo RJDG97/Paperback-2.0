@@ -34,8 +34,6 @@ namespace paperback::archetype
         ++m_EntityCount;
         assert( m_EntityCount < settings::max_entities_v );
 
-        std::cout << "Created Entity: " << m_EntityCount << std::endl;
-
         return [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* )
         {
             assert( m_ComponentBits.Has( component::info_v<T_COMPONENTS>.m_UID ) && ... );
@@ -65,8 +63,6 @@ namespace paperback::archetype
     void instance::DestroyEntity( component::entity& Entity ) noexcept
     {
         assert( Entity.IsZombie() == false );
-
-        std::cout << "Destroy Entity" << std::endl;
 
         auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity );
         auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails );

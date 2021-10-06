@@ -169,8 +169,6 @@ namespace paperback::coordinator
 	{
 		using func_traits = xcore::function::traits<T_FUNCTION>;
 
-		std::cout << ArchetypeList.size() << std::endl;
-
 		for ( const auto& Archetype : ArchetypeList )
 		{
 			for ( auto& Pool : Archetype->m_ComponentPool )
