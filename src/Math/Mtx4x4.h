@@ -2,6 +2,7 @@
 #define MTX4X4_H
 
 #include "Vector3f.h"
+#include "MathUtils.h"
 
 namespace paperback
 {
@@ -90,8 +91,16 @@ namespace paperback
 		static inline Mtx4x4 RotX(float angle);			// -- Returns the rotation matrix in the X axis
 		static inline Mtx4x4 RotY(float angle);			// -- Returns the rotation matrix in the Y axis
 		static inline Mtx4x4 RotZ(float angle);			// -- Returns the rotation matrix in the Z axis
-		static inline Mtx4x4 RotRad2D(float angle);		// -- Returns the rotation matrix (Z axis) taking in an angle in radians
-		static inline Mtx4x4 RotDeg2D(float angle);		// -- Returns the rotation matrix (Z axis) taking in an angle in degrees
+		static inline Mtx4x4 RotRad2D(float angle)		// -- Returns the rotation matrix (Z axis) taking in an angle in radians
+		{
+			//return RotZ(angle);
+			return Mtx4x4{};
+		}
+		static inline Mtx4x4 RotDeg2D(float angle)		// -- Returns the rotation matrix (Z axis) taking in an angle in degrees
+		{
+			//return RotZ(MathUtils::DegToRad(angle));
+			return Mtx4x4{};
+		}
 		static Mtx4x4 LookAt(const Vector3f& up,		// -- Gets the LookAt matrix, taking in the up vector of the camera,
 			const Vector3f& target,	// -- target pos of the camera
 			const Vector3f& pos)		// -- and the camera's position.

@@ -7,12 +7,15 @@ namespace paperback::archetype
         using PoolDetails    = vm::PoolDetails;
         using EntityIDList   = std::vector<uint16_t>;
         using ComponentPool  = std::array<vm::instance, 2>;
+        using MoveList       = std::vector<vm::PoolDetails>;
         using DeleteList     = std::vector<component::entity>;
-        using ComponentInfos = std::span<const component::info* const>;
+        //using ComponentInfos = std::span<const component::info* const>;
+        using ComponentInfos = std::array< const component::info*, paperback::settings::max_components_per_entity_v >;
 
         coordinator::instance&        m_Coordinator;
         ComponentPool                 m_ComponentPool            {   };                           // Component Pool
         ComponentInfos                m_ComponentInfos           {   };                           // Component Infos
+        MoveList                      m_MoveList                 {   };                           // List of entities to be moved
         DeleteList                    m_DeleteList               {   };                           // List of entities to be deleted
         tools::bits                   m_ComponentBits            {   };                           // Component Signature
         std::string                   m_pName                    { "Unnamed Archetype" };         // Archetype name for reflecting in Editor
@@ -25,7 +28,7 @@ namespace paperback::archetype
         instance( coordinator::instance& Coordinator, const tools::bits& ComponentBits ) noexcept;
 
         PPB_INLINE
-        void Init( std::span<const component::info* const> Types ) noexcept;
+        void Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept;
 
         template< typename T_CALLBACK = paperback::empty_lambda >
         PoolDetails CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
@@ -47,8 +50,8 @@ namespace paperback::archetype
         requires( !(( std::is_reference_v<T_COMPONENTS> ) && ...) )
         constexpr auto GetComponentArray( vm::instance& Pool, u32 PoolIndex, std::tuple<T_COMPONENTS...>* ) const noexcept;
 
-        //template < typename T_FUNCTION >
-        //component::entity& TransferExistingEntity( component::entity& Entity, T_FUNCTION&& Function ) noexcept;
+        template < typename T_FUNCTION = paperback::empty_lambda >
+        component::entity TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
         template < typename T_FUNCTION >
         requires( xcore::function::is_callable_v<T_FUNCTION>&&

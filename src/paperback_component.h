@@ -21,6 +21,10 @@ To Use:
 		PPB.RegisterComponents<
 			my_component
 		>();
+
+    3. Update GetComponentInstance()
+
+        Inside of paperback_component.h, add the new component to the statements
 */
 
 namespace paperback::component

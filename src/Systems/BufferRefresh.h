@@ -16,7 +16,6 @@ struct buffer_refresh_system : paperback::system::instance
     PPB_FORCEINLINE
     void Update( void ) noexcept
     {
-        glutSwapBuffers();
-        glClear(GL_COLOR_BUFFER_BIT);
+
     }
 };

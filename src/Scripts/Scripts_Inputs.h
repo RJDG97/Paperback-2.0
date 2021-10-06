@@ -36,7 +36,7 @@ namespace MONO_INPUTS
 		return PPB.m_Input.IsMouseUp(Key);
 	}
 
-	void Add_Internals()
+	void AddInternals()
 	{
 		mono_add_internal_call("CSScript.Inputs::IsKeyPress(int)", &MONO_INPUTS::IsKeyPress);
 		mono_add_internal_call("CSScript.Inputs::IsKeyPressDown(int)", &MONO_INPUTS::IsKeyPressDown);

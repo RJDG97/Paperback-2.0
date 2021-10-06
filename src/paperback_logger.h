@@ -73,19 +73,36 @@ namespace paperback
 	#define DEBUG_PRINT( ... ) 
 	#define INFO_PRINT( ... )
 	#define WARN_PRINT( ... )
-	#define ERROR_PRINT( ... ) ::Paperback::Log::GetWriter()->error( __VA_ARGS__ )
-	#define CRITICAL_PRINT( ... ) ::Paperback::Log::GetWriter()->critical( __VA_ARGS__ )
+	#define ERROR_PRINT( ... ) ::paperback::logger::GetWriter()->error( __VA_ARGS__ )
+	#define CRITICAL_PRINT( ... ) ::paperback::logger::GetWriter()->critical( __VA_ARGS__ )
 
 	// Logger Methods
 	#define TRACE_LOG( ... )
 	#define DEBUG_LOG( ... )
 	#define INFO_LOG( ... )
 	#define WARN_LOG( ... )
-	#define ERROR_LOG( ... ) ::Paperback::Log::GetLogger()->error( __VA_ARGS__ )
-	#define CRITICAL_LOG( ... ) ::Paperback::Log::GetLogger()->critical( __VA_ARGS__ )
+	#define ERROR_LOG( ... ) ::paperback::logger::GetLogger()->error( __VA_ARGS__ )
+	#define CRITICAL_LOG( ... ) ::paperback::logger::GetLogger()->critical( __VA_ARGS__ )
 
 	// Assertion Methods
 	#define PPB_ASSERT( expr )
 	#define PPB_ASSERT_MSG( expr, ... )
 
 #endif
+
+// Critical Assertion Methods
+#define PPB_CRITICAL_ASSERT( expr )												\
+	if (expr) {																	\
+		CRITICAL_PRINT("Assertion occured at {}: Line {}", __FILE__, __LINE__);	\
+		CRITICAL_LOG("Assertion occured at {}: Line {}", __FILE__, __LINE__);	\
+		DEBUG_BREAK();															\
+	}
+
+#define PPB_CRITICAL_ASSERT_MSG( expr, ... )									\
+	if (expr) {																	\
+		CRITICAL_PRINT("Assertion occured at {}: Line {}", __FILE__, __LINE__);	\
+		CRITICAL_PRINT(__VA_ARGS__);											\
+		CRITICAL_LOG("Assertion occured at {}: Line {}", __FILE__, __LINE__);	\
+		CRITICAL_LOG(__VA_ARGS__);												\
+		DEBUG_BREAK();															\
+	}

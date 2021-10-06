@@ -2,6 +2,10 @@
 
 namespace paperback::entity
 {
+    manager::manager( paperback::coordinator::instance& Coordinator ) :
+        m_Coordinator{ Coordinator }
+    { }
+
 	void manager::RegisterEntity( const PoolDetails Details, archetype::instance& Archetype ) noexcept
     {
         u32   EntityGlobalIndex = AppendEntity();
@@ -52,15 +56,16 @@ namespace paperback::entity
     template < typename... T_COMPONENTS >
     archetype::instance& manager::GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept
     {
-        static constexpr auto ComponentList = std::array{ &component::info_v<component::entity>, &component::info_v<T_COMPONENTS>... };
+        static constexpr auto ComponentList = paperback::component::sorted_info_array_v< std::tuple<component::entity, T_COMPONENTS...> >;
         return GetOrCreateArchetype( ComponentList, Coordinator );
     }
 
-    template < typename... T_COMPONENTS > // PRIVATE FN
+    // PRIVATE FN
     archetype::instance& manager::CreateArchetype( coordinator::instance& Coordinator, const tools::bits& Signature ) noexcept
     {
-        m_pArchetypeList.push_back( std::make_unique<archetype::instance>( *this ) );
+        m_pArchetypeList.push_back( std::make_unique<archetype::instance>( m_Coordinator, Signature ) );
 		m_ArchetypeBits.push_back( Signature );
+
         return *( m_pArchetypeList.back() );
     }
 
@@ -129,7 +134,9 @@ namespace paperback::entity
             if ( Query.Compare( ArchetypeBits ) )
             {
                 const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
-                ValidArchetypes.push_back( m_pArchetypeList[index].get() );
+
+                if ( m_pArchetypeList[index]->m_EntityCount > 0 )
+                    ValidArchetypes.push_back( m_pArchetypeList[index].get() );
             }
         }
 
@@ -171,7 +178,7 @@ namespace paperback::entity
         m_pArchetypeList.push_back( std::make_unique<archetype::instance>(Coordinator, Query) );
         m_ArchetypeBits.push_back( Query );
 
-        m_pArchetypeList.back()->Init( Types );
+        m_pArchetypeList.back()->Init( Types, Types.size() );
 
         return *( m_pArchetypeList.back() );
     }
@@ -195,6 +202,124 @@ namespace paperback::entity
 	    }
 
 	    return ValidArchetypes;
+	}
+
+    // Coordinator -> Entity Mgr -> New / Existing Archetype -> Pool
+    template < concepts::Callable T_FUNCTION >
+	component::entity manager::AddOrRemoveComponents( const component::entity Entity
+								                     , std::span<const component::info* const> Add
+								                     , std::span<const component::info* const> Remove
+								                     , T_FUNCTION&& Function ) noexcept
+	{
+		PPB_ASSERT_MSG( Entity.IsZombie(), "Attempting to add component to non-existent entity" );
+
+		auto& EntityInfo        = GetEntityInfo( Entity.m_GlobalIndex );
+        auto  OriginalArchetype = EntityInfo.m_pArchetype;
+		auto  UpdatedSignature  = EntityInfo.m_pArchetype->m_ComponentBits;
+
+        auto InvalidComponentModification = [&]( const component::info* ComponentInfo ) -> bool
+        {
+            if ( ComponentInfo->m_UID == 0 )
+            {
+                WARN_PRINT( "Attempting to add/remove component::entity" );
+                WARN_LOG  ( "Attempting to add/remove component::entity" );
+                return true;
+            }
+            return false;
+        };
+        auto InvalidComponentIndex = [&]( size_t ComponentIndex ) -> bool
+        {
+            if ( ComponentIndex == 0 )
+            {
+                WARN_PRINT( "Attempting to add/remove component::entity - No Matching Archetype Case" );
+                WARN_LOG  ( "Attempting to add/remove component::entity - No Matching Archetype Case" );
+                return true;
+            }
+            return false;
+        };
+
+		// Update Entity's bit signature based on new components
+		for ( const auto& ComponentToAdd : Add )
+		{
+            if ( InvalidComponentModification( ComponentToAdd ) ) continue;
+			UpdatedSignature.Set( ComponentToAdd->m_UID );
+		}
+        for ( const auto& ComponentToRemove : Remove )
+		{
+			if ( InvalidComponentModification( ComponentToRemove ) ) continue;
+			UpdatedSignature.Remove( ComponentToRemove->m_UID );
+		}
+
+		auto ExistingArchetype = Search( UpdatedSignature );
+
+		/*
+            If Archetype with matching bit signature already exists
+            If it does, transfer components over - But don't delete old entity yet
+        */
+		if ( ExistingArchetype )
+		{
+			if ( std::is_same_v<T_FUNCTION, empty_lambda> ) return ExistingArchetype->TransferExistingEntity( Entity );
+			else											return ExistingArchetype->TransferExistingEntity( Entity, Function );
+		}
+		// Create Archetype with matching bit signature
+		else
+		{
+			int Count{ };
+			auto& Archetype = *EntityInfo.m_pArchetype;
+			std::array<const paperback::component::info*, settings::max_components_per_entity_v > NewComponentInfoList;
+
+			//for ( auto& CInfo : Archetype.m_ComponentInfos )
+			for ( auto& CInfo : std::span{ Archetype.m_ComponentInfos.data(), Archetype.m_NumberOfComponents } )
+				NewComponentInfoList[Count++] = CInfo;
+
+			for ( auto& CInfo : Add )
+			{
+				//const auto Index = component::details::find_component_index_v( NewComponentInfoList, CInfo, Count );
+                const auto Index = static_cast<std::size_t>(std::upper_bound(NewComponentInfoList.begin(), NewComponentInfoList.begin() + Count, CInfo, [](const paperback::component::info* pA, const paperback::component::info* pB)
+                {
+                    return pA->m_Guid < pB->m_Guid;
+                }) - NewComponentInfoList.begin());
+
+                // Modifying component::entity
+				if ( InvalidComponentIndex( Index ) ) continue;
+				// Avoid dupe components
+				if ( NewComponentInfoList[ Index - 1 ]->m_Guid == CInfo->m_Guid ) continue;
+				// Shift all component::info*'s backwards by 1 component::info* slot to make space
+				if ( Index != Count ) std::memmove( &NewComponentInfoList[ Index + 1 ],
+													&NewComponentInfoList[ Index ],
+													( Count - Index ) * sizeof( component::info* ) );
+
+				NewComponentInfoList[ Index ] = CInfo;
+				++Count;
+			}
+			for ( auto& CInfo : Remove )
+			{
+				//const auto Index = component::details::find_component_index_v( NewComponentInfoList, CInfo, Count );
+                const auto Index = static_cast<std::size_t>(std::upper_bound(NewComponentInfoList.begin(), NewComponentInfoList.begin() + Count, CInfo, [](const paperback::component::info* pA, const paperback::component::info* pB)
+                {
+                    return pA->m_Guid < pB->m_Guid;
+                }) - NewComponentInfoList.begin());
+
+                // Modifying component::entity
+                if ( InvalidComponentIndex(Index) ) continue;
+
+				if ( NewComponentInfoList[ Index - 1 ]->m_Guid == CInfo->m_Guid )
+				{
+					std::memmove( &NewComponentInfoList[ Index - 1 ], &NewComponentInfoList[ Index ], ( Count - Index ) * sizeof( component::info* ) );
+					--Count;
+				}
+			}
+            
+            // Initialize Newly Created Archetype
+			auto& NewArchetype = CreateArchetype( m_Coordinator, UpdatedSignature );
+			NewArchetype.Init( NewComponentInfoList, Count );
+
+            /*
+                Transfer components over to new archetype - But don't delete old entity yet
+            */
+			if constexpr ( std::is_same_v<T_FUNCTION, paperback::empty_lambda> )   return NewArchetype.TransferExistingEntity( Entity );
+			else                                                                   return NewArchetype.TransferExistingEntity( Entity, Function );
+		}
 	}
 
     void manager::Terminate( void ) noexcept

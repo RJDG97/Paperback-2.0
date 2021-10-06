@@ -118,14 +118,14 @@ namespace paperback
 	}
 
 	// -- Returns the rotation matrix (Z axis) taking in an angle in radians
-	inline Mtx4x4 Mtx4x4::RotRad2D(float angle)
-	{
-		return RotZ(angle);
-	}
-
-	// -- Returns the rotation matrix (Z axis) taking in an angle in degrees
-	inline Mtx4x4 Mtx4x4::RotDeg2D(float angle)
-	{
-		return RotZ(MathUtils::DegToRad(angle));
-	}
+	//inline Mtx4x4 Mtx4x4::RotRad2D(float angle)
+	//{
+	//	return RotZ(angle);
+	//}
+	//
+	//// -- Returns the rotation matrix (Z axis) taking in an angle in degrees
+	//inline Mtx4x4 Mtx4x4::RotDeg2D(float angle)
+	//{
+	//	return RotZ(MathUtils::DegToRad(angle));
+	//}
 }

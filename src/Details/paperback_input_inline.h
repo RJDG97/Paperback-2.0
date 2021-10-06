@@ -5,6 +5,10 @@ Input::Input() noexcept
 	m_Buttons.fill({ -1,-1 });
 }
 
+
+//-----------------------------------
+//              Keys
+//-----------------------------------
 void Input::SetKey(int Key, int Action) noexcept
 {
 	// Set key current state
@@ -38,6 +42,10 @@ bool Input::IsKeyPressUp(int Key) const noexcept
 	return KeyCode.m_Current == GLFW_RELEASE && KeyCode.m_Previous != KeyCode.m_Current;
 }
 
+
+//-----------------------------------
+//              Mouse
+//-----------------------------------
 void Input::SetMouse(int Key, int Action) noexcept
 {
 	// Set button state
@@ -116,6 +124,10 @@ glm::vec3 Input::GetMousePosition() const noexcept
 	return glm::vec3{ 0 };
 }
 
+
+//-----------------------------------
+//           Post Update
+//-----------------------------------
 void Input::UpateInputs() noexcept
 {
 	for (auto& key : m_Keys)

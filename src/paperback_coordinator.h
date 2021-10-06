@@ -1,5 +1,5 @@
 #pragma once
-
+// jy
 namespace paperback::coordinator
 {
 	struct instance final
@@ -7,20 +7,21 @@ namespace paperback::coordinator
 		tools::clock				m_Clock;
 		Input						m_Input;
 		component::manager			m_CompMgr;
-		entity::manager				m_EntityMgr;
+		entity::manager				m_EntityMgr{ *this };
 		system::manager				m_SystemMgr{ m_Clock };
 		bool						m_GameActive = true;
 
 	//public:
 
+		//-----------------------------------
+		//             Default
+		//-----------------------------------
 		instance( void ) noexcept;
 		instance( const instance& ) = delete;
+		~instance( void ) noexcept;
 
 		PPB_INLINE
 		static instance& GetInstance( void ) noexcept;
-
-		PPB_INLINE
-		~instance( void ) noexcept;
 
 		PPB_INLINE
 		void Initialize( void ) noexcept;
@@ -30,7 +31,6 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		void Terminate( void ) noexcept;
-
 
 
 		//-----------------------------------
@@ -45,6 +45,7 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		void SaveScene(const std::string& FilePath) noexcept;
+
 
 		//-----------------------------------
 		//    Archetype / Entity Methods
@@ -66,21 +67,20 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void RemoveEntity( const uint32_t SwappedGlobalIndex, const component::entity Entity ) noexcept;
 
-		/*
+		
 		template < concepts::TupleSpecialization T_TUPLE_ADD
 				 , concepts::TupleSpecialization T_TUPLE_REMOVE = std::tuple<>
-				 , concepts::Callable			 T_FUNCTION     = empty_lambda >
-		component::entity AddOrRemoveComponents( component::entity Entity
-											   , T_FUNCTION&& Function ) noexcept;
-		*/
-
-
+				 , concepts::Callable			 T_FUNCTION     = paperback::empty_lambda >
+		component::entity AddOrRemoveComponents( const component::entity Entity
+											   , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
+		
+		
 		//-----------------------------------
 		//           Query Methods
 		//-----------------------------------
 
 		template < typename... T_COMPONENTS >
-        std::vector<archetype::instance*> Search() const noexcept;
+        std::vector<archetype::instance*> Search( void ) const noexcept;
 
 		PPB_INLINE
         archetype::instance* Search( const tools::bits& Bits ) const noexcept;
@@ -94,14 +94,13 @@ namespace paperback::coordinator
 		//           Game Loops
 		//-----------------------------------
 
-        template < concepts::Callable_Void T_FUNCTION>
+        template < concepts::Callable_Void T_FUNCTION >
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;
 
-        template < concepts::Callable_Bool T_FUNCTION>
+        template < concepts::Callable_Bool T_FUNCTION >
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;
-
 
 
 		//-----------------------------------
@@ -131,20 +130,6 @@ namespace paperback::coordinator
 
 		PPB_FORCEINLINE
         float GetTimeScale() const noexcept;
-
-		
-
-		//-----------------------------------
-		//    Archetype / Entity Methods
-		//-----------------------------------
-		
-		/*
-		template < concepts::Callable T_FUNCTION >
-		component::entity AddOrRemoveComponents( const component::entity Entity
-											   , std::span<const component::info* const> Add
-											   , std::span<const component::info* const> Remove
-											   , T_FUNCTION&& Function = empty_lambda{} ) noexcept;
-		*/
 	};
 }
 

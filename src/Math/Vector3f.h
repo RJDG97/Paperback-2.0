@@ -3,6 +3,8 @@
 
 #include "Vector3fData.h"
 
+#define ErrorIf(...) ((void)0)
+
 namespace paperback
 {
 	//------ A Vector3f object can be constructed with only 2 floats
@@ -12,7 +14,15 @@ namespace paperback
 	class Vector3f
 	{
 	public:															//------ Public members
-		float x, y, z;												//------ x, y, z members
+		//float x, y, z;												//------ x, y, z members
+		union
+		{
+			struct
+			{
+				float x, y, z;
+			};
+			float array[3];
+		};
 		Vector3f(float _x, float _y, float _z)						//------ Overloaded constructor
 			: x(_x), y(_y), z(_z)
 		{}
@@ -61,6 +71,17 @@ namespace paperback
 		inline bool operator==(const Vector3f& Other) const;		//------ Vector3f == Vector3f
 		inline bool operator!= (const Vector3f& Other) const;		//------ Vector3f != Vector3f
 		inline Vector3f operator~() const;							//------ Returns 2D-casted Vector3f
+
+		float& operator[](unsigned index)
+		{
+			ErrorIf(index > 2, "Math::Vector3 - Subscript out of range.");
+			return array[index];
+		}
+		float operator[](unsigned index) const
+		{
+			ErrorIf(index > 2, "Math::Vector3 - Subscript out of range.");
+			return array[index];
+		}
 		//----------------------------------------------------------------------//
 
 		float MagnitudeFast() const;								//------ Find approximated magnitude of a vector using fast inverse sqrt

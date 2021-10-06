@@ -29,8 +29,6 @@
 // Dependencies
 //----------------------------------
 #include "../dependencies/xcore/src/xcore.h"
-#define GLUT_STATIC_LIB
-#include "../dependencies/glut/include/GL/glut.h"
 
 //----------------------------------
 // Forward Declaration
@@ -99,5 +97,9 @@ namespace paperback
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_coordinator_inline.h"
 
+//----------------------------------
+// Math files
+//----------------------------------
+//#include "Math/Math_includes.h"
 
 #endif

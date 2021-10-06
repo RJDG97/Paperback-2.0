@@ -41,10 +41,13 @@ public:
         if (!result) 
         {
 
-            std::cout << "Bad read: " << filename << std::endl;
+            ERROR_LOG("Unable to load Sound Bank: '" + std::string{ filename } + "'");
         }
-
-        std::cout << "bank load status: " << res << "\n\n";
+        else
+        {
+            
+            ERROR_LOG("Sound Bank: '" + std::string{ filename } + "' successfullly loaded");
+        }
     }
 
     void RemoveAllBanks() 
@@ -83,7 +86,7 @@ public:
         }
         else {
 
-            std::cout << "event not found" << std::endl;
+            ERROR_LOG("Sound Event: '" + std::string{ path }  + "' does not exist in current Sound Bank");
         }
     }
 
@@ -198,14 +201,12 @@ public:
 
         AddBank("TestBank/Master.bank");
         AddBank("TestBank/Master.strings.bank");
-        AddBank("TestBank/Dialogue_EN.bank");
+        /*AddBank("TestBank/Dialogue_EN.bank");
         AddBank("TestBank/Music.bank");
         AddBank("TestBank/SFX.bank");
         AddBank("TestBank/Vehicles.bank");
         AddBank("TestBank/VO.bank");
-
-        //PlaySoundEvent("event:/Abang", false);
-        //PlaySoundEvent("event:/Music/Level 01");
+        */
     }
 
     constexpr static auto typedef_v = paperback::system::type::update
@@ -217,8 +218,6 @@ public:
     void OnSystemCreated( void ) noexcept
     {
         // set up system aka fmod required stuff
-        //FMOD::System_Create(&m_pFMODSystem);
-        //m_pFMODSystem->init(32, FMOD_INIT_NORMAL, m_pFMODSystem);
         
         //create fmod studio system instance
         FMOD::Studio::System::create(&m_pStudioSystem);
@@ -231,7 +230,7 @@ public:
         //AddBank("Master.bank");
         //AddBank("Master.strings.bank");
         
-        //LoadDebugBank();
+        LoadDebugBank();
 
         m_SoundCounter = {};
 
@@ -242,7 +241,6 @@ public:
     void OnFrameStart(void) noexcept
     {
 
-        GetSystem<debug_system>().BeginTime(0);
     }
 
     // entity that is processed by soundsystem will specifically have sound and timer components
@@ -339,12 +337,11 @@ public:
             //value 74 if parameter does not exist
             FMOD_RESULT err = sound->setParameterByName("Progression", 1.0f);
 
-            std::cout << "\tParameter get result: " << err << std::endl;
-
+            ERROR_LOG("SoundSystem Debug Parameter Test Result: " + err);
         }
         else
         {
-            std::cout << "\tYet to trigger\n";
+            ERROR_LOG("SoundSystem Debug Parameter Test: Yet to trigger"); 
         }
     }
 
@@ -377,7 +374,6 @@ public:
         std::remove_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [](SoundFile& sound) { return sound.m_ID == 0; });
 
 
-        GetSystem<debug_system>().EndTime(0);
     }
 
     // Terminate system
