@@ -13,6 +13,8 @@
 #include "Json/JsonSerialize.h"
 #include "Json/JsonDeserialize.h"
 
+#include <rapidjson/error/en.h>
+
 namespace paperback 
 {
     class JsonFile
@@ -31,8 +33,8 @@ namespace paperback
 
         JsonFile& StartWriter(std::string File)
         {
-            PPB_ASSERT(fp == nullptr);
             fopen_s(&fp, File.c_str(), "wb");
+            PPB_ASSERT(fp == nullptr);
             buffer = new char[65536] {};
             wstream = new rapidjson::FileWriteStream(fp, buffer, 65536);
             writer = new rapidjson::PrettyWriter<rapidjson::FileWriteStream>(*wstream);
@@ -84,18 +86,18 @@ namespace paperback
 
         JsonFile& Write( rttr::instance Obj )
         {
-            serialize::Write(Obj, *writer);
+            serialize::Write( Obj, *writer );
             return *this;
         }
 
         JsonFile& WriteArray( const rttr::variant_sequential_view& View )
         {
-            serialize::WriteArray(View, *writer);
+            serialize::WriteArray( View, *writer );
         }
 
-        JsonFile& WriteAssociativeContainers(const rttr::variant_associative_view& View)
+        JsonFile& WriteAssociativeContainers( const rttr::variant_associative_view& View )
         {
-            serialize::Write(View, *writer);
+            serialize::Write( View, *writer );
             return *this;
         }
 
@@ -105,13 +107,17 @@ namespace paperback
 
         JsonFile& StartReader(std::string File)
         {
-            PPB_ASSERT(fp == nullptr);
             fopen_s(&fp, File.c_str(), "rb");
+            PPB_ASSERT(fp == nullptr);
             buffer = new char[65536]; buffer;
             rstream = new rapidjson::FileReadStream(fp, buffer, 65536);
             doc = new rapidjson::Document();
-            PPB_ASSERT(!doc->ParseStream(*rstream).HasParseError());
+            PPB_ASSERT(doc->ParseStream(*rstream).HasParseError());
 
+            //if (doc->ParseStream(*rstream).HasParseError())
+            //{
+            //    std::cout << GetParseError_En(doc->GetParseError()) << std::endl;
+            //}
             return *this;
         }
 
@@ -141,15 +147,15 @@ namespace paperback
         JsonFile& LoadEntities(const char* Archetype)
         {
             rapidjson::Value::MemberIterator it = doc->FindMember(Archetype);
-            //if (it != doc->MemberEnd())
-            // deserialize::ReadEntities(it);
+            if ( it != doc->MemberEnd() )
+                deserialize::ReadEntities(it);
 
             return *this;
         }
 
-        JsonFile& LoadObject(rttr::instance Obj)
+        JsonFile& LoadObjects( rttr::instance Instance )
         {
-            deserialize::ReadObject(Obj, *doc);
+            deserialize::ReadObject(Instance, *doc);
             return *this;
         }
     };

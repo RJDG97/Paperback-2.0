@@ -190,9 +190,39 @@ namespace paperback::deserialize
         ReadRecursive(obj, doc);
     }
 
-    void ReadEntity( rapidjson::Value::MemberIterator it) 
+    void ReadEntities( rapidjson::Value::MemberIterator it) 
     {
-        // to do link to the creating entity
-    }
+        for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
+        {
+            for (rapidjson::Value::MemberIterator mitr = itr->MemberBegin(); mitr != itr->MemberEnd(); mitr++)
+            {
+                //inside "Entities["
 
+                //rapidjson::Value& ValueArr = mitr->value;
+
+                 //mitr->name.GetString()  //archetype name
+
+                for ( rapidjson::Value::ValueIterator vitr = mitr->value.Begin(); vitr != mitr->value.End(); vitr++ )
+                {
+                    for ( rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++ )
+                    {
+                        rttr::type type = rttr::type::get_by_name(Mitr->name.GetString());
+                        rttr::variant obj = type.get_constructor().invoke();
+
+                        //if (obj.is_valid())
+                        //    std::cout << "Made: " << obj.get_type().get_name() << std::endl;
+
+                        auto& Value = Mitr->value;
+                        ReadRecursive(obj, Value);
+
+                        if (obj.is_type<transform>())
+                        {
+                            auto& Trans = obj.get_value<transform>();
+                        }
+                    }
+                }
+
+            }
+        }
+    }
 }

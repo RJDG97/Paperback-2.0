@@ -44,7 +44,10 @@ namespace paperback::coordinator
 		constexpr void RegisterComponents( void ) noexcept;
 
 		PPB_INLINE
-		void SaveScene(const std::string& FilePath) noexcept;
+		void SaveScene( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE
+		void OpenScene( const std::string& FilePath ) noexcept;
 
 
 		//-----------------------------------

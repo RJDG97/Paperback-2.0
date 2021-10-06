@@ -71,8 +71,18 @@ namespace paperback::archetype
         PPB_INLINE 
         archetype::instance* GetArchetypePointer( const u32 Index ) noexcept;
 
+        //PPB_INLINE
+        //paperback::entity::info GetEntityInfo( const u32 Index ) noexcept;
+
         // Private Stuff
         PPB_INLINE
         vm::instance& GetPoolWithIndex( const uint32_t EntityPoolIndex ) noexcept;
     };
+
+    RTTR_REGISTRATION
+    {
+         rttr::registration::class_<instance>("Archetype")
+            .property("Tag", &instance::m_pName);
+
+    }
 }

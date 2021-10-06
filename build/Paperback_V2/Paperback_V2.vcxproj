@@ -274,6 +274,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
       <ProgramDataBaseFileName>$(OutDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -308,6 +309,7 @@ xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Com
       <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;../../dependencies/mono/include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

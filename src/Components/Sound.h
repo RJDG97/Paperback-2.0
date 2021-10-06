@@ -18,7 +18,7 @@ namespace RR_Sound
     {
          rttr::registration::class_<sound>(sound::typedef_v.m_pName)
            .constructor()(rttr::policy::ctor::as_object)
-           .property("Sound ID", &sound::m_SoundID)
+           .property("Playing?", &sound::m_SoundPlayTag)
            .property("3D Sound", &sound::m_Is3DSound);
     }
 }
