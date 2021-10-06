@@ -139,7 +139,11 @@ void main()
 	}
 	else
 	{
+		vec3 Normal = normalize(vNormal);
+
+		float Shadow = ShadowValue(lFragPosition, normalize(vNormal), normalize(-uLight.Direction));
+
 		fBrightClr = vec4(0.0, 0.0, 0.0, 1.0);
-		fFragClr = vec4(1.0, 0.0, 0.5, 1.0);
+		fFragClr = (1.0 - Shadow) * vec4(1.0, 0.0, 0.5, 1.0);
 	}
 }

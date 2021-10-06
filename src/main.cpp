@@ -117,24 +117,33 @@ void InitializeGame()
             });
 
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        {
+            Transform.m_Position.m_X = 6;// std::rand() % (m_Engine.m_Width / 2);
+            Transform.m_Position.m_Y = 8.5;// std::rand() % (m_Engine.m_Height / 2);
+            Transform.m_Position.m_Z = 0;
+
+            Mesh.m_Model = "Box";
+        });
+
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
             {
                 Transform.m_Position.m_X = -4;
-                Transform.m_Position.m_Y = -2;
+                Transform.m_Position.m_Y = 2.5;
                 Transform.m_Position.m_Z = -10;
 
 
                 Mesh.m_Model = "Box";
             });
 
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
-            {
-                Transform.m_Position.m_X = -0.01;;
-                Transform.m_Position.m_Y = -4;
-                Transform.m_Position.m_Z = -10;
+        //PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        //    {
+        //        Transform.m_Position.m_X = -0.01;;
+        //        Transform.m_Position.m_Y = -4;
+        //        Transform.m_Position.m_Z = -10;
 
 
-                Mesh.m_Model = "Plane";
-            });
+        //        Mesh.m_Model = "Plane";
+        //    });
 
         PPB.CreateEntity([&](transform& Transform, sound& Sound)
             {
@@ -144,7 +153,7 @@ void InitializeGame()
 
                 Sound.m_SoundID = "event:/Music/Level 01";
             });
-        
+        //
         // jjyy
         //PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
         //    {
