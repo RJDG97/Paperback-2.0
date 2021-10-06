@@ -196,12 +196,6 @@ namespace paperback::deserialize
         {
             for (rapidjson::Value::MemberIterator mitr = itr->MemberBegin(); mitr != itr->MemberEnd(); mitr++)
             {
-                //inside "Entities["
-
-                //rapidjson::Value& ValueArr = mitr->value;
-
-                 //mitr->name.GetString()  //archetype name
-
                 for ( rapidjson::Value::ValueIterator vitr = mitr->value.Begin(); vitr != mitr->value.End(); vitr++ )
                 {
                     for ( rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++ )
@@ -209,19 +203,28 @@ namespace paperback::deserialize
                         rttr::type type = rttr::type::get_by_name(Mitr->name.GetString());
                         rttr::variant obj = type.get_constructor().invoke();
 
-                        //if (obj.is_valid())
-                        //    std::cout << "Made: " << obj.get_type().get_name() << std::endl;
+                        if (obj.is_valid())
+                            std::cout << "Made: " << obj.get_type().get_name() << std::endl;
 
                         auto& Value = Mitr->value;
-                        ReadRecursive(obj, Value);
 
+                        if (obj.is_type<paperback::component::temp_guid>())
+                        {
+                            for (rapidjson::Value::ValueIterator Vitr = Mitr->value.Begin(); Vitr != Mitr->value.End(); Vitr++)
+                            {
+                                //std::cout << Vitr->GetUint64() << std::endl;
+                                paperback::component::type::guid TempGuid{ Vitr->GetUint64() }; //ok };
+                            }
+                        }
+                        else
+                            ReadRecursive(obj, Value);
+                            
                         if (obj.is_type<transform>())
                         {
                             auto& Trans = obj.get_value<transform>();
                         }
                     }
                 }
-
             }
         }
     }

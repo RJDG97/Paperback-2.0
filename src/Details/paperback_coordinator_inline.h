@@ -80,9 +80,30 @@ namespace paperback::coordinator
 
 		for (auto& Archetype : m_EntityMgr.m_pArchetypeList)
 		{
-			Jfile.StartObject().WriteKey(Archetype->m_pName).StartArray();
+			Jfile.StartObject().WriteKey(Archetype->m_pName);
+			Jfile.StartArray();
+
+			component::temp_guid Temp = {};
+
+			Jfile.StartObject().WriteKey("Guid").StartArray();
+			auto& ComponentInfoArray = Archetype->m_ComponentInfos;
+
+			for (u32 i = 0; i < Archetype->m_NumberOfComponents; ++i)
+			{
+				//Jfile.WriteKey("Guid").StartObject();
+				Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+				Jfile.WriteGuid(Temp);
+			}
+			Jfile.EndArray();
+			Jfile.EndObject();
+
+
 			Archetype->SerializeAllEntities(Jfile);
-			Jfile.EndArray().EndObject();
+
+			
+
+			Jfile.EndArray();
+			Jfile.EndObject();
 		}
 
 		Jfile.EndArray();

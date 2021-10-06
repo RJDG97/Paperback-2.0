@@ -150,7 +150,7 @@ void InitializeGame()
 
                 Timer.m_Timer = -2.0f;
 
-                Sound.m_SoundID = "event:/BGM"; 
+               // Sound.m_SoundID = "event:/BGM"; 
             });
         //
         // jjyy

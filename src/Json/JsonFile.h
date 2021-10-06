@@ -90,6 +90,12 @@ namespace paperback
             return *this;
         }
 
+        JsonFile& WriteGuid(rttr::instance Obj)
+        {
+            serialize::SerializeGuid(Obj, *writer);
+            return *this;
+        }
+
         JsonFile& WriteArray( const rttr::variant_sequential_view& View )
         {
             serialize::WriteArray( View, *writer );

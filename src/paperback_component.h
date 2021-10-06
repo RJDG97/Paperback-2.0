@@ -133,6 +133,21 @@ namespace paperback::component
         const char*            m_pName;
     };
 
+    struct temp_guid
+    {
+        paperback::u64 m_Value;
+    };
+
+    namespace RR_ComponentInfo
+    {
+        RTTR_REGISTRATION
+        {
+            rttr::registration::class_<temp_guid>("Guid")
+               .constructor()(rttr::policy::ctor::as_object)
+               .property("", &temp_guid::m_Value);
+
+        }
+    }
     
     //-----------------------------------
     //       Get Component Info
@@ -148,6 +163,7 @@ namespace paperback::component
 
     template< typename T_COMPONENT >
     constexpr auto& info_v = details::info_v< paperback::BaseType<T_COMPONENT> >;
+
 
 
     //-----------------------------------
