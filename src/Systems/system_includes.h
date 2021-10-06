@@ -1,13 +1,9 @@
 #include "PhysicsSystem.h"
-#include "ShipLogicSystem.h"
-#include "BulletLogicSystem.h"
-#include "ShipRenderingSystem.h"
-#include "BulletRenderingSystem.h"
-#include "BufferRefresh.h"
+#include "BulletLogicSystem.h"          // Physics - ?? - DrawSphere / DrawCube shouldnt be in here....
 #include "ImguiSystem.h"
-#include "SoundSystem.h"
-#include "ScriptingSystem.h"
-#include "WindowSystem.h"
-#include "RendererSystem.h"
+#include "SoundSystem.h"                // Banks should be loaded from json or sth - Replace couts
+#include "ScriptingSystem.h"            // I do not think u need to call delete on the ptr - It will probably crash tbh - Replace couts in singleton
+#include "WindowSystem.h"               // Replace couts - Clean comments
+#include "RendererSystem.h"             // Remove commented code
 
-#include "DebugSystem.h"
+#include "DebugSystem.h"                // Verify if we need it

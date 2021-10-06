@@ -6,12 +6,21 @@ namespace tools
     {
         std::array<uint64_t, 4> m_bits{};
 
+        //-----------------------------------
+        //              Add
+        //-----------------------------------
         PPB_FORCEINLINE
         void Set( const int Bit ) noexcept;
 
         PPB_FORCEINLINE
         void Remove( const int Bit ) noexcept;
 
+        template < typename... T_COMPONENTS >
+        void AddFromComponents();
+
+        //-----------------------------------
+        //            Compare
+        //-----------------------------------
         PPB_FORCEINLINE
         bool Has( const int Bit ) const noexcept;
 		
@@ -20,8 +29,5 @@ namespace tools
 
         PPB_INLINE
         bool Compare( const bits& Query ) const noexcept;
-
-        template < typename... T_COMPONENTS >
-        void AddFromComponents();
     };
 }
