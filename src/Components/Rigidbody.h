@@ -5,6 +5,7 @@
 
 #include "Physics/PhysicsMaterial.h"
 #include "Math/Vector3f.h"
+#include "Physics/PhysicsStructs.h"
 
 struct rigidbody
 {
@@ -15,6 +16,7 @@ struct rigidbody
 
 	xcore::vector3		m_Velocity;
 	float				    m_Mass;
+    ForceHandler    m_ForceHandler; 
     //float _fColliderWidth;									// -- Width of bounding box
     //float _fColliderHeight;									// -- Height of bounding box
     //PhysicMaterial _Material;								// -- Material of the Entity

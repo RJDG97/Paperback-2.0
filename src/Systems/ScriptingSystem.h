@@ -77,13 +77,13 @@ struct scripting_system : paperback::system::instance
 		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_O))
 		{
 
-			GetSystem<physics_system>().AddForceToEntity(-1.0f, 0.0f, 0.0f, 1.0f, 4, "move");
+			GetSystem<physics_system>().AddForceToPlayer(-1.0f, 0.0f, 0.0f, 1.0f, "move");
 		}
 
 		if (m_Coordinator.m_Input.IsKeyPressDown(GLFW_KEY_P))
 		{
 
-			GetSystem<physics_system>().AddForceToEntity(1.0f, 0.0f, 0.0f, 1.0f, 4, "move");
+			GetSystem<physics_system>().AddForceToPlayer(1.0f, 0.0f, 0.0f, 1.0f, "move");
 		}
 	}
 

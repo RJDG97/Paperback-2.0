@@ -126,6 +126,7 @@
     <ClInclude Include="..\..\src\Components\Components.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
     <ClInclude Include="..\..\src\Components\Mesh.h" />
+    <ClInclude Include="..\..\src\Components\Player.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
     <ClInclude Include="..\..\src\Components\SampleTagComponent.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="..\..\src\paperback_types.h" />
     <ClInclude Include="..\..\src\Physics\geometry.h" />
     <ClInclude Include="..\..\src\Physics\PhysicsMaterial.h" />
+    <ClInclude Include="..\..\src\Physics\PhysicsStructs.h" />
     <ClInclude Include="..\..\src\Physics\Physics_includes.h" />
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />
