@@ -24,7 +24,7 @@ struct debug_system : paperback::system::instance
     // to be called at OnFrameStart
     void BeginTime(size_t system_index)
     {
-        std::chrono::high_resolution_clock::time_point temp = PPB.m_Clock.Now();
+        std::chrono::high_resolution_clock::time_point temp = PPB.Now();
         m_RawTimePerSystem[system_index] = temp;
     }
 
@@ -33,7 +33,7 @@ struct debug_system : paperback::system::instance
     void EndTime(size_t system_index)
     {
 
-        m_TimePerSystem[system_index] = static_cast<std::chrono::duration<float>>(PPB.m_Clock.Now() - m_RawTimePerSystem[system_index]).count();
+        m_TimePerSystem[system_index] = static_cast<std::chrono::duration<float>>(PPB.Now() - m_RawTimePerSystem[system_index]).count();
     }
 
 

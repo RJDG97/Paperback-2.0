@@ -10,7 +10,7 @@
 
 namespace tools
 {
-    class clock
+    class clock final
     {
     public:
 

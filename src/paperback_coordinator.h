@@ -1,21 +1,15 @@
 #pragma once
-// jy
+
 namespace paperback::coordinator
 {
-	struct instance final
+	class instance final
 	{
-		tools::clock				m_Clock;
-		Input						m_Input;
-		component::manager			m_CompMgr;
-		entity::manager				m_EntityMgr{ *this };
-		system::manager				m_SystemMgr{ m_Clock };
-		bool						m_GameActive = true;
-
-	//public:
+	public:
 
 		//-----------------------------------
 		//             Default
 		//-----------------------------------
+
 		instance( void ) noexcept;
 		instance( const instance& ) = delete;
 		~instance( void ) noexcept;
@@ -119,8 +113,13 @@ namespace paperback::coordinator
 		template< typename T_SYSTEM >
 		T_SYSTEM& GetSystem( void ) noexcept;
 
-		PPB_INLINE // To Place Inside Archetype Directly
-		void FreeEntitiesInArchetype( archetype::instance* Archetype ) noexcept;
+		PPB_INLINE
+		std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
+
+
+		//-----------------------------------
+		//              Clock
+		//-----------------------------------
 
 		PPB_FORCEINLINE
 		float DeltaTime() const noexcept;
@@ -130,6 +129,51 @@ namespace paperback::coordinator
 
 		PPB_FORCEINLINE
         float GetTimeScale() const noexcept;
+
+		PPB_INLINE
+        auto Now() noexcept -> decltype( std::chrono::high_resolution_clock::now() );
+
+
+		//-----------------------------------
+		//              Input
+		//-----------------------------------
+
+		PPB_INLINE
+		void UpdateInputs() noexcept;
+
+		PPB_INLINE
+		void SetKey( int Key, int Action ) noexcept;
+
+		PPB_INLINE
+		void SetMouse( int Key, int Action ) noexcept;
+
+		PPB_INLINE
+		bool IsKeyPress( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsKeyPressDown( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsKeyPressUp( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsMousePress( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsMouseDown( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsMouseUp( int Key ) noexcept;
+
+
+	private:
+
+		tools::clock				m_Clock;						// Timer
+		Input						m_Input;						// Input
+		component::manager			m_CompMgr;						// Component Manager
+		entity::manager				m_EntityMgr{ *this };			// Entity Manager
+		system::manager				m_SystemMgr{ m_Clock };			// System Manager
+		bool						m_GameActive = true;			// Game Status
 	};
 }
 

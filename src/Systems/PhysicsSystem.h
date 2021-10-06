@@ -15,6 +15,6 @@ struct physics_system : paperback::system::instance
 
     void operator()( transform& Transform, rigidbody& RigidBody ) noexcept
     {
-        Transform.m_Position += RigidBody.m_Velocity * m_Coordinator.DeltaTime();
+        Transform.m_Position += RigidBody.m_Velocity * DeltaTime();
     }
 };

@@ -187,6 +187,7 @@ namespace paperback::archetype
             ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
         }
     
+        auto& MemoryPool = Pool.GetMemoryPool();
         std::array<std::byte*, sizeof...(T_COMPONENTS)> ComponentArray;
     
         [&]<typename... SORTED_COMPONENTS>( std::tuple<SORTED_COMPONENTS...>* ) constexpr noexcept
@@ -194,8 +195,8 @@ namespace paperback::archetype
             int Sequence = 0;
 
             (( ComponentArray[ xcore::types::tuple_t2i_v< SORTED_COMPONENTS, TupleComponents > ]
-                 = &Pool.m_ComponentPool[ Pool.GetComponentIndexFromGUIDInSequence( component::info_v< SORTED_COMPONENTS >.m_Guid, Sequence ) ]
-                                        [ component::info_v< SORTED_COMPONENTS >.m_Size * PoolIndex ])
+                 = &MemoryPool[ Pool.GetComponentIndexFromGUIDInSequence( component::info_v< SORTED_COMPONENTS >.m_Guid, Sequence ) ]
+                              [ component::info_v< SORTED_COMPONENTS >.m_Size * PoolIndex ])
              , ... );
     
         }( xcore::types::null_tuple_v< SortedTuple > );
@@ -228,6 +229,7 @@ namespace paperback::archetype
             ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
         }
     
+        auto& MemoryPool = Pool.GetMemoryPool();
         std::array<std::byte*, sizeof...(T_COMPONENTS)> ComponentArray;
     
         [&]<typename... SORTED_COMPONENTS>( std::tuple<SORTED_COMPONENTS...>* ) constexpr noexcept
@@ -239,8 +241,8 @@ namespace paperback::archetype
     
 			          if constexpr ( std::is_pointer_v<T_COMPONENT> ) return ( ComponentIndex < 0 )
                                                                              ? nullptr 
-                                                                             : &Pool.m_ComponentPool[ ComponentIndex ][ sizeof(std::decay<T_COMPONENT>) * PoolIndex ];
-			          else									          return   &Pool.m_ComponentPool[ ComponentIndex ][ sizeof(std::decay<T_COMPONENT>) * PoolIndex ];
+                                                                             : &MemoryPool[ ComponentIndex ][ sizeof(std::decay<T_COMPONENT>) * PoolIndex ];
+			          else									          return   &MemoryPool[ ComponentIndex ][ sizeof(std::decay<T_COMPONENT>) * PoolIndex ];
     
 			      }( xcore::types::make_null_tuple_v< SORTED_COMPONENTS > ))
             , ... );
@@ -281,14 +283,13 @@ namespace paperback::archetype
         return m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<component::entity>( NewPoolIndex );
     }
 
-
-    //-----------------------------------
-    //             Getters
-    //-----------------------------------
-    vm::instance& instance::GetPoolWithIndex( const uint32_t EntityPoolIndex ) noexcept
+    u32 instance::GetEntityCount( void ) const noexcept
     {
-        auto Pool = m_ComponentPool.begin();
-        std::advance( Pool, EntityPoolIndex );
-        return *Pool;
+        return m_EntityCount;
+    }
+
+    instance::ComponentPool& instance::GetComponentPools( void ) noexcept
+    {
+        return m_ComponentPool;
     }
 }

@@ -78,7 +78,7 @@ namespace paperback::coordinator
 		jfile.StartObject().WriteKey("Entities");
 		jfile.StartArray();
 
-		for (auto& Archetype : m_EntityMgr.m_pArchetypeList)
+		for ( auto& Archetype : m_EntityMgr.GetArchetypeList() )
 		{
 			//jfile.WriteKey(Archetype); // probably write like entity count and other relevant data for tracking?
 			Archetype->SerializeAllEntities(jfile);
@@ -171,13 +171,13 @@ namespace paperback::coordinator
 
 		for ( const auto& Archetype : ArchetypeList )
 		{
-			for ( auto& Pool : Archetype->m_ComponentPool )
+			for ( auto& Pool : Archetype->GetComponentPools() )
 			{
 				auto ComponentArray = Archetype->GetComponentArray( Pool, 0, xcore::types::null_tuple_v< func_traits::args_tuple > );
 
 				Archetype->AccessGuard( [&]
 				{
-					for (int i = Pool.m_CurrentEntityCount; i; --i)
+					for (int i = Pool.GetCurrentEntityCount(); i; --i)
 					{
 						[&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
 						{
@@ -212,13 +212,13 @@ namespace paperback::coordinator
 			//if ( Archetype->m_EntityCount == 0 ) continue;
 			bool bBreak = false;
 
-			for ( auto& Pool : Archetype->m_ComponentPool )
+			for ( auto& Pool : Archetype->GetComponentPools() )
 			{
 				auto ComponentArray = Archetype->GetComponentArray( Pool, 0, xcore::types::null_tuple_v< func_traits::args_tuple > );
 
 				Archetype->AccessGuard( [&]
 				{
-					for (int i = Pool.m_CurrentEntityCount; i; --i)
+					for (int i = Pool.GetCurrentEntityCount(); i; --i)
 					{
 						if ([&]<typename... T_COMPONENTS>(std::tuple<T_COMPONENTS...>*) constexpr noexcept
 						{
@@ -277,13 +277,10 @@ namespace paperback::coordinator
 		assert( p );
 		return *p;
 	}
-	
-	//-----------------------------------
-	//         Helper Function
-	//-----------------------------------
-	void instance::FreeEntitiesInArchetype( archetype::instance* Archetype ) noexcept
+
+	std::vector<paperback::archetype::instance*> instance::GetArchetypeList( void ) noexcept
 	{
-		m_EntityMgr.FreeEntitiesInArchetype( Archetype );
+		return m_EntityMgr.GetArchetypeList();
 	}
 
 
@@ -303,5 +300,59 @@ namespace paperback::coordinator
 	float instance::GetTimeScale() const noexcept
 	{
 		return m_Clock.TimeScale();
+	}
+
+	auto instance::Now() noexcept -> decltype( std::chrono::high_resolution_clock::now() )
+	{
+		return m_Clock.Now();
+	}
+
+
+	//-----------------------------------
+	//              Input
+	//-----------------------------------
+	void instance::UpdateInputs() noexcept
+	{
+		m_Input.UpateInputs();
+	}
+
+	void instance::SetKey( int Key, int Action ) noexcept
+	{
+		m_Input.SetKey( Key, Action );
+	}
+
+	void instance::SetMouse( int Key, int Action ) noexcept
+	{
+		m_Input.SetMouse( Key, Action );
+	}
+
+	bool instance::IsKeyPress( int Key ) noexcept
+	{
+		return m_Input.IsKeyPress( Key );
+	}
+
+	bool instance::IsKeyPressDown( int Key ) noexcept
+	{
+		return m_Input.IsKeyPressDown( Key );
+	}
+
+	bool instance::IsKeyPressUp( int Key ) noexcept
+	{
+		return m_Input.IsKeyPressUp( Key );
+	}
+
+	bool instance::IsMousePress( int Key ) noexcept
+	{
+		return m_Input.IsMousePress( Key );
+	}
+
+	bool instance::IsMouseDown( int Key ) noexcept
+	{
+		return m_Input.IsMouseDown( Key );
+	}
+
+	bool instance::IsMouseUp( int Key ) noexcept
+	{
+		return m_Input.IsMouseUp( Key );
 	}
 }
