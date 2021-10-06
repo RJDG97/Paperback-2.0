@@ -14,6 +14,7 @@ namespace paperback::vm
 
 		std::span<const component::info* const>										m_ComponentInfo				{   };
 		std::array<std::byte*, paperback::settings::max_components_per_entity_v>	m_ComponentPool				{   };
+		u32						        											m_NumberOfComponents		{ 0 };
 		u32						        											m_CurrentEntityCount		{ 0 };
 
 		PPB_INLINE
@@ -33,13 +34,16 @@ namespace paperback::vm
 		~instance() noexcept;
 
 		PPB_INLINE
-		void Init( std::span<const component::info* const> Types ) noexcept;
+		void Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept;
 
 		PPB_INLINE
 		u32 Append() noexcept;
 
 		PPB_INLINE
 		u32 Delete( const u32 PoolIndex ) noexcept;
+
+		PPB_INLINE
+		void RemoveTransferredEntity( const u32 PoolIndex ) noexcept;
 
 		PPB_INLINE
 		u32 TransferExistingComponents( const PoolDetails& Details, vm::instance& Pool ) noexcept;
@@ -58,6 +62,9 @@ namespace paperback::vm
 
 		PPB_INLINE
 		void SerializePoolComponentsAtEntityIndex( const u32 Index, paperback::JsonFile& Jfile ) noexcept;
+		
+		PPB_INLINE
+		std::vector<rttr::instance> GetComponents( const u32 Index ) noexcept;
 
 		PPB_INLINE
 		rttr::instance GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept;

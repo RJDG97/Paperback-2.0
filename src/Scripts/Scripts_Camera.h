@@ -56,7 +56,7 @@ namespace MONO_CAMERA
 		Camera::GetInstanced().RotateRight();
 	}
 
-	void Add_Internals()
+	void AddInternals()
 	{
 		mono_add_internal_call("CSScript.Camera::MoveForward()", &MONO_CAMERA::MoveForward);
 		mono_add_internal_call("CSScript.Camera::MoveBackward()", &MONO_CAMERA::MoveBackward);

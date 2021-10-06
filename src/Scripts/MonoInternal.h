@@ -6,9 +6,9 @@
 
 namespace MONO_INTERNALS
 {
-	void Mono_Add_Internal_Call()
+	void MonoAddInternalCall()
 	{
-		MONO_CAMERA::Add_Internals();
-		MONO_INPUTS::Add_Internals();
+		MONO_CAMERA::AddInternals();
+		MONO_INPUTS::AddInternals();
 	}
 }

@@ -18,24 +18,24 @@
 #include "Scripts/MonoExternal.h"
 
 struct Mono_Class{
-	MonoClass* main = nullptr;
+	MonoClass* m_pMain = nullptr;
 }monoclass;
 
 struct Mono_External_Calls {
-	MonoMethod* main = nullptr;
+	MonoMethod* m_pMain = nullptr;
 }monoextern;
 
 class Mono 
 {
-	MonoDomain* MonoDomainptr = nullptr;
-	MonoAssembly* MonoAssemblyptr = nullptr;
-	MonoImage* MonoImageptr = nullptr;
+	MonoDomain* m_pMonoDomain = nullptr;
+	MonoAssembly* m_pMonoAssembly = nullptr;
+	MonoImage* m_pMonoImage = nullptr;
 
 public:
 
-	uint32_t Mono_Handler_;
+	uint32_t m_MonoHandler;
 	// Interface
-	MonoObject* mono_obj_;
+	MonoObject* m_pMonoObj;
 
 	Mono()
 	{
@@ -43,39 +43,39 @@ public:
 		mono_set_dirs("../../dependencies/mono/lib", "../../dependencies/mono/etc");
 
 		// Create domain (exits if unsuccessful)
-		MonoDomainptr = mono_jit_init("Mono");
+		m_pMonoDomain = mono_jit_init("Mono");
 
 		// Load binary file as an assembly
-		MonoAssemblyptr = mono_domain_assembly_open(MonoDomainptr, "../../build/Paperback_V2/bin/Debug/CSScript.dll");
-		if (MonoAssemblyptr) {
+		m_pMonoAssembly = mono_domain_assembly_open(m_pMonoDomain, "../../build/Paperback_V2/bin/Debug/CSScript.dll");
+		if (m_pMonoAssembly) {
 			//	 Load mono image
-			MonoImageptr = mono_assembly_get_image(MonoAssemblyptr);
-			if (MonoImageptr) {
+			m_pMonoImage = mono_assembly_get_image(m_pMonoAssembly);
+			if (m_pMonoImage) {
 				// Add internal calls (Expose to C# script)
-				MONO_INTERNALS::Mono_Add_Internal_Call();
+				MONO_INTERNALS::MonoAddInternalCall();
 				
 				// Add classes
-				Mono_Add_Classes();
+				MonoAddClasses();
 
-				if (monoclass.main) {
+				if (monoclass.m_pMain) {
 					// Describe Method for main
 					MonoMethodDesc* mono_main_desc = mono_method_desc_new(".Main:getInst()", false);
 					if (mono_main_desc) {
-						MonoMethod* mono_main_method = mono_method_desc_search_in_class(mono_main_desc, monoclass.main);
+						MonoMethod* mono_main_method = mono_method_desc_search_in_class(mono_main_desc, monoclass.m_pMain);
 						if (mono_main_method) {
 							// Call main method
 							MonoObject* mono_exception = nullptr;
 							// Reference object for specified class
-							mono_obj_ = thread_callback(mono_main_method, mono_exception);
-							if (mono_obj_) {
+							m_pMonoObj = ThreadCallback(mono_main_method, mono_exception);
+							if (m_pMonoObj) {
 								// Reference handler for specified class
-								Mono_Handler_ = mono_gchandle_new(mono_obj_, false);
+								m_MonoHandler = mono_gchandle_new(m_pMonoObj, false);
 							
 								// Add External Calls
-								Mono_External_Call();
+								MonoExternalCall();
 							}
 							// Exception Handling
-							Mono_Exception(mono_exception);
+							MonoException(mono_exception);
 
 							// Free Desc
 							mono_method_desc_free(mono_main_desc);
@@ -87,13 +87,13 @@ public:
 		}
 	}
 
-	MonoObject* thread_callback(MonoMethod* method, MonoObject* exception)
+	MonoObject* ThreadCallback(MonoMethod* method, MonoObject* exception)
 	{
-		mono_jit_thread_attach(MonoDomainptr);
+		mono_jit_thread_attach(m_pMonoDomain);
 		return mono_runtime_invoke(method, nullptr, nullptr, &exception);
 	}
 
-	void Mono_Exception(MonoObject* exception)
+	void MonoException(MonoObject* exception)
 	{
 		if (exception) {
 			MonoString* exString = mono_object_to_string(exception, nullptr);
@@ -107,11 +107,11 @@ public:
 
 	void ExternalMain()
 	{
-		if (monoextern.main)
+		if (monoextern.m_pMain)
 		{
 			MonoObject* exception = nullptr;
 			// Get function
-			mono_runtime_invoke(monoextern.main, mono_obj_, nullptr, &exception);
+			mono_runtime_invoke(monoextern.m_pMain, m_pMonoObj, nullptr, &exception);
 
 			/*
 			//Get function (return)
@@ -122,34 +122,34 @@ public:
 			*/
 
 			// Exception Handling
-			Mono_Exception(exception);
+			MonoException(exception);
 		}
 	}
 
-	void Mono_Add_Classes()
+	void MonoAddClasses()
 	{
-		monoclass.main = mono_class_from_name(MonoImageptr, "CSScript", "Main");
+		monoclass.m_pMain = mono_class_from_name(m_pMonoImage, "CSScript", "Main");
 	}
 
-	void Mono_External_Call()
+	void MonoExternalCall()
 	{
 		// description of function
 		MonoMethodDesc* mono_extern_methoddesc = mono_method_desc_new(".Main:main()", false);
 		// get function	
-		MonoMethod* vitrualMethod = mono_method_desc_search_in_class(mono_extern_methoddesc, monoclass.main);
+		MonoMethod* vitrualMethod = mono_method_desc_search_in_class(mono_extern_methoddesc, monoclass.m_pMain);
 		if (vitrualMethod)
-			monoextern.main = mono_object_get_virtual_method(mono_obj_, vitrualMethod);
+			monoextern.m_pMain = mono_object_get_virtual_method(m_pMonoObj, vitrualMethod);
 		// Free
 		mono_method_desc_free(mono_extern_methoddesc);
 	}
 
 	~Mono()
 	{
-		if (Mono_Handler_)
-			mono_gchandle_free(Mono_Handler_);
+		if (m_MonoHandler)
+			mono_gchandle_free(m_MonoHandler);
 
-		if (MonoDomainptr)
-			mono_jit_cleanup(MonoDomainptr);
+		if (m_pMonoDomain)
+			mono_jit_cleanup(m_pMonoDomain);
 	}
 
 	static Mono& GetInstanced()

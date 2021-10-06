@@ -7,7 +7,7 @@
 
 struct scripting_system : paperback::system::instance
 {
-	//Mono* m_pMono = nullptr;
+	Mono* m_pMono = nullptr;
 
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
@@ -17,20 +17,16 @@ struct scripting_system : paperback::system::instance
 	void OnSystemCreated(void) noexcept
 	{
 		// Set up Mono
-		//m_pMono = new Mono;
-		Mono::GetInstanced();
+		m_pMono = &Mono::GetInstanced();	
 	}
 
 	void Update(void) noexcept 
 	{
-		//m_pMono->ExternalMain();
-		Mono::GetInstanced().ExternalMain();
+		m_pMono->ExternalMain();
 	}
 
 	void OnSystemTerminated(void) noexcept 
 	{
-		// you might have to delete m_pMono too
-		//delete m_pMono;
-		Mono::GetInstanced().~Mono();
+		delete m_pMono;
 	}
 };

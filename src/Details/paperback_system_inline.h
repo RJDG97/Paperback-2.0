@@ -45,12 +45,15 @@ namespace paperback::system
 	template < typename USER_SYSTEM >
 	void details::completed<USER_SYSTEM>::Run( const paperback::system::type::call Type ) noexcept
 	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+
 		switch ( Type )
 		{
 			case system::type::call::CREATED:
 			{
 				if constexpr ( &USER_SYSTEM::OnSystemCreated != &system_interface::OnSystemCreated )
 				{
+					XCORE_PERF_ZONE_SCOPED_N( "System Created" )
 					USER_SYSTEM::OnSystemCreated();
 				}
 				break;
@@ -59,6 +62,7 @@ namespace paperback::system
 			{
 				if constexpr ( &USER_SYSTEM::OnFrameStart != &system_interface::OnFrameStart )
 				{
+					XCORE_PERF_ZONE_SCOPED_N( "Frame Start" )
 					USER_SYSTEM::OnFrameStart();
 				}
 				break;
@@ -67,6 +71,7 @@ namespace paperback::system
 			{
 				if constexpr ( &USER_SYSTEM::PreUpdate != &system_interface::PreUpdate )
 				{
+					XCORE_PERF_ZONE_SCOPED_N( "Pre Update" )
 					USER_SYSTEM::PreUpdate();
 				}
 				break;
@@ -75,10 +80,12 @@ namespace paperback::system
 			{
 				if constexpr ( &USER_SYSTEM::Update != &system_interface::Update )
 				{
+					XCORE_PERF_ZONE_SCOPED_N( "Update" )
 					USER_SYSTEM::Update();
 				}
 				else
 				{
+					XCORE_PERF_ZONE_SCOPED_N( "Update" )
 					tools::query Query;
 					Query.AddQueryFromTuple( reinterpret_cast<typename USER_SYSTEM::query*>(nullptr) );
 					Query.AddQueryFromFunction( *this );
@@ -90,6 +97,7 @@ namespace paperback::system
 			{
 				if constexpr ( &USER_SYSTEM::PostUpdate != &system_interface::PostUpdate )
 				{
+					XCORE_PERF_ZONE_SCOPED_N( "Post Update" )
 					USER_SYSTEM::PostUpdate();
 				}
 				break;
@@ -98,6 +106,7 @@ namespace paperback::system
 			{
 				if constexpr ( &USER_SYSTEM::OnFrameEnd != &system_interface::OnFrameEnd )
 				{
+					XCORE_PERF_ZONE_SCOPED_N( "Frame End" )
 					USER_SYSTEM::OnFrameEnd();
 				}
 				break;
@@ -106,6 +115,7 @@ namespace paperback::system
 			{
 				if constexpr ( &USER_SYSTEM::OnSystemTerminated != &system_interface::OnSystemTerminated )
 				{
+					XCORE_PERF_ZONE_SCOPED_N( "Terminated" )
 					USER_SYSTEM::OnSystemTerminated();
 				}
 				break;

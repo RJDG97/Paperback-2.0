@@ -59,7 +59,7 @@ namespace paperback::component
         //           Find Index
         //-----------------------------------
         template < typename T_CONTAINER >
-        static constexpr auto find_component_index_v = [&]( T_CONTAINER& Container, component::info* Info, size_t Count )
+        static constexpr auto find_component_index_v = []( T_CONTAINER& Container, component::info* Info, size_t Count )
         {
             return static_cast<size_t>( std::upper_bound( std::begin( Container )
                                                         , std::begin( Container ) + Count
@@ -71,6 +71,13 @@ namespace paperback::component
                                                         ) - std::begin( Container )
                                       );
         };
+
+        /*
+        const auto Index = static_cast<std::size_t>(std::upper_bound(NewComponentInfoList.begin(), NewComponentInfoList.begin() + Count, CInfo, [](const paperback::component::info* pA, const paperback::component::info* pB)
+                {
+                    return pA->m_Guid < pB->m_Guid;
+                }) - NewComponentInfoList.begin());
+        */
     }
 
     //-----------------------------------
@@ -81,7 +88,7 @@ namespace paperback::component
     {
         if constexpr ( sizeof...(T) == 0 ) return std::span<const component::info*>{};
         else                               return std::array{ &component::info_v<T>... };
-    }( xcore::types::null_tuple_v< sort_tuple_t<T_TUPLE> > );
+    }( xcore::types::null_tuple_v< details::sort_tuple_t<T_TUPLE> > );
 
 
     //-----------------------------------
@@ -91,7 +98,7 @@ namespace paperback::component
     {
         return m_UID == V.m_UID;
     }
-
+    // jy clear entity list
     constexpr bool entity::IsZombie( void ) const noexcept
     {
         return m_Validation.m_bZombie;

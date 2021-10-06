@@ -74,6 +74,9 @@
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.cpp">
       <Filter>Dependencies\dearImGui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -259,9 +262,6 @@
     <ClInclude Include="..\..\src\Systems\SoundSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
-    <ClInclude Include="samplecomponent.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.h">
       <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
     </ClInclude>
@@ -358,6 +358,9 @@
     <ClInclude Include="..\..\src\Systems\DebugSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
+      <Filter>Dependencies\dearImGui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
@@ -369,6 +372,48 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Scripts\MonoExternal.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Math_includes.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Math\Vector4f.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\geometry.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\Physics_includes.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\PhysicsMaterial.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\AABB.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\BoundingBox.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Circle.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\LineSegment.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Plane.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Polygon_shape.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Shapes_includes.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Sphere.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Triangle.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,6 +491,12 @@
     </Filter>
     <Filter Include="Source\Gameplay Code\Scripts">
       <UniqueIdentifier>{25f1021e-2315-4e11-8e8e-36f3861c37c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Physics">
+      <UniqueIdentifier>{391dc8d8-84ec-4f48-b0ed-2da71a91b30f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Gameplay Code\Shapes">
+      <UniqueIdentifier>{e4e83ffd-e481-4298-a6e0-9e9b8d2fa686}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
