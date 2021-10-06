@@ -131,13 +131,10 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_textedit.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h" />
     <ClInclude Include="..\..\dependencies\xcore\src\xcore.h" />
-    <ClInclude Include="..\..\src\Components\Bullet.h" />
-    <ClInclude Include="..\..\src\Components\Components.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
     <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
-    <ClInclude Include="..\..\src\Components\SampleTagComponent.h" />
     <ClInclude Include="..\..\src\Components\Sound.h" />
     <ClInclude Include="..\..\src\Components\Timer.h" />
     <ClInclude Include="..\..\src\Components\Transform.h" />
@@ -210,19 +207,14 @@
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
     <ClInclude Include="..\..\src\Shapes\Sphere.h" />
     <ClInclude Include="..\..\src\Shapes\Triangle.h" />
-    <ClInclude Include="..\..\src\Systems\BufferRefresh.h" />
     <ClInclude Include="..\..\src\Systems\BulletLogicSystem.h" />
-    <ClInclude Include="..\..\src\Systems\BulletRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\DebugSystem.h" />
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
     <ClInclude Include="..\..\src\Systems\ScriptingSystem.h" />
     <ClInclude Include="..\..\src\Systems\RendererSystem.h" />
-    <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h" />
-    <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
-    <ClInclude Include="..\..\src\Vector.h" />
     <ClInclude Include="paperback_pch.h" />
     <ClInclude Include="WindowSystem.h" />
   </ItemGroup>

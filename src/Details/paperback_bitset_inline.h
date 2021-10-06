@@ -19,6 +19,12 @@ namespace tools
         m_bits[x] &= ~(1ull << y);
     }
 
+    template < typename... T_COMPONENTS >
+    void bits::AddFromComponents( void )
+    {
+        ( (Set( paperback::component::info_v<T_COMPONENTS>.m_UID)), ... );
+    }
+
     //-----------------------------------
     //            Compare
     //-----------------------------------
@@ -51,14 +57,5 @@ namespace tools
         }
 
         return true;
-    }
-
-    //-----------------------------------
-    //               Add
-    //-----------------------------------
-    template < typename... T_COMPONENTS >
-    void bits::AddFromComponents( void )
-    {
-        ( (Set( paperback::component::info_v<T_COMPONENTS>.m_UID)), ... );
     }
 }

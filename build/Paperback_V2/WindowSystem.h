@@ -15,7 +15,7 @@ struct window_system : paperback::system::instance
 	{
 		if (!glfwInit())
 		{
-			std::cout << "GLFW init has failed - abort program!!!" << std::endl;
+            PPB_ERR_PRINT_N_LOG( "GLFW init has failed - Aborting" );
 			std::exit(EXIT_FAILURE);
 		}
 
@@ -27,11 +27,11 @@ struct window_system : paperback::system::instance
         glfwWindowHint(GLFW_BLUE_BITS, 8); glfwWindowHint(GLFW_ALPHA_BITS, 8);
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-        m_pWindow = glfwCreateWindow(m_Engine.m_Width, m_Engine.m_Height, "Paperback Engine", NULL, NULL);
+        m_pWindow = glfwCreateWindow( m_Engine.m_Width, m_Engine.m_Height, "Paperback Engine", NULL, NULL );
 
         if (!m_pWindow)
         {
-            std::cerr << "GLFW unable to create OpenGL context - abort program\n";
+            PPB_ERR_PRINT_N_LOG( "GLFW unable to create OpenGL context - Aborting" );
             glfwTerminate();
             std::exit(EXIT_FAILURE);
         }
@@ -49,7 +49,8 @@ struct window_system : paperback::system::instance
         if (GLEW_OK != Err)
             throw std::exception{ reinterpret_cast<const char*>(glewGetErrorString(Err)) };
 
-        std::cout << "Using GLEW Version: " << glewGetString(GLEW_VERSION) << std::endl;
+        std::string Version = "Using GLEW Version: " + std::string( reinterpret_cast<const char*>(glewGetString(GLEW_VERSION)) );
+        INFO_PRINT( Version );
 
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glViewport(0, 0, m_Engine.m_Width, m_Engine.m_Height);

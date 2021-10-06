@@ -13,7 +13,6 @@ private:
     // used for storing in vector for keeping track of what song is curently playing
     struct SoundFile
     {
-
         FMOD::Studio::EventInstance* m_pSound = nullptr; // contains pointer to playing sound
         size_t m_ID; // contains the id to match with entity that spawned the sound
     };

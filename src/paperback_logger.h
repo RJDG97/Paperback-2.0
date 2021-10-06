@@ -106,3 +106,10 @@ namespace paperback
 		CRITICAL_LOG(__VA_ARGS__);												\
 		DEBUG_BREAK();															\
 	}
+
+#define PPB_ERR_PRINT_N_LOG( ... ) {											\
+		ERROR_PRINT("Error occured at {}: Line {}", __FILE__, __LINE__);		\
+		ERROR_PRINT(__VA_ARGS__);												\
+		ERROR_LOG("Error occured at {}: Line {}", __FILE__, __LINE__);			\
+		ERROR_LOG(__VA_ARGS__);													\
+	}

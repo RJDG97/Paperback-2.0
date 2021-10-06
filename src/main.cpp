@@ -19,7 +19,7 @@ int main( int argc, char* argv[] )
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
     ShowWindow( GetConsoleWindow(), SW_SHOW );
 #else
-    ShowWindow(GetConsoleWindow(), SW_SHOW);
+    ShowWindow( GetConsoleWindow(), SW_HIDE );
 #endif
 
     /*
@@ -58,12 +58,10 @@ void InitializeGame()
     // Register Components
     {
        PPB.RegisterComponents<
-            bullet,
             rigidbody,
             transform,
             timer,
             sound,
-            sample_tag_component,
             mesh
         >();
     }
@@ -72,7 +70,6 @@ void InitializeGame()
     {
         PPB.RegisterSystems<
             physics_system,
-            ship_logic_system,
             bullet_logic_system,
             sound_system,
             scripting_system,

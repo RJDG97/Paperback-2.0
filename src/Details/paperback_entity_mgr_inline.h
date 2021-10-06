@@ -268,7 +268,6 @@ namespace paperback::entity
 			auto& Archetype = *EntityInfo.m_pArchetype;
 			std::array<const paperback::component::info*, settings::max_components_per_entity_v > NewComponentInfoList;
 
-			//for ( auto& CInfo : Archetype.m_ComponentInfos )
 			for ( auto& CInfo : std::span{ Archetype.m_ComponentInfos.data(), Archetype.m_NumberOfComponents } )
 				NewComponentInfoList[Count++] = CInfo;
 
