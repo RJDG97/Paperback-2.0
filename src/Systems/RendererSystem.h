@@ -45,7 +45,7 @@ struct render_system : paperback::system::instance
 		std::unordered_map<std::string, std::vector<glm::mat4>> objects;
 
 		glm::mat4 t{ 1.0f };
-		t = glm::translate(t, glm::vec3{ 0,-2,-7 });
+		t = glm::translate(t, glm::vec3{ -2,3,-5 });
 		t = glm::scale(t, glm::vec3{ 0.03,0.03,0.03 });
 
 		objects["Character"].push_back(t);
