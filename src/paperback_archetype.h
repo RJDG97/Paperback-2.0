@@ -22,7 +22,7 @@ namespace paperback::archetype
         instance( coordinator::instance& Coordinator, const tools::bits& ComponentBits ) noexcept;
 
         PPB_INLINE
-        void Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept;
+        void Init( std::span<const component::info* const> Types, const u32 NumComponents, const std::string Name = "unnamed archetype") noexcept;
 
 
         //-----------------------------------
@@ -94,6 +94,20 @@ namespace paperback::archetype
         PPB_INLINE
         ComponentPool& GetComponentPools( void ) noexcept;
 
+        PPB_INLINE
+        std::string GetName( void ) noexcept;
+
+        PPB_INLINE
+        void SetName( const std::string Name ) noexcept;
+
+        PPB_INLINE 
+        ComponentInfos& GetComponentInfos( void ) noexcept;
+
+        PPB_INLINE
+        u32 GetComponentNumber(void) noexcept;
+
+
+
 
     private:
 
@@ -103,7 +117,7 @@ namespace paperback::archetype
         MoveList                      m_MoveList                 {   };                           // List of entities to be moved
         DeleteList                    m_DeleteList               {   };                           // List of entities to be deleted
         tools::bits                   m_ComponentBits            {   };                           // Component Signature
-        const char*                   m_pName                    { "Unnamed Archetype" };         // Archetype name for reflecting in Editor
+        std::string                   m_pName                    { "Unnamed Archetype" };         // Archetype name for reflecting in Editor
         u32                           m_EntityCount              { 0 };                           // Number of Entities within Archetype
         u32                           m_PoolAllocationIndex      { 0 };                           // Determines which pool to allocate to - 0 Default      ( TO FIX )
         u32                           m_ProcessReference         { 0 };                           // Set to 1 when Archetype is updating

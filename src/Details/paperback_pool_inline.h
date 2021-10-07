@@ -294,6 +294,7 @@ namespace paperback::vm
 		{
 			rttr::instance Component = GetComponentInstance( m_ComponentInfo[i]->m_Guid, Index );
 			Jfile.WriteKey( Component.get_type().get_name().to_string() ).StartObject();
+			//Jfile.WriteKey( std::to_string(m_ComponentInfo[i]->m_Guid.m_Value)).StartObject();
 			Jfile.Write( Component );
 			Jfile.EndObject();
 
@@ -317,6 +318,10 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< component::entity >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< transform >( Index ));
+		else if (Comp_Guid.m_Value == component::info_v< scale >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< scale >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< rotation >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< rotation >(Index));
 		else if ( Comp_Guid.m_Value == component::info_v< rigidbody >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< rigidbody >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value )

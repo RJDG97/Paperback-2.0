@@ -47,6 +47,7 @@ namespace paperback
 	{
 		struct info;
 	}
+
 }
 
 //----------------------------------
@@ -67,7 +68,11 @@ namespace paperback
 #include "paperback_event.h"
 #include "paperback_component.h"
 #include "paperback_component_mgr.h"
-#include "Json/JsonFile.h" 
+
+#include "Json/paperback_serialize.h"
+#include "Json/paperback_deserialize.h"
+#include "Json/paperback_json.h"
+
 #include "paperback_bitset.h"
 #include "paperback_query.h"
 #include "paperback_pool.h"
@@ -89,6 +94,11 @@ namespace paperback
 #include "Details/paperback_component_mgr_inline.h"
 #include "Details/paperback_system_inline.h"
 #include "Details/paperback_system_mgr_inline.h"
+
+#include "Json/paperback_serialize_inline.h"
+#include "Json/paperback_deserialize_inline.h"
+#include "Json/paperback_json_inline.h"
+
 #include "Details/paperback_pool_inline.h"
 #include "Details/paperback_archetype_inline.h"
 #include "Details/paperback_archetype_mgr_inline.h"
@@ -101,5 +111,11 @@ namespace paperback
 // Math files
 //----------------------------------
 //#include "Math/Math_includes.h"
+
+
+
+
+
+
 
 #endif

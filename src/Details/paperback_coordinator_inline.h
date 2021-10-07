@@ -69,25 +69,52 @@ namespace paperback::coordinator
 	//           Save Scene
 	//-----------------------------------
 	PPB_INLINE
-	void instance::SaveScene( const std::string& FilePath ) noexcept
+	void instance::SaveScene(const std::string& FilePath) noexcept
 	{
-		JsonFile jfile;
+		JsonFile Jfile;
 
-		jfile.StartWriter(FilePath);
-		jfile.StartObject().WriteKey("Entities");
-		jfile.StartArray();
+		Jfile.StartWriter(FilePath);
+		Jfile.StartObject().WriteKey("Entities");
+		Jfile.StartArray();
 
-		for ( auto& Archetype : m_ArchetypeMgr.GetArchetypeList() )
+		for (auto& Archetype : PPB.GetArchetypeList())
 		{
-			//jfile.WriteKey(Archetype); // probably write like entity count and other relevant data for tracking?
-			Archetype->SerializeAllEntities(jfile);
+			Jfile.StartObject().WriteKey(Archetype->GetName());
+			Jfile.StartArray();
+
+			component::temp_guid Temp = {};
+
+			Jfile.StartObject().WriteKey("Guid").StartArray();
+			auto& ComponentInfoArray = Archetype->GetComponentInfos();
+
+			for (u32 i = 0; i < Archetype->GetComponentNumber(); ++i)
+			{
+				Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+				Jfile.WriteGuid(Temp);
+			}
+			Jfile.EndArray();
+			Jfile.EndObject();
+
+			Archetype->SerializeAllEntities(Jfile);
+
+
+
+			Jfile.EndArray();
+			Jfile.EndObject();
 		}
 
-		jfile.EndArray();
-		jfile.EndObject();
-		jfile.EndWriter();
+		Jfile.EndArray();
+		Jfile.EndObject();
+		Jfile.EndWriter();
 	}
 
+	PPB_INLINE
+	void instance::OpenScene( const std::string& FilePath ) noexcept
+	{
+		JsonFile Jfile;
+		Jfile.StartReader(FilePath);
+		Jfile.LoadEntities("Entities");
+	}
 
 	//-----------------------------------
 	//       Entity / Archetype
@@ -306,7 +333,6 @@ namespace paperback::coordinator
 		return m_CompMgr.FindComponentInfo( ComponentGuid );
 	}
 
-
 	//-----------------------------------
 	//              Clock
 	//-----------------------------------
@@ -330,6 +356,10 @@ namespace paperback::coordinator
 		return m_Clock.Now();
 	}
 
+	u32 instance::GetFPS(void) noexcept
+	{
+		return m_Clock.FPS();
+	}
 
 	//-----------------------------------
 	//              Input

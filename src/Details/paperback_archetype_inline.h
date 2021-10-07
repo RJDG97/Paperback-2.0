@@ -11,12 +11,13 @@ namespace paperback::archetype
         m_ComponentBits{ ComponentBits }
     { }
 
-    void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept
+    void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents, const std::string Name ) noexcept
     {
         // Deep copy infos
         for ( u32 i = 0; i < NumComponents; ++i )
             m_ComponentInfos[i] = Types[i];
         m_NumberOfComponents = NumComponents;
+        m_pName = Name;
 
         for ( size_t i = 0, max = m_ComponentPool.size(); i < max; ++i )
             m_ComponentPool[ i ].Init( std::span{ m_ComponentInfos.data(), m_NumberOfComponents }, m_NumberOfComponents );
@@ -85,12 +86,6 @@ namespace paperback::archetype
         if ( m_ProcessReference == 0 ) UpdateStructuralChanges();
     }
 
-    void instance::Clear( void ) noexcept
-    {
-        while ( m_EntityCount )
-			DestroyEntity( GetComponent<paperback::component::entity>( vm::PoolDetails{ 0, m_EntityCount - 1 } ) );
-    }
-
 
     //-----------------------------------
     //              Guard
@@ -139,9 +134,9 @@ namespace paperback::archetype
     {
         for (u32 j = 0; j < m_EntityCount; ++j)
         {
-            auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, j });
+            //auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, j });
 
-            auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
+            //auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
             Jfile.StartObject();
             //jfile.Write(EntityInfo); // im not super sure what we wanna store here,probably using EntityInfo to store m_PoolDetails? for pool indexing stuffs
 
@@ -151,6 +146,13 @@ namespace paperback::archetype
         }
     }
 
+    void instance::Clear(void) noexcept
+    {
+        u32 Count = m_EntityCount;
+        while ( Count-- )
+            DestroyEntity( GetComponent<paperback::component::entity>(vm::PoolDetails{ 0, Count }) );
+
+    }
 
     //-----------------------------------
     //             Getters
@@ -265,6 +267,17 @@ namespace paperback::archetype
         return ComponentArray;
     }
 
+    std::string instance::GetName( void ) noexcept 
+    {
+        return m_pName;
+    }
+
+    void instance::SetName(const std::string Name) noexcept
+    {
+        m_pName = Name;
+    }
+
+
     //-----------------------------------
     //         Transfer Entity
     //-----------------------------------
@@ -305,4 +318,16 @@ namespace paperback::archetype
     {
         return m_ComponentPool;
     }
+
+    instance::ComponentInfos& instance::GetComponentInfos(void) noexcept
+    {
+        return m_ComponentInfos;
+    }
+
+
+    u32 instance::GetComponentNumber(void) noexcept
+    {
+        return m_NumberOfComponents;
+    }
+
 }

@@ -214,15 +214,6 @@
     <ClInclude Include="..\..\src\Components\Reflect.h">
       <Filter>Source\Tools\Reflect</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonDeserialize.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonFile.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonSerialize.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Components\Sound.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
@@ -375,6 +366,30 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Triangle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Scale.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Rotation.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_serialize.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_deserialize.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_json_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_json.h">
+      <Filter>Source\Tools\Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_archetype_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>

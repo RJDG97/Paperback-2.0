@@ -135,6 +135,8 @@
     <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
+    <ClInclude Include="..\..\src\Components\Rotation.h" />
+    <ClInclude Include="..\..\src\Components\Scale.h" />
     <ClInclude Include="..\..\src\Components\Sound.h" />
     <ClInclude Include="..\..\src\Components\Timer.h" />
     <ClInclude Include="..\..\src\Components\Transform.h" />
@@ -162,9 +164,12 @@
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />
     <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h" />
-    <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
-    <ClInclude Include="..\..\src\Json\JsonFile.h" />
-    <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
+    <ClInclude Include="..\..\src\Json\paperback_deserialize.h" />
+    <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h" />
+    <ClInclude Include="..\..\src\Json\paperback_json.h" />
+    <ClInclude Include="..\..\src\Json\paperback_json_inline.h" />
+    <ClInclude Include="..\..\src\Json\paperback_serialize.h" />
+    <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h" />
     <ClInclude Include="..\..\src\Math\MathUtils.h" />
     <ClInclude Include="..\..\src\Math\Math_includes.h" />
     <ClInclude Include="..\..\src\Math\Mtx4x4.h" />

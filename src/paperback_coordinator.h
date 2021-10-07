@@ -40,6 +40,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void SaveScene(const std::string& FilePath) noexcept;
 
+		PPB_INLINE
+		void OpenScene(const std::string& FilePath) noexcept;
+
 
 		//-----------------------------------
 		//    Archetype / Entity Methods
@@ -131,7 +134,6 @@ namespace paperback::coordinator
 		PPB_INLINE
         const paperback::component::info* FindComponentInfo( const paperback::component::type::guid ComponentGuid ) noexcept;
 
-
 		//-----------------------------------
 		//              Clock
 		//-----------------------------------
@@ -147,6 +149,9 @@ namespace paperback::coordinator
 
 		PPB_INLINE
         auto Now() noexcept -> decltype( std::chrono::high_resolution_clock::now() );
+
+		PPB_INLINE
+		u32 GetFPS( void ) noexcept;
 
 
 		//-----------------------------------
