@@ -320,6 +320,10 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< component::entity >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< transform >( Index ));
+		else if (Comp_Guid.m_Value == component::info_v< scale >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< scale >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< rotation >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< rotation >(Index));
 		else if ( Comp_Guid.m_Value == component::info_v< rigidbody >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< rigidbody >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value )

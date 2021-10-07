@@ -203,8 +203,8 @@ namespace paperback::deserialize
                         rttr::type type = rttr::type::get_by_name(Mitr->name.GetString());
                         rttr::variant obj = type.get_constructor().invoke();
 
-                        if (obj.is_valid())
-                            std::cout << "Made: " << obj.get_type().get_name() << std::endl;
+                        //if (obj.is_valid())
+                        //    std::cout << "Made: " << obj.get_type().get_name() << std::endl;
 
                         auto& Value = Mitr->value;
 

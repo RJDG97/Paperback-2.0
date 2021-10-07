@@ -269,11 +269,8 @@ public:
             if (be == 2) {
 
                 sound_check->m_ID = 0;
+                return;
             }
-
-            //delete instance
-            PPB.DeleteEntity(Entity);
-            return;
         }
 
 

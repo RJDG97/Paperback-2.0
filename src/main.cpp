@@ -60,6 +60,8 @@ void InitializeGame()
        PPB.RegisterComponents<
             rigidbody,
             transform,
+            scale,
+            rotation,
             timer,
             sound,
             mesh
@@ -104,30 +106,53 @@ void InitializeGame()
             //}
         }
 
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation)
             {
                 Transform.m_Position.m_X = 5;
                 Transform.m_Position.m_Y = 2.5;
                 Transform.m_Position.m_Z = -10;
 
+                Scale.m_Value.m_X = 1;
+                Scale.m_Value.m_Y = 1;
+                Scale.m_Value.m_Z = 1;
+
+                Rotation.m_Value.m_X = 1;
+                Rotation.m_Value.m_Y = 0;
+                Rotation.m_Value.m_Z = 0;
+
                 Mesh.m_Model = "Box";
             });
 
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
-        {
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation)
+            {
             Transform.m_Position.m_X = 6;// std::rand() % (m_Engine.m_Width / 2);
             Transform.m_Position.m_Y = 8.5;// std::rand() % (m_Engine.m_Height / 2);
             Transform.m_Position.m_Z = 0;
 
+            Scale.m_Value.m_X = 1;
+            Scale.m_Value.m_Y = 1;
+            Scale.m_Value.m_Z = 1;
+
+            Rotation.m_Value.m_X = 1;
+            Rotation.m_Value.m_Y = 0;
+            Rotation.m_Value.m_Z = 0;
+
             Mesh.m_Model = "Box";
         });
 
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation)
             {
                 Transform.m_Position.m_X = -4;
                 Transform.m_Position.m_Y = 2.5;
                 Transform.m_Position.m_Z = -10;
 
+                Scale.m_Value.m_X = 1;
+                Scale.m_Value.m_Y = 1;
+                Scale.m_Value.m_Z = 1;
+
+                Rotation.m_Value.m_X = 1;
+                Rotation.m_Value.m_Y = 0;
+                Rotation.m_Value.m_Z = 0;
 
                 Mesh.m_Model = "Box";
             });
@@ -150,10 +175,10 @@ void InitializeGame()
 
                 Timer.m_Timer = -2.0f;
 
-               // Sound.m_SoundID = "event:/BGM"; 
+                Sound.m_SoundID = "event:/BGM"; 
             });
-        //
-        // jjyy
+        
+        // jy
         //PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
         //    {
         //        Transform.m_Position.m_X = 2;// std::rand() % (m_Engine.m_Width / 2);
