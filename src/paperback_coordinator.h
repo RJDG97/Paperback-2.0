@@ -49,6 +49,9 @@ namespace paperback::coordinator
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
 		PPB_INLINE
+		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
+
+		PPB_INLINE // Maybe remove
         archetype::instance& CreateArchetype( const tools::bits& Signature ) noexcept;
 
 		template< typename T_FUNCTION >
@@ -120,6 +123,9 @@ namespace paperback::coordinator
 		T_SYSTEM& GetSystem( void ) noexcept;
 
 		PPB_INLINE
+		const paperback::component::info* FindComponentInfoFromUID( const u32 ComponentUID ) noexcept;
+
+		PPB_INLINE
 		std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
 		PPB_INLINE
@@ -173,6 +179,14 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		bool IsMouseUp( int Key ) noexcept;
+
+		friend class paperback::archetype::instance;
+
+
+	protected:
+
+		PPB_INLINE
+		void RegisterEntity( const paperback::vm::PoolDetails, archetype::instance& Archetype ) noexcept;
 
 
 	private:

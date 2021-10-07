@@ -36,7 +36,6 @@ namespace paperback::coordinator
 			XCORE_PERF_FRAME_MARK_START( "paperback::frame" )
 
 			m_SystemMgr.Run();
-			ERROR_LOG( "FPS: " + std::to_string( m_Clock.FPS() ) );
 
 			XCORE_PERF_FRAME_MARK_END( "paperback::frame" )
 		}
@@ -99,7 +98,12 @@ namespace paperback::coordinator
 		return m_ArchetypeMgr.GetOrCreateArchetype<T_COMPONENTS...>( *this );
 	}
 
-	archetype::instance& instance::CreateArchetype( const tools::bits& Signature ) noexcept
+	archetype::instance& instance::GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept
+	{
+		return m_ArchetypeMgr.GetOrCreateArchetype( ArchetypeSignature );
+	}
+
+	archetype::instance& instance::CreateArchetype( const tools::bits& Signature ) noexcept // Maybe remove
 	{
 		return m_ArchetypeMgr.CreateArchetype( Signature );
 	}
@@ -287,6 +291,11 @@ namespace paperback::coordinator
 		return *p;
 	}
 
+	const paperback::component::info* instance::FindComponentInfoFromUID( const u32 ComponentUID ) noexcept
+	{
+		return m_CompMgr.FindComponentInfoFromUID( ComponentUID );
+	}
+
 	std::vector<paperback::archetype::instance*> instance::GetArchetypeList( void ) noexcept
 	{
 		return m_ArchetypeMgr.GetArchetypeList();
@@ -368,5 +377,15 @@ namespace paperback::coordinator
 	bool instance::IsMouseUp( int Key ) noexcept
 	{
 		return m_Input.IsMouseUp( Key );
+	}
+
+
+	//-----------------------------------
+	// Protected - Register for Archetype
+	//-----------------------------------
+
+	void instance::RegisterEntity( const paperback::vm::PoolDetails Details, paperback::archetype::instance& Archetype ) noexcept
+	{
+		m_ArchetypeMgr.RegisterEntity( Details, Archetype );
 	}
 }

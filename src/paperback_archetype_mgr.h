@@ -41,6 +41,9 @@ namespace paperback::archetype
         archetype::instance& GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept;
 
         PPB_INLINE
+		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
+
+        PPB_INLINE
         archetype::instance& CreateArchetype( const tools::bits& Signature ) noexcept;
 
         PPB_INLINE

@@ -8,7 +8,9 @@ namespace paperback::component
         if ( component::info_v<T_COMPONENT>.m_UID == component::info::invalid_id_v )
             component::info_v<T_COMPONENT>.m_UID = m_ComponentUID++;
 
-        m_ComponentInfoMap.emplace( std::pair{ component::info_v<T_COMPONENT>.m_Guid, &component::info_v<T_COMPONENT> } );
+        m_ComponentGuidArray[ m_ComponentUID - 1 ] = component::info_v<T_COMPONENT>.m_Guid;
+        m_ComponentInfoMap.emplace( std::pair{ m_ComponentGuidArray[ m_ComponentUID - 1 ]
+                                             , &component::info_v<T_COMPONENT> } );
     }
 
     template< typename... T_COMPONENTS >
@@ -23,6 +25,12 @@ namespace paperback::component
         if ( CInfo != m_ComponentInfoMap.end() )
             return CInfo->second;
         return nullptr;
+    }
+
+    const paperback::component::info* manager::FindComponentInfoFromUID( const u32 ComponentUID ) noexcept
+    {
+        if ( ComponentUID >= m_ComponentUID ) return nullptr;
+        else                                  return FindComponentInfo( m_ComponentGuidArray[ ComponentUID ] );
     }
 
     void manager::Terminate( void ) noexcept

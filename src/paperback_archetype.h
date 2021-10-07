@@ -2,8 +2,10 @@
 
 namespace paperback::archetype
 {
-    struct instance final
+    class instance final
     {
+    public:
+
         using PoolDetails    = vm::PoolDetails;
         using EntityIDList   = std::vector<uint16_t>;
         using ComponentPool  = std::array<vm::instance, 2>;
@@ -28,7 +30,7 @@ namespace paperback::archetype
         //-----------------------------------
 
         template< typename T_CALLBACK = paperback::empty_lambda >
-        PoolDetails CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
+        void CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
         
         PPB_INLINE
         u32 DeleteEntity( const PoolDetails Details ) noexcept;
