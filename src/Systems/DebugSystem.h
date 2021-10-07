@@ -211,7 +211,7 @@ struct debug_system : paperback::system::instance
         ConvertVerticesToCircleDraw(debugdraw, top, bottom, right, left, top_right, bottom_right, top_left, bottom_left);
 
 
-        DrawDebugLines(debugdraw);
+        DrawDebugLines(debugdraw, iscollide);
     }
 
     //given a set of vertices defining a square, prepare the pairing required
@@ -289,8 +289,7 @@ struct debug_system : paperback::system::instance
         }
 
         // send to render
-        if (!iscollide)
-            Renderer::GetInstanced().DebugRender(input);
+        Renderer::GetInstanced().DebugRender(input, iscollide);
     }
 
 

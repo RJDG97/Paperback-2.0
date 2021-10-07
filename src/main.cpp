@@ -108,26 +108,26 @@ void InitializeGame()
                 //Mesh.m_Model = "Plane";
             });
 
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, rigidbody& rb, player& Player)
+        PPB.CreateEntity([&](transform& Transform, /*mesh& Mesh,*/ rigidbody& rb, player& Player)
             {
-                Transform.m_Position.m_X = 2;// std::rand() % (m_Engine.m_Width / 2);
+                Transform.m_Position.m_X = -3;// std::rand() % (m_Engine.m_Width / 2);
                 Transform.m_Position.m_Y = 2;// std::rand() % (m_Engine.m_Height / 2);
                 Transform.m_Position.m_Z = -4;
                 Transform.fakebox.MinMax[0].Set(paperback::Vector3f(2.f - 2.f, 2.f - 2.f, -4.f - 2.f));
                 Transform.fakebox.MinMax[1].Set(paperback::Vector3f(2.f + 2.f, 2.f + 2.f, -4.f + 2.f));
                 Transform.fakeSphere.Set(paperback::Vector3f(2.f, 2.f, -4.f), 1.f);
                 Transform.m_Offset.setZero();
-                Transform.m_Offset.m_Y = 3.0f;
+                Transform.m_Offset.m_Y = 0.0f;
 
 
-                Mesh.m_Model = "Box";
+                //Mesh.m_Model = "Box";
             });
 
         PPB.CreateEntity([&](transform& Transform/*, mesh& Mesh*/, rigidbody& rb)
             {
                 Transform.m_Position.m_X = 5;// std::rand() % (m_Engine.m_Width / 2);
-                Transform.m_Position.m_Y = -1;// std::rand() % (m_Engine.m_Height / 2);
-                Transform.m_Position.m_Z = -7;
+                Transform.m_Position.m_Y = 2;// std::rand() % (m_Engine.m_Height / 2);
+                Transform.m_Position.m_Z = -4;
                 Transform.fakebox.MinMax[0].Set(paperback::Vector3f(5.f - 2.f, -1.f - 2.f, -7.f - 2.f));
                 Transform.fakebox.MinMax[1].Set(paperback::Vector3f(5.f + 2.f, -1.f + 2.f, -7.f + 2.f));
                 Transform.fakeSphere.Set(paperback::Vector3f(5.f, -1.f, -7.f), 1.f);

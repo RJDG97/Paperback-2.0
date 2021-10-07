@@ -18,7 +18,7 @@ public:
 	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
 
 	// Render debug objects
-	void DebugRender(const std::vector<glm::vec3>& Points);
+	void DebugRender(const std::vector<glm::vec3>& Points, bool isalt);
 
 	// Prep the start of draw frame
 	void StartFrame();
