@@ -27,7 +27,7 @@ namespace paperback::archetype
     //        Create / Delete
     //-----------------------------------
     template< typename T_CALLBACK >
-    instance::PoolDetails instance::CreateEntity( T_CALLBACK&& Function ) noexcept
+    void instance::CreateEntity( T_CALLBACK&& Function ) noexcept
     {
         using func_traits = xcore::function::traits<T_CALLBACK>;
 
@@ -35,12 +35,6 @@ namespace paperback::archetype
         {
             ERROR_PRINT( "CreateEntity: Maximum entities reached" );
             ERROR_LOG( "CreateEntity: Maximum entities reached" );
-
-            return PoolDetails
-            {
-                .m_Key       = settings::invalid_index_v
-            ,   .m_PoolIndex = settings::invalid_index_v
-            };
         }
 
         ++m_EntityCount;
@@ -56,12 +50,13 @@ namespace paperback::archetype
             {
                 Function( m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<T_COMPONENTS>( PoolIndex ) ... );
             }
-    
-            return PoolDetails
-            {
-                .m_Key       = m_PoolAllocationIndex
-            ,   .m_PoolIndex = PoolIndex
-            };
+
+            m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
+                                          {
+                                              .m_Key       = m_PoolAllocationIndex
+                                          ,   .m_PoolIndex = PoolIndex
+                                          }
+                                        , *this );
 
         }( reinterpret_cast<typename func_traits::args_tuple*>( nullptr ) );
     }

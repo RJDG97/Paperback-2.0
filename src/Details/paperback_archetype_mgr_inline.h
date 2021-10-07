@@ -36,14 +36,9 @@ namespace paperback::archetype
 
 	    [&] <typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* )
 	    {
-		    auto&      Archetype = GetOrCreateArchetype<T_COMPONENTS...>( Coordinator );
-            const auto Details   = Archetype.CreateEntity( Function );
+		    auto& Archetype = GetOrCreateArchetype<T_COMPONENTS...>( Coordinator );
+            Archetype.CreateEntity( Function );
 
-            if ( Details.m_Key       == settings::invalid_index_v
-              && Details.m_PoolIndex == settings::invalid_index_v )
-                return;
-
-		    RegisterEntity( Details, Archetype );
 	    }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
 
@@ -68,6 +63,32 @@ namespace paperback::archetype
     {
         static constexpr auto ComponentList = paperback::component::sorted_info_array_v< std::tuple<component::entity, T_COMPONENTS...> >;
         return GetOrCreateArchetype( ComponentList, Coordinator );
+    }
+
+    archetype::instance& manager::GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept
+    {
+        for ( auto& ArchetypeBits : m_ArchetypeBits )
+        {
+            if ( ArchetypeBits.Match( ArchetypeSignature ) )
+            {
+                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
+                return *m_pArchetypeList[ index ];
+            }
+        }
+
+        u32 Count = 0;
+        std::array<const paperback::component::info*, settings::max_components_per_entity_v> InfoList;
+
+        for ( u32 i = 0, max = settings::max_component_types_v; i < max; ++i )
+        {
+            if ( ArchetypeSignature.Has( i ) )
+                InfoList[ Count++ ] = m_Coordinator.FindComponentInfoFromUID( i );
+        }
+
+        auto& Archetype = CreateArchetype( ArchetypeSignature );
+        Archetype.Init( InfoList, Count );
+
+        return Archetype;
     }
 
     archetype::instance& manager::CreateArchetype( const tools::bits& Signature ) noexcept
