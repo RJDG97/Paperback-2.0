@@ -5,10 +5,8 @@
 #include <rapidjson/filewritestream.h>
 #include <rttr/type>
 #include <iostream>
-#include <string>
-#include <vector>
-#include "Components/component_includes.h"
 #include <cstdint>
+#include "Components/component_includes.h"
 
 namespace paperback::serialize
 {
@@ -119,33 +117,19 @@ namespace paperback::serialize
 
      void SerializeGuid ( rttr::instance obj, rapidjson::PrettyWriter<rapidjson::FileWriteStream> &writer )
      {
-         //rttr::instance obj = object.get_type().get_raw_type().is_wrapper() ? object.get_wrapped_instance() : object;
+         rttr::instance object = obj.get_type().get_raw_type().is_wrapper() ? obj.get_wrapped_instance() : obj;
 
-         //auto prop_list = obj.get_derived_type().get_properties();
+         auto prop_list = object.get_derived_type().get_properties();
+         for (auto prop : prop_list)
+         {
+             rttr::variant prop_value = prop.get_value(object);
+             if (!prop_value)
+                 continue; // cannot serialize, because we cannot retrieve the value
 
-         //for ( auto prop : prop_list )
-         //{
-         //    rttr::variant prop_value = prop.get_value(obj);
-             //if (!prop_value)
-             //    continue; // cannot serialize, because we cannot retrieve the value
+             if (!WriteVariant(prop_value, writer))
+                 std::cerr << "cannot serialize property: " << prop.get_name() << std::endl;
 
-         //}
-         //for (auto& obj : objects)
-         //{
-             rttr::instance object = obj.get_type().get_raw_type().is_wrapper() ? obj.get_wrapped_instance() : obj;
-
-             auto prop_list = object.get_derived_type().get_properties();
-             for (auto prop : prop_list)
-             {
-                 rttr::variant prop_value = prop.get_value(object);
-                 if (!prop_value)
-                     continue; // cannot serialize, because we cannot retrieve the value
-
-                 if (!WriteVariant(prop_value, writer))
-                     std::cerr << "cannot serialize property: " << prop.get_name() << std::endl;
-
-             }
-         //}
+         }
      }
 
     /////////////////////////////////////////////////////////////////////////////////////////

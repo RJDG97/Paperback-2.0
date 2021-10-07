@@ -220,7 +220,6 @@ namespace paperback::deserialize
                                         NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = Trans;
 
                                         auto& a = NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter });
-                                        //auto& a = Trans;
 
                                         std::cout << a.m_Position.m_X << " | " << a.m_Position.m_Y << std::endl;
 

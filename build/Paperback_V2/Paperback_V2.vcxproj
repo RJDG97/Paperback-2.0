@@ -168,6 +168,8 @@
     <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h" />
+    <ClInclude Include="..\..\src\Json\paperback_json.h" />
+    <ClInclude Include="..\..\src\Json\paperback_json_inline.h" />
     <ClInclude Include="..\..\src\Json\paperback_serialize.h" />
     <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h" />
     <ClInclude Include="..\..\src\Math\MathUtils.h" />

@@ -415,6 +415,12 @@
     <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h">
       <Filter>Source\Tools\Json</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_json_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_json.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

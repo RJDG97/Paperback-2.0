@@ -7,18 +7,18 @@
 
 #include <rapidjson/error/en.h>
 
-namespace paperback 
+namespace paperback
 {
     class JsonFile
     {
-        char* buffer { nullptr };
-        FILE* fp { nullptr };
-        rapidjson::FileWriteStream* wstream {nullptr};
-        rapidjson::FileReadStream* rstream {nullptr};
-        rapidjson::PrettyWriter<rapidjson::FileWriteStream>* writer {nullptr};
-        rapidjson::Document* doc {nullptr};
+        char* buffer{ nullptr };
+        FILE* fp{ nullptr };
+        rapidjson::FileWriteStream* wstream{ nullptr };
+        rapidjson::FileReadStream* rstream{ nullptr };
+        rapidjson::PrettyWriter<rapidjson::FileWriteStream>* writer{ nullptr };
+        rapidjson::Document* doc{ nullptr };
 
-        public:
+    public:
         //-----------------------------------
         //          Serialization
         //-----------------------------------
