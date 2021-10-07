@@ -134,11 +134,7 @@ namespace paperback::archetype
     {
         for (u32 j = 0; j < m_EntityCount; ++j)
         {
-            //auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, j });
-
-            //auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
             Jfile.StartObject();
-            //jfile.Write(EntityInfo); // im not super sure what we wanna store here,probably using EntityInfo to store m_PoolDetails? for pool indexing stuffs
 
             m_ComponentPool[0].SerializePoolComponentsAtEntityIndex( j, Jfile ); // Pool Index 0 Only For Now
 

@@ -228,6 +228,8 @@ namespace paperback::deserialize
                                     if ( obj.is_type<component::entity>() )
                                         NewArchetype->GetComponent<component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<component::entity>();
                                 }
+
+                                EntityCounter++;
                             }
                         );
                     }
@@ -250,12 +252,6 @@ namespace paperback::deserialize
                                     ArchetypeSignature.Set(CList[Counter++]->m_UID);
                                 }
 
-                                //NewArchetype = PPB.FindArchetype(ArchetypeSignature);
-                                //if (!NewArchetype)
-                                //{
-                                //    NewArchetype = &(PPB.CreateArchetype(ArchetypeSignature));
-                                //    NewArchetype->Init(CList, Counter, TempName);
-                                //}
                                 NewArchetype = &PPB.GetOrCreateArchetype(ArchetypeSignature);
                                 PPB_ASSERT_MSG(NewArchetype == nullptr, "Archetype Failed to Init");
 

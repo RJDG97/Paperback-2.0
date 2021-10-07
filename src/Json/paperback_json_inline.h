@@ -94,7 +94,7 @@ namespace paperback
         buffer = new char[65536]; buffer;
         rstream = new rapidjson::FileReadStream(fp, buffer, 65536);
         doc = new rapidjson::Document();
-        PPB_ASSERT(doc->ParseStream(*rstream).HasParseError());
+        if (doc->ParseStream(*rstream).HasParseError()) ERROR_LOG("Cannot open file");
 
         //if (doc->ParseStream(*rstream).HasParseError())
         //{

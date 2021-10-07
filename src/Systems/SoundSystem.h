@@ -247,6 +247,8 @@ public:
     PPB_FORCEINLINE
     void operator()(paperback::component::entity& Entity, timer& timer, sound& sound, transform* transform, rigidbody* rigidbody) noexcept
     {
+        if (Entity.IsZombie())
+            return;
         
         // System Update Code - FOR A SINGLE ENTITY
         auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [sound](const SoundFile& soundfile) { return sound.m_SoundPlayTag == soundfile.m_ID; });
@@ -307,7 +309,7 @@ public:
             }
 
             //delete instance
-            PPB.DeleteEntity(Entity);
+            //PPB.DeleteEntity(Entity);
         }
     }
 
