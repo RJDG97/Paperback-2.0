@@ -137,6 +137,7 @@
     <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
+    <ClInclude Include="..\..\src\Components\RigidForce.h" />
     <ClInclude Include="..\..\src\Components\SampleTagComponent.h" />
     <ClInclude Include="..\..\src\Components\Sound.h" />
     <ClInclude Include="..\..\src\Components\Timer.h" />
@@ -193,7 +194,6 @@
     <ClInclude Include="..\..\src\paperback_system_mgr.h" />
     <ClInclude Include="..\..\src\paperback_types.h" />
     <ClInclude Include="..\..\src\Physics\geometry.h" />
-    <ClInclude Include="..\..\src\Physics\PhysicsMaterial.h" />
     <ClInclude Include="..\..\src\Physics\Physics_includes.h" />
     <ClInclude Include="..\..\src\Scripts\MonoExternal.h" />
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h" />

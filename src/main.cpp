@@ -61,6 +61,11 @@ void InitializeGame()
             bullet,
             rigidbody,
             transform,
+
+           rigidforce,
+           Sphere,
+           BoundingBox,
+
             timer,
             sound,
             sample_tag_component,
@@ -106,13 +111,42 @@ void InitializeGame()
             //        });
             //}
         }
-
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        // right
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, BoundingBox& bbox)// rigidbody& rb, rigidforce& rf)
             {
                 Transform.m_Position.m_X = 5;
                 Transform.m_Position.m_Y = 2.5;
                 Transform.m_Position.m_Z = -10;
 
+                bbox.MinMax[0].Set(paperback::Vector3f(
+                    Transform.m_Position.m_X - 2.f,
+                    Transform.m_Position.m_Y - 2.f,
+                    Transform.m_Position.m_Z - 2.f));
+
+                bbox.MinMax[1].Set(paperback::Vector3f(
+                    Transform.m_Position.m_X + 2.f,
+                    Transform.m_Position.m_Y + 2.f,
+                    Transform.m_Position.m_Z + 2.f));
+
+                Mesh.m_Model = "Box";
+            });
+        // right most tip
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, BoundingBox& bbox)// rigidbody& rb, rigidforce& rf)
+            {
+                Transform.m_Position.m_X = 8;
+                Transform.m_Position.m_Y = 5.5;
+                Transform.m_Position.m_Z = -7;
+        
+                bbox.MinMax[0].Set(paperback::Vector3f(
+                    Transform.m_Position.m_X - 2.f,
+                    Transform.m_Position.m_Y - 2.f,
+                    Transform.m_Position.m_Z - 2.f));
+
+                bbox.MinMax[1].Set(paperback::Vector3f(
+                    Transform.m_Position.m_X + 2.f,
+                    Transform.m_Position.m_Y + 2.f,
+                    Transform.m_Position.m_Z + 2.f));
+        
                 Mesh.m_Model = "Box";
             });
 

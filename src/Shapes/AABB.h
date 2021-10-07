@@ -14,7 +14,7 @@ struct AABB
 
 public:													// ----- Private members
 	paperback::Vector3f m_point[8];
-
+	bool collided;
 
 };
 // -- To do:

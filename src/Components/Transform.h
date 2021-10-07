@@ -16,8 +16,8 @@ struct transform
 	xcore::vector3	 m_Position;							// -- Position vector
 	xcore::vector3	 m_Rotation;							// -- Angle of this transform
 	xcore::vector3	 m_LocalScale;							// -- Scale vector
-	BoundingBox fakebox;
-	Sphere fakeSphere;
+	//BoundingBox fakebox; // to be removed once u done with the implementation of force,momentum,collsion
+	//Sphere fakeSphere;
 
 	//paperback::Mtx4x4 m_mtxTrans;								// -- The translatation matrix
 	//paperback::Mtx4x4 m_mtxRot;									// -- The rotation matrix

@@ -118,16 +118,16 @@ struct debug_system : paperback::system::instance
     // low poly circle
     void DrawSphereCollision(transform& xform, bool iscollide = false)
     {
-
-        Sphere& sphere = xform.fakeSphere;
+        // cc
+        //Sphere& sphere = xform.fakeSphere;
 
         std::vector<paperback::Vector3f> debugdraw;
 
-        paperback::Vector3f center = sphere.getCenter();
+        paperback::Vector3f center = paperback::Vector3f{};// sphere.getCenter(); cc
         paperback::Vector3f top = center;
         paperback::Vector3f bottom = top;
 
-        float radius = sphere.getRadius();
+        float radius = 0.f;// sphere.getRadius(); cc
 
         top.y += radius;
         bottom.y -= radius;
@@ -243,8 +243,9 @@ struct debug_system : paperback::system::instance
         paperback::Vector3f front_top_left, front_top_right, front_bottom_left, front_bottom_right,
             back_top_left, back_top_right, back_bottom_left, back_bottom_right, diff;
 
-        front_top_right = front_top_left = front_bottom_left = front_bottom_right = transform.fakebox.MinMax[1] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
-        back_bottom_left = back_top_left = back_top_right = back_bottom_right = transform.fakebox.MinMax[0] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        // cc
+        front_top_right = front_top_left = front_bottom_left = front_bottom_right = paperback::Vector3f{};//transform.fakebox.MinMax[1] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        back_bottom_left = back_top_left = back_top_right = back_bottom_right = paperback::Vector3f{};//transform.fakebox.MinMax[0] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
         diff = front_top_right - back_bottom_left;
 
         front_top_left -= paperback::Vector3f{ diff.x, 0.0f, 0.0f };

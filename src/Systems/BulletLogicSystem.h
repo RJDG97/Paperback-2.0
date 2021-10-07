@@ -33,13 +33,14 @@ struct bullet_logic_system : paperback::system::instance
                 if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie()) /* || (Bullet.m_Owner.m_GlobalIndex == Dynamic_Entity.m_GlobalIndex)*/) return false;
 
                 // collision detection part
-                if (AabbAabb(Transform.fakebox.MinMax[0], Transform.fakebox.MinMax[1], xform.fakebox.MinMax[0], xform.fakebox.MinMax[1]))
-                    std::cout << "Aabb collided" << std::endl;
-                else std::cout << "no collide Aabb" << std::endl;
+                //if (AabbAabb(Transform.fakebox.MinMax[0], Transform.fakebox.MinMax[1], xform.fakebox.MinMax[0], xform.fakebox.MinMax[1]))
+                //    ;// std::cout << "Aabb collided" << std::endl;
+                //else ;// std::cout << "no collide Aabb" << std::endl;
 
-                if (SphereSphere(Transform.fakeSphere.getCenter(), Transform.fakeSphere.getRadius(), xform.fakeSphere.getCenter(), xform.fakeSphere.getRadius()))
-                    std::cout << "Sphere collided" << std::endl;
-                else std::cout << "no collide Sphere" << std::endl;
+                //if (SphereSphere(Transform.fakeSphere.getCenter(), Transform.fakeSphere.getRadius(), xform.fakeSphere.getCenter(), xform.fakeSphere.getRadius()))
+                //    ;
+                //std::cout << "Sphere collided" << std::endl;
+                //else ;//std::cout << "no collide Sphere" << std::endl;
 
                 constexpr auto min_distance_v = 4;
                 if ((Transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
@@ -51,7 +52,8 @@ struct bullet_logic_system : paperback::system::instance
                 return false;
             });
 
-        GetSystem<debug_system>().DrawSphereCollision(Transform);
         GetSystem<debug_system>().DrawCubeCollision(Transform);
+        GetSystem<debug_system>().DrawSphereCollision(Transform);
+        
     }
 };

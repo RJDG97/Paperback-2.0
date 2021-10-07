@@ -14,8 +14,58 @@ struct physics_system : paperback::system::instance
     >;
 
     // map check collision out of bounds check
-    void operator()( transform& Transform, rigidbody& RigidBody, paperback::component::entity* Entity, bullet* BulletTest ) noexcept
+    void operator()( transform& Transform, rigidbody& RigidBody, rigidforce* RigidForce, paperback::component::entity* Entity, bullet* BulletTest ) noexcept
     {
+        if (RigidForce != nullptr)
+        {
+            if (RigidForce->m_isAccel)
+            {
+                RigidForce->m_Forces = RigidForce->m_NegForces;
+            }
+            else
+            {
+                // treated as 0 force 
+                if (RigidForce->m_MagForce < RigidForce->m_threshold)
+                {
+                    RigidForce->m_Forces.Reset();
+                    RigidForce->m_NegForces.Reset();
+                    RigidForce->m_MagForce = 0.f;
+
+                    if (RigidForce->m_MagMoment < RigidForce->m_threshold)
+                    {
+                        RigidForce->m_Momentum.Reset();
+                        RigidForce->m_MagMoment = 0.f;
+                    }
+                    else
+                    {
+                        // this part is to bleed out any remaining velocity after Accel = 0.f
+                        RigidForce->m_MagMoment = RigidForce->m_Momentum.MagnitudeSq();
+                        float Mproportion = RigidForce->m_MagMoment / (RigidForce->m_MaxMomentSq * 2);
+                        // update momentum
+                        RigidForce->m_Momentum -= (Mproportion * RigidForce->m_MaxMoment * m_Coordinator.DeltaTime());
+                    }
+                }
+                else
+                {
+                    // magnitudeSq
+                    RigidForce->m_MagForce = RigidForce->m_Forces.MagnitudeSq();
+                    // current Force / maximum Force / 2
+                    float Fproportion = RigidForce->m_MagForce / (RigidForce->m_MaxForceSq * 2);
+                    // forces update with time
+                    RigidForce->m_Forces -= (Fproportion * RigidForce->m_MaxForce * m_Coordinator.DeltaTime());
+                    RigidForce->m_NegForces = RigidForce->m_Forces;
+                    // update momentum
+                    RigidForce->m_Momentum -= (RigidForce->m_NegForces * m_Coordinator.DeltaTime());
+                }
+            }
+            RigidBody.m_Accel = RigidForce->ConvertToAccel().ConvertMathVecToXcoreVec();
+            RigidBody.m_Velocity = RigidForce->ConvertToVelocity().ConvertMathVecToXcoreVec();
+        }
+        else
+        {
+            // remember that rigid body without RIGID FORCE does not have a velocity or accel dampener
+        }
+
         Transform.m_Position += RigidBody.m_Velocity * m_Coordinator.DeltaTime();
 
         /*

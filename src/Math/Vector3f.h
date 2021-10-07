@@ -100,6 +100,27 @@ namespace paperback
 		inline Vector3f RotateAboutPoint(const Vector3f& Point,		//------ Rotates a point about a 
 			const Vector3f& Center,	//------ desired centre point with
 			float Degrees);			//------ a desired angle.
+
+		//helper function to convert Vector3f to glm::vec3
+		xcore::vector3 ConvertMathVecToXcoreVec(const paperback::Vector3f& vec3)
+		{
+			return { vec3.x, vec3.y, vec3.z };
+		}
+		//helper function to convert Vector3f to glm::vec3
+		xcore::vector3 ConvertMathVecToXcoreVec()
+		{
+			return { x, y, z };
+		}
+		//helper function to convert xcore::vector3 to Vector3f
+		paperback::Vector3f ConvertXcoreVecTo3f(const xcore::vector3& vec)
+		{
+			return { vec.m_X, vec.m_Y, vec.m_Z };
+		}
+		//helper function to convert xcore::vector3 to Vector3f
+		paperback::Vector3f ConvertXcoreVecTo3f()
+		{
+			return { x, y, z };
+		}
 	};
 
 	//------ Operator overload | operator* | Scalar * Vector3f
