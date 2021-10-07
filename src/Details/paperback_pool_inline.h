@@ -26,7 +26,8 @@ namespace paperback::vm
 		{
 			auto nPages = GetPageIndex( *m_ComponentInfo[i], settings::max_entities_v ) + 1;
 			m_MemoryPool[i] = reinterpret_cast<std::byte*>( VirtualAlloc(nullptr, nPages * paperback::settings::virtual_page_size_v, MEM_RESERVE, PAGE_NOACCESS) );
-			assert( m_MemoryPool[i] );
+
+			PPB_ASSERT_MSG( !m_MemoryPool[i], "Pool Init - Memory is not reserved" );
 		}
 	}
 
@@ -36,7 +37,13 @@ namespace paperback::vm
 	//-----------------------------------
 	u32 instance::Append( void ) noexcept
 	{
-		assert( m_CurrentEntityCount < settings::max_entities_v );
+		if ( m_CurrentEntityCount + 1 >= settings::max_entities_v )
+        {
+            ERROR_PRINT( "Pool Append: Maximum entities reached" );
+            ERROR_LOG( "Pool Append: Maximum entities reached" );
+
+			return settings::invalid_index_v;
+        }
 
 		// For each valid component
 		for (size_t i = 0, end = m_NumberOfComponents; i < end; i++)
@@ -51,7 +58,7 @@ namespace paperback::vm
 				auto pEndOfCurrentPool = m_MemoryPool[i] + iNextpage * paperback::settings::virtual_page_size_v;
 				auto pNewPool = VirtualAlloc( pEndOfCurrentPool, paperback::settings::virtual_page_size_v, MEM_COMMIT, PAGE_READWRITE );
 
-				assert( pNewPool == pEndOfCurrentPool );
+				PPB_ASSERT_MSG( pNewPool != pEndOfCurrentPool, "Pool Append - Memory is not contiguous" );
 			}
 
 			// Invoke constructor for Component (If Required)
@@ -66,8 +73,8 @@ namespace paperback::vm
 
 	u32 instance::Delete( const u32 PoolIndex ) noexcept
 	{
-		assert( PoolIndex < m_CurrentEntityCount && 
-				PoolIndex >= 0 );
+		PPB_ASSERT_MSG( PoolIndex >= m_CurrentEntityCount || PoolIndex < 0,
+						"Pool Delete - Invalid pool index" );
 
 		// Return back to the current index
 		--m_CurrentEntityCount;
@@ -104,7 +111,8 @@ namespace paperback::vm
 			{
 				auto pRaw = &pData[ paperback::settings::virtual_page_size_v * LastPage ];
 				auto b = VirtualFree( pRaw, paperback::settings::virtual_page_size_v, MEM_DECOMMIT );
-				assert( b );
+
+				PPB_ASSERT_MSG( !b, "Pool Delete - Virtual free failed" );
 			}
 		}
 
@@ -123,7 +131,7 @@ namespace paperback::vm
 
 	void instance::RemoveTransferredEntity( const u32 PoolIndex ) noexcept
 	{
-		assert( PoolIndex >= 0 );
+		PPB_ASSERT_MSG( PoolIndex < 0, "Pool RemoveTransferredEntity - Invalid pool index");
 
 		// Backtrack to last valid entity
 		while ( m_CurrentEntityCount )
@@ -162,7 +170,8 @@ namespace paperback::vm
 			{
 				auto pRaw = &pData[ paperback::settings::virtual_page_size_v * LastPage ];
 				auto b = VirtualFree( pRaw, paperback::settings::virtual_page_size_v, MEM_DECOMMIT );
-				assert( b );
+
+				PPB_ASSERT_MSG( !b, "Pool RemoveTransferredEntity - Virtual free failed" );
 			}
 		}
 	}
@@ -254,7 +263,7 @@ namespace paperback::vm
 		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
 			if ( m_ComponentInfo[i]->m_UID == UIDComponent ) { return static_cast<int>(i); }
 
-		assert( false );
+		PPB_ASSERT_MSG( true, "Pool GetComponentIndex - Cannot find component within memory pool" );
 		return -1;
 	}
 
@@ -285,6 +294,7 @@ namespace paperback::vm
 		{
 			rttr::instance Component = GetComponentInstance( m_ComponentInfo[i]->m_Guid, Index );
 			Jfile.WriteKey( Component.get_type().get_name().to_string() ).StartObject();
+			//Jfile.WriteKey( std::to_string(m_ComponentInfo[i]->m_Guid.m_Value)).StartObject();
 			Jfile.Write( Component );
 			Jfile.EndObject();
 
@@ -308,6 +318,10 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< component::entity >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< transform >( Index ));
+		else if (Comp_Guid.m_Value == component::info_v< scale >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< scale >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< rotation >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< rotation >(Index));
 		else if ( Comp_Guid.m_Value == component::info_v< rigidbody >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< rigidbody >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value )

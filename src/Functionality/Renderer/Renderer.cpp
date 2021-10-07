@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "paperback_camera.h"
+#include "glm/inc/gtc/type_ptr.hpp"
 #include <glm/inc/gtx/transform.hpp>
 
 Renderer::Renderer() :
@@ -31,6 +32,14 @@ Renderer::Renderer() :
 	glVertexArrayAttribFormat(m_VAO, 4, 3, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_BiTangent));
 	glVertexArrayAttribBinding(m_VAO, 4, 0);
 
+	glEnableVertexArrayAttrib(m_VAO, 5);
+	glVertexArrayAttribIFormat(m_VAO, 5, 4, GL_INT, offsetof(Model::Vertex, m_BoneIDs));
+	glVertexArrayAttribBinding(m_VAO, 5, 0);
+
+	glEnableVertexArrayAttrib(m_VAO, 6);
+	glVertexArrayAttribFormat(m_VAO, 6, 4, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_Weights));
+	glVertexArrayAttribBinding(m_VAO, 6, 0);
+
 	glBindVertexArray(0);
 
 	glCreateVertexArrays(1, &m_DebugVAO);
@@ -46,10 +55,12 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Blur", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Blur.frag");
 	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
+	m_Resources.LoadShader("DebugAlt", "../../resources/shaders/Debug.vert", "../../resources/shaders/DebugAlt.frag");
 
 	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
 	m_Resources.Load3DMesh("Box", "../../resources/models/box.fbx");
-	//m_Resources.Load3DMesh("Plane", "../../resources/models/plane.obj");
+	m_Resources.Load3DMesh("Plane", "../../resources/models/plane2.obj");
+	m_Resources.Load3DMesh("Character", "../../resources/models/mutant.fbx");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -177,12 +188,12 @@ void Renderer::SetUpFramebuffer()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points)
+void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points, std::vector<glm::mat4>* bone_transforms)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	ShadowPass(Objects);
-	RenderPass(Objects);	
+	ShadowPass(Objects, bone_transforms);
+	RenderPass(Objects, bone_transforms);
 	if (Points)
 	{
 		DebugRender(*Points);
@@ -191,7 +202,7 @@ void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat
 	CompositePass();
 }
 
-void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
+void Renderer::DebugRender(const std::vector<glm::vec3>& Points, bool IsAlt)
 {
 	// Create vbo for debug lines
 	GLuint vbo;
@@ -199,7 +210,10 @@ void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
 	glNamedBufferStorage(vbo, sizeof(glm::vec3) * Points.size(), Points.data(), GL_DYNAMIC_STORAGE_BIT);
 
 	// Bind shader
-	m_Resources.m_Shaders["Debug"].Use();
+	if (IsAlt)
+		m_Resources.m_Shaders["DebugAlt"].Use();
+	else
+		m_Resources.m_Shaders["Debug"].Use();
 
 	// Bind vao
 	glBindVertexArray(m_DebugVAO);
@@ -226,7 +240,7 @@ void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
 	m_Resources.m_Shaders["Debug"].UnUse();
 }
 
-void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects)
+void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms)
 {
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -260,6 +274,18 @@ void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm:
 			{
 				m_Resources.m_Shaders["Shadow"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
+				if (bone_transforms && model.first == "Character")
+				{
+					m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", true);
+					auto loc = glGetUniformLocation(m_Resources.m_Shaders["Shadow"].GetShaderHandle(), "uFinalBonesMatrices");
+					glUniformMatrix4fv(loc, 100, GL_FALSE, glm::value_ptr((*bone_transforms)[0]));
+				}
+
+				else
+				{
+					m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", false);
+				}
+
 				// Draw object
 				glDrawElements(m_Resources.m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 			}
@@ -275,7 +301,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm:
 	glCullFace(GL_BACK);
 }
 
-void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects)
+void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms)
 {
 	// Bind to lighting frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_LightingBuffer.m_FrameBuffer[0]);
@@ -374,10 +400,23 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
+				if (bone_transforms && model.first == "Character")
+				{
+					m_Resources.m_Shaders["Light"].SetUniform("uHasBones", true);
+					auto loc = glGetUniformLocation(m_Resources.m_Shaders["Light"].GetShaderHandle(), "uFinalBonesMatrices");
+					glUniformMatrix4fv(loc, 100, GL_FALSE, glm::value_ptr((*bone_transforms)[0]));
+				}
+
+				else
+				{
+					m_Resources.m_Shaders["Light"].SetUniform("uHasBones", false);
+				}
+
 				// Draw object
 				glDrawElements(m_Resources.m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 			}
 		}
+
 	}
 
 	// Unbind vao

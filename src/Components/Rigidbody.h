@@ -75,6 +75,7 @@ namespace RR_Rigidbody
     {
         rttr::registration::class_<rigidbody>(rigidbody::typedef_v.m_pName)
             .constructor()(rttr::policy::ctor::as_object)
+            .property("Acceleration", &rigidbody::m_Accel)
             .property("Velocity", &rigidbody::m_Velocity)
             .property("Mass", &rigidbody::m_Mass);
     }

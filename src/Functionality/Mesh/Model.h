@@ -2,6 +2,7 @@
 #define MODEL_H
 
 #include <vector>
+#include <unordered_map>
 #include "glew/inc/glew.h"
 
 class Model
@@ -14,6 +15,15 @@ public:
 		glm::vec2 m_UV;
 		glm::vec3 m_Tangent;
 		glm::vec3 m_BiTangent;
+
+		int m_BoneIDs[4];
+		float m_Weights[4];
+	};
+
+	struct BoneInfo
+	{
+		int id;				//index in finalBoneMatrices
+		glm::mat4 offset;	//model space to bone space
 	};
 
 	struct Material
@@ -49,9 +59,12 @@ public:
 	int GetPrimitive() const;
 	const std::vector<SubMesh>& GetSubMeshes() const;
 
+	auto& GetBoneInfoMap() { return m_BoneInfoMap; }
+
 private:
 	std::vector<SubMesh> m_SubMesh;
 	int m_Type;
+	std::unordered_map<std::string, BoneInfo> m_BoneInfoMap;
 };
 
 #endif

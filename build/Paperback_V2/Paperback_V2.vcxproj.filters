@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp" />
@@ -91,9 +91,6 @@
     <ClInclude Include="..\..\src\paperback_coordinator.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\paperback_entity.h">
-      <Filter>Source\Paperback Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\paperback_event.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
@@ -125,9 +122,6 @@
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_coordinator_inline.h">
-      <Filter>Source\Paperback Engine\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Details\paperback_entity_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_event_inline.h">
@@ -214,26 +208,11 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h">
       <Filter>Dependencies\dearImGui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Details\paperback_entity_mgr_inline.h">
-      <Filter>Source\Paperback Engine\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\paperback_entity_mgr.h">
-      <Filter>Source\Paperback Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Components\Reflect.h">
       <Filter>Source\Tools\Reflect</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonDeserialize.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonFile.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonSerialize.h">
-      <Filter>Source\Tools\Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Components\Sound.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
@@ -309,9 +288,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h">
       <Filter>Source\Tools\Functionality\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="WindowSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\paperback_input.h">
       <Filter>Source\Paperback Engine</Filter>
@@ -393,6 +369,54 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Components\EntityScript.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Scale.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Rotation.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_serialize.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_deserialize.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_json_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_json.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_archetype_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_archetype_mgr_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_archetype.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_archetype_mgr.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Animation\Animation.h">
+      <Filter>Source\Tools\Functionality\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Animation\Bone.h">
+      <Filter>Source\Tools\Functionality\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\WindowSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Animation\Animator.h">
+      <Filter>Source\Tools\Functionality\Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -479,6 +503,8 @@
     </Filter>
     <Filter Include="Source\Tools\Mono">
       <UniqueIdentifier>{cd8d80b1-8c73-45fa-9fe5-add8d3c13be9}</UniqueIdentifier>
+    <Filter Include="Source\Tools\Functionality\Animation">
+      <UniqueIdentifier>{2d0e093c-f756-4177-a6da-b7340fb3c0c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

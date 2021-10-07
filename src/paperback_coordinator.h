@@ -40,6 +40,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void SaveScene(const std::string& FilePath) noexcept;
 
+		PPB_INLINE
+		void OpenScene(const std::string& FilePath) noexcept;
+
 
 		//-----------------------------------
 		//    Archetype / Entity Methods
@@ -47,6 +50,12 @@ namespace paperback::coordinator
 
 		template < typename... T_COMPONENTS >
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
+
+		PPB_INLINE
+		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
+
+		PPB_INLINE // Maybe remove
+        archetype::instance& CreateArchetype( const tools::bits& Signature ) noexcept;
 
 		template< typename T_FUNCTION >
 		void CreateEntity( T_FUNCTION&& Function ) noexcept;
@@ -60,6 +69,9 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		void RemoveEntity( const uint32_t SwappedGlobalIndex, const component::entity Entity ) noexcept;
+
+		PPB_INLINE
+		void ResetAllArchetypes( void ) noexcept;
 
 		
 		template < concepts::TupleSpecialization T_TUPLE_ADD
@@ -114,8 +126,13 @@ namespace paperback::coordinator
 		T_SYSTEM& GetSystem( void ) noexcept;
 
 		PPB_INLINE
+		const paperback::component::info* FindComponentInfoFromUID( const u32 ComponentUID ) noexcept;
+
+		PPB_INLINE
 		std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
+		PPB_INLINE
+        const paperback::component::info* FindComponentInfo( const paperback::component::type::guid ComponentGuid ) noexcept;
 
 		//-----------------------------------
 		//              Clock
@@ -132,6 +149,9 @@ namespace paperback::coordinator
 
 		PPB_INLINE
         auto Now() noexcept -> decltype( std::chrono::high_resolution_clock::now() );
+
+		PPB_INLINE
+		u32 GetFPS( void ) noexcept;
 
 
 		//-----------------------------------
@@ -165,13 +185,21 @@ namespace paperback::coordinator
 		PPB_INLINE
 		bool IsMouseUp( int Key ) noexcept;
 
+		friend class paperback::archetype::instance;
+
+
+	protected:
+
+		PPB_INLINE
+		void RegisterEntity( const paperback::vm::PoolDetails, archetype::instance& Archetype ) noexcept;
+
 
 	private:
 
 		tools::clock				m_Clock;						// Timer
 		Input						m_Input;						// Input
 		component::manager			m_CompMgr;						// Component Manager
-		entity::manager				m_EntityMgr{ *this };			// Entity Manager
+		archetype::manager			m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				m_SystemMgr{ m_Clock };			// System Manager
 		bool						m_GameActive = true;			// Game Status
 	};

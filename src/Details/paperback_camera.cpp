@@ -4,8 +4,8 @@
 
 
 Camera::Camera() :
-	m_Target{ glm::vec3{ 0.f } },
-	m_Position{ glm::vec3{ 0.f, 0.f, 1.f } },
+	m_Target{ glm::vec3{ 0.f, 3.f, 0.f } },
+	m_Position{ glm::vec3{ 0.f, 3.f, 5.f } },
 	m_Right{ glm::vec3{1.f, 0.f, 0.f} },
 	m_Up{ glm::vec3{0.f, 1.f, 0.f} },
 	m_Radius{ 1.f },

@@ -136,16 +136,18 @@
     <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
+    <ClInclude Include="..\..\src\Components\Rotation.h" />
+    <ClInclude Include="..\..\src\Components\Scale.h" />
     <ClInclude Include="..\..\src\Components\Sound.h" />
     <ClInclude Include="..\..\src\Components\Timer.h" />
     <ClInclude Include="..\..\src\Components\Transform.h" />
+    <ClInclude Include="..\..\src\Details\paperback_archetype_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_archetype_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_bitset_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_clock_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_component_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_component_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_coordinator_inline.h" />
-    <ClInclude Include="..\..\src\Details\paperback_entity_inline.h" />
-    <ClInclude Include="..\..\src\Details\paperback_entity_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_input_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_logger_inline.h" />
@@ -153,6 +155,9 @@
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Animator.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h" />
@@ -160,9 +165,12 @@
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />
     <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h" />
-    <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
-    <ClInclude Include="..\..\src\Json\JsonFile.h" />
-    <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
+    <ClInclude Include="..\..\src\Json\paperback_deserialize.h" />
+    <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h" />
+    <ClInclude Include="..\..\src\Json\paperback_json.h" />
+    <ClInclude Include="..\..\src\Json\paperback_json_inline.h" />
+    <ClInclude Include="..\..\src\Json\paperback_serialize.h" />
+    <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h" />
     <ClInclude Include="..\..\src\Math\MathUtils.h" />
     <ClInclude Include="..\..\src\Math\Math_includes.h" />
     <ClInclude Include="..\..\src\Math\Mtx4x4.h" />
@@ -173,14 +181,14 @@
     <ClInclude Include="..\..\src\Math\Vector4f.h" />
     <ClInclude Include="..\..\src\Mono.h" />
     <ClInclude Include="..\..\src\Paperback.h" />
+    <ClInclude Include="..\..\src\paperback_archetype.h" />
+    <ClInclude Include="..\..\src\paperback_archetype_mgr.h" />
     <ClInclude Include="..\..\src\paperback_bitset.h" />
     <ClInclude Include="..\..\src\paperback_camera.h" />
     <ClInclude Include="..\..\src\paperback_clock.h" />
     <ClInclude Include="..\..\src\paperback_component.h" />
     <ClInclude Include="..\..\src\paperback_component_mgr.h" />
     <ClInclude Include="..\..\src\paperback_coordinator.h" />
-    <ClInclude Include="..\..\src\paperback_entity.h" />
-    <ClInclude Include="..\..\src\paperback_entity_mgr.h" />
     <ClInclude Include="..\..\src\paperback_event.h" />
     <ClInclude Include="..\..\src\paperback_input.h" />
     <ClInclude Include="..\..\src\paperback_logger.h" />
@@ -216,8 +224,8 @@
     <ClInclude Include="..\..\src\Systems\RendererSystem.h" />
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
+    <ClInclude Include="..\..\src\Systems\WindowSystem.h" />
     <ClInclude Include="paperback_pch.h" />
-    <ClInclude Include="WindowSystem.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -275,6 +283,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
       <ProgramDataBaseFileName>$(OutDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -309,6 +318,7 @@ xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Com
       <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;../../dependencies/mono/include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -130,7 +130,7 @@ void MeshBuilder::ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh)
 	for (size_t i = 0; i < Node->mNumMeshes; ++i)
 	{
 		aiMesh* mesh = Scene->mMeshes[Node->mMeshes[i]];
-		Mesh.AddSubMesh(ProcessSubMesh(mesh, Scene));
+		Mesh.AddSubMesh(ProcessSubMesh(mesh, Scene, Mesh));
 	}
 
 	for (size_t i = 0; i < Node->mNumChildren; ++i)
@@ -139,7 +139,7 @@ void MeshBuilder::ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh)
 	}
 }
 
-Model::SubMesh MeshBuilder::ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene)
+Model::SubMesh MeshBuilder::ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene, Model& Mesh)
 {
 	std::vector<Model::Vertex> vertices;
 	std::vector<GLushort> index;
@@ -161,7 +161,16 @@ Model::SubMesh MeshBuilder::ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene
 			bitangent = glm::vec3{ SubMesh->mBitangents[i].x, SubMesh->mBitangents[i].y, SubMesh->mBitangents[i].z };
 		}
 
-		vertices.push_back({ position, normal, uv, tangent, bitangent });
+		Model::Vertex vertex{ position, normal, uv, tangent, bitangent };
+
+		//set bones to default
+		for (int j = 0; j < 4; j++)
+		{
+			vertex.m_BoneIDs[j] = -1;
+			vertex.m_Weights[j] = 0.0f;
+		}
+
+		vertices.push_back(vertex);
 	}
 
 	for (size_t i = 0; i < SubMesh->mNumFaces; ++i)
@@ -171,6 +180,8 @@ Model::SubMesh MeshBuilder::ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene
 		for (size_t j = 0; j < face.mNumIndices; ++j)
 			index.push_back(face.mIndices[j]);
 	}
+
+	ExtractVertexBoneWeight(vertices, SubMesh, Mesh);
 
 	// Create a handle for vbo
 	GLuint vbo;
@@ -189,6 +200,56 @@ Model::SubMesh MeshBuilder::ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene
 	std::string mat = RenderResourceManager::GetInstanced().LoadMaterial(str.C_Str(), material);
 
 	return std::move(Model::SubMesh{ vertices, index, vbo, ebo, static_cast<GLuint>(index.size()), mat });
+}
+
+void MeshBuilder::ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, aiMesh* SubMesh, Model& Mesh)
+{
+	auto& bone_info_map{ Mesh.GetBoneInfoMap() };
+
+	for (size_t bone_index = 0; bone_index < SubMesh->mNumBones; ++bone_index)
+	{
+		int bone_id{ -1 };
+		std::string bone_name{ SubMesh->mBones[bone_index]->mName.C_Str() };
+
+		if (bone_info_map.find(bone_name) == bone_info_map.end())
+		{
+			int new_id { static_cast<int>(bone_info_map.size()) };
+
+			auto mat{ SubMesh->mBones[bone_index]->mOffsetMatrix };
+			Model::BoneInfo bone_info { new_id, {mat.a1, mat.b1, mat.c1, mat.d1,
+												 mat.a2, mat.b2, mat.c2, mat.d2,
+												 mat.a3, mat.b3, mat.c3, mat.d3,
+												 mat.a4, mat.b4, mat.c4, mat.d4 } };
+
+			bone_id = new_id;
+			bone_info_map[bone_name] = bone_info;
+		}
+
+		else
+		{
+			bone_id = bone_info_map[bone_name].id;
+		}
+
+		auto weights{ SubMesh->mBones[bone_index]->mWeights };
+		size_t num_weights{ SubMesh->mBones[bone_index]->mNumWeights };
+
+		for (size_t weight_index = 0; weight_index < num_weights; ++weight_index)
+		{
+			size_t vertex_id{weights[weight_index].mVertexId};
+			float weight{ weights[weight_index].mWeight };
+
+			for (int i = 0; i < 4; ++i)
+			{
+				//checks if there isn't data in the current slot
+				if (Vertices[vertex_id].m_BoneIDs[i] == -1)
+				{
+					Vertices[vertex_id].m_Weights[i] = weight;
+					Vertices[vertex_id].m_BoneIDs[i] = bone_id;
+					break;
+				}
+			}
+		}
+	}
 }
 
 Model MeshBuilder::BuildScreenMesh()
