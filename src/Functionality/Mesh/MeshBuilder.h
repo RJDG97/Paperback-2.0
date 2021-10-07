@@ -35,8 +35,9 @@ public:
 	static Model BuildScreenMesh();
 
 private:
-	static Model::SubMesh ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene);
+	static Model::SubMesh ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene, Model& Mesh);
 	static void ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh);
+	static void ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, aiMesh* SubMesh, Model& Mesh);
 };
 
 #endif

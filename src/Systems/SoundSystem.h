@@ -266,8 +266,8 @@ public:
             sound_check->m_pSound->getPlaybackState(&be);
 
             //if sound has stopped, mark for removal
-            if (be == 2) {
-
+            if (be == 2)
+            {
                 sound_check->m_ID = 0;
                 return;
             }

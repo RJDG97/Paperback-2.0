@@ -5,47 +5,47 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//            Default
 	//-----------------------------------
-	instance::instance(void) noexcept
+	instance::instance( void ) noexcept
 	{
 		paperback::logger::Init();
 		m_CompMgr.RegisterComponent<paperback::component::entity>();
 	}
 
-	instance::~instance(void) noexcept
+	instance::~instance( void ) noexcept
 	{
-
+		
 	}
 
-	instance& instance::GetInstance(void) noexcept
+	instance& instance::GetInstance( void ) noexcept
 	{
 		static instance Instance;
 		return Instance;
 	}
 
 
-	void instance::Initialize(void) noexcept
+	void instance::Initialize( void ) noexcept
 	{
-		INFO_PRINT("Initialized Engine");
+		INFO_PRINT( "Initialized Engine" );
 	}
 
-	void instance::Update(void) noexcept
+	void instance::Update( void ) noexcept
 	{
-		while (m_GameActive)
+		while ( m_GameActive )
 		{
 			XCORE_PERF_FRAME_MARK()
-				XCORE_PERF_FRAME_MARK_START("paperback::frame")
+			XCORE_PERF_FRAME_MARK_START( "paperback::frame" )
 
-				m_SystemMgr.Run();
-			ERROR_LOG("FPS: " + std::to_string(m_Clock.FPS()));
+			m_SystemMgr.Run();
+			ERROR_LOG( "FPS: " + std::to_string( m_Clock.FPS() ) );
 
-			XCORE_PERF_FRAME_MARK_END("paperback::frame")
+			XCORE_PERF_FRAME_MARK_END( "paperback::frame" )
 		}
 	}
 
-	void instance::Terminate(void) noexcept
+	void instance::Terminate( void ) noexcept
 	{
 		m_SystemMgr.Terminate();
-		m_EntityMgr.Terminate();
+		m_ArchetypeMgr.Terminate();
 		m_CompMgr.Terminate();
 	}
 
@@ -54,13 +54,13 @@ namespace paperback::coordinator
 	//          Registration
 	//-----------------------------------
 	template < concepts::System... T_SYSTEMS >
-	constexpr void instance::RegisterSystems(void) noexcept
+	constexpr void instance::RegisterSystems( void ) noexcept
 	{
-		m_SystemMgr.RegisterSystems<T_SYSTEMS...>(*this);
+		m_SystemMgr.RegisterSystems<T_SYSTEMS...>( *this );
 	}
 
 	template< typename... T_COMPONENTS >
-	constexpr void instance::RegisterComponents(void) noexcept
+	constexpr void instance::RegisterComponents( void ) noexcept
 	{
 		m_CompMgr.RegisterComponents<T_COMPONENTS...>();
 	}
@@ -70,51 +70,23 @@ namespace paperback::coordinator
 	//           Save Scene
 	//-----------------------------------
 	PPB_INLINE
-	void instance::SaveScene(const std::string& FilePath) noexcept
+	void instance::SaveScene( const std::string& FilePath ) noexcept
 	{
-		JsonFile Jfile;
+		JsonFile jfile;
 
-		Jfile.StartWriter(FilePath);
-		Jfile.StartObject().WriteKey("Entities");
-		Jfile.StartArray();
+		jfile.StartWriter(FilePath);
+		jfile.StartObject().WriteKey("Entities");
+		jfile.StartArray();
 
-		for (auto& Archetype : m_EntityMgr.m_pArchetypeList)
+		for ( auto& Archetype : m_ArchetypeMgr.GetArchetypeList() )
 		{
-			Jfile.StartObject().WriteKey(Archetype->m_pName);
-			Jfile.StartArray();
-
-			component::temp_guid Temp = {};
-
-			Jfile.StartObject().WriteKey("Guid").StartArray();
-			auto& ComponentInfoArray = Archetype->m_ComponentInfos;
-
-			for (u32 i = 0; i < Archetype->m_NumberOfComponents; ++i)
-			{
-				Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
-				Jfile.WriteGuid(Temp);
-			}
-			Jfile.EndArray();
-			Jfile.EndObject();
-
-			Archetype->SerializeAllEntities(Jfile);
-
-			
-
-			Jfile.EndArray();
-			Jfile.EndObject();
+			//jfile.WriteKey(Archetype); // probably write like entity count and other relevant data for tracking?
+			Archetype->SerializeAllEntities(jfile);
 		}
 
-		Jfile.EndArray();
-		Jfile.EndObject();
-		Jfile.EndWriter();
-	}
-
-	void instance::OpenScene(const std::string& FilePath) noexcept
-	{
-		JsonFile Jfile;
-
-		Jfile.StartReader(FilePath);
-		Jfile.LoadEntities("Entities");
+		jfile.EndArray();
+		jfile.EndObject();
+		jfile.EndWriter();
 	}
 
 
@@ -122,60 +94,60 @@ namespace paperback::coordinator
 	//       Entity / Archetype
 	//-----------------------------------
 	template < typename... T_COMPONENTS >
-	archetype::instance& instance::GetOrCreateArchetype(void) noexcept
+	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
-		return m_EntityMgr.GetOrCreateArchetype<T_COMPONENTS...>(*this);
+		return m_ArchetypeMgr.GetOrCreateArchetype<T_COMPONENTS...>( *this );
 	}
 
-	archetype::instance& instance::CreateArchetype(const tools::bits& Signature) noexcept
+	archetype::instance& instance::CreateArchetype( const tools::bits& Signature ) noexcept
 	{
-		return m_EntityMgr.CreateArchetype(Signature);
-	}
-
-
-	template< typename T_FUNCTION >
-	void instance::CreateEntity(T_FUNCTION&& Function) noexcept
-	{
-		m_EntityMgr.CreateEntity(Function, *this);
+		return m_ArchetypeMgr.CreateArchetype( Signature );
 	}
 
 	template< typename T_FUNCTION >
-	void instance::CreateEntities(T_FUNCTION&& Function, const u32 Count) noexcept
+	void instance::CreateEntity( T_FUNCTION&& Function ) noexcept
 	{
-		// To define
+		m_ArchetypeMgr.CreateEntity( Function, *this );
 	}
 
-	void instance::DeleteEntity(component::entity& Entity) noexcept // Change it to call "archetype manager" -> delete entity ( Handle all checks there instead )
+	template< typename T_FUNCTION >
+	void instance::CreateEntities( T_FUNCTION&& Function, const u32 Count ) noexcept
 	{
-		assert(Entity.IsZombie() == false);
-		auto& Info = GetEntityInfo(Entity);
-		assert(Info.m_Validation == Entity.m_Validation);
-		Info.m_pArchetype->DestroyEntity(Entity);
+		
 	}
 
-	void instance::RemoveEntity(const uint32_t SwappedGlobalIndex, const component::entity Entity) noexcept
+	void instance::DeleteEntity( component::entity& Entity ) noexcept
 	{
-		m_EntityMgr.RemoveEntity(SwappedGlobalIndex, Entity);
+		assert( Entity.IsZombie() == false );
+		auto& Info = GetEntityInfo( Entity );
+		assert( Info.m_Validation == Entity.m_Validation );
+		Info.m_pArchetype->DestroyEntity( Entity );
 	}
 
-	void instance::ResetAllArchetypes(void) noexcept
+	void instance::RemoveEntity( const uint32_t SwappedGlobalIndex, const component::entity Entity ) noexcept
 	{
-		m_EntityMgr.ResetAllArchetypes();
+		m_ArchetypeMgr.RemoveEntity( SwappedGlobalIndex, Entity );
 	}
+
+	void instance::ResetAllArchetypes( void ) noexcept
+	{
+		m_ArchetypeMgr.ResetAllArchetypes();
+	}
+
 
 	//-----------------------------------
 	//      Add Remove Components
 	//-----------------------------------
 	template < concepts::TupleSpecialization T_TUPLE_ADD
-		, concepts::TupleSpecialization T_TUPLE_REMOVE
-		, concepts::Callable T_FUNCTION >
-		component::entity instance::AddOrRemoveComponents(const component::entity Entity
-			, T_FUNCTION&& Function) noexcept
+			 , concepts::TupleSpecialization T_TUPLE_REMOVE
+			 , concepts::Callable T_FUNCTION >
+	component::entity instance::AddOrRemoveComponents( const component::entity Entity
+													 , T_FUNCTION&& Function ) noexcept
 	{
-		return m_EntityMgr.AddOrRemoveComponents(Entity
-			, component::sorted_info_array_v<T_TUPLE_ADD>
-			, component::sorted_info_array_v<T_TUPLE_REMOVE>
-			, Function);
+        return m_ArchetypeMgr.AddOrRemoveComponents( Entity
+												   , component::sorted_info_array_v<T_TUPLE_ADD>
+												   , component::sorted_info_array_v<T_TUPLE_REMOVE>
+												   , Function );
 	}
 
 
@@ -185,17 +157,17 @@ namespace paperback::coordinator
 	template < typename... T_COMPONENTS >
 	std::vector<archetype::instance*> instance::Search() const noexcept
 	{
-		return m_EntityMgr.Search<T_COMPONENTS...>();
+		return m_ArchetypeMgr.Search<T_COMPONENTS...>();
 	}
 
-	archetype::instance* instance::Search(const tools::bits& Bits) const noexcept
+	archetype::instance* instance::Search( const tools::bits& Bits ) const noexcept
 	{
-		return m_EntityMgr.Search(Bits);
+		return m_ArchetypeMgr.Search( Bits );
 	}
-
-	std::vector<archetype::instance*> instance::Search(const tools::query& Query) const noexcept
+	
+	std::vector<archetype::instance*> instance::Search( const tools::query& Query ) const noexcept
 	{
-		return m_EntityMgr.Search(Query);
+		return m_ArchetypeMgr.Search( Query );
 	}
 
 
@@ -203,86 +175,85 @@ namespace paperback::coordinator
 	//            Game Loop
 	//-----------------------------------
 	template < concepts::Callable_Void T_FUNCTION>
-	void instance::ForEach(const std::vector<archetype::instance*>& ArchetypeList, T_FUNCTION&& Function) noexcept
+	void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList, T_FUNCTION&& Function ) noexcept
 	{
 		using func_traits = xcore::function::traits<T_FUNCTION>;
 
-		for (const auto& Archetype : ArchetypeList)
+		for ( const auto& Archetype : ArchetypeList )
 		{
-			for (auto& Pool : Archetype->m_ComponentPool)
+			for ( auto& Pool : Archetype->GetComponentPools() )
 			{
-				auto ComponentArray = Archetype->GetComponentArray(Pool, 0, xcore::types::null_tuple_v< func_traits::args_tuple >);
+				auto ComponentArray = Archetype->GetComponentArray( Pool, 0, xcore::types::null_tuple_v< func_traits::args_tuple > );
 
-				Archetype->AccessGuard([&]
+				Archetype->AccessGuard( [&]
+				{
+					for (int i = Pool.GetCurrentEntityCount(); i; --i)
 					{
-						for (int i = Pool.m_CurrentEntityCount; i; --i)
+						[&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
 						{
-							[&] < typename... T_COMPONENTS >(std::tuple<T_COMPONENTS...>*) constexpr noexcept
-							{
-								Function([&]<typename T_C>(std::tuple<T_C>*) constexpr noexcept -> T_C
-								{
-									auto& pComponent = ComponentArray[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
-
-									if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
-
-									auto p = pComponent;
-									pComponent += sizeof(std::decay_t<T_C>);
-
-									if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
-									else										return reinterpret_cast<T_C>(*p);
-
-								}(xcore::types::make_null_tuple_v<T_COMPONENTS>)
-									...);
-							}(xcore::types::null_tuple_v< func_traits::args_tuple >);
-						}
-					});
+							Function( [&]<typename T_C>( std::tuple<T_C>* ) constexpr noexcept -> T_C
+									  {
+										  auto& pComponent = ComponentArray[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
+				
+										  if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
+				
+										  auto p = pComponent;
+										  pComponent += sizeof(std::decay_t<T_C>);
+				
+										  if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
+										  else										return reinterpret_cast<T_C>(*p);
+				
+									  }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
+							... );
+						}( xcore::types::null_tuple_v< func_traits::args_tuple > );
+					}
+				});
 			}
 		}
 	}
 
 	template < concepts::Callable_Bool T_FUNCTION >
-	void instance::ForEach(const std::vector<archetype::instance*>& ArchetypeList, T_FUNCTION&& Function) noexcept
+	void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList, T_FUNCTION&& Function ) noexcept
 	{
 		using func_traits = xcore::function::traits< T_FUNCTION >;
 
-		for (const auto& Archetype : ArchetypeList)
+		for ( const auto& Archetype : ArchetypeList )
 		{
-			//if ( Archetype->m_EntityCount == 0 ) continue;
 			bool bBreak = false;
 
-			for (auto& Pool : Archetype->m_ComponentPool)
+			for ( auto& Pool : Archetype->GetComponentPools() )
 			{
-				auto ComponentArray = Archetype->GetComponentArray(Pool, 0, xcore::types::null_tuple_v< func_traits::args_tuple >);
+				auto ComponentArray = Archetype->GetComponentArray( Pool, 0, xcore::types::null_tuple_v< func_traits::args_tuple > );
 
-				Archetype->AccessGuard([&]
+				Archetype->AccessGuard( [&]
+				{
+					for (int i = Pool.GetCurrentEntityCount(); i; --i)
 					{
-						for (int i = Pool.m_CurrentEntityCount; i; --i)
+						if ([&]<typename... T_COMPONENTS>(std::tuple<T_COMPONENTS...>*) constexpr noexcept
 						{
-							if ([&]<typename... T_COMPONENTS>(std::tuple<T_COMPONENTS...>*) constexpr noexcept
+							return Function([&]<typename T_C>(std::tuple<T_C>*) constexpr noexcept -> T_C
 							{
-								return Function([&]<typename T_C>(std::tuple<T_C>*) constexpr noexcept -> T_C
-								{
-									auto& pComponent = ComponentArray[xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple >];
+								auto& pComponent = ComponentArray[ xcore::types::tuple_t2i_v< T_C, typename func_traits::args_tuple > ];
 
-									if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
+								if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
 
-									auto p = pComponent;
-									pComponent += sizeof(std::decay_t<T_C>);
+								auto p = pComponent;
+								pComponent += sizeof(std::decay_t<T_C>);
 
-									if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
-									else										return reinterpret_cast<T_C>(*p);
+								if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
+								else										return reinterpret_cast<T_C>(*p);
 
-								}(xcore::types::make_null_tuple_v<T_COMPONENTS>)
-									...);
-							}(xcore::types::null_tuple_v< func_traits::args_tuple >))
-							{
-								bBreak = true;
-								break;
-							}
+							}(xcore::types::make_null_tuple_v<T_COMPONENTS>)
+							...);
+						}(xcore::types::null_tuple_v< func_traits::args_tuple >))
+						{
+							bBreak = true;
+							break;
 						}
-					});
+					}
+				});
 
-				if (bBreak) break;
+				if ( bBreak ) break;
 			}
 			if (bBreak) break;
 		}
@@ -292,46 +263,38 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//             Getters
 	//-----------------------------------
-	entity::info& instance::GetEntityInfo(component::entity& Entity) const noexcept
+	entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
 	{
-		return m_EntityMgr.GetEntityInfo(Entity);
+		return m_ArchetypeMgr.GetEntityInfo( Entity );
 	}
 
-	entity::info& instance::GetEntityInfo(const u32 GlobalIndex) const noexcept
+	entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
 	{
-		return m_EntityMgr.GetEntityInfo(GlobalIndex);
-	}
-
-	const paperback::component::info* instance::FindComponentInfo(const paperback::component::type::guid ComponentGuid) noexcept
-	{
-		return m_CompMgr.FindComponentInfo(ComponentGuid);
+		return m_ArchetypeMgr.GetEntityInfo( GlobalIndex );
 	}
 
 	template< typename T_SYSTEM >
-	T_SYSTEM* instance::FindSystem(void) noexcept
+	T_SYSTEM* instance::FindSystem( void ) noexcept
 	{
 		return m_SystemMgr.FindSystem<T_SYSTEM>();
 	}
 
 	template< typename T_SYSTEM >
-	T_SYSTEM& instance::GetSystem(void) noexcept
+	T_SYSTEM& instance::GetSystem( void ) noexcept
 	{
 		auto p = m_SystemMgr.FindSystem<T_SYSTEM>();
-		assert(p);
+		assert( p );
 		return *p;
 	}
 
-	archetype::instance* instance::FindArchetype( const tools::bits& Signature ) noexcept
+	std::vector<paperback::archetype::instance*> instance::GetArchetypeList( void ) noexcept
 	{
-		return m_EntityMgr.FindArchetype( Signature );
+		return m_ArchetypeMgr.GetArchetypeList();
 	}
 
-	//-----------------------------------
-	//         Helper Function
-	//-----------------------------------
-	void instance::FreeEntitiesInArchetype(archetype::instance* Archetype) noexcept
+    const paperback::component::info* instance::FindComponentInfo( const paperback::component::type::guid ComponentGuid ) noexcept
 	{
-		m_EntityMgr.FreeEntitiesInArchetype(Archetype);
+		return m_CompMgr.FindComponentInfo( ComponentGuid );
 	}
 
 
@@ -343,9 +306,9 @@ namespace paperback::coordinator
 		return m_Clock.DeltaTime();
 	}
 
-	void instance::SetTimeScale(const float s) noexcept
+    void instance::SetTimeScale( const float s ) noexcept
 	{
-		m_Clock.TimeScale(s);
+		m_Clock.TimeScale( s );
 	}
 
 	float instance::GetTimeScale() const noexcept
@@ -353,9 +316,57 @@ namespace paperback::coordinator
 		return m_Clock.TimeScale();
 	}
 
-	u32 instance::GetFPS() noexcept
+	auto instance::Now() noexcept -> decltype( std::chrono::high_resolution_clock::now() )
 	{
-		return m_Clock.FPS();
+		return m_Clock.Now();
 	}
 
+
+	//-----------------------------------
+	//              Input
+	//-----------------------------------
+	void instance::UpdateInputs() noexcept
+	{
+		m_Input.UpateInputs();
+	}
+
+	void instance::SetKey( int Key, int Action ) noexcept
+	{
+		m_Input.SetKey( Key, Action );
+	}
+
+	void instance::SetMouse( int Key, int Action ) noexcept
+	{
+		m_Input.SetMouse( Key, Action );
+	}
+
+	bool instance::IsKeyPress( int Key ) noexcept
+	{
+		return m_Input.IsKeyPress( Key );
+	}
+
+	bool instance::IsKeyPressDown( int Key ) noexcept
+	{
+		return m_Input.IsKeyPressDown( Key );
+	}
+
+	bool instance::IsKeyPressUp( int Key ) noexcept
+	{
+		return m_Input.IsKeyPressUp( Key );
+	}
+
+	bool instance::IsMousePress( int Key ) noexcept
+	{
+		return m_Input.IsMousePress( Key );
+	}
+
+	bool instance::IsMouseDown( int Key ) noexcept
+	{
+		return m_Input.IsMouseDown( Key );
+	}
+
+	bool instance::IsMouseUp( int Key ) noexcept
+	{
+		return m_Input.IsMouseUp( Key );
+	}
 }

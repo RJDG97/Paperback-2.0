@@ -8,32 +8,32 @@ namespace MONO_INPUTS
 {
 	MONO_EXPORT bool IsKeyPress(int Key)
 	{
-		return PPB.m_Input.IsKeyPress(Key);
+		return PPB.IsKeyPress(Key);
 	}
 
 	MONO_EXPORT bool IsKeyPressDown(int Key)
 	{
-		return PPB.m_Input.IsKeyPressDown(Key);
+		return PPB.IsKeyPressDown(Key);
 	}
 
 	MONO_EXPORT bool IsKeyPressUp(int Key)
 	{
-		return PPB.m_Input.IsKeyPressUp(Key);
+		return PPB.IsKeyPressUp(Key);
 	}
 
 	MONO_EXPORT bool IsMousePress(int Key)
 	{
-		return PPB.m_Input.IsMousePress(Key);
+		return PPB.IsMousePress(Key);
 	}
 
 	MONO_EXPORT bool IsMouseDown(int Key)
 	{
-		return PPB.m_Input.IsMouseDown(Key);
+		return PPB.IsMouseDown(Key);
 	}
 
 	MONO_EXPORT bool IsMouseUp(int Key)
 	{
-		return PPB.m_Input.IsMouseUp(Key);
+		return PPB.IsMouseUp(Key);
 	}
 
 	void AddInternals()

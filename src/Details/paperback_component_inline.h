@@ -59,7 +59,7 @@ namespace paperback::component
         //           Find Index
         //-----------------------------------
         template < typename T_CONTAINER >
-        static constexpr auto find_component_index_v = []( T_CONTAINER& Container, component::info* Info, size_t Count )
+        static constexpr auto find_component_index_v = [&]( T_CONTAINER& Container, component::info*& Info, size_t Count )
         {
             return static_cast<size_t>( std::upper_bound( std::begin( Container )
                                                         , std::begin( Container ) + Count
@@ -71,13 +71,6 @@ namespace paperback::component
                                                         ) - std::begin( Container )
                                       );
         };
-
-        /*
-        const auto Index = static_cast<std::size_t>(std::upper_bound(NewComponentInfoList.begin(), NewComponentInfoList.begin() + Count, CInfo, [](const paperback::component::info* pA, const paperback::component::info* pB)
-                {
-                    return pA->m_Guid < pB->m_Guid;
-                }) - NewComponentInfoList.begin());
-        */
     }
 
     //-----------------------------------

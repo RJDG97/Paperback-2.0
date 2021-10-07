@@ -37,8 +37,8 @@ struct bullet_logic_system : paperback::system::instance
                 constexpr auto min_distance_v = 4;
                 if ((Transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
                 {
-                    m_Coordinator.DeleteEntity(Entity);
-                    m_Coordinator.DeleteEntity(Dynamic_Entity);
+                    DeleteEntity(Entity);
+                    DeleteEntity(Dynamic_Entity);
                     return true;
                 }
                 return false;

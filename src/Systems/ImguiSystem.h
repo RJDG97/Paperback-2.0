@@ -172,9 +172,11 @@ struct imgui_system : paperback::system::instance
 
         bool b_NodeOpen{ false };
 
-        for (auto& Archetype : PPB.m_EntityMgr.m_pArchetypeList)
+        for ( auto& Archetype : PPB.GetArchetypeList() )
         {
-            for (paperback::u32 i = 0; i < Archetype->m_EntityCount; ++i)
+            ImGui::Separator(); //to clearly see which entities are of the same type?
+
+            for (paperback::u32 i = 0; i < Archetype->GetEntityCount(); ++i)
             {
                 NumEntities++;
 
@@ -228,7 +230,7 @@ struct imgui_system : paperback::system::instance
         static ImGuiTextFilter Filter;
         Filter.Draw(ICON_FA_FILTER, 150.0f);
 
-        for (auto& Archetype : PPB.m_EntityMgr.m_pArchetypeList)
+        for (auto& Archetype : PPB.GetArchetypeList())
         {
             ++Index;
 

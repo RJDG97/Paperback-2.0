@@ -2,29 +2,29 @@
 
 namespace paperback::component
 {
-    namespace concepts
+	namespace concepts
     {
         template < typename T_COMPONENT >
         concept ValidComponent = component::type::is_valid_v<T_COMPONENT>;
     }
 
-    class manager final
-    {
+	class manager final
+    {    
     public:
 
         using ComponentInfoMap = std::unordered_map< paperback::component::type::guid, const paperback::component::info* >;
 
         template< paperback::component::concepts::ValidComponent T_COMPONENT >
-        void RegisterComponent(void) noexcept;
+        void RegisterComponent( void ) noexcept;
 
         template< typename... T_COMPONENTS >
-        void RegisterComponents(void) noexcept;
+        void RegisterComponents( void ) noexcept;
 
         PPB_INLINE
-            const paperback::component::info* FindComponentInfo(const paperback::component::type::guid ComponentGuid) noexcept;
+        const paperback::component::info* FindComponentInfo( const paperback::component::type::guid ComponentGuid ) noexcept;
 
         PPB_INLINE
-            void Terminate(void) noexcept;
+        void Terminate( void ) noexcept;
 
     private:
 
