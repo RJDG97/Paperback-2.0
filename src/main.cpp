@@ -115,9 +115,9 @@ void InitializeGame()
 
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
         {
-            Transform.m_Position.m_X = 6;// std::rand() % (m_Engine.m_Width / 2);
-            Transform.m_Position.m_Y = 8.5;// std::rand() % (m_Engine.m_Height / 2);
-            Transform.m_Position.m_Z = 0;
+            Transform.m_Position.m_X = 2;// std::rand() % (m_Engine.m_Width / 2);
+            Transform.m_Position.m_Y = 5.8;// std::rand() % (m_Engine.m_Height / 2);
+            Transform.m_Position.m_Z = -6;
 
             Mesh.m_Model = "Box";
         });
