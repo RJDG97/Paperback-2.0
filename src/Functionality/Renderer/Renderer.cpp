@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "paperback_camera.h"
+#include "glm/inc/gtc/type_ptr.hpp"
 #include <glm/inc/gtx/transform.hpp>
 
 Renderer::Renderer() :
@@ -31,6 +32,14 @@ Renderer::Renderer() :
 	glVertexArrayAttribFormat(m_VAO, 4, 3, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_BiTangent));
 	glVertexArrayAttribBinding(m_VAO, 4, 0);
 
+	glEnableVertexArrayAttrib(m_VAO, 5);
+	glVertexArrayAttribIFormat(m_VAO, 5, 4, GL_INT, offsetof(Model::Vertex, m_BoneIDs));
+	glVertexArrayAttribBinding(m_VAO, 5, 0);
+
+	glEnableVertexArrayAttrib(m_VAO, 6);
+	glVertexArrayAttribFormat(m_VAO, 6, 4, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_Weights));
+	glVertexArrayAttribBinding(m_VAO, 6, 0);
+
 	glBindVertexArray(0);
 
 	glCreateVertexArrays(1, &m_DebugVAO);
@@ -49,7 +58,8 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
 	m_Resources.Load3DMesh("Box", "../../resources/models/box.fbx");
-	//m_Resources.Load3DMesh("Plane", "../../resources/models/plane.obj");
+	m_Resources.Load3DMesh("Plane", "../../resources/models/plane2.obj");
+	m_Resources.Load3DMesh("Character", "../../resources/models/mutant.fbx");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -373,6 +383,18 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 			for (const auto& transform : model.second)
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
+
+				if (!transforms.empty())
+				{
+					m_Resources.m_Shaders["Light"].SetUniform("uHasBones", true);
+					auto loc = glGetUniformLocation(m_Resources.m_Shaders["Light"].GetShaderHandle(), "uFinalBonesMatrices");
+					glUniformMatrix4fv(loc, 100, GL_FALSE, glm::value_ptr(transforms[0]));
+				}
+
+				else
+				{
+					m_Resources.m_Shaders["Light"].SetUniform("uHasBones", false);
+				}
 
 				// Draw object
 				glDrawElements(m_Resources.m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);

@@ -5,6 +5,8 @@ layout (location=1) in vec3 vVertexNormal;
 layout (location=2) in vec2 vVertexUV;
 layout (location=3) in vec3 vVertexTangent;
 layout (location=4) in vec3 vVertextBiTangent;
+layout (location=5) in ivec4 vVertexBoneIDs; 
+layout (location=6) in vec4 vVertexWeights;
 
 layout (location=0) out vec3 vPosition;
 layout (location=1) out vec3 vNormal;
@@ -33,11 +35,39 @@ uniform mat4 uView;
 uniform mat4 uProjection;
 uniform vec3 uCameraPosition;
 
+uniform mat4 uFinalBonesMatrices[100];
+uniform bool uHasBones;
+
 void main()
 {
-	// Vertex transform
-	vPosition = vec3(uModel * vec4(vVertexPosition, 1.0));
-	vNormal = transpose(inverse(mat3(uModel))) * vVertexNormal;
+	vec4 PosL;
+
+	if (uHasBones == true)
+	{
+		mat4 bone_transform = mat4(0.0f);
+
+		for (int i = 0 ; i < 4 ; ++i)
+		{
+			int id = vVertexBoneIDs[i];
+
+			if (id != -1)
+			{
+				bone_transform += uFinalBonesMatrices[id] * vVertexWeights[i];
+			}
+		}
+
+		PosL = uModel * bone_transform * vec4(vVertexPosition, 1.0f);
+		vPosition = vec3(PosL);
+		vNormal = mat3(transpose(inverse(uModel))) * mat3(bone_transform) * vVertexNormal;
+	}
+
+	else
+	{
+		PosL = uModel * vec4(vVertexPosition, 1.0);
+		vPosition = vec3(PosL);
+		vNormal = mat3(transpose(inverse(uModel))) * vVertexNormal;
+	}
+
 	vUV = vVertexUV;
 
 	// Tangent space calculations
@@ -52,9 +82,8 @@ void main()
 	tLightPosition = TBN * (vPosition - uLight.Direction);
 	tViewPosition = TBN * uCameraPosition;
 	tFragPosition = TBN * vPosition;
-
+	
 	// Light space transform
 	lFragPosition = uLight.Transform * vec4(vPosition, 1.0);
-
-	gl_Position = uProjection * uView * vec4(vPosition, 1.0);
+	gl_Position = uProjection * uView * PosL;
 }

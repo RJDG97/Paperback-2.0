@@ -152,6 +152,9 @@
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Animator.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h" />
@@ -215,7 +218,10 @@
     <ClInclude Include="..\..\src\Systems\RendererSystem.h" />
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
+    <ClInclude Include="..\..\src\Systems\WindowSystem.h" />
+    <ClInclude Include="..\..\src\Vector.h" />
     <ClInclude Include="paperback_pch.h" />
+    <ClInclude Include="samplecomponent.h" />
     <ClInclude Include="WindowSystem.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
