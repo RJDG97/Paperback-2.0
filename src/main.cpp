@@ -123,7 +123,7 @@ void InitializeGame()
                 Mesh.m_Model = "Box";
             });
 
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation)
         {
             Transform.m_Position.m_X = 2;// std::rand() % (m_Engine.m_Width / 2);
             Transform.m_Position.m_Y = 5.8;// std::rand() % (m_Engine.m_Height / 2);

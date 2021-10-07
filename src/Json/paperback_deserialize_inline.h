@@ -201,11 +201,7 @@ namespace paperback::deserialize
                     {
                         NewArchetype->AccessGuard([&]()
                             {
-
                                 NewArchetype->CreateEntity();
-                                //const auto Details = NewArchetype->CreateEntity();
-                                //PPB.GetArchetypeManager().RegisterEntity(Details, *NewArchetype);
-
 
                                 for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
                                 {
