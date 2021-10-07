@@ -340,12 +340,6 @@
     <ClInclude Include="..\..\src\Physics\PhysicsMaterial.h">
       <Filter>Source\Gameplay Code\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\AABB.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\BoundingBox.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Circle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
@@ -359,9 +353,6 @@
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Sphere.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Triangle.h">
@@ -414,6 +405,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Functionality\Animation\Animator.h">
       <Filter>Source\Tools\Functionality\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\RigidForce.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\AABB.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\BoundingBox.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Sphere.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

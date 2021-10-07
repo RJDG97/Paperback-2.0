@@ -5,3 +5,7 @@
 #include "Mesh.h"
 #include "Scale.h"
 #include "Rotation.h"
+#include "RigidForce.h"
+#include "Sphere.h"
+#include "AABB.h"
+#include "BoundingBox.h"

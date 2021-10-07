@@ -2,8 +2,6 @@
 
 #include "Math/Vector3f.h"
 #include "Math/Mtx4x4.h"
-#include "Shapes/BoundingBox.h"
-#include "Shapes/Sphere.h"
 
 struct transform
 {
@@ -14,8 +12,6 @@ struct transform
 
 	xcore::vector3	 m_Offset;
 	xcore::vector3	 m_Position;							// -- Position vector
-	BoundingBox fakebox;
-	Sphere fakeSphere;
 
 	//paperback::Mtx4x4 m_mtxTrans;								// -- The translatation matrix
 	//paperback::Mtx4x4 m_mtxRot;									// -- The rotation matrix
@@ -31,7 +27,5 @@ namespace RR_Transform
 		   .constructor()( rttr::policy::ctor::as_object )
 		   .property( "Offset", &transform::m_Offset )( rttr::policy::prop::as_reference_wrapper )
 		   .property( "Position", &transform::m_Position )( rttr::policy::prop::as_reference_wrapper );
-			//.property("Scale", &transform::fakebox)
-			//.property("Scale", &transform::fakeSphere);
     }
 }

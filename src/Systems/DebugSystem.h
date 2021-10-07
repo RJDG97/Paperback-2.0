@@ -13,6 +13,8 @@ struct debug_system : paperback::system::instance
     std::vector<float> m_PercentageTimePerSystem, m_TimePerSystem;
     float m_TotalTime;
 
+    bool m_IsDebug;
+
 
     constexpr static auto typedef_v = paperback::system::type::update
     {
@@ -116,10 +118,8 @@ struct debug_system : paperback::system::instance
 
     // draws a sphere given the provided data
     // low poly circle
-    void DrawSphereCollision(transform& xform, bool iscollide = false)
+    void DrawSphereCollision(Sphere& sphere)
     {
-
-        Sphere& sphere = xform.fakeSphere;
 
         std::vector<paperback::Vector3f> debugdraw;
 
@@ -210,7 +210,7 @@ struct debug_system : paperback::system::instance
         ConvertVerticesToCircleDraw(debugdraw, top, bottom, right, left, top_right, bottom_right, top_left, bottom_left);
 
 
-        DrawDebugLines(debugdraw);
+        DrawDebugLines(debugdraw, sphere.m_Collided);
     }
 
     //given a set of vertices defining a square, prepare the pairing required
@@ -235,7 +235,7 @@ struct debug_system : paperback::system::instance
     }
 
     // draws a square given the provided data
-    void DrawCubeCollision(transform& transform, bool iscollide = false)
+    void DrawCubeCollision(BoundingBox& cube, bool iscollide = false)
     {
 
         std::vector<paperback::Vector3f> debugdraw;
@@ -243,8 +243,8 @@ struct debug_system : paperback::system::instance
         paperback::Vector3f front_top_left, front_top_right, front_bottom_left, front_bottom_right,
             back_top_left, back_top_right, back_bottom_left, back_bottom_right, diff;
 
-        front_top_right = front_top_left = front_bottom_left = front_bottom_right = transform.fakebox.MinMax[1] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
-        back_bottom_left = back_top_left = back_top_right = back_bottom_right = transform.fakebox.MinMax[0] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        front_top_right = front_top_left = front_bottom_left = front_bottom_right = cube.MinMax[1];// +ConvertXcoreVecTo3f(cube.m_Position + cube.m_Offset);
+        back_bottom_left = back_top_left = back_top_right = back_bottom_right = cube.MinMax[0];// + ConvertXcoreVecTo3f(cube.m_Position + cube.m_Offset);
         diff = front_top_right - back_bottom_left;
 
         front_top_left -= paperback::Vector3f{ diff.x, 0.0f, 0.0f };
@@ -268,7 +268,7 @@ struct debug_system : paperback::system::instance
         //bottom
         ConvertVerticesToSquareDraw(debugdraw, back_bottom_left, back_bottom_right, front_bottom_left, front_bottom_right);
 
-        DrawDebugLines(debugdraw, iscollide);
+        DrawDebugLines(debugdraw, cube.m_Collided);
     }
 
     // draws a "cube" depending on given data
@@ -300,6 +300,8 @@ struct debug_system : paperback::system::instance
         m_RawTimePerSystem.resize(m_NumSystems);
         m_PercentageTimePerSystem.resize(m_NumSystems);
         m_TimePerSystem.resize(m_NumSystems);
+
+        m_IsDebug = true;
     }
 
 
@@ -317,9 +319,18 @@ struct debug_system : paperback::system::instance
 
 
     PPB_FORCEINLINE
-    void Update(void) 
+    void operator()(paperback::component::entity& Entity, transform& Transform, BoundingBox* cube, Sphere* ball) noexcept
     {
-        //TestDrawDebug();
+
+        if (m_IsDebug)
+        {
+        
+            if (cube)
+                DrawCubeCollision(*cube);
+
+            if (ball)
+                DrawSphereCollision(*ball);
+        }
     }
 
 
