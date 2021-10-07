@@ -143,7 +143,7 @@ public:
 		mono_method_desc_free(mono_extern_methoddesc);
 	}
 
-	~Mono()
+	void ReleaseDomain()
 	{
 		if (m_MonoHandler)
 			mono_gchandle_free(m_MonoHandler);
