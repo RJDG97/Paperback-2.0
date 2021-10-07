@@ -113,17 +113,16 @@ public:
 
 	MonoObject* RunImportFn(MonoObject* m_pObj, MonoMethod* m_pFn)
 	{
-		MonoObject* m_pReturn = nullptr;
 		if (m_pFn)
 		{
 			MonoObject* exception = nullptr;
 			// Get function
-			m_pReturn = mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
+			return mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
 			
 			// Exception Handling
 			MonoException(exception);
 		}
-		return m_pReturn;
+		return nullptr;
 	}
 
 	template <typename T>
@@ -132,7 +131,6 @@ public:
 		return *(T*)mono_object_unbox(m_pResult);
 	}
 
-	PPB_INLINE
 	MonoClass* ImportClass(const char* _namespace, const char* _class)
 	{
 		return mono_class_from_name(m_pMonoImage, _namespace, _class);
@@ -154,23 +152,15 @@ public:
 		return fn;
 	}
 
-	~Mono()
+	void ReleaseDomain()
 	{
 		if (m_MonoHandler)
 			mono_gchandle_free(m_MonoHandler);
 
-		delete m_pMainObj;
-		delete m_pMainClass;
-		delete m_pMainFn;
-
-		delete m_pMonoImage;
-
-		if (m_pMonoAssembly)
-			mono_assembly_close(m_pMonoAssembly);
-
 		if (m_pMonoDomain)
 			mono_jit_cleanup(m_pMonoDomain);
 	}
+
 
 	static Mono& GetInstanced()
 	{

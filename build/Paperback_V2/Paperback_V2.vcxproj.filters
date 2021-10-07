@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\..\src\main.cpp" />
@@ -319,6 +319,9 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\MonoExternal.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Math\Math_includes.h">
       <Filter>Source\Gameplay Code\Math</Filter>
     </ClInclude>
@@ -360,15 +363,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Triangle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Mono.h">
-      <Filter>Source\Tools\Mono</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Scripts\IScripts.h">
-      <Filter>Source\Tools\Mono</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\EntityScript.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Components\Scale.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
@@ -417,6 +411,12 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Functionality\Animation\Animator.h">
       <Filter>Source\Tools\Functionality\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Mono.h">
+      <Filter>Source\Tools\Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\IScripts.h">
+      <Filter>Source\Tools\Mono</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -501,10 +501,11 @@
     <Filter Include="Source\Gameplay Code\Shapes">
       <UniqueIdentifier>{e4e83ffd-e481-4298-a6e0-9e9b8d2fa686}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Tools\Mono">
-      <UniqueIdentifier>{cd8d80b1-8c73-45fa-9fe5-add8d3c13be9}</UniqueIdentifier>
     <Filter Include="Source\Tools\Functionality\Animation">
       <UniqueIdentifier>{2d0e093c-f756-4177-a6da-b7340fb3c0c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Mono">
+      <UniqueIdentifier>{03742485-ba67-41f0-86a4-bee8bc21bee8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

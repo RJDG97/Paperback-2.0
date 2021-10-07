@@ -55,6 +55,6 @@ struct scripting_system : paperback::system::instance
 
 	void OnSystemTerminated(void) noexcept 
 	{
-		delete m_pMono;
+		m_pMono->ReleaseDomain();
 	}
 };

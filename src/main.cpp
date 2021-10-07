@@ -141,14 +141,15 @@ void InitializeGame()
                 Mesh.m_Model = "Box";
              });
 
-        PPB.CreateEntity([&](transform& Transform, entityscript& Script)
-        {
-            Transform.m_Position.m_X = -4;
-            Transform.m_Position.m_Y = 2.5;
-            Transform.m_Position.m_Z = -10;
+        //PPB.CreateEntity([&](transform& Transform, entityscript& Script)
+        //{
+        //    Transform.m_Position.m_X = -4;
+        //    Transform.m_Position.m_Y = 2.5;
+        //    Transform.m_Position.m_Z = -10;
 
-            Script.m_ScriptID = "Unit";
-        });
+        //    Script.m_ScriptID = "Unit";
+        //});
+
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation)
             {
                 Transform.m_Position.m_X = -4;
