@@ -17,14 +17,6 @@
 #include "Scripts/MonoInternal.h"
 #include "Scripts/MonoExternal.h"
 
-struct Mono_Class{
-	MonoClass* m_pMain = nullptr;
-}monoclass;
-
-struct Mono_External_Calls {
-	MonoMethod* m_pMain = nullptr;
-}monoextern;
-
 class Mono 
 {
 	MonoDomain* m_pMonoDomain = nullptr;
@@ -34,8 +26,10 @@ class Mono
 public:
 
 	uint32_t m_MonoHandler;
-	// Interface
-	MonoObject* m_pMonoObj;
+
+	MonoObject* m_pMainObj;
+	MonoClass* m_pMainClass = nullptr;
+	MonoMethod* m_pMainFn = nullptr;
 
 	Mono()
 	{
@@ -55,36 +49,43 @@ public:
 				MONO_INTERNALS::MonoAddInternalCall();
 				
 				// Add classes
-				MonoAddClasses();
+				m_pMainClass = ImportClass("CSScript", "Main");
 
-				if (monoclass.m_pMain) {
+				if (m_pMainClass) {
 					// Describe Method for main
-					MonoMethodDesc* mono_main_desc = mono_method_desc_new(".Main:getInst()", false);
-					if (mono_main_desc) {
-						MonoMethod* mono_main_method = mono_method_desc_search_in_class(mono_main_desc, monoclass.m_pMain);
-						if (mono_main_method) {
-							// Call main method
-							MonoObject* mono_exception = nullptr;
-							// Reference object for specified class
-							m_pMonoObj = ThreadCallback(mono_main_method, mono_exception);
-							if (m_pMonoObj) {
-								// Reference handler for specified class
-								m_MonoHandler = mono_gchandle_new(m_pMonoObj, false);
-							
-								// Add External Calls
-								MonoExternalCall();
-							}
-							// Exception Handling
-							MonoException(mono_exception);
+					m_pMainObj = GetClassInstance(".Main:getInst()", m_pMainClass);
 
-							// Free Desc
-							mono_method_desc_free(mono_main_desc);
-						}
+					if (m_pMainObj) {
+						// Reference handler for specified class
+						m_MonoHandler = mono_gchandle_new(m_pMainObj, false);
+					
+						// Add External Calls
+						m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:main()");
 					}
-
 				}
 			}
 		}
+	}
+
+	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass)
+	{
+		MonoObject* m_pMonoObj = nullptr;
+
+		MonoMethodDesc* mono_main_desc = mono_method_desc_new(m_pFnDesc, false);
+		if (mono_main_desc) {
+			MonoMethod* mono_main_method = mono_method_desc_search_in_class(mono_main_desc, m_pClass);
+			if (mono_main_method) {
+				// Call main method
+				MonoObject* mono_exception = nullptr;
+				// Reference object for specified class
+				m_pMonoObj = ThreadCallback(mono_main_method, mono_exception);
+				// Exception Handling
+				MonoException(mono_exception);
+			}
+			// Free Desc
+			mono_method_desc_free(mono_main_desc);
+		}
+		return m_pMonoObj;
 	}
 
 	MonoObject* ThreadCallback(MonoMethod* method, MonoObject* exception)
@@ -100,47 +101,51 @@ public:
 			const char* exCString = mono_string_to_utf8(exString);
 
 			// Print Error
-			std::cout << exCString << std::endl;
-			std::cout << std::endl;
+			PPB_ASSERT(exCString);
 		}
 	}
 
-	void ExternalMain()
+	MonoObject* RunImportFn(MonoObject* m_pObj, MonoMethod* m_pFn)
 	{
-		if (monoextern.m_pMain)
+		MonoObject* m_pReturn = nullptr;
+		if (m_pFn)
 		{
 			MonoObject* exception = nullptr;
 			// Get function
-			mono_runtime_invoke(monoextern.m_pMain, m_pMonoObj, nullptr, &exception);
-
-			/*
-			//Get function (return)
-			MonoObject* returnptr_ = mono_runtime_invoke(monoextern.mono_externaltest, mono_obj_, nullptr, &exception);
-			// Extract Return result
-			if (ptrReturn)
-				<return type> result = *(<return type>*)mono_object_unbox(ptrReturn);
-			*/
-
+			m_pReturn = mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
+			
 			// Exception Handling
 			MonoException(exception);
 		}
+		return m_pReturn;
 	}
 
-	void MonoAddClasses()
+	template <typename T>
+	T ExtractResult(MonoObject* m_pResult)
 	{
-		monoclass.m_pMain = mono_class_from_name(m_pMonoImage, "CSScript", "Main");
+		return *(T*)mono_object_unbox(m_pResult);
 	}
 
-	void MonoExternalCall()
+	PPB_INLINE
+	MonoClass* ImportClass(const char* _namespace, const char* _class)
 	{
-		// description of function
-		MonoMethodDesc* mono_extern_methoddesc = mono_method_desc_new(".Main:main()", false);
-		// get function	
-		MonoMethod* vitrualMethod = mono_method_desc_search_in_class(mono_extern_methoddesc, monoclass.m_pMain);
+		return mono_class_from_name(m_pMonoImage, _namespace, _class);
+	}
+
+	MonoMethod* ImportFunction(MonoClass* m_pClass, MonoObject* m_pObj, const char* m_pFnDesc)
+	{
+		MonoMethod* fn = nullptr;
+		// description of Start function
+		MonoMethodDesc* mono_extern_methoddesc = mono_method_desc_new(m_pFnDesc, false);
+		MonoMethod* vitrualMethod = mono_method_desc_search_in_class(mono_extern_methoddesc, m_pClass);
+
 		if (vitrualMethod)
-			monoextern.m_pMain = mono_object_get_virtual_method(m_pMonoObj, vitrualMethod);
+			fn = mono_object_get_virtual_method(m_pObj, vitrualMethod);
+
 		// Free
 		mono_method_desc_free(mono_extern_methoddesc);
+
+		return fn;
 	}
 
 	~Mono()

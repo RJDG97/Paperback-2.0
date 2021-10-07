@@ -27,7 +27,6 @@ int main( int argc, char* argv[] )
     // Initialization
     xcore::Init( "Initializing Paperback Engine");
     InitializeGame();
-
     PPB.Initialize();
 
     PPB.Update();
@@ -131,7 +130,6 @@ void InitializeGame()
 
                 Mesh.m_Model = "Plane";
             });
-
         PPB.CreateEntity([&](transform& Transform, sound& Sound)
             {
                 Transform.m_Position.m_X = -1;

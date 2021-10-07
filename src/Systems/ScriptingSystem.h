@@ -4,6 +4,7 @@
 #include "Mono.h"
 #include "paperback_camera.h"
 #include "paperback_input.h"
+#include "Scripts/IScripts.h"
 
 struct scripting_system : paperback::system::instance
 {
@@ -22,7 +23,7 @@ struct scripting_system : paperback::system::instance
 
 	void Update(void) noexcept 
 	{
-		m_pMono->ExternalMain();
+		m_pMono->RunImportFn(m_pMono->m_pMainObj, m_pMono->m_pMainFn);
 	}
 
 	void OnSystemTerminated(void) noexcept 

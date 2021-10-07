@@ -283,9 +283,6 @@
     <ClInclude Include="..\..\src\Systems\ScriptingSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Mono.h">
-      <Filter>Source\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Math\MathUtils.h">
       <Filter>Source\Gameplay Code\Math</Filter>
     </ClInclude>
@@ -415,6 +412,12 @@
     <ClInclude Include="..\..\src\Shapes\Triangle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Mono.h">
+      <Filter>Source\Tools\Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\IScripts.h">
+      <Filter>Source\Tools\Mono</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -497,6 +500,9 @@
     </Filter>
     <Filter Include="Source\Gameplay Code\Shapes">
       <UniqueIdentifier>{e4e83ffd-e481-4298-a6e0-9e9b8d2fa686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Mono">
+      <UniqueIdentifier>{cd8d80b1-8c73-45fa-9fe5-add8d3c13be9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
