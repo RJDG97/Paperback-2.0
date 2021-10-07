@@ -77,7 +77,7 @@ namespace paperback::serialize
 
             const auto name = prop.get_name();
             writer.String(name.data(), static_cast<rapidjson::SizeType>(name.length()), false);
-            WriteVariant(prop_value, writer)
+            WriteVariant(prop_value, writer);
             PPB_ASSERT_MSG(!WriteVariant(prop_value, writer), "Cannot Serialize Property:");
             //if (!WriteVariant(prop_value, writer))
             //    std::cerr << "cannot serialize property: " << name << std::endl;
