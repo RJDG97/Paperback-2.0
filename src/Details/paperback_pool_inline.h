@@ -316,6 +316,8 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< mesh >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< sound >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< sound >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< entityscript >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< entityscript >(Index));
 		else
 			return rttr::instance();
 	}

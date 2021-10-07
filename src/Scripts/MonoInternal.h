@@ -4,8 +4,6 @@
 #include "Scripts/Scripts_Camera.h"
 #include "Scripts/Scripts_Inputs.h"
 
-#include "Mono.h"
-
 namespace MONO_INTERNALS
 {
 	MONO_EXPORT void print(MonoString* string)

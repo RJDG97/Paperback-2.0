@@ -15,7 +15,6 @@
 #include <mono/metadata/appdomain.h>
 
 #include "Scripts/MonoInternal.h"
-#include "Scripts/MonoExternal.h"
 
 class Mono 
 {
@@ -39,32 +38,39 @@ public:
 		// Create domain (exits if unsuccessful)
 		m_pMonoDomain = mono_jit_init("Mono");
 
+		if(UpdateDLL()){
+			// Add internal calls (Expose to C# script)
+			MONO_INTERNALS::MonoAddInternalCall();
+			
+			// Add classes
+			m_pMainClass = ImportClass("CSScript", "Main");
+
+			if (m_pMainClass) {
+				// Describe Method for main
+				m_pMainObj = GetClassInstance(".Main:getInst()", m_pMainClass);
+
+				if (m_pMainObj) {
+					// Reference handler for specified class
+					m_MonoHandler = mono_gchandle_new(m_pMainObj, false);
+				
+					// Add External Calls
+					m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:main()");
+				}
+			}
+		}
+	}
+
+	bool UpdateDLL()
+	{
 		// Load binary file as an assembly
 		m_pMonoAssembly = mono_domain_assembly_open(m_pMonoDomain, "../../build/Paperback_V2/bin/Debug/CSScript.dll");
 		if (m_pMonoAssembly) {
 			//	 Load mono image
 			m_pMonoImage = mono_assembly_get_image(m_pMonoAssembly);
-			if (m_pMonoImage) {
-				// Add internal calls (Expose to C# script)
-				MONO_INTERNALS::MonoAddInternalCall();
-				
-				// Add classes
-				m_pMainClass = ImportClass("CSScript", "Main");
-
-				if (m_pMainClass) {
-					// Describe Method for main
-					m_pMainObj = GetClassInstance(".Main:getInst()", m_pMainClass);
-
-					if (m_pMainObj) {
-						// Reference handler for specified class
-						m_MonoHandler = mono_gchandle_new(m_pMainObj, false);
-					
-						// Add External Calls
-						m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:main()");
-					}
-				}
-			}
+			if (m_pMonoImage)
+				return true;
 		}
+		return false;
 	}
 
 	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass)
