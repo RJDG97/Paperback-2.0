@@ -11,7 +11,7 @@ namespace paperback::archetype
         m_ComponentBits{ ComponentBits }
     { }
 
-    void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents, std::string Name ) noexcept
+    void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents, const std::string Name ) noexcept
     {
         // Deep copy infos
         for ( u32 i = 0; i < NumComponents; ++i )
@@ -86,12 +86,6 @@ namespace paperback::archetype
         if ( m_ProcessReference == 0 ) UpdateStructuralChanges();
     }
 
-    void instance::Clear( void ) noexcept
-    {
-        while ( m_EntityCount )
-			DestroyEntity( GetComponent<paperback::component::entity>( vm::PoolDetails{ 0, m_EntityCount - 1 } ) );
-    }
-
 
     //-----------------------------------
     //              Guard
@@ -155,8 +149,9 @@ namespace paperback::archetype
     void instance::Clear(void) noexcept
     {
         u32 Count = m_EntityCount;
-        while ( --Count )
+        while ( Count-- )
             DestroyEntity( GetComponent<paperback::component::entity>(vm::PoolDetails{ 0, Count }) );
+
     }
 
     //-----------------------------------
@@ -272,6 +267,17 @@ namespace paperback::archetype
         return ComponentArray;
     }
 
+    std::string instance::GetName( void ) noexcept 
+    {
+        return m_pName;
+    }
+
+    void instance::SetName(const std::string Name) noexcept
+    {
+        m_pName = Name;
+    }
+
+
     //-----------------------------------
     //         Transfer Entity
     //-----------------------------------
@@ -312,4 +318,16 @@ namespace paperback::archetype
     {
         return m_ComponentPool;
     }
+
+    instance::ComponentInfos& instance::GetComponentInfos(void) noexcept
+    {
+        return m_ComponentInfos;
+    }
+
+
+    u32 instance::GetComponentNumber(void) noexcept
+    {
+        return m_NumberOfComponents;
+    }
+
 }

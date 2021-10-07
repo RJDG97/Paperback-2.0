@@ -171,23 +171,24 @@ struct imgui_system : paperback::system::instance
         ImGui::Begin("Entity Inspector");
 
         bool b_NodeOpen{ false };
-
+        if (ImGui::Button("Clear"))
+        {
+            PPB.ResetAllArchetypes();
+        }
         for ( auto& Archetype : PPB.GetArchetypeList() )
         {
-            ImGui::Separator(); //to clearly see which entities are of the same type?
-
             for (paperback::u32 i = 0; i < Archetype->GetEntityCount(); ++i)
             {
                 NumEntities++;
 
-                ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == Archetype.get() && m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0); //update this
+                ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == Archetype && m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0); //update this
                 NodeFlags |= ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
-                b_NodeOpen = ImGui::TreeNodeEx((void*)(paperback::u32)i, NodeFlags, (Archetype->m_pName + "(" + std::to_string(i) + ")").c_str());
+                b_NodeOpen = ImGui::TreeNodeEx((void*)(paperback::u32)i, NodeFlags, (Archetype->GetName() + "(" + std::to_string(i) + ")").c_str());
 
                 if (ImGui::IsItemClicked())
                 {
-                    m_SelectedEntity.first = Archetype.get();
+                    m_SelectedEntity.first = Archetype;
                     m_SelectedEntity.second = i;
 
                     m_Components = Archetype->GetEntityComponents(m_SelectedEntity.second);
@@ -199,9 +200,7 @@ struct imgui_system : paperback::system::instance
                     {
                         if (ImGui::Button("Spawn Entity"))
                         {
-                            //m_SelectedEntity.first->CreateEntity();
-                            const auto Details = m_SelectedEntity.first->CreateEntity();
-                            PPB.m_EntityMgr.RegisterEntity( Details, *(m_SelectedEntity.first) );
+                            m_SelectedEntity.first->CreateEntity();
 
                         }
                     }
@@ -234,7 +233,7 @@ struct imgui_system : paperback::system::instance
         {
             ++Index;
 
-            ArchetypeName = Archetype->m_pName;
+            ArchetypeName = Archetype->GetName();
             memset(Buffer, 0, sizeof(Buffer));
             strcpy_s(Buffer, sizeof(Buffer), ArchetypeName.c_str());
 
@@ -244,14 +243,14 @@ struct imgui_system : paperback::system::instance
                 if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
                 {
                     Buffer[std::string(Buffer).length()] = '\0';
-                    Archetype->m_pName = std::string(Buffer);
+                    Archetype->SetName(std::string(Buffer));
                 }
 
                 ImGui::SameLine();
 
                 if (ImGui::Button(ICON_FA_PLUS_SQUARE))
                 {
-                    m_pArchetype = Archetype.get();
+                    m_pArchetype = Archetype;
 
                     if (m_pArchetype)
                         m_pArchetype->CreateEntity();

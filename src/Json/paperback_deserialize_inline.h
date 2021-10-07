@@ -202,9 +202,9 @@ namespace paperback::deserialize
                         NewArchetype->AccessGuard([&]()
                             {
 
-                                //NewArchetype->CreateEntity();
-                                const auto Details = NewArchetype->CreateEntity();
-                                PPB.m_EntityMgr.RegisterEntity(Details, *NewArchetype);
+                                NewArchetype->CreateEntity();
+                                //const auto Details = NewArchetype->CreateEntity();
+                                //PPB.GetArchetypeManager().RegisterEntity(Details, *NewArchetype);
 
 
                                 for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
@@ -254,12 +254,13 @@ namespace paperback::deserialize
                                     ArchetypeSignature.Set(CList[Counter++]->m_UID);
                                 }
 
-                                NewArchetype = PPB.FindArchetype(ArchetypeSignature);
-                                if (!NewArchetype)
-                                {
-                                    NewArchetype = &(PPB.CreateArchetype(ArchetypeSignature));
-                                    NewArchetype->Init(CList, Counter, TempName);
-                                }
+                                //NewArchetype = PPB.FindArchetype(ArchetypeSignature);
+                                //if (!NewArchetype)
+                                //{
+                                //    NewArchetype = &(PPB.CreateArchetype(ArchetypeSignature));
+                                //    NewArchetype->Init(CList, Counter, TempName);
+                                //}
+                                NewArchetype = &PPB.GetOrCreateArchetype(ArchetypeSignature);
                                 PPB_ASSERT_MSG(NewArchetype == nullptr, "Archetype Failed to Init");
 
                             }

@@ -1,7 +1,7 @@
 {
     "Entities": [
         {
-            "heheheh": [
+            "unnamed archetype": [
                 {
                     "Guid": [
                         0,
@@ -13,9 +13,7 @@
                 },
                 {
                     "Entity": {
-                        "Validation": {
-                            "Validation ID": 0
-                        }
+                        "Global Index": 0
                     },
                     "Scale": {
                         "Scale": {
@@ -44,7 +42,7 @@
                             "w": 0.0
                         },
                         "Position": {
-                            "x": 1.0,
+                            "x": 5.0,
                             "y": 2.5,
                             "z": -10.0,
                             "w": 0.0
@@ -53,9 +51,7 @@
                 },
                 {
                     "Entity": {
-                        "Validation": {
-                            "Validation ID": 0
-                        }
+                        "Global Index": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -93,9 +89,7 @@
                 },
                 {
                     "Entity": {
-                        "Validation": {
-                            "Validation ID": 0
-                        }
+                        "Global Index": 2
                     },
                     "Scale": {
                         "Scale": {
