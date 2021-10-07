@@ -23,22 +23,6 @@ struct scripting_system : paperback::system::instance
 
 	//void operator()(transform& Transform, paperback::component::entity& Entity) noexcept
 	//{
-	//	static std::unordered_map<std::string, Script*> scriptlist;
-
-	//	// Check collisions
-	//	tools::query Query;
-	//	Query.m_Must.AddFromComponents<transform, entityscript>();
-
-	//	ForEach(Search(Query), [&](entityscript& script) noexcept
-	//	{
-	//		std::unordered_map<std::string, Script*>::const_iterator found = scriptlist.find(script.m_ScriptID);
-	//		if (found == scriptlist.end()) {
-	//			scriptlist.insert({ script.m_ScriptID, new Script(script.m_ScriptID) });
-	//		}
-	//		else {
-	//			found->second->Start();
-	//		}
-	//	});
 	//}
 
 	void Update(void) noexcept 

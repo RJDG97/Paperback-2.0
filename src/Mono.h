@@ -159,6 +159,15 @@ public:
 		if (m_MonoHandler)
 			mono_gchandle_free(m_MonoHandler);
 
+		delete m_pMainObj;
+		delete m_pMainClass;
+		delete m_pMainFn;
+
+		delete m_pMonoImage;
+
+		if (m_pMonoAssembly)
+			mono_assembly_close(m_pMonoAssembly);
+
 		if (m_pMonoDomain)
 			mono_jit_cleanup(m_pMonoDomain);
 	}
