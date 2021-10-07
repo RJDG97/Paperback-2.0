@@ -1,10 +1,13 @@
 #pragma once
 #include "paperback_pch.h"
+#include "Json/paperback_json.h"
 
 struct window_system : paperback::system::instance
 {
     GLFWwindow* m_pWindow;
+    //JsonFile JFile;
 
+    engine e;
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
 		.m_pName = "window_system"
@@ -27,7 +30,9 @@ struct window_system : paperback::system::instance
         glfwWindowHint(GLFW_BLUE_BITS, 8); glfwWindowHint(GLFW_ALPHA_BITS, 8);
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-        m_pWindow = glfwCreateWindow( m_Engine.m_Width, m_Engine.m_Height, "Paperback Engine", NULL, NULL );
+        //JFile.StartReader("config.json").LoadObjects(e).EndReader();
+
+        m_pWindow = glfwCreateWindow( m_Engine.m_Width, m_Engine.m_Height, m_Engine.m_WinName, NULL, NULL );
 
         if (!m_pWindow)
         {

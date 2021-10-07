@@ -210,10 +210,10 @@ namespace paperback::deserialize
 
                                     auto& Value = Mitr->value;
 
-                                    if (!obj.is_type<paperback::component::temp_guid>())
+                                    if ( !obj.is_type<paperback::component::temp_guid>() )
                                         ReadRecursive(obj, Value);
 
-                                    if (obj.is_type<transform>())
+                                    if ( obj.is_type<transform>() )
                                         NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<transform>();
 
                                     if (obj.is_type<scale>())
@@ -227,6 +227,14 @@ namespace paperback::deserialize
 
                                     if ( obj.is_type<component::entity>() )
                                         NewArchetype->GetComponent<component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<component::entity>();
+
+                                    if ( obj.is_type<sound>() )
+                                        NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();
+
+                                    if ( obj.is_type<timer>() )
+                                        NewArchetype->GetComponent<timer>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<timer>();
+
+
                                 }
 
                                 EntityCounter++;

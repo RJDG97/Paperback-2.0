@@ -117,6 +117,7 @@ namespace paperback::coordinator
 		JsonFile Jfile;
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Entities");
+		Jfile.EndReader();
 	}
 
 	//-----------------------------------

@@ -210,6 +210,19 @@ static struct engine
 	paperback::coordinator::instance& m_Coordinator = paperback::coordinator::instance::GetInstance();
 	int m_Width = 1280;
 	int m_Height = 720;
+	const char* m_WinName = "Paperback Engine";
 } m_Engine;
 
 #define PPB m_Engine.m_Coordinator
+
+namespace RR_ENGINE
+{
+	RTTR_REGISTRATION
+	{
+		rttr::registration::class_<engine>("Engine Config")
+			.property("Window", &engine::m_WinName)
+			.property("Width", &engine::m_Width)
+			.property("Height", &engine::m_Height);
+
+	}
+}
