@@ -183,7 +183,7 @@ namespace paperback::deserialize
     {
 
         using NewComponentInfoList = std::array<const component::info*, settings::max_components_per_entity_v>;
-
+        std::string TempName{};
         for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
         {
             for (rapidjson::Value::MemberIterator mitr = itr->MemberBegin(); mitr != itr->MemberEnd(); mitr++)
@@ -193,6 +193,7 @@ namespace paperback::deserialize
                 paperback::archetype::instance* NewArchetype = nullptr;
                 tools::bits ArchetypeSignature;
 
+                TempName = mitr->name.GetString();
 
                 for (rapidjson::Value::ValueIterator vitr = mitr->value.Begin(); vitr != mitr->value.End(); vitr++)
                 {
@@ -201,7 +202,10 @@ namespace paperback::deserialize
                         NewArchetype->AccessGuard([&]()
                             {
 
-                                NewArchetype->CreateEntity();
+                                //NewArchetype->CreateEntity();
+                                const auto Details = NewArchetype->CreateEntity();
+                                PPB.m_EntityMgr.RegisterEntity(Details, *NewArchetype);
+
 
                                 for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
                                 {
@@ -214,17 +218,19 @@ namespace paperback::deserialize
                                         ReadRecursive(obj, Value);
 
                                     if (obj.is_type<transform>())
-                                    {
-                                        auto& Trans = obj.get_value<transform>();
+                                        NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<transform>();
 
-                                        NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = Trans;
+                                    if (obj.is_type<scale>())
+                                        NewArchetype->GetComponent<scale>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<scale>();
 
-                                        auto& a = NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter });
-                                        //auto& a = Trans;
+                                    if ( obj.is_type<rotation>() )
+                                        NewArchetype->GetComponent<rotation>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rotation>();
 
-                                        std::cout << a.m_Position.m_X << " | " << a.m_Position.m_Y << std::endl;
+                                    if ( obj.is_type<mesh>() )
+                                        NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
 
-                                    }
+                                    if ( obj.is_type<component::entity>() )
+                                        NewArchetype->GetComponent<component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<component::entity>();
                                 }
                             }
                         );
@@ -252,7 +258,7 @@ namespace paperback::deserialize
                                 if (!NewArchetype)
                                 {
                                     NewArchetype = &(PPB.CreateArchetype(ArchetypeSignature));
-                                    NewArchetype->Init(CList, Counter);
+                                    NewArchetype->Init(CList, Counter, TempName);
                                 }
                                 PPB_ASSERT_MSG(NewArchetype == nullptr, "Archetype Failed to Init");
 

@@ -1,7 +1,7 @@
 {
     "Entities": [
         {
-            "Unnamed Archetype": [
+            "heheheh": [
                 {
                     "Guid": [
                         0,
@@ -44,7 +44,7 @@
                             "w": 0.0
                         },
                         "Position": {
-                            "x": 5.0,
+                            "x": 1.0,
                             "y": 2.5,
                             "z": -10.0,
                             "w": 0.0
@@ -126,47 +126,6 @@
                         "Position": {
                             "x": -4.0,
                             "y": 2.5,
-                            "z": -10.0,
-                            "w": 0.0
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        12091664775214799190,
-                        14302600151082817442,
-                        17008353085049151909
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Validation": {
-                            "Validation ID": 0
-                        }
-                    },
-                    "Timer": {
-                        "Timer": -2.0
-                    },
-                    "Sound": {
-                        "Path": "event:/BGM",
-                        "Playing?": 1,
-                        "3D Sound": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0,
-                            "w": 0.0
-                        },
-                        "Position": {
-                            "x": -1.0,
-                            "y": -4.0,
                             "z": -10.0,
                             "w": 0.0
                         }

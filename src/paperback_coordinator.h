@@ -145,6 +145,9 @@ namespace paperback::coordinator
 
 		PPB_FORCEINLINE
         float GetTimeScale() const noexcept;
+
+		PPB_FORCEINLINE
+		u32 GetFPS() noexcept;
 	};
 }
 

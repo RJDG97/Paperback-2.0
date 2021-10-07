@@ -70,7 +70,7 @@ namespace paperback::coordinator
 	//           Save Scene
 	//-----------------------------------
 	PPB_INLINE
-		void instance::SaveScene(const std::string& FilePath) noexcept
+	void instance::SaveScene(const std::string& FilePath) noexcept
 	{
 		JsonFile Jfile;
 
@@ -90,13 +90,11 @@ namespace paperback::coordinator
 
 			for (u32 i = 0; i < Archetype->m_NumberOfComponents; ++i)
 			{
-				//Jfile.WriteKey("Guid").StartObject();
 				Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
 				Jfile.WriteGuid(Temp);
 			}
 			Jfile.EndArray();
 			Jfile.EndObject();
-
 
 			Archetype->SerializeAllEntities(Jfile);
 
@@ -354,4 +352,10 @@ namespace paperback::coordinator
 	{
 		return m_Clock.TimeScale();
 	}
+
+	u32 instance::GetFPS() noexcept
+	{
+		return m_Clock.FPS();
+	}
+
 }

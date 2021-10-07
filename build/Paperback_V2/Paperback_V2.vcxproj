@@ -161,11 +161,6 @@
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />
     <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h" />
-    <ClInclude Include="..\..\src\Json\JsonDeserialize.h" />
-    <ClInclude Include="..\..\src\Json\JsonDeserializeInline.h" />
-    <ClInclude Include="..\..\src\Json\JsonFile.h" />
-    <ClInclude Include="..\..\src\Json\JsonFile_Inline.h" />
-    <ClInclude Include="..\..\src\Json\JsonSerialize.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h" />
     <ClInclude Include="..\..\src\Json\paperback_json.h" />

@@ -28,7 +28,7 @@ namespace paperback::archetype
         instance( coordinator::instance& Coordinator, const tools::bits& ComponentBits ) noexcept;
 
         PPB_INLINE
-        void Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept;
+        void Init( std::span<const component::info* const> Types, const u32 NumComponents, std::string Name = "Unnamed Archetype" ) noexcept;
 
         template< typename T_CALLBACK = paperback::empty_lambda >
         PoolDetails CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;

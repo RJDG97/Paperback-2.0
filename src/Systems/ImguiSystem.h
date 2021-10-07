@@ -1,6 +1,6 @@
 #pragma once
 #include "paperback_pch.h"
-#include "WindowSystem.h"
+#include "Systems/WindowSystem.h"
 
 #include <IconsFontAwesome5.h>
 #include <sstream>
@@ -21,12 +21,9 @@ struct imgui_system : paperback::system::instance
     paperback::archetype::instance* m_pArchetype; //refers back to the archetype that the entity is referencing to
 
     std::vector <rttr::instance> m_Components = {};
-    paperback::u32 m_EntityNum;
     std::string m_FilePath, m_FileName, m_LoadedPath;
 
     std::pair<paperback::archetype::instance*, paperback::u32> m_SelectedEntity;
-
-    paperback::entity::info m_EntityInfo;
 
     imgui_addons::ImGuiFileBrowser m_FileDialog; // to access the file dialog addon
 
@@ -36,13 +33,14 @@ struct imgui_system : paperback::system::instance
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
     bool m_bFileSave, m_bFileOpen, m_bFileSaveAs;
 
+    ////////////////////////////////////////////////////////////////////////////////
     constexpr static auto typedef_v = paperback::system::type::update
     {
         .m_pName = "imgui_system"
     };
 
     PPB_INLINE
-        void OnSystemCreated(void) noexcept
+    void OnSystemCreated(void) noexcept
     {
         m_pWindow = GetSystem< window_system >().m_pWindow; //Get window ptr
         ImGuiContext(); //Setup ImGui Context
@@ -50,15 +48,13 @@ struct imgui_system : paperback::system::instance
         m_bImgui = true;
         m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = false;
         m_FilePath = m_FileName = m_LoadedPath = {};
-        m_EntityNum = paperback::u32_max;
 
         m_SelectedEntity = { nullptr, paperback::u32_max };
         m_pArchetype = nullptr;
     }
 
-    //Handle Imgui Main Loop Here (For all the windows)
     PPB_INLINE
-        void Update(void)
+    void Update(void)
     {
         if (m_bImgui)
         {
@@ -158,17 +154,19 @@ struct imgui_system : paperback::system::instance
             }
 
             ImGui::PopFont();
+
+            ImGui::Text("FPS: %d", PPB.GetFPS());
         }
 
-        if (ImGui::Selectable("Show Demo Window"))
-            m_bDemoWindow = !m_bDemoWindow;
+        //if (ImGui::Selectable("Show Demo Window"))
+        //    m_bDemoWindow = !m_bDemoWindow;
 
         ImGui::EndMenuBar();
     }
 
     void InspectorPanel()
     {
-        int NumEntities = 0, ArchetypeIndex = 0;
+        int NumEntities = 0;
 
         ImGui::Begin("Entity Inspector");
 
@@ -183,31 +181,29 @@ struct imgui_system : paperback::system::instance
                 ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == Archetype.get() && m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0); //update this
                 NodeFlags |= ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
-                b_NodeOpen = ImGui::TreeNodeEx((void*)(paperback::u32)i, NodeFlags, (Archetype->m_pName + /*"Entity("*/ "(" + std::to_string(i) + ")").c_str());
+                b_NodeOpen = ImGui::TreeNodeEx((void*)(paperback::u32)i, NodeFlags, (Archetype->m_pName + "(" + std::to_string(i) + ")").c_str());
 
                 if (ImGui::IsItemClicked())
                 {
                     m_SelectedEntity.first = Archetype.get();
                     m_SelectedEntity.second = i;
 
-                    //m_EntityInfo = Archetype->GetEntityInfo(m_SelectedEntity.second);
                     m_Components = Archetype->GetEntityComponents(m_SelectedEntity.second);
                 }
 
                 if (b_NodeOpen)
                 {
-                    // for spawning entities etc 
-                    //m_pArchetype = Archetype->GetArchetypePointer(m_SelectedEntity.second);
-
                     if (m_SelectedEntity.first)
                     {
                         if (ImGui::Button("Spawn Entity"))
                         {
-                            m_SelectedEntity.first->CreateEntity();
+                            //m_SelectedEntity.first->CreateEntity();
+                            const auto Details = m_SelectedEntity.first->CreateEntity();
+                            PPB.m_EntityMgr.RegisterEntity( Details, *(m_SelectedEntity.first) );
+
                         }
                     }
 
-                    //Handle Deletion of Entities here as well
                     ImGui::TreePop();
                 }
                 else
@@ -235,6 +231,7 @@ struct imgui_system : paperback::system::instance
         for (auto& Archetype : PPB.m_EntityMgr.m_pArchetypeList)
         {
             ++Index;
+
             ArchetypeName = Archetype->m_pName;
             memset(Buffer, 0, sizeof(Buffer));
             strcpy_s(Buffer, sizeof(Buffer), ArchetypeName.c_str());
@@ -256,7 +253,6 @@ struct imgui_system : paperback::system::instance
 
                     if (m_pArchetype)
                         m_pArchetype->CreateEntity();
-                    //else pop up? No such entity
                 }
             }
         }

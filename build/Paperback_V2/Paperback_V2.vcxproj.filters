@@ -226,15 +226,6 @@
     <ClInclude Include="..\..\src\Components\Reflect.h">
       <Filter>Source\Tools\Reflect</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonDeserialize.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonFile.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonSerialize.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Components\Sound.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
@@ -396,12 +387,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Components\Rotation.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonDeserializeInline.h">
-      <Filter>Source\Tools\Json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Json\JsonFile_Inline.h">
-      <Filter>Source\Tools\Json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h">
       <Filter>Source\Tools\Json</Filter>

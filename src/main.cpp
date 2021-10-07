@@ -167,16 +167,16 @@ void InitializeGame()
         //        Mesh.m_Model = "Plane";
         //    });
 
-        PPB.CreateEntity([&](transform& Transform, timer& Timer, sound& Sound)
-            {
-                Transform.m_Position.m_X = -1;
-                Transform.m_Position.m_Y = -4;
-                Transform.m_Position.m_Z = -10;
+        //PPB.CreateEntity([&](transform& Transform, timer& Timer, sound& Sound)
+        //    {
+        //        Transform.m_Position.m_X = -1;
+        //        Transform.m_Position.m_Y = -4;
+        //        Transform.m_Position.m_Z = -10;
 
-                Timer.m_Timer = -2.0f;
+        //        Timer.m_Timer = -2.0f;
 
-                Sound.m_SoundID = "event:/BGM"; 
-            });
+        //        Sound.m_SoundID = "event:/BGM"; 
+        //    });
         
         // jy
         //PPB.CreateEntity([&](transform& Transform, mesh& Mesh)

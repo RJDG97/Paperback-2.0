@@ -11,12 +11,13 @@ namespace paperback::archetype
         m_ComponentBits{ ComponentBits }
     { }
 
-    void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept
+    void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents, std::string Name ) noexcept
     {
         // Deep copy infos
         for ( u32 i = 0; i < NumComponents; ++i )
             m_ComponentInfos[i] = Types[i];
         m_NumberOfComponents = NumComponents;
+        m_pName = Name;
 
         for ( size_t i = 0, max = m_ComponentPool.size(); i < max; ++i )
             m_ComponentPool[ i ].Init( std::span{ m_ComponentInfos.data(), m_NumberOfComponents }, m_NumberOfComponents );
