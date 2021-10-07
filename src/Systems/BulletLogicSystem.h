@@ -34,14 +34,14 @@ struct bullet_logic_system : paperback::system::instance
                 //    std::cout << "Sphere collided" << std::endl;
                 //else std::cout << "no collide Sphere" << std::endl;
 
-                constexpr auto min_distance_v = 4;
-                if ((Transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
-                {
-                    DeleteEntity(Entity);
-                    DeleteEntity(Dynamic_Entity);
-                    return true;
-                }
-                return false;
+                //constexpr auto min_distance_v = 4;
+                //if ((Transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
+                //{
+                //    DeleteEntity(Entity);
+                //    DeleteEntity(Dynamic_Entity);
+                //    return true;
+                //}
+                //return false;
             });
 
         GetSystem<debug_system>().DrawSphereCollision(Transform);
