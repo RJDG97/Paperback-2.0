@@ -45,7 +45,7 @@ namespace paperback::coordinator
 	void instance::Terminate( void ) noexcept
 	{
 		m_SystemMgr.Terminate();
-		m_EntityMgr.Terminate();
+		m_ArchetypeMgr.Terminate();
 		m_CompMgr.Terminate();
 	}
 
@@ -78,7 +78,7 @@ namespace paperback::coordinator
 		jfile.StartObject().WriteKey("Entities");
 		jfile.StartArray();
 
-		for ( auto& Archetype : m_EntityMgr.GetArchetypeList() )
+		for ( auto& Archetype : m_ArchetypeMgr.GetArchetypeList() )
 		{
 			//jfile.WriteKey(Archetype); // probably write like entity count and other relevant data for tracking?
 			Archetype->SerializeAllEntities(jfile);
@@ -96,22 +96,27 @@ namespace paperback::coordinator
 	template < typename... T_COMPONENTS >
 	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
-		return m_EntityMgr.GetOrCreateArchetype<T_COMPONENTS...>( *this );
+		return m_ArchetypeMgr.GetOrCreateArchetype<T_COMPONENTS...>( *this );
+	}
+
+	archetype::instance& instance::CreateArchetype( const tools::bits& Signature ) noexcept
+	{
+		return m_ArchetypeMgr.CreateArchetype( Signature );
 	}
 
 	template< typename T_FUNCTION >
 	void instance::CreateEntity( T_FUNCTION&& Function ) noexcept
 	{
-		m_EntityMgr.CreateEntity( Function, *this );
+		m_ArchetypeMgr.CreateEntity( Function, *this );
 	}
 
 	template< typename T_FUNCTION >
 	void instance::CreateEntities( T_FUNCTION&& Function, const u32 Count ) noexcept
 	{
-		// To define
+		
 	}
 
-	void instance::DeleteEntity( component::entity& Entity ) noexcept // Change it to call "archetype manager" -> delete entity ( Handle all checks there instead )
+	void instance::DeleteEntity( component::entity& Entity ) noexcept
 	{
 		assert( Entity.IsZombie() == false );
 		auto& Info = GetEntityInfo( Entity );
@@ -121,7 +126,12 @@ namespace paperback::coordinator
 
 	void instance::RemoveEntity( const uint32_t SwappedGlobalIndex, const component::entity Entity ) noexcept
 	{
-		m_EntityMgr.RemoveEntity( SwappedGlobalIndex, Entity );
+		m_ArchetypeMgr.RemoveEntity( SwappedGlobalIndex, Entity );
+	}
+
+	void instance::ResetAllArchetypes( void ) noexcept
+	{
+		m_ArchetypeMgr.ResetAllArchetypes();
 	}
 
 
@@ -134,10 +144,10 @@ namespace paperback::coordinator
 	component::entity instance::AddOrRemoveComponents( const component::entity Entity
 													 , T_FUNCTION&& Function ) noexcept
 	{
-        return m_EntityMgr.AddOrRemoveComponents( Entity
-												, component::sorted_info_array_v<T_TUPLE_ADD>
-												, component::sorted_info_array_v<T_TUPLE_REMOVE>
-												, Function );
+        return m_ArchetypeMgr.AddOrRemoveComponents( Entity
+												   , component::sorted_info_array_v<T_TUPLE_ADD>
+												   , component::sorted_info_array_v<T_TUPLE_REMOVE>
+												   , Function );
 	}
 
 
@@ -147,17 +157,17 @@ namespace paperback::coordinator
 	template < typename... T_COMPONENTS >
 	std::vector<archetype::instance*> instance::Search() const noexcept
 	{
-		return m_EntityMgr.Search<T_COMPONENTS...>();
+		return m_ArchetypeMgr.Search<T_COMPONENTS...>();
 	}
 
 	archetype::instance* instance::Search( const tools::bits& Bits ) const noexcept
 	{
-		return m_EntityMgr.Search( Bits );
+		return m_ArchetypeMgr.Search( Bits );
 	}
 	
 	std::vector<archetype::instance*> instance::Search( const tools::query& Query ) const noexcept
 	{
-		return m_EntityMgr.Search( Query );
+		return m_ArchetypeMgr.Search( Query );
 	}
 
 
@@ -209,7 +219,6 @@ namespace paperback::coordinator
 
 		for ( const auto& Archetype : ArchetypeList )
 		{
-			//if ( Archetype->m_EntityCount == 0 ) continue;
 			bool bBreak = false;
 
 			for ( auto& Pool : Archetype->GetComponentPools() )
@@ -256,12 +265,12 @@ namespace paperback::coordinator
 	//-----------------------------------
 	entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
 	{
-		return m_EntityMgr.GetEntityInfo( Entity );
+		return m_ArchetypeMgr.GetEntityInfo( Entity );
 	}
 
 	entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
 	{
-		return m_EntityMgr.GetEntityInfo( GlobalIndex );
+		return m_ArchetypeMgr.GetEntityInfo( GlobalIndex );
 	}
 
 	template< typename T_SYSTEM >
@@ -280,7 +289,12 @@ namespace paperback::coordinator
 
 	std::vector<paperback::archetype::instance*> instance::GetArchetypeList( void ) noexcept
 	{
-		return m_EntityMgr.GetArchetypeList();
+		return m_ArchetypeMgr.GetArchetypeList();
+	}
+
+    const paperback::component::info* instance::FindComponentInfo( const paperback::component::type::guid ComponentGuid ) noexcept
+	{
+		return m_CompMgr.FindComponentInfo( ComponentGuid );
 	}
 
 

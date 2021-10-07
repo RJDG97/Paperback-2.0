@@ -8,7 +8,7 @@ namespace paperback::component
         concept ValidComponent = component::type::is_valid_v<T_COMPONENT>;
     }
 
-	struct manager final
+	class manager final
     {    
     public:
 

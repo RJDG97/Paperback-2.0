@@ -48,6 +48,9 @@ namespace paperback::coordinator
 		template < typename... T_COMPONENTS >
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
+		PPB_INLINE
+        archetype::instance& CreateArchetype( const tools::bits& Signature ) noexcept;
+
 		template< typename T_FUNCTION >
 		void CreateEntity( T_FUNCTION&& Function ) noexcept;
 
@@ -60,6 +63,9 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		void RemoveEntity( const uint32_t SwappedGlobalIndex, const component::entity Entity ) noexcept;
+
+		PPB_INLINE
+		void ResetAllArchetypes( void ) noexcept;
 
 		
 		template < concepts::TupleSpecialization T_TUPLE_ADD
@@ -116,6 +122,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
+		PPB_INLINE
+        const paperback::component::info* FindComponentInfo( const paperback::component::type::guid ComponentGuid ) noexcept;
+
 
 		//-----------------------------------
 		//              Clock
@@ -171,7 +180,7 @@ namespace paperback::coordinator
 		tools::clock				m_Clock;						// Timer
 		Input						m_Input;						// Input
 		component::manager			m_CompMgr;						// Component Manager
-		entity::manager				m_EntityMgr{ *this };			// Entity Manager
+		archetype::manager			m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				m_SystemMgr{ m_Clock };			// System Manager
 		bool						m_GameActive = true;			// Game Status
 	};

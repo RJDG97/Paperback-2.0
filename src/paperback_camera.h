@@ -2,7 +2,6 @@
 #define CAMERA_H
 
 #include "glm/inc/glm.hpp"
-//#include "../Include/GLM/glm.hpp"
 
 class Camera
 {

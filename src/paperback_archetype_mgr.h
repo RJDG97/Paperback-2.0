@@ -8,9 +8,14 @@ namespace paperback::entity
         vm::PoolDetails                 m_PoolDetails;
         component::entity::Validation   m_Validation;
     };
+}
 
-    struct manager final
+namespace paperback::archetype
+{
+    class manager final
     {
+    public:
+
         using PoolDetails       = vm::PoolDetails;
         using EntityListHead    = std::priority_queue<u32>;
         using EntityInfoList    = std::unique_ptr<entity::info[]>;
@@ -29,11 +34,14 @@ namespace paperback::entity
         PPB_INLINE
         void RemoveEntity( const u32 SwappedGlobalIndex, const component::entity DeletedEntity ) noexcept;
 
+        PPB_INLINE
+		void ResetAllArchetypes( void ) noexcept;
+
         template < typename... T_COMPONENTS >
         archetype::instance& GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept;
 
         PPB_INLINE
-        archetype::instance& CreateArchetype( coordinator::instance& Coordinator, const tools::bits& Signature ) noexcept;
+        archetype::instance& CreateArchetype( const tools::bits& Signature ) noexcept;
 
         PPB_INLINE
         entity::info& GetEntityInfo( const component::entity Entity ) const noexcept;

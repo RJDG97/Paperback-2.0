@@ -91,9 +91,6 @@
     <ClInclude Include="..\..\src\paperback_coordinator.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\paperback_entity.h">
-      <Filter>Source\Paperback Engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\paperback_event.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
@@ -125,9 +122,6 @@
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_coordinator_inline.h">
-      <Filter>Source\Paperback Engine\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Details\paperback_entity_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_event_inline.h">
@@ -213,12 +207,6 @@
     </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h">
       <Filter>Dependencies\dearImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Details\paperback_entity_mgr_inline.h">
-      <Filter>Source\Paperback Engine\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\paperback_entity_mgr.h">
-      <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
@@ -390,6 +378,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Triangle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_archetype_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_archetype_mgr_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_archetype.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_archetype_mgr.h">
+      <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

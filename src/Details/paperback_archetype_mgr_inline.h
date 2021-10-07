@@ -1,6 +1,6 @@
 #pragma once
 
-namespace paperback::entity
+namespace paperback::archetype
 {
     manager::manager( paperback::coordinator::instance& Coordinator ) :
         m_Coordinator{ Coordinator }
@@ -39,6 +39,10 @@ namespace paperback::entity
 		    auto&      Archetype = GetOrCreateArchetype<T_COMPONENTS...>( Coordinator );
             const auto Details   = Archetype.CreateEntity( Function );
 
+            if ( Details.m_Key       == settings::invalid_index_v
+              && Details.m_PoolIndex == settings::invalid_index_v )
+                return;
+
 		    RegisterEntity( Details, Archetype );
 	    }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
@@ -53,6 +57,12 @@ namespace paperback::entity
         m_AvailableIndexes.push( DeletedEntity.m_GlobalIndex );
     }
 
+    void manager::ResetAllArchetypes( void ) noexcept
+    {
+        for ( auto& Archetype : m_pArchetypeList )
+            Archetype->Clear();
+    }
+
     template < typename... T_COMPONENTS >
     archetype::instance& manager::GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept
     {
@@ -60,8 +70,7 @@ namespace paperback::entity
         return GetOrCreateArchetype( ComponentList, Coordinator );
     }
 
-    // PRIVATE FN
-    archetype::instance& manager::CreateArchetype( coordinator::instance& Coordinator, const tools::bits& Signature ) noexcept
+    archetype::instance& manager::CreateArchetype( const tools::bits& Signature ) noexcept
     {
         m_pArchetypeList.push_back( std::make_unique<archetype::instance>( m_Coordinator, Signature ) );
 		m_ArchetypeBits.push_back( Signature );
@@ -81,7 +90,7 @@ namespace paperback::entity
 
     archetype::instance& manager::GetArchetypeFromEntity( const u32 EntityID ) const noexcept
     {
-        assert( EntityID < m_EntityIDTracker );
+        PPB_ASSERT_MSG( EntityID >= m_EntityIDTracker, "GetArchetypeFromEntity: Invalid EntityID" );
 
         return *( m_EntityInfos[EntityID].m_pArchetype );
     }
@@ -134,7 +143,9 @@ namespace paperback::entity
     }
 
 
-    // PRIVATE
+    //-----------------------------------
+    //             Private
+    //-----------------------------------
     u32 manager::AppendEntity() noexcept
     {
         if (!m_AvailableIndexes.empty())
@@ -194,7 +205,6 @@ namespace paperback::entity
 	    return ValidArchetypes;
 	}
 
-    // Coordinator -> Entity Mgr -> New / Existing Archetype -> Pool
     template < concepts::Callable T_FUNCTION >
 	component::entity manager::AddOrRemoveComponents( const component::entity Entity
 								                     , std::span<const component::info* const> Add
@@ -263,11 +273,7 @@ namespace paperback::entity
 
 			for ( auto& CInfo : Add )
 			{
-				//const auto Index = component::details::find_component_index_v( NewComponentInfoList, CInfo, Count );
-                const auto Index = static_cast<std::size_t>(std::upper_bound(NewComponentInfoList.begin(), NewComponentInfoList.begin() + Count, CInfo, [](const paperback::component::info* pA, const paperback::component::info* pB)
-                {
-                    return pA->m_Guid < pB->m_Guid;
-                }) - NewComponentInfoList.begin());
+				const auto Index = component::details::find_component_index_v( NewComponentInfoList, CInfo, Count );
 
                 // Modifying component::entity
 				if ( InvalidComponentIndex( Index ) ) continue;
@@ -283,11 +289,7 @@ namespace paperback::entity
 			}
 			for ( auto& CInfo : Remove )
 			{
-				//const auto Index = component::details::find_component_index_v( NewComponentInfoList, CInfo, Count );
-                const auto Index = static_cast<std::size_t>(std::upper_bound(NewComponentInfoList.begin(), NewComponentInfoList.begin() + Count, CInfo, [](const paperback::component::info* pA, const paperback::component::info* pB)
-                {
-                    return pA->m_Guid < pB->m_Guid;
-                }) - NewComponentInfoList.begin());
+				const auto Index = component::details::find_component_index_v( NewComponentInfoList, CInfo, Count );
 
                 // Modifying component::entity
                 if ( InvalidComponentIndex(Index) ) continue;

@@ -1,4 +1,4 @@
-#include "..\paperback_entity.h"
+#include "..\paperback_archetype.h"
 #pragma once
 
 namespace paperback::archetype
@@ -31,12 +31,23 @@ namespace paperback::archetype
     {
         using func_traits = xcore::function::traits<T_CALLBACK>;
 
+        if ( m_EntityCount + 1 >= settings::max_entities_v )
+        {
+            ERROR_PRINT( "CreateEntity: Maximum entities reached" );
+            ERROR_LOG( "CreateEntity: Maximum entities reached" );
+
+            return PoolDetails
+            {
+                .m_Key       = settings::invalid_index_v
+            ,   .m_PoolIndex = settings::invalid_index_v
+            };
+        }
+
         ++m_EntityCount;
-        assert( m_EntityCount < settings::max_entities_v );
 
         return [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* )
         {
-            assert( m_ComponentBits.Has( component::info_v<T_COMPONENTS>.m_UID ) && ... );
+            PPB_ASSERT_MSG( !( m_ComponentBits.Has( component::info_v<T_COMPONENTS>.m_UID ) && ... ), "Archetype CreateEntity: Creating entity with invalid components in function" );
 
             // Generate the next valid ID within m_ComponentPool
             const auto PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].Append();
@@ -48,7 +59,7 @@ namespace paperback::archetype
     
             return PoolDetails
             {
-                .m_Key = m_PoolAllocationIndex
+                .m_Key       = m_PoolAllocationIndex
             ,   .m_PoolIndex = PoolIndex
             };
 
@@ -57,17 +68,18 @@ namespace paperback::archetype
 
     u32 instance::DeleteEntity( const PoolDetails Details ) noexcept
     {
+        --m_EntityCount;
         return m_ComponentPool[ Details.m_Key ].Delete( Details.m_PoolIndex );
     }
 
     void instance::DestroyEntity( component::entity& Entity ) noexcept
     {
-        assert( Entity.IsZombie() == false );
+        PPB_ASSERT_MSG( Entity.IsZombie(), "DestroyEntity: Attemping to double delete an entity" );
 
         auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity );
         auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails );
 
-        assert( &Entity == &PoolEntity );
+        PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
 
         Entity.m_Validation.m_bZombie
             = EntityInfo.m_Validation.m_bZombie
@@ -76,6 +88,12 @@ namespace paperback::archetype
         m_DeleteList.push_back( Entity );
 
         if ( m_ProcessReference == 0 ) UpdateStructuralChanges();
+    }
+
+    void instance::Clear( void ) noexcept
+    {
+        while ( m_EntityCount )
+			DestroyEntity( GetComponent<paperback::component::entity>( vm::PoolDetails{ 0, m_EntityCount - 1 } ) );
     }
 
 

@@ -36,6 +36,9 @@ namespace paperback::archetype
         PPB_INLINE
         void DestroyEntity( component::entity& Entity ) noexcept;
 
+        PPB_INLINE
+        void Clear( void ) noexcept;
+
 
         //-----------------------------------
         //             Getters
