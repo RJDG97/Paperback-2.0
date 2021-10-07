@@ -187,12 +187,12 @@ void Renderer::SetUpFramebuffer()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points)
+void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points, std::vector<glm::mat4>* bone_transforms)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	ShadowPass(Objects);
-	RenderPass(Objects);	
+	ShadowPass(Objects, bone_transforms);
+	RenderPass(Objects, bone_transforms);
 	if (Points)
 	{
 		DebugRender(*Points);
@@ -236,7 +236,7 @@ void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
 	m_Resources.m_Shaders["Debug"].UnUse();
 }
 
-void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects)
+void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms)
 {
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -270,6 +270,18 @@ void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm:
 			{
 				m_Resources.m_Shaders["Shadow"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
+				if (bone_transforms && model.first == "Character")
+				{
+					m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", true);
+					auto loc = glGetUniformLocation(m_Resources.m_Shaders["Shadow"].GetShaderHandle(), "uFinalBonesMatrices");
+					glUniformMatrix4fv(loc, 100, GL_FALSE, glm::value_ptr((*bone_transforms)[0]));
+				}
+
+				else
+				{
+					m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", false);
+				}
+
 				// Draw object
 				glDrawElements(m_Resources.m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 			}
@@ -285,7 +297,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm:
 	glCullFace(GL_BACK);
 }
 
-void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects)
+void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms)
 {
 	// Bind to lighting frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_LightingBuffer.m_FrameBuffer[0]);
@@ -384,11 +396,11 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
-				if (!transforms.empty())
+				if (bone_transforms && model.first == "Character")
 				{
 					m_Resources.m_Shaders["Light"].SetUniform("uHasBones", true);
 					auto loc = glGetUniformLocation(m_Resources.m_Shaders["Light"].GetShaderHandle(), "uFinalBonesMatrices");
-					glUniformMatrix4fv(loc, 100, GL_FALSE, glm::value_ptr(transforms[0]));
+					glUniformMatrix4fv(loc, 100, GL_FALSE, glm::value_ptr((*bone_transforms)[0]));
 				}
 
 				else
@@ -400,6 +412,7 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 				glDrawElements(m_Resources.m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 			}
 		}
+
 	}
 
 	// Unbind vao

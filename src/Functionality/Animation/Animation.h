@@ -22,7 +22,7 @@ struct NodeData
 class Animation
 {
     float m_Duration;
-    int m_TicksPerSecond;
+    float m_TicksPerSecond;
     std::vector<Bone> m_Bones;
     NodeData m_RootNode;
     std::unordered_map < std::string, Model::BoneInfo > m_BoneInfoMap;
@@ -55,7 +55,7 @@ class Animation
 
             if (bone_info_map.find(bone_name) == bone_info_map.end())
             {
-                bone_info_map[bone_name].id = bone_info_map.size();
+                bone_info_map[bone_name].id = static_cast<int>(bone_info_map.size());
                 //bone_info_map[bone_name].offset = {1.0f};
             }
 
@@ -106,8 +106,8 @@ public:
         const aiScene* scene = importer.ReadFile(animationPath, aiProcess_Triangulate);
 
         auto animation = scene->mAnimations[0];
-        m_Duration = animation->mDuration;
-        m_TicksPerSecond = animation->mTicksPerSecond;
+        m_Duration = static_cast<float>(animation->mDuration);
+        m_TicksPerSecond = static_cast<float>(animation->mTicksPerSecond);
         ReadHeirarchyData(m_RootNode, scene->mRootNode);
         ReadMissingBones(animation, *model);
     }

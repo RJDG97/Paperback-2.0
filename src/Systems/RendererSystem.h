@@ -45,22 +45,17 @@ struct render_system : paperback::system::instance
 		std::unordered_map<std::string, std::vector<glm::mat4>> objects;
 
 		glm::mat4 t{ 1.0f };
-		t = glm::translate(t, glm::vec3{ 0,0,-7 });
+		t = glm::translate(t, glm::vec3{ 0,-2,-7 });
 		t = glm::scale(t, glm::vec3{ 0.03,0.03,0.03 });
 
 		objects["Character"].push_back(t);
 		
 		auto transforms{ animator_test.GetFinalBoneMatrices() };
-		Renderer::GetInstanced().Render(objects, transforms);
-		
-
-		Renderer::GetInstanced().Render(objects);
 		
 		//just testing stuff
 		tools::query Query;
 		Query.m_Must.AddFromComponents<transform, mesh>();
 
-		glm::mat4 t{ 1.0f };
 		t = glm::mat4{ 1.0f };
 		t = glm::translate(t, glm::vec3{ 0, 0, 0 });
 		t = glm::rotate(t, glm::radians(-90.f), glm::vec3{ 1.f, 0.f, 0.f });
@@ -74,7 +69,6 @@ struct render_system : paperback::system::instance
 			t = glm::translate(t, glm::vec3{xform.m_Position.m_X, xform.m_Position.m_Y, xform.m_Position.m_Z});
 			t = glm::scale(t, glm::vec3{ 1,1,1 });
 			objects[mesh.m_Model].push_back(t);
-			Renderer::GetInstanced().Render(objects);
 		});
 	 
 		// Add points to render lines
@@ -83,7 +77,7 @@ struct render_system : paperback::system::instance
 		//points.push_back(glm::vec3{ 0,-5,0 });
 		//points.push_back(glm::vec3{ 0,5,0 });
 
-		Renderer::GetInstanced().Render(objects);
+		Renderer::GetInstanced().Render(objects, nullptr, &transforms);
 	}
 
 	PPB_FORCEINLINE

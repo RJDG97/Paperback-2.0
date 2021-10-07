@@ -130,6 +130,8 @@ public:
                 return index;
             }
         }
+
+        return -1;
     }
 
     int GetRotationIndex(float animationTime)
@@ -141,6 +143,8 @@ public:
                 return index;
             }
         }
+
+        return -1;
     }
 
     int GetScaleIndex(float animationTime)
@@ -152,6 +156,8 @@ public:
                 return index;
             }
         }
+
+        return -1;
     }
 
     glm::mat4 GetLocalTransform() { return m_LocalTransform; }
