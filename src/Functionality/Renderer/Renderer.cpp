@@ -46,6 +46,7 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Blur", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Blur.frag");
 	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
+	m_Resources.LoadShader("DebugAlt", "../../resources/shaders/Debug.vert", "../../resources/shaders/DebugAlt.frag");
 
 	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
 	m_Resources.Load3DMesh("Box", "../../resources/models/box.fbx");
@@ -191,7 +192,7 @@ void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat
 	CompositePass();
 }
 
-void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
+void Renderer::DebugRender(const std::vector<glm::vec3>& Points, bool IsAlt)
 {
 	// Create vbo for debug lines
 	GLuint vbo;
@@ -199,7 +200,10 @@ void Renderer::DebugRender(const std::vector<glm::vec3>& Points)
 	glNamedBufferStorage(vbo, sizeof(glm::vec3) * Points.size(), Points.data(), GL_DYNAMIC_STORAGE_BIT);
 
 	// Bind shader
-	m_Resources.m_Shaders["Debug"].Use();
+	if (IsAlt)
+		m_Resources.m_Shaders["DebugAlt"].Use();
+	else
+		m_Resources.m_Shaders["Debug"].Use();
 
 	// Bind vao
 	glBindVertexArray(m_DebugVAO);

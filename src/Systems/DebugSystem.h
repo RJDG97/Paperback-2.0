@@ -288,8 +288,7 @@ struct debug_system : paperback::system::instance
         }
 
         // send to render
-        if (!iscollide)
-            Renderer::GetInstanced().DebugRender(input);
+        Renderer::GetInstanced().DebugRender(input, iscollide);
     }
 
 
