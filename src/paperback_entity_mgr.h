@@ -39,8 +39,10 @@ namespace paperback::entity
         template < typename... T_COMPONENTS >
         archetype::instance& GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept;
 
+        archetype::instance* FindArchetype(const tools::bits& Signature) noexcept;
+
         // PRIVATE FN
-        archetype::instance& CreateArchetype( coordinator::instance& Coordinator, const tools::bits& Signature ) noexcept;
+        archetype::instance& CreateArchetype(const tools::bits& Signature) noexcept;
 
         PPB_INLINE
         entity::info& GetEntityInfo( const component::entity Entity ) const noexcept;
@@ -50,6 +52,8 @@ namespace paperback::entity
 
         PPB_INLINE
         archetype::instance& GetArchetypeFromEntity( const u32 EntityID ) const noexcept;
+
+        void ResetAllArchetypes(void) noexcept;
 
         PPB_INLINE
         void FreeEntitiesInArchetype( archetype::instance* Archetype ) noexcept;

@@ -129,6 +129,12 @@ namespace paperback::coordinator
 		return m_EntityMgr.GetOrCreateArchetype<T_COMPONENTS...>(*this);
 	}
 
+	archetype::instance& instance::CreateArchetype(const tools::bits& Signature) noexcept
+	{
+		return m_EntityMgr.CreateArchetype(Signature);
+	}
+
+
 	template< typename T_FUNCTION >
 	void instance::CreateEntity(T_FUNCTION&& Function) noexcept
 	{
@@ -154,6 +160,10 @@ namespace paperback::coordinator
 		m_EntityMgr.RemoveEntity(SwappedGlobalIndex, Entity);
 	}
 
+	void instance::ResetAllArchetypes(void) noexcept
+	{
+		m_EntityMgr.ResetAllArchetypes();
+	}
 
 	//-----------------------------------
 	//      Add Remove Components
@@ -294,6 +304,11 @@ namespace paperback::coordinator
 		return m_EntityMgr.GetEntityInfo(GlobalIndex);
 	}
 
+	const paperback::component::info* instance::FindComponentInfo(const paperback::component::type::guid ComponentGuid) noexcept
+	{
+		return m_CompMgr.FindComponentInfo(ComponentGuid);
+	}
+
 	template< typename T_SYSTEM >
 	T_SYSTEM* instance::FindSystem(void) noexcept
 	{
@@ -306,6 +321,11 @@ namespace paperback::coordinator
 		auto p = m_SystemMgr.FindSystem<T_SYSTEM>();
 		assert(p);
 		return *p;
+	}
+
+	archetype::instance* instance::FindArchetype( const tools::bits& Signature ) noexcept
+	{
+		return m_EntityMgr.FindArchetype( Signature );
 	}
 
 	//-----------------------------------

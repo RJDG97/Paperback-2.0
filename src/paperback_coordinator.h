@@ -57,6 +57,9 @@ namespace paperback::coordinator
 		template < typename... T_COMPONENTS >
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
+		PPB_INLINE
+		archetype::instance& CreateArchetype(const tools::bits& Signature) noexcept;
+
 		template< typename T_FUNCTION >
 		void CreateEntity( T_FUNCTION&& Function ) noexcept;
 
@@ -69,6 +72,8 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		void RemoveEntity( const uint32_t SwappedGlobalIndex, const component::entity Entity ) noexcept;
+
+		void ResetAllArchetypes(void) noexcept;
 
 		
 		template < concepts::TupleSpecialization T_TUPLE_ADD
@@ -116,6 +121,13 @@ namespace paperback::coordinator
 		PPB_INLINE
         entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
+		PPB_INLINE
+		const paperback::component::info* FindComponentInfo(const paperback::component::type::guid ComponentGuid) noexcept;
+
+
+		PPB_INLINE
+		archetype::instance* FindArchetype( const tools::bits& Signature ) noexcept;
+		
 		template< typename T_SYSTEM >
 		T_SYSTEM* FindSystem( void ) noexcept;
 

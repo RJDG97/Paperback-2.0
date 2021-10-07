@@ -77,6 +77,8 @@ namespace paperback::archetype
         // Private Stuff
         PPB_INLINE
         vm::instance& GetPoolWithIndex( const uint32_t EntityPoolIndex ) noexcept;
+
+        void Clear(void) noexcept;
     };
 
     RTTR_REGISTRATION

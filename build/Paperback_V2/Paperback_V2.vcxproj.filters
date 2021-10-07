@@ -397,6 +397,24 @@
     <ClInclude Include="..\..\src\Components\Rotation.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Json\JsonDeserializeInline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\JsonFile_Inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_serialize.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_deserialize.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h">
+      <Filter>Source\Tools\Json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

@@ -60,8 +60,28 @@ namespace paperback::entity
         return GetOrCreateArchetype( ComponentList, Coordinator );
     }
 
+    archetype::instance* manager::FindArchetype(const tools::bits& Signature) noexcept
+    {
+        for (auto& ArchetypeBits : m_ArchetypeBits)
+        {
+            if (ArchetypeBits.Match(Signature))
+            {
+                const auto index = static_cast<size_t>(&ArchetypeBits - &m_ArchetypeBits[0]);
+                return m_pArchetypeList[index].get();
+            }
+        }
+        return nullptr;
+    }
+
+    void manager::ResetAllArchetypes(void) noexcept
+    {
+        for (auto& Archetype : m_pArchetypeList)
+            Archetype->Clear();
+    }
+
+
     // PRIVATE FN
-    archetype::instance& manager::CreateArchetype( coordinator::instance& Coordinator, const tools::bits& Signature ) noexcept
+    archetype::instance& manager::CreateArchetype(const tools::bits& Signature) noexcept
     {
         m_pArchetypeList.push_back( std::make_unique<archetype::instance>( m_Coordinator, Signature ) );
 		m_ArchetypeBits.push_back( Signature );

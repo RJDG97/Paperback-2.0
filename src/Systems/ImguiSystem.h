@@ -360,7 +360,7 @@ struct imgui_system : paperback::system::instance
             {
                 m_LoadedPath = m_FilePath;
 
-                //Destroy Entities in the scene
+                PPB.ResetAllArchetypes();
 
                 PPB.OpenScene(m_FilePath);
             }

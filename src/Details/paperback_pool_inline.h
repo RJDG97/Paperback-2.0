@@ -297,6 +297,7 @@ namespace paperback::vm
 		{
 			rttr::instance Component = GetComponentInstance( m_ComponentInfo[i]->m_Guid, Index );
 			Jfile.WriteKey( Component.get_type().get_name().to_string() ).StartObject();
+			//Jfile.WriteKey( std::to_string(m_ComponentInfo[i]->m_Guid.m_Value)).StartObject();
 			Jfile.Write( Component );
 			Jfile.EndObject();
 

@@ -222,7 +222,7 @@ namespace paperback::component
         {
             rttr::registration::class_< entity >( entity::typedef_v.m_pName )
                 .constructor()(rttr::policy::ctor::as_object)
-                .property( "Global Index", &entity::m_GlobalIndex )
+                //.property( "Global Index", &entity::m_GlobalIndex )
                 .property( "Validation", &entity::m_Validation );
 
             rttr::registration::class_< entity::Validation >( "Valid" )
