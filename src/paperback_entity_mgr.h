@@ -9,20 +9,13 @@ namespace paperback::entity
         component::entity::Validation   m_Validation;
     };
 
-    struct manager
+    struct manager final
     {
         using PoolDetails       = vm::PoolDetails;
         using EntityListHead    = std::priority_queue<u32>;
         using EntityInfoList    = std::unique_ptr<entity::info[]>;
         using ArchetypeBitsList = std::vector<tools::bits>;
         using ArchetypeList     = std::vector<std::unique_ptr<archetype::instance>>;
-
-        EntityInfoList                      m_EntityInfos       = std::make_unique<entity::info[]>( settings::max_entities_v );
-        ArchetypeList                       m_pArchetypeList    {   };
-        ArchetypeBitsList                   m_ArchetypeBits     {   };
-        uint32_t                            m_EntityIDTracker   { 0 };
-        EntityListHead                      m_AvailableIndexes  {   };
-        paperback::coordinator::instance&   m_Coordinator;
 
         PPB_INLINE
         manager( paperback::coordinator::instance& Coordinator );
@@ -39,7 +32,7 @@ namespace paperback::entity
         template < typename... T_COMPONENTS >
         archetype::instance& GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept;
 
-        // PRIVATE FN
+        PPB_INLINE
         archetype::instance& CreateArchetype( coordinator::instance& Coordinator, const tools::bits& Signature ) noexcept;
 
         PPB_INLINE
@@ -52,7 +45,7 @@ namespace paperback::entity
         archetype::instance& GetArchetypeFromEntity( const u32 EntityID ) const noexcept;
 
         PPB_INLINE
-        void FreeEntitiesInArchetype( archetype::instance* Archetype ) noexcept;
+        std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
         template < typename... T_COMPONENTS >
         std::vector<archetype::instance*> Search() const noexcept;
@@ -73,8 +66,8 @@ namespace paperback::entity
         void Terminate( void ) noexcept;
 
 
+    private:
 
-        // PRIVATE
         PPB_INLINE
         u32 AppendEntity() noexcept;
 
@@ -83,5 +76,13 @@ namespace paperback::entity
 
         template < typename... T_COMPONENTS >
         std::vector<archetype::instance*> Search( std::span<const component::info* const> Types ) const noexcept;
+
+
+        EntityInfoList                      m_EntityInfos       = std::make_unique<entity::info[]>( settings::max_entities_v );
+        ArchetypeList                       m_pArchetypeList    {   };
+        ArchetypeBitsList                   m_ArchetypeBits     {   };
+        uint32_t                            m_EntityIDTracker   { 0 };
+        EntityListHead                      m_AvailableIndexes  {   };
+        paperback::coordinator::instance&   m_Coordinator;
     };
 }

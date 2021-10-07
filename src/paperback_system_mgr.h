@@ -5,8 +5,10 @@ namespace paperback::system
 	//-----------------------------------
 	//          System Manager
 	//-----------------------------------
-	struct manager
+	class manager final
 	{
+	public:
+
 		using SystemMap  = std::unordered_map< system::type::guid, system::instance* >;
 		using SystemList = std::vector< std::pair< const system::type::info*, std::unique_ptr<system::instance> > >;
 
@@ -30,7 +32,8 @@ namespace paperback::system
 		void Terminate( void ) noexcept;
 
 
-		// bool m_bPaused;
+	private:
+
 		tools::clock&			m_SystemClock;
 		SystemMap				m_SystemMap;
 		SystemList				m_Systems;

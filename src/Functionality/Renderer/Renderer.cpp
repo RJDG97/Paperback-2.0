@@ -49,7 +49,7 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
 	m_Resources.Load3DMesh("Box", "../../resources/models/box.fbx");
-	m_Resources.Load3DMesh("Plane", "../../resources/models/plane.obj");
+	//m_Resources.Load3DMesh("Plane", "../../resources/models/plane.obj");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -66,7 +66,7 @@ Renderer::Renderer() :
 
 	m_Light.m_Position = glm::vec3{ 1.f, 1.f, 1.f };
 	m_Light.m_Direction = glm::normalize(glm::vec3{ 0.f } - m_Light.m_Position);
-	m_Light.m_Projection = glm::ortho(-35.f, 35.f, -35.f, 35.f, -10.f, 100.f);
+	m_Light.m_Projection = glm::ortho(-35.f, 35.f, -35.f, 35.f, -35.f, 35.f);
 	m_Light.m_View = glm::lookAt(m_Light.m_Position, glm::vec3{ 0.f }, glm::vec3{ 0.f, 1.f, 0.f });
 	m_Light.m_Transform = m_Light.m_Projection * m_Light.m_View;
 }
@@ -98,8 +98,8 @@ void Renderer::SetUpFramebuffer()
 	glTextureStorage2D(shadowDepth, 1, GL_DEPTH_COMPONENT32F, 1024, 1024);
 	glTextureParameteri(shadowDepth, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTextureParameteri(shadowDepth, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTextureParameteri(shadowDepth, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTextureParameteri(shadowDepth, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(shadowDepth, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+	glTextureParameteri(shadowDepth, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
 	float color[] = { 1.f, 1.f, 1.f, 1.f };
 	glTextureParameterfv(shadowDepth, GL_TEXTURE_BORDER_COLOR, color);
 

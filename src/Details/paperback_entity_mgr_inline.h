@@ -86,22 +86,12 @@ namespace paperback::entity
         return *( m_EntityInfos[EntityID].m_pArchetype );
     }
 
-    void manager::FreeEntitiesInArchetype( archetype::instance* Archetype ) noexcept
+    std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
     {
-        if ( Archetype->m_ProcessReference == 0 && 
-             !Archetype->m_DeleteList.empty() )
-        {
-            for ( auto& Entity : Archetype->m_DeleteList )
-            {
-                assert( Entity.IsZombie() == true );
-
-                auto& Info = GetEntityInfo( Entity );
-
-                RemoveEntity( Archetype->DeleteEntity( Info.m_PoolDetails ), Entity );
-            }
-
-            Archetype->m_DeleteList.clear();
-        }
+        std::vector<paperback::archetype::instance*> List;
+        for ( auto& Archetype : m_pArchetypeList )
+            List.push_back( Archetype.get() );
+        return List;
     }
 
     template < typename... T_COMPONENTS >
@@ -135,7 +125,7 @@ namespace paperback::entity
             {
                 const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
 
-                if ( m_pArchetypeList[index]->m_EntityCount > 0 )
+                if ( m_pArchetypeList[index]->GetEntityCount() > 0 )
                     ValidArchetypes.push_back( m_pArchetypeList[index].get() );
             }
         }
@@ -268,7 +258,6 @@ namespace paperback::entity
 			auto& Archetype = *EntityInfo.m_pArchetype;
 			std::array<const paperback::component::info*, settings::max_components_per_entity_v > NewComponentInfoList;
 
-			//for ( auto& CInfo : Archetype.m_ComponentInfos )
 			for ( auto& CInfo : std::span{ Archetype.m_ComponentInfos.data(), Archetype.m_NumberOfComponents } )
 				NewComponentInfoList[Count++] = CInfo;
 

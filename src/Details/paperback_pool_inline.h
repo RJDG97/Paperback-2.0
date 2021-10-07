@@ -2,29 +2,14 @@
 
 namespace paperback::vm
 {
-	u32 instance::GetPageIndex( const size_t LocalComponentIndex, const u32 Count ) const noexcept
-	{
-		return ( m_ComponentInfo[LocalComponentIndex]->m_Size * Count ) / settings::virtual_page_size_v;
-	}
-
-	u32 instance::GetPageIndex( const component::info& Info, const u32 Count ) const noexcept
-	{
-		return ( ( Info.m_Size * Count ) - 1 ) / settings::virtual_page_size_v;
-	}
-
-	void instance::Clear() noexcept
-	{
-		while ( m_CurrentEntityCount )
-		{
-			Delete( m_CurrentEntityCount-1 );
-		}
-	}
-
-	instance::~instance() noexcept
+	//-----------------------------------
+	//            Default
+	//-----------------------------------
+	instance::~instance( void ) noexcept
 	{
 		Clear();
 
-		for ( auto cPool : m_ComponentPool )
+		for ( auto cPool : m_MemoryPool )
 		{
 			if ( cPool )
 				VirtualFree( cPool, 0, MEM_RELEASE );
@@ -40,13 +25,16 @@ namespace paperback::vm
 		for ( std::size_t i = 0; i < m_NumberOfComponents; i++ )
 		{
 			auto nPages = GetPageIndex( *m_ComponentInfo[i], settings::max_entities_v ) + 1;
-			m_ComponentPool[i] = reinterpret_cast<std::byte*>( VirtualAlloc(nullptr, nPages * paperback::settings::virtual_page_size_v, MEM_RESERVE, PAGE_NOACCESS) );
-			assert( m_ComponentPool[i] );
+			m_MemoryPool[i] = reinterpret_cast<std::byte*>( VirtualAlloc(nullptr, nPages * paperback::settings::virtual_page_size_v, MEM_RESERVE, PAGE_NOACCESS) );
+			assert( m_MemoryPool[i] );
 		}
 	}
 
 
-	u32 instance::Append() noexcept
+	//-----------------------------------
+	//         Create / Delete
+	//-----------------------------------
+	u32 instance::Append( void ) noexcept
 	{
 		assert( m_CurrentEntityCount < settings::max_entities_v );
 
@@ -60,8 +48,8 @@ namespace paperback::vm
 			// Commit new memory in m_ComponentPool's page if the page is full
 			if ( iCurPage != iNextpage )
 			{
-				auto pEndOfCurrentPool = m_ComponentPool[i] + iNextpage * paperback::settings::virtual_page_size_v;
-				auto pNewPool = VirtualAlloc(pEndOfCurrentPool, paperback::settings::virtual_page_size_v, MEM_COMMIT, PAGE_READWRITE);
+				auto pEndOfCurrentPool = m_MemoryPool[i] + iNextpage * paperback::settings::virtual_page_size_v;
+				auto pNewPool = VirtualAlloc( pEndOfCurrentPool, paperback::settings::virtual_page_size_v, MEM_COMMIT, PAGE_READWRITE );
 
 				assert( pNewPool == pEndOfCurrentPool );
 			}
@@ -69,7 +57,7 @@ namespace paperback::vm
 			// Invoke constructor for Component (If Required)
 			if ( m_ComponentInfo[i]->m_Constructor )
 			{
-				m_ComponentInfo[i]->m_Constructor(m_ComponentPool[i] + m_CurrentEntityCount * m_ComponentInfo[i]->m_Size);
+				m_ComponentInfo[i]->m_Constructor( m_MemoryPool[i] + m_CurrentEntityCount * m_ComponentInfo[i]->m_Size );
 			}
 		}
 
@@ -87,7 +75,7 @@ namespace paperback::vm
 		for ( size_t i = 0; i < m_NumberOfComponents; ++i )
 		{
 			const auto& pInfo = *m_ComponentInfo[i];
-			auto		pData =  m_ComponentPool[i];
+			auto		pData =  m_MemoryPool[i];
 
 			// Deleting last Entity
 			if ( PoolIndex == m_CurrentEntityCount )
@@ -125,6 +113,14 @@ namespace paperback::vm
 				 : GetComponent<component::entity>( PoolIndex ).m_GlobalIndex;
 	}
 
+	void instance::Clear() noexcept
+	{
+		while ( m_CurrentEntityCount )
+		{
+			Delete( m_CurrentEntityCount-1 );
+		}
+	}
+
 	void instance::RemoveTransferredEntity( const u32 PoolIndex ) noexcept
 	{
 		assert( PoolIndex >= 0 );
@@ -142,7 +138,7 @@ namespace paperback::vm
 		for ( size_t i = 0; i < m_NumberOfComponents; ++i )
 		{
 			const auto& pInfo = *m_ComponentInfo[i];
-			auto		pData =  m_ComponentPool[i];
+			auto		pData =  m_MemoryPool[i];
 
 			// If moving last entity - Ignore
 			if ( PoolIndex == m_CurrentEntityCount )
@@ -171,12 +167,18 @@ namespace paperback::vm
 		}
 	}
 
+
+	//-----------------------------------
+	//             Transfer
+	//-----------------------------------
 	u32 instance::TransferExistingComponents( const PoolDetails& Details, vm::instance& FromPool ) noexcept
 	{
 		const u32 NewPoolIndex = Append();
 
         u32 iPoolFrom = 0;
         u32 iPoolTo   = 0;
+
+		auto& From_MemoryPool = FromPool.GetMemoryPool();
 
         while( true )
         {
@@ -187,13 +189,13 @@ namespace paperback::vm
 
                 if( Info.m_Move )
                 {
-                    Info.m_Move( &m_ComponentPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]					    // Destination
-							   , &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] ); // Source
+                    Info.m_Move( &m_MemoryPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]					    // Destination
+							   , &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] ); // Source
                 }
                 else
                 {
-                    std::memcpy( &m_ComponentPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]						// Destination
-                               , &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ]	// Source
+                    std::memcpy( &m_MemoryPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]						// Destination
+                               , &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ]	// Source
                                , Info.m_Size );																	// Number of bytes to copy
                 }
 
@@ -206,7 +208,7 @@ namespace paperback::vm
                 auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
 
                 if( Info.m_Destructor )
-					Info.m_Destructor( &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
+					Info.m_Destructor( &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
 
                 if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
             }
@@ -223,7 +225,7 @@ namespace paperback::vm
             auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
 
             if ( Info.m_Destructor )
-				Info.m_Destructor( &FromPool.m_ComponentPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
+				Info.m_Destructor( &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
             
             if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
         }
@@ -242,7 +244,7 @@ namespace paperback::vm
 
 		return *reinterpret_cast< std::decay_t<T_COMPONENT>* >
 		(
-			&m_ComponentPool[ ComponentIndex ][ PoolIndex * m_ComponentInfo[ComponentIndex]->m_Size] 
+			&m_MemoryPool[ ComponentIndex ][ PoolIndex * m_ComponentInfo[ComponentIndex]->m_Size] 
 		);
 	}
 
@@ -316,6 +318,25 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< sound >(Index));
 		else
 			return rttr::instance();
-	}	
+	}
 
+	u32 instance::GetCurrentEntityCount( void ) const noexcept
+	{
+		return m_CurrentEntityCount;
+	}
+
+	paperback::vm::instance::MemoryPool& instance::GetMemoryPool( void ) noexcept
+	{
+		return m_MemoryPool;
+	}
+
+	u32 instance::GetPageIndex( const size_t LocalComponentIndex, const u32 Count ) const noexcept
+	{
+		return ( m_ComponentInfo[LocalComponentIndex]->m_Size * Count ) / settings::virtual_page_size_v;
+	}
+
+	u32 instance::GetPageIndex( const component::info& Info, const u32 Count ) const noexcept
+	{
+		return ( ( Info.m_Size * Count ) - 1 ) / settings::virtual_page_size_v;
+	}
 }

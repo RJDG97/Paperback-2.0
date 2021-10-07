@@ -2,6 +2,9 @@
 
 namespace tools
 {
+    //-----------------------------------
+    //              Add
+    //-----------------------------------
     void bits::Set( const int Bit ) noexcept
     {
 		int x = Bit / 64;
@@ -16,6 +19,15 @@ namespace tools
         m_bits[x] &= ~(1ull << y);
     }
 
+    template < typename... T_COMPONENTS >
+    void bits::AddFromComponents( void )
+    {
+        ( (Set( paperback::component::info_v<T_COMPONENTS>.m_UID)), ... );
+    }
+
+    //-----------------------------------
+    //            Compare
+    //-----------------------------------
     bool bits::Has( const int Bit ) const noexcept
     {
 		int x = Bit / 64;
@@ -40,16 +52,10 @@ namespace tools
     {
 		for (size_t i = 0, size = m_bits.size(); i < size; ++i)
         {
-            if ((m_bits[i] & Query.m_bits[i]) != Query.m_bits[i])
+            if ( (m_bits[i] & Query.m_bits[i]) != Query.m_bits[i] )
                 return false;
         }
 
         return true;
-    }
-
-    template < typename... T_COMPONENTS >
-    void bits::AddFromComponents()
-    {
-        ( (Set( paperback::component::info_v<T_COMPONENTS>.m_UID)), ... );
     }
 }

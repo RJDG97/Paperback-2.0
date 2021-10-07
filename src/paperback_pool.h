@@ -2,45 +2,34 @@
 
 namespace paperback::vm
 {
-	struct PoolDetails // Change to u16 afterwards
+	struct PoolDetails
 	{
 		u32 m_Key			= settings::invalid_index_v;	// Access Pool Within Archetype
 		u32 m_PoolIndex		= settings::invalid_index_v;	// Access Component Within Pool
 	};
 
-	struct instance
+	class instance final
 	{
-	//private:
+	public:
 
-		std::span<const component::info* const>										m_ComponentInfo				{   };
-		std::array<std::byte*, paperback::settings::max_components_per_entity_v>	m_ComponentPool				{   };
-		u32						        											m_NumberOfComponents		{ 0 };
-		u32						        											m_CurrentEntityCount		{ 0 };
-
-		PPB_INLINE
-		u32 GetPageIndex( const size_t LocalComponentIndex, const u32 Count ) const noexcept;
-
-		PPB_INLINE
-		u32 GetPageIndex( const component::info& Info, const u32 Count ) const noexcept;
-
-		PPB_INLINE
-		void Clear() noexcept;
-
-	//public:
+		using MemoryPool = std::array<std::byte*, paperback::settings::max_components_per_entity_v>;
 
 		instance( void )			noexcept = default;
 		instance( const instance& ) noexcept = delete;
 
-		~instance() noexcept;
+		~instance( void ) noexcept;
 
 		PPB_INLINE
 		void Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept;
 
 		PPB_INLINE
-		u32 Append() noexcept;
+		u32 Append( void ) noexcept;
 
 		PPB_INLINE
 		u32 Delete( const u32 PoolIndex ) noexcept;
+
+		PPB_INLINE
+		void Clear( void ) noexcept;
 
 		PPB_INLINE
 		void RemoveTransferredEntity( const u32 PoolIndex ) noexcept;
@@ -68,5 +57,26 @@ namespace paperback::vm
 
 		PPB_INLINE
 		rttr::instance GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept;
+
+		PPB_INLINE
+		u32 GetCurrentEntityCount( void ) const noexcept;
+
+		PPB_INLINE
+		paperback::vm::instance::MemoryPool& GetMemoryPool( void ) noexcept;
+
+
+	private:
+
+		PPB_INLINE
+		u32 GetPageIndex( const size_t LocalComponentIndex, const u32 Count ) const noexcept;
+
+		PPB_INLINE
+		u32 GetPageIndex( const component::info& Info, const u32 Count ) const noexcept;
+
+
+		std::span<const component::info* const>			m_ComponentInfo				{   };
+		paperback::vm::instance::MemoryPool				m_MemoryPool				{   };
+		u32						        				m_NumberOfComponents		{ 0 };
+		u32						        				m_CurrentEntityCount		{ 0 };
 	};
 }

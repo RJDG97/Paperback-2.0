@@ -154,25 +154,10 @@
     <ClInclude Include="..\..\src\Components\Rigidbody.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Components\Bullet.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\BufferRefresh.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Systems\BulletLogicSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Systems\BulletRenderingSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Components\component_includes.h">
@@ -192,9 +177,6 @@
     </ClInclude>
     <ClInclude Include="..\..\dependencies\xcore\src\xcore.h">
       <Filter>Dependencies\xCore</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Vector.h">
-      <Filter>Source\Tools</Filter>
     </ClInclude>
     <ClInclude Include="paperback_pch.h">
       <Filter>Source\Paperback Engine</Filter>
@@ -243,9 +225,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Components\Reflect.h">
       <Filter>Source\Tools\Reflect</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\Components.h">
-      <Filter>Source\Gameplay Code\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Json\JsonDeserialize.h">
       <Filter>Source\Tools\Json</Filter>
@@ -339,9 +318,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_input_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\SampleTagComponent.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_glfw.h">
       <Filter>Dependencies\dearImGui</Filter>

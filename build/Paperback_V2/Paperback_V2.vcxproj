@@ -131,13 +131,10 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_textedit.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h" />
     <ClInclude Include="..\..\dependencies\xcore\src\xcore.h" />
-    <ClInclude Include="..\..\src\Components\Bullet.h" />
-    <ClInclude Include="..\..\src\Components\Components.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
     <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
-    <ClInclude Include="..\..\src\Components\SampleTagComponent.h" />
     <ClInclude Include="..\..\src\Components\Sound.h" />
     <ClInclude Include="..\..\src\Components\Timer.h" />
     <ClInclude Include="..\..\src\Components\Transform.h" />
@@ -211,19 +208,14 @@
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
     <ClInclude Include="..\..\src\Shapes\Sphere.h" />
     <ClInclude Include="..\..\src\Shapes\Triangle.h" />
-    <ClInclude Include="..\..\src\Systems\BufferRefresh.h" />
     <ClInclude Include="..\..\src\Systems\BulletLogicSystem.h" />
-    <ClInclude Include="..\..\src\Systems\BulletRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\DebugSystem.h" />
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
     <ClInclude Include="..\..\src\Systems\ScriptingSystem.h" />
     <ClInclude Include="..\..\src\Systems\RendererSystem.h" />
-    <ClInclude Include="..\..\src\Systems\ShipLogicSystem.h" />
-    <ClInclude Include="..\..\src\Systems\ShipRenderingSystem.h" />
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
-    <ClInclude Include="..\..\src\Vector.h" />
     <ClInclude Include="paperback_pch.h" />
     <ClInclude Include="WindowSystem.h" />
   </ItemGroup>
@@ -300,7 +292,9 @@
       <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
 xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
-xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"</Command>
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"
+xcopy /y "$(ProjectDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(OutDir)"
+xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -334,7 +328,9 @@ xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(Ou
       <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
 xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"
-xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"</Command>
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"
+xcopy /y "$(ProjectDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(OutDir)"
+xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
