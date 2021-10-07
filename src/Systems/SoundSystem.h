@@ -40,7 +40,7 @@ public:
         if (!result) 
         {
 
-            ERROR_LOG("Unable to load Sound Bank: '" + std::string{ filename } + "'");
+            ERROR_LOG("Unable to load Sound Bank: '" + std::string{ filename } + "' with result: " + std::to_string(res));
         }
         else
         {
@@ -371,9 +371,10 @@ public:
         }
 
         //remove all sound files tagged with id 0 since 0 is default tag value which should have been replaced with non-zero from start
-        std::remove_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [](SoundFile& sound) { return sound.m_ID == 0; });
+        auto end = std::remove_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [](SoundFile& sound) { return sound.m_ID == 0; });
 
-
+        if (end != std::end(m_SoundFiles))
+            m_SoundFiles.erase(end, m_SoundFiles.end());
     }
 
     // Terminate system
