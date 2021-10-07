@@ -73,7 +73,9 @@ public:
             //event->loadSampleData();
             event->createInstance(&m_SoundFiles.back().m_pSound);
             FMOD_RESULT result = m_SoundFiles.back().m_pSound->start(); 
-            std::cout << result << std::endl;
+            
+            ERROR_LOG("Play Sound Event Result: " + result);
+
             m_SoundFiles.back().m_pSound->setVolume(1.0f);
 
             //in case of extra load case to debug log
@@ -81,7 +83,7 @@ public:
             m_SoundFiles.back().m_pSound->getPlaybackState(&be);
 
             if (be != 0)
-                std::cout << be << std::endl;
+                ERROR_LOG("Play Sound Event Playback State: " + be);
         }
         else {
 
