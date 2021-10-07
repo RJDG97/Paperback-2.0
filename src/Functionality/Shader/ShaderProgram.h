@@ -46,6 +46,8 @@ public:
 	void SetUniform(GLchar const* Name, glm::mat3& Val);
 	void SetUniform(GLchar const* Name, glm::mat4& Val);
 
+	GLuint GetShaderHandle() { return m_ShaderHandle; }
+
 private:
 	// Shader handle
 	GLuint m_ShaderHandle;

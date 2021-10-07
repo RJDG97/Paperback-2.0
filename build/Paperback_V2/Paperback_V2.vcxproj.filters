@@ -301,9 +301,6 @@
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h">
       <Filter>Source\Tools\Functionality\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="WindowSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\paperback_input.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
@@ -391,6 +388,18 @@
     <ClInclude Include="..\..\src\paperback_archetype_mgr.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Animation\Animation.h">
+      <Filter>Source\Tools\Functionality\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Animation\Bone.h">
+      <Filter>Source\Tools\Functionality\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\WindowSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Animation\Animator.h">
+      <Filter>Source\Tools\Functionality\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -473,6 +482,9 @@
     </Filter>
     <Filter Include="Source\Gameplay Code\Shapes">
       <UniqueIdentifier>{e4e83ffd-e481-4298-a6e0-9e9b8d2fa686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\Animation">
+      <UniqueIdentifier>{2d0e093c-f756-4177-a6da-b7340fb3c0c6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

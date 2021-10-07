@@ -152,6 +152,9 @@
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Animator.h" />
+    <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h" />
@@ -215,8 +218,8 @@
     <ClInclude Include="..\..\src\Systems\RendererSystem.h" />
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
+    <ClInclude Include="..\..\src\Systems\WindowSystem.h" />
     <ClInclude Include="paperback_pch.h" />
-    <ClInclude Include="WindowSystem.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -274,6 +277,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
       <ProgramDataBaseFileName>$(OutDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -308,6 +312,7 @@ xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Com
       <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;../../dependencies/mono/include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

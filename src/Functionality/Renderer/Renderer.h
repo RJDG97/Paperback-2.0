@@ -1,3 +1,4 @@
+#pragma once
 #ifndef RENDERER_H
 #define RENDERER_H
 
@@ -15,7 +16,7 @@ public:
 	//void UpdateFramebufferSize(int Width, int Height);
 
 	// Render object
-	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points = nullptr);
+	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points = nullptr, std::vector<glm::mat4>* bone_transforms = nullptr);
 
 	// Render debug objects
 	void DebugRender(const std::vector<glm::vec3>& Points, bool IsAlt = false);
@@ -52,8 +53,8 @@ private:
 	// Helper function to create framebuffers
 	void SetUpFramebuffer();
 
-	void ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
-	void RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects);
+	void ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
+	void RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
 	void BlurPass();
 	void CompositePass();
 
