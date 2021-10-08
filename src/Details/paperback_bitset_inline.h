@@ -40,8 +40,7 @@ namespace tools
     {
 		for (size_t i = 0, size = m_bits.size(); i < size; ++i)
         {
-            // ( Archetype Bit & Query Bit ) != Either Query Bit
-            if ( (m_bits[i] & Query.m_bits[i]) != ( m_bits[i] || Query.m_bits[i] ) )
+            if (m_bits[i] != Query.m_bits[i])
                 return false;
         }
 
