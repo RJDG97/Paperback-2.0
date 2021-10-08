@@ -80,8 +80,8 @@ void InitializeGame()
             sound_system,
             scripting_system,
             window_system,
-            render_system,
             debug_system,
+            render_system,
             imgui_system
         >();
     }
@@ -266,7 +266,7 @@ void InitializeGame()
                 Scale.m_Value.m_Y = 1;
                 Scale.m_Value.m_Z = 1;
 
-                Rotation.m_Value.m_X = 1;
+                Rotation.m_Value.m_X = 0;
                 Rotation.m_Value.m_Y = 0;
                 Rotation.m_Value.m_Z = 0;
 
@@ -301,7 +301,7 @@ void InitializeGame()
                 Scale.m_Value.m_Y = 1;
                 Scale.m_Value.m_Z = 1;
 
-                Rotation.m_Value.m_X = 1;
+                Rotation.m_Value.m_X = 0;
                 Rotation.m_Value.m_Y = 0;
                 Rotation.m_Value.m_Z = 0;
 

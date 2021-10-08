@@ -70,18 +70,16 @@ struct render_system : paperback::system::instance
 		{
 			glm::mat4 t{ 1.0f };
 			t = glm::translate(t, glm::vec3{xform.m_Position.m_X, xform.m_Position.m_Y, xform.m_Position.m_Z});
+			t = glm::rotate(t, glm::radians(rotation.m_Value.m_X), glm::vec3{ 1.f, 0.f, 0.f });
+			t = glm::rotate(t, glm::radians(rotation.m_Value.m_Y), glm::vec3{ 0.f, 1.f, 0.f });
+			t = glm::rotate(t, glm::radians(rotation.m_Value.m_Z), glm::vec3{ 0.f, 0.f, 1.f });
 			t = glm::scale(t, glm::vec3{ scale.m_Value.m_X, scale.m_Value.m_Y, scale.m_Value.m_Z });
-			t = glm::rotate(t, glm::radians(-90.f), glm::vec3{ rotation.m_Value.m_X, rotation.m_Value.m_Y, rotation.m_Value.m_Z });
 			objects[mesh.m_Model].push_back(t);
 		});
-	 
-		// Add points to render lines
-		//std::vector<glm::vec3> points;
 
-		//points.push_back(glm::vec3{ 0,-5,0 });
-		//points.push_back(glm::vec3{ 0,5,0 });
+		auto points = GetSystem<debug_system>().GetPoints();
 
-		Renderer::GetInstanced().Render(objects, nullptr, &transforms);
+		Renderer::GetInstanced().Render(objects, &points, &transforms);
 	}
 
 	PPB_FORCEINLINE

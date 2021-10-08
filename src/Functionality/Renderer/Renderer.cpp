@@ -55,7 +55,6 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Blur", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Blur.frag");
 	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
-	m_Resources.LoadShader("DebugAlt", "../../resources/shaders/Debug.vert", "../../resources/shaders/DebugAlt.frag");
 
 	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
 	m_Resources.Load3DMesh("Box", "../../resources/models/box.fbx");
@@ -188,7 +187,7 @@ void Renderer::SetUpFramebuffer()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points, std::vector<glm::mat4>* bone_transforms)
+void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points, std::vector<glm::mat4>* bone_transforms)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -202,36 +201,39 @@ void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat
 	CompositePass();
 }
 
-void Renderer::DebugRender(const std::vector<glm::vec3>& Points, bool IsAlt)
+void Renderer::DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points)
 {
-	// Create vbo for debug lines
-	GLuint vbo;
-	glCreateBuffers(1, &vbo);
-	glNamedBufferStorage(vbo, sizeof(glm::vec3) * Points.size(), Points.data(), GL_DYNAMIC_STORAGE_BIT);
-
 	// Bind shader
-	if (IsAlt)
-		m_Resources.m_Shaders["DebugAlt"].Use();
-	else
-		m_Resources.m_Shaders["Debug"].Use();
+	m_Resources.m_Shaders["Debug"].Use();
 
 	// Bind vao
 	glBindVertexArray(m_DebugVAO);
-	// Bind vbo to vao
-	glVertexArrayVertexBuffer(m_DebugVAO, 0, vbo, 0, sizeof(glm::vec3));
 
 	glm::mat4 transform = Camera::GetInstanced().GetProjection() * Camera::GetInstanced().GetView();
 
 	m_Resources.m_Shaders["Debug"].SetUniform("uTransform", transform);
 
-	glLineWidth(5.f);
+	for (int i = 0; i < Points.size(); ++i)
+	{
+		// Create vbo for debug lines
+		GLuint vbo;
+		glCreateBuffers(1, &vbo);
+		glNamedBufferStorage(vbo, sizeof(glm::vec3) * Points[i].size(), Points[i].data(), GL_DYNAMIC_STORAGE_BIT);
 
-	glDrawArrays(GL_LINES, 0, static_cast<GLsizei>(Points.size()));
+		m_Resources.m_Shaders["Debug"].SetUniform("uRed", i);
 
-	glLineWidth(1.f);
+		// Bind vbo to vao
+		glVertexArrayVertexBuffer(m_DebugVAO, 0, vbo, 0, sizeof(glm::vec3));
 
-	// Destroy vbo
-	glDeleteBuffers(1, &vbo);
+		glLineWidth(5.f);
+
+		glDrawArrays(GL_LINES, 0, static_cast<GLsizei>(Points[i].size()));
+
+		glLineWidth(1.f);
+
+		// Destroy vbo
+		glDeleteBuffers(1, &vbo);
+	}
 
 	// Unbind vao
 	glBindVertexArray(0);

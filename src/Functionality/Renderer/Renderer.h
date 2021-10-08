@@ -4,6 +4,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <array>
 #include "glm/inc/glm.hpp"
 #include "../RenderResource/RenderResourceManager.h"
 
@@ -16,10 +17,7 @@ public:
 	//void UpdateFramebufferSize(int Width, int Height);
 
 	// Render object
-	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::vector<glm::vec3>* Points = nullptr, std::vector<glm::mat4>* bone_transforms = nullptr);
-
-	// Render debug objects
-	void DebugRender(const std::vector<glm::vec3>& Points, bool IsAlt = false);
+	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr, std::vector<glm::mat4>* bone_transforms = nullptr);
 
 	// Prep the start of draw frame
 	void StartFrame();
@@ -52,6 +50,9 @@ private:
 
 	// Helper function to create framebuffers
 	void SetUpFramebuffer();
+
+	// Render debug objects
+	void DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points);
 
 	void ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
 	void RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);

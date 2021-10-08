@@ -8,6 +8,8 @@ struct debug_system : paperback::system::instance
 
     const size_t m_NumSystems = 15;
 
+    std::array<std::vector<glm::vec3>, 2> m_Points;
+
     //container to keep system run time
     std::vector<std::chrono::high_resolution_clock::time_point> m_RawTimePerSystem;
     std::vector<float> m_PercentageTimePerSystem, m_TimePerSystem;
@@ -283,16 +285,16 @@ struct debug_system : paperback::system::instance
         //assume passed vector contains vector3f in pairs
 
         //convert to glm vector
-        std::vector<glm::vec3> input{};
+        //std::vector<glm::vec3> input{};
 
         for (paperback::Vector3f& vec3 : vec)
         {
 
-            input.push_back(ConvertMathVecToGLMVec(vec3));
+            m_Points[iscollide].push_back(ConvertMathVecToGLMVec(vec3));
         }
 
         // send to render
-        Renderer::GetInstanced().DebugRender(input, iscollide);
+        //Renderer::GetInstanced().DebugRender(input, iscollide);
     }
 
 
@@ -372,6 +374,11 @@ struct debug_system : paperback::system::instance
         }
     }
 
+    const std::array<std::vector<glm::vec3>, 2>& GetPoints() const
+    {
+        return m_Points;
+    }
+
     PPB_FORCEINLINE
     void OnFrameEnd(void) noexcept 
     {
@@ -394,6 +401,8 @@ struct debug_system : paperback::system::instance
         //DebugPrint();
 
         DebugInputTest();
+        m_Points[0].clear();
+        m_Points[1].clear();
     }
 
     // Terminate system
