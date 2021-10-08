@@ -21,36 +21,25 @@ struct scripting_system : paperback::system::instance
 		m_pMono = &Mono::GetInstanced();	
 	}
 
-	//void operator()(transform& Transform, paperback::component::entity& Entity) noexcept
-	//{
-	//}
-
 	void Update(void) noexcept 
 	{
-		m_pMono->RunImportFn(m_pMono->m_pMainObj, m_pMono->m_pMainFn);
+		static std::unordered_map<std::string, Script*> scriptlist;
 
-		//static std::unordered_map<std::string, Script*> scriptlist;
+		tools::query Query;
+		Query.m_Must.AddFromComponents<entityscript>();
 
-		//tools::query Query;
-		//Query.m_Must.AddFromComponents<entityscript>();
-
-		//for (auto& Archetype : Search(Query)) {
-		//	std::cout << "Entity Count: " << Archetype->GetEntityCount() << std::endl;
-		//	std::cout << "Component Pool: " << Archetype->GetComponentPools()[0].GetCurrentEntityCount() << std::endl;
-		//	
-		//}
-
-		//ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
-		//{
-		//	ERROR_LOG("Checking");
-		//	std::unordered_map<std::string, Script*>::const_iterator found = scriptlist.find(script.m_ScriptID);
-		//	if (found == scriptlist.end()) {
-		//		scriptlist.insert({ script.m_ScriptID, new Script(script.m_ScriptID) });
-		//	}
-		//	else {
-		//		found->second->Start();
-		//	}
-		//});
+		ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		{
+			std::unordered_map<std::string, Script*>::const_iterator found = scriptlist.find(script.m_ScriptID);
+			if (found == scriptlist.end()) {
+				scriptlist.insert({ script.m_ScriptID, new Script(script.m_ScriptID) });
+				found = scriptlist.find(script.m_ScriptID);
+				found->second->Start();
+			}
+			else {
+				found->second->Update();
+			}
+		});
 	}
 
 	void OnSystemTerminated(void) noexcept 

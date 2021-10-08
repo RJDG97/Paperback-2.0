@@ -45,9 +45,6 @@ namespace CSScript
         { return new Main(); }
         public static void main()
         {
-            if (Inputs.IsKeyPressDown(Inputs.PB_X))
-                print("Test");
-            CameraControls.cameracontrols();
         }
     }
 }

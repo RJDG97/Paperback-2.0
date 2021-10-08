@@ -14,15 +14,15 @@ namespace CSScript
         }
         public void Start()
         {
-            Main.print("Start");
         }
         public void Update()
         {
-            Main.print("Update");
+            if (Inputs.IsKeyPress(Inputs.PB_X))
+                Main.print("Test Script");
+            CameraControls.cameracontrols();
         }
         public void Destroy()
         {
-            Main.print("Destroy");
         }
     }
 }
