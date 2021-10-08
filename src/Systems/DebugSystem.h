@@ -235,7 +235,7 @@ struct debug_system : paperback::system::instance
     }
 
     // draws a square given the provided data
-    void DrawCubeCollision(BoundingBox& cube, bool iscollide = false)
+    void DrawCubeCollision(BoundingBox& cube, transform& transform)
     {
 
         std::vector<paperback::Vector3f> debugdraw;
@@ -243,8 +243,8 @@ struct debug_system : paperback::system::instance
         paperback::Vector3f front_top_left, front_top_right, front_bottom_left, front_bottom_right,
             back_top_left, back_top_right, back_bottom_left, back_bottom_right, diff;
 
-        front_top_right = front_top_left = front_bottom_left = front_bottom_right = cube.MinMax[1];// +ConvertXcoreVecTo3f(cube.m_Position + cube.m_Offset);
-        back_bottom_left = back_top_left = back_top_right = back_bottom_right = cube.MinMax[0];// + ConvertXcoreVecTo3f(cube.m_Position + cube.m_Offset);
+        front_top_right = front_top_left = front_bottom_left = front_bottom_right = cube.MinMax[1] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        back_bottom_left = back_top_left = back_top_right = back_bottom_right = cube.MinMax[0] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
         diff = front_top_right - back_bottom_left;
 
         front_top_left -= paperback::Vector3f{ diff.x, 0.0f, 0.0f };
@@ -326,13 +326,12 @@ struct debug_system : paperback::system::instance
         {
         
             if (cube)
-                DrawCubeCollision(*cube);
+                DrawCubeCollision(*cube, Transform);
 
             if (ball)
                 DrawSphereCollision(*ball);
         }
     }
-
 
     PPB_FORCEINLINE
     void OnFrameEnd(void) noexcept 
