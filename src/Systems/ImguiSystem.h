@@ -13,11 +13,6 @@
 #include <imgui_internal.h>
 #include <ImGuiFileBrowser.h>
 
-enum class POPUPS
-{
-    NONE = 1,
-    DELETEENTITY
-};
 
 struct imgui_system : paperback::system::instance
 {
@@ -164,8 +159,8 @@ struct imgui_system : paperback::system::instance
             ImGui::Text("FPS: %d", PPB.GetFPS());
         }
 
-        //if (ImGui::Selectable("Show Demo Window"))
-        //    m_bDemoWindow = !m_bDemoWindow;
+        if (ImGui::Selectable("Show Demo Window"))
+            m_bDemoWindow = !m_bDemoWindow;
 
         ImGui::EndMenuBar();
     }
@@ -230,8 +225,6 @@ struct imgui_system : paperback::system::instance
 
                             if ( ImGui::Button(ICON_FA_TRASH " Delete Entity") )
                             {
-                                //PPB.DeleteEntity(m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i })); 
-
                                 ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
                             }
 
@@ -256,6 +249,7 @@ struct imgui_system : paperback::system::instance
         int Index = 0;
         std::string ArchetypeName;
         char Buffer[256];
+        std::vector <const char*> ComponentNames{};
 
         ImGui::Begin("PreFabs");
 
@@ -272,25 +266,77 @@ struct imgui_system : paperback::system::instance
 
             if (Filter.PassFilter(ArchetypeName.c_str()))
             {
-                if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
-                {
-                    Buffer[std::string(Buffer).length()] = '\0';
-                    Archetype->SetName(std::string(Buffer));
-                }
 
-                ImGui::SameLine();
-
-                if (ImGui::Button(ICON_FA_PLUS_SQUARE))
+                if (ImGui::CollapsingHeader(ArchetypeName.c_str()))
                 {
+                    if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+                    {
+                        Buffer[std::string(Buffer).length()] = '\0';
+                        Archetype->SetName(std::string(Buffer));
+                    }
+
                     m_pArchetype = Archetype;
+
+                    if (ImGui::Button("Clone new Entity"))
+                    {
+
+                        if (m_pArchetype)
+                        {
+                            m_pArchetype->CreateEntity();
+                            //m_pArchetype = nullptr;
+                        }
+                    }
 
                     if (m_pArchetype)
                     {
-                        m_pArchetype->CreateEntity();
-                        m_pArchetype = nullptr;
+                        for (paperback::u32 i = 0; i < m_pArchetype->GetComponentNumber(); ++i)
+                        {
+                            ComponentNames.push_back(m_pArchetype->GetComponentInfos()[i]->m_pName);
+                        }
+
+                        ImGui::Text("Components: ");
+
+                        if (!ComponentNames.empty())
+                        {
+                            for (auto& Names : ComponentNames)
+                            {
+                                ImGui::Text(Names);
+                            }
+                        }
                     }
-                        
                 }
+
+            //    ImGui::SameLine();
+
+
+            //    ImGuiHelp("Click to Spawn Entity", 0);
+            //    ImGui::SameLine();
+            //    if (ImGui::Checkbox(ICON_FA_EYE, &test))
+            //    {
+            //        m_pArchetype = Archetype;
+
+            //        if (m_pArchetype) 
+            //        {
+            //            for (paperback::u32 i = 0; i < m_pArchetype->GetComponentNumber(); ++i)
+            //            {
+            //                ComponentNames.push_back(m_pArchetype->GetComponentInfos()[i]->m_pName);
+            //            }
+            //        }
+            //    }
+
+            //    ImGuiHelp( "Click to see components", 0 );
+            //}
+
+            //ImGui::Separator();
+
+            //ImGui::Text("Components: ");
+
+            //if (!ComponentNames.empty() && test)
+            //{
+            //    for (auto& Names : ComponentNames)
+            //    {
+            //        ImGui::Text(Names);
+            //    }
             }
         }
 
@@ -536,7 +582,7 @@ struct imgui_system : paperback::system::instance
                 {
                     PPB.DeleteEntity(m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityIndex }));
 
-                    m_SelectedEntity.first = nullptr;
+                    m_SelectedEntity = { nullptr, paperback::u32_max };
 
                     if (!m_Components.empty())
                         m_Components.clear();
@@ -552,6 +598,21 @@ struct imgui_system : paperback::system::instance
                 ImGui::EndPopup();
             }
 
+        }
+    }
+
+    void ImGuiHelp(const char* description, int symbol) {
+
+        if (symbol)
+            ImGui::TextDisabled(ICON_FA_EXCLAMATION_CIRCLE);
+
+        if (ImGui::IsItemHovered()) {
+
+            ImGui::BeginTooltip();
+            ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+            ImGui::TextUnformatted(description);
+            ImGui::PopTextWrapPos();
+            ImGui::EndTooltip();
         }
     }
 
