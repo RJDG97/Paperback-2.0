@@ -40,6 +40,22 @@ struct physics_system : paperback::system::instance
             });
     }
 
+    //test helper function to apply forces on all entities with rigidforce components
+    void ApplyAccelAll(paperback::Vector3f vec)
+    {
+
+        tools::query Query;
+        Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
+        
+        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& xform, rigidbody& rb, rigidforce& rf) noexcept
+            {
+                assert(Entity.IsZombie() == false);
+                
+                rf.AddForce(vec);
+                rf.m_MagForce = 1.0f;
+            });
+    }
+
     // map check collision out of bounds check
     void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce) noexcept
     {

@@ -340,6 +340,36 @@ struct debug_system : paperback::system::instance
     void DebugInputTest()
     {
 
+        if (PPB.IsKeyPressDown(GLFW_KEY_F))
+        {
+
+            GetSystem<physics_system>().ApplyAccelAll({ -1.0f, 0.0f, 0.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_H))
+        {
+
+            GetSystem<physics_system>().ApplyAccelAll({ 1.0f, 0.0f, 0.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_T))
+        {
+
+            GetSystem<physics_system>().ApplyAccelAll({ 0.0f, 0.0f, -1.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_G))
+        {
+
+            GetSystem<physics_system>().ApplyAccelAll({ 0.0f, 0.0f, 1.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_Y))
+        {
+
+            GetSystem<physics_system>().ApplyAccelAll({ 0.0f, 1.0f, 0.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_R))
+        {
+
+            GetSystem<physics_system>().ApplyAccelAll({ 0.0f, -1.0f, 0.0f });
+        }
         if (PPB.IsKeyPressDown(GLFW_KEY_J))
         {
 
