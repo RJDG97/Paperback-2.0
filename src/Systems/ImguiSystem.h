@@ -509,7 +509,7 @@ struct imgui_system : paperback::system::instance
 
 
     PPB_INLINE
-        void Terminated(void) noexcept
+        void OnSystemTerminated(void) noexcept
     {
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
