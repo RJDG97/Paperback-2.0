@@ -204,6 +204,7 @@ namespace paperback::deserialize
                             NewArchetype->AccessGuard([&]()
                                 {
                                     NewArchetype->CreateEntity();
+                                    NewArchetype->SetName(TempName);
 
                                     for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
                                     {

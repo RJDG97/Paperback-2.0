@@ -13,6 +13,12 @@
 #include <imgui_internal.h>
 #include <ImGuiFileBrowser.h>
 
+enum class POPUPS
+{
+    NONE = 1,
+    DELETEENTITY
+};
+
 struct imgui_system : paperback::system::instance
 {
     GLFWwindow* m_pWindow;
@@ -31,9 +37,10 @@ struct imgui_system : paperback::system::instance
     ImGuiWindowFlags m_Windowflags;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bFileFailed;
+    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bPopUp;
 
     ////////////////////////////////////////////////////////////////////////////////
+
     constexpr static auto typedef_v = paperback::system::type::update
     {
         .m_pName = "imgui_system"
@@ -47,7 +54,6 @@ struct imgui_system : paperback::system::instance
 
         m_bImgui = true;
         m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = m_bNodeOpen = false;
-        m_bFileFailed = false;
         m_FilePath = m_FileName = m_LoadedPath = {};
 
         m_SelectedEntity = { nullptr, paperback::u32_max };
@@ -87,7 +93,6 @@ struct imgui_system : paperback::system::instance
                     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), m_Dockspaceflags);
                 }
 
-
                 //Call Windows Here
                 ImGui::PushFont(m_Imgfont);
 
@@ -117,7 +122,7 @@ struct imgui_system : paperback::system::instance
             {
                 if (ImGui::MenuItem(ICON_FA_TIMES " New Scene"))
                 {
-                    //PPB.ResetAllArchetypes();
+                    PPB.ResetAllArchetypes();
                 }
 
                 if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Open Scene"))
@@ -212,13 +217,26 @@ struct imgui_system : paperback::system::instance
 
                     if (m_bNodeOpen)
                     {
+                        m_SelectedEntity.first = Archetype;
+                        m_SelectedEntity.second = i;
+
                         if (m_SelectedEntity.first)
                         {
-                            if (ImGui::Button("Spawn Entity"))
+                            //if ( ImGui::Button(ICON_FA_PLUS_SQUARE " Clone Entity") )
+                            //{
+                            //    m_SelectedEntity.first->CreateEntity();
+                            //    m_SelectedEntity.first = nullptr;
+                            //}
+
+                            if ( ImGui::Button(ICON_FA_TRASH " Delete Entity") )
                             {
-                                //m_SelectedEntity.first->CreateEntity();
-                                //m_SelectedEntity.first = nullptr;
+                                //PPB.DeleteEntity(m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i })); 
+
+                                ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
                             }
+
+                            DeleteEntity(ICON_FA_TRASH " Delete?", i, Label.str());
+
                         }
 
                         ImGui::TreePop();
@@ -254,7 +272,6 @@ struct imgui_system : paperback::system::instance
 
             if (Filter.PassFilter(ArchetypeName.c_str()))
             {
-
                 if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
                 {
                     Buffer[std::string(Buffer).length()] = '\0';
@@ -389,10 +406,7 @@ struct imgui_system : paperback::system::instance
                     PPB.ResetAllArchetypes();
 
                 PPB.OpenScene(m_FilePath);
-
-
             }
-
         }
         else
             m_bFileOpen = false;
@@ -498,6 +512,46 @@ struct imgui_system : paperback::system::instance
                 ImGui::CloseCurrentPopup();
 
             ImGui::EndPopup();
+        }
+    }
+
+    void DeleteEntity( std::string WindowName, paperback::u32 EntityIndex, std::string EntityLabel )
+    {
+        if (m_SelectedEntity.first)
+        {
+
+            ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+            if (ImGui::BeginPopupModal(WindowName.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize))
+            {
+                ImGui::TextColored(ImVec4{ 0.863f, 0.078f, 0.235f , 1.0f }, "Deleting: ");
+
+                ImGui::Text(EntityLabel.c_str());
+
+                ImGui::TextColored(ImVec4{ 0.863f, 0.078f, 0.235f , 1.0f }, "This cannot be undone");
+
+                ImGui::Separator();
+                
+                if (ImGui::Button("Yes"))
+                {
+                    PPB.DeleteEntity(m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityIndex }));
+
+                    m_SelectedEntity.first = nullptr;
+
+                    if (!m_Components.empty())
+                        m_Components.clear();
+
+                    ImGui::CloseCurrentPopup();
+                }
+
+                ImGui::SameLine( 0, 4 ); 
+
+                if ( ImGui::Button("Cancel") )
+                    ImGui::CloseCurrentPopup();
+
+                ImGui::EndPopup();
+            }
+
         }
     }
 

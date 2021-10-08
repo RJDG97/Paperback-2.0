@@ -1,7 +1,7 @@
 {
     "Entities": [
         {
-            "hehehe": [
+            "Box Boi": [
                 {
                     "Guid": [
                         0,
@@ -128,7 +128,7 @@
             ]
         },
         {
-            "ohohoh": [
+            "Sound Boi": [
                 {
                     "Guid": [
                         0,
@@ -162,6 +162,39 @@
                         "Path": "event:/BGM",
                         "Playing?": 1,
                         "3D Sound": false
+                    }
+                }
+            ]
+        },
+        {
+            "Script Boi": [
+                {
+                    "Guid": [
+                        0,
+                        14351128073332756358,
+                        17008353085049151909
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 4
+                    },
+                    "EntityScript": {
+                        "Script ID": "Unit"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 0.0
+                        },
+                        "Position": {
+                            "x": -4.0,
+                            "y": 2.5,
+                            "z": -10.0,
+                            "w": 0.0
+                        }
                     }
                 }
             ]
