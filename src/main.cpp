@@ -64,7 +64,8 @@ void InitializeGame()
             rotation,
             timer,
             sound,
-            mesh
+            mesh,
+            entityscript
         >();
     }
 
@@ -140,6 +141,16 @@ void InitializeGame()
                 Mesh.m_Model = "Box";
              });
 
+        // Currently running Script to control camera
+        PPB.CreateEntity([&](transform& Transform, entityscript& Script)
+        {
+            Transform.m_Position.m_X = -4;
+            Transform.m_Position.m_Y = 2.5;
+            Transform.m_Position.m_Z = -10;
+
+            Script.m_ScriptID = "Unit";
+        });
+
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation)
             {
                 Transform.m_Position.m_X = -4;
@@ -153,9 +164,7 @@ void InitializeGame()
                 Rotation.m_Value.m_X = 1;
                 Rotation.m_Value.m_Y = 0;
                 Rotation.m_Value.m_Z = 0;
-
-                Mesh.m_Model = "Box";
-            });
+        });
 
         //PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
         //    {
@@ -166,6 +175,16 @@ void InitializeGame()
 
         //        Mesh.m_Model = "Plane";
         //    });
+
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh)
+            {
+                Transform.m_Position.m_X = -4;
+                Transform.m_Position.m_Y = 2.5;
+                Transform.m_Position.m_Z = -10;
+
+
+                Mesh.m_Model = "Box";
+            });
 
         PPB.CreateEntity([&](transform& Transform, timer& Timer, sound& Sound)
            {

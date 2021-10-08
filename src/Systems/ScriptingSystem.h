@@ -4,6 +4,7 @@
 #include "Mono.h"
 #include "paperback_camera.h"
 #include "paperback_input.h"
+#include "Scripts/IScripts.h"
 
 struct scripting_system : paperback::system::instance
 {
@@ -17,16 +18,28 @@ struct scripting_system : paperback::system::instance
 	void OnSystemCreated(void) noexcept
 	{
 		// Set up Mono
-		m_pMono = &Mono::GetInstanced();
-
-		PPB_ASSERT_MSG( m_pMono == nullptr
-					  , "Invalid Mono Instance" );
+		m_pMono = &Mono::GetInstanced();	
 	}
 
-	void Update(void) noexcept
+	void Update(void) noexcept 
 	{
-		if ( m_pMono )
-			m_pMono->ExternalMain();
+		static std::unordered_map<std::string, Script*> scriptlist;
+
+		tools::query Query;
+		Query.m_Must.AddFromComponents<entityscript>();
+
+		ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		{
+			std::unordered_map<std::string, Script*>::const_iterator found = scriptlist.find(script.m_ScriptID);
+			if (found == scriptlist.end()) {
+				scriptlist.insert({ script.m_ScriptID, new Script(script.m_ScriptID) });
+				found = scriptlist.find(script.m_ScriptID);
+				found->second->Start();
+			}
+			else {
+				found->second->Update();
+			}
+		});
 	}
 
 	void OnSystemTerminated(void) noexcept 

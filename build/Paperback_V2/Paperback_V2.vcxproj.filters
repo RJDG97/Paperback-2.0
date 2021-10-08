@@ -241,9 +241,6 @@
     <ClInclude Include="..\..\src\Systems\ScriptingSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Mono.h">
-      <Filter>Source\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Math\MathUtils.h">
       <Filter>Source\Gameplay Code\Math</Filter>
     </ClInclude>
@@ -415,6 +412,12 @@
     <ClInclude Include="..\..\src\Functionality\Animation\Animator.h">
       <Filter>Source\Tools\Functionality\Animation</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Mono.h">
+      <Filter>Source\Tools\Mono</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\IScripts.h">
+      <Filter>Source\Tools\Mono</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -500,6 +503,9 @@
     </Filter>
     <Filter Include="Source\Tools\Functionality\Animation">
       <UniqueIdentifier>{2d0e093c-f756-4177-a6da-b7340fb3c0c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Mono">
+      <UniqueIdentifier>{03742485-ba67-41f0-86a4-bee8bc21bee8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
