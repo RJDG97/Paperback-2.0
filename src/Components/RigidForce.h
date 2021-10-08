@@ -119,12 +119,12 @@ struct rigidforce
 
     paperback::Vector3f ConvertToAccel()
     {
-        return m_Forces / m_Mass;
+        return (m_Mass > 0) ? m_Forces / m_Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
     }
 
     paperback::Vector3f ConvertToVelocity()
     {
-        return m_Momentum / m_Mass;
+        return  (m_Mass > 0) ? m_Momentum / m_Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
     }
 };
 
