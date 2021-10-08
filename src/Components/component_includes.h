@@ -1,3 +1,4 @@
+#include "EntityScript.h"
 #include "Timer.h"
 #include "Rigidbody.h"
 #include "Transform.h"

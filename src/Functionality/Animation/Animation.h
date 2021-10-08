@@ -110,6 +110,8 @@ public:
         m_TicksPerSecond = static_cast<float>(animation->mTicksPerSecond);
         ReadHeirarchyData(m_RootNode, scene->mRootNode);
         ReadMissingBones(animation, *model);
+
+        importer.FreeScene();
     }
 
     Bone* FindBone(const std::string& name)

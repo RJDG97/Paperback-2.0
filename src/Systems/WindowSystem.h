@@ -66,6 +66,7 @@ struct window_system : paperback::system::instance
     {
         m_Coordinator.UpdateInputs();
         glfwPollEvents();
+
     }
 
     PPB_FORCEINLINE
