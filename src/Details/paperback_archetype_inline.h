@@ -147,7 +147,6 @@ namespace paperback::archetype
         u32 Count = m_EntityCount;
         while ( Count-- )
             DestroyEntity( GetComponent<paperback::component::entity>(vm::PoolDetails{ 0, Count }) );
-
     }
 
     //-----------------------------------

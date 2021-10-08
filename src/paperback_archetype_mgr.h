@@ -17,7 +17,7 @@ namespace paperback::archetype
     public:
 
         using PoolDetails       = vm::PoolDetails;
-        using EntityListHead    = std::priority_queue<u32>;
+        using EntityListHead    = std::priority_queue<u32, std::vector<u32>, std::greater<u32> >;
         using EntityInfoList    = std::unique_ptr<entity::info[]>;
         using ArchetypeBitsList = std::vector<tools::bits>;
         using ArchetypeList     = std::vector<std::unique_ptr<archetype::instance>>;
