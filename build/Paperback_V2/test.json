@@ -1,38 +1,19 @@
 {
     "Entities": [
         {
-            "unnamed archetype": [
+            "hehehe": [
                 {
                     "Guid": [
                         0,
+                        17008353085049151909,
                         5691439207370049121,
-                        9604788041699812520,
                         14486341741652966143,
-                        17008353085049151909
+                        9604788041699812520
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 0
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0,
-                            "w": 0.0
-                        }
-                    },
-                    "Mesh": {
-                        "Model Mesh": "Box"
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 1.0,
-                            "y": 0.0,
-                            "z": 0.0,
-                            "w": 0.0
-                        }
                     },
                     "Transform": {
                         "Offset": {
@@ -47,11 +28,6 @@
                             "z": -10.0,
                             "w": 0.0
                         }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -61,9 +37,6 @@
                             "w": 0.0
                         }
                     },
-                    "Mesh": {
-                        "Model Mesh": "Box"
-                    },
                     "Rotation": {
                         "Rotation": {
                             "x": 1.0,
@@ -71,6 +44,14 @@
                             "z": 0.0,
                             "w": 0.0
                         }
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 1
                     },
                     "Transform": {
                         "Offset": {
@@ -85,11 +66,6 @@
                             "z": -6.0,
                             "w": 0.0
                         }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 2
                     },
                     "Scale": {
                         "Scale": {
@@ -99,9 +75,6 @@
                             "w": 0.0
                         }
                     },
-                    "Mesh": {
-                        "Model Mesh": "Box"
-                    },
                     "Rotation": {
                         "Rotation": {
                             "x": 1.0,
@@ -109,6 +82,14 @@
                             "z": 0.0,
                             "w": 0.0
                         }
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 2
                     },
                     "Transform": {
                         "Offset": {
@@ -123,31 +104,42 @@
                             "z": -10.0,
                             "w": 0.0
                         }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0,
+                            "w": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 0.0
+                        }
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
                     }
                 }
             ]
         },
         {
-            "unnamed archetype": [
+            "ohohoh": [
                 {
                     "Guid": [
                         0,
+                        17008353085049151909,
                         12091664775214799190,
-                        14302600151082817442,
-                        17008353085049151909
+                        14302600151082817442
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 3
-                    },
-                    "Timer": {
-                        "Timer": -2.0
-                    },
-                    "Sound": {
-                        "Path": "event:/BGM",
-                        "Playing?": 1,
-                        "3D Sound": false
                     },
                     "Transform": {
                         "Offset": {
@@ -162,6 +154,14 @@
                             "z": -10.0,
                             "w": 0.0
                         }
+                    },
+                    "Timer": {
+                        "Timer": -2.0
+                    },
+                    "Sound": {
+                        "Path": "event:/BGM",
+                        "Playing?": 1,
+                        "3D Sound": false
                     }
                 }
             ]

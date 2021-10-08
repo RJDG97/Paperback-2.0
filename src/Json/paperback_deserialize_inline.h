@@ -195,78 +195,84 @@ namespace paperback::deserialize
 
                 TempName = mitr->name.GetString();
 
-                for (rapidjson::Value::ValueIterator vitr = mitr->value.Begin(); vitr != mitr->value.End(); vitr++)
+                if (mitr->value.IsArray() && !TempName.empty())
                 {
-                    if (NewArchetype)
+                    for (rapidjson::Value::ValueIterator vitr = mitr->value.Begin(); vitr != mitr->value.End(); vitr++)
                     {
-                        NewArchetype->AccessGuard([&]()
-                            {
-                                NewArchetype->CreateEntity();
+                        if (NewArchetype)
+                        {
+                            NewArchetype->AccessGuard([&]()
+                                {
+                                    NewArchetype->CreateEntity();
 
-                                for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
+                                    for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
+                                    {
+                                        rttr::type type = rttr::type::get_by_name(Mitr->name.GetString());
+                                        rttr::variant obj = type.get_constructor().invoke();
+
+                                        auto& Value = Mitr->value;
+
+                                        if (!obj.is_type<paperback::component::temp_guid>())
+                                            ReadRecursive(obj, Value);
+
+                                        if (obj.is_type<transform>())
+                                            NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<transform>();
+
+                                        if (obj.is_type<scale>())
+                                            NewArchetype->GetComponent<scale>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<scale>();
+
+                                        if (obj.is_type<rotation>())
+                                            NewArchetype->GetComponent<rotation>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rotation>();
+
+                                        if (obj.is_type<mesh>())
+                                            NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
+
+                                        if (obj.is_type<component::entity>())
+                                            NewArchetype->GetComponent<component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<component::entity>();
+
+                                        if (obj.is_type<sound>())
+                                            NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();
+
+                                        if (obj.is_type<timer>())
+                                            NewArchetype->GetComponent<timer>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<timer>();
+                                    }
+
+                                    EntityCounter++;
+                                }
+                            );
+                        }
+                        else
+                        {   
+                            for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
+                            {
+                                if ( Mitr->value.IsArray() )
                                 {
                                     rttr::type type = rttr::type::get_by_name(Mitr->name.GetString());
                                     rttr::variant obj = type.get_constructor().invoke();
 
-                                    auto& Value = Mitr->value;
+                                    if (obj.is_type<paperback::component::temp_guid>())
+                                    {
+                                        for (rapidjson::Value::ValueIterator Vitr = Mitr->value.Begin(); Vitr != Mitr->value.End(); Vitr++)
+                                        {
+                                            paperback::component::type::guid TempGuid{ Vitr->GetUint64() };
 
-                                    if ( !obj.is_type<paperback::component::temp_guid>() )
-                                        ReadRecursive(obj, Value);
+                                            CList[Counter] = PPB.FindComponentInfo(TempGuid);
+                                            ArchetypeSignature.Set(CList[Counter++]->m_UID);
+                                        }
 
-                                    if ( obj.is_type<transform>() )
-                                        NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<transform>();
+                                        NewArchetype = &PPB.GetOrCreateArchetype(ArchetypeSignature);
+                                        PPB_ASSERT_MSG(NewArchetype == nullptr, "Archetype Failed to Init");
 
-                                    if (obj.is_type<scale>())
-                                        NewArchetype->GetComponent<scale>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<scale>();
-
-                                    if ( obj.is_type<rotation>() )
-                                        NewArchetype->GetComponent<rotation>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rotation>();
-
-                                    if ( obj.is_type<mesh>() )
-                                        NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
-
-                                    if ( obj.is_type<component::entity>() )
-                                        NewArchetype->GetComponent<component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<component::entity>();
-
-                                    if ( obj.is_type<sound>() )
-                                        NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();
-
-                                    if ( obj.is_type<timer>() )
-                                        NewArchetype->GetComponent<timer>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<timer>();
-
-
+                                    }
                                 }
 
-                                EntityCounter++;
-                            }
-                        );
-                    }
-                    else
-                    {
-                        for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
-                        {
-                            rttr::type type = rttr::type::get_by_name(Mitr->name.GetString());
-                            rttr::variant obj = type.get_constructor().invoke();
-
-                            auto& Value = Mitr->value;
-
-                            if (obj.is_type<paperback::component::temp_guid>())
-                            {
-                                for (rapidjson::Value::ValueIterator Vitr = Mitr->value.Begin(); Vitr != Mitr->value.End(); Vitr++)
-                                {
-                                    paperback::component::type::guid TempGuid{ Vitr->GetUint64() };
-
-                                    CList[Counter] = PPB.FindComponentInfo(TempGuid);
-                                    ArchetypeSignature.Set(CList[Counter++]->m_UID);
-                                }
-
-                                NewArchetype = &PPB.GetOrCreateArchetype(ArchetypeSignature);
-                                PPB_ASSERT_MSG(NewArchetype == nullptr, "Archetype Failed to Init");
-
+                                ERROR_LOG("Unable to get Components' Guid");
                             }
                         }
                     }
                 }
+
+                ERROR_LOG("File has wrong format");
             }
         }
     }

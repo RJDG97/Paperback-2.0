@@ -31,7 +31,7 @@ struct imgui_system : paperback::system::instance
     ImGuiWindowFlags m_Windowflags;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen;
+    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bFileFailed;
 
     ////////////////////////////////////////////////////////////////////////////////
     constexpr static auto typedef_v = paperback::system::type::update
@@ -47,6 +47,7 @@ struct imgui_system : paperback::system::instance
 
         m_bImgui = true;
         m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = m_bNodeOpen = false;
+        m_bFileFailed = false;
         m_FilePath = m_FileName = m_LoadedPath = {};
 
         m_SelectedEntity = { nullptr, paperback::u32_max };
@@ -116,7 +117,7 @@ struct imgui_system : paperback::system::instance
             {
                 if (ImGui::MenuItem(ICON_FA_TIMES " New Scene"))
                 {
-
+                    //PPB.ResetAllArchetypes();
                 }
 
                 if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Open Scene"))
@@ -197,7 +198,9 @@ struct imgui_system : paperback::system::instance
                     ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == Archetype && m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0); //update this
                     NodeFlags |= ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
-                    m_bNodeOpen = ImGui::TreeNodeEx((void*)(paperback::u32)i, NodeFlags, (Archetype->GetName() + "(" + std::to_string(i) + ")").c_str());
+                    std::stringstream Label; Label << Archetype->GetName() << "(" << std::to_string(i) << ")";
+
+                    m_bNodeOpen = ImGui::TreeNodeEx((char*)Label.str().c_str(), NodeFlags, Label.str().c_str());
 
                     if (ImGui::IsItemClicked())
                     {
@@ -213,7 +216,8 @@ struct imgui_system : paperback::system::instance
                         {
                             if (ImGui::Button("Spawn Entity"))
                             {
-                                m_SelectedEntity.first->CreateEntity();
+                                //m_SelectedEntity.first->CreateEntity();
+                                //m_SelectedEntity.first = nullptr;
                             }
                         }
 
@@ -264,7 +268,11 @@ struct imgui_system : paperback::system::instance
                     m_pArchetype = Archetype;
 
                     if (m_pArchetype)
+                    {
                         m_pArchetype->CreateEntity();
+                        m_pArchetype = nullptr;
+                    }
+                        
                 }
             }
         }
@@ -285,7 +293,7 @@ struct imgui_system : paperback::system::instance
             {
                 if (Filter.PassFilter(ComponentInstance.get_type().get_name().to_string().c_str()))
                 {
-                    if (ImGui::CollapsingHeader(ComponentInstance.get_type().get_name().to_string().c_str()))
+                    if (ImGui::CollapsingHeader(ComponentInstance.get_type().get_name().to_string().c_str(), ImGuiTreeNodeFlags_DefaultOpen))
                     {
                         for (auto& property : ComponentInstance.get_type().get_properties())
                         {
@@ -381,6 +389,8 @@ struct imgui_system : paperback::system::instance
                     PPB.ResetAllArchetypes();
 
                 PPB.OpenScene(m_FilePath);
+
+
             }
 
         }

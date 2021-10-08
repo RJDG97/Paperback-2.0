@@ -115,6 +115,7 @@ namespace paperback::coordinator
 	void instance::OpenScene( const std::string& FilePath ) noexcept
 	{
 		JsonFile Jfile;
+
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Entities");
 		Jfile.EndReader();
