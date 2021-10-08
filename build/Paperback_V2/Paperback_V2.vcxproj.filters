@@ -319,9 +319,6 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Scripts\MonoExternal.h">
-      <Filter>Source\Gameplay Code\Scripts</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Math\Math_includes.h">
       <Filter>Source\Gameplay Code\Math</Filter>
     </ClInclude>

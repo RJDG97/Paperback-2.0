@@ -8,7 +8,7 @@ namespace MONO_INTERNALS
 {
 	MONO_EXPORT void print(MonoString* string)
 	{
-		std::cout << mono_string_to_utf8(string) << std::endl;
+		DEBUG_PRINT(mono_string_to_utf8(string));
 	}
 
 	void MonoAddInternalCall()
