@@ -289,12 +289,10 @@ namespace paperback::vm
 
 	void instance::SerializePoolComponentsAtEntityIndex( const u32 Index, paperback::JsonFile& Jfile ) noexcept
 	{
-		//here access to each component in the pool and serializes them
 		for ( u32 i = 0, max = m_NumberOfComponents; i < max; ++i )
 		{
 			rttr::instance Component = GetComponentInstance( m_ComponentInfo[i]->m_Guid, Index );
 			Jfile.WriteKey( Component.get_type().get_name().to_string() ).StartObject();
-			//Jfile.WriteKey( std::to_string(m_ComponentInfo[i]->m_Guid.m_Value)).StartObject();
 			Jfile.Write( Component );
 			Jfile.EndObject();
 

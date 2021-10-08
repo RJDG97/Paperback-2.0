@@ -13,6 +13,7 @@
 #include <imgui_internal.h>
 #include <ImGuiFileBrowser.h>
 
+
 struct imgui_system : paperback::system::instance
 {
     GLFWwindow* m_pWindow;
@@ -31,9 +32,10 @@ struct imgui_system : paperback::system::instance
     ImGuiWindowFlags m_Windowflags;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs;
+    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bPopUp;
 
     ////////////////////////////////////////////////////////////////////////////////
+
     constexpr static auto typedef_v = paperback::system::type::update
     {
         .m_pName = "imgui_system"
@@ -46,7 +48,7 @@ struct imgui_system : paperback::system::instance
         ImGuiContext(); //Setup ImGui Context
 
         m_bImgui = true;
-        m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = false;
+        m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = m_bNodeOpen = false;
         m_FilePath = m_FileName = m_LoadedPath = {};
 
         m_SelectedEntity = { nullptr, paperback::u32_max };
@@ -86,7 +88,6 @@ struct imgui_system : paperback::system::instance
                     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), m_Dockspaceflags);
                 }
 
-
                 //Call Windows Here
                 ImGui::PushFont(m_Imgfont);
 
@@ -116,7 +117,7 @@ struct imgui_system : paperback::system::instance
             {
                 if (ImGui::MenuItem(ICON_FA_TIMES " New Scene"))
                 {
-
+                    PPB.ResetAllArchetypes();
                 }
 
                 if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Open Scene"))
@@ -158,8 +159,8 @@ struct imgui_system : paperback::system::instance
             ImGui::Text("FPS: %d", PPB.GetFPS());
         }
 
-        //if (ImGui::Selectable("Show Demo Window"))
-        //    m_bDemoWindow = !m_bDemoWindow;
+        if (ImGui::Selectable("Show Demo Window"))
+            m_bDemoWindow = !m_bDemoWindow;
 
         ImGui::EndMenuBar();
     }
@@ -170,45 +171,70 @@ struct imgui_system : paperback::system::instance
 
         ImGui::Begin("Entity Inspector");
 
-        bool b_NodeOpen{ false };
+        //bool b_NodeOpen{ false };
         if (ImGui::Button("Clear"))
         {
-            PPB.ResetAllArchetypes();
+            if (m_SelectedEntity.first)
+                m_SelectedEntity.first = nullptr; m_SelectedEntity.second = paperback::u32_max;
+
+            m_bNodeOpen = false;
+
+            if (!m_Components.empty())
+                m_Components.clear();
+
+            if (!PPB.GetArchetypeList().empty())
+                PPB.ResetAllArchetypes();
+
         }
-        for ( auto& Archetype : PPB.GetArchetypeList() )
-        {
-            for (paperback::u32 i = 0; i < Archetype->GetEntityCount(); ++i)
+
+        if (!PPB.GetArchetypeList().empty()) {
+
+            for (auto& Archetype : PPB.GetArchetypeList())
             {
-                NumEntities++;
-
-                ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == Archetype && m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0); //update this
-                NodeFlags |= ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
-
-                b_NodeOpen = ImGui::TreeNodeEx((void*)(paperback::u32)i, NodeFlags, (Archetype->GetName() + "(" + std::to_string(i) + ")").c_str());
-
-                if (ImGui::IsItemClicked())
+                for (paperback::u32 i = 0; i < Archetype->GetEntityCount(); ++i)
                 {
-                    m_SelectedEntity.first = Archetype;
-                    m_SelectedEntity.second = i;
+                    NumEntities++;
 
-                    m_Components = Archetype->GetEntityComponents(m_SelectedEntity.second);
-                }
+                    ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == Archetype && m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0); //update this
+                    NodeFlags |= ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick | ImGuiTreeNodeFlags_SpanAvailWidth;
 
-                if (b_NodeOpen)
-                {
-                    if (m_SelectedEntity.first)
+                    std::stringstream Label; Label << Archetype->GetName() << "(" << std::to_string(i) << ")";
+
+                    m_bNodeOpen = ImGui::TreeNodeEx((char*)Label.str().c_str(), NodeFlags, Label.str().c_str());
+
+                    if (ImGui::IsItemClicked())
                     {
-                        if (ImGui::Button("Spawn Entity"))
-                        {
-                            m_SelectedEntity.first->CreateEntity();
+                        m_SelectedEntity.first = Archetype;
+                        m_SelectedEntity.second = i;
 
-                        }
+                        m_Components = Archetype->GetEntityComponents(m_SelectedEntity.second);
                     }
 
-                    ImGui::TreePop();
+                    if (m_bNodeOpen)
+                    {
+                        m_SelectedEntity.first = Archetype;
+                        m_SelectedEntity.second = i;
+
+                        if (m_SelectedEntity.first)
+                        {
+                            //if ( ImGui::Button(ICON_FA_PLUS_SQUARE " Clone Entity") )
+                            //{
+                            //    m_SelectedEntity.first->CreateEntity();
+                            //    m_SelectedEntity.first = nullptr;
+                            //}
+
+                            if ( ImGui::Button(ICON_FA_TRASH " Delete Entity") )
+                            {
+                                ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
+                            }
+
+                            DeleteEntity(ICON_FA_TRASH " Delete?", i, Label.str());
+
+                        }
+
+                        ImGui::TreePop();
+                    }
                 }
-                else
-                    m_pArchetype = nullptr;
             }
         }
 
@@ -223,6 +249,7 @@ struct imgui_system : paperback::system::instance
         int Index = 0;
         std::string ArchetypeName;
         char Buffer[256];
+        std::vector <const char*> ComponentNames{};
 
         ImGui::Begin("PreFabs");
 
@@ -240,21 +267,76 @@ struct imgui_system : paperback::system::instance
             if (Filter.PassFilter(ArchetypeName.c_str()))
             {
 
-                if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+                if (ImGui::CollapsingHeader(ArchetypeName.c_str()))
                 {
-                    Buffer[std::string(Buffer).length()] = '\0';
-                    Archetype->SetName(std::string(Buffer));
-                }
+                    if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+                    {
+                        Buffer[std::string(Buffer).length()] = '\0';
+                        Archetype->SetName(std::string(Buffer));
+                    }
 
-                ImGui::SameLine();
-
-                if (ImGui::Button(ICON_FA_PLUS_SQUARE))
-                {
                     m_pArchetype = Archetype;
 
+                    if (ImGui::Button("Clone new Entity"))
+                    {
+
+                        if (m_pArchetype)
+                        {
+                            m_pArchetype->CreateEntity();
+                            //m_pArchetype = nullptr;
+                        }
+                    }
+
                     if (m_pArchetype)
-                        m_pArchetype->CreateEntity();
+                    {
+                        for (paperback::u32 i = 0; i < m_pArchetype->GetComponentNumber(); ++i)
+                        {
+                            ComponentNames.push_back(m_pArchetype->GetComponentInfos()[i]->m_pName);
+                        }
+
+                        ImGui::Text("Components: ");
+
+                        if (!ComponentNames.empty())
+                        {
+                            for (auto& Names : ComponentNames)
+                            {
+                                ImGui::Text(Names);
+                            }
+                        }
+                    }
                 }
+
+            //    ImGui::SameLine();
+
+
+            //    ImGuiHelp("Click to Spawn Entity", 0);
+            //    ImGui::SameLine();
+            //    if (ImGui::Checkbox(ICON_FA_EYE, &test))
+            //    {
+            //        m_pArchetype = Archetype;
+
+            //        if (m_pArchetype) 
+            //        {
+            //            for (paperback::u32 i = 0; i < m_pArchetype->GetComponentNumber(); ++i)
+            //            {
+            //                ComponentNames.push_back(m_pArchetype->GetComponentInfos()[i]->m_pName);
+            //            }
+            //        }
+            //    }
+
+            //    ImGuiHelp( "Click to see components", 0 );
+            //}
+
+            //ImGui::Separator();
+
+            //ImGui::Text("Components: ");
+
+            //if (!ComponentNames.empty() && test)
+            //{
+            //    for (auto& Names : ComponentNames)
+            //    {
+            //        ImGui::Text(Names);
+            //    }
             }
         }
 
@@ -274,7 +356,7 @@ struct imgui_system : paperback::system::instance
             {
                 if (Filter.PassFilter(ComponentInstance.get_type().get_name().to_string().c_str()))
                 {
-                    if (ImGui::CollapsingHeader(ComponentInstance.get_type().get_name().to_string().c_str()))
+                    if (ImGui::CollapsingHeader(ComponentInstance.get_type().get_name().to_string().c_str(), ImGuiTreeNodeFlags_DefaultOpen))
                     {
                         for (auto& property : ComponentInstance.get_type().get_properties())
                         {
@@ -357,11 +439,20 @@ struct imgui_system : paperback::system::instance
             {
                 m_LoadedPath = m_FilePath;
 
-                PPB.ResetAllArchetypes();
+
+                if (m_SelectedEntity.first)
+                    m_SelectedEntity.first = nullptr; m_SelectedEntity.second = paperback::u32_max;
+
+                m_bNodeOpen = false;
+
+                if (!m_Components.empty())
+                    m_Components.clear();
+
+                if (!PPB.GetArchetypeList().empty())
+                    PPB.ResetAllArchetypes();
 
                 PPB.OpenScene(m_FilePath);
             }
-
         }
         else
             m_bFileOpen = false;
@@ -467,6 +558,61 @@ struct imgui_system : paperback::system::instance
                 ImGui::CloseCurrentPopup();
 
             ImGui::EndPopup();
+        }
+    }
+
+    void DeleteEntity( std::string WindowName, paperback::u32 EntityIndex, std::string EntityLabel )
+    {
+        if (m_SelectedEntity.first)
+        {
+
+            ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+            if (ImGui::BeginPopupModal(WindowName.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize))
+            {
+                ImGui::TextColored(ImVec4{ 0.863f, 0.078f, 0.235f , 1.0f }, "Deleting: ");
+
+                ImGui::Text(EntityLabel.c_str());
+
+                ImGui::TextColored(ImVec4{ 0.863f, 0.078f, 0.235f , 1.0f }, "This cannot be undone");
+
+                ImGui::Separator();
+                
+                if (ImGui::Button("Yes"))
+                {
+                    PPB.DeleteEntity(m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityIndex }));
+
+                    m_SelectedEntity = { nullptr, paperback::u32_max };
+
+                    if (!m_Components.empty())
+                        m_Components.clear();
+
+                    ImGui::CloseCurrentPopup();
+                }
+
+                ImGui::SameLine( 0, 4 ); 
+
+                if ( ImGui::Button("Cancel") )
+                    ImGui::CloseCurrentPopup();
+
+                ImGui::EndPopup();
+            }
+
+        }
+    }
+
+    void ImGuiHelp(const char* description, int symbol) {
+
+        if (symbol)
+            ImGui::TextDisabled(ICON_FA_EXCLAMATION_CIRCLE);
+
+        if (ImGui::IsItemHovered()) {
+
+            ImGui::BeginTooltip();
+            ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+            ImGui::TextUnformatted(description);
+            ImGui::PopTextWrapPos();
+            ImGui::EndTooltip();
         }
     }
 

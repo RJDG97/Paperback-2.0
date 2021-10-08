@@ -9,6 +9,8 @@ namespace paperback
 
     inline JsonFile& JsonFile::StartWriter(std::string File)
     {
+        fp = { nullptr };
+
         fopen_s(&fp, File.c_str(), "wb");
         PPB_ASSERT(fp == nullptr);
         buffer = new char[65536]{};
@@ -24,7 +26,7 @@ namespace paperback
         delete wstream;
         delete buffer;
 
-        fclose(fp);
+        std::cout << fclose(fp) << std::endl;
         fp = nullptr;
 
         return *this;
