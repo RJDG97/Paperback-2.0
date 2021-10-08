@@ -5,6 +5,17 @@ namespace paperback::system
 	manager::manager( tools::clock& Clock ) :
 		m_SystemClock{ Clock }
 	{ }
+
+	manager::~manager()
+	{
+		while( m_Systems.size() )
+        {
+            auto p = m_Systems.back().second.release();
+			m_Systems.back().first->m_Destructor( *p );
+            delete reinterpret_cast<void*>( p );
+			m_Systems.pop_back();
+        }
+	}
 	
 	template < typename... T_SYSTEMS >
 	constexpr void manager::RegisterSystems( coordinator::instance& Coordinator ) noexcept
@@ -66,6 +77,13 @@ namespace paperback::system
 			Info->m_RunSystem( *System, system::type::call::TERMINATED );
 
 		m_SystemMap.clear();
-		m_Systems.clear();
+
+		while( m_Systems.size() )
+        {
+            auto p = m_Systems.back().second.release();
+			m_Systems.back().first->m_Destructor( *p );
+            delete reinterpret_cast<void*>( p );
+			m_Systems.pop_back();
+        }
 	}
 }

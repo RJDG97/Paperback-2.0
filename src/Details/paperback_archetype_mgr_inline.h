@@ -2,67 +2,36 @@
 
 namespace paperback::archetype
 {
+    //-----------------------------------
+    //             Default
+    //-----------------------------------
     manager::manager( paperback::coordinator::instance& Coordinator ) :
         m_Coordinator{ Coordinator }
     { }
 
-	void manager::RegisterEntity( const PoolDetails Details, archetype::instance& Archetype ) noexcept
-    {
-        u32   EntityGlobalIndex = AppendEntity();
-        auto& EntityInfo        = GetEntityInfo( EntityGlobalIndex );
 
-        EntityInfo = entity::info
-                     {
-                         .m_pArchetype  = &Archetype
-                     ,   .m_PoolDetails = Details
-                     ,   .m_Validation  = component::entity::Validation
-                         {
-                             .m_Next    = 0
-                         ,   .m_bZombie = false
-                         }
-                     };
-
-        auto& Entity = EntityInfo.m_pArchetype->GetComponent<component::entity>( EntityInfo.m_PoolDetails );
-
-        Entity.m_GlobalIndex          = EntityGlobalIndex;
-        Entity.m_Validation.m_Next    = 0;
-        Entity.m_Validation.m_bZombie = false;
-    }
+    //-----------------------------------
+    //             Create
+    //-----------------------------------
 
     template < typename T_FUNCTION >
-    void manager::CreateEntity( T_FUNCTION&& Function, coordinator::instance& Coordinator ) noexcept
+    void manager::CreateEntity( T_FUNCTION&& Function ) noexcept
     {
         using func_traits = xcore::function::traits<T_FUNCTION>;
 
 	    [&] <typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* )
 	    {
-		    auto& Archetype = GetOrCreateArchetype<T_COMPONENTS...>( Coordinator );
+		    auto& Archetype = GetOrCreateArchetype<T_COMPONENTS...>( );
             Archetype.CreateEntity( Function );
 
 	    }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
 
-    void manager::RemoveEntity( const u32 SwappedGlobalIndex, const component::entity DeletedEntity ) noexcept
-    {
-        if ( SwappedGlobalIndex != paperback::settings::invalid_index_v )
-        {
-            auto& Info = GetEntityInfo( DeletedEntity );
-            m_EntityInfos[SwappedGlobalIndex].m_PoolDetails = Info.m_PoolDetails;
-        }
-        m_AvailableIndexes.push( DeletedEntity.m_GlobalIndex );
-    }
-
-    void manager::ResetAllArchetypes( void ) noexcept
-    {
-        for ( auto& Archetype : m_pArchetypeList )
-            Archetype->Clear();
-    }
-
     template < typename... T_COMPONENTS >
-    archetype::instance& manager::GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept
+    archetype::instance& manager::GetOrCreateArchetype( void ) noexcept
     {
         static constexpr auto ComponentList = paperback::component::sorted_info_array_v< std::tuple<component::entity, T_COMPONENTS...> >;
-        return GetOrCreateArchetype( ComponentList, Coordinator );
+        return GetOrCreateArchetype( ComponentList, sizeof...( T_COMPONENTS ) + 1 );
     }
 
     archetype::instance& manager::GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept
@@ -81,150 +50,15 @@ namespace paperback::archetype
 
         for ( u32 i = 0, max = settings::max_component_types_v; i < max; ++i )
         {
+            if ( Count >= 32 ) break;
             if ( ArchetypeSignature.Has( i ) )
                 InfoList[ Count++ ] = m_Coordinator.FindComponentInfoFromUID( i );
         }
 
-        auto& Archetype = CreateArchetype( ArchetypeSignature );
-        Archetype.Init( InfoList, Count );
+        auto& Archetype = CreateAndInitializeArchetype( InfoList, Count, ArchetypeSignature );
 
         return Archetype;
     }
-
-    archetype::instance& manager::CreateArchetype( const tools::bits& Signature ) noexcept
-    {
-        m_pArchetypeList.push_back( std::make_unique<archetype::instance>( m_Coordinator, Signature ) );
-		m_ArchetypeBits.push_back( Signature );
-
-        return *( m_pArchetypeList.back() );
-    }
-
-    entity::info& manager::GetEntityInfo( const component::entity Entity ) const noexcept
-    {
-        return m_EntityInfos[ Entity.m_GlobalIndex ];
-    }
-
-    entity::info& manager::GetEntityInfo( const u32 GlobalIndex ) const noexcept
-    {
-        return m_EntityInfos[ GlobalIndex ];
-    }
-
-    archetype::instance& manager::GetArchetypeFromEntity( const u32 EntityID ) const noexcept
-    {
-        PPB_ASSERT_MSG( EntityID >= m_EntityIDTracker, "GetArchetypeFromEntity: Invalid EntityID" );
-
-        return *( m_EntityInfos[EntityID].m_pArchetype );
-    }
-
-    std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
-    {
-        std::vector<paperback::archetype::instance*> List;
-        for ( auto& Archetype : m_pArchetypeList )
-            List.push_back( Archetype.get() );
-        return List;
-    }
-
-    template < typename... T_COMPONENTS >
-    std::vector<archetype::instance*> manager::Search() const noexcept
-    {
-        static constexpr auto ComponentList = std::array{ &component::info_v<T_COMPONENTS>... };
-        return Search( ComponentList );
-    }
-
-    archetype::instance* manager::Search( const tools::bits& Bits ) const noexcept
-    {
-        for ( const auto& ArchetypeBits : m_ArchetypeBits )
-        {
-            if ( ArchetypeBits.Match( Bits ) )
-            {
-                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
-                return m_pArchetypeList[index].get();
-            }
-        }
-        return nullptr;
-    }
-
-    std::vector<archetype::instance*> manager::Search( const tools::query& Query ) const noexcept
-    {
-        std::vector<archetype::instance*> ValidArchetypes;
-
-        // Search for all Archetypes with valid Bit Signatures
-        for ( const auto& ArchetypeBits : m_ArchetypeBits )
-        {
-            if ( Query.Compare( ArchetypeBits ) )
-            {
-                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
-
-                if ( m_pArchetypeList[index]->GetEntityCount() > 0 )
-                    ValidArchetypes.push_back( m_pArchetypeList[index].get() );
-            }
-        }
-
-        return ValidArchetypes;
-    }
-
-
-    //-----------------------------------
-    //             Private
-    //-----------------------------------
-    u32 manager::AppendEntity() noexcept
-    {
-        if (!m_AvailableIndexes.empty())
-        {
-            u32 GlobalIndex = m_AvailableIndexes.top();
-            m_AvailableIndexes.pop();
-            return GlobalIndex;
-        }
-        else
-        {
-            return m_EntityIDTracker++;
-        }
-    }
-
-    archetype::instance& manager::GetOrCreateArchetype( std::span<const component::info* const> Types, coordinator::instance& Coordinator ) noexcept
-    {
-        tools::bits Query;
-
-        for ( const auto& CInfo : Types )
-            Query.Set( CInfo->m_UID );
-
-        for ( auto& Archetype : m_ArchetypeBits )
-        {
-            if ( Archetype.Compare( Query ) )
-            {
-                const auto index = static_cast<size_t>( &Archetype - &m_ArchetypeBits[0] );
-                return *( m_pArchetypeList[ index ] );
-            }
-        }
-
-        m_pArchetypeList.push_back( std::make_unique<archetype::instance>(Coordinator, Query) );
-        m_ArchetypeBits.push_back( Query );
-
-        m_pArchetypeList.back()->Init( Types, Types.size() );
-
-        return *( m_pArchetypeList.back() );
-    }
-
-    template < typename... T_COMPONENTS >
-	std::vector<archetype::instance*> manager::Search( std::span<const component::info* const> Types ) const noexcept
-	{
-	    tools::bits Query;
-	    std::vector<archetype::instance*> ValidArchetypes;
-
-	    for ( const auto& cInfo : Types )
-		    Query.Set( cInfo->m_UID );
-
-	    for ( auto& Archetype : m_ArchetypeBits )
-	    {
-		    if ( Archetype.Compare( Query ) )
-		    {
-			    const auto Index = static_cast<size_t>( &Archetype - &m_ArchetypeBits[0] );
-			    ValidArchetypes.push_back( m_pArchetypeList[Index].get() );
-		    }
-	    }
-
-	    return ValidArchetypes;
-	}
 
     template < concepts::Callable T_FUNCTION >
 	component::entity manager::AddOrRemoveComponents( const component::entity Entity
@@ -322,9 +156,8 @@ namespace paperback::archetype
 				}
 			}
             
-            // Initialize Newly Created Archetype
-			auto& NewArchetype = CreateArchetype( m_Coordinator, UpdatedSignature );
-			NewArchetype.Init( NewComponentInfoList, Count );
+            // Construct New Archetype
+			auto& NewArchetype = CreateAndInitializeArchetype( NewComponentInfoList, Count, UpdatedSignature );
 
             /*
                 Transfer components over to new archetype - But don't delete old entity yet
@@ -334,8 +167,200 @@ namespace paperback::archetype
 		}
 	}
 
+
+    //-----------------------------------
+    //             Getters
+    //-----------------------------------
+
+    entity::info& manager::GetEntityInfo( const component::entity Entity ) const noexcept
+    {
+        return m_EntityInfos[ Entity.m_GlobalIndex ];
+    }
+
+    entity::info& manager::GetEntityInfo( const u32 GlobalIndex ) const noexcept
+    {
+        return m_EntityInfos[ GlobalIndex ];
+    }
+
+    archetype::instance& manager::GetArchetypeFromEntity( const u32 EntityID ) const noexcept
+    {
+        PPB_ASSERT_MSG( EntityID >= m_EntityIDTracker, "GetArchetypeFromEntity: Invalid EntityID" );
+
+        return *( m_EntityInfos[EntityID].m_pArchetype );
+    }
+
+    std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
+    {
+        std::vector<paperback::archetype::instance*> List;
+        for ( auto& Archetype : m_pArchetypeList )
+            List.push_back( Archetype.get() );
+        return List;
+    }
+
+
+    //-----------------------------------
+    //             Query
+    //-----------------------------------
+    template < typename... T_COMPONENTS >
+    std::vector<archetype::instance*> manager::Search() const noexcept
+    {
+        static constexpr auto ComponentList = std::array{ &component::info_v<T_COMPONENTS>... };
+        return Search( ComponentList );
+    }
+
+    archetype::instance* manager::Search( const tools::bits& Bits ) const noexcept
+    {
+        for ( const auto& ArchetypeBits : m_ArchetypeBits )
+        {
+            if ( ArchetypeBits.Match( Bits ) )
+            {
+                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
+                return m_pArchetypeList[index].get();
+            }
+        }
+        return nullptr;
+    }
+
+    std::vector<archetype::instance*> manager::Search( const tools::query& Query ) const noexcept
+    {
+        std::vector<archetype::instance*> ValidArchetypes;
+
+        // Search for all Archetypes with valid Bit Signatures
+        for ( const auto& ArchetypeBits : m_ArchetypeBits )
+        {
+            if ( Query.Compare( ArchetypeBits ) )
+            {
+                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
+
+                if ( m_pArchetypeList[index]->GetEntityCount() > 0 )
+                    ValidArchetypes.push_back( m_pArchetypeList[index].get() );
+            }
+        }
+
+        return ValidArchetypes;
+    }
+
+
+    //-----------------------------------
+    //              Clear
+    //-----------------------------------
+
+    void manager::ResetAllArchetypes( void ) noexcept
+    {
+        for ( auto& Archetype : m_pArchetypeList )
+            Archetype->Clear();
+    }
+
     void manager::Terminate( void ) noexcept
     {
         // Delete All Entities
+    }
+
+
+    //-----------------------------------
+    //             Helper
+    //-----------------------------------
+
+    void manager::RegisterEntity( const PoolDetails Details, archetype::instance& Archetype ) noexcept
+    {
+        u32   EntityGlobalIndex = AppendEntity();
+        auto& EntityInfo        = GetEntityInfo( EntityGlobalIndex );
+
+        EntityInfo = entity::info
+                     {
+                         .m_pArchetype  = &Archetype
+                     ,   .m_PoolDetails = Details
+                     ,   .m_Validation  = component::entity::Validation
+                         {
+                             .m_Next    = 0
+                         ,   .m_bZombie = false
+                         }
+                     };
+
+        auto& Entity = EntityInfo.m_pArchetype->GetComponent<component::entity>( EntityInfo.m_PoolDetails );
+
+        Entity.m_GlobalIndex          = EntityGlobalIndex;
+        Entity.m_Validation.m_Next    = 0;
+        Entity.m_Validation.m_bZombie = false;
+    }
+
+    void manager::RemoveEntity( const u32 SwappedGlobalIndex, const component::entity DeletedEntity ) noexcept
+    {
+        if ( SwappedGlobalIndex != paperback::settings::invalid_index_v )
+        {
+            auto& Info = GetEntityInfo( DeletedEntity );
+            m_EntityInfos[SwappedGlobalIndex].m_PoolDetails = Info.m_PoolDetails;
+        }
+        m_AvailableIndexes.push( DeletedEntity.m_GlobalIndex );
+    }
+
+
+    //-----------------------------------
+    //             Private
+    //-----------------------------------
+    u32 manager::AppendEntity() noexcept
+    {
+        if (!m_AvailableIndexes.empty())
+        {
+            u32 GlobalIndex = m_AvailableIndexes.top();
+            m_AvailableIndexes.pop();
+            return GlobalIndex;
+        }
+        else
+        {
+            return m_EntityIDTracker++;
+        }
+    }
+
+    archetype::instance& manager::GetOrCreateArchetype( std::span<const component::info* const> Types
+                                                      , const u32 Count ) noexcept
+    {
+        tools::bits ArchetypeSignature;
+
+        for ( const auto& CInfo : Types )
+            ArchetypeSignature.Set( CInfo->m_UID );
+
+        for ( auto& ArchetypeBits : m_ArchetypeBits )
+        {
+            if ( ArchetypeBits.Compare( ArchetypeSignature ) )
+            {
+                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
+                return *( m_pArchetypeList[ index ] );
+            }
+        }
+
+        return CreateAndInitializeArchetype( Types, Count, ArchetypeSignature );
+    }
+
+    template < typename... T_COMPONENTS >
+	std::vector<archetype::instance*> manager::Search( std::span<const component::info* const> Types ) const noexcept
+	{
+	    tools::bits Query;
+	    std::vector<archetype::instance*> ValidArchetypes;
+
+	    for ( const auto& cInfo : Types )
+		    Query.Set( cInfo->m_UID );
+
+	    for ( auto& Archetype : m_ArchetypeBits )
+	    {
+		    if ( Archetype.Compare( Query ) )
+		    {
+			    const auto Index = static_cast<size_t>( &Archetype - &m_ArchetypeBits[0] );
+			    ValidArchetypes.push_back( m_pArchetypeList[Index].get() );
+		    }
+	    }
+
+	    return ValidArchetypes;
+	}
+
+    archetype::instance& manager::CreateAndInitializeArchetype( std::span<const component::info* const> Types
+                                                              , const u32 Count
+                                                              , const tools::bits& Signature ) noexcept
+    {
+        m_pArchetypeList.push_back( std::make_unique<archetype::instance>( m_Coordinator, Signature ) );
+		m_ArchetypeBits.push_back( Signature );
+        m_pArchetypeList.back()->Init( Types, Count );
+
+        return *( m_pArchetypeList.back() );
     }
 }

@@ -54,21 +54,15 @@ namespace paperback::coordinator
 		PPB_INLINE
 		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
 
-		PPB_INLINE // Maybe remove
-        archetype::instance& CreateArchetype( const tools::bits& Signature ) noexcept;
+		template< typename T_FUNCTION = paperback::empty_lambda >
+		void CreateEntity( T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
-		template< typename T_FUNCTION >
-		void CreateEntity( T_FUNCTION&& Function ) noexcept;
-
-		template< typename T_FUNCTION >
-		void CreateEntities( T_FUNCTION&& Function
-						   , const u32 Count ) noexcept;
+		template< typename T_FUNCTION = paperback::empty_lambda >
+		void CreateEntities( T_FUNCTION&& Function = paperback::empty_lambda{}
+						   , const u32 Count = 1 ) noexcept;
 
 		PPB_INLINE
 		void DeleteEntity( component::entity& Entity ) noexcept;
-
-		PPB_INLINE
-		void RemoveEntity( const uint32_t SwappedGlobalIndex, const component::entity Entity ) noexcept;
 
 		PPB_INLINE
 		void ResetAllArchetypes( void ) noexcept;
@@ -185,13 +179,22 @@ namespace paperback::coordinator
 		PPB_INLINE
 		bool IsMouseUp( int Key ) noexcept;
 
+
+		/*
+        /*! Friend Classes
+        */
 		friend class paperback::archetype::instance;
 
 
 	protected:
 
 		PPB_INLINE
-		void RegisterEntity( const paperback::vm::PoolDetails, archetype::instance& Archetype ) noexcept;
+		void RegisterEntity( const paperback::vm::PoolDetails
+						   , archetype::instance& Archetype ) noexcept;
+
+		PPB_INLINE
+		void RemoveEntity( const uint32_t SwappedGlobalIndex
+						 , const component::entity Entity ) noexcept;
 
 
 	private:

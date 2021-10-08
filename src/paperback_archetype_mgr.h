@@ -22,29 +22,63 @@ namespace paperback::archetype
         using ArchetypeBitsList = std::vector<tools::bits>;
         using ArchetypeList     = std::vector<std::unique_ptr<archetype::instance>>;
 
+
+        //-----------------------------------
+		//             Default
+		//-----------------------------------
+
         PPB_INLINE
         manager( paperback::coordinator::instance& Coordinator );
 
-        PPB_INLINE
-        void RegisterEntity( const PoolDetails Details, archetype::instance& Archetype ) noexcept;
 
-        template < typename T_FUNCTION >
-        void CreateEntity( T_FUNCTION&& Function, coordinator::instance& Coordinator ) noexcept;
+        //-----------------------------------
+		//             Create
+		//-----------------------------------
 
-        PPB_INLINE
-        void RemoveEntity( const u32 SwappedGlobalIndex, const component::entity DeletedEntity ) noexcept;
-
-        PPB_INLINE
-		void ResetAllArchetypes( void ) noexcept;
+        template < typename T_FUNCTION = paperback::empty_lambda >
+        void CreateEntity( T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
         template < typename... T_COMPONENTS >
-        archetype::instance& GetOrCreateArchetype( coordinator::instance& Coordinator ) noexcept;
+        archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
         PPB_INLINE
 		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
 
+        template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
+	    component::entity AddOrRemoveComponents( const component::entity Entity
+								               , std::span<const component::info* const> Add
+								               , std::span<const component::info* const> Remove
+								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
+
+
+        //-----------------------------------
+        //             Query
+        //-----------------------------------
+
+        template < typename... T_COMPONENTS >
+        std::vector<archetype::instance*> Search() const noexcept;
+
         PPB_INLINE
-        archetype::instance& CreateArchetype( const tools::bits& Signature ) noexcept;
+        archetype::instance* Search( const tools::bits& Bits ) const noexcept;
+
+        PPB_INLINE
+        std::vector<archetype::instance*> Search( const tools::query& Query ) const noexcept;
+
+
+        //-----------------------------------
+		//              Clear
+		//-----------------------------------
+
+        PPB_INLINE
+		void ResetAllArchetypes( void ) noexcept;
+
+        PPB_INLINE
+        void Terminate( void ) noexcept;
+
+
+        //-----------------------------------
+        //             Getters
+        //-----------------------------------
 
         PPB_INLINE
         entity::info& GetEntityInfo( const component::entity Entity ) const noexcept;
@@ -58,23 +92,17 @@ namespace paperback::archetype
         PPB_INLINE
         std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
-        template < typename... T_COMPONENTS >
-        std::vector<archetype::instance*> Search() const noexcept;
+
+        /*
+        /*! Helper Functions
+        */
+        PPB_INLINE
+        void RegisterEntity( const PoolDetails Details
+                           , archetype::instance& Archetype ) noexcept;
 
         PPB_INLINE
-        archetype::instance* Search( const tools::bits& Bits ) const noexcept;
-
-        PPB_INLINE
-        std::vector<archetype::instance*> Search( const tools::query& Query ) const noexcept;
-
-        template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
-	    component::entity AddOrRemoveComponents( const component::entity Entity
-								               , std::span<const component::info* const> Add
-								               , std::span<const component::info* const> Remove
-								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
-
-        PPB_INLINE
-        void Terminate( void ) noexcept;
+        void RemoveEntity( const u32 SwappedGlobalIndex
+                         , const component::entity DeletedEntity ) noexcept;
 
 
     private:
@@ -83,7 +111,13 @@ namespace paperback::archetype
         u32 AppendEntity() noexcept;
 
         PPB_INLINE
-        archetype::instance& GetOrCreateArchetype( std::span<const component::info* const> Types, coordinator::instance& Coordinator ) noexcept;
+        archetype::instance& GetOrCreateArchetype( std::span<const component::info* const> Types
+                                                 , const u32 Count) noexcept;
+
+        PPB_INLINE
+        archetype::instance& CreateAndInitializeArchetype( std::span<const component::info* const> Types
+                                                         , const u32 Count
+                                                         , const tools::bits& Signature ) noexcept;
 
         template < typename... T_COMPONENTS >
         std::vector<archetype::instance*> Search( std::span<const component::info* const> Types ) const noexcept;

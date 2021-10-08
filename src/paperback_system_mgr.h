@@ -14,7 +14,7 @@ namespace paperback::system
 
 		manager( tools::clock& Clock );
 		manager( const manager& ) = delete;
-		~manager() = default;
+		~manager();
 
 		template < typename... T_SYSTEMS >
 		constexpr void RegisterSystems( coordinator::instance& Coordinator ) noexcept;
