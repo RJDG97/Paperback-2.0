@@ -211,6 +211,8 @@ struct debug_system : paperback::system::instance
 
 
         DrawDebugLines(debugdraw, sphere.m_Collided);
+
+        sphere.m_Collided = false;
     }
 
     //given a set of vertices defining a square, prepare the pairing required
@@ -269,6 +271,8 @@ struct debug_system : paperback::system::instance
         ConvertVerticesToSquareDraw(debugdraw, back_bottom_left, back_bottom_right, front_bottom_left, front_bottom_right);
 
         DrawDebugLines(debugdraw, cube.m_Collided);
+
+        cube.m_Collided = false;
     }
 
     // draws a "cube" depending on given data
@@ -333,6 +337,41 @@ struct debug_system : paperback::system::instance
         }
     }
 
+    void DebugInputTest()
+    {
+
+        if (PPB.IsKeyPressDown(GLFW_KEY_J))
+        {
+
+            GetSystem<physics_system>().ApplyForceAll({ -1.0f, 0.0f, 0.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_L))
+        {
+
+            GetSystem<physics_system>().ApplyForceAll({ 1.0f, 0.0f, 0.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_I))
+        {
+
+            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 0.0f, -1.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_K))
+        {
+
+            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 0.0f, 1.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_O))
+        {
+
+            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 1.0f, 0.0f });
+        }
+        if (PPB.IsKeyPressDown(GLFW_KEY_U))
+        {
+
+            GetSystem<physics_system>().ApplyForceAll({ 0.0f, -1.0f, 0.0f });
+        }
+    }
+
     PPB_FORCEINLINE
     void OnFrameEnd(void) noexcept 
     {
@@ -353,6 +392,8 @@ struct debug_system : paperback::system::instance
             percentage *= 100;
         }
         //DebugPrint();
+
+        DebugInputTest();
     }
 
     // Terminate system

@@ -13,6 +13,33 @@ struct physics_system : paperback::system::instance
         paperback::query::one_of<>
     >;
 
+    //helper function to ensure that momentum is -ve or +ve depending on current momentum
+    paperback::Vector3f SetMaxMoment(paperback::Vector3f& currmoment, paperback::Vector3f& max)
+    {
+
+        return {
+            (abs(currmoment.x) > 0.01f) ? (currmoment.x < 0.0f) ? max.x : -max.x : 0.0f,
+            (abs(currmoment.y) > 0.01f) ? (currmoment.y < 0.0f) ? max.y : -max.y : 0.0f,
+            (abs(currmoment.z) > 0.01f) ? (currmoment.z < 0.0f) ? max.z : -max.z : 0.0f
+        };
+    }
+
+    //test helper function to apply forces on all entities with rigidforce components
+    void ApplyForceAll(paperback::Vector3f vec)
+    {
+
+        tools::query Query;
+        Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
+        
+        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& xform, rigidbody& rb, rigidforce& rf) noexcept
+            {
+                assert(Entity.IsZombie() == false);
+                
+                rf.AddMomentum(vec);
+                rf.m_MagMoment = 1.0f;
+            });
+    }
+
     // map check collision out of bounds check
     void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce) noexcept
     {
@@ -40,9 +67,21 @@ struct physics_system : paperback::system::instance
                     {
                         // this part is to bleed out any remaining velocity after Accel = 0.f
                         RigidForce->m_MagMoment = RigidForce->m_Momentum.MagnitudeSq();
-                        float Mproportion = RigidForce->m_MagMoment / (RigidForce->m_MaxMomentSq * 2);
-                        // update momentum
-                        RigidForce->m_Momentum -= (Mproportion * RigidForce->m_MaxMoment * m_Coordinator.DeltaTime());
+
+                        //lock momentum within maximum allowed 
+                        if (RigidForce->m_MagMoment < RigidForce->m_MaxMoment.MagnitudeSq())
+                        {
+
+                            float Mproportion = RigidForce->m_MagMoment / (RigidForce->m_MaxMomentSq * 2);
+                            // update momentum
+                            //account for -ve and +ve increment
+                            paperback::Vector3f max = SetMaxMoment(RigidForce->m_Momentum, RigidForce->m_MaxMoment);
+
+                            RigidForce->m_Momentum -= (Mproportion * max * m_Coordinator.DeltaTime());
+                        }
+
+                        //force momentum to reduce to prevent unstopping movement
+                        RigidForce->m_Momentum *= 0.98f;
                     }
                 }
                 else

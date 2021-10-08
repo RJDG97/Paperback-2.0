@@ -222,21 +222,26 @@ void InitializeGame()
         //        Mesh.m_Model = "Box";
         //    });
         // right most tip
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, BoundingBox& bbox, rigidbody& rb)// rigidforce& rf)
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, BoundingBox& bbox, Sphere& sphere, rigidbody& rb)// rigidforce& rf)
             {
                 Transform.m_Position.m_X = -8;
                 Transform.m_Position.m_Y = 5.5;
                 Transform.m_Position.m_Z = -7;
 
                 bbox.MinMax[0].Set(paperback::Vector3f(
-                    Transform.m_Position.m_X - 2.f,
-                    Transform.m_Position.m_Y - 2.f,
-                    Transform.m_Position.m_Z - 2.f));
+                    - 2.f,
+                    - 2.f,
+                    - 2.f));
 
                 bbox.MinMax[1].Set(paperback::Vector3f(
-                    Transform.m_Position.m_X + 2.f,
-                    Transform.m_Position.m_Y + 2.f,
-                    Transform.m_Position.m_Z + 2.f));
+                    2.f,
+                    2.f,
+                    2.f));
+
+                sphere.Set(paperback::Vector3f(
+                    Transform.m_Position.m_X,
+                    Transform.m_Position.m_Y,
+                    Transform.m_Position.m_Z), 1.f);
 
                 Scale.m_Value.m_X = 1;
                 Scale.m_Value.m_Y = 1;
@@ -256,20 +261,23 @@ void InitializeGame()
                 Transform.m_Position.m_Z = -10;
 
                 bbox.MinMax[0].Set(paperback::Vector3f(
-                    Transform.m_Position.m_X - 2.f,
-                    Transform.m_Position.m_Y - 2.f,
-                    Transform.m_Position.m_Z - 2.f));
+                    - 2.f,
+                    - 2.f,
+                    - 2.f));
 
                 bbox.MinMax[1].Set(paperback::Vector3f(
-                    Transform.m_Position.m_X + 2.f,
-                    Transform.m_Position.m_Y + 2.f,
-                    Transform.m_Position.m_Z + 2.f));
+                    2.f,
+                    2.f,
+                    2.f));
 
                 sphere.Set(paperback::Vector3f(
                     Transform.m_Position.m_X,
                     Transform.m_Position.m_Y,
                     Transform.m_Position.m_Z), 1.f);
                 
+                rf.m_Mass = 5.0f;
+                rf.m_threshold = 0.5f;
+
                 Scale.m_Value.m_X = 1;
                 Scale.m_Value.m_Y = 1;
                 Scale.m_Value.m_Z = 1;
