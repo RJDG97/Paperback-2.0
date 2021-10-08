@@ -3,7 +3,7 @@
 #define AABB_H
 
 #include "Math/Vector3f.h"
-#include "LineSegment.h"
+#include "Shapes/LineSegment.h"
 
 struct AABB
 {
@@ -14,6 +14,7 @@ struct AABB
 
 public:													// ----- Private members
 	paperback::Vector3f m_point[8];
+	bool m_Collided;
 
 
 };

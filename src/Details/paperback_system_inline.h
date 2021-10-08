@@ -16,10 +16,14 @@ namespace paperback::system
                                    ? T_SYSTEM::typedef_v.m_Guid
                                    : type::guid{ __FUNCSIG__ }
             ,   .m_TypeID        = T_SYSTEM::typedef_v.id_v
-			,	.m_RunSystem   = []( system::instance& pSystem, system::type::call UpdateType )
-							     {
-								     static_cast<system::details::completed<T_SYSTEM>&>( pSystem ).Run( UpdateType );
-							     }
+			,	.m_RunSystem     = []( system::instance& pSystem, system::type::call UpdateType )
+							       {
+							           static_cast<system::details::completed<T_SYSTEM>&>( pSystem ).Run( UpdateType );
+							       }
+			,	.m_Destructor    = []( system::instance& pSystem ) noexcept
+								   {
+								       std::destroy_at( &static_cast< system::details::completed<T_SYSTEM>& >( pSystem ) ) ;
+								   }
 			,	.m_pName		   = T_SYSTEM::typedef_v.m_pName
             };
         }

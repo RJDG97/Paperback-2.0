@@ -105,12 +105,14 @@ namespace paperback::system
 
 		struct info
 		{
-			using RunSystem = void( system::instance&, type::call );
+			using RunSystem  = void( system::instance&, type::call );
+			using Destructor = void( system::instance& ) noexcept;
 
 			const type::guid             m_Guid;
 			const type::id               m_TypeID;
 										 
 			RunSystem*					 m_RunSystem;
+			Destructor*					 m_Destructor;
 			const char*					 m_pName{ };
 		};
 	}

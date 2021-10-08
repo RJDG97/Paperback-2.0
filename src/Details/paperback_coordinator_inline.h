@@ -127,7 +127,7 @@ namespace paperback::coordinator
 	template < typename... T_COMPONENTS >
 	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
-		return m_ArchetypeMgr.GetOrCreateArchetype<T_COMPONENTS...>( *this );
+		return m_ArchetypeMgr.GetOrCreateArchetype<T_COMPONENTS...>( );
 	}
 
 	archetype::instance& instance::GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept
@@ -135,15 +135,10 @@ namespace paperback::coordinator
 		return m_ArchetypeMgr.GetOrCreateArchetype( ArchetypeSignature );
 	}
 
-	archetype::instance& instance::CreateArchetype( const tools::bits& Signature ) noexcept // Maybe remove
-	{
-		return m_ArchetypeMgr.CreateArchetype( Signature );
-	}
-
 	template< typename T_FUNCTION >
 	void instance::CreateEntity( T_FUNCTION&& Function ) noexcept
 	{
-		m_ArchetypeMgr.CreateEntity( Function, *this );
+		m_ArchetypeMgr.CreateEntity( Function );
 	}
 
 	template< typename T_FUNCTION >
@@ -160,7 +155,8 @@ namespace paperback::coordinator
 		Info.m_pArchetype->DestroyEntity( Entity );
 	}
 
-	void instance::RemoveEntity( const uint32_t SwappedGlobalIndex, const component::entity Entity ) noexcept
+	void instance::RemoveEntity( const uint32_t SwappedGlobalIndex
+							   , const component::entity Entity ) noexcept
 	{
 		m_ArchetypeMgr.RemoveEntity( SwappedGlobalIndex, Entity );
 	}
@@ -211,7 +207,8 @@ namespace paperback::coordinator
 	//            Game Loop
 	//-----------------------------------
 	template < concepts::Callable_Void T_FUNCTION>
-	void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList, T_FUNCTION&& Function ) noexcept
+	void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList
+						  , T_FUNCTION&& Function ) noexcept
 	{
 		using func_traits = xcore::function::traits<T_FUNCTION>;
 
@@ -249,7 +246,8 @@ namespace paperback::coordinator
 	}
 
 	template < concepts::Callable_Bool T_FUNCTION >
-	void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList, T_FUNCTION&& Function ) noexcept
+	void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList
+						  , T_FUNCTION&& Function ) noexcept
 	{
 		using func_traits = xcore::function::traits< T_FUNCTION >;
 
@@ -419,7 +417,8 @@ namespace paperback::coordinator
 	// Protected - Register for Archetype
 	//-----------------------------------
 
-	void instance::RegisterEntity( const paperback::vm::PoolDetails Details, paperback::archetype::instance& Archetype ) noexcept
+	void instance::RegisterEntity( const paperback::vm::PoolDetails Details
+								 , paperback::archetype::instance& Archetype ) noexcept
 	{
 		m_ArchetypeMgr.RegisterEntity( Details, Archetype );
 	}

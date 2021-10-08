@@ -62,7 +62,7 @@ struct window_system : paperback::system::instance
 	}
 
     PPB_FORCEINLINE
-    void Update(void) noexcept
+    void Update( void ) noexcept
     {
         m_Coordinator.UpdateInputs();
         glfwPollEvents();
@@ -70,10 +70,16 @@ struct window_system : paperback::system::instance
     }
 
     PPB_FORCEINLINE
-    void Terminated(void) noexcept
+    void OnSystemTerminated( void ) noexcept 
     {
         glfwTerminate();
     }
+
+    //PPB_FORCEINLINE
+    //~window_system()
+    //{
+    //    glfwTerminate();
+    //}
 
     static void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
     {

@@ -9,42 +9,58 @@ struct bullet_logic_system : paperback::system::instance
     {
         .m_pName = "bullet_logic_system"
     };
-
-    void operator()( transform& Transform, paperback::component::entity& Entity) noexcept
+    // Entity to test component -> jp side
+    void operator()( /*paperback::component::entity& Entity,*/ transform& Transform, /*rigidbody& rb,*/ paperback::component::entity& Entity, BoundingBox* boundingbox, Sphere* sphere) noexcept
     {
         if (Entity.IsZombie()) return;
+
+        //Timer.m_Timer -= m_Coordinator.DeltaTime();
+        //if ( Timer.m_Timer <= 0.0f )
+        //{
+        //    m_Coordinator.DeleteEntity( Entity );
+        //    return;
+        //}
 
         // Check collisions
         tools::query Query;
         Query.m_Must.AddFromComponents<transform>();
 
-        ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, transform& xform) noexcept -> bool
+        paperback::Vector3f tf = { Transform.m_Position.m_X, Transform.m_Position.m_Y, Transform.m_Position.m_Z };
+        paperback::Vector3f xf;
+
+        if (sphere)
+            sphere->setCenter(tf);
+
+        ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, transform& xform, BoundingBox* bb, Sphere* ball) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
 
                 // Do not check against self
-                if ( (&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie()) ) return false;
+                if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie()) /* || (Bullet.m_Owner.m_GlobalIndex == Dynamic_Entity.m_GlobalIndex)*/) return false;
 
-                //// collision detection part
-                //if (AabbAabb(Transform.fakebox.MinMax[0], Transform.fakebox.MinMax[1], xform.fakebox.MinMax[0], xform.fakebox.MinMax[1]))
-                //    std::cout << "Aabb collided" << std::endl;
-                //else std::cout << "no collide Aabb" << std::endl;
+                xf.x = xform.m_Position.m_X;
+                xf.y = xform.m_Position.m_Y;
+                xf.z = xform.m_Position.m_Z;
 
-                //if (SphereSphere(Transform.fakeSphere.getCenter(), Transform.fakeSphere.getRadius(), xform.fakeSphere.getCenter(), xform.fakeSphere.getRadius()))
-                //    std::cout << "Sphere collided" << std::endl;
-                //else std::cout << "no collide Sphere" << std::endl;
+                // collision detection part
+                if (boundingbox && bb && AabbAabb(tf + boundingbox->MinMax[0], tf + boundingbox->MinMax[1], xf + bb->MinMax[0], xf + bb->MinMax[1]))
+                {
+                    boundingbox->m_Collided = bb->m_Collided = true;
+                }
 
-                //constexpr auto min_distance_v = 4;
-                //if ((Transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
-                //{
-                //    DeleteEntity(Entity);
-                //    DeleteEntity(Dynamic_Entity);
-                //    return true;
-                //}
-                //return false;
+                if (sphere && ball && SphereSphere(sphere->getCenter(), sphere->getRadius(), ball->getCenter(), ball->getRadius()))
+                {
+                    sphere->m_Collided = ball->m_Collided = true;
+                }
+
+                constexpr auto min_distance_v = 4;
+                if ((Transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
+                {
+                    //m_Coordinator.DeleteEntity(Entity);
+                    //m_Coordinator.DeleteEntity(Dynamic_Entity);
+                    return true;
+                }
+                return false;
             });
-
-        GetSystem<debug_system>().DrawSphereCollision(Transform);
-        GetSystem<debug_system>().DrawCubeCollision(Transform);
     }
 };

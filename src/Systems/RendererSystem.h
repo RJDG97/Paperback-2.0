@@ -26,6 +26,8 @@ struct render_system : paperback::system::instance
 		m_pWindow = GetSystem<window_system>().m_pWindow;
 		m_Resources = &RenderResourceManager::GetInstanced();
 		Renderer::GetInstanced().StartFrame();
+
+
 		animation_test = Animation{ "../../resources/models/mutant.fbx", &m_Resources->m_Models["Character"] };
 		animator_test = Animator{ &animation_test };
 
@@ -48,9 +50,10 @@ struct render_system : paperback::system::instance
 		t = glm::translate(t, glm::vec3{ -3,2,-3 });
 		t = glm::scale(t, glm::vec3{ 0.03,0.03,0.03 });
 
+
 		objects["Character"].push_back(t);
-		
 		auto transforms{ animator_test.GetFinalBoneMatrices() };
+
 		
 		//just testing stuff
 		tools::query Query;

@@ -54,13 +54,4 @@ public:
 		if(m_pDestroy)
 			Mono::GetInstanced().RunImportFn(m_pMonoObj, m_pDestroy);
 	}
-
-	~Script()
-	{
-		if(m_pClass) delete m_pClass;
-		if (m_pMonoObj) delete m_pMonoObj;
-		if (m_pStart) delete m_pStart;
-		if (m_pUpdate) delete m_pUpdate;
-		if (m_pDestroy) delete m_pDestroy;
-	}
 };
