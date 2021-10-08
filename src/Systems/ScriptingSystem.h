@@ -10,6 +10,8 @@ struct scripting_system : paperback::system::instance
 {
 	Mono* m_pMono = nullptr;
 
+	std::unordered_map<std::string, Script*> scriptlist;
+
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
 		.m_pName = "scripting_system"
@@ -18,13 +20,11 @@ struct scripting_system : paperback::system::instance
 	void OnSystemCreated(void) noexcept
 	{
 		// Set up Mono
-		m_pMono = &Mono::GetInstanced();	
+		m_pMono = &Mono::GetInstanced();
 	}
 
 	void Update(void) noexcept 
 	{
-		static std::unordered_map<std::string, Script*> scriptlist;
-
 		tools::query Query;
 		Query.m_Must.AddFromComponents<entityscript>();
 
@@ -44,6 +44,9 @@ struct scripting_system : paperback::system::instance
 
 	void OnSystemTerminated(void) noexcept 
 	{
+		for (auto temp : scriptlist)
+			delete temp.second;
+
 		m_pMono->ReleaseDomain();
 	}
 };
