@@ -81,8 +81,8 @@ void InitializeGame()
             scripting_system,
             window_system,
             render_system,
-            imgui_system,
-            debug_system
+            debug_system,
+            imgui_system
         >();
     }
     // Entity Creation
@@ -248,14 +248,14 @@ void InitializeGame()
                 Transform.m_Position.m_Z = -7;
 
                 bbox.MinMax[0].Set(paperback::Vector3f(
-                    - 2.f,
-                    - 2.f,
-                    - 2.f));
+                    - 1.5f,
+                    - 1.5f,
+                    - 1.5f));
 
                 bbox.MinMax[1].Set(paperback::Vector3f(
-                    2.f,
-                    2.f,
-                    2.f));
+                    1.5f,
+                    1.5f,
+                    1.5f));
 
                 sphere.Set(paperback::Vector3f(
                     Transform.m_Position.m_X,
@@ -280,14 +280,14 @@ void InitializeGame()
                 Transform.m_Position.m_Z = -10;
 
                 bbox.MinMax[0].Set(paperback::Vector3f(
-                    - 2.f,
-                    - 2.f,
-                    - 2.f));
+                    - 1.5f,
+                    - 1.5f,
+                    - 1.5f));
 
                 bbox.MinMax[1].Set(paperback::Vector3f(
-                    2.f,
-                    2.f,
-                    2.f));
+                    1.5f,
+                    1.5f,
+                    1.5f));
 
                 sphere.Set(paperback::Vector3f(
                     Transform.m_Position.m_X,
