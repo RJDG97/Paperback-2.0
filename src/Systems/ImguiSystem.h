@@ -22,6 +22,8 @@ struct imgui_system : paperback::system::instance
     paperback::archetype::instance* m_pArchetype; //refers back to the archetype that the entity is referencing to
 
     std::vector <rttr::instance> m_Components = {};
+    std::vector <const char*> m_ComponentNames = {};
+
     std::string m_FilePath, m_FileName, m_LoadedPath;
 
     std::pair<paperback::archetype::instance*, paperback::u32> m_SelectedEntity;
@@ -53,6 +55,7 @@ struct imgui_system : paperback::system::instance
 
         m_SelectedEntity = { nullptr, paperback::u32_max };
         m_pArchetype = nullptr;
+
     }
 
     PPB_INLINE
@@ -159,8 +162,8 @@ struct imgui_system : paperback::system::instance
             ImGui::Text("FPS: %d", PPB.GetFPS());
         }
 
-        if (ImGui::Selectable("Show Demo Window"))
-            m_bDemoWindow = !m_bDemoWindow;
+        //if (ImGui::Selectable("Show Demo Window"))
+        //    m_bDemoWindow = !m_bDemoWindow;
 
         ImGui::EndMenuBar();
     }
@@ -223,7 +226,7 @@ struct imgui_system : paperback::system::instance
                             //    m_SelectedEntity.first = nullptr;
                             //}
 
-                            if ( ImGui::Button(ICON_FA_TRASH " Delete Entity") )
+                            if (ImGui::Button(ICON_FA_TRASH " Delete Entity"))
                             {
                                 ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
                             }
@@ -246,15 +249,18 @@ struct imgui_system : paperback::system::instance
 
     void ArchetypeList()
     {
-        int Index = 0;
+        int Index = 0, SelectedArch = -1;
         std::string ArchetypeName;
         char Buffer[256];
-        std::vector <const char*> ComponentNames{};
+
+        paperback::archetype::instance* Selected {nullptr};
 
         ImGui::Begin("PreFabs");
 
         static ImGuiTextFilter Filter;
         Filter.Draw(ICON_FA_FILTER, 150.0f);
+
+        ImGui::BeginChild("Archetypes", { ImGui::GetContentRegionAvailWidth() / 2, ImGui::GetContentRegionAvail().y }, true);
 
         for (auto& Archetype : PPB.GetArchetypeList())
         {
@@ -264,81 +270,64 @@ struct imgui_system : paperback::system::instance
             memset(Buffer, 0, sizeof(Buffer));
             strcpy_s(Buffer, sizeof(Buffer), ArchetypeName.c_str());
 
+
             if (Filter.PassFilter(ArchetypeName.c_str()))
             {
+                ImGui::PushItemWidth(150.0f);
 
-                if (ImGui::CollapsingHeader(ArchetypeName.c_str()))
+                if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
                 {
-                    if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
-                    {
-                        Buffer[std::string(Buffer).length()] = '\0';
-                        Archetype->SetName(std::string(Buffer));
-                    }
-
-                    m_pArchetype = Archetype;
-
-                    if (ImGui::Button("Clone new Entity"))
-                    {
-
-                        if (m_pArchetype)
-                        {
-                            m_pArchetype->CreateEntity();
-                            //m_pArchetype = nullptr;
-                        }
-                    }
-
-                    if (m_pArchetype)
-                    {
-                        for (paperback::u32 i = 0; i < m_pArchetype->GetComponentNumber(); ++i)
-                        {
-                            ComponentNames.push_back(m_pArchetype->GetComponentInfos()[i]->m_pName);
-                        }
-
-                        ImGui::Text("Components: ");
-
-                        if (!ComponentNames.empty())
-                        {
-                            for (auto& Names : ComponentNames)
-                            {
-                                ImGui::Text(Names);
-                            }
-                        }
-                    }
+                    Buffer[std::string(Buffer).length()] = '\0';
+                    Archetype->SetName(std::string(Buffer));
                 }
 
-            //    ImGui::SameLine();
+                ImGui::PopItemWidth();
 
+                if (ImGui::IsItemClicked())
+                {
+                    m_pArchetype = Archetype;
+                    m_ComponentNames.clear();
 
-            //    ImGuiHelp("Click to Spawn Entity", 0);
-            //    ImGui::SameLine();
-            //    if (ImGui::Checkbox(ICON_FA_EYE, &test))
-            //    {
-            //        m_pArchetype = Archetype;
-
-            //        if (m_pArchetype) 
-            //        {
-            //            for (paperback::u32 i = 0; i < m_pArchetype->GetComponentNumber(); ++i)
-            //            {
-            //                ComponentNames.push_back(m_pArchetype->GetComponentInfos()[i]->m_pName);
-            //            }
-            //        }
-            //    }
-
-            //    ImGuiHelp( "Click to see components", 0 );
-            //}
-
-            //ImGui::Separator();
-
-            //ImGui::Text("Components: ");
-
-            //if (!ComponentNames.empty() && test)
-            //{
-            //    for (auto& Names : ComponentNames)
-            //    {
-            //        ImGui::Text(Names);
-            //    }
+                    for (paperback::u32 i = 0; i < Archetype->GetComponentNumber(); ++i)
+                    {
+                        m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
+                    }
+                }
+                else
+                    m_pArchetype = nullptr;
             }
         }
+
+        ImGui::EndChild();
+
+        ImGui::SameLine();
+
+        ImGui::BeginChild("Components", { ImGui::GetContentRegionAvailWidth() , ImGui::GetContentRegionAvail().y });
+
+        if (!m_ComponentNames.empty())
+        {
+
+            if (ImGui::Button("Clone new Entity"))
+            {
+                if (m_pArchetype)
+                {
+                    m_pArchetype->CreateEntity();
+                    //m_pArchetype = nullptr;
+                }
+            }
+
+            ImGui::Separator();
+
+            ImGui::Text("Archetype Components: ");
+
+            for (auto& Names : m_ComponentNames)
+            {
+                ImGui::Text(Names);
+            }
+        }
+
+        ImGui::EndChild();
+
 
         ImGui::End();
     }
@@ -382,7 +371,15 @@ struct imgui_system : paperback::system::instance
 
                             if (PropertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
                             {
-                                DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<xcore::vector3>>().get(), 0.0f, 70.0f);
+                                //DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<xcore::vector3>>().get(), 0.0f, 70.0f);
+                                ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()));
+
+                            }
+
+                            if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>())
+                            {
+                                //DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get(), 0.0f, 70.0f);
+                                ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()));
                             }
 
                             if (PropertyType == rttr::type::get<std::string>())
