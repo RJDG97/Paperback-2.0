@@ -182,6 +182,18 @@ namespace paperback::coordinator
 												   , Function );
 	}
 
+	template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
+	component::entity instance::AddOrRemoveComponents( const component::entity Entity
+								           , std::span<const component::info* > Add
+								           , std::span<const component::info* > Remove
+								           , T_FUNCTION&& Function ) noexcept
+	{
+		return m_ArchetypeMgr.AddOrRemoveComponents( Entity
+												   , Add
+												   , Remove
+												   , Function );
+	}
+
 
 	//-----------------------------------
 	//             Query
@@ -335,6 +347,12 @@ namespace paperback::coordinator
 	{
 		return m_CompMgr.FindComponentInfo( ComponentGuid );
 	}
+
+	paperback::component::manager::ComponentInfoMap& instance::GetComponentInfoMap() noexcept
+	{
+		return m_CompMgr.GetComponentInfoMap();
+	}
+
 
 	//-----------------------------------
 	//              Clock

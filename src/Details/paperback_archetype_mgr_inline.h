@@ -70,7 +70,7 @@ namespace paperback::archetype
 
 		auto& EntityInfo        = GetEntityInfo( Entity.m_GlobalIndex );
         auto  OriginalArchetype = EntityInfo.m_pArchetype;
-		auto  UpdatedSignature  = EntityInfo.m_pArchetype->m_ComponentBits;
+		auto  UpdatedSignature  = EntityInfo.m_pArchetype->GetComponentBits();
 
         auto InvalidComponentModification = [&]( const component::info* ComponentInfo ) -> bool
         {
@@ -123,12 +123,19 @@ namespace paperback::archetype
 			auto& Archetype = *EntityInfo.m_pArchetype;
 			std::array<const paperback::component::info*, settings::max_components_per_entity_v > NewComponentInfoList;
 
-			for ( auto& CInfo : std::span{ Archetype.m_ComponentInfos.data(), Archetype.m_NumberOfComponents } )
+			for ( auto& CInfo : std::span{ Archetype.GetComponentInfos().data(), Archetype.GetComponentNumber() } )
 				NewComponentInfoList[Count++] = CInfo;
 
 			for ( auto& CInfo : Add )
 			{
-				const auto Index = component::details::find_component_index_v( NewComponentInfoList, CInfo, Count );
+                const auto Index = static_cast<size_t>(std::upper_bound(NewComponentInfoList.begin()
+                    , NewComponentInfoList.begin() + Count
+                    , CInfo
+                    , [](const component::info* pA, const component::info* pB)
+                    {
+                        return pA->m_UID < pB->m_UID;
+                    }) - NewComponentInfoList.begin());
+
 
                 // Modifying component::entity
 				if ( InvalidComponentIndex( Index ) ) continue;
@@ -144,7 +151,13 @@ namespace paperback::archetype
 			}
 			for ( auto& CInfo : Remove )
 			{
-				const auto Index = component::details::find_component_index_v( NewComponentInfoList, CInfo, Count );
+				const auto Index = static_cast<size_t>(std::upper_bound(NewComponentInfoList.begin()
+                    , NewComponentInfoList.begin() + Count
+                    , CInfo
+                    , [](const component::info* pA, const component::info* pB)
+                    {
+                        return pA->m_UID < pB->m_UID;
+                    }) - NewComponentInfoList.begin());
 
                 // Modifying component::entity
                 if ( InvalidComponentIndex(Index) ) continue;

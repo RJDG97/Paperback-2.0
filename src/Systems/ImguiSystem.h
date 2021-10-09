@@ -1,6 +1,7 @@
 #pragma once
 #include "paperback_pch.h"
 #include "Systems/WindowSystem.h"
+#include "Components/AABB.h"
 
 #include <IconsFontAwesome5.h>
 #include <sstream>
@@ -34,7 +35,7 @@ struct imgui_system : paperback::system::instance
     ImGuiWindowFlags m_Windowflags;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bPopUp;
+    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bAdd, m_bRemove;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -50,7 +51,7 @@ struct imgui_system : paperback::system::instance
         ImGuiContext(); //Setup ImGui Context
 
         m_bImgui = true;
-        m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = m_bNodeOpen = false;
+        m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = m_bNodeOpen = m_bAdd = m_bRemove = false;
         m_FilePath = m_FileName = m_LoadedPath = {};
 
         m_SelectedEntity = { nullptr, paperback::u32_max };
@@ -97,6 +98,7 @@ struct imgui_system : paperback::system::instance
                 ArchetypeList();
                 InspectorPanel();
                 ComponentInspector();
+                AddComponents();
 
                 ImGui::PopFont();
 
@@ -120,7 +122,14 @@ struct imgui_system : paperback::system::instance
             {
                 if (ImGui::MenuItem(ICON_FA_TIMES " New Scene"))
                 {
-                    PPB.ResetAllArchetypes();
+                    if (m_SelectedEntity.first)
+                        m_SelectedEntity.first = nullptr; m_SelectedEntity.second = paperback::u32_max;
+
+                    if (!m_Components.empty())
+                        m_Components.clear();
+
+                    if (!PPB.GetArchetypeList().empty())
+                        PPB.ResetAllArchetypes();
                 }
 
                 if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Open Scene"))
@@ -146,12 +155,10 @@ struct imgui_system : paperback::system::instance
 
                 if (ImGui::MenuItem(ICON_FA_REPLY " Return to Menu"))
                 {
-                    //m_bImgui = false;
                 }
 
                 if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
                 {
-                    //m_bImgui = false;
                 }
 
                 ImGui::EndMenu();
@@ -170,30 +177,16 @@ struct imgui_system : paperback::system::instance
 
     void InspectorPanel()
     {
-        int NumEntities = 0;
+        int NumEntities = 0, Index = 0;
 
         ImGui::Begin("Entity Inspector");
-
-        //bool b_NodeOpen{ false };
-        if (ImGui::Button("Clear"))
-        {
-            if (m_SelectedEntity.first)
-                m_SelectedEntity.first = nullptr; m_SelectedEntity.second = paperback::u32_max;
-
-            m_bNodeOpen = false;
-
-            if (!m_Components.empty())
-                m_Components.clear();
-
-            if (!PPB.GetArchetypeList().empty())
-                PPB.ResetAllArchetypes();
-
-        }
 
         if (!PPB.GetArchetypeList().empty()) {
 
             for (auto& Archetype : PPB.GetArchetypeList())
             {
+                Index++;
+
                 for (paperback::u32 i = 0; i < Archetype->GetEntityCount(); ++i)
                 {
                     NumEntities++;
@@ -203,7 +196,7 @@ struct imgui_system : paperback::system::instance
 
                     std::stringstream Label; Label << Archetype->GetName() << "(" << std::to_string(i) << ")";
 
-                    m_bNodeOpen = ImGui::TreeNodeEx((char*)Label.str().c_str(), NodeFlags, Label.str().c_str());
+                    m_bNodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + "(" + std::to_string(i) + std::to_string(Index) + ")").c_str(), NodeFlags, Label.str().c_str());
 
                     if (ImGui::IsItemClicked())
                     {
@@ -217,21 +210,19 @@ struct imgui_system : paperback::system::instance
                     {
                         m_SelectedEntity.first = Archetype;
                         m_SelectedEntity.second = i;
+                        
 
                         if (m_SelectedEntity.first)
                         {
-                            //if ( ImGui::Button(ICON_FA_PLUS_SQUARE " Clone Entity") )
-                            //{
-                            //    m_SelectedEntity.first->CreateEntity();
-                            //    m_SelectedEntity.first = nullptr;
-                            //}
-
                             if (ImGui::Button(ICON_FA_TRASH " Delete Entity"))
                             {
                                 ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
                             }
 
                             DeleteEntity(ICON_FA_TRASH " Delete?", i, Label.str());
+
+                            ImGui::Checkbox("Add Component(s)", &m_bAdd);
+                            ImGui::Checkbox("Remove Component(s)", &m_bRemove);
 
                         }
 
@@ -249,11 +240,9 @@ struct imgui_system : paperback::system::instance
 
     void ArchetypeList()
     {
-        int Index = 0, SelectedArch = -1;
+        int Index = 0;
         std::string ArchetypeName;
         char Buffer[256];
-
-        paperback::archetype::instance* Selected {nullptr};
 
         ImGui::Begin("PreFabs");
 
@@ -310,7 +299,7 @@ struct imgui_system : paperback::system::instance
                 if (m_pArchetype)
                 {
                     m_pArchetype->CreateEntity();
-                    //m_pArchetype = nullptr;
+                    m_pArchetype = nullptr;
                 }
             }
 
@@ -339,6 +328,8 @@ struct imgui_system : paperback::system::instance
 
         if (!m_Components.empty())
         {
+            ImGui::Separator();
+
             for (auto& ComponentInstance : m_Components)
             {
                 if (Filter.PassFilter(ComponentInstance.get_type().get_name().to_string().c_str()))
@@ -354,7 +345,6 @@ struct imgui_system : paperback::system::instance
                             auto PropertyType = property.get_type(); //etc vector 3, std::string etc
                             auto PropertyName = property.get_name().to_string();
 
-                            //PropertyName.assign(PropertyName + ComponentInstance.get_type().get_name().to_string());
                             if (PropertyType == rttr::type::get <std::reference_wrapper<float>>())
                             {
                                 ImGui::Text(PropertyName.c_str());
@@ -367,19 +357,14 @@ struct imgui_system : paperback::system::instance
                                 ImGui::DragInt(("##" + PropertyName).c_str(), &(propValue.get_value<std::reference_wrapper<int>>().get()), 1);
                             }
 
-                            // if (PropertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
-                            // {
-                            //     //DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<xcore::vector3>>().get(), 0.0f, 70.0f);
-
-                            //     ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()));
-
-                            // }
+                             if (PropertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
+                             {
+                                 ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()));
+                             }
 
                             if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>())
                             {
                                 DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get(), 0.0f, 70.0f);
-
-                                //ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()));
                             }
 
                             if (PropertyType == rttr::type::get<std::string>())
@@ -413,6 +398,7 @@ struct imgui_system : paperback::system::instance
 
                             }
                         }
+                  
                     }
                 }
             }
@@ -420,6 +406,94 @@ struct imgui_system : paperback::system::instance
 
         ImGui::End();
     }
+
+    void AddComponents()
+    {
+        std::array<const paperback::component::info*, 1 > ComponentAdd;
+        std::array<const paperback::component::info*, 1 > ComponentRemove;
+        if (m_SelectedEntity.first)
+        {
+            ImGui::Begin( "Component Management");
+
+            if (m_bAdd)
+            {
+                if (ImGui::BeginCombo("##AddComponents", "Available Components"))
+                {
+                    for (auto& [CompKey, CompValue] : PPB.GetComponentInfoMap())
+                    {
+                        if (!m_SelectedEntity.first->CheckComponentExistence(CompValue))
+                        {
+                            if (ImGui::Selectable(CompValue->m_pName))
+                            {
+                                ComponentAdd[0] = CompValue;
+                                ComponentRemove[0] = &paperback::component::info_v<transform>;
+
+                                PPB.AddOrRemoveComponents(m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second }), ComponentAdd, {});
+
+                                m_SelectedEntity.first = nullptr;
+                                m_SelectedEntity.second = paperback::u32_max;
+
+                                if (!m_Components.empty())
+                                {
+                                    m_Components.clear();
+                                    ImGui::EndCombo();
+                                    ImGui::End();
+                                    return;
+                                }
+                                else
+                                {
+                                    ImGui::EndCombo();
+                                    ImGui::End();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+
+                    ImGui::EndCombo();
+                }
+            }
+
+
+            if (m_bRemove)
+            {
+                if (ImGui::BeginCombo("##RemoveComponent", "Current Components"))
+                {
+                    for (paperback::u32 i = 0; i < m_SelectedEntity.first->GetComponentNumber(); ++i)
+                    {
+                        if (ImGui::Selectable(m_SelectedEntity.first->GetComponentInfos()[i]->m_pName))
+                        {
+                            ComponentRemove[0] = (m_SelectedEntity.first->GetComponentInfos()[i]);
+                            PPB.AddOrRemoveComponents(m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second }), {}, ComponentRemove);
+            
+                            m_SelectedEntity.first = nullptr;
+                            m_SelectedEntity.second = paperback::u32_max;
+            
+                            if (!m_Components.empty())
+                            {
+                                m_Components.clear();
+                                ImGui::EndCombo();
+                                ImGui::End();
+                                return;
+                            }
+                            else
+                            {
+                                ImGui::EndCombo();
+                                ImGui::End();
+                                return;
+                            }
+                        }
+                    }
+
+                    ImGui::EndCombo();
+                }
+
+            }
+            
+            ImGui::End();
+        }
+    }
+
 
     void OpenSaveFile()
     {
@@ -436,11 +510,8 @@ struct imgui_system : paperback::system::instance
             {
                 m_LoadedPath = m_FilePath;
 
-
                 if (m_SelectedEntity.first)
                     m_SelectedEntity.first = nullptr; m_SelectedEntity.second = paperback::u32_max;
-
-                m_bNodeOpen = false;
 
                 if (!m_Components.empty())
                     m_Components.clear();
@@ -562,7 +633,6 @@ struct imgui_system : paperback::system::instance
     {
         if (m_SelectedEntity.first)
         {
-
             ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
 
             if (ImGui::BeginPopupModal(WindowName.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize))

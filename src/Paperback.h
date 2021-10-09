@@ -47,6 +47,10 @@ namespace paperback
 	{
 		struct info;
 	}
+	namespace archetype
+	{
+		class manager;
+	}
 
 }
 

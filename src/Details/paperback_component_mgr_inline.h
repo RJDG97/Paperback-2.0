@@ -33,6 +33,11 @@ namespace paperback::component
         else                                  return FindComponentInfo( m_ComponentGuidArray[ ComponentUID ] );
     }
 
+    component::manager::ComponentInfoMap& manager::GetComponentInfoMap() noexcept
+    {
+        return m_ComponentInfoMap;
+    }
+
     void manager::Terminate( void ) noexcept
     {
         

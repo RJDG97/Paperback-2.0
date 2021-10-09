@@ -44,10 +44,11 @@ namespace paperback::archetype
         PPB_INLINE
 		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
 
+        
         template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
 	    component::entity AddOrRemoveComponents( const component::entity Entity
-								               , std::span<const component::info* const> Add
-								               , std::span<const component::info* const> Remove
+								               , std::span<const component::info* const> Add 
+								               , std::span<const component::info* const> Remove 
 								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
 
@@ -104,6 +105,7 @@ namespace paperback::archetype
         void RemoveEntity( const u32 SwappedGlobalIndex
                          , const component::entity DeletedEntity ) noexcept;
 
+        //friend class paperback::archetype::instance;
 
     private:
 
