@@ -29,8 +29,8 @@ namespace paperback::component
 
     const paperback::component::info* manager::FindComponentInfoFromUID( const u32 ComponentUID ) noexcept
     {
-        if ( ComponentUID >= m_ComponentUID ) return nullptr;
-        else                                  return FindComponentInfo( m_ComponentGuidArray[ ComponentUID ] );
+        if ( ComponentUID >= static_cast<u32>( m_ComponentUID ) ) return nullptr;
+        else                                                      return FindComponentInfo( m_ComponentGuidArray[ ComponentUID ] );
     }
 
     void manager::Terminate( void ) noexcept

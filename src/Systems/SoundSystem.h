@@ -58,12 +58,12 @@ public:
     //play event 
     // helper function
     // loads and plays an event from the current loaded bank
-    void PlaySoundEvent(const std::string& Path) 
+    void PlaySoundEvent( const std::string_view& Path ) 
     {
 
         FMOD::Studio::EventDescription* event = nullptr;
         
-        if (m_pStudioSystem->getEvent(Path.c_str(), &event) == FMOD_OK) 
+        if (m_pStudioSystem->getEvent( Path.data(), &event) == FMOD_OK ) 
         {
 
             m_SoundFiles.push_back({});
@@ -85,7 +85,7 @@ public:
         }
         else {
 
-            ERROR_LOG("Sound Event: '" + Path  + "' does not exist in current Sound Bank");
+            ERROR_LOG("Sound Event: '" + std::string(Path)  + "' does not exist in current Sound Bank");
         }
     }
 
@@ -231,7 +231,7 @@ public:
     PPB_FORCEINLINE
     void operator()(paperback::component::entity& Entity, timer& Timer, sound& Sound, transform* Transform, rigidbody* Rigidbody) noexcept
     {
-        if (Entity.IsZombie())
+        if ( Entity.IsZombie() )
             return;
 
         // System Update Code - FOR A SINGLE ENTITY
@@ -241,7 +241,7 @@ public:
         {
 
             //if no, then create new entry and add into record of currently playing sounds
-            PlaySoundEvent(Sound.m_SoundID);
+            PlaySoundEvent( Sound.m_SoundID );
             Sound.m_SoundPlayTag = m_SoundCounter;
         }
         else

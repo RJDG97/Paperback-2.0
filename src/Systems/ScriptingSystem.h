@@ -9,8 +9,7 @@
 struct scripting_system : paperback::system::instance
 {
 	Mono* m_pMono = nullptr;
-
-	std::unordered_map<std::string, Script*> scriptlist;
+	std::unordered_map< std::string, std::unique_ptr<Script> > scriptlist;
 
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
@@ -19,7 +18,6 @@ struct scripting_system : paperback::system::instance
 
 	void OnSystemCreated(void) noexcept
 	{
-		// Set up Mono
 		m_pMono = &Mono::GetInstanced();
 	}
 
@@ -28,25 +26,25 @@ struct scripting_system : paperback::system::instance
 		tools::query Query;
 		Query.m_Must.AddFromComponents<entityscript>();
 
-		ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		ForEach( Search( Query ), [&]( entityscript& script ) noexcept
 		{
-			std::unordered_map<std::string, Script*>::const_iterator found = scriptlist.find(script.m_ScriptID);
-			if (found == scriptlist.end()) {
-				scriptlist.insert({ script.m_ScriptID, new Script(script.m_ScriptID) });
-				found = scriptlist.find(script.m_ScriptID);
-				found->second->Start();
+			auto Found = scriptlist.find( script.m_ScriptID );
+
+			if ( Found == scriptlist.end() )
+			{
+				const auto& [ Script, Valid ] = scriptlist.insert( { script.m_ScriptID, std::make_unique<Script>( script.m_ScriptID ) } );
+				if ( Valid )
+					Script->second->Start();
 			}
-			else {
-				found->second->Update();
+			else
+			{
+				Found->second->Update();
 			}
 		});
 	}
 
 	void OnSystemTerminated(void) noexcept 
 	{
-		for (auto temp : scriptlist)
-			delete temp.second;
-
 		m_pMono->ReleaseDomain();
 	}
 };

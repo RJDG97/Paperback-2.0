@@ -1,18 +1,7 @@
 #pragma once
 
-// for my knowledge only : jy -> transform shall store bounding shape
-//                                  rigidbody shall store the velocity
-
 #include "Math/Vector3f.h"
 #include "Math/MathUtils.h"
-
-// -------------------- Any object without a mass shall not be moveable by forces
-// -- Rate of decay of the forces shall be VERY HIGH VERY VERY HIGH 
-//                so as not to have obj leave the screen
-
-// input system shall be 3d. meaning that input of forces through input system will be 3 dimensional
-
-
 
 struct rigidforce
 {

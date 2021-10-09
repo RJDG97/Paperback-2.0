@@ -72,6 +72,14 @@ namespace paperback::archetype
         auto  OriginalArchetype = EntityInfo.m_pArchetype;
 		auto  UpdatedSignature  = EntityInfo.m_pArchetype->m_ComponentBits;
 
+        // Validifies Add / Remove
+        auto InvalidAddRemove = [&]( const tools::bits& Sig, std::span<const component::info* const> A, std::span<const component::info* const> R ) noexcept -> bool
+        {
+            for ( auto& ToAdd : A )
+                if ( Sig.Has( ToAdd.m_UID ) ) return true;
+            for ( auto& ToRemove : R )
+                if ( Sig.None( ToRemove.m_UID ) ) return true;
+        };
         auto InvalidComponentModification = [&]( const component::info* ComponentInfo ) -> bool
         {
             if ( ComponentInfo->m_UID == 0 )
@@ -92,6 +100,9 @@ namespace paperback::archetype
             }
             return false;
         };
+
+        if ( InvalidAddRemove( UpdatedSignature, Add, Remove ) )
+            PPB_ERR_PRINT_N_LOG( "Archetype Manager: Invalid Addition / Removal of Components from Entity" );
 
 		// Update Entity's bit signature based on new components
 		for ( const auto& ComponentToAdd : Add )

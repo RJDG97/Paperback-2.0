@@ -8,6 +8,8 @@ namespace paperback::system
 
 	manager::~manager()
 	{
+		m_SystemMap.clear();
+
 		while( m_Systems.size() )
         {
             auto p = m_Systems.back().second.release();
@@ -75,15 +77,5 @@ namespace paperback::system
 	{
 		for ( const auto& [ Info, System ] : m_Systems )
 			Info->m_RunSystem( *System, system::type::call::TERMINATED );
-
-		m_SystemMap.clear();
-
-		while( m_Systems.size() )
-        {
-            auto p = m_Systems.back().second.release();
-			m_Systems.back().first->m_Destructor( *p );
-            delete reinterpret_cast<void*>( p );
-			m_Systems.pop_back();
-        }
 	}
 }

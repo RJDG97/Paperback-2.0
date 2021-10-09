@@ -10,9 +10,9 @@ struct collision_system : paperback::system::instance
         .m_pName = "collision_system"
     };
 
-    void operator()(paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/ boundingbox* Boundingbox, sphere* Sphere) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/ boundingbox* Boundingbox, sphere* Sphere ) noexcept
     {
-        if (Entity.IsZombie()) return;
+        if ( Entity.IsZombie() ) return;
 
         // Initialize Query
         tools::query Query;
@@ -22,12 +22,12 @@ struct collision_system : paperback::system::instance
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
 
-        ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, boundingbox* BB, sphere* Ball) noexcept -> bool
+        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, boundingbox* BB, sphere* Ball ) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
 
                 // Do not check against self
-                if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return false;
+                if ( (&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie()) ) return false;
 
                 xf.x = Xform.m_Position.x + Xform.m_Offset.x;
                 xf.y = Xform.m_Position.y + Xform.m_Offset.y;

@@ -11,12 +11,7 @@ struct transform
 	};
 
 	paperback::Vector3f	 m_Offset;
-	paperback::Vector3f	 m_Position;							// -- Position vector
-
-	//paperback::Mtx4x4 m_mtxTrans;								// -- The translatation matrix
-	//paperback::Mtx4x4 m_mtxRot;									// -- The rotation matrix
-	//paperback::Mtx4x4 m_mtxScale;								// -- The scale matrix
-	//static paperback::Mtx4x4 m_mtxConversion;					// -- Matrix that converts coordinates from NDC to actual
+	paperback::Vector3f	 m_Position;
 };
 
 namespace RR_Transform

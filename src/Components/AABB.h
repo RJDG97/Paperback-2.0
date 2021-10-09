@@ -1,4 +1,4 @@
-// ----- Start of header guard
+#pragma once
 #ifndef AABB_H
 #define AABB_H
 
@@ -12,7 +12,6 @@ struct aabb
 		.m_pName = "AABB"
 	};
 
-public:													// ----- Private members
 	paperback::Vector3f m_point[8];
 	bool m_Collided;
 

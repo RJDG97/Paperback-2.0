@@ -3,6 +3,10 @@
 #include "glm/inc/gtc/type_ptr.hpp"
 #include <glm/inc/gtx/transform.hpp>
 
+// Converted to std::string_view from std::string on these lines:
+// std::string( model.first ) - Performs an implicit conversion from std::string_view to std::string - Basic String Constructor (10)
+// 190, 245, 267, 292, 306, 342, 418
+
 Renderer::Renderer() :
 	m_Resources{ RenderResourceManager::GetInstanced() }
 {
@@ -187,7 +191,7 @@ void Renderer::SetUpFramebuffer()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points, std::vector<glm::mat4>* bone_transforms)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points, std::vector<glm::mat4>* bone_transforms)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -242,7 +246,7 @@ void Renderer::DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points)
 	m_Resources.m_Shaders["Debug"].UnUse();
 }
 
-void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms)
+void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms)
 {
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -264,8 +268,8 @@ void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm:
 
 	for (const auto& model : Objects)
 	{
-		auto& SubMeshes = m_Resources.m_Models[model.first].GetSubMeshes();
-
+		auto& SubMeshes = m_Resources.m_Models[ std::string( model.first ) ].GetSubMeshes();
+		
 		for (auto& submesh : SubMeshes)
 		{
 			// Set model vbo handle to vao
@@ -287,9 +291,9 @@ void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm:
 				{
 					m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", false);
 				}
-
+				
 				// Draw object
-				glDrawElements(m_Resources.m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+				glDrawElements(m_Resources.m_Models[ std::string( model.first ) ].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 			}
 		}
 	}
@@ -303,7 +307,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string, std::vector<glm:
 	glCullFace(GL_BACK);
 }
 
-void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms)
+void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms)
 {
 	// Bind to lighting frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_LightingBuffer.m_FrameBuffer[0]);
@@ -339,8 +343,8 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 
 	for (const auto& model : Objects)
 	{
-		auto& SubMeshes = m_Resources.m_Models[model.first].GetSubMeshes();
-
+		auto& SubMeshes = m_Resources.m_Models[ std::string( model.first ) ].GetSubMeshes();
+		
 		for (auto& submesh : SubMeshes)
 		{
 			Model::Material& material = m_Resources.m_Materials[submesh.m_Material];
@@ -413,9 +417,9 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 				{
 					m_Resources.m_Shaders["Light"].SetUniform("uHasBones", false);
 				}
-
+				
 				// Draw object
-				glDrawElements(m_Resources.m_Models[model.first].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+				glDrawElements(m_Resources.m_Models[ std::string( model.first ) ].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 			}
 		}
 

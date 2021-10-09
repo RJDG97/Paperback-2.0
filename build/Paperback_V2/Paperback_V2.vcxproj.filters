@@ -148,9 +148,6 @@
     <ClInclude Include="..\..\src\Components\Rigidbody.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Systems\BulletLogicSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
@@ -419,6 +416,14 @@
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Systems\AnimatorSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+  </ItemGroup>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\EntityScript.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\CollisionSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
   </ItemGroup>

@@ -96,6 +96,7 @@ namespace paperback::vm
 				if ( pInfo.m_Move )
 				{
 					pInfo.m_Move( &pData[PoolIndex * pInfo.m_Size], &pData[m_CurrentEntityCount * pInfo.m_Size] );
+					if ( pInfo.m_Destructor ) pInfo.m_Destructor( &pData[m_CurrentEntityCount * pInfo.m_Size] );
 				}
 				else
 				{
@@ -199,13 +200,13 @@ namespace paperback::vm
                 if( Info.m_Move )
                 {
                     Info.m_Move( &m_MemoryPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]					    // Destination
-							   , &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] ); // Source
+							   , &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );		// Source
                 }
                 else
                 {
                     std::memcpy( &m_MemoryPool[ iPoolTo ][ Info.m_Size * NewPoolIndex ]						// Destination
-                               , &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ]	// Source
-                               , Info.m_Size );																	// Number of bytes to copy
+                               , &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ]			// Source
+                               , Info.m_Size );																// Number of bytes to copy
                 }
 
 				// If either pool's components is maxed out
@@ -244,6 +245,25 @@ namespace paperback::vm
 		MovedEntity.m_Validation.m_bZombie = true;
 
         return NewPoolIndex;
+	}
+
+	void instance::CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept
+	{
+		for ( u32 i = 0; i < m_NumberOfComponents; ++i )
+		{
+			auto CSize = m_ComponentInfo[ i ]->m_Size;
+			if ( m_ComponentInfo[ i ]->m_Copy )
+			{
+				m_ComponentInfo[i]->m_Copy( &m_MemoryPool[ i ][ ToIndex * CSize ]		// Destination
+										  , &m_MemoryPool[ i ][ FromIndex * CSize ] );	// Source
+			}
+			else
+			{
+				std::memcpy( &m_MemoryPool[ i ][ CSize * ToIndex ]						// Destination
+                           , &m_MemoryPool[ i ][ CSize * FromIndex ]					// Source
+                           , CSize );													// Number of bytes to copy
+			}
+		}
 	}
 
 	template < typename T_COMPONENT >

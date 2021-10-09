@@ -135,6 +135,7 @@
     <ClInclude Include="..\..\src\Components\Animator.h" />
     <ClInclude Include="..\..\src\Components\BoundingBox.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
+    <ClInclude Include="..\..\src\Components\EntityScript.h" />
     <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
@@ -216,8 +217,8 @@
     <ClInclude Include="..\..\src\Shapes\Polygon_shape.h" />
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
     <ClInclude Include="..\..\src\Shapes\Triangle.h" />
+    <ClInclude Include="..\..\src\Systems\CollisionSystem.h" />
     <ClInclude Include="..\..\src\Systems\AnimatorSystem.h" />
-    <ClInclude Include="..\..\src\Systems\BulletLogicSystem.h" />
     <ClInclude Include="..\..\src\Systems\DebugSystem.h" />
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
