@@ -1,6 +1,6 @@
 #pragma once
-#include "Math/Math_includes.h"
 
+#include "Math/Math_includes.h"
 
 struct scale
 {
@@ -9,7 +9,7 @@ struct scale
 		.m_pName = "Scale"
 	};
 
-	paperback::Vector3f	 m_Value;							// -- Scale vector
+	paperback::Vector3f	 m_Value;
 };
 
 namespace RR_SCALE

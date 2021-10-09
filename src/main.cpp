@@ -76,7 +76,7 @@ void InitializeGame()
     {
         PPB.RegisterSystems<
             physics_system,
-            bullet_logic_system,
+            collision_system,
             sound_system,
             scripting_system,
             window_system,

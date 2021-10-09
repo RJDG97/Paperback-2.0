@@ -23,6 +23,9 @@ namespace tools
         //-----------------------------------
         PPB_FORCEINLINE
         bool Has( const int Bit ) const noexcept;
+
+        PPB_FORCEINLINE
+        bool None( const int Bit ) const noexcept;
 		
         PPB_INLINE
         bool Match( const bits& Query ) const noexcept;

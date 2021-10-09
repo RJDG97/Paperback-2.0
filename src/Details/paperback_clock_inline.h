@@ -1,6 +1,9 @@
 #pragma once
 namespace tools
 {
+	//-----------------------------------
+	//            Default
+	//-----------------------------------
 	clock::clock(float TimeScale) noexcept :
 		m_FixedDT{ 1 / 60.0f },
 		m_TimeScale{ TimeScale },

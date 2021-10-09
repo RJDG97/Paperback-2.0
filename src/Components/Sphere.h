@@ -1,4 +1,4 @@
-// ----- Start of header guard
+#pragma once
 #ifndef SPHERE_H
 #define SPHERE_H
 
@@ -15,10 +15,6 @@ struct sphere
 	float				m_fRadius;							// ----- Radius of circle
 	bool				m_Collided;							// ----- collided
 };
-
-//		this will mainly be used as a 1st/2nd step collision check
-
-// ----- End of header guard
 
 
 namespace RR_SPHERE

@@ -43,8 +43,8 @@ struct render_system : paperback::system::instance
 	{
 		animator_test.UpdateAnimation(DeltaTime());
 
-		//// Populate map to render objects
-		std::unordered_map<std::string, std::vector<glm::mat4>> objects;
+		// Populate map to render objects
+		std::unordered_map<std::string_view, std::vector<glm::mat4>> objects;
 
 		glm::mat4 t{ 1.0f };
 		t = glm::translate(t, glm::vec3{ -3,2,-3 });
@@ -55,7 +55,7 @@ struct render_system : paperback::system::instance
 		auto transforms{ animator_test.GetFinalBoneMatrices() };
 
 		
-		//just testing stuff
+		// Initializing Query
 		tools::query Query;
 		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation>();
 
@@ -66,14 +66,15 @@ struct render_system : paperback::system::instance
 
 		objects["Quad"].push_back(t);
 
-		ForEach( Search( Query ), [&]( transform& Xform, mesh& Mesh, scale& Scale, rotation& Rotation) noexcept
+		ForEach( Search( Query ), [&]( transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation) noexcept
 		{
 			glm::mat4 t{ 1.0f };
-			t = glm::translate(t, glm::vec3{Xform.m_Position.x, Xform.m_Position.y, Xform.m_Position.z});
+			t = glm::translate(t, glm::vec3{Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z});
 			t = glm::rotate(t, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
 			t = glm::rotate(t, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
 			t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
 			t = glm::scale(t, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
+
 			objects[Mesh.m_Model].push_back(t);
 		});
 

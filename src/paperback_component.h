@@ -121,6 +121,7 @@ namespace paperback::component
 
         using Constructor   =  void( std::byte* ) noexcept;
         using Destructor    =  void( std::byte* ) noexcept;
+        using Copy          =  void( std::byte* Destination, const std::byte* Source ) noexcept;
         using Move          =  void( std::byte* Destination, std::byte* Source ) noexcept;
 
         const type::guid       m_Guid;
@@ -129,6 +130,7 @@ namespace paperback::component
         mutable u32            m_Size;
         Constructor*           m_Constructor;
         Destructor*            m_Destructor;
+        Copy*                  m_Copy;
         Move*                  m_Move;
         const char*            m_pName;
     };
@@ -190,11 +192,14 @@ namespace paperback::component
         union Validation final
         {
             uint32_t        m_UID;
+
+            #pragma warning(disable : 4201)
             struct
             {
                 uint32_t    m_Next       : 31   // Index of next Entity within Entity Manager (For Deletion) - Currently Unused
                 ,           m_bZombie    : 1;   // Entity Status
             };
+            #pragma warning(default : 4201)
 
             PPB_FORCEINLINE
             constexpr bool operator == ( const Validation& V ) const noexcept;
@@ -202,11 +207,14 @@ namespace paperback::component
         static_assert( sizeof(Validation) == sizeof(uint32_t) );
 
         uint64_t            m_UID;
+
+        #pragma warning(disable : 4201)
         struct
         {
             uint32_t        m_GlobalIndex;      // Index of Entity within Entity Manager
             Validation      m_Validation;       // Entity Status
         };
+        #pragma warning(default : 4201)
 
         PPB_FORCEINLINE
         constexpr bool IsZombie( void ) const noexcept;

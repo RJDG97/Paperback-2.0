@@ -229,7 +229,8 @@ namespace paperback::deserialize
                                             NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
 
                                         if (obj.is_type<component::entity>())
-                                            NewArchetype->GetComponent<component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<component::entity>();
+                                            continue;
+                                            //NewArchetype->GetComponent<component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<component::entity>();
 
                                         if (obj.is_type<sound>())
                                             NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();

@@ -1,4 +1,4 @@
-// ----- Start of header guard
+#pragma once
 #ifndef BOUNDIINGBOX_H
 #define BOUNDIINGBOX_H
 
@@ -11,7 +11,6 @@ struct boundingbox
 		.m_pName = "BoundingBox"
 	};
 
-public:													// ----- Private members
 	paperback::Vector3f Min, Max;
 	bool m_Collided;
 

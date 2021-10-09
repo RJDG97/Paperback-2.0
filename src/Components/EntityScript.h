@@ -7,7 +7,6 @@ struct entityscript
         .m_pName = "EntityScript"
     };
 
-    // Data members
     std::string m_ScriptID;
 };
 
