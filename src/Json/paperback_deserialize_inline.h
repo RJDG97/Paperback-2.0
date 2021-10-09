@@ -236,6 +236,9 @@ namespace paperback::deserialize
 
                                         if (obj.is_type<timer>())
                                             NewArchetype->GetComponent<timer>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<timer>();
+
+                                        if (obj.is_type<entityscript>())
+                                            NewArchetype->GetComponent<entityscript>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<entityscript>();
                                     }
 
                                     EntityCounter++;
