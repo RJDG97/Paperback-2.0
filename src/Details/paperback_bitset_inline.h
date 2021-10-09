@@ -36,6 +36,14 @@ namespace tools
 		return !!(m_bits[x] & (1ull << y));
     }
 
+    bool bits::None( const int Bit ) const noexcept
+    {
+		int x = Bit / 64;
+		int y = Bit % 64;
+		
+		return !(m_bits[x] & (1ull << y));
+    }
+
     bool bits::Match( const bits& Query ) const noexcept
     {
 		for (size_t i = 0, size = m_bits.size(); i < size; ++i)

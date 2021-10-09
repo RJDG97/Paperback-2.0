@@ -1,4 +1,5 @@
 #pragma once
+
 #include "paperback_pch.h"
 #include "Json/paperback_json.h"
 
@@ -51,8 +52,7 @@ struct window_system : paperback::system::instance
         GLenum Err = glewInit();
 
         // Check that glew have no error
-        if (GLEW_OK != Err)
-            throw std::exception{ reinterpret_cast<const char*>(glewGetErrorString(Err)) };
+        PPB_ASSERT_MSG( GLEW_OK != Err, reinterpret_cast<const char*>(glewGetErrorString(Err)) );
 
         std::string Version = "Using GLEW Version: " + std::string( reinterpret_cast<const char*>(glewGetString(GLEW_VERSION)) );
         INFO_PRINT( Version );
@@ -74,12 +74,6 @@ struct window_system : paperback::system::instance
     {
         glfwTerminate();
     }
-
-    //PPB_FORCEINLINE
-    //~window_system()
-    //{
-    //    glfwTerminate();
-    //}
 
     static void KeyboardCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
     {

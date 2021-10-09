@@ -1,6 +1,7 @@
+#pragma once
+
 #include "Math/Math_includes.h"
 
-#pragma once
 struct rotation
 {
 	constexpr static auto typedef_v = paperback::component::type::data
@@ -8,7 +9,7 @@ struct rotation
 		.m_pName = "Rotation"
 	};
 
-	paperback::Vector3f	 m_Value;							// -- Scale vector
+	paperback::Vector3f	 m_Value;
 };
 
 namespace RR_ROTATION

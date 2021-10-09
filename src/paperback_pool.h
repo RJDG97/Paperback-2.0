@@ -37,6 +37,9 @@ namespace paperback::vm
 		PPB_INLINE
 		u32 TransferExistingComponents( const PoolDetails& Details, vm::instance& Pool ) noexcept;
 
+		PPB_INLINE
+		void CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept;
+
 		template < typename T_COMPONENT >
 		T_COMPONENT& GetComponent( const u32 PoolIndex ) const noexcept;
 

@@ -58,36 +58,34 @@ public:
     //play event 
     // helper function
     // loads and plays an event from the current loaded bank
-    void PlaySoundEvent(const char* Path) 
+    void PlaySoundEvent( const std::string_view& Path ) 
     {
 
         FMOD::Studio::EventDescription* event = nullptr;
         
-        if (m_pStudioSystem->getEvent(Path, &event) == FMOD_OK) 
+        if (m_pStudioSystem->getEvent( Path.data(), &event) == FMOD_OK ) 
         {
 
             m_SoundFiles.push_back({});
             m_SoundFiles.back().m_ID = ++m_SoundCounter;
 
-            //FMOD::Studio::EventInstance* instance = nullptr;
-            //event->loadSampleData();
             event->createInstance(&m_SoundFiles.back().m_pSound);
             FMOD_RESULT result = m_SoundFiles.back().m_pSound->start(); 
             
             ERROR_LOG("Play Sound Event Result: " + result);
 
-            m_SoundFiles.back().m_pSound->setVolume(0.5f);
-
             //in case of extra load case to debug log
             FMOD_STUDIO_PLAYBACK_STATE be;
             m_SoundFiles.back().m_pSound->getPlaybackState(&be);
+
+            m_SoundFiles.back().m_pSound->setVolume(0.05f);
 
             if (be != 0)
                 ERROR_LOG("Play Sound Event Playback State: " + be);
         }
         else {
 
-            ERROR_LOG("Sound Event: '" + std::string{ Path }  + "' does not exist in current Sound Bank");
+            ERROR_LOG("Sound Event: '" + std::string(Path)  + "' does not exist in current Sound Bank");
         }
     }
 
@@ -202,12 +200,6 @@ public:
 
         AddBank("TestBank/Master.bank");
         AddBank("TestBank/Master.strings.bank");
-        /*AddBank("TestBank/Dialogue_EN.bank");
-        AddBank("TestBank/Music.bank");
-        AddBank("TestBank/SFX.bank");
-        AddBank("TestBank/Vehicles.bank");
-        AddBank("TestBank/VO.bank");
-        */
     }
 
     constexpr static auto typedef_v = paperback::system::type::update
@@ -226,10 +218,6 @@ public:
 
         // store pointer to underlying fmod system
         m_pStudioSystem->getCoreSystem(&m_pFMODSystem);
-
-        //add master bank file
-        //AddBank("Master.bank");
-        //AddBank("Master.strings.bank");
         
         LoadDebugBank();
 
@@ -238,20 +226,14 @@ public:
         m_pStudioSystem->setNumListeners(1);
     }
 
-    PPB_FORCEINLINE
-    void OnFrameStart(void) noexcept
-    {
-
-    }
-
     // entity that is processed by soundsystem will specifically have sound and timer components
     // entity must have either transform or rigidbody, can have both if is 3D
     PPB_FORCEINLINE
     void operator()(paperback::component::entity& Entity, timer& Timer, sound& Sound, transform* Transform, rigidbody* Rigidbody) noexcept
     {
-        if (Entity.IsZombie())
+        if ( Entity.IsZombie() )
             return;
-        
+
         // System Update Code - FOR A SINGLE ENTITY
         auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [Sound](const SoundFile& soundfile) { return Sound.m_SoundPlayTag == soundfile.m_ID; });
         //check if id already exists 
@@ -259,7 +241,7 @@ public:
         {
 
             //if no, then create new entry and add into record of currently playing sounds
-            PlaySoundEvent(Sound.m_SoundID.c_str());
+            PlaySoundEvent( Sound.m_SoundID );
             Sound.m_SoundPlayTag = m_SoundCounter;
         }
         else
@@ -287,62 +269,6 @@ public:
             
             UpdateEvent3DAttributes(soundfile->m_pSound, Transform, Rigidbody);
         }
-
-
-        //once lifetime over remove sound
-        /*Timer.m_Timer -= (Timer.m_Timer > 0.0f) ? DeltaTime() : 0.0f;
-
-        if (Timer.m_Timer <= 0.0f && Timer.m_Timer >= -1.0f)
-        {
-
-            Timer.m_Timer = 0.0f;
-            
-            //find event with tag
-            auto current_event = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [Sound](SoundFile& sound_file) { return sound_file.m_ID == Sound.m_SoundPlayTag; });
-
-            //stop event
-            if (current_event != m_SoundFiles.end())
-            {
-
-                StopSoundEvent(current_event->m_pSound);
-
-                //remove event from event vector
-                m_SoundFiles.erase(current_event);
-            }
-
-            //delete instance
-            //PPB.DeleteEntity(Entity);
-        }*/
-    }
-
-    //dtor to clean system
-    //StopSound("All", true);
-
-    //debug timer for event parameter modification
-    float m_TimeTest{ 3.0f };
-
-    //debug function to demonstrate parameter triggered event changes with example fmod bank
-    void DebugSoundParameterTest(FMOD::Studio::EventInstance* Sound) {
-
-        //debug timer event toggle
-        if (m_TimeTest > 0.0f)
-        {
-
-            m_TimeTest -= DeltaTime();
-        }
-
-        if (m_TimeTest < 0.0f)
-        {
-
-            //value 74 if parameter does not exist
-            FMOD_RESULT err = Sound->setParameterByName("Progression", 1.0f);
-
-            ERROR_LOG("SoundSystem Debug Parameter Test Result: " + err);
-        }
-        else
-        {
-            ERROR_LOG("SoundSystem Debug Parameter Test: Yet to trigger"); 
-        }
     }
 
 
@@ -362,11 +288,6 @@ public:
             if (be == 2) {
 
                 sound.m_ID = 0;
-            }
-            else
-            {
-
-                //DebugSoundParameterTest(sound.m_pSound);
             }
         }
 

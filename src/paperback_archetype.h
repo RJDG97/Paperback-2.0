@@ -31,6 +31,9 @@ namespace paperback::archetype
 
         template< typename T_CALLBACK = paperback::empty_lambda >
         void CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
+
+        PPB_INLINE
+        void CloneEntity( component::entity& Entity ) noexcept;
         
         PPB_INLINE
         u32 DeleteEntity( const PoolDetails Details ) noexcept;

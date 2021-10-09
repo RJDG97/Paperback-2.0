@@ -76,7 +76,7 @@ void InitializeGame()
     {
         PPB.RegisterSystems<
             physics_system,
-            bullet_logic_system,
+            collision_system,
             sound_system,
             scripting_system,
             window_system,
@@ -89,7 +89,6 @@ void InitializeGame()
     {
         PPB.OpenScene("test.json");
     
-
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, boundingbox& Bbox, sphere& Sphere, rigidbody& RB)// rigidforce& rf)
             {
                 Transform.m_Position.x = -8;

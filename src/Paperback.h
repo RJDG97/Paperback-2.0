@@ -37,7 +37,7 @@ namespace paperback
 {
 	namespace coordinator
 	{
-		struct instance;
+		class instance;
 	}
 	namespace system
 	{

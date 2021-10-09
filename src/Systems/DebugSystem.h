@@ -10,11 +10,6 @@ struct debug_system : paperback::system::instance
 
     std::array<std::vector<glm::vec3>, 2> m_Points;
 
-    //container to keep system run time
-    std::vector<std::chrono::high_resolution_clock::time_point> m_RawTimePerSystem;
-    std::vector<float> m_PercentageTimePerSystem, m_TimePerSystem;
-    float m_TotalTime;
-
     bool m_IsDebug;
 
 
@@ -22,55 +17,6 @@ struct debug_system : paperback::system::instance
     {
         .m_pName = "debug_system"
     };
-
-    // helper function to track timer
-    // stores the then current time at the start of the system's run for the frame
-    // to be called at OnFrameStart
-    void BeginTime(size_t System_Index)
-    {
-        std::chrono::high_resolution_clock::time_point temp = PPB.Now();
-        m_RawTimePerSystem[System_Index] = temp;
-    }
-
-    // helper function to track timer
-    // stops the "timer" of the system and stores the time spent on the system
-    void EndTime(size_t System_Index)
-    {
-
-        m_TimePerSystem[System_Index] = static_cast<std::chrono::duration<float>>(PPB.Now() - m_RawTimePerSystem[System_Index]).count();
-    }
-
-
-    //debug print function
-    // prints current total time against individual times by percentage
-    void DebugPrint()
-    {
-
-        /*std::cout << "Total time: " << m_TotalTime << std::endl;
-        std::cout << "\tSystem 1: " << m_PercentageTimePerSystem[0] << std::endl;
-        std::cout << "\tSystem 2: " << m_PercentageTimePerSystem[1] << std::endl;*/
-    }
-
-    // returns a reference to the vector of time taken per system in seconds
-    std::vector<float>& GetSystemTimeTaken()
-    {
-
-        return m_TimePerSystem;
-    }
-
-    //returns a reference to the vector of time taken per system in percentages
-    std::vector<float>& GetSystemTimeTakenPercentage()
-    {
-
-        return m_PercentageTimePerSystem;
-    }
-
-    //helper function to convert xcore::vector3 to Vector3f
-    paperback::Vector3f ConvertXcoreVecTo3f(const xcore::vector3& Vec)
-    {
-
-        return { Vec.m_X, Vec.m_Y, Vec.m_Z };
-    }
 
     //helper function to convert Vector3f to glm::vec3
     glm::vec3 ConvertMathVecToGLMVec(const paperback::Vector3f& Vec3)
@@ -283,18 +229,11 @@ struct debug_system : paperback::system::instance
     {
 
         //assume passed vector contains vector3f in pairs
-
-        //convert to glm vector
-        //std::vector<glm::vec3> input{};
-
         for (paperback::Vector3f& vec3 : Vec)
         {
 
             m_Points[IsCollide].push_back(ConvertMathVecToGLMVec(vec3));
         }
-
-        // send to render
-        //Renderer::GetInstanced().DebugRender(input, iscollide);
     }
 
 
@@ -302,25 +241,8 @@ struct debug_system : paperback::system::instance
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
-        // set up data container to store data about systems
-        m_RawTimePerSystem.resize(m_NumSystems);
-        m_PercentageTimePerSystem.resize(m_NumSystems);
-        m_TimePerSystem.resize(m_NumSystems);
 
         m_IsDebug = true;
-    }
-
-
-    //test debug draw function
-    std::vector<paperback::Vector3f> testvec = { { -25, -25, -25 }, { 25, 25, 25 }, { 25, -25, -25 }, { -25, 25, 25 } };
-    void TestDrawDebug()
-    {
-
-        //draw test vec
-        DrawDebugLines(testvec);
-
-        //test conversion of nonpaired vector
-
     }
 
 
@@ -382,33 +304,9 @@ struct debug_system : paperback::system::instance
     PPB_FORCEINLINE
     void OnFrameEnd(void) noexcept 
     {
-        //reset all raw times to 0 and update percentage values
-        m_TotalTime = 0.0f;
-
-        for (size_t i = 0; i < m_NumSystems; ++i)
-        {
-
-            m_PercentageTimePerSystem[i] = m_TimePerSystem[i];
-            m_TotalTime += m_TimePerSystem[i];
-        }
-
-        for (float& percentage : m_PercentageTimePerSystem)
-        {
-
-            percentage /= m_TotalTime;
-            percentage *= 100;
-        }
-        //DebugPrint();
 
         DebugInputTest();
         m_Points[0].clear();
         m_Points[1].clear();
-    }
-
-    // Terminate system
-    PPB_FORCEINLINE
-    void OnSystemTerminated(void) noexcept 
-    {
-
     }
 };

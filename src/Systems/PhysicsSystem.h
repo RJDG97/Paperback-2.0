@@ -1,5 +1,5 @@
 #pragma once
-// physics************************************************************ boundary system aka map
+
 struct physics_system : paperback::system::instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
@@ -13,7 +13,7 @@ struct physics_system : paperback::system::instance
         paperback::query::one_of<>
     >;
 
-    //helper function to ensure that momentum is -ve or +ve depending on current momentum
+    // Helper function to ensure that momentum is -ve or +ve depending on current momentum
     paperback::Vector3f SetMaxMoment(paperback::Vector3f& CurrMoment, paperback::Vector3f& Max)
     {
 
@@ -24,9 +24,6 @@ struct physics_system : paperback::system::instance
         };
     }
 
-    // formulae -> modifier will be the terminal velocity and terminal force acceleration
-    // gravity?
-    // Remember*** A force is simply a COLLISIOM resolution for the response and FINAL ACCELERATION
     void AddForce(paperback::Vector3f& Forces, const paperback::Vector3f& Force)
     {
 
@@ -58,7 +55,6 @@ struct physics_system : paperback::system::instance
     //test helper function to apply forces on all entities with rigidforce components
     void ApplyForceAll(paperback::Vector3f Vec)
     {
-
         tools::query Query;
         Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
 

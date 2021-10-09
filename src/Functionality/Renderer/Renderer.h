@@ -17,7 +17,7 @@ public:
 	//void UpdateFramebufferSize(int Width, int Height);
 
 	// Render object
-	void Render(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr, std::vector<glm::mat4>* bone_transforms = nullptr);
+	void Render(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr, std::vector<glm::mat4>* bone_transforms = nullptr);
 
 	// Prep the start of draw frame
 	void StartFrame();
@@ -54,8 +54,8 @@ private:
 	// Render debug objects
 	void DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points);
 
-	void ShadowPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
-	void RenderPass(const std::unordered_map<std::string, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
+	void ShadowPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
+	void RenderPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
 	void BlurPass();
 	void CompositePass();
 

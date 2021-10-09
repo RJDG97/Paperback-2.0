@@ -85,8 +85,16 @@ namespace paperback
 	#define CRITICAL_LOG( ... ) ::paperback::logger::GetLogger()->critical( __VA_ARGS__ )
 
 	// Assertion Methods
-	#define PPB_ASSERT( expr )
-	#define PPB_ASSERT_MSG( expr, ... )
+	#define PPB_ASSERT( expr )														\
+		if (expr) {																	\
+			ERROR_LOG("Assertion occured at {}: Line {}", __FILE__, __LINE__);		\
+		}
+
+	#define PPB_ASSERT_MSG( expr, ... )												\
+		if (expr) {																	\
+			ERROR_LOG("Assertion occured at {}: Line {}", __FILE__, __LINE__);		\
+			ERROR_LOG(__VA_ARGS__);													\
+		}
 
 #endif
 

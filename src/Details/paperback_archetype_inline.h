@@ -36,6 +36,7 @@ namespace paperback::archetype
         {
             ERROR_PRINT( "CreateEntity: Maximum entities reached" );
             ERROR_LOG( "CreateEntity: Maximum entities reached" );
+            return;
         }
 
         ++m_EntityCount;
@@ -60,6 +61,40 @@ namespace paperback::archetype
                                         , *this );
 
         }( reinterpret_cast<typename func_traits::args_tuple*>( nullptr ) );
+    }
+
+    void instance::CloneEntity( component::entity& Entity ) noexcept
+    {
+        if ( m_EntityCount + 1 >= settings::max_entities_v )
+        {
+            ERROR_PRINT( "CreateEntity: Maximum entities reached" );
+            ERROR_LOG( "CreateEntity: Maximum entities reached" );
+            return;
+        }
+
+        ++m_EntityCount;
+
+        // Entity Info of Entity to clone
+        auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity );
+
+        // Generate the next valid ID within m_ComponentPool
+        const auto PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].Append();
+        auto UpdatedPoolDetails = paperback::vm::PoolDetails
+                                  {
+                                      .m_Key       = m_PoolAllocationIndex
+                                  ,   .m_PoolIndex = PoolIndex
+                                  };
+        m_Coordinator.RegisterEntity( UpdatedPoolDetails
+                                    , *this );
+
+        if ( UpdatedPoolDetails.m_Key == EntityInfo.m_PoolDetails.m_Key )
+            m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex );
+
+        // For when separate component pools are implemented in the future
+        /* 
+        else
+            m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex, &m_ComponentPool[ EntityInfo.m_PoolDetails.m_Key ] );
+        */
     }
 
     u32 instance::DeleteEntity( const PoolDetails Details ) noexcept
@@ -193,7 +228,7 @@ namespace paperback::archetype
             assert( (( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) );
         */
         
-        if ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
+        if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
         {
             WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
             ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
@@ -235,7 +270,7 @@ namespace paperback::archetype
            assert( (( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) );
         */
 
-        if ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
+        if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
         {
             WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
             ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );

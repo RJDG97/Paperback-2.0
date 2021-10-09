@@ -258,10 +258,12 @@ namespace paperback
 
         union
         {
+            #pragma warning(disable : 4201)
             struct
             {
                 float x, y, z, w;
             };
+            #pragma warning(default : 4201)
             float array[4];
         };
 

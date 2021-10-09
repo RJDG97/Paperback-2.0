@@ -178,7 +178,7 @@ Model::SubMesh MeshBuilder::ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene
 		aiFace face = SubMesh->mFaces[i];
 
 		for (size_t j = 0; j < face.mNumIndices; ++j)
-			index.push_back(face.mIndices[j]);
+			index.push_back( static_cast<GLushort>( face.mIndices[j] ));
 	}
 
 	ExtractVertexBoneWeight(vertices, SubMesh, Mesh);
