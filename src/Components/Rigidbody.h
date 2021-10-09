@@ -20,8 +20,8 @@ struct rigidbody
         .m_pName = "Rigidbody"
     };
 
-    xcore::vector3		m_Accel;
-    xcore::vector3		m_Velocity;
+    paperback::Vector3f		m_Accel;
+    paperback::Vector3f		m_Velocity;
 };
 
 namespace RR_Rigidbody

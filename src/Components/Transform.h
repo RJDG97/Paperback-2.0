@@ -10,8 +10,8 @@ struct transform
 		.m_pName = "Transform"
 	};
 
-	xcore::vector3	 m_Offset;
-	xcore::vector3	 m_Position;							// -- Position vector
+	paperback::Vector3f	 m_Offset;
+	paperback::Vector3f	 m_Position;							// -- Position vector
 
 	//paperback::Mtx4x4 m_mtxTrans;								// -- The translatation matrix
 	//paperback::Mtx4x4 m_mtxRot;									// -- The rotation matrix

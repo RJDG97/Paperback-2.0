@@ -5,7 +5,7 @@
 #include "Math/Vector3f.h"
 #include "Math/MathUtils.h"
 
-struct Sphere
+struct sphere
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{
@@ -25,10 +25,10 @@ namespace RR_SPHERE
 {
 	RTTR_REGISTRATION
 	{
-	   rttr::registration::class_<Sphere>(Sphere::typedef_v.m_pName)
+	   rttr::registration::class_<sphere>(sphere::typedef_v.m_pName)
 		   .constructor()(rttr::policy::ctor::as_object)
-		   .property("Radius", &Sphere::m_fRadius)(rttr::policy::prop::as_reference_wrapper)
-		   .property("Is Collide", &Sphere::m_Collided);
+		   .property("Radius", &sphere::m_fRadius)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Is Collide", &sphere::m_Collided);
 	}
 }
 

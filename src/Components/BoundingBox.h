@@ -4,7 +4,7 @@
 
 #include "Math/Vector3f.h"
 
-struct BoundingBox
+struct boundingbox
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{
@@ -28,11 +28,11 @@ namespace RR_BOUNDINGBOX
 {
 	RTTR_REGISTRATION
 	{
-	   rttr::registration::class_<BoundingBox>(BoundingBox::typedef_v.m_pName)
+	   rttr::registration::class_<boundingbox>(boundingbox::typedef_v.m_pName)
 		   .constructor()(rttr::policy::ctor::as_object)
-		   .property("Min Point", &BoundingBox::Min)(rttr::policy::prop::as_reference_wrapper)
-		   .property("Max Point", &BoundingBox::Max)(rttr::policy::prop::as_reference_wrapper)
-		   .property("Is Collide", &BoundingBox::m_Collided);
+		   .property("Min Point", &boundingbox::Min)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Max Point", &boundingbox::Max)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Is Collide", &boundingbox::m_Collided);
 	}
 }
 
