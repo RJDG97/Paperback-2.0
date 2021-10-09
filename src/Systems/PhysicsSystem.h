@@ -24,18 +24,49 @@ struct physics_system : paperback::system::instance
         };
     }
 
+    // formulae -> modifier will be the terminal velocity and terminal force acceleration
+    // gravity?
+    // Remember*** A force is simply a COLLISIOM resolution for the response and FINAL ACCELERATION
+    void AddForce(paperback::Vector3f& forces, const paperback::Vector3f& force)
+    {
+
+        forces += force;
+    }
+
+    void AddMomentum(paperback::Vector3f& momentum, const paperback::Vector3f& moment)
+    {
+
+        momentum += moment;
+    }
+
+    void ResetMomentum(paperback::Vector3f momentum)
+    {
+
+        momentum = paperback::Vector3f{};
+    }
+
+    paperback::Vector3f ConvertToAccel(const float mass, const paperback::Vector3f& forces)
+    {
+        return (mass > 0) ? forces / mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
+    }
+
+    paperback::Vector3f ConvertToVelocity(const float mass, const paperback::Vector3f& momentum)
+    {
+        return  (mass > 0) ? momentum / mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
+    }
+
     //test helper function to apply forces on all entities with rigidforce components
     void ApplyForceAll(paperback::Vector3f vec)
     {
 
         tools::query Query;
         Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
-        
+
         ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& xform, rigidbody& rb, rigidforce& rf) noexcept
             {
                 assert(Entity.IsZombie() == false);
-                
-                rf.AddMomentum(vec);
+
+                AddMomentum(rf.m_Momentum, vec);
                 rf.m_MagMoment = 1.0f;
             });
     }
@@ -97,8 +128,8 @@ struct physics_system : paperback::system::instance
                     RigidForce->m_Momentum -= (RigidForce->m_NegForces * m_Coordinator.DeltaTime());
                 }
             }
-            RigidBody->m_Accel = RigidForce->ConvertToAccel().ConvertMathVecToXcoreVec();
-            RigidBody->m_Velocity = RigidForce->ConvertToVelocity().ConvertMathVecToXcoreVec();
+            RigidBody->m_Accel = ConvertToAccel(RigidForce->m_Mass, RigidForce->m_Forces).ConvertMathVecToXcoreVec();
+            RigidBody->m_Velocity = ConvertToVelocity(RigidForce->m_Mass, RigidForce->m_Momentum).ConvertMathVecToXcoreVec();
         }
         else
         {
