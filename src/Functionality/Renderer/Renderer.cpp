@@ -402,7 +402,7 @@ void Renderer::RenderPass(const std::unordered_map<std::string, std::vector<glm:
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
-				if (bone_transforms && model.first == "Character")
+				if (bone_transforms)
 				{
 					m_Resources.m_Shaders["Light"].SetUniform("uHasBones", true);
 					auto loc = glGetUniformLocation(m_Resources.m_Shaders["Light"].GetShaderHandle(), "uFinalBonesMatrices");

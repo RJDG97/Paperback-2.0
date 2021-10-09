@@ -38,7 +38,7 @@ struct render_system : paperback::system::instance
 
 		//just testing stuff
 		tools::query Query;
-		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation, animator>();
+		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation>();
 		
 		glm::mat4 t{ 1.0f };
 		t = glm::mat4{ 1.0f };
@@ -48,7 +48,7 @@ struct render_system : paperback::system::instance
 
 		objects["Quad"].push_back(t);
 
-		ForEach( Search( Query ), [&]( transform& xform, mesh& mesh, scale& scale, rotation& rotation, animator& ator) noexcept
+		ForEach( Search( Query ), [&]( transform& xform, mesh& mesh, scale& scale, rotation& rotation) noexcept
 		{
 			glm::mat4 t{ 1.0f };
 			t = glm::translate(t, glm::vec3{xform.m_Position.m_X, xform.m_Position.m_Y, xform.m_Position.m_Z});
