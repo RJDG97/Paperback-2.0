@@ -76,9 +76,9 @@ namespace paperback::archetype
         auto InvalidAddRemove = [&]( const tools::bits& Sig, std::span<const component::info* const> A, std::span<const component::info* const> R ) noexcept -> bool
         {
             for ( auto& ToAdd : A )
-                if ( Sig.Has( ToAdd.m_UID ) ) return true;
+                if ( Sig.Has( ToAdd->m_UID ) ) return true;
             for ( auto& ToRemove : R )
-                if ( Sig.None( ToRemove.m_UID ) ) return true;
+                if ( Sig.None( ToRemove->m_UID ) ) return true;
         };
         auto InvalidComponentModification = [&]( const component::info* ComponentInfo ) -> bool
         {

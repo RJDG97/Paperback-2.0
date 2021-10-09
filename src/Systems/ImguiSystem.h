@@ -196,7 +196,7 @@ struct imgui_system : paperback::system::instance
 
                     std::stringstream Label; Label << Archetype->GetName() << "(" << std::to_string(i) << ")";
 
-                    m_bNodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + "(" + std::to_string(i) + std::to_string(Index) + ")").c_str(), NodeFlags, Label.str().c_str());
+                    m_bNodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, Label.str().c_str());
 
                     if (ImGui::IsItemClicked())
                     {
