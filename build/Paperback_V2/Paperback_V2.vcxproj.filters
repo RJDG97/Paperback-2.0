@@ -394,6 +394,9 @@
     <ClInclude Include="..\..\src\Systems\WindowSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Animation\Animator.h">
+      <Filter>Source\Tools\Functionality\Animation</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Components\RigidForce.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
@@ -412,13 +415,11 @@
     <ClInclude Include="..\..\src\Scripts\IScripts.h">
       <Filter>Source\Tools\Mono</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Components\Animator.h">
+	<ClInclude Include="..\..\src\Components\Animator.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Systems\AnimatorSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
-  </ItemGroup>
     </ClInclude>
     <ClInclude Include="..\..\src\Components\EntityScript.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
