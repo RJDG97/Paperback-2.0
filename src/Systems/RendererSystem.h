@@ -48,15 +48,15 @@ struct render_system : paperback::system::instance
 
 		objects["Quad"].push_back(t);
 
-		ForEach( Search( Query ), [&]( transform& xform, mesh& mesh, scale& scale, rotation& rotation) noexcept
+		ForEach( Search( Query ), [&]( transform& Xform, mesh& Mesh, scale& Scale, rotation& Rotation) noexcept
 		{
 			glm::mat4 t{ 1.0f };
-			t = glm::translate(t, glm::vec3{xform.m_Position.m_X, xform.m_Position.m_Y, xform.m_Position.m_Z});
-			t = glm::rotate(t, glm::radians(rotation.m_Value.m_X), glm::vec3{ 1.f, 0.f, 0.f });
-			t = glm::rotate(t, glm::radians(rotation.m_Value.m_Y), glm::vec3{ 0.f, 1.f, 0.f });
-			t = glm::rotate(t, glm::radians(rotation.m_Value.m_Z), glm::vec3{ 0.f, 0.f, 1.f });
-			t = glm::scale(t, glm::vec3{ scale.m_Value.m_X, scale.m_Value.m_Y, scale.m_Value.m_Z });
-			objects[mesh.m_Model].push_back(t);
+			t = glm::translate(t, glm::vec3{Xform.m_Position.x, Xform.m_Position.y, Xform.m_Position.z});
+			t = glm::rotate(t, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
+			t = glm::rotate(t, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
+			t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
+			t = glm::scale(t, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
+			objects[Mesh.m_Model].push_back(t);
 		});
 
 		auto points = GetSystem<debug_system>().GetPoints();

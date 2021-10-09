@@ -5,7 +5,7 @@
 #include "Math/Vector3f.h"
 #include "Shapes/LineSegment.h"
 
-struct AABB
+struct aabb
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{

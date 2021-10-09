@@ -3,7 +3,6 @@
 
 #include "MathUtils.h"
 #include "Mtx4x4.h"
-#include "Vector.h"
 #include "Vector3fData.h"
 #include "Vector4f.h"
 

@@ -10,11 +10,6 @@ struct debug_system : paperback::system::instance
 
     std::array<std::vector<glm::vec3>, 2> m_Points;
 
-    //container to keep system run time
-    std::vector<std::chrono::high_resolution_clock::time_point> m_RawTimePerSystem;
-    std::vector<float> m_PercentageTimePerSystem, m_TimePerSystem;
-    float m_TotalTime;
-
     bool m_IsDebug;
 
 
@@ -23,113 +18,64 @@ struct debug_system : paperback::system::instance
         .m_pName = "debug_system"
     };
 
-    // helper function to track timer
-    // stores the then current time at the start of the system's run for the frame
-    // to be called at OnFrameStart
-    void BeginTime(size_t system_index)
-    {
-        std::chrono::high_resolution_clock::time_point temp = PPB.Now();
-        m_RawTimePerSystem[system_index] = temp;
-    }
-
-    // helper function to track timer
-    // stops the "timer" of the system and stores the time spent on the system
-    void EndTime(size_t system_index)
-    {
-
-        m_TimePerSystem[system_index] = static_cast<std::chrono::duration<float>>(PPB.Now() - m_RawTimePerSystem[system_index]).count();
-    }
-
-
-    //debug print function
-    // prints current total time against individual times by percentage
-    void DebugPrint()
-    {
-
-        /*std::cout << "Total time: " << m_TotalTime << std::endl;
-        std::cout << "\tSystem 1: " << m_PercentageTimePerSystem[0] << std::endl;
-        std::cout << "\tSystem 2: " << m_PercentageTimePerSystem[1] << std::endl;*/
-    }
-
-    // returns a reference to the vector of time taken per system in seconds
-    std::vector<float>& GetSystemTimeTaken()
-    {
-
-        return m_TimePerSystem;
-    }
-
-    //returns a reference to the vector of time taken per system in percentages
-    std::vector<float>& GetSystemTimeTakenPercentage()
-    {
-
-        return m_PercentageTimePerSystem;
-    }
-
-    //helper function to convert xcore::vector3 to Vector3f
-    paperback::Vector3f ConvertXcoreVecTo3f(const xcore::vector3& vec)
-    {
-
-        return { vec.m_X, vec.m_Y, vec.m_Z };
-    }
-
     //helper function to convert Vector3f to glm::vec3
-    glm::vec3 ConvertMathVecToGLMVec(const paperback::Vector3f& vec3)
+    glm::vec3 ConvertMathVecToGLMVec(const paperback::Vector3f& Vec3)
     {
 
-        return { vec3.x, vec3.y, vec3.z };
+        return { Vec3.x, Vec3.y, Vec3.z };
     }
 
     // given a set of points definining a circle, add to a vector the necessary connections to draw
-    void ConvertVerticesToCircleDraw(std::vector<paperback::Vector3f>& vec,
-        const paperback::Vector3f& top,
-        const paperback::Vector3f& bottom,
-        const paperback::Vector3f& right,
-        const paperback::Vector3f& left,
-        const paperback::Vector3f& top_right,
-        const paperback::Vector3f& bottom_right,
-        const paperback::Vector3f& top_left,
-        const paperback::Vector3f& bottom_left)
+    void ConvertVerticesToCircleDraw(std::vector<paperback::Vector3f>& Vec,
+        const paperback::Vector3f& Top,
+        const paperback::Vector3f& Bottom,
+        const paperback::Vector3f& Right,
+        const paperback::Vector3f& Left,
+        const paperback::Vector3f& Top_right,
+        const paperback::Vector3f& Bottom_right,
+        const paperback::Vector3f& Top_left,
+        const paperback::Vector3f& Bottom_left)
     {
 
-        vec.push_back(top);
-        vec.push_back(top_right);
+        Vec.push_back(Top);
+        Vec.push_back(Top_right);
 
-        vec.push_back(top_right);
-        vec.push_back(right);
+        Vec.push_back(Top_right);
+        Vec.push_back(Right);
 
-        vec.push_back(right);
-        vec.push_back(bottom_right);
+        Vec.push_back(Right);
+        Vec.push_back(Bottom_right);
 
-        vec.push_back(bottom_right);
-        vec.push_back(bottom);
+        Vec.push_back(Bottom_right);
+        Vec.push_back(Bottom);
 
-        vec.push_back(bottom);
-        vec.push_back(bottom_left);
+        Vec.push_back(Bottom);
+        Vec.push_back(Bottom_left);
 
-        vec.push_back(bottom_left);
-        vec.push_back(left);
+        Vec.push_back(Bottom_left);
+        Vec.push_back(Left);
 
-        vec.push_back(left);
-        vec.push_back(top_left);
+        Vec.push_back(Left);
+        Vec.push_back(Top_left);
 
-        vec.push_back(top_left);
-        vec.push_back(top);
+        Vec.push_back(Top_left);
+        Vec.push_back(Top);
     }
 
 
 
     // draws a sphere given the provided data
     // low poly circle
-    void DrawSphereCollision(Sphere& sphere, transform& transform)
+    void DrawSphereCollision(sphere& Sphere, transform& Transform)
     {
 
         std::vector<paperback::Vector3f> debugdraw;
 
-        paperback::Vector3f center = center.ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        paperback::Vector3f center = Transform.m_Position + Transform.m_Offset;
         paperback::Vector3f top = center;
         paperback::Vector3f bottom = top;
 
-        float radius = sphere.m_fRadius;
+        float radius = Sphere.m_fRadius;
 
         top.y += radius;
         bottom.y -= radius;
@@ -212,34 +158,34 @@ struct debug_system : paperback::system::instance
         ConvertVerticesToCircleDraw(debugdraw, top, bottom, right, left, top_right, bottom_right, top_left, bottom_left);
 
 
-        DrawDebugLines(debugdraw, sphere.m_Collided);
+        DrawDebugLines(debugdraw, Sphere.m_Collided);
 
-        sphere.m_Collided = false;
+        Sphere.m_Collided = false;
     }
 
     //given a set of vertices defining a square, prepare the pairing required
-    void ConvertVerticesToSquareDraw(std::vector<paperback::Vector3f>& vec,
-        const paperback::Vector3f& top_left,
-        const paperback::Vector3f& top_right,
-        const paperback::Vector3f& bottom_left,
-        const paperback::Vector3f& bottom_right)
+    void ConvertVerticesToSquareDraw(std::vector<paperback::Vector3f>& Vec,
+        const paperback::Vector3f& Top_left,
+        const paperback::Vector3f& Top_right,
+        const paperback::Vector3f& Bottom_left,
+        const paperback::Vector3f& Bottom_right)
     {
 
-        vec.push_back(top_left);
-        vec.push_back(top_right);
+        Vec.push_back(Top_left);
+        Vec.push_back(Top_right);
 
-        vec.push_back(top_right);
-        vec.push_back(bottom_right);
+        Vec.push_back(Top_right);
+        Vec.push_back(Bottom_right);
 
-        vec.push_back(bottom_right);
-        vec.push_back(bottom_left);
+        Vec.push_back(Bottom_right);
+        Vec.push_back(Bottom_left);
 
-        vec.push_back(bottom_left);
-        vec.push_back(top_left);
+        Vec.push_back(Bottom_left);
+        Vec.push_back(Top_left);
     }
 
     // draws a square given the provided data
-    void DrawCubeCollision(BoundingBox& cube, transform& transform)
+    void DrawCubeCollision(boundingbox& Cube, transform& Transform)
     {
 
         std::vector<paperback::Vector3f> debugdraw;
@@ -247,8 +193,8 @@ struct debug_system : paperback::system::instance
         paperback::Vector3f front_top_left, front_top_right, front_bottom_left, front_bottom_right,
             back_top_left, back_top_right, back_bottom_left, back_bottom_right, diff;
 
-        front_top_right = front_top_left = front_bottom_left = front_bottom_right = cube.Max + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
-        back_bottom_left = back_top_left = back_top_right = back_bottom_right = cube.Min + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        front_top_right = front_top_left = front_bottom_left = front_bottom_right = Cube.Max + Transform.m_Position + Transform.m_Offset;
+        back_bottom_left = back_top_left = back_top_right = back_bottom_right = Cube.Min + Transform.m_Position + Transform.m_Offset;
         diff = front_top_right - back_bottom_left;
 
         front_top_left -= paperback::Vector3f{ diff.x, 0.0f, 0.0f };
@@ -272,29 +218,22 @@ struct debug_system : paperback::system::instance
         //bottom
         ConvertVerticesToSquareDraw(debugdraw, back_bottom_left, back_bottom_right, front_bottom_left, front_bottom_right);
 
-        DrawDebugLines(debugdraw, cube.m_Collided);
+        DrawDebugLines(debugdraw, Cube.m_Collided);
 
-        cube.m_Collided = false;
+        Cube.m_Collided = false;
     }
 
     // draws a "cube" depending on given data
     // data has to be pairs of vectors
-    void DrawDebugLines(std::vector<paperback::Vector3f> vec, bool iscollide = false)
+    void DrawDebugLines(std::vector<paperback::Vector3f> Vec, bool IsCollide = false)
     {
 
         //assume passed vector contains vector3f in pairs
-
-        //convert to glm vector
-        //std::vector<glm::vec3> input{};
-
-        for (paperback::Vector3f& vec3 : vec)
+        for (paperback::Vector3f& vec3 : Vec)
         {
 
-            m_Points[iscollide].push_back(ConvertMathVecToGLMVec(vec3));
+            m_Points[IsCollide].push_back(ConvertMathVecToGLMVec(vec3));
         }
-
-        // send to render
-        //Renderer::GetInstanced().DebugRender(input, iscollide);
     }
 
 
@@ -302,40 +241,23 @@ struct debug_system : paperback::system::instance
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
-        // set up data container to store data about systems
-        m_RawTimePerSystem.resize(m_NumSystems);
-        m_PercentageTimePerSystem.resize(m_NumSystems);
-        m_TimePerSystem.resize(m_NumSystems);
 
         m_IsDebug = true;
     }
 
 
-    //test debug draw function
-    std::vector<paperback::Vector3f> testvec = { { -25, -25, -25 }, { 25, 25, 25 }, { 25, -25, -25 }, { -25, 25, 25 } };
-    void TestDrawDebug()
-    {
-
-        //draw test vec
-        DrawDebugLines(testvec);
-
-        //test conversion of nonpaired vector
-
-    }
-
-
     PPB_FORCEINLINE
-    void operator()(paperback::component::entity& Entity, transform& Transform, BoundingBox* cube, Sphere* ball) noexcept
+    void operator()(paperback::component::entity& Entity, transform& Transform, boundingbox* Cube, sphere* Ball) noexcept
     {
 
         if (m_IsDebug)
         {
         
-            if (cube)
-                DrawCubeCollision(*cube, Transform);
+            if (Cube)
+                DrawCubeCollision(*Cube, Transform);
 
-            if (ball)
-                DrawSphereCollision(*ball, Transform);
+            if (Ball)
+                DrawSphereCollision(*Ball, Transform);
         }
     }
 
@@ -382,33 +304,9 @@ struct debug_system : paperback::system::instance
     PPB_FORCEINLINE
     void OnFrameEnd(void) noexcept 
     {
-        //reset all raw times to 0 and update percentage values
-        m_TotalTime = 0.0f;
-
-        for (size_t i = 0; i < m_NumSystems; ++i)
-        {
-
-            m_PercentageTimePerSystem[i] = m_TimePerSystem[i];
-            m_TotalTime += m_TimePerSystem[i];
-        }
-
-        for (float& percentage : m_PercentageTimePerSystem)
-        {
-
-            percentage /= m_TotalTime;
-            percentage *= 100;
-        }
-        //DebugPrint();
 
         DebugInputTest();
         m_Points[0].clear();
         m_Points[1].clear();
-    }
-
-    // Terminate system
-    PPB_FORCEINLINE
-    void OnSystemTerminated(void) noexcept 
-    {
-
     }
 };
