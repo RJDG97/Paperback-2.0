@@ -336,6 +336,8 @@ namespace paperback::vm
 			return  rttr::instance(GetComponent< BoundingBox >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< Sphere >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< Sphere >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< animator >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< animator >(Index));
 		else
 			return rttr::instance();
 	}
