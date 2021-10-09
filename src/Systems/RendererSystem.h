@@ -35,15 +35,6 @@ struct render_system : paperback::system::instance
 	{
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<glm::mat4>> objects;
-
-		glm::mat4 t{ 1.0f };
-		t = glm::translate(t, glm::vec3{ -3,2,-3 });
-		t = glm::scale(t, glm::vec3{ 0.03,0.03,0.03 });
-
-
-		objects["Character"].push_back(t);
-		auto transforms{ animator_test.GetFinalBoneMatrices() };
-
 		
 		//just testing stuff
 		tools::query Query;
