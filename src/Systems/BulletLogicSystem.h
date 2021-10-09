@@ -10,16 +10,9 @@ struct bullet_logic_system : paperback::system::instance
         .m_pName = "bullet_logic_system"
     };
     // Entity to test component -> jp side
-    void operator()( /*paperback::component::entity& Entity,*/ transform& Transform, /*rigidbody& rb,*/ paperback::component::entity& Entity, boundingbox* Boundingbox, sphere* Sphere) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, boundingbox* Boundingbox, sphere* Sphere) noexcept
     {
         if (Entity.IsZombie()) return;
-
-        //Timer.m_Timer -= m_Coordinator.DeltaTime();
-        //if ( Timer.m_Timer <= 0.0f )
-        //{
-        //    m_Coordinator.DeleteEntity( Entity );
-        //    return;
-        //}
 
         // Check collisions
         tools::query Query;
@@ -34,7 +27,7 @@ struct bullet_logic_system : paperback::system::instance
                 assert(Entity.IsZombie() == false);
 
                 // Do not check against self
-                if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie()) /* || (Bullet.m_Owner.m_GlobalIndex == Dynamic_Entity.m_GlobalIndex)*/) return false;
+                if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return false;
 
                 xf.x = Xform.m_Position.x + Xform.m_Offset.x;
                 xf.y = Xform.m_Position.y + Xform.m_Offset.y;
@@ -54,8 +47,7 @@ struct bullet_logic_system : paperback::system::instance
                 constexpr auto min_distance_v = 4;
                 if ((Transform.m_Position - Xform.m_Position).MagnitudeFast() < min_distance_v * min_distance_v)
                 {
-                    //m_Coordinator.DeleteEntity(Entity);
-                    //m_Coordinator.DeleteEntity(Dynamic_Entity);
+                    //do direct collision response
                     return true;
                 }
                 return false;

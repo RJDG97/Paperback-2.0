@@ -89,13 +89,6 @@ void InitializeGame()
     {
         PPB.OpenScene("test.json");
     
-
-        PPB.CreateEntity([&](transform Transform, sound& Sound)
-            {
-
-                Sound.m_SoundID = "event:/BGM";
-            });
-
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, boundingbox& Bbox, sphere& Sphere, rigidbody& RB)// rigidforce& rf)
             {
                 Transform.m_Position.x = -8;
