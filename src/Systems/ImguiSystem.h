@@ -293,8 +293,6 @@ struct imgui_system : paperback::system::instance
                         m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
                     }
                 }
-                else
-                    m_pArchetype = nullptr;
             }
         }
 
@@ -494,7 +492,7 @@ struct imgui_system : paperback::system::instance
         ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4{ 0.773f, 0.027f, 0.067f, 1.0f });
 
         if (ImGui::Button(("X##" + Label + "x").c_str(), ButtonSize))
-            Values.m_X = ResetValue;
+            Values.x = ResetValue;
 
         ImGui::PopStyleColor(3);
 
@@ -508,7 +506,7 @@ struct imgui_system : paperback::system::instance
         ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4{ 0.216f, 0.584f, 0.055f, 1.0f });
 
         if (ImGui::Button(("Y##" + Label + "y").c_str(), ButtonSize))
-            Values.m_Y = ResetValue;
+            Values.y = ResetValue;
 
         ImGui::PopStyleColor(3);
 
@@ -522,7 +520,7 @@ struct imgui_system : paperback::system::instance
         ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4{ 0.118f, 0.145f, 0.682f, 1.0f });
 
         if (ImGui::Button(("Z##" + Label + "z").c_str(), ButtonSize))
-            Values.m_Z = ResetValue;
+            Values.z = ResetValue;
 
         ImGui::PopStyleColor(3);
 
