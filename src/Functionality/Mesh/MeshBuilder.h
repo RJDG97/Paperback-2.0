@@ -38,6 +38,7 @@ private:
 	static Model::SubMesh ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene, Model& Mesh);
 	static void ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh);
 	static void ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, aiMesh* SubMesh, Model& Mesh);
+	static void LoadAnimations(aiAnimation** animation, int num_animations, aiNode* root_node, Model* model);
 };
 
 #endif

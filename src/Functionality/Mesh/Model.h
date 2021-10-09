@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include "glew/inc/glew.h"
+#include "../Animation/Animation.h"
 
 class Model
 {
@@ -18,12 +19,6 @@ public:
 
 		int m_BoneIDs[4];
 		float m_Weights[4];
-	};
-
-	struct BoneInfo
-	{
-		int id;				//index in finalBoneMatrices
-		glm::mat4 offset;	//model space to bone space
 	};
 
 	struct Material
@@ -55,6 +50,8 @@ public:
 
 	void AddSubMesh(const SubMesh& Mesh);
 	void RemoveAllSubMesh();
+	void AddAnimation(const Animation& animation, std::string animation_name);
+	std::unordered_map<std::string, Animation>& GetAnimations() { return m_Animations; }
 	void SetPrimitive(const int& Primitive);
 	int GetPrimitive() const;
 	const std::vector<SubMesh>& GetSubMeshes() const;
@@ -65,6 +62,7 @@ private:
 	std::vector<SubMesh> m_SubMesh;
 	int m_Type;
 	std::unordered_map<std::string, BoneInfo> m_BoneInfoMap;
+	std::unordered_map<std::string, Animation> m_Animations;
 };
 
 #endif

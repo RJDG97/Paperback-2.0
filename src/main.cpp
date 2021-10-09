@@ -68,7 +68,8 @@ void InitializeGame()
             timer,
             sound,
             mesh,
-            entityscript
+            entityscript,
+            animator
         >();
     }
 
@@ -82,7 +83,8 @@ void InitializeGame()
             window_system,
             debug_system,
             render_system,
-            imgui_system
+            imgui_system,
+            animator_system
         >();
     }
     // Entity Creation
@@ -149,6 +151,51 @@ void InitializeGame()
                 Rotation.m_Value.m_Z = 0;
 
                 Mesh.m_Model = "Box";
+            });PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, BoundingBox& bbox, Sphere& sphere, rigidbody& rb)// rigidforce& rf)
+            {
+                Transform.m_Position.m_X = -8;
+                Transform.m_Position.m_Y = 5.5;
+                Transform.m_Position.m_Z = -7;
+
+                bbox.Min.Set(paperback::Vector3f(
+                    - 1.5f,
+                    - 1.5f,
+                    - 1.5f));
+
+                bbox.Max.Set(paperback::Vector3f(
+                    1.5f,
+                    1.5f,
+                    1.5f));
+
+                sphere.m_fRadius = 1.0f;
+
+                Scale.m_Value.m_X = 1;
+                Scale.m_Value.m_Y = 1;
+                Scale.m_Value.m_Z = 1;
+
+                Rotation.m_Value.m_X = 0;
+                Rotation.m_Value.m_Y = 0;
+                Rotation.m_Value.m_Z = 0;
+
+                Mesh.m_Model = "Box";
             });
+
+            PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator& Animator)// rigidforce& rf)
+                {
+                    Transform.m_Position.m_X = -3;
+                    Transform.m_Position.m_Y = 5.5;
+                    Transform.m_Position.m_Z = -7;
+
+                    Scale.m_Value.m_X = 0.03;
+                    Scale.m_Value.m_Y = 0.03;
+                    Scale.m_Value.m_Z = 0.03;
+
+                    Rotation.m_Value.m_X = 0;
+                    Rotation.m_Value.m_Y = 0;
+                    Rotation.m_Value.m_Z = 0;
+
+                    Mesh.m_Model = "Character";
+                    Animator.m_CurrentAnimationName = "Armature|Armature|mixamo.com|Layer0";
+                });
     }
 }

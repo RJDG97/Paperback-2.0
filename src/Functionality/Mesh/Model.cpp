@@ -21,6 +21,11 @@ void Model::RemoveAllSubMesh()
 	m_SubMesh.clear();
 }
 
+void Model::AddAnimation(const Animation& animation, std::string animation_name)
+{
+	m_Animations[animation_name] = animation;
+}
+
 void Model::SetPrimitive(const int& Primitive)
 {
 	m_Type = Primitive;

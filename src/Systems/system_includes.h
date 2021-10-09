@@ -6,3 +6,4 @@
 #include "WindowSystem.h"               // Replace couts - Clean comments
 #include "DebugSystem.h"                // Verify if we need it
 #include "RendererSystem.h"             // Remove commented code
+#include "AnimatorSystem.h"
