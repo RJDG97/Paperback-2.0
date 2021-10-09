@@ -7,7 +7,7 @@ struct sound
         .m_pName = "Sound"
     };
 
-	std::string m_SoundID; //contains the path/id of the event to be played from the bank
+	const char* m_SoundID; //contains the path/id of the event to be played from the bank
     size_t m_SoundPlayTag; // assigned during run time to determine if currently playing
     bool m_Is3DSound; //set to false if 2D, true if 3D
 };
@@ -19,7 +19,7 @@ namespace RR_Sound
          rttr::registration::class_<sound>(sound::typedef_v.m_pName)
            .constructor()(rttr::policy::ctor::as_object)
            .property("Path", &sound::m_SoundID)
-           .property("Playing?", &sound::m_SoundPlayTag)
+           .property("Sound Event ID", &sound::m_SoundPlayTag)
            .property("3D Sound", &sound::m_Is3DSound);
     }
 }

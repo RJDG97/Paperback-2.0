@@ -58,12 +58,12 @@ public:
     //play event 
     // helper function
     // loads and plays an event from the current loaded bank
-    void PlaySoundEvent(const char* Path) 
+    void PlaySoundEvent(const std::string_view& PathView) 
     {
 
         FMOD::Studio::EventDescription* event = nullptr;
         
-        if (m_pStudioSystem->getEvent(Path, &event) == FMOD_OK) 
+        if (m_pStudioSystem->getEvent(PathView.data(), &event) == FMOD_OK) 
         {
 
             m_SoundFiles.push_back({});
@@ -87,7 +87,7 @@ public:
         }
         else {
 
-            ERROR_LOG("Sound Event: '" + std::string{ Path }  + "' does not exist in current Sound Bank");
+            ERROR_LOG("Sound Event: '" + std::string{ PathView.data() }  + "' does not exist in current Sound Bank");
         }
     }
 
@@ -252,6 +252,9 @@ public:
         if (Entity.IsZombie())
             return;
         
+        if (Sound.m_SoundID == nullptr)
+            return;
+
         // System Update Code - FOR A SINGLE ENTITY
         auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [Sound](const SoundFile& soundfile) { return Sound.m_SoundPlayTag == soundfile.m_ID; });
         //check if id already exists 
@@ -259,7 +262,7 @@ public:
         {
 
             //if no, then create new entry and add into record of currently playing sounds
-            PlaySoundEvent(Sound.m_SoundID.c_str());
+            PlaySoundEvent(std::string_view{Sound.m_SoundID});
             Sound.m_SoundPlayTag = m_SoundCounter;
         }
         else
