@@ -12,30 +12,8 @@ struct Sphere
 		.m_pName = "Sphere"
 	};
 
-	paperback::Vector3f		m_ptCenter;							// ----- Center point
 	float				m_fRadius;							// ----- Radius of circle
 	bool				m_Collided;							// ----- collided
-
-	Sphere()												// ----- default constructor
-		: m_ptCenter(paperback::Vector3f{})
-		, m_fRadius(0.f),
-		m_Collided{ false }
-	{
-
-	}
-	Sphere(const paperback::Vector3f& center, float radius)			// ----- Sphere constructor
-		: m_ptCenter(center)
-		, m_fRadius(radius)
-	{}
-	inline void Set(paperback::Vector3f center, float radius)			// ----- Sphere set function
-	{
-		m_ptCenter = center;
-		m_fRadius = radius;
-	}
-	inline paperback::Vector3f getCenter() const { return m_ptCenter; }	// ----- Returns the point center of the Sphere
-	inline float getRadius() const { return m_fRadius; }		// ----- Returns the radius of the Sphere
-	void setCenter(const paperback::Vector3f& lhs) { m_ptCenter = lhs; }// ----- set the point center of the Sphere
-	void setRadius(float raii) { m_fRadius = raii; }			// ----- set the radius of the Sphere
 };
 
 //		this will mainly be used as a 1st/2nd step collision check
@@ -49,7 +27,8 @@ namespace RR_SPHERE
 	{
 	   rttr::registration::class_<Sphere>(Sphere::typedef_v.m_pName)
 		   .constructor()(rttr::policy::ctor::as_object)
-		   .property("Radius", &Sphere::m_fRadius)(rttr::policy::prop::as_reference_wrapper);
+		   .property("Radius", &Sphere::m_fRadius)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Is Collide", &Sphere::m_Collided);
 	}
 }
 

@@ -106,10 +106,7 @@ void InitializeGame()
                     1.5f,
                     1.5f));
 
-                sphere.Set(paperback::Vector3f(
-                    Transform.m_Position.m_X,
-                    Transform.m_Position.m_Y,
-                    Transform.m_Position.m_Z), 1.f);
+                sphere.m_fRadius = 1.0f;
 
                 Scale.m_Value.m_X = 1;
                 Scale.m_Value.m_Y = 1;
@@ -138,10 +135,7 @@ void InitializeGame()
                     1.5f,
                     1.5f));
 
-                sphere.Set(paperback::Vector3f(
-                    Transform.m_Position.m_X,
-                    Transform.m_Position.m_Y,
-                    Transform.m_Position.m_Z), 1.f);
+                sphere.m_fRadius = 1.0f;
                 
                 rf.m_Mass = 5.0f;
                 rf.m_threshold = 0.5f;

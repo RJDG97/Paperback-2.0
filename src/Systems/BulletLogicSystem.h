@@ -28,9 +28,6 @@ struct bullet_logic_system : paperback::system::instance
         paperback::Vector3f tf = { Transform.m_Position.m_X + Transform.m_Offset.m_X, Transform.m_Position.m_Y + Transform.m_Offset.m_Y, Transform.m_Position.m_Z + Transform.m_Offset.m_Z };
         paperback::Vector3f xf;
 
-        if (sphere)
-            sphere->setCenter(tf);
-
         ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, transform& xform, BoundingBox* bb, Sphere* ball) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
@@ -48,7 +45,7 @@ struct bullet_logic_system : paperback::system::instance
                     boundingbox->m_Collided = bb->m_Collided = true;
                 }
 
-                if (sphere && ball && SphereSphere(sphere->getCenter(), sphere->getRadius(), ball->getCenter(), ball->getRadius()))
+                if (sphere && ball && SphereSphere(tf, sphere->m_fRadius, xf, ball->m_fRadius))
                 {
                     sphere->m_Collided = ball->m_Collided = true;
                 }

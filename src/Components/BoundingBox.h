@@ -15,13 +15,6 @@ public:													// ----- Private members
 	paperback::Vector3f Min, Max;
 	bool m_Collided;
 
-	BoundingBox() :
-		m_Collided{ false }
-	{
-		Min = Max = paperback::Vector3f{};
-	}
-
-
 };
 // -- To do:
 //		center of BoundingBox

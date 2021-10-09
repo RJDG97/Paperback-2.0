@@ -120,16 +120,16 @@ struct debug_system : paperback::system::instance
 
     // draws a sphere given the provided data
     // low poly circle
-    void DrawSphereCollision(Sphere& sphere)
+    void DrawSphereCollision(Sphere& sphere, transform& transform)
     {
 
         std::vector<paperback::Vector3f> debugdraw;
 
-        paperback::Vector3f center = sphere.getCenter();
+        paperback::Vector3f center = center.ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
         paperback::Vector3f top = center;
         paperback::Vector3f bottom = top;
 
-        float radius = sphere.getRadius();
+        float radius = sphere.m_fRadius;
 
         top.y += radius;
         bottom.y -= radius;
@@ -335,7 +335,7 @@ struct debug_system : paperback::system::instance
                 DrawCubeCollision(*cube, Transform);
 
             if (ball)
-                DrawSphereCollision(*ball);
+                DrawSphereCollision(*ball, Transform);
         }
     }
 
