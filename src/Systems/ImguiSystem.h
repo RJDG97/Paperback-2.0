@@ -369,17 +369,19 @@ struct imgui_system : paperback::system::instance
                                 ImGui::DragInt(("##" + PropertyName).c_str(), &(propValue.get_value<std::reference_wrapper<int>>().get()), 1);
                             }
 
-                            if (PropertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
-                            {
-                                //DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<xcore::vector3>>().get(), 0.0f, 70.0f);
-                                ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()));
+                            // if (PropertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
+                            // {
+                            //     //DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<xcore::vector3>>().get(), 0.0f, 70.0f);
 
-                            }
+                            //     ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()));
+
+                            // }
 
                             if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>())
                             {
-                                //DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get(), 0.0f, 70.0f);
-                                ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()));
+                                DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get(), 0.0f, 70.0f);
+
+                                //ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()));
                             }
 
                             if (PropertyType == rttr::type::get<std::string>())
@@ -473,7 +475,7 @@ struct imgui_system : paperback::system::instance
             m_bFileSaveAs = false; //dialog is closed
     }
 
-    void DrawVec3(const std::string& Label, xcore::vector3& Values, float ResetValue = 0.0f, float ColumnWidth = 100.0f)
+    void DrawVec3(const std::string& Label, paperback::Vector3f& Values, float ResetValue = 0.0f, float ColumnWidth = 100.0f)
     {
         ImGui::Columns(2);
         ImGui::SetColumnWidth(0, ColumnWidth);
@@ -497,7 +499,7 @@ struct imgui_system : paperback::system::instance
         ImGui::PopStyleColor(3);
 
         ImGui::SameLine();
-        ImGui::DragFloat(("##" + Label + "x").c_str(), &Values.m_X, 0.1f);
+        ImGui::DragFloat(("##" + Label + "x").c_str(), &Values.x, 0.1f);
         ImGui::PopItemWidth();
         ImGui::SameLine();
 
@@ -511,7 +513,7 @@ struct imgui_system : paperback::system::instance
         ImGui::PopStyleColor(3);
 
         ImGui::SameLine();
-        ImGui::DragFloat(("##" + Label + "y").c_str(), &Values.m_Y, 0.1f);
+        ImGui::DragFloat(("##" + Label + "y").c_str(), &Values.y, 0.1f);
         ImGui::PopItemWidth();
         ImGui::SameLine();
 
@@ -525,7 +527,7 @@ struct imgui_system : paperback::system::instance
         ImGui::PopStyleColor(3);
 
         ImGui::SameLine();
-        ImGui::DragFloat(("##" + Label + "z").c_str(), &Values.m_Z, 0.1f);
+        ImGui::DragFloat(("##" + Label + "z").c_str(), &Values.z, 0.1f);
         ImGui::PopItemWidth();
         ImGui::SameLine();
 

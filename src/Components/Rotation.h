@@ -1,3 +1,5 @@
+#include "Math/Math_includes.h"
+
 #pragma once
 struct rotation
 {
@@ -6,7 +8,7 @@ struct rotation
 		.m_pName = "Rotation"
 	};
 
-	xcore::vector3	 m_Value;							// -- Scale vector
+	paperback::Vector3f	 m_Value;							// -- Scale vector
 };
 
 namespace RR_ROTATION

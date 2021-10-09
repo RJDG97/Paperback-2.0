@@ -14,29 +14,60 @@ struct physics_system : paperback::system::instance
     >;
 
     //helper function to ensure that momentum is -ve or +ve depending on current momentum
-    paperback::Vector3f SetMaxMoment(paperback::Vector3f& currmoment, paperback::Vector3f& max)
+    paperback::Vector3f SetMaxMoment(paperback::Vector3f& CurrMoment, paperback::Vector3f& Max)
     {
 
         return {
-            (abs(currmoment.x) > 0.01f) ? (currmoment.x < 0.0f) ? max.x : -max.x : 0.0f,
-            (abs(currmoment.y) > 0.01f) ? (currmoment.y < 0.0f) ? max.y : -max.y : 0.0f,
-            (abs(currmoment.z) > 0.01f) ? (currmoment.z < 0.0f) ? max.z : -max.z : 0.0f
+            (abs(CurrMoment.x) > 0.01f) ? (CurrMoment.x < 0.0f) ? Max.x : -Max.x : 0.0f,
+            (abs(CurrMoment.y) > 0.01f) ? (CurrMoment.y < 0.0f) ? Max.y : -Max.y : 0.0f,
+            (abs(CurrMoment.z) > 0.01f) ? (CurrMoment.z < 0.0f) ? Max.z : -Max.z : 0.0f
         };
     }
 
+    // formulae -> modifier will be the terminal velocity and terminal force acceleration
+    // gravity?
+    // Remember*** A force is simply a COLLISIOM resolution for the response and FINAL ACCELERATION
+    void AddForce(paperback::Vector3f& Forces, const paperback::Vector3f& Force)
+    {
+
+        Forces += Force;
+    }
+
+    void AddMomentum(paperback::Vector3f& Momentum, const paperback::Vector3f& Moment)
+    {
+
+        Momentum += Moment;
+    }
+
+    void ResetMomentum(paperback::Vector3f Momentum)
+    {
+
+        Momentum = paperback::Vector3f{};
+    }
+
+    paperback::Vector3f ConvertToAccel(const float Mass, const paperback::Vector3f& Forces)
+    {
+        return (Mass > 0) ? Forces / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
+    }
+
+    paperback::Vector3f ConvertToVelocity(const float Mass, const paperback::Vector3f& Momentum)
+    {
+        return  (Mass > 0) ? Momentum / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
+    }
+
     //test helper function to apply forces on all entities with rigidforce components
-    void ApplyForceAll(paperback::Vector3f vec)
+    void ApplyForceAll(paperback::Vector3f Vec)
     {
 
         tools::query Query;
         Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
-        
-        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& xform, rigidbody& rb, rigidforce& rf) noexcept
+
+        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
             {
                 assert(Entity.IsZombie() == false);
-                
-                rf.AddMomentum(vec);
-                rf.m_MagMoment = 1.0f;
+
+                AddMomentum(RF.m_Momentum, Vec);
+                RF.m_MagMoment = 1.0f;
             });
     }
 
@@ -97,8 +128,8 @@ struct physics_system : paperback::system::instance
                     RigidForce->m_Momentum -= (RigidForce->m_NegForces * m_Coordinator.DeltaTime());
                 }
             }
-            RigidBody->m_Accel = RigidForce->ConvertToAccel().ConvertMathVecToXcoreVec();
-            RigidBody->m_Velocity = RigidForce->ConvertToVelocity().ConvertMathVecToXcoreVec();
+            RigidBody->m_Accel = ConvertToAccel(RigidForce->m_Mass, RigidForce->m_Forces);
+            RigidBody->m_Velocity = ConvertToVelocity(RigidForce->m_Mass, RigidForce->m_Momentum);
         }
         else
         {

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Math/Math_includes.h"
 
 
 struct scale
@@ -9,7 +9,7 @@ struct scale
 		.m_pName = "Scale"
 	};
 
-	xcore::vector3	 m_Value;							// -- Scale vector
+	paperback::Vector3f	 m_Value;							// -- Scale vector
 };
 
 namespace RR_SCALE
