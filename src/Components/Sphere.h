@@ -41,4 +41,16 @@ struct Sphere
 //		this will mainly be used as a 1st/2nd step collision check
 
 // ----- End of header guard
+
+
+namespace RR_SPHERE
+{
+	RTTR_REGISTRATION
+	{
+	   rttr::registration::class_<Sphere>(Sphere::typedef_v.m_pName)
+		   .constructor()(rttr::policy::ctor::as_object)
+		   .property("Radius", &Sphere::m_fRadius)(rttr::policy::prop::as_reference_wrapper);
+	}
+}
+
 #endif

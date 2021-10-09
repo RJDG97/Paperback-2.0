@@ -12,13 +12,13 @@ struct BoundingBox
 	};
 
 public:													// ----- Private members
-	paperback::Vector3f MinMax[2];
+	paperback::Vector3f Min, Max;
 	bool m_Collided;
 
 	BoundingBox() :
 		m_Collided{ false }
 	{
-		MinMax[0] = MinMax[1] = paperback::Vector3f{};
+		Min = Max = paperback::Vector3f{};
 	}
 
 
@@ -29,4 +29,18 @@ public:													// ----- Private members
 //			IN PRINCIPLE, ITS SIMILAR TO AABB, but it'll not be used as AABB - there's a specific struct for this
 
 // ----- End of header guard
+
+
+namespace RR_BOUNDINGBOX
+{
+	RTTR_REGISTRATION
+	{
+	   rttr::registration::class_<BoundingBox>(BoundingBox::typedef_v.m_pName)
+		   .constructor()(rttr::policy::ctor::as_object)
+		   .property("Min Point", &BoundingBox::Min)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Max Point", &BoundingBox::Max)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Is Collide", &BoundingBox::m_Collided);
+	}
+}
+
 #endif

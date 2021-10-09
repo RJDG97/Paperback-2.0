@@ -25,7 +25,7 @@ struct bullet_logic_system : paperback::system::instance
         tools::query Query;
         Query.m_Must.AddFromComponents<transform>();
 
-        paperback::Vector3f tf = { Transform.m_Position.m_X, Transform.m_Position.m_Y, Transform.m_Position.m_Z };
+        paperback::Vector3f tf = { Transform.m_Position.m_X + Transform.m_Offset.m_X, Transform.m_Position.m_Y + Transform.m_Offset.m_Y, Transform.m_Position.m_Z + Transform.m_Offset.m_Z };
         paperback::Vector3f xf;
 
         if (sphere)
@@ -38,12 +38,12 @@ struct bullet_logic_system : paperback::system::instance
                 // Do not check against self
                 if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie()) /* || (Bullet.m_Owner.m_GlobalIndex == Dynamic_Entity.m_GlobalIndex)*/) return false;
 
-                xf.x = xform.m_Position.m_X;
-                xf.y = xform.m_Position.m_Y;
-                xf.z = xform.m_Position.m_Z;
+                xf.x = xform.m_Position.m_X + xform.m_Offset.m_X;
+                xf.y = xform.m_Position.m_Y + xform.m_Offset.m_Y;
+                xf.z = xform.m_Position.m_Z + xform.m_Offset.m_Z;
 
                 // collision detection part
-                if (boundingbox && bb && AabbAabb(tf + boundingbox->MinMax[0], tf + boundingbox->MinMax[1], xf + bb->MinMax[0], xf + bb->MinMax[1]))
+                if (boundingbox && bb && AabbAabb(tf + boundingbox->Min, tf + boundingbox->Max, xf + bb->Min, xf + bb->Max))
                 {
                     boundingbox->m_Collided = bb->m_Collided = true;
                 }

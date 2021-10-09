@@ -96,12 +96,12 @@ void InitializeGame()
                 Transform.m_Position.m_Y = 5.5;
                 Transform.m_Position.m_Z = -7;
 
-                bbox.MinMax[0].Set(paperback::Vector3f(
+                bbox.Min.Set(paperback::Vector3f(
                     - 1.5f,
                     - 1.5f,
                     - 1.5f));
 
-                bbox.MinMax[1].Set(paperback::Vector3f(
+                bbox.Max.Set(paperback::Vector3f(
                     1.5f,
                     1.5f,
                     1.5f));
@@ -128,12 +128,12 @@ void InitializeGame()
                 Transform.m_Position.m_Y = 2.5;
                 Transform.m_Position.m_Z = -10;
 
-                bbox.MinMax[0].Set(paperback::Vector3f(
+                bbox.Min.Set(paperback::Vector3f(
                     - 1.5f,
                     - 1.5f,
                     - 1.5f));
 
-                bbox.MinMax[1].Set(paperback::Vector3f(
+                bbox.Max.Set(paperback::Vector3f(
                     1.5f,
                     1.5f,
                     1.5f));

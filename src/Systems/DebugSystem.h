@@ -247,8 +247,8 @@ struct debug_system : paperback::system::instance
         paperback::Vector3f front_top_left, front_top_right, front_bottom_left, front_bottom_right,
             back_top_left, back_top_right, back_bottom_left, back_bottom_right, diff;
 
-        front_top_right = front_top_left = front_bottom_left = front_bottom_right = cube.MinMax[1] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
-        back_bottom_left = back_top_left = back_top_right = back_bottom_right = cube.MinMax[0] + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        front_top_right = front_top_left = front_bottom_left = front_bottom_right = cube.Max + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
+        back_bottom_left = back_top_left = back_top_right = back_bottom_right = cube.Min + ConvertXcoreVecTo3f(transform.m_Position + transform.m_Offset);
         diff = front_top_right - back_bottom_left;
 
         front_top_left -= paperback::Vector3f{ diff.x, 0.0f, 0.0f };
