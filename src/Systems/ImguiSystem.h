@@ -382,7 +382,15 @@ struct imgui_system : paperback::system::instance
 
                             if (PropertyType == rttr::type::get<std::reference_wrapper<xcore::vector3>>())
                             {
-                                DrawVec3(PropertyName, propValue.get_value<std::reference_wrapper<xcore::vector3>>().get(), 0.0f, 70.0f);
+
+                                ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<xcore::vector3>>().get()));
+
+                            }
+
+                            if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>())
+                            {
+
+                                ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(propValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()));
                             }
 
                             if (PropertyType == rttr::type::get<std::string>())
