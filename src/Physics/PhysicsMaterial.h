@@ -32,13 +32,13 @@ public:
 	}
 
 	//Constructor
-	PhysicMaterial(Materials material) { SetMaterialHelper(material); }
+	PhysicMaterial(Materials mat) { SetMaterialHelper(mat); }
 
 	//Get the physics material
 	Materials GetMaterial() const { return material; }
 
 	//Set the physics material
-	void SetMaterial(Materials material) { SetMaterialHelper(material); }
+	void SetMaterial(Materials mat) { SetMaterialHelper(mat); }
 
 	float GetStaticFriction() { return static_friction; }
 
@@ -48,9 +48,9 @@ public:
 
 private:
 	//Set physics material
-	void SetMaterialHelper(Materials material)
+	void SetMaterialHelper(Materials mat)
 	{
-		switch (material) {
+		switch (mat) {
 		case NONE:
 			static_friction = 0.0f;
 			dynamic_friction = 0.0f;

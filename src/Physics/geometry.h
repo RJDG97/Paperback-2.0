@@ -189,20 +189,20 @@ bool RayAabb(const paperback::Vector3f& rayStart, const paperback::Vector3f& ray
     //1     Statistics.mRayAabbTests
     float t_max = FLT_MAX;
     paperback::Vector3f n = rayDir.Normalized();
-    int dirCheck = 0;
+    //int dirCheck = 0;
     // checks all the axis
     for (size_t i = 0; i < 3; ++i)
     {
         // check direction of ray
-        if (n[i] == 0.f)
+        if (n[static_cast<unsigned>(i)] == 0.f)
         {
-            if (rayStart[i] > aabbMax[i] || rayStart[i] < aabbMin[i])
+            if (rayStart[static_cast<unsigned>(i)] > aabbMax[static_cast<unsigned>(i)] || rayStart[static_cast<unsigned>(i)] < aabbMin[static_cast<unsigned>(i)])
                 return false;
             continue;
         }
 
-        float max = (aabbMax[i] - rayStart[i]) / n[i];
-        float min = (aabbMin[i] - rayStart[i]) / n[i];
+        float max = (aabbMax[static_cast<unsigned>(i)] - rayStart[static_cast<unsigned>(i)]) / n[static_cast<unsigned>(i)];
+        float min = (aabbMin[static_cast<unsigned>(i)] - rayStart[static_cast<unsigned>(i)]) / n[static_cast<unsigned>(i)];
 
         if (max < min)
             std::swap(max, min);

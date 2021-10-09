@@ -12,7 +12,7 @@ Input::Input() noexcept
 void Input::SetKey(int Key, int Action) noexcept
 {
 	// Set key current state
-	m_Keys[Key].m_Current = Action;
+	m_Keys[Key].m_Current = static_cast<int8_t>(Action);
 }
 
 bool Input::IsKeyPress(int Key) const noexcept
@@ -49,7 +49,7 @@ bool Input::IsKeyPressUp(int Key) const noexcept
 void Input::SetMouse(int Key, int Action) noexcept
 {
 	// Set button state
-	m_Buttons[Key].m_Current = Action;
+	m_Buttons[Key].m_Current = static_cast<int8_t>(Action);
 }
 
 void Input::SetScroll(double Y) noexcept
