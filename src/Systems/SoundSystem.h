@@ -198,8 +198,8 @@ public:
     void LoadDebugBank()
     {
 
-        AddBank("TestBank/Master.bank");
-        AddBank("TestBank/Master.strings.bank");
+        AddBank("../../resources/soundbank/Master.bank");
+        AddBank("../../resources/soundbank/Master.strings.bank");
     }
 
     constexpr static auto typedef_v = paperback::system::type::update
