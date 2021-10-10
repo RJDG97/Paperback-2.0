@@ -3,7 +3,7 @@
 
 Model NUILoader::LoadNui(std::string file_path)
 {
-	std::cout << "Loading " << file_path << std::endl;
+	//std::cout << "Loading " << file_path << std::endl;
 
 	Model model;
 
@@ -268,7 +268,7 @@ Model NUILoader::LoadNui(std::string file_path)
 				ifs >> type;
 				model.SetPrimitive(type);
 
-				std::cout << file_path << " has been loaded." << std::endl;
+				//std::cout << file_path << " has been loaded." << std::endl;
 				return model;
 			}
 		}
