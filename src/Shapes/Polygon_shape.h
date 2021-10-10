@@ -14,6 +14,8 @@ struct Polygon_shape
 	};
 
 private:													// ----- Private members
+
+	// do not use this file
 	Triangle m_arrSegments[N];
 };
 

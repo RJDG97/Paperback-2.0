@@ -2,24 +2,33 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
+#include "Math/Vector4f.h"
 #include "Math/Vector3f.h"
-#include "LineSegment.h"
+#include "Plane.h"
 
-//template <size_t N = 3>
-struct Triangle
+struct Frustum
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{
-		.m_pName = "Triangle"
+		.m_pName = "Frustum"
 	};
 
 	//LineSegment m_arrSegments[N];
 
-	paperback::Vector3f mPoints[3];
+	Plane mPlanes[6];
 
-	Triangle()
+	paperback::Vector3f mPoints[8];
+
+	Frustum()
 	{
-		mPoints[0] = mPoints[1] = mPoints[2] = paperback::Vector3f{};
+		// this plane must be in a box for it to work, with all its sides and surfaces
+		// if cZero does not work, use paperback::Vector4f{0.f,0.f,0.f,0.f}
+		mPlanes[0] = mPlanes[1] = mPlanes[2]
+			= mPlanes[3] = mPlanes[4] = mPlanes[5] = paperback::Vector4f::cZero;
+			
+		mPoints[0] = mPoints[1] = mPoints[2] = mPoints[3] = 
+			mPoints[4] = mPoints[5] = mPoints[6] = mPoints[7] =
+			paperback::Vector3f{};
 	}
 };
 // -- To do:

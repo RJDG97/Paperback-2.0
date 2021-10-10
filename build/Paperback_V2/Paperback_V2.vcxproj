@@ -211,6 +211,7 @@
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />
     <ClInclude Include="..\..\src\Shapes\Circle.h" />
+    <ClInclude Include="..\..\src\Shapes\Frustrum.h" />
     <ClInclude Include="..\..\src\Shapes\LineSegment.h" />
     <ClInclude Include="..\..\src\Shapes\Plane.h" />
     <ClInclude Include="..\..\src\Shapes\Polygon_shape.h" />
