@@ -16,6 +16,7 @@ namespace paperback::archetype
         // Deep copy infos
         for ( u32 i = 0; i < NumComponents; ++i )
             m_ComponentInfos[i] = Types[i];
+
         m_NumberOfComponents = NumComponents;
         m_pName = Name;
 
@@ -189,19 +190,6 @@ namespace paperback::archetype
     //-----------------------------------
     //             Getters
     //-----------------------------------
-    std::vector <rttr::instance> instance::GetEntityComponents( const u32 Index ) noexcept
-    {
-        return m_ComponentPool[0].GetComponents(Index);  // Pool Index 0 Only For Now
-    }
-
-    archetype::instance* instance::GetArchetypePointer( const u32 Index ) noexcept
-    {
-        auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, Index });
-        auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
-
-        return EntityInfo.m_pArchetype;
-
-    }
 
     template < typename T_COMPONENT > 
     T_COMPONENT& instance::GetComponent( const PoolDetails Details ) noexcept
@@ -220,12 +208,7 @@ namespace paperback::archetype
             Do not include component::type::tag components inside of T_SYSTEM::operator() parameters
             Manually include the tag component inside of the relevant paperback::query category inside of a system / query ( must, one_of, none_of )
 
-            E.g.
-            using query = std::tuple<
-                paperback::query::must< my_tag_component >
-            >;
-
-            assert( (( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) );
+            E.g. using query = std::tuple< paperback::query::must< my_tag_component > >;
         */
         
         if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
@@ -262,12 +245,7 @@ namespace paperback::archetype
             Do not include component::type::tag components inside of T_SYSTEM::operator() parameters
             Manually include the tag component inside of the relevant paperback::query category inside of a system / query ( must, one_of, none_of )
 
-            E.g.
-            using query = std::tuple<
-                paperback::query::must< my_tag_component >
-            >;
-
-           assert( (( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) );
+            E.g. using query = std::tuple< paperback::query::must< my_tag_component > >;
         */
 
         if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
@@ -297,16 +275,6 @@ namespace paperback::archetype
 		}( xcore::types::null_tuple_v< SortedTuple > );
 
         return ComponentArray;
-    }
-
-    std::string instance::GetName( void ) noexcept 
-    {
-        return m_pName;
-    }
-
-    void instance::SetName(const std::string Name) noexcept
-    {
-        m_pName = Name;
     }
 
 
@@ -341,6 +309,35 @@ namespace paperback::archetype
         return m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<component::entity>( NewPoolIndex );
     }
 
+
+    //-----------------------------------
+    //       Data Member Getters
+    //-----------------------------------
+
+    std::vector <rttr::instance> instance::GetEntityComponents( const u32 Index ) noexcept
+    {
+        return m_ComponentPool[0].GetComponents(Index);  // Pool Index 0 Only For Now
+    }
+
+    archetype::instance* instance::GetArchetypePointer( const u32 Index ) noexcept
+    {
+        auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, Index });
+        auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
+
+        return EntityInfo.m_pArchetype;
+
+    }
+
+    std::string instance::GetName( void ) noexcept 
+    {
+        return m_pName;
+    }
+
+    void instance::SetName(const std::string Name) noexcept
+    {
+        m_pName = Name;
+    }
+
     u32 instance::GetEntityCount( void ) const noexcept
     {
         return m_EntityCount;
@@ -358,7 +355,7 @@ namespace paperback::archetype
 
     bool instance::CheckComponentExistence(const component::info* Info) noexcept
     {
-        for (int i = 0; i < m_NumberOfComponents; ++i)
+        for ( u32 i = 0; i < m_NumberOfComponents; ++i )
         {
             if (m_ComponentInfos[i] == Info)
                 return true;
@@ -375,6 +372,4 @@ namespace paperback::archetype
     {
         return m_ComponentBits;
     }
-
-
 }

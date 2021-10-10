@@ -85,8 +85,13 @@ namespace paperback::archetype
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
 
+
+        //-----------------------------------
+        //       Data Member Getters
+        //-----------------------------------
+
         PPB_INLINE
-        std::vector <rttr::instance> GetEntityComponents( const u32 Index ) noexcept;
+        std::vector<rttr::instance> GetEntityComponents( const u32 Index ) noexcept;
 
         PPB_INLINE 
         archetype::instance* GetArchetypePointer( const u32 Index ) noexcept;

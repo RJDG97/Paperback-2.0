@@ -88,6 +88,5 @@ void InitializeGame()
     // Entity Creation
     {
         PPB.OpenScene("test.json");
-    
     }
 }

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef PAPERBACK_PCH_H
 #define PAPERBACK_PCH_H
 
@@ -34,5 +35,7 @@
 #include "glfw/inc/glfw3.h"
 #include "glm/inc/glm.hpp"
 #include "glm/inc/gtx/transform.hpp"
+
+//#include "Paperback.h"
 
 #endif
