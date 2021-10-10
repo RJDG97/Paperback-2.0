@@ -1,5 +1,5 @@
-#ifndef VECTOR3_H
-#define VECTOR3_H
+#ifndef VECTOR3F_H
+#define VECTOR3F_H
 
 #include "Vector3fData.h"
 
@@ -74,12 +74,12 @@ namespace paperback
 
 		float& operator[](unsigned index)
 		{
-			ErrorIf(index > 2, "Math::Vector3 - Subscript out of range.");
+			ErrorIf(index > 2, "Vector3f - Subscript out of range.");
 			return array[index];
 		}
 		float operator[](unsigned index) const
 		{
-			ErrorIf(index > 2, "Math::Vector3 - Subscript out of range.");
+			ErrorIf(index > 2, "Vector3f - Subscript out of range.");
 			return array[index];
 		}
 		//----------------------------------------------------------------------//
@@ -100,6 +100,11 @@ namespace paperback
 		inline Vector3f RotateAboutPoint(const Vector3f& Point,		//------ Rotates a point about a 
 			const Vector3f& Center,	//------ desired centre point with
 			float Degrees);			//------ a desired angle.
+
+		inline Vector3f& LockingValue(const Vector3f& lock);			//------ max vector.
+		inline Vector3f& CutoffValue(const Vector3f& lock);			//------ min cutoff vector.
+		// m_dynamicFriction
+		inline Vector3f& DecrementValue(float lock);			//------ decrement vector.
 
 		//helper function to convert Vector3f to glm::vec3
 		xcore::vector3 ConvertMathVecToXcoreVec(const paperback::Vector3f& vec3)

@@ -1,5 +1,5 @@
-#ifndef VECTOR3_DATA_H
-#define VECTOR3_DATA_H
+#ifndef VECTOR3F_DATA_H
+#define VECTOR3F_DATA_H
 
 namespace paperback
 {

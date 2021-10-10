@@ -241,6 +241,9 @@
     <ClInclude Include="..\..\src\Systems\ScriptingSystem.h">
       <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Mono.h">
+      <Filter>Source\Tools</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Math\MathUtils.h">
       <Filter>Source\Gameplay Code\Math</Filter>
     </ClInclude>
@@ -319,6 +322,9 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\MonoExternal.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Math\Math_includes.h">
       <Filter>Source\Gameplay Code\Math</Filter>
     </ClInclude>
@@ -329,9 +335,6 @@
       <Filter>Source\Gameplay Code\Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Physics\Physics_includes.h">
-      <Filter>Source\Gameplay Code\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Physics\PhysicsMaterial.h">
       <Filter>Source\Gameplay Code\Physics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Circle.h">
@@ -411,12 +414,11 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Components\Sphere.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>    <ClInclude Include="..\..\src\Mono.h">
-      <Filter>Source\Tools\Mono</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Scripts\IScripts.h">
-      <Filter>Source\Tools\Mono</Filter>
-    </ClInclude>  </ItemGroup>
+    <ClInclude Include="..\..\src\Physics\ResolveCollision.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
+  </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
       <UniqueIdentifier>{a1e17279-6fea-45fd-8599-0d901353c1b1}</UniqueIdentifier>
@@ -501,9 +503,6 @@
     </Filter>
     <Filter Include="Source\Tools\Functionality\Animation">
       <UniqueIdentifier>{2d0e093c-f756-4177-a6da-b7340fb3c0c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Tools\Mono">
-      <UniqueIdentifier>{03742485-ba67-41f0-86a4-bee8bc21bee8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

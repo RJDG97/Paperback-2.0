@@ -345,61 +345,63 @@ struct debug_system : paperback::system::instance
 
             GetSystem<physics_system>().ApplyAccelAll({ -1.0f, 0.0f, 0.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_H))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_H))
         {
 
             GetSystem<physics_system>().ApplyAccelAll({ 1.0f, 0.0f, 0.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_T))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_T))
         {
 
             GetSystem<physics_system>().ApplyAccelAll({ 0.0f, 0.0f, -1.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_G))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_G))
         {
 
             GetSystem<physics_system>().ApplyAccelAll({ 0.0f, 0.0f, 1.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_Y))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_Y))
         {
 
             GetSystem<physics_system>().ApplyAccelAll({ 0.0f, 1.0f, 0.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_R))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_R))
         {
 
             GetSystem<physics_system>().ApplyAccelAll({ 0.0f, -1.0f, 0.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_J))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_J))
         {
 
             GetSystem<physics_system>().ApplyForceAll({ -1.0f, 0.0f, 0.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_L))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_L))
         {
 
             GetSystem<physics_system>().ApplyForceAll({ 1.0f, 0.0f, 0.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_I))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_I))
         {
 
             GetSystem<physics_system>().ApplyForceAll({ 0.0f, 0.0f, -1.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_K))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_K))
         {
 
             GetSystem<physics_system>().ApplyForceAll({ 0.0f, 0.0f, 1.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_O))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_O))
         {
 
             GetSystem<physics_system>().ApplyForceAll({ 0.0f, 1.0f, 0.0f });
         }
-        if (PPB.IsKeyPressDown(GLFW_KEY_U))
+        else if (PPB.IsKeyPressDown(GLFW_KEY_U))
         {
 
             GetSystem<physics_system>().ApplyForceAll({ 0.0f, -1.0f, 0.0f });
         }
+        else
+            GetSystem<physics_system>().NotAccelerating();
     }
 
     PPB_FORCEINLINE

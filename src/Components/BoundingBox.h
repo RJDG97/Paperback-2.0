@@ -14,9 +14,16 @@ struct BoundingBox
 public:													// ----- Private members
 	paperback::Vector3f MinMax[2];
 	bool m_Collided;
+	float m_width;
+	float m_length;
+	float m_height;
+
 
 	BoundingBox() :
-		m_Collided{ false }
+		m_Collided{ false },
+		m_width{0.f},
+		m_length{0.f},
+		m_height{0.f}
 	{
 		MinMax[0] = MinMax[1] = paperback::Vector3f{};
 	}

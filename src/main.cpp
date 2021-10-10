@@ -248,19 +248,19 @@ void InitializeGame()
                 Transform.m_Position.m_Z = -7;
 
                 bbox.MinMax[0].Set(paperback::Vector3f(
-                    - 2.f,
-                    - 2.f,
-                    - 2.f));
+                    - 1.5f,
+                    - 1.5f,
+                    - 1.5f));
 
                 bbox.MinMax[1].Set(paperback::Vector3f(
-                    2.f,
-                    2.f,
-                    2.f));
+                    1.5f,
+                    1.5f,
+                    1.5f));
 
                 sphere.Set(paperback::Vector3f(
                     Transform.m_Position.m_X,
                     Transform.m_Position.m_Y,
-                    Transform.m_Position.m_Z), 1.f);
+                    Transform.m_Position.m_Z), 1.5f);
 
                 Scale.m_Value.m_X = 1;
                 Scale.m_Value.m_Y = 1;
@@ -280,22 +280,21 @@ void InitializeGame()
                 Transform.m_Position.m_Z = -10;
 
                 bbox.MinMax[0].Set(paperback::Vector3f(
-                    - 2.f,
-                    - 2.f,
-                    - 2.f));
+                    - 1.5f,
+                    - 1.5f,
+                    - 1.5f));
 
                 bbox.MinMax[1].Set(paperback::Vector3f(
-                    2.f,
-                    2.f,
-                    2.f));
+                    1.5f,
+                    1.5f,
+                    1.5f));
 
                 sphere.Set(paperback::Vector3f(
                     Transform.m_Position.m_X,
                     Transform.m_Position.m_Y,
-                    Transform.m_Position.m_Z), 1.f);
+                    Transform.m_Position.m_Z), 1.5f);
                 
                 rf.m_Mass = 5.0f;
-                rf.m_threshold = 0.5f;
 
                 Scale.m_Value.m_X = 1;
                 Scale.m_Value.m_Y = 1;

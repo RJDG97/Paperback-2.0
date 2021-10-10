@@ -21,21 +21,23 @@ struct rigidforce
         .m_pName = "rigidforce"
     };
 
-    paperback::Vector3f m_MaxForce = paperback::Vector3f(3.f, 3.f, 3.f);
+    paperback::Vector3f m_MaxForce = paperback::Vector3f(4.f, 4.f, 4.f);
     float m_MaxForceSq = m_MaxForce.MagnitudeSq();
-    paperback::Vector3f m_MaxMoment = paperback::Vector3f(5.f, 5.f, 5.f);
+
+    paperback::Vector3f m_MaxMoment = paperback::Vector3f(10.f, 10.f, 10.f);
     float m_MaxMomentSq = m_MaxMoment.MagnitudeSq();
-    float m_threshold = .25f;
+
+    paperback::Vector3f m_minthreshold = paperback::Vector3f(0.5f, 0.5f, 0.5f);
 
     float m_Mass;                                              // -- Mass value of the object
     float m_InvMass;										// -- Inverse Mass value of the object
     float m_staticFriction;									// -- Friction, defaulted to 1.f
     float m_dynamicFriction;
     float m_modifier = 0.99f;                                       // -- if there's a need to curb its accel/velo
+    
     paperback::Vector3f m_Forces;						// -- Sum of Forces of rigidbody
     paperback::Vector3f m_Momentum;                         // -- Momentum of rigidbody
     float m_MagForce;
-    paperback::Vector3f m_NegForces;
     float m_MagMoment;
     bool m_isAccel;
 
@@ -60,12 +62,11 @@ struct rigidforce
     rigidforce() :
         m_Mass{ 0.f },
         m_InvMass{ 0.f },
-        m_staticFriction{ .5f },
-        m_dynamicFriction{ 0.25f },
+        m_staticFriction{ 1.f },
+        m_dynamicFriction{ 0.5f },
         m_Forces{ paperback::Vector3f{} },
         m_Momentum{ paperback::Vector3f{} },
         m_MagForce{ 0.f },
-        m_NegForces{ paperback::Vector3f{} },
         m_MagMoment{ 0.f },
         m_isAccel{ false }
     {}
@@ -73,12 +74,11 @@ struct rigidforce
     rigidforce(float mass) :
         m_Mass{ mass },
         m_InvMass{ 1 / mass },
-        m_staticFriction{ .5f },
-        m_dynamicFriction{ 0.25f },
+        m_staticFriction{ 1.f },
+        m_dynamicFriction{ 0.5f },
         m_Forces{ paperback::Vector3f{} },
         m_Momentum{ paperback::Vector3f{} },
         m_MagForce{ 0.f },
-        m_NegForces{ paperback::Vector3f{} },
         m_MagMoment{ 0.f },
         m_isAccel{ false }
     {}

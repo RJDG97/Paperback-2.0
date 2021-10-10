@@ -42,17 +42,27 @@ struct bullet_logic_system : paperback::system::instance
                 xf.y = xform.m_Position.m_Y;
                 xf.z = xform.m_Position.m_Z;
 
-                // collision detection part
-                if (boundingbox && bb && AabbAabb(tf + boundingbox->MinMax[0], tf + boundingbox->MinMax[1], xf + bb->MinMax[0], xf + bb->MinMax[1]))
+                if (boundingbox && bb)
                 {
-                    boundingbox->m_Collided = bb->m_Collided = true;
+                    // collision detection part
+                    if (AabbAabb(tf + boundingbox->MinMax[0], tf + boundingbox->MinMax[1], xf + bb->MinMax[0], xf + bb->MinMax[1]))
+                    {
+                        boundingbox->m_Collided = bb->m_Collided = true;
+                    }
+                    else
+                        boundingbox->m_Collided = bb->m_Collided = false;
                 }
-
-                if (sphere && ball && SphereSphere(sphere->getCenter(), sphere->getRadius(), ball->getCenter(), ball->getRadius()))
+                
+                if (sphere && ball)
                 {
-                    sphere->m_Collided = ball->m_Collided = true;
+                    if (SphereSphere(sphere->getCenter(), sphere->getRadius(), ball->getCenter(), ball->getRadius()))
+                    {
+                        sphere->m_Collided = ball->m_Collided = true;
+                    }
+                    else
+                        sphere->m_Collided = ball->m_Collided = false;
                 }
-
+                
                 constexpr auto min_distance_v = 4;
                 if ((Transform.m_Position - xform.m_Position).getLengthSquared() < min_distance_v * min_distance_v)
                 {
