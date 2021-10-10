@@ -279,7 +279,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 			{
 				m_Resources.m_Shaders["Shadow"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
-				if (bone_transforms && (model.first == "Character" || model.first == "Character2"))
+				if (bone_transforms && model.first == "Character")
 				{
 					m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", true);
 					auto loc = glGetUniformLocation(m_Resources.m_Shaders["Shadow"].GetShaderHandle(), "uFinalBonesMatrices");
@@ -405,7 +405,7 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
 
-				if (bone_transforms && (model.first == "Character" || model.first == "Character2"))
+				if (bone_transforms && model.first == "Character")
 				{
 					m_Resources.m_Shaders["Light"].SetUniform("uHasBones", true);
 					auto loc = glGetUniformLocation(m_Resources.m_Shaders["Light"].GetShaderHandle(), "uFinalBonesMatrices");
