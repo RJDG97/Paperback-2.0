@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_map>
 #include "glew/inc/glew.h"
+#include "../Animation/Animation.h"
 
 class Model
 {
@@ -18,12 +19,27 @@ public:
 
 		int m_BoneIDs[4];
 		float m_Weights[4];
-	};
 
-	struct BoneInfo
-	{
-		int id;				//index in finalBoneMatrices
-		glm::mat4 offset;	//model space to bone space
+		Vertex() = default;
+
+		Vertex(glm::vec3 position, glm::vec3 normal, glm::vec2 uv, glm::vec3 tangent, glm::vec3 bitangent, int* bone_ids = {}, float* weights = {})
+			: m_Position{ position },
+			  m_Normal { normal },
+			  m_UV { uv },
+			  m_Tangent { tangent },
+			  m_BiTangent { bitangent }
+
+		{
+			if (bone_ids)
+			{
+				memcpy(m_BoneIDs, bone_ids, 4 * sizeof(int));
+			}
+
+			if (weights)
+			{
+				memcpy(m_Weights, weights, 4 * sizeof(int));
+			}
+		}
 	};
 
 	struct Material
@@ -55,6 +71,8 @@ public:
 
 	void AddSubMesh(const SubMesh& Mesh);
 	void RemoveAllSubMesh();
+	void AddAnimation(const Animation& animation, std::string animation_name);
+	std::unordered_map<std::string, Animation>& GetAnimations() { return m_Animations; }
 	void SetPrimitive(const int& Primitive);
 	int GetPrimitive() const;
 	const std::vector<SubMesh>& GetSubMeshes() const;
@@ -65,6 +83,7 @@ private:
 	std::vector<SubMesh> m_SubMesh;
 	int m_Type;
 	std::unordered_map<std::string, BoneInfo> m_BoneInfoMap;
+	std::unordered_map<std::string, Animation> m_Animations;
 };
 
 #endif

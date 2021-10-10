@@ -60,10 +60,9 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 
-	m_Resources.Load3DMesh("Backpack", "../../resources/models/backpack.obj");
-	m_Resources.Load3DMesh("Box", "../../resources/models/box.fbx");
-	m_Resources.Load3DMesh("Plane", "../../resources/models/plane2.obj");
-	m_Resources.Load3DMesh("Character", "../../resources/models/mutant.fbx");
+	m_Resources.Load3DMeshNUI("Box", "../../resources/models/nui/box.nui");
+	m_Resources.Load3DMeshNUI("Plane", "../../resources/models/nui/plane.nui");
+	m_Resources.Load3DMeshNUI("Character", "../../resources/models/nui/mutant.nui");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -90,14 +89,14 @@ Renderer::~Renderer()
 	glDeleteVertexArrays(1, &m_VAO);
 	glDeleteVertexArrays(1, &m_DebugVAO);
 
-	glDeleteFramebuffers(m_ShadowBuffer.m_FrameBuffer.size(), m_ShadowBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_ShadowBuffer.m_BufferTexture.size(), m_ShadowBuffer.m_FrameBuffer.data());
+	glDeleteFramebuffers(static_cast<GLsizei>(m_ShadowBuffer.m_FrameBuffer.size()), m_ShadowBuffer.m_FrameBuffer.data());
+	glDeleteTextures(static_cast<GLsizei>(m_ShadowBuffer.m_BufferTexture.size()), m_ShadowBuffer.m_FrameBuffer.data());
 
-	glDeleteFramebuffers(m_LightingBuffer.m_FrameBuffer.size(), m_LightingBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_LightingBuffer.m_BufferTexture.size(), m_LightingBuffer.m_FrameBuffer.data());
+	glDeleteFramebuffers(static_cast<GLsizei>(m_LightingBuffer.m_FrameBuffer.size()), m_LightingBuffer.m_FrameBuffer.data());
+	glDeleteTextures(static_cast<GLsizei>(m_LightingBuffer.m_BufferTexture.size()), m_LightingBuffer.m_FrameBuffer.data());
 
-	glDeleteFramebuffers(m_BlurBuffer.m_FrameBuffer.size(), m_BlurBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_BlurBuffer.m_BufferTexture.size(), m_BlurBuffer.m_FrameBuffer.data());
+	glDeleteFramebuffers(static_cast<GLsizei>(m_BlurBuffer.m_FrameBuffer.size()), m_BlurBuffer.m_FrameBuffer.data());
+	glDeleteTextures(static_cast<GLsizei>(m_BlurBuffer.m_BufferTexture.size()), m_BlurBuffer.m_FrameBuffer.data());
 }
 
 void Renderer::SetUpFramebuffer()

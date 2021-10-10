@@ -6,3 +6,4 @@
 #include "WindowSystem.h"
 #include "DebugSystem.h"
 #include "RendererSystem.h"
+#include "AnimatorSystem.h"

@@ -135,12 +135,6 @@ namespace paperback::vm
 		PPB_ASSERT_MSG( PoolIndex < 0, "Pool RemoveTransferredEntity - Invalid pool index");
 
 		// Backtrack to last valid entity
-		//while ( m_CurrentEntityCount )
-  //      {
-		//	--m_CurrentEntityCount;
-  //          if ( GetComponent<paperback::component::entity>( m_CurrentEntityCount ).IsZombie() == false ) break;
-  //      }
-
 		if ( PoolIndex >= m_CurrentEntityCount )
 			return false;
 
@@ -151,7 +145,7 @@ namespace paperback::vm
 			const auto& pInfo = *m_ComponentInfo[i];
 			auto		pData =  m_MemoryPool[i];
 
-			// If moving last entity - Ignore
+			// If moving last entity - Just destroy it
 			if ( PoolIndex == m_CurrentEntityCount )
 				if (pInfo.m_Destructor) pInfo.m_Destructor(&pData[m_CurrentEntityCount * pInfo.m_Size]);
 
@@ -161,13 +155,12 @@ namespace paperback::vm
 				if ( pInfo.m_Move )
 				{
 					pInfo.m_Move( &pData[PoolIndex * pInfo.m_Size], &pData[m_CurrentEntityCount * pInfo.m_Size] );
-
-					if (pInfo.m_Destructor) pInfo.m_Destructor(&pData[m_CurrentEntityCount * pInfo.m_Size]);
 				}
 				else
 				{
 					memcpy( &pData[PoolIndex * pInfo.m_Size], &pData[m_CurrentEntityCount * pInfo.m_Size], pInfo.m_Size );
 				}
+				if ( pInfo.m_Destructor ) pInfo.m_Destructor( &pData[m_CurrentEntityCount * pInfo.m_Size] );
 			}
 
 			// Free the page if empty
@@ -253,6 +246,11 @@ namespace paperback::vm
 
         return NewPoolIndex;
 	}
+	
+
+	//-----------------------------------
+	//              Clone
+	//-----------------------------------
 
 	void instance::CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept
 	{
@@ -272,6 +270,27 @@ namespace paperback::vm
 			}
 		}
 	}
+
+
+	//-----------------------------------
+	//              Save
+	//-----------------------------------
+
+	void instance::SerializePoolComponentsAtEntityIndex( const u32 Index, paperback::JsonFile& Jfile ) noexcept
+	{
+		for ( u32 i = 0, max = m_NumberOfComponents; i < max; ++i )
+		{
+			rttr::instance Component = GetComponentInstance( m_ComponentInfo[i]->m_Guid, Index );
+			Jfile.WriteKey( Component.get_type().get_name().to_string() ).StartObject();
+			Jfile.Write( Component );
+			Jfile.EndObject();
+		}
+	}
+
+
+	//-----------------------------------
+	//            Getters
+	//-----------------------------------
 
 	template < typename T_COMPONENT >
 	T_COMPONENT& instance::GetComponent( const u32 PoolIndex ) const noexcept
@@ -301,7 +320,7 @@ namespace paperback::vm
 			if ( m_ComponentInfo[i]->m_Guid.m_Value == Guid.m_Value )
 				return i;
 		}
-		return -1; // Replace with an error - No Crash
+		return -1;
 	}
 
 	int instance::GetComponentIndexFromGUIDInSequence( const component::type::guid Guid, const int Sequence ) const noexcept
@@ -312,18 +331,6 @@ namespace paperback::vm
 				return i;
 		}
 		return -1;
-	}
-
-	void instance::SerializePoolComponentsAtEntityIndex( const u32 Index, paperback::JsonFile& Jfile ) noexcept
-	{
-		for ( u32 i = 0, max = m_NumberOfComponents; i < max; ++i )
-		{
-			rttr::instance Component = GetComponentInstance( m_ComponentInfo[i]->m_Guid, Index );
-			Jfile.WriteKey( Component.get_type().get_name().to_string() ).StartObject();
-			Jfile.Write( Component );
-			Jfile.EndObject();
-
-		}
 	}
 
 	std::vector<rttr::instance> instance::GetComponents( const u32 Index ) noexcept
@@ -363,6 +370,8 @@ namespace paperback::vm
 			return  rttr::instance(GetComponent< boundingbox >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< sphere >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< sphere >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< animator >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< animator >(Index));
 		else
 			return rttr::instance();
 	}

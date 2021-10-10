@@ -5,15 +5,11 @@
 #include "../Functionality/Renderer/Renderer.h"
 #include "glm/inc/gtx/transform.hpp"
 #include "../Systems/WindowSystem.h"
-#include "../Functionality/Animation/Animator.h"
 
 struct render_system : paperback::system::instance
 {
 	GLFWwindow* m_pWindow;
 	RenderResourceManager* m_Resources;
-
-	Animation animation_test;
-	Animator animator_test;
 
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
@@ -27,10 +23,6 @@ struct render_system : paperback::system::instance
 		m_Resources = &RenderResourceManager::GetInstanced();
 		Renderer::GetInstanced().StartFrame();
 
-
-		animation_test = Animation{ "../../resources/models/mutant.fbx", &m_Resources->m_Models["Character"] };
-		animator_test = Animator{ &animation_test };
-
 	}
 
 	PPB_FORCEINLINE
@@ -41,24 +33,14 @@ struct render_system : paperback::system::instance
 	PPB_FORCEINLINE
 	void Update( void ) noexcept
 	{
-		animator_test.UpdateAnimation(DeltaTime());
-
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<glm::mat4>> objects;
-
-		glm::mat4 t{ 1.0f };
-		t = glm::translate(t, glm::vec3{ -3,2,-3 });
-		t = glm::scale(t, glm::vec3{ 0.03,0.03,0.03 });
-
-
-		objects["Character"].push_back(t);
-		auto transforms{ animator_test.GetFinalBoneMatrices() };
-
 		
-		// Initializing Query
+		//just testing stuff
 		tools::query Query;
 		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation>();
-
+		
+		glm::mat4 t{ 1.0f };
 		t = glm::mat4{ 1.0f };
 		t = glm::translate(t, glm::vec3{ 0, 0, 0 });
 		t = glm::rotate(t, glm::radians(-90.f), glm::vec3{ 1.f, 0.f, 0.f });
@@ -80,7 +62,16 @@ struct render_system : paperback::system::instance
 
 		auto points = GetSystem<debug_system>().GetPoints();
 
-		Renderer::GetInstanced().Render(objects, &points, &transforms);
+		//temporary, to test out skeletal animation
+		std::vector<glm::mat4> temp_bone_matrices;
+		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation, animator>();
+
+		ForEach(Search(Query), [&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator& Animator) noexcept
+		{
+				temp_bone_matrices = Animator.m_FinalBoneMatrices;
+		});
+
+		Renderer::GetInstanced().Render(objects, &points, &temp_bone_matrices);
 	}
 
 	PPB_FORCEINLINE

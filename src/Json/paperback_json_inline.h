@@ -26,7 +26,6 @@ namespace paperback
         delete wstream;
         delete buffer;
 
-        std::cout << fclose(fp) << std::endl;
         fp = nullptr;
 
         return *this;

@@ -36,7 +36,7 @@ struct physics_system : paperback::system::instance
         Momentum += Moment;
     }
 
-    void ResetMomentum(paperback::Vector3f Momentum)
+    void ResetMomentum(paperback::Vector3f& Momentum)
     {
 
         Momentum = paperback::Vector3f{};

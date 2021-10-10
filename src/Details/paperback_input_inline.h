@@ -9,6 +9,7 @@ Input::Input() noexcept
 //-----------------------------------
 //              Keys
 //-----------------------------------
+
 void Input::SetKey(int Key, int Action) noexcept
 {
 	// Set key current state
@@ -46,6 +47,7 @@ bool Input::IsKeyPressUp(int Key) const noexcept
 //-----------------------------------
 //              Mouse
 //-----------------------------------
+
 void Input::SetMouse(int Key, int Action) noexcept
 {
 	// Set button state
@@ -128,6 +130,7 @@ glm::vec3 Input::GetMousePosition() const noexcept
 //-----------------------------------
 //           Post Update
 //-----------------------------------
+
 void Input::UpateInputs() noexcept
 {
 	for (auto& key : m_Keys)

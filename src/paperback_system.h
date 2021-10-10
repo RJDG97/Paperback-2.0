@@ -62,12 +62,13 @@ To Use:
 
 	5. More Advanced Update Handling - Define these functions within your System ( Use PPB_INLINE )
 
-		void OnSystemCreated ( void ) noexcept {}	// When RegisterSystem is called - Manual Initialization
-        void OnFrameStart    ( void ) noexcept {}	// At the start of the frame
-        void PreUpdate       ( void ) noexcept {}	// Before Update()
-		void Update		     ( void ) noexcept {}	// Recommended to use operator() if only performing a single loop - E.g. No comparing of entities against other entities
-		void PostUpdate      ( void ) noexcept {}	// After Update()
-		void OnFrameEnd      ( void ) noexcept {}	// At the end of the frame
+		void OnSystemCreated    ( void ) noexcept {}	// When RegisterSystem is called - Manual Initialization
+        void OnFrameStart       ( void ) noexcept {}	// At the start of the frame
+        void PreUpdate          ( void ) noexcept {}	// Before Update()
+		void Update		        ( void ) noexcept {}	// Recommended to use operator() if only performing a single loop - E.g. No comparing of entities against other entities
+		void PostUpdate         ( void ) noexcept {}	// After Update()
+		void OnFrameEnd         ( void ) noexcept {}	// At the end of the frame
+		void OnSystemTerminated ( void ) noexcept {}	// When Game is Terminated / Reloaded
 */
 
 namespace paperback::system
@@ -138,13 +139,13 @@ namespace paperback::system
 	//-----------------------------------
 	struct system_interface
 	{
-		void OnSystemCreated    ( void ) noexcept {}	// When RegisterSystem is called - Manual Initialization
+		void OnSystemCreated    ( void ) noexcept {}
         void OnFrameStart       ( void ) noexcept {}
         void PreUpdate          ( void ) noexcept {}
 		void Update		        ( void ) noexcept {}
 		void PostUpdate         ( void ) noexcept {}
 		void OnFrameEnd         ( void ) noexcept {}
-		void OnSystemTerminated ( void ) noexcept {}	// When Game is Terminated / Reloaded
+		void OnSystemTerminated ( void ) noexcept {}
 	};
 
 	struct instance : system_interface
@@ -200,7 +201,6 @@ namespace paperback::system
 		float DeltaTime() const noexcept;
 
 
-		// Private This After
 		paperback::coordinator::instance& m_Coordinator;
 	};
 

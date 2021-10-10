@@ -89,6 +89,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Nui\NUILoader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Renderer\Renderer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -132,6 +136,7 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h" />
     <ClInclude Include="..\..\dependencies\xcore\src\xcore.h" />
     <ClInclude Include="..\..\src\Components\AABB.h" />
+    <ClInclude Include="..\..\src\Components\Animator.h" />
     <ClInclude Include="..\..\src\Components\BoundingBox.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
     <ClInclude Include="..\..\src\Components\EntityScript.h" />
@@ -160,10 +165,10 @@
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
-    <ClInclude Include="..\..\src\Functionality\Animation\Animator.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
+    <ClInclude Include="..\..\src\Functionality\Nui\NUILoader.h" />
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h" />
     <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceManager.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
@@ -218,6 +223,7 @@
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
     <ClInclude Include="..\..\src\Shapes\Triangle.h" />
     <ClInclude Include="..\..\src\Systems\CollisionSystem.h" />
+    <ClInclude Include="..\..\src\Systems\AnimatorSystem.h" />
     <ClInclude Include="..\..\src\Systems\DebugSystem.h" />
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />

@@ -14,6 +14,8 @@
 #include "Functionality/RenderResource/RenderResourceManager.h"
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
+#include "../Animation/Animation.h"
+#include "../NUI/NUILoader.h"
 
 #include <vector>
 
@@ -120,6 +122,8 @@ Model MeshBuilder::Build3DMesh(const std::string& File)
 
 	model.SetPrimitive(GL_TRIANGLES);
 
+	LoadAnimations(scene->mAnimations, scene->mNumAnimations, scene->mRootNode, &model);
+
 	importer.FreeScene();
 
 	return std::move(model);
@@ -216,10 +220,10 @@ void MeshBuilder::ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, 
 			int new_id { static_cast<int>(bone_info_map.size()) };
 
 			auto mat{ SubMesh->mBones[bone_index]->mOffsetMatrix };
-			Model::BoneInfo bone_info { new_id, {mat.a1, mat.b1, mat.c1, mat.d1,
-												 mat.a2, mat.b2, mat.c2, mat.d2,
-												 mat.a3, mat.b3, mat.c3, mat.d3,
-												 mat.a4, mat.b4, mat.c4, mat.d4 } };
+			BoneInfo bone_info { new_id, {mat.a1, mat.b1, mat.c1, mat.d1,
+										  mat.a2, mat.b2, mat.c2, mat.d2,
+										  mat.a3, mat.b3, mat.c3, mat.d3,
+										  mat.a4, mat.b4, mat.c4, mat.d4 } };
 
 			bone_id = new_id;
 			bone_info_map[bone_name] = bone_info;
@@ -250,6 +254,23 @@ void MeshBuilder::ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, 
 			}
 		}
 	}
+}
+
+void MeshBuilder::LoadAnimations(aiAnimation** animation, int num_animations, aiNode* root_node, Model* model)
+{
+	if (animation)
+	{
+		for (int i = 0; i < num_animations; ++i)
+		{
+			model->AddAnimation({ animation[i], root_node, model->GetBoneInfoMap() }, { animation[i]->mName.C_Str() });
+		}
+	}
+}
+
+Model MeshBuilder::BuildMeshFromNUI(std::string file_path)
+{
+	NUILoader nui_loader;
+	return std::move(nui_loader.LoadNui(file_path));
 }
 
 Model MeshBuilder::BuildScreenMesh()

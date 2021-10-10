@@ -182,11 +182,11 @@ namespace paperback::coordinator
 												   , Function );
 	}
 
-	template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
+	template < concepts::Callable T_FUNCTION >
 	component::entity instance::AddOrRemoveComponents( const component::entity Entity
-								           , std::span<const component::info* > Add
-								           , std::span<const component::info* > Remove
-								           , T_FUNCTION&& Function ) noexcept
+								                     , std::span<const component::info* > Add
+								                     , std::span<const component::info* > Remove
+								                     , T_FUNCTION&& Function ) noexcept
 	{
 		return m_ArchetypeMgr.AddOrRemoveComponents( Entity
 												   , Add

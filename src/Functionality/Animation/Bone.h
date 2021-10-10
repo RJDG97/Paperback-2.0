@@ -25,6 +25,18 @@ struct KeyScale
 
 class Bone
 {
+public:
+    Bone(std::vector<KeyPosition> positions, std::vector<KeyRotation> rotations, std::vector<KeyScale> scales,
+        glm::mat4 local_transform, std::string name, int id)
+        : m_Positions{ positions },
+        m_Rotations{ rotations },
+        m_Scales{ scales },
+        m_LocalTransform{ local_transform },
+        m_Name{ name },
+        m_ID{ id }
+    {
+
+    }
 
 private:
 
@@ -131,7 +143,7 @@ public:
             }
         }
 
-        return -1;
+        return 0;
     }
 
     int GetRotationIndex(float animationTime)
@@ -144,7 +156,7 @@ public:
             }
         }
 
-        return -1;
+        return 0;
     }
 
     int GetScaleIndex(float animationTime)
@@ -157,7 +169,7 @@ public:
             }
         }
 
-        return -1;
+        return 0;
     }
 
     glm::mat4 GetLocalTransform() { return m_LocalTransform; }
