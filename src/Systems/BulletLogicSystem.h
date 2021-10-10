@@ -31,6 +31,7 @@ struct bullet_logic_system : paperback::system::instance
         if (sphere)
             sphere->setCenter(tf);
 
+        // to simulate plane collision, just add plane pointer here and if(plane collide box. negate the box momentum and force. )
         ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, transform& xform, BoundingBox* bb, Sphere* ball) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
