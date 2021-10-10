@@ -252,6 +252,9 @@ namespace paperback::deserialize
                                         if (obj.is_type<rigidforce>())
                                             NewArchetype->GetComponent<rigidforce>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rigidforce>();
 
+                                        if (obj.is_type<animator>())
+                                            NewArchetype->GetComponent<animator>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<animator>();
+
                                     }
 
                                     EntityCounter++;
