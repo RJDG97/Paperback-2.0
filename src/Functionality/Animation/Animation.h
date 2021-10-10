@@ -114,6 +114,18 @@ class Animation
 public:
     Animation() = default;
 
+    Animation(float duration, float ticks_per_second,
+        std::vector<Bone> bones, NodeData root_node,
+        std::unordered_map <std::string, BoneInfo> bone_info_map)
+        : m_Duration{ duration },
+        m_TicksPerSecond{ ticks_per_second },
+        m_Bones{ bones },
+        m_RootNode{ root_node },
+        m_BoneInfoMap{ bone_info_map }
+    {
+
+    }
+
     Animation(aiAnimation* animation, aiNode* root_node, std::unordered_map<std::string, BoneInfo>& bone_info_map)
     {
         m_Duration = static_cast<float>(animation->mDuration);

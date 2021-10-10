@@ -101,6 +101,50 @@ std::string RenderResourceManager::LoadMaterial(const std::string& Material, aiM
 	return Material;
 }
 
+void RenderResourceManager::TEMP(const std::string& Mesh, const std::string& File)
+{
+	if (m_Models.find(Mesh) == m_Models.end())
+		m_Models[Mesh] = MeshBuilder::BuildMeshFromNUI(File);
+}
+
+void RenderResourceManager::TEMPTexture(const std::string& material_name, NUILoader::TempMaterial& material_data)
+{
+	if (m_Materials.find(material_name) == m_Materials.end())
+	{
+		Model::Material mat;
+
+		if (material_data.m_Diffuse.first == "EMPTY")
+		{
+			material_data.m_Diffuse.first = "";
+		}
+
+		mat.m_Diffuse = LoadTextures(material_data.m_Diffuse.first, material_data.m_Diffuse.second, true);
+
+		if (material_data.m_Ambient.first == "EMPTY")
+		{
+			material_data.m_Ambient.first = "";
+		}
+
+		mat.m_Ambient = LoadTextures(material_data.m_Ambient.first, material_data.m_Ambient.second, true);
+
+		if (material_data.m_Specular.first == "EMPTY")
+		{
+			material_data.m_Specular.first = "";
+		}
+
+		mat.m_Specular = LoadTextures(material_data.m_Specular.first, material_data.m_Specular.second, true);
+
+		if (material_data.m_Normal.first == "EMPTY")
+		{
+			material_data.m_Normal.first = "";
+		}
+
+		mat.m_Normal = LoadTextures(material_data.m_Normal.first, material_data.m_Normal.second, true);
+
+		m_Materials[material_name] = mat;
+	}
+}
+
 void RenderResourceManager::Load3DMesh(const std::string& Mesh, const std::string& File)
 {
 	if (m_Models.find(Mesh) == m_Models.end())

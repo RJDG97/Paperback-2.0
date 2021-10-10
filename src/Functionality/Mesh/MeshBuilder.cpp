@@ -15,6 +15,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 #include "../Animation/Animation.h"
+#include "../NUI/NUILoader.h"
 
 #include <vector>
 
@@ -264,6 +265,12 @@ void MeshBuilder::LoadAnimations(aiAnimation** animation, int num_animations, ai
 			model->AddAnimation({ animation[i], root_node, model->GetBoneInfoMap() }, { animation[i]->mName.C_Str() });
 		}
 	}
+}
+
+Model MeshBuilder::BuildMeshFromNUI(std::string file_path)
+{
+	NUILoader nui_loader;
+	return std::move(nui_loader.LoadNui(file_path));
 }
 
 Model MeshBuilder::BuildScreenMesh()

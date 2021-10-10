@@ -91,76 +91,15 @@ void InitializeGame()
     {
         PPB.OpenScene("test.json");
 
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, boundingbox& Bbox, sphere& Sphere, rigidbody& RB)// rigidforce& rf)
-            {
-                Transform.m_Position.x = -8;
-                Transform.m_Position.y = 5.5;
-                Transform.m_Position.z = -7;
-
-                Bbox.Min.Set(paperback::Vector3f(
-                    -1.5f,
-                    -1.5f,
-                    -1.5f));
-
-                Bbox.Max.Set(paperback::Vector3f(
-                    1.5f,
-                    1.5f,
-                    1.5f));
-
-                Sphere.m_fRadius = 1.0f;
-
-                Scale.m_Value.x = 1;
-                Scale.m_Value.y = 1;
-                Scale.m_Value.z = 1;
-
-                Rotation.m_Value.x = 0;
-                Rotation.m_Value.y = 0;
-                Rotation.m_Value.z = 0;
-
-                Mesh.m_Model = "Box";
-            });
-        // right
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, boundingbox& Bbox, sphere& Sphere, rigidbody& RB, rigidforce& RF)
-            {
-                Transform.m_Position.x = -12;
-                Transform.m_Position.y = 2.5;
-                Transform.m_Position.z = -10;
-
-                Bbox.Min.Set(paperback::Vector3f(
-                    -1.5f,
-                    -1.5f,
-                    -1.5f));
-
-                Bbox.Max.Set(paperback::Vector3f(
-                    1.5f,
-                    1.5f,
-                    1.5f));
-
-                Sphere.m_fRadius = 1.0f;
-
-                RF.m_Mass = 5.0f;
-                RF.m_threshold = 0.5f;
-
-                Scale.m_Value.x = 1;
-                Scale.m_Value.y = 1;
-                Scale.m_Value.z = 1;
-
-                Rotation.m_Value.x = 0;
-                Rotation.m_Value.y = 0;
-                Rotation.m_Value.z = 0;
-
-                Mesh.m_Model = "Box";
-            });
-
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator& Animator)
             {
                 Transform.m_Position.x = -2;
                 Transform.m_Position.y = 5;
                 Transform.m_Position.z = -10;
 
-                Scale.m_Value.x = 0.03;
-                Scale.m_Value.y = 0.03;
-                Scale.m_Value.z = 0.03;
+                Scale.m_Value.x = 0.03f;
+                Scale.m_Value.y = 0.03f;
+                Scale.m_Value.z = 0.03f;
 
                 Rotation.m_Value.x = 0;
                 Rotation.m_Value.y = 0;
@@ -169,6 +108,5 @@ void InitializeGame()
                 Mesh.m_Model = "Character";
                 Animator.m_CurrentAnimationName = "Armature|Armature|mixamo.com|Layer0";
             });
-
     }
 }

@@ -19,6 +19,27 @@ public:
 
 		int m_BoneIDs[4];
 		float m_Weights[4];
+
+		Vertex() = default;
+
+		Vertex(glm::vec3 position, glm::vec3 normal, glm::vec2 uv, glm::vec3 tangent, glm::vec3 bitangent, int* bone_ids = {}, float* weights = {})
+			: m_Position{ position },
+			  m_Normal { normal },
+			  m_UV { uv },
+			  m_Tangent { tangent },
+			  m_BiTangent { bitangent }
+
+		{
+			if (bone_ids)
+			{
+				memcpy(m_BoneIDs, bone_ids, 4 * sizeof(int));
+			}
+
+			if (weights)
+			{
+				memcpy(m_Weights, weights, 4 * sizeof(int));
+			}
+		}
 	};
 
 	struct Material

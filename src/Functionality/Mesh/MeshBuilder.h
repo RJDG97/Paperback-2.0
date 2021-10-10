@@ -30,6 +30,7 @@ public:
 	// Create unit squre quad
 	static Model Build2DMesh();
 	static Model Build3DMesh(const std::string& File);
+	static Model BuildMeshFromNUI(std::string file_path);
 
 	// Create quad to fit NDC
 	static Model BuildScreenMesh();
