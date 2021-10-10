@@ -60,9 +60,9 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 
-	m_Resources.TEMP("Box", "../../resources/models/nui/box.nui");
-	m_Resources.TEMP("Plane", "../../resources/models/nui/plane.nui");
-	m_Resources.TEMP("Character", "../../resources/models/nui/mutant.nui");
+	m_Resources.Load3DMeshNUI("Box", "../../resources/models/nui/box.nui");
+	m_Resources.Load3DMeshNUI("Plane", "../../resources/models/nui/plane.nui");
+	m_Resources.Load3DMeshNUI("Character", "../../resources/models/nui/mutant.nui");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);

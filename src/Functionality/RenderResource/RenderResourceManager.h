@@ -22,8 +22,8 @@ public:
 	// Unloads all meshes
 	void UnloadAllMeshes();
 
-	void TEMP(const std::string& Mesh, const std::string& File);
-	void TEMPTexture(const std::string& material_name, NUILoader::TempMaterial& material_data);
+	void Load3DMeshNUI(const std::string& Mesh, const std::string& File);
+	void LoadMaterialNUI(const std::string& material_name, NUILoader::TempMaterial& material_data);
 
 	// Load textures
 	std::string LoadTextures(const std::string& Texture, const std::string& File, const bool& GammaCorrect);

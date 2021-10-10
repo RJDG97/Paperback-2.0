@@ -101,13 +101,13 @@ std::string RenderResourceManager::LoadMaterial(const std::string& Material, aiM
 	return Material;
 }
 
-void RenderResourceManager::TEMP(const std::string& Mesh, const std::string& File)
+void RenderResourceManager::Load3DMeshNUI(const std::string& Mesh, const std::string& File)
 {
 	if (m_Models.find(Mesh) == m_Models.end())
 		m_Models[Mesh] = MeshBuilder::BuildMeshFromNUI(File);
 }
 
-void RenderResourceManager::TEMPTexture(const std::string& material_name, NUILoader::TempMaterial& material_data)
+void RenderResourceManager::LoadMaterialNUI(const std::string& material_name, NUILoader::TempMaterial& material_data)
 {
 	if (m_Materials.find(material_name) == m_Materials.end())
 	{

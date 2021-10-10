@@ -305,7 +305,7 @@ Model::SubMesh NUILoader::CreateSubMesh(std::vector<Model::Vertex> vertices, std
 	glCreateBuffers(1, &ebo);
 	glNamedBufferStorage(ebo, sizeof(GLushort) * indices.size(), reinterpret_cast<GLvoid*>(indices.data()), GL_DYNAMIC_STORAGE_BIT);
 
-	RenderResourceManager::GetInstanced().TEMPTexture(material.first, material.second);
+	RenderResourceManager::GetInstanced().LoadMaterialNUI(material.first, material.second);
 
 	return std::move(Model::SubMesh{ vertices, indices, vbo, ebo, static_cast<GLuint>(indices.size()), material.first });
 }
