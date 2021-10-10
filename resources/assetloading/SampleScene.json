@@ -294,8 +294,8 @@
                         }
                     },
                     "RigidForce": {
-                        "Mass": 0.0,
-                        "Inverse Mass": 0.0,
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
                         "Threshold": 0.25
@@ -308,8 +308,8 @@
                         },
                         "Position": {
                             "x": -12.0,
-                            "y": 2.5,
-                            "z": -10.0
+                            "y": 1.1216073036193848,
+                            "z": -10.850677490234375
                         }
                     },
                     "Scale": {
@@ -345,6 +345,57 @@
                     },
                     "Mesh": {
                         "Model Mesh": "Box"
+                    }
+                }
+            ]
+        },
+        {
+            "Mutant Nui": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        9604788041699812520,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Character"
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Armature|mixamo.com|Layer0"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.0,
+                            "y": 5.0,
+                            "z": -10.0
+                        }
                     }
                 }
             ]

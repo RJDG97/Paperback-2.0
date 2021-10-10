@@ -25,7 +25,7 @@ namespace paperback
         delete writer;
         delete wstream;
         delete buffer;
-
+        fclose(fp);
         fp = nullptr;
 
         return *this;
