@@ -62,7 +62,16 @@ struct render_system : paperback::system::instance
 
 		auto points = GetSystem<debug_system>().GetPoints();
 
-		Renderer::GetInstanced().Render(objects, &points);
+		//temporary, to test out skeletal animation
+		std::vector<glm::mat4> temp_bone_matrices;
+		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation, animator>();
+
+		ForEach(Search(Query), [&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator& Animator) noexcept
+		{
+				temp_bone_matrices = Animator.m_FinalBoneMatrices;
+		});
+
+		Renderer::GetInstanced().Render(objects, &points, &temp_bone_matrices);
 	}
 
 	PPB_FORCEINLINE

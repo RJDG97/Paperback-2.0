@@ -68,6 +68,7 @@ void InitializeGame()
             timer,
             sound,
             mesh,
+            animator,
             entityscript
         >();
     }
@@ -82,7 +83,8 @@ void InitializeGame()
             window_system,
             debug_system,
             render_system,
-            imgui_system
+            imgui_system,
+            animator_system
         >();
     }
     // Entity Creation
@@ -150,6 +152,23 @@ void InitializeGame()
                 Mesh.m_Model = "Box";
             });
 
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator& Animator)
+            {
+                Transform.m_Position.x = -2;
+                Transform.m_Position.y = 5;
+                Transform.m_Position.z = -10;
+
+                Scale.m_Value.x = 0.03;
+                Scale.m_Value.y = 0.03;
+                Scale.m_Value.z = 0.03;
+
+                Rotation.m_Value.x = 0;
+                Rotation.m_Value.y = 0;
+                Rotation.m_Value.z = 0;
+
+                Mesh.m_Model = "Character";
+                Animator.m_CurrentAnimationName = "Armature|Armature|mixamo.com|Layer0";
+            });
 
     }
 }
