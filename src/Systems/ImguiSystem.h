@@ -1,7 +1,7 @@
 #pragma once
 #include "paperback_pch.h"
 #include "Systems/WindowSystem.h"
-#include "Components/AABB.h"
+#include "Json/paperback_json.h"
 
 #include <IconsFontAwesome5.h>
 #include <sstream>
@@ -20,6 +20,8 @@ struct imgui_system : paperback::system::instance
     GLFWwindow* m_pWindow;
     ImFont* m_Imgfont;
 
+    paperback::JsonFile JFile;
+
     paperback::archetype::instance* m_pArchetype; //refers back to the archetype that the entity is referencing to
 
     std::vector <rttr::instance> m_Components = {};
@@ -35,7 +37,7 @@ struct imgui_system : paperback::system::instance
     ImGuiWindowFlags m_Windowflags;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bAdd, m_bRemove;
+    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bAdd, m_bRemove, m_bWinSys;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -51,7 +53,7 @@ struct imgui_system : paperback::system::instance
         ImGuiContext(); //Setup ImGui Context
 
         m_bImgui = true;
-        m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = m_bNodeOpen = m_bAdd = m_bRemove = false;
+        m_bDemoWindow = m_bFileSave = m_bFileOpen = m_bFileSaveAs = m_bNodeOpen = m_bAdd = m_bRemove = m_bWinSys = false;
         m_FilePath = m_FileName = m_LoadedPath = {};
 
         m_SelectedEntity = { nullptr, paperback::u32_max };
@@ -99,6 +101,9 @@ struct imgui_system : paperback::system::instance
                 InspectorPanel();
                 ComponentInspector();
                 AddComponents();
+
+                if (m_bWinSys)
+                    WindowSettings();
 
                 ImGui::PopFont();
 
@@ -163,6 +168,9 @@ struct imgui_system : paperback::system::instance
 
                 ImGui::EndMenu();
             }
+
+            if (ImGui::MenuItem("Window Settings"))
+                m_bWinSys = !m_bWinSys;
 
             ImGui::PopFont();
 
@@ -291,16 +299,13 @@ struct imgui_system : paperback::system::instance
 
         ImGui::BeginChild("Components", { ImGui::GetContentRegionAvailWidth() , ImGui::GetContentRegionAvail().y });
 
-        if (!m_ComponentNames.empty())
+        if (!m_ComponentNames.empty() && m_pArchetype)
         {
+            ImGui::Text("Number of Entities: %d", m_pArchetype->GetEntityCount());
 
             if (ImGui::Button("Clone new Entity"))
             {
-                if (m_pArchetype)
-                {
-                    m_pArchetype->CreateEntity();
-                    m_pArchetype = nullptr;
-                }
+                m_pArchetype->CreateEntity();
             }
 
             ImGui::Separator();
@@ -318,6 +323,49 @@ struct imgui_system : paperback::system::instance
 
         ImGui::End();
     }
+
+    void WindowSettings()
+    {
+        ImGui::Begin("Window Settings");
+
+        rttr::instance obj = GetSystem< window_system >().E;
+
+        for (auto& Property : obj.get_type().get_properties())
+        {
+            rttr::variant propValue = Property.get_value(obj);
+
+            auto PropertyType = Property.get_type(); //etc vector 3, std::string etc
+            auto PropertyName = Property.get_name().to_string();
+
+            if (PropertyType == rttr::type::get<std::reference_wrapper<int>>())
+            {
+                auto& a = propValue.get_value<std::reference_wrapper<int>>().get();
+
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::InputInt(("##" + PropertyName + obj.get_type().get_name().to_string()).c_str(), &a, 1);
+            }
+
+            if (PropertyType == rttr::type::get<std::reference_wrapper<std::string>>())
+            {
+                auto& str = propValue.get_value<std::reference_wrapper<std::string>>().get();
+                char buffer[256]{};
+
+                std::copy(str.begin(), str.end(), buffer);
+                if (ImGui::InputText(("##" + PropertyName).c_str(), buffer, sizeof(buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+                    str = std::string(buffer);
+            }
+           
+            glfwSetWindowSize(m_pWindow, GetSystem< window_system >().E.m_Width, GetSystem< window_system >().E.m_Height); 
+        }
+
+        if (ImGui::Button ("Save"))
+        {
+            JFile.StartWriter("../../resources/assetloading/config.json").ReadObjects(GetSystem< window_system >().E).EndWriter();
+
+        }
+        ImGui::End();
+    }
+
 
     void ComponentInspector()
     {

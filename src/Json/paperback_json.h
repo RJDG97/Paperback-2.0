@@ -45,6 +45,8 @@ namespace paperback
 
         JsonFile& WriteAssociativeContainers(const rttr::variant_associative_view& View);
 
+        JsonFile& ReadObjects(rttr::instance Instance);
+
         //-----------------------------------
         //         Deserialization
         //-----------------------------------

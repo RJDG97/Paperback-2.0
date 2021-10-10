@@ -23,4 +23,7 @@ namespace paperback::serialize
     void WriteAssociative(const rttr::variant_associative_view& view, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer);
 
     bool WriteVariant(const rttr::variant& var, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer);
+
+    void WriteObject(rttr::instance obj, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer);
+
 }

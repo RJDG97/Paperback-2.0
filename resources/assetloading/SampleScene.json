@@ -184,42 +184,22 @@
             ]
         },
         {
-            "unnamed archetype": [
+            "Boi w/o Rigidforce": [
                 {
                     "Guid": [
                         0,
-                        3617555656175080491,
-                        5691439207370049121,
                         8536778051349317767,
-                        9604788041699812520,
-                        14486341741652966143,
                         17008353085049151909,
-                        18285106494192445205
+                        5691439207370049121,
+                        14486341741652966143,
+                        18285106494192445205,
+                        3617555656175080491,
+                        9604788041699812520
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 5
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.5,
-                            "y": -1.5,
-                            "z": -1.5
-                        },
-                        "Max Point": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        },
-                        "Is Collide": false
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -228,16 +208,6 @@
                             "z": 0.0
                         },
                         "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Mesh": {
-                        "Model Mesh": "Box"
-                    },
-                    "Rotation": {
-                        "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
@@ -255,31 +225,23 @@
                             "z": -7.0
                         }
                     },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
                     "Sphere": {
-                        "Radius": 1.0,
+                        "Radius": 0.0,
                         "Is Collide": false
-                    }
-                }
-            ]
-        },
-        {
-            "unnamed archetype": [
-                {
-                    "Guid": [
-                        0,
-                        3617555656175080491,
-                        5509481706028819786,
-                        5691439207370049121,
-                        8536778051349317767,
-                        9604788041699812520,
-                        14486341741652966143,
-                        17008353085049151909,
-                        18285106494192445205
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 6
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -294,19 +256,30 @@
                         },
                         "Is Collide": false
                     },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.0,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.5
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    }
+                }
+            ]
+        },
+        {
+            "Boi w/ Rigidforce": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        5509481706028819786,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        18285106494192445205,
+                        3617555656175080491,
+                        9604788041699812520
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 6
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -320,15 +293,12 @@
                             "z": 0.0
                         }
                     },
-                    "Mesh": {
-                        "Model Mesh": "Box"
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
+                    "RigidForce": {
+                        "Mass": 0.0,
+                        "Inverse Mass": 0.0,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
                     },
                     "Transform": {
                         "Offset": {
@@ -342,9 +312,39 @@
                             "z": -10.0
                         }
                     },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
                     "Sphere": {
-                        "Radius": 1.0,
+                        "Radius": 0.0,
                         "Is Collide": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
                     }
                 }
             ]

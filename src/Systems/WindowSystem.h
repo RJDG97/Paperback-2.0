@@ -33,7 +33,7 @@ struct window_system : paperback::system::instance
 
         JFile.StartReader("../../resources/assetloading/config.json").LoadObjects(E).EndReader();
 
-        m_pWindow = glfwCreateWindow( E.m_Width, E.m_Height, E.m_WinName, NULL, NULL );
+        m_pWindow = glfwCreateWindow( E.m_Width, E.m_Height, E.m_WinName.c_str(), NULL, NULL );
 
         if (!m_pWindow)
         {

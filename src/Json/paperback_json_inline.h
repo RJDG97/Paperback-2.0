@@ -7,7 +7,7 @@ namespace paperback
     //          Serialization
     //-----------------------------------
 
-    inline JsonFile& JsonFile::StartWriter(std::string File)
+    inline JsonFile& JsonFile::StartWriter( std::string File )
     {
         fp = { nullptr };
 
@@ -56,32 +56,38 @@ namespace paperback
         return *this;
     }
 
-    inline JsonFile& JsonFile::WriteKey(std::string Str)
+    inline JsonFile& JsonFile::WriteKey( std::string Str )
     {
         writer->String(Str);
         return *this;
     }
 
-    inline JsonFile& JsonFile::Write(rttr::instance Obj)
+    inline JsonFile& JsonFile::Write( rttr::instance Obj )
     {
         serialize::Write(Obj, *writer);
         return *this;
     }
 
-    inline JsonFile& JsonFile::WriteGuid(rttr::instance Obj)
+    inline JsonFile& JsonFile::WriteGuid( rttr::instance Obj )
     {
         serialize::SerializeGuid(Obj, *writer);
         return *this;
     }
 
-    inline JsonFile& JsonFile::WriteArray(const rttr::variant_sequential_view& View)
+    inline JsonFile& JsonFile::WriteArray( const rttr::variant_sequential_view& View )
     {
         serialize::WriteArray(View, *writer);
     }
 
-    inline JsonFile& JsonFile::WriteAssociativeContainers(const rttr::variant_associative_view& View)
+    inline JsonFile& JsonFile::WriteAssociativeContainers( const rttr::variant_associative_view& View )
     {
         serialize::Write(View, *writer);
+        return *this;
+    }
+
+    inline JsonFile& JsonFile::ReadObjects(rttr::instance Instance)
+    {
+        serialize::WriteObject( Instance, *writer );
         return *this;
     }
 
@@ -98,10 +104,6 @@ namespace paperback
         doc = new rapidjson::Document();
         if (doc->ParseStream(*rstream).HasParseError()) ERROR_LOG("Cannot open file");
 
-        //if (doc->ParseStream(*rstream).HasParseError())
-        //{
-        //    std::cout << GetParseError_En(doc->GetParseError()) << std::endl;
-        //}
         return *this;
     }
 

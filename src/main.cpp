@@ -87,7 +87,7 @@ void InitializeGame()
     }
     // Entity Creation
     {
-        PPB.OpenScene("test.json");
+        PPB.OpenScene("../../resources/assetloading/SampleScene.json");
     
     }
 }

@@ -209,4 +209,10 @@ namespace paperback::serialize
 
     /////////////////////////////////////////////////////////////////////////////////////////
 
+    void WriteObject(rttr::instance obj, rapidjson::PrettyWriter<rapidjson::FileWriteStream>& writer)
+    {
+        WriteRecursive(obj, writer);
+    }
+
+
 }
