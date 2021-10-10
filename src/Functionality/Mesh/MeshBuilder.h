@@ -29,17 +29,17 @@ public:
 
 	// Create unit squre quad
 	static Model Build2DMesh();
-	static Model Build3DMesh(const std::string& File);
+	/*static Model Build3DMesh(const std::string& File);*/
 	static Model BuildMeshFromNUI(std::string file_path);
 
 	// Create quad to fit NDC
 	static Model BuildScreenMesh();
 
 private:
-	static Model::SubMesh ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene, Model& Mesh);
-	static void ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh);
-	static void ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, aiMesh* SubMesh, Model& Mesh);
-	static void LoadAnimations(aiAnimation** animation, int num_animations, aiNode* root_node, Model* model);
+	//static Model::SubMesh ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene, Model& Mesh);
+	//static void ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh);
+	//static void ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, aiMesh* SubMesh, Model& Mesh);
+	//static void LoadAnimations(aiAnimation** animation, int num_animations, aiNode* root_node, Model* model);
 };
 
 #endif

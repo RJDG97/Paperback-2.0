@@ -65,41 +65,41 @@ void RenderResourceManager::UnloadTextures(const std::string& Mesh)
 	m_Textures.erase(Mesh);
 }
 
-std::string RenderResourceManager::LoadMaterial(const std::string& Material, aiMaterial* AiMat)
-{
-	if (m_Materials.find(Material) == m_Materials.end())
-	{
-		std::string file;
-		aiString str;
-		Model::Material mat;
-
-		AiMat->GetTexture(aiTextureType_DIFFUSE, 0, &str);
-		file = "../../resources/textures/" + std::string{ str.C_Str() };
-		mat.m_Diffuse = LoadTextures(str.C_Str(), file, true);
-
-		str.Clear();
-
-		AiMat->GetTexture(aiTextureType_AMBIENT, 0, &str);
-		file = "../../resources/textures/" + std::string{ str.C_Str() };
-		mat.m_Ambient = LoadTextures(str.C_Str(), file, true);
-
-		str.Clear();
-
-		AiMat->GetTexture(aiTextureType_SPECULAR, 0, &str);
-		file = "../../resources/textures/" + std::string{ str.C_Str() };
-		mat.m_Specular = LoadTextures(str.C_Str(), file, true);
-
-		str.Clear();
-
-		AiMat->GetTexture(aiTextureType_HEIGHT, 0, &str);
-		file = "../../resources/textures/" + std::string{ str.C_Str() };
-		mat.m_Normal = LoadTextures(str.C_Str(), file, false);
-
-		m_Materials[Material] = mat;
-	}
-
-	return Material;
-}
+//std::string RenderResourceManager::LoadMaterial(const std::string& Material, aiMaterial* AiMat)
+//{
+//	if (m_Materials.find(Material) == m_Materials.end())
+//	{
+//		std::string file;
+//		aiString str;
+//		Model::Material mat;
+//
+//		AiMat->GetTexture(aiTextureType_DIFFUSE, 0, &str);
+//		file = "../../resources/textures/" + std::string{ str.C_Str() };
+//		mat.m_Diffuse = LoadTextures(str.C_Str(), file, true);
+//
+//		str.Clear();
+//
+//		AiMat->GetTexture(aiTextureType_AMBIENT, 0, &str);
+//		file = "../../resources/textures/" + std::string{ str.C_Str() };
+//		mat.m_Ambient = LoadTextures(str.C_Str(), file, true);
+//
+//		str.Clear();
+//
+//		AiMat->GetTexture(aiTextureType_SPECULAR, 0, &str);
+//		file = "../../resources/textures/" + std::string{ str.C_Str() };
+//		mat.m_Specular = LoadTextures(str.C_Str(), file, true);
+//
+//		str.Clear();
+//
+//		AiMat->GetTexture(aiTextureType_HEIGHT, 0, &str);
+//		file = "../../resources/textures/" + std::string{ str.C_Str() };
+//		mat.m_Normal = LoadTextures(str.C_Str(), file, false);
+//
+//		m_Materials[Material] = mat;
+//	}
+//
+//	return Material;
+//}
 
 void RenderResourceManager::Load3DMeshNUI(const std::string& Mesh, const std::string& File)
 {
@@ -145,11 +145,11 @@ void RenderResourceManager::LoadMaterialNUI(const std::string& material_name, NU
 	}
 }
 
-void RenderResourceManager::Load3DMesh(const std::string& Mesh, const std::string& File)
-{
-	if (m_Models.find(Mesh) == m_Models.end())
-		m_Models[Mesh] = MeshBuilder::Build3DMesh(File);
-}
+//void RenderResourceManager::Load3DMesh(const std::string& Mesh, const std::string& File)
+//{
+//	if (m_Models.find(Mesh) == m_Models.end())
+//		m_Models[Mesh] = MeshBuilder::Build3DMesh(File);
+//}
 
 void RenderResourceManager::Unload3DMesh(const std::string& Mesh)
 {

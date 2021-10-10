@@ -100,172 +100,172 @@ Model MeshBuilder::Build2DMesh()
 	return std::move(model);
 }
 
-Model MeshBuilder::Build3DMesh(const std::string& File)
-{
-	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(File, aiProcess_Triangulate |
-												   aiProcess_LimitBoneWeights |
-												   aiProcess_FindInstances |
-												   aiProcess_GenSmoothNormals |
-												   aiProcess_FlipUVs |
-												   aiProcess_CalcTangentSpace |
-												   aiProcess_JoinIdenticalVertices |
-												   aiProcess_RemoveRedundantMaterials |
-												   aiProcess_FindInvalidData);
+//Model MeshBuilder::Build3DMesh(const std::string& File)
+//{
+//	Assimp::Importer importer;
+//	const aiScene* scene = importer.ReadFile(File, aiProcess_Triangulate |
+//												   aiProcess_LimitBoneWeights |
+//												   aiProcess_FindInstances |
+//												   aiProcess_GenSmoothNormals |
+//												   aiProcess_FlipUVs |
+//												   aiProcess_CalcTangentSpace |
+//												   aiProcess_JoinIdenticalVertices |
+//												   aiProcess_RemoveRedundantMaterials |
+//												   aiProcess_FindInvalidData);
+//
+//	Model model;
+//
+//	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+//		return model;
+//
+//	ProcessNode(scene->mRootNode, scene, model);
+//
+//	model.SetPrimitive(GL_TRIANGLES);
+//
+//	LoadAnimations(scene->mAnimations, scene->mNumAnimations, scene->mRootNode, &model);
+//
+//	importer.FreeScene();
+//
+//	return std::move(model);
+//}
 
-	Model model;
+//void MeshBuilder::ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh)
+//{
+//	for (size_t i = 0; i < Node->mNumMeshes; ++i)
+//	{
+//		aiMesh* mesh = Scene->mMeshes[Node->mMeshes[i]];
+//		Mesh.AddSubMesh(ProcessSubMesh(mesh, Scene, Mesh));
+//	}
+//
+//	for (size_t i = 0; i < Node->mNumChildren; ++i)
+//	{
+//		ProcessNode(Node->mChildren[i], Scene, Mesh);
+//	}
+//}
 
-	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
-		return model;
+//Model::SubMesh MeshBuilder::ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene, Model& Mesh)
+//{
+//	std::vector<Model::Vertex> vertices;
+//	std::vector<GLushort> index;
+//
+//	for (size_t i = 0; i < SubMesh->mNumVertices; ++i)
+//	{
+//		glm::vec3 position{ 0,0,0 }, normal{ 0,0,0 }, tangent{ 0,0,0 }, bitangent{ 0,0,0 };
+//		glm::vec2 uv{ 0,0 };
+//
+//		position = glm::vec3{ SubMesh->mVertices[i].x, SubMesh->mVertices[i].y, SubMesh->mVertices[i].z };
+//
+//		if (SubMesh->HasNormals())
+//			normal = glm::vec3{ SubMesh->mNormals[i].x, SubMesh->mNormals[i].y ,SubMesh->mNormals[i].z };
+//
+//		if (SubMesh->mTextureCoords[0])
+//		{
+//			uv = glm::vec2{ SubMesh->mTextureCoords[0][i].x, SubMesh->mTextureCoords[0][i].y };
+//			tangent = glm::vec3{ SubMesh->mTangents[i].x, SubMesh->mTangents[i].y, SubMesh->mTangents[i].z };
+//			bitangent = glm::vec3{ SubMesh->mBitangents[i].x, SubMesh->mBitangents[i].y, SubMesh->mBitangents[i].z };
+//		}
+//
+//		Model::Vertex vertex{ position, normal, uv, tangent, bitangent };
+//
+//		//set bones to default
+//		for (int j = 0; j < 4; j++)
+//		{
+//			vertex.m_BoneIDs[j] = -1;
+//			vertex.m_Weights[j] = 0.0f;
+//		}
+//
+//		vertices.push_back(vertex);
+//	}
+//
+//	for (size_t i = 0; i < SubMesh->mNumFaces; ++i)
+//	{
+//		aiFace face = SubMesh->mFaces[i];
+//
+//		for (size_t j = 0; j < face.mNumIndices; ++j)
+//			index.push_back( static_cast<GLushort>( face.mIndices[j] ));
+//	}
+//
+//	ExtractVertexBoneWeight(vertices, SubMesh, Mesh);
+//
+//	// Create a handle for vbo
+//	GLuint vbo;
+//	glCreateBuffers(1, &vbo);
+//	glNamedBufferStorage(vbo, sizeof(Model::Vertex) * vertices.size(), vertices.data(), GL_DYNAMIC_STORAGE_BIT);
+//
+//	// Create a handle for ebo
+//	GLuint ebo;
+//	glCreateBuffers(1, &ebo);
+//	glNamedBufferStorage(ebo, sizeof(GLushort) * index.size(), reinterpret_cast<GLvoid*>(index.data()), GL_DYNAMIC_STORAGE_BIT);
+//
+//	aiString str;
+//	aiMaterial* material = Scene->mMaterials[SubMesh->mMaterialIndex];
+//	material->Get(AI_MATKEY_NAME, str);
+//
+//	std::string mat = RenderResourceManager::GetInstanced().LoadMaterial(str.C_Str(), material);
+//
+//	return std::move(Model::SubMesh{ vertices, index, vbo, ebo, static_cast<GLuint>(index.size()), mat });
+//}
 
-	ProcessNode(scene->mRootNode, scene, model);
+//void MeshBuilder::ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, aiMesh* SubMesh, Model& Mesh)
+//{
+//	auto& bone_info_map{ Mesh.GetBoneInfoMap() };
+//
+//	for (size_t bone_index = 0; bone_index < SubMesh->mNumBones; ++bone_index)
+//	{
+//		int bone_id{ -1 };
+//		std::string bone_name{ SubMesh->mBones[bone_index]->mName.C_Str() };
+//
+//		if (bone_info_map.find(bone_name) == bone_info_map.end())
+//		{
+//			int new_id { static_cast<int>(bone_info_map.size()) };
+//
+//			auto mat{ SubMesh->mBones[bone_index]->mOffsetMatrix };
+//			BoneInfo bone_info { new_id, {mat.a1, mat.b1, mat.c1, mat.d1,
+//										  mat.a2, mat.b2, mat.c2, mat.d2,
+//										  mat.a3, mat.b3, mat.c3, mat.d3,
+//										  mat.a4, mat.b4, mat.c4, mat.d4 } };
+//
+//			bone_id = new_id;
+//			bone_info_map[bone_name] = bone_info;
+//		}
+//
+//		else
+//		{
+//			bone_id = bone_info_map[bone_name].id;
+//		}
+//
+//		auto weights{ SubMesh->mBones[bone_index]->mWeights };
+//		size_t num_weights{ SubMesh->mBones[bone_index]->mNumWeights };
+//
+//		for (size_t weight_index = 0; weight_index < num_weights; ++weight_index)
+//		{
+//			size_t vertex_id{weights[weight_index].mVertexId};
+//			float weight{ weights[weight_index].mWeight };
+//
+//			for (int i = 0; i < 4; ++i)
+//			{
+//				//checks if there isn't data in the current slot
+//				if (Vertices[vertex_id].m_BoneIDs[i] == -1)
+//				{
+//					Vertices[vertex_id].m_Weights[i] = weight;
+//					Vertices[vertex_id].m_BoneIDs[i] = bone_id;
+//					break;
+//				}
+//			}
+//		}
+//	}
+//}
 
-	model.SetPrimitive(GL_TRIANGLES);
-
-	LoadAnimations(scene->mAnimations, scene->mNumAnimations, scene->mRootNode, &model);
-
-	importer.FreeScene();
-
-	return std::move(model);
-}
-
-void MeshBuilder::ProcessNode(aiNode* Node, const aiScene* Scene, Model& Mesh)
-{
-	for (size_t i = 0; i < Node->mNumMeshes; ++i)
-	{
-		aiMesh* mesh = Scene->mMeshes[Node->mMeshes[i]];
-		Mesh.AddSubMesh(ProcessSubMesh(mesh, Scene, Mesh));
-	}
-
-	for (size_t i = 0; i < Node->mNumChildren; ++i)
-	{
-		ProcessNode(Node->mChildren[i], Scene, Mesh);
-	}
-}
-
-Model::SubMesh MeshBuilder::ProcessSubMesh(aiMesh* SubMesh, const aiScene* Scene, Model& Mesh)
-{
-	std::vector<Model::Vertex> vertices;
-	std::vector<GLushort> index;
-
-	for (size_t i = 0; i < SubMesh->mNumVertices; ++i)
-	{
-		glm::vec3 position{ 0,0,0 }, normal{ 0,0,0 }, tangent{ 0,0,0 }, bitangent{ 0,0,0 };
-		glm::vec2 uv{ 0,0 };
-
-		position = glm::vec3{ SubMesh->mVertices[i].x, SubMesh->mVertices[i].y, SubMesh->mVertices[i].z };
-
-		if (SubMesh->HasNormals())
-			normal = glm::vec3{ SubMesh->mNormals[i].x, SubMesh->mNormals[i].y ,SubMesh->mNormals[i].z };
-
-		if (SubMesh->mTextureCoords[0])
-		{
-			uv = glm::vec2{ SubMesh->mTextureCoords[0][i].x, SubMesh->mTextureCoords[0][i].y };
-			tangent = glm::vec3{ SubMesh->mTangents[i].x, SubMesh->mTangents[i].y, SubMesh->mTangents[i].z };
-			bitangent = glm::vec3{ SubMesh->mBitangents[i].x, SubMesh->mBitangents[i].y, SubMesh->mBitangents[i].z };
-		}
-
-		Model::Vertex vertex{ position, normal, uv, tangent, bitangent };
-
-		//set bones to default
-		for (int j = 0; j < 4; j++)
-		{
-			vertex.m_BoneIDs[j] = -1;
-			vertex.m_Weights[j] = 0.0f;
-		}
-
-		vertices.push_back(vertex);
-	}
-
-	for (size_t i = 0; i < SubMesh->mNumFaces; ++i)
-	{
-		aiFace face = SubMesh->mFaces[i];
-
-		for (size_t j = 0; j < face.mNumIndices; ++j)
-			index.push_back( static_cast<GLushort>( face.mIndices[j] ));
-	}
-
-	ExtractVertexBoneWeight(vertices, SubMesh, Mesh);
-
-	// Create a handle for vbo
-	GLuint vbo;
-	glCreateBuffers(1, &vbo);
-	glNamedBufferStorage(vbo, sizeof(Model::Vertex) * vertices.size(), vertices.data(), GL_DYNAMIC_STORAGE_BIT);
-
-	// Create a handle for ebo
-	GLuint ebo;
-	glCreateBuffers(1, &ebo);
-	glNamedBufferStorage(ebo, sizeof(GLushort) * index.size(), reinterpret_cast<GLvoid*>(index.data()), GL_DYNAMIC_STORAGE_BIT);
-
-	aiString str;
-	aiMaterial* material = Scene->mMaterials[SubMesh->mMaterialIndex];
-	material->Get(AI_MATKEY_NAME, str);
-
-	std::string mat = RenderResourceManager::GetInstanced().LoadMaterial(str.C_Str(), material);
-
-	return std::move(Model::SubMesh{ vertices, index, vbo, ebo, static_cast<GLuint>(index.size()), mat });
-}
-
-void MeshBuilder::ExtractVertexBoneWeight(std::vector<Model::Vertex>& Vertices, aiMesh* SubMesh, Model& Mesh)
-{
-	auto& bone_info_map{ Mesh.GetBoneInfoMap() };
-
-	for (size_t bone_index = 0; bone_index < SubMesh->mNumBones; ++bone_index)
-	{
-		int bone_id{ -1 };
-		std::string bone_name{ SubMesh->mBones[bone_index]->mName.C_Str() };
-
-		if (bone_info_map.find(bone_name) == bone_info_map.end())
-		{
-			int new_id { static_cast<int>(bone_info_map.size()) };
-
-			auto mat{ SubMesh->mBones[bone_index]->mOffsetMatrix };
-			BoneInfo bone_info { new_id, {mat.a1, mat.b1, mat.c1, mat.d1,
-										  mat.a2, mat.b2, mat.c2, mat.d2,
-										  mat.a3, mat.b3, mat.c3, mat.d3,
-										  mat.a4, mat.b4, mat.c4, mat.d4 } };
-
-			bone_id = new_id;
-			bone_info_map[bone_name] = bone_info;
-		}
-
-		else
-		{
-			bone_id = bone_info_map[bone_name].id;
-		}
-
-		auto weights{ SubMesh->mBones[bone_index]->mWeights };
-		size_t num_weights{ SubMesh->mBones[bone_index]->mNumWeights };
-
-		for (size_t weight_index = 0; weight_index < num_weights; ++weight_index)
-		{
-			size_t vertex_id{weights[weight_index].mVertexId};
-			float weight{ weights[weight_index].mWeight };
-
-			for (int i = 0; i < 4; ++i)
-			{
-				//checks if there isn't data in the current slot
-				if (Vertices[vertex_id].m_BoneIDs[i] == -1)
-				{
-					Vertices[vertex_id].m_Weights[i] = weight;
-					Vertices[vertex_id].m_BoneIDs[i] = bone_id;
-					break;
-				}
-			}
-		}
-	}
-}
-
-void MeshBuilder::LoadAnimations(aiAnimation** animation, int num_animations, aiNode* root_node, Model* model)
-{
-	if (animation)
-	{
-		for (int i = 0; i < num_animations; ++i)
-		{
-			model->AddAnimation({ animation[i], root_node, model->GetBoneInfoMap() }, { animation[i]->mName.C_Str() });
-		}
-	}
-}
+//void MeshBuilder::LoadAnimations(aiAnimation** animation, int num_animations, aiNode* root_node, Model* model)
+//{
+//	if (animation)
+//	{
+//		for (int i = 0; i < num_animations; ++i)
+//		{
+//			model->AddAnimation({ animation[i], root_node, model->GetBoneInfoMap() }, { animation[i]->mName.C_Str() });
+//		}
+//	}
+//}
 
 Model MeshBuilder::BuildMeshFromNUI(std::string file_path)
 {
