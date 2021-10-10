@@ -111,16 +111,17 @@ public:
 
 	MonoObject* RunImportFn(MonoObject* m_pObj, MonoMethod* m_pFn)
 	{
+		MonoObject* fn = nullptr;
 		if (m_pFn)
 		{
 			MonoObject* exception = nullptr;
 			// Get function
-			return mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
+			fn = mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
 			
 			// Exception Handling
 			MonoException(exception);
 		}
-		return nullptr;
+		return fn;
 	}
 
 	template <typename T>
