@@ -62,9 +62,6 @@ namespace paperback
 	template<typename T>
 	using BaseType = std::remove_const_t< std::remove_pointer_t< std::decay_t<T> >>;
 
-	//template < typename T_PROPERTY_TYPE, typename T_DESIRED_TYPE >
-	//using RTTR_MatchingTypes = typename std::is_same_v< T_PROPERTY_TYPE, rttr::type::get<std::reference_wrapper<T_DESIRED_TYPE>>() >;
-
 	//----------------------------------
 	// Function Typedefs
 	//----------------------------------
@@ -110,21 +107,5 @@ namespace paperback
 
 		template < typename... T_ARGS >
 		concept MixedArgs					= !( std::is_reference_v<T_ARGS> && ... );
-	}
-
-
-	//----------------------------------
-	// Helper Tools
-	//----------------------------------
-	namespace tuple_tools
-	{
-		template < typename T >
-		struct RemoveFirstType {};
-		
-		template < typename T, typename... ARGS >
-		struct RemoveFirstType< std::tuple< T, ARGS... > >
-		{
-			using value = std::tuple< ARGS... >;
-		};
 	}
 }

@@ -79,6 +79,7 @@ namespace paperback::archetype
                 if ( Sig.Has( ToAdd->m_UID ) ) return true;
             for ( auto& ToRemove : R )
                 if ( Sig.None( ToRemove->m_UID ) ) return true;
+            return false;
         };
         auto InvalidComponentModification = [&]( const component::info* ComponentInfo ) -> bool
         {
@@ -124,29 +125,28 @@ namespace paperback::archetype
         */
 		if ( ExistingArchetype )
 		{
-			if ( std::is_same_v<T_FUNCTION, empty_lambda> ) return ExistingArchetype->TransferExistingEntity( Entity );
-			else											return ExistingArchetype->TransferExistingEntity( Entity, Function );
+            if ( ExistingArchetype != OriginalArchetype )
+            {
+			    if ( std::is_same_v<T_FUNCTION, empty_lambda> ) return ExistingArchetype->TransferExistingEntity( Entity );
+			    else											return ExistingArchetype->TransferExistingEntity( Entity, Function );
+            }
 		}
 		// Create Archetype with matching bit signature
 		else
 		{
+            using CInfoArr = std::array< const paperback::component::info*
+                                       , settings::max_components_per_entity_v >;
+
 			int Count{ };
+            CInfoArr NewComponentInfoList;
 			auto& Archetype = *EntityInfo.m_pArchetype;
-			std::array<const paperback::component::info*, settings::max_components_per_entity_v > NewComponentInfoList;
 
 			for ( auto& CInfo : std::span{ Archetype.GetComponentInfos().data(), Archetype.GetComponentNumber() } )
 				NewComponentInfoList[Count++] = CInfo;
 
 			for ( auto& CInfo : Add )
 			{
-                const auto Index = static_cast<size_t>(std::upper_bound(NewComponentInfoList.begin()
-                    , NewComponentInfoList.begin() + Count
-                    , CInfo
-                    , [](const component::info* pA, const component::info* pB)
-                    {
-                        return pA->m_UID < pB->m_UID;
-                    }) - NewComponentInfoList.begin());
-
+                const auto Index = paperback::component::details::find_component_index_v<CInfoArr>( NewComponentInfoList, CInfo, Count );
 
                 // Modifying component::entity
 				if ( InvalidComponentIndex( Index ) ) continue;
@@ -162,13 +162,7 @@ namespace paperback::archetype
 			}
 			for ( auto& CInfo : Remove )
 			{
-				const auto Index = static_cast<size_t>(std::upper_bound(NewComponentInfoList.begin()
-                    , NewComponentInfoList.begin() + Count
-                    , CInfo
-                    , [](const component::info* pA, const component::info* pB)
-                    {
-                        return pA->m_UID < pB->m_UID;
-                    }) - NewComponentInfoList.begin());
+                const auto Index = paperback::component::details::find_component_index_v<CInfoArr>( NewComponentInfoList, CInfo, Count );
 
                 // Modifying component::entity
                 if ( InvalidComponentIndex(Index) ) continue;
@@ -189,6 +183,12 @@ namespace paperback::archetype
 			if constexpr ( std::is_same_v<T_FUNCTION, paperback::empty_lambda> )   return NewArchetype.TransferExistingEntity( Entity );
 			else                                                                   return NewArchetype.TransferExistingEntity( Entity, Function );
 		}
+
+        // Do check the return value
+        return paperback::component::entity
+               {
+                   .m_GlobalIndex = paperback::settings::invalid_index_v
+               };
 	}
 
 

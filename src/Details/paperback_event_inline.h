@@ -1,5 +1,7 @@
 #pragma once
 
+// Not in use yet
+
 namespace paperback::event
 {
 	/****************************************************/
