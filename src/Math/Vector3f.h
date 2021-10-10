@@ -103,7 +103,7 @@ namespace paperback
 
 		inline Vector3f& LockingValue(const Vector3f& lock);			//------ max vector.
 		inline Vector3f& CutoffValue(const Vector3f& lock);			//------ min cutoff vector.
-		// m_dynamicFriction
+		// m_dynamicFriction, can function as a 3 dimension friction force function, normalise direction of valocity * friction(vec3f)
 		inline Vector3f& DecrementValue(float lock);			//------ decrement vector.
 
 		//helper function to convert Vector3f to glm::vec3
