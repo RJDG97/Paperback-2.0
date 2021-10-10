@@ -1,6 +1,6 @@
 // ----- Start of header guard
-#ifndef TRIANGLE_H
-#define TRIANGLE_H
+#ifndef FRUSTRUM_H
+#define FRUSTRUM_H
 
 #include "Math/Vector4f.h"
 #include "Math/Vector3f.h"

@@ -14,7 +14,7 @@ enum direction
 
 // could include inv mass if want for computation to be visual
 void Elastic_collision_1D(paperback::Vector3f& Bbox1, const float mass1,
-	paperback::Vector3f& Bbox2, const float mass2, direction dir)
+	paperback::Vector3f& Bbox2, const float mass2, paperback::Vector3f dir)
 {
 	if (mass1 != mass2)
 	{

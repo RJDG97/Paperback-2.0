@@ -113,6 +113,7 @@
     <ClCompile Include="paperback_pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\gg\temp_store\Ray.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\IconsFontAwesome5.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imconfig.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imgui.h" />

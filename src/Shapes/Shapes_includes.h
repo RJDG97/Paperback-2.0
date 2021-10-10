@@ -9,6 +9,7 @@
 #include "BoundingBox.h"
 #include "Plane.h"
 #include "Frustrum.h"
+#include "Ray.h"
 
 
 #endif
