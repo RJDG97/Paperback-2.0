@@ -26,7 +26,6 @@ namespace paperback
         delete wstream;
         delete buffer;
 
-        std::cout << fclose(fp) << std::endl;
         fp = nullptr;
 
         return *this;
@@ -98,10 +97,6 @@ namespace paperback
         doc = new rapidjson::Document();
         if (doc->ParseStream(*rstream).HasParseError()) ERROR_LOG("Cannot open file");
 
-        //if (doc->ParseStream(*rstream).HasParseError())
-        //{
-        //    std::cout << GetParseError_En(doc->GetParseError()) << std::endl;
-        //}
         return *this;
     }
 
