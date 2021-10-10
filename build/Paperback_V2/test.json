@@ -294,9 +294,9 @@
                         }
                     },
                     "RigidForce": {
-                        "Mass": 0.0,
-                        "Inverse Mass": 0.0,
-                        "Static Friction": 0.5,
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.2,
+                        "Static Friction": 0.8,
                         "Dynamic Friction": 0.25,
                         "Threshold": 0.25
                     },

@@ -29,8 +29,8 @@ struct rigidforce
     bool m_isAccel;
 
     rigidforce() :
-        m_Mass{ 0.f },
-        m_InvMass{ 0.f },
+        m_Mass{ 5.f },
+        m_InvMass{ 0.2f },
         m_staticFriction{ .5f },
         m_dynamicFriction{ 0.25f },
         m_Forces{ paperback::Vector3f{} },
