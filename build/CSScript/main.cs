@@ -13,26 +13,29 @@ namespace CSScript
     {
         static public void cameracontrols()
         {
-            if (Inputs.IsKeyPressDown(Inputs.PB_W))
-                Camera.MoveForward();
-            if (Inputs.IsKeyPressDown(Inputs.PB_S))
-                Camera.MoveBackward();
-            if (Inputs.IsKeyPressDown(Inputs.PB_A))
-                Camera.MoveLeft();
-            if (Inputs.IsKeyPressDown(Inputs.PB_D))
-                Camera.MoveRight();
-            if (Inputs.IsKeyPressDown(Inputs.PB_Q))
-                Camera.MoveUp();
-            if (Inputs.IsKeyPressDown(Inputs.PB_E))
-                Camera.MoveDown();
-            if (Inputs.IsKeyPressDown(Inputs.PB_UP))
-                Camera.RotateUp();
-            if (Inputs.IsKeyPressDown(Inputs.PB_DOWN))
-                Camera.RotateDown();
-            if (Inputs.IsKeyPressDown(Inputs.PB_LEFT))
-                Camera.RotateLeft();
-            if (Inputs.IsKeyPressDown(Inputs.PB_RIGHT))
-                Camera.RotateRight();
+            if (Inputs.IsMouseDown(Inputs.PB_MOUSE_BUTTON_2))
+            {
+                if (Inputs.IsKeyPressDown(Inputs.PB_W))
+                    Camera.MoveForward();
+                if (Inputs.IsKeyPressDown(Inputs.PB_S))
+                    Camera.MoveBackward();
+                if (Inputs.IsKeyPressDown(Inputs.PB_A))
+                    Camera.MoveLeft();
+                if (Inputs.IsKeyPressDown(Inputs.PB_D))
+                    Camera.MoveRight();
+                if (Inputs.IsKeyPressDown(Inputs.PB_Q))
+                    Camera.MoveUp();
+                if (Inputs.IsKeyPressDown(Inputs.PB_E))
+                    Camera.MoveDown();
+                if (Inputs.IsKeyPressDown(Inputs.PB_UP))
+                    Camera.RotateUp();
+                if (Inputs.IsKeyPressDown(Inputs.PB_DOWN))
+                    Camera.RotateDown();
+                if (Inputs.IsKeyPressDown(Inputs.PB_LEFT))
+                    Camera.RotateLeft();
+                if (Inputs.IsKeyPressDown(Inputs.PB_RIGHT))
+                    Camera.RotateRight();
+            }
         }
     }
     public class Main
