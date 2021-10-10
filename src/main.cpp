@@ -90,8 +90,6 @@ void InitializeGame()
     // Entity Creation
     {
         PPB.OpenScene("../../resources/assetloading/SampleScene.json");
-    
-        PPB.OpenScene("test.json");
 
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator& Animator)
             {
