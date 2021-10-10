@@ -107,9 +107,13 @@ namespace paperback::archetype
         ComponentInfos& GetComponentInfos( void ) noexcept;
 
         PPB_INLINE
-        u32 GetComponentNumber(void) noexcept;
+        u32& GetComponentNumber(void) noexcept;
 
+        PPB_INLINE
+        bool CheckComponentExistence( const component::info* Info) noexcept;
 
+        PPB_INLINE
+        tools::bits& GetComponentBits() noexcept;
 
 
     private:

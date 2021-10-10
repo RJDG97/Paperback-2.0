@@ -32,7 +32,7 @@ namespace paperback::vm
 		void Clear( void ) noexcept;
 
 		PPB_INLINE
-		void RemoveTransferredEntity( const u32 PoolIndex ) noexcept;
+		bool RemoveTransferredEntity( const u32 PoolIndex ) noexcept;
 
 		PPB_INLINE
 		u32 TransferExistingComponents( const PoolDetails& Details, vm::instance& Pool ) noexcept;

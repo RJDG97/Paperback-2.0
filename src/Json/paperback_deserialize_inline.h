@@ -230,7 +230,6 @@ namespace paperback::deserialize
 
                                         if (obj.is_type<component::entity>())
                                             continue;
-                                            //NewArchetype->GetComponent<component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<component::entity>();
 
                                         if (obj.is_type<sound>())
                                             NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();
@@ -240,6 +239,19 @@ namespace paperback::deserialize
 
                                         if (obj.is_type<entityscript>())
                                             NewArchetype->GetComponent<entityscript>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<entityscript>();
+
+                                        if (obj.is_type<boundingbox>())
+                                            NewArchetype->GetComponent<boundingbox>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<boundingbox>();
+
+                                        if (obj.is_type<sphere>())
+                                            NewArchetype->GetComponent<sphere>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sphere>();
+
+                                        if (obj.is_type<rigidbody>())
+                                            NewArchetype->GetComponent<rigidbody>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rigidbody>();
+
+                                        if (obj.is_type<rigidforce>())
+                                            NewArchetype->GetComponent<rigidforce>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rigidforce>();
+
                                     }
 
                                     EntityCounter++;

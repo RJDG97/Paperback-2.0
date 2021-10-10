@@ -73,6 +73,12 @@ namespace paperback::coordinator
 				 , concepts::Callable			 T_FUNCTION     = paperback::empty_lambda >
 		component::entity AddOrRemoveComponents( const component::entity Entity
 											   , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
+
+		template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
+	    component::entity AddOrRemoveComponents( const component::entity Entity
+								               , std::span<const component::info*> Add 
+								               , std::span<const component::info*> Remove
+								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 		
 		
 		//-----------------------------------
@@ -127,6 +133,9 @@ namespace paperback::coordinator
 
 		PPB_INLINE
         const paperback::component::info* FindComponentInfo( const paperback::component::type::guid ComponentGuid ) noexcept;
+
+		PPB_INLINE
+		paperback::component::manager::ComponentInfoMap& GetComponentInfoMap() noexcept;
 
 		//-----------------------------------
 		//              Clock

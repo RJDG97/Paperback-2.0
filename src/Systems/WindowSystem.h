@@ -31,7 +31,7 @@ struct window_system : paperback::system::instance
         glfwWindowHint(GLFW_BLUE_BITS, 8); glfwWindowHint(GLFW_ALPHA_BITS, 8);
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-        JFile.StartReader("config.json").LoadObjects(E).EndReader();
+        JFile.StartReader("../../resources/assetloading/config.json").LoadObjects(E).EndReader();
 
         m_pWindow = glfwCreateWindow( E.m_Width, E.m_Height, E.m_WinName, NULL, NULL );
 

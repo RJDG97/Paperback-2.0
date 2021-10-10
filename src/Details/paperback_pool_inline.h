@@ -130,19 +130,21 @@ namespace paperback::vm
 		}
 	}
 
-	void instance::RemoveTransferredEntity( const u32 PoolIndex ) noexcept
+	bool instance::RemoveTransferredEntity( const u32 PoolIndex ) noexcept
 	{
 		PPB_ASSERT_MSG( PoolIndex < 0, "Pool RemoveTransferredEntity - Invalid pool index");
 
 		// Backtrack to last valid entity
-		while ( m_CurrentEntityCount )
-        {
-			--m_CurrentEntityCount;
-            if ( GetComponent<paperback::component::entity>( m_CurrentEntityCount ).IsZombie() == false ) break;
-        }
+		//while ( m_CurrentEntityCount )
+  //      {
+		//	--m_CurrentEntityCount;
+  //          if ( GetComponent<paperback::component::entity>( m_CurrentEntityCount ).IsZombie() == false ) break;
+  //      }
 
 		if ( PoolIndex >= m_CurrentEntityCount )
-			return;
+			return false;
+
+		--m_CurrentEntityCount;
 
 		for ( size_t i = 0; i < m_NumberOfComponents; ++i )
 		{
@@ -151,13 +153,16 @@ namespace paperback::vm
 
 			// If moving last entity - Ignore
 			if ( PoolIndex == m_CurrentEntityCount )
-				return;
+				if (pInfo.m_Destructor) pInfo.m_Destructor(&pData[m_CurrentEntityCount * pInfo.m_Size]);
+
 			// Moving any other entity - Copy memory and shift forward
 			else
 			{
 				if ( pInfo.m_Move )
 				{
 					pInfo.m_Move( &pData[PoolIndex * pInfo.m_Size], &pData[m_CurrentEntityCount * pInfo.m_Size] );
+
+					if (pInfo.m_Destructor) pInfo.m_Destructor(&pData[m_CurrentEntityCount * pInfo.m_Size]);
 				}
 				else
 				{
@@ -175,6 +180,8 @@ namespace paperback::vm
 				PPB_ASSERT_MSG( !b, "Pool RemoveTransferredEntity - Virtual free failed" );
 			}
 		}
+
+		return true;
 	}
 
 

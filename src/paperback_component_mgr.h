@@ -28,6 +28,9 @@ namespace paperback::component
         const paperback::component::info* FindComponentInfoFromUID( const u32 ComponentUID ) noexcept;
 
         PPB_INLINE
+        ComponentInfoMap& GetComponentInfoMap() noexcept;
+
+        PPB_INLINE
         void Terminate( void ) noexcept;
 
     private:

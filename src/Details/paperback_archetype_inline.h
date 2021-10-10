@@ -154,7 +154,9 @@ namespace paperback::archetype
 
         for ( auto& [Key, PoolIndex] : m_MoveList )
         {
-            m_ComponentPool[ Key ].RemoveTransferredEntity( PoolIndex );
+            if (m_ComponentPool[ Key ].RemoveTransferredEntity( PoolIndex ))
+                --m_EntityCount;
+
         }
 
         m_DeleteList.clear();
@@ -354,10 +356,25 @@ namespace paperback::archetype
         return m_ComponentInfos;
     }
 
+    bool instance::CheckComponentExistence(const component::info* Info) noexcept
+    {
+        for (int i = 0; i < m_NumberOfComponents; ++i)
+        {
+            if (m_ComponentInfos[i] == Info)
+                return true;
+        }
+        return false;
+    }
 
-    u32 instance::GetComponentNumber(void) noexcept
+    u32& instance::GetComponentNumber(void) noexcept
     {
         return m_NumberOfComponents;
     }
+
+    tools::bits& instance::GetComponentBits() noexcept
+    {
+        return m_ComponentBits;
+    }
+
 
 }
