@@ -7,6 +7,8 @@
 #include "Triangle.h"
 #include "Polygon_shape.h"
 #include "BoundingBox.h"
+#include "Plane.h"
+#include "Frustrum.h"
 
 
 #endif

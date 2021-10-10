@@ -2,6 +2,7 @@
 
 #include "Physics/geometry.h"
 #include "Systems/DebugSystem.h"
+#include "Physics/ResolveCollision.h"
 
 struct bullet_logic_system : paperback::system::instance
 {
@@ -10,7 +11,7 @@ struct bullet_logic_system : paperback::system::instance
         .m_pName = "bullet_logic_system"
     };
     // Entity to test component -> jp side
-    void operator()( /*paperback::component::entity& Entity,*/ transform& Transform, /*rigidbody& rb,*/ paperback::component::entity& Entity, BoundingBox* boundingbox, Sphere* sphere) noexcept
+    void operator()( /*paperback::component::entity& Entity,*/ transform& Transform, rigidforce* rforce1, paperback::component::entity& Entity, BoundingBox* boundingbox, Sphere* sphere) noexcept
     {
         if (Entity.IsZombie()) return;
 
@@ -32,7 +33,7 @@ struct bullet_logic_system : paperback::system::instance
             sphere->setCenter(tf);
 
         // to simulate plane collision, just add plane pointer here and if(plane collide box. negate the box momentum and force. )
-        ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, transform& xform, BoundingBox* bb, Sphere* ball) noexcept -> bool
+        ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, transform& xform, rigidforce* rf, BoundingBox* bb, Sphere* ball) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
 
@@ -49,9 +50,21 @@ struct bullet_logic_system : paperback::system::instance
                     if (AabbAabb(tf + boundingbox->MinMax[0], tf + boundingbox->MinMax[1], xf + bb->MinMax[0], xf + bb->MinMax[1]))
                     {
                         boundingbox->m_Collided = bb->m_Collided = true;
+                        if (boundingbox->m_resolved == false && bb->m_resolved == false && rforce1 && rf)
+                        {
+                            boundingbox->m_resolved = bb->m_resolved = true;
+                            // pointing towards obj2
+                            paperback::Vector3f dir1;
+                            dir1 = dir1.ConvertXcoreVecTo3f(xform.m_Position - Transform.m_Position);
+                            dir1.Normalize();
+                            AABB_AABB_Response(rforce1, rf, dir1);
+                        }
                     }
                     else
+                    {
                         boundingbox->m_Collided = bb->m_Collided = false;
+                        boundingbox->m_resolved = bb->m_resolved = false;
+                    }
                 }
                 
                 if (sphere && ball)
