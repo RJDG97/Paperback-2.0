@@ -74,7 +74,6 @@ void ShaderBuilder::CompileShader(GLuint& ShaderProgram, const ShaderType Type, 
 		{
 			glAttachShader(ShaderProgram, ShaderHandle);
 			glDeleteShader(ShaderHandle);
-			std::cout << "Shader attach successful" << std::endl;
 		}
 		else
 		{
