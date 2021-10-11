@@ -243,7 +243,7 @@ namespace paperback::coordinator
 										  if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
 				
 										  auto p = pComponent;
-										  pComponent += sizeof(std::decay_t<T_C>);
+										  pComponent += sizeof(paperback::BaseType<T_C>);
 				
 										  if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
 										  else										return reinterpret_cast<T_C>(*p);
@@ -284,7 +284,7 @@ namespace paperback::coordinator
 								if constexpr (std::is_pointer_v<T_C>) if (pComponent == nullptr) return reinterpret_cast<T_C>(nullptr);
 
 								auto p = pComponent;
-								pComponent += sizeof(std::decay_t<T_C>);
+								pComponent += sizeof(paperback::BaseType<T_C>);
 
 								if constexpr (std::is_pointer_v<T_C>)		return reinterpret_cast<T_C>(p);
 								else										return reinterpret_cast<T_C>(*p);
