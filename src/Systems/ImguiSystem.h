@@ -35,10 +35,24 @@ struct imgui_system : paperback::system::instance
     GLFWwindow* m_pWindow;
     ImFont* m_Imgfont;
 
+    paperback::JsonFile JFile;
+
+    paperback::archetype::instance* m_pArchetype; //refers back to the archetype that the entity is referencing to
+
+    std::vector <rttr::instance> m_Components = {};
+    std::vector <const char*> m_ComponentNames = {};
+
+    std::string m_FilePath, m_FileName, m_LoadedPath;
+
+    std::pair<paperback::archetype::instance*, paperback::u32> m_SelectedEntity;
+
+    imgui_addons::ImGuiFileBrowser m_FileDialog; // to access the file dialog addon
+
     ImGuiDockNodeFlags m_Dockspaceflags;
     ImGuiWindowFlags m_Windowflags;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
+    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bNodeOpen, m_bAdd, m_bRemove, m_bWinSys;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -100,7 +114,7 @@ struct imgui_system : paperback::system::instance
     //-----------------------------------
 	//         Register Panels
 	//-----------------------------------
-        AddPanels<EntityInspector, ArchetypeInspector, ComponentInspector, ComponentEditor, WindowSettings>();
+        AddPanels< EntityInspector, ArchetypeInspector, ComponentInspector, ComponentEditor, WindowSettings >();
     }
 
     PPB_INLINE
