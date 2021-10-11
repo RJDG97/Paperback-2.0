@@ -7,15 +7,20 @@ namespace paperback::editor
 	//-----------------------------------
 	struct panel_interface
 	{
-		void OnSystemCreated(void) noexcept {}
-		void Update(void) noexcept {}
+		bool m_bEnabled { false };
+
+		void OnSystemCreated( void ) noexcept {}
+		void Update( void ) noexcept {}
+
+		void Enable() { m_bEnabled = !m_bEnabled; }
+		bool IsEnabled() { return m_bEnabled; }
 	};
 
 	struct instance : panel_interface
 	{
 		instance() {}
-		instance (const instance&) = delete;
-		instance& operator=(const instance&) = delete;
+		instance ( const instance& ) = delete;
+		instance& operator=( const instance& ) = delete;
 	};
 
 
@@ -24,7 +29,7 @@ namespace paperback::editor
 	//-----------------------------------
 	namespace type
 	{
-		using guid = xcore::guid::unit<64, struct system_tag>;
+		using guid = xcore::guid::unit< 64, struct system_tag >;
 
 		enum class id : u8
 		{
@@ -65,7 +70,7 @@ namespace paperback::editor
 	namespace details
 	{
 		template< typename T_PANEL >
-		editor::type::info CreateInfo(void);
+		editor::type::info CreateInfo( void );
 
 		template< typename T >
 		static auto info_v = editor::details::CreateInfo<T>();
@@ -81,7 +86,7 @@ namespace paperback::editor
 		{
 			completed() {};
 
-			void Run(const editor::type::call Type);
+			void Run( const editor::type::call Type );
 		};
 	}
 }

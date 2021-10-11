@@ -17,7 +17,11 @@
 #include "Editor/EditorPanels.h"
 #include "Editor/EditorPanels_inline.h"
 
-#include "Editor/Panels/EntityInspector.h"
+#include "Editor/Panels/Editor_EntityInspector.h"
+#include "Editor/Panels/Editor_ComponentInspector.h"
+#include "Editor/Panels/Editor_ArchetypeInspector.h"
+#include "Editor/Panels/Editor_ComponentEdit.h"
+#include "Editor/Panels/Editor_WindowSettings.h"
 
 
 struct imgui_system : paperback::system::instance
@@ -96,7 +100,7 @@ struct imgui_system : paperback::system::instance
     //-----------------------------------
 	//         Register Panels
 	//-----------------------------------
-        AddPanels<EntityInspector>();
+        AddPanels<EntityInspector, ArchetypeInspector, ComponentInspector, ComponentEditor, WindowSettings>();
     }
 
     PPB_INLINE

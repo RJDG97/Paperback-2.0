@@ -164,9 +164,15 @@
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Editor\EditorInclude.h" />
     <ClInclude Include="..\..\src\Editor\EditorPanels.h" />
     <ClInclude Include="..\..\src\Editor\EditorPanels_inline.h" />
-    <ClInclude Include="..\..\src\Editor\Panels\EntityInspector.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_ArchetypeInspector.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_AssetBrowser.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_ComponentEdit.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_ComponentInspector.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_EntityInspector.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_WindowSettings.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
@@ -235,7 +241,6 @@
     <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
     <ClInclude Include="..\..\src\Systems\system_includes.h" />
     <ClInclude Include="..\..\src\Systems\WindowSystem.h" />
-    <ClInclude Include="EditorInclude.h" />
     <ClInclude Include="paperback_pch.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

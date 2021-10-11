@@ -436,11 +436,26 @@
     <ClInclude Include="..\..\src\Editor\EditorPanels_inline.h">
       <Filter>Source\Tools\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Editor\Panels\EntityInspector.h">
+    <ClInclude Include="..\..\src\Editor\EditorInclude.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_ArchetypeInspector.h">
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
-    <ClInclude Include="EditorInclude.h">
-      <Filter>Source\Tools\Editor</Filter>
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_AssetBrowser.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_ComponentEdit.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_ComponentInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_EntityInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Editor_WindowSettings.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

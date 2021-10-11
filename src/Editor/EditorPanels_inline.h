@@ -10,21 +10,22 @@ namespace paperback::editor
 	namespace details
 	{
 		template< typename T_PANEL >
-		editor::type::info CreateInfo(void)
+		editor::type::info CreateInfo( void )
 		{
 			return editor::type::info
 			{
 				.m_Guid = T_PANEL::typedef_v.m_Guid.isValid()
 								   ? T_PANEL::typedef_v.m_Guid
 								   : type::guid{ __FUNCSIG__ }
+
 			,   .m_TypeID = T_PANEL::typedef_v.id_v
-			,	.m_RunSystem = [](editor::instance& pPanel, editor::type::call UpdateType)
+			,	.m_RunSystem = []( editor::instance& pPanel, editor::type::call UpdateType )
 								   {
-									   static_cast<editor::details::completed<T_PANEL>&>(pPanel).Run(UpdateType);
+									   static_cast< editor::details::completed<T_PANEL>& >( pPanel ).Run( UpdateType );
 								   }
-			,	.m_Destructor = [](editor::instance& pPanel) noexcept
+			,	.m_Destructor = []( editor::instance& pPanel ) noexcept
 								   {
-									   std::destroy_at(&static_cast<editor::details::completed<T_PANEL>&>(pPanel));
+									   std::destroy_at(&static_cast<editor::details::completed<T_PANEL>&>( pPanel ));
 								   }
 			,	.m_pName = T_PANEL::typedef_v.m_pName
 			};
@@ -42,7 +43,7 @@ namespace paperback::editor
 		{
 			case editor::type::call::CREATED:
 			{
-				if constexpr (&USER_PANEL::OnSystemCreated != &panel_interface::OnSystemCreated)
+				if constexpr ( &USER_PANEL::OnSystemCreated != &panel_interface::OnSystemCreated )
 				{
 					USER_PANEL::OnSystemCreated();
 				}
