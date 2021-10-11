@@ -430,6 +430,18 @@
     <ClInclude Include="..\..\src\Functionality\Nui\NUILoader.h">
       <Filter>Source\Tools\Functionality\NUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorPanels.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorPanels_inline.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\EntityInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorInclude.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -521,6 +533,12 @@
     </Filter>
     <Filter Include="Source\Tools\Functionality\NUI">
       <UniqueIdentifier>{9ceee95b-3532-4cfc-8f8e-3c771e15f5ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Editor">
+      <UniqueIdentifier>{3318cd49-90a6-4cd0-98a6-601e9d60df9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Editor\Panels">
+      <UniqueIdentifier>{6cab03ad-35c7-4e0d-bd33-68f986518558}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
