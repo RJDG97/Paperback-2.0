@@ -83,7 +83,7 @@ void InitializeGame()
             window_system,
             debug_system,
             render_system,
-            imgui_system,
+            //imgui_system,
             animator_system
         >();
     }

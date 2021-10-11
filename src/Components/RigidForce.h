@@ -14,6 +14,7 @@ struct rigidforce
     float m_MaxForceSq = m_MaxForce.MagnitudeSq();
     paperback::Vector3f m_MaxMoment = paperback::Vector3f(5.f, 5.f, 5.f);
     float m_MaxMomentSq = m_MaxMoment.MagnitudeSq();
+    paperback::Vector3f m_minthreshold = paperback::Vector3f(0.5f, 0.5f, 0.5f);
     float m_threshold = .25f;
 
     float m_Mass;                                              // -- Mass value of the object
@@ -24,7 +25,6 @@ struct rigidforce
     paperback::Vector3f m_Forces;						// -- Sum of Forces of rigidbody
     paperback::Vector3f m_Momentum;                         // -- Momentum of rigidbody
     float m_MagForce;
-    paperback::Vector3f m_NegForces;
     float m_MagMoment;
     bool m_isAccel;
 
@@ -36,7 +36,6 @@ struct rigidforce
         m_Forces{ paperback::Vector3f{} },
         m_Momentum{ paperback::Vector3f{} },
         m_MagForce{ 0.f },
-        m_NegForces{ paperback::Vector3f{} },
         m_MagMoment{ 0.f },
         m_isAccel{ false }
     {}
@@ -49,7 +48,6 @@ struct rigidforce
         m_Forces{ paperback::Vector3f{} },
         m_Momentum{ paperback::Vector3f{} },
         m_MagForce{ 0.f },
-        m_NegForces{ paperback::Vector3f{} },
         m_MagMoment{ 0.f },
         m_isAccel{ false }
     {}

@@ -101,6 +101,10 @@ namespace paperback
 			const Vector3f& Center,	//------ desired centre point with
 			float Degrees);			//------ a desired angle.
 
+		inline Vector3f& LockingValue(const Vector3f& lock);			//------ max vector.
+		inline Vector3f& CutoffValue(const Vector3f& lock);			//------ min cutoff vector.
+		inline Vector3f& DecrementValue(float lock);			//------ decrement vector.
+
 		//helper function to convert Vector3f to glm::vec3
 		xcore::vector3 ConvertMathVecToXcoreVec(const paperback::Vector3f& vec3)
 		{

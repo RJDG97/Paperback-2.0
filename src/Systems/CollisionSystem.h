@@ -34,15 +34,25 @@ struct collision_system : paperback::system::instance
                 xf.z = Xform.m_Position.z + Xform.m_Offset.z;
 
                 // Collision Detection
-                if (Boundingbox && BB && AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
+                if (Boundingbox && BB)
                 {
-                    Boundingbox->m_Collided = BB->m_Collided = true;
+                    if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
+                    {
+                        Boundingbox->m_Collided = BB->m_Collided = true;
+                    }
+                    else
+                        Boundingbox->m_Collided = BB->m_Collided = false;
                 }
-
-                if (Sphere && Ball && SphereSphere(tf, Sphere->m_fRadius, xf, Ball->m_fRadius))
+                if (Sphere && Ball)
                 {
-                    Sphere->m_Collided = Ball->m_Collided = true;
+                    if (SphereSphere(tf, Sphere->m_fRadius, xf, Ball->m_fRadius))
+                    {
+                        Sphere->m_Collided = Ball->m_Collided = true;
+                    }
+                    else
+                        Sphere->m_Collided = Ball->m_Collided = false;
                 }
+                
 
                 /* Return true on deletion of collided entities */
                 return false;
