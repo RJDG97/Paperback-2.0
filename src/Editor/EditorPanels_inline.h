@@ -1,6 +1,8 @@
 #pragma once
 #include "Editor/EditorPanels.h"
 
+struct imgui_system;
+
 namespace paperback::editor
 {
 	//-----------------------------------
@@ -35,6 +37,10 @@ namespace paperback::editor
 	//-----------------------------------
 	//         Panel Details
 	//-----------------------------------
+
+	template<typename USER_PANEL>
+	details::completed<USER_PANEL>::completed(imgui_system& Editor) : USER_PANEL{ Editor }
+	{}
 
 	template < typename USER_PANEL >
 	void details::completed< USER_PANEL >::Run( const editor::type::call Type ) 

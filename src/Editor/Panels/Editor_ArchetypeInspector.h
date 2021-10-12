@@ -10,7 +10,7 @@ struct ArchetypeInspector : paperback::editor::instance
 
     void OnSystemCreated(void) noexcept
     {
-        m_bEnabled = false;
+        m_bEnabled = true;
     }
 
     void Update(void) noexcept

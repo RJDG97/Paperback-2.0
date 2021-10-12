@@ -1,4 +1,8 @@
 #pragma once
+#include "paperback.h"
+#include "Systems/ImguiSystem.h"
+
+struct imgui_system;
 
 namespace paperback::editor
 {
@@ -14,11 +18,16 @@ namespace paperback::editor
 
 		void Enable() { m_bEnabled = !m_bEnabled; }
 		bool IsEnabled() { return m_bEnabled; }
+
+
 	};
 
 	struct instance : panel_interface
 	{
-		instance() {}
+		imgui_system& m_Imgui ;
+
+		instance(imgui_system& Editor) : m_Imgui{ Editor } {};
+
 		instance ( const instance& ) = delete;
 		instance& operator=( const instance& ) = delete;
 	};
@@ -84,8 +93,7 @@ namespace paperback::editor
 		template < typename USER_PANEL >
 		struct completed final : USER_PANEL
 		{
-			completed() {};
-
+			completed(imgui_system& Editor);
 			void Run( const editor::type::call Type );
 		};
 	}
