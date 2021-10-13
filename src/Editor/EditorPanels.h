@@ -19,17 +19,16 @@ namespace paperback::editor
 		void Enable() { m_bEnabled = !m_bEnabled; }
 		bool IsEnabled() { return m_bEnabled; }
 
-
 	};
 
 	struct instance : panel_interface
 	{
-		imgui_system& m_Imgui ;
 
-		instance(imgui_system& Editor) : m_Imgui{ Editor } {};
+		instance(imgui_system& Editor);
 
 		instance ( const instance& ) = delete;
 		instance& operator=( const instance& ) = delete;
+		imgui_system& m_Imgui ;
 	};
 
 

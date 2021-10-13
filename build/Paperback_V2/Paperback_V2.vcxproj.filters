@@ -457,6 +457,12 @@
     <ClInclude Include="..\..\src\Editor\Panels\Editor_WindowSettings.h">
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EntityInspector_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Header.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

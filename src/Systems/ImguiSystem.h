@@ -1,7 +1,6 @@
 #pragma once
 #include "paperback_pch.h"
 #include "Systems/WindowSystem.h"
-#include "Json/paperback_json.h"
 
 #include <IconsFontAwesome5.h>
 #include <sstream>
@@ -96,7 +95,7 @@ struct imgui_system : paperback::system::instance
         io.FontDefault = io.Fonts->AddFontFromFileTTF("../../resources/fonts/FredokaOne-Regular.ttf", 16.0f);
         static const ImWchar iconranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
         ImFontConfig iconsconfig; iconsconfig.MergeMode = true; iconsconfig.PixelSnapH = true;
-        m_Imgfont = io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 14.0f, &iconsconfig, iconranges);
+        m_Imgfont = io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 12.0f, &iconsconfig, iconranges);
 
         //////////// End iof ImGui Context Setup///////////////////////////
 
@@ -343,6 +342,8 @@ struct imgui_system : paperback::system::instance
 
                 if (ImGui::MenuItem("Window Settings"))
                     GetPanel<WindowSettings>()->Enable();
+
+                ImGui::EndMenu();
             }
 
             ImGui::PopFont();
@@ -403,3 +404,5 @@ struct imgui_system : paperback::system::instance
     }
 
 };
+
+#include "Editor/EntityInspector_Inline.h"

@@ -34,6 +34,8 @@ namespace paperback::editor
 		}
 	}
 
+	instance::instance(imgui_system& Editor) : m_Imgui{ Editor } {};
+
 	//-----------------------------------
 	//         Panel Details
 	//-----------------------------------
