@@ -13,14 +13,17 @@
 #include <imgui_internal.h>
 #include <ImGuiFileBrowser.h>
 
+//----------------------------------
+// Panel Headers
+//----------------------------------
 #include "Editor/EditorPanels.h"
 #include "Editor/EditorPanels_inline.h"
 
-#include "Editor/Panels/Editor_EntityInspector.h"
-#include "Editor/Panels/Editor_ComponentInspector.h"
-#include "Editor/Panels/Editor_ArchetypeInspector.h"
-#include "Editor/Panels/Editor_ComponentEdit.h"
-#include "Editor/Panels/Editor_WindowSettings.h"
+#include "Editor/Panels/EntityInspector.h"
+#include "Editor/Panels/DetailsWindow.h"
+#include "Editor/Panels/ArchetypeInspector.h"
+#include "Editor/Panels/WindowSettings.h"
+#include "Editor/Panels/AssetBrowser.h"
 
 
 struct imgui_system : paperback::system::instance
@@ -113,7 +116,7 @@ struct imgui_system : paperback::system::instance
     //-----------------------------------
 	//         Register Panels
 	//-----------------------------------
-        AddPanels< EntityInspector, ArchetypeInspector, ComponentInspector, ComponentEditor, WindowSettings >();
+        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, WindowSettings >();
     }
 
     PPB_INLINE
@@ -331,7 +334,7 @@ struct imgui_system : paperback::system::instance
                     GetPanel<ArchetypeInspector>()->Enable();
 
                 if (ImGui::MenuItem("Entity Details"))
-                    GetPanel<ComponentInspector>()->Enable();
+                    GetPanel<DetailsWindow>()->Enable();
 
                 // ImGui::Separator();
 
@@ -405,4 +408,4 @@ struct imgui_system : paperback::system::instance
 
 };
 
-#include "Editor/EntityInspector_Inline.h"
+#include "Editor/Panels/EntityInspector_Inline.h"
