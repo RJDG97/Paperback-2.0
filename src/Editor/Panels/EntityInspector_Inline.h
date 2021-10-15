@@ -4,7 +4,6 @@ void EntityInspector::InspectorWindow()
 {
     int NumEntities = 0, Index = 0;
     bool b_NodeOpen = false;
-    std::stringstream Label;
 
     ImGui::Begin(EntityInspector::typedef_v.m_pName);
 
@@ -23,43 +22,25 @@ void EntityInspector::InspectorWindow()
                 {
                     NumEntities++;
 
-                    ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
-                    NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
-
-                    b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, (Archetype->GetName() + " [" + std::to_string(i) + "]").c_str());
-
-                    if (ImGui::IsItemClicked())
+                    if (ImGui::Selectable((Archetype->GetName() + " [" + std::to_string(i) + "]").c_str() ))
                     {
                         m_Imgui.m_SelectedEntity.first = Archetype;
                         m_Imgui.m_SelectedEntity.second = i;
                         m_Imgui.m_Components = Archetype->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
+
                     }
 
-                    bool Deleted = false;
+                    ImGui::SameLine();
 
-                    if (ImGui::BeginPopupContextItem())
+                    if (ImGui::Button(ICON_FA_TRASH))
                     {
-                        if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
-                        {
-                            m_Imgui.m_SelectedEntity.first = Archetype;
-                            m_Imgui.m_SelectedEntity.second = i;
-                            Label << m_Imgui.m_SelectedEntity.first->GetName() << " [" << std::to_string(i) << "]";
-                            Deleted = true;
-                        }
-
-                        ImGui::EndPopup();
-                    }
-
-
-                    if (b_NodeOpen) ImGui::TreePop();
-
-                    if ( Deleted )
                         ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
+
+                        DeleteEntity(ICON_FA_TRASH " Delete?", i, (Archetype->GetName() + " [" + std::to_string(i) + "]"));
+                    }
                 }
             }
         }
-
-        DeleteEntity(ICON_FA_TRASH " Delete?", m_Imgui.m_SelectedEntity.second, Label.str());
     }
 
     ImGui::Separator();
