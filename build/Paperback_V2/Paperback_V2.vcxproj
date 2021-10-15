@@ -169,11 +169,13 @@
     <ClInclude Include="..\..\src\Editor\EditorPanels_inline.h" />
     <ClInclude Include="..\..\src\Editor\Header.h" />
     <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector_Inline.h" />
     <ClInclude Include="..\..\src\Editor\Panels\AssetBrowser.h" />
-    <ClInclude Include="..\..\src\Editor\Panels\DetailsWindow.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\PropertyInspector.h" />
     <ClInclude Include="..\..\src\Editor\Panels\EntityInspector.h" />
     <ClInclude Include="..\..\src\Editor\Panels\WindowSettings.h" />
     <ClInclude Include="..\..\src\Editor\Panels\EntityInspector_Inline.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\WindowSettings_Inline.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />

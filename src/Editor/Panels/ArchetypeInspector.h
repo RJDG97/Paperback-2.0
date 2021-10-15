@@ -15,10 +15,8 @@ struct ArchetypeInspector : paperback::editor::instance
 
     void Update(void) noexcept
     {
-        ImGui::Begin(ArchetypeInspector::typedef_v.m_pName);
-
-
-        ImGui::End();
+        Panel();
     }
 
-};
+    void Panel();
+};  

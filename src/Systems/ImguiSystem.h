@@ -20,7 +20,7 @@
 #include "Editor/EditorPanels_inline.h"
 
 #include "Editor/Panels/EntityInspector.h"
-#include "Editor/Panels/DetailsWindow.h"
+#include "Editor/Panels/PropertyInspector.h"
 #include "Editor/Panels/ArchetypeInspector.h"
 #include "Editor/Panels/WindowSettings.h"
 #include "Editor/Panels/AssetBrowser.h"
@@ -64,7 +64,7 @@ struct imgui_system : paperback::system::instance
     };
 
     PPB_INLINE
-    void OnSystemCreated(void) noexcept
+        void OnSystemCreated(void) noexcept
     {
         m_pWindow = GetSystem< window_system >().m_pWindow; //Get window ptr
 
@@ -113,14 +113,14 @@ struct imgui_system : paperback::system::instance
         m_bImgui = true;
 
 
-    //-----------------------------------
-	//         Register Panels
-	//-----------------------------------
+        //-----------------------------------
+        //         Register Panels
+        //-----------------------------------
         AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, WindowSettings >();
     }
 
     PPB_INLINE
-    void Update(void)
+        void Update(void)
     {
         if (m_bImgui)
         {
@@ -171,6 +171,7 @@ struct imgui_system : paperback::system::instance
                 ImGui::PushFont(m_Imgfont);
 
                 PanelsRun();
+                //ImGui::ShowDemoWindow();
 
                 ImGui::PopFont();
                 ImGui::End(); //End of Docking Space
@@ -196,7 +197,7 @@ struct imgui_system : paperback::system::instance
     }
 
     PPB_INLINE
-    void OnSystemTerminated(void) noexcept
+        void OnSystemTerminated(void) noexcept
     {
         PanelMapClear();
 
@@ -205,10 +206,6 @@ struct imgui_system : paperback::system::instance
         ImGui::DestroyContext();
     }
 
-
-
-
-
     //-----------------------------------
     //        Panel Manager
     //-----------------------------------
@@ -216,7 +213,7 @@ struct imgui_system : paperback::system::instance
     template <typename... T_PANELS>
     constexpr void AddPanels() noexcept
     {
-        ( ( AddPanel<T_PANELS>()), ... );
+        ((AddPanel<T_PANELS>()), ...);
     }
 
     template < typename T_PANEL >
@@ -230,12 +227,12 @@ struct imgui_system : paperback::system::instance
         auto* pPanel = m_Panels.back().second.get();
 
         //run init()
-        pInfo->m_RunSystem( *pPanel, paperback::editor::type::call::CREATED );
+        pInfo->m_RunSystem(*pPanel, paperback::editor::type::call::CREATED);
 
         //save info
-        m_PanelsMap.emplace( std::make_pair( paperback::editor::info_v<T_PANEL>.m_Guid, pPanel ) );
+        m_PanelsMap.emplace(std::make_pair(paperback::editor::info_v<T_PANEL>.m_Guid, pPanel));
 
-        return *(static_cast<T_PANEL*>( pPanel ) );
+        return *(static_cast<T_PANEL*>(pPanel));
 
     }
 
@@ -247,12 +244,11 @@ struct imgui_system : paperback::system::instance
             : nullptr;
     }
 
-
     void PanelsRun() //Call in update
     {
         for (const auto& [Info, Panel] : m_Panels)
         {
-            if(Panel->IsEnabled())
+            if (Panel->IsEnabled())
                 Info->m_RunSystem(*Panel, paperback::editor::type::call::UPDATE);
         }
     }
@@ -261,15 +257,14 @@ struct imgui_system : paperback::system::instance
     {
         m_Panels.clear();
 
-        while ( m_Panels.size() )
+        while (m_Panels.size())
         {
             auto p = m_Panels.back().second.release();
-            m_Panels.back().first->m_Destructor( *p );
-            delete reinterpret_cast<void*>( p );
+            m_Panels.back().first->m_Destructor(*p);
+            delete reinterpret_cast<void*>(p);
             m_Panels.pop_back();
         }
     }
-
 
     ////////////////////////////////////////////////////////////////////////////
 
@@ -336,10 +331,10 @@ struct imgui_system : paperback::system::instance
                 if (ImGui::MenuItem("Entity Details"))
                     GetPanel<DetailsWindow>()->Enable();
 
-                // ImGui::Separator();
+                ImGui::Separator();
 
-                // if (ImGui::MenuItem("Asset Browser") )
-                //     GetPanel<AssetBrowser>()->Enable();
+                if (ImGui::MenuItem("Asset Browser"))
+                    GetPanel<AssetBrowser>()->Enable();
 
                 ImGui::Separator();
 
@@ -406,6 +401,101 @@ struct imgui_system : paperback::system::instance
             m_bFileSaveAs = false; //dialog is closed
     }
 
+    void DisplayClassType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
+    {
+        if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>())
+        {
+            ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(PropertyValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()));
+        }
+
+        if (PropertyType == rttr::type::get<paperback::component::entity::Validation>())
+        {
+            ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+            ImGui::Text("%d", PropertyValue.get_value<paperback::component::entity::Validation>());
+        }
+
+    }
+
+    void DisplayStringType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
+    {
+        if (PropertyType == rttr::type::get<std::string>() || PropertyType == rttr::type::get<std::reference_wrapper<std::string>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text(PropertyValue.get_value<std::string>().c_str());
+            }
+            else
+            {
+                auto& Str = PropertyValue.get_value<std::reference_wrapper<std::string>>().get();
+                char Buffer[256]{};
+
+                std::copy(Str.begin(), Str.end(), Buffer);
+                if (ImGui::InputText(("##" + PropertyName).c_str(), Buffer, sizeof(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+                    Str = std::string(Buffer);
+            }
+        }
+    }
+
+    void DisplayBaseTypes(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
+    {
+        if (PropertyType == rttr::type::get<float>() || PropertyType == rttr::type::get <std::reference_wrapper<float>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text("%s: %f", PropertyName.c_str(), PropertyValue.get_value<float>());
+            }
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::PushItemWidth(200.0f);
+                ImGui::InputFloat(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<float>>().get()), 0.01f);
+                ImGui::PopItemWidth();
+            }
+        }
+
+        if (PropertyType == rttr::type::get<int>() || PropertyType == rttr::type::get<std::reference_wrapper<int>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text("%s: %d", PropertyName.c_str(), PropertyValue.get_value<int>());
+            }
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::PushItemWidth(200.0f);
+                ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1);
+                ImGui::PopItemWidth();
+            }
+        }
+
+        if (PropertyType == rttr::type::get<bool>() || PropertyType == rttr::type::get <std::reference_wrapper<bool>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("%d", PropertyValue.get_value<bool>());
+            }
+            else
+            {
+                ImGui::Checkbox(PropertyName.c_str(), &(PropertyValue.get_value<std::reference_wrapper<bool>>().get()));
+            }
+        }
+
+        if (PropertyType == rttr::type::get<size_t>())
+        {
+            ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+            ImGui::Text("%d", PropertyValue.get_value<size_t>());
+        }
+    }
+
+
+
+    //void DisplayEnumTypes
+
 };
 
 #include "Editor/Panels/EntityInspector_Inline.h"
+#include "Editor/Panels/ArchetypeInspector_Inline.h"
+#include "Editor/Panels/WindowSettings_Inline.h"
+
