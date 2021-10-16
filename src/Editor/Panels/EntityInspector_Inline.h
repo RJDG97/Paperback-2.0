@@ -4,7 +4,6 @@ void EntityInspector::InspectorWindow()
 {
     int NumEntities = 0, Index = 0;
     bool b_NodeOpen = false;
-    std::stringstream Label;
 
     ImGui::Begin(EntityInspector::typedef_v.m_pName);
 
@@ -43,7 +42,6 @@ void EntityInspector::InspectorWindow()
                         {
                             m_Imgui.m_SelectedEntity.first = Archetype;
                             m_Imgui.m_SelectedEntity.second = i;
-                            Label << m_Imgui.m_SelectedEntity.first->GetName() << " [" << std::to_string(i) << "]";
                             Deleted = true;
                         }
 
@@ -59,7 +57,7 @@ void EntityInspector::InspectorWindow()
             }
         }
 
-        DeleteEntity(ICON_FA_TRASH " Delete?", m_Imgui.m_SelectedEntity.second, Label.str());
+        DeleteEntity(ICON_FA_TRASH " Delete?", m_Imgui.m_SelectedEntity.second);
     }
 
     ImGui::Separator();
@@ -68,7 +66,7 @@ void EntityInspector::InspectorWindow()
     ImGui::End();
 }
 
-void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 EntityIndex, std::string EntityLabel)
+void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 EntityIndex)
 {
     if (m_Imgui.m_SelectedEntity.first)
     {
@@ -78,7 +76,7 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
         {
             ImGui::TextColored(ImVec4{ 0.863f, 0.078f, 0.235f , 1.0f }, "Deleting: ");
 
-            ImGui::Text(EntityLabel.c_str());
+            ImGui::Text((m_Imgui.m_SelectedEntity.first->GetName() + " [" + std::to_string(m_Imgui.m_SelectedEntity.second) + "]").c_str());
 
             ImGui::TextColored(ImVec4{ 0.863f, 0.078f, 0.235f , 1.0f }, "This cannot be undone");
 

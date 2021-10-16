@@ -20,7 +20,7 @@ struct EntityInspector : paperback::editor::instance
 
     void InspectorWindow();
 
-    void DeleteEntity( std::string WindowName, paperback::u32 EntityIndex, std::string EntityLabel );
+    void DeleteEntity( std::string WindowName, paperback::u32 EntityIndex );
 };
 
 
