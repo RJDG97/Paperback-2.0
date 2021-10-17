@@ -5,7 +5,7 @@ struct DetailsWindow : paperback::editor::instance
 {
     constexpr static auto typedef_v = paperback::editor::type::update
     {
-        .m_pName = "Entity Details"
+        .m_pName = "Property Inspector"
     };
 
     void OnSystemCreated(void) noexcept
@@ -15,10 +15,11 @@ struct DetailsWindow : paperback::editor::instance
 
     void Update(void) noexcept
     {
-        ImGui::Begin(DetailsWindow::typedef_v.m_pName);
-
-        //Component Inspector + Component Editor
-        ImGui::End();
+        Panel();
     }
 
+    void Panel();
+
+    void AddComponent();
+    void RemoveComponent();
 };

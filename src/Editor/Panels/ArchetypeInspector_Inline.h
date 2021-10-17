@@ -9,7 +9,7 @@ void ArchetypeInspector::Panel()
     ImGui::Begin(ArchetypeInspector::typedef_v.m_pName);
 
     static ImGuiTextFilter Filter;
-    Filter.Draw(ICON_FA_FILTER, 150.0f);
+    Filter.Draw(ICON_FA_FILTER, 170.0f);
 
     ImGui::BeginChild("Archetypes: ", { ImGui::GetContentRegionAvailWidth() / 2, ImGui::GetContentRegionAvail().y }, true);
 
@@ -30,7 +30,7 @@ void ArchetypeInspector::Panel()
 
             ImGui::PopItemWidth();
 
-            if (ImGui::IsItemClicked())
+            if (ImGui::IsItemClicked()) //view components
             {
                 m_Imgui.m_pArchetype = Archetype;
                 m_Imgui.m_ComponentNames.clear();
@@ -39,6 +39,19 @@ void ArchetypeInspector::Panel()
                 {
                     m_Imgui.m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
                 }
+            }
+
+            if (ImGui::BeginPopupContextItem())
+            {
+                if (ImGui::MenuItem( ICON_FA_PLUS_SQUARE " Spawn New Entity"))
+                {
+                    m_Imgui.m_pArchetype = Archetype;
+
+                    if (m_Imgui.m_pArchetype)
+                        m_Imgui.m_pArchetype->CreateEntity();
+                }
+
+                ImGui::EndPopup();
             }
         }
     }

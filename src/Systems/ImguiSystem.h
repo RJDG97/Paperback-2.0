@@ -37,8 +37,6 @@ struct imgui_system : paperback::system::instance
     GLFWwindow* m_pWindow;
     ImFont* m_Imgfont;
 
-    paperback::JsonFile JFile;
-
     paperback::archetype::instance* m_pArchetype; //refers back to the archetype that the entity is referencing to
 
     std::vector <rttr::instance> m_Components = {};
@@ -64,7 +62,7 @@ struct imgui_system : paperback::system::instance
     };
 
     PPB_INLINE
-        void OnSystemCreated(void) noexcept
+    void OnSystemCreated(void) noexcept
     {
         m_pWindow = GetSystem< window_system >().m_pWindow; //Get window ptr
 
@@ -111,7 +109,6 @@ struct imgui_system : paperback::system::instance
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 
         m_bImgui = true;
-
 
         //-----------------------------------
         //         Register Panels
@@ -449,7 +446,7 @@ struct imgui_system : paperback::system::instance
             {
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
                 ImGui::PushItemWidth(200.0f);
-                ImGui::InputFloat(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<float>>().get()), 0.01f);
+                ImGui::InputFloat(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<float>>().get()), 0.1f);
                 ImGui::PopItemWidth();
             }
         }
@@ -464,7 +461,7 @@ struct imgui_system : paperback::system::instance
             {
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
                 ImGui::PushItemWidth(200.0f);
-                ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1);
+                ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 0.1f);
                 ImGui::PopItemWidth();
             }
         }
@@ -497,5 +494,6 @@ struct imgui_system : paperback::system::instance
 
 #include "Editor/Panels/EntityInspector_Inline.h"
 #include "Editor/Panels/ArchetypeInspector_Inline.h"
+#include "Editor/Panels/PropertyInspector_Inline.h"
 #include "Editor/Panels/WindowSettings_Inline.h"
 

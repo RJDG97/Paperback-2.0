@@ -15,10 +15,10 @@ struct EntityInspector : paperback::editor::instance
 
     void Update( void ) noexcept
     {
-        InspectorWindow();
+        Panel();
     }
 
-    void InspectorWindow();
+    void Panel();
 
     void DeleteEntity( std::string WindowName, paperback::u32 EntityIndex );
 };

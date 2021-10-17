@@ -454,9 +454,6 @@
     <ClInclude Include="..\..\src\Editor\Panels\WindowSettings.h">
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Editor\Header.h">
-      <Filter>Source\Tools\Editor</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Editor\Panels\EntityInspector_Inline.h">
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
@@ -464,6 +461,9 @@
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\PropertyInspector_Inline.h">
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
   </ItemGroup>

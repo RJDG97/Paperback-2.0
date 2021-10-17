@@ -1,6 +1,6 @@
 #include "Editor/Panels/EntityInspector.h"
 
-void EntityInspector::InspectorWindow()
+void EntityInspector::Panel()
 {
     int NumEntities = 0, Index = 0;
     bool b_NodeOpen = false;
@@ -22,7 +22,7 @@ void EntityInspector::InspectorWindow()
                 {
                     NumEntities++;
 
-                    ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
+                    ImGuiTreeNodeFlags NodeFlags = (( m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i ) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
                     NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
 
                     b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, (Archetype->GetName() + " [" + std::to_string(i) + "]").c_str());
@@ -101,6 +101,5 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
 
             ImGui::EndPopup();
         }
-
     }
 }
