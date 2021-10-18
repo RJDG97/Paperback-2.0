@@ -58,7 +58,7 @@ public:
     //play event 
     // helper function
     // loads and plays an event from the current loaded bank
-    void PlaySoundEvent( const std::string_view& Path ) 
+    void PlaySoundEvent( const std::string_view& Path) 
     {
 
         FMOD::Studio::EventDescription* event = nullptr;
@@ -124,18 +124,22 @@ public:
     {
         //2d now, to change to 3d when shifted to 3d
         paperback::Vector3f normal_vec = Rigidbody->m_Velocity;
-        normal_vec.Normal2D();
+        normal_vec.Normalized();
 
         Attribute.forward.x = normal_vec.x;
         Attribute.forward.y = normal_vec.y;
+        Attribute.forward.z = normal_vec.x;
 
-        //attribute.up.z = 0.0f;
+        //needs to be perpendicular to forward vec
+        Attribute.up.z = 1.0f;
 
         Attribute.position.x = Transform->m_Position.x;
         Attribute.position.y = Transform->m_Position.y;
+        Attribute.position.z = Transform->m_Position.z;
 
         Attribute.velocity.x = Rigidbody->m_Velocity.x;
         Attribute.velocity.y = Rigidbody->m_Velocity.y;
+        Attribute.velocity.z = Rigidbody->m_Velocity.z;
     }
 
     //set player 3d attributes
@@ -145,7 +149,9 @@ public:
     {
 
         FMOD_3D_ATTRIBUTES attribute{};
-        ConvertSystemToFMOD3D(attribute, Transform, Rigidbody);
+
+        if (Transform && Rigidbody)
+            ConvertSystemToFMOD3D(attribute, Transform, Rigidbody);
 
         m_pStudioSystem->setListenerAttributes(0, &attribute);
     }
@@ -224,6 +230,8 @@ public:
         m_SoundCounter = {};
 
         m_pStudioSystem->setNumListeners(1);
+
+        UpdatePlayer3DAttributes(nullptr, nullptr);
     }
 
     // entity that is processed by soundsystem will specifically have sound and timer components

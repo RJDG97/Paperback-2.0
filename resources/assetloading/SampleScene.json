@@ -399,6 +399,103 @@
                     }
                 }
             ]
+        },
+        {
+            "moving sound boi": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        5509481706028819786,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        18285106494192445205,
+                        3617555656175080491,
+                        12091664775214799190,
+                        14302600151082817442,
+                        9604788041699812520
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -12.068845748901368,
+                            "y": 1.1216073036193848,
+                            "z": 6.940832614898682
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Timer": {
+                        "Timer": 0.0
+                    },
+                    "Sound": {
+                        "Path": "event:/3DBGM",
+                        "Sound Event ID": 3,
+                        "3D Sound": true
+                    },
+                    "Mesh": {
+                        "Model Mesh": ""
+                    }
+                }
+            ]
         }
     ]
 }
