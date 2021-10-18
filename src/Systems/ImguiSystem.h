@@ -113,7 +113,7 @@ struct imgui_system : paperback::system::instance
         //-----------------------------------
         //         Register Panels
         //-----------------------------------
-        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, WindowSettings >();
+        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, WindowSettings, AssetBrowser >();
     }
 
     PPB_INLINE

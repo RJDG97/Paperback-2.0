@@ -17,11 +17,11 @@ void DetailsWindow::Panel()
 
 		for ( auto& ComponentInstance : m_Imgui.m_Components )
 		{
-            if (Filter.PassFilter(ComponentInstance.get_type().get_name().to_string().c_str()))
+            if ( Filter.PassFilter(ComponentInstance.get_type().get_name().to_string().c_str()) )
             {
-                if (ImGui::CollapsingHeader(ComponentInstance.get_type().get_name().to_string().c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+                if ( ImGui::CollapsingHeader(ComponentInstance.get_type().get_name().to_string().c_str(), ImGuiTreeNodeFlags_DefaultOpen) )
                 {
-                    for (auto& property : ComponentInstance.get_type().get_properties())
+                    for ( auto& property : ComponentInstance.get_type().get_properties() )
                     {
                         rttr::variant PropertyValue = property.get_value(ComponentInstance);
 
@@ -60,7 +60,6 @@ void DetailsWindow::AddComponent()
                     if (ImGui::Selectable(CompValue->m_pName))
                     {
                         ComponentAdd[0] = CompValue;
-
                         PPB.AddOrRemoveComponents(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), ComponentAdd, {});
 
                         m_Imgui.m_SelectedEntity.first = nullptr;
