@@ -4,6 +4,7 @@
 
 #include <IconsFontAwesome5.h>
 #include <sstream>
+#include <filesystem>
 //----------------------------------
 // ImGui Headers
 //----------------------------------
@@ -25,6 +26,7 @@
 #include "Editor/Panels/WindowSettings.h"
 #include "Editor/Panels/AssetBrowser.h"
 
+namespace fs = std::filesystem;
 
 struct imgui_system : paperback::system::instance
 {
@@ -52,7 +54,10 @@ struct imgui_system : paperback::system::instance
     ImGuiWindowFlags m_Windowflags;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs;
+    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bCreate = false;
+
+    fs::path m_SelectedPath = "../../resources";
+    std::string m_SelectedFile = {} ;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -461,7 +466,7 @@ struct imgui_system : paperback::system::instance
             {
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
                 ImGui::PushItemWidth(200.0f);
-                ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 0.1f);
+                ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1);
                 ImGui::PopItemWidth();
             }
         }
@@ -496,4 +501,5 @@ struct imgui_system : paperback::system::instance
 #include "Editor/Panels/ArchetypeInspector_Inline.h"
 #include "Editor/Panels/PropertyInspector_Inline.h"
 #include "Editor/Panels/WindowSettings_Inline.h"
+#include "Editor/Panels/AssetBrowser_Inline.h"
 
