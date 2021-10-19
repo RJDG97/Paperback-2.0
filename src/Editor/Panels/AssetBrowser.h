@@ -48,15 +48,28 @@ struct AssetBrowser : paperback::editor::instance
 
     void DisplayFolders(float window_width, float window_height) {
 
+        bool Opened = false;
+
         // Print out all directories
         ImGui::BeginChild("File Directories", { window_width / 7, window_height }, true);
 
         ImGui::Text("Folders/Directories:");
 
-        if (ImGui::Selectable(ICON_FA_FOLDER " resources"))
-            m_SelectedPath = "../..resources";
+        //if (ImGui::Selectable(ICON_FA_FOLDER " resources"))
+        //    m_SelectedPath = "../..resources";
+        ImGuiTreeNodeFlags Flags = (( m_SelectedPath == "../../resources" ) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
 
-        FileDirectoryCheck("../../resources");
+        Opened = ImGui::TreeNodeEx((ICON_FA_FOLDER " resources"), Flags);
+
+        if (ImGui::IsItemClicked())
+            m_SelectedPath = "../../resources";
+
+        if ( Opened )
+        {
+            FileDirectoryCheck("../../resources");
+
+            ImGui::TreePop();
+        }
 
         ImGui::EndChild();
     }
@@ -74,20 +87,16 @@ struct AssetBrowser : paperback::editor::instance
     }
 
     void FileMenuBar() {
-        std::string path{};
+        //std::string path{};
         ImGui::BeginMenuBar();
-        if (ImGui::MenuItem(ICON_FA_FOLDER_PLUS)) {
-            m_bCreate = true;
-        }
-        //imgui_->ImguiHelp("Add New Folder", 0);
+        //if (ImGui::MenuItem(ICON_FA_FOLDER_PLUS)) {
+        //    m_bCreate = true;
+        //}
+        ////imgui_->ImguiHelp("Add New Folder", 0);
 
-        //if (ImGui::MenuItem(ICON_FA_COPY) && !path_selection_.empty())
-        //    CopyFilesDirectory();
+        ////if (ImGui::MenuItem(ICON_FA_COPY) && !path_selection_.empty())
+        ////    CopyFilesDirectory();
 
-
-        //ImGui::MenuItem(ICON_FA_TRASH);
-        //imgui_->ImguiHelp("Trash Bin. WARNING:\n CANNOT UNDO so be careful", 0);
-        //FileDeletion();
 
         ImGui::EndMenuBar();
     }
@@ -143,6 +152,8 @@ struct AssetBrowser : paperback::editor::instance
                             ImGui::Text(FileString(ICON_FA_FILE_IMAGE, FileName).c_str());
                         else if (File.path().extension() == ".json" || File.path().extension() == ".nui")
                             ImGui::Text(FileString(ICON_FA_FILE_CODE, FileName).c_str());
+                        else if (File.path().extension() == ".nui")
+                            ImGui::Text(FileString(ICON_FA_KIWI_BIRD, FileName).c_str());
                         else if (File.path().extension() == ".mp3" || File.path().extension() == ".wav")
                             ImGui::Text(FileString(ICON_FA_FILE_AUDIO, FileName).c_str());
                         else if (File.path().extension() == ".txt")
@@ -188,6 +199,9 @@ struct AssetBrowser : paperback::editor::instance
 
                 ImGui::CloseCurrentPopup();
             }
+
+            if ( ImGui::Button( "Cancel") )
+                ImGui::CloseCurrentPopup();
 
             ImGui::EndPopup();
         }

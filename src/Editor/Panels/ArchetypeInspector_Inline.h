@@ -30,7 +30,7 @@ void ArchetypeInspector::Panel()
 
             ImGui::PopItemWidth();
 
-            if (ImGui::IsItemClicked()) //view components
+            if (ImGui::IsItemHovered()) //view components
             {
                 m_Imgui.m_pArchetype = Archetype;
                 m_Imgui.m_ComponentNames.clear();
@@ -39,6 +39,25 @@ void ArchetypeInspector::Panel()
                 {
                     m_Imgui.m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
                 }
+
+                ImGui::BeginTooltip();
+
+                if (!m_Imgui.m_ComponentNames.empty() && m_Imgui.m_pArchetype)
+                {
+                    ImGui::Text("Number of Entities: %d", m_Imgui.m_pArchetype->GetEntityCount());
+
+                    if (ImGui::Button("Spawn New Entity"))
+                        m_Imgui.m_pArchetype->CreateEntity();
+
+                    ImGui::Separator();
+
+                    ImGui::Text("Archetype Components: ");
+
+                    for (auto& Names : m_Imgui.m_ComponentNames)
+                        ImGui::Text(Names);
+                }
+
+                ImGui::EndTooltip();
             }
 
             if (ImGui::BeginPopupContextItem())
@@ -57,25 +76,25 @@ void ArchetypeInspector::Panel()
     }
     ImGui::EndChild();
 
-    ImGui::SameLine();
+    //ImGui::SameLine();
 
-    ImGui::BeginChild("Details: ");
+    //ImGui::BeginChild("Details: ");
 
-    if (!m_Imgui.m_ComponentNames.empty() && m_Imgui.m_pArchetype)
-    {
-        ImGui::Text("Number of Entities: %d", m_Imgui.m_pArchetype->GetEntityCount());
+    //if (!m_Imgui.m_ComponentNames.empty() && m_Imgui.m_pArchetype)
+    //{
+    //    ImGui::Text("Number of Entities: %d", m_Imgui.m_pArchetype->GetEntityCount());
 
-        if (ImGui::Button("Spawn New Entity"))
-            m_Imgui.m_pArchetype->CreateEntity();
+    //    if (ImGui::Button("Spawn New Entity"))
+    //        m_Imgui.m_pArchetype->CreateEntity();
 
-        ImGui::Separator();
+    //    ImGui::Separator();
 
-        ImGui::Text("Archetype Components: ");
+    //    ImGui::Text("Archetype Components: ");
 
-        for (auto& Names : m_Imgui.m_ComponentNames)
-            ImGui::Text(Names);
-    }
-    ImGui::EndChild();
+    //    for (auto& Names : m_Imgui.m_ComponentNames)
+    //        ImGui::Text(Names);
+    //}
+    //ImGui::EndChild();
 
     ImGui::End();
 }
