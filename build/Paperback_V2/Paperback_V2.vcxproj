@@ -140,6 +140,7 @@
     <ClInclude Include="..\..\src\Components\BoundingBox.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
     <ClInclude Include="..\..\src\Components\EntityScript.h" />
+    <ClInclude Include="..\..\src\Components\Listener.h" />
     <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />

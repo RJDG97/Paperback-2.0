@@ -69,7 +69,8 @@ void InitializeGame()
             sound,
             mesh,
             animator,
-            entityscript
+            entityscript,
+            listener
         >();
     }
 

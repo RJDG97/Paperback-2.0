@@ -307,7 +307,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -12.0,
+                            "x": -7.290740489959717,
                             "y": 1.1216073036193848,
                             "z": -10.850677490234375
                         }
@@ -354,36 +354,16 @@
                 {
                     "Guid": [
                         0,
+                        17008353085049151909,
                         5691439207370049121,
-                        9604788041699812520,
                         14486341741652966143,
-                        15204223096342135753,
-                        17008353085049151909
+                        9604788041699812520,
+                        15204223096342135753
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 7
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.029999999329447748,
-                            "y": 0.029999999329447748,
-                            "z": 0.029999999329447748
-                        }
-                    },
-                    "Mesh": {
-                        "Model Mesh": "Character"
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Armature|mixamo.com|Layer0"
                     },
                     "Transform": {
                         "Offset": {
@@ -396,6 +376,26 @@
                             "y": 5.0,
                             "z": -10.0
                         }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Character"
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Armature|mixamo.com|Layer0"
                     }
                 }
             ]
@@ -419,7 +419,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 7
+                        "Global Index": 8
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -447,7 +447,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -12.068845748901368,
+                            "x": -7.359586238861084,
                             "y": 1.1216073036193848,
                             "z": 6.940832614898682
                         }
@@ -488,12 +488,51 @@
                     },
                     "Sound": {
                         "Path": "event:/3DBGM",
-                        "Sound Event ID": 3,
+                        "Sound Event ID": 4,
                         "3D Sound": true
                     },
                     "Mesh": {
                         "Model Mesh": ""
                     }
+                }
+            ]
+        },
+        {
+            "3D Sound Listener": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        12091664775214799190,
+                        14302600151082817442,
+                        18186166081267214834
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 9
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 10.0,
+                            "y": 0.0,
+                            "z": 10.0
+                        }
+                    },
+                    "Timer": {
+                        "Timer": 0.0
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false
+                    },
+                    "": {}
                 }
             ]
         }
