@@ -46,7 +46,9 @@ struct imgui_system : paperback::system::instance
 
     std::string m_FilePath, m_FileName, m_LoadedPath;
 
-    std::pair<paperback::archetype::instance*, paperback::u32> m_SelectedEntity;
+    std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity;
+
+    std::deque< std::pair< std::string, fs::path > > m_DisplayFilePath;
 
     imgui_addons::ImGuiFileBrowser m_FileDialog; // to access the file dialog addon
 
@@ -56,7 +58,7 @@ struct imgui_system : paperback::system::instance
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
     bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bCreate = false;
 
-    fs::path m_SelectedPath = "../../resources";
+    fs::path m_SelectedPath /*= "../../resources"*/ ;
     std::string m_SelectedFile = {} ;
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -78,7 +80,6 @@ struct imgui_system : paperback::system::instance
 
         ImGuiIO& io = ImGui::GetIO();
 
-        //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking (Merging of windows)
         io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 
@@ -101,10 +102,9 @@ struct imgui_system : paperback::system::instance
         io.FontDefault = io.Fonts->AddFontFromFileTTF("../../resources/fonts/FredokaOne-Regular.ttf", 16.0f);
         static const ImWchar iconranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
         ImFontConfig iconsconfig; iconsconfig.MergeMode = true; iconsconfig.PixelSnapH = true;
-        m_Imgfont = io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 12.0f, &iconsconfig, iconranges);
+        m_Imgfont = io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 14.0f, &iconsconfig, iconranges);
 
         //////////// End iof ImGui Context Setup///////////////////////////
-
 
         m_bDockspaceopen = true;
         m_bFullscreenpersistant = true;
@@ -114,6 +114,8 @@ struct imgui_system : paperback::system::instance
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 
         m_bImgui = true;
+        m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
+
 
         //-----------------------------------
         //         Register Panels

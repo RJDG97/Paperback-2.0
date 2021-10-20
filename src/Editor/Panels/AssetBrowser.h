@@ -36,9 +36,13 @@ struct AssetBrowser : paperback::editor::instance
 
     void FileMenuBar();
 
+    void FileTabBar();
+
     void CheckFileType();
 
     void MakeNewFolder();
+
+    void FolderName(fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders);
 
     std::string DirectoryName( fs::directory_entry Directory );
 

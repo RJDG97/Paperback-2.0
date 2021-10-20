@@ -3,9 +3,12 @@
 
 void AssetBrowser::Panel()
 {
+    bool a = true;
     float windowW = ImGui::GetContentRegionAvailWidth(), windowH = ImGui::GetContentRegionAvail().y;
 
-    ImGui::Begin(AssetBrowser::typedef_v.m_pName);
+    ImGui::Begin(AssetBrowser::typedef_v.m_pName, &a, ImGuiWindowFlags_MenuBar);
+
+    FileTabBar();
 
     DisplayFolders(windowW, windowH);
 
@@ -21,16 +24,21 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height) {
     bool Opened = false;
 
     // Print out all directories
-    ImGui::BeginChild("File Directories", { window_width / 7, window_height }, true);
+    ImGui::BeginChild("File Directories", { window_width / 6, window_height }, true);
 
     ImGui::Text("Folders/Directories:");
 
-    ImGuiTreeNodeFlags Flags = ((m_Imgui.m_SelectedPath == "../../resources") ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
-
+    ImGuiTreeNodeFlags Flags = ((m_Imgui.m_SelectedPath == "../../resources") ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen;
     Opened = ImGui::TreeNodeEx((ICON_FA_FOLDER " resources"), Flags);
 
-    if (ImGui::IsItemClicked())
+    if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
+    {
         m_Imgui.m_SelectedPath = "../../resources";
+
+        m_Imgui.m_DisplayFilePath.clear();
+
+        FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
+    }
 
     if (Opened)
     {
@@ -43,32 +51,15 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height) {
 
 void AssetBrowser::DisplayFolderFiles(float window_width, float window_height) {
 
-    ImGui::BeginChild("Files", { window_width / 3 , window_height }, true, ImGuiWindowFlags_MenuBar);
-    ImGui::Text("Current Path:"); ImGui::SameLine(0, 3);
-    ImGui::Text(FileString(ICON_FA_FOLDER_OPEN, m_Imgui.m_SelectedPath.generic_string()).c_str());
+    ImGui::BeginChild("Files", { window_width / 1.5f , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
+    //ImGui::Text("Current Path:"); ImGui::SameLine(0, 3);
+    //ImGui::Text(FileString(ICON_FA_FOLDER_OPEN, m_Imgui.m_SelectedPath.generic_string()).c_str());
 
     FileMenuBar();
     CheckFileType();
 
     ImGui::EndChild();
 }
-
-void AssetBrowser::FileMenuBar() {
-    //std::string path{};
-    ImGui::BeginMenuBar();
-
-    if (ImGui::MenuItem(ICON_FA_FOLDER_PLUS)) {
-        m_Imgui.m_bCreate = true;
-    }
-    //imgui_->ImguiHelp("Add New Folder", 0);
-
-    ////if (ImGui::MenuItem(ICON_FA_COPY) && !path_selection_.empty())
-    ////    CopyFilesDirectory();
-
-
-    ImGui::EndMenuBar();
-}
-
 
 void AssetBrowser::FileDirectoryCheck(fs::path FileDirectory)
 {
@@ -87,8 +78,14 @@ void AssetBrowser::FileDirectoryCheck(fs::path FileDirectory)
 
             Opened = ImGui::TreeNodeEx((void*)(size_t)Counter, Flags, FileString(ICON_FA_FOLDER, Dir).c_str());
 
-            if (ImGui::IsItemClicked())
+            if ( ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0) )
+            {
                 m_Imgui.m_SelectedPath = Directory;
+
+                m_Imgui.m_DisplayFilePath.clear();
+
+                FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
+            }
 
             if (Opened)
             {
@@ -147,7 +144,14 @@ void AssetBrowser::CheckFileType()
             if (fs::is_directory( File )) {
 
                 if (ImGui::Selectable(FileString(ICON_FA_FOLDER, DirectoryName(File)).c_str()))
+                {
                     m_Imgui.m_SelectedPath = File;
+
+                    m_Imgui.m_DisplayFilePath.clear();
+
+                    FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
+
+                }
             }
         }
     }
@@ -155,6 +159,7 @@ void AssetBrowser::CheckFileType()
 
 void AssetBrowser::DisplayFiles( fs::path File, std::string FileName )
 {
+
     if (File.extension() == ".png")
         ImGui::Selectable(FileString(ICON_FA_FILE_IMAGE, FileName).c_str());
     else if (File.extension() == ".json")
@@ -168,11 +173,69 @@ void AssetBrowser::DisplayFiles( fs::path File, std::string FileName )
     else if (File.extension() == ".ttf")
         ImGui::Selectable(FileString(ICON_FA_FONT, FileName).c_str());
     else
-        ImGui::Text(FileString(ICON_FA_FILE, FileName).c_str()); // will update when needed
+        ImGui::Text(FileString(ICON_FA_EXCLAMATION_CIRCLE, FileName).c_str()); // will update when needed
 
 }
 
-void AssetBrowser::MakeNewFolder() {
+void AssetBrowser::FileMenuBar() {
+
+    ImGui::BeginMenuBar();
+
+    if (ImGui::MenuItem(ICON_FA_FOLDER_PLUS)) {
+        m_Imgui.m_bCreate = true;
+    }
+
+    ImGui::EndMenuBar();
+}
+
+void AssetBrowser::FileTabBar()
+{
+    ImGui::BeginMenuBar();
+
+    if (!m_Imgui.m_DisplayFilePath.empty())
+    {
+        for ( auto& Path : m_Imgui.m_DisplayFilePath )
+        {
+            if (Path == m_Imgui.m_DisplayFilePath.front())
+            {
+                ImGui::Text(ICON_FA_FOLDER_OPEN); ImGui::SameLine();
+                if ( ImGui::Button(Path.first.c_str()) )
+                {
+                    m_Imgui.m_SelectedPath = Path.second;
+
+                    if (!m_Imgui.m_DisplayFilePath.empty())
+                        m_Imgui.m_DisplayFilePath.clear();
+
+                    FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
+                }
+
+                ImGui::SameLine();
+            }
+            else
+            {
+                if (ImGui::Button(Path.first.c_str()))
+                {
+                    m_Imgui.m_SelectedPath = Path.second;
+
+                    if (!m_Imgui.m_DisplayFilePath.empty())
+                        m_Imgui.m_DisplayFilePath.clear();
+
+                    FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
+                }
+                
+                ImGui::SameLine();
+            }
+
+            if (Path != m_Imgui.m_DisplayFilePath.back())
+                ImGui::Text(ICON_FA_CHEVRON_RIGHT);
+        }
+    }
+
+    ImGui::EndMenuBar();
+}
+
+void AssetBrowser::MakeNewFolder() 
+{
 
     if (m_Imgui.m_bCreate)
         ImGui::OpenPopup("Add Folder");
@@ -204,13 +267,30 @@ void AssetBrowser::MakeNewFolder() {
     }
 }
 
-std::string AssetBrowser::DirectoryName(fs::directory_entry Directory) {
+void AssetBrowser::FolderName( fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders )
+{
+    std::string TempString{};
+    fs::path TempPath{};
+
+    if (Path.generic_string().find("/") != std::string::npos)
+    {
+        TempString = Path.generic_string().substr(Path.generic_string().find_last_of("/") + 1); //Get Folder Name
+        Folders.push_front(std::make_pair(TempString, Path));
+
+        TempPath = Path.generic_string().substr(0, Path.generic_string().find_last_of("/")); //Remove the already pushed Folder Name
+
+        if (TempPath.generic_string().find("/") != std::string::npos && TempPath.generic_string() != "../..")
+            FolderName(TempPath, Folders);
+    }
+}
+
+std::string AssetBrowser::DirectoryName( fs::directory_entry Directory ) {
 
     std::string tempPath = Directory.path().generic_string();
     return tempPath.substr(tempPath.find_last_of("/") + 1);
 }
 
-std::string AssetBrowser::FileString(std::string icon, std::string file_name) {
+std::string AssetBrowser::FileString( std::string icon, std::string file_name ) {
 
     return (icon + std::string(" ") + file_name);
 }
