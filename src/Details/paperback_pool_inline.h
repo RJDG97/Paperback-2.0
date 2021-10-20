@@ -293,6 +293,19 @@ namespace paperback::vm
 	//-----------------------------------
 
 	template < typename T_COMPONENT >
+	T_COMPONENT* instance::FindComponent( const u32 PoolIndex ) const noexcept
+	{
+		auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_UID );
+
+		if ( ComponentIndex == -1 ) return nullptr;
+
+		return reinterpret_cast< std::decay_t<T_COMPONENT>* >
+		(
+			&m_MemoryPool[ ComponentIndex ][ PoolIndex * m_ComponentInfo[ComponentIndex]->m_Size] 
+		);
+	}
+
+	template < typename T_COMPONENT >
 	T_COMPONENT& instance::GetComponent( const u32 PoolIndex ) const noexcept
 	{
 		auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_UID );
@@ -301,6 +314,10 @@ namespace paperback::vm
 		(
 			&m_MemoryPool[ ComponentIndex ][ PoolIndex * m_ComponentInfo[ComponentIndex]->m_Size] 
 		);
+
+		//auto pComponent = FindComponent<T_COMPONENT>( PoolIndex );
+		//assert( pComponent );
+		//return *pComponent;
 	}
 
 	int instance::GetComponentIndex( const u32 UIDComponent ) const noexcept
@@ -309,7 +326,7 @@ namespace paperback::vm
 		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
 			if ( m_ComponentInfo[i]->m_UID == UIDComponent ) { return static_cast<int>(i); }
 
-		PPB_ASSERT_MSG( true, "Pool GetComponentIndex - Cannot find component within memory pool" );
+		//PPB_ASSERT_MSG( true, "Pool GetComponentIndex - Cannot find component within memory pool" );
 		return -1;
 	}
 

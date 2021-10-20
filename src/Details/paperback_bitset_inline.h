@@ -33,7 +33,16 @@ namespace tools
 		int x = Bit / 64;
 		int y = Bit % 64;
 		
-		return !!(m_bits[x] & (1ull << y));
+		return !!( m_bits[x] & (1ull << y) );
+    }
+
+    template < typename... T_COMPONENTS >
+    bool bits::Has(void) const noexcept
+    {
+        bits Check{};
+        Check.AddFromComponents<T_COMPONENTS...>();
+
+        return Check.Compare( *this );
     }
 
     bool bits::None( const int Bit ) const noexcept
@@ -64,5 +73,18 @@ namespace tools
         }
 
         return true;
+    }
+
+    const paperback::u64 bits::GenerateGUID( void ) const noexcept
+    {
+        paperback::u64 HashValue;
+        std::hash<paperback::u64> Hasher;
+
+        for ( size_t i = 0, max = m_bits.size(); i < max; ++i )
+        {
+            HashValue ^= Hasher( m_bits[i] ) + ( HashValue << 3 ) + ( HashValue >> 1 );
+        }
+
+        return HashValue;
     }
 }

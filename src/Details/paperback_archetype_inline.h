@@ -1,4 +1,7 @@
-#include "..\paperback_archetype.h"
+//#include "..\paperback_archetype.h"
+#include "Components/Parent.h"
+#include "Components/Offset.h"
+#include "Components/Child.h"
 #pragma once
 
 namespace paperback::archetype
@@ -18,7 +21,8 @@ namespace paperback::archetype
             m_ComponentInfos[i] = Types[i];
 
         m_NumberOfComponents = NumComponents;
-        m_pName = Name;
+        m_pName              = Name;
+        m_ArchetypeGuid      = archetype::instance::guid{ m_ComponentBits.GenerateGUID() };
 
         for ( size_t i = 0, max = m_ComponentPool.size(); i < max; ++i )
             m_ComponentPool[ i ].Init( std::span{ m_ComponentInfos.data(), m_NumberOfComponents }, m_NumberOfComponents );
@@ -101,6 +105,7 @@ namespace paperback::archetype
     u32 instance::DeleteEntity( const PoolDetails Details ) noexcept
     {
         --m_EntityCount;
+        UnlinkChildrenAndParents( Details );
         return m_ComponentPool[ Details.m_Key ].Delete( Details.m_PoolIndex );
     }
 
@@ -195,7 +200,29 @@ namespace paperback::archetype
     T_COMPONENT& instance::GetComponent( const PoolDetails Details ) noexcept
     {
         return m_ComponentPool[ Details.m_Key ].GetComponent<T_COMPONENT>( Details.m_PoolIndex );
-    } 
+    }
+
+    template < typename... T_COMPONENTS >
+    std::tuple<T_COMPONENTS&...> instance::GetComponents( const PoolDetails Details ) noexcept
+    {
+        return {
+            GetComponent<T_COMPONENTS>( Details )...
+        };
+    }
+
+    template < typename T_COMPONENT >
+    T_COMPONENT* instance::FindComponent( const PoolDetails Details ) noexcept
+    {
+        return m_ComponentPool[ Details.m_Key ].FindComponent<T_COMPONENT>( Details.m_PoolIndex );
+    }
+
+    template < typename... T_COMPONENTS >
+    std::tuple<T_COMPONENTS*...> instance::FindComponents( const PoolDetails Details ) noexcept
+    {
+        return {
+            FindComponent<T_COMPONENTS>( Details )...
+        };
+    }
 
     template < typename... T_COMPONENTS >
     requires( (( std::is_reference_v<T_COMPONENTS> ) && ... ))
@@ -368,8 +395,54 @@ namespace paperback::archetype
         return m_NumberOfComponents;
     }
 
-    tools::bits& instance::GetComponentBits() noexcept
+    tools::bits& instance::GetComponentBits( void ) noexcept
     {
         return m_ComponentBits;
+    }
+
+    const instance::guid& instance::GetArchetypeGuid( void ) const noexcept
+    {
+        return m_ArchetypeGuid;
+    }
+
+
+    //-----------------------------------
+    //             Private
+    //-----------------------------------
+
+    void instance::UnlinkChildrenAndParents( const PoolDetails Details ) noexcept
+    {
+        if ( m_ComponentBits.Has<parent>() )
+        {
+            auto& Parent = GetComponent<parent>( Details );
+
+            while ( Parent.m_Infos.size() )
+            {
+                auto& ChildInfo = m_Coordinator.GetEntityInfo( Parent.m_Infos[ Parent.m_Infos.size() - 1 ].m_ChildGID );
+                auto& Child     = ChildInfo.m_pArchetype->GetComponent< paperback::component::entity >( ChildInfo.m_PoolDetails );
+
+                m_Coordinator.AddOrRemoveComponents< std::tuple<>
+                                                 , std::tuple<child, offset>
+                                                 >( Child );
+
+                Parent.m_Infos.pop_back();
+            }
+        }
+        else if ( m_ComponentBits.Has<child>() )
+        {
+            auto& Child         = GetComponent<child>( Details );
+            auto& ChildEntity   = GetComponent<paperback::component::entity>( Details );
+            auto& ParentInfo    = m_Coordinator.GetEntityInfo( Child.m_Info.m_ParentGID );
+            
+            auto& Parent        = ParentInfo.m_pArchetype->GetComponent< parent >( ParentInfo.m_PoolDetails );
+
+            auto begin = Parent.m_Infos.begin(), end = Parent.m_Infos.end();
+            for ( ; begin != end; ++begin )
+            {
+                if ( begin->m_ChildGID == ChildEntity.m_GlobalIndex ) break;
+            }
+            if ( begin != end )
+                Parent.m_Infos.erase( begin );
+        }
     }
 }

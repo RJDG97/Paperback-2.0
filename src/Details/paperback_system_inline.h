@@ -150,6 +150,11 @@ namespace paperback::system
 		m_Coordinator.CreateEntities( Function, Count );
 	}
 
+	entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
+	{
+		return m_Coordinator.GetEntityInfo( GlobalIndex );
+	}
+
 	void instance::DeleteEntity( component::entity& Entity ) noexcept
 	{
 		m_Coordinator.DeleteEntity( Entity );

@@ -7,3 +7,4 @@
 #include "DebugSystem.h"
 #include "RendererSystem.h"
 #include "AnimatorSystem.h"
+#include "ParentChildSystem.h"

@@ -189,6 +189,17 @@ namespace paperback::coordinator
 		bool IsMouseUp( int Key ) noexcept;
 
 
+		//-----------------------------------
+		//        Temporary Method
+		//-----------------------------------
+
+		PPB_INLINE
+		void InitializeParentChildAfterDeSerialization( void ) noexcept;
+
+		PPB_INLINE
+		void RevertParentChildBeforeSerialization( void ) noexcept;
+
+
 		/*
         /*! Friend Classes
         */

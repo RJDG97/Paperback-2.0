@@ -2,8 +2,10 @@
 
 namespace tools
 {
-    struct bits
+    class bits
     {
+    public:
+
         std::array<uint64_t, 4> m_bits{};
 
         //-----------------------------------
@@ -24,6 +26,9 @@ namespace tools
         PPB_FORCEINLINE
         bool Has( const int Bit ) const noexcept;
 
+        template < typename... T_COMPONENTS >
+        bool Has( void ) const noexcept;
+
         PPB_FORCEINLINE
         bool None( const int Bit ) const noexcept;
 		
@@ -32,5 +37,11 @@ namespace tools
 
         PPB_INLINE
         bool Compare( const bits& Query ) const noexcept;
+
+        //-----------------------------------
+        //            Generate
+        //-----------------------------------
+        PPB_INLINE
+        const paperback::u64 GenerateGUID( void ) const noexcept;
     };
 }
