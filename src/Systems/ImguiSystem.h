@@ -58,7 +58,7 @@ struct imgui_system : paperback::system::instance
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
     bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bCreate = false;
 
-    fs::path m_SelectedPath /*= "../../resources"*/ ;
+    fs::path m_SelectedPath = "../../resources" ;
     std::string m_SelectedFile = {} ;
 
     ////////////////////////////////////////////////////////////////////////////////

@@ -52,8 +52,6 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height) {
 void AssetBrowser::DisplayFolderFiles(float window_width, float window_height) {
 
     ImGui::BeginChild("Files", { window_width / 1.5f , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
-    //ImGui::Text("Current Path:"); ImGui::SameLine(0, 3);
-    //ImGui::Text(FileString(ICON_FA_FOLDER_OPEN, m_Imgui.m_SelectedPath.generic_string()).c_str());
 
     FileMenuBar();
     CheckFileType();
@@ -121,8 +119,6 @@ void AssetBrowser::CheckFileType()
                         {
                             if (File.path().filename() != "config.json")
                             {
-                                //std::cout << File.path().generic_string() << std::endl;
-                                //std::cout << fs::absolute(File.path()).generic_string() << std::endl;
                                 m_Imgui.m_LoadedPath = fs::absolute(File.path()).generic_string();
 
                                 if (m_Imgui.m_SelectedEntity.first)
@@ -190,44 +186,32 @@ void AssetBrowser::FileMenuBar() {
 
 void AssetBrowser::FileTabBar()
 {
+    bool UpdatePath = false;
     ImGui::BeginMenuBar();
 
     if (!m_Imgui.m_DisplayFilePath.empty())
     {
         for ( auto& Path : m_Imgui.m_DisplayFilePath )
         {
-            if (Path == m_Imgui.m_DisplayFilePath.front())
+            ImGui::Text(ICON_FA_FOLDER_OPEN); ImGui::SameLine();
+
+            if (ImGui::Button(Path.first.c_str()))
             {
-                ImGui::Text(ICON_FA_FOLDER_OPEN); ImGui::SameLine();
-                if ( ImGui::Button(Path.first.c_str()) )
-                {
-                    m_Imgui.m_SelectedPath = Path.second;
+                m_Imgui.m_SelectedPath = Path.second;
 
-                    if (!m_Imgui.m_DisplayFilePath.empty())
-                        m_Imgui.m_DisplayFilePath.clear();
-
-                    FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
-                }
-
-                ImGui::SameLine();
+                UpdatePath = true;
             }
-            else
-            {
-                if (ImGui::Button(Path.first.c_str()))
-                {
-                    m_Imgui.m_SelectedPath = Path.second;
-
-                    if (!m_Imgui.m_DisplayFilePath.empty())
-                        m_Imgui.m_DisplayFilePath.clear();
-
-                    FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
-                }
-                
-                ImGui::SameLine();
-            }
+            
+            ImGui::SameLine();
 
             if (Path != m_Imgui.m_DisplayFilePath.back())
                 ImGui::Text(ICON_FA_CHEVRON_RIGHT);
+        }
+
+        if (UpdatePath)
+        {
+            m_Imgui.m_DisplayFilePath.clear();
+            FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
         }
     }
 
