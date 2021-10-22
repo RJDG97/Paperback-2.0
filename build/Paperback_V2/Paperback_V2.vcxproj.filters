@@ -430,6 +430,9 @@
     <ClInclude Include="..\..\src\Functionality\Nui\NUILoader.h">
       <Filter>Source\Tools\Functionality\NUI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Physics\ResolveCollision.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

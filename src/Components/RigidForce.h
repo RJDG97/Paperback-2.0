@@ -12,7 +12,7 @@ struct rigidforce
 
     paperback::Vector3f m_MaxForce = paperback::Vector3f(3.f, 3.f, 3.f);
     float m_MaxForceSq = m_MaxForce.MagnitudeSq();
-    paperback::Vector3f m_MaxMoment = paperback::Vector3f(5.f, 5.f, 5.f);
+    paperback::Vector3f m_MaxMoment = paperback::Vector3f(8.f, 8.f, 8.f);
     float m_MaxMomentSq = m_MaxMoment.MagnitudeSq();
     paperback::Vector3f m_minthreshold = paperback::Vector3f(0.5f, 0.5f, 0.5f);
     float m_threshold = .25f;
