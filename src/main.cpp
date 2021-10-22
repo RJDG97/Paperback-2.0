@@ -116,8 +116,8 @@ void InitializeGame()
                 sphere.m_fRadius = 1.5f;
     
                 rf.m_Mass = 5.0f;
-                rf.m_Momentum = paperback::Vector3f(-3.f, 0.f, 0.f);
-                //rf.m_static = true;
+                //rf.m_Momentum = paperback::Vector3f(-3.f, 0.f, 0.f);
+                rf.m_isStatic = true;
     
                 Scale.m_Value.x = 1;
                 Scale.m_Value.y = 1;
