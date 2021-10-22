@@ -146,7 +146,6 @@ void AssetBrowser::CheckFileType()
                     m_Imgui.m_DisplayFilePath.clear();
 
                     FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
-
                 }
             }
         }
@@ -187,6 +186,7 @@ void AssetBrowser::FileMenuBar() {
 void AssetBrowser::FileTabBar()
 {
     bool UpdatePath = false;
+
     ImGui::BeginMenuBar();
 
     if (!m_Imgui.m_DisplayFilePath.empty())
@@ -218,7 +218,24 @@ void AssetBrowser::FileTabBar()
     ImGui::EndMenuBar();
 }
 
-void AssetBrowser::MakeNewFolder() 
+void AssetBrowser::FolderName( fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders )
+{
+    std::string TempString{};
+    fs::path TempPath{};
+
+    if (Path.generic_string().find("/") != std::string::npos)
+    {
+        TempString = Path.generic_string().substr(Path.generic_string().find_last_of("/") + 1); //Get Folder Name
+        Folders.push_front(std::make_pair(TempString, Path));
+
+        TempPath = Path.generic_string().substr(0, Path.generic_string().find_last_of("/")); //Remove the already pushed Folder Name
+
+        if (TempPath.generic_string().find("/") != std::string::npos && TempPath.generic_string() != "../..")
+            FolderName(TempPath, Folders);
+    }
+}
+
+void AssetBrowser::MakeNewFolder()
 {
 
     if (m_Imgui.m_bCreate)
@@ -251,22 +268,6 @@ void AssetBrowser::MakeNewFolder()
     }
 }
 
-void AssetBrowser::FolderName( fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders )
-{
-    std::string TempString{};
-    fs::path TempPath{};
-
-    if (Path.generic_string().find("/") != std::string::npos)
-    {
-        TempString = Path.generic_string().substr(Path.generic_string().find_last_of("/") + 1); //Get Folder Name
-        Folders.push_front(std::make_pair(TempString, Path));
-
-        TempPath = Path.generic_string().substr(0, Path.generic_string().find_last_of("/")); //Remove the already pushed Folder Name
-
-        if (TempPath.generic_string().find("/") != std::string::npos && TempPath.generic_string() != "../..")
-            FolderName(TempPath, Folders);
-    }
-}
 
 std::string AssetBrowser::DirectoryName( fs::directory_entry Directory ) {
 

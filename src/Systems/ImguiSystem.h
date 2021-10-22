@@ -19,12 +19,15 @@
 //----------------------------------
 #include "Editor/EditorPanels.h"
 #include "Editor/EditorPanels_inline.h"
+#include "Editor/EditorLogger.h"
+#include "Editor/EditorLogger_Inline.h"
 
 #include "Editor/Panels/EntityInspector.h"
 #include "Editor/Panels/PropertyInspector.h"
 #include "Editor/Panels/ArchetypeInspector.h"
 #include "Editor/Panels/WindowSettings.h"
 #include "Editor/Panels/AssetBrowser.h"
+#include "Editor/Panels/ConsoleTerminal.h"
 
 namespace fs = std::filesystem;
 
@@ -60,6 +63,8 @@ struct imgui_system : paperback::system::instance
 
     fs::path m_SelectedPath = "../../resources" ;
     std::string m_SelectedFile = {} ;
+
+    paperback::EditorLogger m_Log;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -116,15 +121,17 @@ struct imgui_system : paperback::system::instance
         m_bImgui = true;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
 
+        m_Log.Init();
 
         //-----------------------------------
         //         Register Panels
         //-----------------------------------
-        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, WindowSettings, AssetBrowser >();
+        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, WindowSettings, AssetBrowser, ConsoleTerminal >();
+
     }
 
     PPB_INLINE
-        void Update(void)
+    void Update(void)
     {
         if (m_bImgui)
         {
@@ -504,4 +511,5 @@ struct imgui_system : paperback::system::instance
 #include "Editor/Panels/PropertyInspector_Inline.h"
 #include "Editor/Panels/WindowSettings_Inline.h"
 #include "Editor/Panels/AssetBrowser_Inline.h"
+#include "Editor/Panels/ConsoleTerminal_Inline.h"
 

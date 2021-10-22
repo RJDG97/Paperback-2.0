@@ -5,3 +5,5 @@
 #include "Editor/EditorPanels_inline.h"
 #include <IconsFontAwesome5.h>
 #include <imgui.h>
+#include "Editor/EditorLogger.h"
+#include "Editor/EditorLogger_Inline.h"
