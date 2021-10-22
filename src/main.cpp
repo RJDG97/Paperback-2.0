@@ -117,6 +117,7 @@ void InitializeGame()
     
                 rf.m_Mass = 5.0f;
                 rf.m_Momentum = paperback::Vector3f(-3.f, 0.f, 0.f);
+                //rf.m_static = true;
     
                 Scale.m_Value.x = 1;
                 Scale.m_Value.y = 1;
@@ -154,8 +155,7 @@ void InitializeGame()
     
                 rf.m_Mass = 4.0f;
                 rf.m_Momentum = paperback::Vector3f(8.f, 0.f, 0.f);
-                //rf.m_static = true;
-    
+                
                 Scale.m_Value.x = 1;
                 Scale.m_Value.y = 1;
                 Scale.m_Value.z = 1;

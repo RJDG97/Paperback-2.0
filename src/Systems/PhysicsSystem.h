@@ -63,8 +63,11 @@ struct physics_system : paperback::system::instance
             {
                 assert(Entity.IsZombie() == false);
 
-                AddMomentum(RF.m_Momentum, Vec);
-                RF.m_MagMoment = 1.0f;
+                //if (!RF.m_isStatic)
+                //{
+                    AddMomentum(RF.m_Momentum, Vec);
+                    RF.m_MagMoment = 1.0f;
+                //}
             });
     }
 

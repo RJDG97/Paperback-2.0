@@ -27,6 +27,7 @@ struct rigidforce
     float m_MagForce;
     float m_MagMoment;
     bool m_isAccel;
+    //bool m_isStatic;
 
     rigidforce() :
         m_Mass{ 5.f },
@@ -38,6 +39,7 @@ struct rigidforce
         m_MagForce{ 0.f },
         m_MagMoment{ 0.f },
         m_isAccel{ false }
+        //m_isStatic{false}
     {}
 
     rigidforce(float mass) :
@@ -50,6 +52,7 @@ struct rigidforce
         m_MagForce{ 0.f },
         m_MagMoment{ 0.f },
         m_isAccel{ false }
+        //m_isStatic{ false }
     {}
 };
 
