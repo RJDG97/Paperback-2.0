@@ -129,12 +129,23 @@ public:
         paperback::Vector3f normal_vec = Velocity;
         normal_vec.Normalized();
 
-        Attribute.forward.x = normal_vec.x;
-        Attribute.forward.y = normal_vec.y;
-        Attribute.forward.z = normal_vec.z;
+        float zerocheck = normal_vec.MagnitudeFast();
+
+        if (zerocheck > 0.01f && zerocheck < -0.01f)
+        {
+
+            Attribute.forward.x = normal_vec.x;
+            Attribute.forward.y = normal_vec.y;
+            Attribute.forward.z = normal_vec.z;
+        }
+        else
+        {
+
+            Attribute.forward.z = 1.0f;
+        }
 
         //needs to be perpendicular to forward vec
-        Attribute.up.z = 1.0f;
+        Attribute.up.y = 1.0f;
 
         Attribute.position.x = Position.x;
         Attribute.position.y = Position.y;
@@ -155,7 +166,7 @@ public:
 
         ConvertSystemToFMOD3D(attribute, Position, Velocity);
 
-        std::cout << m_pStudioSystem->setListenerAttributes(0, &attribute) << "\n";
+        m_pStudioSystem->setListenerAttributes(0, &attribute);
     }
 
     //set 3D attributes
@@ -256,8 +267,6 @@ public:
 
         m_ListenerPos = {};
         m_ListenerVel = {};
-
-        SetListenerPosition();
     }
 
     // entity that is processed by soundsystem will specifically have sound and timer components
