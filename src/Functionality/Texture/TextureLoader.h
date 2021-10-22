@@ -12,6 +12,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include <vector>
 #include <string>
 #include "glew/inc/glew.h"
 
@@ -25,6 +26,7 @@ public:
 	TextureLoader& operator=(const TextureLoader&) = delete;
 
 	static GLuint LoadTexture(const std::string File, const bool& GammaCorrect);
+	static GLuint LoadSkyboxTexture(const std::vector<std::string>& Files);
 	static void FreeTexture(unsigned char* Pixels);
 };
 

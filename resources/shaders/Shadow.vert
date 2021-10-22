@@ -12,29 +12,28 @@ uniform bool uHasBones;
 
 void main()
 {
-	vec4 PosL;
+	vec4 TransformedPosition;
 
 	if (uHasBones == true)
 	{
-		mat4 bone_transform = mat4(0.0f);
+		mat4 BoneTransform = mat4(0.0f);
 
 		for (int i = 0 ; i < 4 ; ++i)
 		{
-			int id = vVertexBoneIDs[i];
+			int Id = vVertexBoneIDs[i];
 
-			if (id != -1)
+			if (Id != -1)
 			{
-				bone_transform += uFinalBonesMatrices[id] * vVertexWeights[i];
+				BoneTransform += uFinalBonesMatrices[Id] * vVertexWeights[i];
 			}
 		}
 
-		PosL = uModel * bone_transform * vec4(vVertexPosition, 1.0f);
+		TransformedPosition = uModel * BoneTransform * vec4(vVertexPosition, 1.0f);
 	}
-
 	else
 	{
-		PosL = uModel * vec4(vVertexPosition, 1.0);
+		TransformedPosition = uModel * vec4(vVertexPosition, 1.0);
 	}
 
-	gl_Position = uLightSpaceMatrix * PosL;
+	gl_Position = uLightSpaceMatrix * TransformedPosition;
 }

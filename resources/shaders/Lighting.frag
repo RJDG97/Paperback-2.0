@@ -37,6 +37,7 @@ struct Light
 	mat4 Transform;
 };
 
+uniform float uShadowBias;
 uniform Material uMat;
 uniform Light uLight;
 uniform sampler2D uShadowMap;
@@ -49,7 +50,7 @@ float ShadowValue(vec4 lFragPosition, vec3 Normal, vec3 LightDir)
 
 	float CurrentDepth = ProjectedCoords.z;
 
-	float Bias = max(0.0005 * (1.0 - dot(Normal, LightDir)), 0.00005);
+	float Bias = max(uShadowBias * (1.0 - dot(Normal, LightDir)), (uShadowBias * 0.1));
 	//float Bias = 0.0005 * tan(acos(dot(Normal, LightDir)));
 	float Shadow = 0.0;
 	vec2 TexelSize = 1.0 / textureSize(uShadowMap, 0);

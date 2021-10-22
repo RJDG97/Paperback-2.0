@@ -5,6 +5,11 @@
 
 struct window_system : paperback::system::instance
 {
+    bool m_FullScreen;
+    bool m_UpdateResolution;
+    int m_Width;
+    int m_Height;
+
     GLFWwindow* m_pWindow;
     paperback::JsonFile JFile;
 
@@ -17,6 +22,9 @@ struct window_system : paperback::system::instance
 	PPB_FORCEINLINE
 	void OnSystemCreated(void) noexcept
 	{
+        m_FullScreen = false;
+        m_UpdateResolution = false;
+
 		if (!glfwInit())
 		{
             PPB_ERR_PRINT_N_LOG( "GLFW init has failed - Aborting" );
@@ -29,6 +37,7 @@ struct window_system : paperback::system::instance
         glfwWindowHint(GLFW_DOUBLEBUFFER, GLFW_TRUE);
         glfwWindowHint(GLFW_RED_BITS, 8); glfwWindowHint(GLFW_GREEN_BITS, 8);
         glfwWindowHint(GLFW_BLUE_BITS, 8); glfwWindowHint(GLFW_ALPHA_BITS, 8);
+        glfwWindowHint(GLFW_REFRESH_RATE, GLFW_DONT_CARE);
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
         JFile.StartReader("../../resources/assetloading/config.json").LoadObjects(E).EndReader();
@@ -64,9 +73,13 @@ struct window_system : paperback::system::instance
     PPB_FORCEINLINE
     void Update( void ) noexcept
     {
+        //if (m_Coordinator.IsKeyPress(GLFW_KEY_F))
+        //{
+        //    FullScreen();
+        //}
+
         m_Coordinator.UpdateInputs();
         glfwPollEvents();
-
     }
 
     PPB_FORCEINLINE
@@ -89,4 +102,24 @@ struct window_system : paperback::system::instance
         (void)mods;
         PPB.SetMouse(key, action);
     }
+
+    //void FullScreen()
+    //{
+    //    if (!m_FullScreen)
+    //    {
+    //        //Temp values
+    //        m_Width = 1920;
+    //        m_Height = 1080;
+    //        glfwSetWindowMonitor(m_pWindow, glfwGetPrimaryMonitor(), 0, 0, m_Width, m_Height, GLFW_DONT_CARE);
+    //    }
+    //    else
+    //    {
+    //        m_Width = E.m_Width;
+    //        m_Height = E.m_Height;
+    //        glfwSetWindowMonitor(m_pWindow, NULL, 250, 250, E.m_Width, E.m_Height, GLFW_DONT_CARE);
+    //    }
+
+    //    m_FullScreen = !m_FullScreen;
+    //    m_UpdateResolution = true;
+    //}
 };

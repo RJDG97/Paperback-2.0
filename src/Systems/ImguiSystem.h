@@ -13,7 +13,7 @@
 #include <imgui_impl_opengl3.h>
 #include <imgui_internal.h>
 #include <ImGuiFileBrowser.h>
-
+#include "Functionality/Renderer/Renderer.h"
 
 struct imgui_system : paperback::system::instance
 {
@@ -355,7 +355,8 @@ struct imgui_system : paperback::system::instance
                     str = std::string(buffer);
             }
            
-            glfwSetWindowSize(m_pWindow, GetSystem< window_system >().E.m_Width, GetSystem< window_system >().E.m_Height); 
+            glfwSetWindowSize(m_pWindow, GetSystem< window_system >().E.m_Width, GetSystem< window_system >().E.m_Height);
+            Renderer::GetInstanced().UpdateFramebufferSize(GetSystem< window_system >().E.m_Width, GetSystem< window_system >().E.m_Height);
         }
 
         if (ImGui::Button ("Save"))
