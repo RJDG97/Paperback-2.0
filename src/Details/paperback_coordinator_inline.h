@@ -100,8 +100,6 @@ namespace paperback::coordinator
 
 			Archetype->SerializeAllEntities(Jfile);
 
-
-
 			Jfile.EndArray();
 			Jfile.EndObject();
 		}

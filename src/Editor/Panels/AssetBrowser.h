@@ -7,6 +7,8 @@ namespace fs = std::filesystem;
 
 struct AssetBrowser : paperback::editor::instance
 {
+    bool m_bCreate = false;
+
     constexpr static auto typedef_v = paperback::editor::type::update
     {
         .m_pName = "Asset Browser"
@@ -30,7 +32,7 @@ struct AssetBrowser : paperback::editor::instance
 
     void DisplayFolderFiles( float window_width, float window_height );
 
-    void FileDirectoryCheck(fs::path FileDirectory);
+    void FileDirectoryCheck( fs::path FileDirectory );
 
     void DisplayFiles( fs::path File, std::string FileName );
 
@@ -42,7 +44,7 @@ struct AssetBrowser : paperback::editor::instance
 
     void MakeNewFolder();
 
-    void FolderName(fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders);
+    void FolderName( fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders );
 
     std::string DirectoryName( fs::directory_entry Directory );
 

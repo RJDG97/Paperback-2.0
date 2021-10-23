@@ -1,4 +1,5 @@
 #include "AssetBrowser.h"
+#include "Systems/ImguiSystem.h"
 #pragma once
 
 void AssetBrowser::Panel()
@@ -101,7 +102,7 @@ void AssetBrowser::CheckFileType()
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 200.0f);
 
-    if (!m_Imgui.m_SelectedPath.empty())
+    if (!m_Imgui.m_SelectedPath.empty() && fs::exists(m_Imgui.m_SelectedPath))
     {
         for (auto& File : fs::directory_iterator(m_Imgui.m_SelectedPath))
         {
@@ -117,20 +118,13 @@ void AssetBrowser::CheckFileType()
                     {
                         if (File.path().extension() == ".json")
                         {
-                            if (File.path().filename() != "config.json")
+                            if (File.path().filename() != "config.json") //might change
                             {
                                 m_Imgui.m_LoadedPath = fs::absolute(File.path()).generic_string();
+                                m_Imgui.m_LoadedFile = File.path().filename().generic_string();
 
-                                if (m_Imgui.m_SelectedEntity.first)
-                                    m_Imgui.m_SelectedEntity.first = nullptr; m_Imgui.m_SelectedEntity.second = paperback::u32_max;
-
-                                if (!m_Imgui.m_Components.empty())
-                                    m_Imgui.m_Components.clear();
-
-                                if (!PPB.GetArchetypeList().empty())
-                                    PPB.ResetAllArchetypes();
-
-                                PPB.OpenScene(File.path().generic_string());
+                                m_Imgui.m_Type = FileActivity::OPENFROMASSET;
+                                m_Imgui.m_bSaveCheck = true;
                             }
                         }
                     }
@@ -146,6 +140,17 @@ void AssetBrowser::CheckFileType()
                     m_Imgui.m_DisplayFilePath.clear();
 
                     FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
+                }
+
+                if (ImGui::BeginPopupContextItem())
+                {
+                    if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                    {
+                        if (fs::is_empty(File))
+                            fs::remove(File);
+                    }
+
+                    ImGui::EndPopup();
                 }
             }
         }
@@ -177,7 +182,7 @@ void AssetBrowser::FileMenuBar() {
     ImGui::BeginMenuBar();
 
     if (ImGui::MenuItem(ICON_FA_FOLDER_PLUS)) {
-        m_Imgui.m_bCreate = true;
+       m_bCreate = true;
     }
 
     ImGui::EndMenuBar();
@@ -237,8 +242,7 @@ void AssetBrowser::FolderName( fs::path Path, std::deque<std::pair<std::string, 
 
 void AssetBrowser::MakeNewFolder()
 {
-
-    if (m_Imgui.m_bCreate)
+    if (m_bCreate)
         ImGui::OpenPopup("Add Folder");
 
     if (ImGui::BeginPopup("Add Folder")) {
@@ -252,11 +256,18 @@ void AssetBrowser::MakeNewFolder()
         if (ImGui::InputText("##newfile", buffer, sizeof(buffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
 
             if (!m_Imgui.m_SelectedPath.empty())
+            {
                 fs::create_directory(m_Imgui.m_SelectedPath / buffer);
-            else
-                fs::create_directory((fs::path)"../../resources" / buffer);
+                EDITOR_TRACE_PRINT("Folder Created: " + fs::path(m_Imgui.m_SelectedPath / buffer).generic_string());
 
-            m_Imgui.m_bCreate = false;
+            }
+            else
+            {
+                fs::create_directory((fs::path)"../../resources" / buffer);
+                EDITOR_TRACE_PRINT("Folder Created: " + fs::path((fs::path)"../../resources" / buffer).generic_string());
+            }
+
+           m_bCreate = false;
 
             ImGui::CloseCurrentPopup();
         }
@@ -267,7 +278,6 @@ void AssetBrowser::MakeNewFolder()
         ImGui::EndPopup();
     }
 }
-
 
 std::string AssetBrowser::DirectoryName( fs::directory_entry Directory ) {
 

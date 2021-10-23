@@ -86,10 +86,13 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
             {
                 PPB.DeleteEntity(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityIndex }));
 
+                EDITOR_INFO_PRINT("Deleted " + m_Imgui.m_SelectedEntity.first->GetName() + " [" + std::to_string(m_Imgui.m_SelectedEntity.second) + "]");
+
                 m_Imgui.m_SelectedEntity = { nullptr, paperback::u32_max };
 
                 if (!m_Imgui.m_Components.empty())
                     m_Imgui.m_Components.clear();
+
 
                 ImGui::CloseCurrentPopup();
             }

@@ -40,9 +40,9 @@ namespace paperback
 #define EDITOR_CRITICAL_PRINT( ... ) ::paperback::EditorLogger::GetLogger()->critical( __VA_ARGS__ )
 
 // Logger Methods
-#define EDITOR_TRACE_LOG( ... ) ::paperback::EditorLogger::GetWriter()->trace( __VA_ARGS__ )
-#define EDITOR_DEBUG_LOG( ... ) ::paperback::EditorLogger::GetWriter()->debug( __VA_ARGS__ )
-#define EDITOR_INFO_LOG( ... ) ::paperback::EditorLogger::GetWriter()->info( __VA_ARGS__ )
-#define EDITOR_WARN_LOG( ... ) ::paperback::EditorLogger::GetWriter()->warn( __VA_ARGS__ )
-#define EDITOR_ERROR_LOG( ... ) ::paperback::EditorLogger::GetWriter()->error( __VA_ARGS__ )
-#define EDITOR_CRITICAL_LOG( ... ) ::paperback::EditorLogger::GetWriter()->critical( __VA_ARGS__ )
+#define EDITOR_TRACE( ... ) ::paperback::EditorLogger::GetWriter()->trace( __VA_ARGS__ )
+#define EDITOR_DEBUG( ... ) ::paperback::EditorLogger::GetWriter()->debug( __VA_ARGS__ )
+#define EDITOR_INFO( ... ) ::paperback::EditorLogger::GetWriter()->info( __VA_ARGS__ )
+#define EDITOR_WARN( ... ) ::paperback::EditorLogger::GetWriter()->warn( __VA_ARGS__ )
+#define EDITOR_ERROR( ... ) ::paperback::EditorLogger::GetWriter()->error( __VA_ARGS__ )
+#define EDITOR_CRITICAL( ... ) ::paperback::EditorLogger::GetWriter()->critical( __VA_ARGS__ )

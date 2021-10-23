@@ -31,6 +31,15 @@
 
 namespace fs = std::filesystem;
 
+enum FileActivity
+{
+    NONE = 0,
+    NEWSCENE,
+    OPENSCENE,
+    OPENFROMASSET,
+    EXIT
+};
+
 struct imgui_system : paperback::system::instance
 {
     using PanelList = std::vector < std::pair <const paperback::editor::type::info*, std::unique_ptr<paperback::editor::instance > >>;
@@ -47,24 +56,24 @@ struct imgui_system : paperback::system::instance
     std::vector <rttr::instance> m_Components = {};
     std::vector <const char*> m_ComponentNames = {};
 
-    std::string m_FilePath, m_FileName, m_LoadedPath;
+    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {};
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity;
 
     std::deque< std::pair< std::string, fs::path > > m_DisplayFilePath;
 
     imgui_addons::ImGuiFileBrowser m_FileDialog; // to access the file dialog addon
+    paperback::EditorLogger m_Log;
 
     ImGuiDockNodeFlags m_Dockspaceflags;
     ImGuiWindowFlags m_Windowflags;
 
+    fs::path m_SelectedPath = "../../resources";
+
+    FileActivity m_Type = FileActivity::NONE;
+
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileSave, m_bFileOpen, m_bFileSaveAs, m_bCreate = false;
-
-    fs::path m_SelectedPath = "../../resources" ;
-    std::string m_SelectedFile = {} ;
-
-    paperback::EditorLogger m_Log;
+    bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -119,6 +128,7 @@ struct imgui_system : paperback::system::instance
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 
         m_bImgui = true;
+        m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
 
         m_Log.Init();
@@ -127,6 +137,8 @@ struct imgui_system : paperback::system::instance
         //         Register Panels
         //-----------------------------------
         AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, WindowSettings, AssetBrowser, ConsoleTerminal >();
+
+        EDITOR_INFO_PRINT("Editor Loaded");
 
     }
 
@@ -169,14 +181,15 @@ struct imgui_system : paperback::system::instance
                 if (m_bFullscreen)
                     ImGui::PopStyleVar(2);
 
-
                 if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable) {
 
                     ImGuiID dockspace_id = ImGui::GetID("DockSpace");
                     ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), m_Dockspaceflags);
                 }
+
                 EditorMenuBar();
                 OpenSaveFile();
+                SaveCheckPopUp();
 
                 //Call Windows Here
                 ImGui::PushFont(m_Imgfont);
@@ -289,19 +302,14 @@ struct imgui_system : paperback::system::instance
             {
                 if (ImGui::MenuItem(ICON_FA_TIMES " New Scene"))
                 {
-                    if (m_SelectedEntity.first)
-                        m_SelectedEntity.first = nullptr; m_SelectedEntity.second = paperback::u32_max;
-
-                    if (!m_Components.empty())
-                        m_Components.clear();
-
-                    if (!PPB.GetArchetypeList().empty())
-                        PPB.ResetAllArchetypes();
+                    m_Type = FileActivity::NEWSCENE;
+                    m_bSaveCheck = true;
                 }
 
                 if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN " Open Scene"))
                 {
-                    m_bFileOpen = true;
+                    m_Type = FileActivity::OPENSCENE;
+                    m_bSaveCheck = true;
                 }
 
                 if (ImGui::MenuItem(ICON_FA_SAVE " Save"))
@@ -309,7 +317,7 @@ struct imgui_system : paperback::system::instance
                     if (!m_LoadedPath.empty())
                     {
                         PPB.SaveScene(m_LoadedPath);
-                        m_bFileSave = true;
+                        EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
                     }
                     else
                         m_bFileSaveAs = true;
@@ -320,12 +328,9 @@ struct imgui_system : paperback::system::instance
                     m_bFileSaveAs = true;
                 }
 
-                if (ImGui::MenuItem(ICON_FA_REPLY " Return to Menu"))
-                {
-                }
-
                 if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
                 {
+                    //TBC
                 }
 
                 ImGui::EndMenu();
@@ -348,6 +353,9 @@ struct imgui_system : paperback::system::instance
                     GetPanel<AssetBrowser>()->Enable();
 
                 ImGui::Separator();
+
+                if (ImGui::MenuItem("Console Terminal"))
+                    GetPanel<ConsoleTerminal>()->Enable();
 
                 if (ImGui::MenuItem("Window Settings"))
                     GetPanel<WindowSettings>()->Enable();
@@ -372,23 +380,19 @@ struct imgui_system : paperback::system::instance
 
         if (m_FileDialog.showFileDialog("Open Scene", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2{ 700, 310 }))
         {
-            m_FilePath = m_FileDialog.selected_path;
-            m_FileName = m_FileDialog.selected_fn;
+            //m_FilePath = m_FileDialog.selected_path;
+            //m_FileName = m_FileDialog.selected_fn;
 
-            if (!m_FilePath.empty())
+            if (!m_FileDialog.selected_path.empty())
             {
-                m_LoadedPath = m_FilePath;
+                m_LoadedPath = m_FileDialog.selected_path;
+                m_LoadedFile = m_FileDialog.selected_fn;
 
-                if (m_SelectedEntity.first)
-                    m_SelectedEntity.first = nullptr; m_SelectedEntity.second = paperback::u32_max;
+                ResetScene();
 
-                if (!m_Components.empty())
-                    m_Components.clear();
+                PPB.OpenScene(m_FileDialog.selected_path);
 
-                if (!PPB.GetArchetypeList().empty())
-                    PPB.ResetAllArchetypes();
-
-                PPB.OpenScene(m_FilePath);
+                EDITOR_TRACE_PRINT( m_FileDialog.selected_fn + " Loaded" );
             }
         }
         else
@@ -399,13 +403,14 @@ struct imgui_system : paperback::system::instance
 
         if (m_FileDialog.showFileDialog("Save Scene As", imgui_addons::ImGuiFileBrowser::DialogMode::SAVE, ImVec2{ 700, 310 }))
         {
-            m_FilePath = m_FileDialog.selected_path;
-            m_FileName = m_FileDialog.selected_fn;
+            //m_FilePath = m_FileDialog.selected_path;
+            //m_FileName = m_FileDialog.selected_fn;
 
-            if (!m_FilePath.empty())
+            if (!m_FileDialog.selected_path.empty())
             {
-                PPB.SaveScene(m_FilePath);
-                m_bFileSave = true;
+                PPB.SaveScene(m_FileDialog.selected_path);
+
+                EDITOR_TRACE_PRINT(m_FileDialog.selected_fn + " Saved at: " + m_FileDialog.selected_path);
             }
         }
         else
@@ -500,10 +505,121 @@ struct imgui_system : paperback::system::instance
         }
     }
 
-
-
     //void DisplayEnumTypes
+    void ResetScene()
+    {
+        if (m_SelectedEntity.first)
+        {
+            m_SelectedEntity.first = nullptr; 
+            m_SelectedEntity.second = paperback::u32_max;
+        }
 
+        if (!m_Components.empty())
+            m_Components.clear();
+
+        if (!PPB.GetArchetypeList().empty())
+            PPB.ResetAllArchetypes();
+    }
+
+    void PopUpMessage(const std::string& WindowName, const char* Message) {
+
+        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+        if (ImGui::BeginPopupModal(WindowName.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize)) {
+
+            ImGui::Text(Message);
+
+            if (ImGui::Button("OK"))
+                ImGui::CloseCurrentPopup();
+
+            ImGui::EndPopup();
+        }
+    }
+
+    void SaveCheckPopUp()
+    {
+        if (m_bSaveCheck)
+            ImGui::OpenPopup("Confirmation");
+
+        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+        if (ImGui::BeginPopupModal("Confirmation", NULL, ImGuiWindowFlags_AlwaysAutoResize)) 
+        {
+            ImGui::Text("Are there any unsave changes?");
+            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "There's no undo!!!");
+
+            if (ImGui::Button("Yes"))
+            {
+                if (!m_LoadedPath.empty())
+                {
+                    PPB.SaveScene(m_LoadedPath);
+                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
+                    ImGui::CloseCurrentPopup();
+                }
+                else
+                {
+                    m_bFileSaveAs = true;
+                    ImGui::CloseCurrentPopup();
+                }
+            }
+
+            ImGuiHelp("Click here to save changes");
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("No"))
+            {
+                switch (m_Type)
+                {
+                case FileActivity::NEWSCENE:
+                {
+                    ResetScene();
+                    EDITOR_INFO_PRINT("Created a New Scene");
+                    ImGui::CloseCurrentPopup();
+                }
+                break;
+                case FileActivity::OPENSCENE:
+                {
+                    m_bFileOpen = true;
+                    ImGui::CloseCurrentPopup();
+                }
+                break;
+                case FileActivity::OPENFROMASSET:
+                {
+                    if (!m_LoadedPath.empty() && !m_LoadedFile.empty())
+                    {
+                        ResetScene();
+                        PPB.OpenScene(m_LoadedPath);
+
+                        EDITOR_TRACE_PRINT(m_LoadedFile + " Loaded");
+                    }
+                }
+                break;
+                }
+            }
+
+            ImGuiHelp("Click here to continue on");
+
+            ImGui::EndPopup();
+        }
+
+        m_bSaveCheck = false;
+    }
+
+    void ImGuiHelp(const char* description, int symbol = 0) {
+
+        if (symbol)
+            ImGui::TextDisabled(ICON_FA_EXCLAMATION_CIRCLE);
+
+        if (ImGui::IsItemHovered()) {
+
+            ImGui::BeginTooltip();
+            ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+            ImGui::TextUnformatted(description);
+            ImGui::PopTextWrapPos();
+            ImGui::EndTooltip();
+        }
+    }
 };
 
 #include "Editor/Panels/EntityInspector_Inline.h"

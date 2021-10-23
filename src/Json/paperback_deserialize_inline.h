@@ -181,7 +181,6 @@ namespace paperback::deserialize
 
     void ReadEntities(rapidjson::Value::MemberIterator it)
     {
-
         using NewComponentInfoList = std::array<const component::info*, settings::max_components_per_entity_v>;
         std::string TempName{};
         for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
@@ -285,14 +284,10 @@ namespace paperback::deserialize
 
                                     }
                                 }
-
-                                ERROR_LOG("Unable to get Components' Guid");
                             }
                         }
                     }
                 }
-
-                ERROR_LOG("File has wrong format");
             }
         }
     }
