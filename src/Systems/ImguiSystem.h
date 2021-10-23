@@ -380,9 +380,6 @@ struct imgui_system : paperback::system::instance
 
         if (m_FileDialog.showFileDialog("Open Scene", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2{ 700, 310 }))
         {
-            //m_FilePath = m_FileDialog.selected_path;
-            //m_FileName = m_FileDialog.selected_fn;
-
             if (!m_FileDialog.selected_path.empty())
             {
                 m_LoadedPath = m_FileDialog.selected_path;
@@ -403,9 +400,6 @@ struct imgui_system : paperback::system::instance
 
         if (m_FileDialog.showFileDialog("Save Scene As", imgui_addons::ImGuiFileBrowser::DialogMode::SAVE, ImVec2{ 700, 310 }))
         {
-            //m_FilePath = m_FileDialog.selected_path;
-            //m_FileName = m_FileDialog.selected_fn;
-
             if (!m_FileDialog.selected_path.empty())
             {
                 PPB.SaveScene(m_FileDialog.selected_path);
@@ -574,7 +568,7 @@ struct imgui_system : paperback::system::instance
                 case FileActivity::NEWSCENE:
                 {
                     ResetScene();
-                    EDITOR_INFO_PRINT("Created a New Scene");
+                    EDITOR_INFO_PRINT("New Scene Created");
                     ImGui::CloseCurrentPopup();
                 }
                 break;
@@ -590,8 +584,8 @@ struct imgui_system : paperback::system::instance
                     {
                         ResetScene();
                         PPB.OpenScene(m_LoadedPath);
-
                         EDITOR_TRACE_PRINT(m_LoadedFile + " Loaded");
+                        ImGui::CloseCurrentPopup();
                     }
                 }
                 break;

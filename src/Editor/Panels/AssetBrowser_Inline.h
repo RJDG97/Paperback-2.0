@@ -54,8 +54,15 @@ void AssetBrowser::DisplayFolderFiles(float window_width, float window_height) {
 
     ImGui::BeginChild("Files", { window_width / 1.5f , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
 
-    FileMenuBar();
     CheckFileType();
+
+    if (ImGui::BeginPopupContextWindow(0, 1, false))
+    {
+        if (ImGui::MenuItem("New Folder"))
+            m_bCreate = true;
+
+        ImGui::EndPopup();
+    }
 
     ImGui::EndChild();
 }
@@ -175,17 +182,6 @@ void AssetBrowser::DisplayFiles( fs::path File, std::string FileName )
     else
         ImGui::Text(FileString(ICON_FA_EXCLAMATION_CIRCLE, FileName).c_str()); // will update when needed
 
-}
-
-void AssetBrowser::FileMenuBar() {
-
-    ImGui::BeginMenuBar();
-
-    if (ImGui::MenuItem(ICON_FA_FOLDER_PLUS)) {
-       m_bCreate = true;
-    }
-
-    ImGui::EndMenuBar();
 }
 
 void AssetBrowser::FileTabBar()
