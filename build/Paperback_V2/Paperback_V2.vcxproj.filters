@@ -499,6 +499,18 @@
     <ClInclude Include="..\..\src\Editor\EditorLogger.h">
       <Filter>Source\Tools\Editor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Components\Parent.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Child.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Systems\ParentChildSystem.h">
+      <Filter>Source\Gameplay Code\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Components\Offset.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

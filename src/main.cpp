@@ -69,7 +69,10 @@ void InitializeGame()
             sound,
             mesh,
             animator,
-            entityscript
+            entityscript,
+            parent,
+            child,
+            offset
         >();
     }
 
@@ -84,11 +87,17 @@ void InitializeGame()
             debug_system,
             render_system,
             imgui_system,
-            animator_system
+            animator_system,
+            parentchild_system
         >();
     }
     // Entity Creation
     {
         PPB.OpenScene("../../resources/assetloading/SampleScene.json");
+
+        PPB.CreateEntity( [&]( transform& Transform, parent& Parent )
+        {
+            
+        });
     }
 }

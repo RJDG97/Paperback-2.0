@@ -4,6 +4,54 @@ RenderResourceManager::RenderResourceManager()
 {
 	m_Models["Quad"] = MeshBuilder::Build2DMesh();
 	m_Models["Screen"] = MeshBuilder::BuildScreenMesh();
+
+	const std::vector<glm::vec3> skyboxVerts = {
+		{ -1.0f,  1.0f, -1.0f },
+		{ -1.0f, -1.0f, -1.0f },
+		{ 1.0f, -1.0f, -1.0f },
+		{ 1.0f, -1.0f, -1.0f },
+		{ 1.0f,  1.0f, -1.0f },
+		{ -1.0f,  1.0f, -1.0f },
+
+		{ -1.0f, -1.0f,  1.0f },
+		{ -1.0f, -1.0f, -1.0f },
+		{ -1.0f,  1.0f, -1.0f },
+		{ -1.0f,  1.0f, -1.0f },
+		{ -1.0f,  1.0f,  1.0f },
+		{ -1.0f, -1.0f,  1.0f },
+
+		{ 1.0f, -1.0f, -1.0f },
+		{ 1.0f, -1.0f,  1.0f },
+		{ 1.0f,  1.0f,  1.0f },
+		{ 1.0f,  1.0f,  1.0f },
+		{ 1.0f,  1.0f, -1.0f },
+		{ 1.0f, -1.0f, -1.0f },
+
+		{ -1.0f, -1.0f,  1.0f },
+		{ -1.0f,  1.0f,  1.0f },
+		{ 1.0f,  1.0f,  1.0f },
+		{ 1.0f,  1.0f,  1.0f },
+		{ 1.0f, -1.0f,  1.0f },
+		{ -1.0f, -1.0f,  1.0f },
+
+		{ -1.0f,  1.0f, -1.0f },
+		{ 1.0f,  1.0f, -1.0f },
+		{ 1.0f,  1.0f,  1.0f },
+		{ 1.0f,  1.0f,  1.0f },
+		{ -1.0f,  1.0f,  1.0f },
+		{ -1.0f,  1.0f, -1.0f },
+
+		{ -1.0f, -1.0f, -1.0f },
+		{ -1.0f, -1.0f,  1.0f },
+		{ 1.0f, -1.0f, -1.0f },
+		{ 1.0f, -1.0f, -1.0f },
+		{ -1.0f, -1.0f,  1.0f },
+		{ 1.0f, -1.0f,  1.0f }
+	};
+
+	// Create vbo for debug lines
+	glCreateBuffers(1, &m_SkyboxVBO);
+	glNamedBufferStorage(m_SkyboxVBO, sizeof(glm::vec3) * skyboxVerts.size(), skyboxVerts.data(), GL_DYNAMIC_STORAGE_BIT);
 }
 
 RenderResourceManager::~RenderResourceManager()
@@ -13,6 +61,9 @@ RenderResourceManager::~RenderResourceManager()
 		shader.second.DeleteShader();
 
 	m_Shaders.clear();
+
+	glDeleteTextures(1, &m_Skybox);
+	glDeleteBuffers(1, &m_SkyboxVBO);
 
 	// Clean up textures
 	UnloadAllTextures();
@@ -63,6 +114,12 @@ void RenderResourceManager::UnloadTextures(const std::string& Mesh)
 {
 	glDeleteTextures(1, &m_Textures[Mesh]);
 	m_Textures.erase(Mesh);
+}
+
+void RenderResourceManager::LoadSkyboxTexture(const std::vector<std::string>& Textures)
+{
+	if (m_Skybox == 0)
+		m_Skybox = TextureLoader::LoadSkyboxTexture(Textures);
 }
 
 //std::string RenderResourceManager::LoadMaterial(const std::string& Material, aiMaterial* AiMat)
@@ -116,30 +173,42 @@ void RenderResourceManager::LoadMaterialNUI(const std::string& material_name, NU
 		if (material_data.m_Diffuse.first == "EMPTY")
 		{
 			material_data.m_Diffuse.first = "";
+			mat.m_Diffuse = "";
 		}
-
-		mat.m_Diffuse = LoadTextures(material_data.m_Diffuse.first, material_data.m_Diffuse.second, true);
-
+		else
+		{
+			mat.m_Diffuse = LoadTextures(material_data.m_Diffuse.first, material_data.m_Diffuse.second, true);
+		}
+		
 		if (material_data.m_Ambient.first == "EMPTY")
 		{
 			material_data.m_Ambient.first = "";
+			mat.m_Ambient = "";
 		}
-
-		mat.m_Ambient = LoadTextures(material_data.m_Ambient.first, material_data.m_Ambient.second, true);
+		else
+		{
+			mat.m_Ambient = LoadTextures(material_data.m_Ambient.first, material_data.m_Ambient.second, true);
+		}
 
 		if (material_data.m_Specular.first == "EMPTY")
 		{
 			material_data.m_Specular.first = "";
+			mat.m_Specular = "";
 		}
-
-		mat.m_Specular = LoadTextures(material_data.m_Specular.first, material_data.m_Specular.second, true);
-
+		else
+		{
+			mat.m_Specular = LoadTextures(material_data.m_Specular.first, material_data.m_Specular.second, false);
+		}
+		
 		if (material_data.m_Normal.first == "EMPTY")
 		{
 			material_data.m_Normal.first = "";
+			mat.m_Normal = "";
 		}
-
-		mat.m_Normal = LoadTextures(material_data.m_Normal.first, material_data.m_Normal.second, true);
+		else
+		{
+			mat.m_Normal = LoadTextures(material_data.m_Normal.first, material_data.m_Normal.second, false);
+		}
 
 		m_Materials[material_name] = mat;
 	}

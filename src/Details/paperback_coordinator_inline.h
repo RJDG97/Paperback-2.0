@@ -438,4 +438,19 @@ namespace paperback::coordinator
 	{
 		m_ArchetypeMgr.RegisterEntity( Details, Archetype );
 	}
+
+
+	//-----------------------------------
+	//        Temporary Method
+	//-----------------------------------
+
+	void instance::InitializeParentChildAfterDeSerialization( void ) noexcept
+	{
+		m_ArchetypeMgr.InitializeParentChildAfterDeSerialization();
+	}
+
+	void instance::RevertParentChildBeforeSerialization( void ) noexcept
+	{
+		m_ArchetypeMgr.RevertParentChildBeforeSerialization();
+	}
 }

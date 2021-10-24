@@ -40,31 +40,30 @@ uniform bool uHasBones;
 
 void main()
 {
-	vec4 PosL;
+	vec4 TransformedPosition;
 
 	if (uHasBones == true)
 	{
-		mat4 bone_transform = mat4(0.0f);
+		mat4 BoneTransform = mat4(0.0f);
 
 		for (int i = 0 ; i < 4 ; ++i)
 		{
-			int id = vVertexBoneIDs[i];
+			int Id = vVertexBoneIDs[i];
 
-			if (id != -1)
+			if (Id != -1)
 			{
-				bone_transform += uFinalBonesMatrices[id] * vVertexWeights[i];
+				BoneTransform += uFinalBonesMatrices[Id] * vVertexWeights[i];
 			}
 		}
 
-		PosL = uModel * bone_transform * vec4(vVertexPosition, 1.0f);
-		vPosition = vec3(PosL);
-		vNormal = mat3(transpose(inverse(uModel))) * mat3(bone_transform) * vVertexNormal;
+		TransformedPosition = uModel * BoneTransform * vec4(vVertexPosition, 1.0f);
+		vPosition = vec3(TransformedPosition);
+		vNormal = mat3(transpose(inverse(uModel))) * mat3(BoneTransform) * vVertexNormal;
 	}
-
 	else
 	{
-		PosL = uModel * vec4(vVertexPosition, 1.0);
-		vPosition = vec3(PosL);
+		TransformedPosition = uModel * vec4(vVertexPosition, 1.0);
+		vPosition = vec3(TransformedPosition);
 		vNormal = mat3(transpose(inverse(uModel))) * vVertexNormal;
 	}
 
@@ -85,5 +84,5 @@ void main()
 	
 	// Light space transform
 	lFragPosition = uLight.Transform * vec4(vPosition, 1.0);
-	gl_Position = uProjection * uView * PosL;
+	gl_Position = uProjection * uView * TransformedPosition;
 }

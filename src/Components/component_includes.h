@@ -11,3 +11,6 @@
 #include "AABB.h"
 #include "BoundingBox.h"
 #include "Animator.h"
+#include "Parent.h"
+#include "Child.h"
+#include "Offset.h"

@@ -12,6 +12,7 @@
 #include "ShaderProgram.h"
 #include <string>
 #include <exception>
+#include <glm/inc/gtc/type_ptr.hpp>
 
 ShaderProgram::ShaderProgram() :
 	m_ShaderHandle{ 0 }
@@ -171,6 +172,17 @@ void ShaderProgram::SetUniform(GLchar const* Name, glm::mat4& Val)
 
 	if (Location >= 0)
 		glUniformMatrix4fv(Location, 1, GL_FALSE, &Val[0][0]);
+	else
+		throw std::exception{ ("Uniform not found: " + std::string{Name}).c_str() };
+}
+
+
+void ShaderProgram::SetUniform(GLchar const* Name, std::vector<glm::mat4>& Val, const size_t Size)
+{
+	GLint Location = glGetUniformLocation(m_ShaderHandle, Name);
+
+	if (Location >= 0)
+		glUniformMatrix4fv(Location, Size, GL_FALSE, glm::value_ptr(Val[0]));
 	else
 		throw std::exception{ ("Uniform not found: " + std::string{Name}).c_str() };
 }

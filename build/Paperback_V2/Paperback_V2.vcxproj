@@ -147,9 +147,12 @@
     <ClInclude Include="..\..\src\Components\AABB.h" />
     <ClInclude Include="..\..\src\Components\Animator.h" />
     <ClInclude Include="..\..\src\Components\BoundingBox.h" />
+    <ClInclude Include="..\..\src\Components\Child.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
     <ClInclude Include="..\..\src\Components\EntityScript.h" />
     <ClInclude Include="..\..\src\Components\Mesh.h" />
+    <ClInclude Include="..\..\src\Components\Offset.h" />
+    <ClInclude Include="..\..\src\Components\Parent.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Components\Rigidbody.h" />
     <ClInclude Include="..\..\src\Components\RigidForce.h" />
@@ -252,6 +255,7 @@
     <ClInclude Include="..\..\src\Systems\AnimatorSystem.h" />
     <ClInclude Include="..\..\src\Systems\DebugSystem.h" />
     <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
+    <ClInclude Include="..\..\src\Systems\ParentChildSystem.h" />
     <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
     <ClInclude Include="..\..\src\Systems\ScriptingSystem.h" />
     <ClInclude Include="..\..\src\Systems\RendererSystem.h" />
@@ -309,7 +313,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;PAPERBACK_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -344,7 +348,7 @@ xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Com
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>

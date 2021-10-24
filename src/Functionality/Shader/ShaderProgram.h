@@ -14,6 +14,7 @@
 
 #include "glew/inc/glew.h"
 #include "glm/inc/glm.hpp"
+#include <vector>
 
 class ShaderProgram
 {
@@ -45,6 +46,7 @@ public:
 	void SetUniform(GLchar const* Name, glm::vec4& Val);
 	void SetUniform(GLchar const* Name, glm::mat3& Val);
 	void SetUniform(GLchar const* Name, glm::mat4& Val);
+	void SetUniform(GLchar const* Name, std::vector<glm::mat4>& Val, const size_t Size);
 
 	GLuint GetShaderHandle() { return m_ShaderHandle; }
 

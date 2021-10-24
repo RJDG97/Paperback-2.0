@@ -74,6 +74,40 @@ GLuint TextureLoader::LoadTexture(const std::string File, const bool& GammaCorre
 	}
 }
 
+GLuint TextureLoader::LoadSkyboxTexture(const std::vector<std::string>& Files)
+{
+	GLuint texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
+
+	int width, height, channels;
+
+	for (int face = 0; face < Files.size(); ++face)
+	{
+		// Load image data
+		unsigned char* data = SOIL_load_image(Files[face].c_str(), &width, &height, &channels, 0);
+
+		if (data)
+		{
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, 0, GL_SRGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			SOIL_free_image_data(data);
+		}
+		else
+		{
+			return 0;
+		}
+	}
+
+	glTextureParameteri(texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameteri(texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glTextureParameteri(texture, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(texture, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(texture, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+
+	return texture;
+}
+
 void TextureLoader::FreeTexture(unsigned char* Pixels)
 {
 	SOIL_free_image_data(Pixels);

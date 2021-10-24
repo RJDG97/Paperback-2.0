@@ -5,12 +5,12 @@ namespace paperback::archetype
     class instance final
     {
     public:
-
         using PoolDetails    = vm::PoolDetails;
         using EntityIDList   = std::vector<uint16_t>;
         using ComponentPool  = std::array<vm::instance, 2>;
         using MoveList       = std::vector<vm::PoolDetails>;
         using DeleteList     = std::vector<component::entity>;
+        using guid           = xcore::guid::unit<64, struct archetype_info>;
         using ComponentInfos = std::array< const component::info*, paperback::settings::max_components_per_entity_v >;
 
 
@@ -51,6 +51,15 @@ namespace paperback::archetype
 
         template < typename T_COMPONENT >
         T_COMPONENT& GetComponent( const PoolDetails Details ) noexcept;
+
+        template < typename... T_COMPONENTS >
+        std::tuple<T_COMPONENTS&...> GetComponents( const PoolDetails Details ) noexcept;
+
+        template < typename T_COMPONENT >
+        T_COMPONENT* FindComponent( const PoolDetails Details ) noexcept;
+
+        template < typename... T_COMPONENTS >
+        std::tuple<T_COMPONENTS*...> FindComponents( const PoolDetails Details ) noexcept;
 
         template < typename... T_COMPONENTS >
         requires( (( std::is_reference_v<T_COMPONENTS> ) && ...) )
@@ -118,10 +127,16 @@ namespace paperback::archetype
         bool CheckComponentExistence( const component::info* Info) noexcept;
 
         PPB_INLINE
-        tools::bits& GetComponentBits() noexcept;
+        tools::bits& GetComponentBits( void ) noexcept;
+
+        PPB_INLINE
+        const guid& GetArchetypeGuid( void ) const noexcept;
 
 
     private:
+
+        PPB_INLINE
+        void UnlinkChildrenAndParents( const PoolDetails Details ) noexcept;
 
         coordinator::instance&        m_Coordinator;
         ComponentPool                 m_ComponentPool            {   };                           // Component Pool
@@ -130,6 +145,7 @@ namespace paperback::archetype
         DeleteList                    m_DeleteList               {   };                           // List of entities to be deleted
         tools::bits                   m_ComponentBits            {   };                           // Component Signature
         std::string                   m_pName                    { "Unnamed Archetype" };         // Archetype name for reflecting in Editor
+        guid                          m_ArchetypeGuid            {   };                           // Archetype unique signature
         u32                           m_EntityCount              { 0 };                           // Number of Entities within Archetype
         u32                           m_PoolAllocationIndex      { 0 };                           // Determines which pool to allocate to - 0 Default      ( TO FIX )
         u32                           m_ProcessReference         { 0 };                           // Set to 1 when Archetype is updating

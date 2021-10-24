@@ -175,6 +175,9 @@ namespace paperback::system
 						   , const u32 Count ) noexcept;
 
 		PPB_INLINE
+        entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
+
+		PPB_INLINE
 		void DeleteEntity( component::entity& Entity ) noexcept;
 
 		template < typename... T_COMPONENTS >

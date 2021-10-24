@@ -17,10 +17,11 @@ namespace paperback::archetype
     public:
 
         using PoolDetails       = vm::PoolDetails;
-        using EntityListHead    = std::priority_queue<u32, std::vector<u32>, std::greater<u32> >;
-        using EntityInfoList    = std::unique_ptr<entity::info[]>;
-        using ArchetypeBitsList = std::vector<tools::bits>;
-        using ArchetypeList     = std::vector<std::unique_ptr<archetype::instance>>;
+        using EntityListHead    = std::priority_queue< u32, std::vector<u32>, std::greater<u32> >;
+        using EntityInfoList    = std::unique_ptr< entity::info[] >;
+        using ArchetypeBitsList = std::vector< tools::bits >;
+        using ArchetypeList     = std::vector< std::unique_ptr<archetype::instance> >;
+        using ArchetypeMap      = std::unordered_map< u64, archetype::instance* >;
 
 
         //-----------------------------------
@@ -105,7 +106,11 @@ namespace paperback::archetype
         void RemoveEntity( const u32 SwappedGlobalIndex
                          , const component::entity DeletedEntity ) noexcept;
 
-        //friend class paperback::archetype::instance;
+        PPB_INLINE
+        void InitializeParentChildAfterDeSerialization( void ) noexcept;
+
+        PPB_INLINE
+        void RevertParentChildBeforeSerialization( void ) noexcept;
 
     private:
 
@@ -127,6 +132,7 @@ namespace paperback::archetype
 
         EntityInfoList                      m_EntityInfos       = std::make_unique<entity::info[]>( settings::max_entities_v );
         ArchetypeList                       m_pArchetypeList    {   };
+        ArchetypeMap                        m_pArchetypeMap     {   };
         ArchetypeBitsList                   m_ArchetypeBits     {   };
         uint32_t                            m_EntityIDTracker   { 0 };
         EntityListHead                      m_AvailableIndexes  {   };

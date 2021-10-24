@@ -30,6 +30,8 @@ public:
 	// Unload textures
 	void UnloadTextures(const std::string& Mesh);
 
+	void LoadSkyboxTexture(const std::vector<std::string>& Textures);
+
 	// Load material
 	std::string LoadMaterial(const std::string& Material, aiMaterial* AiMat);
 
@@ -46,6 +48,9 @@ public:
 	std::unordered_map<std::string, Model> m_Models;
 	// Map of shaders
 	std::unordered_map<std::string, ShaderProgram> m_Shaders;
+
+	GLuint m_Skybox;
+	GLuint m_SkyboxVBO;
 
 	static RenderResourceManager& GetInstanced();
 	RenderResourceManager(const RenderResourceManager&) = delete;

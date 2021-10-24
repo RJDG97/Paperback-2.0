@@ -13,14 +13,13 @@ class Renderer
 public:
 	~Renderer();
 
-	// Update the resized framebuffers
-	//void UpdateFramebufferSize(int Width, int Height);
-
 	// Render object
-	void Render(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr, std::vector<glm::mat4>* bone_transforms = nullptr);
+	void Render(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
 
-	// Prep the start of draw frame
-	void StartFrame();
+	// Helper function to create framebuffers
+	void SetUpFramebuffer(int Width, int Height);
+	// Update the resized framebuffers
+	void UpdateFramebufferSize(int Width, int Height);
 
 	// Singleton
 	static Renderer& GetInstanced();
@@ -48,14 +47,13 @@ private:
 		glm::mat4 m_Transform;
 	};
 
-	// Helper function to create framebuffers
-	void SetUpFramebuffer();
-
 	// Render debug objects
 	void DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points);
 
-	void ShadowPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
-	void RenderPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Objects, std::vector<glm::mat4>* bone_transforms = nullptr);
+	void SkyBoxRender();
+
+	void ShadowPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects);
+	void RenderPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects);
 	void BlurPass();
 	void CompositePass();
 
@@ -73,6 +71,9 @@ private:
 	GLuint m_VAO;
 	// VAO for debug objects
 	GLuint m_DebugVAO;
+
+	int m_Width;
+	int m_Height;
 
 	RenderResourceManager& m_Resources;
 };
