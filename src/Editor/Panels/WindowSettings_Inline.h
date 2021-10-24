@@ -1,5 +1,7 @@
 #pragma once
 #include "Editor//Panels/WindowSettings.h"
+#include "Functionality/Renderer/Renderer.h"
+
 void WindowSettings::Panel()
 {
     ImGui::Begin(WindowSettings::typedef_v.m_pName);
@@ -19,6 +21,8 @@ void WindowSettings::Panel()
             m_Imgui.DisplayStringType(PropertyName, PropertyType, PropertyValue);
 
         glfwSetWindowSize(m_pWindow, PPB.GetSystem< window_system >().E.m_Width, PPB.GetSystem< window_system >().E.m_Height);
+        Renderer::GetInstanced().UpdateFramebufferSize(PPB.GetSystem< window_system >().E.m_Width, PPB.GetSystem< window_system >().E.m_Height);
+
         glfwSetWindowTitle(m_pWindow, PPB.GetSystem< window_system >().E.m_WinName.c_str());
     }
 
