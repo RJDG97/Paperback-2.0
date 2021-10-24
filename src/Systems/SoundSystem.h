@@ -23,6 +23,9 @@ public:
     FMOD::Studio::System* m_pStudioSystem = nullptr;
     std::vector<SoundFile> m_SoundFiles;
     size_t m_SoundCounter;
+    paperback::Vector3f m_ListenerPos, m_ListenerVel;
+    bool m_AudioFollowPosition;
+
 
     //helper functions
 
@@ -58,7 +61,7 @@ public:
     //play event 
     // helper function
     // loads and plays an event from the current loaded bank
-    void PlaySoundEvent( const std::string_view& Path ) 
+    void PlaySoundEvent( const std::string_view& Path) 
     {
 
         FMOD::Studio::EventDescription* event = nullptr;
@@ -120,32 +123,48 @@ public:
     //convert transform & vel to fmod 3d attribute
     //helper function
     //to modify when 3d switch
-    void ConvertSystemToFMOD3D(FMOD_3D_ATTRIBUTES& Attribute, const transform* Transform, const rigidbody* Rigidbody)
+    void ConvertSystemToFMOD3D(FMOD_3D_ATTRIBUTES& Attribute, const paperback::Vector3f& Position, const paperback::Vector3f& Velocity)
     {
         //2d now, to change to 3d when shifted to 3d
-        paperback::Vector3f normal_vec = Rigidbody->m_Velocity;
-        normal_vec.Normal2D();
+        paperback::Vector3f normal_vec = Velocity;
+        normal_vec.Normalized();
 
-        Attribute.forward.x = normal_vec.x;
-        Attribute.forward.y = normal_vec.y;
+        float zerocheck = normal_vec.MagnitudeFast();
 
-        //attribute.up.z = 0.0f;
+        if (zerocheck > 0.01f && zerocheck < -0.01f)
+        {
 
-        Attribute.position.x = Transform->m_Position.x;
-        Attribute.position.y = Transform->m_Position.y;
+            Attribute.forward.x = normal_vec.x;
+            Attribute.forward.y = normal_vec.y;
+            Attribute.forward.z = normal_vec.z;
+        }
+        else
+        {
 
-        Attribute.velocity.x = Rigidbody->m_Velocity.x;
-        Attribute.velocity.y = Rigidbody->m_Velocity.y;
+            Attribute.forward.z = 1.0f;
+        }
+
+        //needs to be perpendicular to forward vec
+        Attribute.up.y = 1.0f;
+
+        Attribute.position.x = Position.x;
+        Attribute.position.y = Position.y;
+        Attribute.position.z = Position.z;
+
+        Attribute.velocity.x = Velocity.x;
+        Attribute.velocity.y = Velocity.y;
+        Attribute.velocity.z = Velocity.z;
     }
 
     //set player 3d attributes
     // helper function
     // sets the player's FMOD 3d attributes for 3D sound
-    void UpdatePlayer3DAttributes(const transform* Transform, const rigidbody* Rigidbody) 
+    void UpdatePlayer3DAttributes(const paperback::Vector3f& Position, const paperback::Vector3f& Velocity)
     {
 
         FMOD_3D_ATTRIBUTES attribute{};
-        ConvertSystemToFMOD3D(attribute, Transform, Rigidbody);
+
+        ConvertSystemToFMOD3D(attribute, Position, Velocity);
 
         m_pStudioSystem->setListenerAttributes(0, &attribute);
     }
@@ -157,7 +176,7 @@ public:
     {
 
         FMOD_3D_ATTRIBUTES attribute{};
-        ConvertSystemToFMOD3D(attribute, Transform, Rigidbody);
+        ConvertSystemToFMOD3D(attribute, Transform->m_Position, Rigidbody->m_Velocity);
 
         Instance->set3DAttributes(&attribute);
     }
@@ -202,6 +221,25 @@ public:
         AddBank("../../resources/soundbank/Master.strings.bank");
     }
 
+    //function to decide what primary listener location is based on 
+    // either preset (currently global center) or object position with a specific component
+    void SetListenerPosition()
+    {
+
+        if (m_AudioFollowPosition)
+        {
+
+            UpdatePlayer3DAttributes(m_ListenerPos, m_ListenerVel);
+            m_AudioFollowPosition = false;
+        }
+        else
+        {
+
+            UpdatePlayer3DAttributes({}, {});
+        }
+    }
+
+
     constexpr static auto typedef_v = paperback::system::type::update
     {
         .m_pName = "sound_system"
@@ -224,17 +262,42 @@ public:
         m_SoundCounter = {};
 
         m_pStudioSystem->setNumListeners(1);
+
+        m_AudioFollowPosition = false;
+
+        m_ListenerPos = {};
+        m_ListenerVel = {};
     }
 
     // entity that is processed by soundsystem will specifically have sound and timer components
     // entity must have either transform or rigidbody, can have both if is 3D
     PPB_FORCEINLINE
-    void operator()(paperback::component::entity& Entity, timer& Timer, sound& Sound, transform* Transform, rigidbody* Rigidbody) noexcept
+    void operator()(paperback::component::entity& Entity, timer& Timer, sound& Sound, transform* Transform, rigidbody* Rigidbody, listener* Listener) noexcept
     {
         if ( Entity.IsZombie() )
             return;
 
-        // System Update Code - FOR A SINGLE ENTITY
+        //for updating current central listener
+        if (Sound.m_SoundID == "")
+        {
+
+            if (Listener)
+            {
+
+                m_AudioFollowPosition = true;
+
+                if (Transform)
+                    m_ListenerPos = Transform->m_Position;
+
+                if (Rigidbody)
+                    m_ListenerVel = Rigidbody->m_Velocity;
+                else
+                    m_ListenerVel.z = 1.0f;
+            }
+
+            return;
+        }
+
         auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [Sound](const SoundFile& soundfile) { return Sound.m_SoundPlayTag == soundfile.m_ID; });
         //check if id already exists 
         if (sound_check == m_SoundFiles.end())
@@ -296,6 +359,9 @@ public:
 
         if (end != std::end(m_SoundFiles))
             m_SoundFiles.erase(end, m_SoundFiles.end());
+
+        //update listener position
+        SetListenerPosition();
     }
 
     // Terminate system

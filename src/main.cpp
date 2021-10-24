@@ -70,9 +70,10 @@ void InitializeGame()
             mesh,
             animator,
             entityscript,
+            listener,
             parent,
             child,
-            offset
+            offset        
         >();
     }
 

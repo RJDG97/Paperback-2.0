@@ -430,7 +430,9 @@
     <ClInclude Include="..\..\src\Functionality\Nui\NUILoader.h">
       <Filter>Source\Tools\Functionality\NUI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Components\Parent.h">
+    <ClInclude Include="..\..\src\Components\Listener.h">
+      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    </ClInclude>    <ClInclude Include="..\..\src\Components\Parent.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Components\Child.h">
@@ -441,8 +443,7 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Components\Offset.h">
       <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-  </ItemGroup>
+    </ClInclude>  </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
       <UniqueIdentifier>{a1e17279-6fea-45fd-8599-0d901353c1b1}</UniqueIdentifier>

@@ -141,6 +141,7 @@
     <ClInclude Include="..\..\src\Components\Child.h" />
     <ClInclude Include="..\..\src\Components\component_includes.h" />
     <ClInclude Include="..\..\src\Components\EntityScript.h" />
+    <ClInclude Include="..\..\src\Components\Listener.h" />
     <ClInclude Include="..\..\src\Components\Mesh.h" />
     <ClInclude Include="..\..\src\Components\Offset.h" />
     <ClInclude Include="..\..\src\Components\Parent.h" />
