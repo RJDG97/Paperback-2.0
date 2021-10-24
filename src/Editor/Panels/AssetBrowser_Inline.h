@@ -1,4 +1,4 @@
-#include "AssetBrowser.h"
+#include "Editor/Panels/AssetBrowser.h"
 #include "Systems/ImguiSystem.h"
 #pragma once
 
@@ -17,6 +17,26 @@ void AssetBrowser::Panel()
 
     DisplayFolderFiles(windowW, windowH);
 
+    glfwSetDropCallback(PPB.GetSystem<window_system>().m_pWindow, [](GLFWwindow* Window, int Count, const char** Paths)
+    {
+        auto& Files = PPB.GetDragDropFiles();
+
+        for (int i = 0; i < Count; ++i)
+            Files.push_back(Paths[i]);
+    });
+
+    if (!PPB.GetDragDropFiles().empty())
+    {
+        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceExtern))
+        {
+            ImGui::SetDragDropPayload("Explorer Files", nullptr, 0);
+            ImGui::BeginTooltip();
+            ImGui::Text("Explorer Files: %d", PPB.GetDragDropFiles().size());
+            ImGui::EndTooltip();
+            ImGui::EndDragDropSource();
+        }
+    }
+
     ImGui::End();
 }
 
@@ -30,6 +50,7 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height)
     ImGui::Text("Folders/Directories:");
 
     ImGuiTreeNodeFlags Flags = ((m_Imgui.m_SelectedPath == "../../resources") ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen;
+
     Opened = ImGui::TreeNodeEx((ICON_FA_FOLDER " resources"), Flags);
 
     if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
@@ -63,6 +84,20 @@ void AssetBrowser::DisplayFolderFiles(float window_width, float window_height)
             m_bCreate = true;
 
         ImGui::EndPopup();
+    }
+
+    if (ImGui::BeginDragDropTarget())
+    {
+        if (ImGui::AcceptDragDropPayload("Explorer Files"))
+        {
+            for (const auto& Path : PPB.GetDragDropFiles())
+            {
+                auto Destination = m_Imgui.m_SelectedPath / Path.filename();
+                fs::copy_file(Path, Destination);
+            }
+            PPB.GetDragDropFiles().clear();
+        }
+        ImGui::EndDragDropTarget();
     }
 
     ImGui::EndChild();
@@ -166,7 +201,6 @@ void AssetBrowser::CheckFileType()
                             m_Imgui.m_FolderToDelete = File.path().generic_string();
                             m_bDeleteFolder = true;
                         }
-
                     }
 
                     ImGui::EndPopup();

@@ -1,3 +1,4 @@
+#include "..\paperback_coordinator.h"
 #pragma once
 
 namespace paperback::coordinator
@@ -349,6 +350,11 @@ namespace paperback::coordinator
 	paperback::component::manager::ComponentInfoMap& instance::GetComponentInfoMap() noexcept
 	{
 		return m_CompMgr.GetComponentInfoMap();
+	}
+
+	std::vector<std::filesystem::path>& instance::GetDragDropFiles() noexcept
+	{
+		return m_DragDropFiles;
 	}
 
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Editor//Panels/WindowSettings.h"
+#include "Editor/Panels/WindowSettings.h"
 #include "Functionality/Renderer/Renderer.h"
 
 void WindowSettings::Panel()
