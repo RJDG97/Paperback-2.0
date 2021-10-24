@@ -28,11 +28,11 @@ namespace paperback
 		Sinks.emplace_back(m_Terminal->get_terminal_helper());
 		Sinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
 
-		//Sinks[0]->set_pattern("%^[%T] %n (%l): %v%$");
-		//Sinks[1]->set_pattern("%^[%T] %n (%l): %v%$");
+		Sinks[0]->set_pattern("%^[%T] %n (%l) - %v%$");
+		Sinks[1]->set_pattern("%^[%T] %n (%l) - %v%$");
 
-		Sinks[0]->set_pattern("%^[%T] %n: %v%$");
-		Sinks[1]->set_pattern("%^[%T] %n: %v%$");
+		//Sinks[0]->set_pattern("%^[%T] %n - %v%$");
+		//Sinks[1]->set_pattern("%^[%T] %n - %v%$");
 
 
 		m_CoreLogger = std::make_shared<spdlog::logger>("Editor", Sinks.begin(), Sinks.end());

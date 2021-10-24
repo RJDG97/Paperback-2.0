@@ -519,7 +519,7 @@ struct imgui_system : paperback::system::instance
 
         ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
 
-        if (ImGui::BeginPopupModal(WindowName.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize)) {
+        if ( ImGui::BeginPopupModal( WindowName.c_str(), NULL, ImGuiWindowFlags_AlwaysAutoResize ) ) {
 
             ImGui::Text(Message);
 
@@ -533,26 +533,29 @@ struct imgui_system : paperback::system::instance
     void SaveCheckPopUp()
     {
         if (m_bSaveCheck)
-            ImGui::OpenPopup("Confirmation");
+            ImGui::OpenPopup( ICON_FA_EXCLAMATION_TRIANGLE " Any Unsaved Changes?" );
 
         ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
 
-        if (ImGui::BeginPopupModal("Confirmation", NULL, ImGuiWindowFlags_AlwaysAutoResize)) 
+        if ( ImGui::BeginPopupModal( ICON_FA_EXCLAMATION_TRIANGLE " Any Unsaved Changes?", NULL, ImGuiWindowFlags_AlwaysAutoResize ) ) 
         {
-            ImGui::Text("Are there any unsave changes?");
-            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "There's no undo!!!");
+            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Are there any unsave changes?");
 
-            if (ImGui::Button("Yes"))
+            if ( ImGui::Button(ICON_FA_SAVE " Yes") )
             {
                 if (!m_LoadedPath.empty())
                 {
                     PPB.SaveScene(m_LoadedPath);
                     EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
+
+                    m_Type = FileActivity::NONE;
                     ImGui::CloseCurrentPopup();
                 }
                 else
                 {
                     m_bFileSaveAs = true;
+
+                    m_Type = FileActivity::NONE;
                     ImGui::CloseCurrentPopup();
                 }
             }
@@ -561,7 +564,7 @@ struct imgui_system : paperback::system::instance
 
             ImGui::SameLine();
 
-            if (ImGui::Button("No"))
+            if (ImGui::Button(ICON_FA_TIMES " No"))
             {
                 switch (m_Type)
                 {
@@ -569,12 +572,16 @@ struct imgui_system : paperback::system::instance
                 {
                     ResetScene();
                     EDITOR_INFO_PRINT("New Scene Created");
+
+                    m_Type = FileActivity::NONE;
                     ImGui::CloseCurrentPopup();
                 }
                 break;
                 case FileActivity::OPENSCENE:
                 {
                     m_bFileOpen = true;
+
+                    m_Type = FileActivity::NONE;
                     ImGui::CloseCurrentPopup();
                 }
                 break;
@@ -585,6 +592,8 @@ struct imgui_system : paperback::system::instance
                         ResetScene();
                         PPB.OpenScene(m_LoadedPath);
                         EDITOR_TRACE_PRINT(m_LoadedFile + " Loaded");
+
+                        m_Type = FileActivity::NONE;
                         ImGui::CloseCurrentPopup();
                     }
                 }
@@ -600,7 +609,7 @@ struct imgui_system : paperback::system::instance
         m_bSaveCheck = false;
     }
 
-    void ImGuiHelp(const char* description, int symbol = 0) {
+    void ImGuiHelp( const char* description, int symbol = 0 ) {
 
         if (symbol)
             ImGui::TextDisabled(ICON_FA_EXCLAMATION_CIRCLE);

@@ -64,6 +64,8 @@ void DetailsWindow::AddComponent()
                         ComponentAdd[0] = CompValue;
                         PPB.AddOrRemoveComponents(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), ComponentAdd, {});
 
+                        EDITOR_INFO_PRINT("Added: " + std::string(CompValue->m_pName) + " Component");
+
                         m_Imgui.m_SelectedEntity.first = nullptr;
                         m_Imgui.m_SelectedEntity.second = paperback::u32_max;
 
@@ -100,7 +102,12 @@ void DetailsWindow::RemoveComponent()
                 if (ImGui::Selectable(m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]->m_pName))
                 {
                     ComponentRemove[0] = (m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]);
+
+                    std::string Temp = m_Imgui.m_SelectedEntity.first->GetName();
+
                     PPB.AddOrRemoveComponents(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), {}, ComponentRemove);
+
+                    EDITOR_INFO_PRINT("Removed: " + Temp + " Component");
 
                     m_Imgui.m_SelectedEntity.first = nullptr;
                     m_Imgui.m_SelectedEntity.second = paperback::u32_max;

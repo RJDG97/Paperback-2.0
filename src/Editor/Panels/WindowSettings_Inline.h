@@ -25,6 +25,7 @@ void WindowSettings::Panel()
     if (ImGui::Button("Save Changes"))
     {
         JFile.StartWriter("../../resources/assetloading/config.json").ReadObjects(PPB.GetSystem<window_system>().E).EndWriter();
+        EDITOR_INFO_PRINT("Changes saved in Config.json");
     }
 
     ImGui::End();

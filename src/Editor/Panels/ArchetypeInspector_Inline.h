@@ -11,8 +11,6 @@ void ArchetypeInspector::Panel()
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 170.0f);
 
-    //ImGui::BeginChild("Archetypes: ", { ImGui::GetContentRegionAvailWidth() / 2, ImGui::GetContentRegionAvail().y }, true);
-
     for (auto& Archetype : PPB.GetArchetypeList())
     {
         ++Index;
@@ -62,14 +60,16 @@ void ArchetypeInspector::Panel()
                     m_Imgui.m_pArchetype = Archetype;
 
                     if (m_Imgui.m_pArchetype)
+                    {
                         m_Imgui.m_pArchetype->CreateEntity();
+                        EDITOR_INFO_PRINT("Entity: A " + m_Imgui.m_pArchetype->GetName() + " is added to the scene");
+                    }
                 }
 
                 ImGui::EndPopup();
             }
         }
     }
-    //ImGui::EndChild();
 
     ImGui::End();
 }
