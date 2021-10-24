@@ -56,7 +56,7 @@ struct imgui_system : paperback::system::instance
     std::vector <rttr::instance> m_Components = {};
     std::vector <const char*> m_ComponentNames = {};
 
-    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {};
+    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete;;
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity;
 

@@ -7,7 +7,7 @@ namespace fs = std::filesystem;
 
 struct AssetBrowser : paperback::editor::instance
 {
-    bool m_bCreate = false;
+    bool m_bCreate = false, m_bDeleteFolder = false;
 
     constexpr static auto typedef_v = paperback::editor::type::update
     {
@@ -17,7 +17,6 @@ struct AssetBrowser : paperback::editor::instance
     void OnSystemCreated(void) noexcept
     {
         m_bEnabled = true;
-
     }
 
     void Update(void) noexcept
@@ -36,8 +35,6 @@ struct AssetBrowser : paperback::editor::instance
 
     void DisplayFiles( fs::path File, std::string FileName );
 
-    void FileMenuBar();
-
     void FileTabBar();
 
     void CheckFileType();
@@ -45,6 +42,8 @@ struct AssetBrowser : paperback::editor::instance
     void MakeNewFolder();
 
     void FolderName( fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders );
+
+    void DeleteFolderContents();
 
     std::string DirectoryName( fs::directory_entry Directory );
 

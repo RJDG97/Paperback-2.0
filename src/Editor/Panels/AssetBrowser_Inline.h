@@ -20,12 +20,12 @@ void AssetBrowser::Panel()
     ImGui::End();
 }
 
-void AssetBrowser::DisplayFolders(float window_width, float window_height) {
-
+void AssetBrowser::DisplayFolders(float window_width, float window_height) 
+{
     bool Opened = false;
 
     // Print out all directories
-    ImGui::BeginChild("File Directories", { window_width / 6, window_height }, true);
+    ImGui::BeginChild("File Directories", { window_width / 5.5f, window_height }, true);
 
     ImGui::Text("Folders/Directories:");
 
@@ -50,9 +50,10 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height) {
     ImGui::EndChild();
 }
 
-void AssetBrowser::DisplayFolderFiles(float window_width, float window_height) {
+void AssetBrowser::DisplayFolderFiles(float window_width, float window_height) 
+{
 
-    ImGui::BeginChild("Files", { window_width / 1.5f , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
+    ImGui::BeginChild("Files", { window_width / 2 , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
 
     CheckFileType();
 
@@ -153,14 +154,31 @@ void AssetBrowser::CheckFileType()
                 {
                     if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
                     {
+                        std::string Temp = File.path().generic_string();
+
                         if (fs::is_empty(File))
+                        {
                             fs::remove(File);
+                            EDITOR_INFO_PRINT(Temp + " has been deleted");
+                        }
+                        else
+                        {
+                            m_Imgui.m_FolderToDelete = File.path().generic_string();
+                            m_bDeleteFolder = true;
+                        }
+
                     }
 
                     ImGui::EndPopup();
                 }
+
+                if (m_bDeleteFolder)
+                    ImGui::OpenPopup(ICON_FA_TRASH " Delete Folder?");
+
             }
         }
+
+        DeleteFolderContents();
     }
 }
 
@@ -247,15 +265,16 @@ void AssetBrowser::MakeNewFolder()
         char buffer[256];
         memset(buffer, 0, sizeof(buffer));
         strcpy_s(buffer, sizeof(buffer), folderName.c_str());
+
         ImGui::Text(ICON_FA_FOLDER " Adding a New Folder to: "); ImGui::SameLine(0, 3);
         ImGui::Text(m_Imgui.m_SelectedPath.generic_string().c_str());
+
         if (ImGui::InputText("##newfile", buffer, sizeof(buffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
 
             if (!m_Imgui.m_SelectedPath.empty())
             {
                 fs::create_directory(m_Imgui.m_SelectedPath / buffer);
                 EDITOR_TRACE_PRINT("Folder Created: " + fs::path(m_Imgui.m_SelectedPath / buffer).generic_string());
-
             }
             else
             {
@@ -273,6 +292,35 @@ void AssetBrowser::MakeNewFolder()
 
         ImGui::EndPopup();
     }
+}
+
+void AssetBrowser::DeleteFolderContents()
+{
+
+    if (ImGui::BeginPopupModal(ICON_FA_TRASH " Delete Folder?"))
+    {
+
+        ImGui::Text("The folder is not empty");
+        ImGui::Text(("Delete Folder: " + m_Imgui.m_FolderToDelete + " ?").c_str());
+
+        if (ImGui::Button("Delete"))
+        {
+            fs::remove_all(m_Imgui.m_FolderToDelete);
+            EDITOR_INFO_PRINT(m_Imgui.m_FolderToDelete + " has been deleted");
+
+            m_Imgui.m_FolderToDelete = "{}";
+
+            ImGui::CloseCurrentPopup();
+        }
+        ImGui::SameLine();
+
+        if (ImGui::Button("Cancel"))
+            ImGui::CloseCurrentPopup();
+
+        ImGui::EndPopup();
+    }
+
+    m_bDeleteFolder = false;
 }
 
 std::string AssetBrowser::DirectoryName( fs::directory_entry Directory ) {
