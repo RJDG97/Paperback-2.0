@@ -37,6 +37,23 @@ void AssetBrowser::Panel()
         }
     }
 
+    if (!m_Imgui.m_SelectedPath.generic_string().empty())
+    {
+        if (ImGui::BeginDragDropTarget())
+        {
+            if (ImGui::AcceptDragDropPayload("Explorer Files"))
+            {
+                for (const auto& Path : PPB.GetDragDropFiles())
+                {
+                    auto Destination = m_Imgui.m_SelectedPath / Path.filename();
+                    fs::copy_file(Path, Destination);
+                }
+                PPB.GetDragDropFiles().clear();
+            }
+            ImGui::EndDragDropTarget();
+        }
+    }
+
     ImGui::End();
 }
 
@@ -84,20 +101,6 @@ void AssetBrowser::DisplayFolderFiles(float window_width, float window_height)
             m_bCreate = true;
 
         ImGui::EndPopup();
-    }
-
-    if (ImGui::BeginDragDropTarget())
-    {
-        if (ImGui::AcceptDragDropPayload("Explorer Files"))
-        {
-            for (const auto& Path : PPB.GetDragDropFiles())
-            {
-                auto Destination = m_Imgui.m_SelectedPath / Path.filename();
-                fs::copy_file(Path, Destination);
-            }
-            PPB.GetDragDropFiles().clear();
-        }
-        ImGui::EndDragDropTarget();
     }
 
     ImGui::EndChild();
