@@ -18,7 +18,7 @@ namespace paperback::component
                                             ? T_COMPONENT::typedef_v.m_Guid
                                             : type::guid{ __FUNCSIG__ }
             ,   .m_TypeID             = T_COMPONENT::typedef_v.id_v
-            ,   .m_UID                = info::invalid_id_v
+            ,   .m_UID                = std::is_same_v<T_COMPONENT, paperback::component::entity> ? 0 : info::invalid_id_v
             ,   .m_Size               = static_cast<uint32_t>( sizeof(T_COMPONENT) )
             ,   .m_Constructor        = std::is_trivially_constructible_v<T_COMPONENT>
                                         ? nullptr

@@ -17,10 +17,14 @@ namespace paperback::vm
 		//-----------------------------------
 		//            Default
 		//-----------------------------------
-		
+
+		PPB_INLINE
 		instance( void )			noexcept = default;
+
+		PPB_INLINE
 		instance( const instance& ) noexcept = delete;
 
+		PPB_INLINE
 		~instance( void ) noexcept;
 
 		PPB_INLINE

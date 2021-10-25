@@ -1,5 +1,4 @@
-#include "paperback_pch.h"
-#include "Paperback.h"
+#include "PCH/sandbox_pch.h"
 
 //-----------------------------------
 //       Component & Systems
@@ -57,7 +56,7 @@ void InitializeGame()
 {
     // Register Components
     {
-        PPB.RegisterComponents<
+        PPB.RegisterComponents <
             rigidbody,
             rigidforce,
             transform,
@@ -73,7 +72,7 @@ void InitializeGame()
             listener,
             parent,
             child,
-            offset        
+            offset
         >();
     }
 
@@ -96,9 +95,9 @@ void InitializeGame()
     {
         PPB.OpenScene("../../resources/assetloading/SampleScene.json");
 
-        PPB.CreateEntity( [&]( transform& Transform, parent& Parent )
+        PPB.CreateEntity([&](transform& Transform, parent& Parent)
         {
-            
+
         });
     }
 }

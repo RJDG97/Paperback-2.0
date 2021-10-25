@@ -9,9 +9,13 @@ namespace paperback::coordinator
 		//-----------------------------------
 		//             Default
 		//-----------------------------------
-
+		PPB_INLINE
 		instance( void ) noexcept;
+
+		PPB_INLINE
 		instance( const instance& ) = delete;
+
+		PPB_INLINE
 		~instance( void ) noexcept;
 
 		PPB_INLINE

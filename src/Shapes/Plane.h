@@ -16,7 +16,7 @@ struct Plane
 public:													// ----- Private members
 	Plane()
 	{
-		mData = paperback::Vector4f::cZero;
+		mData = paperback::Vector4f{};
 	}
 	// Create the plane from a triangle
 	Plane(const paperback::Vector3f& p0, const paperback::Vector3f& p1, const paperback::Vector3f& p2)

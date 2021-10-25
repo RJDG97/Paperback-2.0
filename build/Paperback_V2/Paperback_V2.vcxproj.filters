@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\dependencies\xcore\src\xcore.cpp">
       <Filter>Dependencies\xCore</Filter>
     </ClCompile>
@@ -142,24 +141,6 @@
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Components\Transform.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\Timer.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\Rigidbody.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\PhysicsSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\component_includes.h">
-      <Filter>Source\Gameplay Code\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\system_includes.h">
-      <Filter>Source\Gameplay Code\Systems</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Paperback.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
@@ -208,17 +189,8 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h">
       <Filter>Dependencies\dearImGui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Systems\ImguiSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Components\Reflect.h">
       <Filter>Source\Tools\Reflect</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\Sound.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\SoundSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\GraphEditor.h">
       <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
@@ -237,9 +209,6 @@
     </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuizmo\ImZoomSlider.h">
       <Filter>Dependencies\dearImGui\ImGuizmo</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\ScriptingSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Math\MathUtils.h">
       <Filter>Source\Gameplay Code\Math</Filter>
@@ -277,14 +246,8 @@
     <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h">
       <Filter>Source\Tools\Functionality\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Systems\RendererSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceManager.h">
       <Filter>Source\Tools\Functionality\RenderResource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\Mesh.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h">
       <Filter>Source\Tools\Functionality\Renderer</Filter>
@@ -303,9 +266,6 @@
     </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_opengl3_loader.h">
       <Filter>Dependencies\dearImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\DebugSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
     </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
       <Filter>Dependencies\dearImGui</Filter>
@@ -352,12 +312,6 @@
     <ClInclude Include="..\..\src\Shapes\Triangle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Components\Scale.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\Rotation.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h">
       <Filter>Source\Tools\Json</Filter>
     </ClInclude>
@@ -394,56 +348,19 @@
     <ClInclude Include="..\..\src\Functionality\Animation\Bone.h">
       <Filter>Source\Tools\Functionality\Animation</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Systems\WindowSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\RigidForce.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\AABB.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\BoundingBox.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\Sphere.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Mono.h">
       <Filter>Source\Tools\Mono</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Scripts\IScripts.h">
       <Filter>Source\Tools\Mono</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Components\Animator.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\AnimatorSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\EntityScript.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\CollisionSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Functionality\Nui\NUILoader.h">
       <Filter>Source\Tools\Functionality\NUI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Components\Listener.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>    <ClInclude Include="..\..\src\Components\Parent.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
+    <ClInclude Include="..\..\src\paperback_data_reflections.h">
+      <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Components\Child.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Systems\ParentChildSystem.h">
-      <Filter>Source\Gameplay Code\Systems\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Components\Offset.h">
-      <Filter>Source\Gameplay Code\Components\Details</Filter>
-    </ClInclude>  </ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
       <UniqueIdentifier>{a1e17279-6fea-45fd-8599-0d901353c1b1}</UniqueIdentifier>
@@ -459,18 +376,6 @@
     </Filter>
     <Filter Include="Source\Gameplay Code">
       <UniqueIdentifier>{f051333f-983a-41e4-bba7-36b79aae1832}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Gameplay Code\Components">
-      <UniqueIdentifier>{f3e3ea70-c0e9-488a-9768-9a77dfeb49cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Gameplay Code\Components\Details">
-      <UniqueIdentifier>{7dfc94ad-7052-494b-bc09-d8cc579187fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Gameplay Code\Systems">
-      <UniqueIdentifier>{a2d2287b-e6dc-4266-a3b7-9e095e42c227}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Gameplay Code\Systems\Details">
-      <UniqueIdentifier>{09029f42-abf2-4722-a46d-089c12d2a0f6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Settings">
       <UniqueIdentifier>{ee989d91-93a3-4ecc-9e2d-f82577c24ae2}</UniqueIdentifier>

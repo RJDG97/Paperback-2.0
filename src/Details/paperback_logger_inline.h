@@ -4,8 +4,8 @@
 
 namespace paperback
 {
-	logger::MTWriter logger::mt_writer;
-	logger::MTLogger logger::mt_logger;
+	//logger::MTWriter logger::mt_writer;
+	//logger::MTLogger logger::mt_logger;
 
 	void logger::Init( void )
 	{

@@ -164,7 +164,7 @@ namespace paperback::component
     }
 
     template< typename T_COMPONENT >
-    constexpr auto& info_v = details::info_v< paperback::BaseType<T_COMPONENT> >;
+    constexpr auto& info_v = details::info_v< paperback::BaseType< paperback::BaseType<T_COMPONENT> > >;
 
 
 

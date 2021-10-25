@@ -32,17 +32,17 @@ namespace paperback
 		Vector3f()													//------ Default constructor
 			: Vector3f(0.f, 0.f, 0.f)
 		{}
-		inline void Set(float _x, float _y, float _z);				//------ Sets all components to _x, _y, _z
-		inline void Set(const Vector3f& Other);						//------ Sets all components to Vector3f param via operator=
+		PPB_INLINE void Set(float _x, float _y, float _z);				//------ Sets all components to _x, _y, _z
+		PPB_INLINE void Set(const Vector3f& Other);						//------ Sets all components to Vector3f param via operator=
 		//----------------------------------------------------------------------//
 
-		inline float MagnitudeSq() const;							//------ Returns the squared magnitude 
-		inline float Magnitude() const;								//------ Returns the magnitude
-		inline void Normalize();									//------ Normalizes the vector
-		inline Vector3f Normalized() const;							//------ Returns a normalized vector copy (does not modify *this)
-		inline void Reset();										//------ Resets all variables to 0
-		inline float Dot(const Vector3f& Other) const;				//------ Returns the dot product of the 2 vectors
-		inline Vector3f Cross(const Vector3f& Other) const;			//------ Returns the cross product of the 2 vectors
+		PPB_INLINE float MagnitudeSq() const;							//------ Returns the squared magnitude 
+		PPB_INLINE float Magnitude() const;								//------ Returns the magnitude
+		PPB_INLINE void Normalize();									//------ Normalizes the vector
+		PPB_INLINE Vector3f Normalized() const;							//------ Returns a normalized vector copy (does not modify *this)
+		PPB_INLINE void Reset();										//------ Resets all variables to 0
+		PPB_INLINE float Dot(const Vector3f& Other) const;				//------ Returns the dot product of the 2 vectors
+		PPB_INLINE Vector3f Cross(const Vector3f& Other) const;			//------ Returns the cross product of the 2 vectors
 		float Angle(const Vector3f& Other) const					//------ Returns the angle between the 2 vectors
 		{
 			// -- Get magnitude multipication of both vectors
@@ -59,18 +59,18 @@ namespace paperback
 		inline void Negate();										//------ Negates the vector via operator-
 
 		//----------------------------------------------------------------------//
-		inline Vector3f operator-() const;							//------ Negates all components
-		inline Vector3f& operator*=(float Scalar);					//------ Vector3f *= Scalar
-		inline Vector3f operator*(float Scalar) const;				//------ Vector3f * Scalar
-		inline Vector3f& operator/=(float Scalar);					//------ Vector3f /= Scalar
-		inline Vector3f operator/(float Scalar) const;				//------ Vector3f / Scalar
-		inline Vector3f& operator+=(const Vector3f& Other);			//------ Vector3f += Vector3f
-		inline Vector3f operator+(const Vector3f& Other) const;		//------ Vector3f + Vector3f
-		inline Vector3f& operator-=(const Vector3f& Other);			//------ Vector3f -= Vector3f
-		inline Vector3f operator-(const Vector3f& Other) const;		//------ Vector3f - Vector3f
-		inline bool operator==(const Vector3f& Other) const;		//------ Vector3f == Vector3f
-		inline bool operator!= (const Vector3f& Other) const;		//------ Vector3f != Vector3f
-		inline Vector3f operator~() const;							//------ Returns 2D-casted Vector3f
+		PPB_INLINE Vector3f operator-() const;							//------ Negates all components
+		PPB_INLINE Vector3f& operator*=(float Scalar);					//------ Vector3f *= Scalar
+		PPB_INLINE Vector3f operator*(float Scalar) const;				//------ Vector3f * Scalar
+		PPB_INLINE Vector3f& operator/=(float Scalar);					//------ Vector3f /= Scalar
+		PPB_INLINE Vector3f operator/(float Scalar) const;				//------ Vector3f / Scalar
+		PPB_INLINE Vector3f& operator+=(const Vector3f& Other);			//------ Vector3f += Vector3f
+		PPB_INLINE Vector3f operator+(const Vector3f& Other) const;		//------ Vector3f + Vector3f
+		PPB_INLINE Vector3f& operator-=(const Vector3f& Other);			//------ Vector3f -= Vector3f
+		PPB_INLINE Vector3f operator-(const Vector3f& Other) const;		//------ Vector3f - Vector3f
+		PPB_INLINE bool operator==(const Vector3f& Other) const;		//------ Vector3f == Vector3f
+		PPB_INLINE bool operator!= (const Vector3f& Other) const;		//------ Vector3f != Vector3f
+		PPB_INLINE Vector3f operator~() const;							//------ Returns 2D-casted Vector3f
 
 		float& operator[](unsigned index)
 		{
@@ -84,50 +84,54 @@ namespace paperback
 		}
 		//----------------------------------------------------------------------//
 
-		float MagnitudeFast() const;								//------ Find approximated magnitude of a vector using fast inverse sqrt
-		inline Vector3f NormalizedFast() const;						//------ Normalizing of a vector with fast inverse sqrt
-		inline Vector3f ScaleToLength(float Salar) const;			//------ Returns a scaled vector of desired length
-		inline Vector3f Reflect(const Vector3f& Normal) const;		//------ Reflects a vector about a surface
-		inline Vector3f Normal2D() const;							//------ Gets the 2D normal vector
-		Vector3f RotateRad(float Angle) const;						//------ Returns a rotated vector by an angle (radians)
+		PPB_INLINE float MagnitudeFast() const;								//------ Find approximated magnitude of a vector using fast inverse sqrt
+		PPB_INLINE Vector3f NormalizedFast() const;						//------ Normalizing of a vector with fast inverse sqrt
+		PPB_INLINE Vector3f ScaleToLength(float Salar) const;			//------ Returns a scaled vector of desired length
+		PPB_INLINE Vector3f Reflect(const Vector3f& Normal) const;		//------ Reflects a vector about a surface
+		PPB_INLINE Vector3f Normal2D() const;							//------ Gets the 2D normal vector
+		PPB_INLINE Vector3f RotateRad(float Angle) const;						//------ Returns a rotated vector by an angle (radians)
 		//{
 		//	return Mtx4x4::RotRad2D(Angle) * *this;
 		//}
-		Vector3f RotateDeg(float Angle) const;						//------ Returns a rotated vector by an angle (degrees)
+		PPB_INLINE Vector3f RotateDeg(float Angle) const;						//------ Returns a rotated vector by an angle (degrees)
 		//{
 		//	return Mtx4x4::RotDeg2D(Angle) * *this;
 		//}
-		inline Vector3f RotateAboutPoint(const Vector3f& Point,		//------ Rotates a point about a 
-			const Vector3f& Center,	//------ desired centre point with
-			float Degrees);			//------ a desired angle.
+		PPB_INLINE Vector3f RotateAboutPoint(const Vector3f& Point,		//------ Rotates a point about a 
+			                                 const Vector3f& Center,	//------ desired centre point with
+			                                 float Degrees);			//------ a desired angle.
 
-		//helper function to convert Vector3f to glm::vec3
-		xcore::vector3 ConvertMathVecToXcoreVec(const paperback::Vector3f& vec3)
-		{
-			return { vec3.x, vec3.y, vec3.z };
-		}
-		//helper function to convert Vector3f to glm::vec3
-		xcore::vector3 ConvertMathVecToXcoreVec()
-		{
-			return { x, y, z };
-		}
-		//helper function to convert xcore::vector3 to Vector3f
-		paperback::Vector3f ConvertXcoreVecTo3f(const xcore::vector3& vec)
-		{
-			return { vec.m_X, vec.m_Y, vec.m_Z };
-		}
-		//helper function to convert xcore::vector3 to Vector3f
-		paperback::Vector3f ConvertXcoreVecTo3f()
-		{
-			return { x, y, z };
-		}
+		////helper function to convert Vector3f to glm::vec3
+		//PPB_INLINE
+		//xcore::vector3 ConvertMathVecToXcoreVec(const paperback::Vector3f& vec3)
+		//{
+		//	return { vec3.x, vec3.y, vec3.z };
+		//}
+		////helper function to convert Vector3f to glm::vec3
+		//PPB_INLINE
+		//xcore::vector3 ConvertMathVecToXcoreVec()
+		//{
+		//	return { x, y, z };
+		//}
+		////helper function to convert xcore::vector3 to Vector3f
+		//PPB_INLINE
+		//paperback::Vector3f ConvertXcoreVecTo3f(const xcore::vector3& vec)
+		//{
+		//	return { vec.m_X, vec.m_Y, vec.m_Z };
+		//}
+		////helper function to convert xcore::vector3 to Vector3f
+		//PPB_INLINE
+		//paperback::Vector3f ConvertXcoreVecTo3f()
+		//{
+		//	return { x, y, z };
+		//}
 	};
 
 	//------ Operator overload | operator* | Scalar * Vector3f
-	Vector3f operator*(float lhs, const Vector3f& rhs);
+	PPB_INLINE Vector3f operator*(float lhs, const Vector3f& rhs);
 
 	//------ Operator overload | operator/ | Scalar / Vector3f
-	Vector3f operator/(float lhs, const Vector3f& rhs);
+	PPB_INLINE Vector3f operator/(float lhs, const Vector3f& rhs);
 }
 
 #include "Vector3f.hpp"

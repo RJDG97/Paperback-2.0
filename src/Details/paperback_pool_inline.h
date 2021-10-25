@@ -314,10 +314,6 @@ namespace paperback::vm
 		(
 			&m_MemoryPool[ ComponentIndex ][ PoolIndex * m_ComponentInfo[ComponentIndex]->m_Size] 
 		);
-
-		//auto pComponent = FindComponent<T_COMPONENT>( PoolIndex );
-		//assert( pComponent );
-		//return *pComponent;
 	}
 
 	int instance::GetComponentIndex( const u32 UIDComponent ) const noexcept
@@ -325,6 +321,8 @@ namespace paperback::vm
 		// Find index of component within m_ComponentPool
 		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
 			if ( m_ComponentInfo[i]->m_UID == UIDComponent ) { return static_cast<int>(i); }
+		//if ( component::info_v<paperback::component::entity>.m_UID == UIDComponent )
+		//	return 0;
 
 		//PPB_ASSERT_MSG( true, "Pool GetComponentIndex - Cannot find component within memory pool" );
 		return -1;

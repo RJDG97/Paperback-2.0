@@ -58,7 +58,7 @@ namespace paperback
 // Reflection
 //----------------------------------
 #include <rttr/registration>
-#include "Components/Reflect.h"
+#include "paperback_data_reflections.h"
 
 //----------------------------------
 // Files

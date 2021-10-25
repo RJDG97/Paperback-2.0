@@ -1,6 +1,6 @@
 #pragma once
 
-#include "paperback_pch.h"
+//#include "paperback_pch.h"
 #include "Json/paperback_json.h"
 
 struct window_system : paperback::system::instance

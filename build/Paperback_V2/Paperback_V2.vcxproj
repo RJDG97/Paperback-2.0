@@ -113,7 +113,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="paperback_pch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,25 +134,7 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_textedit.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h" />
     <ClInclude Include="..\..\dependencies\xcore\src\xcore.h" />
-    <ClInclude Include="..\..\src\Components\AABB.h" />
-    <ClInclude Include="..\..\src\Components\Animator.h" />
-    <ClInclude Include="..\..\src\Components\BoundingBox.h" />
-    <ClInclude Include="..\..\src\Components\Child.h" />
-    <ClInclude Include="..\..\src\Components\component_includes.h" />
-    <ClInclude Include="..\..\src\Components\EntityScript.h" />
-    <ClInclude Include="..\..\src\Components\Listener.h" />
-    <ClInclude Include="..\..\src\Components\Mesh.h" />
-    <ClInclude Include="..\..\src\Components\Offset.h" />
-    <ClInclude Include="..\..\src\Components\Parent.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
-    <ClInclude Include="..\..\src\Components\Rigidbody.h" />
-    <ClInclude Include="..\..\src\Components\RigidForce.h" />
-    <ClInclude Include="..\..\src\Components\Rotation.h" />
-    <ClInclude Include="..\..\src\Components\Scale.h" />
-    <ClInclude Include="..\..\src\Components\Sound.h" />
-    <ClInclude Include="..\..\src\Components\Sphere.h" />
-    <ClInclude Include="..\..\src\Components\Timer.h" />
-    <ClInclude Include="..\..\src\Components\Transform.h" />
     <ClInclude Include="..\..\src\Details\paperback_archetype_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_archetype_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_bitset_inline.h" />
@@ -202,6 +183,7 @@
     <ClInclude Include="..\..\src\paperback_component.h" />
     <ClInclude Include="..\..\src\paperback_component_mgr.h" />
     <ClInclude Include="..\..\src\paperback_coordinator.h" />
+    <ClInclude Include="..\..\src\paperback_data_reflections.h" />
     <ClInclude Include="..\..\src\paperback_event.h" />
     <ClInclude Include="..\..\src\paperback_input.h" />
     <ClInclude Include="..\..\src\paperback_logger.h" />
@@ -226,17 +208,6 @@
     <ClInclude Include="..\..\src\Shapes\Polygon_shape.h" />
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
     <ClInclude Include="..\..\src\Shapes\Triangle.h" />
-    <ClInclude Include="..\..\src\Systems\CollisionSystem.h" />
-    <ClInclude Include="..\..\src\Systems\AnimatorSystem.h" />
-    <ClInclude Include="..\..\src\Systems\DebugSystem.h" />
-    <ClInclude Include="..\..\src\Systems\ImguiSystem.h" />
-    <ClInclude Include="..\..\src\Systems\ParentChildSystem.h" />
-    <ClInclude Include="..\..\src\Systems\PhysicsSystem.h" />
-    <ClInclude Include="..\..\src\Systems\ScriptingSystem.h" />
-    <ClInclude Include="..\..\src\Systems\RendererSystem.h" />
-    <ClInclude Include="..\..\src\Systems\SoundSystem.h" />
-    <ClInclude Include="..\..\src\Systems\system_includes.h" />
-    <ClInclude Include="..\..\src\Systems\WindowSystem.h" />
     <ClInclude Include="paperback_pch.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -248,13 +219,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -274,14 +245,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;$(ProjectDir)..\..\dependencies\mono\include\../../dependencies</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;../Sandbox;$(ProjectDir)..\..\dependencies\mono\include\../../dependencies</IncludePath>
     <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>../../dependencies/dearImGui;$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;../../dependencies$(ProjectDir)..\..\dependencies\mono\include\</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;../Sandbox;../../dependencies$(ProjectDir)..\..\dependencies\mono\include\</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

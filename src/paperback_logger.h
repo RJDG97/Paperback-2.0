@@ -24,8 +24,8 @@ namespace paperback
 	private:
 
 		// Loggers & filesink
-		static MTWriter mt_writer;
-		static MTLogger mt_logger;
+		static inline MTWriter mt_writer;
+		static inline MTLogger mt_logger;
 	};
 }
 

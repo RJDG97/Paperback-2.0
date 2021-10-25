@@ -1,18 +1,19 @@
 #pragma once
-#include "paperback_pch.h"
-#include "Systems/WindowSystem.h"
+//#include "paperback_pch.h"
+//#include "glfw/inc/glfw3.h" ???
+#include "WindowSystem.h"
 #include "Json/paperback_json.h"
 
-#include <IconsFontAwesome5.h>
+#include <dearImGui/IconsFontAwesome5.h>
 #include <sstream>
 //----------------------------------
 // ImGui Headers
 //----------------------------------
-#include <imgui.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
-#include <imgui_internal.h>
-#include <ImGuiFileBrowser.h>
+#include <dearImGui/imgui.h>
+#include <dearImGui/imgui_impl_glfw.h>
+#include <dearImGui/imgui_impl_opengl3.h>
+#include <dearImGui/imgui_internal.h>
+#include <dearImGui/ImGuiFileBrowser.h>
 #include "Functionality/Renderer/Renderer.h"
 
 struct imgui_system : paperback::system::instance

@@ -12,8 +12,13 @@ namespace paperback::system
 		using SystemMap  = std::unordered_map< system::type::guid, system::instance* >;
 		using SystemList = std::vector< std::pair< const system::type::info*, std::unique_ptr<system::instance> > >;
 
+		PPB_INLINE
 		manager( tools::clock& Clock );
+
+		PPB_INLINE
 		manager( const manager& ) = delete;
+
+		PPB_INLINE
 		~manager();
 
 		template < typename... T_SYSTEMS >
