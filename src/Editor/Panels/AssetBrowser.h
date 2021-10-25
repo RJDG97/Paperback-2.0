@@ -7,7 +7,7 @@ namespace fs = std::filesystem;
 
 struct AssetBrowser : paperback::editor::instance
 {
-    bool m_bCreate = false, m_bDeleteFolder = false;
+    bool m_bCreate = false, m_bDeleteFolder = false, m_bDeleteFile = false, m_bDelete = false;
 
     constexpr static auto typedef_v = paperback::editor::type::update
     {
@@ -44,6 +44,8 @@ struct AssetBrowser : paperback::editor::instance
     void FolderName( fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders );
 
     void DeleteFolderContents();
+
+    void DragDropExternal();
 
     std::string DirectoryName( fs::directory_entry Directory );
 
