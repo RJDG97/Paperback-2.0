@@ -43,12 +43,12 @@ struct collision_system : paperback::system::instance
                         if (RigidForce && RF)
                         {
                           bool checker = CheapaabbDynamic(
-                              Boundingbox->Min, Boundingbox->Max,
-                              RigidForce->m_Momentum, RigidForce->m_Forces,
-                              Transform.m_Position, RigidForce->m_Mass,
-                              BB->Min, BB->Max,
-                              RF->m_Momentum, RF->m_Forces,
-                              Xform.m_Position, RF->m_Mass);
+                              Boundingbox,
+                              RigidForce,
+                              Transform,
+                              BB,
+                              RF,
+                              Xform);
                         }
                         Boundingbox->m_Collided = BB->m_Collided = true;
                     }

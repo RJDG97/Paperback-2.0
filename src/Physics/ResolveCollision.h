@@ -2,6 +2,7 @@
 #define RESOLVE_COLLISION_H
 
 //#include "Components/BoundingBox.h"
+//#include "Components/Transform.h"
 //#include <limits>
 #include <stdlib.h>
 #include "Components/RigidForce.h"
@@ -101,54 +102,51 @@ void Cheap_Elastic_collision_1D(paperback::Vector3f& v1, paperback::Vector3f& a1
 }
 // pseudo
 bool CheapaabbDynamic(
-	paperback::Vector3f& Bbox1min, paperback::Vector3f& Bbox1max,
-	paperback::Vector3f& mom1, paperback::Vector3f& f1, 
-	paperback::Vector3f& t1, float mass1,
-	paperback::Vector3f& Bbox2min, paperback::Vector3f& Bbox2max,
-	paperback::Vector3f& mom2, paperback::Vector3f& f2, 
-	paperback::Vector3f& t2, float mass2)
+	boundingbox* Bbox1,
+	rigidforce* rf1,
+	transform& t1,
+	boundingbox* Bbox2,
+	rigidforce* rf2,
+	transform& t2)
+
+//	paperback::Vector3f& Bbox1min, paperback::Vector3f& Bbox1max,
+//	paperback::Vector3f& mom1, paperback::Vector3f& f1, 
+//	paperback::Vector3f& t1, float mass1,
+//	paperback::Vector3f& Bbox2min, paperback::Vector3f& Bbox2max,
+//	paperback::Vector3f& mom2, paperback::Vector3f& f2, 
+//	paperback::Vector3f& t2, float mass2)
 {
-	if (mass1 == 0.f || mass2 == 0.f)
+	if (rf1->m_Mass == 0.f || rf2->m_Mass == 0.f)
 		return false;
 
-	paperback::Vector3f vel1 = mom1 / mass1;
-	paperback::Vector3f vel2 = mom2 / mass2;
-	paperback::Vector3f acc1 = f1 / mass1;
-	paperback::Vector3f acc2 = f2 / mass2;
-
-	paperback::Vector3f d1 = (Bbox1max - Bbox1min); // +ve length
-	paperback::Vector3f d2 = (Bbox2max - Bbox2min);
+	paperback::Vector3f vel1 = rf1->m_Momentum / rf1->m_Mass;
+	paperback::Vector3f vel2 = rf2->m_Momentum / rf2->m_Mass;
+	paperback::Vector3f acc1 = rf1->m_Forces / rf1->m_Mass;
+	paperback::Vector3f acc2 = rf2->m_Forces / rf2->m_Mass;
 
 	paperback::Vector3f velab = vel1 - vel2; // uncorrupt
-	paperback::Vector3f ab = t1 - t2;
-	// dist
-	paperback::Vector3f t_ab = paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));
-
+	paperback::Vector3f ab = t1.m_Position - t2.m_Position;
+	// lol
 	// get pen_depth (+ve), shoulld be a super small value
-	paperback::Vector3f pen_depth = (d1 + d2) - t_ab;
-
-	// cull insignificant values
-	// case 2/4
-	if ((velab.x > 0.f && ab.x > 0.f) || (velab.x < 0.f && ab.x < 0.f))
-		velab.x = 0.f;
-	if ((velab.y > 0.f && ab.y > 0.f) || (velab.y < 0.f && ab.y < 0.f))
-		velab.y = 0.f;
-	if ((velab.z > 0.f && ab.z > 0.f) || (velab.z < 0.f && ab.z < 0.f))
-		velab.z = 0.f;
+	paperback::Vector3f pen_depth = ((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min)) 
+		- paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));
 
 	// case 1/3, useless cases is 0.f - currently (+ve)
-	paperback::Vector3f t_resolve = 
+	paperback::Vector3f t_resolve =
 		paperback::Vector3f(abs(velab.x), abs(velab.y), abs(velab.z));
 
 	// determine collision side, smaller ratio = likely side
 	direction dir = direction::none;
 	float xx = 0.f, yy = 0.f, zz = 0.f; // default value
-	// x
-	if (velab.x != 0.f)		xx = pen_depth.x / t_resolve.x;
-	// y
-	if (velab.y != 0.f)		yy = pen_depth.y / t_resolve.y;
-	// z
-	if (velab.z != 0.f)		zz = pen_depth.z / t_resolve.z;
+
+	// cull insignificant values
+	// case 2/4
+	if ((velab.x > 0.f && ab.x < 0.f) || (velab.x < 0.f && ab.x > 0.f))
+		xx = pen_depth.x / t_resolve.x;
+	if ((velab.y > 0.f && ab.y < 0.f) || (velab.y < 0.f && ab.y > 0.f))
+		yy = pen_depth.y / t_resolve.y;
+	if ((velab.z > 0.f && ab.z < 0.f) || (velab.z < 0.f && ab.z > 0.f))
+		zz = pen_depth.z / t_resolve.z;
 
 	// determined side, higher = earlier intersect
 	if (xx > yy)
@@ -165,6 +163,7 @@ bool CheapaabbDynamic(
 	// resolve penetration depth, aabb style      after that resolve momentum/force
 	if (dir == direction::x)
 	{
+		// warning!!!! t_resolve , likely pen_depth issue causing snapping problem
 		//// case 3
 		//if (ab.x > 0.f)
 		//{
@@ -178,12 +177,12 @@ bool CheapaabbDynamic(
 		//	t2.x += (abs(vel2.x) / t_resolve.x * pen_depth.x);
 		//}
 		// temporary holder before refining
-		Cheap_Elastic_collision_1D(vel1,acc1,mass1,
-			vel2,acc2,mass2,dir);
-		mom1 = vel1 * mass1;
-		mom2 = vel2 * mass2;
-		f1 = acc1 * mass1;
-		f2 = acc2 * mass2;
+		Cheap_Elastic_collision_1D(vel1,acc1, rf1->m_Mass,
+			vel2,acc2, rf2->m_Mass,dir);
+		rf1->m_Momentum = vel1 * rf1->m_Mass;
+		rf2->m_Momentum = vel2 * rf2->m_Mass;
+		rf1->m_Forces = acc1 * rf1->m_Mass;
+		rf2->m_Forces = acc2 * rf2->m_Mass;
 	}
 	// y
 	if (dir == direction::y)
@@ -200,12 +199,12 @@ bool CheapaabbDynamic(
 		//	t1.y -= (abs(vel1.y) / t_resolve.y * pen_depth.y);
 		//	t2.y += (abs(vel2.y) / t_resolve.y * pen_depth.y);
 		//}
-		Cheap_Elastic_collision_1D(vel1, acc1, mass1,
-			vel2, acc2, mass2, dir);
-		mom1 = vel1 * mass1;
-		mom2 = vel2 * mass2;
-		f1 = acc1 * mass1;
-		f2 = acc2 * mass2;
+		Cheap_Elastic_collision_1D(vel1, acc1, rf1->m_Mass,
+			vel2, acc2, rf2->m_Mass, dir);
+		rf1->m_Momentum = vel1 * rf1->m_Mass;
+		rf2->m_Momentum = vel2 * rf2->m_Mass;
+		rf1->m_Forces = acc1 * rf1->m_Mass;
+		rf2->m_Forces = acc2 * rf2->m_Mass;
 	}
 	// z
 	if (dir == direction::z)
@@ -222,12 +221,12 @@ bool CheapaabbDynamic(
 		//	t1.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z);
 		//	t2.z += (abs(vel2.z) / t_resolve.z * pen_depth.z);
 		//}
-		Cheap_Elastic_collision_1D(vel1, acc1, mass1,
-			vel2, acc2, mass2, dir);
-		mom1 = vel1 * mass1;
-		mom2 = vel2 * mass2;
-		f1 = acc1 * mass1;
-		f2 = acc2 * mass2;
+		Cheap_Elastic_collision_1D(vel1, acc1, rf1->m_Mass,
+			vel2, acc2, rf2->m_Mass, dir);
+		rf1->m_Momentum = vel1 * rf1->m_Mass;
+		rf2->m_Momentum = vel2 * rf2->m_Mass;
+		rf1->m_Forces = acc1 * rf1->m_Mass;
+		rf2->m_Forces = acc2 * rf2->m_Mass;
 	}
 	return true;
 }
