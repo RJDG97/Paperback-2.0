@@ -668,13 +668,13 @@ void Renderer::CompositePass()
 
 	// Unbind shader
 	m_Resources.m_Shaders["Composite"].UnUse();
+
+	// Bind default frame buffer
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void Renderer::FinalPass()
 {
-	// Bind default frame buffer
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
 	// Clear depth and color buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
