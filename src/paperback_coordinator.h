@@ -1,5 +1,6 @@
 #pragma once
-
+#include <filesystem>
+namespace fs = std::filesystem;
 namespace paperback::coordinator
 {
 	class instance final
@@ -143,6 +144,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		paperback::component::manager::ComponentInfoMap& GetComponentInfoMap() noexcept;
 
+		PPB_INLINE
+		std::vector<fs::path>& GetDragDropFiles() noexcept;
+
 		//-----------------------------------
 		//              Clock
 		//-----------------------------------
@@ -225,6 +229,7 @@ namespace paperback::coordinator
 
 	private:
 
+		std::vector<fs::path>		m_DragDropFiles;				// External Files 
 		tools::clock				m_Clock;						// Timer
 		Input						m_Input;						// Input
 		component::manager			m_CompMgr;						// Component Manager

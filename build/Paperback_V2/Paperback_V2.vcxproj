@@ -65,6 +65,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\Imterm\terminal_commands.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\dependencies\xcore\src\xcore.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -116,6 +120,23 @@
     <ClCompile Include="paperback_pch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorInclude.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorLogger.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorLogger_Inline.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorPanels.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorPanels_inline.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\ArchetypeInspector.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\ArchetypeInspector_Inline.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\AssetBrowser.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\AssetBrowser_Inline.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\ConsoleTerminal.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\ConsoleTerminal_Inline.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\EntityInspector.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\EntityInspector_Inline.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\PropertyInspector.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\PropertyInspector_Inline.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\WindowSettings.h" />
+    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\WindowSettings_Inline.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\IconsFontAwesome5.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imconfig.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imgui.h" />
@@ -133,6 +154,11 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_rectpack.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_textedit.h" />
     <ClInclude Include="..\..\dependencies\dearImGui\imstb_truetype.h" />
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\misc.hpp" />
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\terminal.hpp" />
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\terminal_commands.hpp" />
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\terminal_helpers.hpp" />
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\utils.hpp" />
     <ClInclude Include="..\..\dependencies\xcore\src\xcore.h" />
     <ClInclude Include="..\..\src\Components\Reflect.h" />
     <ClInclude Include="..\..\src\Details\paperback_archetype_inline.h" />
@@ -211,6 +237,9 @@
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
     <ClInclude Include="..\..\src\Shapes\Triangle.h" />
     <ClInclude Include="paperback_pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\dependencies\dearImGui\Imterm\terminal.tpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

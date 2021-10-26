@@ -104,8 +104,6 @@ namespace paperback::coordinator
 
 			Archetype->SerializeAllEntities(Jfile);
 
-
-
 			Jfile.EndArray();
 			Jfile.EndObject();
 		}
@@ -357,6 +355,10 @@ namespace paperback::coordinator
 		return m_CompMgr.GetComponentInfoMap();
 	}
 
+	std::vector<fs::path>& instance::GetDragDropFiles() noexcept
+	{
+		return m_DragDropFiles;
+	}
 
 	//-----------------------------------
 	//              Clock
