@@ -51,6 +51,10 @@ namespace paperback::coordinator
 		m_CompMgr.Terminate();
 	}
 
+	void instance::QuitApplication(void) noexcept
+	{
+		m_GameActive = false;
+	}
 
 	//-----------------------------------
 	//          Registration

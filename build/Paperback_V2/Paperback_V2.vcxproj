@@ -198,7 +198,9 @@
     <ClInclude Include="..\..\src\Physics\Physics_includes.h" />
     <ClInclude Include="..\..\src\Scripts\IScripts.h" />
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Application.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />

@@ -9,7 +9,8 @@ using System.Runtime.CompilerServices;
 
 namespace CSScript
 {
-    public class Camera {
+    public class Camera
+    {
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern static void MoveForward();

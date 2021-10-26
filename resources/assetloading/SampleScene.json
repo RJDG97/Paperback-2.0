@@ -178,7 +178,27 @@
                         }
                     },
                     "EntityScript": {
-                        "Script ID": "Unit"
+                        "Script ID": "CameraMovement"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 4
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -4.0,
+                            "y": 2.5,
+                            "z": -10.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": "QuitScript"
                     }
                 }
             ]

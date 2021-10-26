@@ -8,8 +8,11 @@
 
 struct scripting_system : paperback::system::instance
 {
+	// Instance of the system
 	Mono* m_pMono = nullptr;
-	std::unordered_map< std::string, std::unique_ptr<Script> > scriptlist;
+
+	// Map of entity ID's and Script instances
+	std::unordered_map< uint32_t, std::unique_ptr<Script> > scriptlist;
 
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
@@ -21,29 +24,42 @@ struct scripting_system : paperback::system::instance
 		m_pMono = &Mono::GetInstanced();
 	}
 
-	void Update(void) noexcept 
+	void Update(void) noexcept
 	{
 		tools::query Query;
-		Query.m_Must.AddFromComponents<entityscript>();
+		Query.m_Must.AddFromComponents<paperback::component::entity, entityscript>();
 
-		ForEach( Search( Query ), [&]( entityscript& script ) noexcept
-		{
-			auto Found = scriptlist.find( script.m_ScriptID );
-
-			if ( Found == scriptlist.end() )
+		// Run each entity with the entity script component
+		ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
 			{
-				const auto& [ Script, Valid ] = scriptlist.insert( { script.m_ScriptID, std::make_unique<Script>( script.m_ScriptID ) } );
-				if ( Valid )
+				// check for an instance of this entity's script
+				auto Found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+
+				if (Found == scriptlist.end())
+				{	// if no instance create one
+					const auto& [Script, Valid] = scriptlist.insert({ Dynamic_Entity.m_GlobalIndex, std::make_unique<Script>() });
+					if (Valid)
+						Script->second->Init(script.m_ScriptID); // Initialize if successful
+					// Run entity's start script
 					Script->second->Start();
-			}
-			else
-			{
-				Found->second->Update();
-			}
-		});
+				}
+				else
+				{	// run entity's update script
+					Found->second->Update(m_Coordinator.DeltaTime());
+				}
+			});
+
+		// check for updating dll (still needs hot reloading)
+		if (PPB.IsKeyPress(GLFW_KEY_C)) {
+			// Update Mono DLL
+			m_pMono->UpdateDLL();
+			// For each entity with a script component, update instance
+			for (auto s = scriptlist.begin(); s != scriptlist.end(); s++)
+				s->second->ScriptUpdate();
+		}
 	}
 
-	void OnSystemTerminated(void) noexcept 
+	void OnSystemTerminated(void) noexcept
 	{
 		m_pMono->ReleaseDomain();
 	}

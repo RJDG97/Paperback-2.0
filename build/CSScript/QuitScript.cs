@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace CSScript
 {
-    public class UnitBehaviour : MonoBehaviour
+    public class QuitScript : MonoBehaviour
     {
-        public static UnitBehaviour getInst()
+        public static QuitScript getInst()
         {
-            return new UnitBehaviour();
+            return new QuitScript();
         }
         public void Start()
         {
         }
         public void Update(float dt)
         {
+            //Console.WriteLine(dt);
+            if (Input.IsKeyPress(Input.PB_ESCAPE))
+                Application.Quit();
         }
         public void Destroy()
         {

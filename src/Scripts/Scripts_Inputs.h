@@ -38,11 +38,11 @@ namespace MONO_INPUTS
 
 	void AddInternals()
 	{
-		mono_add_internal_call("CSScript.Inputs::IsKeyPress(int)", &MONO_INPUTS::IsKeyPress);
-		mono_add_internal_call("CSScript.Inputs::IsKeyPressDown(int)", &MONO_INPUTS::IsKeyPressDown);
-		mono_add_internal_call("CSScript.Inputs::IsKeyPressUp(int)", &MONO_INPUTS::IsKeyPressUp);
-		mono_add_internal_call("CSScript.Inputs::IsMousePress(int)", &MONO_INPUTS::IsMousePress);
-		mono_add_internal_call("CSScript.Inputs::IsMouseDown(int)", &MONO_INPUTS::IsMouseDown);
-		mono_add_internal_call("CSScript.Inputs::IsMouseUp(int)", &MONO_INPUTS::IsMouseUp);
+		mono_add_internal_call("CSScript.Input::IsKeyPress(int)", &MONO_INPUTS::IsKeyPress);
+		mono_add_internal_call("CSScript.Input::IsKeyPressDown(int)", &MONO_INPUTS::IsKeyPressDown);
+		mono_add_internal_call("CSScript.Input::IsKeyPressUp(int)", &MONO_INPUTS::IsKeyPressUp);
+		mono_add_internal_call("CSScript.Input::IsMousePress(int)", &MONO_INPUTS::IsMousePress);
+		mono_add_internal_call("CSScript.Input::IsMouseDown(int)", &MONO_INPUTS::IsMouseDown);
+		mono_add_internal_call("CSScript.Input::IsMouseUp(int)", &MONO_INPUTS::IsMouseUp);
 	}
 }

@@ -30,6 +30,8 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void Terminate( void ) noexcept;
 
+		PPB_INLINE
+		void QuitApplication(void) noexcept;
 
 		//-----------------------------------
 		//           Registration

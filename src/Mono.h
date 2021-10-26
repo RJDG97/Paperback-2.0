@@ -1,5 +1,5 @@
 #pragma once
- 
+
 #ifndef MONO
 #define MONO_EXPORT __declspec(dllexport)
 #else
@@ -12,13 +12,17 @@
 
 #include <mono/metadata/appdomain.h>
 
+#include "paperback_logger.h"
 #include "Scripts/MonoInternal.h"
 
-class Mono 
+class Mono
 {
 	MonoDomain* m_pMonoDomain = nullptr;
+	MonoDomain* m_pMonoDomain2 = nullptr;
 	MonoAssembly* m_pMonoAssembly = nullptr;
 	MonoImage* m_pMonoImage = nullptr;
+
+	bool m_UsingDomain1 = true;
 
 public:
 
@@ -35,11 +39,10 @@ public:
 
 		// Create domain (exits if unsuccessful)
 		m_pMonoDomain = mono_jit_init("Mono");
-
-		if(UpdateDLL()){
+		if (LoadAssembly(m_pMonoDomain)) {
 			// Add internal calls (Expose to C# script)
 			MONO_INTERNALS::MonoAddInternalCall();
-			
+
 			// Add classes
 			m_pMainClass = ImportClass("CSScript", "Main");
 
@@ -50,7 +53,7 @@ public:
 				if (m_pMainObj) {
 					// Reference handler for specified class
 					m_MonoHandler = mono_gchandle_new(m_pMainObj, false);
-				
+
 					// Add External Calls
 					m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:main()");
 				}
@@ -58,17 +61,53 @@ public:
 		}
 	}
 
-	bool UpdateDLL()
+	void UpdateDLL()
 	{
-		// Load binary file as an assembly
-		m_pMonoAssembly = mono_domain_assembly_open(m_pMonoDomain, "../../build/Paperback_V2/bin/Debug/CSScript.dll");
-		if (m_pMonoAssembly) {
-			//	 Load mono image
-			m_pMonoImage = mono_assembly_get_image(m_pMonoAssembly);
-			if (m_pMonoImage)
-				return true;
+		RunImportFn(m_pMainObj, m_pMainFn);
+
+		char m_DName[] = "Update";
+		if (m_UsingDomain1) {
+			m_pMonoDomain2 = mono_domain_create_appdomain(m_DName, NULL);
+			mono_domain_set(m_pMonoDomain2, false);
+			LoadAssembly(m_pMonoDomain2);
+			// Unload Previous Domain
+			UnloadDomain(m_pMonoDomain);
+			m_UsingDomain1 = false;
 		}
+		else {
+			m_pMonoDomain = mono_domain_create_appdomain(m_DName, NULL);
+			mono_domain_set(m_pMonoDomain, false);
+			LoadAssembly(m_pMonoDomain);
+			// Unload Previous Domain
+			UnloadDomain(m_pMonoDomain2);
+			m_UsingDomain1 = true;
+		}
+	}
+
+	bool LoadAssembly(MonoDomain* Domain)
+	{
+		if (Domain) {	// load assembly 			
+			m_pMonoAssembly = mono_domain_assembly_open(Domain, "../Paperback_V2/bin/Debug/CSScript.dll");
+			if (m_pMonoAssembly) {	//	 Load mono image
+				m_pMonoImage = mono_assembly_get_image(m_pMonoAssembly);
+				if (m_pMonoImage)
+					return true;
+				else
+					PPB_ASSERT("Mono Image not initialized");
+			}
+			PPB_ASSERT("Mono Assembly not initialized");
+		}
+		PPB_ASSERT("Mono Domain not created");
 		return false;
+	}
+
+	void UnloadDomain(MonoDomain* domainToUnload)
+	{
+		if (domainToUnload && domainToUnload != mono_get_root_domain())
+		{
+			mono_domain_set(mono_get_root_domain(), false);
+			mono_domain_unload(domainToUnload);
+		}
 	}
 
 	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass)
@@ -82,13 +121,18 @@ public:
 				// Call main method
 				MonoObject* mono_exception = nullptr;
 				// Reference object for specified class
-				m_pMonoObj = ThreadCallback(mono_main_method, mono_exception);
+				m_pMonoObj = mono_runtime_invoke(mono_main_method, nullptr, nullptr, &mono_exception);
 				// Exception Handling
 				MonoException(mono_exception);
 			}
 			// Free Desc
 			mono_method_desc_free(mono_main_desc);
 		}
+		if (m_pMonoObj == nullptr) {
+			std::string str = m_pFnDesc;
+			WARN_PRINT(str + " function not found");
+		}
+
 		return m_pMonoObj;
 	}
 
@@ -117,7 +161,27 @@ public:
 			MonoObject* exception = nullptr;
 			// Get function
 			fn = mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
-			
+			if (exception)	// Exception Handling
+				MonoException(exception);
+		}
+		return fn;
+	}
+
+	template <typename ...Args>
+	MonoObject* RunImportFn(MonoObject* m_pObj, MonoMethod* m_pFn, Args... args)
+	{
+		// Unpack Arguments
+		void* m_Arguments[] = { &args... };
+		// Run Function
+		MonoObject* fn = nullptr;
+		if (m_pFn)
+		{
+			MonoObject* exception = nullptr;
+			if (m_Arguments)	// Get function w arguments
+				fn = mono_runtime_invoke(m_pFn, m_pObj, m_Arguments, &exception);
+			else	// Get function without params
+				fn = mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
+
 			// Exception Handling
 			MonoException(exception);
 		}
@@ -132,7 +196,17 @@ public:
 
 	MonoClass* ImportClass(const char* _namespace, const char* _class)
 	{
-		return mono_class_from_name(m_pMonoImage, _namespace, _class);
+		if (m_pMonoImage == NULL) {
+			PPB_ASSERT("Mono Image not initialized");
+			return nullptr;
+		}
+
+		MonoClass* result = mono_class_from_name(m_pMonoImage, _namespace, _class);
+		if (!result) {
+			std::string str = _class;
+			WARN_PRINT(str + " class not found");
+		}
+		return result;
 	}
 
 	MonoMethod* ImportFunction(MonoClass* m_pClass, MonoObject* m_pObj, const char* m_pFnDesc)
@@ -144,6 +218,10 @@ public:
 
 		if (vitrualMethod)
 			fn = mono_object_get_virtual_method(m_pObj, vitrualMethod);
+		else {
+			std::string str = m_pFnDesc;
+			WARN_PRINT(str + " function not found");
+		}
 
 		// Free
 		mono_method_desc_free(mono_extern_methoddesc);
@@ -155,9 +233,10 @@ public:
 	{
 		if (m_MonoHandler)
 			mono_gchandle_free(m_MonoHandler);
-
-		if (m_pMonoDomain)
+		if (m_UsingDomain1)
 			mono_jit_cleanup(m_pMonoDomain);
+		else
+			mono_jit_cleanup(m_pMonoDomain2);
 	}
 
 
