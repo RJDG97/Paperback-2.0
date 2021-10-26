@@ -33,6 +33,36 @@ glm::vec3 Camera::GetPosition() const
 	return m_Position;
 }
 
+void Camera::SetPosition(const glm::vec3& Position)
+{
+	glm::vec3 lookDirection = glm::normalize(m_Target - m_Position);
+
+	m_Position = Position;
+	m_Target = lookDirection + m_Position;
+
+	UpdateView();
+}
+
+void Camera::SetTarget(const glm::vec3& Target)
+{
+	glm::vec3 lookDirection = glm::normalize(Target - m_Position);
+	m_Target = lookDirection + m_Position;
+
+	m_Front = m_Target - m_Position;
+	m_Right = glm::cross(m_Front, glm::vec3{ 0.f, 1.f, 0.f });
+	m_Up = glm::cross(m_Right, m_Front);
+
+	m_Front = glm::normalize(m_Front);
+	m_Right = glm::normalize(m_Right);
+	m_Up = glm::normalize(m_Up);
+
+	UpdateView();
+
+	glm::vec3 offsetDirection = m_Position - m_Target;
+	m_Theta = glm::degrees(glm::acos(offsetDirection.y));
+	m_Azimuth = glm::degrees(glm::atan(offsetDirection.x, offsetDirection.z));
+}
+
 void Camera::MoveForward()
 {
 	glm::vec3 translate = m_Front * 0.1f;
@@ -91,8 +121,8 @@ void Camera::RotateRight()
 {
 	m_Azimuth -= 0.1f;
 
-	if (m_Azimuth < 0.f )
-		m_Azimuth = 360.f;
+	if (m_Azimuth < 0.f)
+		m_Azimuth += 360.f;
 
 	UpdateVectors();
 
@@ -104,7 +134,7 @@ void Camera::RotateLeft()
 	m_Azimuth += 0.1f;
 
 	if (m_Azimuth > 360.f)
-		m_Azimuth = 0.f;
+		m_Azimuth -= 360.f;
 
 	UpdateVectors();
 
@@ -147,12 +177,13 @@ void Camera::UpdateVectors()
 	float cosAzimuth = glm::cos(glm::radians(m_Azimuth));
 	float sinAzimuth = glm::sin(glm::radians(m_Azimuth));
 
-	glm::vec3 offset;
-	offset.x = m_Radius * sinAzimuth * sinTheta;
-	offset.y = m_Radius * cosTheta;
-	offset.z = m_Radius * cosAzimuth * sinTheta;
+	// Direction from point to position
+	glm::vec3 offsetDirection;
+	offsetDirection.x = m_Radius * sinAzimuth * sinTheta;
+	offsetDirection.y = m_Radius * cosTheta;
+	offsetDirection.z = m_Radius * cosAzimuth * sinTheta;
 
-	m_Target = m_Position - offset;
+	m_Target = m_Position - offsetDirection;
 
 	m_Front = m_Target - m_Position;
 	m_Right = glm::cross(m_Front, glm::vec3{ 0.f, 1.f, 0.f });
