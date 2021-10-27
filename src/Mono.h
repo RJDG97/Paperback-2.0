@@ -40,24 +40,24 @@ public:
 
 		// Create domain (exits if unsuccessful)
 		m_pMonoDomain = mono_jit_init("Mono");
-		if (LoadAssembly(m_pMonoDomain)) {
+		if (LoadAssembly(m_pMonoDomain, "../CSScript/CSScript.dll")) {
 			// Add internal calls (Expose to C# script)
 			MONO_INTERNALS::MonoAddInternalCall();
 
 			// Add classes
-			m_pMainClass = ImportClass("CSScript", "Main");
+			m_pMainClass = ImportClass("CSScript", "MainApplication");
 
 			if (m_pMainClass) {
 				// Describe Method for main
-				m_pMainObj = GetClassInstance(".Main:getInst()", m_pMainClass);
+				m_pMainObj = GetClassInstance(".MainApplication:getInst()", m_pMainClass);
 
 				if (m_pMainObj) {
 					// Reference handler for specified class
 					m_MonoHandler = mono_gchandle_new(m_pMainObj, false);
 
 					// Add External Calls
-					m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:main()");
-					m_pCompileFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:CompileDLL()");
+					m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".MainApplication:Main()");
+					m_pCompileFn = ImportFunction(m_pMainClass, m_pMainObj, ".MainApplication:CompileDLL(bool)");
 				}
 			}
 		}
@@ -65,31 +65,40 @@ public:
 
 	void UpdateDLL()
 	{
-		RunImportFn(m_pMainObj, m_pCompileFn);
+		RunImportFn(m_pMainObj, m_pCompileFn, m_UsingDomain1);
 
 		char m_DName[] = "Update";
 		if (m_UsingDomain1) {
 			m_pMonoDomain2 = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain2, false);
-			LoadAssembly(m_pMonoDomain2);
-			// Unload Previous Domain
-			UnloadDomain(m_pMonoDomain);
-			m_UsingDomain1 = false;
+			if (LoadAssembly(m_pMonoDomain2, "../CSScript/CSScript2.dll"))
+			{
+				// Unload Previous Domain
+				UnloadDomain(m_pMonoDomain);
+				m_UsingDomain1 = false;
+			}
+			else
+				UnloadDomain(m_pMonoDomain2);
+
 		}
 		else {
 			m_pMonoDomain = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain, false);
-			LoadAssembly(m_pMonoDomain);
-			// Unload Previous Domain
-			UnloadDomain(m_pMonoDomain2);
-			m_UsingDomain1 = true;
+			if (LoadAssembly(m_pMonoDomain, "../CSScript/CSScript.dll"))
+			{
+				// Unload Previous Domain
+				UnloadDomain(m_pMonoDomain2);
+				m_UsingDomain1 = true;
+			}
+			else
+				UnloadDomain(m_pMonoDomain);
 		}
 	}
 
-	bool LoadAssembly(MonoDomain* Domain)
+	bool LoadAssembly(MonoDomain* Domain, const char* dllname)
 	{
 		if (Domain) {	// load assembly 			
-			m_pMonoAssembly = mono_domain_assembly_open(Domain, "../Paperback_V2/bin/Debug/CSScript.dll");
+			m_pMonoAssembly = mono_domain_assembly_open(Domain, dllname);
 			if (m_pMonoAssembly) {	//	 Load mono image
 				m_pMonoImage = mono_assembly_get_image(m_pMonoAssembly);
 				if (m_pMonoImage)
