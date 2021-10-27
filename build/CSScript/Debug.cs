@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,9 +8,11 @@ using System.Runtime.CompilerServices;
 
 namespace CSScript
 {
-    class Application
+    public class Debug
     {
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern static void Quit();
+        public extern static void Log(string str);
+        //[MethodImplAttribute(MethodImplOptions.InternalCall)]
+        //public extern static void DrawLine(vector3 begin ,vector3 end, Color colour);
     }
 }

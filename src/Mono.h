@@ -31,6 +31,7 @@ public:
 	MonoObject* m_pMainObj;
 	MonoClass* m_pMainClass = nullptr;
 	MonoMethod* m_pMainFn = nullptr;
+	MonoMethod* m_pCompileFn = nullptr;
 
 	Mono()
 	{
@@ -56,6 +57,7 @@ public:
 
 					// Add External Calls
 					m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:main()");
+					m_pCompileFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:CompileDLL()");
 				}
 			}
 		}
@@ -63,7 +65,7 @@ public:
 
 	void UpdateDLL()
 	{
-		RunImportFn(m_pMainObj, m_pMainFn);
+		RunImportFn(m_pMainObj, m_pCompileFn);
 
 		char m_DName[] = "Update";
 		if (m_UsingDomain1) {
@@ -149,6 +151,7 @@ public:
 			const char* exCString = mono_string_to_utf8(exString);
 
 			// Print Error
+			CRITICAL_PRINT(exCString);
 			PPB_ASSERT(exCString);
 		}
 	}
