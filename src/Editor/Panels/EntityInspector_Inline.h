@@ -1,4 +1,4 @@
-#include "Editor/Panels/EntityInspector.h"
+#include "EntityInspector.h"
 
 void EntityInspector::Panel()
 {

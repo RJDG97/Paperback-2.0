@@ -175,6 +175,8 @@
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_system_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\Viewport.h" />
+    <ClInclude Include="..\..\src\Editor\Panels\Viewport_Inline.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />

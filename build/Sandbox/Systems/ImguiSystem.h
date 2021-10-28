@@ -29,6 +29,7 @@
 #include "Editor/Panels/WindowSettings.h"
 #include "Editor/Panels/AssetBrowser.h"
 #include "Editor/Panels/ConsoleTerminal.h"
+#include "Editor/Panels/Viewport.h"
 
 
 namespace fs = std::filesystem;
@@ -138,7 +139,10 @@ struct imgui_system : paperback::system::instance
         //-----------------------------------
         //         Register Panels
         //-----------------------------------
-        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, WindowSettings, AssetBrowser, ConsoleTerminal >();
+        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, 
+                   WindowSettings, AssetBrowser, ConsoleTerminal,
+                   EditorViewport
+        >();
 
         EDITOR_INFO_PRINT("Editor Loaded");
     }
@@ -342,21 +346,24 @@ struct imgui_system : paperback::system::instance
                 if (ImGui::MenuItem("World Outliner"))
                     GetPanel<EntityInspector>()->Enable();
 
-                //if (ImGui::MenuItem("Archetype/Prefabs"))
-                //    GetPanel<ArchetypeInspector>()->Enable();
+                if (ImGui::MenuItem("Archetype/Prefabs"))
+                    GetPanel<ArchetypeInspector>()->Enable();
 
-                //if (ImGui::MenuItem("Entity Details"))
-                //    GetPanel<DetailsWindow>()->Enable();
+                if (ImGui::MenuItem("Entity Details"))
+                    GetPanel<DetailsWindow>()->Enable();
 
-                ImGui::Separator();
-
-                //if (ImGui::MenuItem("Asset Browser"))
-                //    GetPanel<AssetBrowser>()->Enable();
+                if (ImGui::MenuItem("Viewport"))
+                    GetPanel<EditorViewport>()->Enable();
 
                 ImGui::Separator();
 
-                //if (ImGui::MenuItem("Console Terminal"))
-                //    GetPanel<ConsoleTerminal>()->Enable();
+                if (ImGui::MenuItem("Asset Browser"))
+                    GetPanel<AssetBrowser>()->Enable();
+
+                ImGui::Separator();
+
+                if (ImGui::MenuItem("Console Terminal"))
+                    GetPanel<ConsoleTerminal>()->Enable();
 
                 if (ImGui::MenuItem("Window Settings"))
                     GetPanel<WindowSettings>()->Enable();
@@ -626,9 +633,10 @@ struct imgui_system : paperback::system::instance
     }
 };
 
-#include "../../../src/Editor/Panels/EntityInspector_Inline.h"
-#include "../../../src/Editor/Panels/PropertyInspector_Inline.h"
-#include "../../../src/Editor/Panels/ArchetypeInspector_Inline.h"
-#include "../../../src/Editor/Panels/ConsoleTerminal_Inline.h"
-#include "../../../src/Editor/Panels/AssetBrowser_Inline.h"
-#include "../../../src/Editor/Panels/WindowSettings_Inline.h"
+#include "Editor/Panels/EntityInspector_Inline.h"
+#include "Editor/Panels/PropertyInspector_Inline.h"
+#include "Editor/Panels/ArchetypeInspector_Inline.h"
+#include "Editor/Panels/ConsoleTerminal_Inline.h"
+#include "Editor/Panels/AssetBrowser_Inline.h"
+#include "Editor/Panels/WindowSettings_Inline.h"
+#include "Editor/Panels/Viewport_Inline.h"

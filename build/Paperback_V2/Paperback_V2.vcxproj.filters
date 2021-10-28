@@ -73,14 +73,14 @@
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.cpp">
       <Filter>Dependencies\dearImGui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
-      <Filter>Dependencies\dearImGui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Nui\NUILoader.cpp">
       <Filter>Source\Tools\Functionality\NUI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\dependencies\dearImGui\Imterm\terminal_commands.cpp">
       <Filter>Dependencies\dearImGui\ImTerm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
+      <Filter>Dependencies\dearImGui\ImGuiFileBrowser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -270,9 +270,6 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_opengl3_loader.h">
       <Filter>Dependencies\dearImGui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
-      <Filter>Dependencies\dearImGui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
@@ -435,6 +432,15 @@
     <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\PropertyInspector_Inline.h">
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
+      <Filter>Dependencies\dearImGui\ImGuiFileBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Viewport.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Viewport_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -523,6 +529,9 @@
     </Filter>
     <Filter Include="Source\Tools\Editor\Panels">
       <UniqueIdentifier>{36f4a29e-8481-4bb1-8147-4f50a86aeb13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\dearImGui\ImGuiFileBrowser">
+      <UniqueIdentifier>{55f48a8f-b224-4ef4-a213-118c0cc60494}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
