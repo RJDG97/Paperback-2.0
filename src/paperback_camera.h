@@ -12,6 +12,9 @@ public:
 	glm::mat4 GetProjection() const;
 	glm::vec3 GetPosition() const;
 
+	void SetPosition(const glm::vec3& Position);
+	void SetTarget(const glm::vec3& Target);
+
 	void MoveForward();
 	void MoveBackward();
 	void MoveRight();

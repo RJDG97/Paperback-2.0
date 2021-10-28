@@ -66,6 +66,7 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Light", "../../resources/shaders/Lighting.vert", "../../resources/shaders/Lighting.frag");
 	m_Resources.LoadShader("Blur", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Blur.frag");
 	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
+	m_Resources.LoadShader("Final", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Final.frag");
 	m_Resources.LoadShader("Skybox", "../../resources/shaders/Skybox.vert", "../../resources/shaders/Skybox.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 
@@ -106,6 +107,9 @@ Renderer::~Renderer()
 
 	glDeleteFramebuffers(static_cast<GLsizei>(m_BlurBuffer.m_FrameBuffer.size()), m_BlurBuffer.m_FrameBuffer.data());
 	glDeleteTextures(static_cast<GLsizei>(m_BlurBuffer.m_BufferTexture.size()), m_BlurBuffer.m_BufferTexture.data());
+
+	glDeleteFramebuffers(m_FinalBuffer.m_FrameBuffer.size(), m_FinalBuffer.m_FrameBuffer.data());
+	glDeleteTextures(m_FinalBuffer.m_BufferTexture.size(), m_FinalBuffer.m_FrameBuffer.data());
 }
 
 void Renderer::SetUpFramebuffer(int Width, int Height)
@@ -197,6 +201,26 @@ void Renderer::SetUpFramebuffer(int Width, int Height)
 		m_BlurBuffer.m_BufferTexture.push_back(blurTexture[i]);
 	}
 
+	// Create final framebuffer
+	GLuint finalFbo;
+	glCreateFramebuffers(1, &finalFbo);
+
+	// Create final texture
+	GLuint finalTexture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &finalTexture);
+
+	glTextureStorage2D(finalTexture, 1, GL_RGBA16F, Width, Height);
+	glTextureParameteri(finalTexture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameteri(finalTexture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTextureParameteri(finalTexture, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(finalTexture, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	// Attach texture to framebuffer
+	glNamedFramebufferTexture(finalFbo, GL_COLOR_ATTACHMENT0, finalTexture, 0);
+
+	m_FinalBuffer.m_FrameBuffer.push_back(finalFbo);
+	m_FinalBuffer.m_BufferTexture.push_back(finalTexture);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
@@ -258,6 +282,25 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 		m_BlurBuffer.m_BufferTexture.push_back(blurTexture[i]);
 	}
 
+	// Delete old final buffer textures
+	glDeleteTextures(static_cast<GLsizei>(m_FinalBuffer.m_BufferTexture.size()), m_FinalBuffer.m_BufferTexture.data());
+	m_FinalBuffer.m_BufferTexture.clear();
+
+	// Create final texture
+	GLuint finalTexture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &finalTexture);
+
+	glTextureStorage2D(finalTexture, 1, GL_RGBA16F, Width, Height);
+	glTextureParameteri(finalTexture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameteri(finalTexture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTextureParameteri(finalTexture, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(finalTexture, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	// Attach texture to framebuffer
+	glNamedFramebufferTexture(m_FinalBuffer.m_FrameBuffer[0], GL_COLOR_ATTACHMENT0, finalTexture, 0);
+
+	m_FinalBuffer.m_BufferTexture.push_back(finalTexture);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
@@ -265,15 +308,27 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<std
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	// Render shadows
 	ShadowPass(Objects);
+	// Render objects
 	RenderPass(Objects);
+
+	// Render debug points
 	if (Points)
 	{
 		DebugRender(*Points);
 	}
+	// Render skybox
 	SkyBoxRender();
+
+	glDisable(GL_DEPTH_TEST);
+	// Blur bright image
 	BlurPass();
+	// Merge blur and original image
 	CompositePass();
+	// Display final image to screen
+	FinalPass();
+	glEnable(GL_DEPTH_TEST);
 }
 
 void Renderer::DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points)
@@ -540,7 +595,6 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 
 void Renderer::BlurPass()
 {
-	glDisable(GL_DEPTH_TEST);
 	bool horizontal = true, first = true;
 
 	// Bind shader
@@ -583,7 +637,7 @@ void Renderer::BlurPass()
 void Renderer::CompositePass()
 {
 	// Bind default frame buffer
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, m_FinalBuffer.m_FrameBuffer[0]);
 
 	// Clear depth and color buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -615,7 +669,41 @@ void Renderer::CompositePass()
 	// Unbind shader
 	m_Resources.m_Shaders["Composite"].UnUse();
 
-	glEnable(GL_DEPTH_TEST);
+	// Bind default frame buffer
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void Renderer::FinalPass()
+{
+	// Clear depth and color buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Bind shader
+	m_Resources.m_Shaders["Final"].Use();
+
+	// Bind vao
+	glBindVertexArray(m_VAO);
+
+	// Set screen model
+	const auto& screen = m_Resources.m_Models["Screen"];
+	glVertexArrayVertexBuffer(m_VAO, 0, screen.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
+	glVertexArrayElementBuffer(m_VAO, screen.GetSubMeshes()[0].m_EBO);
+
+	glBindTextureUnit(0, m_FinalBuffer.m_BufferTexture[0]);
+	m_Resources.m_Shaders["Final"].SetUniform("uFinal", 0);
+
+	glDrawElements(screen.GetPrimitive(), screen.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	// Unbind shader
+	m_Resources.m_Shaders["Final"].UnUse();
+}
+
+GLuint Renderer::GetFinalImage()
+{
+	return m_FinalBuffer.m_BufferTexture[0];
 }
 
 Renderer& Renderer::GetInstanced()
