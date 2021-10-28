@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 
 using System.CodeDom.Compiler;
 using Microsoft.CSharp;
-using Mono.CSharp;
-using Mono.CompilerServices.SymbolWriter;
+
 namespace CSScript
 {
     public class MainApplication
@@ -22,15 +21,15 @@ namespace CSScript
             };
 
             string[] files = {
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\main.cs",
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\QuitScript.cs",
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\Unit.cs",
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\CameraMovement.cs",
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\Tools\Application.cs",
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\Tools\Camera.cs",
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\Tools\Debug.cs",
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\Tools\Inputs.cs",
-                @"C:\Users\Renzo\Documents\School\Fall '21\GAM300\Paperback-2.0\build\CSScript\Tools\MonoBehaviour.cs"
+                @"..\CSScript\main.cs",
+                @"..\CSScript\QuitScript.cs",
+                @"..\CSScript\Unit.cs",
+                @"..\CSScript\CameraMovement.cs",
+                @"..\CSScript\Tools\Application.cs",
+                @"..\CSScript\Tools\Camera.cs",
+                @"..\CSScript\Tools\Debug.cs",
+                @"..\CSScript\Tools\Inputs.cs",
+                @"..\CSScript\Tools\MonoBehaviour.cs"
             };
 
             CSharpCodeProvider provider = new CSharpCodeProvider();
