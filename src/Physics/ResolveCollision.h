@@ -16,8 +16,8 @@ enum direction
 };
 
 // cheap 1D
-void Cheap_Elastic_collision_1D(paperback::Vector3f& v1, paperback::Vector3f& a1, const float mass1,
-	paperback::Vector3f& v2, paperback::Vector3f& a2, const float mass2, direction& dir)
+void Cheap_Elastic_collision_1D(float& v1, float& a1, const float mass1,
+	float& v2, float& a2, const float mass2)
 {
 	if (mass1 != mass2)
 	{
@@ -26,78 +26,25 @@ void Cheap_Elastic_collision_1D(paperback::Vector3f& v1, paperback::Vector3f& a1
 			var2 = (2 * mass2) / total_mass,
 			var3 = (2 * mass1) / total_mass,
 			var4 = (mass2 - mass1) / total_mass;
-		float vt1 = 0.f, vt2 = 0.f, at1 = 0.f, at2 = 0.f;
-		
-		if (dir == direction::x)
-		{
-			vt1 = v1.x;
-			vt2 = v2.x;
-			at1 = a1.x;
-			at2 = a2.x;
-		}
-		else if (dir == direction::y)
-		{
-			vt1 = v1.y;
-			vt2 = v2.y;
-			at1 = a1.y;
-			at2 = a2.y;
-		}
-		else if (dir == direction::z)
-		{
-			vt1 = v1.z;
-			vt2 = v2.z;
-			at1 = a1.z;
-			at2 = a2.z;
-		}
 
-		float obj1 = (var1 * vt1)
-			+ (var2 * vt2);
-		float obj2 = (var3 * vt1)
-			+ (var4 * vt2);
-		float obj3 = (var1 * at1)
-			+ (var2 * at2);
-		float obj4 = (var3 * at1)
-			+ (var4 * at2);
+		float obj1 = (var1 * v1)
+			+ (var2 * v2);
+		float obj2 = (var3 * v1)
+			+ (var4 * v2);
+		float obj3 = (var1 * a1)
+			+ (var2 * a2);
+		float obj4 = (var3 * a1)
+			+ (var4 * a2);
 
-		if (dir == direction::x)
-		{
-			v1.x = obj1;
-			v2.x = obj2;
-			a1.x = obj3;
-			a2.x = obj4;
-		}
-		else if (dir == direction::y)
-		{
-			v1.y = obj1;
-			v2.y = obj2;
-			a1.y = obj3;
-			a2.y = obj4;
-		}
-		else if (dir == direction::z)
-		{
-			v1.z = obj1;
-			v2.z = obj2;
-			a1.z = obj3;
-			a2.z = obj4;
-		}
+		v1 = obj1;
+		v2 = obj2;
+		a1 = obj3;
+		a2 = obj4;
 	}
 	else // Swap
 	{
-		if (dir == direction::x)
-		{
-			paperback::MathUtils::Swap<float>(v1.x, v2.x);
-			paperback::MathUtils::Swap<float>(a1.x, a2.x);
-		}
-		else if (dir == direction::y)
-		{
-			paperback::MathUtils::Swap<float>(v1.y, v2.y);
-			paperback::MathUtils::Swap<float>(a1.y, a2.y);
-		}
-		else if (dir == direction::z)
-		{
-			paperback::MathUtils::Swap<float>(v1.z, v2.z);
-			paperback::MathUtils::Swap<float>(a1.z, a2.z);
-		}
+		paperback::MathUtils::Swap<float>(v1, v2);
+		paperback::MathUtils::Swap<float>(a1, a2);
 	}
 }
 // pseudo
@@ -148,88 +95,140 @@ bool CheapaabbDynamic(
 	if ((velab.z > 0.f && ab.z < 0.f) || (velab.z < 0.f && ab.z > 0.f))
 		zz = pen_depth.z / t_resolve.z;
 
-	// determined side, higher = earlier intersect
-	if (xx > yy)
-		if (xx > zz)
-			dir = direction::x;
-		else
-			dir = direction::z;
-	else
-		if (yy > zz)
-			dir = direction::y;
-		else
-			dir = direction::z;
-
+	// determined side, higher = earlier intersect,
 	// resolve penetration depth, aabb style      after that resolve momentum/force
-	if (dir == direction::x)
+	if (xx > yy)
 	{
-		// warning!!!! t_resolve , likely pen_depth issue causing snapping problem
-		//// case 3
-		//if (ab.x > 0.f)
-		//{
-		//	t1.x += (abs(vel1.x) / t_resolve.x * pen_depth.x);
-		//	t2.x -= (abs(vel2.x) / t_resolve.x * pen_depth.x);
-		//}
-		//// case 1
-		//else
-		//{
-		//	t1.x -= (abs(vel1.x) / t_resolve.x * pen_depth.x);
-		//	t2.x += (abs(vel2.x) / t_resolve.x * pen_depth.x);
-		//}
-		// temporary holder before refining
-		Cheap_Elastic_collision_1D(vel1,acc1, rf1->m_Mass,
-			vel2,acc2, rf2->m_Mass,dir);
-		rf1->m_Momentum = vel1 * rf1->m_Mass;
-		rf2->m_Momentum = vel2 * rf2->m_Mass;
-		rf1->m_Forces = acc1 * rf1->m_Mass;
-		rf2->m_Forces = acc2 * rf2->m_Mass;
+		if (xx > zz)
+		{
+			dir = direction::x;
+			// warning!!!! t_resolve , likely pen_depth issue causing snapping problem
+			//// case 3
+			//if (ab.x > 0.f)
+			//{
+			//	t1.x += (abs(vel1.x) / t_resolve.x * pen_depth.x);
+			//	t2.x -= (abs(vel2.x) / t_resolve.x * pen_depth.x);
+			//}
+			//// case 1
+			//else
+			//{
+			//	t1.x -= (abs(vel1.x) / t_resolve.x * pen_depth.x);
+			//	t2.x += (abs(vel2.x) / t_resolve.x * pen_depth.x);
+			//}
+			// temporary holder before refining
+			Cheap_Elastic_collision_1D(vel1.x, acc1.x, rf1->m_Mass,
+				vel2.x, acc2.x, rf2->m_Mass);
+			rf1->m_Momentum = vel1 * rf1->m_Mass;
+			rf2->m_Momentum = vel2 * rf2->m_Mass;
+			rf1->m_Forces = acc1 * rf1->m_Mass;
+			rf2->m_Forces = acc2 * rf2->m_Mass;
+		}
+		else
+		{
+			dir = direction::z;
+			//// case 3
+			//if (ab.z > 0.f)
+			//{
+			//	t1.z += (abs(vel1.z) / t_resolve.z * pen_depth.z);
+			//	t2.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z);
+			//}
+			//// case 1
+			//else
+			//{
+			//	t1.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z);
+			//	t2.z += (abs(vel2.z) / t_resolve.z * pen_depth.z);
+			//}
+			Cheap_Elastic_collision_1D(vel1.z, acc1.z, rf1->m_Mass,
+				vel2.z, acc2.z, rf2->m_Mass);
+			rf1->m_Momentum = vel1 * rf1->m_Mass;
+			rf2->m_Momentum = vel2 * rf2->m_Mass;
+			rf1->m_Forces = acc1 * rf1->m_Mass;
+			rf2->m_Forces = acc2 * rf2->m_Mass;
+		}
 	}
-	// y
-	if (dir == direction::y)
+	else
 	{
-		//// case 3
-		//if (ab.y > 0.f)
-		//{
-		//	t1.y += (abs(vel1.y) / t_resolve.y * pen_depth.y);
-		//	t2.y -= (abs(vel2.y) / t_resolve.y * pen_depth.y);
-		//}
-		//// case 1
-		//else
-		//{
-		//	t1.y -= (abs(vel1.y) / t_resolve.y * pen_depth.y);
-		//	t2.y += (abs(vel2.y) / t_resolve.y * pen_depth.y);
-		//}
-		Cheap_Elastic_collision_1D(vel1, acc1, rf1->m_Mass,
-			vel2, acc2, rf2->m_Mass, dir);
-		rf1->m_Momentum = vel1 * rf1->m_Mass;
-		rf2->m_Momentum = vel2 * rf2->m_Mass;
-		rf1->m_Forces = acc1 * rf1->m_Mass;
-		rf2->m_Forces = acc2 * rf2->m_Mass;
-	}
-	// z
-	if (dir == direction::z)
-	{
-		//// case 3
-		//if (ab.z > 0.f)
-		//{
-		//	t1.z += (abs(vel1.z) / t_resolve.z * pen_depth.z);
-		//	t2.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z);
-		//}
-		//// case 1
-		//else
-		//{
-		//	t1.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z);
-		//	t2.z += (abs(vel2.z) / t_resolve.z * pen_depth.z);
-		//}
-		Cheap_Elastic_collision_1D(vel1, acc1, rf1->m_Mass,
-			vel2, acc2, rf2->m_Mass, dir);
-		rf1->m_Momentum = vel1 * rf1->m_Mass;
-		rf2->m_Momentum = vel2 * rf2->m_Mass;
-		rf1->m_Forces = acc1 * rf1->m_Mass;
-		rf2->m_Forces = acc2 * rf2->m_Mass;
+		if (yy > zz)
+		{
+			dir = direction::y;
+			//// case 3
+			//if (ab.y > 0.f)
+			//{
+			//	t1.y += (abs(vel1.y) / t_resolve.y * pen_depth.y);
+			//	t2.y -= (abs(vel2.y) / t_resolve.y * pen_depth.y);
+			//}
+			//// case 1
+			//else
+			//{
+			//	t1.y -= (abs(vel1.y) / t_resolve.y * pen_depth.y);
+			//	t2.y += (abs(vel2.y) / t_resolve.y * pen_depth.y);
+			//}
+			Cheap_Elastic_collision_1D(vel1.y, acc1.y, rf1->m_Mass,
+				vel2.y, acc2.y, rf2->m_Mass);
+			rf1->m_Momentum = vel1 * rf1->m_Mass;
+			rf2->m_Momentum = vel2 * rf2->m_Mass;
+			rf1->m_Forces = acc1 * rf1->m_Mass;
+			rf2->m_Forces = acc2 * rf2->m_Mass;
+		}
+			
+		else
+		{
+			dir = direction::z;
+			//// case 3
+			//if (ab.z > 0.f)
+			//{
+			//	t1.z += (abs(vel1.z) / t_resolve.z * pen_depth.z);
+			//	t2.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z);
+			//}
+			//// case 1
+			//else
+			//{
+			//	t1.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z);
+			//	t2.z += (abs(vel2.z) / t_resolve.z * pen_depth.z);
+			//}
+			Cheap_Elastic_collision_1D(vel1.z, acc1.z, rf1->m_Mass,
+				vel2.z, acc2.z, rf2->m_Mass);
+			rf1->m_Momentum = vel1 * rf1->m_Mass;
+			rf2->m_Momentum = vel2 * rf2->m_Mass;
+			rf1->m_Forces = acc1 * rf1->m_Mass;
+			rf2->m_Forces = acc2 * rf2->m_Mass;
+		}
 	}
 	return true;
 }
+
+//void Cheap_Elastic_collision_3D(paperback::Vector3f&& v1, paperback::Vector3f&& a1, const float mass1,
+//	paperback::Vector3f&& v2, paperback::Vector3f&& a2, const float mass2)
+//{
+//	if (mass1 != mass2)
+//	{
+//		float total_mass = mass1 + mass2;
+//		float var1 = (mass1 - mass2) / total_mass,
+//			var2 = (2 * mass2) / total_mass,
+//			var3 = (2 * mass1) / total_mass,
+//			var4 = (mass2 - mass1) / total_mass;
+//
+//		paperback::Vector3f& obj1 = (var1 * v1)
+//			+ (var2 * v2);
+//		paperback::Vector3f& obj2 = (var3 * v1)
+//			+ (var4 * v2);
+//		paperback::Vector3f& obj3 = (var1 * a1)
+//			+ (var2 * a2);
+//		paperback::Vector3f& obj4 = (var3 * a1)
+//			+ (var4 * a2);
+//
+//		v1 = obj1;
+//		v2 = obj2;
+//		a1 = obj3;
+//		a2 = obj4;
+//	}
+//	else // Swap
+//	{
+//		paperback::MathUtils::Swap<paperback::Vector3f>(v1, v2);
+//		paperback::MathUtils::Swap<paperback::Vector3f>(a1, a2);
+//	}
+//}
+
 
 // rect vs rect, working, use if needed,  ---- only m_Coordinator.DeltaTime() not defined, not available
 //bool Specific_AabbAabb(const paperback::Vector3f& aabbMin0, const paperback::Vector3f& aabbMax0,
