@@ -208,13 +208,13 @@ bool CheapaabbDynamic(
 //			var3 = (2 * mass1) / total_mass,
 //			var4 = (mass2 - mass1) / total_mass;
 //
-//		paperback::Vector3f& obj1 = (var1 * v1)
+//		paperback::Vector3f obj1 = (var1 * v1)
 //			+ (var2 * v2);
-//		paperback::Vector3f& obj2 = (var3 * v1)
+//		paperback::Vector3f obj2 = (var3 * v1)
 //			+ (var4 * v2);
-//		paperback::Vector3f& obj3 = (var1 * a1)
+//		paperback::Vector3f obj3 = (var1 * a1)
 //			+ (var2 * a2);
-//		paperback::Vector3f& obj4 = (var3 * a1)
+//		paperback::Vector3f obj4 = (var3 * a1)
 //			+ (var4 * a2);
 //
 //		v1 = obj1;
