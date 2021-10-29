@@ -26,4 +26,7 @@ struct EditorViewport : paperback::editor::instance
 
     void Gizmo();
 
+    void ComposeTransform();
+    glm::mat4 DecomposeTransform(const glm::vec4& Transform, glm::vec3& Translate, glm::vec3& Scale, glm::vec3& Rotation);
+
 };
