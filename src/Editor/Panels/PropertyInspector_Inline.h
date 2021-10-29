@@ -10,9 +10,10 @@ void DetailsWindow::Panel()
 
 	if ( !m_Imgui.m_Components.empty() )
 	{
-        ImGui::PushItemWidth(150.0f);
+        ImGui::PushItemWidth(120.0f);
 
 		AddComponent(); ImGui::SameLine(); RemoveComponent();
+
         ImGui::PopItemWidth();
 
 		ImGui::Separator();
@@ -53,7 +54,7 @@ void DetailsWindow::AddComponent()
 
     if (m_Imgui.m_SelectedEntity.first)
     {
-        if (ImGui::BeginCombo("##AddComponents", ICON_FA_PLUS "Add Component"))
+        if (ImGui::BeginCombo("##AddComponents", ICON_FA_PLUS " Add"))
         {
             for (auto& [CompKey, CompValue] : PPB.GetComponentInfoMap())
             {
@@ -95,7 +96,7 @@ void DetailsWindow::RemoveComponent()
 
     if (m_Imgui.m_SelectedEntity.first)
     {
-        if (ImGui::BeginCombo("##RemoveComponent", ICON_FA_MINUS " Remove Component"))
+        if (ImGui::BeginCombo("##RemoveComponent", ICON_FA_MINUS " Remove"))
         {
             for (paperback::u32 i = 0; i < m_Imgui.m_SelectedEntity.first->GetComponentNumber(); ++i)
             {

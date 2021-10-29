@@ -1,6 +1,9 @@
 #pragma once
 #include "Editor/EditorInclude.h"
+#include <dearImGui/ImGuizmo/ImGuizmo.h>
 #include "Functionality/Renderer/Renderer.h"
+#include "paperback_camera.h"
+#include <rttr/type>
 
 struct EditorViewport : paperback::editor::instance
 {
@@ -20,4 +23,7 @@ struct EditorViewport : paperback::editor::instance
     }
 
     void Panel();
+
+    void Gizmo();
+
 };

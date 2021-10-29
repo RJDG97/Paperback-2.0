@@ -13,8 +13,7 @@
 #include <dearImGui/imgui_impl_opengl3.h>
 #include <dearImGui/imgui_internal.h>
 #include <dearImGui/ImGuiFileBrowser.h>
-#include "Functionality/Renderer/Renderer.h"
-
+#include <dearImGui/ImGuizmo/ImGuizmo.h>
 //----------------------------------
 // Panel Headers
 //----------------------------------
@@ -61,7 +60,7 @@ struct imgui_system : paperback::system::instance
 
     std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete;
 
-    std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity;
+    std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity; //first: pointer to the archetype | second: entity index
 
     std::deque< std::pair< std::string, fs::path > > m_DisplayFilePath;
 
@@ -151,9 +150,13 @@ struct imgui_system : paperback::system::instance
     {
         if (m_bImgui)
         {
+            // ImGui New Frame
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
+
+            //ImGuizmo Start
+            ImGuizmo::BeginFrame();
 
             ImGuiIO& io = ImGui::GetIO();
 

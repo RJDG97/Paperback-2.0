@@ -23,7 +23,6 @@ void WindowSettings::Panel()
             {
                 glfwSetWindowSize(m_pWindow, PPB.GetSystem< window_system >().E.m_Width, PPB.GetSystem< window_system >().E.m_Height);
                 Renderer::GetInstanced().UpdateFramebufferSize(PPB.GetSystem< window_system >().E.m_Width, PPB.GetSystem< window_system >().E.m_Height);
-
             }
 
             ImGui::SameLine();
