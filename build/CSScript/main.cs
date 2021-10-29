@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.IO;
 using System.CodeDom.Compiler;
 using Microsoft.CSharp;
 
@@ -14,7 +15,7 @@ namespace CSScript
         public static MainApplication getInst()
         { return new MainApplication(); }
 
-        public static void CompileDLL(bool Useingdll_1)
+        public static bool CompileDLL(bool Useingdll_1)
         {
             string[] references = {
                 "System.dll"
@@ -43,17 +44,19 @@ namespace CSScript
             else
                 parameters.OutputAssembly = @"CSScript.dll";
             // Save as dll
-            parameters.GenerateInMemory = true;
-            // Generate DLL
-            var result = provider.CompileAssemblyFromFile(parameters, new string[] { });
+            parameters.GenerateInMemory = false;
 
+            // Generate DLL
+            var result = provider.CompileAssemblyFromFile(parameters, files);
+            // Compiler errors
             if (result.Errors.Count != 0)
             {
                 foreach (CompilerError error in result.Errors)
                     Debug.Log(error.ErrorText);
+                return false;
             }
-            else
-                Debug.Log("Compile Successful");
+            Debug.Log("Compile Successful");
+            return true;
         }
 
         public static void Main()

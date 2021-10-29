@@ -40,6 +40,7 @@ public:
 
 		// Create domain (exits if unsuccessful)
 		m_pMonoDomain = mono_jit_init("Mono");
+
 		if (LoadAssembly(m_pMonoDomain, "../CSScript/CSScript.dll")) {
 			// Add internal calls (Expose to C# script)
 			MONO_INTERNALS::MonoAddInternalCall();
@@ -63,11 +64,16 @@ public:
 		}
 	}
 
-	void UpdateDLL()
+	bool UpdateDLL()
 	{
-		RunImportFn(m_pMainObj, m_pCompileFn, m_UsingDomain1);
+		MonoObject* result = RunImportFn(m_pMainObj, m_pCompileFn, m_UsingDomain1);
+		bool compilesuccess = ExtractResult<bool>(result);
+		
+		if (!compilesuccess)
+			return false;
 
 		char m_DName[] = "Update";
+
 		if (m_UsingDomain1) {
 			m_pMonoDomain2 = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain2, false);
@@ -76,6 +82,7 @@ public:
 				// Unload Previous Domain
 				UnloadDomain(m_pMonoDomain);
 				m_UsingDomain1 = false;
+				return true;
 			}
 			else
 				UnloadDomain(m_pMonoDomain2);
@@ -89,10 +96,12 @@ public:
 				// Unload Previous Domain
 				UnloadDomain(m_pMonoDomain2);
 				m_UsingDomain1 = true;
+				return true;
 			}
 			else
 				UnloadDomain(m_pMonoDomain);
 		}
+		return false;
 	}
 
 	bool LoadAssembly(MonoDomain* Domain, const char* dllname)
@@ -212,7 +221,7 @@ public:
 			PPB_ASSERT("Mono Image not initialized");
 			return nullptr;
 		}
-
+		
 		MonoClass* result = mono_class_from_name(m_pMonoImage, _namespace, _class);
 		if (!result) {
 			std::string str = _class;
