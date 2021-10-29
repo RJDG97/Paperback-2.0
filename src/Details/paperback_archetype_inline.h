@@ -20,65 +20,52 @@ namespace paperback::archetype
         for ( u32 i = 0; i < NumComponents; ++i )
             m_ComponentInfos[i] = Types[i];
 
-        m_NumberOfComponents = NumComponents;
         m_pName              = Name;
         m_ArchetypeGuid      = archetype::instance::guid{ m_ComponentBits.GenerateGUID() };
 
         for ( size_t i = 0, max = m_ComponentPool.size(); i < max; ++i )
-            m_ComponentPool[ i ].Init( std::span{ m_ComponentInfos.data(), m_NumberOfComponents }, m_NumberOfComponents );
+            m_ComponentPool[ i ].Init( std::span{ m_ComponentInfos.data(), NumComponents }, NumComponents, &m_Coordinator );
     }
 
 
     //-----------------------------------
     //        Create / Delete
     //-----------------------------------
+
     template< typename T_CALLBACK >
-    void instance::CreateEntity( T_CALLBACK&& Function ) noexcept
+    paperback::component::entity instance::CreateEntity( T_CALLBACK&& Function ) noexcept
     {
         using func_traits = xcore::function::traits<T_CALLBACK>;
-
-        if ( m_EntityCount + 1 >= settings::max_entities_v )
-        {
-            ERROR_PRINT( "CreateEntity: Maximum entities reached" );
-            ERROR_LOG( "CreateEntity: Maximum entities reached" );
-            return;
-        }
-
-        ++m_EntityCount;
-
-        return [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* )
+        
+        return [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* ) -> paperback::component::entity
         {
             PPB_ASSERT_MSG( !( m_ComponentBits.Has( component::info_v<T_COMPONENTS>.m_UID ) && ... ), "Archetype CreateEntity: Creating entity with invalid components in function" );
-
+        
             // Generate the next valid ID within m_ComponentPool
             const auto PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].Append();
-
+            // Do not register entity if it's invalid
+            if ( PoolIndex == settings::invalid_index_v ) return paperback::component::entity
+                                                                 {
+                                                                     .m_GlobalIndex = settings::invalid_index_v
+                                                                 };
+            
             if ( !std::is_same_v<empty_lambda, T_CALLBACK> )
             {
                 Function( m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<T_COMPONENTS>( PoolIndex ) ... );
             }
-
-            m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
-                                          {
-                                              .m_Key       = m_PoolAllocationIndex
-                                          ,   .m_PoolIndex = PoolIndex
-                                          }
-                                        , *this );
-
-        }( reinterpret_cast<typename func_traits::args_tuple*>( nullptr ) );
+        
+            // Generates Global Index
+            return m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
+                                                      {
+                                                          .m_Key       = m_PoolAllocationIndex
+                                                      ,   .m_PoolIndex = PoolIndex
+                                                      }
+                                                    , *this );
+        }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
-
+    
     void instance::CloneEntity( component::entity& Entity ) noexcept
     {
-        if ( m_EntityCount + 1 >= settings::max_entities_v )
-        {
-            ERROR_PRINT( "CreateEntity: Maximum entities reached" );
-            ERROR_LOG( "CreateEntity: Maximum entities reached" );
-            return;
-        }
-
-        ++m_EntityCount;
-
         // Entity Info of Entity to clone
         auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity );
 
@@ -101,30 +88,25 @@ namespace paperback::archetype
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex, &m_ComponentPool[ EntityInfo.m_PoolDetails.m_Key ] );
         */
     }
-
-    u32 instance::DeleteEntity( const PoolDetails Details ) noexcept
-    {
-        --m_EntityCount;
-        UnlinkChildrenAndParents( Details );
-        return m_ComponentPool[ Details.m_Key ].Delete( Details.m_PoolIndex );
-    }
-
+    
     void instance::DestroyEntity( component::entity& Entity ) noexcept
     {
-        PPB_ASSERT_MSG( Entity.IsZombie(), "DestroyEntity: Attemping to double delete an entity" );
-
         auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity );
-        auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails );
+        m_ComponentPool[ EntityInfo.m_PoolDetails.m_Key ].DestroyEntity( Entity );
 
-        PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
+        UpdateStructuralChanges();
+    }
 
-        Entity.m_Validation.m_bZombie
-            = EntityInfo.m_Validation.m_bZombie
-            = true;
-
-        m_DeleteList.push_back( Entity );
-
-        if ( m_ProcessReference == 0 ) UpdateStructuralChanges();
+    void instance::Clear(void) noexcept
+    {
+        for ( u32 i = 0, max = static_cast<u32>( m_ComponentPool.size() ); i < max; ++i )
+        {
+            u32 Count = m_ComponentPool[i].GetCurrentEntityCount();
+            while ( Count-- )
+            {
+                DestroyEntity( GetComponent<paperback::component::entity>( vm::PoolDetails{ i, Count } ));
+            }
+        }
     }
 
 
@@ -142,31 +124,14 @@ namespace paperback::archetype
         if ( --m_ProcessReference == 0 ) UpdateStructuralChanges();
     }
 
-    void instance::UpdateStructuralChanges() noexcept
+    void instance::UpdateStructuralChanges( void ) noexcept
     {
         if ( m_ProcessReference > 0 ) return;
 
-        for (auto& Entity : m_DeleteList)
+        for ( auto& Pool : m_ComponentPool )
         {
-            auto& Info = m_Coordinator.GetEntityInfo( Entity );
-            m_Coordinator.RemoveEntity( DeleteEntity( Info.m_PoolDetails ), Entity );
+            Pool.UpdateStructuralChanges();
         }
-
-        std::sort( m_MoveList.begin(), m_MoveList.end(), []( vm::PoolDetails a, vm::PoolDetails b )
-                                                         {
-                                                             return a.m_PoolIndex > b.m_PoolIndex;
-                                                         }
-        );
-
-        for ( auto& [Key, PoolIndex] : m_MoveList )
-        {
-            if (m_ComponentPool[ Key ].RemoveTransferredEntity( PoolIndex ))
-                --m_EntityCount;
-
-        }
-
-        m_DeleteList.clear();
-        m_MoveList.clear();
     }
 
 
@@ -175,21 +140,15 @@ namespace paperback::archetype
     //-----------------------------------
     void instance::SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept
     {
-        for (u32 j = 0; j < m_EntityCount; ++j)
+        for ( auto& Pool : m_ComponentPool )
+        for ( u32 i = 0, max = Pool.GetCurrentEntityCount(); i < max; ++i )
         {
             Jfile.StartObject();
 
-            m_ComponentPool[0].SerializePoolComponentsAtEntityIndex( j, Jfile ); // Pool Index 0 Only For Now
+            Pool.SerializePoolComponentsAtEntityIndex( i, Jfile );
 
             Jfile.EndObject();
         }
-    }
-
-    void instance::Clear(void) noexcept
-    {
-        u32 Count = m_EntityCount;
-        while ( Count-- )
-            DestroyEntity( GetComponent<paperback::component::entity>(vm::PoolDetails{ 0, Count }) );
     }
 
     //-----------------------------------
@@ -313,24 +272,23 @@ namespace paperback::archetype
     component::entity instance::TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function ) noexcept
     {
         using func_traits = xcore::function::traits<T_FUNCTION>;
-
+        
         // Get info of Entity that is to be transferred to "new archetype" aka this one
-        auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity.m_GlobalIndex );
+        auto& TransferredEntityInfo = m_Coordinator.GetEntityInfo( Entity.m_GlobalIndex );
 
         // Transfer matching components over - m_ComponentPool[ 0 ].TransferExistingComponents
-        const auto NewPoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].TransferExistingComponents( EntityInfo.m_PoolDetails                                                      // Entity's Pool Key & Index
-                                                                                                     , EntityInfo.m_pArchetype->m_ComponentPool[ EntityInfo.m_PoolDetails.m_Key ] ); // Entity's Pool
+        const auto NewPoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].TransferExistingComponents( TransferredEntityInfo.m_PoolDetails                                                                 // Entity's Pool Key & Index
+                                                                                                     , TransferredEntityInfo.m_pArchetype->m_ComponentPool[ TransferredEntityInfo.m_PoolDetails.m_Key ] ); // Entity's Pool
 
-        // Testing Replacement - Adding to move list to reoganize afterwards
-        EntityInfo.m_pArchetype->m_MoveList.push_back( EntityInfo.m_PoolDetails );
+        TransferredEntityInfo.m_pArchetype->UpdateStructuralChanges();
 
         // Update Entity Info
-        EntityInfo.m_pArchetype = this;
-        EntityInfo.m_PoolDetails.m_Key = m_PoolAllocationIndex;
-        EntityInfo.m_PoolDetails.m_PoolIndex = NewPoolIndex;
-        ++m_EntityCount;
+        TransferredEntityInfo.m_pArchetype = this;
+        TransferredEntityInfo.m_PoolDetails.m_Key = m_PoolAllocationIndex;
+        TransferredEntityInfo.m_PoolDetails.m_PoolIndex = NewPoolIndex;
 
-        // Initialize stuff with the lambda function
+        //// Initialize stuff with the lambda function
+        // Probably not needed but we shall see c:
 
         // Temporary Return
         return m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<component::entity>( NewPoolIndex );
@@ -343,7 +301,7 @@ namespace paperback::archetype
 
     std::vector <rttr::instance> instance::GetEntityComponents( const u32 Index ) noexcept
     {
-        return m_ComponentPool[0].GetComponents(Index);  // Pool Index 0 Only For Now
+        return m_ComponentPool[0].GetComponents(Index);
     }
 
     archetype::instance* instance::GetArchetypePointer( const u32 Index ) noexcept
@@ -365,9 +323,9 @@ namespace paperback::archetype
         m_pName = Name;
     }
 
-    u32 instance::GetEntityCount( void ) const noexcept
+    u32 instance::GetCurrentEntityCount( void ) const noexcept
     {
-        return m_EntityCount;
+        return m_ComponentPool[0].GetCurrentEntityCount();
     }
 
     instance::ComponentPool& instance::GetComponentPools( void ) noexcept
@@ -382,7 +340,7 @@ namespace paperback::archetype
 
     bool instance::CheckComponentExistence(const component::info* Info) noexcept
     {
-        for ( u32 i = 0; i < m_NumberOfComponents; ++i )
+        for ( u32 i = 0, max = m_ComponentPool[0].GetComponentCount(); i < max; ++i )
         {
             if (m_ComponentInfos[i] == Info)
                 return true;
@@ -390,9 +348,9 @@ namespace paperback::archetype
         return false;
     }
 
-    u32& instance::GetComponentNumber(void) noexcept
+    const u32 instance::GetComponentCount(void) const noexcept
     {
-        return m_NumberOfComponents;
+        return m_ComponentPool[0].GetComponentCount();
     }
 
     tools::bits& instance::GetComponentBits( void ) noexcept

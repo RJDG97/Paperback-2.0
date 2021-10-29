@@ -31,6 +31,9 @@ namespace paperback::archetype
         PPB_INLINE
         manager( paperback::coordinator::instance& Coordinator );
 
+        PPB_INLINE
+        void Initialize( void ) noexcept;
+
 
         //-----------------------------------
 		//             Create
@@ -94,17 +97,13 @@ namespace paperback::archetype
         PPB_INLINE
         std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
-
-        /*
-        /*! Helper Functions
-        */
         PPB_INLINE
-        void RegisterEntity( const PoolDetails Details
-                           , archetype::instance& Archetype ) noexcept;
+        paperback::component::entity& RegisterEntity( const PoolDetails Details
+                                                         , archetype::instance& Archetype ) noexcept;
 
         PPB_INLINE
         void RemoveEntity( const u32 SwappedGlobalIndex
-                         , const component::entity DeletedEntity ) noexcept;
+                              , const u32 DeletedEntityIndex ) noexcept;
 
         PPB_INLINE
         void InitializeParentChildAfterDeSerialization( void ) noexcept;
@@ -114,8 +113,31 @@ namespace paperback::archetype
 
     private:
 
+        //PPB_INLINE
+        //u32 AppendEntity() noexcept;
+
+
+
+
+
+
+
+
+        // TEST CODE
+
         PPB_INLINE
         u32 AppendEntity() noexcept;
+
+
+
+
+
+
+
+
+
+
+
 
         PPB_INLINE
         archetype::instance& GetOrCreateArchetype( std::span<const component::info* const> Types
@@ -136,6 +158,16 @@ namespace paperback::archetype
         ArchetypeBitsList                   m_ArchetypeBits     {   };
         uint32_t                            m_EntityIDTracker   { 0 };
         EntityListHead                      m_AvailableIndexes  {   };
+
+        u32                                 m_AvailableEntityIndexList;
+
+        /*
+        For the "Linked-List":
+        - m_EntityHead stores -> m_PoolDetails.m_PoolIndex (Available Indexes)
+        - m_Validation.m_Next -> Move / Delete Indexes
+        */
+        u32                                 m_EntityHead        { 0 };
+
         paperback::coordinator::instance&   m_Coordinator;
     };
 }

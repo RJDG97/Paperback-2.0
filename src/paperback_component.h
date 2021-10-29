@@ -196,7 +196,7 @@ namespace paperback::component
             #pragma warning(disable : 4201)
             struct
             {
-                uint32_t    m_Next       : 31   // Index of next Entity within Entity Manager (For Deletion) - Currently Unused
+                uint32_t    m_Next       : 31   // Index of next Entity within Entity Manager (For Deletion)
                 ,           m_bZombie    : 1;   // Entity Status
             };
             #pragma warning(default : 4201)

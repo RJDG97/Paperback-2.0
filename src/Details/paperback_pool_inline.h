@@ -16,10 +16,11 @@ namespace paperback::vm
 		}
 	}
 
-	void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept
+	void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents, paperback::coordinator::instance* Coordinator ) noexcept
 	{
 		m_ComponentInfo		 = Types;
 		m_NumberOfComponents = NumComponents;
+		m_pCoordinator	     = Coordinator;
 
 		// Reserve memory required for MaxEntites
 		for ( std::size_t i = 0; i < m_NumberOfComponents; i++ )
@@ -69,6 +70,24 @@ namespace paperback::vm
 		}
 
 		return m_CurrentEntityCount++;
+	}
+
+	PPB_INLINE
+	void instance::DestroyEntity( paperback::component::entity& Entity ) noexcept
+	{
+		PPB_ASSERT_MSG( Entity.IsZombie(), "DestroyEntity: Attemping to double delete an entity" );
+
+        auto& EntityInfo = m_pCoordinator->GetEntityInfo( Entity );
+        auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails.m_PoolIndex ); // Replace this
+
+        PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
+
+        Entity.m_Validation.m_bZombie
+            = EntityInfo.m_Validation.m_bZombie
+            = true;
+
+        EntityInfo.m_Validation.m_Next = m_DeleteHead;
+        m_DeleteHead = PoolEntity.m_GlobalIndex;
 	}
 
 	u32 instance::Delete( const u32 PoolIndex ) noexcept
@@ -138,6 +157,7 @@ namespace paperback::vm
 		if ( PoolIndex >= m_CurrentEntityCount )
 			return false;
 
+		// Update counter
 		--m_CurrentEntityCount;
 
 		for ( size_t i = 0; i < m_NumberOfComponents; ++i )
@@ -147,8 +167,9 @@ namespace paperback::vm
 
 			// If moving last entity - Just destroy it
 			if ( PoolIndex == m_CurrentEntityCount )
+			{
 				if (pInfo.m_Destructor) pInfo.m_Destructor(&pData[m_CurrentEntityCount * pInfo.m_Size]);
-
+			}
 			// Moving any other entity - Copy memory and shift forward
 			else
 			{
@@ -173,9 +194,54 @@ namespace paperback::vm
 				PPB_ASSERT_MSG( !b, "Pool RemoveTransferredEntity - Virtual free failed" );
 			}
 		}
+		
+		// Update the "Last Entity" that was moved to fill the gap in "PoolIndex"
+		if ( PoolIndex != 0 )
+		{
+			auto& MovedEntity = GetComponent<paperback::component::entity>( PoolIndex );
+			auto& MovedEntityInfo = m_pCoordinator->GetEntityInfo( MovedEntity );
+			MovedEntityInfo.m_PoolDetails.m_PoolIndex = PoolIndex;
+		}
+
 
 		return true;
 	}
+
+	PPB_INLINE
+	void instance::UpdateStructuralChanges( void ) noexcept
+	{
+		auto ResetInfo = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; };
+
+		while ( m_DeleteHead != settings::invalid_delete_index_v )
+		{
+			auto& Info = m_pCoordinator->GetEntityInfo( m_DeleteHead );
+            m_pCoordinator->RemoveEntity( Delete( Info.m_PoolDetails.m_PoolIndex ), m_DeleteHead );
+			m_DeleteHead = Info.m_Validation.m_Next;
+			ResetInfo( Info );
+		}
+
+        while ( m_MoveHead != settings::invalid_delete_index_v )
+        {
+			auto& Info = m_pCoordinator->GetEntityInfo( m_MoveHead );
+            RemoveTransferredEntity( Info.m_PoolDetails.m_PoolIndex );
+			m_MoveHead = Info.m_Validation.m_Next;
+			ResetInfo( Info );
+        }
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	//-----------------------------------
@@ -184,6 +250,8 @@ namespace paperback::vm
 	u32 instance::TransferExistingComponents( const PoolDetails& Details, vm::instance& FromPool ) noexcept
 	{
 		const u32 NewPoolIndex = Append();
+		//PPB_ASSERT( m_CurrentEntityCount <= 0 );
+		//const u32 NewPoolIndex = m_CurrentEntityCount - 1; // Assumed that CreateEntity has been called beforehand
 
         u32 iPoolFrom = 0;
         u32 iPoolTo   = 0;
@@ -193,7 +261,7 @@ namespace paperback::vm
         while( true )
         {
 			// Component exists in both - Copy existing component
-            if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_Guid == m_ComponentInfo[ iPoolTo ]->m_Guid )
+			if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_Guid == m_ComponentInfo[ iPoolTo ]->m_Guid )
             {
                 auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
 
@@ -240,9 +308,12 @@ namespace paperback::vm
             if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
         }
 
-		// Update moved entity to be a zombie
-		auto& MovedEntity				   = FromPool.GetComponent<paperback::component::entity>( Details.m_PoolIndex );
-		MovedEntity.m_Validation.m_bZombie = true;
+		//// Update moved entity to be a zombie
+		//auto& MovedEntity				   = FromPool.GetComponent<paperback::component::entity>( Details.m_PoolIndex );          // PROBABLY CAN REMOVE OR REPLACE ACCORIDNGLY
+		//MovedEntity.m_Validation.m_bZombie = true;
+
+		FromPool.MarkEntityAsMoved( Details.m_PoolIndex );
+
 
         return NewPoolIndex;
 	}
@@ -391,10 +462,17 @@ namespace paperback::vm
 			return rttr::instance();
 	}
 
-	u32 instance::GetCurrentEntityCount( void ) const noexcept
+	const u32 instance::GetCurrentEntityCount( void ) const noexcept
 	{
 		return m_CurrentEntityCount;
 	}
+
+	const u32 instance::GetComponentCount( void ) const noexcept
+	{
+		return static_cast<u32>( m_ComponentInfo.size() );
+	}
+
+
 
 	paperback::vm::instance::MemoryPool& instance::GetMemoryPool( void ) noexcept
 	{
@@ -409,5 +487,16 @@ namespace paperback::vm
 	u32 instance::GetPageIndex( const component::info& Info, const u32 Count ) const noexcept
 	{
 		return ( ( Info.m_Size * Count ) - 1 ) / settings::virtual_page_size_v;
+	}
+
+	void instance::MarkEntityAsMoved( const u32 MovedEntityPoolIndex ) noexcept
+	{
+		auto& MovedEntity     = GetComponent<paperback::component::entity>( MovedEntityPoolIndex );
+		auto& MovedEntityInfo = m_pCoordinator->GetEntityInfo( MovedEntity );
+
+		MovedEntity.m_Validation.m_bZombie = MovedEntityInfo.m_Validation.m_bZombie
+										   = true;
+		MovedEntityInfo.m_Validation.m_Next = m_MoveHead;
+		m_MoveHead = MovedEntity.m_GlobalIndex;
 	}
 }
