@@ -230,28 +230,12 @@ namespace paperback::vm
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//-----------------------------------
 	//             Transfer
 	//-----------------------------------
 	u32 instance::TransferExistingComponents( const PoolDetails& Details, vm::instance& FromPool ) noexcept
 	{
 		const u32 NewPoolIndex = Append();
-		//PPB_ASSERT( m_CurrentEntityCount <= 0 );
-		//const u32 NewPoolIndex = m_CurrentEntityCount - 1; // Assumed that CreateEntity has been called beforehand
 
         u32 iPoolFrom = 0;
         u32 iPoolTo   = 0;
@@ -308,12 +292,7 @@ namespace paperback::vm
             if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
         }
 
-		//// Update moved entity to be a zombie
-		//auto& MovedEntity				   = FromPool.GetComponent<paperback::component::entity>( Details.m_PoolIndex );          // PROBABLY CAN REMOVE OR REPLACE ACCORIDNGLY
-		//MovedEntity.m_Validation.m_bZombie = true;
-
 		FromPool.MarkEntityAsMoved( Details.m_PoolIndex );
-
 
         return NewPoolIndex;
 	}

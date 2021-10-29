@@ -92,9 +92,6 @@ namespace paperback::archetype
         entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
         PPB_INLINE
-        archetype::instance& GetArchetypeFromEntity( const u32 EntityID ) const noexcept;
-
-        PPB_INLINE
         std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
         PPB_INLINE
@@ -113,31 +110,12 @@ namespace paperback::archetype
 
     private:
 
-        //PPB_INLINE
-        //u32 AppendEntity() noexcept;
-
-
-
-
-
-
-
-
-        // TEST CODE
+        //-----------------------------------
+        //         Helper Functions
+        //-----------------------------------
 
         PPB_INLINE
         u32 AppendEntity() noexcept;
-
-
-
-
-
-
-
-
-
-
-
 
         PPB_INLINE
         archetype::instance& GetOrCreateArchetype( std::span<const component::info* const> Types
@@ -152,15 +130,11 @@ namespace paperback::archetype
         std::vector<archetype::instance*> Search( std::span<const component::info* const> Types ) const noexcept;
 
 
+        paperback::coordinator::instance&   m_Coordinator;
         EntityInfoList                      m_EntityInfos       = std::make_unique<entity::info[]>( settings::max_entities_v );
         ArchetypeList                       m_pArchetypeList    {   };
         ArchetypeMap                        m_pArchetypeMap     {   };
         ArchetypeBitsList                   m_ArchetypeBits     {   };
-        uint32_t                            m_EntityIDTracker   { 0 };
-        EntityListHead                      m_AvailableIndexes  {   };
-
-        u32                                 m_AvailableEntityIndexList;
-
         /*
         For the "Linked-List":
         - m_EntityHead stores -> m_PoolDetails.m_PoolIndex (Available Indexes)
@@ -168,6 +142,5 @@ namespace paperback::archetype
         */
         u32                                 m_EntityHead        { 0 };
 
-        paperback::coordinator::instance&   m_Coordinator;
     };
 }

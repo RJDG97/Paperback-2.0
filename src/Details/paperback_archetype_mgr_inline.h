@@ -214,13 +214,6 @@ namespace paperback::archetype
         return m_EntityInfos[ GlobalIndex ];
     }
 
-    archetype::instance& manager::GetArchetypeFromEntity( const u32 EntityID ) const noexcept
-    {
-        PPB_ASSERT_MSG( EntityID >= m_EntityIDTracker, "GetArchetypeFromEntity: Invalid EntityID" );
-
-        return *( m_EntityInfos[EntityID].m_pArchetype );
-    }
-
     std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
     {
         std::vector<paperback::archetype::instance*> List;
@@ -337,32 +330,9 @@ namespace paperback::archetype
     }
 
 
-
-
-
-
-
-
     //-----------------------------------
     //             Private
     //-----------------------------------
-    //u32 manager::AppendEntity() noexcept
-    //{
-    //    if (!m_AvailableIndexes.empty())
-    //    {
-    //        u32 GlobalIndex = m_AvailableIndexes.top();
-    //        m_AvailableIndexes.pop();
-    //        return GlobalIndex;
-    //    }
-    //    else
-    //    {
-    //        return m_EntityIDTracker++;
-    //    }
-    //}
-
-
-
-
 
     u32 manager::AppendEntity() noexcept
     {
@@ -374,10 +344,6 @@ namespace paperback::archetype
 
         return GlobalIndex;
     }
-
-
-
-
 
     archetype::instance& manager::GetOrCreateArchetype( std::span<const component::info* const> Types
                                                       , const u32 Count ) noexcept

@@ -130,10 +130,7 @@ namespace paperback::vm
 		std::span<const component::info* const>			m_ComponentInfo				{   };
 		u32						        				m_NumberOfComponents		{ 0 };
 		u32						        				m_CurrentEntityCount		{ 0 };
-
-
-		// TEST CODE
-        u32												m_MoveHead                 { settings::invalid_delete_index_v };
-        u32												m_DeleteHead               { settings::invalid_delete_index_v };
+        u32												m_MoveHead                  { settings::invalid_delete_index_v };
+        u32												m_DeleteHead                { settings::invalid_delete_index_v };
 	};
 }
