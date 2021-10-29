@@ -1,12 +1,11 @@
 #pragma once
-#include "Editor/Panels/WindowSettings.h"
-#include "Functionality/Renderer/Renderer.h"
+#include "WindowSettings.h"
 
 void WindowSettings::Panel()
 {
-    ImGui::Begin(WindowSettings::typedef_v.m_pName);
+	ImGui::Begin( WindowSettings::typedef_v.m_pName, &m_bEnabled);
 
-    rttr::instance obj = PPB.GetSystem< window_system >().E;
+	rttr::instance obj = PPB.GetSystem< window_system >().E;
 
     for (auto& Property : obj.get_type().get_properties())
     {
@@ -15,16 +14,38 @@ void WindowSettings::Panel()
         auto PropertyType = Property.get_type();
         auto PropertyName = Property.get_name().to_string();
 
-        if (PropertyType.get_wrapped_type().is_arithmetic())
-            m_Imgui.DisplayBaseTypes(PropertyName, PropertyType, PropertyValue);
-        else if (PropertyType.get_wrapped_type() == rttr::type::get< std::string >())
-            m_Imgui.DisplayStringType(PropertyName, PropertyType, PropertyValue);
+        if ( PropertyType == rttr::type::get<std::reference_wrapper<int>>() )
+        {
+            ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+            ImGui::PushItemWidth(100.0f);
 
-        glfwSetWindowSize(m_pWindow, PPB.GetSystem< window_system >().E.m_Width, PPB.GetSystem< window_system >().E.m_Height);
-        Renderer::GetInstanced().UpdateFramebufferSize(PPB.GetSystem< window_system >().E.m_Width, PPB.GetSystem< window_system >().E.m_Height);
+            if (ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), ImGuiInputTextFlags_EnterReturnsTrue))
+            {
+                glfwSetWindowSize(m_pWindow, PPB.GetSystem< window_system >().E.m_Width, PPB.GetSystem< window_system >().E.m_Height);
+                Renderer::GetInstanced().UpdateFramebufferSize(PPB.GetSystem< window_system >().E.m_Width, PPB.GetSystem< window_system >().E.m_Height);
 
-        glfwSetWindowTitle(m_pWindow, PPB.GetSystem< window_system >().E.m_WinName.c_str());
+            }
+
+            ImGui::SameLine();
+
+            ImGui::PopItemWidth();
+        }
+
+        if ( PropertyType == rttr::type::get<std::reference_wrapper<std::string>>() )
+        {
+            auto& str = PropertyValue.get_value<std::reference_wrapper<std::string>>().get();
+            char buffer[256]{};
+
+            std::copy(str.begin(), str.end(), buffer);
+
+            if (ImGui::InputText(("##" + PropertyName).c_str(), buffer, sizeof(buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+            {
+                str = std::string(buffer);
+                glfwSetWindowTitle(m_pWindow, PPB.GetSystem< window_system >().E.m_WinName.c_str());
+            }
+        }
     }
+    ImGui::NewLine();
 
     if (ImGui::Button("Save Changes"))
     {
@@ -32,8 +53,6 @@ void WindowSettings::Panel()
         EDITOR_INFO_PRINT("Changes saved in Config.json");
     }
 
-    ImGui::End();
-
+	ImGui::End();
 
 }
-

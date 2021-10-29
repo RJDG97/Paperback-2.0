@@ -23,13 +23,13 @@
 #include "Editor/EditorLogger.h"
 #include "Editor/EditorLogger_Inline.h"
 
+#include "Editor/Panels/Viewport.h"
 #include "Editor/Panels/EntityInspector.h"
 #include "Editor/Panels/PropertyInspector.h"
 #include "Editor/Panels/ArchetypeInspector.h"
-#include "Editor/Panels/WindowSettings.h"
 #include "Editor/Panels/AssetBrowser.h"
 #include "Editor/Panels/ConsoleTerminal.h"
-#include "Editor/Panels/Viewport.h"
+#include "Editor/Panels/WindowSettings.h"
 
 
 namespace fs = std::filesystem;
@@ -139,9 +139,8 @@ struct imgui_system : paperback::system::instance
         //-----------------------------------
         //         Register Panels
         //-----------------------------------
-        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, 
-                   WindowSettings, AssetBrowser, ConsoleTerminal,
-                   EditorViewport
+        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, EditorViewport, 
+                   WindowSettings, AssetBrowser, ConsoleTerminal
         >();
 
         EDITOR_INFO_PRINT("Editor Loaded");
@@ -349,7 +348,7 @@ struct imgui_system : paperback::system::instance
                 if (ImGui::MenuItem("Archetype/Prefabs"))
                     GetPanel<ArchetypeInspector>()->Enable();
 
-                if (ImGui::MenuItem("Entity Details"))
+                if (ImGui::MenuItem("Details Panel"))
                     GetPanel<DetailsWindow>()->Enable();
 
                 if (ImGui::MenuItem("Viewport"))
@@ -357,7 +356,7 @@ struct imgui_system : paperback::system::instance
 
                 ImGui::Separator();
 
-                if (ImGui::MenuItem("Asset Browser"))
+                if (ImGui::MenuItem("Content Browser"))
                     GetPanel<AssetBrowser>()->Enable();
 
                 ImGui::Separator();
@@ -638,5 +637,5 @@ struct imgui_system : paperback::system::instance
 #include "Editor/Panels/ArchetypeInspector_Inline.h"
 #include "Editor/Panels/ConsoleTerminal_Inline.h"
 #include "Editor/Panels/AssetBrowser_Inline.h"
-#include "Editor/Panels/WindowSettings_Inline.h"
 #include "Editor/Panels/Viewport_Inline.h"
+#include "Editor/Panels/WindowSettings_Inline.h"

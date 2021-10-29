@@ -6,7 +6,7 @@ void ArchetypeInspector::Panel()
     int Index = 0;
     std::string ArchetypeName;
 
-    ImGui::Begin(ArchetypeInspector::typedef_v.m_pName);
+    ImGui::Begin(ArchetypeInspector::typedef_v.m_pName, &m_bEnabled);
 
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 170.0f);
@@ -55,7 +55,7 @@ void ArchetypeInspector::Panel()
 
             if (ImGui::BeginPopupContextItem())
             {
-                if (ImGui::MenuItem( ICON_FA_PLUS_SQUARE " Spawn New Entity"))
+                if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE " Spawn New Entity"))
                 {
                     m_Imgui.m_pArchetype = Archetype;
 

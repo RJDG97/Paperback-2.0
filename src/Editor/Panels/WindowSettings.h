@@ -1,8 +1,9 @@
 #pragma once
 #include "Editor/EditorInclude.h"
-#include "Systems/WindowSystem.h"
+#include "WindowSystem.h"
 #include "Json/paperback_json.h"
 #include <rttr/type>
+#include "Functionality/Renderer/Renderer.h"
 
 struct WindowSettings : paperback::editor::instance
 {
@@ -18,6 +19,7 @@ struct WindowSettings : paperback::editor::instance
     {
         m_bEnabled = false;
         m_pWindow = PPB.GetSystem<window_system>().m_pWindow;
+
     }
 
     void Update(void) noexcept

@@ -3,7 +3,7 @@
 
 void DetailsWindow::Panel()
 {
-	ImGui::Begin(DetailsWindow::typedef_v.m_pName);
+	ImGui::Begin(DetailsWindow::typedef_v.m_pName, &m_bEnabled);
 
 	static ImGuiTextFilter Filter;
 	Filter.Draw(ICON_FA_FILTER, 150.0f);

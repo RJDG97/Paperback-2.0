@@ -5,7 +5,7 @@ void EntityInspector::Panel()
     int NumEntities = 0, Index = 0;
     bool b_NodeOpen = false;
 
-    ImGui::Begin(EntityInspector::typedef_v.m_pName);
+    ImGui::Begin(EntityInspector::typedef_v.m_pName, &m_bEnabled);
 
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 150.0f);

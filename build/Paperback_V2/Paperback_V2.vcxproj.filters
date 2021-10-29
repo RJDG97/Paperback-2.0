@@ -381,57 +381,6 @@
     <ClInclude Include="..\..\dependencies\dearImGui\Imterm\utils.hpp">
       <Filter>Dependencies\dearImGui\ImTerm</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorInclude.h">
-      <Filter>Source\Tools\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorLogger.h">
-      <Filter>Source\Tools\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorLogger_Inline.h">
-      <Filter>Source\Tools\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorPanels.h">
-      <Filter>Source\Tools\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\EditorPanels_inline.h">
-      <Filter>Source\Tools\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\WindowSettings.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\WindowSettings_Inline.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\EntityInspector.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\EntityInspector_Inline.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\ArchetypeInspector.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\ArchetypeInspector_Inline.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\AssetBrowser.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\AssetBrowser_Inline.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\ConsoleTerminal.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\ConsoleTerminal_Inline.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\PropertyInspector.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Backup\Editor\Panels\PropertyInspector_Inline.h">
-      <Filter>Source\Tools\Editor\Panels</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
       <Filter>Dependencies\dearImGui\ImGuiFileBrowser</Filter>
     </ClInclude>
@@ -439,6 +388,57 @@
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Editor\Panels\Viewport_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\WindowSettings.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\WindowSettings_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\ConsoleTerminal.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\ConsoleTerminal_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\EntityInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\EntityInspector_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\PropertyInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\PropertyInspector_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\AssetBrowser.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\AssetBrowser_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorInclude.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorLogger.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorLogger_Inline.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorPanels.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorPanels_inline.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector_Inline.h">
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
   </ItemGroup>

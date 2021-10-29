@@ -4,10 +4,9 @@
 
 void AssetBrowser::Panel()
 {
-    bool a = true;
     float windowW = ImGui::GetContentRegionAvailWidth(), windowH = ImGui::GetContentRegionAvail().y;
 
-    ImGui::Begin(AssetBrowser::typedef_v.m_pName, &a, ImGuiWindowFlags_MenuBar);
+    ImGui::Begin(AssetBrowser::typedef_v.m_pName, &m_bEnabled, ImGuiWindowFlags_MenuBar);
 
     FileTabBar();
 
@@ -22,7 +21,7 @@ void AssetBrowser::Panel()
     ImGui::End();
 }
 
-void AssetBrowser::DisplayFolders(float window_width, float window_height) 
+void AssetBrowser::DisplayFolders(float window_width, float window_height)
 {
     bool Opened = false;
 
@@ -53,7 +52,7 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height)
     ImGui::EndChild();
 }
 
-void AssetBrowser::DisplayFolderFiles(float window_width, float window_height) 
+void AssetBrowser::DisplayFolderFiles(float window_width, float window_height)
 {
 
     ImGui::BeginChild("Files", { window_width / 2 , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
@@ -88,7 +87,7 @@ void AssetBrowser::FileDirectoryCheck(fs::path FileDirectory)
 
             Opened = ImGui::TreeNodeEx((void*)(size_t)Counter, Flags, FileString(ICON_FA_FOLDER, Dir).c_str());
 
-            if ( ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0) )
+            if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
             {
                 m_Imgui.m_SelectedPath = Directory;
 
@@ -154,7 +153,7 @@ void AssetBrowser::CheckFileType()
                 }
             }
 
-            if (fs::is_directory( File )) {
+            if (fs::is_directory(File)) {
 
                 if (ImGui::Selectable(FileString(ICON_FA_FOLDER, DirectoryName(File)).c_str()))
                 {
@@ -199,7 +198,7 @@ void AssetBrowser::CheckFileType()
     }
 }
 
-void AssetBrowser::DisplayFiles( fs::path File, std::string FileName )
+void AssetBrowser::DisplayFiles(fs::path File, std::string FileName)
 {
 
     if (File.extension() == ".png")
@@ -227,7 +226,7 @@ void AssetBrowser::FileTabBar()
 
     if (!m_Imgui.m_DisplayFilePath.empty())
     {
-        for ( auto& Path : m_Imgui.m_DisplayFilePath )
+        for (auto& Path : m_Imgui.m_DisplayFilePath)
         {
             ImGui::Text(ICON_FA_FOLDER_OPEN); ImGui::SameLine();
 
@@ -237,7 +236,7 @@ void AssetBrowser::FileTabBar()
 
                 UpdatePath = true;
             }
-            
+
             ImGui::SameLine();
 
             if (Path != m_Imgui.m_DisplayFilePath.back())
@@ -254,7 +253,7 @@ void AssetBrowser::FileTabBar()
     ImGui::EndMenuBar();
 }
 
-void AssetBrowser::FolderName( fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders )
+void AssetBrowser::FolderName(fs::path Path, std::deque<std::pair<std::string, fs::path>>& Folders)
 {
     std::string TempString{};
     fs::path TempPath{};
@@ -299,7 +298,7 @@ void AssetBrowser::MakeNewFolder()
                 EDITOR_TRACE_PRINT("Folder Created: " + fs::path((fs::path)"../../resources" / buffer).generic_string());
             }
 
-           m_bCreate = false;
+            m_bCreate = false;
 
             ImGui::CloseCurrentPopup();
         }
@@ -405,13 +404,13 @@ void AssetBrowser::DragDropExternal()
     }
 }
 
-std::string AssetBrowser::DirectoryName( fs::directory_entry Directory ) {
+std::string AssetBrowser::DirectoryName(fs::directory_entry Directory) {
 
     std::string tempPath = Directory.path().generic_string();
     return tempPath.substr(tempPath.find_last_of("/") + 1);
 }
 
-std::string AssetBrowser::FileString( std::string icon, std::string file_name ) {
+std::string AssetBrowser::FileString(std::string icon, std::string file_name) {
 
     return (icon + std::string(" ") + file_name);
 }
