@@ -161,6 +161,7 @@
     <ClInclude Include="..\..\src\Editor\EditorInclude.h" />
     <ClInclude Include="..\..\src\Editor\EditorLogger.h" />
     <ClInclude Include="..\..\src\Editor\EditorLogger_Inline.h" />
+    <ClInclude Include="..\..\src\Editor\EditorMath.h" />
     <ClInclude Include="..\..\src\Editor\EditorPanels.h" />
     <ClInclude Include="..\..\src\Editor\EditorPanels_inline.h" />
     <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector.h" />

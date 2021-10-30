@@ -3,10 +3,12 @@
 #include <dearImGui/ImGuizmo/ImGuizmo.h>
 #include "Functionality/Renderer/Renderer.h"
 #include "paperback_camera.h"
-#include <rttr/type>
+#include "Editor/EditorMath.h"
 
 struct EditorViewport : paperback::editor::instance
 {
+    int m_GizmoType = -1;
+
     constexpr static auto typedef_v = paperback::editor::type::update
     {
         .m_pName = "Viewport"
@@ -26,7 +28,8 @@ struct EditorViewport : paperback::editor::instance
 
     void Gizmo();
 
+    void ViewportMenuBar();
+
     void ComposeTransform();
-    glm::mat4 DecomposeTransform(const glm::vec4& Transform, glm::vec3& Translate, glm::vec3& Scale, glm::vec3& Rotation);
 
 };

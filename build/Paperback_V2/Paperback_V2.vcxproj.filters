@@ -441,6 +441,9 @@
     <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector_Inline.h">
       <Filter>Source\Tools\Editor\Panels</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorMath.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
