@@ -536,7 +536,7 @@ namespace paperback::vm
 				auto  ParentInChildEntity = ChildInfo.m_pArchetype->FindComponent<parent>( ChildInfo.m_PoolDetails );
 
 				// Remove the child component from the child
-				m_pCoordinator.AddOrRemoveComponents< std::tuple<>
+				m_pCoordinator->AddOrRemoveComponents< std::tuple<>
 													, std::tuple<child> >( ChildEntity );
 			}
 
