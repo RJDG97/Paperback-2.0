@@ -137,7 +137,7 @@ public:
     Bone* FindBone(const std::string& name)
     {
         auto it { std::find_if(m_Bones.begin(), m_Bones.end(),
-                  [&](const Bone& Bone)
+                  [&](Bone& Bone)
                   {
                       return Bone.GetBoneName() == name;
                   } ) };
