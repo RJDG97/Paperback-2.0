@@ -86,7 +86,7 @@ namespace paperback::coordinator
 								               , std::span<const component::info*> Add 
 								               , std::span<const component::info*> Remove
 								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
-		
+
 		
 		//-----------------------------------
 		//           Query Methods
@@ -199,32 +199,22 @@ namespace paperback::coordinator
 		bool IsMouseUp( int Key ) noexcept;
 
 
-		//-----------------------------------
-		//        Temporary Method
-		//-----------------------------------
-
-		PPB_INLINE
-		void InitializeParentChildAfterDeSerialization( void ) noexcept;
-
-		PPB_INLINE
-		void RevertParentChildBeforeSerialization( void ) noexcept;
-
-
 		/*
         /*! Friend Classes
         */
+		friend class paperback::vm::instance;
 		friend class paperback::archetype::instance;
 
 
 	protected:
 
 		PPB_INLINE
-		void RegisterEntity( const paperback::vm::PoolDetails
-						   , archetype::instance& Archetype ) noexcept;
+		paperback::component::entity& RegisterEntity( const paperback::vm::PoolDetails
+						                            , archetype::instance& Archetype ) noexcept;
 
 		PPB_INLINE
-		void RemoveEntity( const uint32_t SwappedGlobalIndex
-						 , const component::entity Entity ) noexcept;
+		void RemoveEntity( const u32 SwappedGlobalIndex
+						 , const u32 DeletedEntityIndex ) noexcept;
 
 
 	private:

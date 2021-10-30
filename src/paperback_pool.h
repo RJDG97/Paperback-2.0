@@ -28,7 +28,7 @@ namespace paperback::vm
 		~instance( void ) noexcept;
 
 		PPB_INLINE
-		void Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept;
+		void Init( std::span<const component::info* const> Types, const u32 NumComponents, paperback::coordinator::instance* Coordinator ) noexcept;
 
 
 		//-----------------------------------
@@ -38,14 +38,20 @@ namespace paperback::vm
 		PPB_INLINE
 		u32 Append( void ) noexcept;
 
-		PPB_INLINE
+		PPB_INLINE // Marks entity to be deleted ( Does not perform actual deletion )
+		void DestroyEntity( paperback::component::entity& Entity ) noexcept;
+
+		PPB_INLINE // Performs actual deletion
 		u32 Delete( const u32 PoolIndex ) noexcept;
+
+		PPB_INLINE
+		bool RemoveTransferredEntity( const u32 PoolIndex ) noexcept;
 
 		PPB_INLINE
 		void Clear( void ) noexcept;
 
 		PPB_INLINE
-		bool RemoveTransferredEntity( const u32 PoolIndex ) noexcept;
+		void UpdateStructuralChanges( void ) noexcept;
 
 
 		//-----------------------------------
@@ -98,7 +104,10 @@ namespace paperback::vm
 		rttr::instance GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept;
 
 		PPB_INLINE
-		u32 GetCurrentEntityCount( void ) const noexcept;
+		const u32 GetCurrentEntityCount( void ) const noexcept;
+
+		PPB_INLINE
+		const u32 GetComponentCount( void ) const noexcept;
 
 		PPB_INLINE
 		paperback::vm::instance::MemoryPool& GetMemoryPool( void ) noexcept;
@@ -112,10 +121,19 @@ namespace paperback::vm
 		PPB_INLINE
 		u32 GetPageIndex( const component::info& Info, const u32 Count ) const noexcept;
 
+		PPB_INLINE
+		void MarkEntityAsMoved( const u32 MovedEntity ) noexcept;
 
-		std::span<const component::info* const>			m_ComponentInfo				{   };
+		PPB_INLINE
+		void UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex ) noexcept;
+
+
+		paperback::coordinator::instance*				m_pCoordinator;
 		paperback::vm::instance::MemoryPool				m_MemoryPool				{   };
+		std::span<const component::info* const>			m_ComponentInfo				{   };
 		u32						        				m_NumberOfComponents		{ 0 };
 		u32						        				m_CurrentEntityCount		{ 0 };
+        u32												m_MoveHead                  { settings::invalid_delete_index_v };
+        u32												m_DeleteHead                { settings::invalid_delete_index_v };
 	};
 }

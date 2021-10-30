@@ -26,6 +26,9 @@ struct KeyScale
 class Bone
 {
 public:
+
+    Bone() = default;
+
     Bone(std::vector<KeyPosition> positions, std::vector<KeyRotation> rotations, std::vector<KeyScale> scales,
         glm::mat4 local_transform, std::string name, int id)
         : m_Positions{ positions },
@@ -172,7 +175,10 @@ public:
         return 0;
     }
 
+    std::vector<KeyPosition>& GetPositions() { return m_Positions; }
+    std::vector<KeyRotation>& GetRotations() { return m_Rotations; }
+    std::vector<KeyScale>& GetScales() { return m_Scales; }
     glm::mat4 GetLocalTransform() { return m_LocalTransform; }
-    std::string GetBoneName() const { return m_Name; }
-    int GetBoneID() { return m_ID; }
+    std::string& GetBoneName() { return m_Name; }
+    int& GetBoneID() { return m_ID; }
 };
