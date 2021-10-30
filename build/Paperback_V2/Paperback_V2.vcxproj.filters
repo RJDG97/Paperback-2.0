@@ -73,11 +73,14 @@
     <ClCompile Include="..\..\dependencies\dearImGui\imgui_impl_opengl3.cpp">
       <Filter>Dependencies\dearImGui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
-      <Filter>Dependencies\dearImGui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Nui\NUILoader.cpp">
       <Filter>Source\Tools\Functionality\NUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\Imterm\terminal_commands.cpp">
+      <Filter>Dependencies\dearImGui\ImTerm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
+      <Filter>Dependencies\dearImGui\ImGuiFileBrowser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -267,9 +270,6 @@
     <ClInclude Include="..\..\dependencies\dearImGui\imgui_impl_opengl3_loader.h">
       <Filter>Dependencies\dearImGui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
-      <Filter>Dependencies\dearImGui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
@@ -360,11 +360,92 @@
     <ClInclude Include="..\..\src\paperback_data_reflections.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Physics\ResolveCollision.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Scripts\Scripts_Application.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\misc.hpp">
+      <Filter>Dependencies\dearImGui\ImTerm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\terminal.hpp">
+      <Filter>Dependencies\dearImGui\ImTerm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\terminal_commands.hpp">
+      <Filter>Dependencies\dearImGui\ImTerm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\terminal_helpers.hpp">
+      <Filter>Dependencies\dearImGui\ImTerm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\Imterm\utils.hpp">
+      <Filter>Dependencies\dearImGui\ImTerm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.h">
+      <Filter>Dependencies\dearImGui\ImGuiFileBrowser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Viewport.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\Viewport_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\WindowSettings.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\WindowSettings_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\ConsoleTerminal.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\ConsoleTerminal_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\EntityInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\EntityInspector_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\PropertyInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\PropertyInspector_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\AssetBrowser.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\AssetBrowser_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorInclude.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorLogger.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorLogger_Inline.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorPanels.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorPanels_inline.h">
+      <Filter>Source\Tools\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\Panels\ArchetypeInspector_Inline.h">
+      <Filter>Source\Tools\Editor\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Editor\EditorMath.h">
+      <Filter>Source\Tools\Editor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -446,5 +527,22 @@
     <Filter Include="Source\Tools\Functionality\NUI">
       <UniqueIdentifier>{9ceee95b-3532-4cfc-8f8e-3c771e15f5ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dependencies\dearImGui\ImTerm">
+      <UniqueIdentifier>{764ecc64-6570-49a9-8220-55865e8a3fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Editor">
+      <UniqueIdentifier>{b145b35e-0a4e-499c-8d87-b7d149c9f5e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Editor\Panels">
+      <UniqueIdentifier>{36f4a29e-8481-4bb1-8147-4f50a86aeb13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Dependencies\dearImGui\ImGuiFileBrowser">
+      <UniqueIdentifier>{55f48a8f-b224-4ef4-a213-118c0cc60494}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\dependencies\dearImGui\Imterm\terminal.tpp">
+      <Filter>Dependencies\dearImGui\ImTerm</Filter>
+    </None>
   </ItemGroup>
 </Project>

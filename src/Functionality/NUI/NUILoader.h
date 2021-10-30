@@ -26,8 +26,14 @@ public:
 	};
 
 	Model LoadNui(std::string file_path);
+	Model::SubMesh LoadCompiledSubMesh(std::ifstream& ifs);
+	void  LoadCompiledBoneInfo(std::ifstream& ifs, std::unordered_map<std::string, BoneInfo>& map);
+	std::pair<std::string, Animation> LoadCompiledAnimation(std::ifstream& ifs);
+	Bone LoadCompiledBone(std::ifstream& ifs);
+	void LoadCompiledNodeData(NodeData& node_data, std::ifstream& ifs, std::uint32_t offset);
 
-	void SetUpNodeData(NodeData& node, std::vector<TempNodeData>& node_datas);
-
-	Model::SubMesh CreateSubMesh(std::vector<Model::Vertex> vertices, std::vector<GLushort> indices, std::pair<std::string, TempMaterial> material);
+	template <typename T>
+	void LoadVector(std::vector<T>& vec, std::ifstream& ifs);
+	std::uint16_t LoadString(std::string& str, std::ifstream& ifs);
+	Model::SubMesh CreateSubMesh(std::vector<Model::Vertex>& vertices, std::vector<GLushort>& indices, std::pair<std::string, TempMaterial>& material);
 };

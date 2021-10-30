@@ -1,4 +1,5 @@
 #pragma once
+#include "Math/Vector3f.h"
 
 struct physics_system : paperback::system::instance
 {
@@ -62,8 +63,42 @@ struct physics_system : paperback::system::instance
             {
                 assert(Entity.IsZombie() == false);
 
-                AddMomentum(RF.m_Momentum, Vec);
-                RF.m_MagMoment = 1.0f;
+                if (!RF.m_isStatic)
+                {
+                    AddMomentum(RF.m_Momentum, Vec);
+                    RF.m_MagMoment = 1.0f;
+                }
+            });
+    }
+
+    //test helper function to apply forces on all entities with rigidforce components
+    void ApplyAccelAll(paperback::Vector3f Vec)
+    {
+
+        tools::query Query;
+        Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
+
+        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
+            {
+                assert(Entity.IsZombie() == false);
+
+                AddForce(RF.m_Forces, Vec);
+                RF.m_MagForce = 1.0f; // this is magnitudeSq
+                RF.m_isAccel = true;
+            });
+    }
+
+    //test helper function to decelerate on all entities with rigidforce components
+    void NotAccelerating()
+    {
+
+        tools::query Query;
+        Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
+
+        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
+            {
+                assert(Entity.IsZombie() == false);
+                RF.m_isAccel = false;
             });
     }
 
@@ -74,65 +109,38 @@ struct physics_system : paperback::system::instance
         {
             if (RigidForce->m_isAccel)
             {
-                RigidForce->m_Forces = RigidForce->m_NegForces;
+                RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
             }
             else
             {
-                // treated as 0 force 
-                if (RigidForce->m_MagForce < RigidForce->m_threshold)
+                RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
+                RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
+
+                if (!RigidForce->m_Momentum.IsZero() && !RigidForce->m_Forces.IsZero())
                 {
-                    RigidForce->m_Forces.Reset();
-                    RigidForce->m_NegForces.Reset();
-                    RigidForce->m_MagForce = 0.f;
+                    RigidForce->m_Momentum.DecrementValue(
+                        RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
 
-                    if (RigidForce->m_MagMoment < RigidForce->m_threshold)
-                    {
-                        RigidForce->m_Momentum.Reset();
-                        RigidForce->m_MagMoment = 0.f;
-                    }
-                    else
-                    {
-                        // this part is to bleed out any remaining velocity after Accel = 0.f
-                        RigidForce->m_MagMoment = RigidForce->m_Momentum.MagnitudeSq();
+                    RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
 
-                        //lock momentum within maximum allowed 
-                        if (RigidForce->m_MagMoment < RigidForce->m_MaxMoment.MagnitudeSq())
-                        {
-
-                            float Mproportion = RigidForce->m_MagMoment / (RigidForce->m_MaxMomentSq * 2);
-                            // update momentum
-                            //account for -ve and +ve increment
-                            paperback::Vector3f max = SetMaxMoment(RigidForce->m_Momentum, RigidForce->m_MaxMoment);
-
-                            RigidForce->m_Momentum -= (Mproportion * max * m_Coordinator.DeltaTime());
-                        }
-
-                        //force momentum to reduce to prevent unstopping movement
-                        RigidForce->m_Momentum *= 0.98f;
-                    }
+                    RigidForce->m_Forces.DecrementValue(
+                        RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
                 }
-                else
+                else if (RigidForce->m_Forces.IsZero())
                 {
-                    // magnitudeSq
-                    RigidForce->m_MagForce = RigidForce->m_Forces.MagnitudeSq();
-                    // current Force / maximum Force / 2
-                    float Fproportion = RigidForce->m_MagForce / (RigidForce->m_MaxForceSq * 2);
-                    // forces update with time
-                    RigidForce->m_Forces -= (Fproportion * RigidForce->m_MaxForce * m_Coordinator.DeltaTime());
-                    RigidForce->m_NegForces = RigidForce->m_Forces;
-                    // update momentum
-                    RigidForce->m_Momentum -= (RigidForce->m_NegForces * m_Coordinator.DeltaTime());
+                    RigidForce->m_Momentum.DecrementValue(
+                        RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
                 }
             }
-            RigidBody->m_Accel = ConvertToAccel(RigidForce->m_Mass, RigidForce->m_Forces);
-            RigidBody->m_Velocity = ConvertToVelocity(RigidForce->m_Mass, RigidForce->m_Momentum);
-        }
-        else
-        {
-            // remember that rigid body without RIGID FORCE does not have a velocity or accel dampener
+            if (RigidBody)
+            {
+                RigidBody->m_Accel = ConvertToAccel(RigidForce->m_Mass, RigidForce->m_Forces);
+                RigidBody->m_Velocity = ConvertToVelocity(RigidForce->m_Mass, RigidForce->m_Momentum);
+                Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+            }
         }
 
-        Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+        
 
         /*
             Remove if unnecessary - Add Remove Component Reference

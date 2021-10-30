@@ -16,6 +16,8 @@ public:
 	// Render object
 	void Render(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
 
+	GLuint GetFinalImage();
+
 	// Helper function to create framebuffers
 	void SetUpFramebuffer(int Width, int Height);
 	// Update the resized framebuffers
@@ -55,7 +57,8 @@ private:
 	void ShadowPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects);
 	void RenderPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects);
 	void BlurPass();
-	void CompositePass();
+	void CompositePass();	
+	void FinalPass();
 
 	// Shadow buffer
 	FrameBuffer m_ShadowBuffer;
@@ -63,6 +66,8 @@ private:
 	FrameBuffer m_LightingBuffer;
 	// Blur buffer
 	FrameBuffer m_BlurBuffer;
+	// Final buffer
+	FrameBuffer m_FinalBuffer;
 
 	// Light source
 	Light m_Light;

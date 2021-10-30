@@ -226,4 +226,33 @@ namespace paperback
 	inline Vector3f Vector3f::RotateAboutPoint(const Vector3f& Point, const Vector3f& Center, float Degrees) {
 		return Vector3f(Point - Center).RotateDeg(Degrees) + Center;
 	}
+
+	inline Vector3f& Vector3f::LockingValue(const Vector3f& lock) {
+		if (abs(x) > lock.x)
+			x = (x > EPSILON) ? lock.x : -lock.x;
+		if (abs(y) > lock.y)
+			y = (y > EPSILON) ? lock.y : -lock.y;
+		if (abs(z) > lock.z)
+			z = (z > EPSILON) ? lock.z : -lock.z;
+		return *this;
+	}
+	inline Vector3f& Vector3f::CutoffValue(const Vector3f& lock) {
+		if (abs(x) < lock.x)
+			x = 0.f;
+		if (abs(y) < lock.y)
+			y = 0.f;
+		if (abs(z) < lock.z)
+			z = 0.f;
+		return *this;
+	}
+
+	inline Vector3f& Vector3f::DecrementValue(float lock) {
+		if (abs(x) > EPSILON)
+			x -= (x > EPSILON) ? lock : -lock;
+		if (abs(y) > EPSILON)
+			y -= (y > EPSILON) ? lock : -lock;
+		if (abs(z) > EPSILON)
+			z -= (z > EPSILON) ? lock : -lock;
+		return *this;
+	}
 }
