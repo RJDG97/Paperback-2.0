@@ -9,55 +9,19 @@ struct parent
 		.m_pName = "Parent"
 	};
 
-	union child_info final
-    {
-        paperback::u64              m_ChildGID : 32          // Global Index of Child Entity ( EntityInfo )
-                      ,             m_Unused   : 32;
-        paperback::u64              m_Unused_2;
-
-        #pragma warning(disable : 4201)
-            // Data used to initialize m_ChildGID
-            struct
-            {
-                paperback::u64     m_ChildGuid;             // Child Archetype Guid
-                paperback::u64     m_ChildPoolKey   : 32    // Child Pool Key
-                             ,     m_ChildPoolIndex : 32;   // Child Pool Index
-            };
-        #pragma warning(default : 4201)
-    };
-
     // Pass paperback::component::entity::m_GlobalIndex
     void AddChild( paperback::u32 ChildGlobalIndex ) noexcept
     {
-        bool Valid = true;
-        for ( const auto CInfo : m_Infos )
-        {
-            if ( CInfo.m_ChildGID == ChildGlobalIndex )
-            {
-                Valid = false;
-                break;
-            }
-        }
-
-        if ( Valid )
-            m_Infos.push_back({
-                .m_ChildGID = ChildGlobalIndex
-            });
+        m_ChildrenGlobalIndexes.emplace( ChildGlobalIndex );
     }
 
     // Pass paperback::component::entity::m_GlobalIndex
     void RemoveChild( paperback::u32 ChildGlobalIndex ) noexcept
     {
-        auto begin = m_Infos.begin(), end = m_Infos.end();
-        for ( ; begin != end; ++begin )
-        {
-            if ( begin->m_ChildGID == ChildGlobalIndex ) break;
-        }
-        if ( begin != end )
-            m_Infos.erase( begin );
+        m_ChildrenGlobalIndexes.erase( ChildGlobalIndex );
     }
 
-	std::vector< child_info >      m_Infos;
+	std::unordered_set<paperback::u32> m_ChildrenGlobalIndexes;
 };
 
 //namespace RR_Parent

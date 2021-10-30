@@ -9,16 +9,20 @@ struct parentchild_system : paperback::system::instance
 
 	void operator()( parent& Parent, transform& Transform ) noexcept
 	{
-		const auto& Children = Parent.m_Infos;
+		const auto& Children = Parent.m_ChildrenGlobalIndexes;
 
-		for ( const auto& ChildrenInfo : Children )
+		for ( const auto& ChildGlobalIndex : Children )
 		{
-			auto& ChildInfo = GetEntityInfo( ChildrenInfo.m_ChildGID );	
+			auto& ChildInfo = GetEntityInfo( ChildGlobalIndex );	
 			auto [ CTransform, COffset ] = ChildInfo.m_pArchetype->FindComponents<transform, offset>( ChildInfo.m_PoolDetails );
 
 			if ( CTransform && COffset )
 			{
 				CTransform->m_Position = COffset->m_Value + Transform.m_Position;
+			}
+			else if ( CTransform )
+			{
+				CTransform->m_Position = Transform.m_Position;
 			}
 		}
 	}

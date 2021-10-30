@@ -64,7 +64,7 @@ namespace paperback::archetype
         }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
     
-    void instance::CloneEntity( component::entity& Entity ) noexcept
+    const u32 instance::CloneEntity( component::entity& Entity ) noexcept
     {
         // Entity Info of Entity to clone
         auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity );
@@ -76,8 +76,8 @@ namespace paperback::archetype
                                       .m_Key       = m_PoolAllocationIndex
                                   ,   .m_PoolIndex = PoolIndex
                                   };
-        m_Coordinator.RegisterEntity( UpdatedPoolDetails
-                                    , *this );
+        auto& ClonedEntity = m_Coordinator.RegisterEntity( UpdatedPoolDetails
+                                                         , *this );
 
         if ( UpdatedPoolDetails.m_Key == EntityInfo.m_PoolDetails.m_Key )
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex );
@@ -87,6 +87,8 @@ namespace paperback::archetype
         else
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex, &m_ComponentPool[ EntityInfo.m_PoolDetails.m_Key ] );
         */
+
+        return ClonedEntity.m_GlobalIndex;
     }
     
     void instance::DestroyEntity( component::entity& Entity ) noexcept
@@ -361,46 +363,5 @@ namespace paperback::archetype
     const instance::guid& instance::GetArchetypeGuid( void ) const noexcept
     {
         return m_ArchetypeGuid;
-    }
-
-
-    //-----------------------------------
-    //             Private
-    //-----------------------------------
-
-    void instance::UnlinkChildrenAndParents( const PoolDetails Details ) noexcept
-    {
-        if ( m_ComponentBits.Has<parent>() )
-        {
-            auto& Parent = GetComponent<parent>( Details );
-
-            while ( Parent.m_Infos.size() )
-            {
-                auto& ChildInfo = m_Coordinator.GetEntityInfo( Parent.m_Infos[ Parent.m_Infos.size() - 1 ].m_ChildGID );
-                auto& Child     = ChildInfo.m_pArchetype->GetComponent< paperback::component::entity >( ChildInfo.m_PoolDetails );
-
-                m_Coordinator.AddOrRemoveComponents< std::tuple<>
-                                                 , std::tuple<child, offset>
-                                                 >( Child );
-
-                Parent.m_Infos.pop_back();
-            }
-        }
-        else if ( m_ComponentBits.Has<child>() )
-        {
-            auto& Child         = GetComponent<child>( Details );
-            auto& ChildEntity   = GetComponent<paperback::component::entity>( Details );
-            auto& ParentInfo    = m_Coordinator.GetEntityInfo( Child.m_Info.m_ParentGID );
-            
-            auto& Parent        = ParentInfo.m_pArchetype->GetComponent< parent >( ParentInfo.m_PoolDetails );
-
-            auto begin = Parent.m_Infos.begin(), end = Parent.m_Infos.end();
-            for ( ; begin != end; ++begin )
-            {
-                if ( begin->m_ChildGID == ChildEntity.m_GlobalIndex ) break;
-            }
-            if ( begin != end )
-                Parent.m_Infos.erase( begin );
-        }
     }
 }

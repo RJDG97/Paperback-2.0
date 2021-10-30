@@ -446,19 +446,4 @@ namespace paperback::coordinator
 	{
 		m_ArchetypeMgr.RemoveEntity( SwappedGlobalIndex, DeletedEntityIndex );
 	}
-
-
-	//-----------------------------------
-	//        Temporary Method
-	//-----------------------------------
-
-	void instance::InitializeParentChildAfterDeSerialization( void ) noexcept
-	{
-		m_ArchetypeMgr.InitializeParentChildAfterDeSerialization();
-	}
-
-	void instance::RevertParentChildBeforeSerialization( void ) noexcept
-	{
-		m_ArchetypeMgr.RevertParentChildBeforeSerialization();
-	}
 }

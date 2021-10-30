@@ -33,7 +33,7 @@ namespace paperback::archetype
         paperback::component::entity CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
         
         PPB_INLINE
-        void CloneEntity( component::entity& Entity ) noexcept;
+        const u32 CloneEntity( component::entity& Entity ) noexcept;
 
         PPB_INLINE
         void DestroyEntity( component::entity& Entity ) noexcept;
@@ -131,9 +131,6 @@ namespace paperback::archetype
 
 
     private:
-
-        PPB_INLINE
-        void UnlinkChildrenAndParents( const PoolDetails Details ) noexcept;
 
         coordinator::instance&        m_Coordinator;                                              // Coordinator Reference
         ComponentPool                 m_ComponentPool            {   };                           // Component Pool

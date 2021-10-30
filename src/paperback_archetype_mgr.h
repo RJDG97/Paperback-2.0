@@ -96,17 +96,11 @@ namespace paperback::archetype
 
         PPB_INLINE
         paperback::component::entity& RegisterEntity( const PoolDetails Details
-                                                         , archetype::instance& Archetype ) noexcept;
+                                                    , archetype::instance& Archetype ) noexcept;
 
         PPB_INLINE
         void RemoveEntity( const u32 SwappedGlobalIndex
-                              , const u32 DeletedEntityIndex ) noexcept;
-
-        PPB_INLINE
-        void InitializeParentChildAfterDeSerialization( void ) noexcept;
-
-        PPB_INLINE
-        void RevertParentChildBeforeSerialization( void ) noexcept;
+                         , const u32 DeletedEntityIndex ) noexcept;
 
     private:
 

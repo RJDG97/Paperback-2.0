@@ -45,10 +45,10 @@ namespace paperback::vm
 		u32 Delete( const u32 PoolIndex ) noexcept;
 
 		PPB_INLINE
-		void Clear( void ) noexcept;
+		bool RemoveTransferredEntity( const u32 PoolIndex ) noexcept;
 
 		PPB_INLINE
-		bool RemoveTransferredEntity( const u32 PoolIndex ) noexcept;
+		void Clear( void ) noexcept;
 
 		PPB_INLINE
 		void UpdateStructuralChanges( void ) noexcept;
@@ -123,6 +123,9 @@ namespace paperback::vm
 
 		PPB_INLINE
 		void MarkEntityAsMoved( const u32 MovedEntity ) noexcept;
+
+		PPB_INLINE
+		void UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex ) noexcept;
 
 
 		paperback::coordinator::instance*				m_pCoordinator;
