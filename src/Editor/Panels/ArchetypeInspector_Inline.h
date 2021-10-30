@@ -33,14 +33,14 @@ void ArchetypeInspector::Panel()
                 m_Imgui.m_pArchetype = Archetype;
                 m_Imgui.m_ComponentNames.clear();
 
-                for (paperback::u32 i = 0; i < Archetype->GetComponentNumber(); ++i)
+                for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
                     m_Imgui.m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
 
                 ImGui::BeginTooltip();
 
                 if (!m_Imgui.m_ComponentNames.empty() && m_Imgui.m_pArchetype)
                 {
-                    ImGui::Text("Number of Entities: %d", m_Imgui.m_pArchetype->GetEntityCount());
+                    ImGui::Text("Number of Entities: %d", m_Imgui.m_pArchetype->GetCurrentEntityCount());
 
                     ImGui::Separator();
 

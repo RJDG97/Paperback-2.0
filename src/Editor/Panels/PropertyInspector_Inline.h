@@ -98,7 +98,7 @@ void DetailsWindow::RemoveComponent()
     {
         if (ImGui::BeginCombo("##RemoveComponent", ICON_FA_MINUS " Remove"))
         {
-            for (paperback::u32 i = 0; i < m_Imgui.m_SelectedEntity.first->GetComponentNumber(); ++i)
+            for (paperback::u32 i = 0; i < m_Imgui.m_SelectedEntity.first->GetComponentCount(); ++i)
             {
                 if (ImGui::Selectable(m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]->m_pName))
                 {

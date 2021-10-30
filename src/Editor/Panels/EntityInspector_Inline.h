@@ -18,7 +18,7 @@ void EntityInspector::Panel()
 
             if (Filter.PassFilter(Archetype->GetName().c_str()))
             {
-                for (paperback::u32 i = 0; i < Archetype->GetEntityCount(); ++i)
+                for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
                 {
                     NumEntities++;
 
