@@ -9,6 +9,14 @@ namespace paperback::archetype
         m_Coordinator{ Coordinator }
     { }
 
+    void manager::Initialize( void ) noexcept
+    {
+        for ( u32 i = 0, max = settings::max_entities_v - 2; i < max; ++i )
+        {
+            m_EntityInfos[ i ].m_PoolDetails.m_PoolIndex = i + 1;
+        }
+    }
+
 
     //-----------------------------------
     //             Create
@@ -141,7 +149,7 @@ namespace paperback::archetype
             CInfoArr NewComponentInfoList;
 			auto& Archetype = *EntityInfo.m_pArchetype;
 
-			for ( auto& CInfo : std::span{ Archetype.GetComponentInfos().data(), Archetype.GetComponentNumber() } )
+			for ( auto& CInfo : std::span{ Archetype.GetComponentInfos().data(), Archetype.GetComponentCount() } )
 				NewComponentInfoList[Count++] = CInfo;
 
 			for ( auto& CInfo : Add )
@@ -206,13 +214,6 @@ namespace paperback::archetype
         return m_EntityInfos[ GlobalIndex ];
     }
 
-    archetype::instance& manager::GetArchetypeFromEntity( const u32 EntityID ) const noexcept
-    {
-        PPB_ASSERT_MSG( EntityID >= m_EntityIDTracker, "GetArchetypeFromEntity: Invalid EntityID" );
-
-        return *( m_EntityInfos[EntityID].m_pArchetype );
-    }
-
     std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
     {
         std::vector<paperback::archetype::instance*> List;
@@ -256,7 +257,7 @@ namespace paperback::archetype
             {
                 const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
 
-                if ( m_pArchetypeList[index]->GetEntityCount() > 0 )
+                if ( m_pArchetypeList[index]->GetCurrentEntityCount() > 0 )
                     ValidArchetypes.push_back( m_pArchetypeList[index].get() );
             }
         }
@@ -285,7 +286,9 @@ namespace paperback::archetype
     //             Helper
     //-----------------------------------
 
-    void manager::RegisterEntity( const PoolDetails Details, archetype::instance& Archetype ) noexcept
+    PPB_INLINE
+    paperback::component::entity& manager::RegisterEntity( const PoolDetails Details
+                                     , archetype::instance& Archetype ) noexcept
     {
         u32   EntityGlobalIndex = AppendEntity();
         auto& EntityInfo        = GetEntityInfo( EntityGlobalIndex );
@@ -301,39 +304,45 @@ namespace paperback::archetype
                          }
                      };
 
-        auto& Entity = EntityInfo.m_pArchetype->GetComponent<component::entity>( EntityInfo.m_PoolDetails );
+        auto& Entity = Archetype.GetComponent<paperback::component::entity>( EntityInfo.m_PoolDetails );
 
         Entity.m_GlobalIndex          = EntityGlobalIndex;
         Entity.m_Validation.m_Next    = 0;
         Entity.m_Validation.m_bZombie = false;
+
+        return Entity;
     }
 
-    void manager::RemoveEntity( const u32 SwappedGlobalIndex, const component::entity DeletedEntity ) noexcept
+    PPB_INLINE
+    void manager::RemoveEntity( const u32 SwappedGlobalIndex
+                                   , const u32 DeletedEntityIndex ) noexcept
     {
-        if ( SwappedGlobalIndex != paperback::settings::invalid_index_v )
+        auto& Info = GetEntityInfo( DeletedEntityIndex );
+
+        // If Deleted Entity is not last entity in Pool
+        if ( SwappedGlobalIndex != paperback::settings::invalid_index_v )           
         {
-            auto& Info = GetEntityInfo( DeletedEntity );
             m_EntityInfos[SwappedGlobalIndex].m_PoolDetails = Info.m_PoolDetails;
         }
-        m_AvailableIndexes.push( DeletedEntity.m_GlobalIndex );
+
+        Info.m_PoolDetails.m_PoolIndex = m_EntityHead;
+        m_EntityHead                   = DeletedEntityIndex;
     }
 
 
     //-----------------------------------
     //             Private
     //-----------------------------------
+
     u32 manager::AppendEntity() noexcept
     {
-        if (!m_AvailableIndexes.empty())
-        {
-            u32 GlobalIndex = m_AvailableIndexes.top();
-            m_AvailableIndexes.pop();
-            return GlobalIndex;
-        }
-        else
-        {
-            return m_EntityIDTracker++;
-        }
+        PPB_ASSERT_MSG( m_EntityHead == settings::invalid_index_v, "Invalid Global Index Generated" );
+
+        u32 GlobalIndex         = m_EntityHead;
+        auto& CurrentEntityInfo = m_EntityInfos[ m_EntityHead ];
+        m_EntityHead            = CurrentEntityInfo.m_PoolDetails.m_PoolIndex;
+
+        return GlobalIndex;
     }
 
     archetype::instance& manager::GetOrCreateArchetype( std::span<const component::info* const> Types
@@ -390,105 +399,5 @@ namespace paperback::archetype
         m_pArchetypeMap.emplace( std::make_pair( p->GetArchetypeGuid().m_Value, p ) );
 
         return *( m_pArchetypeList.back() );
-    }
-
-    // Remove once linked list mapping is dones
-    void manager::InitializeParentChildAfterDeSerialization( void ) noexcept
-    {
-        // For all Archetypes
-        for ( const auto& Sig : m_ArchetypeBits )
-        {
-            // If has parent component
-            if ( Sig.Has<parent>() )
-            {
-                const auto index = static_cast<size_t>( &Sig - &m_ArchetypeBits[0] );
-                auto& Archetype = m_pArchetypeList[index];
-
-                // For all entities within matching archetype
-                for ( u32 i = 0, max = Archetype->GetEntityCount(); i < max; ++i )
-                {
-                    auto& Parent = Archetype->GetComponent<parent>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
-
-                    // Update all children's global index
-                    for ( auto& Child : Parent.m_Infos )
-                    {
-                        auto CArchetypeIT = m_pArchetypeMap.find( Child.m_ChildGuid );
-                        if ( CArchetypeIT != m_pArchetypeMap.end() )
-                        {
-                            auto& ChildEntity = CArchetypeIT->second->GetComponent<component::entity>( { static_cast<paperback::u32>( Child.m_ChildPoolKey )
-                                                                                                       , static_cast<paperback::u32>( Child.m_ChildPoolIndex ) });
-                            Child.m_ChildGID  = ChildEntity.m_GlobalIndex;
-                        }
-                    }
-                }
-            }
-            // Or child component
-            else if ( Sig.Has<child>() )
-            {
-                const auto index = static_cast<size_t>( &Sig - &m_ArchetypeBits[0] );
-                auto& Archetype = m_pArchetypeList[index];
-
-                for ( u32 i = 0, max = Archetype->GetEntityCount(); i < max; ++i )
-                {
-                    auto& Child = Archetype->GetComponent<child>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
-
-                    auto PArchetypeIT = m_pArchetypeMap.find( Child.m_Info.m_ParentGuid );
-                    if ( PArchetypeIT != m_pArchetypeMap.end() )
-                    {
-                        auto& ParentEntity        = PArchetypeIT->second->GetComponent<component::entity>( { static_cast<paperback::u32>( Child.m_Info.m_ParentPoolKey )
-                                                                                                           , static_cast<paperback::u32>( Child.m_Info.m_ParentPoolIndex ) });
-                        Child.m_Info.m_ParentGID  = ParentEntity.m_GlobalIndex;
-                    }
-                }
-            }
-        }
-    }
-
-    // Revert global index to normal details
-    void manager::RevertParentChildBeforeSerialization( void ) noexcept
-    {
-        // For all Archetypes
-        for ( const auto& Sig : m_ArchetypeBits )
-        {
-            // If has parent component
-            if ( Sig.Has<parent>() )
-            {
-                const auto index = static_cast<size_t>( &Sig - &m_ArchetypeBits[0] );
-                auto& Archetype = m_pArchetypeList[index];
-
-                // For all entities within matching archetype
-                for ( u32 i = 0, max = Archetype->GetEntityCount(); i < max; ++i )
-                {
-                    auto& Parent = Archetype->GetComponent<parent>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
-
-                    // Update all children's global index
-                    for ( auto& Child : Parent.m_Infos )
-                    {
-                        auto& ChildInfo        = m_Coordinator.GetEntityInfo( Child.m_ChildGID );
-
-                        Child.m_ChildGuid      = Archetype->GetArchetypeGuid().m_Value;
-                        Child.m_ChildPoolKey   = ChildInfo.m_PoolDetails.m_Key;
-                        Child.m_ChildPoolIndex = ChildInfo.m_PoolDetails.m_PoolIndex;
-                    }
-                }
-            }
-            // Or child component
-            else if ( Sig.Has<child>() )
-            {
-                const auto index = static_cast<size_t>( &Sig - &m_ArchetypeBits[0] );
-                auto& Archetype = m_pArchetypeList[index];
-
-                for ( u32 i = 0, max = Archetype->GetEntityCount(); i < max; ++i )
-                {
-                    auto& Child = Archetype->GetComponent<child>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
-
-                    auto& ParentInfo               = m_Coordinator.GetEntityInfo( Child.m_Info.m_ParentGID );
-
-                    Child.m_Info.m_ParentGuid      = ParentInfo.m_pArchetype->GetArchetypeGuid().m_Value;
-                    Child.m_Info.m_ParentPoolKey   = ParentInfo.m_PoolDetails.m_Key;
-                    Child.m_Info.m_ParentPoolIndex = ParentInfo.m_PoolDetails.m_PoolIndex;
-                }
-            }
-        }
     }
 }

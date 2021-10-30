@@ -196,7 +196,7 @@ struct imgui_system : paperback::system::instance
             {
                 Index++;
 
-                for (paperback::u32 i = 0; i < Archetype->GetEntityCount(); ++i)
+                for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
                 {
                     NumEntities++;
 
@@ -286,7 +286,7 @@ struct imgui_system : paperback::system::instance
                     m_pArchetype = Archetype;
                     m_ComponentNames.clear();
 
-                    for (paperback::u32 i = 0; i < Archetype->GetComponentNumber(); ++i)
+                    for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
                     {
                         m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
                     }
@@ -302,7 +302,7 @@ struct imgui_system : paperback::system::instance
 
         if (!m_ComponentNames.empty() && m_pArchetype)
         {
-            ImGui::Text("Number of Entities: %d", m_pArchetype->GetEntityCount());
+            ImGui::Text("Number of Entities: %d", m_pArchetype->GetCurrentEntityCount());
 
             if (ImGui::Button("Clone new Entity"))
             {
@@ -509,7 +509,7 @@ struct imgui_system : paperback::system::instance
             {
                 if (ImGui::BeginCombo("##RemoveComponent", "Current Components"))
                 {
-                    for (paperback::u32 i = 0; i < m_SelectedEntity.first->GetComponentNumber(); ++i)
+                    for (paperback::u32 i = 0; i < m_SelectedEntity.first->GetComponentCount(); ++i)
                     {
                         if (ImGui::Selectable(m_SelectedEntity.first->GetComponentInfos()[i]->m_pName))
                         {

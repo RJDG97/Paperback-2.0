@@ -31,6 +31,9 @@ namespace paperback::archetype
         PPB_INLINE
         manager( paperback::coordinator::instance& Coordinator );
 
+        PPB_INLINE
+        void Initialize( void ) noexcept;
+
 
         //-----------------------------------
 		//             Create
@@ -89,30 +92,21 @@ namespace paperback::archetype
         entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
         PPB_INLINE
-        archetype::instance& GetArchetypeFromEntity( const u32 EntityID ) const noexcept;
-
-        PPB_INLINE
         std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
-
-        /*
-        /*! Helper Functions
-        */
         PPB_INLINE
-        void RegisterEntity( const PoolDetails Details
-                           , archetype::instance& Archetype ) noexcept;
+        paperback::component::entity& RegisterEntity( const PoolDetails Details
+                                                    , archetype::instance& Archetype ) noexcept;
 
         PPB_INLINE
         void RemoveEntity( const u32 SwappedGlobalIndex
-                         , const component::entity DeletedEntity ) noexcept;
-
-        PPB_INLINE
-        void InitializeParentChildAfterDeSerialization( void ) noexcept;
-
-        PPB_INLINE
-        void RevertParentChildBeforeSerialization( void ) noexcept;
+                         , const u32 DeletedEntityIndex ) noexcept;
 
     private:
+
+        //-----------------------------------
+        //         Helper Functions
+        //-----------------------------------
 
         PPB_INLINE
         u32 AppendEntity() noexcept;
@@ -130,12 +124,17 @@ namespace paperback::archetype
         std::vector<archetype::instance*> Search( std::span<const component::info* const> Types ) const noexcept;
 
 
+        paperback::coordinator::instance&   m_Coordinator;
         EntityInfoList                      m_EntityInfos       = std::make_unique<entity::info[]>( settings::max_entities_v );
         ArchetypeList                       m_pArchetypeList    {   };
         ArchetypeMap                        m_pArchetypeMap     {   };
         ArchetypeBitsList                   m_ArchetypeBits     {   };
-        uint32_t                            m_EntityIDTracker   { 0 };
-        EntityListHead                      m_AvailableIndexes  {   };
-        paperback::coordinator::instance&   m_Coordinator;
+        /*
+        For the "Linked-List":
+        - m_EntityHead stores -> m_PoolDetails.m_PoolIndex (Available Indexes)
+        - m_Validation.m_Next -> Move / Delete Indexes
+        */
+        u32                                 m_EntityHead        { 0 };
+
     };
 }

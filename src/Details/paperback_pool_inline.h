@@ -16,10 +16,11 @@ namespace paperback::vm
 		}
 	}
 
-	void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents ) noexcept
+	void instance::Init( std::span<const component::info* const> Types, const u32 NumComponents, paperback::coordinator::instance* Coordinator ) noexcept
 	{
 		m_ComponentInfo		 = Types;
 		m_NumberOfComponents = NumComponents;
+		m_pCoordinator	     = Coordinator;
 
 		// Reserve memory required for MaxEntites
 		for ( std::size_t i = 0; i < m_NumberOfComponents; i++ )
@@ -71,6 +72,24 @@ namespace paperback::vm
 		return m_CurrentEntityCount++;
 	}
 
+	PPB_INLINE
+	void instance::DestroyEntity( paperback::component::entity& Entity ) noexcept
+	{
+		PPB_ASSERT_MSG( Entity.IsZombie(), "DestroyEntity: Attemping to double delete an entity" );
+
+        auto& EntityInfo = m_pCoordinator->GetEntityInfo( Entity );
+        auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails.m_PoolIndex ); // Replace this
+
+        PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
+
+        Entity.m_Validation.m_bZombie
+            = EntityInfo.m_Validation.m_bZombie
+            = true;
+
+        EntityInfo.m_Validation.m_Next = m_DeleteHead;
+        m_DeleteHead = PoolEntity.m_GlobalIndex;
+	}
+
 	u32 instance::Delete( const u32 PoolIndex ) noexcept
 	{
 		PPB_ASSERT_MSG( PoolIndex >= m_CurrentEntityCount || PoolIndex < 0,
@@ -83,6 +102,9 @@ namespace paperback::vm
 		{
 			const auto& pInfo = *m_ComponentInfo[i];
 			auto		pData =  m_MemoryPool[i];
+
+			// Unlink Parent & Child relationship on deletion of entity
+			UnlinkParentAndChildOnDelete( pInfo, PoolIndex );
 
 			// Deleting last Entity
 			if ( PoolIndex == m_CurrentEntityCount )
@@ -122,14 +144,6 @@ namespace paperback::vm
 				 : GetComponent<component::entity>( PoolIndex ).m_GlobalIndex;
 	}
 
-	void instance::Clear() noexcept
-	{
-		while ( m_CurrentEntityCount )
-		{
-			Delete( m_CurrentEntityCount-1 );
-		}
-	}
-
 	bool instance::RemoveTransferredEntity( const u32 PoolIndex ) noexcept
 	{
 		PPB_ASSERT_MSG( PoolIndex < 0, "Pool RemoveTransferredEntity - Invalid pool index");
@@ -138,6 +152,7 @@ namespace paperback::vm
 		if ( PoolIndex >= m_CurrentEntityCount )
 			return false;
 
+		// Update counter
 		--m_CurrentEntityCount;
 
 		for ( size_t i = 0; i < m_NumberOfComponents; ++i )
@@ -147,8 +162,9 @@ namespace paperback::vm
 
 			// If moving last entity - Just destroy it
 			if ( PoolIndex == m_CurrentEntityCount )
+			{
 				if (pInfo.m_Destructor) pInfo.m_Destructor(&pData[m_CurrentEntityCount * pInfo.m_Size]);
-
+			}
 			// Moving any other entity - Copy memory and shift forward
 			else
 			{
@@ -173,8 +189,47 @@ namespace paperback::vm
 				PPB_ASSERT_MSG( !b, "Pool RemoveTransferredEntity - Virtual free failed" );
 			}
 		}
+		
+		// Update the "Last Entity" that was moved to fill the gap in "PoolIndex"
+		if ( PoolIndex != 0 )
+		{
+			auto& MovedEntity = GetComponent<paperback::component::entity>( PoolIndex );
+			auto& MovedEntityInfo = m_pCoordinator->GetEntityInfo( MovedEntity );
+			MovedEntityInfo.m_PoolDetails.m_PoolIndex = PoolIndex;
+		}
+
 
 		return true;
+	}
+
+	void instance::Clear() noexcept
+	{
+		while ( m_CurrentEntityCount )
+		{
+			Delete( m_CurrentEntityCount-1 );
+		}
+	}
+
+	PPB_INLINE
+	void instance::UpdateStructuralChanges( void ) noexcept
+	{
+		auto ResetInfo = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; };
+
+		while ( m_DeleteHead != settings::invalid_delete_index_v )
+		{
+			auto& Info = m_pCoordinator->GetEntityInfo( m_DeleteHead );
+            m_pCoordinator->RemoveEntity( Delete( Info.m_PoolDetails.m_PoolIndex ), m_DeleteHead );
+			m_DeleteHead = Info.m_Validation.m_Next;
+			ResetInfo( Info );
+		}
+
+        while ( m_MoveHead != settings::invalid_delete_index_v )
+        {
+			auto& Info = m_pCoordinator->GetEntityInfo( m_MoveHead );
+            RemoveTransferredEntity( Info.m_PoolDetails.m_PoolIndex );
+			m_MoveHead = Info.m_Validation.m_Next;
+			ResetInfo( Info );
+        }
 	}
 
 
@@ -193,7 +248,7 @@ namespace paperback::vm
         while( true )
         {
 			// Component exists in both - Copy existing component
-            if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_Guid == m_ComponentInfo[ iPoolTo ]->m_Guid )
+			if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_Guid == m_ComponentInfo[ iPoolTo ]->m_Guid )
             {
                 auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
 
@@ -240,9 +295,7 @@ namespace paperback::vm
             if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
         }
 
-		// Update moved entity to be a zombie
-		auto& MovedEntity				   = FromPool.GetComponent<paperback::component::entity>( Details.m_PoolIndex );
-		MovedEntity.m_Validation.m_bZombie = true;
+		FromPool.MarkEntityAsMoved( Details.m_PoolIndex );
 
         return NewPoolIndex;
 	}
@@ -252,21 +305,57 @@ namespace paperback::vm
 	//              Clone
 	//-----------------------------------
 
-	void instance::CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept
+	void instance::CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept // also rmb to skip cloning of entity component
 	{
 		for ( u32 i = 0; i < m_NumberOfComponents; ++i )
 		{
-			auto CSize = m_ComponentInfo[ i ]->m_Size;
-			if ( m_ComponentInfo[ i ]->m_Copy )
+			// If component to be cloned is the parent component
+			if ( m_ComponentInfo[ i ]->m_Guid == component::info_v<parent>.m_Guid )
 			{
-				m_ComponentInfo[i]->m_Copy( &m_MemoryPool[ i ][ ToIndex * CSize ]		// Destination
-										  , &m_MemoryPool[ i ][ FromIndex * CSize ] );	// Source
+				// Grab parent component from entity that is to be cloned
+				auto& ToParent     = GetComponent<parent>( ToIndex );
+				auto& ToEntity     = GetComponent<paperback::component::entity>( ToIndex );
+				auto& FromParent   = GetComponent<parent>( FromIndex );
+				auto& ChildrenList = FromParent.m_ChildrenGlobalIndexes;
+
+				// Grab global index of each child
+				for ( const auto& ChildGID : ChildrenList )
+				{
+					// Clone a copy of the child
+					auto& CInfo         = m_pCoordinator->GetEntityInfo( ChildGID );
+					auto ClonedChildGID = CInfo.m_pArchetype->CloneEntity( CInfo.m_pArchetype->GetComponent<paperback::component::entity>( CInfo.m_PoolDetails ) );
+
+					// Grab info of cloned child
+					auto& ClonedInfo    = m_pCoordinator->GetEntityInfo( ClonedChildGID );
+					auto& ClonedChild   = ClonedInfo.m_pArchetype->GetComponent<child>( ClonedInfo.m_PoolDetails );
+
+					// Assign parent/child relationship
+					ToParent.AddChild( ClonedChildGID );
+					ClonedChild.AddParent( ToEntity.m_GlobalIndex );
+				}
 			}
+			// Else if component to be cloned is the child / entity component
+			else if ( m_ComponentInfo[ i ]->m_Guid == component::info_v<child>.m_Guid ||
+				      m_ComponentInfo[ i ]->m_Guid == component::info_v<paperback::component::entity>.m_Guid )
+			{
+				continue;
+			}
+			// Else, any other component to be cloned
 			else
 			{
-				std::memcpy( &m_MemoryPool[ i ][ CSize * ToIndex ]						// Destination
-                           , &m_MemoryPool[ i ][ CSize * FromIndex ]					// Source
-                           , CSize );													// Number of bytes to copy
+				auto CSize = m_ComponentInfo[ i ]->m_Size;
+
+				if ( m_ComponentInfo[ i ]->m_Copy )
+				{
+						m_ComponentInfo[i]->m_Copy( &m_MemoryPool[ i ][ ToIndex * CSize ]		// Destination
+												  , &m_MemoryPool[ i ][ FromIndex * CSize ] );	// Source
+				}
+				else
+				{
+						std::memcpy( &m_MemoryPool[ i ][ CSize * ToIndex ]						// Destination
+								   , &m_MemoryPool[ i ][ CSize * FromIndex ]					// Source
+								   , CSize );													// Number of bytes to copy
+				}
 			}
 		}
 	}
@@ -391,10 +480,17 @@ namespace paperback::vm
 			return rttr::instance();
 	}
 
-	u32 instance::GetCurrentEntityCount( void ) const noexcept
+	const u32 instance::GetCurrentEntityCount( void ) const noexcept
 	{
 		return m_CurrentEntityCount;
 	}
+
+	const u32 instance::GetComponentCount( void ) const noexcept
+	{
+		return static_cast<u32>( m_ComponentInfo.size() );
+	}
+
+
 
 	paperback::vm::instance::MemoryPool& instance::GetMemoryPool( void ) noexcept
 	{
@@ -409,5 +505,54 @@ namespace paperback::vm
 	u32 instance::GetPageIndex( const component::info& Info, const u32 Count ) const noexcept
 	{
 		return ( ( Info.m_Size * Count ) - 1 ) / settings::virtual_page_size_v;
+	}
+
+	void instance::MarkEntityAsMoved( const u32 MovedEntityPoolIndex ) noexcept
+	{
+		auto& MovedEntity     = GetComponent<paperback::component::entity>( MovedEntityPoolIndex );
+		auto& MovedEntityInfo = m_pCoordinator->GetEntityInfo( MovedEntity );
+
+		MovedEntity.m_Validation.m_bZombie = MovedEntityInfo.m_Validation.m_bZombie
+										   = true;
+		MovedEntityInfo.m_Validation.m_Next = m_MoveHead;
+		m_MoveHead = MovedEntity.m_GlobalIndex;
+	}
+
+	void instance::UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex ) noexcept
+	{
+		// Removing an entity with the parent component
+		if ( CInfo.m_Guid == component::info_v<parent>.m_Guid )
+		{
+			// Grab children list info
+			auto& Parent       = GetComponent<parent>( PoolIndex );
+			auto& ChildrenList = Parent.m_ChildrenGlobalIndexes;
+
+			// For each child
+			for ( const auto& ChildGID : ChildrenList )
+			{
+				// Grab child's info
+				auto& ChildInfo           = m_pCoordinator->GetEntityInfo( ChildGID );
+				auto& ChildEntity         = ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails );
+				auto  ParentInChildEntity = ChildInfo.m_pArchetype->FindComponent<parent>( ChildInfo.m_PoolDetails );
+
+				// Remove the child component from the child
+				m_pCoordinator->AddOrRemoveComponents< std::tuple<>
+													, std::tuple<child> >( ChildEntity );
+			}
+
+			// Clear the parent's list
+			ChildrenList.clear();
+		}
+		// Removing an entity with a child component
+		if ( CInfo.m_Guid == component::info_v<child>.m_Guid )
+		{
+			// Get parent info
+			auto& Child       = GetComponent<child>( PoolIndex );
+			auto& ChildEntity = GetComponent<paperback::component::entity>( PoolIndex );
+			auto& ParentInfo  = m_pCoordinator->GetEntityInfo( Child.m_ParentGlobalIndex );
+
+			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
+			Parent.RemoveChild( ChildEntity.m_GlobalIndex );
+		}
 	}
 }
