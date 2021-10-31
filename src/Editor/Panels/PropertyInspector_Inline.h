@@ -39,6 +39,8 @@ void DetailsWindow::Panel()
                             m_Imgui.DisplayStringType( PropertyName, PropertyType, PropertyValue );
                         else if ( PropertyType.is_class() )
                             m_Imgui.DisplayClassType( PropertyName, PropertyType, PropertyValue );
+                        if (ComponentInstance.get_type().get_name().to_string() == "Parent")
+                            ParentComponent();
                     }
                 }
             }
@@ -56,16 +58,16 @@ void DetailsWindow::AddComponent()
     {
         if (ImGui::BeginCombo("##AddComponents", ICON_FA_PLUS " Add"))
         {
-            for (auto& [CompKey, CompValue] : PPB.GetComponentInfoMap())
+            for (auto& [CompKey, CompPInfo] : PPB.GetComponentInfoMap())
             {
-                if (!m_Imgui.m_SelectedEntity.first->CheckComponentExistence(CompValue))
+                if (!m_Imgui.m_SelectedEntity.first->CheckComponentExistence(CompPInfo))
                 {
-                    if (ImGui::Selectable(CompValue->m_pName))
+                    if (ImGui::Selectable(CompPInfo->m_pName))
                     {
-                        ComponentAdd[0] = CompValue;
+                        ComponentAdd[0] = CompPInfo;
                         PPB.AddOrRemoveComponents(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), ComponentAdd, {});
 
-                        EDITOR_INFO_PRINT("Added: " + std::string(CompValue->m_pName) + " Component");
+                        EDITOR_INFO_PRINT("Added: " + std::string(CompPInfo->m_pName) + " Component");
 
                         m_Imgui.m_SelectedEntity.first = nullptr;
                         m_Imgui.m_SelectedEntity.second = paperback::u32_max;
@@ -129,5 +131,53 @@ void DetailsWindow::RemoveComponent()
 
             ImGui::EndCombo();
         }
+    }
+}
+
+void DetailsWindow::ParentComponent()
+{
+    bool Remove = false;
+
+    if (m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second })))
+    {
+        auto& Parent = m_Imgui.m_SelectedEntity.first->GetComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+
+        if (Parent.m_ChildrenGlobalIndexes.size() != 0)
+        {
+            if (Parent.m_ChildrenGlobalIndexes.size() == 1)
+                ImGui::Text("There is 1 Child attached");
+            else
+            {
+                ImGui::Text("There are %d Children attached", Parent.m_ChildrenGlobalIndexes.size());
+
+                for (auto& Child : Parent.m_ChildrenGlobalIndexes)
+                {
+                    ImGui::Text("%d", Child);
+
+                    if (ImGui::BeginPopupContextItem())
+                    {
+                        if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
+                        {
+                            Remove = true;
+                        }
+
+                        ImGui::EndPopup();
+                    }
+
+                    if (Remove)
+                        Parent.RemoveChild(Child);
+                }
+
+
+
+                if (ImGui::BeginCombo("##Potential Children", "Potential Children")) //TBD IDK WHAT TO NAME TIS
+                {
+
+                }
+
+            }
+        }
+        else
+            ImGui::Text("No Child is attached to this parent");
     }
 }

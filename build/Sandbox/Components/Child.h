@@ -18,14 +18,14 @@ struct child
 	paperback::u32 m_ParentGlobalIndex;
 };
 
-//namespace RR_Child
-//{    
-//    RTTR_REGISTRATION
-//    {
-//       rttr::registration::class_<child>( child::typedef_v.m_pName )
-//		   .constructor()( rttr::policy::ctor::as_object )
-//		   .property( "ChildGID", &child::m_Info)( rttr::policy::prop::as_reference_wrapper );
-//    }
-//}
+namespace RR_Child
+{    
+    RTTR_REGISTRATION
+    {
+       rttr::registration::class_<child>( child::typedef_v.m_pName )
+		   .constructor()( rttr::policy::ctor::as_object )
+		   .property( "ChildGID", &child::m_ParentGlobalIndex);
+    }
+}
 
 #endif

@@ -397,7 +397,8 @@ namespace paperback::vm
 	template < typename T_COMPONENT >
 	T_COMPONENT& instance::GetComponent( const u32 PoolIndex ) const noexcept
 	{
-		auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_UID );
+		//auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_UID );
+		auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_Guid );
 
 		return *reinterpret_cast< std::decay_t<T_COMPONENT>* >
 		(
@@ -410,8 +411,16 @@ namespace paperback::vm
 		// Find index of component within m_ComponentPool
 		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
 			if ( m_ComponentInfo[i]->m_UID == UIDComponent ) { return static_cast<int>(i); }
-		//if ( component::info_v<paperback::component::entity>.m_UID == UIDComponent )
-		//	return 0;
+
+		//PPB_ASSERT_MSG( true, "Pool GetComponentIndex - Cannot find component within memory pool" );
+		return -1;
+	}
+
+	int instance::GetComponentIndex( component::type::guid Guid ) const noexcept
+	{
+		// Find index of component within m_ComponentPool
+		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
+			if ( m_ComponentInfo[i]->m_Guid == Guid ) { return static_cast<int>(i); }
 
 		//PPB_ASSERT_MSG( true, "Pool GetComponentIndex - Cannot find component within memory pool" );
 		return -1;
@@ -476,6 +485,12 @@ namespace paperback::vm
 			return  rttr::instance(GetComponent< sphere >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< animator >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< animator >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< parent >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< parent >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< child >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< child >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< offset >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< offset >(Index));
 		else
 			return rttr::instance();
 	}
@@ -521,27 +536,31 @@ namespace paperback::vm
 	void instance::UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex ) noexcept
 	{
 		// Removing an entity with the parent component
-		if ( CInfo.m_Guid == component::info_v<parent>.m_Guid )
+		if (CInfo.m_Guid == component::info_v<parent>.m_Guid)
 		{
 			// Grab children list info
-			auto& Parent       = GetComponent<parent>( PoolIndex );
-			auto& ChildrenList = Parent.m_ChildrenGlobalIndexes;
+			auto& Parent = GetComponent<parent>(PoolIndex);
 
-			// For each child
-			for ( const auto& ChildGID : ChildrenList )
+			if ( Parent.m_ChildrenGlobalIndexes.size() != 0 )
 			{
-				// Grab child's info
-				auto& ChildInfo           = m_pCoordinator->GetEntityInfo( ChildGID );
-				auto& ChildEntity         = ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails );
-				auto  ParentInChildEntity = ChildInfo.m_pArchetype->FindComponent<parent>( ChildInfo.m_PoolDetails );
+				auto& ChildrenList = Parent.m_ChildrenGlobalIndexes;
 
-				// Remove the child component from the child
-				m_pCoordinator->AddOrRemoveComponents< std::tuple<>
-													, std::tuple<child> >( ChildEntity );
+				// For each child
+				for (const auto& ChildGID : ChildrenList)
+				{
+					// Grab child's info
+					auto& ChildInfo = m_pCoordinator->GetEntityInfo(ChildGID);
+					auto& ChildEntity = ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>(ChildInfo.m_PoolDetails);
+					auto  ParentInChildEntity = ChildInfo.m_pArchetype->FindComponent<parent>(ChildInfo.m_PoolDetails);
+
+					// Remove the child component from the child
+					m_pCoordinator->AddOrRemoveComponents< std::tuple<>
+						, std::tuple<child> >(ChildEntity);
+				}
+
+				// Clear the parent's list
+				ChildrenList.clear();
 			}
-
-			// Clear the parent's list
-			ChildrenList.clear();
 		}
 		// Removing an entity with a child component
 		if ( CInfo.m_Guid == component::info_v<child>.m_Guid )
@@ -551,8 +570,9 @@ namespace paperback::vm
 			auto& ChildEntity = GetComponent<paperback::component::entity>( PoolIndex );
 			auto& ParentInfo  = m_pCoordinator->GetEntityInfo( Child.m_ParentGlobalIndex );
 
-			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
-			Parent.RemoveChild( ChildEntity.m_GlobalIndex );
+			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>(ParentInfo.m_PoolDetails);
+			Parent.RemoveChild(ChildEntity.m_GlobalIndex);
+
 		}
 	}
 }
