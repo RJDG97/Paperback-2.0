@@ -86,7 +86,7 @@ namespace paperback::archetype
             for ( auto& ToAdd : A )
                 if ( Sig.Has( ToAdd->m_UID ) ) return true;
             for ( auto& ToRemove : R )
-                if ( Sig.None( ToRemove->m_UID ) ) return true;
+                if ( Sig.None( PPB.FindComponentInfo(ToRemove->m_Guid)->m_UID) ) return true;
             return false;
         };
         auto InvalidComponentModification = [&]( const component::info* ComponentInfo ) -> bool
@@ -122,7 +122,7 @@ namespace paperback::archetype
         for ( const auto& ComponentToRemove : Remove )
 		{
 			if ( InvalidComponentModification( ComponentToRemove ) ) continue;
-			UpdatedSignature.Remove( ComponentToRemove->m_UID );
+			UpdatedSignature.Remove( PPB.FindComponentInfo(ComponentToRemove->m_Guid)->m_UID );
 		}
 
 		auto ExistingArchetype = Search( UpdatedSignature );
@@ -396,7 +396,10 @@ namespace paperback::archetype
         auto p = m_pArchetypeList.back().get();
 
         p->Init( Types, Count );
-        m_pArchetypeMap.emplace( std::make_pair( p->GetArchetypeGuid().m_Value, p ) );
+        if (m_pArchetypeMap.find(p->GetArchetypeGuid().m_Value) != m_pArchetypeMap.end())
+            m_pArchetypeMap[p->GetArchetypeGuid().m_Value] = p;
+        else
+            m_pArchetypeMap.emplace( std::make_pair( p->GetArchetypeGuid().m_Value, p ) );
 
         return *( m_pArchetypeList.back() );
     }

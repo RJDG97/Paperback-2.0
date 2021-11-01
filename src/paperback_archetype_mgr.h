@@ -32,6 +32,12 @@ namespace paperback::archetype
         manager( paperback::coordinator::instance& Coordinator );
 
         PPB_INLINE
+        ~manager() 
+        {
+            ResetAllArchetypes();
+        }
+
+        PPB_INLINE
         void Initialize( void ) noexcept;
 
 

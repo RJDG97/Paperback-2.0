@@ -43,7 +43,7 @@ namespace paperback::component
                                         : []( std::byte* Destination, std::byte* Source ) noexcept
                                           {
                                               *reinterpret_cast<T_COMPONENT*>( Destination ) = std::move( *reinterpret_cast<T_COMPONENT*>( Source ) );
-                                              if ( !std::is_trivially_destructible_v<T_COMPONENT> ) std::destroy_at( reinterpret_cast<T_COMPONENT*>( Destination ) );
+                                              //if ( !std::is_trivially_destructible_v<T_COMPONENT> ) std::destroy_at( reinterpret_cast<T_COMPONENT*>( Destination ) );
                                           }
             ,   .m_pName              = T_COMPONENT::typedef_v.m_pName
             };

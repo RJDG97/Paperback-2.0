@@ -80,7 +80,8 @@ namespace paperback::vm
         auto& EntityInfo = m_pCoordinator->GetEntityInfo( Entity );
         auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails.m_PoolIndex ); // Replace this
 
-        PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
+       // PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
+        PPB_ASSERT_MSG( Entity != PoolEntity, "DestroyEntity: Entity addresses are different" );
 
         Entity.m_Validation.m_bZombie
             = EntityInfo.m_Validation.m_bZombie
@@ -384,7 +385,8 @@ namespace paperback::vm
 	template < typename T_COMPONENT >
 	T_COMPONENT* instance::FindComponent( const u32 PoolIndex ) const noexcept
 	{
-		auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_UID );
+		//auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_UID );
+		auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_Guid );
 
 		if ( ComponentIndex == -1 ) return nullptr;
 
@@ -393,6 +395,7 @@ namespace paperback::vm
 			&m_MemoryPool[ ComponentIndex ][ PoolIndex * m_ComponentInfo[ComponentIndex]->m_Size] 
 		);
 	}
+
 
 	template < typename T_COMPONENT >
 	T_COMPONENT& instance::GetComponent( const u32 PoolIndex ) const noexcept
@@ -416,7 +419,7 @@ namespace paperback::vm
 		return -1;
 	}
 
-	int instance::GetComponentIndex( component::type::guid Guid ) const noexcept
+	int instance::GetComponentIndex( const component::type::guid Guid ) const noexcept
 	{
 		// Find index of component within m_ComponentPool
 		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )

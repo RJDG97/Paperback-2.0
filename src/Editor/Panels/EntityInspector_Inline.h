@@ -3,7 +3,7 @@
 void EntityInspector::Panel()
 {
     int NumEntities = 0, Index = 0;
-    bool b_NodeOpen = false;
+    bool b_NodeOpen = false, bHasParent = false;
 
     ImGui::Begin(EntityInspector::typedef_v.m_pName, &m_bEnabled);
 
@@ -24,6 +24,11 @@ void EntityInspector::Panel()
 
                     ImGuiTreeNodeFlags NodeFlags = (( m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i ) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
                     NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+
+                    if (Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i })) != nullptr)
+                    {
+                        NodeFlags |= ImGuiTreeNodeFlags_DefaultOpen;
+                    }
 
                     b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, (Archetype->GetName() + " [" + std::to_string(i) + "]").c_str());
 
@@ -48,7 +53,19 @@ void EntityInspector::Panel()
                         ImGui::EndPopup();
                     }
 
-                    if (b_NodeOpen) ImGui::TreePop();
+                    if (b_NodeOpen)
+                    {
+                        if (Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i })) != nullptr)
+                        {
+                            auto& Parent = Archetype->GetComponent<parent>(paperback::vm::PoolDetails({ 0, i }));
+
+                            if ( Parent.m_ChildrenGlobalIndexes.size() != 0 )
+                            {
+                                
+                            }
+                        }
+                        ImGui::TreePop();
+                    }
 
                     if (Deleted)
                         ImGui::OpenPopup(ICON_FA_TRASH " Delete?");

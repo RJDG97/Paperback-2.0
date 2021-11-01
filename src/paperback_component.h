@@ -232,8 +232,8 @@ namespace paperback::component
                 .constructor()(rttr::policy::ctor::as_object)
                 .property("Global Index", &entity::m_GlobalIndex);
 
-            rttr::registration::class_< entity::Validation >( "Valid" )
-                .property( "Validation ID", &entity::Validation::m_UID );
+            //rttr::registration::class_< entity::Validation >( "Valid" )
+            //    .property( "Validation ID", &entity::Validation::m_UID );
         }
     }
 }

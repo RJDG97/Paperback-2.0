@@ -35,10 +35,11 @@ void DetailsWindow::Panel()
 
                         if ( PropertyType.get_wrapped_type().is_arithmetic() )
                             m_Imgui.DisplayBaseTypes( PropertyName, PropertyType, PropertyValue );
-                        else if ( PropertyType.get_wrapped_type() == rttr::type::get< std::string >() )
+                        else if ( PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || PropertyType == rttr::type::get< std::string>() )
                             m_Imgui.DisplayStringType( PropertyName, PropertyType, PropertyValue );
                         else if ( PropertyType.is_class() )
                             m_Imgui.DisplayClassType( PropertyName, PropertyType, PropertyValue );
+
                         if (ComponentInstance.get_type().get_name().to_string() == "Parent")
                             ParentComponent();
                     }
@@ -137,6 +138,7 @@ void DetailsWindow::RemoveComponent()
 void DetailsWindow::ParentComponent()
 {
     bool Remove = false;
+    std::array<const paperback::component::info*, 1 > ComponentAdd;
 
     if (m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second })))
     {
@@ -144,40 +146,76 @@ void DetailsWindow::ParentComponent()
 
         if (Parent.m_ChildrenGlobalIndexes.size() != 0)
         {
-            if (Parent.m_ChildrenGlobalIndexes.size() == 1)
-                ImGui::Text("There is 1 Child attached");
-            else
+            ImGui::Text("There are %d Children attached", Parent.m_ChildrenGlobalIndexes.size());
+
+            for (auto& Child : Parent.m_ChildrenGlobalIndexes)
             {
-                ImGui::Text("There are %d Children attached", Parent.m_ChildrenGlobalIndexes.size());
+                ImGui::Text("%d", Child);
 
-                for (auto& Child : Parent.m_ChildrenGlobalIndexes)
-                {
-                    ImGui::Text("%d", Child);
+                //if (ImGui::BeginPopupContextItem())
+                //{
+                //    if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
+                //    {
+                //        Remove = true;
+                //    }
 
-                    if (ImGui::BeginPopupContextItem())
-                    {
-                        if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
-                        {
-                            Remove = true;
-                        }
+                //    ImGui::EndPopup();
+                //}
 
-                        ImGui::EndPopup();
-                    }
-
-                    if (Remove)
-                        Parent.RemoveChild(Child);
-                }
-
-
-
-                if (ImGui::BeginCombo("##Potential Children", "Potential Children")) //TBD IDK WHAT TO NAME TIS
-                {
-
-                }
-
+                //if (Remove)
+                //    Parent.RemoveChild(Child);
             }
         }
         else
+        {
             ImGui::Text("No Child is attached to this parent");
+
+            if (ImGui::BeginCombo("##Potential Children", "Potential Children")) //TBD IDK WHAT TO NAME TIS
+            {
+                if (!PPB.GetArchetypeList().empty())
+                {
+                    for (auto& Archetype : PPB.GetArchetypeList())
+                    {
+                        for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
+                        {
+                            auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
+
+                            if (Parent.m_ChildrenGlobalIndexes.find(Entity.m_GlobalIndex) == Parent.m_ChildrenGlobalIndexes.end()) //not already a child of the selected entity
+                            {
+                                std::string EntityName = Archetype->GetName() + " [" + std::to_string(i) + "]";
+
+                                if (EntityName != (m_Imgui.m_SelectedEntity.first->GetName() + " [" + std::to_string(m_Imgui.m_SelectedEntity.second) + "]"))
+                                {
+                                    if (ImGui::Selectable(EntityName.c_str()))
+                                    {
+                                        //auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+
+                                        if (Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) != nullptr) //Check for Child Component
+                                        {
+                                            //Get Child's Entity Component
+                                            auto& ChildEntityComp = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
+                                            //Link Child to Existing Parent
+                                            Parent.AddChild(ChildEntityComp.m_GlobalIndex);
+                                        }
+                                        else
+                                        {
+                                            // doesnt have a child component
+                                            auto& ChildEntityComp = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
+                                            Parent.AddChild(ChildEntityComp.m_GlobalIndex);
+                                            //Add in child component
+                                            ComponentAdd[0] = &paperback::component::info_v<child>;
+                                            PPB.AddOrRemoveComponents(Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), ComponentAdd, {});
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ImGui::EndCombo();
+            }
+
+        }
     }
 }
