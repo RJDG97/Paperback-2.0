@@ -86,14 +86,14 @@ void InitializeGame()
             window_system,
             debug_system,
             render_system,
-            imgui_system,
+            //imgui_system,
             animator_system,
             parentchild_system
         >();
     }
     // Entity Creation
     {
-        PPB.OpenScene("../../resources/assetloading/SampleScene.json");
+        //PPB.OpenScene("../../resources/assetloading/SampleScene.json");
 
         // Right Box
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, boundingbox& bbox, sphere& sphere, rigidbody& rb, rigidforce& rf)

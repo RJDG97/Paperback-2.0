@@ -40,7 +40,7 @@ struct collision_system : paperback::system::instance
                     // added to parameters
                     if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                     {
-                        if (RigidForce && RF)
+                        if (RigidForce && RF /* && !Boundingbox->m_Collided*/)
                         {
                           bool checker = CheapaabbDynamic(
                               Boundingbox,

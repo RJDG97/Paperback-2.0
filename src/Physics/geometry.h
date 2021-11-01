@@ -112,13 +112,12 @@ bool PointAabb(const paperback::Vector3f& point, const paperback::Vector3f& aabb
 bool RayPlane(const paperback::Vector3f& rayStart, const paperback::Vector3f& rayDir,
     const paperback::Vector4f& plane, float& t, float epsilon)
 {
-    //1     Statistics.mRayPlaneTests
+    //1
     paperback::Vector3f n = paperback::Vector3f(plane.x, plane.y, plane.z);
     float nStart = n.Dot(rayStart);
     float nDir = n.Dot(rayDir);
 
-    if (nDir <= epsilon && nDir >= -epsilon)
-        return false;
+    if (nDir <= epsilon && nDir >= -epsilon) return false;
 
     t = (plane.w - nStart) / nDir;
     if (t >= epsilon)
@@ -130,7 +129,7 @@ bool RayTriangle(const paperback::Vector3f& rayStart, const paperback::Vector3f&
     const paperback::Vector3f& triP0, const paperback::Vector3f& triP1, const paperback::Vector3f& triP2,
     float& t, float triExpansionEpsilon)
 {
-    //ok       Statistics.mRayTriangleTest
+    //ok
     Plane plane(triP0, triP1, triP2);
     if (RayPlane(rayStart, rayDir, plane.mData, t, triExpansionEpsilon))
     {
@@ -145,7 +144,7 @@ bool RaySphere(const paperback::Vector3f& rayStart, const paperback::Vector3f& r
     const paperback::Vector3f& sphereCenter, float sphereRadius,
     float& t)
 {
-    //-     Statistics.mRaySphereTests
+    //-
     if (PointSphere(rayStart, sphereCenter, sphereRadius))
     {
         t = 0.f;
@@ -186,7 +185,7 @@ bool RaySphere(const paperback::Vector3f& rayStart, const paperback::Vector3f& r
 bool RayAabb(const paperback::Vector3f& rayStart, const paperback::Vector3f& rayDir,
     const paperback::Vector3f& aabbMin, const paperback::Vector3f& aabbMax, float& t)
 {
-    //1     Statistics.mRayAabbTests
+    //1
     float t_max = FLT_MAX;
     paperback::Vector3f n = rayDir.Normalized();
     //int dirCheck = 0;
@@ -223,7 +222,7 @@ IntersectionType::Type PlaneTriangle(const paperback::Vector4f& plane,
     const paperback::Vector3f& triP0, const paperback::Vector3f& triP1, const paperback::Vector3f& triP2,
     float epsilon)
 {
-    //-     Statistics.mPlaneTriangleTests
+    //-
     char collide = 0;
 
     IntersectionType::Type type = PointPlane(triP0, plane, epsilon);
@@ -263,7 +262,7 @@ IntersectionType::Type PlaneTriangle(const paperback::Vector4f& plane,
 IntersectionType::Type PlaneSphere(const paperback::Vector4f& plane,
     const paperback::Vector3f& sphereCenter, float sphereRadius)
 {
-    //-         Statistics.mPlaneSphereTests
+    //-
     // diff norm
     IntersectionType::Type type = PointPlane(sphereCenter, plane, sphereRadius);
     if (type == IntersectionType::Coplanar)
@@ -274,7 +273,7 @@ IntersectionType::Type PlaneSphere(const paperback::Vector4f& plane,
 IntersectionType::Type PlaneAabb(const paperback::Vector4f& plane,
     const paperback::Vector3f& aabbMin, const paperback::Vector3f& aabbMax)
 {
-    //1     Statistics.mPlaneAabbTests
+    //1
     paperback::Vector3f n(plane.x, plane.y, plane.z);
     paperback::Vector3f point_c = (aabbMax + aabbMin) * 0.5f;
     paperback::Vector3f e = aabbMax - point_c;
@@ -288,7 +287,7 @@ IntersectionType::Type FrustumTriangle(const paperback::Vector4f planes[6],
     const paperback::Vector3f& triP0, const paperback::Vector3f& triP1, const paperback::Vector3f& triP2,
     float epsilon)
 {
-    //-             //ok        Statistics.mFrustumTriangleTests
+    //-             //ok
     char collide = 0;
     for (size_t i = 0; i < 6; ++i)
     {
@@ -310,7 +309,7 @@ IntersectionType::Type FrustumTriangle(const paperback::Vector4f planes[6],
 IntersectionType::Type FrustumSphere(const paperback::Vector4f planes[6],
     const paperback::Vector3f& sphereCenter, float sphereRadius, size_t& lastAxis)
 {
-    //-            //ok     Statistics.mFrustumSphereTests
+    //-            //ok
     char collide = 0;
     for (size_t i = 0; i < 6; ++i)
     {
@@ -336,7 +335,7 @@ IntersectionType::Type FrustumSphere(const paperback::Vector4f planes[6],
 IntersectionType::Type FrustumAabb(const paperback::Vector4f planes[6],
     const paperback::Vector3f& aabbMin, const paperback::Vector3f& aabbMax, size_t& lastAxis)
 {
-    //-1    Statistics.mFrustumAabbTests
+    //-1
     char collide = 0;
     for (size_t i = 0; i < 6; ++i)
     {
@@ -363,7 +362,7 @@ IntersectionType::Type FrustumAabb(const paperback::Vector4f planes[6],
 bool SphereSphere(const paperback::Vector3f& sphereCenter0, float sphereRadius0,
     const paperback::Vector3f& sphereCenter1, float sphereRadius1)
 {
-    //ok    Statistics.mSphereSphereTests
+    //ok
     float length_sq = (sphereCenter0 - sphereCenter1).MagnitudeSq();
     float radius = sphereRadius0 + sphereRadius1;
     return length_sq <= radius * radius;
@@ -372,7 +371,7 @@ bool SphereSphere(const paperback::Vector3f& sphereCenter0, float sphereRadius0,
 bool AabbAabb(const paperback::Vector3f& aabbMin0, const paperback::Vector3f& aabbMax0,
     const paperback::Vector3f& aabbMin1, const paperback::Vector3f& aabbMax1)
 {
-    //ok    Statistics.mAabbAabbTests
+    //ok
     return !(aabbMin0.x > aabbMax1.x || aabbMin1.x > aabbMax0.x
         || aabbMin0.y > aabbMax1.y || aabbMin1.y > aabbMax0.y
         || aabbMin0.z > aabbMax1.z || aabbMin1.z > aabbMax0.z);

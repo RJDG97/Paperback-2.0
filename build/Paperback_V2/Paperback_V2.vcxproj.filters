@@ -369,6 +369,9 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Physics\AwaitDeploy.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
