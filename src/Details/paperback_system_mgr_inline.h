@@ -73,6 +73,13 @@ namespace paperback::system
 			Info->m_RunSystem( *System, system::type::call::FRAME_END );
 	}
 
+	void manager::ResetSystems( void ) noexcept
+	{
+
+		for (const auto& [Info, System] : m_Systems)
+			Info->m_RunSystem(*System, system::type::call::STATECHANGED);
+	}
+
 	void manager::Terminate( void ) noexcept
 	{
 		for ( const auto& [ Info, System ] : m_Systems )

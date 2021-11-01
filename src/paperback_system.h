@@ -93,6 +93,7 @@ namespace paperback::system
 		,	UPDATE
 		,	POST_UPDATE
 		,	FRAME_END
+		,	STATECHANGED
 		,	TERMINATED
 		};
 
@@ -146,6 +147,7 @@ namespace paperback::system
 		void PostUpdate         ( void ) noexcept {}
 		void OnFrameEnd         ( void ) noexcept {}
 		void OnSystemTerminated ( void ) noexcept {}
+		void OnStateChange		( void ) noexcept {}
 	};
 
 	struct instance : system_interface

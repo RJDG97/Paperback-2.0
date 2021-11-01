@@ -1,7 +1,161 @@
 #pragma once
 
+//#include "../Sandbox/Systems/SoundSystem.h"
+
 namespace paperback::coordinator
 {
+
+	//-----------------------------------
+	//            Scene
+	//-----------------------------------
+	scene::scene(const std::string& Name, const std::string& Path) :
+		m_Name{ Name },
+		m_Path{ Path }
+	{}
+
+	void scene::Load() 
+	{
+
+		if (m_Path == "")
+			return;
+
+		PPB.ResetSystems();
+
+		JsonFile Jfile;
+
+		Jfile.StartReader(m_Path);
+		Jfile.LoadEntities("Entities");
+		Jfile.EndReader();
+	}
+
+	void scene::Unload()
+	{
+
+		if (!PPB.GetArchetypeList().empty())
+			PPB.ResetAllArchetypes();
+	}
+
+	void scene::UpdateName(const std::string& Name)
+	{
+
+		m_Name = Name;
+	}
+
+	const std::string& scene::GetName()
+	{
+
+		return m_Name;
+	}
+
+	void scene::UpdatePath(const std::string& Path)
+	{
+
+		m_Path = Path;
+	}
+
+	//-----------------------------------
+	//         Scene Manager
+	//-----------------------------------
+	scene_mgr::scene_mgr() :
+		m_Scenes{},
+		m_CurrentSceneIndex{},
+		m_NextSceneIndex{},
+		m_SceneChange{ false }
+	{
+
+		//load scenes here
+
+		//manual loading
+		AddScene("Default", "../../resources/assetloading/DupSampleScene.json");
+		AddScene("Editor", "../../resources/assetloading/SampleScene.json");
+	}
+
+	scene_mgr::~scene_mgr()
+	{
+
+		m_Scenes[m_CurrentSceneIndex].Unload();
+	}
+
+	void scene_mgr::AddScene(const std::string& Name, const std::string& Path)
+	{
+
+		m_Scenes.push_back({ Name, Path });
+	}
+
+	void scene_mgr::RemoveScene(const std::string& Name)
+	{
+
+		//removes scene from list of scenes
+		//check if scene exists
+
+		//if yes, remove
+	}
+
+	void scene_mgr::UpdateScene(const std::string& Path)
+	{
+
+		m_Scenes[m_CurrentSceneIndex].UpdatePath(Path);
+	}
+
+	void scene_mgr::ReloadScene()
+	{
+
+		m_Scenes[m_CurrentSceneIndex].Unload();
+		m_Scenes[m_CurrentSceneIndex].Load();
+	}
+
+	void scene_mgr::SaveScenes()
+	{
+
+		//look into porting save logic from imgui system
+	}
+
+	bool scene_mgr::TriggerChangeScene(const std::string& Name)
+	{
+
+		size_t index = 0;
+		//check if scene exists
+		for (; index < m_Scenes.size(); ++index)
+		{
+
+			if (m_Scenes[index].GetName() == Name)
+			{
+
+				break;
+			}
+		}
+
+		//if yes, set bool to true and update next scene index
+		if (index < m_Scenes.size())
+		{
+
+			m_SceneChange = true;
+			m_NextSceneIndex = index;
+		}
+		else
+		{
+
+			m_SceneChange = false;
+		}
+
+		//else, set false
+		return m_SceneChange;
+	}
+
+	void scene_mgr::ChangeScene()
+	{
+
+		m_Scenes[m_CurrentSceneIndex].Unload();
+		m_CurrentSceneIndex = m_NextSceneIndex;
+		m_Scenes[m_CurrentSceneIndex].Load();
+	}
+
+	bool scene_mgr::VerifyScene(const std::string& Name)
+	{
+
+		return (Name == m_Scenes[m_CurrentSceneIndex].GetName());
+	}
+
 	//-----------------------------------
 	//            Default
 	//-----------------------------------
@@ -116,13 +270,52 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
-	void instance::OpenScene( const std::string& FilePath ) noexcept
+	void instance::OpenScene( const std::string& SceneName = "" ) noexcept
 	{
-		JsonFile Jfile;
+		/*JsonFile Jfile;
 
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Entities");
-		Jfile.EndReader();
+		Jfile.EndReader();*/
+
+		if (SceneName == "")
+		{
+			//if no arg given then "launching" so just reload scene manager
+			m_SceneMgr.ReloadScene();
+		}
+		else
+		{
+
+			//arg given, changing state
+			if (m_SceneMgr.TriggerChangeScene(SceneName))
+			{
+
+				//scene exists, load scene
+				m_SceneMgr.ChangeScene();
+			}
+		}
+	}
+
+	PPB_INLINE
+	void instance::OpenEditScene(const std::string& FilePath) noexcept
+	{
+
+		m_SceneMgr.UpdateScene(FilePath);
+		m_SceneMgr.ReloadScene();
+	}
+
+	PPB_INLINE
+	bool instance::VerifyState(const std::string& StateName) noexcept
+	{
+
+		return m_SceneMgr.VerifyScene(StateName);
+	}
+
+	PPB_INLINE
+	void instance::ResetSystems() noexcept
+	{
+
+		m_SystemMgr.ResetSystems();
 	}
 
 	//-----------------------------------

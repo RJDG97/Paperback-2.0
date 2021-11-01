@@ -34,6 +34,9 @@ namespace paperback::system
 		void Run( void ) noexcept;
 
 		PPB_INLINE
+		void ResetSystems( void ) noexcept;
+
+		PPB_INLINE
 		void Terminate( void ) noexcept;
 
 

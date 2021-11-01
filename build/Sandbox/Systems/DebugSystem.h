@@ -3,6 +3,8 @@
 #include "../Functionality/Renderer/Renderer.h"
 #include "Math/Vector3f.h"
 
+//#include "Editor/EditorLogger.h"
+
 struct debug_system : paperback::system::instance
 {
 
@@ -261,6 +263,8 @@ struct debug_system : paperback::system::instance
         }
     }
 
+    bool statetest = false;
+
     void DebugInputTest()
     {
 
@@ -293,6 +297,22 @@ struct debug_system : paperback::system::instance
         {
 
             GetSystem<physics_system>().ApplyForceAll({ 0.0f, -1.0f, 0.0f });
+        }
+
+        if (PPB.IsKeyPressUp(GLFW_KEY_B))
+        {
+
+            if (!statetest)
+            {
+                statetest = true;
+                PPB.OpenScene("Editor");
+                //EDITOR_TRACE_PRINT("Trial Scene Loaded");
+            }
+            else
+            {
+                statetest = false;
+                PPB.OpenScene("Default");
+            }
         }
     }
 

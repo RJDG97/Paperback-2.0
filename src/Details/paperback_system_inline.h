@@ -115,6 +115,16 @@ namespace paperback::system
 				}
 				break;
 			}
+			case system::type::call::STATECHANGED:
+			{
+				if constexpr ( &USER_SYSTEM::OnStateChange != &system_interface::OnStateChange )
+				{
+
+					XCORE_PERF_ZONE_SCOPED_N( "State Changed" )
+					USER_SYSTEM::OnStateChange();
+				}
+				break;
+			}
 			case system::type::call::TERMINATED:
 			{
 				if constexpr ( &USER_SYSTEM::OnSystemTerminated != &system_interface::OnSystemTerminated )
