@@ -24,7 +24,7 @@ namespace RR_Child
     {
        rttr::registration::class_<child>( child::typedef_v.m_pName )
 		   .constructor()( rttr::policy::ctor::as_object )
-		   .property( "ChildGID", &child::m_ParentGlobalIndex);
+		   .property( "Parent GID", &child::m_ParentGlobalIndex);
     }
 }
 

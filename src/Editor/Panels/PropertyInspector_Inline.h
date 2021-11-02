@@ -33,7 +33,7 @@ void DetailsWindow::Panel()
                         auto PropertyType = property.get_type(); //etc vector 3, std::string etc
                         auto PropertyName = property.get_name().to_string();
 
-                        if ( PropertyType.get_wrapped_type().is_arithmetic() )
+                        if ( PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic() )
                             m_Imgui.DisplayBaseTypes( PropertyName, PropertyType, PropertyValue );
                         else if ( PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || PropertyType == rttr::type::get< std::string>() )
                             m_Imgui.DisplayStringType( PropertyName, PropertyType, PropertyValue );
