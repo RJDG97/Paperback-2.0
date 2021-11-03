@@ -28,7 +28,9 @@ void EntityInspector::DisplayEntities()
                 for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
                 {
                     NumEntities++;
-                    if ( Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) == nullptr ) //isnt a child entity
+
+                    if ( Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) == nullptr  && 
+                         Archetype->FindComponent<prefab>(paperback::vm::PoolDetails({0, i})) == nullptr) // Not a child entity & a Prefab entity
                     {
                         ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
 
@@ -90,7 +92,6 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
 
     if ( Parent.m_ChildrenGlobalIndexes.size() != 0 )
     {
-        //Parent has children attached probably IDK
         for (auto& Child : Parent.m_ChildrenGlobalIndexes)
         {
             Index++;

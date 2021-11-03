@@ -1,3 +1,4 @@
+#include "..\paperback_archetype_mgr.h"
 #pragma once
 
 namespace paperback::archetype
@@ -222,6 +223,10 @@ namespace paperback::archetype
         return List;
     }
 
+    manager::EntityInfoList& manager::GetEntityInfoList() noexcept
+    {
+        return m_EntityInfos;
+    }
 
     //-----------------------------------
     //             Query

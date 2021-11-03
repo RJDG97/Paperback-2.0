@@ -80,39 +80,93 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::SaveScene(const std::string& FilePath) noexcept
 	{
-		JsonFile Jfile;
+		paperback::JsonFile JFile;
 
-		Jfile.StartWriter(FilePath);
-		Jfile.StartObject().WriteKey("Entities");
-		Jfile.StartArray();
+		JFile.StartWriter(FilePath);
+		JFile.StartObject().WriteKey("Entities");
+		JFile.StartArray();
 
 		for (auto& Archetype : PPB.GetArchetypeList())
 		{
-			Jfile.StartObject().WriteKey(Archetype->GetName());
-			Jfile.StartArray();
-
-			component::temp_guid Temp = {};
-
-			Jfile.StartObject().WriteKey("Guid").StartArray();
-			auto& ComponentInfoArray = Archetype->GetComponentInfos();
-
-			for (u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+			if ( Archetype->GetComponentBits().Has(component::info_v<prefab>.m_UID) ) //Have prefab component
 			{
-				Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
-				Jfile.WriteGuid(Temp);
+				JFile.StartObject().WriteKey(("Prefab " + Archetype->GetName()).c_str());
+
+				JFile.StartArray();
+				//Serialize GUIDs
+				component::temp_guid Temp = {};
+
+				JFile.StartObject().WriteKey("Guid").StartArray();
+				auto& ComponentInfoArray = Archetype->GetComponentInfos();
+
+				for (u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+				{
+					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+					JFile.WriteGuid(Temp);
+				}
+
+				JFile.EndArray();
+				JFile.EndObject();
+
+				//Serialize Components
+
+				Archetype->SerializeAllEntities(JFile);
+
+				JFile.EndArray();
+				JFile.EndObject();
 			}
-			Jfile.EndArray();
-			Jfile.EndObject();
 
-			Archetype->SerializeAllEntities(Jfile);
+			// Serialize EntityInfos
+			else
+			{
+				paperback::entity::TempInfo Tempinfo = {};
 
-			Jfile.EndArray();
-			Jfile.EndObject();
+				JFile.StartObject().WriteKey("Entity Info").StartArray();
+				
+				for (u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
+				{
+					Tempinfo.ArchetypeGuid = Archetype->GetArchetypeGuid().m_Value;
+					Tempinfo.PoolDetails = m_ArchetypeMgr.GetEntityInfoList().get()->m_PoolDetails;
+					Tempinfo.Validation = m_ArchetypeMgr.GetEntityInfoList().get()->m_Validation;
+
+					JFile.StartObject();
+					JFile.Write(Tempinfo).EndObject();
+
+				}
+				
+				JFile.EndArray().EndObject();
+
+				JFile.StartObject().WriteKey(Archetype->GetName());
+
+				JFile.StartArray();
+				//Serialize GUIDs
+				component::temp_guid Temp = {};
+
+				JFile.StartObject().WriteKey("Guid").StartArray();
+				auto& ComponentInfoArray = Archetype->GetComponentInfos();
+
+				for (u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+				{
+					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+					JFile.WriteGuid(Temp);
+				}
+
+				JFile.EndArray();
+				JFile.EndObject();
+
+				//Serialize Components
+
+				Archetype->SerializeAllEntities(JFile);
+
+				JFile.EndArray();
+				JFile.EndObject();
+
+			}
 		}
 
-		Jfile.EndArray();
-		Jfile.EndObject();
-		Jfile.EndWriter();
+		JFile.EndArray();
+		JFile.EndObject();
+		JFile.EndWriter();
 	}
 
 	PPB_INLINE

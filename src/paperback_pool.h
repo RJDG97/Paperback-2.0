@@ -8,6 +8,17 @@ namespace paperback::vm
 		u32 m_PoolIndex		= settings::invalid_index_v;	// Access Component Within Pool
 	};
 
+	namespace RR_PoolDetails
+	{
+		RTTR_REGISTRATION
+		{
+			rttr::registration::class_<PoolDetails>("Pool Details")
+				.constructor()(rttr::policy::ctor::as_object)
+				.property("Pool Key", &PoolDetails::m_Key)
+				.property("Pool Index", &PoolDetails::m_PoolIndex);
+		}
+	}
+
 	class instance final
 	{
 	public:

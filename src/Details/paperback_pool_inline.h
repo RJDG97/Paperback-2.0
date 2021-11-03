@@ -80,7 +80,6 @@ namespace paperback::vm
         auto& EntityInfo = m_pCoordinator->GetEntityInfo( Entity );
         auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails.m_PoolIndex ); // Replace this
 
-       // PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
         PPB_ASSERT_MSG( Entity != PoolEntity, "DestroyEntity: Entity addresses are different" );
 
         Entity.m_Validation.m_bZombie
@@ -497,7 +496,7 @@ namespace paperback::vm
 		return -1;
 	}
 
-	int instance::GetComponentIndex( const component::type::guid Guid ) const noexcept
+	int instance::GetComponentIndex(const component::type::guid Guid) const noexcept
 	{
 		// Find index of component within m_ComponentPool
 		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
@@ -570,8 +569,6 @@ namespace paperback::vm
 			return  rttr::instance(GetComponent< parent >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< child >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< child >(Index));
-		else if (Comp_Guid.m_Value == component::info_v< offset >.m_Guid.m_Value)
-			return  rttr::instance(GetComponent< offset >(Index));
 		else
 			return rttr::instance();
 	}
@@ -617,7 +614,7 @@ namespace paperback::vm
 	void instance::UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex ) noexcept
 	{
 		// Removing an entity with the parent component
-		if (CInfo.m_Guid == component::info_v<parent>.m_Guid)
+		if ( CInfo.m_Guid == component::info_v<parent>.m_Guid )
 		{
 			/*UE4's Implementation - Does not actually delete children, simply unlinks Parent & Child on Deletion ( Keeping as backup )*/
 			//// Grab children list info
@@ -649,22 +646,8 @@ namespace paperback::vm
 				ChildInfo.m_pArchetype->DestroyEntity( ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails ) );
 			}
 
-				// For each child
-				for (const auto& ChildGID : ChildrenList)
-				{
-					// Grab child's info
-					auto& ChildInfo = m_pCoordinator->GetEntityInfo(ChildGID);
-					auto& ChildEntity = ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>(ChildInfo.m_PoolDetails);
-					auto  ParentInChildEntity = ChildInfo.m_pArchetype->FindComponent<parent>(ChildInfo.m_PoolDetails);
-
-					// Remove the child component from the child
-					m_pCoordinator->AddOrRemoveComponents< std::tuple<>
-						, std::tuple<child> >(ChildEntity);
-				}
-
-				// Clear the parent's list
-				ChildrenList.clear();
-			}
+			// Clear the parent's list
+			ChildrenList.clear();
 		}
 		// Removing an entity with a child component
 		if ( CInfo.m_Guid == component::info_v<child>.m_Guid )
@@ -674,9 +657,8 @@ namespace paperback::vm
 			auto& ChildEntity = GetComponent<paperback::component::entity>( PoolIndex );
 			auto& ParentInfo  = m_pCoordinator->GetEntityInfo( Child.m_ParentGlobalIndex );
 
-			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>(ParentInfo.m_PoolDetails);
-			Parent.RemoveChild(ChildEntity.m_GlobalIndex);
-
+			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
+			Parent.RemoveChild( ChildEntity.m_GlobalIndex );
 		}
 	}
 }
