@@ -164,7 +164,7 @@ namespace paperback::vm
 			// If moving last entity - Just destroy it
 			if ( PoolIndex == m_CurrentEntityCount )
 			{
-				if (pInfo.m_Destructor) pInfo.m_Destructor(&pData[m_CurrentEntityCount * pInfo.m_Size]);
+				if ( pInfo.m_Destructor ) pInfo.m_Destructor( &pData[m_CurrentEntityCount * pInfo.m_Size] );
 			}
 			// Moving any other entity - Copy memory and shift forward
 			else
@@ -237,6 +237,7 @@ namespace paperback::vm
 	//-----------------------------------
 	//             Transfer
 	//-----------------------------------
+
 	u32 instance::TransferExistingComponents( const PoolDetails& Details, vm::instance& FromPool ) noexcept
 	{
 		const u32 NewPoolIndex = Append();
@@ -271,11 +272,6 @@ namespace paperback::vm
 			// Component has been removed in new archetype - Destroy old component
             else if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_UID < m_ComponentInfo[ iPoolTo ]->m_UID )
             {
-                auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
-
-                if( Info.m_Destructor )
-					Info.m_Destructor( &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
-
                 if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
             }
 			// Component does not exist in old pool - Continue
@@ -306,7 +302,8 @@ namespace paperback::vm
 	//              Clone
 	//-----------------------------------
 
-	void instance::CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept // also rmb to skip cloning of entity component
+	// Clone Components within the Same Pool
+	void instance::CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept
 	{
 		for ( u32 i = 0; i < m_NumberOfComponents; ++i )
 		{
@@ -361,6 +358,88 @@ namespace paperback::vm
 		}
 	}
 
+	// Clone Components within a different pool
+	const u32 instance::CloneComponents( const u32 FromIndex, vm::instance& FromPool ) noexcept
+	{
+		const u32 ToIndex = Append();
+
+        u32 iPoolFrom = 0;
+        u32 iPoolTo   = 0;
+
+		auto& From_MemoryPool = FromPool.GetMemoryPool();
+
+        while( true )
+        {
+			// Component exists in both - Copy existing component
+			if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_Guid == m_ComponentInfo[ iPoolTo ]->m_Guid )
+            {
+				// If component to be cloned is the parent component
+				if ( m_ComponentInfo[ iPoolTo ]->m_Guid == component::info_v<parent>.m_Guid )
+				{
+					// Grab parent component from entity that is to be cloned
+					auto& ToParent     = GetComponent<parent>( ToIndex );
+					auto& ToEntity     = GetComponent<paperback::component::entity>( ToIndex );
+					auto& FromParent   = FromPool.GetComponent<parent>( FromIndex );
+					auto& ChildrenList = FromParent.m_ChildrenGlobalIndexes;
+
+					// Grab global index of each child
+					for ( const auto& ChildGID : ChildrenList )
+					{
+						// Clone a copy of the child
+						auto& CInfo         = m_pCoordinator->GetEntityInfo( ChildGID );
+						auto ClonedChildGID = CInfo.m_pArchetype->CloneEntity( CInfo.m_pArchetype->GetComponent<paperback::component::entity>( CInfo.m_PoolDetails ) );
+
+						// Grab info of cloned child
+						auto& ClonedInfo    = m_pCoordinator->GetEntityInfo( ClonedChildGID );
+						auto& ClonedChild   = ClonedInfo.m_pArchetype->GetComponent<child>( ClonedInfo.m_PoolDetails );
+
+						// Assign parent/child relationship
+						ToParent.AddChild( ClonedChildGID );
+						ClonedChild.AddParent( ToEntity.m_GlobalIndex );
+					}
+				}
+				// Else if component to be cloned is the child / entity component
+				else if ( m_ComponentInfo[ iPoolTo ]->m_Guid == component::info_v<child>.m_Guid ||
+						  m_ComponentInfo[ iPoolTo ]->m_Guid == component::info_v<paperback::component::entity>.m_Guid )
+				{
+					continue;
+				}
+				// Else, any other component to be cloned
+				else
+				{
+					auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
+
+					if( Info.m_Copy )
+					{
+						Info.m_Copy( &m_MemoryPool[ iPoolTo ][ Info.m_Size * ToIndex ]					    // Destination
+								   , &From_MemoryPool[ iPoolFrom ][ Info.m_Size * FromIndex ] );		    // Source
+					}
+					else
+					{
+						std::memcpy( &m_MemoryPool[ iPoolTo ][ Info.m_Size * ToIndex ]						// Destination
+								   , &From_MemoryPool[ iPoolFrom ][ Info.m_Size * FromIndex ]			    // Source
+								   , Info.m_Size );													        // Number of bytes to copy
+					}
+
+					// If either pool's components is maxed out
+					if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() || ++iPoolTo >= m_ComponentInfo.size() ) break;
+				} 
+            }
+			// Component does not exist in new entity - Continue
+            else if ( FromPool.m_ComponentInfo[ iPoolFrom ]->m_UID < m_ComponentInfo[ iPoolTo ]->m_UID )
+            {
+                if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
+            }
+			// Component does not exist in old pool - Continue
+            else
+            {
+                if ( ++iPoolTo >= m_ComponentInfo.size() ) break;
+            }
+        }
+
+        return ToIndex;
+	}
+
 
 	//-----------------------------------
 	//              Save
@@ -395,7 +474,6 @@ namespace paperback::vm
 			&m_MemoryPool[ ComponentIndex ][ PoolIndex * m_ComponentInfo[ComponentIndex]->m_Size] 
 		);
 	}
-
 
 	template < typename T_COMPONENT >
 	T_COMPONENT& instance::GetComponent( const u32 PoolIndex ) const noexcept
@@ -541,12 +619,35 @@ namespace paperback::vm
 		// Removing an entity with the parent component
 		if (CInfo.m_Guid == component::info_v<parent>.m_Guid)
 		{
-			// Grab children list info
-			auto& Parent = GetComponent<parent>(PoolIndex);
+			/*UE4's Implementation - Does not actually delete children, simply unlinks Parent & Child on Deletion ( Keeping as backup )*/
+			//// Grab children list info
+			//auto& Parent       = GetComponent<parent>( PoolIndex );
+			//auto& ChildrenList = Parent.m_ChildrenGlobalIndexes;
 
-			if ( Parent.m_ChildrenGlobalIndexes.size() != 0 )
+			//// For each child
+			//for ( const auto& ChildGID : ChildrenList )
+			//{
+			//	// Grab child's info
+			//	auto& ChildInfo           = m_pCoordinator->GetEntityInfo( ChildGID );
+			//	auto& ChildEntity         = ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails );
+			//	auto  ParentInChildEntity = ChildInfo.m_pArchetype->FindComponent<parent>( ChildInfo.m_PoolDetails );
+
+			//	// Remove the child component from the child
+			//	m_pCoordinator->AddOrRemoveComponents< std::tuple<>
+			//										 , std::tuple<child> >( ChildEntity );
+			//}
+
+
+
+			/*Unity's Implementation - Deletes children before parent, on deletion of parent*/
+			auto& Parent       = GetComponent<parent>( PoolIndex );
+			auto  ChildrenList = Parent.m_ChildrenGlobalIndexes;
+
+			for ( const auto ChildGID : ChildrenList )
 			{
-				auto& ChildrenList = Parent.m_ChildrenGlobalIndexes;
+				auto& ChildInfo = m_pCoordinator->GetEntityInfo( ChildGID );
+				ChildInfo.m_pArchetype->DestroyEntity( ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails ) );
+			}
 
 				// For each child
 				for (const auto& ChildGID : ChildrenList)

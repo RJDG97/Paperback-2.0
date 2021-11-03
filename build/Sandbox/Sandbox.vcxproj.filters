@@ -120,5 +120,11 @@
     <ClInclude Include="Systems\WindowSystem.h">
       <Filter>Source Files\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Prefab.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ReferencePrefab.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
