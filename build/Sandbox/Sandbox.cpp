@@ -56,23 +56,25 @@ void InitializeGame()
 {
     // Register Components
     {
-        PPB.RegisterComponents <
-            rigidbody,
-            rigidforce,
-            transform,
-            scale,
-            rotation,
-            sphere,
-            boundingbox,
-            timer,
-            sound,
-            mesh,
-            animator,
-            entityscript,
-            listener,
-            parent,
-            child,
-            offset
+        PPB.RegisterComponents<
+             mesh
+        ,    scale
+        ,    timer
+        ,    sound
+        ,    child
+        ,    parent
+        ,    offset
+        ,    prefab
+        ,    sphere
+        ,    listener
+        ,    rotation
+        ,    animator
+        ,    rigidbody
+        ,    transform
+        ,    rigidforce
+        ,    entityscript
+        ,    boundingbox
+        ,    reference_prefab
         >();
     }
 
