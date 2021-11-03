@@ -30,7 +30,6 @@ void EntityInspector::DisplayEntities()
                     NumEntities++;
                     if ( Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) == nullptr ) //isnt a child entity
                     {
-
                         ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
 
                         if (Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i })) != nullptr)
@@ -86,7 +85,8 @@ void EntityInspector::DisplayEntities()
 void EntityInspector::DisplayChildEntities( parent& Parent )
 {
     int Index = 0;
-    bool b_NodeOpen = false;
+    paperback::u32 ChildToUnlink;
+    bool b_NodeOpen = false, Unlink = false;
 
     if ( Parent.m_ChildrenGlobalIndexes.size() != 0 )
     {
@@ -115,14 +115,6 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
                 m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
             }
 
-
-            if (b_NodeOpen)
-            {
-                if (ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails))
-                    DisplayChildEntities(ChildEntityInfo.m_pArchetype->GetComponent<parent>(ChildEntityInfo.m_PoolDetails));
-
-                ImGui::TreePop();
-            }
             bool Deleted = false;
 
             if (ImGui::BeginPopupContextItem())
@@ -134,13 +126,19 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
                     Deleted = true;
                 }
 
+                if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
+                {
+                    Unlink = true;
+                    ChildToUnlink = Child;
+                }
+
                 ImGui::EndPopup();
             }
 
             if (b_NodeOpen)
             {
                 if (ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails) != nullptr)
-                    DisplayChildEntities(ChildEntityInfo.m_pArchetype->GetComponent<parent>(ChildEntityInfo.m_PoolDetails);
+                    DisplayChildEntities(ChildEntityInfo.m_pArchetype->GetComponent<parent>(ChildEntityInfo.m_PoolDetails));
 
                 ImGui::TreePop();
             }
@@ -151,6 +149,13 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
         }
 
         DeleteEntity(ICON_FA_TRASH " Delete?", m_Imgui.m_SelectedEntity.second);
+
+        if (Unlink)
+        {
+            Parent.RemoveChild(ChildToUnlink);
+            Unlink = false;
+        }
+
     }
 }
 

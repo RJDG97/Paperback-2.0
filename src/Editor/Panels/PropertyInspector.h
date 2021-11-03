@@ -24,4 +24,7 @@ struct DetailsWindow : paperback::editor::instance
     void RemoveComponent();
 
     void ParentComponent();
+
+    void ChildCombo();
+
 };

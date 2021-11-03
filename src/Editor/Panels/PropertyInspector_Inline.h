@@ -137,8 +137,8 @@ void DetailsWindow::RemoveComponent()
 
 void DetailsWindow::ParentComponent()
 {
-    bool Remove = false;
-    std::array<const paperback::component::info*, 1 > ComponentAdd;
+    bool Unlink = false;
+    paperback::u32 ChildToUnlink;
 
     if (m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second })))
     {
@@ -146,76 +146,69 @@ void DetailsWindow::ParentComponent()
 
         if (Parent.m_ChildrenGlobalIndexes.size() != 0)
         {
-            ImGui::Text("There are %d Children attached", Parent.m_ChildrenGlobalIndexes.size());
+            ImGui::Text("There are %d Children attached:", Parent.m_ChildrenGlobalIndexes.size());
 
             for (auto& Child : Parent.m_ChildrenGlobalIndexes)
             {
                 ImGui::Text("%d", Child);
-
-                //if (ImGui::BeginPopupContextItem())
-                //{
-                //    if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
-                //    {
-                //        Remove = true;
-                //    }
-
-                //    ImGui::EndPopup();
-                //}
-
-                //if (Remove)
-                //    Parent.RemoveChild(Child);
             }
         }
         else
         {
             ImGui::Text("No Child is attached to this parent");
+        }
 
-            if (ImGui::BeginCombo("##Potential Children", "Potential Children")) //TBD IDK WHAT TO NAME TIS
+        ChildCombo();
+    }
+}
+
+void DetailsWindow::ChildCombo()
+{
+    std::array<const paperback::component::info*, 1 > ComponentAdd;
+
+    if (ImGui::BeginCombo("##Potential Children", "Potential Children")) //TBD IDK WHAT TO NAME TIS
+    {
+        if (!PPB.GetArchetypeList().empty())
+        {
+            for (auto& Archetype : PPB.GetArchetypeList())
             {
-                if (!PPB.GetArchetypeList().empty())
+                for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
                 {
-                    for (auto& Archetype : PPB.GetArchetypeList())
+                    auto& Parent = m_Imgui.m_SelectedEntity.first->GetComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+                    auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
+
+                    if (Parent.m_ChildrenGlobalIndexes.find(Entity.m_GlobalIndex) == Parent.m_ChildrenGlobalIndexes.end()) //not already a child of the selected entity
                     {
-                        for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
+                        std::string EntityName = Archetype->GetName() + " [" + std::to_string(i) + "]";
+
+                        if (EntityName != (m_Imgui.m_SelectedEntity.first->GetName() + " [" + std::to_string(m_Imgui.m_SelectedEntity.second) + "]"))
                         {
-                            auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-
-                            if (Parent.m_ChildrenGlobalIndexes.find(Entity.m_GlobalIndex) == Parent.m_ChildrenGlobalIndexes.end()) //not already a child of the selected entity
+                            if (ImGui::Selectable(EntityName.c_str()))
                             {
-                                std::string EntityName = Archetype->GetName() + " [" + std::to_string(i) + "]";
+                                //auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
 
-                                if (EntityName != (m_Imgui.m_SelectedEntity.first->GetName() + " [" + std::to_string(m_Imgui.m_SelectedEntity.second) + "]"))
+                                if (Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) != nullptr) //Check for Child Component
                                 {
-                                    if (ImGui::Selectable(EntityName.c_str()))
-                                    {
-                                        //auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
-
-                                        if (Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) != nullptr) //Check for Child Component
-                                        {
-                                            //Get Child's Entity Component
-                                            auto& ChildEntityComp = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-                                            //Link Child to Existing Parent
-                                            Parent.AddChild(ChildEntityComp.m_GlobalIndex);
-                                        }
-                                        else
-                                        {
-                                            // doesnt have a child component
-                                            auto& ChildEntityComp = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-                                            Parent.AddChild(ChildEntityComp.m_GlobalIndex);
-                                            //Add in child component
-                                            ComponentAdd[0] = &paperback::component::info_v<child>;
-                                            PPB.AddOrRemoveComponents(Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), ComponentAdd, {});
-                                        }
-                                    }
+                                    //Get Child's Entity Component
+                                    auto& ChildEntityComp = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
+                                    //Link Child to Existing Parent
+                                    Parent.AddChild(ChildEntityComp.m_GlobalIndex);
+                                }
+                                else
+                                {
+                                    // doesnt have a child component
+                                    auto& ChildEntityComp = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
+                                    Parent.AddChild(ChildEntityComp.m_GlobalIndex);
+                                    //Add in child component
+                                    ComponentAdd[0] = &paperback::component::info_v<child>;
+                                    PPB.AddOrRemoveComponents(Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), ComponentAdd, {});
                                 }
                             }
                         }
                     }
                 }
-
-                ImGui::EndCombo();
             }
-
         }
+        ImGui::EndCombo();
     }
 }
