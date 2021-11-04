@@ -79,6 +79,8 @@ namespace paperback
 
 #include "paperback_bitset.h"
 #include "paperback_query.h"
+#include "../../build/Sandbox/Components/Parent.h"
+#include "../../build/Sandbox/Components/Child.h"
 #include "paperback_pool.h"
 #include "paperback_archetype.h"
 #include "paperback_archetype_mgr.h"

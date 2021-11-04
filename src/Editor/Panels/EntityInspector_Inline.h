@@ -2,10 +2,17 @@
 
 void EntityInspector::Panel()
 {
-    int NumEntities = 0, Index = 0;
-    bool b_NodeOpen = false;
-
     ImGui::Begin(EntityInspector::typedef_v.m_pName, &m_bEnabled);
+
+    DisplayEntities();
+
+    ImGui::End();
+}
+
+void EntityInspector::DisplayEntities()
+{
+    int Index = 0, NumEntities = 0;
+    bool b_NodeOpen = false;
 
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 150.0f);
@@ -22,36 +29,60 @@ void EntityInspector::Panel()
                 {
                     NumEntities++;
 
-                    ImGuiTreeNodeFlags NodeFlags = (( m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i ) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
-                    NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
-
-                    b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, (Archetype->GetName() + " [" + std::to_string(i) + "]").c_str());
-
-                    if (ImGui::IsItemClicked())
+                    if ( Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) == nullptr  && 
+                         Archetype->FindComponent<prefab>(paperback::vm::PoolDetails({0, i})) == nullptr) // Not a child entity & a Prefab entity
                     {
-                        m_Imgui.m_SelectedEntity.first = Archetype;
-                        m_Imgui.m_SelectedEntity.second = i;
-                        m_Imgui.m_Components = Archetype->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
-                    }
+                        ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
 
-                    bool Deleted = false;
+                        if (Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i })) != nullptr)
+                            NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+                        else
+                            NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
 
-                    if (ImGui::BeginPopupContextItem())
-                    {
-                        if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                        b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, (Archetype->GetName() + " [" + std::to_string(i) + "]").c_str());
+
+                        if (ImGui::IsItemClicked())
                         {
                             m_Imgui.m_SelectedEntity.first = Archetype;
                             m_Imgui.m_SelectedEntity.second = i;
-                            Deleted = true;
+                            m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
                         }
 
-                        ImGui::EndPopup();
+                        bool Deleted = false;
+
+                        if (ImGui::BeginPopupContextItem())
+                        {
+                            if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                            {
+                                m_Imgui.m_SelectedEntity.first = Archetype;
+                                m_Imgui.m_SelectedEntity.second = i;
+                                Deleted = true;
+                            }
+
+                            if (ImGui::MenuItem("Clone Entity"))
+                            {
+                                m_Imgui.m_SelectedEntity.first = Archetype;
+                                m_Imgui.m_SelectedEntity.second = i;
+
+                                m_Imgui.m_SelectedEntity.first->CloneEntity( m_Imgui.m_SelectedEntity.first->GetComponent
+                                    <paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }) );
+                            }
+
+
+                            ImGui::EndPopup();
+                        }
+
+                        if (b_NodeOpen)
+                        {
+                            if (Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i })) != nullptr)
+                                DisplayChildEntities(Archetype->GetComponent<parent>(paperback::vm::PoolDetails({ 0, i })));
+
+                            ImGui::TreePop();
+                        }
+
+                        if (Deleted)
+                            ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
                     }
-
-                    if (b_NodeOpen) ImGui::TreePop();
-
-                    if (Deleted)
-                        ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
                 }
             }
         }
@@ -61,8 +92,82 @@ void EntityInspector::Panel()
 
     ImGui::Separator();
     ImGui::Text("%d Entities", NumEntities);
+}
 
-    ImGui::End();
+void EntityInspector::DisplayChildEntities( parent& Parent )
+{
+    int Index = 0;
+    paperback::u32 ChildToUnlink;
+    bool b_NodeOpen = false, Unlink = false;
+
+    if ( Parent.m_ChildrenGlobalIndexes.size() != 0 )
+    {
+        for (auto& Child : Parent.m_ChildrenGlobalIndexes)
+        {
+            Index++;
+
+            auto& ChildEntityInfo = PPB.GetEntityInfo(Child); //get the entity info
+
+            ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == ChildEntityInfo.m_pArchetype && m_Imgui.m_SelectedEntity.second == ChildEntityInfo.m_PoolDetails.m_PoolIndex) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
+
+            if ( ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails) != nullptr )
+                NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+            else
+                NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+
+
+            b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + ChildEntityInfo.m_pArchetype->GetName() + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + std::to_string(Index)).c_str(),
+                NodeFlags, (ChildEntityInfo.m_pArchetype->GetName() + " [" + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + "]").c_str());
+
+            if (ImGui::IsItemClicked())
+            {
+                m_Imgui.m_SelectedEntity.first = ChildEntityInfo.m_pArchetype;
+                m_Imgui.m_SelectedEntity.second = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+                m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
+            }
+
+            bool Deleted = false;
+
+            if (ImGui::BeginPopupContextItem())
+            {
+                if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                {
+                    m_Imgui.m_SelectedEntity.first = ChildEntityInfo.m_pArchetype;
+                    m_Imgui.m_SelectedEntity.second = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+                    Deleted = true;
+                }
+
+                if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
+                {
+                    Unlink = true;
+                    ChildToUnlink = Child;
+                }
+
+                ImGui::EndPopup();
+            }
+
+            if (b_NodeOpen)
+            {
+                if (ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails) != nullptr)
+                    DisplayChildEntities(ChildEntityInfo.m_pArchetype->GetComponent<parent>(ChildEntityInfo.m_PoolDetails));
+
+                ImGui::TreePop();
+            }
+
+            if (Deleted)
+                ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
+
+        }
+
+        DeleteEntity(ICON_FA_TRASH " Delete?", m_Imgui.m_SelectedEntity.second);
+
+        if (Unlink)
+        {
+            Parent.RemoveChild(ChildToUnlink);
+            Unlink = false;
+        }
+
+    }
 }
 
 void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 EntityIndex)

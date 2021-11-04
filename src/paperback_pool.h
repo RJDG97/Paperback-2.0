@@ -8,6 +8,17 @@ namespace paperback::vm
 		u32 m_PoolIndex		= settings::invalid_index_v;	// Access Component Within Pool
 	};
 
+	namespace RR_PoolDetails
+	{
+		RTTR_REGISTRATION
+		{
+			rttr::registration::class_<PoolDetails>("Pool Details")
+				.constructor()(rttr::policy::ctor::as_object)
+				.property("Pool Key", &PoolDetails::m_Key)
+				.property("Pool Index", &PoolDetails::m_PoolIndex);
+		}
+	}
+
 	class instance final
 	{
 	public:
@@ -69,6 +80,9 @@ namespace paperback::vm
 		PPB_INLINE
 		void CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept;
 
+		PPB_INLINE
+		const u32 CloneComponents( const u32 FromIndex, vm::instance& FromPool ) noexcept;
+
 
 		//-----------------------------------
 		//              Save
@@ -90,6 +104,9 @@ namespace paperback::vm
 
 		PPB_INLINE
 		int GetComponentIndex( const u32 UIDComponent ) const noexcept;
+
+		PPB_INLINE
+		int GetComponentIndex( const component::type::guid Guid ) const noexcept;
 
 		PPB_INLINE
 		int GetComponentIndexFromGUID( const component::type::guid Guid ) const noexcept;
@@ -125,7 +142,7 @@ namespace paperback::vm
 		void MarkEntityAsMoved( const u32 MovedEntity ) noexcept;
 
 		PPB_INLINE
-		void UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex ) noexcept;
+		void UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex, const u32 GlobalIndex ) noexcept;
 
 
 		paperback::coordinator::instance*				m_pCoordinator;

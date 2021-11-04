@@ -82,6 +82,12 @@ namespace paperback::archetype
         if ( UpdatedPoolDetails.m_Key == EntityInfo.m_PoolDetails.m_Key )
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex );
 
+        // Assign Newly Cloned Prefab Instance's Global Index to Prefab Parent
+        //auto& Cloned_ReferencePrefab = GetComponent<reference_prefab>( UpdatedPoolDetails );                        // Prefab Instance
+        //auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab.m_PrefabGID );           // Prefab
+        //auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
+        //PrefabComponent.AddPrefabInstance( ClonedEntity.m_GlobalIndex );                                            // Add Prefab Instance GID to Prefab - For future modifications
+
         // For when separate component pools are implemented in the future
         /* 
         else
@@ -89,6 +95,29 @@ namespace paperback::archetype
         */
 
         return ClonedEntity.m_GlobalIndex;
+    }
+
+    // Called by the Prefab - Creates a Prefab Instance
+    const u32 instance::ClonePrefab( void ) noexcept
+    {
+        // Copy Bit Signature of Prefab to update accordingly for Prefab Instance
+        tools::bits PrefabInstanceSignature = m_ComponentBits;
+
+        // Update Prefab Instance's Bit Signature
+        PrefabInstanceSignature.Remove( component::info_v<prefab>.m_UID );
+        PrefabInstanceSignature.Set( component::info_v<reference_prefab>.m_UID );
+
+        // Get Prefab Instance
+        auto& PrefabInstanceArchetype = m_Coordinator.GetOrCreateArchetype( PrefabInstanceSignature );
+
+        // Transfer relevant components from Prefab ( Current Archetype calling ClonePrefab )
+        // Creates a New Prefab Instance within ClonePrefabComponents
+        auto PI_PoolDetails = PrefabInstanceArchetype.ClonePrefabComponents( m_ComponentPool[ 0 ] );     // Prefab Pool
+
+        auto& ClonedPrefab = m_Coordinator.RegisterEntity( PI_PoolDetails
+                                                         , PrefabInstanceArchetype );
+
+        return ClonedPrefab.m_GlobalIndex;
     }
     
     void instance::DestroyEntity( component::entity& Entity ) noexcept
@@ -143,13 +172,20 @@ namespace paperback::archetype
     void instance::SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept
     {
         for ( auto& Pool : m_ComponentPool )
-        for ( u32 i = 0, max = Pool.GetCurrentEntityCount(); i < max; ++i )
+            for ( u32 i = 0, max = Pool.GetCurrentEntityCount(); i < max; ++i )
+            {
+                Jfile.StartObject();
+                Pool.SerializePoolComponentsAtEntityIndex( i, Jfile );
+                Jfile.EndObject();
+            }
+    }
+
+    void instance::InitializePrefabInstances( const u32 InstanceCount, vm::instance& PrefabPool ) noexcept
+    {
+        for ( u32 i = 0; i < InstanceCount; ++i )
         {
-            Jfile.StartObject();
-
-            Pool.SerializePoolComponentsAtEntityIndex( i, Jfile );
-
-            Jfile.EndObject();
+            // Copy prefab components
+            ClonePrefabComponents( PrefabPool );
         }
     }
 
@@ -363,5 +399,19 @@ namespace paperback::archetype
     const instance::guid& instance::GetArchetypeGuid( void ) const noexcept
     {
         return m_ArchetypeGuid;
+    }
+
+
+    //-----------------------------------
+    //             Private
+    //-----------------------------------
+
+    const vm::PoolDetails instance::ClonePrefabComponents( vm::instance& PrefabPool ) noexcept
+    {
+        return vm::PoolDetails
+               {
+                   .m_Key = m_PoolAllocationIndex
+               ,   .m_PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].CloneComponents( 0, PrefabPool )
+               };
     }
 }

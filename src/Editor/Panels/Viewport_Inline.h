@@ -186,7 +186,4 @@ void EditorViewport::ComposeTransform()
 			EntityRotate.m_Value.z += TempRot.z;
 		}
 	}
-
-
-
 }

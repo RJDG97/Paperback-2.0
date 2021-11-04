@@ -515,6 +515,13 @@ struct imgui_system : paperback::system::instance
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
             ImGui::Text("%d", PropertyValue.get_value<size_t>());
         }
+
+        if (PropertyType == rttr::type::get<paperback::u32>())
+        {
+            ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+            ImGui::Text("%d", PropertyValue.get_value<paperback::u32>());
+        }
+
     }
 
     //void DisplayEnumTypes
@@ -548,38 +555,15 @@ struct imgui_system : paperback::system::instance
     void SaveCheckPopUp()
     {
         if (m_bSaveCheck)
-            ImGui::OpenPopup(ICON_FA_EXCLAMATION_TRIANGLE " Any Unsaved Changes?");
+            ImGui::OpenPopup(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?");
 
         ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
 
-        if (ImGui::BeginPopupModal(ICON_FA_EXCLAMATION_TRIANGLE " Any Unsaved Changes?", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        if (ImGui::BeginPopupModal(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?", NULL, ImGuiWindowFlags_AlwaysAutoResize))
         {
-            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Are there any unsave changes?");
+            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Have you save whatever you're working on?");
 
             if (ImGui::Button(ICON_FA_SAVE " Yes"))
-            {
-                if (!m_LoadedPath.empty())
-                {
-                    PPB.SaveScene(m_LoadedPath);
-                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-                else
-                {
-                    m_bFileSaveAs = true;
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-            }
-
-            ImGuiHelp("Click here to save changes");
-
-            ImGui::SameLine();
-
-            if (ImGui::Button(ICON_FA_TIMES " No"))
             {
                 switch (m_Type)
                 {
@@ -616,7 +600,31 @@ struct imgui_system : paperback::system::instance
                 }
             }
 
-            ImGuiHelp("Click here to continue on");
+            //ImGuiHelp("Click here to save changes");
+
+            ImGui::SameLine();
+
+            if (ImGui::Button(ICON_FA_TIMES " No"))
+            {
+                if (!m_LoadedPath.empty())
+                {
+                    PPB.SaveScene(m_LoadedPath);
+                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+                else
+                {
+                    m_bFileSaveAs = true;
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+
+            }
+
+            //ImGuiHelp("Click here to continue on");
 
             ImGui::EndPopup();
         }

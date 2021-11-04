@@ -12,8 +12,8 @@ struct window_system : paperback::system::instance
 
     GLFWwindow* m_pWindow;
     paperback::JsonFile JFile;
-
     engine E;
+
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
 		.m_pName = "window_system"

@@ -22,4 +22,9 @@ struct DetailsWindow : paperback::editor::instance
 
     void AddComponent();
     void RemoveComponent();
+
+    void ParentComponent();
+
+    void ChildCombo();
+
 };

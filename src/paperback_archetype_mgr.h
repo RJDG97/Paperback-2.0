@@ -8,6 +8,25 @@ namespace paperback::entity
         vm::PoolDetails                 m_PoolDetails;
         component::entity::Validation   m_Validation;
     };
+
+    struct TempInfo
+    {
+        paperback::u64                  ArchetypeGuid;
+        vm::PoolDetails                 PoolDetails;
+        component::entity::Validation   Validation;
+    };
+}
+
+namespace RR_EntityInfo
+{
+    RTTR_REGISTRATION
+    {
+        rttr::registration::class_<paperback::entity::TempInfo>("Entity Info")
+        .constructor()(rttr::policy::ctor::as_object)
+        .property("Archetype Guid", &paperback::entity::TempInfo::ArchetypeGuid)
+        .property("PoolDetails", &paperback::entity::TempInfo::PoolDetails)
+        .property("Validation", &paperback::entity::TempInfo::Validation);
+    }
 }
 
 namespace paperback::archetype
@@ -30,6 +49,12 @@ namespace paperback::archetype
 
         PPB_INLINE
         manager( paperback::coordinator::instance& Coordinator );
+
+        PPB_INLINE
+        ~manager() 
+        {
+            ResetAllArchetypes();
+        }
 
         PPB_INLINE
         void Initialize( void ) noexcept;
@@ -97,6 +122,10 @@ namespace paperback::archetype
         PPB_INLINE
         paperback::component::entity& RegisterEntity( const PoolDetails Details
                                                     , archetype::instance& Archetype ) noexcept;
+
+        PPB_INLINE
+        EntityInfoList& GetEntityInfoList() noexcept;
+
 
         PPB_INLINE
         void RemoveEntity( const u32 SwappedGlobalIndex

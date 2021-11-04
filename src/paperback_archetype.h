@@ -32,8 +32,13 @@ namespace paperback::archetype
         template< typename T_CALLBACK = paperback::empty_lambda >
         paperback::component::entity CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
         
+        // Called By Prefab Instance's Archetype
         PPB_INLINE
         const u32 CloneEntity( component::entity& Entity ) noexcept;
+
+        // Called By The Prefab Archetype
+        PPB_INLINE
+        const u32 ClonePrefab( void ) noexcept;
 
         PPB_INLINE
         void DestroyEntity( component::entity& Entity ) noexcept;
@@ -91,6 +96,10 @@ namespace paperback::archetype
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
 
+        // Called by the Prefab Instance Archetype to Allocate Memory
+        PPB_INLINE
+        void InitializePrefabInstances( const u32 InstanceCount, vm::instance& PrefabPool ) noexcept;
+
 
         //-----------------------------------
         //       Data Member Getters
@@ -117,7 +126,7 @@ namespace paperback::archetype
         PPB_INLINE 
         ComponentInfos& GetComponentInfos( void ) noexcept;
 
-        PPB_INLINE // Replace with Pool's Component Count instead
+        PPB_INLINE
         const u32 GetComponentCount( void ) const noexcept;
 
         PPB_INLINE
@@ -131,6 +140,9 @@ namespace paperback::archetype
 
 
     private:
+
+        PPB_INLINE
+        const vm::PoolDetails ClonePrefabComponents( vm::instance& PrefabPool ) noexcept;
 
         coordinator::instance&        m_Coordinator;                                              // Coordinator Reference
         ComponentPool                 m_ComponentPool            {   };                           // Component Pool
