@@ -66,8 +66,22 @@ namespace paperback::coordinator
 		//load scenes here
 
 		//manual loading
-		AddScene("Default", "../../resources/assetloading/DupSampleScene.json");
-		AddScene("Editor", "../../resources/assetloading/SampleScene.json");
+		//AddScene("Default", "../../resources/assetloading/DupSampleScene.json");
+		//AddScene("Editor", "../../resources/assetloading/SampleScene.json");
+
+		JsonFile Jfile;
+		std::stringstream buffer{};
+		Jfile.StartReader("../../resources/stateloading/StateList.json").LoadStringPairs(buffer).EndReader();
+
+		//process buffer
+		
+		std::string name{}, path{};
+		while (buffer >> name >> path)
+		{
+
+			AddScene(name, path);
+			name = path = "";
+		}
 	}
 
 	scene_mgr::~scene_mgr()

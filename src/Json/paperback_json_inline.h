@@ -143,4 +143,12 @@ namespace paperback
         deserialize::ReadObject(Instance, *doc);
         return *this;
     }
+
+
+    inline JsonFile& JsonFile::LoadStringPairs(std::stringstream& Stream)
+    {
+
+        deserialize::ReadStringPairs(Stream, *doc);
+        return *this;
+    };
 }

@@ -313,4 +313,16 @@ namespace paperback::deserialize
             }
         }
     }
+
+
+    //variation of normal for use with general case read
+    void ReadStringPairs(std::stringstream& stream, rapidjson::Value& json_object)
+    {
+
+        for (rapidjson::Value::ConstMemberIterator file_it = json_object.MemberBegin(); file_it != json_object.MemberEnd(); ++ file_it)
+        {
+
+            stream << file_it->name.GetString() << " " << file_it->value.GetString() << " ";
+        }
+    }
 }
