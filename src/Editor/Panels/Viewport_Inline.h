@@ -52,7 +52,7 @@ void EditorViewport::ViewportMenuBar()
 
 void EditorViewport::Gizmo()
 {
-	if (m_Imgui.m_SelectedEntity.first && m_GizmoType != -1) //An entity is selected	
+	if (m_Imgui.m_SelectedEntity.first) //An entity is selected	
 	{
 		ImGuizmo::SetOrthographic(true);
 		ImGuizmo::SetDrawlist();
