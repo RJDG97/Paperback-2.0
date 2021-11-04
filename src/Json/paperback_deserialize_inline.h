@@ -259,18 +259,7 @@ namespace paperback::deserialize
                                             NewArchetype->GetComponent<child>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<child>();
 
                                         if (obj.is_type<parent>())
-                                        {
-                                            std::unordered_set<paperback::u32> ChildrenGlobalIndexes;
-
-                                            for (rapidjson::Value::ValueIterator Vitr = Mitr->value.Begin(); Vitr != Mitr->value.End(); Vitr++)
-                                            {
-                                                ChildrenGlobalIndexes.insert(Vitr->GetUint()); //insert children Global Index
-                                            }
-
-                                            auto& Parent = NewArchetype->GetComponent<parent>(paperback::vm::PoolDetails{ 0, EntityCounter });
-
-                                            Parent.m_ChildrenGlobalIndexes = ChildrenGlobalIndexes;
-                                        }
+                                            NewArchetype->GetComponent<parent>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<parent>();;
 
                                     }
 

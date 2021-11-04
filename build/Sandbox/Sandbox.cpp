@@ -95,7 +95,7 @@ void InitializeGame()
     }
     // Entity Creation
     {
-        PPB.OpenScene("../../resources/assetloading/SampleScene.json");
+        //PPB.OpenScene("../../resources/assetloading/ParentingTest.json");
 
         // Right Box
         PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, boundingbox& bbox, sphere& sphere, rigidbody& rb, rigidforce& rf)

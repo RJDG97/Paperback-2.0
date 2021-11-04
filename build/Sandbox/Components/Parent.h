@@ -30,7 +30,7 @@ namespace RR_Parent
     {
        rttr::registration::class_<parent>( parent::typedef_v.m_pName )
 		   .constructor()( rttr::policy::ctor::as_object )
-		   .property( "Children GID", &parent::m_ChildrenGlobalIndexes )( rttr::policy::prop::as_reference_wrapper );
+		   .property( "Children GID", &parent::m_ChildrenGlobalIndexes );
     }
 }
 
