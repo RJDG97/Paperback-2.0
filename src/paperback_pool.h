@@ -142,7 +142,7 @@ namespace paperback::vm
 		void MarkEntityAsMoved( const u32 MovedEntity ) noexcept;
 
 		PPB_INLINE
-		void UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex ) noexcept;
+		void UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex, const u32 GlobalIndex ) noexcept;
 
 
 		paperback::coordinator::instance*				m_pCoordinator;

@@ -83,10 +83,10 @@ namespace paperback::archetype
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex );
 
         // Assign Newly Cloned Prefab Instance's Global Index to Prefab Parent
-        auto& Cloned_ReferencePrefab = GetComponent<reference_prefab>( UpdatedPoolDetails );                        // Prefab Instance
-        auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab.m_PrefabGID );           // Prefab
-        auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
-        PrefabComponent.AddPrefabInstance( ClonedEntity.m_GlobalIndex );                                            // Add Prefab Instance GID to Prefab - For future modifications
+        //auto& Cloned_ReferencePrefab = GetComponent<reference_prefab>( UpdatedPoolDetails );                        // Prefab Instance
+        //auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab.m_PrefabGID );           // Prefab
+        //auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
+        //PrefabComponent.AddPrefabInstance( ClonedEntity.m_GlobalIndex );                                            // Add Prefab Instance GID to Prefab - For future modifications
 
         // For when separate component pools are implemented in the future
         /* 
@@ -172,14 +172,12 @@ namespace paperback::archetype
     void instance::SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept
     {
         for ( auto& Pool : m_ComponentPool )
-        for ( u32 i = 0, max = Pool.GetCurrentEntityCount(); i < max; ++i )
-        {
-            Jfile.StartObject();
-
-            Pool.SerializePoolComponentsAtEntityIndex( i, Jfile );
-
-            Jfile.EndObject();
-        }
+            for ( u32 i = 0, max = Pool.GetCurrentEntityCount(); i < max; ++i )
+            {
+                Jfile.StartObject();
+                Pool.SerializePoolComponentsAtEntityIndex( i, Jfile );
+                Jfile.EndObject();
+            }
     }
 
     void instance::InitializePrefabInstances( const u32 InstanceCount, vm::instance& PrefabPool ) noexcept

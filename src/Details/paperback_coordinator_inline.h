@@ -80,6 +80,9 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::SaveScene(const std::string& FilePath) noexcept
 	{
+		paperback::entity::TempInfo Tempinfo = {};
+		paperback::component::temp_guid Temp = {};
+		
 		paperback::JsonFile JFile;
 
 		JFile.StartWriter(FilePath);
@@ -88,81 +91,71 @@ namespace paperback::coordinator
 
 		for (auto& Archetype : PPB.GetArchetypeList())
 		{
-			if ( Archetype->GetComponentBits().Has(component::info_v<prefab>.m_UID) ) //Have prefab component
+			if ( Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID) ) //Have prefab component
 			{
-				JFile.StartObject().WriteKey(("Prefab " + Archetype->GetName()).c_str());
+				JFile.StartObject().WriteKey(("Prefab " + Archetype->GetName()).c_str()).StartArray();
 
-				JFile.StartArray();
 				//Serialize GUIDs
-				component::temp_guid Temp = {};
 
 				JFile.StartObject().WriteKey("Guid").StartArray();
 				auto& ComponentInfoArray = Archetype->GetComponentInfos();
 
-				for (u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+				for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
 				{
 					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
 					JFile.WriteGuid(Temp);
 				}
 
-				JFile.EndArray();
-				JFile.EndObject();
-
-				//Serialize Components
-
-				Archetype->SerializeAllEntities(JFile);
-
-				JFile.EndArray();
-				JFile.EndObject();
-			}
-
-			// Serialize EntityInfos
-			else
-			{
-				paperback::entity::TempInfo Tempinfo = {};
-
-				JFile.StartObject().WriteKey("Entity Info").StartArray();
-				
-				for (u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
-				{
-					Tempinfo.ArchetypeGuid = Archetype->GetArchetypeGuid().m_Value;
-					Tempinfo.PoolDetails = m_ArchetypeMgr.GetEntityInfoList().get()->m_PoolDetails;
-					Tempinfo.Validation = m_ArchetypeMgr.GetEntityInfoList().get()->m_Validation;
-
-					JFile.StartObject();
-					JFile.Write(Tempinfo).EndObject();
-
-				}
-				
 				JFile.EndArray().EndObject();
 
-				JFile.StartObject().WriteKey(Archetype->GetName());
+				//Serialize Components
 
-				JFile.StartArray();
+				Archetype->SerializeAllEntities(JFile);
+
+				JFile.EndArray().EndObject();
+			}
+
+			else
+			{
+				JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
+
 				//Serialize GUIDs
-				component::temp_guid Temp = {};
 
 				JFile.StartObject().WriteKey("Guid").StartArray();
+
 				auto& ComponentInfoArray = Archetype->GetComponentInfos();
 
-				for (u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+				for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
 				{
 					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
 					JFile.WriteGuid(Temp);
 				}
 
-				JFile.EndArray();
-				JFile.EndObject();
+				JFile.EndArray().EndObject();
 
 				//Serialize Components
 
 				Archetype->SerializeAllEntities(JFile);
 
-				JFile.EndArray();
-				JFile.EndObject();
+				JFile.EndArray().EndObject();
 
 			}
 		}
+
+		const auto& EntityInfoList = m_ArchetypeMgr.GetEntityInfoList();
+
+		JFile.StartObject().WriteKey("Entity Info").StartArray();
+
+		for (u32 i = 0; i < settings::max_entities_v; ++i)
+		{
+			Tempinfo.ArchetypeGuid = EntityInfoList[i].m_pArchetype ? EntityInfoList[i].m_pArchetype->GetArchetypeGuid().m_Value : 0;
+			Tempinfo.PoolDetails = EntityInfoList[i].m_PoolDetails;
+			Tempinfo.Validation = EntityInfoList[i].m_Validation;
+
+			JFile.StartObject().Write(Tempinfo).EndObject();
+		}
+
+		JFile.EndArray().EndObject();
 
 		JFile.EndArray();
 		JFile.EndObject();

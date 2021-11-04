@@ -59,6 +59,16 @@ void EntityInspector::DisplayEntities()
                                 Deleted = true;
                             }
 
+                            if (ImGui::MenuItem("Clone Entity"))
+                            {
+                                m_Imgui.m_SelectedEntity.first = Archetype;
+                                m_Imgui.m_SelectedEntity.second = i;
+
+                                m_Imgui.m_SelectedEntity.first->CloneEntity( m_Imgui.m_SelectedEntity.first->GetComponent
+                                    <paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }) );
+                            }
+
+
                             ImGui::EndPopup();
                         }
 

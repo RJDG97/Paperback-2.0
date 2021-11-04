@@ -97,6 +97,7 @@ namespace paperback::vm
 
 		// Return back to the current index
 		--m_CurrentEntityCount;
+		const auto EntityGlobalIndex = GetComponent<component::entity>(PoolIndex).m_GlobalIndex;
 
 		for ( size_t i = 0; i < m_NumberOfComponents; ++i )
 		{
@@ -104,7 +105,7 @@ namespace paperback::vm
 			auto		pData =  m_MemoryPool[i];
 
 			// Unlink Parent & Child relationship on deletion of entity
-			UnlinkParentAndChildOnDelete( pInfo, PoolIndex );
+			UnlinkParentAndChildOnDelete( pInfo, PoolIndex, EntityGlobalIndex );
 
 			// Deleting last Entity
 			if ( PoolIndex == m_CurrentEntityCount )
@@ -191,7 +192,7 @@ namespace paperback::vm
 		}
 		
 		// Update the "Last Entity" that was moved to fill the gap in "PoolIndex"
-		if ( PoolIndex != 0 )
+		if ( m_CurrentEntityCount != 0 )
 		{
 			auto& MovedEntity = GetComponent<paperback::component::entity>( PoolIndex );
 			auto& MovedEntityInfo = m_pCoordinator->GetEntityInfo( MovedEntity );
@@ -611,30 +612,11 @@ namespace paperback::vm
 		m_MoveHead = MovedEntity.m_GlobalIndex;
 	}
 
-	void instance::UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex ) noexcept
+	void instance::UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex, const u32 GlobalIndex ) noexcept
 	{
 		// Removing an entity with the parent component
 		if ( CInfo.m_Guid == component::info_v<parent>.m_Guid )
 		{
-			/*UE4's Implementation - Does not actually delete children, simply unlinks Parent & Child on Deletion ( Keeping as backup )*/
-			//// Grab children list info
-			//auto& Parent       = GetComponent<parent>( PoolIndex );
-			//auto& ChildrenList = Parent.m_ChildrenGlobalIndexes;
-
-			//// For each child
-			//for ( const auto& ChildGID : ChildrenList )
-			//{
-			//	// Grab child's info
-			//	auto& ChildInfo           = m_pCoordinator->GetEntityInfo( ChildGID );
-			//	auto& ChildEntity         = ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails );
-			//	auto  ParentInChildEntity = ChildInfo.m_pArchetype->FindComponent<parent>( ChildInfo.m_PoolDetails );
-
-			//	// Remove the child component from the child
-			//	m_pCoordinator->AddOrRemoveComponents< std::tuple<>
-			//										 , std::tuple<child> >( ChildEntity );
-			//}
-
-
 
 			/*Unity's Implementation - Deletes children before parent, on deletion of parent*/
 			auto& Parent       = GetComponent<parent>( PoolIndex );
@@ -654,11 +636,10 @@ namespace paperback::vm
 		{
 			// Get parent info
 			auto& Child       = GetComponent<child>( PoolIndex );
-			auto& ChildEntity = GetComponent<paperback::component::entity>( PoolIndex );
 			auto& ParentInfo  = m_pCoordinator->GetEntityInfo( Child.m_ParentGlobalIndex );
 
 			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
-			Parent.RemoveChild( ChildEntity.m_GlobalIndex );
+			Parent.RemoveChild( GlobalIndex );
 		}
 	}
 }
