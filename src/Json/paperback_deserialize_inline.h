@@ -229,7 +229,7 @@ namespace paperback::deserialize
                                             NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
 
                                         if (obj.is_type<component::entity>())
-                                            continue;
+                                            NewArchetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<paperback::component::entity>();
 
                                         if (obj.is_type<sound>())
                                             NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();
@@ -254,6 +254,23 @@ namespace paperback::deserialize
 
                                         if (obj.is_type<animator>())
                                             NewArchetype->GetComponent<animator>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<animator>();
+
+                                        if (obj.is_type<child>())
+                                            NewArchetype->GetComponent<child>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<child>();
+
+                                        if (obj.is_type<parent>())
+                                        {
+                                            std::unordered_set<paperback::u32> ChildrenGlobalIndexes;
+
+                                            for (rapidjson::Value::ValueIterator Vitr = Mitr->value.Begin(); Vitr != Mitr->value.End(); Vitr++)
+                                            {
+                                                ChildrenGlobalIndexes.insert(Vitr->GetUint()); //insert children Global Index
+                                            }
+
+                                            auto& Parent = NewArchetype->GetComponent<parent>(paperback::vm::PoolDetails{ 0, EntityCounter });
+
+                                            Parent.m_ChildrenGlobalIndexes = ChildrenGlobalIndexes;
+                                        }
 
                                     }
 

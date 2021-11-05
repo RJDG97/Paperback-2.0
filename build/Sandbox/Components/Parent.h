@@ -24,14 +24,14 @@ struct parent
 	std::unordered_set<paperback::u32> m_ChildrenGlobalIndexes;
 };
 
-//namespace RR_Parent
-//{    
-//    RTTR_REGISTRATION
-//    {
-//       rttr::registration::class_<parent>( parent::typedef_v.m_pName )
-//		   .constructor()( rttr::policy::ctor::as_object )
-//		   .property( "ChildGID", &parent::m_Infos )( rttr::policy::prop::as_reference_wrapper );
-//    }
-//}
+namespace RR_Parent
+{    
+    RTTR_REGISTRATION
+    {
+       rttr::registration::class_<parent>( parent::typedef_v.m_pName )
+		   .constructor()( rttr::policy::ctor::as_object )
+		   .property( "Children GID", &parent::m_ChildrenGlobalIndexes )( rttr::policy::prop::as_reference_wrapper );
+    }
+}
 
 #endif

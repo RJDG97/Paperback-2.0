@@ -15,3 +15,5 @@
 #include "Parent.h"
 #include "Child.h"
 #include "Offset.h"
+#include "Prefab.h"
+#include "ReferencePrefab.h"
