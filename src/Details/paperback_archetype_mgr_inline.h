@@ -1,4 +1,3 @@
-#include "..\paperback_archetype_mgr.h"
 #pragma once
 
 namespace paperback::archetype
@@ -36,6 +35,12 @@ namespace paperback::archetype
 	    }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
 
+    void manager::CreatePrefab( void ) noexcept
+    {
+		auto& Archetype = GetOrCreateArchetype<prefab, transform>( );
+        Archetype.CreateEntity( );
+    }
+
     template < typename... T_COMPONENTS >
     archetype::instance& manager::GetOrCreateArchetype( void ) noexcept
     {
@@ -71,9 +76,9 @@ namespace paperback::archetype
 
     template < concepts::Callable T_FUNCTION >
 	component::entity manager::AddOrRemoveComponents( const component::entity Entity
-								                     , std::span<const component::info* const> Add
-								                     , std::span<const component::info* const> Remove
-								                     , T_FUNCTION&& Function ) noexcept
+								                    , std::span<const component::info* const> Add
+								                    , std::span<const component::info* const> Remove
+								                    , T_FUNCTION&& Function ) noexcept
 	{
 		PPB_ASSERT_MSG( Entity.IsZombie(), "Attempting to add component to non-existent entity" );
 
@@ -123,10 +128,15 @@ namespace paperback::archetype
         for ( const auto& ComponentToRemove : Remove )
 		{
 			if ( InvalidComponentModification( ComponentToRemove ) ) continue;
-			UpdatedSignature.Remove( PPB.FindComponentInfo(ComponentToRemove->m_Guid)->m_UID );
+			UpdatedSignature.Remove( PPB.FindComponentInfo( ComponentToRemove->m_Guid )->m_UID );
 		}
 
 		auto ExistingArchetype = Search( UpdatedSignature );
+
+        // Update All Prefab Instances If Updated Entity Is A Prefab
+        AddOrRemoveComponentsFromPrefabInstances( EntityInfo
+                                                , Add
+                                                , Remove );
 
 		/*
             If Archetype with matching bit signature already exists
@@ -270,6 +280,33 @@ namespace paperback::archetype
         return ValidArchetypes;
     }
 
+    
+    //-----------------------------------
+    //     Update Prefab Instances
+    //-----------------------------------
+    
+    template < typename T_COMPONENT >
+    void manager::UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+                                                              , const T_COMPONENT&  UpdatedComponent ) noexcept
+    {
+        auto& Prefab                  = PrefabInfo.m_pArchetype->GetComponent<prefab>( PrefabInfo.m_PoolDetails );
+        auto& PrefabInstanceArchetype = *( m_Coordinator.GetEntityInfo( *(Prefab.m_ReferencePrefabGIDs.begin()) ).m_pArchetype );
+
+		PPB_ASSERT_MSG( PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab.m_ReferencePrefabGIDs.size(),
+                        "Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs" );
+
+        for ( size_t i = 0, max = Prefab.m_ReferencePrefabGIDs.size(); i < max; ++i )
+        {
+            auto& Reference_Prefab = PrefabInstanceArchetype.GetComponent<reference_prefab>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
+            auto& Info             = component::info_v<T_COMPONENT>;
+
+            if ( !(Reference_Prefab.HasModified( Info.m_Guid.m_Value )) )
+            {
+                // Update Prefab Instance's Component
+                PrefabInstanceArchetype.GetComponent<T_COMPONENT>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } ) = UpdatedComponent;
+            }
+        }
+    }
 
     //-----------------------------------
     //              Clear
@@ -408,4 +445,50 @@ namespace paperback::archetype
 
         return *( m_pArchetypeList.back() );
     }
+
+    void manager::AddOrRemoveComponentsFromPrefabInstances( const entity::info& Info
+                                                          , std::span<const component::info* const> Add
+								                          , std::span<const component::info* const> Remove ) noexcept
+    {
+        // Check if Archetype is a Prefab
+        auto Prefab = Info.m_pArchetype->FindComponent<prefab>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } );
+
+        if ( Prefab && Prefab->m_ReferencePrefabGIDs.size() )
+        {
+            auto& PrefabInstanceArchetype = *( m_Coordinator.GetEntityInfo( *(Prefab->m_ReferencePrefabGIDs.begin()) ).m_pArchetype );
+
+            PPB_ASSERT_MSG( PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab->m_ReferencePrefabGIDs.size(),
+                            "Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs" );
+
+            for ( size_t i = 0, max = Prefab->m_ReferencePrefabGIDs.size(); i < max; ++i )
+            {
+                auto& Reference_Prefab = PrefabInstanceArchetype.GetComponent<reference_prefab>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } );
+
+                // Unassign Modified Guid Values On Component Removal
+                for ( const auto& ComponentToRemove : Remove )
+		        {
+                    if ( Reference_Prefab.m_ModifiedComponents.size() )
+                    {
+                        Reference_Prefab.RemoveModifiedComponentGuid( ComponentToRemove->m_Guid.m_Value );
+                    }
+                }
+
+                AddOrRemoveComponents( PrefabInstanceArchetype.GetComponent<paperback::component::entity>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } )
+                                     , Add
+                                     , Remove
+                                     );
+            }
+        }
+    }
+
+	//void manager::UpdateReferencedPrefabInstanceOnAddRemove( const entity::info& Info
+ //                                                          , const u64 ComponentGuid ) noexcept
+ //   {
+ //       auto Reference_Prefab = Info.m_pArchetype->FindComponent<reference_prefab>( Info.m_PoolDetails );
+
+ //       if ( Reference_Prefab && Reference_Prefab->m_ModifiedComponents.size() )
+ //       {
+ //           Reference_Prefab->RemoveModifiedComponentGuid( ComponentGuid );
+ //       }
+ //   }
 }

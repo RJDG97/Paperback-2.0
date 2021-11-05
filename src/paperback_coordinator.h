@@ -61,6 +61,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
 
+		PPB_INLINE
+		void CreatePrefab( void ) noexcept;
+
 		template< typename T_FUNCTION = paperback::empty_lambda >
 		void CreateEntity( T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 

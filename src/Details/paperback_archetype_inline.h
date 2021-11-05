@@ -1,8 +1,8 @@
-//#include "..\paperback_archetype.h"
+#pragma once
+
 #include "Components/Parent.h"
 #include "Components/Offset.h"
 #include "Components/Child.h"
-#pragma once
 
 namespace paperback::archetype
 {
@@ -82,7 +82,7 @@ namespace paperback::archetype
         if ( UpdatedPoolDetails.m_Key == EntityInfo.m_PoolDetails.m_Key )
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex );
 
-        // Assign Newly Cloned Prefab Instance's Global Index to Prefab Parent
+        // Assign Newly Cloned Prefab Instance's Global Index to Prefab Parent - Uncomment when cloning prefabs
         //auto& Cloned_ReferencePrefab = GetComponent<reference_prefab>( UpdatedPoolDetails );                        // Prefab Instance
         //auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab.m_PrefabGID );           // Prefab
         //auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
@@ -98,7 +98,7 @@ namespace paperback::archetype
     }
 
     // Called by the Prefab - Creates a Prefab Instance
-    const u32 instance::ClonePrefab( void ) noexcept
+    const u32 instance::ClonePrefab( const u32 PrefabPoolIndex ) noexcept
     {
         // Copy Bit Signature of Prefab to update accordingly for Prefab Instance
         tools::bits PrefabInstanceSignature = m_ComponentBits;
@@ -112,7 +112,8 @@ namespace paperback::archetype
 
         // Transfer relevant components from Prefab ( Current Archetype calling ClonePrefab )
         // Creates a New Prefab Instance within ClonePrefabComponents
-        auto PI_PoolDetails = PrefabInstanceArchetype.ClonePrefabComponents( m_ComponentPool[ 0 ] );     // Prefab Pool
+        auto PI_PoolDetails = PrefabInstanceArchetype.ClonePrefabComponents( PrefabPoolIndex
+                                                                           , m_ComponentPool[ 0 ] );
 
         auto& ClonedPrefab = m_Coordinator.RegisterEntity( PI_PoolDetails
                                                          , PrefabInstanceArchetype );
@@ -138,6 +139,37 @@ namespace paperback::archetype
                 DestroyEntity( GetComponent<paperback::component::entity>( vm::PoolDetails{ i, Count } ));
             }
         }
+    }
+
+
+    //-----------------------------------
+    //         Transfer Entity
+    //-----------------------------------
+
+    template < typename T_FUNCTION >
+    component::entity instance::TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function ) noexcept
+    {
+        using func_traits = xcore::function::traits<T_FUNCTION>;
+        
+        // Get info of Entity that is to be transferred to "new archetype" aka this one
+        auto& TransferredEntityInfo = m_Coordinator.GetEntityInfo( Entity.m_GlobalIndex );
+
+        // Transfer matching components over - m_ComponentPool[ 0 ].TransferExistingComponents
+        const auto NewPoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].TransferExistingComponents( TransferredEntityInfo.m_PoolDetails                                                                 // Entity's Pool Key & Index
+                                                                                                     , TransferredEntityInfo.m_pArchetype->m_ComponentPool[ TransferredEntityInfo.m_PoolDetails.m_Key ] ); // Entity's Pool
+
+        TransferredEntityInfo.m_pArchetype->UpdateStructuralChanges();
+
+        // Update Entity Info
+        TransferredEntityInfo.m_pArchetype = this;
+        TransferredEntityInfo.m_PoolDetails.m_Key = m_PoolAllocationIndex;
+        TransferredEntityInfo.m_PoolDetails.m_PoolIndex = NewPoolIndex;
+
+        //// Initialize stuff with the lambda function
+        // Probably not needed but we shall see c:
+
+        // Temporary Return
+        return m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<component::entity>( NewPoolIndex );
     }
 
 
@@ -180,12 +212,14 @@ namespace paperback::archetype
             }
     }
 
-    void instance::InitializePrefabInstances( const u32 InstanceCount, vm::instance& PrefabPool ) noexcept
+    void instance::InitializePrefabInstances( const u32 InstanceCount
+                                            , const u32 PrefabPoolIndex
+                                            , vm::instance& PrefabPool ) noexcept
     {
         for ( u32 i = 0; i < InstanceCount; ++i )
         {
             // Copy prefab components
-            ClonePrefabComponents( PrefabPool );
+            ClonePrefabComponents( PrefabPoolIndex, PrefabPool );
         }
     }
 
@@ -303,37 +337,6 @@ namespace paperback::archetype
 
 
     //-----------------------------------
-    //         Transfer Entity
-    //-----------------------------------
-
-    template < typename T_FUNCTION >
-    component::entity instance::TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function ) noexcept
-    {
-        using func_traits = xcore::function::traits<T_FUNCTION>;
-        
-        // Get info of Entity that is to be transferred to "new archetype" aka this one
-        auto& TransferredEntityInfo = m_Coordinator.GetEntityInfo( Entity.m_GlobalIndex );
-
-        // Transfer matching components over - m_ComponentPool[ 0 ].TransferExistingComponents
-        const auto NewPoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].TransferExistingComponents( TransferredEntityInfo.m_PoolDetails                                                                 // Entity's Pool Key & Index
-                                                                                                     , TransferredEntityInfo.m_pArchetype->m_ComponentPool[ TransferredEntityInfo.m_PoolDetails.m_Key ] ); // Entity's Pool
-
-        TransferredEntityInfo.m_pArchetype->UpdateStructuralChanges();
-
-        // Update Entity Info
-        TransferredEntityInfo.m_pArchetype = this;
-        TransferredEntityInfo.m_PoolDetails.m_Key = m_PoolAllocationIndex;
-        TransferredEntityInfo.m_PoolDetails.m_PoolIndex = NewPoolIndex;
-
-        //// Initialize stuff with the lambda function
-        // Probably not needed but we shall see c:
-
-        // Temporary Return
-        return m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<component::entity>( NewPoolIndex );
-    }
-
-
-    //-----------------------------------
     //       Data Member Getters
     //-----------------------------------
 
@@ -391,7 +394,7 @@ namespace paperback::archetype
         return m_ComponentPool[0].GetComponentCount();
     }
 
-    tools::bits& instance::GetComponentBits( void ) noexcept
+    const tools::bits instance::GetComponentBits( void ) noexcept
     {
         return m_ComponentBits;
     }
@@ -406,12 +409,13 @@ namespace paperback::archetype
     //             Private
     //-----------------------------------
 
-    const vm::PoolDetails instance::ClonePrefabComponents( vm::instance& PrefabPool ) noexcept
+    const vm::PoolDetails instance::ClonePrefabComponents( const u32 PrefabPoolIndex
+                                                         , vm::instance& PrefabPool ) noexcept
     {
         return vm::PoolDetails
                {
                    .m_Key = m_PoolAllocationIndex
-               ,   .m_PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].CloneComponents( 0, PrefabPool )
+               ,   .m_PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].CloneComponents( PrefabPoolIndex, PrefabPool )
                };
     }
 }

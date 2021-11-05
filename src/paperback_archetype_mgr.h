@@ -67,6 +67,9 @@ namespace paperback::archetype
         template < typename T_FUNCTION = paperback::empty_lambda >
         void CreateEntity( T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
+        PPB_INLINE
+        void CreatePrefab( void ) noexcept;
+
         template < typename... T_COMPONENTS >
         archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
@@ -93,6 +96,15 @@ namespace paperback::archetype
 
         PPB_INLINE
         std::vector<archetype::instance*> Search( const tools::query& Query ) const noexcept;
+
+
+        //-----------------------------------
+        //     Update Prefab Instances
+        //-----------------------------------
+
+        template < typename T_COMPONENT >
+        void UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+                                                         , const T_COMPONENT&  UpdatedComponent ) noexcept;
 
 
         //-----------------------------------
@@ -151,6 +163,15 @@ namespace paperback::archetype
 
         template < typename... T_COMPONENTS >
         std::vector<archetype::instance*> Search( std::span<const component::info* const> Types ) const noexcept;
+
+        PPB_INLINE
+        void AddOrRemoveComponentsFromPrefabInstances( const entity::info& Info
+                                                     , std::span<const component::info* const> Add
+								                     , std::span<const component::info* const> Remove ) noexcept;
+
+  //      PPB_INLINE
+		//void UpdateReferencedPrefabInstanceOnAddRemove( const entity::info& Info
+  //                                                    , const u64 ComponentGuid ) noexcept;
 
 
         paperback::coordinator::instance&   m_Coordinator;
