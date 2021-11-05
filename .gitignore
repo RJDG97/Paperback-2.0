@@ -351,3 +351,10 @@ MigrationBackup/
 
 dependencies/glut/
 dependencies/xcore/
+/build/CSScript/Scriptlib2.dll
+/build/CSScript/Scriptlib1.dll
+/build/CSScript/mcs_Scriptlib2_output.txt
+/build/CSScript/mcs_Scriptlib1_output.txt
+/build/CSScript/ScriptRuntimelib.dll
+/build/CSScript/Scriptlib.dll
+/build/Sandbox/mcs_ScriptRuntimelib_output.txt
