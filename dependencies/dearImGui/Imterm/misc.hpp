@@ -24,6 +24,7 @@
 #include <iterator>
 #include <functional>
 #include <type_traits>
+#include <algorithm>
 
 namespace misc {
 
