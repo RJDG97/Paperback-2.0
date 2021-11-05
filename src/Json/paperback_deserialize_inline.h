@@ -291,14 +291,10 @@ namespace paperback::deserialize
 
                                     }
                                 }
-
-                                ERROR_LOG("Unable to get Components' Guid");
                             }
                         }
                     }
                 }
-
-                ERROR_LOG("File has wrong format");
             }
         }
     }
