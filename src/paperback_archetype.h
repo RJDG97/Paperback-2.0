@@ -115,9 +115,6 @@ namespace paperback::archetype
         PPB_INLINE
         std::vector<rttr::instance> GetEntityComponents( const u32 Index ) noexcept;
 
-        PPB_INLINE 
-        archetype::instance* GetArchetypePointer( const u32 Index ) noexcept;
-
         PPB_INLINE
         u32 GetCurrentEntityCount( void ) const noexcept;
 

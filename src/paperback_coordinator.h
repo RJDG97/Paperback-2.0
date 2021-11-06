@@ -161,6 +161,12 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void SetEntityHead( u32 NewEntityHead ) noexcept;
 
+		PPB_INLINE
+		paperback::archetype::manager::EntityInfoList& GetEntityInfoList() noexcept;
+
+		PPB_INLINE
+		paperback::archetype::instance& GetArchetype( const u64 ArchetypeGuid ) noexcept;
+
 		//-----------------------------------
 		//              Clock
 		//-----------------------------------

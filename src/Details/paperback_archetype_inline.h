@@ -55,12 +55,14 @@ namespace paperback::archetype
             }
         
             // Generates Global Index
-            return m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
-                                                      {
-                                                          .m_Key       = m_PoolAllocationIndex
-                                                      ,   .m_PoolIndex = PoolIndex
-                                                      }
-                                                    , *this );
+            //return m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
+            //                                          {
+            //                                              .m_Key       = m_PoolAllocationIndex
+            //                                          ,   .m_PoolIndex = PoolIndex
+            //                                          }
+            //                                        , *this );
+
+            return paperback::component::entity{};
         }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
     
@@ -343,15 +345,6 @@ namespace paperback::archetype
     std::vector <rttr::instance> instance::GetEntityComponents( const u32 Index ) noexcept
     {
         return m_ComponentPool[0].GetComponents(Index);
-    }
-
-    archetype::instance* instance::GetArchetypePointer( const u32 Index ) noexcept
-    {
-        auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, Index });
-        auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
-
-        return EntityInfo.m_pArchetype;
-
     }
 
     std::string instance::GetName( void ) noexcept 

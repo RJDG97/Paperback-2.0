@@ -129,6 +129,12 @@ namespace paperback::archetype
         entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
         PPB_INLINE
+        archetype::instance* FindArchetype( const u64& ArchetypeGuid ) const noexcept;
+
+        PPB_INLINE
+        archetype::instance& GetArchetype( const u64& ArchetypeGuid ) const noexcept;
+
+        PPB_INLINE
         std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
         PPB_INLINE

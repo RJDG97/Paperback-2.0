@@ -195,7 +195,7 @@ namespace paperback::coordinator
 		Jfile.EndReader();
 
 		// After loading in all Entities, load in the Entity Infos
-		//LoadEntityInfo( "../../resources/assetloading/EntityInfoTest.json" );
+		LoadEntityInfo( "../../resources/assetloading/EntityInfoTest.json" );
 	}
 
 	PPB_INLINE
@@ -479,6 +479,16 @@ namespace paperback::coordinator
 	void instance::SetEntityHead( u32 NewEntityHead ) noexcept
 	{
 		m_ArchetypeMgr.SetEntityHead(NewEntityHead);
+	}
+
+	paperback::archetype::manager::EntityInfoList& instance::GetEntityInfoList() noexcept
+	{
+		return m_ArchetypeMgr.GetEntityInfoList();
+	}
+
+	paperback::archetype::instance& instance::GetArchetype( const u64 ArchetypeGuid ) noexcept
+	{
+		return m_ArchetypeMgr.GetArchetype( ArchetypeGuid );
 	}
 
 	//-----------------------------------

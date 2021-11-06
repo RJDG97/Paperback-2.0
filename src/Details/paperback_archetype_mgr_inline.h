@@ -225,6 +225,20 @@ namespace paperback::archetype
         return m_EntityInfos[ GlobalIndex ];
     }
 
+    archetype::instance* manager::FindArchetype( const u64& ArchetypeGuid ) const noexcept
+    {
+        auto a = m_pArchetypeMap.find(ArchetypeGuid);
+        if (a == m_pArchetypeMap.end()) return nullptr;
+        return a->second;
+    }
+
+    archetype::instance& manager::GetArchetype( const u64& ArchetypeGuid ) const noexcept
+    {
+        auto a = FindArchetype(ArchetypeGuid);
+        PPB_ASSERT_MSG(a == nullptr, "Archetype does not exist / Invalid Archetype Guid Value");
+        return *a;
+    }
+
     std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
     {
         std::vector<paperback::archetype::instance*> List;
@@ -238,13 +252,11 @@ namespace paperback::archetype
         return m_EntityInfos;
     }
 
-    PPB_INLINE
     u32 manager::GetEntityHead() noexcept
     {
         return m_EntityHead;
     }
 
-    PPB_INLINE
     void manager::SetEntityHead( u32 NewEntityHead ) noexcept
     {
         m_EntityHead = NewEntityHead;

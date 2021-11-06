@@ -163,7 +163,7 @@ void DetailsWindow::ParentComponent()
 
 void DetailsWindow::ChildCombo()
 {
-    paperback::u32 ParentGID;
+    paperback::u32 OldParentGID;
     std::array<const paperback::component::info*, 1 > ComponentAdd;
 
     if (ImGui::BeginCombo("##Potential Children", "Potential Children")) //TBD IDK WHAT TO NAME TIS
@@ -175,18 +175,18 @@ void DetailsWindow::ChildCombo()
                 for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
                 {
                     // Selected Entity -> New Parent
-                    auto& Parent = m_Imgui.m_SelectedEntity.first->GetComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+                    auto& NewParent = m_Imgui.m_SelectedEntity.first->GetComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
 
                     // New Parent Entity Component
-                    auto& ParentEntity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+                    auto& NewParentEntity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
                     
                     // Non Parent Entities
                     auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
 
                     if (Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) != nullptr) //Check for Child Component
-                        ParentGID = Archetype->GetComponent<child>(paperback::vm::PoolDetails({ 0, i })).m_ParentGlobalIndex; //Get Existing Parent GID
+                        OldParentGID = Archetype->GetComponent<child>(paperback::vm::PoolDetails({ 0, i })).m_ParentGlobalIndex; //Get Old Parent GID
 
-                    if (Parent.m_ChildrenGlobalIndexes.find(Entity.m_GlobalIndex) == Parent.m_ChildrenGlobalIndexes.end()) //not already a child of the selected entity
+                    if (NewParent.m_ChildrenGlobalIndexes.find(Entity.m_GlobalIndex) == NewParent.m_ChildrenGlobalIndexes.end()) //not already a child of the selected entity
                     {
                         std::string EntityName = Archetype->GetName() + " [" + std::to_string(i) + "]";
 
@@ -200,30 +200,31 @@ void DetailsWindow::ChildCombo()
                                     auto& Child = Archetype->GetComponent<child>(paperback::vm::PoolDetails({ 0, i }));
 
                                     //Check if already attached to a parent
-                                    if (ParentGID != ParentEntity.m_GlobalIndex)
+                                    if (OldParentGID != NewParentEntity.m_GlobalIndex)
                                     {
-                                        auto& ExistingParent = PPB.GetEntityInfo(ParentGID);
+                                        auto& OldParent = PPB.GetEntityInfo(OldParentGID);
 
                                         //Old Parent remove child
-                                        ExistingParent.m_pArchetype->GetComponent<parent>(ExistingParent.m_PoolDetails).RemoveChild(Entity.m_GlobalIndex);
+                                        OldParent.m_pArchetype->GetComponent<parent>(OldParent.m_PoolDetails).RemoveChild(Entity.m_GlobalIndex);
                                     }
 
                                     //Link Child to Existing Parent
-                                    Parent.AddChild(Entity.m_GlobalIndex);
+                                    NewParent.AddChild(Entity.m_GlobalIndex);
                                     //Update Child's Parent GID
-                                    Child.AddParent(ParentEntity.m_GlobalIndex);
+                                    Child.AddParent(NewParentEntity.m_GlobalIndex);
                                 }
                                 else
                                 {
                                     //Link Child to Existing Parent
-                                    Parent.AddChild(Entity.m_GlobalIndex);
+                                    NewParent.AddChild(Entity.m_GlobalIndex);
                                     
                                     //Add in child component
                                     ComponentAdd[0] = &paperback::component::info_v<child>;
                                     PPB.AddOrRemoveComponents(Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), ComponentAdd, {});
 
                                     //Since previously the entity didnt have a Child Component, so the new guy shld in theory be at the end of the archetype list
-                                    PPB.GetArchetypeList().back()->GetComponent<child>(paperback::vm::PoolDetails{0, 0}).AddParent(ParentEntity.m_GlobalIndex);
+                                    //Thus PoolDetails{0, 0}
+                                    PPB.GetArchetypeList().back()->GetComponent<child>(paperback::vm::PoolDetails{0, 0}).AddParent(NewParentEntity.m_GlobalIndex);
 
                                    
                                 }

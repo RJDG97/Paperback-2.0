@@ -178,10 +178,14 @@ namespace paperback::deserialize
     {
         ReadRecursive(obj, doc);
     }
+
     void ReadEntityInfo(rapidjson::Value::MemberIterator it)
     {
         for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
         {
+            u32 InfoCount{ };
+            auto& EntityInfoList = PPB.GetEntityInfoList();
+
             for (rapidjson::Value::MemberIterator mitr = itr->MemberBegin(); mitr != itr->MemberEnd(); mitr++)
             {                
                 rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
@@ -192,10 +196,19 @@ namespace paperback::deserialize
 
                 if (obj.is_type<paperback::entity::TempInfo>())
                 {
-                    std::cout << obj.get_value<paperback::entity::TempInfo>().PoolDetails.m_PoolIndex << std::endl;
+                    //check Guid value if 0 assign Archetype::instance* as nullptr
+                    EntityInfoList[InfoCount].m_pArchetype = obj.get_value<paperback::entity::TempInfo>().ArchetypeGuid ? &PPB.GetArchetype(obj.get_value<paperback::entity::TempInfo>().ArchetypeGuid) : nullptr;
+                    EntityInfoList[InfoCount].m_PoolDetails = obj.get_value<paperback::entity::TempInfo>().PoolDetails;
+                    EntityInfoList[InfoCount++].m_Validation = obj.get_value<paperback::entity::TempInfo>().Validation;
                 }
             }
         }
+
+        for (paperback::u32 i = 0; i < 13; ++i)
+        {
+            //check Guid value if 0 assign Archetype::instance* as nullptr
+            std::cout << i << " | " << PPB.GetEntityInfoList()[i].m_PoolDetails.m_PoolIndex << std::endl; 
+        } 
     }
 
     void ReadEntities( rapidjson::Value::MemberIterator it )
@@ -287,6 +300,7 @@ namespace paperback::deserialize
                         }
                         else
                         {   
+                            // Load Each Archetype's Components GUID
                             for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
                             {
                                 if ( Mitr->value.IsArray() )
@@ -329,9 +343,7 @@ namespace paperback::deserialize
                    if (obj.is_type<paperback::archetype::TempMgr>())
                    {
                        PPB.SetEntityHead(obj.get_value<paperback::archetype::TempMgr>().EntityHead);
-                       std::cout << obj.get_value<paperback::archetype::TempMgr>().EntityHead << std::endl;
                    }
-
                 }
             }
         }
