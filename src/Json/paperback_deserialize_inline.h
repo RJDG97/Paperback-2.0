@@ -174,14 +174,32 @@ namespace paperback::deserialize
         }
     }
 
-    void ReadObject(rttr::instance obj, rapidjson::Document& doc)
+    void ReadObject( rttr::instance obj, rapidjson::Document& doc )
     {
         ReadRecursive(obj, doc);
     }
-
-    void ReadEntities(rapidjson::Value::MemberIterator it)
+    void ReadEntityInfo(rapidjson::Value::MemberIterator it)
     {
+        for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
+        {
+            for (rapidjson::Value::MemberIterator mitr = itr->MemberBegin(); mitr != itr->MemberEnd(); mitr++)
+            {                
+                rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
+                rttr::variant obj = type.get_constructor().invoke();
 
+                if (!obj.is_type<paperback::component::temp_guid>())
+                    ReadRecursive(obj, mitr->value);
+
+                if (obj.is_type<paperback::entity::TempInfo>())
+                {
+                    std::cout << obj.get_value<paperback::entity::TempInfo>().PoolDetails.m_PoolIndex << std::endl;
+                }
+            }
+        }
+    }
+
+    void ReadEntities( rapidjson::Value::MemberIterator it )
+    {
         using NewComponentInfoList = std::array<const component::info*, settings::max_components_per_entity_v>;
         std::string TempName{};
         for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
@@ -193,7 +211,7 @@ namespace paperback::deserialize
                 paperback::archetype::instance* NewArchetype = nullptr;
                 tools::bits ArchetypeSignature;
 
-                TempName = mitr->name.GetString();
+                TempName = mitr->name.GetString(); //Archetype Manager Name Appears in this layer
 
                 if (mitr->value.IsArray() && !TempName.empty())
                 {
@@ -290,10 +308,30 @@ namespace paperback::deserialize
                                         PPB_ASSERT_MSG(NewArchetype == nullptr, "Archetype Failed to Init");
 
                                     }
+                                    else
+                                        break;
                                 }
                             }
                         }
                     }
+                }
+                else
+                {
+                   // Shld enter here first since Archetype Manager stuff isnt in an array + First item in the json
+                   //Access the Archetype Manager Data Stuff
+
+                   rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
+                   rttr::variant obj = type.get_constructor().invoke();
+
+                   if (!obj.is_type<paperback::component::temp_guid>())
+                       ReadRecursive(obj, mitr->value);
+
+                   if (obj.is_type<paperback::archetype::TempMgr>())
+                   {
+                       PPB.SetEntityHead(obj.get_value<paperback::archetype::TempMgr>().EntityHead);
+                       std::cout << obj.get_value<paperback::archetype::TempMgr>().EntityHead << std::endl;
+                   }
+
                 }
             }
         }

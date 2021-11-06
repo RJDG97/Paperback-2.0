@@ -1,5 +1,4 @@
 #pragma once
-
 namespace paperback::coordinator
 {
 	//-----------------------------------
@@ -80,8 +79,8 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::SaveScene(const std::string& FilePath) noexcept
 	{
-		paperback::entity::TempInfo Tempinfo = {};
 		paperback::component::temp_guid Temp = {};
+		paperback::archetype::TempMgr TempMgr;
 		
 		paperback::JsonFile JFile;
 
@@ -89,6 +88,16 @@ namespace paperback::coordinator
 		JFile.StartObject().WriteKey("Entities");
 		JFile.StartArray();
 
+		//Save Archetype Manager
+		TempMgr.EntityHead = m_ArchetypeMgr.GetEntityHead();
+
+		JFile.StartObject().WriteKey("Archetype Manager");
+
+		JFile.StartObject().Write(TempMgr).EndObject();
+
+		JFile.EndObject();
+
+		// Serialize Prefabs 
 		for (auto& Archetype : PPB.GetArchetypeList())
 		{
 			if ( Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID) ) //Have prefab component
@@ -114,9 +123,9 @@ namespace paperback::coordinator
 
 				JFile.EndArray().EndObject();
 			}
-
 			else
 			{
+				// Serialize Prefabs Instances + Normal Entities
 				JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
 
 				//Serialize GUIDs
@@ -142,9 +151,24 @@ namespace paperback::coordinator
 			}
 		}
 
+		JFile.EndArray().EndObject().EndWriter();
+
+		// Save the entity info after everything else
+		SaveEntityInfo("../../resources/assetloading/EntityInfoTest.json");
+	}
+
+	PPB_INLINE
+	void instance::SaveEntityInfo( const std::string& FilePath) noexcept
+	{
+		paperback::entity::TempInfo Tempinfo{};
+		// Probably just save into the same file everytime
+		paperback::JsonFile JFile;
+
+		JFile.StartWriter( FilePath ).StartObject().WriteKey( "All Entity Info" ).StartArray();
+
 		const auto& EntityInfoList = m_ArchetypeMgr.GetEntityInfoList();
 
-		JFile.StartObject().WriteKey("Entity Info").StartArray();
+		JFile.StartObject();
 
 		for (u32 i = 0; i < settings::max_entities_v; ++i)
 		{
@@ -152,14 +176,13 @@ namespace paperback::coordinator
 			Tempinfo.PoolDetails = EntityInfoList[i].m_PoolDetails;
 			Tempinfo.Validation = EntityInfoList[i].m_Validation;
 
-			JFile.StartObject().Write(Tempinfo).EndObject();
+			JFile.WriteKey("Entity Info").StartObject().Write(Tempinfo).EndObject();
 		}
 
-		JFile.EndArray().EndObject();
-
-		JFile.EndArray();
 		JFile.EndObject();
-		JFile.EndWriter();
+
+		JFile.EndArray().EndObject().EndWriter();
+
 	}
 
 	PPB_INLINE
@@ -170,6 +193,51 @@ namespace paperback::coordinator
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Entities");
 		Jfile.EndReader();
+
+		// After loading in all Entities, load in the Entity Infos
+		//LoadEntityInfo( "../../resources/assetloading/EntityInfoTest.json" );
+	}
+
+	PPB_INLINE
+	void instance::LoadEntityInfo(const std::string& FilePath) noexcept
+	{
+		JsonFile Jfile;
+
+		Jfile.StartReader(FilePath);
+		Jfile.LoadEntities("All Entity Info");
+		Jfile.EndReader();
+	}
+
+	PPB_INLINE
+	void instance::SaveSingleEntity( const std::string& FilePath, const paperback::entity::info& EntityInfo ) noexcept
+	{
+		paperback::entity::TempInfo Tempinfo = {};
+		paperback::component::temp_guid Temp = {};
+		
+		paperback::JsonFile JFile;
+
+		JFile.StartWriter(FilePath);
+
+		/*&*/ JFile.StartObject().WriteKey(EntityInfo.m_pArchetype->GetName().c_str()).StartArray();
+
+		/*%*/ JFile.StartObject().WriteKey("Guid").StartArray();
+
+		auto& EntityComponentInfo = EntityInfo.m_pArchetype->GetComponentInfos();
+
+		for (paperback::u32 i = 0; i < EntityInfo.m_pArchetype->GetComponentCount(); ++i)
+		{
+			Temp.m_Value = EntityComponentInfo[i]->m_Guid.m_Value;
+			JFile.WriteGuid(Temp);
+		}
+
+		//auto& Components = EntityInfo.m_pArchetype->GetEntityComponents();
+
+		//if ()
+
+		/*%*/ JFile.EndArray().EndObject();
+
+		/*&*/ JFile.EndArray().EndObject().EndWriter();
+
 	}
 
 	//-----------------------------------
@@ -401,6 +469,11 @@ namespace paperback::coordinator
 	std::vector<fs::path>& instance::GetDragDropFiles() noexcept
 	{
 		return m_DragDropFiles;
+	}
+
+	void instance::SetEntityHead( u32 NewEntityHead ) noexcept
+	{
+		m_ArchetypeMgr.SetEntityHead(NewEntityHead);
 	}
 
 	//-----------------------------------

@@ -95,6 +95,7 @@ void InitializeGame()
     }
     // Entity Creation
     {
+        PPB.LoadEntityInfo("../../resources/assetloading/EntityInfoTest.json");
         //PPB.OpenScene("../../resources/assetloading/ParentingTest.json");
 
         // Right Box

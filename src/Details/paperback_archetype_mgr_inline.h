@@ -228,6 +228,19 @@ namespace paperback::archetype
         return m_EntityInfos;
     }
 
+    PPB_INLINE
+    u32 manager::GetEntityHead() noexcept
+    {
+        return m_EntityHead;
+    }
+
+    PPB_INLINE
+    void manager::SetEntityHead( u32 NewEntityHead ) noexcept
+    {
+        m_EntityHead = NewEntityHead;
+    }
+
+
     //-----------------------------------
     //             Query
     //-----------------------------------

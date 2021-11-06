@@ -45,11 +45,19 @@ namespace paperback::coordinator
 		constexpr void RegisterComponents( void ) noexcept;
 
 		PPB_INLINE
-		void SaveScene(const std::string& FilePath) noexcept;
+		void SaveScene( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
-		void OpenScene(const std::string& FilePath) noexcept;
+		void SaveEntityInfo( const std::string& FilePath ) noexcept;
 
+		PPB_INLINE
+		void OpenScene( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE
+		void LoadEntityInfo( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE
+		void SaveSingleEntity( const std::string& FilePath, const paperback::entity::info& EntityInfo ) noexcept;
 
 		//-----------------------------------
 		//    Archetype / Entity Methods
@@ -146,6 +154,9 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		std::vector<fs::path>& GetDragDropFiles() noexcept;
+
+		PPB_INLINE
+		void SetEntityHead( u32 NewEntityHead ) noexcept;
 
 		//-----------------------------------
 		//              Clock

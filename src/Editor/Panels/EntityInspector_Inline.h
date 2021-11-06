@@ -98,6 +98,11 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
 {
     int Index = 0;
     paperback::u32 ChildToUnlink;
+    std::array<const paperback::component::info*, 1 > ComponentRemove;
+
+    paperback::archetype::instance* SelectedChild = nullptr;
+    paperback::u32 ChildIndex = paperback::u32_max;
+
     bool b_NodeOpen = false, Unlink = false;
 
     if ( Parent.m_ChildrenGlobalIndexes.size() != 0 )
@@ -139,8 +144,12 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
 
                 if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
                 {
-                    Unlink = true;
                     ChildToUnlink = Child;
+
+                    SelectedChild = ChildEntityInfo.m_pArchetype;
+                    ChildIndex = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+
+                    Unlink = true;
                 }
 
                 ImGui::EndPopup();
@@ -161,9 +170,16 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
 
         DeleteEntity(ICON_FA_TRASH " Delete?", m_Imgui.m_SelectedEntity.second);
 
-        if (Unlink)
+        if (Unlink && SelectedChild)
         {
             Parent.RemoveChild(ChildToUnlink);
+            ComponentRemove[0] = &paperback::component::info_v<child>;
+
+            PPB.AddOrRemoveComponents( SelectedChild->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), {}, ComponentRemove );
+
+            SelectedChild = nullptr;
+            ChildIndex = {};
+
             Unlink = false;
         }
 
