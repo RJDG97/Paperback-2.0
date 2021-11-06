@@ -1,4 +1,4 @@
-	#pragma once
+#pragma once
 
 namespace paperback::vm
 {
@@ -106,6 +106,8 @@ namespace paperback::vm
 
 			// Unlink Parent & Child relationship on deletion of entity
 			UnlinkParentAndChildOnDelete( pInfo, PoolIndex, EntityGlobalIndex );
+			// Abandon Prefab Instances when Deleting Prefab
+			AbandonPrefabInstancesOnPrefabDelete( pInfo, EntityGlobalIndex );
 
 			// Deleting last Entity
 			if ( PoolIndex == m_CurrentEntityCount )
@@ -640,6 +642,30 @@ namespace paperback::vm
 
 			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
 			Parent.RemoveChild( GlobalIndex );
+		}
+	}
+
+	void instance::AbandonPrefabInstancesOnPrefabDelete( const component::info& CInfo
+													   , const u32 GlobalIndex ) noexcept
+	{
+		if ( CInfo.m_Guid == component::info_v<prefab>.m_Guid )
+		{
+			// Get Prefab Info & Prefab Component
+			auto& PrefabInfo = m_pCoordinator->GetEntityInfo( GlobalIndex );
+			auto& Prefab     = GetComponent<prefab>( PrefabInfo.m_PoolDetails.m_PoolIndex );
+
+			// Get Prefab Instance Archetype (Cloned Entities)
+			auto& PrefabInstanceArchetype = *( m_pCoordinator->GetEntityInfo( *(Prefab.m_ReferencePrefabGIDs.begin()) ).m_pArchetype );
+
+			PPB_ASSERT_MSG( PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab.m_ReferencePrefabGIDs.size(),
+                            "Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs" );
+
+			for ( size_t i = 0, max = Prefab.m_ReferencePrefabGIDs.size(); i < max; ++i )
+			{
+				m_pCoordinator->AddOrRemoveComponents< std::tuple<>, std::tuple<reference_prefab> >
+								( PrefabInstanceArchetype.GetComponent<paperback::component::entity>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } ) );
+			}
+			
 		}
 	}
 }

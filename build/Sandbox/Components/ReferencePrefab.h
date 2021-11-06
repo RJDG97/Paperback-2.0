@@ -21,6 +21,12 @@ struct reference_prefab
 		m_ModifiedComponents.erase( ComponentGuid );
 	}
 
+	bool HasModified( paperback::u32 ComponentGuid ) noexcept
+	{
+		return m_ModifiedComponents.find( ComponentGuid ) != m_ModifiedComponents.end() ? true
+																						: false;
+	}
+
 	// Tells the system which components should be saved and
 	// which components should use default values from the prefab
 	std::unordered_set<paperback::u64>	   m_ModifiedComponents;	// For Tracking Non-Default Component Values - Stores m_Guid.m_Value

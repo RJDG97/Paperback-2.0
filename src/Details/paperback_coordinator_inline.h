@@ -254,6 +254,11 @@ namespace paperback::coordinator
 		return m_ArchetypeMgr.GetOrCreateArchetype( ArchetypeSignature );
 	}
 
+	void instance::CreatePrefab( void ) noexcept
+	{
+		m_ArchetypeMgr.CreatePrefab();
+	}
+
 	template< typename T_FUNCTION >
 	void instance::CreateEntity( T_FUNCTION&& Function ) noexcept
 	{
