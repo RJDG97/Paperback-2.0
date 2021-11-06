@@ -438,12 +438,21 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 
 			if (instance.second)
 			{
-				m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", true);
-				m_Resources.m_Shaders["Shadow"].SetUniform("uFinalBonesMatrices", *instance.second, 100);
+				if (instance.second->size() == 1)
+				{
+					m_Resources.m_Shaders["Shadow"].SetUniform("uTransformationType", 2);
+					m_Resources.m_Shaders["Shadow"].SetUniform("uParentSocketTransform", (*instance.second)[0]);
+				}
+
+				else
+				{
+					m_Resources.m_Shaders["Shadow"].SetUniform("uTransformationType", 1);
+					m_Resources.m_Shaders["Shadow"].SetUniform("uFinalBonesMatrices", *instance.second, 100);
+				}
 			}
 			else
 			{
-				m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", false);
+				m_Resources.m_Shaders["Shadow"].SetUniform("uTransformationType", 0);
 			}
 
 			for (auto& submesh : SubMeshes)
@@ -515,12 +524,21 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 
 			if (instance.second)
 			{
-				m_Resources.m_Shaders["Light"].SetUniform("uHasBones", true);
-				m_Resources.m_Shaders["Light"].SetUniform("uFinalBonesMatrices", *instance.second, 100);
+				if (instance.second->size() == 1)
+				{
+					m_Resources.m_Shaders["Light"].SetUniform("uTransformationType", 2);
+					m_Resources.m_Shaders["Light"].SetUniform("uParentSocketTransform", (*instance.second)[0]);
+				}
+
+				else
+				{
+					m_Resources.m_Shaders["Light"].SetUniform("uTransformationType", 1);
+					m_Resources.m_Shaders["Light"].SetUniform("uFinalBonesMatrices", *instance.second, 100);
+				}
 			}
 			else
 			{
-				m_Resources.m_Shaders["Light"].SetUniform("uHasBones", false);
+				m_Resources.m_Shaders["Light"].SetUniform("uTransformationType", 0);
 			}
 
 			for (auto& submesh : SubMeshes)

@@ -75,6 +75,7 @@ void InitializeGame()
         ,    entityscript
         ,    boundingbox
         ,    reference_prefab
+        ,    socketed
         >();
     }
 

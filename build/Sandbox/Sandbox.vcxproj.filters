@@ -126,5 +126,8 @@
     <ClInclude Include="Components\ReferencePrefab.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Socketed.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
