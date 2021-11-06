@@ -272,6 +272,9 @@ namespace paperback::deserialize
                                             Parent.m_ChildrenGlobalIndexes = ChildrenGlobalIndexes;
                                         }
 
+                                        if (obj.is_type<offset>())
+                                            NewArchetype->GetComponent<offset>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<offset>();
+
                                     }
 
                                     EntityCounter++;
