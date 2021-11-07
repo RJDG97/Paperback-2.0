@@ -53,12 +53,12 @@ Renderer::Renderer() :
 
 	glBindVertexArray(0);
 
-	std::vector<std::string> files = { "../../resources/textures/right.jpg",
-								   "../../resources/textures/left.jpg",
-								   "../../resources/textures/top.jpg",
-								   "../../resources/textures/bottom.jpg",
-								   "../../resources/textures/front.jpg",
-								   "../../resources/textures/back.jpg" };
+	std::vector<std::string> files = { "../../resources/textures/right.dds",
+								   "../../resources/textures/left.dds",
+								   "../../resources/textures/top.dds",
+								   "../../resources/textures/bottom.dds",
+								   "../../resources/textures/front.dds",
+								   "../../resources/textures/back.dds" };
 
 	RenderResourceManager::GetInstanced().LoadSkyboxTexture(files);
 
@@ -70,9 +70,9 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Skybox", "../../resources/shaders/Skybox.vert", "../../resources/shaders/Skybox.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 
-	m_Resources.Load3DMeshNUI("Box", "../../resources/models/nui/box.nui");
-	m_Resources.Load3DMeshNUI("Plane", "../../resources/models/nui/plane.nui");
-	m_Resources.Load3DMeshNUI("Character", "../../resources/models/nui/mutant.nui");
+	//m_Resources.Load3DMeshNUI("Box", "../../resources/models/nui/box.nui");
+	//m_Resources.Load3DMeshNUI("Character", "../../resources/models/nui/mutant.nui");
+	m_Resources.Load3DMeshNUI("Character", "../../resources/models/nui/RedUnitAnimated.nui");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);

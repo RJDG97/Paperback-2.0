@@ -105,7 +105,12 @@ void RenderResourceManager::UnloadAllMaterials()
 std::string RenderResourceManager::LoadTextures(const std::string& Texture, const std::string& File, const bool& GammaCorrect)
 {
 	if (m_Textures.find(Texture) == m_Textures.end())
-		m_Textures[Texture] = TextureLoader::LoadTexture(File, GammaCorrect);
+	{
+		GLuint id = TextureLoader::LoadDDSTexture(File, GammaCorrect);
+
+		if (id != 0)
+			m_Textures[Texture] = id;
+	}
 
 	return Texture;
 }
@@ -119,7 +124,7 @@ void RenderResourceManager::UnloadTextures(const std::string& Mesh)
 void RenderResourceManager::LoadSkyboxTexture(const std::vector<std::string>& Textures)
 {
 	if (m_Skybox == 0)
-		m_Skybox = TextureLoader::LoadSkyboxTexture(Textures);
+		m_Skybox = TextureLoader::LoadDDSSkyboxTexture(Textures);
 }
 
 //std::string RenderResourceManager::LoadMaterial(const std::string& Material, aiMaterial* AiMat)
