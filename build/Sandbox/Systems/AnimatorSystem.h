@@ -29,33 +29,33 @@ struct animator_system : paperback::system::instance
 	void Update(void) noexcept
 	{
 		tools::query Query;
-		Query.m_Must.AddFromComponents<animator, mesh>();
+		Query.m_Must.AddFromComponents<animator, mesh, scale>();
 		Query.m_OneOf.AddFromComponents<parent, animator>();
 
-		ForEach(Search(Query), [&](animator& ator, mesh& model, parent* parent) noexcept
+		ForEach(Search(Query), [&](animator& Ator, mesh& Model, scale& Scale, parent* Parent) noexcept
 		{
-			auto& anims = m_Resources->m_Models[model.m_Model].GetAnimations();
+			auto& anims = m_Resources->m_Models[Model.m_Model].GetAnimations();
 
-			if (anims.find(ator.m_CurrentAnimationName) != anims.end())
+			if (anims.find(Ator.m_CurrentAnimationName) != anims.end())
 			{
-				auto& current_anim{ anims[ator.m_CurrentAnimationName] };
+				auto& current_anim{ anims[Ator.m_CurrentAnimationName] };
 				
-				ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
-				ator.m_CurrentTime = fmod(ator.m_CurrentTime, current_anim.GetDuration());
+				Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
+				Ator.m_CurrentTime = fmod(Ator.m_CurrentTime, current_anim.GetDuration());
 
 				std::vector<socketed*> socketeds;
 
-				if (parent)
+				if (Parent)
 				{
-					for (const auto& ChildGlobalIndex : parent->m_ChildrenGlobalIndexes)
+					for (const auto& ChildGlobalIndex : Parent->m_ChildrenGlobalIndexes)
 					{
 						auto& ChildInfo = GetEntityInfo(ChildGlobalIndex);
 						auto [CSocketed] = ChildInfo.m_pArchetype->FindComponents<socketed>(ChildInfo.m_PoolDetails);
-						socketeds.push_back(CSocketed);
+						socketeds.push_back({CSocketed});
 					}
 				}
 
-				CalculateBoneTransform(&current_anim.GetRootNode(), glm::mat4{ 1.0f }, current_anim, ator, socketeds);
+				CalculateBoneTransform(&current_anim.GetRootNode(), glm::mat4{ 1.0f }, current_anim, Ator, socketeds);
 			}
 
 		});
@@ -83,7 +83,7 @@ struct animator_system : paperback::system::instance
 			{
 				if (socketed && node->name == socketed->parent_socket)
 				{
-					socketed->bone_transform = ator.m_FinalBoneMatrices[index];
+					socketed->bone_transform = global_transformation;
 				}
 			}
 		}
