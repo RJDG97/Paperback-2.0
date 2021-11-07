@@ -42,6 +42,18 @@ namespace paperback::system
 		USER_SYSTEM{ Coordinator }
 	{ }
 
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::Run( void ) noexcept
+	{
+		if constexpr ( &USER_SYSTEM::Update != &system_interface::Update )
+			USER_SYSTEM::Update( );
+		else
+		{
+            USER_SYSTEM::m_Coordinator.ForEach( USER_SYSTEM::m_Coordinator.Search( system::info_v<USER_SYSTEM>.m_Query )
+											  , *this );
+		}
+	}
+
 
 	//-----------------------------------
 	//   System Instance Functionality
