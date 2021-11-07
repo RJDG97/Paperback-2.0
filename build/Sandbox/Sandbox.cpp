@@ -90,7 +90,12 @@ void InitializeGame()
             render_system,
             imgui_system,
             animator_system,
-            parentchild_system
+            parentchild_system,
+            random_system
+        >();
+
+        PPB.RegisterSystems <
+            onevent_random_system
         >();
     }
     // Entity Creation

@@ -447,6 +447,9 @@
     <ClInclude Include="..\..\src\Editor\EditorMath.h">
       <Filter>Source\Tools\Editor</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\paperback_concepts.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

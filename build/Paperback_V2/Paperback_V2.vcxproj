@@ -211,6 +211,7 @@
     <ClInclude Include="..\..\src\paperback_clock.h" />
     <ClInclude Include="..\..\src\paperback_component.h" />
     <ClInclude Include="..\..\src\paperback_component_mgr.h" />
+    <ClInclude Include="..\..\src\paperback_concepts.h" />
     <ClInclude Include="..\..\src\paperback_coordinator.h" />
     <ClInclude Include="..\..\src\paperback_data_reflections.h" />
     <ClInclude Include="..\..\src\paperback_event.h" />

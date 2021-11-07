@@ -359,12 +359,12 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//             Getters
 	//-----------------------------------
-	entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
+	paperback::entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
 	{
 		return m_ArchetypeMgr.GetEntityInfo( Entity );
 	}
 
-	entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
+	paperback::entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
 	{
 		return m_ArchetypeMgr.GetEntityInfo( GlobalIndex );
 	}

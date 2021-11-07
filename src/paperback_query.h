@@ -33,7 +33,7 @@ namespace tools
         bool Compare( const bits& ArchetypeBits ) const noexcept;
 
         template< typename T_FUNCTION >
-        void AddQueryFromFunction( T_FUNCTION&& ) noexcept;
+        void AddQueryFromFunction( void ) noexcept;
 
         template<typename... T_QUERIES >
         void AddQueryFromTuple( std::tuple<T_QUERIES...>* ) noexcept;

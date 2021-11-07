@@ -124,10 +124,10 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		PPB_INLINE
-		entity::info& GetEntityInfo( component::entity& Entity ) const noexcept;
+		paperback::entity::info& GetEntityInfo( component::entity& Entity ) const noexcept;
 
 		PPB_INLINE
-        entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
+        paperback::entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
 		template< typename T_SYSTEM >
 		T_SYSTEM* FindSystem( void ) noexcept;

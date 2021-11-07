@@ -76,6 +76,7 @@ namespace paperback::system
 	//-----------------------------------
 	//          System Types
 	//-----------------------------------
+
 	namespace type
 	{
 		using guid = xcore::guid::unit<64, struct system_tag>;
@@ -83,6 +84,10 @@ namespace paperback::system
 		enum class id : u8
 		{
 			UPDATE = 0
+		,	SYSTEM_EVENT
+		,	NOTIFY_PREFAB_MODIFIED		// Future Implementation
+		,	NOTIFY_COMPONENT_ADDED		// Future Implementation
+		,	NOTIFY_COMPONENT_REMOVED	// Future Implementation
 		};
 
 		enum class call
@@ -95,6 +100,11 @@ namespace paperback::system
 		,	FRAME_END
 		,	TERMINATED
 		};
+		
+
+		//-----------------------------------
+		//          System Types
+		//-----------------------------------
 
 		struct update
 		{
@@ -104,6 +114,50 @@ namespace paperback::system
             const char*                  m_pName{ };
 		};
 
+		template < typename T_SYSTEM
+				 , typename T_EVENT >
+		requires( std::derived_from< T_SYSTEM, paperback::system::instance>
+             && ( xcore::types::is_specialized_v< paperback::event::instance, T_EVENT > ))
+		struct system_event
+		{
+			using SystemType = T_SYSTEM;
+			using EventType  = T_EVENT;
+
+			static constexpr auto id_v = id::SYSTEM_EVENT;
+
+            type::guid                   m_Guid { };
+            const char*                  m_pName{ };
+		};
+
+		struct notify_prefab_modified
+		{
+			static constexpr auto id_v = id::NOTIFY_PREFAB_MODIFIED;
+
+            type::guid                   m_Guid { };
+            const char*                  m_pName{ };
+		};
+
+		struct notify_component_added
+		{
+			static constexpr auto id_v = id::NOTIFY_COMPONENT_ADDED;
+
+            type::guid                   m_Guid { };
+            const char*                  m_pName{ };
+		};
+
+		struct notify_component_removed
+		{
+			static constexpr auto id_v = id::NOTIFY_COMPONENT_REMOVED;
+
+            type::guid                   m_Guid { };
+            const char*                  m_pName{ };
+		};
+
+
+		//-----------------------------------
+		//          System Info
+		//-----------------------------------
+
 		struct info
 		{
 			using RunSystem  = void( system::instance&, type::call );
@@ -112,15 +166,16 @@ namespace paperback::system
 			const type::guid             m_Guid;
 			const type::id               m_TypeID;
 										 
-			RunSystem*					 m_RunSystem;
 			Destructor*					 m_Destructor;
+			mutable tools::query		 m_Query;
 			const char*					 m_pName{ };
 		};
 	}
 
 	//-----------------------------------
-	//           System Info
+	//        Create System Info
 	//-----------------------------------
+
 	namespace details
     {
         template< typename T_SYSTEM >
@@ -137,8 +192,18 @@ namespace paperback::system
 	//-----------------------------------
 	//        System Interface
 	//-----------------------------------
+
 	struct system_interface
 	{
+		// **Note:
+		// The System merges "query" and the components listed in "operator()"
+		// defined within the class, only iterating Archetypes that fit the
+		// generated bitset
+		using entity = paperback::component::entity;
+		using query  = std::tuple<>;
+		using events = std::tuple<>;
+
+		// Main System Loops
 		void OnSystemCreated    ( void ) noexcept {}
         void OnFrameStart       ( void ) noexcept {}
         void PreUpdate          ( void ) noexcept {}
@@ -146,16 +211,18 @@ namespace paperback::system
 		void PostUpdate         ( void ) noexcept {}
 		void OnFrameEnd         ( void ) noexcept {}
 		void OnSystemTerminated ( void ) noexcept {}
+
+		// Event
+		void OnEvent            ( ... )  noexcept {}
 	};
+
+
+	//-----------------------------------
+	//        System Instance
+	//-----------------------------------
 
 	struct instance : system_interface
 	{
-		// **Note:
-		// The System merges "query" and the components listed in "operator()"
-		// defined within the class, only iterating Archetypes that fit the
-		// generated bitset
-		using query = std::tuple<>;
-
 		PPB_INLINE
 		instance( coordinator::instance& Coordinator ) noexcept;
 		instance( const instance& ) = delete;
@@ -164,6 +231,7 @@ namespace paperback::system
 		//-----------------------------------
 		//    Extra System Functionality
 		//-----------------------------------
+
 		template < typename... T_COMPONENTS >
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
@@ -174,8 +242,15 @@ namespace paperback::system
 		void CreateEntities( T_FUNCTION&& Function
 						   , const u32 Count ) noexcept;
 
+		template < typename       T_EVENT
+			     , typename       T_SYSTEM
+			     , typename...    T_ARGS >
+		requires ( std::derived_from< T_SYSTEM, paperback::system::instance >
+			  && ( !std::is_same_v< typename T_SYSTEM::events, paperback::system::system_interface::events > ))
+		void BroadcastEvent( T_SYSTEM* System, T_ARGS&&... Args ) noexcept;
+
 		PPB_INLINE
-        entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
+        paperback::entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
 		PPB_INLINE
 		void DeleteEntity( component::entity& Entity ) noexcept;
@@ -207,6 +282,11 @@ namespace paperback::system
 		paperback::coordinator::instance& m_Coordinator;
 	};
 
+
+	//-----------------------------------
+	//          System Wrapper
+	//-----------------------------------
+
 	namespace details
 	{
 		template < typename USER_SYSTEM >
@@ -215,8 +295,7 @@ namespace paperback::system
 			PPB_INLINE
 			completed( coordinator::instance& Coordinator ) noexcept;
 
-			PPB_FORCEINLINE
-			void Run( const paperback::system::type::call ) noexcept;
+			USER_SYSTEM::events   m_Events;
 		};
 	}
 }

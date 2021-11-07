@@ -64,6 +64,7 @@ namespace paperback::archetype
         }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
     
+    // Called by the Prefab Instance - Clones a Prefab Instance & Adds its GID to Prefab
     const u32 instance::CloneEntity( component::entity& Entity ) noexcept
     {
         // Entity Info of Entity to clone

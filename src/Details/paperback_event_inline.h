@@ -1,61 +1,79 @@
 #pragma once
 
-// Not in use yet
-
 namespace paperback::event
 {
-	/****************************************************/
-	/*!					 Event Handlers
-	/****************************************************/
-	void handler_interface::Exec( std::shared_ptr<paperback::event::instance> Event ) noexcept
-	{
-		Function( Event );
-	}
+    //-----------------------------------
+    //        Create Event Info
+    //-----------------------------------
 
-	template < class EventType >
-	handler<EventType>::handler( Action< std::shared_ptr<EventType> > Function ) noexcept :
-		m_Function{ Function }
-	{ }
+    namespace type::details
+    {
+        template< typename T_SYSTEM >
+        consteval type::info CreateInfo( void ) noexcept
+        {
+            return type::info
+            {
+                .m_Guid                 = T_SYSTEM::typedef_v.m_Guid.m_Value
+                                          ? T_SYSTEM::typedef_v.m_Guid
+                                          : type::guid{ __FUNCSIG__ }
+            ,   .m_pName                = T_SYSTEM::typedef_v.m_pName
+            ,   .m_ID                   = T_SYSTEM::typedef_v.id_v
+            };
+        }
+    }
 
-	template < class EventType >
-	void handler<EventType>::Function( std::shared_ptr<paperback::event::instance> event ) noexcept
-	{
-		m_Function( std::static_pointer_cast< EventType >( event ) );
-	}
 
+    //-----------------------------------
+    //              Events
+    //-----------------------------------
 
-	/****************************************************/
-	/*!					   Event Bus
-	/****************************************************/
-	template < typename EventType, typename ...Args >
-	void dispatcher::PublishEvent( Args&&... args ) noexcept
-	{
-		auto it = m_Subscribers.find( typeid(EventType) );
+    template < typename...     T_ARGS >
+    template < auto		       T_FUNCTION
+			 , typename        T_SYSTEM >
+    void instance<T_ARGS...>::RegisterEvent( T_SYSTEM* System ) noexcept
+    {
+        m_Events.push_back( info
+                            {
+                                /*
+                                Operation - INVOKE( f, t1, t2, ..., tN )
 
-		// Replace this assertion with a log instead and return
-		if ( it == m_Subscribers.end() )
-			ERROR_LOG( "PublishEvent: EventType does not exist" );
+                                    If f is a pointer to member function of class T:
+                                    If std::is_base_of<T, std::decay_t<decltype(t1)>>::value is true, then INVOKE( f, t1, t2, ..., tN ) 
+                                    is equivalent to - ( t1.*f )( t2, ..., tN )
 
-		std::shared_ptr<EventList> EventsList = it->second;
-		std::shared_ptr<EventType> EventDetails = std::make_shared< EventType >( args... );
+                                    https://en.cppreference.com/w/cpp/utility/functional/invoke
+                                */
+                                .m_pEvent  = []( void* pSystem, T_ARGS&&... Args ) constexpr noexcept
+                                             {
+                                                 std::invoke( T_FUNCTION
+                                                            , reinterpret_cast<T_SYSTEM*>( pSystem )
+                                                            , std::forward<T_ARGS&&>( Args )... );
+                                             }
+                            ,   .m_pSystem = System
+                            });
+    }
 
-		for ( auto& SubscribedEvent : *EventsList )
-		{
-			SubscribedEvent->Exec( EventDetails );
-		}
-	}
+    template < typename... T_ARGS >
+    template < typename T_SYSTEM >
+	void instance<T_ARGS...>::RemoveEvent( T_SYSTEM* System ) noexcept
+    {
+        for ( auto begin = m_Events.begin(), end = m_Events.end(); begin != end; ++begin )
+        {
+            if ( System == begin->m_pSystem )
+            {
+                m_Events.erase( begin );
+                break;
+            }
+        }
+    }
 
-	template <class EventType>
-	void dispatcher::SubscribeEvent( Action< std::shared_ptr< EventType > > event ) noexcept
-	{
-		auto it = m_Subscribers.find( typeid( EventType ) );
-
-		if ( it == m_Subscribers.end() )
-		{
-			auto list = CreateRef<EventList>();
-			m_Subscribers[ typeid(EventType) ] = list;
-		}
-
-		m_Subscribers[ typeid(EventType) ]->push_back( std::make_shared< EventHandler< EventType > >( event ) );
-	}
+    template < typename... T_ARGS >
+	void instance<T_ARGS...>::BroadcastEvent( T_ARGS&&... Args ) const noexcept
+    {
+        for ( const auto& Event : m_Events )
+        {
+            Event.m_pEvent( Event.m_pSystem
+                          , std::forward<T_ARGS>( Args )... );
+        }
+    }
 }

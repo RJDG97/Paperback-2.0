@@ -12,6 +12,20 @@ namespace paperback::system
 		using SystemMap  = std::unordered_map< system::type::guid, system::instance* >;
 		using SystemList = std::vector< std::pair< const system::type::info*, std::unique_ptr<system::instance> > >;
 
+		struct SystemEvents
+		{
+			paperback::event::instance<> m_OnFrameStart;
+			paperback::event::instance<> m_OnPreUpdate;
+			paperback::event::instance<> m_OnUpdate;
+			paperback::event::instance<> m_OnPostUpdate;
+			paperback::event::instance<> m_OnFrameEnd;
+			paperback::event::instance<> m_OnSystemTerminated;
+		};
+
+		//-----------------------------------
+		//     Constructor / Destructor
+		//-----------------------------------
+
 		PPB_INLINE
 		manager( tools::clock& Clock );
 
@@ -20,6 +34,11 @@ namespace paperback::system
 
 		PPB_INLINE
 		~manager();
+
+
+		//-----------------------------------
+		//            Systems
+		//-----------------------------------
 
 		template < typename... T_SYSTEMS >
 		constexpr void RegisterSystems( coordinator::instance& Coordinator ) noexcept;
@@ -30,6 +49,11 @@ namespace paperback::system
 		template < typename T_SYSTEM >
 		T_SYSTEM* FindSystem( void ) noexcept;
 
+
+		//-----------------------------------
+		//             Updates
+		//-----------------------------------
+
 		PPB_INLINE
 		void Run( void ) noexcept;
 
@@ -39,8 +63,20 @@ namespace paperback::system
 
 	private:
 
+		//-----------------------------------
+		//   Registration Helper Functions
+		//-----------------------------------
+
+		template < paperback::concepts::System T_SYSTEM >
+		void InitializeSystemQuery( void ) noexcept;
+
+		template < paperback::concepts::System T_SYSTEM >
+		void InitializeSystemUpdateEvents( T_SYSTEM* System ) noexcept;
+
+
 		tools::clock&			m_SystemClock;
 		SystemMap				m_SystemMap;
 		SystemList				m_Systems;
+		SystemEvents			m_Events;
 	};
 }

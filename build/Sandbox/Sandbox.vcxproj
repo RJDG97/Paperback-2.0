@@ -192,8 +192,10 @@
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
+    <ClInclude Include="Systems\onevent_random_system.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
+    <ClInclude Include="Systems\random_system.h" />
     <ClInclude Include="Systems\RendererSystem.h" />
     <ClInclude Include="Systems\ScriptingSystem.h" />
     <ClInclude Include="Systems\SoundSystem.h" />

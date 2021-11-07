@@ -8,3 +8,7 @@
 #include "RendererSystem.h"
 #include "AnimatorSystem.h"
 #include "ParentChildSystem.h"
+
+// Event Tests
+#include "random_system.h"
+#include "onevent_random_system.h"

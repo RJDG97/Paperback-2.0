@@ -138,7 +138,6 @@ void DetailsWindow::RemoveComponent()
 void DetailsWindow::ParentComponent()
 {
     bool Unlink = false;
-    paperback::u32 ChildToUnlink;
 
     if (m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second })))
     {

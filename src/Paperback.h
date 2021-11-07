@@ -41,6 +41,7 @@ namespace paperback
 	}
 	namespace system
 	{
+		struct system_interface;
 		struct instance;
 	}
 	namespace component
@@ -65,8 +66,9 @@ namespace paperback
 //----------------------------------
 #include "paperback_logger.h"
 #include "paperback_types.h"
-#include "paperback_settings.h"
 #include "paperback_event.h"
+#include "paperback_concepts.h"
+#include "paperback_settings.h"
 #include "paperback_clock.h"
 #include "paperback_input.h"
 #include "paperback_event.h"

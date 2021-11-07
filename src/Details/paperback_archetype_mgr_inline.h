@@ -225,6 +225,20 @@ namespace paperback::archetype
         return m_EntityInfos[ GlobalIndex ];
     }
 
+    archetype::instance* manager::FindArchetype( const u64& ArchetypeGuid ) const noexcept
+    {
+        auto a = m_pArchetypeMap.find( ArchetypeGuid );
+        if ( a == m_pArchetypeMap.end() ) return nullptr;
+        return a->second;
+    }
+
+    archetype::instance& manager::GetArchetype( const u64& ArchetypeGuid ) const noexcept
+    {
+        auto a = FindArchetype( ArchetypeGuid );
+        PPB_ASSERT_MSG( a == nullptr, "Archetype does not exist / Invalid Archetype Guid Value" );
+        return *a;
+    }
+
     std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
     {
         std::vector<paperback::archetype::instance*> List;
@@ -480,15 +494,4 @@ namespace paperback::archetype
             }
         }
     }
-
-	//void manager::UpdateReferencedPrefabInstanceOnAddRemove( const entity::info& Info
- //                                                          , const u64 ComponentGuid ) noexcept
- //   {
- //       auto Reference_Prefab = Info.m_pArchetype->FindComponent<reference_prefab>( Info.m_PoolDetails );
-
- //       if ( Reference_Prefab && Reference_Prefab->m_ModifiedComponents.size() )
- //       {
- //           Reference_Prefab->RemoveModifiedComponentGuid( ComponentGuid );
- //       }
- //   }
 }
