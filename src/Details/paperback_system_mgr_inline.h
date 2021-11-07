@@ -112,18 +112,18 @@ namespace paperback::system
 		using system_t = system::details::completed<T_SYSTEM>;
 
 		if constexpr ( &T_SYSTEM::OnFrameStart != &system_interface::OnFrameStart )
-			m_Events.m_OnFrameStart.RegisterEvent< &T_SYSTEM::OnFrameStart >( static_cast<system_t*>( System ) );
+			m_Events.m_OnFrameStart.RegisterEvent< &system_t::System_OnFrameStart >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::PreUpdate != &system_interface::PreUpdate)
-			m_Events.m_OnPreUpdate.RegisterEvent< &T_SYSTEM::PreUpdate >( static_cast<system_t*>( System ) );
+			m_Events.m_OnPreUpdate.RegisterEvent< &system_t::PreUpdate >( static_cast<system_t*>( System ) );
 
-		m_Events.m_OnUpdate.RegisterEvent< &system_t::Run >( static_cast<system_t*>( System ) );
+		m_Events.m_OnUpdate.RegisterEvent< &system_t::System_OnUpdate >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::PostUpdate != &system_interface::PostUpdate )
-			m_Events.m_OnPostUpdate.RegisterEvent< &T_SYSTEM::PostUpdate >( static_cast<system_t*>( System ) );
+			m_Events.m_OnPostUpdate.RegisterEvent< &system_t::PostUpdate >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::OnFrameEnd != &system_interface::OnFrameEnd )
-			m_Events.m_OnFrameEnd.RegisterEvent< &T_SYSTEM::OnFrameEnd >( static_cast<system_t*>( System ) );
+			m_Events.m_OnFrameEnd.RegisterEvent< &system_t::System_OnFrameEnd >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::OnSystemTerminated != &system_interface::OnSystemTerminated )
 			m_Events.m_OnSystemTerminated.RegisterEvent< &T_SYSTEM::OnSystemTerminated >( static_cast<system_t*>( System ) );

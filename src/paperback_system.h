@@ -296,7 +296,19 @@ namespace paperback::system
 			completed( coordinator::instance& Coordinator ) noexcept;
 
 			PPB_INLINE
-			void Run( void ) noexcept;
+			void System_OnFrameStart( void ) noexcept;
+
+			PPB_INLINE
+			void System_OnPreUpdate( void ) noexcept;
+
+			PPB_INLINE
+			void System_OnUpdate( void ) noexcept;
+
+			PPB_INLINE
+			void System_OnPostUpdate( void ) noexcept;
+
+			PPB_INLINE
+			void System_OnFrameEnd( void ) noexcept;
 
 			USER_SYSTEM::events   m_Events;
 		};

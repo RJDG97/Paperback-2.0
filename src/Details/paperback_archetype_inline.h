@@ -103,6 +103,7 @@ namespace paperback::archetype
     {
         // Copy Bit Signature of Prefab to update accordingly for Prefab Instance
         tools::bits PrefabInstanceSignature = m_ComponentBits;
+        vm::PoolDetails m_PrefabDetails{ vm::PoolDetails{.m_Key = 0, .m_PoolIndex = PrefabPoolIndex } };
 
         // Update Prefab Instance's Bit Signature
         PrefabInstanceSignature.Remove( component::info_v<prefab>.m_UID );
@@ -116,8 +117,13 @@ namespace paperback::archetype
         auto PI_PoolDetails = PrefabInstanceArchetype.ClonePrefabComponents( PrefabPoolIndex
                                                                            , m_ComponentPool[ 0 ] );
 
+        auto& Cloned_ReferencePrefab       = PrefabInstanceArchetype.GetComponent<reference_prefab>( PI_PoolDetails );
+        Cloned_ReferencePrefab.m_PrefabGID = GetComponent<paperback::component::entity>( m_PrefabDetails ).m_GlobalIndex;
+
         auto& ClonedPrefab = m_Coordinator.RegisterEntity( PI_PoolDetails
                                                          , PrefabInstanceArchetype );
+
+        GetComponent<prefab>( m_PrefabDetails ).AddPrefabInstance( ClonedPrefab.m_GlobalIndex );
 
         return ClonedPrefab.m_GlobalIndex;
     }

@@ -43,15 +43,47 @@ namespace paperback::system
 	{ }
 
 	template < typename USER_SYSTEM >
-	void details::completed<USER_SYSTEM>::Run( void ) noexcept
+	void details::completed<USER_SYSTEM>::System_OnFrameStart( void ) noexcept
 	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::OnFrameStart(  );
+	}
+
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnPreUpdate( void ) noexcept
+	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::PreUpdate(  );
+	}
+
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnUpdate( void ) noexcept
+	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+
 		if constexpr ( &USER_SYSTEM::Update != &system_interface::Update )
+		{
 			USER_SYSTEM::Update( );
+		}
 		else
 		{
             USER_SYSTEM::m_Coordinator.ForEach( USER_SYSTEM::m_Coordinator.Search( system::info_v<USER_SYSTEM>.m_Query )
 											  , *this );
 		}
+	}
+
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnPostUpdate( void ) noexcept
+	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::PostUpdate(  );
+	}
+
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnFrameEnd( void ) noexcept
+	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::OnFrameEnd(  );
 	}
 
 
