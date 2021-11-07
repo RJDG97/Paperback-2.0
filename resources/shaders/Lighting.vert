@@ -37,51 +37,39 @@ uniform vec3 uCameraPosition;
 
 uniform mat4 uFinalBonesMatrices[100];
 uniform mat4 uParentSocketTransform;
-uniform int uTransformationType;		// 0 - Default, 1 - Bones, 2 - Sockets
+uniform bool uHasBones;
+uniform bool uHasSocketed;
 
 void main()
 {
 	vec4 TransformedPosition;
+	mat4 CombinedTransform = mat4(1.0f);
 
-	switch (uTransformationType)
+	if (uHasBones == true)
 	{
-		case 0 :
-		{
-			TransformedPosition = uModel * vec4(vVertexPosition, 1.0);
-			vPosition = vec3(TransformedPosition);
-			vNormal = mat3(transpose(inverse(uModel))) * vVertexNormal;
-			break;
-		}
+		mat4 BoneTransform = mat4(0.0f);
 
-		case 1 :
+		for (int i = 0 ; i < 4 ; ++i)
 		{
-			mat4 BoneTransform = mat4(0.0f);
+			int Id = vVertexBoneIDs[i];
 
-			for (int i = 0 ; i < 4 ; ++i)
+			if (Id != -1)
 			{
-				int Id = vVertexBoneIDs[i];
-
-				if (Id != -1)
-				{
-					BoneTransform += uFinalBonesMatrices[Id] * vVertexWeights[i];
-				}
+				BoneTransform += uFinalBonesMatrices[Id] * vVertexWeights[i];
 			}
-
-			TransformedPosition = uModel * BoneTransform * vec4(vVertexPosition, 1.0f);
-			vPosition = vec3(TransformedPosition);
-			vNormal = mat3(transpose(inverse(uModel))) * mat3(BoneTransform) * vVertexNormal;
-			break;
 		}
 
-		case 2 :
-		{
-			TransformedPosition = uModel * uParentSocketTransform * vec4(vVertexPosition, 1.0);
-			vPosition = vec3(TransformedPosition);
-			vNormal = mat3(transpose(inverse(uModel))) * vVertexNormal;
-			break;
-		}
+		CombinedTransform *= BoneTransform;
 	}
 
+	if (uHasSocketed == true)
+	{
+		CombinedTransform *= uParentSocketTransform;
+	}
+
+	TransformedPosition = uModel * CombinedTransform * vec4(vVertexPosition, 1.0f);
+	vPosition = vec3(TransformedPosition);
+	vNormal = mat3(transpose(inverse(uModel))) * mat3(CombinedTransform) * vVertexNormal;
 	vUV = vVertexUV;
 
 	// Tangent space calculations

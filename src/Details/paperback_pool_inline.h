@@ -574,6 +574,8 @@ namespace paperback::vm
 			return  rttr::instance(GetComponent< child >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< offset >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< offset >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< socketed >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< socketed >(Index));
 		else
 			return rttr::instance();
 	}

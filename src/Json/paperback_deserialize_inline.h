@@ -275,6 +275,9 @@ namespace paperback::deserialize
                                         if (obj.is_type<offset>())
                                             NewArchetype->GetComponent<offset>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<offset>();
 
+                                        if (obj.is_type<offset>())
+                                            NewArchetype->GetComponent<socketed>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<socketed>();
+
                                     }
 
                                     EntityCounter++;

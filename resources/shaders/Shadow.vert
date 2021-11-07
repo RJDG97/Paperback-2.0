@@ -9,44 +9,36 @@ uniform mat4 uModel;
 
 uniform mat4 uFinalBonesMatrices[100];
 uniform mat4 uParentSocketTransform;
-uniform int uTransformationType;		// 0 - Default, 1 - Bones, 2 - Sockets
+uniform bool uHasBones;
+uniform bool uHasSocketed;
 
 void main()
 {
 	vec4 TransformedPosition;
+	mat4 CombinedTransform = mat4(1.0f);
 	
-	switch (uTransformationType)
+	if (uHasBones == true)
 	{
-		case 0 :
-		{
-			TransformedPosition = uModel * vec4(vVertexPosition, 1.0);
-			break;
-		}
+		mat4 BoneTransform = mat4(0.0f);
 
-		case 1 :
+		for (int i = 0 ; i < 4 ; ++i)
 		{
-			mat4 BoneTransform = mat4(0.0f);
+			int Id = vVertexBoneIDs[i];
 
-			for (int i = 0 ; i < 4 ; ++i)
+			if (Id != -1)
 			{
-				int Id = vVertexBoneIDs[i];
-
-				if (Id != -1)
-				{
-					BoneTransform += uFinalBonesMatrices[Id] * vVertexWeights[i];
-				}
+				BoneTransform += uFinalBonesMatrices[Id] * vVertexWeights[i];
 			}
-
-			TransformedPosition = uModel * BoneTransform * vec4(vVertexPosition, 1.0f);
-			break;
 		}
 
-		case 2 :
-		{
-			TransformedPosition = uModel * uParentSocketTransform * vec4(vVertexPosition, 1.0);
-			break;
-		}	
+		CombinedTransform *= BoneTransform;
+	}
+	
+	if (uHasSocketed == true)
+	{
+		CombinedTransform *= uParentSocketTransform;
 	}
 
+	TransformedPosition = uModel * CombinedTransform * vec4(vVertexPosition, 1.0f);
 	gl_Position = uLightSpaceMatrix * TransformedPosition;
 }

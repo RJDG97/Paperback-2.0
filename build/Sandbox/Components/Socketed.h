@@ -24,7 +24,7 @@ namespace RR_SOCKETED
 	{
 		rttr::registration::class_<socketed>(socketed::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
-			.property("Parent Socket", &socketed::parent_socket);
+			.property("Parent Socket", &socketed::parent_socket)(rttr::policy::prop::as_reference_wrapper);
 	}
 }
 #endif

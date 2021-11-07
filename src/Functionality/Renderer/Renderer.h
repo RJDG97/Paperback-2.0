@@ -11,10 +11,18 @@
 class Renderer
 {
 public:
+
+	struct TransformInfo
+	{
+		glm::mat4 m_Transform;
+		glm::mat4* m_ParentSocketTransform;
+		std::vector<glm::mat4>* m_BoneTransforms;
+	};
+
 	~Renderer();
 
 	// Render object
-	void Render(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
+	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
 
 	GLuint GetFinalImage();
 
@@ -54,8 +62,8 @@ private:
 
 	void SkyBoxRender();
 
-	void ShadowPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects);
-	void RenderPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects);
+	void ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
+	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void BlurPass();
 	void CompositePass();	
 	void FinalPass();
