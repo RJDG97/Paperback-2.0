@@ -1,18 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSScript
 {
-    public class Main
+    public class MainApplication
     {
         // Need to return an instance of the class for external calls
-        public static Main getInst()
-        { return new Main(); }
-        public static void main()
+        public static MainApplication getInst()
+        { return new MainApplication(); }
+
+        public static void Main()
         {
+            //while (true)
+            //{
+            //    ConsoleKeyInfo key = Console.ReadKey();
+            //    if (key.Key == ConsoleKey.Enter)
+            //        CompileDLL(true);
+            //    if (key.Key == ConsoleKey.Escape)
+            //        break;
+            //}
         }
     }
 }

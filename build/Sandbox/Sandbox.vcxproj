@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>../../src;../../src/Settings;../../dependencies;../../dependencies/mono/include;../../dependencies/rttr/include;../Sandbox;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
+    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;../../dependencies/mono/include;../../dependencies/rttr/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
     <LibraryPath>../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -177,6 +177,8 @@
     <ClInclude Include="Components\Mesh.h" />
     <ClInclude Include="Components\Offset.h" />
     <ClInclude Include="Components\Parent.h" />
+    <ClInclude Include="Components\Prefab.h" />
+    <ClInclude Include="Components\ReferencePrefab.h" />
     <ClInclude Include="Components\Rigidbody.h" />
     <ClInclude Include="Components\RigidForce.h" />
     <ClInclude Include="Components\Rotation.h" />
@@ -190,8 +192,10 @@
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
+    <ClInclude Include="Systems\onevent_random_system.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
+    <ClInclude Include="Systems\random_system.h" />
     <ClInclude Include="Systems\RendererSystem.h" />
     <ClInclude Include="Systems\ScriptingSystem.h" />
     <ClInclude Include="Systems\SoundSystem.h" />

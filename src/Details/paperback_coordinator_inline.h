@@ -25,6 +25,8 @@ namespace paperback::coordinator
 
 	void instance::Initialize( void ) noexcept
 	{
+		m_ArchetypeMgr.Initialize();
+
 		INFO_PRINT( "Initialized Engine" );
 	}
 
@@ -78,41 +80,86 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::SaveScene(const std::string& FilePath) noexcept
 	{
-		JsonFile Jfile;
+		paperback::entity::TempInfo Tempinfo = {};
+		paperback::component::temp_guid Temp = {};
+		
+		paperback::JsonFile JFile;
 
-		Jfile.StartWriter(FilePath);
-		Jfile.StartObject().WriteKey("Entities");
-		Jfile.StartArray();
+		JFile.StartWriter(FilePath);
+		JFile.StartObject().WriteKey("Entities");
+		JFile.StartArray();
 
 		for (auto& Archetype : PPB.GetArchetypeList())
 		{
-			Jfile.StartObject().WriteKey(Archetype->GetName());
-			Jfile.StartArray();
-
-			component::temp_guid Temp = {};
-
-			Jfile.StartObject().WriteKey("Guid").StartArray();
-			auto& ComponentInfoArray = Archetype->GetComponentInfos();
-
-			for (u32 i = 0; i < Archetype->GetComponentNumber(); ++i)
+			if ( Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID) ) //Have prefab component
 			{
-				Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
-				Jfile.WriteGuid(Temp);
+				JFile.StartObject().WriteKey(("Prefab " + Archetype->GetName()).c_str()).StartArray();
+
+				//Serialize GUIDs
+
+				JFile.StartObject().WriteKey("Guid").StartArray();
+				auto& ComponentInfoArray = Archetype->GetComponentInfos();
+
+				for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+				{
+					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+					JFile.WriteGuid(Temp);
+				}
+
+				JFile.EndArray().EndObject();
+
+				//Serialize Components
+
+				Archetype->SerializeAllEntities(JFile);
+
+				JFile.EndArray().EndObject();
 			}
-			Jfile.EndArray();
-			Jfile.EndObject();
 
-			Archetype->SerializeAllEntities(Jfile);
+			else
+			{
+				JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
 
+				//Serialize GUIDs
 
+				JFile.StartObject().WriteKey("Guid").StartArray();
 
-			Jfile.EndArray();
-			Jfile.EndObject();
+				auto& ComponentInfoArray = Archetype->GetComponentInfos();
+
+				for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+				{
+					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+					JFile.WriteGuid(Temp);
+				}
+
+				JFile.EndArray().EndObject();
+
+				//Serialize Components
+
+				Archetype->SerializeAllEntities(JFile);
+
+				JFile.EndArray().EndObject();
+
+			}
 		}
 
-		Jfile.EndArray();
-		Jfile.EndObject();
-		Jfile.EndWriter();
+		const auto& EntityInfoList = m_ArchetypeMgr.GetEntityInfoList();
+
+		JFile.StartObject().WriteKey("Entity Info").StartArray();
+
+		for (u32 i = 0; i < settings::max_entities_v; ++i)
+		{
+			Tempinfo.ArchetypeGuid = EntityInfoList[i].m_pArchetype ? EntityInfoList[i].m_pArchetype->GetArchetypeGuid().m_Value : 0;
+			Tempinfo.PoolDetails = EntityInfoList[i].m_PoolDetails;
+			Tempinfo.Validation = EntityInfoList[i].m_Validation;
+
+			JFile.StartObject().Write(Tempinfo).EndObject();
+		}
+
+		JFile.EndArray().EndObject();
+
+		JFile.EndArray();
+		JFile.EndObject();
+		JFile.EndWriter();
 	}
 
 	PPB_INLINE
@@ -139,6 +186,11 @@ namespace paperback::coordinator
 		return m_ArchetypeMgr.GetOrCreateArchetype( ArchetypeSignature );
 	}
 
+	void instance::CreatePrefab( void ) noexcept
+	{
+		m_ArchetypeMgr.CreatePrefab();
+	}
+
 	template< typename T_FUNCTION >
 	void instance::CreateEntity( T_FUNCTION&& Function ) noexcept
 	{
@@ -157,12 +209,6 @@ namespace paperback::coordinator
 		auto& Info = GetEntityInfo( Entity );
 		assert( Info.m_Validation == Entity.m_Validation );
 		Info.m_pArchetype->DestroyEntity( Entity );
-	}
-
-	void instance::RemoveEntity( const uint32_t SwappedGlobalIndex
-							   , const component::entity Entity ) noexcept
-	{
-		m_ArchetypeMgr.RemoveEntity( SwappedGlobalIndex, Entity );
 	}
 
 	void instance::ResetAllArchetypes( void ) noexcept
@@ -188,8 +234,8 @@ namespace paperback::coordinator
 
 	template < concepts::Callable T_FUNCTION >
 	component::entity instance::AddOrRemoveComponents( const component::entity Entity
-								                     , std::span<const component::info* > Add
-								                     , std::span<const component::info* > Remove
+								                     , std::span< const component::info* > Add
+								                     , std::span< const component::info* > Remove
 								                     , T_FUNCTION&& Function ) noexcept
 	{
 		return m_ArchetypeMgr.AddOrRemoveComponents( Entity
@@ -313,12 +359,12 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//             Getters
 	//-----------------------------------
-	entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
+	paperback::entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
 	{
 		return m_ArchetypeMgr.GetEntityInfo( Entity );
 	}
 
-	entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
+	paperback::entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
 	{
 		return m_ArchetypeMgr.GetEntityInfo( GlobalIndex );
 	}
@@ -357,6 +403,10 @@ namespace paperback::coordinator
 		return m_CompMgr.GetComponentInfoMap();
 	}
 
+	std::vector<fs::path>& instance::GetDragDropFiles() noexcept
+	{
+		return m_DragDropFiles;
+	}
 
 	//-----------------------------------
 	//              Clock
@@ -439,24 +489,15 @@ namespace paperback::coordinator
 	// Protected - Register for Archetype
 	//-----------------------------------
 
-	void instance::RegisterEntity( const paperback::vm::PoolDetails Details
+	paperback::component::entity& instance::RegisterEntity( const paperback::vm::PoolDetails Details
 								 , paperback::archetype::instance& Archetype ) noexcept
 	{
-		m_ArchetypeMgr.RegisterEntity( Details, Archetype );
+		return m_ArchetypeMgr.RegisterEntity( Details, Archetype );
 	}
 
-
-	//-----------------------------------
-	//        Temporary Method
-	//-----------------------------------
-
-	void instance::InitializeParentChildAfterDeSerialization( void ) noexcept
+	void instance::RemoveEntity( const u32 SwappedGlobalIndex
+							        , const u32 DeletedEntityIndex ) noexcept
 	{
-		m_ArchetypeMgr.InitializeParentChildAfterDeSerialization();
-	}
-
-	void instance::RevertParentChildBeforeSerialization( void ) noexcept
-	{
-		m_ArchetypeMgr.RevertParentChildBeforeSerialization();
+		m_ArchetypeMgr.RemoveEntity( SwappedGlobalIndex, DeletedEntityIndex );
 	}
 }

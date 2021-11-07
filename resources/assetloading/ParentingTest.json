@@ -1,0 +1,736 @@
+{
+    "Entities": [
+        {
+            "Box Boi": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        9604788041699812520
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 0
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 5.0,
+                            "y": 2.5,
+                            "z": -10.0
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    }
+                }
+            ]
+        },
+        {
+            "Sound Boi": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        12091664775214799190,
+                        14302600151082817442
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 3
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -1.0,
+                            "y": -4.0,
+                            "z": -10.0
+                        }
+                    },
+                    "Timer": {
+                        "Timer": 0.0
+                    },
+                    "Sound": {
+                        "Path": "event:/BGM",
+                        "Sound Event ID": 1,
+                        "3D Sound": false
+                    }
+                }
+            ]
+        },
+        {
+            "Script Boi": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        14351128073332756358
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 4
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -4.0,
+                            "y": 2.5,
+                            "z": -10.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": "CameraMovement"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 5
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -4.0,
+                            "y": 2.5,
+                            "z": -10.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": "QuitScript"
+                    }
+                }
+            ]
+        },
+        {
+            "Boi w/o Rigidforce": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        18285106494192445205,
+                        3617555656175080491,
+                        9604788041699812520
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 6
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -8.0,
+                            "y": 5.5,
+                            "z": -7.0
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    }
+                }
+            ]
+        },
+        {
+            "Boi w/ Rigidforce": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        5509481706028819786,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        18285106494192445205,
+                        3617555656175080491,
+                        9604788041699812520
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -5.797806739807129,
+                            "y": 1.1216073036193848,
+                            "z": -11.15112018585205
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 11
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 25.998966217041017,
+                            "y": 5.5,
+                            "z": -7.0
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 1.5,
+                        "Is Collide": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 12
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 4.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -1.1235672235488892,
+                            "y": 5.5,
+                            "z": -7.875556468963623
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 1.5,
+                        "Is Collide": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    }
+                }
+            ]
+        },
+        {
+            "Mutant Nui": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        9604788041699812520,
+                        15204223096342135753
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 8
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.0,
+                            "y": 5.0,
+                            "z": -10.0
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Character"
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Armature|mixamo.com|Layer0"
+                    }
+                }
+            ]
+        },
+        {
+            "moving sound boi": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        5509481706028819786,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        18285106494192445205,
+                        3617555656175080491,
+                        12091664775214799190,
+                        14302600151082817442,
+                        9604788041699812520
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 9
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -5.866652488708496,
+                            "y": 1.1216073036193848,
+                            "z": 6.64038610458374
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Timer": {
+                        "Timer": 0.0
+                    },
+                    "Sound": {
+                        "Path": "event:/3DBGM",
+                        "Sound Event ID": 3,
+                        "3D Sound": true
+                    },
+                    "Mesh": {
+                        "Model Mesh": ""
+                    }
+                }
+            ]
+        },
+        {
+            "3D Sound Listener": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        12091664775214799190,
+                        14302600151082817442,
+                        18186166081267214834
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 10
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 10.0,
+                            "y": 0.0,
+                            "z": 10.0
+                        }
+                    },
+                    "Timer": {
+                        "Timer": 0.0
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Parent#1": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        9604788041699812520,
+                        13107566195444653040
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 1
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 2.0,
+                            "y": 5.800000190734863,
+                            "z": -6.0
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Mesh": {
+                        "Model Mesh": ""
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            2
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "Child#2": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        5691439207370049121,
+                        14486341741652966143,
+                        9604788041699812520,
+                        1259829869932243375
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 2
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 2.700000047683716,
+                            "y": 3.0999999046325685,
+                            "z": 2.5999999046325685
+                        },
+                        "Position": {
+                            "x": 2.0,
+                            "y": 5.800000190734863,
+                            "z": -6.0
+                        }
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 3.4000000953674318,
+                            "y": 5.400000095367432,
+                            "z": -0.4000000059604645
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 91.0,
+                            "y": 19.600000381469728,
+                            "z": 0.0
+                        }
+                    },
+                    "Mesh": {
+                        "Model Mesh": ""
+                    },
+                    "Child": {
+                        "ChildGID": 0
+                    }
+                }
+            ]
+        }
+    ]
+}

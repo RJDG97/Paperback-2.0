@@ -16,10 +16,6 @@ namespace paperback::system
                                    ? T_SYSTEM::typedef_v.m_Guid
                                    : type::guid{ __FUNCSIG__ }
             ,   .m_TypeID        = T_SYSTEM::typedef_v.id_v
-			,	.m_RunSystem     = []( system::instance& pSystem, system::type::call UpdateType )
-							       {
-							           static_cast<system::details::completed<T_SYSTEM>&>( pSystem ).Run( UpdateType );
-							       }
 			,	.m_Destructor    = []( system::instance& pSystem ) noexcept
 								   {
 								       std::destroy_at( &static_cast< system::details::completed<T_SYSTEM>& >( pSystem ) ) ;
@@ -45,86 +41,49 @@ namespace paperback::system
 	details::completed<USER_SYSTEM>::completed( coordinator::instance& Coordinator ) noexcept :
 		USER_SYSTEM{ Coordinator }
 	{ }
-	
+
 	template < typename USER_SYSTEM >
-	void details::completed<USER_SYSTEM>::Run( const paperback::system::type::call Type ) noexcept
+	void details::completed<USER_SYSTEM>::System_OnFrameStart( void ) noexcept
+	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::OnFrameStart(  );
+	}
+
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnPreUpdate( void ) noexcept
+	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::PreUpdate(  );
+	}
+
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnUpdate( void ) noexcept
 	{
 		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
 
-		switch ( Type )
+		if constexpr ( &USER_SYSTEM::Update != &system_interface::Update )
 		{
-			case system::type::call::CREATED:
-			{
-				if constexpr ( &USER_SYSTEM::OnSystemCreated != &system_interface::OnSystemCreated )
-				{
-					XCORE_PERF_ZONE_SCOPED_N( "System Created" )
-					USER_SYSTEM::OnSystemCreated();
-				}
-				break;
-			}
-			case system::type::call::FRAME_START:
-			{
-				if constexpr ( &USER_SYSTEM::OnFrameStart != &system_interface::OnFrameStart )
-				{
-					XCORE_PERF_ZONE_SCOPED_N( "Frame Start" )
-					USER_SYSTEM::OnFrameStart();
-				}
-				break;
-			}
-			case system::type::call::PRE_UPDATE:
-			{
-				if constexpr ( &USER_SYSTEM::PreUpdate != &system_interface::PreUpdate )
-				{
-					XCORE_PERF_ZONE_SCOPED_N( "Pre Update" )
-					USER_SYSTEM::PreUpdate();
-				}
-				break;
-			}
-			case system::type::call::UPDATE:
-			{
-				if constexpr ( &USER_SYSTEM::Update != &system_interface::Update )
-				{
-					XCORE_PERF_ZONE_SCOPED_N( "Update" )
-					USER_SYSTEM::Update();
-				}
-				else
-				{
-					XCORE_PERF_ZONE_SCOPED_N( "Update" )
-					tools::query Query;
-					Query.AddQueryFromTuple( reinterpret_cast<typename USER_SYSTEM::query*>(nullptr) );
-					Query.AddQueryFromFunction( *this );
-					USER_SYSTEM::m_Coordinator.ForEach( USER_SYSTEM::m_Coordinator.Search(Query), *this );
-				}
-				break;
-			}
-			case system::type::call::POST_UPDATE:
-			{
-				if constexpr ( &USER_SYSTEM::PostUpdate != &system_interface::PostUpdate )
-				{
-					XCORE_PERF_ZONE_SCOPED_N( "Post Update" )
-					USER_SYSTEM::PostUpdate();
-				}
-				break;
-			}
-			case system::type::call::FRAME_END:
-			{
-				if constexpr ( &USER_SYSTEM::OnFrameEnd != &system_interface::OnFrameEnd )
-				{
-					XCORE_PERF_ZONE_SCOPED_N( "Frame End" )
-					USER_SYSTEM::OnFrameEnd();
-				}
-				break;
-			}
-			case system::type::call::TERMINATED:
-			{
-				if constexpr ( &USER_SYSTEM::OnSystemTerminated != &system_interface::OnSystemTerminated )
-				{
-					XCORE_PERF_ZONE_SCOPED_N( "Terminated" )
-					USER_SYSTEM::OnSystemTerminated();
-				}
-				break;
-			}
+			USER_SYSTEM::Update( );
 		}
+		else
+		{
+            USER_SYSTEM::m_Coordinator.ForEach( USER_SYSTEM::m_Coordinator.Search( system::info_v<USER_SYSTEM>.m_Query )
+											  , *this );
+		}
+	}
+
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnPostUpdate( void ) noexcept
+	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::PostUpdate(  );
+	}
+
+	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnFrameEnd( void ) noexcept
+	{
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::OnFrameEnd(  );
 	}
 
 
@@ -150,7 +109,18 @@ namespace paperback::system
 		m_Coordinator.CreateEntities( Function, Count );
 	}
 
-	entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
+	template < typename       T_EVENT
+			 , typename       T_SYSTEM
+			 , typename...    T_ARGS >
+	requires ( std::derived_from< T_SYSTEM, paperback::system::instance >
+          && ( !std::is_same_v< typename T_SYSTEM::events, paperback::system::system_interface::events > ))
+	void instance::BroadcastEvent( T_SYSTEM* System, T_ARGS&&... Args ) noexcept
+	{
+		std::get<T_EVENT>( reinterpret_cast< system::details::completed<T_SYSTEM>* >( System )->m_Events )
+			.BroadcastEvent( std::forward<T_ARGS&&>( Args ) ... );
+	}
+
+	paperback::entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
 	{
 		return m_Coordinator.GetEntityInfo( GlobalIndex );
 	}

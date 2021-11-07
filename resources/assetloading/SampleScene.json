@@ -183,7 +183,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 4
+                        "Global Index": 5
                     },
                     "Transform": {
                         "Offset": {
@@ -219,7 +219,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 5
+                        "Global Index": 6
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -299,7 +299,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 6
+                        "Global Index": 7
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -383,7 +383,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 7
+                        "Global Index": 8
                     },
                     "Transform": {
                         "Offset": {
@@ -439,7 +439,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 8
+                        "Global Index": 9
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -530,7 +530,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 9
+                        "Global Index": 10
                     },
                     "Transform": {
                         "Offset": {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +16,8 @@ namespace CSScript
         }
         public void Update(float dt)
         {
-            //Console.WriteLine(dt);
+            if (Input.IsKeyPress(Input.PB_ENTER))
+                Debug.Log("Test");
             if (Input.IsKeyPress(Input.PB_ESCAPE))
                 Application.Quit();
         }

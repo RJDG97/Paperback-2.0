@@ -1,5 +1,6 @@
 #pragma once
-
+#include <filesystem>
+namespace fs = std::filesystem;
 namespace paperback::coordinator
 {
 	class instance final
@@ -60,6 +61,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
 
+		PPB_INLINE
+		void CreatePrefab( void ) noexcept;
+
 		template< typename T_FUNCTION = paperback::empty_lambda >
 		void CreateEntity( T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
@@ -85,7 +89,7 @@ namespace paperback::coordinator
 								               , std::span<const component::info*> Add 
 								               , std::span<const component::info*> Remove
 								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
-		
+
 		
 		//-----------------------------------
 		//           Query Methods
@@ -120,10 +124,10 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		PPB_INLINE
-		entity::info& GetEntityInfo( component::entity& Entity ) const noexcept;
+		paperback::entity::info& GetEntityInfo( component::entity& Entity ) const noexcept;
 
 		PPB_INLINE
-        entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
+        paperback::entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
 		template< typename T_SYSTEM >
 		T_SYSTEM* FindSystem( void ) noexcept;
@@ -142,6 +146,9 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		paperback::component::manager::ComponentInfoMap& GetComponentInfoMap() noexcept;
+
+		PPB_INLINE
+		std::vector<fs::path>& GetDragDropFiles() noexcept;
 
 		//-----------------------------------
 		//              Clock
@@ -195,36 +202,27 @@ namespace paperback::coordinator
 		bool IsMouseUp( int Key ) noexcept;
 
 
-		//-----------------------------------
-		//        Temporary Method
-		//-----------------------------------
-
-		PPB_INLINE
-		void InitializeParentChildAfterDeSerialization( void ) noexcept;
-
-		PPB_INLINE
-		void RevertParentChildBeforeSerialization( void ) noexcept;
-
-
 		/*
         /*! Friend Classes
         */
+		friend class paperback::vm::instance;
 		friend class paperback::archetype::instance;
 
 
 	protected:
 
 		PPB_INLINE
-		void RegisterEntity( const paperback::vm::PoolDetails
-						   , archetype::instance& Archetype ) noexcept;
+		paperback::component::entity& RegisterEntity( const paperback::vm::PoolDetails
+						                            , archetype::instance& Archetype ) noexcept;
 
 		PPB_INLINE
-		void RemoveEntity( const uint32_t SwappedGlobalIndex
-						 , const component::entity Entity ) noexcept;
+		void RemoveEntity( const u32 SwappedGlobalIndex
+						 , const u32 DeletedEntityIndex ) noexcept;
 
 
 	private:
 
+		std::vector<fs::path>		m_DragDropFiles;				// External Files 
 		tools::clock				m_Clock;						// Timer
 		Input						m_Input;						// Input
 		component::manager			m_CompMgr;						// Component Manager
@@ -237,9 +235,10 @@ namespace paperback::coordinator
 static struct engine
 {
 	paperback::coordinator::instance& m_Coordinator = paperback::coordinator::instance::GetInstance();
-	int m_Width = 1280;
-	int m_Height = 720;
-	std::string m_WinName = "Paperback Engine";
+	int m_Width { 0 };
+	int m_Height { 0 };
+	std::string m_WinName ;
+
 } m_Engine;
 
 #define PPB m_Engine.m_Coordinator
@@ -250,9 +249,8 @@ namespace RR_ENGINE
 	{
 		rttr::registration::class_<engine>("Engine Config")
 			.constructor()( rttr::policy::ctor::as_object )
-			.property("Window", &engine::m_WinName)(rttr::policy::prop::as_reference_wrapper)
-			.property("Width", &engine::m_Width)(rttr::policy::prop::as_reference_wrapper)
-			.property("Height", &engine::m_Height)(rttr::policy::prop::as_reference_wrapper);
-
+			.property("Window", &engine::m_WinName)
+			.property("Width", &engine::m_Width)
+			.property("Height", &engine::m_Height);
 	}
 }

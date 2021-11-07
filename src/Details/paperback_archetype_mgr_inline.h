@@ -9,6 +9,14 @@ namespace paperback::archetype
         m_Coordinator{ Coordinator }
     { }
 
+    void manager::Initialize( void ) noexcept
+    {
+        for ( u32 i = 0, max = settings::max_entities_v - 2; i < max; ++i )
+        {
+            m_EntityInfos[ i ].m_PoolDetails.m_PoolIndex = i + 1;
+        }
+    }
+
 
     //-----------------------------------
     //             Create
@@ -25,6 +33,12 @@ namespace paperback::archetype
             Archetype.CreateEntity( Function );
 
 	    }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
+    }
+
+    void manager::CreatePrefab( void ) noexcept
+    {
+		auto& Archetype = GetOrCreateArchetype<prefab, transform>( );
+        Archetype.CreateEntity( );
     }
 
     template < typename... T_COMPONENTS >
@@ -62,9 +76,9 @@ namespace paperback::archetype
 
     template < concepts::Callable T_FUNCTION >
 	component::entity manager::AddOrRemoveComponents( const component::entity Entity
-								                     , std::span<const component::info* const> Add
-								                     , std::span<const component::info* const> Remove
-								                     , T_FUNCTION&& Function ) noexcept
+								                    , std::span<const component::info* const> Add
+								                    , std::span<const component::info* const> Remove
+								                    , T_FUNCTION&& Function ) noexcept
 	{
 		PPB_ASSERT_MSG( Entity.IsZombie(), "Attempting to add component to non-existent entity" );
 
@@ -78,7 +92,7 @@ namespace paperback::archetype
             for ( auto& ToAdd : A )
                 if ( Sig.Has( ToAdd->m_UID ) ) return true;
             for ( auto& ToRemove : R )
-                if ( Sig.None( ToRemove->m_UID ) ) return true;
+                if ( Sig.None( PPB.FindComponentInfo(ToRemove->m_Guid)->m_UID) ) return true;
             return false;
         };
         auto InvalidComponentModification = [&]( const component::info* ComponentInfo ) -> bool
@@ -114,10 +128,15 @@ namespace paperback::archetype
         for ( const auto& ComponentToRemove : Remove )
 		{
 			if ( InvalidComponentModification( ComponentToRemove ) ) continue;
-			UpdatedSignature.Remove( ComponentToRemove->m_UID );
+			UpdatedSignature.Remove( PPB.FindComponentInfo( ComponentToRemove->m_Guid )->m_UID );
 		}
 
 		auto ExistingArchetype = Search( UpdatedSignature );
+
+        // Update All Prefab Instances If Updated Entity Is A Prefab
+        AddOrRemoveComponentsFromPrefabInstances( EntityInfo
+                                                , Add
+                                                , Remove );
 
 		/*
             If Archetype with matching bit signature already exists
@@ -141,7 +160,7 @@ namespace paperback::archetype
             CInfoArr NewComponentInfoList;
 			auto& Archetype = *EntityInfo.m_pArchetype;
 
-			for ( auto& CInfo : std::span{ Archetype.GetComponentInfos().data(), Archetype.GetComponentNumber() } )
+			for ( auto& CInfo : std::span{ Archetype.GetComponentInfos().data(), Archetype.GetComponentCount() } )
 				NewComponentInfoList[Count++] = CInfo;
 
 			for ( auto& CInfo : Add )
@@ -206,11 +225,18 @@ namespace paperback::archetype
         return m_EntityInfos[ GlobalIndex ];
     }
 
-    archetype::instance& manager::GetArchetypeFromEntity( const u32 EntityID ) const noexcept
+    archetype::instance* manager::FindArchetype( const u64& ArchetypeGuid ) const noexcept
     {
-        PPB_ASSERT_MSG( EntityID >= m_EntityIDTracker, "GetArchetypeFromEntity: Invalid EntityID" );
+        auto a = m_pArchetypeMap.find( ArchetypeGuid );
+        if ( a == m_pArchetypeMap.end() ) return nullptr;
+        return a->second;
+    }
 
-        return *( m_EntityInfos[EntityID].m_pArchetype );
+    archetype::instance& manager::GetArchetype( const u64& ArchetypeGuid ) const noexcept
+    {
+        auto a = FindArchetype( ArchetypeGuid );
+        PPB_ASSERT_MSG( a == nullptr, "Archetype does not exist / Invalid Archetype Guid Value" );
+        return *a;
     }
 
     std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
@@ -221,6 +247,10 @@ namespace paperback::archetype
         return List;
     }
 
+    manager::EntityInfoList& manager::GetEntityInfoList() noexcept
+    {
+        return m_EntityInfos;
+    }
 
     //-----------------------------------
     //             Query
@@ -256,7 +286,7 @@ namespace paperback::archetype
             {
                 const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
 
-                if ( m_pArchetypeList[index]->GetEntityCount() > 0 )
+                if ( m_pArchetypeList[index]->GetCurrentEntityCount() > 0 )
                     ValidArchetypes.push_back( m_pArchetypeList[index].get() );
             }
         }
@@ -264,6 +294,33 @@ namespace paperback::archetype
         return ValidArchetypes;
     }
 
+    
+    //-----------------------------------
+    //     Update Prefab Instances
+    //-----------------------------------
+    
+    template < typename T_COMPONENT >
+    void manager::UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+                                                              , const T_COMPONENT&  UpdatedComponent ) noexcept
+    {
+        auto& Prefab                  = PrefabInfo.m_pArchetype->GetComponent<prefab>( PrefabInfo.m_PoolDetails );
+        auto& PrefabInstanceArchetype = *( m_Coordinator.GetEntityInfo( *(Prefab.m_ReferencePrefabGIDs.begin()) ).m_pArchetype );
+
+		PPB_ASSERT_MSG( PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab.m_ReferencePrefabGIDs.size(),
+                        "Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs" );
+
+        for ( size_t i = 0, max = Prefab.m_ReferencePrefabGIDs.size(); i < max; ++i )
+        {
+            auto& Reference_Prefab = PrefabInstanceArchetype.GetComponent<reference_prefab>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
+            auto& Info             = component::info_v<T_COMPONENT>;
+
+            if ( !(Reference_Prefab.HasModified( Info.m_Guid.m_Value )) )
+            {
+                // Update Prefab Instance's Component
+                PrefabInstanceArchetype.GetComponent<T_COMPONENT>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } ) = UpdatedComponent;
+            }
+        }
+    }
 
     //-----------------------------------
     //              Clear
@@ -285,7 +342,9 @@ namespace paperback::archetype
     //             Helper
     //-----------------------------------
 
-    void manager::RegisterEntity( const PoolDetails Details, archetype::instance& Archetype ) noexcept
+    PPB_INLINE
+    paperback::component::entity& manager::RegisterEntity( const PoolDetails Details
+                                     , archetype::instance& Archetype ) noexcept
     {
         u32   EntityGlobalIndex = AppendEntity();
         auto& EntityInfo        = GetEntityInfo( EntityGlobalIndex );
@@ -301,39 +360,45 @@ namespace paperback::archetype
                          }
                      };
 
-        auto& Entity = EntityInfo.m_pArchetype->GetComponent<component::entity>( EntityInfo.m_PoolDetails );
+        auto& Entity = Archetype.GetComponent<paperback::component::entity>( EntityInfo.m_PoolDetails );
 
         Entity.m_GlobalIndex          = EntityGlobalIndex;
         Entity.m_Validation.m_Next    = 0;
         Entity.m_Validation.m_bZombie = false;
+
+        return Entity;
     }
 
-    void manager::RemoveEntity( const u32 SwappedGlobalIndex, const component::entity DeletedEntity ) noexcept
+    PPB_INLINE
+    void manager::RemoveEntity( const u32 SwappedGlobalIndex
+                                   , const u32 DeletedEntityIndex ) noexcept
     {
-        if ( SwappedGlobalIndex != paperback::settings::invalid_index_v )
+        auto& Info = GetEntityInfo( DeletedEntityIndex );
+
+        // If Deleted Entity is not last entity in Pool
+        if ( SwappedGlobalIndex != paperback::settings::invalid_index_v )           
         {
-            auto& Info = GetEntityInfo( DeletedEntity );
             m_EntityInfos[SwappedGlobalIndex].m_PoolDetails = Info.m_PoolDetails;
         }
-        m_AvailableIndexes.push( DeletedEntity.m_GlobalIndex );
+
+        Info.m_PoolDetails.m_PoolIndex = m_EntityHead;
+        m_EntityHead                   = DeletedEntityIndex;
     }
 
 
     //-----------------------------------
     //             Private
     //-----------------------------------
+
     u32 manager::AppendEntity() noexcept
     {
-        if (!m_AvailableIndexes.empty())
-        {
-            u32 GlobalIndex = m_AvailableIndexes.top();
-            m_AvailableIndexes.pop();
-            return GlobalIndex;
-        }
-        else
-        {
-            return m_EntityIDTracker++;
-        }
+        PPB_ASSERT_MSG( m_EntityHead == settings::invalid_index_v, "Invalid Global Index Generated" );
+
+        u32 GlobalIndex         = m_EntityHead;
+        auto& CurrentEntityInfo = m_EntityInfos[ m_EntityHead ];
+        m_EntityHead            = CurrentEntityInfo.m_PoolDetails.m_PoolIndex;
+
+        return GlobalIndex;
     }
 
     archetype::instance& manager::GetOrCreateArchetype( std::span<const component::info* const> Types
@@ -387,107 +452,45 @@ namespace paperback::archetype
         auto p = m_pArchetypeList.back().get();
 
         p->Init( Types, Count );
-        m_pArchetypeMap.emplace( std::make_pair( p->GetArchetypeGuid().m_Value, p ) );
+        if (m_pArchetypeMap.find(p->GetArchetypeGuid().m_Value) != m_pArchetypeMap.end())
+            m_pArchetypeMap[p->GetArchetypeGuid().m_Value] = p;
+        else
+            m_pArchetypeMap.emplace( std::make_pair( p->GetArchetypeGuid().m_Value, p ) );
 
         return *( m_pArchetypeList.back() );
     }
 
-    // Remove once linked list mapping is dones
-    void manager::InitializeParentChildAfterDeSerialization( void ) noexcept
+    void manager::AddOrRemoveComponentsFromPrefabInstances( const entity::info& Info
+                                                          , std::span<const component::info* const> Add
+								                          , std::span<const component::info* const> Remove ) noexcept
     {
-        // For all Archetypes
-        for ( const auto& Sig : m_ArchetypeBits )
+        // Check if Archetype is a Prefab
+        auto Prefab = Info.m_pArchetype->FindComponent<prefab>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } );
+
+        if ( Prefab && Prefab->m_ReferencePrefabGIDs.size() )
         {
-            // If has parent component
-            if ( Sig.Has<parent>() )
+            auto& PrefabInstanceArchetype = *( m_Coordinator.GetEntityInfo( *(Prefab->m_ReferencePrefabGIDs.begin()) ).m_pArchetype );
+
+            PPB_ASSERT_MSG( PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab->m_ReferencePrefabGIDs.size(),
+                            "Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs" );
+
+            for ( size_t i = 0, max = Prefab->m_ReferencePrefabGIDs.size(); i < max; ++i )
             {
-                const auto index = static_cast<size_t>( &Sig - &m_ArchetypeBits[0] );
-                auto& Archetype = m_pArchetypeList[index];
+                auto& Reference_Prefab = PrefabInstanceArchetype.GetComponent<reference_prefab>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } );
 
-                // For all entities within matching archetype
-                for ( u32 i = 0, max = Archetype->GetEntityCount(); i < max; ++i )
-                {
-                    auto& Parent = Archetype->GetComponent<parent>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
-
-                    // Update all children's global index
-                    for ( auto& Child : Parent.m_Infos )
+                // Unassign Modified Guid Values On Component Removal
+                for ( const auto& ComponentToRemove : Remove )
+		        {
+                    if ( Reference_Prefab.m_ModifiedComponents.size() )
                     {
-                        auto CArchetypeIT = m_pArchetypeMap.find( Child.m_ChildGuid );
-                        if ( CArchetypeIT != m_pArchetypeMap.end() )
-                        {
-                            auto& ChildEntity = CArchetypeIT->second->GetComponent<component::entity>( { static_cast<paperback::u32>( Child.m_ChildPoolKey )
-                                                                                                       , static_cast<paperback::u32>( Child.m_ChildPoolIndex ) });
-                            Child.m_ChildGID  = ChildEntity.m_GlobalIndex;
-                        }
+                        Reference_Prefab.RemoveModifiedComponentGuid( ComponentToRemove->m_Guid.m_Value );
                     }
                 }
-            }
-            // Or child component
-            else if ( Sig.Has<child>() )
-            {
-                const auto index = static_cast<size_t>( &Sig - &m_ArchetypeBits[0] );
-                auto& Archetype = m_pArchetypeList[index];
 
-                for ( u32 i = 0, max = Archetype->GetEntityCount(); i < max; ++i )
-                {
-                    auto& Child = Archetype->GetComponent<child>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
-
-                    auto PArchetypeIT = m_pArchetypeMap.find( Child.m_Info.m_ParentGuid );
-                    if ( PArchetypeIT != m_pArchetypeMap.end() )
-                    {
-                        auto& ParentEntity        = PArchetypeIT->second->GetComponent<component::entity>( { static_cast<paperback::u32>( Child.m_Info.m_ParentPoolKey )
-                                                                                                           , static_cast<paperback::u32>( Child.m_Info.m_ParentPoolIndex ) });
-                        Child.m_Info.m_ParentGID  = ParentEntity.m_GlobalIndex;
-                    }
-                }
-            }
-        }
-    }
-
-    // Revert global index to normal details
-    void manager::RevertParentChildBeforeSerialization( void ) noexcept
-    {
-        // For all Archetypes
-        for ( const auto& Sig : m_ArchetypeBits )
-        {
-            // If has parent component
-            if ( Sig.Has<parent>() )
-            {
-                const auto index = static_cast<size_t>( &Sig - &m_ArchetypeBits[0] );
-                auto& Archetype = m_pArchetypeList[index];
-
-                // For all entities within matching archetype
-                for ( u32 i = 0, max = Archetype->GetEntityCount(); i < max; ++i )
-                {
-                    auto& Parent = Archetype->GetComponent<parent>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
-
-                    // Update all children's global index
-                    for ( auto& Child : Parent.m_Infos )
-                    {
-                        auto& ChildInfo        = m_Coordinator.GetEntityInfo( Child.m_ChildGID );
-
-                        Child.m_ChildGuid      = Archetype->GetArchetypeGuid().m_Value;
-                        Child.m_ChildPoolKey   = ChildInfo.m_PoolDetails.m_Key;
-                        Child.m_ChildPoolIndex = ChildInfo.m_PoolDetails.m_PoolIndex;
-                    }
-                }
-            }
-            // Or child component
-            else if ( Sig.Has<child>() )
-            {
-                const auto index = static_cast<size_t>( &Sig - &m_ArchetypeBits[0] );
-                auto& Archetype = m_pArchetypeList[index];
-
-                for ( u32 i = 0, max = Archetype->GetEntityCount(); i < max; ++i )
-                {
-                    auto& Child = Archetype->GetComponent<child>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = i } );
-
-                    auto& ParentInfo               = m_Coordinator.GetEntityInfo( Child.m_Info.m_ParentGID );
-
-                    Child.m_Info.m_ParentGuid      = ParentInfo.m_pArchetype->GetArchetypeGuid().m_Value;
-                    Child.m_Info.m_ParentPoolKey   = ParentInfo.m_PoolDetails.m_Key;
-                    Child.m_Info.m_ParentPoolIndex = ParentInfo.m_PoolDetails.m_PoolIndex;
-                }
+                AddOrRemoveComponents( PrefabInstanceArchetype.GetComponent<paperback::component::entity>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } )
+                                     , Add
+                                     , Remove
+                                     );
             }
         }
     }

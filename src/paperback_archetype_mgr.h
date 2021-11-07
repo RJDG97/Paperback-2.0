@@ -8,6 +8,25 @@ namespace paperback::entity
         vm::PoolDetails                 m_PoolDetails;
         component::entity::Validation   m_Validation;
     };
+
+    struct TempInfo
+    {
+        paperback::u64                  ArchetypeGuid;
+        vm::PoolDetails                 PoolDetails;
+        component::entity::Validation   Validation;
+    };
+}
+
+namespace RR_EntityInfo
+{
+    RTTR_REGISTRATION
+    {
+        rttr::registration::class_<paperback::entity::TempInfo>("Entity Info")
+        .constructor()(rttr::policy::ctor::as_object)
+        .property("Archetype Guid", &paperback::entity::TempInfo::ArchetypeGuid)
+        .property("PoolDetails", &paperback::entity::TempInfo::PoolDetails)
+        .property("Validation", &paperback::entity::TempInfo::Validation);
+    }
 }
 
 namespace paperback::archetype
@@ -31,6 +50,15 @@ namespace paperback::archetype
         PPB_INLINE
         manager( paperback::coordinator::instance& Coordinator );
 
+        PPB_INLINE
+        ~manager() 
+        {
+            ResetAllArchetypes();
+        }
+
+        PPB_INLINE
+        void Initialize( void ) noexcept;
+
 
         //-----------------------------------
 		//             Create
@@ -38,6 +66,9 @@ namespace paperback::archetype
 
         template < typename T_FUNCTION = paperback::empty_lambda >
         void CreateEntity( T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
+
+        PPB_INLINE
+        void CreatePrefab( void ) noexcept;
 
         template < typename... T_COMPONENTS >
         archetype::instance& GetOrCreateArchetype( void ) noexcept;
@@ -68,6 +99,15 @@ namespace paperback::archetype
 
 
         //-----------------------------------
+        //     Update Prefab Instances
+        //-----------------------------------
+
+        template < typename T_COMPONENT >
+        void UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+                                                         , const T_COMPONENT&  UpdatedComponent ) noexcept;
+
+
+        //-----------------------------------
 		//              Clear
 		//-----------------------------------
 
@@ -89,30 +129,31 @@ namespace paperback::archetype
         entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
         PPB_INLINE
-        archetype::instance& GetArchetypeFromEntity( const u32 EntityID ) const noexcept;
+        archetype::instance* FindArchetype( const u64& ArchetypeGuid ) const noexcept;
+
+        PPB_INLINE
+        archetype::instance& GetArchetype( const u64& ArchetypeGuid ) const noexcept;
 
         PPB_INLINE
         std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
-
-        /*
-        /*! Helper Functions
-        */
         PPB_INLINE
-        void RegisterEntity( const PoolDetails Details
-                           , archetype::instance& Archetype ) noexcept;
+        paperback::component::entity& RegisterEntity( const PoolDetails Details
+                                                    , archetype::instance& Archetype ) noexcept;
+
+        PPB_INLINE
+        EntityInfoList& GetEntityInfoList() noexcept;
+
 
         PPB_INLINE
         void RemoveEntity( const u32 SwappedGlobalIndex
-                         , const component::entity DeletedEntity ) noexcept;
-
-        PPB_INLINE
-        void InitializeParentChildAfterDeSerialization( void ) noexcept;
-
-        PPB_INLINE
-        void RevertParentChildBeforeSerialization( void ) noexcept;
+                         , const u32 DeletedEntityIndex ) noexcept;
 
     private:
+
+        //-----------------------------------
+        //         Helper Functions
+        //-----------------------------------
 
         PPB_INLINE
         u32 AppendEntity() noexcept;
@@ -129,13 +170,27 @@ namespace paperback::archetype
         template < typename... T_COMPONENTS >
         std::vector<archetype::instance*> Search( std::span<const component::info* const> Types ) const noexcept;
 
+        PPB_INLINE
+        void AddOrRemoveComponentsFromPrefabInstances( const entity::info& Info
+                                                     , std::span<const component::info* const> Add
+								                     , std::span<const component::info* const> Remove ) noexcept;
 
+  //      PPB_INLINE
+		//void UpdateReferencedPrefabInstanceOnAddRemove( const entity::info& Info
+  //                                                    , const u64 ComponentGuid ) noexcept;
+
+
+        paperback::coordinator::instance&   m_Coordinator;
         EntityInfoList                      m_EntityInfos       = std::make_unique<entity::info[]>( settings::max_entities_v );
         ArchetypeList                       m_pArchetypeList    {   };
         ArchetypeMap                        m_pArchetypeMap     {   };
         ArchetypeBitsList                   m_ArchetypeBits     {   };
-        uint32_t                            m_EntityIDTracker   { 0 };
-        EntityListHead                      m_AvailableIndexes  {   };
-        paperback::coordinator::instance&   m_Coordinator;
+        /*
+        For the "Linked-List":
+        - m_EntityHead stores -> m_PoolDetails.m_PoolIndex (Available Indexes)
+        - m_Validation.m_Next -> Move / Delete Indexes
+        */
+        u32                                 m_EntityHead        { 0 };
+
     };
 }

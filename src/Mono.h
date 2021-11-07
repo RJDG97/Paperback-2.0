@@ -39,55 +39,68 @@ public:
 
 		// Create domain (exits if unsuccessful)
 		m_pMonoDomain = mono_jit_init("Mono");
-		if (LoadAssembly(m_pMonoDomain)) {
+
+		if (LoadAssembly(m_pMonoDomain, "../CSScript/Scriptlib.dll")) {
 			// Add internal calls (Expose to C# script)
 			MONO_INTERNALS::MonoAddInternalCall();
 
 			// Add classes
-			m_pMainClass = ImportClass("CSScript", "Main");
+			m_pMainClass = ImportClass("CSScript", "MainApplication");
 
 			if (m_pMainClass) {
 				// Describe Method for main
-				m_pMainObj = GetClassInstance(".Main:getInst()", m_pMainClass);
+				m_pMainObj = GetClassInstance(".MainApplication:getInst()", m_pMainClass);
 
 				if (m_pMainObj) {
 					// Reference handler for specified class
 					m_MonoHandler = mono_gchandle_new(m_pMainObj, false);
 
 					// Add External Calls
-					m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".Main:main()");
+					m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".MainApplication:Main()");
 				}
 			}
 		}
 	}
 
-	void UpdateDLL()
+	bool UpdateDLL()
 	{
-		RunImportFn(m_pMainObj, m_pMainFn);
-
 		char m_DName[] = "Update";
+
 		if (m_UsingDomain1) {
+			std::system("mcs_ScriptRuntimelib.bat");
 			m_pMonoDomain2 = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain2, false);
-			LoadAssembly(m_pMonoDomain2);
-			// Unload Previous Domain
-			UnloadDomain(m_pMonoDomain);
-			m_UsingDomain1 = false;
+			if (LoadAssembly(m_pMonoDomain2, "../CSScript/ScriptRuntimelib.dll"))
+			{
+				// Unload Previous Domain
+				UnloadDomain(m_pMonoDomain);
+				m_UsingDomain1 = false;
+				return true;
+			}
+			else
+				UnloadDomain(m_pMonoDomain2);
+
 		}
 		else {
 			m_pMonoDomain = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain, false);
-			LoadAssembly(m_pMonoDomain);
-			// Unload Previous Domain
-			UnloadDomain(m_pMonoDomain2);
-			m_UsingDomain1 = true;
+			if (LoadAssembly(m_pMonoDomain, "../CSScript/Scriptlib.dll"))
+			{
+				// Unload Previous Domain
+				UnloadDomain(m_pMonoDomain2);
+				m_UsingDomain1 = true;
+				return UpdateDLL();
+			}
+			else
+				UnloadDomain(m_pMonoDomain);
 		}
+		return false;
 	}
 
-	bool LoadAssembly(MonoDomain* Domain)
+	bool LoadAssembly(MonoDomain* Domain, const char* dllname)
 	{
 		if (Domain) {	// load assembly 			
-			m_pMonoAssembly = mono_domain_assembly_open(Domain, "../Paperback_V2/bin/Debug/CSScript.dll");
+			m_pMonoAssembly = mono_domain_assembly_open(Domain, dllname);
 			if (m_pMonoAssembly) {	//	 Load mono image
 				m_pMonoImage = mono_assembly_get_image(m_pMonoAssembly);
 				if (m_pMonoImage)
@@ -149,6 +162,7 @@ public:
 			const char* exCString = mono_string_to_utf8(exString);
 
 			// Print Error
+			CRITICAL_PRINT(exCString);
 			PPB_ASSERT(exCString);
 		}
 	}
@@ -200,7 +214,7 @@ public:
 			PPB_ASSERT("Mono Image not initialized");
 			return nullptr;
 		}
-
+		
 		MonoClass* result = mono_class_from_name(m_pMonoImage, _namespace, _class);
 		if (!result) {
 			std::string str = _class;

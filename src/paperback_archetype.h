@@ -30,19 +30,29 @@ namespace paperback::archetype
         //-----------------------------------
 
         template< typename T_CALLBACK = paperback::empty_lambda >
-        void CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
-
-        PPB_INLINE
-        void CloneEntity( component::entity& Entity ) noexcept;
+        paperback::component::entity CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
         
+        // Called By Prefab Instance's Archetype
         PPB_INLINE
-        u32 DeleteEntity( const PoolDetails Details ) noexcept;
+        const u32 CloneEntity( component::entity& Entity ) noexcept;
+
+        // Called By The Prefab Archetype
+        PPB_INLINE
+        const u32 ClonePrefab( const u32 PrefabPoolIndex ) noexcept;
 
         PPB_INLINE
         void DestroyEntity( component::entity& Entity ) noexcept;
 
         PPB_INLINE
         void Clear( void ) noexcept;
+
+
+        //-----------------------------------
+        //            Transfer
+        //-----------------------------------
+
+        template < typename T_FUNCTION = paperback::empty_lambda >
+        component::entity TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
 
         //-----------------------------------
@@ -69,9 +79,6 @@ namespace paperback::archetype
         requires( !(( std::is_reference_v<T_COMPONENTS> ) && ...) )
         constexpr auto GetComponentArray( vm::instance& Pool, u32 PoolIndex, std::tuple<T_COMPONENTS...>* ) const noexcept;
 
-        template < typename T_FUNCTION = paperback::empty_lambda >
-        component::entity TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
-
 
         //-----------------------------------
         //              Guard
@@ -84,7 +91,7 @@ namespace paperback::archetype
         void AccessGuard( T_FUNCTION&& Function ) noexcept;
 
         PPB_INLINE
-        void UpdateStructuralChanges() noexcept;
+        void UpdateStructuralChanges( void ) noexcept;
 
 
         //-----------------------------------
@@ -93,6 +100,12 @@ namespace paperback::archetype
 
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
+
+        // Called by the Prefab Instance Archetype to Allocate Memory
+        PPB_INLINE
+        void InitializePrefabInstances( const u32 InstanceCount
+                                      , const u32 PrefabPoolIndex
+                                      , vm::instance& PrefabPool ) noexcept;
 
 
         //-----------------------------------
@@ -106,7 +119,7 @@ namespace paperback::archetype
         archetype::instance* GetArchetypePointer( const u32 Index ) noexcept;
 
         PPB_INLINE
-        u32 GetEntityCount( void ) const noexcept;
+        u32 GetCurrentEntityCount( void ) const noexcept;
 
         PPB_INLINE
         ComponentPool& GetComponentPools( void ) noexcept;
@@ -121,13 +134,13 @@ namespace paperback::archetype
         ComponentInfos& GetComponentInfos( void ) noexcept;
 
         PPB_INLINE
-        u32& GetComponentNumber(void) noexcept;
+        const u32 GetComponentCount( void ) const noexcept;
 
         PPB_INLINE
         bool CheckComponentExistence( const component::info* Info) noexcept;
 
         PPB_INLINE
-        tools::bits& GetComponentBits( void ) noexcept;
+        const tools::bits GetComponentBits( void ) noexcept;
 
         PPB_INLINE
         const guid& GetArchetypeGuid( void ) const noexcept;
@@ -136,19 +149,16 @@ namespace paperback::archetype
     private:
 
         PPB_INLINE
-        void UnlinkChildrenAndParents( const PoolDetails Details ) noexcept;
+        const vm::PoolDetails ClonePrefabComponents( const u32 PrefabPoolIndex
+                                                   , vm::instance& PrefabPool ) noexcept;
 
-        coordinator::instance&        m_Coordinator;
+        coordinator::instance&        m_Coordinator;                                              // Coordinator Reference
         ComponentPool                 m_ComponentPool            {   };                           // Component Pool
         ComponentInfos                m_ComponentInfos           {   };                           // Component Infos
-        MoveList                      m_MoveList                 {   };                           // List of entities to be moved
-        DeleteList                    m_DeleteList               {   };                           // List of entities to be deleted
         tools::bits                   m_ComponentBits            {   };                           // Component Signature
         std::string                   m_pName                    { "Unnamed Archetype" };         // Archetype name for reflecting in Editor
         guid                          m_ArchetypeGuid            {   };                           // Archetype unique signature
-        u32                           m_EntityCount              { 0 };                           // Number of Entities within Archetype
-        u32                           m_PoolAllocationIndex      { 0 };                           // Determines which pool to allocate to - 0 Default      ( TO FIX )
+        u32                           m_PoolAllocationIndex      { 0 };                           // Determines which pool to allocate to - 0 Default
         u32                           m_ProcessReference         { 0 };                           // Set to 1 when Archetype is updating
-        u32                           m_NumberOfComponents       { 0 };                           // Number of components
     };
 }
