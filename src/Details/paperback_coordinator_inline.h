@@ -73,6 +73,37 @@ namespace paperback::coordinator
 		m_CompMgr.RegisterComponents<T_COMPONENTS...>();
 	}
 
+	template < typename T_EVENT >
+    void instance::RegisterEvent( void ) noexcept
+	{
+		m_GlobalEventMgr.RegisterEvent<T_EVENT>( );
+	}
+
+    template < paperback::concepts::Event T_EVENT
+             , typename                   T_CLASS >
+    void instance::RegisterEventClass( T_CLASS* Class ) noexcept
+	{
+		m_GlobalEventMgr.RegisterEventClass<T_EVENT>( static_cast<T_CLASS*>( Class ) );
+	}
+
+
+    //-----------------------------------
+    //             Removal
+    //-----------------------------------
+
+    template < paperback::concepts::Event T_EVENT >
+    void instance::RemoveEvent( void ) noexcept
+	{
+		m_GlobalEventMgr.RemoveEvent<T_EVENT>( );
+	}
+
+    template < paperback::concepts::Event T_EVENT
+             , typename                   T_CLASS >
+    void instance::RemoveEventClass( T_CLASS* Class ) noexcept
+	{
+		m_GlobalEventMgr.RemoveEventClass<T_EVENT>( static_cast<T_CLASS*>( Class ) );
+	}
+
 
 	//-----------------------------------
 	//           Save Scene
@@ -166,7 +197,7 @@ namespace paperback::coordinator
 	void instance::OpenScene( const std::string& FilePath ) noexcept
 	{
 		JsonFile Jfile;
-
+		Initialize();
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Entities");
 		Jfile.EndReader();
@@ -181,9 +212,10 @@ namespace paperback::coordinator
 		return m_ArchetypeMgr.GetOrCreateArchetype<T_COMPONENTS...>( );
 	}
 
-	archetype::instance& instance::GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept
+	archetype::instance& instance::GetOrCreateArchetype( const tools::bits ArchetypeSignature
+													   , std::string ArchetypeName ) noexcept
 	{
-		return m_ArchetypeMgr.GetOrCreateArchetype( ArchetypeSignature );
+		return m_ArchetypeMgr.GetOrCreateArchetype( ArchetypeSignature, ArchetypeName );
 	}
 
 	void instance::CreatePrefab( void ) noexcept
@@ -482,6 +514,18 @@ namespace paperback::coordinator
 	bool instance::IsMouseUp( int Key ) noexcept
 	{
 		return m_Input.IsMouseUp( Key );
+	}
+
+
+	//-----------------------------------
+    //         Event Broadcast
+    //-----------------------------------
+
+    template < paperback::concepts::Event T_EVENT
+             , typename...                T_ARGS >
+    void instance::BroadcastEvent( T_ARGS&&... Args ) const noexcept
+	{
+		m_GlobalEventMgr.BroadcastEvent<T_EVENT>( std::forward< T_ARGS&& >( Args )... );
 	}
 
 

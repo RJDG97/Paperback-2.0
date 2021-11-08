@@ -22,7 +22,7 @@ namespace paperback::archetype
         instance( coordinator::instance& Coordinator, const tools::bits& ComponentBits ) noexcept;
 
         PPB_INLINE
-        void Init( std::span<const component::info* const> Types, const u32 NumComponents, const std::string Name = "unnamed archetype") noexcept;
+        void Init( std::span<const component::info* const> Types, const u32 NumComponents, const std::string Name = "Unnamed Archetype") noexcept;
 
 
         //-----------------------------------

@@ -11,7 +11,7 @@ namespace paperback
 		concept System						= std::derived_from< T_SYSTEM, system::instance >;
 
 		template < typename T_EVENT >
-		concept Event						= xcore::types::is_specialized_v< T_EVENT, paperback::event::instance >;
+		concept Event						= std::is_base_of_v< paperback::event::event_interface, T_EVENT >;
 
 		template < typename T_SYSTEM >
 		concept HasEvent					= !( std::is_same_v< typename T_SYSTEM::events, system::system_interface::events > );

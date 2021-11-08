@@ -15,6 +15,7 @@ namespace paperback::archetype
         {
             m_EntityInfos[ i ].m_PoolDetails.m_PoolIndex = i + 1;
         }
+        m_EntityHead = 0;
     }
 
 
@@ -48,7 +49,7 @@ namespace paperback::archetype
         return GetOrCreateArchetype( ComponentList, sizeof...( T_COMPONENTS ) + 1 );
     }
 
-    archetype::instance& manager::GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept
+    archetype::instance& manager::GetOrCreateArchetype( const tools::bits ArchetypeSignature, std::string ArchetypeName ) noexcept
     {
         for ( auto& ArchetypeBits : m_ArchetypeBits )
         {
@@ -69,7 +70,7 @@ namespace paperback::archetype
                 InfoList[ Count++ ] = m_Coordinator.FindComponentInfoFromUID( i );
         }
 
-        auto& Archetype = CreateAndInitializeArchetype( InfoList, Count, ArchetypeSignature );
+        auto& Archetype = CreateAndInitializeArchetype( InfoList, Count, ArchetypeSignature, ArchetypeName );
 
         return Archetype;
     }
@@ -194,7 +195,7 @@ namespace paperback::archetype
 			}
             
             // Construct New Archetype
-			auto& NewArchetype = CreateAndInitializeArchetype( NewComponentInfoList, Count, UpdatedSignature );
+			auto& NewArchetype = CreateAndInitializeArchetype( NewComponentInfoList, Count, UpdatedSignature, OriginalArchetype->GetName() );
 
             /*
                 Transfer components over to new archetype - But don't delete old entity yet
@@ -444,14 +445,15 @@ namespace paperback::archetype
 
     archetype::instance& manager::CreateAndInitializeArchetype( std::span<const component::info* const> Types
                                                               , const u32 Count
-                                                              , const tools::bits& Signature ) noexcept
+                                                              , const tools::bits& Signature
+                                                              , std::string ArchetypeName ) noexcept
     {
         m_pArchetypeList.push_back( std::make_unique<archetype::instance>( m_Coordinator, Signature ) );
 		m_ArchetypeBits.push_back( Signature );
 
         auto p = m_pArchetypeList.back().get();
 
-        p->Init( Types, Count );
+        p->Init( Types, Count, ArchetypeName );
         if (m_pArchetypeMap.find(p->GetArchetypeGuid().m_Value) != m_pArchetypeMap.end())
             m_pArchetypeMap[p->GetArchetypeGuid().m_Value] = p;
         else

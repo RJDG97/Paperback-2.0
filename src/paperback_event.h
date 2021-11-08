@@ -40,6 +40,8 @@ namespace paperback::event
 	//           Event Info
 	//-----------------------------------
 
+	struct event_interface;
+
 	namespace type
 	{
 		using guid = xcore::guid::unit<64, struct event_tag>;
@@ -52,8 +54,8 @@ namespace paperback::event
 
 		struct info
 		{
-			type::guid	      m_Guid;
-			const char*       m_pName;
+			const type::guid	      m_Guid;
+			const event::type::id	  m_ID;
 		};
 
 
@@ -63,18 +65,15 @@ namespace paperback::event
 
         struct global
         {
-            static constexpr auto id_v       = id::GLOBAL;
+            const type::guid        m_Guid       { };
+            static constexpr auto id_v       = event::type::id::GLOBAL;
 
-            type::guid                         m_Guid { };
-            const char*                        m_pName{ };
         };
 
         struct post
         {
-            static constexpr auto id_v       = id::POST;
-
-            type::guid                         m_Guid { };
-            const char*                        m_pName{ };
+            const type::guid        m_Guid       { };
+            static constexpr auto   id_v       = event::type::id::POST;
         };
 	}
 
@@ -85,22 +84,25 @@ namespace paperback::event
 
 	namespace details
     {
-        template< typename T_SYSTEM >
+        template< typename T_CLASS >
         consteval event::type::info CreateInfo( void ) noexcept;
 
-        template< typename T >
-        static constexpr auto info_v = event::details::CreateInfo<T>();
+        template< typename T_CLASS >
+        static constexpr auto info_v = event::details::CreateInfo<T_CLASS>();
     }
 
-    template< typename T_SYSTEM >
-    constexpr auto& info_v = details::info_v< paperback::BaseType<T_SYSTEM> >;
+    template< typename T_CLASS >
+    constexpr auto& info_v = event::details::info_v< T_CLASS >;
 
 
 	//-----------------------------------
 	//          Event Instance
 	//-----------------------------------
 
-	struct event_interface {};
+	struct event_interface
+	{
+		constexpr static auto typedef_v = paperback::event::type::global {};
+	};
 
 	template < typename... T_ARGS >
 	struct instance : event_interface

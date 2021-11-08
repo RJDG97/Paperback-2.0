@@ -110,7 +110,7 @@ namespace paperback::archetype
         PrefabInstanceSignature.Set( component::info_v<reference_prefab>.m_UID );
 
         // Get Prefab Instance
-        auto& PrefabInstanceArchetype = m_Coordinator.GetOrCreateArchetype( PrefabInstanceSignature );
+        auto& PrefabInstanceArchetype = m_Coordinator.GetOrCreateArchetype( PrefabInstanceSignature, m_pName );
 
         // Transfer relevant components from Prefab ( Current Archetype calling ClonePrefab )
         // Creates a New Prefab Instance within ClonePrefabComponents

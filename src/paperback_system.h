@@ -232,6 +232,20 @@ namespace paperback::system
 		//    Extra System Functionality
 		//-----------------------------------
 
+		template < typename T_EVENT >
+        void RegisterGlobalEvent( void ) noexcept;
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename                   T_CLASS >
+        void RegisterGlobalEventClass( T_CLASS* Class ) noexcept;
+
+		template < paperback::concepts::Event T_EVENT >
+        void RemoveGlobalEvent( void ) noexcept;
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename                   T_CLASS >
+        void RemoveGlobalEventClass( T_CLASS* Class ) noexcept;
+
 		template < typename... T_COMPONENTS >
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
@@ -248,6 +262,10 @@ namespace paperback::system
 		requires ( std::derived_from< T_SYSTEM, paperback::system::instance >
 			  && ( !std::is_same_v< typename T_SYSTEM::events, paperback::system::system_interface::events > ))
 		void BroadcastEvent( T_SYSTEM* System, T_ARGS&&... Args ) noexcept;
+
+		template < paperback::concepts::Event T_EVENT
+                 , typename...                T_ARGS >
+        void BroadcastGlobalEvent( T_ARGS&&... Args ) const noexcept;
 
 		PPB_INLINE
         paperback::entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;

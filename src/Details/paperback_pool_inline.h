@@ -78,9 +78,9 @@ namespace paperback::vm
 		PPB_ASSERT_MSG( Entity.IsZombie(), "DestroyEntity: Attemping to double delete an entity" );
 
         auto& EntityInfo = m_pCoordinator->GetEntityInfo( Entity );
-        auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails.m_PoolIndex ); // Replace this
+        auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails.m_PoolIndex );
 
-        PPB_ASSERT_MSG( Entity != PoolEntity, "DestroyEntity: Entity addresses are different" );
+        PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
 
         Entity.m_Validation.m_bZombie
             = EntityInfo.m_Validation.m_bZombie
@@ -288,8 +288,9 @@ namespace paperback::vm
         {
             auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
 
-            if ( Info.m_Destructor )
-				Info.m_Destructor( &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
+			// Causes Double Delete
+			//if ( Info.m_Destructor )
+			//Info.m_Destructor( &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
             
             if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
         }

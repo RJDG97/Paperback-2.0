@@ -44,6 +44,30 @@ namespace paperback::coordinator
 		template< typename... T_COMPONENTS >
 		constexpr void RegisterComponents( void ) noexcept;
 
+		template < typename T_EVENT >
+        void RegisterEvent( void ) noexcept;
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename                   T_CLASS >
+        void RegisterEventClass( T_CLASS* Class ) noexcept;
+
+
+        //-----------------------------------
+        //             Removal
+        //-----------------------------------
+
+        template < paperback::concepts::Event T_EVENT >
+        void RemoveEvent( void ) noexcept;
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename                   T_CLASS >
+        void RemoveEventClass( T_CLASS* Class ) noexcept;
+
+
+		//-----------------------------------
+		//          Serialization
+		//-----------------------------------
+
 		PPB_INLINE
 		void SaveScene(const std::string& FilePath) noexcept;
 
@@ -59,7 +83,8 @@ namespace paperback::coordinator
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
 		PPB_INLINE
-		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
+		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature
+												 , std::string ArchetypeName = "Unnamed Archetype" ) noexcept;
 
 		PPB_INLINE
 		void CreatePrefab( void ) noexcept;
@@ -105,7 +130,6 @@ namespace paperback::coordinator
         std::vector<archetype::instance*> Search( const tools::query& Query ) const noexcept;
         
 
-
 		//-----------------------------------
 		//           Game Loops
 		//-----------------------------------
@@ -149,6 +173,7 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		std::vector<fs::path>& GetDragDropFiles() noexcept;
+
 
 		//-----------------------------------
 		//              Clock
@@ -202,6 +227,15 @@ namespace paperback::coordinator
 		bool IsMouseUp( int Key ) noexcept;
 
 
+		//-----------------------------------
+        //         Event Broadcast
+        //-----------------------------------
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename...                T_ARGS >
+        void BroadcastEvent( T_ARGS&&... Args ) const noexcept;
+
+
 		/*
         /*! Friend Classes
         */
@@ -228,6 +262,7 @@ namespace paperback::coordinator
 		component::manager			m_CompMgr;						// Component Manager
 		archetype::manager			m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				m_SystemMgr{ m_Clock };			// System Manager
+		event::manager				m_GlobalEventMgr;				// Global Event Manager
 		bool						m_GameActive = true;			// Game Status
 	};
 }

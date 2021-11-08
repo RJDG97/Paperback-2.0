@@ -7,16 +7,21 @@ struct random_system : paperback::system::instance
         .m_pName = "random_system"
     };
 
-    // Declare an Event Instance
-    // Specify argument types inside of Template Parameters
-    using test_event = paperback::event::instance<std::string>;
+    struct test : paperback::event::instance<std::string&>
+    {};
 
-    // Declare a "list" of Events
-    using events = std::tuple< test_event >;
+    /* USED FOR SYSTEM EVENTS */
+    //// Declare an Event Instance
+    //// Specify argument types inside of Template Parameters
+    //using test_event = paperback::event::instance<std::string>;
+
+    //// Declare a "list" of Events
+    //using events = std::tuple< test_event >;
 
     PPB_FORCEINLINE
     void operator()( paperback::component::entity& Entity ) noexcept
     {
-        BroadcastEvent<test_event>( this, "Broadcasting event from random_system" );
+        //std::string abc { "Broadcasting event from random_system" };
+        //BroadcastGlobalEvent<test>( abc );
     }
 };

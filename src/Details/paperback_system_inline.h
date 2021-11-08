@@ -90,6 +90,33 @@ namespace paperback::system
 	//-----------------------------------
 	//   System Instance Functionality
 	//-----------------------------------
+
+	template < typename T_EVENT >
+    void instance::RegisterGlobalEvent( void ) noexcept
+	{
+		m_Coordinator.RegisterEvent<T_EVENT>( );
+	}
+
+    template < paperback::concepts::Event T_EVENT
+             , typename                   T_CLASS >
+    void instance::RegisterGlobalEventClass( T_CLASS* Class ) noexcept
+	{
+		m_Coordinator.RegisterEventClass<T_EVENT>( static_cast<T_CLASS*>( Class ) );
+	}
+
+    template < paperback::concepts::Event T_EVENT >
+    void instance::RemoveGlobalEvent( void ) noexcept
+	{
+		m_Coordinator.RemoveEvent<T_EVENT>( );
+	}
+
+    template < paperback::concepts::Event T_EVENT
+             , typename                   T_CLASS >
+    void instance::RemoveGlobalEventClass( T_CLASS* Class ) noexcept
+	{
+		m_Coordinator.RemoveEventClass<T_EVENT>( static_cast<T_CLASS*>( Class ) );
+	}
+
 	template < typename... T_COMPONENTS >
 	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
@@ -118,6 +145,13 @@ namespace paperback::system
 	{
 		std::get<T_EVENT>( reinterpret_cast< system::details::completed<T_SYSTEM>* >( System )->m_Events )
 			.BroadcastEvent( std::forward<T_ARGS&&>( Args ) ... );
+	}
+
+	template < paperback::concepts::Event T_EVENT
+             , typename...                T_ARGS >
+    void instance::BroadcastGlobalEvent( T_ARGS&&... Args ) const noexcept
+	{
+		m_Coordinator.BroadcastEvent<T_EVENT>( std::forward<T_ARGS&&>( Args )... );
 	}
 
 	paperback::entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept

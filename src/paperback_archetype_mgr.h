@@ -74,7 +74,8 @@ namespace paperback::archetype
         archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
         PPB_INLINE
-		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
+		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature
+                                                 , std::string ArchetypeName ) noexcept;
 
         
         template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
@@ -165,7 +166,8 @@ namespace paperback::archetype
         PPB_INLINE
         archetype::instance& CreateAndInitializeArchetype( std::span<const component::info* const> Types
                                                          , const u32 Count
-                                                         , const tools::bits& Signature ) noexcept;
+                                                         , const tools::bits& Signature
+                                                         , std::string ArchetypeName = "Unnamed Archetype" ) noexcept;
 
         template < typename... T_COMPONENTS >
         std::vector<archetype::instance*> Search( std::span<const component::info* const> Types ) const noexcept;
@@ -174,10 +176,6 @@ namespace paperback::archetype
         void AddOrRemoveComponentsFromPrefabInstances( const entity::info& Info
                                                      , std::span<const component::info* const> Add
 								                     , std::span<const component::info* const> Remove ) noexcept;
-
-  //      PPB_INLINE
-		//void UpdateReferencedPrefabInstanceOnAddRemove( const entity::info& Info
-  //                                                    , const u64 ComponentGuid ) noexcept;
 
 
         paperback::coordinator::instance&   m_Coordinator;
