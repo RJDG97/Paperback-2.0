@@ -72,7 +72,8 @@ void InitializeGame()
             listener,
             parent,
             child,
-            offset
+            offset,
+            Collidable
         >();
     }
 
@@ -96,7 +97,11 @@ void InitializeGame()
         //PPB.OpenScene("../../resources/assetloading/SampleScene.json");
 
         // Right Box
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, boundingbox& bbox, sphere& sphere, rigidbody& rb, rigidforce& rf)
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, 
+            scale& Scale, rotation& Rotation, 
+            boundingbox& bbox, sphere& sphere, 
+            rigidbody& rb, rigidforce& rf,
+            Collidable& collidable)
             {
                 Transform.m_Offset.x = 0.f;
                 Transform.m_Offset.y = 0.f;
@@ -129,11 +134,17 @@ void InitializeGame()
                 Rotation.m_Value.x = 1;
                 Rotation.m_Value.y = 0;
                 Rotation.m_Value.z = 0;
+
+                collidable.Set(CollisionLayer::BACKGROUND);
     
                 Mesh.m_Model = "Box";
             });
         // Left Box
-        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, boundingbox& bbox, sphere& sphere, rigidbody& rb, rigidforce& rf)
+        PPB.CreateEntity([&](transform& Transform, mesh& Mesh, 
+            scale& Scale, rotation& Rotation, 
+            boundingbox& bbox, sphere& sphere, 
+            rigidbody& rb, rigidforce& rf,
+            Collidable& collidable)
             {
                 
                 Transform.m_Offset.x = 0.f;
@@ -166,6 +177,8 @@ void InitializeGame()
                 Rotation.m_Value.x = 1;
                 Rotation.m_Value.y = 0;
                 Rotation.m_Value.z = 0;
+
+                collidable.Set(2);
     
                 Mesh.m_Model = "Box";
             });

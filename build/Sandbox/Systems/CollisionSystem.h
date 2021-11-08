@@ -11,7 +11,7 @@ struct collision_system : paperback::system::instance
         .m_pName = "collision_system"
     };
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, Collidable* col1) noexcept
     {
         if ( Entity.IsZombie() ) return;
 
@@ -23,7 +23,7 @@ struct collision_system : paperback::system::instance
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
 
-        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball) noexcept -> bool
+        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, Collidable* col2) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
 
@@ -40,17 +40,22 @@ struct collision_system : paperback::system::instance
                     // added to parameters
                     if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                     {
-                        if (RigidForce && RF /* && !Boundingbox->m_Collided*/)
+                        if (col1->m_CollidableLayers.Has(col2->m_CollisionLayer ) )
                         {
-                          bool checker = CheapaabbDynamic(
-                              Boundingbox,
-                              RigidForce,
-                              Transform,
-                              BB,
-                              RF,
-                              Xform);
+                            // Collision Response because Entity is marked as collidable against ForEach_Entity
+                            if (RigidForce && RF /* && !Boundingbox->m_Collided*/)
+                            {
+                                bool checker = CheapaabbDynamic(
+                                    Boundingbox,
+                                    RigidForce,
+                                    Transform,
+                                    BB,
+                                    RF,
+                                    Xform);
+                            }
+                            Boundingbox->m_Collided = BB->m_Collided = true;
                         }
-                        Boundingbox->m_Collided = BB->m_Collided = true;
+                        
                     }
                     else
                         Boundingbox->m_Collided = BB->m_Collided = false;

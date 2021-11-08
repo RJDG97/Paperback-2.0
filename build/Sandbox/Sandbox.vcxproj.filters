@@ -120,5 +120,8 @@
     <ClInclude Include="Systems\WindowSystem.h">
       <Filter>Source Files\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\CollisionLayer.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
