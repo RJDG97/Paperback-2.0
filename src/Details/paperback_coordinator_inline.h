@@ -100,31 +100,31 @@ namespace paperback::coordinator
 		// Serialize Prefabs 
 		for (auto& Archetype : PPB.GetArchetypeList())
 		{
-			if ( Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID) ) //Have prefab component
-			{
-				JFile.StartObject().WriteKey(("Prefab " + Archetype->GetName()).c_str()).StartArray();
+			//if ( Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID) ) //Have prefab component
+			//{
+			//	JFile.StartObject().WriteKey((Archetype->GetName()).c_str()).StartArray();
 
-				//Serialize GUIDs
+			//	//Serialize GUIDs
 
-				JFile.StartObject().WriteKey("Guid").StartArray();
-				auto& ComponentInfoArray = Archetype->GetComponentInfos();
+			//	JFile.StartObject().WriteKey("Guid").StartArray();
+			//	auto& ComponentInfoArray = Archetype->GetComponentInfos();
 
-				for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
-				{
-					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
-					JFile.WriteGuid(Temp);
-				}
+			//	for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+			//	{
+			//		Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+			//		JFile.WriteGuid(Temp);
+			//	}
 
-				JFile.EndArray().EndObject();
+			//	JFile.EndArray().EndObject();
 
-				//Serialize Components
+			//	//Serialize Components
 
-				Archetype->SerializeAllEntities(JFile);
+			//	Archetype->SerializeAllEntities(JFile);
 
-				JFile.EndArray().EndObject();
-			}
-			else
-			{
+			//	JFile.EndArray().EndObject();
+			//}
+			//else
+			//{
 				// Serialize Prefabs Instances + Normal Entities
 				JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
 
@@ -148,7 +148,7 @@ namespace paperback::coordinator
 
 				JFile.EndArray().EndObject();
 
-			}
+			//}
 		}
 
 		JFile.EndArray().EndObject().EndWriter();
@@ -189,6 +189,8 @@ namespace paperback::coordinator
 	void instance::OpenScene( const std::string& FilePath ) noexcept
 	{
 		JsonFile Jfile;
+
+		Initialize();
 
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Entities");
@@ -283,6 +285,15 @@ namespace paperback::coordinator
 	{
 		m_ArchetypeMgr.ResetAllArchetypes();
 	}
+
+	template < typename T_COMPONENT >
+	void instance::UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+															   , const T_COMPONENT&  UpdatedComponent ) noexcept
+	{
+		m_ArchetypeMgr.UpdatePrefabInstancesOnPrefabComponentUpdate(PrefabInfo, UpdatedComponent);
+	}
+
+
 
 
 	//-----------------------------------

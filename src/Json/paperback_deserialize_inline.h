@@ -261,6 +261,12 @@ namespace paperback::deserialize
 
             if (obj.is_type<parent>())
                 NewArchetype->GetComponent<parent>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<parent>();
+
+            if (obj.is_type<prefab>())
+                NewArchetype->GetComponent<prefab>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<prefab>();
+
+            if (obj.is_type<reference_prefab>())
+                NewArchetype->GetComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<reference_prefab>();
         }
     }
 
@@ -324,22 +330,22 @@ namespace paperback::deserialize
                         }
                     }
                 }
-                //else
-                //{
-                //   // Shld enter here first since Archetype Manager stuff isnt in an array + First item in the json
-                //   //Access the Archetype Manager Data Stuff
+                else
+                {
+                   // Shld enter here first since Archetype Manager stuff isnt in an array + First item in the json
+                   //Access the Archetype Manager Data Stuff
 
-                //   rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
-                //   rttr::variant obj = type.get_constructor().invoke();
+                   rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
+                   rttr::variant obj = type.get_constructor().invoke();
 
-                //   if (!obj.is_type<paperback::component::temp_guid>())
-                //       ReadRecursive(obj, mitr->value);
+                   if (!obj.is_type<paperback::component::temp_guid>())
+                       ReadRecursive(obj, mitr->value);
 
-                //   if (obj.is_type<paperback::archetype::TempMgr>())
-                //   {
-                //       PPB.SetEntityHead(obj.get_value<paperback::archetype::TempMgr>().EntityHead);
-                //   }
-                //}
+                   if (obj.is_type<paperback::archetype::TempMgr>())
+                   {
+                       PPB.SetEntityHead(obj.get_value<paperback::archetype::TempMgr>().EntityHead);
+                   }
+                }
             }
         }
     }

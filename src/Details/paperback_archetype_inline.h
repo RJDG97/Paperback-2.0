@@ -54,7 +54,7 @@ namespace paperback::archetype
                 Function( m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<T_COMPONENTS>( PoolIndex ) ... );
             }
         
-            // Generates Global Index
+             //Generates Global Index
             //return m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
             //                                          {
             //                                              .m_Key       = m_PoolAllocationIndex
@@ -84,12 +84,15 @@ namespace paperback::archetype
         if ( UpdatedPoolDetails.m_Key == EntityInfo.m_PoolDetails.m_Key )
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex );
 
-        // Assign Newly Cloned Prefab Instance's Global Index to Prefab Parent - Uncomment when cloning prefabs
-        //auto& Cloned_ReferencePrefab = GetComponent<reference_prefab>( UpdatedPoolDetails );                        // Prefab Instance
-        //auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab.m_PrefabGID );           // Prefab
-        //auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
-        //PrefabComponent.AddPrefabInstance( ClonedEntity.m_GlobalIndex );                                            // Add Prefab Instance GID to Prefab - For future modifications
+        // Assign Newly Cloned Prefab Instance's Global Index to Prefab Parent
+        auto Cloned_ReferencePrefab = FindComponent<reference_prefab>( UpdatedPoolDetails );                        // Prefab Instance
 
+        if (Cloned_ReferencePrefab)
+        {
+            auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab->m_PrefabGID );           // Prefab
+            auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
+            PrefabComponent.AddPrefabInstance( ClonedEntity.m_GlobalIndex );                                            // Add Prefab Instance GID to Prefab - For future modifications
+        }
         // For when separate component pools are implemented in the future
         /* 
         else
@@ -104,6 +107,7 @@ namespace paperback::archetype
     {
         // Copy Bit Signature of Prefab to update accordingly for Prefab Instance
         tools::bits PrefabInstanceSignature = m_ComponentBits;
+        vm::PoolDetails m_PrefabDetails{ vm::PoolDetails{.m_Key = 0, .m_PoolIndex = PrefabPoolIndex } };
 
         // Update Prefab Instance's Bit Signature
         PrefabInstanceSignature.Remove( component::info_v<prefab>.m_UID );
@@ -117,12 +121,17 @@ namespace paperback::archetype
         auto PI_PoolDetails = PrefabInstanceArchetype.ClonePrefabComponents( PrefabPoolIndex
                                                                            , m_ComponentPool[ 0 ] );
 
+        auto& Cloned_ReferencePrefab       = PrefabInstanceArchetype.GetComponent<reference_prefab>( PI_PoolDetails );
+        Cloned_ReferencePrefab.m_PrefabGID = GetComponent<paperback::component::entity>( m_PrefabDetails ).m_GlobalIndex;
+
         auto& ClonedPrefab = m_Coordinator.RegisterEntity( PI_PoolDetails
                                                          , PrefabInstanceArchetype );
 
+        GetComponent<prefab>( m_PrefabDetails ).AddPrefabInstance( ClonedPrefab.m_GlobalIndex );
+
         return ClonedPrefab.m_GlobalIndex;
-    }
-    
+    }    
+
     void instance::DestroyEntity( component::entity& Entity ) noexcept
     {
         auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity );
@@ -342,7 +351,7 @@ namespace paperback::archetype
     //       Data Member Getters
     //-----------------------------------
 
-    std::vector <rttr::instance> instance::GetEntityComponents( const u32 Index ) noexcept
+    std::vector < std::pair < rttr::instance, paperback::component::type::guid > > instance::GetEntityComponents( const u32 Index ) noexcept
     {
         return m_ComponentPool[0].GetComponents(Index);
     }

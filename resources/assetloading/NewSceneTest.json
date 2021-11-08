@@ -2,16 +2,314 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 3
+                "EntityHead": 4
             }
         },
         {
-            "Box": [
+            "test": [
                 {
                     "Guid": [
                         0,
                         9604788041699812520,
                         5691439207370049121,
+                        18285106494192445205,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 9
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.078896999359131,
+                            "y": 6.756092071533203,
+                            "z": -9.33728313446045
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 12
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 7.750462532043457,
+                            "y": 5.174882888793945,
+                            "z": -9.36488151550293
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.8299843072891236,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 2.5858964920043947,
+                            "y": 2.148526430130005,
+                            "z": -9.417707443237305
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 10
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.7578113079071047,
+                            "y": 5.987050533294678,
+                            "z": -9.350706100463868
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                }
+            ]
+        },
+        {
+            "Prefab": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
                         18285106494192445205,
                         14486341741652966143,
                         8536778051349317767,
@@ -29,172 +327,19 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sphere": {
-                        "Radius": 0.0,
-                        "Is Collide": false
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 2
-                    },
-                    "Mesh": {
-                        "Model Mesh": "Box"
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sphere": {
-                        "Radius": 0.0,
-                        "Is Collide": false
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    }
-                }
-            ]
-        },
-        {
-            "Parent ID 0": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        13107566195444653040,
-                        18285106494192445205,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 0
-                    },
-                    "Mesh": {
-                        "Model Mesh": "Box"
-                    },
-                    "Scale": {
-                        "Scale": {
                             "x": 1.0,
                             "y": 1.0,
                             "z": 1.0
                         }
                     },
-                    "Parent": {
-                        "Children GID": [
-                            1
+                    "Prefab": {
+                        "Prefab": [
+                            4,
+                            5,
+                            13,
+                            8,
+                            1,
+                            10
                         ]
                     },
                     "Sphere": {
@@ -227,9 +372,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 25.780553817749025,
-                            "y": 5.5,
-                            "z": -7.0
+                            "x": -8.10974407196045,
+                            "y": 2.6713192462921144,
+                            "z": -9.40858268737793
                         }
                     },
                     "RigidForce": {
@@ -256,13 +401,183 @@
             ]
         },
         {
-            "CHilde ID 1": [
+            "Prefab 1 inst": [
                 {
                     "Guid": [
                         0,
                         9604788041699812520,
                         5691439207370049121,
-                        1259829869932243375,
+                        18285106494192445205,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 5
+                    },
+                    "Mesh": {
+                        "Model Mesh": ""
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 3
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 13
+                    },
+                    "Mesh": {
+                        "Model Mesh": ""
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 3
+                    }
+                }
+            ]
+        },
+        {
+            "Parent": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        13107566195444653040,
                         18285106494192445205,
                         14486341741652966143,
                         8536778051349317767,
@@ -273,7 +588,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 1
+                        "Global Index": 0
                     },
                     "Mesh": {
                         "Model Mesh": "Box"
@@ -285,8 +600,10 @@
                             "z": 1.0
                         }
                     },
-                    "Child": {
-                        "Parent GID": 0
+                    "Parent": {
+                        "Children GID": [
+                            2
+                        ]
                     },
                     "Sphere": {
                         "Radius": 0.0,
@@ -318,9 +635,499 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 25.780553817749025,
-                            "y": 5.5,
-                            "z": -7.0
+                            "x": -3.078896999359131,
+                            "y": 2.148526430130005,
+                            "z": -9.417707443237305
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 8
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            11
+                        ]
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.078896999359131,
+                            "y": 2.148526430130005,
+                            "z": -9.417707443237305
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 1
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            14
+                        ]
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.078896999359131,
+                            "y": 2.148526430130005,
+                            "z": -9.417707443237305
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                }
+            ]
+        },
+        {
+            "Childe": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        18285106494192445205,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 15
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 14
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.078896999359131,
+                            "y": 2.148526430130005,
+                            "z": -9.417707443237305
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                }
+            ]
+        },
+        {
+            "Child": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        18285106494192445205,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 2
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 0
+                    },
+                    "Parent": {
+                        "Children GID": []
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.078896999359131,
+                            "y": 2.148526430130005,
+                            "z": -9.417707443237305
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 11
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 8
+                    },
+                    "Parent": {
+                        "Children GID": []
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.078896999359131,
+                            "y": 2.148526430130005,
+                            "z": -9.417707443237305
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 14
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 1
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            15
+                        ]
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.078896999359131,
+                            "y": 2.148526430130005,
+                            "z": -9.417707443237305
                         }
                     },
                     "RigidForce": {

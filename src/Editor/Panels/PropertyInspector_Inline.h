@@ -12,7 +12,16 @@ void DetailsWindow::Panel()
 	{
         ImGui::PushItemWidth(120.0f);
 
-		AddComponent(); ImGui::SameLine(); RemoveComponent();
+        if (!m_Imgui.m_SelectedEntity.first->GetComponentBits().Has(paperback::component::info_v<reference_prefab>.m_UID)) //Cannot amend components if 
+        {
+            AddComponent(); 
+
+            ImGui::SameLine(); 
+
+            RemoveComponent();
+        }
+        else
+            ImGui::NewLine();
 
         ImGui::PopItemWidth();
 
@@ -20,13 +29,13 @@ void DetailsWindow::Panel()
 
 		for ( auto& ComponentInstance : m_Imgui.m_Components )
 		{
-            if ( Filter.PassFilter(ComponentInstance.get_type().get_name().to_string().c_str()) )
+            if ( Filter.PassFilter(ComponentInstance.first.get_type().get_name().to_string().c_str()) )
             {
-                if ( ImGui::CollapsingHeader(ComponentInstance.get_type().get_name().to_string().c_str(), ImGuiTreeNodeFlags_DefaultOpen) )
+                if ( ImGui::CollapsingHeader(ComponentInstance.first.get_type().get_name().to_string().c_str(), ImGuiTreeNodeFlags_DefaultOpen) )
                 {
-                    for ( auto& property : ComponentInstance.get_type().get_properties() )
+                    for ( auto& property : ComponentInstance.first.get_type().get_properties() )
                     {
-                        rttr::variant PropertyValue = property.get_value(ComponentInstance);
+                        rttr::variant PropertyValue = property.get_value(ComponentInstance.first);
 
                         if (!PropertyValue) continue;
 
@@ -40,8 +49,33 @@ void DetailsWindow::Panel()
                         else if ( PropertyType.is_class() )
                             m_Imgui.DisplayClassType( PropertyName, PropertyType, PropertyValue );
 
-                        if (ComponentInstance.get_type().get_name().to_string() == "Parent")
+                        if (ComponentInstance.first.get_type().get_name().to_string() == "Parent")
                             ParentComponent();
+
+                        auto ReferencePrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+                        auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
+                        if (Prefab)
+                        {
+                            if (ImGui::IsItemEdited())
+                            {
+                                //auto Entity = m_Imgui.m_SelectedEntity.first->FindComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+                                //auto& Info = PPB.GetEntityInfo(Entity->m_GlobalIndex);
+
+                                //auto UpdatedComponent = m_Imgui.m_SelectedEntity.first->GetComponent(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }, ComponentInstance.second);
+                                //PPB.UpdatePrefabInstancesOnPrefabComponentUpdate(Info, UpdatedComponent);
+                            }
+                        }
+
+                        if (ReferencePrefab)
+                        {
+                            if (ImGui::IsItemEdited())
+                            {
+                                ReferencePrefab->AddModifiedComponentGuid(ComponentInstance.second.m_Value);
+                            }
+                            
+                            //if have reset button -> Call ResetModifiedComponentGuid
+                        }
                     }
                 }
             }
@@ -63,12 +97,14 @@ void DetailsWindow::AddComponent()
             {
                 if (!m_Imgui.m_SelectedEntity.first->CheckComponentExistence(CompPInfo))
                 {
-                    if (CompPInfo->m_pName != "Child") // dont include child component
+                    if (CompPInfo->m_pName != "Child" && CompPInfo->m_pName != "ReferencePrefab" && CompPInfo->m_pName != "Entity") // dont include child & ReferencePrefab component
                     {
                         if (ImGui::Selectable(CompPInfo->m_pName))
                         {
+                            auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }); //first instance
+
                             ComponentAdd[0] = CompPInfo;
-                            PPB.AddOrRemoveComponents(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), ComponentAdd, {});
+                            PPB.AddOrRemoveComponents(Entity, ComponentAdd, {});
 
                             EDITOR_INFO_PRINT("Added: " + std::string(CompPInfo->m_pName) + " Component");
 
@@ -99,36 +135,40 @@ void DetailsWindow::AddComponent()
 void DetailsWindow::RemoveComponent()
 {
     std::array<const paperback::component::info*, 1 > ComponentRemove;
-
+    bool a = false;
     if (m_Imgui.m_SelectedEntity.first)
     {
         if (ImGui::BeginCombo("##RemoveComponent", ICON_FA_MINUS " Remove"))
         {
             for (paperback::u32 i = 0; i < m_Imgui.m_SelectedEntity.first->GetComponentCount(); ++i)
             {
-                if (ImGui::Selectable(m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]->m_pName))
+                if (m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]->m_pName != "Entity")
                 {
-                    ComponentRemove[0] = (m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]);
-
-                    std::string Temp = m_Imgui.m_SelectedEntity.first->GetName();
-
-                    PPB.AddOrRemoveComponents(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), {}, ComponentRemove);
-
-                    EDITOR_INFO_PRINT("Removed: " + Temp + " Component");
-
-                    m_Imgui.m_SelectedEntity.first = nullptr;
-                    m_Imgui.m_SelectedEntity.second = paperback::u32_max;
-
-                    if (!m_Imgui.m_Components.empty())
+                    if (ImGui::Selectable(m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]->m_pName))
                     {
-                        m_Imgui.m_Components.clear();
-                        ImGui::EndCombo();
-                        return;
-                    }
-                    else
-                    {
-                        ImGui::EndCombo();
-                        return;
+                        auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }); //first instance
+                        ComponentRemove[0] = (m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]);
+
+                        std::string Temp = m_Imgui.m_SelectedEntity.first->GetName();
+
+                        PPB.AddOrRemoveComponents(Entity, {}, ComponentRemove);
+
+                        EDITOR_INFO_PRINT("Removed: " + Temp + " Component");
+                        
+                        m_Imgui.m_SelectedEntity.first = nullptr;
+                        m_Imgui.m_SelectedEntity.second = paperback::u32_max;
+
+                        if (!m_Imgui.m_Components.empty())
+                        {
+                            m_Imgui.m_Components.clear();
+                            ImGui::EndCombo();
+                            return;
+                        }
+                        else
+                        {
+                            ImGui::EndCombo();
+                            return;
+                        }
                     }
                 }
             }
@@ -146,11 +186,8 @@ void DetailsWindow::ParentComponent()
 
         if (Parent.m_ChildrenGlobalIndexes.size() != 0)
         {
-            ImGui::Text("There are %d Children attached:", Parent.m_ChildrenGlobalIndexes.size());
-
             for (auto& Child : Parent.m_ChildrenGlobalIndexes)
-                ImGui::Text("%d", Child);
-
+                ImGui::Text("Child GID: %d", Child);
         }
         else
         {
@@ -178,13 +215,10 @@ void DetailsWindow::ChildCombo()
                     auto& NewParent = m_Imgui.m_SelectedEntity.first->GetComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
 
                     // New Parent Entity Component
-                    auto& NewParentEntity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+                    auto NewParentEntity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
                     
-                    // Non Parent Entities
+                    // Non Parent Entities Entity Component
                     auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-
-                    if (Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) != nullptr) //Check for Child Component
-                        OldParentGID = Archetype->GetComponent<child>(paperback::vm::PoolDetails({ 0, i })).m_ParentGlobalIndex; //Get Old Parent GID
 
                     if (NewParent.m_ChildrenGlobalIndexes.find(Entity.m_GlobalIndex) == NewParent.m_ChildrenGlobalIndexes.end()) //not already a child of the selected entity
                     {
@@ -198,6 +232,7 @@ void DetailsWindow::ChildCombo()
                                 {
                                     //Get the Child Component
                                     auto& Child = Archetype->GetComponent<child>(paperback::vm::PoolDetails({ 0, i }));
+                                    OldParentGID = Child.m_ParentGlobalIndex; //Get Old Parent GID
 
                                     //Check if already attached to a parent
                                     if (OldParentGID != NewParentEntity.m_GlobalIndex)
@@ -208,25 +243,32 @@ void DetailsWindow::ChildCombo()
                                         OldParent.m_pArchetype->GetComponent<parent>(OldParent.m_PoolDetails).RemoveChild(Entity.m_GlobalIndex);
                                     }
 
+                                    if (OldParentGID == Entity.m_GlobalIndex) //check if parent entity matches the current selected child
+                                    {
+                                        EDITOR_WARN_PRINT("Unable to add entity as a child");
+                                        return;
+                                    }
+
                                     //Link Child to Existing Parent
                                     NewParent.AddChild(Entity.m_GlobalIndex);
                                     //Update Child's Parent GID
                                     Child.AddParent(NewParentEntity.m_GlobalIndex);
+
                                 }
                                 else
                                 {
+                                    //save new child GID
+                                    auto EntityIndex = Entity.m_GlobalIndex;
                                     //Link Child to Existing Parent
-                                    NewParent.AddChild(Entity.m_GlobalIndex);
-                                    
+                                    NewParent.AddChild(EntityIndex);
+
                                     //Add in child component
                                     ComponentAdd[0] = &paperback::component::info_v<child>;
-                                    PPB.AddOrRemoveComponents(Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), ComponentAdd, {});
+                                    PPB.AddOrRemoveComponents(Entity, ComponentAdd, {});
 
-                                    //Since previously the entity didnt have a Child Component, so the new guy shld in theory be at the end of the archetype list
-                                    //Thus PoolDetails{0, 0}
-                                    PPB.GetArchetypeList().back()->GetComponent<child>(paperback::vm::PoolDetails{0, 0}).AddParent(NewParentEntity.m_GlobalIndex);
-
-                                   
+                                    //Add Parent GID to Child
+                                    auto& Info = PPB.GetEntityInfo(EntityIndex);
+                                    Info.m_pArchetype->GetComponent<child>(Info.m_PoolDetails).AddParent(NewParentEntity.m_GlobalIndex);
                                 }
                             }
                         }

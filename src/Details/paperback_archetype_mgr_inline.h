@@ -15,6 +15,8 @@ namespace paperback::archetype
         {
             m_EntityInfos[ i ].m_PoolDetails.m_PoolIndex = i + 1;
         }
+
+        m_EntityHead = 0;
     }
 
 
@@ -340,7 +342,11 @@ namespace paperback::archetype
     void manager::ResetAllArchetypes( void ) noexcept
     {
         for ( auto& Archetype : m_pArchetypeList )
+        {
             Archetype->Clear();
+        }
+
+        //m_pArchetypeList.clear();
     }
 
     void manager::Terminate( void ) noexcept

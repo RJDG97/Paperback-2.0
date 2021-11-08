@@ -113,7 +113,7 @@ namespace paperback::archetype
         //-----------------------------------
 
         PPB_INLINE
-        std::vector<rttr::instance> GetEntityComponents( const u32 Index ) noexcept;
+        std::vector< std::pair < rttr::instance, component::type::guid > > GetEntityComponents( const u32 Index ) noexcept;
 
         PPB_INLINE
         u32 GetCurrentEntityCount( void ) const noexcept;

@@ -98,6 +98,10 @@ namespace paperback::coordinator
 								               , std::span<const component::info*> Remove
 								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
+		template < typename T_COMPONENT >
+		void UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+														 , const T_COMPONENT&  UpdatedComponent ) noexcept;
+
 		
 		//-----------------------------------
 		//           Query Methods
