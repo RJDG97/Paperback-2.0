@@ -20,6 +20,12 @@
     <Filter Include="Source Files\Systems\Details">
       <UniqueIdentifier>{70242c0a-4523-4be9-85bb-e1b5832ba20b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems\Details\Update">
+      <UniqueIdentifier>{12c5bded-ce5c-4b1e-bb84-0b5bcf0a62a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\Details\Event">
+      <UniqueIdentifier>{06096dbf-5745-486c-b75f-43abf82640be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sandbox.cpp">
@@ -131,6 +137,15 @@
     </ClInclude>
     <ClInclude Include="Systems\onevent_random_system.h">
       <Filter>Source Files\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\update_waypoint_system.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\onevent_movement_system.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CollisionLayer.h">
+      <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

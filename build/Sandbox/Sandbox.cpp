@@ -75,6 +75,7 @@ void InitializeGame()
         ,    entityscript
         ,    boundingbox
         ,    reference_prefab
+        ,    Collidable
         >();
     }
 
@@ -95,7 +96,8 @@ void InitializeGame()
         >();
 
         PPB.RegisterSystems <
-            onevent_random_system
+            onevent_random_system,
+            onevent_movement_system
         >();
     }
     // Entity Creation

@@ -11,7 +11,12 @@ struct collision_system : paperback::system::instance
         .m_pName = "collision_system"
     };
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere) noexcept
+    using UnitCollisionEvent = paperback::event::instance< rigidforce&, rigidforce& >;
+
+    using events = std::tuple< UnitCollisionEvent >;
+
+
+    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, Collidable* col1) noexcept
     {
         if ( Entity.IsZombie() ) return;
 
@@ -23,7 +28,7 @@ struct collision_system : paperback::system::instance
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
 
-        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball) noexcept -> bool
+        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, Collidable* col2) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
 
@@ -37,23 +42,28 @@ struct collision_system : paperback::system::instance
                 // Collision Detection
                 if (Boundingbox && BB)
                 {
-                    // added to parameters
-                    if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
+                    if (col1->m_CollidableLayers.Has(col2->m_CollisionLayer))
                     {
-                        if (RigidForce && RF)
+                        // added to parameters
+                        if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                         {
-                          bool checker = CheapaabbDynamic(
-                              Boundingbox,
-                              RigidForce,
-                              Transform,
-                              BB,
-                              RF,
-                              Xform);
+                            if (RigidForce && RF)
+                            {
+                                bool checker = CheapaabbDynamic(
+                                    Boundingbox,
+                                    RigidForce,
+                                    Transform,
+                                    BB,
+                                    RF,
+                                    Xform);
+                            }
+                            Boundingbox->m_Collided = BB->m_Collided = true;
+
+                            BroadcastEvent<UnitCollisionEvent>(this, *RigidForce, *RF);
                         }
-                        Boundingbox->m_Collided = BB->m_Collided = true;
+                        else
+                            Boundingbox->m_Collided = BB->m_Collided = false;
                     }
-                    else
-                        Boundingbox->m_Collided = BB->m_Collided = false;
                 }
                 if (Sphere && Ball)
                 {
@@ -66,7 +76,6 @@ struct collision_system : paperback::system::instance
                         Sphere->m_Collided = Ball->m_Collided = false;
                 }
                 
-
                 /* Return true on deletion of collided entities */
                 return false;
             });

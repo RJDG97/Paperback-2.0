@@ -17,3 +17,4 @@
 #include "Offset.h"
 #include "Prefab.h"
 #include "ReferencePrefab.h"
+#include "CollisionLayer.h"

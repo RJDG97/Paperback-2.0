@@ -171,6 +171,7 @@
     <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\BoundingBox.h" />
     <ClInclude Include="Components\Child.h" />
+    <ClInclude Include="Components\CollisionLayer.h" />
     <ClInclude Include="Components\component_includes.h" />
     <ClInclude Include="Components\EntityScript.h" />
     <ClInclude Include="Components\Listener.h" />
@@ -200,6 +201,8 @@
     <ClInclude Include="Systems\ScriptingSystem.h" />
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
+    <ClInclude Include="Systems\onevent_movement_system.h" />
+    <ClInclude Include="Systems\update_waypoint_system.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
