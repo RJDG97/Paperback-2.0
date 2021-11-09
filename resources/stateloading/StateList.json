@@ -1,4 +1,5 @@
 {
-    "Default": "../../resources/assetloading/DupSampleScene.json",
-    "Editor": "../../resources/assetloading/SampleScene.json"
+    "Editor": "../../resources/assetloading/NewSceneTest.json",
+    "Workshop": "../../resources/assetloading/NewSceneTest.json",
+    "Combat": "../../resources/assetloading/NewSceneTest.json"
 }

@@ -462,6 +462,8 @@ namespace paperback::coordinator
 
 		m_SceneMgr.UpdateScene(FilePath);
 		m_SceneMgr.ReloadScene();
+
+		LoadEntityInfo("../../resources/assetloading/EntityInfoTest.json");
 	}
 
 	PPB_INLINE

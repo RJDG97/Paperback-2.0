@@ -100,7 +100,7 @@ void InitializeGame()
     }
     // Entity Creation
     {
-		//PPB.OpenScene();
+		PPB.OpenScene();
         
         
         //PPB.LoadEntityInfo("../../resources/assetloading/EntityInfoTest.json");
