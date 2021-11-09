@@ -70,9 +70,9 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Skybox", "../../resources/shaders/Skybox.vert", "../../resources/shaders/Skybox.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 
-	m_Resources.Load3DMeshNUI("Box", "../../resources/models/nui/box.nui");
+	m_Resources.Load3DMeshNUI("Box", "../../resources/models/nui/BadmintonRacket_Blue.nui");
 	m_Resources.Load3DMeshNUI("Plane", "../../resources/models/nui/plane.nui");
-	m_Resources.Load3DMeshNUI("Character", "../../resources/models/nui/mutant.nui");
+	m_Resources.Load3DMeshNUI("Character", "../../resources/models/nui/BlueUnitAnimated.nui");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);

@@ -19,6 +19,8 @@ struct animator
 	std::vector<glm::mat4> m_FinalBoneMatrices;
 	std::string m_CurrentAnimationName;
 	float m_CurrentTime;
+	bool m_PlayOnce;
+	bool m_FinishedAnimating;
 };
 
 
@@ -28,6 +30,7 @@ namespace RR_Animator
 	{
 		rttr::registration::class_<animator>(animator::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
-			.property("Current Animation", &animator::m_CurrentAnimationName);
+			.property("Current Animation", &animator::m_CurrentAnimationName)(rttr::policy::prop::as_reference_wrapper)
+			.property("Play Once", &animator::m_PlayOnce)(rttr::policy::prop::as_reference_wrapper);
 	}
 }

@@ -33,9 +33,6 @@
     <ClInclude Include="Components\component_includes.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\AnimatorSystem.h">
-      <Filter>Source Files\Systems</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\system_includes.h">
       <Filter>Source Files\Systems</Filter>
     </ClInclude>
@@ -128,6 +125,9 @@
     </ClInclude>
     <ClInclude Include="Components\Socketed.h">
       <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\AnimatorSystem.h">
+      <Filter>Source Files\Systems\Details</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

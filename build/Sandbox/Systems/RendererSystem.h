@@ -70,7 +70,7 @@ struct render_system : paperback::system::instance
 
 			if (Socketed)
 			{
-				transform_info.m_ParentSocketTransform = &Socketed->bone_transform;
+				transform_info.m_ParentSocketTransform = &Socketed->m_BoneTransform;
 			}
 
 			if (Animator)

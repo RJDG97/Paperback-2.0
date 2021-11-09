@@ -20,7 +20,9 @@ struct parentchild_system : paperback::system::instance
 				{
 					if (CTransform) { CTransform->m_Position = COffset->m_PosOffset + Transform.m_Position; }
 					if (CRotation) { CRotation->m_Value = COffset->m_RotOffset + Rotation.m_Value; }
-					if (CScale) { CScale->m_Value = COffset->m_ScaleOffset + Scale.m_Value; }
+					if (CScale) { CScale->m_Value = {COffset->m_ScaleOffset.x * Scale.m_Value.x,
+													 COffset->m_ScaleOffset.y * Scale.m_Value.y,
+													 COffset->m_ScaleOffset.x * Scale.m_Value.z }; }
 				}
 
 				else

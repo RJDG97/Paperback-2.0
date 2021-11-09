@@ -12,9 +12,11 @@ struct socketed
 		.m_pName = "Socketed"
 	};
 
-	std::string parent_socket;
-	glm::mat4 bone_transform;
-
+	std::string m_ParentSocket;
+	glm::mat4 m_BoneTransform;
+	paperback::Vector3f	 m_SocketPosOffset;
+	paperback::Vector3f	 m_SocketRotOffset;
+	paperback::Vector3f	 m_SocketScaleOffset;
 
 };
 
@@ -24,7 +26,10 @@ namespace RR_SOCKETED
 	{
 		rttr::registration::class_<socketed>(socketed::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
-			.property("Parent Socket", &socketed::parent_socket)(rttr::policy::prop::as_reference_wrapper);
+			.property("Parent Socket", &socketed::m_ParentSocket)(rttr::policy::prop::as_reference_wrapper)
+		    .property("Socket Postion Offset", &socketed::m_SocketPosOffset)(rttr::policy::prop::as_reference_wrapper)
+		    .property("Socket Rotation Offset", &socketed::m_SocketRotOffset)(rttr::policy::prop::as_reference_wrapper)
+		    .property("Socket Scale Offset", &socketed::m_SocketScaleOffset)(rttr::policy::prop::as_reference_wrapper);
 	}
 }
 #endif
