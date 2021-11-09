@@ -53,6 +53,10 @@ namespace paperback
 		class manager;
 	}
 
+	namespace archetype
+	{
+		class instance;
+	}
 }
 
 //----------------------------------

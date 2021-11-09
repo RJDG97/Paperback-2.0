@@ -31,6 +31,9 @@ namespace paperback::archetype
 
         template< typename T_CALLBACK = paperback::empty_lambda >
         paperback::component::entity CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
+
+        template< typename T_CALLBACK = paperback::empty_lambda >
+        paperback::component::entity CreatePrefab(T_CALLBACK&& Function = paperback::empty_lambda{}) noexcept;
         
         // Called By Prefab Instance's Archetype
         PPB_INLINE
@@ -113,10 +116,7 @@ namespace paperback::archetype
         //-----------------------------------
 
         PPB_INLINE
-        std::vector<rttr::instance> GetEntityComponents( const u32 Index ) noexcept;
-
-        PPB_INLINE 
-        archetype::instance* GetArchetypePointer( const u32 Index ) noexcept;
+        std::vector< std::pair < rttr::instance, component::type::guid > > GetEntityComponents( const u32 Index ) noexcept;
 
         PPB_INLINE
         u32 GetCurrentEntityCount( void ) const noexcept;

@@ -69,11 +69,19 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		PPB_INLINE
-		void SaveScene(const std::string& FilePath) noexcept;
+		void SaveScene( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
-		void OpenScene(const std::string& FilePath) noexcept;
+		void SaveEntityInfo( const std::string& FilePath ) noexcept;
 
+		PPB_INLINE
+		void OpenScene( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE
+		void LoadEntityInfo( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE
+		void SaveSingleEntity( const std::string& FilePath, const paperback::entity::info& EntityInfo ) noexcept;
 
 		//-----------------------------------
 		//    Archetype / Entity Methods
@@ -114,6 +122,10 @@ namespace paperback::coordinator
 								               , std::span<const component::info*> Add 
 								               , std::span<const component::info*> Remove
 								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
+
+		template < typename T_COMPONENT >
+		void UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+														 , const T_COMPONENT&  UpdatedComponent ) noexcept;
 
 		
 		//-----------------------------------
@@ -174,6 +186,14 @@ namespace paperback::coordinator
 		PPB_INLINE
 		std::vector<fs::path>& GetDragDropFiles() noexcept;
 
+		PPB_INLINE
+		void SetEntityHead( u32 NewEntityHead ) noexcept;
+
+		PPB_INLINE
+		paperback::archetype::manager::EntityInfoList& GetEntityInfoList() noexcept;
+
+		PPB_INLINE
+		paperback::archetype::instance& GetArchetype( const u64 ArchetypeGuid ) noexcept;
 
 		//-----------------------------------
 		//              Clock

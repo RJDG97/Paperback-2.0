@@ -122,7 +122,7 @@ namespace paperback::vm
 											   , const int Sequence ) const noexcept;
 		
 		PPB_INLINE
-		std::vector<rttr::instance> GetComponents( const u32 Index ) noexcept;
+		std::vector< std::pair < rttr::instance, paperback::component::type::guid> > GetComponents( const u32 Index ) noexcept;
 
 		PPB_INLINE
 		rttr::instance GetComponentInstance( const component::type::guid Comp_Guid

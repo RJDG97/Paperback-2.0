@@ -150,6 +150,12 @@ namespace paperback::archetype
         void RemoveEntity( const u32 SwappedGlobalIndex
                          , const u32 DeletedEntityIndex ) noexcept;
 
+        PPB_INLINE
+        u32 GetEntityHead() noexcept;
+
+        PPB_INLINE
+        void SetEntityHead( u32 NewEntityHead ) noexcept;
+
     private:
 
         //-----------------------------------
@@ -191,4 +197,21 @@ namespace paperback::archetype
         u32                                 m_EntityHead        { 0 };
 
     };
+
+    struct TempMgr
+    {
+        u32 EntityHead{ 0 };
+    };
 }
+
+
+namespace RR_ArchetypeMgr
+{
+    RTTR_REGISTRATION
+    {
+        rttr::registration::class_< paperback::archetype::TempMgr>("Archetype Manager")
+           .constructor()(rttr::policy::ctor::as_object)
+           .property("EntityHead", &paperback::archetype::TempMgr::EntityHead);
+    }
+}
+

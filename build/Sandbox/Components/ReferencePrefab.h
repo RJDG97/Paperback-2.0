@@ -26,6 +26,10 @@ struct reference_prefab
 		return m_ModifiedComponents.find( ComponentGuid ) != m_ModifiedComponents.end() ? true
 																						: false;
 	}
+	void AddReferencingPrefab(paperback::u32 PrefabGlobalIndex) noexcept
+	{
+		m_PrefabGID = PrefabGlobalIndex;
+	}
 
 	// Tells the system which components should be saved and
 	// which components should use default values from the prefab
@@ -39,8 +43,8 @@ namespace RR_ReferencePrefab
     {
        rttr::registration::class_<reference_prefab>( reference_prefab::typedef_v.m_pName )
 		   .constructor()( rttr::policy::ctor::as_object )
-		   .property( "Modified Components", &reference_prefab::m_ModifiedComponents )( rttr::policy::prop::as_reference_wrapper )
-		   .property( "Prefab GID", &reference_prefab::m_PrefabGID )( rttr::policy::prop::as_reference_wrapper );
+		   .property( "Modified Components", &reference_prefab::m_ModifiedComponents )
+		   .property( "Prefab GID", &reference_prefab::m_PrefabGID );
     }
 }
 

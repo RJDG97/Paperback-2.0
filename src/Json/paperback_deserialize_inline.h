@@ -174,14 +174,104 @@ namespace paperback::deserialize
         }
     }
 
-    void ReadObject(rttr::instance obj, rapidjson::Document& doc)
+    void ReadObject( rttr::instance obj, rapidjson::Document& doc )
     {
         ReadRecursive(obj, doc);
     }
 
-    void ReadEntities(rapidjson::Value::MemberIterator it)
+    void ReadEntityInfo(rapidjson::Value::MemberIterator it)
     {
+        for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
+        {
+            u32 InfoCount{ };
+            auto& EntityInfoList = PPB.GetEntityInfoList();
 
+            for (rapidjson::Value::MemberIterator mitr = itr->MemberBegin(); mitr != itr->MemberEnd(); mitr++)
+            {                
+                rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
+                rttr::variant obj = type.get_constructor().invoke();
+
+                if (!obj.is_type<paperback::component::temp_guid>())
+                    ReadRecursive(obj, mitr->value);
+
+                if (obj.is_type<paperback::entity::TempInfo>())
+                {
+                    //check Guid value if 0 assign Archetype::instance* as nullptr
+                    EntityInfoList[InfoCount].m_pArchetype = obj.get_value<paperback::entity::TempInfo>().ArchetypeGuid ? &PPB.GetArchetype(obj.get_value<paperback::entity::TempInfo>().ArchetypeGuid) : nullptr;
+                    EntityInfoList[InfoCount].m_PoolDetails = obj.get_value<paperback::entity::TempInfo>().PoolDetails;
+                    EntityInfoList[InfoCount++].m_Validation = obj.get_value<paperback::entity::TempInfo>().Validation;
+                }
+            }
+        }
+    }
+
+    void ReadComponents( rapidjson::Value::MemberIterator it, paperback::archetype::instance* NewArchetype, u32 EntityCounter)
+    {
+        if (NewArchetype)
+        {
+            rttr::type type = rttr::type::get_by_name(it->name.GetString());
+            rttr::variant obj = type.get_constructor().invoke();
+
+            auto& Value = it->value;
+
+            if (!obj.is_type<paperback::component::temp_guid>())
+                ReadRecursive(obj, Value);
+
+            if (obj.is_type<transform>())
+                NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<transform>();
+
+            if (obj.is_type<scale>())
+                NewArchetype->GetComponent<scale>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<scale>();
+
+            if (obj.is_type<rotation>())
+                NewArchetype->GetComponent<rotation>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rotation>();
+
+            if (obj.is_type<mesh>())
+                NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
+
+            if (obj.is_type<component::entity>())
+                NewArchetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<paperback::component::entity>();
+
+            if (obj.is_type<sound>())
+                NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();
+
+            if (obj.is_type<timer>())
+                NewArchetype->GetComponent<timer>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<timer>();
+
+            if (obj.is_type<entityscript>())
+                NewArchetype->GetComponent<entityscript>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<entityscript>();
+
+            if (obj.is_type<boundingbox>())
+                NewArchetype->GetComponent<boundingbox>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<boundingbox>();
+
+            if (obj.is_type<sphere>())
+                NewArchetype->GetComponent<sphere>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sphere>();
+
+            if (obj.is_type<rigidbody>())
+                NewArchetype->GetComponent<rigidbody>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rigidbody>();
+
+            if (obj.is_type<rigidforce>())
+                NewArchetype->GetComponent<rigidforce>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rigidforce>();
+
+            if (obj.is_type<animator>())
+                NewArchetype->GetComponent<animator>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<animator>();
+
+            if (obj.is_type<child>())
+                NewArchetype->GetComponent<child>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<child>();
+
+            if (obj.is_type<parent>())
+                NewArchetype->GetComponent<parent>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<parent>();
+
+            if (obj.is_type<prefab>())
+                NewArchetype->GetComponent<prefab>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<prefab>();
+
+            if (obj.is_type<reference_prefab>())
+                NewArchetype->GetComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<reference_prefab>();
+        }
+    }
+
+    void ReadEntities( rapidjson::Value::MemberIterator it )
+    {
         using NewComponentInfoList = std::array<const component::info*, settings::max_components_per_entity_v>;
         std::string TempName{};
         for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
@@ -193,7 +283,7 @@ namespace paperback::deserialize
                 paperback::archetype::instance* NewArchetype = nullptr;
                 tools::bits ArchetypeSignature;
 
-                TempName = mitr->name.GetString();
+                TempName = mitr->name.GetString(); //Archetype Manager Name Appears in this layer
 
                 if (mitr->value.IsArray() && !TempName.empty())
                 {
@@ -207,72 +297,7 @@ namespace paperback::deserialize
                                     NewArchetype->SetName(TempName);
 
                                     for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
-                                    {
-                                        rttr::type type = rttr::type::get_by_name(Mitr->name.GetString());
-                                        rttr::variant obj = type.get_constructor().invoke();
-
-                                        auto& Value = Mitr->value;
-
-                                        if (!obj.is_type<paperback::component::temp_guid>())
-                                            ReadRecursive(obj, Value);
-
-                                        if (obj.is_type<transform>())
-                                            NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<transform>();
-
-                                        if (obj.is_type<scale>())
-                                            NewArchetype->GetComponent<scale>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<scale>();
-
-                                        if (obj.is_type<rotation>())
-                                            NewArchetype->GetComponent<rotation>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rotation>();
-
-                                        if (obj.is_type<mesh>())
-                                            NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
-
-                                        if (obj.is_type<component::entity>())
-                                            NewArchetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<paperback::component::entity>();
-
-                                        if (obj.is_type<sound>())
-                                            NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();
-
-                                        if (obj.is_type<timer>())
-                                            NewArchetype->GetComponent<timer>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<timer>();
-
-                                        if (obj.is_type<entityscript>())
-                                            NewArchetype->GetComponent<entityscript>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<entityscript>();
-
-                                        if (obj.is_type<boundingbox>())
-                                            NewArchetype->GetComponent<boundingbox>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<boundingbox>();
-
-                                        if (obj.is_type<sphere>())
-                                            NewArchetype->GetComponent<sphere>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sphere>();
-
-                                        if (obj.is_type<rigidbody>())
-                                            NewArchetype->GetComponent<rigidbody>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rigidbody>();
-
-                                        if (obj.is_type<rigidforce>())
-                                            NewArchetype->GetComponent<rigidforce>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<rigidforce>();
-
-                                        if (obj.is_type<animator>())
-                                            NewArchetype->GetComponent<animator>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<animator>();
-
-                                        if (obj.is_type<child>())
-                                            NewArchetype->GetComponent<child>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<child>();
-
-                                        if (obj.is_type<parent>())
-                                        {
-                                            std::unordered_set<paperback::u32> ChildrenGlobalIndexes;
-
-                                            for (rapidjson::Value::ValueIterator Vitr = Mitr->value.Begin(); Vitr != Mitr->value.End(); Vitr++)
-                                            {
-                                                ChildrenGlobalIndexes.insert(Vitr->GetUint()); //insert children Global Index
-                                            }
-
-                                            auto& Parent = NewArchetype->GetComponent<parent>(paperback::vm::PoolDetails{ 0, EntityCounter });
-
-                                            Parent.m_ChildrenGlobalIndexes = ChildrenGlobalIndexes;
-                                        }
-
-                                    }
+                                        ReadComponents(Mitr, NewArchetype, EntityCounter);
 
                                     EntityCounter++;
                                 }
@@ -280,12 +305,12 @@ namespace paperback::deserialize
                         }
                         else
                         {   
+                            // Load Each Archetype's Components GUID
                             for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
                             {
                                 if ( Mitr->value.IsArray() )
                                 {
-                                    rttr::type type = rttr::type::get_by_name(Mitr->name.GetString());
-                                    rttr::variant obj = type.get_constructor().invoke();
+                                    rttr::variant obj = rttr::type::get_by_name(Mitr->name.GetString()).get_constructor().invoke();
 
                                     if (obj.is_type<paperback::component::temp_guid>())
                                     {
@@ -297,19 +322,30 @@ namespace paperback::deserialize
                                             ArchetypeSignature.Set(CList[Counter++]->m_UID);
                                         }
 
-                                        NewArchetype = &PPB.GetOrCreateArchetype(ArchetypeSignature);
+                                        NewArchetype = &PPB.GetOrCreateArchetype(ArchetypeSignature); // Replace with Create Prefab
                                         PPB_ASSERT_MSG(NewArchetype == nullptr, "Archetype Failed to Init");
-
                                     }
                                 }
-
-                                ERROR_LOG("Unable to get Components' Guid");
                             }
                         }
                     }
                 }
+                else
+                {
+                   // Shld enter here first since Archetype Manager stuff isnt in an array + First item in the json
+                   //Access the Archetype Manager Data Stuff
 
-                ERROR_LOG("File has wrong format");
+                   rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
+                   rttr::variant obj = type.get_constructor().invoke();
+
+                   if (!obj.is_type<paperback::component::temp_guid>())
+                       ReadRecursive(obj, mitr->value);
+
+                   if (obj.is_type<paperback::archetype::TempMgr>())
+                   {
+                       PPB.SetEntityHead(obj.get_value<paperback::archetype::TempMgr>().EntityHead);
+                   }
+                }
             }
         }
     }

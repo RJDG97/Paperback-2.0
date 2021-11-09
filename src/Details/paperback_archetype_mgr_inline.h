@@ -10,7 +10,7 @@ namespace paperback::archetype
     { }
 
     void manager::Initialize( void ) noexcept
-    {
+    {   
         for ( u32 i = 0, max = settings::max_entities_v - 2; i < max; ++i )
         {
             m_EntityInfos[ i ].m_PoolDetails.m_PoolIndex = i + 1;
@@ -39,7 +39,7 @@ namespace paperback::archetype
     void manager::CreatePrefab( void ) noexcept
     {
 		auto& Archetype = GetOrCreateArchetype<prefab, transform>( );
-        Archetype.CreateEntity( );
+        Archetype.CreatePrefab( );
     }
 
     template < typename... T_COMPONENTS >
@@ -58,6 +58,7 @@ namespace paperback::archetype
                 const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
                 return *m_pArchetypeList[ index ];
             }
+
         }
 
         u32 Count = 0;
@@ -253,6 +254,17 @@ namespace paperback::archetype
         return m_EntityInfos;
     }
 
+    u32 manager::GetEntityHead() noexcept
+    {
+        return m_EntityHead;
+    }
+
+    void manager::SetEntityHead( u32 NewEntityHead ) noexcept
+    {
+        m_EntityHead = NewEntityHead;
+    }
+
+
     //-----------------------------------
     //             Query
     //-----------------------------------
@@ -330,7 +342,11 @@ namespace paperback::archetype
     void manager::ResetAllArchetypes( void ) noexcept
     {
         for ( auto& Archetype : m_pArchetypeList )
+        {
             Archetype->Clear();
+        }
+
+        //m_pArchetypeList.clear();
     }
 
     void manager::Terminate( void ) noexcept
@@ -412,10 +428,16 @@ namespace paperback::archetype
 
         for ( auto& ArchetypeBits : m_ArchetypeBits )
         {
-            if ( ArchetypeBits.Compare( ArchetypeSignature ) )
+            //if ( ArchetypeBits.Compare( ArchetypeSignature ) )
+            //{
+            //    const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
+            //    return *( m_pArchetypeList[ index ] );
+            //}
+
+            if (ArchetypeBits.Match(ArchetypeSignature))
             {
-                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
-                return *( m_pArchetypeList[ index ] );
+                const auto index = static_cast<size_t>(&ArchetypeBits - &m_ArchetypeBits[0]);
+                return *(m_pArchetypeList[index]);
             }
         }
 
