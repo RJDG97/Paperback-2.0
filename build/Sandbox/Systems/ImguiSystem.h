@@ -556,7 +556,7 @@ struct imgui_system : paperback::system::instance
         {
             ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Have you save whatever you're working on?");
 
-            if (ImGui::Button(ICON_FA_SAVE " Yes"))
+            if (ImGui::Button(ICON_FA_FOLDER_OPEN " Yes"))
             {
                 switch (m_Type)
                 {
@@ -599,7 +599,7 @@ struct imgui_system : paperback::system::instance
 
             ImGui::SameLine();
 
-            if (ImGui::Button(ICON_FA_TIMES " No"))
+            if (ImGui::Button(ICON_FA_SAVE " No"))
             {
                 if (!m_LoadedPath.empty())
                 {
@@ -621,7 +621,7 @@ struct imgui_system : paperback::system::instance
 
             ImGui::SameLine();
 
-            if (ImGui::Button("Cancel"))
+            if (ImGui::Button(ICON_FA_TIMES " Cancel"))
             {
                 m_Type = FileActivity::NONE;
                 ImGui::CloseCurrentPopup();

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 17
+                "EntityHead": 6
             }
         },
         {
@@ -25,7 +25,8 @@
                         "Global Index": 9
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": "..\\textures\\box.jpg"
                     },
                     "Scale": {
                         "Scale": {
@@ -95,7 +96,8 @@
                         "Global Index": 12
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -165,7 +167,8 @@
                         "Global Index": 7
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -235,7 +238,8 @@
                         "Global Index": 10
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -305,7 +309,8 @@
                         "Global Index": 4
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -345,8 +350,8 @@
                         },
                         "Position": {
                             "x": 7.750462532043457,
-                            "y": 5.174882888793945,
-                            "z": -9.36488151550293
+                            "y": 8.879444122314454,
+                            "z": -9.300217628479004
                         }
                     },
                     "RigidForce": {
@@ -393,7 +398,8 @@
                         "Global Index": 3
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -406,7 +412,6 @@
                         "Prefab": [
                             5,
                             13,
-                            6,
                             16
                         ]
                     },
@@ -489,13 +494,14 @@
                         "Global Index": 5
                     },
                     "Mesh": {
-                        "Model Mesh": ""
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
                         }
                     },
                     "Sphere": {
@@ -504,7 +510,7 @@
                     },
                     "Rotation": {
                         "Rotation": {
-                            "x": 0.0,
+                            "x": 1.0,
                             "y": 0.0,
                             "z": 0.0
                         }
@@ -528,9 +534,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": -8.10974407196045,
+                            "y": 6.642257213592529,
+                            "z": -9.339268684387207
                         }
                     },
                     "RigidForce": {
@@ -554,161 +560,7 @@
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 3
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 13
-                    },
-                    "Mesh": {
-                        "Model Mesh": ""
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sphere": {
-                        "Radius": 0.0,
-                        "Is Collide": false
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.5,
-                            "y": -1.5,
-                            "z": -1.5
-                        },
-                        "Max Point": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 3
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 6
-                    },
-                    "Mesh": {
-                        "Model Mesh": ""
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sphere": {
-                        "Radius": 0.0,
-                        "Is Collide": false
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.5,
-                            "y": -1.5,
-                            "z": -1.5
-                        },
-                        "Max Point": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
+                        "Modified Components": [],
                         "Prefab GID": 3
                     }
                 },
@@ -717,7 +569,8 @@
                         "Global Index": 16
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -785,6 +638,81 @@
                         "Modified Components": [],
                         "Prefab GID": 3
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 13
+                    },
+                    "Mesh": {
+                        "Model": "Box",
+                        "Texture": ""
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -12.53339672088623,
+                            "y": 4.710564613342285,
+                            "z": -9.3729887008667
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 3
+                    }
                 }
             ]
         },
@@ -809,7 +737,8 @@
                         "Global Index": 0
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -884,7 +813,8 @@
                         "Global Index": 8
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -959,7 +889,8 @@
                         "Global Index": 1
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -1052,7 +983,8 @@
                         "Global Index": 15
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -1089,7 +1021,7 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": 13.0,
                             "y": 0.0,
                             "z": 0.0
                         },
@@ -1144,7 +1076,8 @@
                         "Global Index": 2
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -1220,7 +1153,8 @@
                         "Global Index": 11
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
@@ -1296,7 +1230,8 @@
                         "Global Index": 14
                     },
                     "Mesh": {
-                        "Model Mesh": "Box"
+                        "Model": "Box",
+                        "Texture": ""
                     },
                     "Scale": {
                         "Scale": {
