@@ -141,7 +141,7 @@ namespace paperback::system
 			 , typename...    T_ARGS >
 	requires ( std::derived_from< T_SYSTEM, paperback::system::instance >
           && ( !std::is_same_v< typename T_SYSTEM::events, paperback::system::system_interface::events > ))
-	void instance::BroadcastEvent( T_SYSTEM* System, T_ARGS&&... Args ) noexcept
+	void instance::BroadcastEvent( T_SYSTEM* System, T_ARGS&&... Args ) const noexcept
 	{
 		std::get<T_EVENT>( reinterpret_cast< system::details::completed<T_SYSTEM>* >( System )->m_Events )
 			.BroadcastEvent( std::forward<T_ARGS&&>( Args ) ... );

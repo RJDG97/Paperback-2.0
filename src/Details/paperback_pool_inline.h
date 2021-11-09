@@ -216,7 +216,7 @@ namespace paperback::vm
 	PPB_INLINE
 	void instance::UpdateStructuralChanges( void ) noexcept
 	{
-		auto ResetInfo = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; };
+		auto ResetInfo = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; Info.m_pArchetype = nullptr; };
 
 		while ( m_DeleteHead != settings::invalid_delete_index_v )
 		{
@@ -282,17 +282,6 @@ namespace paperback::vm
                 if ( ++iPoolTo >= m_ComponentInfo.size() ) break;
             }
         }
-
-    //    // Remove components from previous archetype post iterating last component from new archetype
-    //    while ( iPoolFrom < FromPool.m_ComponentInfo.size() )
-    //    {
-    //        auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
-
-    //        if ( Info.m_Destructor )
-				//Info.m_Destructor( &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
-    //        
-    //        if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
-    //    }
 
 		FromPool.MarkEntityAsMoved( Details.m_PoolIndex );
 
@@ -361,10 +350,8 @@ namespace paperback::vm
 	}
 
 	// Clone Components within a different pool
-	const u32 instance::CloneComponents( const u32 FromIndex, vm::instance& FromPool ) noexcept
+	const u32 instance::CloneComponents( const u32 ToIndex, const u32 FromIndex, vm::instance& FromPool ) noexcept
 	{
-		const u32 ToIndex = Append();
-
         u32 iPoolFrom = 0;
         u32 iPoolTo   = 0;
 
@@ -399,6 +386,9 @@ namespace paperback::vm
 						ToParent.AddChild( ClonedChildGID );
 						ClonedChild.AddParent( ToEntity.m_GlobalIndex );
 					}
+
+					++iPoolFrom;
+					++iPoolTo;
 				}
 				// Else if component to be cloned is the child / entity component
 				else if ( m_ComponentInfo[ iPoolTo ]->m_Guid == component::info_v<child>.m_Guid ||
@@ -636,7 +626,8 @@ namespace paperback::vm
 			for ( const auto ChildGID : ChildrenList )
 			{
 				auto& ChildInfo = m_pCoordinator->GetEntityInfo( ChildGID );
-				ChildInfo.m_pArchetype->DestroyEntity( ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails ) );
+				if ( ChildInfo.m_pArchetype )
+					ChildInfo.m_pArchetype->DestroyEntity( ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails ) );
 			}
 
 			// Clear the parent's list
@@ -649,7 +640,7 @@ namespace paperback::vm
 			auto& Child       = GetComponent<child>( PoolIndex );
 			auto& ParentInfo  = m_pCoordinator->GetEntityInfo( Child.m_ParentGlobalIndex );
 
-			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
+			auto Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
 			Parent.RemoveChild( GlobalIndex );
 		}
 	}

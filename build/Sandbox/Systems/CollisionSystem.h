@@ -16,7 +16,7 @@ struct collision_system : paperback::system::instance
     using events = std::tuple< UnitCollisionEvent >;
 
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, Collidable* col1) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1) noexcept
     {
         if ( Entity.IsZombie() ) return;
 
@@ -28,7 +28,7 @@ struct collision_system : paperback::system::instance
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
 
-        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, Collidable* col2) noexcept -> bool
+        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
 
@@ -40,7 +40,7 @@ struct collision_system : paperback::system::instance
                 xf.z = Xform.m_Position.z + Xform.m_Offset.z;
 
                 // Collision Detection
-                if (Boundingbox && BB)
+                if ( Boundingbox && BB && col1 && col2 )
                 {
                     if (col1->m_CollidableLayers.Has(col2->m_CollisionLayer))
                     {

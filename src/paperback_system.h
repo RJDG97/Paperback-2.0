@@ -261,7 +261,7 @@ namespace paperback::system
 			     , typename...    T_ARGS >
 		requires ( std::derived_from< T_SYSTEM, paperback::system::instance >
 			  && ( !std::is_same_v< typename T_SYSTEM::events, paperback::system::system_interface::events > ))
-		void BroadcastEvent( T_SYSTEM* System, T_ARGS&&... Args ) noexcept;
+		void BroadcastEvent( T_SYSTEM* System, T_ARGS&&... Args ) const noexcept;
 
 		template < paperback::concepts::Event T_EVENT
                  , typename...                T_ARGS >

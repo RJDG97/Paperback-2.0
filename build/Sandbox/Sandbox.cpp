@@ -75,7 +75,13 @@ void InitializeGame()
         ,    entityscript
         ,    boundingbox
         ,    reference_prefab
-        ,    Collidable
+        ,    collidable
+        ,    waypoint
+        ,    selected
+        ,    health
+        ,    damage
+        ,    currency
+        ,    cost
         >();
     }
 
@@ -91,12 +97,10 @@ void InitializeGame()
             render_system,
             imgui_system,
             animator_system,
-            parentchild_system,
-            random_system
+            parentchild_system
         >();
 
         PPB.RegisterSystems <
-            onevent_random_system,
             onevent_movement_system
         >();
     }

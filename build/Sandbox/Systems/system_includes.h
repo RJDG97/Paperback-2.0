@@ -10,6 +10,4 @@
 #include "ParentChildSystem.h"
 
 // Event Tests
-#include "random_system.h"
-#include "onevent_random_system.h"
-#include "onevent_movement_system.h"
+#include "OnEvent_MovementSystem.h"

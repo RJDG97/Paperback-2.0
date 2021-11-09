@@ -85,7 +85,8 @@ namespace paperback::vm
 							, const u32 FromIndex ) noexcept;
 
 		PPB_INLINE
-		const u32 CloneComponents( const u32 FromIndex
+		const u32 CloneComponents( const u32 ToIndex
+								 , const u32 FromIndex
 								 , vm::instance& FromPool ) noexcept;
 
 

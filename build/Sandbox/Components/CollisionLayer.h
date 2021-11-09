@@ -3,7 +3,7 @@
 #include "paperback_bitset.h"
 
 // this is based on the playable map
-enum class CollisionLayer
+enum class CollisionLayer : paperback::u8
 {
     NONE = 0,
     BACKGROUND = 1,
@@ -42,7 +42,7 @@ enum class CollisionLayer
 // Saves a copy of all valid AABBs on each layer
 //std::map<CollisionLayer, AABBType> collision_map_;
 
-struct Collidable
+struct collidable
 {
     constexpr static auto typedef_v = paperback::component::type::data
     {
@@ -56,28 +56,28 @@ struct Collidable
     tools::bits  m_CollidableLayers;
 
     // default constructor
-    Collidable() :
+    collidable() :
         m_CollisionLayer{ static_cast<paperback::u8>(0x00) } // 0x00 reads as int(0)....
     {
         m_CollidableLayers.Set(0);
     }
 
     // enum variant
-    Collidable(CollisionLayer assigned) :
+    collidable(CollisionLayer assigned) :
         m_CollisionLayer{ static_cast<paperback::u8>(assigned) }
     {
         m_CollidableLayers.Set(static_cast<int>(m_CollisionLayer));
     }
 
     // int variant
-    Collidable(int assigned) :
+    collidable(int assigned) :
         m_CollisionLayer{ static_cast<paperback::u8>(assigned) }
     {
         m_CollidableLayers.Set(static_cast<int>(m_CollisionLayer));
     }
 
     // u8 variant
-    Collidable(paperback::u8 assigned) :
+    collidable(paperback::u8 assigned) :
         m_CollisionLayer{ static_cast<paperback::u8>(assigned) }
     {
         m_CollidableLayers.Set(static_cast<int>(m_CollisionLayer));

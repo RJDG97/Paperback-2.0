@@ -104,11 +104,11 @@ namespace paperback::archetype
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
 
-        // Called by the Prefab Instance Archetype to Allocate Memory
-        PPB_INLINE
-        void InitializePrefabInstances( const u32 InstanceCount
-                                      , const u32 PrefabPoolIndex
-                                      , vm::instance& PrefabPool ) noexcept;
+        //// Called by the Prefab Instance Archetype to Allocate Memory
+        //PPB_INLINE
+        //void InitializePrefabInstances( const u32 InstanceCount
+        //                              , const u32 PrefabPoolIndex
+        //                              , vm::instance& PrefabPool ) noexcept;
 
 
         //-----------------------------------
@@ -149,8 +149,12 @@ namespace paperback::archetype
     private:
 
         PPB_INLINE
-        const vm::PoolDetails ClonePrefabComponents( const u32 PrefabPoolIndex
-                                                   , vm::instance& PrefabPool ) noexcept;
+        const vm::PoolDetails AppendEntity( void ) noexcept;
+
+        PPB_INLINE
+        const vm::PoolDetails ClonePrefabComponents( const vm::PoolDetails PrefabInstanceDetails
+                                                   , const u32             PrefabPoolIndex
+                                                   , vm::instance&         PrefabPool ) noexcept;
 
         coordinator::instance&        m_Coordinator;                                              // Coordinator Reference
         ComponentPool                 m_ComponentPool            {   };                           // Component Pool
