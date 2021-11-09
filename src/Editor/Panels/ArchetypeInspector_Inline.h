@@ -26,6 +26,17 @@ void ArchetypeInspector::PrefabPanel()
         static ImGuiTextFilter Filter;
         Filter.Draw(ICON_FA_FILTER, 170.0f);
 
+        if (ImGui::BeginPopupContextWindow(0, 1, false))
+        {
+            if (ImGui::MenuItem("Create Default Prefab"))
+            {
+                PPB.CreatePrefab();
+                EDITOR_INFO_PRINT("Created: A Default Prefab");
+            }
+
+            ImGui::EndPopup();
+        }
+
         for (auto& Archetype : PPB.GetArchetypeList())
         {
             ++Index;
@@ -100,17 +111,6 @@ void ArchetypeInspector::PrefabPanel()
                             ImGui::EndPopup();
                         }
                     }
-                }
-
-                if (ImGui::BeginPopupContextWindow(0, 1, false))
-                {
-                    if (ImGui::MenuItem("Create Default Prefab"))
-                    {
-                        PPB.CreatePrefab();
-                        EDITOR_INFO_PRINT("Created: A Default Prefab");
-                    }
-
-                    ImGui::EndPopup();
                 }
 
                 //else

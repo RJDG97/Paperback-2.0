@@ -130,7 +130,40 @@ namespace paperback::archetype
         GetComponent<prefab>( m_PrefabDetails ).AddPrefabInstance( ClonedPrefab.m_GlobalIndex );
 
         return ClonedPrefab.m_GlobalIndex;
-    }    
+    }
+
+    template< typename T_CALLBACK >
+    paperback::component::entity instance::CreatePrefab(T_CALLBACK&& Function) noexcept
+    {
+        using func_traits = xcore::function::traits<T_CALLBACK>;
+
+        return[&]<typename... T_COMPONENTS>(std::tuple<T_COMPONENTS...>*) -> paperback::component::entity
+        {
+            PPB_ASSERT_MSG(!(m_ComponentBits.Has(component::info_v<T_COMPONENTS>.m_UID) && ...), "Archetype CreateEntity: Creating entity with invalid components in function");
+
+            // Generate the next valid ID within m_ComponentPool
+            const auto PoolIndex = m_ComponentPool[m_PoolAllocationIndex].Append();
+            // Do not register entity if it's invalid
+            if (PoolIndex == settings::invalid_index_v) return paperback::component::entity
+            {
+                .m_GlobalIndex = settings::invalid_index_v
+            };
+
+            if (!std::is_same_v<empty_lambda, T_CALLBACK>)
+            {
+                Function(m_ComponentPool[m_PoolAllocationIndex].GetComponent<T_COMPONENTS>(PoolIndex) ...);
+            }
+
+            //Generates Global Index
+           return m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
+                                                     {
+                                                         .m_Key       = m_PoolAllocationIndex
+                                                     ,   .m_PoolIndex = PoolIndex
+                                                     }
+                                                   , *this );
+
+        }(reinterpret_cast<typename func_traits::args_tuple*>(nullptr));
+    }
 
     void instance::DestroyEntity( component::entity& Entity ) noexcept
     {

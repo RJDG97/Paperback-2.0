@@ -40,7 +40,7 @@ namespace paperback::archetype
     void manager::CreatePrefab( void ) noexcept
     {
 		auto& Archetype = GetOrCreateArchetype<prefab, transform>( );
-        Archetype.CreateEntity( );
+        Archetype.CreatePrefab( );
     }
 
     template < typename... T_COMPONENTS >

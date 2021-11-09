@@ -215,8 +215,19 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
 
             if (ImGui::Button("Yes"))
             {
-                PPB.DeleteEntity(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityIndex }));
+                auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityIndex });
+                auto RefPrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, EntityIndex });
 
+                if (RefPrefab)
+                {
+                    //Get referenced prefab gid + EntityInfo
+
+                    auto& Info = PPB.GetEntityInfo(RefPrefab->m_PrefabGID);
+                    //unlink prefab reference link from the main prefab
+                    Info.m_pArchetype->GetComponent<prefab>(Info.m_PoolDetails).RemovePrefabInstance(Entity.m_GlobalIndex);
+                }
+
+                PPB.DeleteEntity(Entity);
                 EDITOR_INFO_PRINT("Deleted: " + m_Imgui.m_SelectedEntity.first->GetName() + " [" + std::to_string(m_Imgui.m_SelectedEntity.second) + "]");
 
                 m_Imgui.m_SelectedEntity = { nullptr, paperback::u32_max };

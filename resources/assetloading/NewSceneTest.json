@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 4
+                "EntityHead": 17
             }
         },
         {
@@ -299,6 +299,76 @@
                         },
                         "Is Collide": false
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 4
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 7.750462532043457,
+                            "y": 5.174882888793945,
+                            "z": -9.36488151550293
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    }
                 }
             ]
         },
@@ -334,8 +404,10 @@
                     },
                     "Prefab": {
                         "Prefab": [
-                          5,
-                          13
+                            5,
+                            13,
+                            6,
+                            16
                         ]
                     },
                     "Sphere": {
@@ -561,6 +633,156 @@
                         "Modified Components": [
                             17008353085049151909
                         ],
+                        "Prefab GID": 3
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 6
+                    },
+                    "Mesh": {
+                        "Model Mesh": ""
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 3
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 16
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -8.10974407196045,
+                            "y": 2.6713192462921144,
+                            "z": -9.40858268737793
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
                         "Prefab GID": 3
                     }
                 }

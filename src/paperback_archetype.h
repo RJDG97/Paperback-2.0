@@ -31,6 +31,9 @@ namespace paperback::archetype
 
         template< typename T_CALLBACK = paperback::empty_lambda >
         paperback::component::entity CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
+
+        template< typename T_CALLBACK = paperback::empty_lambda >
+        paperback::component::entity CreatePrefab(T_CALLBACK&& Function = paperback::empty_lambda{}) noexcept;
         
         // Called By Prefab Instance's Archetype
         PPB_INLINE
