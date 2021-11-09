@@ -79,12 +79,20 @@ void EditorViewport::ComposeTransform()
 	auto bTrans = m_Imgui.m_SelectedEntity.first->FindComponent<transform>(EntityDetails);
 	auto bRot = m_Imgui.m_SelectedEntity.first->FindComponent<rotation>(EntityDetails);
 	auto bScale = m_Imgui.m_SelectedEntity.first->FindComponent<scale>(EntityDetails);
+	auto bChild = m_Imgui.m_SelectedEntity.first->FindComponent<child>(EntityDetails);
 
 
-	if (bTrans)
+	if (bTrans && !bChild) //for normal entities
 		model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
-	else
-		model = glm::translate(model, glm::vec3(1, 1, 1));
+
+	//else if (bTrans && bChild)
+	//{
+	//	auto Combi = bTrans->m_Offset + bTrans->m_Position;
+	//	model = glm::translate(model, glm::vec3(Combi.x, Combi.y, Combi.z));
+	//}
+	//else
+	//	model = glm::translate(model, glm::vec3(1, 1, 1));
+
 
 	if (bRot)
 	{
@@ -118,112 +126,14 @@ void EditorViewport::ComposeTransform()
 			bRot->m_Value.y += TempRot.y;
 			bRot->m_Value.z += TempRot.z;
 		}
-		if (bTrans)
+
+		if (bTrans && !bChild)
 			Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
+
+		//if (bTrans && bChild)
+		//	Editor::Math::GlmtoVec3(bTrans->m_Offset, Trans);
 
 		if (bScale)
 			Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
 	}
-	//if (bTrans && bRot && bScale)
-	//{
-	//	//transform& EntityTransform = *bTrans;
-	//	model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
-
-	//	//rotation& EntityRotate = m_Imgui.m_SelectedEntity.first->GetComponent<rotation>(EntityDetails);
-	//	model = glm::rotate(model, glm::radians(bRot->m_Value.x), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-	//	model = glm::rotate(model, glm::radians(bRot->m_Value.y), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-	//	model = glm::rotate(model, glm::radians(bRot->m_Value.z), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-
-	//	//scale& EntityScale = *Scale;
-	//	model = glm::scale(model, glm::vec3(bScale->m_Value.x, bScale->m_Value.y, bScale->m_Value.z));
-
-	//	ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
-
-	//	if (ImGuizmo::IsUsing())
-	//	{
-	//		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
-
-	//		glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
-
-	//		Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
-
-	//		bRot->m_Value.x += TempRot.x;
-	//		bRot->m_Value.y += TempRot.y;
-	//		bRot->m_Value.z += TempRot.z;
-
-	//		Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
-	//	}
-	//}
-
-	//if (bTrans && !bRot && !bScale)
-	//{
-	//	transform& EntityTransform = m_Imgui.m_SelectedEntity.first->GetComponent<transform>(EntityDetails);
-	//	model = glm::translate(model, glm::vec3(EntityTransform.m_Position.x, EntityTransform.m_Position.y, EntityTransform.m_Position.z));
-
-	//	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-	//	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-	//	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-
-	//	model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
-
-	//	ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
-
-	//	if (ImGuizmo::IsUsing())
-	//	{
-	//		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
-	//		Editor::Math::GlmtoVec3(EntityTransform.m_Position, Trans);
-	//	}
-	//}
-
-	//if (bTrans && !bRot && bScale)
-	//{
-	//	transform& EntityTransform = m_Imgui.m_SelectedEntity.first->GetComponent<transform>(EntityDetails);
-	//	model = glm::translate(model, glm::vec3(EntityTransform.m_Position.x, EntityTransform.m_Position.y, EntityTransform.m_Position.z));
-
-	//	model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-	//	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-	//	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-
-	//	scale& EntityScale = m_Imgui.m_SelectedEntity.first->GetComponent<scale>(EntityDetails);
-	//	model = glm::scale(model, glm::vec3(EntityScale.m_Value.x, EntityScale.m_Value.y, EntityScale.m_Value.z));
-
-	//	ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
-
-	//	if (ImGuizmo::IsUsing())
-	//	{
-	//		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
-
-	//		Editor::Math::GlmtoVec3(EntityTransform.m_Position, Trans);
-
-	//		Editor::Math::GlmtoVec3(EntityScale.m_Value, Scale);
-	//	}
-	//}
-
-	//if (bTrans && bRot && !bScale)
-	//{
-	//	transform& EntityTransform = m_Imgui.m_SelectedEntity.first->GetComponent<transform>(EntityDetails);
-	//	model = glm::translate(model, glm::vec3(EntityTransform.m_Position.x, EntityTransform.m_Position.y, EntityTransform.m_Position.z));
-
-	//	rotation& EntityRotate = m_Imgui.m_SelectedEntity.first->GetComponent<rotation>(EntityDetails);
-	//	model = glm::rotate(model, glm::radians(EntityRotate.m_Value.x), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-	//	model = glm::rotate(model, glm::radians(EntityRotate.m_Value.y), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-	//	model = glm::rotate(model, glm::radians(EntityRotate.m_Value.z), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-
-	//	model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
-
-	//	ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
-
-	//	if (ImGuizmo::IsUsing())
-	//	{
-	//		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
-
-	//		glm::vec3 TempRot = Rot - glm::vec3(glm::radians(EntityRotate.m_Value.x), glm::radians(EntityRotate.m_Value.y), glm::radians(EntityRotate.m_Value.z));
-
-	//		Editor::Math::GlmtoVec3(EntityTransform.m_Position, Trans);
-
-	//		EntityRotate.m_Value.x += TempRot.x;
-	//		EntityRotate.m_Value.y += TempRot.y;
-	//		EntityRotate.m_Value.z += TempRot.z;
-	//	}
-	//}
 }

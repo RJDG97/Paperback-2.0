@@ -21,10 +21,12 @@ struct DetailsWindow : paperback::editor::instance
     void Panel();
 
     void AddComponent();
+
     void RemoveComponent();
 
     void ParentComponent();
 
     void ChildCombo();
 
+    void MeshCombo();
 };

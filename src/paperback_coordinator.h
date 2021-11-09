@@ -69,13 +69,13 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		PPB_INLINE
-		void SaveScene( const std::string& FilePath ) noexcept;
+		void SaveScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept;
 
 		PPB_INLINE
 		void SaveEntityInfo( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
-		void OpenScene( const std::string& FilePath ) noexcept;
+		void OpenScene( const std::string& FilePath,  const std::string& EntityInfoPath ) noexcept;
 
 		PPB_INLINE
 		void LoadEntityInfo( const std::string& FilePath ) noexcept;

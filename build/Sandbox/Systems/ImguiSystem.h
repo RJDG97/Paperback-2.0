@@ -57,7 +57,7 @@ struct imgui_system : paperback::system::instance
     std::vector < std::pair < rttr::instance, paperback::component::type::guid> > m_Components = {};
     std::vector <const char*> m_ComponentNames = {};
 
-    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete;
+    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity; //first: pointer to the archetype | second: entity index
 
@@ -320,9 +320,9 @@ struct imgui_system : paperback::system::instance
 
                 if (ImGui::MenuItem(ICON_FA_SAVE " Save"))
                 {
-                    if (!m_LoadedPath.empty())
+                    if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty())
                     {
-                        PPB.SaveScene(m_LoadedPath);
+                        PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
                         EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
                     }
                     else
@@ -394,9 +394,16 @@ struct imgui_system : paperback::system::instance
                 m_LoadedPath = m_FileDialog.selected_path;
                 m_LoadedFile = m_FileDialog.selected_fn;
 
-                PPB.OpenScene(m_FileDialog.selected_path);
+                m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
 
-                EDITOR_TRACE_PRINT(m_FileDialog.selected_fn + " Loaded");
+                if (!m_EntityInfoLoadedPath.empty())
+                {
+                    PPB.OpenScene(m_FileDialog.selected_path, m_EntityInfoLoadedPath);
+                    EDITOR_TRACE_PRINT(m_FileDialog.selected_fn + " Loaded");
+                }
+                else
+                    EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
+
             }
         }
         else
@@ -409,9 +416,22 @@ struct imgui_system : paperback::system::instance
         {
             if (!m_FileDialog.selected_path.empty())
             {
-                PPB.SaveScene(m_FileDialog.selected_path);
+                m_LoadedPath = m_FileDialog.selected_path;
+                m_LoadedFile = m_FileDialog.selected_fn;
 
-                EDITOR_TRACE_PRINT(m_FileDialog.selected_fn + " Saved at: " + m_FileDialog.selected_path);
+                if (m_LoadedFile.find(".json") == std::string::npos)
+                    m_LoadedFile.append(".json");
+
+                if (m_LoadedPath.find(".json") == std::string::npos)
+                    m_LoadedPath.append(".json");
+
+                m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
+
+                if (!m_EntityInfoLoadedPath.empty())
+                {
+                    PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
+                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
+                }
             }
         }
         else
@@ -556,7 +576,7 @@ struct imgui_system : paperback::system::instance
         {
             ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Have you save whatever you're working on?");
 
-            if (ImGui::Button(ICON_FA_SAVE " Yes"))
+            if (ImGui::Button(ICON_FA_FOLDER_OPEN " Yes"))
             {
                 switch (m_Type)
                 {
@@ -584,8 +604,16 @@ struct imgui_system : paperback::system::instance
                     if (!m_LoadedPath.empty() && !m_LoadedFile.empty())
                     {
                         ResetScene();
-                        PPB.OpenScene(m_LoadedPath);
-                        EDITOR_TRACE_PRINT(m_LoadedFile + " Loaded");
+
+                        m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
+
+                        if (!m_EntityInfoLoadedPath.empty())
+                        {
+                            PPB.OpenScene(m_LoadedPath, m_EntityInfoLoadedPath);
+                            EDITOR_TRACE_PRINT(m_LoadedFile + " Loaded");
+                        }
+                        else
+                            EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
 
                         m_Type = FileActivity::NONE;
                         ImGui::CloseCurrentPopup();
@@ -599,11 +627,11 @@ struct imgui_system : paperback::system::instance
 
             ImGui::SameLine();
 
-            if (ImGui::Button(ICON_FA_TIMES " No"))
+            if (ImGui::Button(ICON_FA_SAVE " No"))
             {
-                if (!m_LoadedPath.empty())
+                if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty())
                 {
-                    PPB.SaveScene(m_LoadedPath);
+                    PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
                     EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
 
                     m_Type = FileActivity::NONE;
@@ -616,12 +644,11 @@ struct imgui_system : paperback::system::instance
                     m_Type = FileActivity::NONE;
                     ImGui::CloseCurrentPopup();
                 }
-
             }
 
             ImGui::SameLine();
 
-            if (ImGui::Button("Cancel"))
+            if (ImGui::Button(ICON_FA_TIMES " Cancel"))
             {
                 m_Type = FileActivity::NONE;
                 ImGui::CloseCurrentPopup();
@@ -648,6 +675,13 @@ struct imgui_system : paperback::system::instance
             ImGui::PopTextWrapPos();
             ImGui::EndTooltip();
         }
+    }
+
+    std::string SetEntityInfoPath(std::string& Path, std::string& FileName)
+    {
+        std::string a = Path.substr(0, Path.find(FileName.c_str()));
+
+        return a.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
     }
 };
 

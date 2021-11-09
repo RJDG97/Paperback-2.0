@@ -1,5 +1,6 @@
 #pragma once
 #include "Editor/Panels/PropertyInspector.h"
+#include "../../Functionality/RenderResource/RenderResourceManager.h"
 
 void DetailsWindow::Panel()
 {
@@ -44,7 +45,8 @@ void DetailsWindow::Panel()
 
                         if ( PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic() )
                             m_Imgui.DisplayBaseTypes( PropertyName, PropertyType, PropertyValue );
-                        else if ( PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || PropertyType == rttr::type::get< std::string>() )
+                        else if ( (PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || PropertyType == rttr::type::get< std::string>()) && 
+                            ComponentInstance.first.get_type().get_name().to_string() != "Mesh")
                             m_Imgui.DisplayStringType( PropertyName, PropertyType, PropertyValue );
                         else if ( PropertyType.is_class() )
                             m_Imgui.DisplayClassType( PropertyName, PropertyType, PropertyValue );
@@ -62,7 +64,7 @@ void DetailsWindow::Panel()
                                 //auto Entity = m_Imgui.m_SelectedEntity.first->FindComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                                 //auto& Info = PPB.GetEntityInfo(Entity->m_GlobalIndex);
 
-                                //auto UpdatedComponent = m_Imgui.m_SelectedEntity.first->GetComponent(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }, ComponentInstance.second);
+                                //auto UpdatedComponent = m_Imgui.m_SelectedEntity.first->GetComponent<ComponentInstance.first.get_type()>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                                 //PPB.UpdatePrefabInstancesOnPrefabComponentUpdate(Info, UpdatedComponent);
                             }
                         }
@@ -77,6 +79,9 @@ void DetailsWindow::Panel()
                             //if have reset button -> Call ResetModifiedComponentGuid
                         }
                     }
+
+                    if (ComponentInstance.first.get_type().get_name().to_string() == "Mesh")
+                        MeshCombo();
                 }
             }
 		}
@@ -172,7 +177,6 @@ void DetailsWindow::RemoveComponent()
                     }
                 }
             }
-
             ImGui::EndCombo();
         }
     }
@@ -253,7 +257,6 @@ void DetailsWindow::ChildCombo()
                                     NewParent.AddChild(Entity.m_GlobalIndex);
                                     //Update Child's Parent GID
                                     Child.AddParent(NewParentEntity.m_GlobalIndex);
-
                                 }
                                 else
                                 {
@@ -276,6 +279,52 @@ void DetailsWindow::ChildCombo()
                 }
             }
         }
+        ImGui::EndCombo();
+    }
+}
+
+void DetailsWindow::MeshCombo()
+{
+    RenderResourceManager& Manager = RenderResourceManager::GetInstanced();
+
+    //Get Mesh Component
+    auto& EntityMesh = m_Imgui.m_SelectedEntity.first->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
+    if (ImGui::BeginCombo("##ModelMeshes", EntityMesh.m_Model.empty() ? "Choose Model" : EntityMesh.m_Model.c_str()))
+    {
+        if (!Manager.m_Models.empty())
+        {
+            for ( auto& [MeshName, Mesh] : Manager.m_Models )
+            {
+                if (MeshName != EntityMesh.m_Model) //Dont include the current texture if there is any
+                {
+                    if (ImGui::Selectable(MeshName.c_str()))
+                    {
+                        EntityMesh.m_Model = MeshName;
+                    }
+                }
+            }
+        }
+
+        ImGui::EndCombo();
+    }
+
+    if (ImGui::BeginCombo("##ModelTexture", EntityMesh.m_Texture.empty() ? "Choose Texture" : EntityMesh.m_Texture.c_str()))
+    {
+        if (!Manager.m_Textures.empty())
+        {
+            for (auto& [TextureName, Texture] : Manager.m_Textures)
+            {
+                if (TextureName != EntityMesh.m_Model) //Dont include the current texture if there is any
+                {
+                    if (ImGui::Selectable(TextureName.c_str()))
+                    {
+                        EntityMesh.m_Texture = TextureName;
+                    }
+                }
+            }
+        }
+
         ImGui::EndCombo();
     }
 }
