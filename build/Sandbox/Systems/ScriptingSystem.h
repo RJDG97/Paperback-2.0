@@ -48,6 +48,9 @@ struct scripting_system : paperback::system::instance
 					Found->second->Update(m_Coordinator.DeltaTime());
 				}
 			});
+		// for testing
+		if (PPB.IsKeyPress(GLFW_KEY_C))
+			CompileScripts();
 	}
 
 	void CompileScripts()

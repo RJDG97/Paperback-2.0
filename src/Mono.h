@@ -35,12 +35,12 @@ public:
 	Mono()
 	{
 		// Set Directory for lib and etc
-		mono_set_dirs("../../dependencies/mono/lib", "../../dependencies/mono/etc");
+		mono_set_dirs("Dependencies/mono/lib", "Dependencies/mono/etc");
 
 		// Create domain (exits if unsuccessful)
 		m_pMonoDomain = mono_jit_init("Mono");
 
-		if (LoadAssembly(m_pMonoDomain, "../CSScript/Scriptlib.dll")) {
+		if (LoadAssembly(m_pMonoDomain, "Dependencies/Scriptlib.dll")) {
 			// Add internal calls (Expose to C# script)
 			MONO_INTERNALS::MonoAddInternalCall();
 
@@ -70,7 +70,7 @@ public:
 			std::system("mcs_ScriptRuntimelib.bat");
 			m_pMonoDomain2 = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain2, false);
-			if (LoadAssembly(m_pMonoDomain2, "../CSScript/ScriptRuntimelib.dll"))
+			if (LoadAssembly(m_pMonoDomain2, "Dependencies/ScriptRuntimelib.dll"))
 			{
 				// Unload Previous Domain
 				UnloadDomain(m_pMonoDomain);
@@ -84,7 +84,7 @@ public:
 		else {
 			m_pMonoDomain = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain, false);
-			if (LoadAssembly(m_pMonoDomain, "../CSScript/Scriptlib.dll"))
+			if (LoadAssembly(m_pMonoDomain, "Dependencies/Scriptlib.dll"))
 			{
 				// Unload Previous Domain
 				UnloadDomain(m_pMonoDomain2);

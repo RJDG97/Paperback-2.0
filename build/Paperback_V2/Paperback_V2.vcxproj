@@ -283,14 +283,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;../Sandbox;$(ProjectDir)..\..\dependencies\mono\include\../../dependencies</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;../Sandbox;$(ProjectDir)Dependencies\mono\include\</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)Dependencies\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>../../dependencies/dearImGui;$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings</IncludePath>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;../Sandbox;../../dependencies$(ProjectDir)..\..\dependencies\mono\include\</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;$(ProjectDir)..\..\dependencies\mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);../../src/Settings;../Sandbox;$(ProjectDir)Dependencies\mono\include\</IncludePath>
+    <LibraryPath>$(ProjectDir)\..\..\dependencies\soil\lib;$(ProjectDir)\..\..\dependencies\glfw\lib;$(ProjectDir)\..\..\dependencies\glew\lib;$(ProjectDir)\..\..\dependencies\assimp\lib;$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64;$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64;$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;$(ProjectDir)Dependencies\mono\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -300,7 +300,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;$(ProjectDir);../../dependencies/mono/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;$(ProjectDir);Dependencies/mono/include</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
       <ProgramDataBaseFileName>$(OutDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
@@ -319,8 +319,9 @@
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
-xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
+      <Command>xcopy "$(ProjectDir)..\Sandbox\Dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
+xcopy "$(ProjectDir)..\Sandbox\Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(TargetDir)Dependencies\mono\lib\mono\4.5\" /y /i /s
+xcopy "$(ProjectDir)..\Sandbox\Dependencies\Scriptlib.dll" "$(TargetDir)Dependencies\" /y /i /s
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"
 xcopy /y "$(ProjectDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(OutDir)"
@@ -336,7 +337,7 @@ xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Com
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;PAPERBACK_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;../../dependencies/mono/include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../dependencies/dearImGui;../../dependencies/rttr/include;../../dependencies;../../src;../../dependencies/rapidjson;../../dependencies/spdlog/include;Dependencies/mono/include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>paperback_pch.h</PrecompiledHeaderFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
@@ -356,8 +357,9 @@ xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"</Com
       </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)..\..\dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
-xcopy "$(ProjectDir)..\..\dependencies\mono\lib\mono\4.5\*" "$(TargetDir)mono\4.5\" /y /i /s
+      <Command>xcopy "$(ProjectDir)..\Sandbox\Dependencies\mono\bin\mono-2.0-sgen.dll" "$(TargetDir)" /y
+xcopy "$(ProjectDir)..\Sandbox\Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(TargetDir)Dependencies\mono\lib\mono\4.5\" /y /i /s
+xcopy "$(ProjectDir)..\Sandbox\Dependencies\Scriptlib.dll" "$(TargetDir)Dependencies\" /y /i /s
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(OutDir)"
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(OutDir)"
 xcopy /y "$(ProjectDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(OutDir)"

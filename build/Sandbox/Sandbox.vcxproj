@@ -78,13 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;../../dependencies/mono/include;../../dependencies/rttr/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
-    <LibraryPath>../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;Dependencies/mono/include;../../dependencies/rttr/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
+    <LibraryPath>../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Debug;Dependencies/mono/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;../../dependencies/rttr/include;../../dependencies/mono/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;../../dependencies/rttr/include;Dependencies/mono/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;Dependencies/mono/lib;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -117,7 +117,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;PAPERBACK_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
