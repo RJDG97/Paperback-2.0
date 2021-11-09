@@ -110,15 +110,19 @@ void EditorViewport::ComposeTransform()
 	{
 		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
 
-		glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
+		if (bRot)
+		{
+			glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
 
-		Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
+			bRot->m_Value.x += TempRot.x;
+			bRot->m_Value.y += TempRot.y;
+			bRot->m_Value.z += TempRot.z;
+		}
+		if (bTrans)
+			Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
 
-		bRot->m_Value.x += TempRot.x;
-		bRot->m_Value.y += TempRot.y;
-		bRot->m_Value.z += TempRot.z;
-
-		Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
+		if (bScale)
+			Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
 	}
 	//if (bTrans && bRot && bScale)
 	//{

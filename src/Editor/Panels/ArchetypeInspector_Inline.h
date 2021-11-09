@@ -13,10 +13,22 @@ void ArchetypeInspector::Panel()
 
 void ArchetypeInspector::PrefabPanel()
 {
-    ImGui::BeginChild("Prefabs", { ImGui::GetContentRegionAvailWidth(), ImGui::GetContentRegionAvail().y / 2 }, true );
+    ImGui::BeginChild("Prefabs", { ImGui::GetContentRegionAvailWidth(), ImGui::GetContentRegionAvail().y / 2 }, true, ImGuiWindowFlags_MenuBar);
 
     int Index = 0;
     std::string ArchetypeName;
+
+
+    ImGui::BeginMenuBar();
+
+    if (ImGui::MenuItem("Create Default Prefab"))
+    {
+        PPB.CreatePrefab();
+        EDITOR_INFO_PRINT("Created: A Default Prefab");
+
+    }
+
+    ImGui::EndMenuBar();
 
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 170.0f);
