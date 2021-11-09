@@ -64,7 +64,7 @@ void DetailsWindow::Panel()
                                 //auto Entity = m_Imgui.m_SelectedEntity.first->FindComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                                 //auto& Info = PPB.GetEntityInfo(Entity->m_GlobalIndex);
 
-                                //auto UpdatedComponent = m_Imgui.m_SelectedEntity.first->GetComponent(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }, ComponentInstance.second);
+                                //auto UpdatedComponent = m_Imgui.m_SelectedEntity.first->GetComponent<ComponentInstance.first.get_type()>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                                 //PPB.UpdatePrefabInstancesOnPrefabComponentUpdate(Info, UpdatedComponent);
                             }
                         }
@@ -177,7 +177,6 @@ void DetailsWindow::RemoveComponent()
                     }
                 }
             }
-
             ImGui::EndCombo();
         }
     }
@@ -258,7 +257,6 @@ void DetailsWindow::ChildCombo()
                                     NewParent.AddChild(Entity.m_GlobalIndex);
                                     //Update Child's Parent GID
                                     Child.AddParent(NewParentEntity.m_GlobalIndex);
-
                                 }
                                 else
                                 {

@@ -108,7 +108,7 @@ namespace paperback::coordinator
 	//           Save Scene
 	//-----------------------------------
 	PPB_INLINE
-	void instance::SaveScene(const std::string& FilePath) noexcept
+	void instance::SaveScene(const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
 	{
 		paperback::component::temp_guid Temp = {};
 		paperback::archetype::TempMgr TempMgr;
@@ -185,7 +185,7 @@ namespace paperback::coordinator
 		JFile.EndArray().EndObject().EndWriter();
 
 		// Save the entity info after everything else
-		SaveEntityInfo("../../resources/assetloading/EntityInfoTest.json");
+		SaveEntityInfo(EntityInfoPath);
 	}
 
 	PPB_INLINE
@@ -217,7 +217,7 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
-	void instance::OpenScene( const std::string& FilePath ) noexcept
+	void instance::OpenScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
 	{
 		JsonFile Jfile;
 		Initialize();
@@ -226,7 +226,7 @@ namespace paperback::coordinator
 		Jfile.EndReader();
 
 		// After loading in all Entities, load in the Entity Infos
-		LoadEntityInfo( "../../resources/assetloading/EntityInfoTest.json" );
+		LoadEntityInfo( EntityInfoPath );
 	}
 
 	PPB_INLINE
