@@ -10,7 +10,7 @@ namespace paperback::archetype
     { }
 
     void manager::Initialize( void ) noexcept
-    {
+    {   
         for ( u32 i = 0, max = settings::max_entities_v - 2; i < max; ++i )
         {
             m_EntityInfos[ i ].m_PoolDetails.m_PoolIndex = i + 1;
@@ -59,6 +59,7 @@ namespace paperback::archetype
                 const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
                 return *m_pArchetypeList[ index ];
             }
+
         }
 
         u32 Count = 0;
@@ -428,10 +429,16 @@ namespace paperback::archetype
 
         for ( auto& ArchetypeBits : m_ArchetypeBits )
         {
-            if ( ArchetypeBits.Compare( ArchetypeSignature ) )
+            //if ( ArchetypeBits.Compare( ArchetypeSignature ) )
+            //{
+            //    const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
+            //    return *( m_pArchetypeList[ index ] );
+            //}
+
+            if (ArchetypeBits.Match(ArchetypeSignature))
             {
-                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
-                return *( m_pArchetypeList[ index ] );
+                const auto index = static_cast<size_t>(&ArchetypeBits - &m_ArchetypeBits[0]);
+                return *(m_pArchetypeList[index]);
             }
         }
 
