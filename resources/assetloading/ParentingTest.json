@@ -1,31 +1,27 @@
 {
     "Entities": [
         {
+            "Archetype Manager": {
+                "EntityHead": 13
+            }
+        },
+        {
             "Box Boi": [
                 {
                     "Guid": [
                         0,
-                        17008353085049151909,
+                        9604788041699812520,
                         5691439207370049121,
                         14486341741652966143,
-                        9604788041699812520
+                        17008353085049151909
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 0
                     },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 5.0,
-                            "y": 2.5,
-                            "z": -10.0
-                        }
+                    "Mesh": {
+                        "Model Mesh": "Box"
                     },
                     "Scale": {
                         "Scale": {
@@ -41,8 +37,17 @@
                             "z": 0.0
                         }
                     },
-                    "Mesh": {
-                        "Model Mesh": "Box"
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 5.0,
+                            "y": 2.5,
+                            "z": -10.0
+                        }
                     }
                 }
             ]
@@ -52,14 +57,22 @@
                 {
                     "Guid": [
                         0,
-                        17008353085049151909,
                         12091664775214799190,
-                        14302600151082817442
+                        14302600151082817442,
+                        17008353085049151909
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 3
+                    },
+                    "Timer": {
+                        "Timer": 0.0
+                    },
+                    "Sound": {
+                        "Path": "event:/BGM",
+                        "Sound Event ID": 6,
+                        "3D Sound": false
                     },
                     "Transform": {
                         "Offset": {
@@ -72,14 +85,6 @@
                             "y": -4.0,
                             "z": -10.0
                         }
-                    },
-                    "Timer": {
-                        "Timer": 0.0
-                    },
-                    "Sound": {
-                        "Path": "event:/BGM",
-                        "Sound Event ID": 1,
-                        "3D Sound": false
                     }
                 }
             ]
@@ -140,18 +145,39 @@
                 {
                     "Guid": [
                         0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        18285106494192445205,
+                        14486341741652966143,
                         8536778051349317767,
                         17008353085049151909,
-                        5691439207370049121,
-                        14486341741652966143,
-                        18285106494192445205,
-                        3617555656175080491,
-                        9604788041699812520
+                        3617555656175080491
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 6
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -177,24 +203,6 @@
                             "z": -7.0
                         }
                     },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sphere": {
-                        "Radius": 0.0,
-                        "Is Collide": false
-                    },
                     "BoundingBox": {
                         "Min Point": {
                             "x": -1.5,
@@ -207,9 +215,6 @@
                             "z": 1.5
                         },
                         "Is Collide": false
-                    },
-                    "Mesh": {
-                        "Model Mesh": "Box"
                     }
                 }
             ]
@@ -219,89 +224,40 @@
                 {
                     "Guid": [
                         0,
-                        8536778051349317767,
-                        5509481706028819786,
-                        17008353085049151909,
+                        9604788041699812520,
                         5691439207370049121,
-                        14486341741652966143,
                         18285106494192445205,
-                        3617555656175080491,
-                        9604788041699812520
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 7
                     },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -5.797806739807129,
-                            "y": 1.1216073036193848,
-                            "z": -11.15112018585205
-                        }
+                    "Mesh": {
+                        "Model Mesh": "Box"
                     },
                     "Scale": {
                         "Scale": {
                             "x": 1.0,
                             "y": 1.0,
                             "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
                         }
                     },
                     "Sphere": {
                         "Radius": 0.0,
                         "Is Collide": false
                     },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.5,
-                            "y": -1.5,
-                            "z": -1.5
-                        },
-                        "Max Point": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        },
-                        "Is Collide": false
-                    },
-                    "Mesh": {
-                        "Model Mesh": "Box"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 11
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -313,6 +269,18 @@
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -7.290740489959717,
+                            "y": 1.1216073036193848,
+                            "z": -10.850677490234375
                         }
                     },
                     "RigidForce": {
@@ -322,36 +290,6 @@
                         "Dynamic Friction": 0.25,
                         "Threshold": 0.25
                     },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 25.998966217041017,
-                            "y": 5.5,
-                            "z": -7.0
-                        }
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 1.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sphere": {
-                        "Radius": 1.5,
-                        "Is Collide": false
-                    },
                     "BoundingBox": {
                         "Min Point": {
                             "x": -1.5,
@@ -364,14 +302,32 @@
                             "z": 1.5
                         },
                         "Is Collide": false
-                    },
-                    "Mesh": {
-                        "Model Mesh": "Box"
                     }
                 },
                 {
                     "Entity": {
-                        "Global Index": 12
+                        "Global Index": 11
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -385,13 +341,6 @@
                             "z": 0.0
                         }
                     },
-                    "RigidForce": {
-                        "Mass": 4.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
@@ -399,28 +348,17 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -1.1235672235488892,
+                            "x": 26.05762481689453,
                             "y": 5.5,
-                            "z": -7.875556468963623
+                            "z": -7.0
                         }
                     },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 1.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sphere": {
-                        "Radius": 1.5,
-                        "Is Collide": false
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -434,9 +372,76 @@
                             "z": 1.5
                         },
                         "Is Collide": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 12
                     },
                     "Mesh": {
                         "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.085510730743408,
+                            "y": 5.5,
+                            "z": -7.5
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.5,
+                            "z": -1.5
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        },
+                        "Is Collide": false
                     }
                 }
             ]
@@ -446,28 +451,19 @@
                 {
                     "Guid": [
                         0,
-                        17008353085049151909,
+                        9604788041699812520,
                         5691439207370049121,
                         14486341741652966143,
-                        9604788041699812520,
-                        15204223096342135753
+                        15204223096342135753,
+                        17008353085049151909
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 8
                     },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -2.0,
-                            "y": 5.0,
-                            "z": -10.0
-                        }
+                    "Mesh": {
+                        "Model Mesh": "Character"
                     },
                     "Scale": {
                         "Scale": {
@@ -483,11 +479,20 @@
                             "z": 0.0
                         }
                     },
-                    "Mesh": {
-                        "Model Mesh": "Character"
-                    },
                     "Animator": {
                         "Current Animation": "Armature|Armature|mixamo.com|Layer0"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.0,
+                            "y": 5.0,
+                            "z": -10.0
+                        }
                     }
                 }
             ]
@@ -497,21 +502,50 @@
                 {
                     "Guid": [
                         0,
-                        8536778051349317767,
-                        5509481706028819786,
-                        17008353085049151909,
+                        9604788041699812520,
                         5691439207370049121,
-                        14486341741652966143,
-                        18285106494192445205,
-                        3617555656175080491,
                         12091664775214799190,
                         14302600151082817442,
-                        9604788041699812520
+                        18285106494192445205,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 9
+                    },
+                    "Mesh": {
+                        "Model Mesh": ""
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Timer": {
+                        "Timer": 0.0
+                    },
+                    "Sound": {
+                        "Path": "event:/3DBGM",
+                        "Sound Event ID": 5,
+                        "3D Sound": true
+                    },
+                    "Sphere": {
+                        "Radius": 0.0,
+                        "Is Collide": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -525,13 +559,6 @@
                             "z": 0.0
                         }
                     },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
@@ -539,28 +566,17 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -5.866652488708496,
+                            "x": -7.359586238861084,
                             "y": 1.1216073036193848,
-                            "z": 6.64038610458374
+                            "z": 6.940832614898682
                         }
                     },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sphere": {
-                        "Radius": 0.0,
-                        "Is Collide": false
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -574,17 +590,6 @@
                             "z": 1.5
                         },
                         "Is Collide": false
-                    },
-                    "Timer": {
-                        "Timer": 0.0
-                    },
-                    "Sound": {
-                        "Path": "event:/3DBGM",
-                        "Sound Event ID": 3,
-                        "3D Sound": true
-                    },
-                    "Mesh": {
-                        "Model Mesh": ""
                     }
                 }
             ]
@@ -594,16 +599,25 @@
                 {
                     "Guid": [
                         0,
-                        17008353085049151909,
                         12091664775214799190,
                         14302600151082817442,
-                        18186166081267214834
+                        18186166081267214834,
+                        17008353085049151909
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 10
                     },
+                    "Timer": {
+                        "Timer": 0.0
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false
+                    },
+                    "": {},
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
@@ -615,34 +629,47 @@
                             "y": 0.0,
                             "z": 10.0
                         }
-                    },
-                    "Timer": {
-                        "Timer": 0.0
-                    },
-                    "Sound": {
-                        "Path": "",
-                        "Sound Event ID": 0,
-                        "3D Sound": false
-                    },
-                    "": {}
+                    }
                 }
             ]
         },
         {
-            "Parent#1": [
+            "Parent": [
                 {
                     "Guid": [
                         0,
-                        17008353085049151909,
-                        5691439207370049121,
-                        14486341741652966143,
                         9604788041699812520,
-                        13107566195444653040
+                        5691439207370049121,
+                        13107566195444653040,
+                        14486341741652966143,
+                        17008353085049151909
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 1
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            2
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Transform": {
                         "Offset": {
@@ -655,47 +682,45 @@
                             "y": 5.800000190734863,
                             "z": -6.0
                         }
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 1.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Mesh": {
-                        "Model Mesh": ""
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            2
-                        ]
                     }
                 }
             ]
         },
         {
-            "Child#2": [
+            "Childe": [
                 {
                     "Guid": [
                         0,
-                        17008353085049151909,
-                        5691439207370049121,
-                        14486341741652966143,
                         9604788041699812520,
-                        1259829869932243375
+                        5691439207370049121,
+                        1259829869932243375,
+                        14486341741652966143,
+                        17008353085049151909
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 2
+                    },
+                    "Mesh": {
+                        "Model Mesh": "Box"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 3.4000000953674318,
+                            "y": 5.400000095367432,
+                            "z": -0.4000000059604645
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 1
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 91.0,
+                            "y": 19.600000381469728,
+                            "z": 0.0
+                        }
                     },
                     "Transform": {
                         "Offset": {
@@ -708,26 +733,6 @@
                             "y": 5.800000190734863,
                             "z": -6.0
                         }
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 3.4000000953674318,
-                            "y": 5.400000095367432,
-                            "z": -0.4000000059604645
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 91.0,
-                            "y": 19.600000381469728,
-                            "z": 0.0
-                        }
-                    },
-                    "Mesh": {
-                        "Model Mesh": ""
-                    },
-                    "Child": {
-                        "ChildGID": 0
                     }
                 }
             ]

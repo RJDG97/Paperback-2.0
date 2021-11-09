@@ -39,7 +39,9 @@ namespace paperback::vm
 		~instance( void ) noexcept;
 
 		PPB_INLINE
-		void Init( std::span<const component::info* const> Types, const u32 NumComponents, paperback::coordinator::instance* Coordinator ) noexcept;
+		void Init( std::span<const component::info* const> Types
+				 , const u32 NumComponents
+				 , paperback::coordinator::instance* Coordinator ) noexcept;
 
 
 		//-----------------------------------
@@ -70,7 +72,8 @@ namespace paperback::vm
 		//-----------------------------------
 
 		PPB_INLINE
-		u32 TransferExistingComponents( const PoolDetails& Details, vm::instance& Pool ) noexcept;
+		u32 TransferExistingComponents( const PoolDetails& Details
+									  , vm::instance& Pool ) noexcept;
 
 
 		//-----------------------------------
@@ -78,10 +81,12 @@ namespace paperback::vm
 		//-----------------------------------
 
 		PPB_INLINE
-		void CloneComponents( const u32 ToIndex, const u32 FromIndex ) noexcept;
+		void CloneComponents( const u32 ToIndex
+							, const u32 FromIndex ) noexcept;
 
 		PPB_INLINE
-		const u32 CloneComponents( const u32 FromIndex, vm::instance& FromPool ) noexcept;
+		const u32 CloneComponents( const u32 FromIndex
+								 , vm::instance& FromPool ) noexcept;
 
 
 		//-----------------------------------
@@ -89,7 +94,8 @@ namespace paperback::vm
 		//-----------------------------------
 
 		PPB_INLINE
-		void SerializePoolComponentsAtEntityIndex( const u32 Index, paperback::JsonFile& Jfile ) noexcept;
+		void SerializePoolComponentsAtEntityIndex( const u32 Index
+											     , paperback::JsonFile& Jfile ) noexcept;
 
 
 		//-----------------------------------
@@ -112,13 +118,15 @@ namespace paperback::vm
 		int GetComponentIndexFromGUID( const component::type::guid Guid ) const noexcept;
 		
 		PPB_INLINE
-		int GetComponentIndexFromGUIDInSequence( const component::type::guid Guid, const int Sequence ) const noexcept;
+		int GetComponentIndexFromGUIDInSequence( const component::type::guid Guid
+											   , const int Sequence ) const noexcept;
 		
 		PPB_INLINE
-		std::vector<rttr::instance> GetComponents( const u32 Index ) noexcept;
+		std::vector< std::pair < rttr::instance, paperback::component::type::guid> > GetComponents( const u32 Index ) noexcept;
 
 		PPB_INLINE
-		rttr::instance GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept;
+		rttr::instance GetComponentInstance( const component::type::guid Comp_Guid
+										   , const u32 Index ) noexcept;
 
 		PPB_INLINE
 		const u32 GetCurrentEntityCount( void ) const noexcept;
@@ -133,16 +141,24 @@ namespace paperback::vm
 	private:
 
 		PPB_INLINE
-		u32 GetPageIndex( const size_t LocalComponentIndex, const u32 Count ) const noexcept;
+		u32 GetPageIndex( const size_t LocalComponentIndex
+						, const u32 Count ) const noexcept;
 
 		PPB_INLINE
-		u32 GetPageIndex( const component::info& Info, const u32 Count ) const noexcept;
+		u32 GetPageIndex( const component::info& Info
+						, const u32 Count ) const noexcept;
 
 		PPB_INLINE
 		void MarkEntityAsMoved( const u32 MovedEntity ) noexcept;
 
 		PPB_INLINE
-		void UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex, const u32 GlobalIndex ) noexcept;
+		void UnlinkParentAndChildOnDelete( const component::info& CInfo
+										 , const u32 PoolIndex
+										 , const u32 GlobalIndex ) noexcept;
+
+		PPB_INLINE
+		void AbandonPrefabInstancesOnPrefabDelete( const component::info& CInfo
+												 , const u32 GlobalIndex ) noexcept;
 
 
 		paperback::coordinator::instance*				m_pCoordinator;

@@ -31,7 +31,6 @@ public:
 	MonoObject* m_pMainObj;
 	MonoClass* m_pMainClass = nullptr;
 	MonoMethod* m_pMainFn = nullptr;
-	MonoMethod* m_pCompileFn = nullptr;
 
 	Mono()
 	{
@@ -41,7 +40,7 @@ public:
 		// Create domain (exits if unsuccessful)
 		m_pMonoDomain = mono_jit_init("Mono");
 
-		if (LoadAssembly(m_pMonoDomain, "../CSScript/CSScript.dll")) {
+		if (LoadAssembly(m_pMonoDomain, "../CSScript/Scriptlib.dll")) {
 			// Add internal calls (Expose to C# script)
 			MONO_INTERNALS::MonoAddInternalCall();
 
@@ -58,7 +57,6 @@ public:
 
 					// Add External Calls
 					m_pMainFn = ImportFunction(m_pMainClass, m_pMainObj, ".MainApplication:Main()");
-					m_pCompileFn = ImportFunction(m_pMainClass, m_pMainObj, ".MainApplication:CompileDLL(bool)");
 				}
 			}
 		}
@@ -66,18 +64,13 @@ public:
 
 	bool UpdateDLL()
 	{
-		MonoObject* result = RunImportFn(m_pMainObj, m_pCompileFn, m_UsingDomain1);
-		bool compilesuccess = ExtractResult<bool>(result);
-		
-		if (!compilesuccess)
-			return false;
-
 		char m_DName[] = "Update";
 
 		if (m_UsingDomain1) {
+			std::system("mcs_ScriptRuntimelib.bat");
 			m_pMonoDomain2 = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain2, false);
-			if (LoadAssembly(m_pMonoDomain2, "../CSScript/CSScript2.dll"))
+			if (LoadAssembly(m_pMonoDomain2, "../CSScript/ScriptRuntimelib.dll"))
 			{
 				// Unload Previous Domain
 				UnloadDomain(m_pMonoDomain);
@@ -91,12 +84,12 @@ public:
 		else {
 			m_pMonoDomain = mono_domain_create_appdomain(m_DName, NULL);
 			mono_domain_set(m_pMonoDomain, false);
-			if (LoadAssembly(m_pMonoDomain, "../CSScript/CSScript.dll"))
+			if (LoadAssembly(m_pMonoDomain, "../CSScript/Scriptlib.dll"))
 			{
 				// Unload Previous Domain
 				UnloadDomain(m_pMonoDomain2);
 				m_UsingDomain1 = true;
-				return true;
+				return UpdateDLL();
 			}
 			else
 				UnloadDomain(m_pMonoDomain);

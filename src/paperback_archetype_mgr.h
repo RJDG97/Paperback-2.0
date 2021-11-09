@@ -67,11 +67,15 @@ namespace paperback::archetype
         template < typename T_FUNCTION = paperback::empty_lambda >
         void CreateEntity( T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
+        PPB_INLINE
+        void CreatePrefab( void ) noexcept;
+
         template < typename... T_COMPONENTS >
         archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
         PPB_INLINE
-		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
+		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature
+                                                 , std::string ArchetypeName ) noexcept;
 
         
         template < concepts::Callable T_FUNCTION = paperback::empty_lambda >
@@ -96,6 +100,15 @@ namespace paperback::archetype
 
 
         //-----------------------------------
+        //     Update Prefab Instances
+        //-----------------------------------
+
+        template < typename T_COMPONENT >
+        void UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+                                                         , const T_COMPONENT&  UpdatedComponent ) noexcept;
+
+
+        //-----------------------------------
 		//              Clear
 		//-----------------------------------
 
@@ -117,6 +130,12 @@ namespace paperback::archetype
         entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
         PPB_INLINE
+        archetype::instance* FindArchetype( const u64& ArchetypeGuid ) const noexcept;
+
+        PPB_INLINE
+        archetype::instance& GetArchetype( const u64& ArchetypeGuid ) const noexcept;
+
+        PPB_INLINE
         std::vector<paperback::archetype::instance*> GetArchetypeList( void ) noexcept;
 
         PPB_INLINE
@@ -130,6 +149,12 @@ namespace paperback::archetype
         PPB_INLINE
         void RemoveEntity( const u32 SwappedGlobalIndex
                          , const u32 DeletedEntityIndex ) noexcept;
+
+        PPB_INLINE
+        u32 GetEntityHead() noexcept;
+
+        PPB_INLINE
+        void SetEntityHead( u32 NewEntityHead ) noexcept;
 
     private:
 
@@ -147,10 +172,16 @@ namespace paperback::archetype
         PPB_INLINE
         archetype::instance& CreateAndInitializeArchetype( std::span<const component::info* const> Types
                                                          , const u32 Count
-                                                         , const tools::bits& Signature ) noexcept;
+                                                         , const tools::bits& Signature
+                                                         , std::string ArchetypeName = "Unnamed Archetype" ) noexcept;
 
         template < typename... T_COMPONENTS >
         std::vector<archetype::instance*> Search( std::span<const component::info* const> Types ) const noexcept;
+
+        PPB_INLINE
+        void AddOrRemoveComponentsFromPrefabInstances( const entity::info& Info
+                                                     , std::span<const component::info* const> Add
+								                     , std::span<const component::info* const> Remove ) noexcept;
 
 
         paperback::coordinator::instance&   m_Coordinator;
@@ -166,4 +197,21 @@ namespace paperback::archetype
         u32                                 m_EntityHead        { 0 };
 
     };
+
+    struct TempMgr
+    {
+        u32 EntityHead{ 0 };
+    };
 }
+
+
+namespace RR_ArchetypeMgr
+{
+    RTTR_REGISTRATION
+    {
+        rttr::registration::class_< paperback::archetype::TempMgr>("Archetype Manager")
+           .constructor()(rttr::policy::ctor::as_object)
+           .property("EntityHead", &paperback::archetype::TempMgr::EntityHead);
+    }
+}
+

@@ -1,5 +1,4 @@
 #pragma once
-
 //#include "../Sandbox/Systems/SoundSystem.h"
 
 namespace paperback::coordinator
@@ -241,6 +240,37 @@ namespace paperback::coordinator
 		m_CompMgr.RegisterComponents<T_COMPONENTS...>();
 	}
 
+	template < typename T_EVENT >
+    void instance::RegisterEvent( void ) noexcept
+	{
+		m_GlobalEventMgr.RegisterEvent<T_EVENT>( );
+	}
+
+    template < paperback::concepts::Event T_EVENT
+             , typename                   T_CLASS >
+    void instance::RegisterEventClass( T_CLASS* Class ) noexcept
+	{
+		m_GlobalEventMgr.RegisterEventClass<T_EVENT>( static_cast<T_CLASS*>( Class ) );
+	}
+
+
+    //-----------------------------------
+    //             Removal
+    //-----------------------------------
+
+    template < paperback::concepts::Event T_EVENT >
+    void instance::RemoveEvent( void ) noexcept
+	{
+		m_GlobalEventMgr.RemoveEvent<T_EVENT>( );
+	}
+
+    template < paperback::concepts::Event T_EVENT
+             , typename                   T_CLASS >
+    void instance::RemoveEventClass( T_CLASS* Class ) noexcept
+	{
+		m_GlobalEventMgr.RemoveEventClass<T_EVENT>( static_cast<T_CLASS*>( Class ) );
+	}
+
 
 	//-----------------------------------
 	//           Save Scene
@@ -248,8 +278,8 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::SaveScene(const std::string& FilePath) noexcept
 	{
-		paperback::entity::TempInfo Tempinfo = {};
 		paperback::component::temp_guid Temp = {};
+		paperback::archetype::TempMgr TempMgr;
 		
 		paperback::JsonFile JFile;
 
@@ -257,34 +287,44 @@ namespace paperback::coordinator
 		JFile.StartObject().WriteKey("Entities");
 		JFile.StartArray();
 
+		//Save Archetype Manager
+		TempMgr.EntityHead = m_ArchetypeMgr.GetEntityHead();
+
+		JFile.StartObject().WriteKey("Archetype Manager");
+
+		JFile.StartObject().Write(TempMgr).EndObject();
+
+		JFile.EndObject();
+
+		// Serialize Prefabs 
 		for (auto& Archetype : PPB.GetArchetypeList())
 		{
-			if ( Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID) ) //Have prefab component
-			{
-				JFile.StartObject().WriteKey(("Prefab " + Archetype->GetName()).c_str()).StartArray();
+			//if ( Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID) ) //Have prefab component
+			//{
+			//	JFile.StartObject().WriteKey((Archetype->GetName()).c_str()).StartArray();
 
-				//Serialize GUIDs
+			//	//Serialize GUIDs
 
-				JFile.StartObject().WriteKey("Guid").StartArray();
-				auto& ComponentInfoArray = Archetype->GetComponentInfos();
+			//	JFile.StartObject().WriteKey("Guid").StartArray();
+			//	auto& ComponentInfoArray = Archetype->GetComponentInfos();
 
-				for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
-				{
-					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
-					JFile.WriteGuid(Temp);
-				}
+			//	for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+			//	{
+			//		Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+			//		JFile.WriteGuid(Temp);
+			//	}
 
-				JFile.EndArray().EndObject();
+			//	JFile.EndArray().EndObject();
 
-				//Serialize Components
+			//	//Serialize Components
 
-				Archetype->SerializeAllEntities(JFile);
+			//	Archetype->SerializeAllEntities(JFile);
 
-				JFile.EndArray().EndObject();
-			}
-
-			else
-			{
+			//	JFile.EndArray().EndObject();
+			//}
+			//else
+			//{
+				// Serialize Prefabs Instances + Normal Entities
 				JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
 
 				//Serialize GUIDs
@@ -307,12 +347,27 @@ namespace paperback::coordinator
 
 				JFile.EndArray().EndObject();
 
-			}
+			//}
 		}
+
+		JFile.EndArray().EndObject().EndWriter();
+
+		// Save the entity info after everything else
+		SaveEntityInfo("../../resources/assetloading/EntityInfoTest.json");
+	}
+
+	PPB_INLINE
+	void instance::SaveEntityInfo( const std::string& FilePath) noexcept
+	{
+		paperback::entity::TempInfo Tempinfo{};
+		// Probably just save into the same file everytime
+		paperback::JsonFile JFile;
+
+		JFile.StartWriter( FilePath ).StartObject().WriteKey( "All Entity Info" ).StartArray();
 
 		const auto& EntityInfoList = m_ArchetypeMgr.GetEntityInfoList();
 
-		JFile.StartObject().WriteKey("Entity Info").StartArray();
+		JFile.StartObject();
 
 		for (u32 i = 0; i < settings::max_entities_v; ++i)
 		{
@@ -320,21 +375,20 @@ namespace paperback::coordinator
 			Tempinfo.PoolDetails = EntityInfoList[i].m_PoolDetails;
 			Tempinfo.Validation = EntityInfoList[i].m_Validation;
 
-			JFile.StartObject().Write(Tempinfo).EndObject();
+			JFile.WriteKey("Entity Info").StartObject().Write(Tempinfo).EndObject();
 		}
 
-		JFile.EndArray().EndObject();
-
-		JFile.EndArray();
 		JFile.EndObject();
-		JFile.EndWriter();
+
+		JFile.EndArray().EndObject().EndWriter();
+
 	}
 
 	PPB_INLINE
 	void instance::OpenScene( const std::string& SceneName = "" ) noexcept
 	{
 		/*JsonFile Jfile;
-
+		Initialize();
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Entities");
 		Jfile.EndReader();*/
@@ -355,6 +409,51 @@ namespace paperback::coordinator
 				m_SceneMgr.ChangeScene();
 			}
 		}
+
+		// After loading in all Entities, load in the Entity Infos
+		LoadEntityInfo( "../../resources/assetloading/EntityInfoTest.json" );
+	}
+
+	PPB_INLINE
+	void instance::LoadEntityInfo(const std::string& FilePath) noexcept
+	{
+		JsonFile Jfile;
+
+		Jfile.StartReader(FilePath);
+		Jfile.LoadEntities("All Entity Info");
+		Jfile.EndReader();
+	}
+
+	PPB_INLINE
+	void instance::SaveSingleEntity( const std::string& FilePath, const paperback::entity::info& EntityInfo ) noexcept
+	{
+		paperback::entity::TempInfo Tempinfo = {};
+		paperback::component::temp_guid Temp = {};
+		
+		paperback::JsonFile JFile;
+
+		JFile.StartWriter(FilePath);
+
+		/*&*/ JFile.StartObject().WriteKey(EntityInfo.m_pArchetype->GetName().c_str()).StartArray();
+
+		/*%*/ JFile.StartObject().WriteKey("Guid").StartArray();
+
+		auto& EntityComponentInfo = EntityInfo.m_pArchetype->GetComponentInfos();
+
+		for (paperback::u32 i = 0; i < EntityInfo.m_pArchetype->GetComponentCount(); ++i)
+		{
+			Temp.m_Value = EntityComponentInfo[i]->m_Guid.m_Value;
+			JFile.WriteGuid(Temp);
+		}
+
+		//auto& Components = EntityInfo.m_pArchetype->GetEntityComponents();
+
+		//if ()
+
+		/*%*/ JFile.EndArray().EndObject();
+
+		/*&*/ JFile.EndArray().EndObject().EndWriter();
+
 	}
 
 	PPB_INLINE
@@ -379,6 +478,7 @@ namespace paperback::coordinator
 		m_SystemMgr.ResetSystems();
 	}
 
+
 	//-----------------------------------
 	//       Entity / Archetype
 	//-----------------------------------
@@ -388,9 +488,15 @@ namespace paperback::coordinator
 		return m_ArchetypeMgr.GetOrCreateArchetype<T_COMPONENTS...>( );
 	}
 
-	archetype::instance& instance::GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept
+	archetype::instance& instance::GetOrCreateArchetype( const tools::bits ArchetypeSignature
+													   , std::string ArchetypeName ) noexcept
 	{
-		return m_ArchetypeMgr.GetOrCreateArchetype( ArchetypeSignature );
+		return m_ArchetypeMgr.GetOrCreateArchetype( ArchetypeSignature, ArchetypeName );
+	}
+
+	void instance::CreatePrefab( void ) noexcept
+	{
+		m_ArchetypeMgr.CreatePrefab();
 	}
 
 	template< typename T_FUNCTION >
@@ -417,6 +523,15 @@ namespace paperback::coordinator
 	{
 		m_ArchetypeMgr.ResetAllArchetypes();
 	}
+
+	template < typename T_COMPONENT >
+	void instance::UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+															   , const T_COMPONENT&  UpdatedComponent ) noexcept
+	{
+		m_ArchetypeMgr.UpdatePrefabInstancesOnPrefabComponentUpdate(PrefabInfo, UpdatedComponent);
+	}
+
+
 
 
 	//-----------------------------------
@@ -561,12 +676,12 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//             Getters
 	//-----------------------------------
-	entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
+	paperback::entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
 	{
 		return m_ArchetypeMgr.GetEntityInfo( Entity );
 	}
 
-	entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
+	paperback::entity::info& instance::GetEntityInfo( const u32 GlobalIndex ) const noexcept
 	{
 		return m_ArchetypeMgr.GetEntityInfo( GlobalIndex );
 	}
@@ -608,6 +723,21 @@ namespace paperback::coordinator
 	std::vector<fs::path>& instance::GetDragDropFiles() noexcept
 	{
 		return m_DragDropFiles;
+	}
+
+	void instance::SetEntityHead( u32 NewEntityHead ) noexcept
+	{
+		m_ArchetypeMgr.SetEntityHead(NewEntityHead);
+	}
+
+	paperback::archetype::manager::EntityInfoList& instance::GetEntityInfoList() noexcept
+	{
+		return m_ArchetypeMgr.GetEntityInfoList();
+	}
+
+	paperback::archetype::instance& instance::GetArchetype( const u64 ArchetypeGuid ) noexcept
+	{
+		return m_ArchetypeMgr.GetArchetype( ArchetypeGuid );
 	}
 
 	//-----------------------------------
@@ -684,6 +814,18 @@ namespace paperback::coordinator
 	bool instance::IsMouseUp( int Key ) noexcept
 	{
 		return m_Input.IsMouseUp( Key );
+	}
+
+
+	//-----------------------------------
+    //         Event Broadcast
+    //-----------------------------------
+
+    template < paperback::concepts::Event T_EVENT
+             , typename...                T_ARGS >
+    void instance::BroadcastEvent( T_ARGS&&... Args ) const noexcept
+	{
+		m_GlobalEventMgr.BroadcastEvent<T_EVENT>( std::forward< T_ARGS&& >( Args )... );
 	}
 
 

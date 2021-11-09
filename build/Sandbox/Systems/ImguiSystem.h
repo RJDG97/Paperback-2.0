@@ -1,6 +1,5 @@
 #pragma once
 #include "WindowSystem.h"
-#include "Json/paperback_json.h"
 
 #include <dearImGui/IconsFontAwesome5.h>
 #include <sstream>
@@ -55,7 +54,7 @@ struct imgui_system : paperback::system::instance
 
     paperback::archetype::instance* m_pArchetype; //refers back to the archetype that the entity is referencing to
 
-    std::vector <rttr::instance> m_Components = {};
+    std::vector < std::pair < rttr::instance, paperback::component::type::guid> > m_Components = {};
     std::vector <const char*> m_ComponentNames = {};
 
     std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete;
@@ -133,7 +132,7 @@ struct imgui_system : paperback::system::instance
         m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
 
-        m_Log.Init();
+        m_Log.Init(); //Init ImTerm (Console)
 
         //-----------------------------------
         //         Register Panels
@@ -403,8 +402,6 @@ struct imgui_system : paperback::system::instance
                 m_LoadedPath = m_FileDialog.selected_path;
                 m_LoadedFile = m_FileDialog.selected_fn;
 
-                ResetScene();
-
                 PPB.OpenEditScene(m_FileDialog.selected_path);
 
                 EDITOR_TRACE_PRINT(m_FileDialog.selected_fn + " Loaded");
@@ -433,6 +430,7 @@ struct imgui_system : paperback::system::instance
     {
         if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>())
         {
+            ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
             ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(PropertyValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()));
         }
 
@@ -578,6 +576,8 @@ struct imgui_system : paperback::system::instance
                 break;
                 case FileActivity::OPENSCENE:
                 {
+                    ResetScene();
+
                     m_bFileOpen = true;
 
                     m_Type = FileActivity::NONE;
@@ -622,6 +622,14 @@ struct imgui_system : paperback::system::instance
                     ImGui::CloseCurrentPopup();
                 }
 
+            }
+
+            ImGui::SameLine();
+
+            if (ImGui::Button("Cancel"))
+            {
+                m_Type = FileActivity::NONE;
+                ImGui::CloseCurrentPopup();
             }
 
             //ImGuiHelp("Click here to continue on");

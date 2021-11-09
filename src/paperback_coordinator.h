@@ -110,12 +110,45 @@ namespace paperback::coordinator
 		template< typename... T_COMPONENTS >
 		constexpr void RegisterComponents( void ) noexcept;
 
+		template < typename T_EVENT >
+        void RegisterEvent( void ) noexcept;
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename                   T_CLASS >
+        void RegisterEventClass( T_CLASS* Class ) noexcept;
+
+
+        //-----------------------------------
+        //             Removal
+        //-----------------------------------
+
+        template < paperback::concepts::Event T_EVENT >
+        void RemoveEvent( void ) noexcept;
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename                   T_CLASS >
+        void RemoveEventClass( T_CLASS* Class ) noexcept;
+
+
+		//-----------------------------------
+		//          Serialization
+		//-----------------------------------
+
 		PPB_INLINE
-		void SaveScene(const std::string& FilePath) noexcept;
+		void SaveScene( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
 		void OpenScene(const std::string& SceneName) noexcept;
 
+		PPB_INLINE
+		void LoadEntityInfo(const std::string& FilePath) noexcept;
+
+		PPB_INLINE
+		void SaveEntityInfo( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE
+		void SaveSingleEntity(const std::string& FilePath, const paperback::entity::info& EntityInfo) noexcept;
+		
 		PPB_INLINE
 		void OpenEditScene(const std::string& FilePath) noexcept;
 
@@ -133,7 +166,11 @@ namespace paperback::coordinator
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
 		PPB_INLINE
-		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
+		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature
+												 , std::string ArchetypeName = "Unnamed Archetype" ) noexcept;
+
+		PPB_INLINE
+		void CreatePrefab( void ) noexcept;
 
 		template< typename T_FUNCTION = paperback::empty_lambda >
 		void CreateEntity( T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
@@ -161,6 +198,10 @@ namespace paperback::coordinator
 								               , std::span<const component::info*> Remove
 								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
+		template < typename T_COMPONENT >
+		void UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+														 , const T_COMPONENT&  UpdatedComponent ) noexcept;
+
 		
 		//-----------------------------------
 		//           Query Methods
@@ -175,7 +216,6 @@ namespace paperback::coordinator
         PPB_INLINE
         std::vector<archetype::instance*> Search( const tools::query& Query ) const noexcept;
         
-
 
 		//-----------------------------------
 		//           Game Loops
@@ -195,10 +235,10 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		PPB_INLINE
-		entity::info& GetEntityInfo( component::entity& Entity ) const noexcept;
+		paperback::entity::info& GetEntityInfo( component::entity& Entity ) const noexcept;
 
 		PPB_INLINE
-        entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
+        paperback::entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
 		template< typename T_SYSTEM >
 		T_SYSTEM* FindSystem( void ) noexcept;
@@ -220,6 +260,15 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		std::vector<fs::path>& GetDragDropFiles() noexcept;
+
+		PPB_INLINE
+		void SetEntityHead( u32 NewEntityHead ) noexcept;
+
+		PPB_INLINE
+		paperback::archetype::manager::EntityInfoList& GetEntityInfoList() noexcept;
+
+		PPB_INLINE
+		paperback::archetype::instance& GetArchetype( const u64 ArchetypeGuid ) noexcept;
 
 		//-----------------------------------
 		//              Clock
@@ -273,6 +322,15 @@ namespace paperback::coordinator
 		bool IsMouseUp( int Key ) noexcept;
 
 
+		//-----------------------------------
+        //         Event Broadcast
+        //-----------------------------------
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename...                T_ARGS >
+        void BroadcastEvent( T_ARGS&&... Args ) const noexcept;
+
+
 		/*
         /*! Friend Classes
         */
@@ -300,6 +358,7 @@ namespace paperback::coordinator
 		component::manager			m_CompMgr;						// Component Manager
 		archetype::manager			m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				m_SystemMgr{ m_Clock };			// System Manager
+		event::manager				m_GlobalEventMgr;				// Global Event Manager
 		bool						m_GameActive = true;			// Game Status
 	};
 }

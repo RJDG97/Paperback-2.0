@@ -327,7 +327,7 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<std
 	// Merge blur and original image
 	CompositePass();
 	// Display final image to screen
-	FinalPass();
+	//FinalPass();
 	glEnable(GL_DEPTH_TEST);
 }
 

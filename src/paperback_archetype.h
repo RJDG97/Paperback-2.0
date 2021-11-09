@@ -22,7 +22,7 @@ namespace paperback::archetype
         instance( coordinator::instance& Coordinator, const tools::bits& ComponentBits ) noexcept;
 
         PPB_INLINE
-        void Init( std::span<const component::info* const> Types, const u32 NumComponents, const std::string Name = "unnamed archetype") noexcept;
+        void Init( std::span<const component::info* const> Types, const u32 NumComponents, const std::string Name = "Unnamed Archetype") noexcept;
 
 
         //-----------------------------------
@@ -31,6 +31,9 @@ namespace paperback::archetype
 
         template< typename T_CALLBACK = paperback::empty_lambda >
         paperback::component::entity CreateEntity( T_CALLBACK&& Function = paperback::empty_lambda{} ) noexcept;
+
+        template< typename T_CALLBACK = paperback::empty_lambda >
+        paperback::component::entity CreatePrefab(T_CALLBACK&& Function = paperback::empty_lambda{}) noexcept;
         
         // Called By Prefab Instance's Archetype
         PPB_INLINE
@@ -38,13 +41,21 @@ namespace paperback::archetype
 
         // Called By The Prefab Archetype
         PPB_INLINE
-        const u32 ClonePrefab( void ) noexcept;
+        const u32 ClonePrefab( const u32 PrefabPoolIndex ) noexcept;
 
         PPB_INLINE
         void DestroyEntity( component::entity& Entity ) noexcept;
 
         PPB_INLINE
         void Clear( void ) noexcept;
+
+
+        //-----------------------------------
+        //            Transfer
+        //-----------------------------------
+
+        template < typename T_FUNCTION = paperback::empty_lambda >
+        component::entity TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
 
         //-----------------------------------
@@ -71,9 +82,6 @@ namespace paperback::archetype
         requires( !(( std::is_reference_v<T_COMPONENTS> ) && ...) )
         constexpr auto GetComponentArray( vm::instance& Pool, u32 PoolIndex, std::tuple<T_COMPONENTS...>* ) const noexcept;
 
-        template < typename T_FUNCTION = paperback::empty_lambda >
-        component::entity TransferExistingEntity( const component::entity Entity, T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
-
 
         //-----------------------------------
         //              Guard
@@ -98,7 +106,9 @@ namespace paperback::archetype
 
         // Called by the Prefab Instance Archetype to Allocate Memory
         PPB_INLINE
-        void InitializePrefabInstances( const u32 InstanceCount, vm::instance& PrefabPool ) noexcept;
+        void InitializePrefabInstances( const u32 InstanceCount
+                                      , const u32 PrefabPoolIndex
+                                      , vm::instance& PrefabPool ) noexcept;
 
 
         //-----------------------------------
@@ -106,10 +116,7 @@ namespace paperback::archetype
         //-----------------------------------
 
         PPB_INLINE
-        std::vector<rttr::instance> GetEntityComponents( const u32 Index ) noexcept;
-
-        PPB_INLINE 
-        archetype::instance* GetArchetypePointer( const u32 Index ) noexcept;
+        std::vector< std::pair < rttr::instance, component::type::guid > > GetEntityComponents( const u32 Index ) noexcept;
 
         PPB_INLINE
         u32 GetCurrentEntityCount( void ) const noexcept;
@@ -133,7 +140,7 @@ namespace paperback::archetype
         bool CheckComponentExistence( const component::info* Info) noexcept;
 
         PPB_INLINE
-        tools::bits& GetComponentBits( void ) noexcept;
+        const tools::bits GetComponentBits( void ) noexcept;
 
         PPB_INLINE
         const guid& GetArchetypeGuid( void ) const noexcept;
@@ -142,7 +149,8 @@ namespace paperback::archetype
     private:
 
         PPB_INLINE
-        const vm::PoolDetails ClonePrefabComponents( vm::instance& PrefabPool ) noexcept;
+        const vm::PoolDetails ClonePrefabComponents( const u32 PrefabPoolIndex
+                                                   , vm::instance& PrefabPool ) noexcept;
 
         coordinator::instance&        m_Coordinator;                                              // Coordinator Reference
         ComponentPool                 m_ComponentPool            {   };                           // Component Pool

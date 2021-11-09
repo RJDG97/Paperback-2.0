@@ -22,7 +22,7 @@ namespace tools
 	}
 	
 	template< typename T_FUNCTION >
-	void query::AddQueryFromFunction( T_FUNCTION&& ) noexcept
+	void query::AddQueryFromFunction( void ) noexcept
 	{
 		using func_traits = xcore::function::traits<T_FUNCTION>;
 	

@@ -133,14 +133,17 @@ namespace paperback
     {
         rapidjson::Value::MemberIterator it = doc->FindMember(Archetype);
         if (it != doc->MemberEnd())
-            deserialize::ReadEntities(it);
+            if (Archetype == "Entities") //Load Entities + Prefabs + Archetype Mgr
+                deserialize::ReadEntities(it);
+            else if (Archetype == "All Entity Info") // Load Entity Infos
+                deserialize::ReadEntityInfo(it);
 
         return *this;
     }
 
     inline JsonFile& JsonFile::LoadObjects(rttr::instance Instance)
     {
-        deserialize::ReadObject(Instance, *doc);
+        deserialize::ReadObject(Instance, *doc); // reading of normal json whose type is registered with rttr
         return *this;
     }
 
