@@ -46,13 +46,16 @@ void DetailsWindow::Panel()
                         if ( PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic() )
                             m_Imgui.DisplayBaseTypes( PropertyName, PropertyType, PropertyValue );
                         else if ( (PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || PropertyType == rttr::type::get< std::string>()) && 
-                            ComponentInstance.first.get_type().get_name().to_string() != "Mesh")
+                            ComponentInstance.first.get_type().get_name().to_string() != "Mesh" && ComponentInstance.first.get_type().get_name().to_string() != "Socketed"
+                            && ComponentInstance.first.get_type().get_name().to_string() != "Animator")
                             m_Imgui.DisplayStringType( PropertyName, PropertyType, PropertyValue );
                         else if ( PropertyType.is_class() )
                             m_Imgui.DisplayClassType( PropertyName, PropertyType, PropertyValue );
+                        //if (ComponentInstance.first.get_type().get_name().to_string() == "Collidable")
+                        //    m_Imgui.DisplayEnumeration(PropertyName, PropertyType, PropertyValue, ComponentInstance.first, property);
 
-                        if (ComponentInstance.first.get_type().get_name().to_string() == "Parent")
-                            ParentComponent();
+                        else if (ComponentInstance.first.get_type().get_name().to_string() == "Parent")
+                                ParentComponent();
 
                         auto ReferencePrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                         auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
@@ -82,6 +85,10 @@ void DetailsWindow::Panel()
 
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Mesh")
                         MeshCombo();
+                    else if (ComponentInstance.first.get_type().get_name().to_string() == "Animator")
+                        AnimatorComponent();
+                    else if (ComponentInstance.first.get_type().get_name().to_string() == "Socketed")
+                        SocketedComponent();
                 }
             }
 		}
@@ -194,9 +201,7 @@ void DetailsWindow::ParentComponent()
                 ImGui::Text("Child GID: %d", Child);
         }
         else
-        {
             ImGui::Text("No Child is attached to this parent");
-        }
 
         ChildCombo();
     }
@@ -326,5 +331,79 @@ void DetailsWindow::MeshCombo()
         }
 
         ImGui::EndCombo();
+    }
+}
+
+void DetailsWindow::AnimatorComponent()
+{
+    RenderResourceManager& RRM = RenderResourceManager::GetInstanced();
+    //get Mesh component -> m_Model
+    auto EntityMesh = m_Imgui.m_SelectedEntity.first->FindComponent<mesh>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+    auto EntityAnimator = m_Imgui.m_SelectedEntity.first->FindComponent<animator>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
+    if (EntityMesh && EntityAnimator)
+    {
+        auto& AnimationMap = RRM.m_Models[EntityMesh->m_Model].GetAnimations(); //Get the animations that is avaliable for the model
+
+        if (ImGui::BeginCombo("##ModelAnimation", EntityAnimator->m_CurrentAnimationName.empty() ? "Choose an animation" : EntityAnimator->m_CurrentAnimationName.c_str()))
+        {
+            if (!AnimationMap.empty())
+            {
+                for (auto& [AnimString, Anim] : AnimationMap)
+                {
+                    if (ImGui::Selectable(AnimString.c_str()))
+                    {
+                        EntityAnimator->m_CurrentAnimationName = AnimString;
+                    }
+                }
+            }
+            ImGui::EndCombo();
+        }
+
+        ImGui::Checkbox("Play Once", &EntityAnimator->m_PlayOnce);
+    }
+}
+
+void DetailsWindow::SocketedComponent()
+{
+    RenderResourceManager& RRM = RenderResourceManager::GetInstanced();
+
+    auto EntityChild = m_Imgui.m_SelectedEntity.first->FindComponent<child>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+    auto EntitySocketed = m_Imgui.m_SelectedEntity.first->FindComponent<socketed>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
+    if (EntityChild && EntitySocketed)
+    {
+        //Get Entity Parent
+        auto& ParentEntityInfo = PPB.GetEntityInfo(EntityChild->m_ParentGlobalIndex);
+
+        //Get the Parent Mesh + Animation
+        auto ParentMesh = ParentEntityInfo.m_pArchetype->FindComponent<mesh>(ParentEntityInfo.m_PoolDetails);
+        auto ParentAnimator = ParentEntityInfo.m_pArchetype->FindComponent<animator>(ParentEntityInfo.m_PoolDetails);
+
+        if (ParentMesh && ParentAnimator)
+        {
+            auto& AnimationMap = RRM.m_Models[ParentMesh->m_Model].GetAnimations(); //Get the animations that is avaliable for the model
+
+            if (!AnimationMap.empty())
+            {
+                auto& BoneMap = AnimationMap[ParentAnimator->m_CurrentAnimationName].GetBoneIDMap(); //Get the bones based on the animation
+
+                if (!BoneMap.empty())
+                {
+                    if (ImGui::BeginCombo("##ModelBones", EntitySocketed->m_ParentSocket.empty() ? "Select a Bone" : EntitySocketed->m_ParentSocket.c_str()))
+                    {
+                        for (auto& [BoneString, Bone] : BoneMap)
+                        {
+                            if (ImGui::Selectable(BoneString.c_str()))
+                            {
+                                EntitySocketed->m_ParentSocket = BoneString;
+                            }
+                        }
+
+                        ImGui::EndCombo();
+                    }
+                }
+            }
+        }
     }
 }

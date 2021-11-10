@@ -239,7 +239,6 @@ struct imgui_system : paperback::system::instance
     PPB_INLINE
     void OnStateChange(void) noexcept
     {
-
         m_bImgui = (PPB.VerifyState("Editor")) ? true : false;
     }
 
@@ -445,6 +444,45 @@ struct imgui_system : paperback::system::instance
         else
             m_bFileSaveAs = false; //dialog is closed
     }
+    void EnumerationCombo(std::vector<const char*> Value_List, const std::string& Name, paperback::u8& Selection)
+    {
+        //const char* current_item = Value_List[Selection];
+        if (ImGui::BeginCombo(("##" + Name).c_str(), "Choose Layer"))
+        {
+            for (unsigned i = 0; i < Value_List.size(); ++i)
+            {
+                //bool is_selected = (current_item == Value_List[i]);
+                if (ImGui::Selectable(Value_List[i]))
+                    Selection = i;
+            }
+            ImGui::EndCombo();
+        }
+    }
+
+    void DisplayEnumeration(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue, rttr::instance& Instance, rttr::property Property)
+    {
+        auto Enumeration = PropertyType.get_enumeration();
+        auto EnumList = Enumeration.get_names();
+        std::vector<const char*> ValueList;
+
+        for (auto& Enum : EnumList)
+            ValueList.push_back(Enum.data());
+
+        auto Selection = PropertyValue.get_value<paperback::u8>();
+        EnumerationCombo(ValueList, PropertyName, Selection);
+
+        auto Result = Enumeration.name_to_value(Enumeration.value_to_name(Selection));
+
+        if (PropertyName == "Collidable Layers")
+        {
+            auto EntityCollideLayers = m_SelectedEntity.first->FindComponent<collidable>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second });
+
+            paperback::u8 Layer = Result.get_value<paperback::u8>();
+            EntityCollideLayers->Set(Layer); //need to test
+        }
+        else
+            Property.set_value(Instance, Result);
+    }
 
     void DisplayClassType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
     {
@@ -500,7 +538,7 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        if (PropertyType == rttr::type::get<int>() || PropertyType == rttr::type::get<std::reference_wrapper<int>>())
+        else if (PropertyType == rttr::type::get<int>() || PropertyType == rttr::type::get<std::reference_wrapper<int>>())
         {
             if (!PropertyType.is_wrapper())
             {
@@ -515,7 +553,7 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        if (PropertyType == rttr::type::get<bool>() || PropertyType == rttr::type::get <std::reference_wrapper<bool>>())
+        else if (PropertyType == rttr::type::get<bool>() || PropertyType == rttr::type::get <std::reference_wrapper<bool>>())
         {
             if (!PropertyType.is_wrapper())
             {
@@ -528,18 +566,20 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        if (PropertyType == rttr::type::get<size_t>())
+        else if (PropertyType == rttr::type::get<size_t>())
         {
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
             ImGui::Text("%d", PropertyValue.get_value<size_t>());
         }
 
-        if (PropertyType == rttr::type::get<paperback::u32>())
+        else if (PropertyType == rttr::type::get<paperback::u32>())
         {
-            ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-            ImGui::Text("%d", PropertyValue.get_value<paperback::u32>());
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("%d", PropertyValue.get_value<paperback::u32>());
+            }
         }
-
     }
 
     //void DisplayEnumTypes

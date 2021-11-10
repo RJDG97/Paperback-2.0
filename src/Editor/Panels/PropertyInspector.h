@@ -29,4 +29,8 @@ struct DetailsWindow : paperback::editor::instance
     void ChildCombo();
 
     void MeshCombo();
+
+    void AnimatorComponent();
+
+    void SocketedComponent();
 };

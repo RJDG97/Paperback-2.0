@@ -47,7 +47,7 @@ void EditorViewport::ViewportTwo()
 	{
 		ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
 
-		paperback::u64 TextureID = Renderer::GetInstanced().GetFinalImage();
+		paperback::u64 TextureID = Renderer::GetInstanced().GetUIOverlay();
 
 		ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 		ImGui::EndTabItem();

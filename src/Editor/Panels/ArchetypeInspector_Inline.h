@@ -18,14 +18,12 @@ void ArchetypeInspector::PrefabPanel()
     int Index = 0;
     std::string ArchetypeName;
 
-
     ImGui::BeginMenuBar();
 
     if (ImGui::MenuItem("Create Default Prefab"))
     {
         PPB.CreatePrefab();
         EDITOR_INFO_PRINT("Created: A Default Prefab");
-
     }
 
     ImGui::EndMenuBar();
@@ -175,7 +173,7 @@ void ArchetypeInspector::PrefabPanel()
 void ArchetypeInspector::ArchetypePanel()
 {
     ImGui::BeginChild("Files", { ImGui::GetContentRegionAvailWidth(), ImGui::GetContentRegionAvail().y}, true);
-
+    ImGui::Text("Prefab Instances");
     int Index = 0;
     std::string ArchetypeName;
 
