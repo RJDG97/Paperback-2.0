@@ -27,6 +27,7 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         // Pause Movement
         rf.m_isStatic = true;
         // Play Animation
+        //Animation anim = GetEntityInfo(obj.m_GlobalIndex).m_pArchetype->GetComponent<Animation>(GetEntityInfo(obj.m_GlobalIndex).m_PoolDetails);
     }
 };
 

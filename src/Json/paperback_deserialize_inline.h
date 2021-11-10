@@ -241,6 +241,9 @@ namespace paperback::deserialize
             if (obj.is_type<entityscript>())
                 NewArchetype->GetComponent<entityscript>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<entityscript>();
 
+            if (obj.is_type<collidable>())
+                NewArchetype->GetComponent<collidable>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<collidable>();
+            
             if (obj.is_type<boundingbox>())
                 NewArchetype->GetComponent<boundingbox>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<boundingbox>();
 
