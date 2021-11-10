@@ -102,3 +102,14 @@ struct collidable
         m_CollidableLayers.Set(static_cast<int>(assigned));
     }
 };
+
+namespace RR_Collidable
+{
+    RTTR_REGISTRATION
+    {
+       rttr::registration::class_<collidable>(collidable::typedef_v.m_pName)
+           .constructor()(rttr::policy::ctor::as_object)
+           .property("Collision Layer", &collidable::m_CollisionLayer)(rttr::policy::prop::as_reference_wrapper)
+           .property("Collidable Layers", &collidable::m_CollidableLayers)(rttr::policy::prop::as_reference_wrapper);
+    }
+}
