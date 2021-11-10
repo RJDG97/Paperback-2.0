@@ -299,8 +299,6 @@ void Renderer::SetUpFramebuffer(int Width, int Height)
 
 void Renderer::UpdateFramebufferSize(int Width, int Height)
 {
-	//Camera2D::GetInstanced().UpdateProjection(Width / 2, Height / 2);
-
 	m_Width = Width;
 	m_Height = Height;
 
@@ -537,12 +535,6 @@ void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm
 	const auto& quad = m_Resources.m_Models["Quad"];
 	glVertexArrayVertexBuffer(m_VAO, 0, quad.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
 	glVertexArrayElementBuffer(m_VAO, quad.GetSubMeshes()[0].m_EBO);
-
-	glm::mat4 view = Camera2D::GetInstanced().GetView();
-	glm::mat4 projection = Camera2D::GetInstanced().GetProjection();
-
-	m_Resources.m_Shaders["UI"].SetUniform("uView", const_cast<glm::mat4&>(view));
-	m_Resources.m_Shaders["UI"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
 
 	for (const auto& ui : UIs)
 	{
