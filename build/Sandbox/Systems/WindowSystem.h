@@ -66,7 +66,7 @@ struct window_system : paperback::system::instance
         std::string Version = "Using GLEW Version: " + std::string( reinterpret_cast<const char*>(glewGetString(GLEW_VERSION)) );
         INFO_PRINT( Version );
 
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glViewport(0, 0, E.m_Width, E.m_Height);
 	}
 

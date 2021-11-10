@@ -8,6 +8,5 @@ uniform sampler2D uFinal;
 
 void main()
 {
-	vec3 Color = texture(uFinal, vUV).rgb;
-	fFragClr = vec4(Color, 1.0);
+	fFragClr = texture(uFinal, vUV);
 }
