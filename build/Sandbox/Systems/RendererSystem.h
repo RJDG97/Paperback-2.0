@@ -45,13 +45,13 @@ struct render_system : paperback::system::instance
 		std::unordered_map<std::string_view, std::vector<glm::mat4>> uis;
 
 		// Reference quad
-		glm::mat4 t{ 1.0f };
-		t = glm::mat4{ 1.0f };
-		t = glm::translate(t, glm::vec3{ 0, 0, 0 });
-		t = glm::rotate(t, glm::radians(-90.f), glm::vec3{ 1.f, 0.f, 0.f });
-		t = glm::scale(t, glm::vec3{ 40,40,40 });
+		//glm::mat4 t{ 1.0f };
+		//t = glm::mat4{ 1.0f };
+		//t = glm::translate(t, glm::vec3{ 0, 0, 0 });
+		//t = glm::rotate(t, glm::radians(-90.f), glm::vec3{ 1.f, 0.f, 0.f });
+		//t = glm::scale(t, glm::vec3{ 40,40,40 });
 
-		objects["Quad"].push_back({ t });
+		//objects["Quad"].push_back({ t });
 
 		// Populate map
 		tools::query Query;
