@@ -1,0 +1,8 @@
+{
+    "Editor": "../../resources/assetloading/BlankSceneTest.json",
+    "Editor": "../../resources/assetloading/BlankSceneTest_EntityInfo.json",
+    "Workshop": "../../resources/assetloading/NewSceneTest.json",
+    "Workshop": "../../resources/assetloading/NewSceneTest_EntityInfo.json",
+    "Combat": "../../resources/assetloading/NewSceneTest.json",
+    "Combat": "../../resources/assetloading/NewSceneTest_EntityInfo.json"
+}

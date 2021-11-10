@@ -31,4 +31,9 @@ namespace paperback::deserialize
 
     PPB_INLINE
     void ReadComponents(rapidjson::Value::MemberIterator it, paperback::archetype::instance* NewArchetype, u32 EntityCounter);
+
+
+    //used for general use case
+    PPB_INLINE
+    void ReadStringPairs(std::stringstream& stream, rapidjson::Value& json_object);
 }

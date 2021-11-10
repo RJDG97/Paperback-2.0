@@ -236,6 +236,14 @@ struct imgui_system : paperback::system::instance
         ImGui::DestroyContext();
     }
 
+    PPB_INLINE
+    void OnStateChange(void) noexcept
+    {
+
+        m_bImgui = (PPB.VerifyState("Editor")) ? true : false;
+    }
+
+
     //-----------------------------------
     //        Panel Manager
     //-----------------------------------
@@ -398,7 +406,7 @@ struct imgui_system : paperback::system::instance
 
                 if (!m_EntityInfoLoadedPath.empty())
                 {
-                    PPB.OpenScene(m_FileDialog.selected_path, m_EntityInfoLoadedPath);
+                    PPB.OpenEditScene(m_FileDialog.selected_path, m_EntityInfoLoadedPath);
                     EDITOR_TRACE_PRINT(m_FileDialog.selected_fn + " Loaded");
                 }
                 else
@@ -545,9 +553,6 @@ struct imgui_system : paperback::system::instance
 
         if (!m_Components.empty())
             m_Components.clear();
-
-        if (!PPB.GetArchetypeList().empty())
-            PPB.ResetAllArchetypes();
     }
 
     void PopUpMessage(const std::string& WindowName, const char* Message) {
@@ -609,7 +614,7 @@ struct imgui_system : paperback::system::instance
 
                         if (!m_EntityInfoLoadedPath.empty())
                         {
-                            PPB.OpenScene(m_LoadedPath, m_EntityInfoLoadedPath);
+                            PPB.OpenEditScene(m_LoadedPath, m_EntityInfoLoadedPath);
                             EDITOR_TRACE_PRINT(m_LoadedFile + " Loaded");
                         }
                         else

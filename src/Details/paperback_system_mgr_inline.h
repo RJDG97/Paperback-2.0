@@ -127,5 +127,14 @@ namespace paperback::system
 
 		if constexpr ( &T_SYSTEM::OnSystemTerminated != &system_interface::OnSystemTerminated )
 			m_Events.m_OnSystemTerminated.RegisterEvent< &T_SYSTEM::OnSystemTerminated >( static_cast<system_t*>( System ) );
+
+		if constexpr (&T_SYSTEM::OnStateChange != &system_interface::OnStateChange)
+			m_Events.m_OnStateChange.RegisterEvent< &T_SYSTEM::OnStateChange >(static_cast<system_t*>(System));
+	}
+
+	void manager::ResetSystems( void ) noexcept
+	{
+
+		m_Events.m_OnStateChange.BroadcastEvent();
 	}
 }

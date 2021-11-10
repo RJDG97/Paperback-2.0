@@ -146,4 +146,12 @@ namespace paperback
         deserialize::ReadObject(Instance, *doc); // reading of normal json whose type is registered with rttr
         return *this;
     }
+
+
+    inline JsonFile& JsonFile::LoadStringPairs(std::stringstream& Stream)
+    {
+
+        deserialize::ReadStringPairs(Stream, *doc);
+        return *this;
+    };
 }

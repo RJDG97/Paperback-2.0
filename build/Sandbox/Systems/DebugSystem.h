@@ -3,6 +3,8 @@
 #include "../Functionality/Renderer/Renderer.h"
 #include "Math/Vector3f.h"
 
+//#include "Editor/EditorLogger.h"
+
 struct debug_system : paperback::system::instance
 {
 
@@ -293,6 +295,27 @@ struct debug_system : paperback::system::instance
         {
 
             GetSystem<physics_system>().ApplyForceAll({ 0.0f, -1.0f, 0.0f });
+        }
+
+        if (PPB.IsKeyPressUp(GLFW_KEY_8))
+        {
+
+            PPB.OpenScene("Editor");
+            DEBUG_LOG("Debug access to Editor State");
+        }
+
+        if (PPB.IsKeyPressUp(GLFW_KEY_9))
+        {
+
+            PPB.OpenScene("Workshop");
+            DEBUG_LOG("Debug access to Workshop State");
+        }
+
+        if (PPB.IsKeyPressUp(GLFW_KEY_0))
+        {
+
+            PPB.OpenScene("Combat");
+            DEBUG_LOG("Debug access to Combat State");
         }
     }
 
