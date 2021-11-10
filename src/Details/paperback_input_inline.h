@@ -1,5 +1,9 @@
-Input::Input() noexcept
+Input::Input( paperback::coordinator::instance& Coordinator) noexcept :
+	m_Coordinator{ Coordinator }
 {
+	m_Coordinator.RegisterEvent<KeyPressed>();
+	m_Coordinator.RegisterEvent<MousePressed>();
+
 	m_YAxis = 0.0;
 	m_Keys.fill({ GLFW_RELEASE, GLFW_RELEASE });
 	m_Buttons.fill({ -1,-1 });
@@ -133,9 +137,18 @@ glm::vec3 Input::GetMousePosition() const noexcept
 
 void Input::UpateInputs() noexcept
 {
-	for (auto& key : m_Keys)
-		key.m_Previous = key.m_Current;
+	//for (auto& key : m_Keys)
+	for ( size_t i = 0, max = m_Keys.size(); i < max; ++i )
+	{
+		if ( m_Keys[i].m_Current == GLFW_PRESS && m_Keys[i].m_Previous != GLFW_PRESS )
+			m_Coordinator.BroadcastEvent<KeyPressed>( i );
+		m_Keys[i].m_Previous = m_Keys[i].m_Current;
+	}
 
-	for (auto& mouse : m_Buttons)
-		mouse.m_Previous = mouse.m_Current;
+	for ( size_t i = 0, max = m_Buttons.size(); i < max; ++i )
+	{
+		if ( m_Buttons[i].m_Current == GLFW_PRESS && m_Buttons[i].m_Previous != GLFW_PRESS )
+			m_Coordinator.BroadcastEvent<MousePressed>( i );
+		m_Buttons[i].m_Previous = m_Buttons[i].m_Current;
+	}
 }

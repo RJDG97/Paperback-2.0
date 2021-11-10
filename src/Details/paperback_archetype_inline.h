@@ -39,8 +39,11 @@ namespace paperback::archetype
         
         return [&]<typename... T_COMPONENTS>( std::tuple<T_COMPONENTS...>* ) -> paperback::component::entity
         {
-            PPB_ASSERT_MSG( !( m_ComponentBits.Has( component::info_v<T_COMPONENTS>.m_UID ) && ... ), "Archetype CreateEntity: Creating entity with invalid components in function" );
-        
+            //PPB_ASSERT_MSG( !( m_ComponentBits.Has( component::info_v<T_COMPONENTS>.m_UID ) && ... ), "Archetype CreateEntity: Creating entity with invalid components in function" );
+            
+            if ( !( m_ComponentBits.Has( component::info_v<T_COMPONENTS>.m_UID ) && ... ) )
+                throw std::exception{};
+
             // Generate the next valid ID within m_ComponentPool
             const auto PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].Append();
             // Do not register entity if it's invalid
@@ -293,6 +296,18 @@ namespace paperback::archetype
         return {
             FindComponent<T_COMPONENTS>( Details )...
         };
+    }
+
+    u32 instance::FindPrefabEntityGID( std::string_view EntityName ) noexcept
+    {
+        for ( size_t j = 0, max = m_ComponentPool.size(); j < max; ++j )
+        for ( size_t i = 0, max = m_ComponentPool[j].GetCurrentEntityCount(); i < max; ++i )
+        {
+            auto Name = FindComponent<name>( vm::PoolDetails{(u32)j,(u32)i} );
+            if ( Name && Name->m_Value == EntityName )
+                return GetComponent<paperback::component::entity>( vm::PoolDetails{(u32)j,(u32)i} ).m_GlobalIndex;
+        }
+        return settings::invalid_index_v;
     }
 
     template < typename... T_COMPONENTS >

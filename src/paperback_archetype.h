@@ -74,6 +74,9 @@ namespace paperback::archetype
         template < typename... T_COMPONENTS >
         std::tuple<T_COMPONENTS*...> FindComponents( const PoolDetails Details ) noexcept;
 
+        PPB_INLINE
+        u32 FindPrefabEntityGID( std::string_view EntityName ) noexcept;
+
         template < typename... T_COMPONENTS >
         requires( (( std::is_reference_v<T_COMPONENTS> ) && ...) )
         constexpr auto GetComponentArray( vm::instance& Pool, u32 PoolIndex, std::tuple<T_COMPONENTS...>* ) const noexcept;

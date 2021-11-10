@@ -162,5 +162,35 @@
     <ClInclude Include="Systems\AnimatorSystem.h">
       <Filter>Source Files\Systems\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\TimerSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\OnEvent_UpdateHealth.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\PlayerSpawnerSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\EnemySpawnerSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Counter.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Friendly.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Enemy.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\FriendlySpawner.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\EnemySpawner.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Name.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
