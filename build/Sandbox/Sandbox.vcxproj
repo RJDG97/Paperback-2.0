@@ -188,6 +188,7 @@
     <ClInclude Include="Components\RigidForce.h" />
     <ClInclude Include="Components\Rotation.h" />
     <ClInclude Include="Components\Scale.h" />
+    <ClInclude Include="Components\Socketed.h" />
     <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />
     <ClInclude Include="Components\Sphere.h" />

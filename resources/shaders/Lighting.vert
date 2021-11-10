@@ -36,11 +36,14 @@ uniform mat4 uProjection;
 uniform vec3 uCameraPosition;
 
 uniform mat4 uFinalBonesMatrices[100];
+uniform mat4 uParentSocketTransform;
 uniform bool uHasBones;
+uniform bool uHasSocketed;
 
 void main()
 {
 	vec4 TransformedPosition;
+	mat4 CombinedTransform = mat4(1.0f);
 
 	if (uHasBones == true)
 	{
@@ -56,17 +59,17 @@ void main()
 			}
 		}
 
-		TransformedPosition = uModel * BoneTransform * vec4(vVertexPosition, 1.0f);
-		vPosition = vec3(TransformedPosition);
-		vNormal = mat3(transpose(inverse(uModel))) * mat3(BoneTransform) * vVertexNormal;
-	}
-	else
-	{
-		TransformedPosition = uModel * vec4(vVertexPosition, 1.0);
-		vPosition = vec3(TransformedPosition);
-		vNormal = mat3(transpose(inverse(uModel))) * vVertexNormal;
+		CombinedTransform *= BoneTransform;
 	}
 
+	if (uHasSocketed == true)
+	{
+		CombinedTransform *= uParentSocketTransform;
+	}
+
+	TransformedPosition = uModel * CombinedTransform * vec4(vVertexPosition, 1.0f);
+	vPosition = vec3(TransformedPosition);
+	vNormal = mat3(transpose(inverse(uModel))) * mat3(CombinedTransform) * vVertexNormal;
 	vUV = vVertexUV;
 
 	// Tangent space calculations

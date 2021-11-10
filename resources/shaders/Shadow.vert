@@ -8,12 +8,15 @@ uniform mat4 uLightSpaceMatrix;
 uniform mat4 uModel;
 
 uniform mat4 uFinalBonesMatrices[100];
+uniform mat4 uParentSocketTransform;
 uniform bool uHasBones;
+uniform bool uHasSocketed;
 
 void main()
 {
 	vec4 TransformedPosition;
-
+	mat4 CombinedTransform = mat4(1.0f);
+	
 	if (uHasBones == true)
 	{
 		mat4 BoneTransform = mat4(0.0f);
@@ -28,12 +31,14 @@ void main()
 			}
 		}
 
-		TransformedPosition = uModel * BoneTransform * vec4(vVertexPosition, 1.0f);
+		CombinedTransform *= BoneTransform;
 	}
-	else
+	
+	if (uHasSocketed == true)
 	{
-		TransformedPosition = uModel * vec4(vVertexPosition, 1.0);
+		CombinedTransform *= uParentSocketTransform;
 	}
 
+	TransformedPosition = uModel * CombinedTransform * vec4(vVertexPosition, 1.0f);
 	gl_Position = uLightSpaceMatrix * TransformedPosition;
 }

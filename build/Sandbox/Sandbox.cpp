@@ -82,6 +82,7 @@ void InitializeGame()
         ,    damage
         ,    currency
         ,    cost
+        ,    socketed
         >();
     }
 

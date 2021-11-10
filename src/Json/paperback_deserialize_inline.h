@@ -270,6 +270,12 @@ namespace paperback::deserialize
 
             if (obj.is_type<reference_prefab>())
                 NewArchetype->GetComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<reference_prefab>();
+
+            if (obj.is_type<offset>())
+                NewArchetype->GetComponent<offset>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<offset>();
+
+            if (obj.is_type<offset>())
+                NewArchetype->GetComponent<socketed>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<socketed>();
         }
     }
 

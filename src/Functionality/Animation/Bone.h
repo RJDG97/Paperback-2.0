@@ -128,12 +128,12 @@ public:
 
     }
 
-    void Update(float current_time)
+    glm::mat4 Update(float current_time)
     {
         glm::mat4 translation{ InterpolatePosition(current_time) };
         glm::mat4 rotation{ InterpolateRotation(current_time) };
         glm::mat4 scale{ InterpolateScaling(current_time) };
-        m_LocalTransform = translation * rotation * scale;
+        return translation * rotation * scale;
     }
 
     int GetPositionIndex(float animationTime)

@@ -342,7 +342,7 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -446,7 +446,7 @@ void Renderer::SkyBoxRender()
 	m_Resources.m_Shaders["Skybox"].UnUse();
 }
 
-void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects)
+void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
 {
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -472,16 +472,28 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 		
 		for (const auto& instance : model.second)
 		{
-			m_Resources.m_Shaders["Shadow"].SetUniform("uModel", const_cast<glm::mat4&>(instance.first));
+			m_Resources.m_Shaders["Shadow"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
 
-			if (instance.second)
+			if (instance.m_BoneTransforms)
 			{
 				m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", true);
-				m_Resources.m_Shaders["Shadow"].SetUniform("uFinalBonesMatrices", *instance.second, 100);
+				m_Resources.m_Shaders["Shadow"].SetUniform("uFinalBonesMatrices", *instance.m_BoneTransforms, 100);
 			}
+
 			else
 			{
 				m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", false);
+			}
+
+			if (instance.m_ParentSocketTransform)
+			{
+				m_Resources.m_Shaders["Shadow"].SetUniform("uHasSocketed", true);
+				m_Resources.m_Shaders["Shadow"].SetUniform("uParentSocketTransform", *instance.m_ParentSocketTransform);
+			}
+
+			else
+			{
+				m_Resources.m_Shaders["Shadow"].SetUniform("uHasSocketed", false);
 			}
 
 			for (auto& submesh : SubMeshes)
@@ -507,7 +519,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 	glEnable(GL_CULL_FACE);
 }
 
-void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects)
+void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
 {
 	// Bind to lighting frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_LightingBuffer.m_FrameBuffer[0]);
@@ -549,16 +561,28 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 		
 		for (const auto& instance : model.second)
 		{
-			m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.first));
+			m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
 
-			if (instance.second)
+			if (instance.m_BoneTransforms)
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uHasBones", true);
-				m_Resources.m_Shaders["Light"].SetUniform("uFinalBonesMatrices", *instance.second, 100);
+				m_Resources.m_Shaders["Light"].SetUniform("uFinalBonesMatrices", *instance.m_BoneTransforms, 100);
 			}
+
 			else
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uHasBones", false);
+			}
+
+			if (instance.m_ParentSocketTransform)
+			{
+				m_Resources.m_Shaders["Light"].SetUniform("uHasSocketed", true);
+				m_Resources.m_Shaders["Light"].SetUniform("uParentSocketTransform", *instance.m_ParentSocketTransform);
+			}
+
+			else
+			{
+				m_Resources.m_Shaders["Light"].SetUniform("uHasSocketed", false);
 			}
 
 			for (auto& submesh : SubMeshes)
