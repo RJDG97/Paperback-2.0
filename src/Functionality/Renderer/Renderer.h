@@ -22,8 +22,9 @@ public:
 	~Renderer();
 
 	// Render object
-	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
+	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
 
+	GLuint GetUIOverlay();
 	GLuint GetFinalImage();
 
 	// Helper function to create framebuffers
@@ -44,6 +45,7 @@ private:
 	{
 		std::vector<GLuint> m_FrameBuffer;
 		std::vector<GLuint> m_BufferTexture;
+		GLuint m_RenderBuffer;
 	};
 
 	// Light
@@ -62,10 +64,12 @@ private:
 
 	void SkyBoxRender();
 
+	void UIPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs);
 	void ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void BlurPass();
-	void CompositePass();	
+	void CompositePass();
+	void MergePass();
 	void FinalPass();
 
 	// Shadow buffer
@@ -74,6 +78,8 @@ private:
 	FrameBuffer m_LightingBuffer;
 	// Blur buffer
 	FrameBuffer m_BlurBuffer;
+	// UI buffer
+	FrameBuffer m_UIBuffer;
 	// Final buffer
 	FrameBuffer m_FinalBuffer;
 

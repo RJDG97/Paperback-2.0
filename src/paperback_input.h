@@ -7,8 +7,12 @@
 class Input
 {
 public:
+
+	struct KeyPressed : paperback::event::instance< size_t& > {};
+    struct MousePressed : paperback::event::instance< size_t& > {};
+
 	PPB_INLINE
-	Input() noexcept;
+	Input( paperback::coordinator::instance& Coordinator ) noexcept;
 
 	PPB_INLINE
 	~Input() = default;
@@ -72,4 +76,7 @@ private:
 
 	// Offset of scroll wheel
 	double m_YAxis;
+
+	// Reference to Coordinator
+	paperback::coordinator::instance& m_Coordinator;
 };

@@ -1,5 +1,4 @@
 #pragma once
-//#include "../Sandbox/Systems/SoundSystem.h"
 
 namespace paperback::coordinator
 {
@@ -23,6 +22,7 @@ namespace paperback::coordinator
 
 		JsonFile Jfile;
 
+		PPB.Initialize();
 		Jfile.StartReader(m_ScenePath);
 		Jfile.LoadEntities("Entities");
 		Jfile.EndReader();
@@ -177,6 +177,7 @@ namespace paperback::coordinator
 	instance::instance( void ) noexcept
 	{
 		paperback::logger::Init();
+
 		m_CompMgr.RegisterComponent<paperback::component::entity>();
 	}
 

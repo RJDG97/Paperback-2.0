@@ -555,6 +555,8 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< sound >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< entityscript >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< entityscript >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< collidable >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< collidable >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< rigidforce >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< rigidforce >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< boundingbox >.m_Guid.m_Value)

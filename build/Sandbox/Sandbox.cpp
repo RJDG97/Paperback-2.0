@@ -83,6 +83,11 @@ void InitializeGame()
         ,    currency
         ,    cost
         ,    socketed
+        ,    name
+        ,    friendly         // Tag
+        ,    enemy            // Tag
+        ,    friendly_spawner // Tag
+        ,    enemy_spawner    // Tag
         >();
     }
 

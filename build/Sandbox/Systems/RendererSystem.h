@@ -42,6 +42,7 @@ struct render_system : paperback::system::instance
 	{
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
+		std::unordered_map<std::string_view, std::vector<glm::mat4>> uis;
 
 		// Reference quad
 		glm::mat4 t{ 1.0f };
@@ -69,19 +70,20 @@ struct render_system : paperback::system::instance
 			Renderer::TransformInfo transform_info{ t };
 
 			if (Socketed)
-			{
 				transform_info.m_ParentSocketTransform = &Socketed->m_BoneTransform;
-			}
 
 			if (Animator)
 				transform_info.m_BoneTransforms = &Animator->m_FinalBoneMatrices;
 
-			objects[Mesh.m_Model].push_back(transform_info);
+			if(Mesh.m_Model != "Quad")
+				objects[Mesh.m_Model].push_back(transform_info);
+			else
+				uis[Mesh.m_Texture].push_back(t);
 		});
 
 		auto points = GetSystem<debug_system>().GetPoints();
 
-		Renderer::GetInstanced().Render(objects, &points);
+		Renderer::GetInstanced().Render(objects, uis, &points);
 	}
 
 	PPB_FORCEINLINE

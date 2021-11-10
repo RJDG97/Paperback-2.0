@@ -7,7 +7,7 @@ struct timer
         .m_pName = "Timer"
     };
 
-	float m_Timer = 0.0f;
+	float m_Value = 0.0f;
 };
 
 namespace RR_Timer
@@ -16,6 +16,6 @@ namespace RR_Timer
     {
         rttr::registration::class_<timer>(timer::typedef_v.m_pName)
             .constructor()(rttr::policy::ctor::as_object)
-            .property( "Timer", &timer::m_Timer )(rttr::policy::prop::as_reference_wrapper);
+            .property( "Timer", &timer::m_Value )(rttr::policy::prop::as_reference_wrapper);
     }
 }
