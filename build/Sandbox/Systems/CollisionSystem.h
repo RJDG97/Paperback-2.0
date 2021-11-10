@@ -60,7 +60,7 @@ struct collision_system : paperback::system::instance
                                 }
                                 // Check if layer is unit
                                     // If first instance of collision (may be an issue with gravity)
-                                    if (!Boundingbox->m_Collided)
+                                    if (!Boundingbox->m_Collided && RigidForce)
                                         BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
                                     else // Was previously already colliding
                                         BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity);
@@ -68,7 +68,7 @@ struct collision_system : paperback::system::instance
                                     Boundingbox->m_Collided = /*BB->m_Collided = */true;
                             }
                             else
-                                if (Boundingbox->m_Collided)
+                                if (Boundingbox->m_Collided && RigidForce)
                                     BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
                             Boundingbox->m_Collided = /*BB->m_Collided = */false;
                         }
@@ -90,7 +90,7 @@ struct collision_system : paperback::system::instance
                             }
                             // Remove once layering component integration is resolved
                                 // If first instance of collision (may be an issue with gravity)
-                                if (!Boundingbox->m_Collided)
+                                if (!Boundingbox->m_Collided && RigidForce)
                                     BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
                                 else // Was previously already colliding
                                     BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity);
@@ -99,7 +99,7 @@ struct collision_system : paperback::system::instance
                         }
                         else
                         {
-                            if (Boundingbox->m_Collided)
+                            if (Boundingbox->m_Collided && RigidForce)
                                 BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
 
                             Boundingbox->m_Collided = /*BB->m_Collided = */false;
