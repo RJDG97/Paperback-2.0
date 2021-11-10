@@ -167,7 +167,6 @@ namespace paperback::coordinator
 
 	bool scene_mgr::VerifyScene(const std::string& Name)
 	{
-
 		return (Name == m_Scenes[m_CurrentSceneIndex].GetName());
 	}
 
@@ -406,7 +405,6 @@ namespace paperback::coordinator
 			//arg given, changing state
 			if (m_SceneMgr.TriggerChangeScene(SceneName))
 			{
-
 				//scene exists, load scene
 				m_SceneMgr.ChangeScene();
 			}
@@ -421,38 +419,6 @@ namespace paperback::coordinator
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("All Entity Info");
 		Jfile.EndReader();
-	}
-
-	PPB_INLINE
-	void instance::SaveSingleEntity( const std::string& FilePath, const paperback::entity::info& EntityInfo ) noexcept
-	{
-		paperback::entity::TempInfo Tempinfo = {};
-		paperback::component::temp_guid Temp = {};
-		
-		paperback::JsonFile JFile;
-
-		JFile.StartWriter(FilePath);
-
-		/*&*/ JFile.StartObject().WriteKey(EntityInfo.m_pArchetype->GetName().c_str()).StartArray();
-
-		/*%*/ JFile.StartObject().WriteKey("Guid").StartArray();
-
-		auto& EntityComponentInfo = EntityInfo.m_pArchetype->GetComponentInfos();
-
-		for (paperback::u32 i = 0; i < EntityInfo.m_pArchetype->GetComponentCount(); ++i)
-		{
-			Temp.m_Value = EntityComponentInfo[i]->m_Guid.m_Value;
-			JFile.WriteGuid(Temp);
-		}
-
-		//auto& Components = EntityInfo.m_pArchetype->GetEntityComponents();
-
-		//if ()
-
-		/*%*/ JFile.EndArray().EndObject();
-
-		/*&*/ JFile.EndArray().EndObject().EndWriter();
-
 	}
 
 	PPB_INLINE
@@ -815,6 +781,10 @@ namespace paperback::coordinator
 		return m_Input.IsMouseUp( Key );
 	}
 
+	glm::vec3 instance::GetMousePosition() noexcept
+	{
+		return m_Input.GetMousePosition();
+	}
 
 	//-----------------------------------
     //         Event Broadcast

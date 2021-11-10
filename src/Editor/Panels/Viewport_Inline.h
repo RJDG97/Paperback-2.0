@@ -2,6 +2,7 @@
 #include "Viewport.h"
 #include "glm/inc/gtc/type_ptr.hpp"
 #include "glm/inc/gtx/matrix_decompose.hpp"
+#include "../../Physics/geometry.h"
 
 void EditorViewport::Panel()
 {
@@ -9,39 +10,81 @@ void EditorViewport::Panel()
 
 	ViewportMenuBar();
 
-	ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
+	//if (PPB.IsMousePress(GLFW_MOUSE_BUTTON_LEFT))
+	//{
+	//	EDITOR_INFO_PRINT(ImGui::GetCursorScreenPos().x);
+	//	EDITOR_INFO_PRINT(ImGui::GetCursorScreenPos().y);
+	//	EDITOR_INFO_PRINT(ImGui::GetMousePos().x);
+	//	EDITOR_INFO_PRINT(ImGui::GetMousePos().y);
 
-	paperback::u64 TextureID = Renderer::GetInstanced().GetFinalImage();
+	//}
 
-	ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+	if (ImGui::BeginTabBar("##Viewports"))
+	{
+		ViewportOne();
+		ViewportTwo();
 
-	Gizmo();
+		Gizmo();
+
+		ImGui::EndTabBar();
+	}
+
 
 	ImGui::End();
+}
+
+void EditorViewport::ViewportOne()
+{
+	//Renders the game
+
+	if (ImGui::BeginTabItem("Viewport #1"))
+	{
+		ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
+
+		paperback::u64 TextureID = Renderer::GetInstanced().GetFinalImage();
+
+		ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImGui::EndTabItem();
+	}
+}
+
+void EditorViewport::ViewportTwo()
+{
+	// Renders the UI
+
+	if (ImGui::BeginTabItem("Viewport #2"))
+	{
+		ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
+
+		paperback::u64 TextureID = Renderer::GetInstanced().GetFinalImage();
+
+		ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+		ImGui::EndTabItem();
+	}
 }
 
 void EditorViewport::ViewportMenuBar()
 {
 	ImGui::BeginMenuBar();
 
-	if (ImGui::MenuItem(ICON_FA_ARROWS_ALT))
+	if (ImGui::Button(ICON_FA_ARROWS_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;	
 	}
-	if (ImGui::MenuItem(ICON_FA_EXPAND_ALT))
+	if (ImGui::Button(ICON_FA_EXPAND_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::SCALE;
 	}
 
-	if (ImGui::MenuItem(ICON_FA_SYNC_ALT))
+	if (ImGui::Button(ICON_FA_SYNC_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 	}
 
-	if (ImGui::MenuItem(ICON_FA_BROOM))
+	if (ImGui::Button(ICON_FA_BROOM))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = -1;
