@@ -199,7 +199,7 @@
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
-    <ClInclude Include="Systems\OnEvent_MovementSystem.h" />
+    <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\RendererSystem.h" />

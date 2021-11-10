@@ -123,9 +123,6 @@
     <ClInclude Include="Components\Waypoint.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\OnEvent_MovementSystem.h">
-      <Filter>Source Files\Systems\Details\Event</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\CollisionSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
@@ -155,6 +152,9 @@
     </ClInclude>
     <ClInclude Include="Systems\AnimatorSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\OnEvent_CollisionSystem.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

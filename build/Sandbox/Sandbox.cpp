@@ -101,7 +101,9 @@ void InitializeGame()
         >();
 
         PPB.RegisterSystems <
-            onevent_movement_system
+            onevent_UnitTrigger_system,
+            onevent_UnitTriggerStay_system,
+            onevent_UnitTriggerExit_system
         >();
     }
     // Entity Creation
