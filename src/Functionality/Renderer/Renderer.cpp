@@ -73,8 +73,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("RedUnitAnimated", "../../resources/models/nui/RedUnitAnimated.nui");
 	m_Resources.Load3DMeshNUI("BlueUnitAnimated", "../../resources/models/nui/BlueUnitAnimated.nui");
 
-	m_Resources.Load3DMeshNUI("BadmintonRacket_Blue", "../../resources/models/nui/BadmintonRacket_Blue.nui");
-	m_Resources.Load3DMeshNUI("BadmintonRacket_Red", "../../resources/models/nui/BadmintonRacket_Red.nui");
+	m_Resources.Load3DMeshNUI("BadmintonRacketAnimated_Blue", "../../resources/models/nui/BadmintonRacketAnimated_Blue.nui");
+	m_Resources.Load3DMeshNUI("BadmintonRacketAnimated_Red", "../../resources/models/nui/BadmintonRacketAnimated_Red.nui");
 
 	m_Resources.Load3DMeshNUI("TableTennisRacket_Red", "../../resources/models/nui/TableTennisRacket_Red.nui");
 	m_Resources.Load3DMeshNUI("TableTennisRacket_Blue", "../../resources/models/nui/TableTennisRacket_Blue.nui");
@@ -88,8 +88,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("FrisbeeShield_Blue", "../../resources/models/nui/FrisbeeShield_Blue.nui");
 	m_Resources.Load3DMeshNUI("FrisbeeShield_Red", "../../resources/models/nui/FrisbeeShield_Red.nui");
 	
-	m_Resources.Load3DMeshNUI("FloorballStick_Red", "../../resources/models/nui/FloorballStick_Red.nui");
-	m_Resources.Load3DMeshNUI("FloorballStick_Blue", "../../resources/models/nui/FloorballStick_Blue.nui");
+	m_Resources.Load3DMeshNUI("FloorballStickAnimated_Red", "../../resources/models/nui/FloorballStickAnimated_Red.nui");
+	m_Resources.Load3DMeshNUI("FloorballStickAnimated_Blue", "../../resources/models/nui/FloorballStickAnimated_Blue.nui");
 	
 	m_Resources.Load3DMeshNUI("TopPathSlope", "../../resources/models/nui/TopPathSlope.nui");
 	m_Resources.Load3DMeshNUI("TopPath", "../../resources/models/nui/TopPath.nui");

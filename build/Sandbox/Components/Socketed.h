@@ -17,6 +17,7 @@ struct socketed
 	paperback::Vector3f	 m_SocketPosOffset;
 	paperback::Vector3f	 m_SocketRotOffset;
 	paperback::Vector3f	 m_SocketScaleOffset;
+	bool m_SyncAnimationWithParent;
 
 };
 
@@ -29,7 +30,8 @@ namespace RR_SOCKETED
 			.property("Parent Socket", &socketed::m_ParentSocket)(rttr::policy::prop::as_reference_wrapper)
 		    .property("Socket Postion Offset", &socketed::m_SocketPosOffset)(rttr::policy::prop::as_reference_wrapper)
 		    .property("Socket Rotation Offset", &socketed::m_SocketRotOffset)(rttr::policy::prop::as_reference_wrapper)
-		    .property("Socket Scale Offset", &socketed::m_SocketScaleOffset)(rttr::policy::prop::as_reference_wrapper);
+		    .property("Socket Scale Offset", &socketed::m_SocketScaleOffset)(rttr::policy::prop::as_reference_wrapper)
+			.property("Sync Animation With Parent", &socketed::m_SyncAnimationWithParent)(rttr::policy::prop::as_reference_wrapper);
 	}
 }
 #endif
