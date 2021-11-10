@@ -451,7 +451,7 @@ struct imgui_system : paperback::system::instance
         if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>())
         {
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-            ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(PropertyValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()));
+            ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(PropertyValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()), 0.1f, 0.1f);
         }
 
         if (PropertyType == rttr::type::get<paperback::component::entity::Validation>())
