@@ -24,3 +24,4 @@
 #include "Damage.h"
 #include "Currency.h"
 #include "Cost.h"
+#include "Socketed.h"

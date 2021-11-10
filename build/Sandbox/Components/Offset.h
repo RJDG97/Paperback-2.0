@@ -11,16 +11,20 @@ struct offset
 		.m_pName = "Offset"
 	};
 
-	paperback::Vector3f	 m_Value;
+	paperback::Vector3f	 m_PosOffset;
+	paperback::Vector3f	 m_RotOffset;
+	paperback::Vector3f	 m_ScaleOffset;
 };
 
 namespace RR_Offset
 {    
-    RTTR_REGISTRATION
-    {
-       rttr::registration::class_<offset>( offset::typedef_v.m_pName )
-		   .constructor()( rttr::policy::ctor::as_object )
-		   .property( "Offset", &offset::m_Value )( rttr::policy::prop::as_reference_wrapper );
+	RTTR_REGISTRATION
+	{
+	   rttr::registration::class_<offset>(offset::typedef_v.m_pName)
+		   .constructor()(rttr::policy::ctor::as_object)
+		   .property("Postion Offset", &offset::m_PosOffset)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Rotation Offset", &offset::m_RotOffset)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Scale Offset", &offset::m_ScaleOffset)(rttr::policy::prop::as_reference_wrapper);
     }
 }
 

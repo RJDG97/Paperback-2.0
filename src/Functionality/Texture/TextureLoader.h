@@ -27,6 +27,8 @@ public:
 
 	static GLuint LoadTexture(const std::string File, const bool& GammaCorrect);
 	static GLuint LoadSkyboxTexture(const std::vector<std::string>& Files);
+	static GLuint LoadDDSTexture(const std::string& File, const bool& GammaCorrect);
+	static GLuint LoadDDSSkyboxTexture(const std::vector<std::string>& Files);
 	static void FreeTexture(unsigned char* Pixels);
 };
 

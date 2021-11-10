@@ -7,22 +7,29 @@ struct parentchild_system : paperback::system::instance
 		.m_pName = "parentchild_system"
 	};
 
-	void operator()( parent& Parent, transform& Transform ) noexcept
+	void operator()( parent& Parent, transform& Transform, rotation& Rotation, scale& Scale ) noexcept
 	{
 		if (Parent.m_ChildrenGlobalIndexes.size() != 0)
 		{
 			for (const auto& ChildGlobalIndex : Parent.m_ChildrenGlobalIndexes)
 			{
 				auto& ChildInfo = GetEntityInfo(ChildGlobalIndex);
-				auto [CTransform, COffset] = ChildInfo.m_pArchetype->FindComponents<transform, offset>(ChildInfo.m_PoolDetails);
+				auto [CTransform, CRotation, CScale, COffset] = ChildInfo.m_pArchetype->FindComponents<transform, rotation, scale, offset>(ChildInfo.m_PoolDetails);
 
-				if (CTransform && COffset)
+				if (COffset)
 				{
-					CTransform->m_Position = COffset->m_Value + Transform.m_Position;
+					if (CTransform) { CTransform->m_Position = COffset->m_PosOffset + Transform.m_Position; }
+					if (CRotation) { CRotation->m_Value = COffset->m_RotOffset + Rotation.m_Value; }
+					if (CScale) { CScale->m_Value = {COffset->m_ScaleOffset.x * Scale.m_Value.x,
+													 COffset->m_ScaleOffset.y * Scale.m_Value.y,
+													 COffset->m_ScaleOffset.x * Scale.m_Value.z }; }
 				}
-				else if (CTransform)
+
+				else
 				{
-					CTransform->m_Position = Transform.m_Position;
+					if (CTransform) { CTransform->m_Position = Transform.m_Position; }
+					if (CRotation) { CRotation->m_Value = Rotation.m_Value; }
+					if (CScale) { CScale->m_Value = Scale.m_Value; }
 				}
 			}
 		}

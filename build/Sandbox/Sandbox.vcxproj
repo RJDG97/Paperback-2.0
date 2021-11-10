@@ -188,6 +188,7 @@
     <ClInclude Include="Components\RigidForce.h" />
     <ClInclude Include="Components\Rotation.h" />
     <ClInclude Include="Components\Scale.h" />
+    <ClInclude Include="Components\Socketed.h" />
     <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />
     <ClInclude Include="Components\Sphere.h" />
@@ -199,7 +200,7 @@
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
-    <ClInclude Include="Systems\OnEvent_MovementSystem.h" />
+    <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\RendererSystem.h" />

@@ -84,9 +84,9 @@ std::pair<std::string, Animation> NUILoader::LoadCompiledAnimation(std::ifstream
 	LoadString(animation_name, ifs);
 
 	float duration;
-	ifs.read(reinterpret_cast<char*>(&duration), sizeof(std::uint32_t));
+	ifs.read(reinterpret_cast<char*>(&duration), sizeof(float));
 	float ticks;
-	ifs.read(reinterpret_cast<char*>(&ticks), sizeof(std::uint32_t));
+	ifs.read(reinterpret_cast<char*>(&ticks), sizeof(float));
 
 	//Bone header
 	std::uint16_t num_bones;

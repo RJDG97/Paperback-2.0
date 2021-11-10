@@ -53,12 +53,12 @@ Renderer::Renderer() :
 
 	glBindVertexArray(0);
 
-	std::vector<std::string> files = { "../../resources/textures/right.jpg",
-								   "../../resources/textures/left.jpg",
-								   "../../resources/textures/top.jpg",
-								   "../../resources/textures/bottom.jpg",
-								   "../../resources/textures/front.jpg",
-								   "../../resources/textures/back.jpg" };
+	std::vector<std::string> files = { "../../resources/textures/right.dds",
+								   "../../resources/textures/left.dds",
+								   "../../resources/textures/top.dds",
+								   "../../resources/textures/bottom.dds",
+								   "../../resources/textures/front.dds",
+								   "../../resources/textures/back.dds" };
 
 	RenderResourceManager::GetInstanced().LoadSkyboxTexture(files);
 
@@ -70,9 +70,47 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Skybox", "../../resources/shaders/Skybox.vert", "../../resources/shaders/Skybox.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 
-	m_Resources.Load3DMeshNUI("Box", "../../resources/models/nui/box.nui");
-	m_Resources.Load3DMeshNUI("Plane", "../../resources/models/nui/plane.nui");
-	m_Resources.Load3DMeshNUI("Character", "../../resources/models/nui/mutant.nui");
+	m_Resources.Load3DMeshNUI("RedUnitAnimated", "../../resources/models/nui/RedUnitAnimated.nui");
+	m_Resources.Load3DMeshNUI("BlueUnitAnimated", "../../resources/models/nui/BlueUnitAnimated.nui");
+
+	m_Resources.Load3DMeshNUI("BadmintonRacket_Blue", "../../resources/models/nui/BadmintonRacket_Blue.nui");
+	m_Resources.Load3DMeshNUI("BadmintonRacket_Red", "../../resources/models/nui/BadmintonRacket_Red.nui");
+
+	m_Resources.Load3DMeshNUI("TableTennisRacket_Red", "../../resources/models/nui/TableTennisRacket_Red.nui");
+	m_Resources.Load3DMeshNUI("TableTennisRacket_Blue", "../../resources/models/nui/TableTennisRacket_Blue.nui");
+	
+	m_Resources.Load3DMeshNUI("SwimmingBoardShield_Red", "../../resources/models/nui/SwimmingBoardShield_Red.nui");
+	m_Resources.Load3DMeshNUI("SwimmingBoardShield_Blue", "../../resources/models/nui/SwimmingBoardShield_Blue.nui");
+	
+	m_Resources.Load3DMeshNUI("HelmetShield_Red", "../../resources/models/nui/HelmetShield_Red.nui");
+	m_Resources.Load3DMeshNUI("HelmetShield_Blue", "../../resources/models/nui/HelmetShield_Blue.nui");
+	
+	m_Resources.Load3DMeshNUI("FrisbeeShield_Blue", "../../resources/models/nui/FrisbeeShield_Blue.nui");
+	m_Resources.Load3DMeshNUI("FrisbeeShield_Red", "../../resources/models/nui/FrisbeeShield_Red.nui");
+	
+	m_Resources.Load3DMeshNUI("FloorballStick_Red", "../../resources/models/nui/FloorballStick_Red.nui");
+	m_Resources.Load3DMeshNUI("FloorballStick_Blue", "../../resources/models/nui/FloorballStick_Blue.nui");
+	
+	m_Resources.Load3DMeshNUI("TopPathSlope", "../../resources/models/nui/TopPathSlope.nui");
+	m_Resources.Load3DMeshNUI("TopPath", "../../resources/models/nui/TopPath.nui");
+
+	m_Resources.Load3DMeshNUI("Sandpit", "../../resources/models/nui/Sandpit.nui");
+	m_Resources.Load3DMeshNUI("PlayerBaseMound", "../../resources/models/nui/PlayerBaseMound.nui");
+
+	m_Resources.Load3DMeshNUI("NationalStadium", "../../resources/models/nui/NationalStadium.nui");
+	m_Resources.Load3DMeshNUI("HDBBlock", "../../resources/models/nui/HDBBlock.nui");
+
+	m_Resources.Load3DMeshNUI("DragonTailRight", "../../resources/models/nui/DragonTailRight.nui");
+	m_Resources.Load3DMeshNUI("DragonTailLeft", "../../resources/models/nui/DragonTailLeft.nui");
+
+	m_Resources.Load3DMeshNUI("DragonSpineSupport", "../../resources/models/nui/DragonSpineSupport.nui");
+	m_Resources.Load3DMeshNUI("DragonSpine", "../../resources/models/nui/DragonSpine.nui");
+
+	m_Resources.Load3DMeshNUI("DragonSlideLeft", "../../resources/models/nui/DragonSlideLeft.nui");
+	m_Resources.Load3DMeshNUI("DragonSlideRight", "../../resources/models/nui/DragonSlideRight.nui");
+
+	m_Resources.Load3DMeshNUI("DragonHead", "../../resources/models/nui/DragonHead.nui");
+	m_Resources.Load3DMeshNUI("BottomPath", "../../resources/models/nui/BottomPath.nui");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -304,7 +342,7 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -327,7 +365,7 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<std
 	// Merge blur and original image
 	CompositePass();
 	// Display final image to screen
-	//FinalPass();
+	FinalPass();
 	glEnable(GL_DEPTH_TEST);
 }
 
@@ -408,7 +446,7 @@ void Renderer::SkyBoxRender()
 	m_Resources.m_Shaders["Skybox"].UnUse();
 }
 
-void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects)
+void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
 {
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -434,16 +472,28 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 		
 		for (const auto& instance : model.second)
 		{
-			m_Resources.m_Shaders["Shadow"].SetUniform("uModel", const_cast<glm::mat4&>(instance.first));
+			m_Resources.m_Shaders["Shadow"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
 
-			if (instance.second)
+			if (instance.m_BoneTransforms)
 			{
 				m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", true);
-				m_Resources.m_Shaders["Shadow"].SetUniform("uFinalBonesMatrices", *instance.second, 100);
+				m_Resources.m_Shaders["Shadow"].SetUniform("uFinalBonesMatrices", *instance.m_BoneTransforms, 100);
 			}
+
 			else
 			{
 				m_Resources.m_Shaders["Shadow"].SetUniform("uHasBones", false);
+			}
+
+			if (instance.m_ParentSocketTransform)
+			{
+				m_Resources.m_Shaders["Shadow"].SetUniform("uHasSocketed", true);
+				m_Resources.m_Shaders["Shadow"].SetUniform("uParentSocketTransform", *instance.m_ParentSocketTransform);
+			}
+
+			else
+			{
+				m_Resources.m_Shaders["Shadow"].SetUniform("uHasSocketed", false);
 			}
 
 			for (auto& submesh : SubMeshes)
@@ -469,7 +519,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 	glEnable(GL_CULL_FACE);
 }
 
-void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<std::pair<glm::mat4, std::vector<glm::mat4>*>>>& Objects)
+void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
 {
 	// Bind to lighting frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_LightingBuffer.m_FrameBuffer[0]);
@@ -511,16 +561,28 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 		
 		for (const auto& instance : model.second)
 		{
-			m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.first));
+			m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
 
-			if (instance.second)
+			if (instance.m_BoneTransforms)
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uHasBones", true);
-				m_Resources.m_Shaders["Light"].SetUniform("uFinalBonesMatrices", *instance.second, 100);
+				m_Resources.m_Shaders["Light"].SetUniform("uFinalBonesMatrices", *instance.m_BoneTransforms, 100);
 			}
+
 			else
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uHasBones", false);
+			}
+
+			if (instance.m_ParentSocketTransform)
+			{
+				m_Resources.m_Shaders["Light"].SetUniform("uHasSocketed", true);
+				m_Resources.m_Shaders["Light"].SetUniform("uParentSocketTransform", *instance.m_ParentSocketTransform);
+			}
+
+			else
+			{
+				m_Resources.m_Shaders["Light"].SetUniform("uHasSocketed", false);
 			}
 
 			for (auto& submesh : SubMeshes)
@@ -530,50 +592,86 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 				// Send textures
 				if (!material.m_Diffuse.empty())
 				{
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedDiffuse", true);
+					const auto& texture = RenderResourceManager::GetInstanced().m_Textures.find(material.m_Diffuse);
 
-					glBindTextureUnit(0, m_Resources.m_Textures[material.m_Diffuse]);
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.Diffuse", 0);
+					if (texture != RenderResourceManager::GetInstanced().m_Textures.end())
+					{
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedDiffuse", true);
+
+						glBindTextureUnit(0, texture->second);
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.Diffuse", 0);
+					}
+					else
+					{
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedDiffuse", false);
+					}
 				}
 				else
 				{
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedDiffuse", false);
+					RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedDiffuse", false);
 				}
 
 				if (!material.m_Ambient.empty())
 				{
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedAmbient", true);
+					const auto& texture = RenderResourceManager::GetInstanced().m_Textures.find(material.m_Ambient);
 
-					glBindTextureUnit(1, m_Resources.m_Textures[material.m_Ambient]);
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.Ambient", 1);
+					if (texture != RenderResourceManager::GetInstanced().m_Textures.end())
+					{
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedAmbient", true);
+
+						glBindTextureUnit(1, texture->second);
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.Ambient", 1);
+					}
+					else
+					{
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedAmbient", false);
+					}
 				}
 				else
 				{
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedAmbient", false);
+					RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedAmbient", false);
 				}
 
 				if (!material.m_Specular.empty())
 				{
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedSpecular", true);
+					const auto& texture = RenderResourceManager::GetInstanced().m_Textures.find(material.m_Specular);
 
-					glBindTextureUnit(2, m_Resources.m_Textures[material.m_Specular]);
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.Specular", 2);
+					if (texture != RenderResourceManager::GetInstanced().m_Textures.end())
+					{
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedSpecular", true);
+
+						glBindTextureUnit(2, texture->second);
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.Specular", 2);
+					}
+					else
+					{
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedSpecular", false);
+					}
 				}
 				else
 				{
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedSpecular", false);
+					RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedSpecular", false);
 				}
 
 				if (!material.m_Normal.empty())
 				{
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedNormal", true);
+					const auto& texture = RenderResourceManager::GetInstanced().m_Textures.find(material.m_Normal);
 
-					glBindTextureUnit(3, m_Resources.m_Textures[material.m_Normal]);
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.Normal", 3);
+					if (texture != RenderResourceManager::GetInstanced().m_Textures.end())
+					{
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedNormal", true);
+
+						glBindTextureUnit(3, texture->second);
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.Normal", 3);
+					}
+					else
+					{
+						RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedNormal", false);
+					}
 				}
 				else
 				{
-					m_Resources.m_Shaders["Light"].SetUniform("uMat.TexturedNormal", false);
+					RenderResourceManager::GetInstanced().m_Shaders["Light"].SetUniform("uMat.TexturedNormal", false);
 				}
 
 				// Set model vbo handle to vao
