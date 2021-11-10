@@ -95,8 +95,11 @@ namespace paperback::system
 	template < paperback::concepts::System T_SYSTEM >
 	void manager::InitializeSystemQuery( void ) noexcept
 	{
+		using no_prefab_query = std::tuple< paperback::query::none_of<prefab> >;
+
 		tools::query SystemQuery{};
 
+		SystemQuery.AddQueryFromTuple( xcore::types::null_tuple_v< no_prefab_query > );
 		SystemQuery.AddQueryFromTuple( xcore::types::null_tuple_v< T_SYSTEM::query > );
         if constexpr ( xcore::function::is_callable_v<T_SYSTEM> )
         {

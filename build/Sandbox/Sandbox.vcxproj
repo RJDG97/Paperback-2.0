@@ -174,12 +174,18 @@
     <ClInclude Include="Components\CollisionLayer.h" />
     <ClInclude Include="Components\component_includes.h" />
     <ClInclude Include="Components\Cost.h" />
+    <ClInclude Include="Components\Counter.h" />
     <ClInclude Include="Components\Currency.h" />
     <ClInclude Include="Components\Damage.h" />
+    <ClInclude Include="Components\Enemy.h" />
+    <ClInclude Include="Components\EnemySpawner.h" />
     <ClInclude Include="Components\EntityScript.h" />
+    <ClInclude Include="Components\Friendly.h" />
+    <ClInclude Include="Components\FriendlySpawner.h" />
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="Components\Listener.h" />
     <ClInclude Include="Components\Mesh.h" />
+    <ClInclude Include="Components\Name.h" />
     <ClInclude Include="Components\Offset.h" />
     <ClInclude Include="Components\Parent.h" />
     <ClInclude Include="Components\Prefab.h" />
@@ -199,14 +205,18 @@
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
+    <ClInclude Include="Systems\EnemySpawnerSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
+    <ClInclude Include="Systems\OnEvent_UpdateHealth.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
+    <ClInclude Include="Systems\PlayerSpawnerSystem.h" />
     <ClInclude Include="Systems\RendererSystem.h" />
     <ClInclude Include="Systems\ScriptingSystem.h" />
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
+    <ClInclude Include="Systems\TimerSystem.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

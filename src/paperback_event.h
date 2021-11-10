@@ -102,6 +102,7 @@ namespace paperback::event
 	struct event_interface
 	{
 		constexpr static auto typedef_v = paperback::event::type::global {};
+		virtual ~event_interface() = default;
 	};
 
 	template < typename... T_ARGS >
@@ -121,6 +122,7 @@ namespace paperback::event
 
 		instance( void ) noexcept = default;
 		instance( const instance& ) noexcept = delete;
+		virtual ~instance() = default;
 
 
 		//-----------------------------------

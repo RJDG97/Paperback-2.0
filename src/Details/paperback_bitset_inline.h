@@ -77,14 +77,15 @@ namespace tools
 
     const paperback::u64 bits::GenerateGUID( void ) const noexcept
     {
-        paperback::u64 HashValue;
-        std::hash<paperback::u64> Hasher;
+        std::hash<std::uint64_t> Hasher;
+        const auto               Hashes = std::span{ reinterpret_cast<const std::uint64_t*>(this), sizeof(*this) / sizeof(std::uint64_t) };
 
-        for ( size_t i = 0, max = m_bits.size(); i < max; ++i )
+        std::uint64_t Hash = Hasher(Hashes[0]);
+        for (int i = 1; i < Hashes.size(); ++i)
         {
-            HashValue ^= Hasher( m_bits[i] ) + ( HashValue << 3 ) + ( HashValue >> 1 );
+            Hash ^= Hasher(Hashes[i]) + 0x9e3779b9u + (Hash << 6) + (Hash >> 2);
         }
 
-        return HashValue;
+        return Hash;
     }
 }

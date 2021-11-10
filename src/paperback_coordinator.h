@@ -354,11 +354,11 @@ namespace paperback::coordinator
 		scene_mgr					m_SceneMgr;						// Scene Manager
 		std::vector<fs::path>		m_DragDropFiles;				// External Files 
 		tools::clock				m_Clock;						// Timer
-		Input						m_Input;						// Input
+		event::manager				m_GlobalEventMgr;				// Global Event Manager
 		component::manager			m_CompMgr;						// Component Manager
 		archetype::manager			m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				m_SystemMgr{ m_Clock };			// System Manager
-		event::manager				m_GlobalEventMgr;				// Global Event Manager
+		Input						m_Input{ *this };				// Input
 		bool						m_GameActive = true;			// Game Status
 	};
 }
