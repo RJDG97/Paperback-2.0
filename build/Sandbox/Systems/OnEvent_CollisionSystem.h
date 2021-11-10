@@ -27,9 +27,9 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         // Pause Movement
         rf.m_isStatic = true;
         // Play Animation
-        animator anim = GetEntityInfo(obj.m_GlobalIndex).m_pArchetype->GetComponent<animator>(GetEntityInfo(obj.m_GlobalIndex).m_PoolDetails);
-        anim.m_PlayOnce = anim.m_FinishedAnimating;
-        anim.m_CurrentAnimationName = "Armature|Attack";
+        //animator anim = GetEntityInfo(obj.m_GlobalIndex).m_pArchetype->GetComponent<animator>(GetEntityInfo(obj.m_GlobalIndex).m_PoolDetails);
+        //anim.m_PlayOnce = anim.m_FinishedAnimating;
+        //anim.m_CurrentAnimationName = "Armature|Attack";
     }
 };
 
@@ -56,9 +56,9 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
     void OnEvent(entity& obj) noexcept
     {
         //Check if animation is attack and if finished
-        animator anim = GetEntityInfo(obj.m_GlobalIndex).m_pArchetype->GetComponent<animator>(GetEntityInfo(obj.m_GlobalIndex).m_PoolDetails);
-        anim.m_PlayOnce = anim.m_FinishedAnimating;
-        anim.m_CurrentAnimationName = "Armature|Attack";
+        //animator anim = GetEntityInfo(obj.m_GlobalIndex).m_pArchetype->GetComponent<animator>(GetEntityInfo(obj.m_GlobalIndex).m_PoolDetails);
+        //anim.m_PlayOnce = anim.m_FinishedAnimating;
+        //anim.m_CurrentAnimationName = "Armature|Attack";
            // Check player attack against obj defense
                // Apply Modifier
                // Deal Damage ot obj
@@ -87,9 +87,9 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
 
     void OnEvent(entity& obj, rigidforce& rf) noexcept
     {
-        animator anim = GetEntityInfo(obj.m_GlobalIndex).m_pArchetype->GetComponent<animator>(GetEntityInfo(obj.m_GlobalIndex).m_PoolDetails);
-        anim.m_PlayOnce = anim.m_FinishedAnimating;
-        anim.m_CurrentAnimationName = "Armature|Walk";
+        //animator anim = GetEntityInfo(obj.m_GlobalIndex).m_pArchetype->GetComponent<animator>(GetEntityInfo(obj.m_GlobalIndex).m_PoolDetails);
+        //anim.m_PlayOnce = anim.m_FinishedAnimating;
+        //anim.m_CurrentAnimationName = "Armature|Walk";
         // Continue Movement
         rf.m_isStatic = false;
     }
