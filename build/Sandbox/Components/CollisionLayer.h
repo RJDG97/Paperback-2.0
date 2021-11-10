@@ -9,6 +9,7 @@ enum class CollisionLayer : paperback::u8
     BACKGROUND = 1,
     ENEMYBASE,
     PLAYERBASE,
+    UNIT,
 
     ROUTE_CENTER_1,
     ROUTE1_CENTER_2,
