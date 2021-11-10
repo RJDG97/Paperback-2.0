@@ -48,21 +48,23 @@ struct scripting_system : paperback::system::instance
 					Found->second->Update(m_Coordinator.DeltaTime());
 				}
 			});
+		// for testing
+		if (PPB.IsKeyPress(GLFW_KEY_C))
+			CompileScripts();
+	}
 
-		// check for updating dll (still needs hot reloading)
-		if (PPB.IsKeyPress(GLFW_KEY_C)) {
-
-			// Update Mono DLL
-			if (m_pMono->UpdateDLL()) {
-				// For each entity with a script component, update instance
+	void CompileScripts()
+	{
+		// Update Mono DLL
+		if (m_pMono->UpdateDLL()) {
+			// For each entity with a script component, update instance
 			for (auto s = scriptlist.begin(); s != scriptlist.end(); s++) {
 				s->second->ScriptUpdate();
 			}
-				DEBUG_PRINT("Compile Success");
-			}
-			else
-				DEBUG_PRINT("Compile Fail");
+			DEBUG_PRINT("Compile Success");
 		}
+		else
+			DEBUG_PRINT("Compile Fail");
 	}
 
 	void OnSystemTerminated(void) noexcept

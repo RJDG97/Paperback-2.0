@@ -139,17 +139,17 @@ void AssetBrowser::CheckFileType()
                         }
                     }
 
-                    if (ImGui::BeginPopupContextItem())
-                    {
-                        if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
-                        {
-                            m_Imgui.m_FileToDelete = File.path().generic_string();
-                            m_bDelete = true;
-                            m_bDeleteFile = true;
-                        }
+                    //if (ImGui::BeginPopupContextItem())
+                    //{
+                    //    if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                    //    {
+                    //        m_Imgui.m_FileToDelete = File.path().generic_string();
+                    //        m_bDelete = true;
+                    //        m_bDeleteFile = true;
+                    //    }
 
-                        ImGui::EndPopup();
-                    }
+                    //    ImGui::EndPopup();
+                    //}
                 }
             }
 

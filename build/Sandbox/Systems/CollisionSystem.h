@@ -11,7 +11,11 @@ struct collision_system : paperback::system::instance
         .m_pName = "collision_system"
     };
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere) noexcept
+    struct UnitTriggerEvent : paperback::event::instance< entity& , rigidforce&> {};
+    struct UnitTriggerStayEvent : paperback::event::instance< entity& > {};
+    struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
+
+    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1) noexcept
     {
         if ( Entity.IsZombie() ) return;
 
@@ -23,7 +27,7 @@ struct collision_system : paperback::system::instance
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
 
-        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball) noexcept -> bool
+        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2) noexcept -> bool
             {
                 assert(Entity.IsZombie() == false);
 
@@ -35,25 +39,73 @@ struct collision_system : paperback::system::instance
                 xf.z = Xform.m_Position.z + Xform.m_Offset.z;
 
                 // Collision Detection
-                if (Boundingbox && BB)
+                if ( Boundingbox && BB)
                 {
-                    // added to parameters
-                    if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
+                    if (col1 && col2)
                     {
-                        if (RigidForce && RF)
+                        if (col1->m_CollidableLayers.Has(col2->m_CollisionLayer)) // Only checks if it has a layer?
                         {
-                          bool checker = CheapaabbDynamic(
-                              Boundingbox,
-                              RigidForce,
-                              Transform,
-                              BB,
-                              RF,
-                              Xform);
+                            // added to parameters
+                            if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
+                            {
+                                if (RigidForce && RF)
+                                {
+                                    bool checker = CheapaabbDynamic(
+                                        Boundingbox,
+                                        RigidForce,
+                                        Transform,
+                                        BB,
+                                        RF,
+                                        Xform);
+                                }
+                                // Check if layer is unit
+                                    // If first instance of collision (may be an issue with gravity)
+                                    if (!Boundingbox->m_Collided)
+                                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
+                                    else // Was previously already colliding
+                                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity);
+
+                                    Boundingbox->m_Collided = /*BB->m_Collided = */true;
+                            }
+                            else
+                                if (Boundingbox->m_Collided)
+                                    BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+                            Boundingbox->m_Collided = /*BB->m_Collided = */false;
                         }
-                        Boundingbox->m_Collided = BB->m_Collided = true;
                     }
                     else
-                        Boundingbox->m_Collided = BB->m_Collided = false;
+                    {
+                        // added to parameters
+                        if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
+                        {
+                            if (RigidForce && RF)
+                            {
+                                bool checker = CheapaabbDynamic(
+                                    Boundingbox,
+                                    RigidForce,
+                                    Transform,
+                                    BB,
+                                    RF,
+                                    Xform);
+                            }
+                            // Remove once layering component integration is resolved
+                                // If first instance of collision (may be an issue with gravity)
+                                if (!Boundingbox->m_Collided)
+                                    BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
+                                else // Was previously already colliding
+                                    BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity);
+
+                            Boundingbox->m_Collided = /*BB->m_Collided = */true;
+                        }
+                        else
+                        {
+                            if (Boundingbox->m_Collided)
+                                BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+
+                            Boundingbox->m_Collided = /*BB->m_Collided = */false;
+                        }
+                    }
+
                 }
                 if (Sphere && Ball)
                 {
@@ -66,7 +118,6 @@ struct collision_system : paperback::system::instance
                         Sphere->m_Collided = Ball->m_Collided = false;
                 }
                 
-
                 /* Return true on deletion of collided entities */
                 return false;
             });

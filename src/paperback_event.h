@@ -36,59 +36,108 @@ To Use:
 
 namespace paperback::event
 {
-	struct instance;
+	//-----------------------------------
+	//           Event Info
+	//-----------------------------------
 
-	/****************************************************/
-	/*!					 Event Handlers
-	/****************************************************/
-	class handler_interface
+	struct event_interface;
+
+	namespace type
 	{
-	public:
+		using guid = xcore::guid::unit<64, struct event_tag>;
 
-		PPB_INLINE
-		void Exec( std::shared_ptr<paperback::event::instance> Event ) noexcept;
+		enum class id : std::uint8_t
+        {
+            GLOBAL = 0		  // Global Event
+        ,   POST			  // Post Frame Event
+        };
 
-	private:
+		struct info
+		{
+			const type::guid	      m_Guid;
+			const event::type::id	  m_ID;
+		};
 
-		PPB_INLINE
-		virtual void Function( std::shared_ptr<paperback::event::instance> Event ) noexcept = 0;
+
+        //-----------------------------------
+	    //           Event Types
+	    //-----------------------------------
+
+        struct global
+        {
+            const type::guid        m_Guid       { };
+            static constexpr auto id_v       = event::type::id::GLOBAL;
+
+        };
+
+        struct post
+        {
+            const type::guid        m_Guid       { };
+            static constexpr auto   id_v       = event::type::id::POST;
+        };
+	}
+
+
+	//-----------------------------------
+	//        Create Event Info
+	//-----------------------------------
+
+	namespace details
+    {
+        template< typename T_CLASS >
+        consteval event::type::info CreateInfo( void ) noexcept;
+
+        template< typename T_CLASS >
+        static constexpr auto info_v = event::details::CreateInfo<T_CLASS>();
+    }
+
+    template< typename T_CLASS >
+    constexpr auto& info_v = event::details::info_v< T_CLASS >;
+
+
+	//-----------------------------------
+	//          Event Instance
+	//-----------------------------------
+
+	struct event_interface
+	{
+		constexpr static auto typedef_v = paperback::event::type::global {};
 	};
 
-	template < class EventType >
-	class handler final : public handler_interface
+	template < typename... T_ARGS >
+	struct instance : event_interface
 	{
-	public:
+		struct info
+		{
+			using Callback = void( void*, T_ARGS&&... );
+
+			Callback*         m_pEvent;
+			void*		      m_pSystem;
+		};
+
+		//-----------------------------------
+		//           Constructors
+		//-----------------------------------
+
+		instance( void ) noexcept = default;
+		instance( const instance& ) noexcept = delete;
+
+
+		//-----------------------------------
+		//              Events
+		//-----------------------------------
+
+		template < auto		T_FUNCTION
+				 , typename T_SYSTEM >
+		void RegisterEvent( T_SYSTEM* System ) noexcept;
+
+		template < typename T_SYSTEM >
+		void RemoveEvent( T_SYSTEM* System ) noexcept;
 
 		PPB_INLINE
-		handler( Action< std::shared_ptr<EventType> > Function ) noexcept;
-
-		PPB_INLINE
-		void Function( std::shared_ptr<paperback::event::instance> event ) noexcept override;
-
-	private:
-
-		Action< std::shared_ptr<EventType> > m_Function;
-	};
+		void BroadcastEvent( T_ARGS&&... Args ) const noexcept;
 
 
-	/****************************************************/
-	/*!					   Event Bus
-	/****************************************************/
-	class dispatcher final
-	{
-		using EventList = std::vector< std::shared_ptr< handler_interface > >;
-		using SubscriberMap = std::unordered_map< std::type_index, Ref< EventList > >;
-
-	public:
-
-		template < typename EventType, typename ...Args >
-		void PublishEvent( Args&&... args ) noexcept;
-
-		template <class EventType>
-		void SubscribeEvent( Action< std::shared_ptr< EventType > > event ) noexcept;
-
-	private:
-
-		SubscriberMap m_Subscribers;
+		std::vector<info>     m_Events;
 	};
 }

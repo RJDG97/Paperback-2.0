@@ -102,6 +102,19 @@ public:
         Instance->release();
     }
 
+    //stop all sound
+    // helper function
+    // stops all sound events
+    void StopAllSounds()
+    {
+        for (SoundFile& sound : m_SoundFiles)
+        {
+
+            StopSoundEvent(sound.m_pSound);
+        }
+    }
+
+
     //pause sound
     // helper function
     // pauses/unpauses sound channels
@@ -378,5 +391,12 @@ public:
 
         m_pStudioSystem->unloadAll();
         m_pStudioSystem->release();
+    }
+
+    PPB_FORCEINLINE
+    void OnStateChange(void) noexcept
+    {
+
+        StopAllSounds();
     }
 };

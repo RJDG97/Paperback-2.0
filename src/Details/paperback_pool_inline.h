@@ -78,9 +78,9 @@ namespace paperback::vm
 		PPB_ASSERT_MSG( Entity.IsZombie(), "DestroyEntity: Attemping to double delete an entity" );
 
         auto& EntityInfo = m_pCoordinator->GetEntityInfo( Entity );
-        auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails.m_PoolIndex ); // Replace this
+        auto& PoolEntity = GetComponent<component::entity>( EntityInfo.m_PoolDetails.m_PoolIndex );
 
-        PPB_ASSERT_MSG( Entity != PoolEntity, "DestroyEntity: Entity addresses are different" );
+        PPB_ASSERT_MSG( &Entity != &PoolEntity, "DestroyEntity: Entity addresses are different" );
 
         Entity.m_Validation.m_bZombie
             = EntityInfo.m_Validation.m_bZombie
@@ -107,7 +107,7 @@ namespace paperback::vm
 			// Unlink Parent & Child relationship on deletion of entity
 			UnlinkParentAndChildOnDelete( pInfo, PoolIndex, EntityGlobalIndex );
 			// Abandon Prefab Instances when Deleting Prefab
-			AbandonPrefabInstancesOnPrefabDelete( pInfo, EntityGlobalIndex );
+			//AbandonPrefabInstancesOnPrefabDelete( pInfo, EntityGlobalIndex );                      //To replace with events -jp
 
 			// Deleting last Entity
 			if ( PoolIndex == m_CurrentEntityCount )
@@ -216,7 +216,7 @@ namespace paperback::vm
 	PPB_INLINE
 	void instance::UpdateStructuralChanges( void ) noexcept
 	{
-		auto ResetInfo = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; };
+		auto ResetInfo = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; Info.m_pArchetype = nullptr; };
 
 		while ( m_DeleteHead != settings::invalid_delete_index_v )
 		{
@@ -281,17 +281,6 @@ namespace paperback::vm
             {
                 if ( ++iPoolTo >= m_ComponentInfo.size() ) break;
             }
-        }
-
-        // Remove components from previous archetype post iterating last component from new archetype
-        while ( iPoolFrom < FromPool.m_ComponentInfo.size() )
-        {
-            auto& Info = *( FromPool.m_ComponentInfo[ iPoolFrom ] );
-
-            if ( Info.m_Destructor )
-				Info.m_Destructor( &From_MemoryPool[ iPoolFrom ][ Info.m_Size * Details.m_PoolIndex ] );
-            
-            if ( ++iPoolFrom >= FromPool.m_ComponentInfo.size() ) break;
         }
 
 		FromPool.MarkEntityAsMoved( Details.m_PoolIndex );
@@ -361,10 +350,8 @@ namespace paperback::vm
 	}
 
 	// Clone Components within a different pool
-	const u32 instance::CloneComponents( const u32 FromIndex, vm::instance& FromPool ) noexcept
+	const u32 instance::CloneComponents( const u32 ToIndex, const u32 FromIndex, vm::instance& FromPool ) noexcept
 	{
-		const u32 ToIndex = Append();
-
         u32 iPoolFrom = 0;
         u32 iPoolTo   = 0;
 
@@ -399,11 +386,16 @@ namespace paperback::vm
 						ToParent.AddChild( ClonedChildGID );
 						ClonedChild.AddParent( ToEntity.m_GlobalIndex );
 					}
+
+					++iPoolFrom;
+					++iPoolTo;
 				}
 				// Else if component to be cloned is the child / entity component
 				else if ( m_ComponentInfo[ iPoolTo ]->m_Guid == component::info_v<child>.m_Guid ||
 						  m_ComponentInfo[ iPoolTo ]->m_Guid == component::info_v<paperback::component::entity>.m_Guid )
 				{
+					++iPoolFrom;
+					++iPoolTo;
 					continue;
 				}
 				// Else, any other component to be cloned
@@ -529,13 +521,16 @@ namespace paperback::vm
 		return -1;
 	}
 
-	std::vector<rttr::instance> instance::GetComponents( const u32 Index ) noexcept
+	std::vector< std::pair < rttr::instance, paperback::component::type::guid> > instance::GetComponents( const u32 Index ) noexcept
 	{
-		std::vector< rttr::instance > ComponentList = {};
+		std::vector < std::pair < rttr::instance, paperback::component::type::guid > > ComponentList = {};
 
 		for (size_t i = 0, max = m_ComponentInfo.size(); i < max; ++i)
-			ComponentList.push_back(GetComponentInstance(m_ComponentInfo[i]->m_Guid, Index));
-
+		{
+			auto ComponentInst = GetComponentInstance(m_ComponentInfo[i]->m_Guid, Index);
+			auto& ComponentGuid = m_ComponentInfo[i]->m_Guid;
+			ComponentList.push_back(std::make_pair(ComponentInst, ComponentGuid));
+		}
 		return ComponentList;
 	}
 
@@ -576,6 +571,10 @@ namespace paperback::vm
 			return  rttr::instance(GetComponent< offset >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< socketed >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< socketed >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< prefab >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< prefab >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< reference_prefab >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent<  reference_prefab >(Index));
 		else
 			return rttr::instance();
 	}
@@ -631,7 +630,8 @@ namespace paperback::vm
 			for ( const auto ChildGID : ChildrenList )
 			{
 				auto& ChildInfo = m_pCoordinator->GetEntityInfo( ChildGID );
-				ChildInfo.m_pArchetype->DestroyEntity( ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails ) );
+				if ( ChildInfo.m_pArchetype )
+					ChildInfo.m_pArchetype->DestroyEntity( ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails ) );
 			}
 
 			// Clear the parent's list
@@ -644,7 +644,7 @@ namespace paperback::vm
 			auto& Child       = GetComponent<child>( PoolIndex );
 			auto& ParentInfo  = m_pCoordinator->GetEntityInfo( Child.m_ParentGlobalIndex );
 
-			auto& Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
+			auto Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
 			Parent.RemoveChild( GlobalIndex );
 		}
 	}
@@ -658,18 +658,20 @@ namespace paperback::vm
 			auto& PrefabInfo = m_pCoordinator->GetEntityInfo( GlobalIndex );
 			auto& Prefab     = GetComponent<prefab>( PrefabInfo.m_PoolDetails.m_PoolIndex );
 
-			// Get Prefab Instance Archetype (Cloned Entities)
-			auto& PrefabInstanceArchetype = *( m_pCoordinator->GetEntityInfo( *(Prefab.m_ReferencePrefabGIDs.begin()) ).m_pArchetype );
-
-			PPB_ASSERT_MSG( PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab.m_ReferencePrefabGIDs.size(),
-                            "Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs" );
-
-			for ( size_t i = 0, max = Prefab.m_ReferencePrefabGIDs.size(); i < max; ++i )
+			if (Prefab.m_ReferencePrefabGIDs.size() != 0)
 			{
-				m_pCoordinator->AddOrRemoveComponents< std::tuple<>, std::tuple<reference_prefab> >
-								( PrefabInstanceArchetype.GetComponent<paperback::component::entity>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } ) );
+				// Get Prefab Instance Archetype (Cloned Entities)
+				auto& PrefabInstanceArchetype = *(m_pCoordinator->GetEntityInfo(*(Prefab.m_ReferencePrefabGIDs.begin())).m_pArchetype);
+
+				PPB_ASSERT_MSG(PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab.m_ReferencePrefabGIDs.size(),
+					"Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs");
+
+				for (size_t i = 0, max = Prefab.m_ReferencePrefabGIDs.size(); i < max; ++i)
+				{
+					m_pCoordinator->AddOrRemoveComponents< std::tuple<>, std::tuple<reference_prefab> >
+						(PrefabInstanceArchetype.GetComponent<paperback::component::entity>(vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 }));
+				}
 			}
-			
 		}
 	}
 }

@@ -1,8 +1,74 @@
 #pragma once
+#include <vector>
 #include <filesystem>
 namespace fs = std::filesystem;
 namespace paperback::coordinator
 {
+
+	class scene
+	{
+		std::string m_Name, m_ScenePath, m_InfoPath;
+
+	public:
+		PPB_INLINE
+		scene(const std::string& Name, const std::string& Path, const std::string& Info); // ctor to set up a scene
+
+		PPB_INLINE
+		void Load(); //to be called on loading scene, calls m_EntityManager Load()
+		
+		PPB_INLINE
+		void Unload(); //to be called on unloading scene, calls m_EntityManager Unload()
+		
+		PPB_INLINE
+		void UpdateName(const std::string& Name); // changes name of current scene
+
+		PPB_INLINE
+		const std::string& GetName();
+
+		PPB_INLINE
+		void UpdatePath(const std::string& Path, const std::string& Info = ""); // changes the path of the current scene
+	};
+
+	class scene_mgr
+	{
+	  std::vector<scene> m_Scenes; // contains all scenes that can be loaded 
+	  size_t m_CurrentSceneIndex; // contains pointer to current scene
+	  size_t m_NextSceneIndex; // remains nullptr until scene is to change
+	  bool m_SceneChange; // bool to check when scene is to be changed
+
+	public:
+
+		PPB_INLINE
+		scene_mgr(); // ctor that loads all scenes needed
+
+		PPB_INLINE
+		~scene_mgr(); // dtor to ensure current scene is unloaded
+
+		PPB_INLINE
+		void AddScene(const std::string& Name, const std::string& Path, const std::string& Info); //manually adds scene to the current list
+
+		PPB_INLINE
+		void RemoveScene(const std::string& Name); //manually removes scene
+
+		PPB_INLINE
+		void UpdateScene(const std::string& Path, const std::string& Info); //updates path for the current scene
+
+		PPB_INLINE
+		void ReloadScene(); //unloads current scene and reloads current scene
+
+		PPB_INLINE
+		void SaveScenes(); //deserializes scenes
+
+		PPB_INLINE
+		bool TriggerChangeScene(const std::string& Name); // prepares for change of scene, returns false if scene does not exist
+
+		PPB_INLINE
+		void ChangeScene(); //begins the scene change process, where current scene is unloaded and new scene is loaded
+
+		PPB_INLINE
+		bool VerifyScene(const std::string& Name); // returns a bool confirming if the state is as specified
+	};
+
 	class instance final
 	{
 	public:
@@ -44,12 +110,53 @@ namespace paperback::coordinator
 		template< typename... T_COMPONENTS >
 		constexpr void RegisterComponents( void ) noexcept;
 
-		PPB_INLINE
-		void SaveScene(const std::string& FilePath) noexcept;
+		template < typename T_EVENT >
+        void RegisterEvent( void ) noexcept;
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename                   T_CLASS >
+        void RegisterEventClass( T_CLASS* Class ) noexcept;
+
+
+        //-----------------------------------
+        //             Removal
+        //-----------------------------------
+
+        template < paperback::concepts::Event T_EVENT >
+        void RemoveEvent( void ) noexcept;
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename                   T_CLASS >
+        void RemoveEventClass( T_CLASS* Class ) noexcept;
+
+
+		//-----------------------------------
+		//          Serialization
+		//-----------------------------------
 
 		PPB_INLINE
-		void OpenScene(const std::string& FilePath) noexcept;
+		void SaveScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept;
 
+		PPB_INLINE
+		void OpenScene(const std::string& SceneName) noexcept;
+
+		PPB_INLINE
+		void LoadEntityInfo(const std::string& FilePath) noexcept;
+
+		PPB_INLINE
+		void SaveEntityInfo( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE		
+		void SaveSingleEntity(const std::string& FilePath, const paperback::entity::info& EntityInfo) noexcept;
+		
+		PPB_INLINE
+		void OpenEditScene(const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
+
+		PPB_INLINE
+		bool VerifyState(const std::string& StateName) noexcept;
+
+		PPB_INLINE
+		void ResetSystems() noexcept;
 
 		//-----------------------------------
 		//    Archetype / Entity Methods
@@ -59,7 +166,8 @@ namespace paperback::coordinator
 		archetype::instance& GetOrCreateArchetype( void ) noexcept;
 
 		PPB_INLINE
-		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept;
+		archetype::instance& GetOrCreateArchetype( const tools::bits ArchetypeSignature
+												 , std::string ArchetypeName = "Unnamed Archetype" ) noexcept;
 
 		PPB_INLINE
 		void CreatePrefab( void ) noexcept;
@@ -90,6 +198,10 @@ namespace paperback::coordinator
 								               , std::span<const component::info*> Remove
 								               , T_FUNCTION&& Function = paperback::empty_lambda{} ) noexcept;
 
+		template < typename T_COMPONENT >
+		void UpdatePrefabInstancesOnPrefabComponentUpdate( const entity::info& PrefabInfo
+														 , const T_COMPONENT&  UpdatedComponent ) noexcept;
+
 		
 		//-----------------------------------
 		//           Query Methods
@@ -104,7 +216,6 @@ namespace paperback::coordinator
         PPB_INLINE
         std::vector<archetype::instance*> Search( const tools::query& Query ) const noexcept;
         
-
 
 		//-----------------------------------
 		//           Game Loops
@@ -124,10 +235,10 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		PPB_INLINE
-		entity::info& GetEntityInfo( component::entity& Entity ) const noexcept;
+		paperback::entity::info& GetEntityInfo( component::entity& Entity ) const noexcept;
 
 		PPB_INLINE
-        entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
+        paperback::entity::info& GetEntityInfo( const u32 GlobalIndex ) const noexcept;
 
 		template< typename T_SYSTEM >
 		T_SYSTEM* FindSystem( void ) noexcept;
@@ -149,6 +260,15 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		std::vector<fs::path>& GetDragDropFiles() noexcept;
+
+		PPB_INLINE
+		void SetEntityHead( u32 NewEntityHead ) noexcept;
+
+		PPB_INLINE
+		paperback::archetype::manager::EntityInfoList& GetEntityInfoList() noexcept;
+
+		PPB_INLINE
+		paperback::archetype::instance& GetArchetype( const u64 ArchetypeGuid ) noexcept;
 
 		//-----------------------------------
 		//              Clock
@@ -202,6 +322,15 @@ namespace paperback::coordinator
 		bool IsMouseUp( int Key ) noexcept;
 
 
+		//-----------------------------------
+        //         Event Broadcast
+        //-----------------------------------
+
+        template < paperback::concepts::Event T_EVENT
+                 , typename...                T_ARGS >
+        void BroadcastEvent( T_ARGS&&... Args ) const noexcept;
+
+
 		/*
         /*! Friend Classes
         */
@@ -222,12 +351,14 @@ namespace paperback::coordinator
 
 	private:
 
+		scene_mgr					m_SceneMgr;						// Scene Manager
 		std::vector<fs::path>		m_DragDropFiles;				// External Files 
 		tools::clock				m_Clock;						// Timer
 		Input						m_Input;						// Input
 		component::manager			m_CompMgr;						// Component Manager
 		archetype::manager			m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				m_SystemMgr{ m_Clock };			// System Manager
+		event::manager				m_GlobalEventMgr;				// Global Event Manager
 		bool						m_GameActive = true;			// Game Status
 	};
 }

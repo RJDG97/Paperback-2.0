@@ -41,6 +41,7 @@ namespace paperback
 	}
 	namespace system
 	{
+		struct system_interface;
 		struct instance;
 	}
 	namespace component
@@ -52,6 +53,10 @@ namespace paperback
 		class manager;
 	}
 
+	namespace archetype
+	{
+		class instance;
+	}
 }
 
 //----------------------------------
@@ -65,8 +70,10 @@ namespace paperback
 //----------------------------------
 #include "paperback_logger.h"
 #include "paperback_types.h"
-#include "paperback_settings.h"
 #include "paperback_event.h"
+#include "paperback_concepts.h"
+#include "paperback_event_mgr.h"
+#include "paperback_settings.h"
 #include "paperback_clock.h"
 #include "paperback_input.h"
 #include "paperback_event.h"
@@ -94,6 +101,7 @@ namespace paperback
 //----------------------------------
 #include "Details/paperback_logger_inline.h"
 #include "Details/paperback_event_inline.h"
+#include "Details/paperback_event_mgr_inline.h"
 #include "Details/paperback_clock_inline.h"
 #include "Details/paperback_input_inline.h"
 #include "Details/paperback_component_inline.h"

@@ -10,11 +10,12 @@ namespace paperback::archetype
     { }
 
     void manager::Initialize( void ) noexcept
-    {
+    {   
         for ( u32 i = 0, max = settings::max_entities_v - 2; i < max; ++i )
         {
             m_EntityInfos[ i ].m_PoolDetails.m_PoolIndex = i + 1;
         }
+        m_EntityHead = 0;
     }
 
 
@@ -38,7 +39,7 @@ namespace paperback::archetype
     void manager::CreatePrefab( void ) noexcept
     {
 		auto& Archetype = GetOrCreateArchetype<prefab, transform>( );
-        Archetype.CreateEntity( );
+        Archetype.CreatePrefab( );
     }
 
     template < typename... T_COMPONENTS >
@@ -48,7 +49,7 @@ namespace paperback::archetype
         return GetOrCreateArchetype( ComponentList, sizeof...( T_COMPONENTS ) + 1 );
     }
 
-    archetype::instance& manager::GetOrCreateArchetype( const tools::bits ArchetypeSignature ) noexcept
+    archetype::instance& manager::GetOrCreateArchetype( const tools::bits ArchetypeSignature, std::string ArchetypeName ) noexcept
     {
         for ( auto& ArchetypeBits : m_ArchetypeBits )
         {
@@ -57,6 +58,7 @@ namespace paperback::archetype
                 const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
                 return *m_pArchetypeList[ index ];
             }
+
         }
 
         u32 Count = 0;
@@ -69,7 +71,7 @@ namespace paperback::archetype
                 InfoList[ Count++ ] = m_Coordinator.FindComponentInfoFromUID( i );
         }
 
-        auto& Archetype = CreateAndInitializeArchetype( InfoList, Count, ArchetypeSignature );
+        auto& Archetype = CreateAndInitializeArchetype( InfoList, Count, ArchetypeSignature, ArchetypeName );
 
         return Archetype;
     }
@@ -194,7 +196,7 @@ namespace paperback::archetype
 			}
             
             // Construct New Archetype
-			auto& NewArchetype = CreateAndInitializeArchetype( NewComponentInfoList, Count, UpdatedSignature );
+			auto& NewArchetype = CreateAndInitializeArchetype( NewComponentInfoList, Count, UpdatedSignature, OriginalArchetype->GetName() );
 
             /*
                 Transfer components over to new archetype - But don't delete old entity yet
@@ -225,6 +227,20 @@ namespace paperback::archetype
         return m_EntityInfos[ GlobalIndex ];
     }
 
+    archetype::instance* manager::FindArchetype( const u64& ArchetypeGuid ) const noexcept
+    {
+        auto a = m_pArchetypeMap.find( ArchetypeGuid );
+        if ( a == m_pArchetypeMap.end() ) return nullptr;
+        return a->second;
+    }
+
+    archetype::instance& manager::GetArchetype( const u64& ArchetypeGuid ) const noexcept
+    {
+        auto a = FindArchetype( ArchetypeGuid );
+        PPB_ASSERT_MSG( a == nullptr, "Archetype does not exist / Invalid Archetype Guid Value" );
+        return *a;
+    }
+
     std::vector<paperback::archetype::instance*> manager::GetArchetypeList( void ) noexcept
     {
         std::vector<paperback::archetype::instance*> List;
@@ -237,6 +253,17 @@ namespace paperback::archetype
     {
         return m_EntityInfos;
     }
+
+    u32 manager::GetEntityHead() noexcept
+    {
+        return m_EntityHead;
+    }
+
+    void manager::SetEntityHead( u32 NewEntityHead ) noexcept
+    {
+        m_EntityHead = NewEntityHead;
+    }
+
 
     //-----------------------------------
     //             Query
@@ -315,7 +342,11 @@ namespace paperback::archetype
     void manager::ResetAllArchetypes( void ) noexcept
     {
         for ( auto& Archetype : m_pArchetypeList )
+        {
             Archetype->Clear();
+        }
+
+        //m_pArchetypeList.clear();
     }
 
     void manager::Terminate( void ) noexcept
@@ -397,10 +428,16 @@ namespace paperback::archetype
 
         for ( auto& ArchetypeBits : m_ArchetypeBits )
         {
-            if ( ArchetypeBits.Compare( ArchetypeSignature ) )
+            //if ( ArchetypeBits.Compare( ArchetypeSignature ) )
+            //{
+            //    const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
+            //    return *( m_pArchetypeList[ index ] );
+            //}
+
+            if (ArchetypeBits.Match(ArchetypeSignature))
             {
-                const auto index = static_cast<size_t>( &ArchetypeBits - &m_ArchetypeBits[0] );
-                return *( m_pArchetypeList[ index ] );
+                const auto index = static_cast<size_t>(&ArchetypeBits - &m_ArchetypeBits[0]);
+                return *(m_pArchetypeList[index]);
             }
         }
 
@@ -430,14 +467,15 @@ namespace paperback::archetype
 
     archetype::instance& manager::CreateAndInitializeArchetype( std::span<const component::info* const> Types
                                                               , const u32 Count
-                                                              , const tools::bits& Signature ) noexcept
+                                                              , const tools::bits& Signature
+                                                              , std::string ArchetypeName ) noexcept
     {
         m_pArchetypeList.push_back( std::make_unique<archetype::instance>( m_Coordinator, Signature ) );
 		m_ArchetypeBits.push_back( Signature );
 
         auto p = m_pArchetypeList.back().get();
 
-        p->Init( Types, Count );
+        p->Init( Types, Count, ArchetypeName );
         if (m_pArchetypeMap.find(p->GetArchetypeGuid().m_Value) != m_pArchetypeMap.end())
             m_pArchetypeMap[p->GetArchetypeGuid().m_Value] = p;
         else
@@ -480,15 +518,4 @@ namespace paperback::archetype
             }
         }
     }
-
-	//void manager::UpdateReferencedPrefabInstanceOnAddRemove( const entity::info& Info
- //                                                          , const u64 ComponentGuid ) noexcept
- //   {
- //       auto Reference_Prefab = Info.m_pArchetype->FindComponent<reference_prefab>( Info.m_PoolDetails );
-
- //       if ( Reference_Prefab && Reference_Prefab->m_ModifiedComponents.size() )
- //       {
- //           Reference_Prefab->RemoveModifiedComponentGuid( ComponentGuid );
- //       }
- //   }
 }

@@ -7,7 +7,7 @@
 
 struct EditorViewport : paperback::editor::instance
 {
-    int m_GizmoType = -1;
+    int m_GizmoType = 7; //Set default as transform gizmo
 
     constexpr static auto typedef_v = paperback::editor::type::update
     {

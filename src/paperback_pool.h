@@ -85,7 +85,8 @@ namespace paperback::vm
 							, const u32 FromIndex ) noexcept;
 
 		PPB_INLINE
-		const u32 CloneComponents( const u32 FromIndex
+		const u32 CloneComponents( const u32 ToIndex
+								 , const u32 FromIndex
 								 , vm::instance& FromPool ) noexcept;
 
 
@@ -122,7 +123,7 @@ namespace paperback::vm
 											   , const int Sequence ) const noexcept;
 		
 		PPB_INLINE
-		std::vector<rttr::instance> GetComponents( const u32 Index ) noexcept;
+		std::vector< std::pair < rttr::instance, paperback::component::type::guid> > GetComponents( const u32 Index ) noexcept;
 
 		PPB_INLINE
 		rttr::instance GetComponentInstance( const component::type::guid Comp_Guid

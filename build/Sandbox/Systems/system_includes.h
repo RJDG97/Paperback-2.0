@@ -8,3 +8,6 @@
 #include "RendererSystem.h"
 #include "AnimatorSystem.h"
 #include "ParentChildSystem.h"
+
+// Event Tests
+#include "OnEvent_CollisionSystem.h"

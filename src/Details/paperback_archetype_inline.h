@@ -53,17 +53,12 @@ namespace paperback::archetype
             {
                 Function( m_ComponentPool[ m_PoolAllocationIndex ].GetComponent<T_COMPONENTS>( PoolIndex ) ... );
             }
-        
-            // Generates Global Index
-            return m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
-                                                      {
-                                                          .m_Key       = m_PoolAllocationIndex
-                                                      ,   .m_PoolIndex = PoolIndex
-                                                      }
-                                                    , *this );
+
+            return paperback::component::entity{};
         }( reinterpret_cast<typename func_traits::args_tuple*>(nullptr) );
     }
     
+    // Called by the Prefab Instance - Clones a Prefab Instance & Adds its GID to Prefab
     const u32 instance::CloneEntity( component::entity& Entity ) noexcept
     {
         // Entity Info of Entity to clone
@@ -82,12 +77,15 @@ namespace paperback::archetype
         if ( UpdatedPoolDetails.m_Key == EntityInfo.m_PoolDetails.m_Key )
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex );
 
-        // Assign Newly Cloned Prefab Instance's Global Index to Prefab Parent - Uncomment when cloning prefabs
-        //auto& Cloned_ReferencePrefab = GetComponent<reference_prefab>( UpdatedPoolDetails );                        // Prefab Instance
-        //auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab.m_PrefabGID );           // Prefab
-        //auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
-        //PrefabComponent.AddPrefabInstance( ClonedEntity.m_GlobalIndex );                                            // Add Prefab Instance GID to Prefab - For future modifications
+        // Assign Newly Cloned Prefab Instance's Global Index to Prefab Parent
+        auto Cloned_ReferencePrefab = FindComponent<reference_prefab>( UpdatedPoolDetails );                        // Prefab Instance
 
+        if (Cloned_ReferencePrefab)
+        {
+            auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab->m_PrefabGID );           // Prefab
+            auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
+            PrefabComponent.AddPrefabInstance( ClonedEntity.m_GlobalIndex );                                            // Add Prefab Instance GID to Prefab - For future modifications
+        }
         // For when separate component pools are implemented in the future
         /* 
         else
@@ -102,25 +100,67 @@ namespace paperback::archetype
     {
         // Copy Bit Signature of Prefab to update accordingly for Prefab Instance
         tools::bits PrefabInstanceSignature = m_ComponentBits;
+        vm::PoolDetails m_PrefabDetails{ vm::PoolDetails{.m_Key = 0, .m_PoolIndex = PrefabPoolIndex } };
 
         // Update Prefab Instance's Bit Signature
         PrefabInstanceSignature.Remove( component::info_v<prefab>.m_UID );
         PrefabInstanceSignature.Set( component::info_v<reference_prefab>.m_UID );
 
         // Get Prefab Instance
-        auto& PrefabInstanceArchetype = m_Coordinator.GetOrCreateArchetype( PrefabInstanceSignature );
+        auto& PrefabInstanceArchetype   = m_Coordinator.GetOrCreateArchetype( PrefabInstanceSignature, m_pName );
+        auto  PrefabInstancePoolDetails = PrefabInstanceArchetype.AppendEntity();
+
+        // Register Prefab Instance before Cloning
+        auto& ClonedPrefab = m_Coordinator.RegisterEntity( PrefabInstancePoolDetails
+                                                         , PrefabInstanceArchetype );
 
         // Transfer relevant components from Prefab ( Current Archetype calling ClonePrefab )
         // Creates a New Prefab Instance within ClonePrefabComponents
-        auto PI_PoolDetails = PrefabInstanceArchetype.ClonePrefabComponents( PrefabPoolIndex
+        auto PI_PoolDetails = PrefabInstanceArchetype.ClonePrefabComponents( PrefabInstancePoolDetails
+                                                                           , PrefabPoolIndex
                                                                            , m_ComponentPool[ 0 ] );
 
-        auto& ClonedPrefab = m_Coordinator.RegisterEntity( PI_PoolDetails
-                                                         , PrefabInstanceArchetype );
+        auto& Cloned_ReferencePrefab       = PrefabInstanceArchetype.GetComponent<reference_prefab>( PI_PoolDetails );
+        Cloned_ReferencePrefab.m_PrefabGID = GetComponent<paperback::component::entity>( m_PrefabDetails ).m_GlobalIndex;
+
+        GetComponent<prefab>( m_PrefabDetails ).AddPrefabInstance( ClonedPrefab.m_GlobalIndex );
 
         return ClonedPrefab.m_GlobalIndex;
     }
-    
+
+    template< typename T_CALLBACK >
+    paperback::component::entity instance::CreatePrefab(T_CALLBACK&& Function) noexcept
+    {
+        using func_traits = xcore::function::traits<T_CALLBACK>;
+
+        return[&]<typename... T_COMPONENTS>(std::tuple<T_COMPONENTS...>*) -> paperback::component::entity
+        {
+            PPB_ASSERT_MSG(!(m_ComponentBits.Has(component::info_v<T_COMPONENTS>.m_UID) && ...), "Archetype CreateEntity: Creating entity with invalid components in function");
+
+            // Generate the next valid ID within m_ComponentPool
+            const auto PoolIndex = m_ComponentPool[m_PoolAllocationIndex].Append();
+            // Do not register entity if it's invalid
+            if (PoolIndex == settings::invalid_index_v) return paperback::component::entity
+            {
+                .m_GlobalIndex = settings::invalid_index_v
+            };
+
+            if (!std::is_same_v<empty_lambda, T_CALLBACK>)
+            {
+                Function(m_ComponentPool[m_PoolAllocationIndex].GetComponent<T_COMPONENTS>(PoolIndex) ...);
+            }
+
+            //Generates Global Index
+           return m_Coordinator.RegisterEntity( paperback::vm::PoolDetails
+                                                     {
+                                                         .m_Key       = m_PoolAllocationIndex
+                                                     ,   .m_PoolIndex = PoolIndex
+                                                     }
+                                                   , *this );
+
+        }(reinterpret_cast<typename func_traits::args_tuple*>(nullptr));
+    }
+
     void instance::DestroyEntity( component::entity& Entity ) noexcept
     {
         auto& EntityInfo = m_Coordinator.GetEntityInfo( Entity );
@@ -212,16 +252,16 @@ namespace paperback::archetype
             }
     }
 
-    void instance::InitializePrefabInstances( const u32 InstanceCount
-                                            , const u32 PrefabPoolIndex
-                                            , vm::instance& PrefabPool ) noexcept
-    {
-        for ( u32 i = 0; i < InstanceCount; ++i )
-        {
-            // Copy prefab components
-            ClonePrefabComponents( PrefabPoolIndex, PrefabPool );
-        }
-    }
+    //void instance::InitializePrefabInstances( const u32 InstanceCount
+    //                                        , const u32 PrefabPoolIndex
+    //                                        , vm::instance& PrefabPool ) noexcept
+    //{
+    //    for ( u32 i = 0; i < InstanceCount; ++i )
+    //    {
+    //        // Copy prefab components
+    //        ClonePrefabComponents( PrefabPoolIndex, PrefabPool );
+    //    }
+    //}
 
     //-----------------------------------
     //             Getters
@@ -340,18 +380,9 @@ namespace paperback::archetype
     //       Data Member Getters
     //-----------------------------------
 
-    std::vector <rttr::instance> instance::GetEntityComponents( const u32 Index ) noexcept
+    std::vector < std::pair < rttr::instance, paperback::component::type::guid > > instance::GetEntityComponents( const u32 Index ) noexcept
     {
         return m_ComponentPool[0].GetComponents(Index);
-    }
-
-    archetype::instance* instance::GetArchetypePointer( const u32 Index ) noexcept
-    {
-        auto& c_Entity = GetComponent<component::entity>(vm::PoolDetails{ 0, Index });
-        auto& EntityInfo = m_Coordinator.GetEntityInfo(c_Entity);
-
-        return EntityInfo.m_pArchetype;
-
     }
 
     std::string instance::GetName( void ) noexcept 
@@ -409,13 +440,23 @@ namespace paperback::archetype
     //             Private
     //-----------------------------------
 
-    const vm::PoolDetails instance::ClonePrefabComponents( const u32 PrefabPoolIndex
-                                                         , vm::instance& PrefabPool ) noexcept
+    const vm::PoolDetails instance::AppendEntity( void ) noexcept
     {
         return vm::PoolDetails
                {
                    .m_Key = m_PoolAllocationIndex
-               ,   .m_PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].CloneComponents( PrefabPoolIndex, PrefabPool )
+               ,   .m_PoolIndex = m_ComponentPool[ m_PoolAllocationIndex ].Append()
+               };
+    }
+
+    const vm::PoolDetails instance::ClonePrefabComponents( const vm::PoolDetails PrefabInstanceDetails
+                                                         , const u32             PrefabPoolIndex
+                                                         , vm::instance&         PrefabPool ) noexcept
+    {
+        return vm::PoolDetails
+               {
+                   .m_Key = PrefabInstanceDetails.m_Key
+               ,   .m_PoolIndex = m_ComponentPool[ PrefabInstanceDetails.m_Key ].CloneComponents( PrefabInstanceDetails.m_PoolIndex, PrefabPoolIndex, PrefabPool )
                };
     }
 }

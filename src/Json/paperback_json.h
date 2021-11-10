@@ -80,5 +80,13 @@ namespace paperback
 
         PPB_INLINE
         JsonFile& LoadObjects(rttr::instance Instance);
+
+
+        //extremely general purpose use case
+        // for simple jsons consisting of only pairs of data with no spaces
+        // and receiving object cannot be registered via rttr due to dynamic nature
+        //    e.g. vectors of objects, data to be loaded into object is in vector elements
+        PPB_INLINE
+        JsonFile& LoadStringPairs(std::stringstream& Stream);
     };
 }

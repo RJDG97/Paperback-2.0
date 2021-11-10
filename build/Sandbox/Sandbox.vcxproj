@@ -78,13 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;../../dependencies/mono/include;../../dependencies/rttr/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
-    <LibraryPath>../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;Dependencies/mono/include;../../dependencies/rttr/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
+    <LibraryPath>../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Debug;Dependencies/mono/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;../../dependencies/rttr/include;../../dependencies/mono/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;$(LibraryPath)</LibraryPath>
+    <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;../../dependencies/rttr/include;Dependencies/mono/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;Dependencies/mono/lib;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -117,7 +117,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;PAPERBACK_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -171,8 +171,13 @@
     <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\BoundingBox.h" />
     <ClInclude Include="Components\Child.h" />
+    <ClInclude Include="Components\CollisionLayer.h" />
     <ClInclude Include="Components\component_includes.h" />
+    <ClInclude Include="Components\Cost.h" />
+    <ClInclude Include="Components\Currency.h" />
+    <ClInclude Include="Components\Damage.h" />
     <ClInclude Include="Components\EntityScript.h" />
+    <ClInclude Include="Components\Health.h" />
     <ClInclude Include="Components\Listener.h" />
     <ClInclude Include="Components\Mesh.h" />
     <ClInclude Include="Components\Offset.h" />
@@ -184,15 +189,18 @@
     <ClInclude Include="Components\Rotation.h" />
     <ClInclude Include="Components\Scale.h" />
     <ClInclude Include="Components\Socketed.h" />
+    <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />
     <ClInclude Include="Components\Sphere.h" />
     <ClInclude Include="Components\Timer.h" />
     <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Components\Waypoint.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
+    <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\RendererSystem.h" />
