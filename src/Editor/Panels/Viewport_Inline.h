@@ -105,8 +105,8 @@ void EditorViewport::ComposeTransform()
 	glm::vec3 Trans, Rot, Scale;
 
 	//Camera
-	glm::mat4 CameraView = Camera::GetInstanced().GetView();
-	glm::mat4 CameraProjection = Camera::GetInstanced().GetProjection();
+	glm::mat4 CameraView = Camera3D::GetInstanced().GetView();
+	glm::mat4 CameraProjection = Camera3D::GetInstanced().GetProjection();
 
 	auto EntityDetails = paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second });
 

@@ -12,7 +12,7 @@ struct collision_system : paperback::system::instance
     };
 
     struct UnitTriggerEvent : paperback::event::instance< entity& , rigidforce&> {};
-    struct UnitTriggerStayEvent : paperback::event::instance< entity& > {};
+    struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity& > {};
     struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
 
     void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1) noexcept
@@ -59,53 +59,26 @@ struct collision_system : paperback::system::instance
                                         Xform);
                                 }
                                 // Check if layer is unit
+                                if (col1->m_CollisionLayer == static_cast<paperback::u8>(CollisionLayer::UNIT)){
                                     // If first instance of collision (may be an issue with gravity)
-                                    if (!Boundingbox->m_Collided)
+                                    if (!Boundingbox->m_Collided && RigidForce) {
                                         BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
-                                    else // Was previously already colliding
-                                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity);
-
-                                    Boundingbox->m_Collided = /*BB->m_Collided = */true;
+                                    }
+                                    else { // Was previously already colliding
+                                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
+                                    }
+                                }
+                                Boundingbox->m_Collided = BB->m_Collided = true;
                             }
-                            else
-                                if (Boundingbox->m_Collided)
+                            else {
+                                if (col1->m_CollisionLayer == static_cast<paperback::u8>(CollisionLayer::UNIT)
+                                    && Boundingbox->m_Collided && RigidForce) {
                                     BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
-                            Boundingbox->m_Collided = /*BB->m_Collided = */false;
-                        }
-                    }
-                    else
-                    {
-                        // added to parameters
-                        if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
-                        {
-                            if (RigidForce && RF)
-                            {
-                                bool checker = CheapaabbDynamic(
-                                    Boundingbox,
-                                    RigidForce,
-                                    Transform,
-                                    BB,
-                                    RF,
-                                    Xform);
+                                }
+                                Boundingbox->m_Collided = BB->m_Collided = false;
                             }
-                            // Remove once layering component integration is resolved
-                                // If first instance of collision (may be an issue with gravity)
-                                if (!Boundingbox->m_Collided)
-                                    BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
-                                else // Was previously already colliding
-                                    BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity);
-
-                            Boundingbox->m_Collided = /*BB->m_Collided = */true;
-                        }
-                        else
-                        {
-                            if (Boundingbox->m_Collided)
-                                BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
-
-                            Boundingbox->m_Collided = /*BB->m_Collided = */false;
                         }
                     }
-
                 }
                 if (Sphere && Ball)
                 {
@@ -119,7 +92,7 @@ struct collision_system : paperback::system::instance
                 }
                 
                 /* Return true on deletion of collided entities */
-                return false;
+                //return false;
             });
     }
 };

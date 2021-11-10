@@ -42,15 +42,16 @@ struct render_system : paperback::system::instance
 	{
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
+		std::unordered_map<std::string_view, std::vector<glm::mat4>> uis;
 
 		// Reference quad
-		glm::mat4 t{ 1.0f };
-		t = glm::mat4{ 1.0f };
-		t = glm::translate(t, glm::vec3{ 0, 0, 0 });
-		t = glm::rotate(t, glm::radians(-90.f), glm::vec3{ 1.f, 0.f, 0.f });
-		t = glm::scale(t, glm::vec3{ 40,40,40 });
+		//glm::mat4 t{ 1.0f };
+		//t = glm::mat4{ 1.0f };
+		//t = glm::translate(t, glm::vec3{ 0, 0, 0 });
+		//t = glm::rotate(t, glm::radians(-90.f), glm::vec3{ 1.f, 0.f, 0.f });
+		//t = glm::scale(t, glm::vec3{ 40,40,40 });
 
-		objects["Quad"].push_back({ t });
+		//objects["Quad"].push_back({ t });
 
 		// Populate map
 		tools::query Query;
@@ -69,19 +70,20 @@ struct render_system : paperback::system::instance
 			Renderer::TransformInfo transform_info{ t };
 
 			if (Socketed)
-			{
 				transform_info.m_ParentSocketTransform = &Socketed->m_BoneTransform;
-			}
 
 			if (Animator)
 				transform_info.m_BoneTransforms = &Animator->m_FinalBoneMatrices;
 
-			objects[Mesh.m_Model].push_back(transform_info);
+			if(Mesh.m_Model != "Quad")
+				objects[Mesh.m_Model].push_back(transform_info);
+			else
+				uis[Mesh.m_Texture].push_back(t);
 		});
 
 		auto points = GetSystem<debug_system>().GetPoints();
 
-		Renderer::GetInstanced().Render(objects, &points);
+		Renderer::GetInstanced().Render(objects, uis, &points);
 	}
 
 	PPB_FORCEINLINE

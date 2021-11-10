@@ -8,8 +8,8 @@ class Input
 {
 public:
 
-	struct KeyPressed : paperback::event::instance< int > {};
-    struct MousePressed : paperback::event::instance< int > {};
+	struct KeyPressed : paperback::event::instance< size_t& > {};
+    struct MousePressed : paperback::event::instance< size_t& > {};
 
 	PPB_INLINE
 	Input( paperback::coordinator::instance& Coordinator ) noexcept;

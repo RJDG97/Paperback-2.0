@@ -68,7 +68,7 @@ struct player_spawner_system : paperback::system::instance
         //        m_Coordinator.AddOrRemoveComponents<std::tuple<>, std::tuple<counter>>( Entity );
 	}
 
-	void OnEvent( int Key ) noexcept
+	void OnEvent( size_t& Key ) noexcept
     {
         if ( Key == GLFW_KEY_SPACE )
         {
