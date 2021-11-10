@@ -10,15 +10,6 @@ void EditorViewport::Panel()
 
 	ViewportMenuBar();
 
-	//if (PPB.IsMousePress(GLFW_MOUSE_BUTTON_LEFT))
-	//{
-	//	EDITOR_INFO_PRINT(ImGui::GetCursorScreenPos().x);
-	//	EDITOR_INFO_PRINT(ImGui::GetCursorScreenPos().y);
-	//	EDITOR_INFO_PRINT(ImGui::GetMousePos().x);
-	//	EDITOR_INFO_PRINT(ImGui::GetMousePos().y);
-
-	//}
-
 	if (ImGui::BeginTabBar("##Viewports"))
 	{
 		ViewportOne();
@@ -125,7 +116,7 @@ void EditorViewport::ComposeTransform()
 	auto bChild = m_Imgui.m_SelectedEntity.first->FindComponent<child>(EntityDetails);
 
 
-	if (bTrans && !bChild) //for normal entities
+	if (bTrans) //for normal entities
 		model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
 
 	//else if (bTrans && bChild)
@@ -161,6 +152,9 @@ void EditorViewport::ComposeTransform()
 	{
 		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
 
+		if (bTrans)
+			Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
+
 		if (bRot)
 		{
 			glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
@@ -169,12 +163,6 @@ void EditorViewport::ComposeTransform()
 			bRot->m_Value.y += TempRot.y;
 			bRot->m_Value.z += TempRot.z;
 		}
-
-		if (bTrans && !bChild)
-			Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
-
-		//if (bTrans && bChild)
-		//	Editor::Math::GlmtoVec3(bTrans->m_Offset, Trans);
 
 		if (bScale)
 			Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
