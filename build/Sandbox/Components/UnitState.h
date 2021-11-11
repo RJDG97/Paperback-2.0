@@ -1,33 +1,25 @@
 // ----- Start of header guard
-#ifndef WAYPOINTUSERV1_H
-#define WAYPOINTUSERV1_H
-
-#include "Math/Vector3f.h"
+#ifndef UNITSTATE_H
+#define UNITSTATE_H
 
 // how this waypoint USER works :
 // ---- Only Objects assign this component follow waypoints
 // --------- Everyone Else does not use waypoints
 // ---- Waypoint users stop to conduct attacks against other waypoint users
 // --------- Once attack is over, recommence movement
-struct waypointUserv1
+struct unitstate
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{
-		.m_pName = "WaypointUserv1"
+		.m_pName = "unitstate"
 	};
 
-	// this defines the player 1-4, in this case, 2 players... 
-	int m_player;
 	// this is to stop in front of an ally/enemy to attack
 	bool isAttacking;
-	// destination
-	paperback::Vector3f m_destination;
 	
 	// player should be m_player = 0, enemy should be m_player = 1 (set in sandbox.cpp)
-	waypointUserv1() :
-		m_player{0},
-		isAttacking{false},
-		m_destination{ paperback::Vector3f {} }
+	unitstate() :
+		isAttacking{false}
 	{}
 
 };

@@ -103,23 +103,12 @@ struct physics_system : paperback::system::instance
     }
 
     // map check collision out of bounds check
-    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce,
-        waypointUserv1* wu) noexcept
+    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce) noexcept
     {
         if (RigidForce != nullptr)
         {
-            // waypoint users have rigidForce && zero decay of movement (rigidForce have inherent decay)
-            if (wu)
-            {
-                // in case it goes minimum crazy
-                RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
-                RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
-
-                // no decrement of movement -> makes movement predictable
-            }
-
             // non-waypoint users
-            else if (RigidForce->m_isAccel)
+            if (RigidForce->m_isAccel)
             {
                 RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
             }

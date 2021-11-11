@@ -29,7 +29,7 @@ struct player_spawner_system : paperback::system::instance
         m_QueryPlayer.m_NoneOf.AddFromComponents<prefab>();
 
         // Friendly Prefab
-        m_PlayerPrefabArchetype.m_Must.AddFromComponents<prefab, transform, waypointUserv1, mesh, /*animator,*/ health, damage, friendly>();
+        m_PlayerPrefabArchetype.m_Must.AddFromComponents<prefab, transform, unitstate, mesh, /*animator,*/ health, damage, friendly>();
         m_PlayerPrefabArchetype.m_NoneOf.AddFromComponents<counter>();
     }
 

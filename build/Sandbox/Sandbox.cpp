@@ -78,7 +78,7 @@ void InitializeGame()
         ,    collidable
         ,    waypoint
         ,    waypointv1
-        ,    waypointUserv1
+        ,    unitstate
         ,    selected
         ,    health
         ,    damage
@@ -117,8 +117,7 @@ void InitializeGame()
         PPB.RegisterSystems <
             onevent_UnitTrigger_system,
             onevent_UnitTriggerStay_system,
-            onevent_UnitTriggerExit_system,
-            onevent_WaypointTrigger_system
+            onevent_UnitTriggerExit_system
             //onevent_update_health,
         >();
     }
