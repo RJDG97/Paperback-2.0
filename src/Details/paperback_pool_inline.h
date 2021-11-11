@@ -216,7 +216,8 @@ namespace paperback::vm
 	PPB_INLINE
 	void instance::UpdateStructuralChanges( void ) noexcept
 	{
-		auto ResetInfo = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; Info.m_pArchetype = nullptr; };
+		auto ResetInfo  = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; Info.m_pArchetype = nullptr; };
+		auto ResetMInfo = [&]( paperback::entity::info& Info ) { Info.m_Validation.m_UID = 0; };
 
 		while ( m_DeleteHead != settings::invalid_delete_index_v )
 		{
@@ -231,7 +232,7 @@ namespace paperback::vm
 			auto& Info = m_pCoordinator->GetEntityInfo( m_MoveHead );
             RemoveTransferredEntity( Info.m_PoolDetails.m_PoolIndex );
 			m_MoveHead = Info.m_Validation.m_Next;
-			ResetInfo( Info );
+			ResetMInfo( Info ); // Updated this
         }
 	}
 
@@ -376,7 +377,8 @@ namespace paperback::vm
 					{
 						// Clone a copy of the child
 						auto& CInfo         = m_pCoordinator->GetEntityInfo( ChildGID );
-						auto ClonedChildGID = CInfo.m_pArchetype->CloneEntity( CInfo.m_pArchetype->GetComponent<paperback::component::entity>( CInfo.m_PoolDetails ) );
+						auto ClonedChildGID = CInfo.m_pArchetype->ClonePrefab( CInfo.m_PoolDetails.m_PoolIndex );
+						//auto ClonedChildGID = CInfo.m_pArchetype->CloneEntity( CInfo.m_pArchetype->GetComponent<paperback::component::entity>( CInfo.m_PoolDetails ) );
 
 						// Grab info of cloned child
 						auto& ClonedInfo    = m_pCoordinator->GetEntityInfo( ClonedChildGID );
@@ -577,10 +579,36 @@ namespace paperback::vm
 			return  rttr::instance(GetComponent< prefab >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< reference_prefab >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< reference_prefab >(Index));
-		else if (Comp_Guid.m_Value == component::info_v< offset >.m_Guid.m_Value)
-			return  rttr::instance(GetComponent< offset >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< damage >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< damage >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< listener >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< listener >(Index));
+
+
+		else if (Comp_Guid.m_Value == component::info_v< name >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< name >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< cost >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< cost >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< counter >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< counter >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< currency >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< currency >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< enemy >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< enemy >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< enemy_spawner >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< enemy_spawner >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< friendly >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< friendly >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< friendly_spawner >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< friendly_spawner >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< health >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< health >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< selected >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< selected >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< waypoint >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< waypoint >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< player >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< player >(Index));
 		else
 			return rttr::instance();
 	}

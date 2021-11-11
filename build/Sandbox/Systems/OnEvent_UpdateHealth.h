@@ -4,7 +4,7 @@
 //{
 //	constexpr static auto typedef_v = paperback::system::type::system_event<collision_system, collision_system::DamageEvent>
 //	{
-//		.m_pName = "timer_system"
+//		.m_pName = "OnEvent Update Health"
 //	};
 //
 //	void operator()( entity& Entity ) noexcept

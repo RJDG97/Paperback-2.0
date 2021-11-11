@@ -18,6 +18,8 @@ namespace paperback::serialize
                 writer.Int(var.to_int16());
             else if (t == rttr::type::get<int32_t>())
                 writer.Int(var.to_int32());
+            else if (t == rttr::type::get<paperback::i32>())
+                writer.Int(var.to_int32());
             else if (t == rttr::type::get<int64_t>())
                 writer.Int64(var.to_int64());
             else if (t == rttr::type::get<uint8_t>())
@@ -28,6 +30,8 @@ namespace paperback::serialize
                 writer.Uint(var.to_uint32());
             else if (t == rttr::type::get<uint64_t>())
                 writer.Uint64(var.to_uint64());
+            else if (t == rttr::type::get<int>())
+                writer.Int(var.to_int32());
             else if (t == rttr::type::get<float>())
                 writer.Double(var.to_double());
             else if (t == rttr::type::get<double>())

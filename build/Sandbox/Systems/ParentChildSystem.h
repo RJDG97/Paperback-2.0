@@ -22,7 +22,7 @@ struct parentchild_system : paperback::system::instance
 					if (CRotation) { CRotation->m_Value = COffset->m_RotOffset + Rotation.m_Value; }
 					if (CScale) { CScale->m_Value = {COffset->m_ScaleOffset.x * Scale.m_Value.x,
 													 COffset->m_ScaleOffset.y * Scale.m_Value.y,
-													 COffset->m_ScaleOffset.x * Scale.m_Value.z }; }
+													 COffset->m_ScaleOffset.z * Scale.m_Value.z }; }
 				}
 
 				else

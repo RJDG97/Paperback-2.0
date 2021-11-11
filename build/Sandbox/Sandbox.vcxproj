@@ -188,12 +188,14 @@
     <ClInclude Include="Components\Name.h" />
     <ClInclude Include="Components\Offset.h" />
     <ClInclude Include="Components\Parent.h" />
+    <ClInclude Include="Components\Player.h" />
     <ClInclude Include="Components\Prefab.h" />
     <ClInclude Include="Components\ReferencePrefab.h" />
     <ClInclude Include="Components\Rigidbody.h" />
     <ClInclude Include="Components\RigidForce.h" />
     <ClInclude Include="Components\Rotation.h" />
     <ClInclude Include="Components\Scale.h" />
+    <ClInclude Include="Components\Shield.h" />
     <ClInclude Include="Components\Socketed.h" />
     <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />

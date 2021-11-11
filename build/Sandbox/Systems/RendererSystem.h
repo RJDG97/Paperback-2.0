@@ -57,6 +57,7 @@ struct render_system : paperback::system::instance
 		tools::query Query;
 		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation>();
 		Query.m_OneOf.AddFromComponents<animator, socketed, mesh>();
+		Query.m_NoneOf.AddFromComponents<prefab>();
 
 		ForEach( Search( Query ), [&]( transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator* Animator, socketed* Socketed) noexcept
 		{

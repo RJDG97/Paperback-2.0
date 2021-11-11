@@ -33,3 +33,5 @@
 #include "Enemy.h"
 #include "Waypointv1.h"
 #include "WaypointUserv1.h"
+#include "Player.h"
+#include "Shield.h"

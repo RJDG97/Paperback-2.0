@@ -24,16 +24,16 @@ struct onevent_UnitTrigger_system : paperback::system::instance
 
     void OnEvent(entity& obj, rigidforce& rf) noexcept
     {
-        // Pause Movement
-        rf.m_isStatic = true;
-        // Play Animation
-        auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
-        animator* anim = & m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-        if(anim != nullptr){
-            anim->m_PlayOnce = true;
-            if (anim->m_FinishedAnimating)
-                anim->m_CurrentAnimationName = "Armature|Attack";
-        }
+        //// Pause Movement
+        //rf.m_isStatic = true;
+        //// Play Animation
+        //auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
+        //animator* anim = & m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+        //if(anim != nullptr){
+        //    anim->m_PlayOnce = true;
+        //    if (anim->m_FinishedAnimating)
+        //        anim->m_CurrentAnimationName = "Armature|Attack";
+        //}
     }
 };
 
@@ -101,14 +101,14 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
 
     void OnEvent(entity& obj, rigidforce& rf) noexcept
     {
-        auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
-        animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-        if (anim != nullptr) {
-            anim->m_PlayOnce = true;
-            if (anim->m_FinishedAnimating)
-                anim->m_CurrentAnimationName = "Armature|Walk";
-        }
-        // Continue Movement
-        rf.m_isStatic = false;
+        //auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
+        //animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+        //if (anim != nullptr) {
+        //    anim->m_PlayOnce = true;
+        //    if (anim->m_FinishedAnimating)
+        //        anim->m_CurrentAnimationName = "Armature|Walk";
+        //}
+        //// Continue Movement
+        //rf.m_isStatic = false;
     }
 };
