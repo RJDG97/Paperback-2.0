@@ -45,7 +45,7 @@ void DetailsWindow::Panel()
 
                         if ( PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic() )
                             m_Imgui.DisplayBaseTypes( PropertyName, PropertyType, PropertyValue );
-                        else if ( (PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || 
+                        if ( (PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || 
                                    PropertyType == rttr::type::get< std::string>()) && 
                                  ComponentInstance.first.get_type().get_name().to_string() != "Mesh" && 
                                  ComponentInstance.first.get_type().get_name().to_string() != "Socketed" &&
@@ -53,12 +53,12 @@ void DetailsWindow::Panel()
 
                             m_Imgui.DisplayStringType( PropertyName, PropertyType, PropertyValue );
 
-                        else if ( PropertyType.is_class() )
+                        if ( PropertyType.is_class() )
                             m_Imgui.DisplayClassType( PropertyName, PropertyType, PropertyValue );
                         //if (ComponentInstance.first.get_type().get_name().to_string() == "Collidable")
                         //    m_Imgui.DisplayEnumeration(PropertyName, PropertyType, PropertyValue, ComponentInstance.first, property);
 
-                        else if (ComponentInstance.first.get_type().get_name().to_string() == "Parent")
+                        if (ComponentInstance.first.get_type().get_name().to_string() == "Parent")
                                 ParentComponent();
 
                         auto ReferencePrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
