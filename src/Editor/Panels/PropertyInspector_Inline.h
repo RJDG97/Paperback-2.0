@@ -89,9 +89,9 @@ void DetailsWindow::Panel()
 
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Mesh")
                         MeshCombo();
-                    else if (ComponentInstance.first.get_type().get_name().to_string() == "Animator")
+                    if (ComponentInstance.first.get_type().get_name().to_string() == "Animator")
                         AnimatorComponent();
-                    else if (ComponentInstance.first.get_type().get_name().to_string() == "Socketed")
+                    if (ComponentInstance.first.get_type().get_name().to_string() == "Socketed")
                         SocketedComponent();
                 }
             }
