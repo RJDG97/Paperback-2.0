@@ -31,3 +31,5 @@
 #include "Friendly.h"
 #include "Counter.h"
 #include "Enemy.h"
+#include "Waypointv1.h"
+#include "WaypointUserv1.h"

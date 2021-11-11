@@ -192,5 +192,11 @@
     <ClInclude Include="Components\Name.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\WaypointUserv1.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Waypointv1.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

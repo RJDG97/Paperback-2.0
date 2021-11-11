@@ -77,6 +77,8 @@ void InitializeGame()
         ,    reference_prefab
         ,    collidable
         ,    waypoint
+        ,    waypointv1
+        ,    waypointUserv1
         ,    selected
         ,    health
         ,    damage
