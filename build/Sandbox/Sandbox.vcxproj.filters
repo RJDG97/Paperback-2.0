@@ -204,5 +204,8 @@
     <ClInclude Include="Components\Shield.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\WaypointSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

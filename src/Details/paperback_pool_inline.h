@@ -609,6 +609,15 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< waypoint >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< player >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< player >(Index));
+
+
+
+
+		else if (Comp_Guid.m_Value == component::info_v< waypointv1 >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< waypointv1 >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< unitstate >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< unitstate >(Index));
+
 		else
 			return rttr::instance();
 	}

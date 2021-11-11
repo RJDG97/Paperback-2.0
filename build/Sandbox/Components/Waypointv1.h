@@ -54,6 +54,21 @@ struct waypointv1
 	}
 };
 
+namespace RR_WaypointV
+{
+    RTTR_REGISTRATION
+    {
+        rttr::registration::class_<waypointv1>(waypointv1::typedef_v.m_pName)
+            .constructor()(rttr::policy::ctor::as_object)
+            .property( "Player Number", &waypointv1::m_point )(rttr::policy::prop::as_reference_wrapper)
+            .property( "Destination", &waypointv1::m_destination )
+            .property( "Speed", &waypointv1::m_setspeed )(rttr::policy::prop::as_reference_wrapper);
+    }
+}
+
+
+
+
 /* Note:
     // rather than a point, i would rather have a bounding box so that when the unit collide, it assigns a new direction
 	// with bounding box, sharp corners (90 degrees) are not recomended

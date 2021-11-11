@@ -29,7 +29,7 @@ struct player_spawner_system : paperback::system::instance
         m_QueryPlayer.m_NoneOf.AddFromComponents<prefab>();
 
         // Friendly Prefab
-        m_PlayerPrefabArchetype.m_Must.AddFromComponents<prefab, transform, unitstate, mesh, /*animator,*/ health, damage, friendly>();
+        m_PlayerPrefabArchetype.m_Must.AddFromComponents<prefab, transform, waypoint, /*unitstate,*/ mesh, animator, health, damage, friendly>();
         m_PlayerPrefabArchetype.m_NoneOf.AddFromComponents<counter>();
     }
 
@@ -60,8 +60,8 @@ struct player_spawner_system : paperback::system::instance
 
                 // Get Info Of Prefab To Clone (Based on Key Pressed)
                 if      ( Key == GLFW_KEY_1 ) PrefabGID = Friendly.FindPrefabEntityGID( "Top" );
-                else if ( Key == GLFW_KEY_2 ) PrefabGID = Friendly.FindPrefabEntityGID( "Mid" );
-                else if ( Key == GLFW_KEY_3 ) PrefabGID = Friendly.FindPrefabEntityGID( "Bot" );
+                //else if ( Key == GLFW_KEY_2 ) PrefabGID = Friendly.FindPrefabEntityGID( "Mid" );
+                //else if ( Key == GLFW_KEY_3 ) PrefabGID = Friendly.FindPrefabEntityGID( "Bot" );
                 if ( PrefabGID == paperback::settings::invalid_index_v ) return;
                 auto PrefabInfo = GetEntityInfo( PrefabGID );
 

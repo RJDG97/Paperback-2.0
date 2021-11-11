@@ -221,6 +221,7 @@
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
     <ClInclude Include="Systems\TimerSystem.h" />
+    <ClInclude Include="Systems\WaypointSystem.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

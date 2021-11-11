@@ -111,13 +111,15 @@ void InitializeGame()
             parentchild_system,
             player_spawner_system,
             enemy_spawner_system,
-            timer_system
+            timer_system,
+            waypoint_system
         >();
 
         PPB.RegisterSystems <
             onevent_UnitTrigger_system,
             onevent_UnitTriggerStay_system,
             onevent_UnitTriggerExit_system
+            //onevent_WaypointTrigger_system
             //onevent_update_health,
         >();
     }
