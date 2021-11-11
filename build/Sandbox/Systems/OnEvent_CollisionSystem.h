@@ -24,8 +24,6 @@ struct onevent_UnitTrigger_system : paperback::system::instance
 
     void OnEvent(entity& obj, entity& obj2, rigidforce& rf) noexcept
     {
-        // Pause Movement
-        rf.m_isStatic = true;
         // Play Animation
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
         auto m_obj2 = GetEntityInfo(obj.m_GlobalIndex);
@@ -37,6 +35,10 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         auto Unit_2_Enemy = m_obj2.m_pArchetype->FindComponent<enemy>(m_obj2.m_PoolDetails);
         // if oposing units
         if (Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly) {
+
+            // Pause Movement
+            rf.m_isStatic = true;
+
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
             // change animation
             if (anim != nullptr) {
@@ -122,13 +124,20 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
     void OnEvent(entity& obj, rigidforce& rf) noexcept
     {
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
-        animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-        if (anim != nullptr) {
-            anim->m_PlayOnce = true;
-            if (anim->m_FinishedAnimating)
-                anim->m_CurrentAnimationName = "Armature|Walk";
+        // check obj is friendly
+        auto Unit_Friendly = m_obj.m_pArchetype->FindComponent<friendly>(m_obj.m_PoolDetails);
+        // check obj is enemy
+        auto Unit_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
+
+        if (Unit_Friendly || Unit_Enemy) {
+            animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+            if (anim != nullptr) {
+                anim->m_PlayOnce = true;
+                if (anim->m_FinishedAnimating)
+                    anim->m_CurrentAnimationName = "Armature|Walk";
+            }
+            // Continue Movement
+            rf.m_isStatic = false;
         }
-        // Continue Movement
-        rf.m_isStatic = false;
     }
 };

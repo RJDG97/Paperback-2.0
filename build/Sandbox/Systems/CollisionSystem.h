@@ -15,6 +15,8 @@ struct collision_system : paperback::system::instance
     struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity& > {};
     struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
 
+    using query = std::tuple< paperback::query::none_of<prefab> >;
+
     void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1,
         unitstate* state, waypointv1* wp1) noexcept
     {
@@ -22,7 +24,6 @@ struct collision_system : paperback::system::instance
 
         // Initialize Query
         tools::query Query;
-        using query = std::tuple< paperback::query::none_of<prefab> >;
 
         Query.m_Must.AddFromComponents < transform >();
         Query.m_OneOf.AddFromComponents< boundingbox, sphere >();
