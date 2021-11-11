@@ -372,6 +372,12 @@
     <ClInclude Include="..\..\src\Physics\AwaitDeploy.h">
       <Filter>Source\Gameplay Code\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Ray.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shapes\Frustrum.h">
+      <Filter>Source\Gameplay Code\Shapes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

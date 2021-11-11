@@ -4,7 +4,6 @@
 
 #include "Math/Vector3f.h"
 #include "Math/Vector4f.h"
-#include "LineSegment.h"
 
 struct Plane
 {
@@ -13,57 +12,69 @@ struct Plane
 		.m_pName = "Plane"
 	};
 
-public:													// ----- Private members
+	paperback::Vector4f m_data;
+
 	Plane()
 	{
-		mData = paperback::Vector4f{};
+		m_data = paperback::Vector4f{};
 	}
+
 	// Create the plane from a triangle
-	Plane(const paperback::Vector3f& p0, const paperback::Vector3f& p1, const paperback::Vector3f& p2)
+	Plane(const paperback::Vector3f& p0, 
+		const paperback::Vector3f& p1, 
+		const paperback::Vector3f& p2)
 	{
 		Set(p0, p1, p2);
 	}
+
 	// Create the plane from a point and a normal
-	Plane(const paperback::Vector3f& normal, const paperback::Vector3f& point)
+	Plane(const paperback::Vector3f& normal, 
+		const paperback::Vector3f& point)
 	{
 		Set(normal, point);
 	}
 
 	// Create a plane from a triangle. The plane's normal should be normalized.
-	void Set(const paperback::Vector3f& p0, const paperback::Vector3f& p1, const paperback::Vector3f& p2)
+	void Set(const paperback::Vector3f& p0, 
+		const paperback::Vector3f& p1, 
+		const paperback::Vector3f& p2)
 	{
-		// Set mData from the 3 points. Note: You should most likely normalize the plane normal.
+		// Get plane vectors
 		paperback::Vector3f v1 = p1 - p0;
 		paperback::Vector3f v2 = p2 - p0;
+
+		// Get plane normal, normalize the plane normal
 		paperback::Vector3f n = v1.Cross(v2).Normalized();
+
+		// Set plane data
 		float D = p0.Dot(n);
-		mData = paperback::Vector4f(n.x, n.y, n.z, D);
-	}
-	// Create a plane from a point and a normal. The plane's normal should be normalized.
-	void Set(const paperback::Vector3f& normal, const paperback::Vector3f& point)
-	{
-		// Set mData from the normal and point. Note: You should most likely normalize the plane normal.
-		paperback::Vector3f n = normal.Normalized();
-		float D = point.Dot(n);
-		mData = paperback::Vector4f(n.x, n.y, n.z, D);
+		m_data = paperback::Vector4f(n.x, n.y, n.z, D);
 	}
 
-	// Get the normal of this plane.
+	// Create a plane from a point and a normal. The plane's normal should be normalized.
+	void Set(const paperback::Vector3f& normal, 
+		const paperback::Vector3f& point)
+	{
+		// normalize the plane normal
+		paperback::Vector3f n = normal.Normalized();
+
+		// Set plane data
+		float D = point.Dot(n);
+		m_data = paperback::Vector4f(n.x, n.y, n.z, D);
+	}
+
+	// Get the normal of this plane
 	paperback::Vector3f GetNormal() const
 	{
-		return paperback::Vector3f(mData.x, mData.y, mData.z);
+		return paperback::Vector3f(m_data.x, m_data.y, m_data.z);
 	}
-	// Get the 'd' value (the distance from the origin) which can be computed as Dot(origin - pointOnPlane, normal)
+
+	// Get the 'd' value (the distance from the origin) 
+	// which can be computed as Dot(origin - pointOnPlane, normal)
 	float GetDistance() const
 	{
-		return mData.w;
+		return m_data.w;
 	}
-
-	// debugDraw>?
-
-	paperback::Vector4f mData;
-
-
 };
 
 // ----- End of header guard

@@ -51,6 +51,7 @@ struct Collidable
 
     // current collision layer, u8 (unsigned) has a maximum of 255
     paperback::u8 m_CollisionLayer;
+    // convert this to int so that no need static_cast
 
     // determine which layers are collidable with this AABB
     tools::bits  m_CollidableLayers;

@@ -49,6 +49,7 @@ void Cheap_Elastic_collision_1D(float& v1, float& a1, const float mass1,
 		paperback::MathUtils::Swap<float>(a1, a2);
 	}
 }
+
 // pseudo
 bool CheapaabbDynamic(
 	boundingbox* Bbox1,
@@ -311,6 +312,7 @@ bool CheapsphereDynamic(
 //
 //	return true;
 //}
+
 
 
 #endif

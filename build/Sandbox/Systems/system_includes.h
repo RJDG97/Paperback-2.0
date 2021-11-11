@@ -8,3 +8,4 @@
 #include "RendererSystem.h"
 #include "AnimatorSystem.h"
 #include "ParentChildSystem.h"
+#include "WaypointSystem.h"

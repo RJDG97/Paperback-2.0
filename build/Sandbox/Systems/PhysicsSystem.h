@@ -84,7 +84,7 @@ struct physics_system : paperback::system::instance
 
                 AddForce(RF.m_Forces, Vec);
                 RF.m_MagForce = 1.0f; // this is magnitudeSq
-                RF.m_isAccel = true;
+                //RF.m_isAccel = true;
             });
     }
 
@@ -102,20 +102,36 @@ struct physics_system : paperback::system::instance
             });
     }
 
+    // to change: physics objects need rigidbody, optional?(rigidforce)
+
     // map check collision out of bounds check
-    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce) noexcept
+    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce, WaypointUserv1* wu) noexcept
     {
+        // RigidForce -> RigidBody -> transform
         if (RigidForce != nullptr)
         {
-            if (RigidForce->m_isAccel)
+            // waypoint users have rigidForce && zero decay of movement (rigidForce have inherent decay)
+            if (wu)
+            {
+                // in case it goes minimum crazy
+                RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
+                RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
+
+                // no decrement of movement -> makes movement predictable
+            }
+
+            // non-waypoint users
+            else if (RigidForce->m_isAccel)
             {
                 RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
             }
             else
             {
+                // minimum value threshold
                 RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
                 RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
 
+                // momentum && accel
                 if (!RigidForce->m_Momentum.IsZero() && !RigidForce->m_Forces.IsZero())
                 {
                     RigidForce->m_Momentum.DecrementValue(
@@ -126,17 +142,29 @@ struct physics_system : paperback::system::instance
                     RigidForce->m_Forces.DecrementValue(
                         RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
                 }
+                // momentum
                 else if (RigidForce->m_Forces.IsZero())
                 {
                     RigidForce->m_Momentum.DecrementValue(
                         RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
                 }
             }
+
+            // assign values and new position, rb delete
             if (RigidBody)
             {
                 RigidBody->m_Accel = ConvertToAccel(RigidForce->m_Mass, RigidForce->m_Forces);
                 RigidBody->m_Velocity = ConvertToVelocity(RigidForce->m_Mass, RigidForce->m_Momentum);
-                Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+
+                // to be changed
+                if (wu && wu->isAttacking)
+                {
+                    // stay still and attacks
+                }
+                else
+                {
+                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+                }
             }
         }
 

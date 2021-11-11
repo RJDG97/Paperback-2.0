@@ -16,3 +16,5 @@
 #include "Child.h"
 #include "Offset.h"
 #include "CollisionLayer.h"
+#include "Waypointv1.h"
+#include "WaypointUserv1.h"

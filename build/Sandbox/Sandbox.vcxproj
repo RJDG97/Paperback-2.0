@@ -186,6 +186,9 @@
     <ClInclude Include="Components\Sphere.h" />
     <ClInclude Include="Components\Timer.h" />
     <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Components\WaypointUserv1.h" />
+    <ClInclude Include="Components\Waypointv1.h" />
+    <ClInclude Include="Components\Waypointv2.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
@@ -197,6 +200,7 @@
     <ClInclude Include="Systems\ScriptingSystem.h" />
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
+    <ClInclude Include="Systems\WaypointSystem.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

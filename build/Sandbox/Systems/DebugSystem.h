@@ -310,6 +310,7 @@ struct debug_system : paperback::system::instance
         m_Points[1].clear();
     }
 
+    // HOW IT WORKS: set parameters -> Convert vertices to circle/square draw
     //DrawPoint(const Vector3f& point)
     //{
     //    return DrawSphere(Sphere(point, 0.1f));
@@ -551,7 +552,7 @@ struct debug_system : paperback::system::instance
     //    return shape;
     //}
     //
-   //DrawQuad(const Vector3f& p0, const Vector3f& p1, const Vector3f& p2, const Vector3f& p3)
+    //DrawQuad(const Vector3f& p0, const Vector3f& p1, const Vector3f& p2, const Vector3f& p3)
     //{
     //    // Draw the4 edges of a quad. Make sure to look at this and make sure the quad is not bow-tied.
     //    shape = GetNewShape();

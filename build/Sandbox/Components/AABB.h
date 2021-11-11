@@ -15,6 +15,7 @@ struct aabb
 	paperback::Vector3f m_point[8];
 	bool m_Collided;
 
+	// aabb :P
 
 };
 // -- To do:

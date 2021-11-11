@@ -1,30 +1,38 @@
 // ----- Start of header guard
-#ifndef TRIANGLE_H
-#define TRIANGLE_H
+#ifndef RAY_H
+#define RAY_H
 
 #include "Math/Vector3f.h"
 
-struct Triangle
+//template <size_t N = 3>
+struct Ray
 {
 	constexpr static auto typedef_v = paperback::component::type::data
 	{
-		.m_pName = "Triangle"
+		.m_pName = "Ray"
 	};
 
-	paperback::Vector3f m_points[3];
+	//LineSegment m_arrSegments[N];
 
-	Triangle()
+	paperback::Vector3f m_start;
+	paperback::Vector3f m_direction;
+
+	Ray()
 	{
-		m_points[0] = m_points[1] = m_points[2] = paperback::Vector3f{};
+		m_start = m_direction = paperback::Vector3f{};
 	}
 
-	Triangle(const paperback::Vector3f& p0, 
-		const paperback::Vector3f& p1, 
-		const paperback::Vector3f& p2)
+	Ray(paperback::Vector3f start, paperback::Vector3f dir)
 	{
-		m_points[0] = p0;
-		m_points[1] = p1;
-		m_points[2] = p2;
+		m_start = start;
+		m_direction = dir;
+	}
+
+	// add a transform later for utility purposes
+
+	paperback::Vector3f CastRay(float t)
+	{
+		return m_start + m_direction * t;
 	}
 };
 // -- To do:

@@ -123,5 +123,17 @@
     <ClInclude Include="Components\CollisionLayer.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Waypointv1.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Waypointv2.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\WaypointSystem.h">
+      <Filter>Source Files\Systems\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\WaypointUserv1.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

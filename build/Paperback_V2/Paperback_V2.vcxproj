@@ -207,9 +207,11 @@
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />
     <ClInclude Include="..\..\src\Shapes\Circle.h" />
+    <ClInclude Include="..\..\src\Shapes\Frustrum.h" />
     <ClInclude Include="..\..\src\Shapes\LineSegment.h" />
     <ClInclude Include="..\..\src\Shapes\Plane.h" />
     <ClInclude Include="..\..\src\Shapes\Polygon_shape.h" />
+    <ClInclude Include="..\..\src\Shapes\Ray.h" />
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
     <ClInclude Include="..\..\src\Shapes\Triangle.h" />
     <ClInclude Include="paperback_pch.h" />
