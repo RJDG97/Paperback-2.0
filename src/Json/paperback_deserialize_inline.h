@@ -41,6 +41,28 @@ namespace paperback::deserialize
         return rttr::variant();
     }
 
+    void ExtractWrapperType(rttr::variant& Obj, rttr::variant& Extracted)
+    {
+        if (Obj.get_type() == rttr::type::get<std::reference_wrapper<bool>>())
+            Obj.get_value<std::reference_wrapper<bool> >().get() = Extracted.get_value<bool>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<std::string>>())
+            Obj.get_value<std::reference_wrapper<std::string >>().get() = Extracted.get_value<std::string>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<int>>())
+            Obj.get_value<std::reference_wrapper<int>>().get() = Extracted.get_value<int>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<int64_t>>())
+            Obj.get_value<std::reference_wrapper<int64_t>>().get() = Extracted.get_value<int64_t>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<unsigned >>())
+            Obj.get_value<std::reference_wrapper<unsigned> >().get() = Extracted.get_value<unsigned>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<uint64_t >>())
+            Obj.get_value<std::reference_wrapper<uint64_t >>().get() = Extracted.get_value<uint64_t>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<float> >())
+            Obj.get_value<std::reference_wrapper<float >>().get() = static_cast<float>(Extracted.get_value<double>());
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<paperback::i32> >())
+            Obj.get_value<std::reference_wrapper<paperback::i32>>().get() = Extracted.get_value<paperback::i32>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<paperback::u32> >())
+            Obj.get_value<std::reference_wrapper<paperback::u32>>().get() = Extracted.get_value<paperback::u32>();
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////
 
     void ReadArray(rttr::variant_sequential_view& view, rapidjson::Value& json_array_value)
@@ -167,8 +189,13 @@ namespace paperback::deserialize
             default:
             {
                 rttr::variant extracted_value = ExtractBasicType(json_value);
-                if (extracted_value.convert(value_t))
-                    prop.set_value(obj, extracted_value);
+                if (value_t.is_wrapper())
+                {
+                    auto val = prop.get_value(obj);
+                    ExtractWrapperType(val, extracted_value);
+                }
+                else if (extracted_value.convert(value_t))
+                    prop.set_value(obj, extracted_value);            
             }
             }
         }
@@ -274,8 +301,18 @@ namespace paperback::deserialize
             if (obj.is_type<offset>())
                 NewArchetype->GetComponent<offset>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<offset>();
 
-            if (obj.is_type<offset>())
+            if (obj.is_type<socketed>())
                 NewArchetype->GetComponent<socketed>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<socketed>();
+
+            if (obj.is_type<damage>())
+            {
+                auto& a = obj.get_value<damage>();
+                std::cout << a.m_Value << std::endl;
+                NewArchetype->GetComponent<damage>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<damage>();
+                auto& b = NewArchetype->GetComponent<damage>(paperback::vm::PoolDetails{ 0, EntityCounter });
+                    std::cout << b.m_Value << std::endl;
+            }
+
         }
     }
 

@@ -45,10 +45,14 @@ void DetailsWindow::Panel()
 
                         if ( PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic() )
                             m_Imgui.DisplayBaseTypes( PropertyName, PropertyType, PropertyValue );
-                        else if ( (PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || PropertyType == rttr::type::get< std::string>()) && 
-                            ComponentInstance.first.get_type().get_name().to_string() != "Mesh" && ComponentInstance.first.get_type().get_name().to_string() != "Socketed"
-                            && ComponentInstance.first.get_type().get_name().to_string() != "Animator")
+                        else if ( (PropertyType.get_wrapped_type() == rttr::type::get< std::string >() || 
+                                   PropertyType == rttr::type::get< std::string>()) && 
+                                 ComponentInstance.first.get_type().get_name().to_string() != "Mesh" && 
+                                 ComponentInstance.first.get_type().get_name().to_string() != "Socketed" &&
+                                 ComponentInstance.first.get_type().get_name().to_string() != "Animator")
+
                             m_Imgui.DisplayStringType( PropertyName, PropertyType, PropertyValue );
+
                         else if ( PropertyType.is_class() )
                             m_Imgui.DisplayClassType( PropertyName, PropertyType, PropertyValue );
                         //if (ComponentInstance.first.get_type().get_name().to_string() == "Collidable")
@@ -359,8 +363,6 @@ void DetailsWindow::AnimatorComponent()
             }
             ImGui::EndCombo();
         }
-
-        ImGui::Checkbox("Play Once", &EntityAnimator->m_PlayOnce);
     }
 }
 

@@ -576,7 +576,11 @@ namespace paperback::vm
 		else if (Comp_Guid.m_Value == component::info_v< prefab >.m_Guid.m_Value)
 			return  rttr::instance(GetComponent< prefab >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< reference_prefab >.m_Guid.m_Value)
-			return  rttr::instance(GetComponent<  reference_prefab >(Index));
+			return  rttr::instance(GetComponent< reference_prefab >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< offset >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< offset >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< damage >.m_Guid.m_Value)
+			return  rttr::instance(GetComponent< damage >(Index));
 		else
 			return rttr::instance();
 	}
