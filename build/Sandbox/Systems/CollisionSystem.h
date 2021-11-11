@@ -15,6 +15,8 @@ struct collision_system : paperback::system::instance
     struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity& > {};
     struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
 
+    struct UnitWaypointEvent : paperback::event::instance< waypointUserv1&, waypointv1&, rigidforce& > {};
+
     void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1,
         waypointUserv1* wu1, waypointv1* wp1) noexcept
     {
@@ -61,66 +63,47 @@ struct collision_system : paperback::system::instance
                                         RF,
                                         Xform);
                                 }
-                                // Check if layer is unit
-                                if (col1->m_CollisionLayer == static_cast<paperback::u8>(CollisionLayer::UNIT)){
-                                    // If first instance of collision (may be an issue with gravity)
-                                    if (!Boundingbox->m_Collided && RigidForce) {
-                                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
-                                    }
-                                    else { // Was previously already colliding
-                                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
-                                    }
-                                }
 
-                                //// if both waypoint users collides
-                                //if (wu1 && wu2)
-                                //{
-                                //    // stop users to commence atk
-                                //    wu1->isAttacking = wu2->isAttacking = true;
-                                //}
+                                // if both waypoint users collides
+                                if (wu1 && wu2)
+                                {
+                                    if(!wu1->isAttacking && RigidForce != nullptr)
+                                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
+                                    else
+                                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
+                                    wu1->isAttacking = true;
+                                }
 
                                 // unit collide with waypoint
                                 //else if
-                                if (wu1 && wp2)
-                                {
-                                    if (wp2->isBase)
+                                if (wu1 && wp2){
+                                    if (wp2->isBase) {
+                                        if(wu1->isAttacking)
+                                            BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
+                                        else
+                                            BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
                                         wu1->isAttacking = true;
-                                    else
-                                    {
-                                        wu1->m_destination = wp2->m_destination[wu1->m_player];
-
-                                        // be careful with this!! set speed if there is one
-                                        if (RigidForce && wp2->b_enableSpeed)
-                                        {
-                                            // first var is the user
-                                            RigidForce->m_Momentum = wp2->m_setspeed[wu1->m_player] * RigidForce->m_Mass;
-                                        }
                                     }
-                                }
-
-                                else if (wu2 && wp1)
-                                {
-                                    if (wp1->isBase)
-                                        wu2->isAttacking = true;
                                     else
-                                    {
-                                        wu2->m_destination = wp1->m_destination[wu2->m_player];
-
-                                        // be careful with this!! set speed if there is one
-                                        if (RigidForce && wp1->b_enableSpeed)
-                                        {
-                                            // first var is the user
-                                            RigidForce->m_Momentum = wp1->m_setspeed[wu2->m_player] * RigidForce->m_Mass;
-                                        }
-                                    }
+                                        BroadcastGlobalEvent<UnitWaypointEvent>(*wu1, *wp2, *RigidForce);
                                 }
-
+                                //else if (wu2 && wp1){
+                                //    if (wp2->isBase) {
+                                //        if (wu1->isAttacking)
+                                //            BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
+                                //        else
+                                //            BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
+                                //        wu1->isAttacking = true;
+                                //    }
+                                //    else
+                                //        BroadcastGlobalEvent<UnitWaypointEvent>(*wu2, *wp1, *RigidForce);
+                                //}
                                 Boundingbox->m_Collided = BB->m_Collided = true;
                             }
                             else {
-                                if (col1->m_CollisionLayer == static_cast<paperback::u8>(CollisionLayer::UNIT)
-                                    && Boundingbox->m_Collided && RigidForce) {
+                                if (wu1 && wu1->isAttacking && Boundingbox->m_Collided && RigidForce) {
                                     BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+                                    wu1->isAttacking = false;
                                 }
                                 Boundingbox->m_Collided = BB->m_Collided = false;
                             }

@@ -16,3 +16,4 @@
 // Event
 #include "OnEvent_CollisionSystem.h"
 #include "OnEvent_UpdateHealth.h"
+#include "OnEvent_WaypointTrigger.h"

@@ -198,5 +198,8 @@
     <ClInclude Include="Components\Waypointv1.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\OnEvent_WaypointTrigger.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
