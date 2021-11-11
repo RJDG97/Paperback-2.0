@@ -27,6 +27,7 @@ struct collision_system : paperback::system::instance
 
         Query.m_Must.AddFromComponents < transform >();
         Query.m_OneOf.AddFromComponents< boundingbox, sphere >();
+        Query.m_NoneOf.AddFromComponents< prefab >();
 
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
