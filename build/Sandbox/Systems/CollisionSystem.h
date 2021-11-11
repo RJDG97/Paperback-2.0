@@ -11,7 +11,7 @@ struct collision_system : paperback::system::instance
         .m_pName = "collision_system"
     };
 
-    struct UnitTriggerEvent : paperback::event::instance< entity& , rigidforce&> {};
+    struct UnitTriggerEvent : paperback::event::instance< entity& , entity&, rigidforce&> {};
     struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity& > {};
     struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
 
@@ -24,6 +24,8 @@ struct collision_system : paperback::system::instance
 
         // Initialize Query
         tools::query Query;
+        using query = std::tuple< paperback::query::none_of<prefab> >;
+
         Query.m_Must.AddFromComponents < transform >();
         Query.m_OneOf.AddFromComponents< boundingbox, sphere >();
 
@@ -68,7 +70,7 @@ struct collision_system : paperback::system::instance
                                 if (wu1 && wu2)
                                 {
                                     if(!wu1->isAttacking && RigidForce != nullptr)
-                                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
+                                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce);
                                     else
                                         BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
                                     wu1->isAttacking = true;
@@ -81,7 +83,7 @@ struct collision_system : paperback::system::instance
                                         if(wu1->isAttacking)
                                             BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
                                         else
-                                            BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
+                                            BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce);
                                         wu1->isAttacking = true;
                                     }
                                     else
@@ -101,7 +103,7 @@ struct collision_system : paperback::system::instance
                                 Boundingbox->m_Collided = BB->m_Collided = true;
                             }
                             else {
-                                if (wu1 && wu1->isAttacking && Boundingbox->m_Collided && RigidForce) {
+                                if (wu1 && wu1->isAttacking && RigidForce) {
                                     BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
                                     wu1->isAttacking = false;
                                 }
