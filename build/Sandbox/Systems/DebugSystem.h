@@ -244,7 +244,7 @@ struct debug_system : paperback::system::instance
     void OnSystemCreated( void ) noexcept
     {
 
-        m_IsDebug = true;
+        m_IsDebug = false;
     }
 
 
