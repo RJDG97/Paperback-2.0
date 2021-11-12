@@ -65,7 +65,7 @@ struct collision_system : paperback::system::instance
                         Boundingbox->m_Collided = BB->m_Collided = true; // this is the debug line
                     }
                     else {
-                        if (state && state->isAttacking && RigidForce) {
+                        if (state && !state2 && state->isAttacking && RigidForce && !Boundingbox->m_Collided) {
                             BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce); // Exits collision
                             state->isAttacking = false; 
                         }

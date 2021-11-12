@@ -33,6 +33,19 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         // check obj is enemy
         auto Unit_1_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
         auto Unit_2_Enemy = m_obj2.m_pArchetype->FindComponent<enemy>(m_obj2.m_PoolDetails);
+        // if friendly units
+        if ((Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) {
+
+            // Pause Movement
+            rf.m_Momentum = {};
+            rf.m_Forces = {};
+
+            animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+            // change animation
+            if (anim) {
+                anim->m_CurrentAnimationName = "Armature|Idle";
+            }
+        }
         // if oposing units
         if ((Unit_1_Friendly && Unit_2_Enemy) || (Unit_1_Enemy && Unit_2_Friendly)) {
 
