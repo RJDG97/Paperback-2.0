@@ -188,12 +188,14 @@
     <ClInclude Include="Components\Name.h" />
     <ClInclude Include="Components\Offset.h" />
     <ClInclude Include="Components\Parent.h" />
+    <ClInclude Include="Components\Player.h" />
     <ClInclude Include="Components\Prefab.h" />
     <ClInclude Include="Components\ReferencePrefab.h" />
     <ClInclude Include="Components\Rigidbody.h" />
     <ClInclude Include="Components\RigidForce.h" />
     <ClInclude Include="Components\Rotation.h" />
     <ClInclude Include="Components\Scale.h" />
+    <ClInclude Include="Components\Shield.h" />
     <ClInclude Include="Components\Socketed.h" />
     <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />
@@ -201,6 +203,8 @@
     <ClInclude Include="Components\Timer.h" />
     <ClInclude Include="Components\Transform.h" />
     <ClInclude Include="Components\Waypoint.h" />
+    <ClInclude Include="Components\UnitState.h" />
+    <ClInclude Include="Components\Waypointv1.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
@@ -217,6 +221,7 @@
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
     <ClInclude Include="Systems\TimerSystem.h" />
+    <ClInclude Include="Systems\WaypointSystem.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

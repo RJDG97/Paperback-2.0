@@ -31,3 +31,7 @@
 #include "Friendly.h"
 #include "Counter.h"
 #include "Enemy.h"
+#include "Waypointv1.h"
+#include "UnitState.h"
+#include "Player.h"
+#include "Shield.h"

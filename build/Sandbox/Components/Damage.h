@@ -7,6 +7,7 @@ struct damage
 		.m_pName = "Damage"
 	};
 
+	paperback::u32     m_Type;
 	paperback::u32     m_Value;
 };
 
@@ -16,6 +17,7 @@ namespace RR_Damage
     {
        rttr::registration::class_<damage>( damage::typedef_v.m_pName )
 		   .constructor()( rttr::policy::ctor::as_object )
+		   .property( "Damage Type", &damage::m_Type )( rttr::policy::prop::as_reference_wrapper )
 		   .property( "Damage", &damage::m_Value )( rttr::policy::prop::as_reference_wrapper );
     }
 }

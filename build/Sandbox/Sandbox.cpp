@@ -77,6 +77,8 @@ void InitializeGame()
         ,    reference_prefab
         ,    collidable
         ,    waypoint
+        ,    waypointv1
+        ,    unitstate
         ,    selected
         ,    health
         ,    damage
@@ -84,10 +86,13 @@ void InitializeGame()
         ,    cost
         ,    socketed
         ,    name
+        ,    counter
+        ,    shield
         ,    friendly         // Tag
         ,    enemy            // Tag
         ,    friendly_spawner // Tag
         ,    enemy_spawner    // Tag
+        ,    player           // Tag
         >();
     }
 
@@ -103,13 +108,19 @@ void InitializeGame()
             render_system,
             imgui_system,
             animator_system,
-            parentchild_system
+            parentchild_system,
+            player_spawner_system,
+            enemy_spawner_system,
+            timer_system,
+            waypoint_system
         >();
 
         PPB.RegisterSystems <
             onevent_UnitTrigger_system,
             onevent_UnitTriggerStay_system,
             onevent_UnitTriggerExit_system
+            //onevent_WaypointTrigger_system
+            //onevent_update_health,
         >();
     }
     // Entity Creation

@@ -324,11 +324,11 @@ namespace paperback::archetype
             E.g. using query = std::tuple< paperback::query::must< my_tag_component > >;
         */
         
-        if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
-        {
-            WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
-            ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
-        }
+        //if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
+        //{
+        //    WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
+        //    ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
+        //}
     
         auto& MemoryPool = Pool.GetMemoryPool();
         std::array<std::byte*, sizeof...(T_COMPONENTS)> ComponentArray;
@@ -361,11 +361,11 @@ namespace paperback::archetype
             E.g. using query = std::tuple< paperback::query::must< my_tag_component > >;
         */
 
-        if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
-        {
-            WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
-            ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
-        }
+        //if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
+        //{
+        //    WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
+        //    ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
+        //}
     
         auto& MemoryPool = Pool.GetMemoryPool();
         std::array<std::byte*, sizeof...(T_COMPONENTS)> ComponentArray;

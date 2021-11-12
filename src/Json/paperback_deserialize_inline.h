@@ -298,6 +298,9 @@ namespace paperback::deserialize
             if (obj.is_type<reference_prefab>())
                 NewArchetype->GetComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<reference_prefab>();
 
+            if (obj.is_type<listener>())
+                NewArchetype->GetComponent<listener>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<listener>();
+
             if (obj.is_type<offset>())
                 NewArchetype->GetComponent<offset>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<offset>();
 
@@ -312,6 +315,52 @@ namespace paperback::deserialize
                 auto& b = NewArchetype->GetComponent<damage>(paperback::vm::PoolDetails{ 0, EntityCounter });
                     std::cout << b.m_Value << std::endl;
             }
+
+            if (obj.is_type<name>())
+                NewArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<name>();
+
+            if (obj.is_type<cost>())
+                NewArchetype->GetComponent<cost>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<cost>();
+
+            if (obj.is_type<counter>())
+                NewArchetype->GetComponent<counter>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<counter>();
+
+            if (obj.is_type<currency>())
+                NewArchetype->GetComponent<currency>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<currency>();
+
+            if (obj.is_type<enemy>())
+                NewArchetype->GetComponent<enemy>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<enemy>();
+
+            if (obj.is_type<enemy_spawner>())
+                NewArchetype->GetComponent<enemy_spawner>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<enemy_spawner>();
+
+            if (obj.is_type<friendly>())
+                NewArchetype->GetComponent<friendly>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<friendly>();
+
+            if (obj.is_type<friendly_spawner>())
+                NewArchetype->GetComponent<friendly_spawner>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<friendly_spawner>();
+
+            if (obj.is_type<health>())
+                NewArchetype->GetComponent<health>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<health>();
+
+            if (obj.is_type<selected>())
+                NewArchetype->GetComponent<selected>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<selected>();
+
+            if (obj.is_type<waypoint>())
+                NewArchetype->GetComponent<waypoint>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypoint>();
+
+            if (obj.is_type<player>())
+                NewArchetype->GetComponent<player>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<player>();
+
+
+
+
+
+            if (obj.is_type<waypointv1>())
+                NewArchetype->GetComponent<waypointv1>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypointv1>();
+
+            if (obj.is_type<unitstate>())
+                NewArchetype->GetComponent<unitstate>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<unitstate>();
 
         }
     }
