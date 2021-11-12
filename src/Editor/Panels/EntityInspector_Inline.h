@@ -35,7 +35,9 @@ void EntityInspector::DisplayEntities()
                         {
                             ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
 
-                            if (Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i })) != nullptr)
+                            auto Parent = Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i }));
+
+                            if (Parent)
                                 NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
                             else
                                 NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
@@ -75,8 +77,8 @@ void EntityInspector::DisplayEntities()
 
                             if (b_NodeOpen)
                             {
-                                if (Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i })) != nullptr)
-                                    DisplayChildEntities(Archetype->GetComponent<parent>(paperback::vm::PoolDetails({ 0, i })));
+                                if (Parent)
+                                    DisplayChildEntities(*Parent);
 
                                 ImGui::TreePop();
                             }
@@ -93,7 +95,7 @@ void EntityInspector::DisplayEntities()
     }
 
     ImGui::Separator();
-    ImGui::Text("%d Entities", NumEntities);
+    //ImGui::Text("%d Entities", NumEntities);
 }
 
 void EntityInspector::DisplayChildEntities( parent& Parent )
@@ -117,7 +119,8 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
 
             ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == ChildEntityInfo.m_pArchetype && m_Imgui.m_SelectedEntity.second == ChildEntityInfo.m_PoolDetails.m_PoolIndex) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
 
-            if ( ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails) != nullptr )
+            auto ChildParent = ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails);
+            if (  ChildParent )
                 NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
             else
                 NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
@@ -159,8 +162,8 @@ void EntityInspector::DisplayChildEntities( parent& Parent )
 
             if (b_NodeOpen)
             {
-                if (ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails) != nullptr)
-                    DisplayChildEntities(ChildEntityInfo.m_pArchetype->GetComponent<parent>(ChildEntityInfo.m_PoolDetails));
+                if (ChildParent)
+                    DisplayChildEntities(*ChildParent);
 
                 ImGui::TreePop();
             }

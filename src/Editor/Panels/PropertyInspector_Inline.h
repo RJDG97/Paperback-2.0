@@ -372,40 +372,47 @@ void DetailsWindow::SocketedComponent()
 
     auto EntityChild = m_Imgui.m_SelectedEntity.first->FindComponent<child>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
     auto EntitySocketed = m_Imgui.m_SelectedEntity.first->FindComponent<socketed>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
-
-    if (EntityChild && EntitySocketed)
+    if (EntitySocketed)
     {
-        //Get Entity Parent
-        auto& ParentEntityInfo = PPB.GetEntityInfo(EntityChild->m_ParentGlobalIndex);
-
-        //Get the Parent Mesh + Animation
-        auto ParentMesh = ParentEntityInfo.m_pArchetype->FindComponent<mesh>(ParentEntityInfo.m_PoolDetails);
-        auto ParentAnimator = ParentEntityInfo.m_pArchetype->FindComponent<animator>(ParentEntityInfo.m_PoolDetails);
-
-        if (ParentMesh && ParentAnimator)
+        if (EntityChild)
         {
-            auto& AnimationMap = RRM.m_Models[ParentMesh->m_Model].GetAnimations(); //Get the animations that is avaliable for the model
+            //Get Entity Parent
+            auto& ParentEntityInfo = PPB.GetEntityInfo(EntityChild->m_ParentGlobalIndex);
 
-            if (!AnimationMap.empty())
+            //Get the Parent Mesh + Animation
+            auto ParentMesh = ParentEntityInfo.m_pArchetype->FindComponent<mesh>(ParentEntityInfo.m_PoolDetails);
+            auto ParentAnimator = ParentEntityInfo.m_pArchetype->FindComponent<animator>(ParentEntityInfo.m_PoolDetails);
+
+            if (ParentMesh && ParentAnimator)
             {
-                auto& BoneMap = AnimationMap[ParentAnimator->m_CurrentAnimationName].GetBoneIDMap(); //Get the bones based on the animation
+                auto& AnimationMap = RRM.m_Models[ParentMesh->m_Model].GetAnimations(); //Get the animations that is avaliable for the model
+                ImGui::Text("Parent Socket: ");
 
-                if (!BoneMap.empty())
+                if (!AnimationMap.empty())
                 {
-                    if (ImGui::BeginCombo("##ModelBones", EntitySocketed->m_ParentSocket.empty() ? "Select a Bone" : EntitySocketed->m_ParentSocket.c_str()))
-                    {
-                        for (auto& [BoneString, Bone] : BoneMap)
-                        {
-                            if (ImGui::Selectable(BoneString.c_str()))
-                            {
-                                EntitySocketed->m_ParentSocket = BoneString;
-                            }
-                        }
+                    auto& BoneMap = AnimationMap[ParentAnimator->m_CurrentAnimationName].GetBoneIDMap(); //Get the bones based on the animation
 
-                        ImGui::EndCombo();
+                    if (!BoneMap.empty())
+                    {
+                        if (ImGui::BeginCombo("##ModelBones", EntitySocketed->m_ParentSocket.empty() ? "Select Parent Socket" : EntitySocketed->m_ParentSocket.c_str()))
+                        {
+                            for (auto& [BoneString, Bone] : BoneMap)
+                            {
+                                if (ImGui::Selectable(BoneString.c_str()))
+                                {
+                                    EntitySocketed->m_ParentSocket = BoneString;
+                                }
+                            }
+
+                            ImGui::EndCombo();
+                        }
                     }
                 }
             }
+        }
+        else
+        {
+            ImGui::Text("Parent Socket: %s", EntitySocketed->m_ParentSocket.c_str());
         }
     }
 }

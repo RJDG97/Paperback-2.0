@@ -23,4 +23,6 @@ struct ArchetypeInspector : paperback::editor::instance
     void PrefabPanel();
 
     void ArchetypePanel();
+
+    void DisplayPrefabChildren(parent& Parent);
 };  
