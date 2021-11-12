@@ -11,7 +11,7 @@ struct waypoint_system : paperback::system::instance
     <
         paperback::query::must<transform, waypoint>
     ,   paperback::query::one_of<friendly, enemy>
-    ,   paperback::query::none_of<prefab>
+    ,   paperback::query::none_of<prefab, rigidforce, rigidbody>
     >;
 
     tools::query m_UnitQuery;
@@ -32,8 +32,10 @@ struct waypoint_system : paperback::system::instance
             if ( (F && Friendly) || (E && Enemy) )
             {
                 auto Dist = UPos.m_Position - WPos.m_Position;
+
                 if ( constexpr auto distance_sq = 0.3f; Dist.MagnitudeSq() <= distance_sq )
                 {
+
                     auto Direction             = Waypoint.m_Value - UPos.m_Position;
                     Direction                 /= Direction.Magnitude();
 

@@ -776,7 +776,7 @@
                         "Global Index": 16
                     },
                     "Timer": {
-                        "Cooldown Timer": 2.0,
+                        "Cooldown Timer": 0.0,
                         "Timer": -1243.3316650390626
                     },
                     "Transform": {

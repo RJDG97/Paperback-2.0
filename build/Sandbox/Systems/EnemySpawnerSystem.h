@@ -76,7 +76,7 @@ struct enemy_spawner_system : paperback::system::instance
                 if ( Counter.m_Value <= 0 )
                 {
                     Timer.m_Value = Timer.m_Cooldown;
-                    Counter.m_Value = 5;
+                    Counter.m_Value = 1;
                 }
             });
         }
