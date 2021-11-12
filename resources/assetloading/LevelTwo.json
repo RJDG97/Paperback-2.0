@@ -389,112 +389,6 @@
                         16415915133639986106,
                         5786312103493353911
                     ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 5
-                    },
-                    "Mesh": {
-                        "Model": "RedUnitAnimated",
-                        "Texture": "Unit_Red_BaseColour.dds"
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Timer": {
-                        "Cooldown Timer": 0.0,
-                        "Timer": 0.0
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            7
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 3.0999999046325685,
-                            "y": 0.5,
-                            "z": -5.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.2,
-                            "y": -0.1,
-                            "z": -0.2
-                        },
-                        "Max Point": {
-                            "x": 0.2,
-                            "y": 0.5,
-                            "z": 0.2
-                        },
-                        "Is Collide": false
-                    },
-                    "Collidable": {
-                        "Collision Layer": 0,
-                        "Collidable Layers": ""
-                    },
-                    "Waypoint": {
-                        "Destination": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Health": {
-                        "Current Health": 0,
-                        "Max Health": 0
-                    },
-                    "Damage": {
-                        "Damage Type": 0,
-                        "Damage": 0
-                    },
-                    "Name": {
-                        "Name": "Enemy"
-                    },
-                    "Enemy": {}
                 }
             ]
         },
@@ -883,7 +777,7 @@
                     },
                     "Timer": {
                         "Cooldown Timer": 2.0,
-                        "Timer": -1192.24462890625
+                        "Timer": -1243.3316650390626
                     },
                     "Transform": {
                         "Offset": {
@@ -911,7 +805,7 @@
                     },
                     "Timer": {
                         "Cooldown Timer": 2.0,
-                        "Timer": -1192.24462890625
+                        "Timer": -1243.3316650390626
                     },
                     "Transform": {
                         "Offset": {
@@ -939,7 +833,7 @@
                     },
                     "Timer": {
                         "Cooldown Timer": 2.0,
-                        "Timer": -1192.24462890625
+                        "Timer": -1243.3316650390626
                     },
                     "Transform": {
                         "Offset": {
@@ -987,333 +881,6 @@
                         16415915133639986106,
                         11735907707121220559
                     ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 9
-                    },
-                    "Mesh": {
-                        "Model": "BlueUnitAnimated",
-                        "Texture": "Unit_Blue_BaseColour.dds"
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.0029999681282788517,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Timer": {
-                        "Cooldown Timer": 0.0,
-                        "Timer": 0.0
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            10
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": -90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -3.0999999046325685,
-                            "y": 0.5,
-                            "z": -5.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.2,
-                            "y": -0.1,
-                            "z": -0.2
-                        },
-                        "Max Point": {
-                            "x": 0.2,
-                            "y": 0.5,
-                            "z": 0.2
-                        },
-                        "Is Collide": false
-                    },
-                    "Collidable": {
-                        "Collision Layer": 0,
-                        "Collidable Layers": ""
-                    },
-                    "Waypoint": {
-                        "Destination": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Health": {
-                        "Current Health": 5,
-                        "Max Health": 5
-                    },
-                    "Damage": {
-                        "Damage Type": 0,
-                        "Damage": 3
-                    },
-                    "Cost": {
-                        "Cost": 100
-                    },
-                    "Name": {
-                        "Name": "Top"
-                    },
-                    "Friendly": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 13
-                    },
-                    "Mesh": {
-                        "Model": "BlueUnitAnimated",
-                        "Texture": "Unit_Blue_BaseColour.dds"
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Timer": {
-                        "Cooldown Timer": 0.0,
-                        "Timer": 0.0
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            14
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -3.0999999046325685,
-                            "y": 0.5,
-                            "z": -5.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.2,
-                            "y": -0.1,
-                            "z": -0.2
-                        },
-                        "Max Point": {
-                            "x": 0.2,
-                            "y": 0.5,
-                            "z": 0.2
-                        },
-                        "Is Collide": false
-                    },
-                    "Collidable": {
-                        "Collision Layer": 0,
-                        "Collidable Layers": ""
-                    },
-                    "Waypoint": {
-                        "Destination": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Health": {
-                        "Current Health": 5,
-                        "Max Health": 5
-                    },
-                    "Damage": {
-                        "Damage Type": 0,
-                        "Damage": 3
-                    },
-                    "Cost": {
-                        "Cost": 100
-                    },
-                    "Name": {
-                        "Name": "Bot"
-                    },
-                    "Friendly": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 11
-                    },
-                    "Mesh": {
-                        "Model": "BlueUnitAnimated",
-                        "Texture": "Unit_Blue_BaseColour.dds"
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Timer": {
-                        "Cooldown Timer": 0.0,
-                        "Timer": 0.0
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            12
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -3.0999999046325685,
-                            "y": 0.5,
-                            "z": -5.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.2,
-                            "y": -0.1,
-                            "z": -0.2
-                        },
-                        "Max Point": {
-                            "x": 0.2,
-                            "y": 0.5,
-                            "z": 0.2
-                        },
-                        "Is Collide": false
-                    },
-                    "Collidable": {
-                        "Collision Layer": 0,
-                        "Collidable Layers": ""
-                    },
-                    "Waypoint": {
-                        "Destination": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Health": {
-                        "Current Health": 5,
-                        "Max Health": 5
-                    },
-                    "Damage": {
-                        "Damage Type": 0,
-                        "Damage": 3
-                    },
-                    "Cost": {
-                        "Cost": 100
-                    },
-                    "Name": {
-                        "Name": "Mid"
-                    },
-                    "Friendly": {}
                 }
             ]
         },
@@ -1526,6 +1093,498 @@
                         "Name": ""
                     },
                     "Player": {}
+                }
+            ]
+        },
+        {
+            "Enemy Unit": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        11205371835887103269,
+                        10545082205294364554,
+                        13451667849426907147,
+                        1065973164513037885,
+                        15320754602131540736,
+                        16415915133639986106,
+                        5786312103493353911
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 5
+                    },
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 0.0,
+                        "Timer": 0.0
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            7
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.0999999046325685,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Collidable": {
+                        "Collision Layer": 0,
+                        "Collidable Layers": ""
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "structunitstate": {},
+                    "Health": {
+                        "Current Health": 0,
+                        "Max Health": 0
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 0
+                    },
+                    "Name": {
+                        "Name": "Enemy"
+                    },
+                    "Enemy": {}
+                }
+            ]
+        },
+        {
+            "Friendly Unit": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        11205371835887103269,
+                        10545082205294364554,
+                        13451667849426907147,
+                        1065973164513037885,
+                        15320754602131540736,
+                        305827872934614293,
+                        16415915133639986106,
+                        11735907707121220559
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 9
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.0029999681282788517,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 0.0,
+                        "Timer": 0.0
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            10
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": -90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.0999999046325685,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Collidable": {
+                        "Collision Layer": 0,
+                        "Collidable Layers": ""
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "structunitstate": {},
+                    "Health": {
+                        "Current Health": 5,
+                        "Max Health": 5
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 3
+                    },
+                    "Cost": {
+                        "Cost": 100
+                    },
+                    "Name": {
+                        "Name": "Top"
+                    },
+                    "Friendly": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 11
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 0.0,
+                        "Timer": 0.0
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            12
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.0999999046325685,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Collidable": {
+                        "Collision Layer": 0,
+                        "Collidable Layers": ""
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "structunitstate": {},
+                    "Health": {
+                        "Current Health": 5,
+                        "Max Health": 5
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 3
+                    },
+                    "Cost": {
+                        "Cost": 100
+                    },
+                    "Name": {
+                        "Name": "Mid"
+                    },
+                    "Friendly": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 13
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 0.0,
+                        "Timer": 0.0
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            14
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.0999999046325685,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Mass": 5.0,
+                        "Inverse Mass": 0.20000000298023225,
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Collidable": {
+                        "Collision Layer": 0,
+                        "Collidable Layers": ""
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "structunitstate": {},
+                    "Health": {
+                        "Current Health": 5,
+                        "Max Health": 5
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 3
+                    },
+                    "Cost": {
+                        "Cost": 100
+                    },
+                    "Name": {
+                        "Name": "Bot"
+                    },
+                    "Friendly": {}
                 }
             ]
         }

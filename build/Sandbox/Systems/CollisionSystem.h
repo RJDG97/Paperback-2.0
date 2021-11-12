@@ -11,7 +11,7 @@ struct collision_system : paperback::system::instance
         .m_pName = "collision_system"
     };
 
-    struct UnitTriggerEvent : paperback::event::instance< entity& , entity&, rigidforce&> {};
+    struct UnitTriggerEvent : paperback::event::instance< entity& , entity&, rigidforce&, rigidforce&> {};
     struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity& > {};
     struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
 
@@ -47,46 +47,39 @@ struct collision_system : paperback::system::instance
                 // Collision Detection
                 if ( Boundingbox && BB)
                 {
-                    if (col1 && col2)
+                    // added to parameters
+                    if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                     {
-                        // Only checks if it has a layer? -> Nope, it checks if they have same layer
-                        if (col1->m_CollidableLayers.Has(col2->m_CollisionLayer)) 
+                        if (RigidForce && RF)
                         {
-                            // added to parameters
-                            if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
-                            {
-                                if (RigidForce && RF)
-                                {
-                                    bool checker = CheapaabbDynamic(
-                                        Boundingbox,
-                                        RigidForce,
-                                        Transform,
-                                        BB,
-                                        RF,
-                                        Xform);
-                                }
-
-                                // if both waypoint users collides
-                                if (state && state2)
-                                {
-                                    if(!state->isAttacking && RigidForce != nullptr)
-                                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce);
-                                    else
-                                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
-                                    state->isAttacking = true;
-                                }
-
-                                Boundingbox->m_Collided/* = BB->m_Collided */= true;
-                            }
-                            else {
-                                if (state && state->isAttacking && RigidForce) {
-                                    BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
-                                    state->isAttacking = false;
-                                }
-                                
-                                Boundingbox->m_Collided/* = BB->m_Collided */= false;
-                            }
+                            bool checker = CheapaabbDynamic(
+                                Boundingbox,
+                                RigidForce,
+                                Transform,
+                                BB,
+                                RF,
+                                Xform);
                         }
+
+                        // if both waypoint users collides
+                            if (state && state2)
+                        {
+                            if(!state->isAttacking && RigidForce != nullptr)
+                                BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                            else
+                                BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity);
+                            state->isAttacking = true;
+                        }
+
+                        Boundingbox->m_Collided/* = BB->m_Collided */= true;
+                    }
+                    else {
+                        if (state && state->isAttacking && RigidForce) {
+                            BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+                            state->isAttacking = false;
+                        }
+                        
+                        Boundingbox->m_Collided/* = BB->m_Collided */= false;
                     }
                 }
                 if (Sphere && Ball)

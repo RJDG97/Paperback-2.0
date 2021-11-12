@@ -41,14 +41,14 @@ struct enemy_spawner_system : paperback::system::instance
 
 
             // Find Enemy Prefab Details (Archetype& and GID)
-            auto& EnemyPrefab   = m_Coordinator.GetArchetype( Spawner.m_EnemyPrefabGuid );
-            auto EnemyPrefabGID = EnemyPrefab.FindPrefabEntityGID( Spawner.m_PrefabType );
+            //auto& EnemyPrefab   = m_Coordinator.GetArchetype( Spawner.m_EnemyPrefabGuid );
+            //auto EnemyPrefabGID = EnemyPrefab.FindPrefabEntityGID( Spawner.m_PrefabType );
 
-            ////// Find Enemy Prefab Details (Archetype& and GID)
-            //auto Enemies = Search( m_ActiveEnemy );
-            //if (Enemies.size() != 1 ) return;
-            //auto& Enemy = *( Enemies[0] );
-            //auto EnemyPrefabGID = Enemy.FindPrefabEntityGID( Spawner.m_PrefabType );
+            //// Find Enemy Prefab Details (Archetype& and GID)
+            auto Enemies = Search( m_ActiveEnemy );
+            if (Enemies.size() != 1 ) return;
+            auto& Enemy = *( Enemies[0] );
+            auto EnemyPrefabGID = Enemy.FindPrefabEntityGID( Spawner.m_PrefabType );
 
             if ( EnemyPrefabGID == paperback::settings::invalid_index_v ) return;
 
