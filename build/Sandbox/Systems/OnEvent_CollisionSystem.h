@@ -42,7 +42,7 @@ struct onevent_UnitTrigger_system : paperback::system::instance
 
             rf2.m_Momentum = {};
             rf2.m_Forces = {};
-
+            
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
             animator* anim2 = &m_obj2.m_pArchetype->GetComponent<animator>(m_obj2.m_PoolDetails);
             // change animation
@@ -82,7 +82,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         // operator() will not be called for Systems declared as system::type::system_event
     }
 
-    void OnEvent(entity& obj, entity& obj2) noexcept
+    void OnEvent(entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2) noexcept
     {
         //Check if animation is attack and if finished
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
@@ -95,9 +95,16 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         auto Unit_2_Enemy = m_obj2.m_pArchetype->FindComponent<enemy>(m_obj2.m_PoolDetails);
         // if oposing units
         if (Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly) {
+            // Pause Movement
+            rf.m_Momentum = {};
+            rf.m_Forces = {};
+            // wdym
+            rf2.m_Momentum = {};
+            rf2.m_Forces = {};
+
             // get animator component
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-            animator* anim2 = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+            animator* anim2 = &m_obj2.m_pArchetype->GetComponent<animator>(m_obj2.m_PoolDetails);
             // check if animation has finished
             if (anim != nullptr && anim->m_FinishedAnimating) {
                 anim->m_PlayOnce = false;
@@ -162,8 +169,8 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
                 anim->m_PlayOnce = false;
                 anim->m_CurrentAnimationName = "Armature|Walk";
             }
-            // Continue Movement
-            rf.m_isStatic = false;
+            //// Continue Movement
+            //rf.m_isStatic = false;
         }
     }
 };

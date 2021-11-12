@@ -484,37 +484,35 @@ namespace paperback::archetype
         return *( m_pArchetypeList.back() );
     }
 
-    void manager::AddOrRemoveComponentsFromPrefabInstances( const entity::info& Info
-                                                          , std::span<const component::info* const> Add
-								                          , std::span<const component::info* const> Remove ) noexcept
+    void manager::AddOrRemoveComponentsFromPrefabInstances(const entity::info& Info
+        , std::span<const component::info* const> Add
+        , std::span<const component::info* const> Remove) noexcept
     {
         // Check if Archetype is a Prefab
-        auto Prefab = Info.m_pArchetype->FindComponent<prefab>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } );
+        auto Prefab = Info.m_pArchetype->FindComponent<prefab>(Info.m_PoolDetails);
 
-        if ( Prefab && Prefab->m_ReferencePrefabGIDs.size() )
+        if (Prefab && Prefab->m_ReferencePrefabGIDs.size())
         {
-            auto& PrefabInstanceArchetype = *( m_Coordinator.GetEntityInfo( *(Prefab->m_ReferencePrefabGIDs.begin()) ).m_pArchetype );
+            const auto  RefPrefabList = Prefab->m_ReferencePrefabGIDs;
 
-            PPB_ASSERT_MSG( PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab->m_ReferencePrefabGIDs.size(),
-                            "Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs" );
-
-            for ( size_t i = 0, max = Prefab->m_ReferencePrefabGIDs.size(); i < max; ++i )
+            for (auto begin = RefPrefabList.begin(), end = RefPrefabList.end(); begin != end; ++begin)
             {
-                auto& Reference_Prefab = PrefabInstanceArchetype.GetComponent<reference_prefab>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } );
+                auto& RefPBInfo = m_Coordinator.GetEntityInfo(*begin);
+                auto& Reference_Prefab = RefPBInfo.m_pArchetype->GetComponent<reference_prefab>(RefPBInfo.m_PoolDetails);
 
                 // Unassign Modified Guid Values On Component Removal
-                for ( const auto& ComponentToRemove : Remove )
-		        {
-                    if ( Reference_Prefab.m_ModifiedComponents.size() )
+                for (const auto& ComponentToRemove : Remove)
+                {
+                    if (Reference_Prefab.m_ModifiedComponents.size())
                     {
-                        Reference_Prefab.RemoveModifiedComponentGuid( ComponentToRemove->m_Guid.m_Value );
+                        Reference_Prefab.RemoveModifiedComponentGuid(ComponentToRemove->m_Guid.m_Value);
                     }
                 }
 
-                AddOrRemoveComponents( PrefabInstanceArchetype.GetComponent<paperback::component::entity>( vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 } )
-                                     , Add
-                                     , Remove
-                                     );
+                AddOrRemoveComponents(RefPBInfo.m_pArchetype->GetComponent<paperback::component::entity>(RefPBInfo.m_PoolDetails)
+                    , Add
+                    , Remove
+                );
             }
         }
     }

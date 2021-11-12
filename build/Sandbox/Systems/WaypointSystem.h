@@ -32,7 +32,7 @@ struct waypoint_system : paperback::system::instance
             if ( (F && Friendly) || (E && Enemy) )
             {
                 auto Dist = UPos.m_Position - WPos.m_Position;
-                if ( constexpr auto distance_sq = 1.0f; Dist.MagnitudeSq() <= distance_sq )
+                if ( constexpr auto distance_sq = 0.3f; Dist.MagnitudeSq() <= distance_sq )
                 {
                     auto Direction             = Waypoint.m_Value - UPos.m_Position;
                     Direction                 /= Direction.Magnitude();
@@ -44,7 +44,7 @@ struct waypoint_system : paperback::system::instance
             else if ( (F && Enemy) || (E && Friendly) )
             {
                 auto Dist = UPos.m_Position - WPos.m_Position;
-                if ( constexpr auto distance_sq = 1.0f; Dist.MagnitudeSq() <= distance_sq )
+                if ( constexpr auto distance_sq = 0.3f; Dist.MagnitudeSq() <= distance_sq )
                 {
                     RF.m_Momentum              = {};
                     RF.m_Forces                = {};
