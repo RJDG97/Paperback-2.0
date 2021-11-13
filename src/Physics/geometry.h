@@ -2,9 +2,7 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-#include "Math/Vector3f.h"
-#include "Math/Vector4f.h"
-#include "Shapes/Plane.h"
+#include "Math/Math_includes.h"
 
 // wx
 namespace IntersectionType
