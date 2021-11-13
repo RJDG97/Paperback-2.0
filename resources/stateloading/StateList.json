@@ -1,8 +1,8 @@
 {
-    "Combat": "../../resources/assetloading/LevelTwo.json",
-    "Combat": "../../resources/assetloading/LevelTwo_EntityInfo.json",
-    "Editor": "../../resources/assetloading/BlankSceneTest.json",
-    "Editor": "../../resources/assetloading/BlankSceneTest_EntityInfo.json",
-    "Workshop": "../../resources/assetloading/LevelOne.json",
-    "Workshop": "../../resources/assetloading/LevelOne_EntityInfo.json"
+    "Editor": "../../resources/assetloading/LevelTwo.json",
+    "Editor": "../../resources/assetloading/LevelTwo_EntityInfo.json",
+    "Combat": "../../resources/assetloading/BlankSceneTest.json",
+    "Combat": "../../resources/assetloading/BlankSceneTest_EntityInfo.json",
+    "Workshop": "../../resources/assetloading/LevelTwo.json",
+    "Workshop": "../../resources/assetloading/LevelTwo_EntityInfo.json"
 }

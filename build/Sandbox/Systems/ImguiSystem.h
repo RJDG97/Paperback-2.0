@@ -617,6 +617,9 @@ struct imgui_system : paperback::system::instance
 
         if (!m_Components.empty())
             m_Components.clear();
+
+        if (!PPB.GetArchetypeList().empty())
+            PPB.ResetAllArchetypes();
     }
 
     void PopUpMessage(const std::string& WindowName, const char* Message) {
