@@ -32,6 +32,8 @@ struct collision_system : paperback::system::instance
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
 
+        Boundingbox->m_Collided = false;
+
         ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2,
             unitstate* state2, waypointv1* wp2)  noexcept // -> bool
             {
@@ -40,37 +42,33 @@ struct collision_system : paperback::system::instance
                 // Do not check against self
                 if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return;//false;
 
+                // Add to collision map
+                auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
+                if (map == Boundingbox->m_CollisionState.end()) {
+                    const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
+                }
+
                 xf.x = Xform.m_Position.x + Xform.m_Offset.x;
                 xf.y = Xform.m_Position.y + Xform.m_Offset.y;
                 xf.z = Xform.m_Position.z + Xform.m_Offset.z;
-                
                 // Collision Detection
                 if ( Boundingbox && BB)
                 {
                     // added to parameters
                     if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                     {                        
-                        // if both waypoint users collides
-                        if (state && state2) // if it has a state component
-                        {
-                            if (!state->isAttacking && RigidForce && RF) {
-                                BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this first (on entry)
-                            }
-                            else if (RigidForce && RF) {
-                                BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this after (constant collision)
-                            }
-                            state->isAttacking = true;
-                        }
 
-                        Boundingbox->m_Collided = BB->m_Collided = true; // this is the debug line
+                        if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
+                            BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this first (on entry)
+                        else
+                            BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this after (constant collision)
+                        
+                        Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
+
+                        Boundingbox->m_Collided = true; // this is the debug line
                     }
                     else {
-                        if (state && !state2 && state->isAttacking && RigidForce && !Boundingbox->m_Collided) {
-                            BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce); // Exits collision
-                            state->isAttacking = false; 
-                        }
-                        
-                        Boundingbox->m_Collided = BB->m_Collided = false; // this is the debug line
+                        Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
                     }
                 }
                 if (Sphere && Ball)
@@ -88,5 +86,8 @@ struct collision_system : paperback::system::instance
                 /* Return true on deletion of collided entities */
                 //return false; 
             });
+        // no collision
+        if (!Boundingbox->m_Collided)
+            BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce); // Exits collision
     }
 };
