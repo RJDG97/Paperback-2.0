@@ -98,6 +98,9 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         auto Unit_1_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
         auto Unit_2_Enemy = m_obj2.m_pArchetype->FindComponent<enemy>(m_obj2.m_PoolDetails);
 
+        auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
+        auto Unit_State2 = m_obj2.m_pArchetype->FindComponent<unitstate>(m_obj2.m_PoolDetails);
+
         // if oposing units
         if (Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly) {
             // Pause Movement
@@ -119,8 +122,11 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                     if ( unittimer->m_Value <= 0.0f )
                     {
                         enemyhealth->m_CurrentHealth -= unitdamage->m_Value;
-                        if ( enemyhealth->m_CurrentHealth <= 0 )
-                            DeleteEntity( obj2 );
+                        if (enemyhealth->m_CurrentHealth <= 0) {
+                            DeleteEntity(obj2);
+                            Unit_State->isAttacking = false;
+                            BroadcastGlobalEvent<collision_system::UnitTriggerExitEvent>(obj, rf);
+                        }
                         unittimer->m_Value = unittimer->m_Cooldown;
                     }
                 }
@@ -157,23 +163,22 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
         // check obj is enemy
         auto Unit_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
 
-        if (Unit_Friendly || Unit_Enemy) {
+        auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
+
+        if (!Unit_State->isAttacking && Unit_Friendly || Unit_Enemy) {
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
             if (anim)
                 anim->m_CurrentAnimationName = "Armature|Walk";
 
-                // Update Momentum again
-                auto Transform = m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails);
-                auto Waypoint = m_obj.m_pArchetype->FindComponent<waypoint>(m_obj.m_PoolDetails);
-                if ( Transform && Waypoint )
-                {
-                    auto Direction = Waypoint->m_Value - Transform->m_Position;
-                    Direction /= Direction.Magnitude();
-                    rf.m_Momentum = Direction * 4.0f;
-                }
+            // Update Momentum again
+            auto Transform = m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails);
+            auto Waypoint = m_obj.m_pArchetype->FindComponent<waypoint>(m_obj.m_PoolDetails);
+            if ( Transform && Waypoint )
+            {
+                auto Direction = Waypoint->m_Value - Transform->m_Position;
+                Direction /= Direction.Magnitude();
+                rf.m_Momentum = Direction * 4.0f;
             }
-            //// Continue Movement
-            //rf.m_isStatic = false;
         }
     }
 };

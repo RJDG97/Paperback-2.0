@@ -59,36 +59,21 @@ struct collision_system : paperback::system::instance
                     // added to parameters
                     if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                     {                        
-                        // if both waypoint users collides
-                        //if (state && state2) // if it has a state component
-                        //{
-                        //    if (!state->isAttacking && RigidForce && RF) {
-                        //        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this first (on entry)
-                        //    }
-                        //    else if (RigidForce && RF) {
-                        //        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this after (constant collision)
-                        //    }
-                        //    
-                        //    state->isAttacking = true;
-                        //}
-
-                        if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
-                            BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this first (on entry)
-                        else
-                            BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this after (constant collision)
+                        if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) // this first (on entry)
+                            BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                        else // this after (constant collision)
+                            BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
                         
                         Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
 
                         Boundingbox->m_Collided = true; // this is the debug line
                     }
-                    else {
-                        //Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
-                        //if (state && /*!state2 &&*/ state->isAttacking && RigidForce && !Boundingbox->m_Collided) {
-                        //    BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce); // Exits collision
-                        //    state->isAttacking = false; 
-                        //}
-                        
-                        //Boundingbox->m_Collided = BB->m_Collided = false; // this is the debug line
+                    else
+                    {
+                        if(Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) // no longer colliding
+                            BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+
+                        Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
                     }
                 }
                 if (Sphere && Ball)
@@ -106,8 +91,5 @@ struct collision_system : paperback::system::instance
                 /* Return true on deletion of collided entities */
                 //return false; 
             });
-        // no collision
-        if (!Boundingbox->m_Collided)
-            BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce); // Exits collision
     }
 };
