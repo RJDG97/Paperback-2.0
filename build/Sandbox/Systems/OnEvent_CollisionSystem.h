@@ -33,31 +33,35 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         // check obj is enemy
         auto Unit_1_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
         auto Unit_2_Enemy = m_obj2.m_pArchetype->FindComponent<enemy>(m_obj2.m_PoolDetails);
+
+        auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
+
+        // if friendly units
+        if (!Unit_State->isAttacking && (Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) {
+
+            // Pause Movement
+            rf.m_Momentum = {};
+            rf.m_Forces = {};
+
+            animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+            // change animation
+            if (anim)
+                anim->m_CurrentAnimationName = "Armature|Idle";
+        }
+
         // if oposing units
         if ((Unit_1_Friendly && Unit_2_Enemy) || (Unit_1_Enemy && Unit_2_Friendly)) {
 
             // Pause Movement
             rf.m_Momentum = {};
             rf.m_Forces = {};
-
-            rf2.m_Momentum = {};
-            rf2.m_Forces = {};
             
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-            animator* anim2 = &m_obj2.m_pArchetype->GetComponent<animator>(m_obj2.m_PoolDetails);
-            // change animation
-            if (anim != nullptr && anim2 != nullptr) {
-                anim->m_PlayOnce = true;
-                anim2->m_PlayOnce = true;
-                if (anim->m_FinishedAnimating) {
-                    anim->m_CurrentAnimationName = "Armature|Attack";
-                    anim->m_PlayOnce = false;
-                }
-                if (anim2->m_FinishedAnimating) {
-                    anim2->m_CurrentAnimationName = "Armature|Attack";
-                    anim2->m_PlayOnce = false;
-                }
-            }
+
+            if (anim && anim->m_FinishedAnimating)
+                anim->m_CurrentAnimationName = "Armature|Attack";
+
+            Unit_State->isAttacking = true;
         }
     }
 };
@@ -93,42 +97,38 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         // check obj is enemy
         auto Unit_1_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
         auto Unit_2_Enemy = m_obj2.m_pArchetype->FindComponent<enemy>(m_obj2.m_PoolDetails);
+
+        auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
+        auto Unit_State2 = m_obj2.m_pArchetype->FindComponent<unitstate>(m_obj2.m_PoolDetails);
+
         // if oposing units
         if (Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly) {
             // Pause Movement
             rf.m_Momentum = {};
             rf.m_Forces = {};
-            // wdym
-            rf2.m_Momentum = {};
-            rf2.m_Forces = {};
 
             // get animator component
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-            animator* anim2 = &m_obj2.m_pArchetype->GetComponent<animator>(m_obj2.m_PoolDetails);
-            // check if animation has finished
-            if (anim != nullptr && anim->m_FinishedAnimating) {
-                anim->m_PlayOnce = false;
+            anim->m_CurrentAnimationName = "Armature|Attack";
+            if (anim && anim->m_FinishedAnimating) {
                 // Check player attack against obj defense
                 damage* unitdamage = &m_obj.m_pArchetype->GetComponent<damage>(m_obj.m_PoolDetails);
+                timer* unittimer = &m_obj.m_pArchetype->GetComponent<timer>(m_obj.m_PoolDetails);
                 health* enemyhealth = &m_obj2.m_pArchetype->GetComponent<health>(m_obj2.m_PoolDetails);
 
                 if (unitdamage != nullptr && enemyhealth != nullptr) {
                     // Apply Modifier
                     // Deal Damage to obj
-                    enemyhealth->m_CurrentHealth -= unitdamage->m_Value;
-                }
-            }
-
-            if (anim2 != nullptr && anim2->m_FinishedAnimating) {
-                anim2->m_PlayOnce = false;
-                // Check player attack against obj defense
-                damage* unitdamage = &m_obj2.m_pArchetype->GetComponent<damage>(m_obj2.m_PoolDetails);
-                health* enemyhealth = &m_obj.m_pArchetype->GetComponent<health>(m_obj.m_PoolDetails);
-
-                if (unitdamage != nullptr && enemyhealth != nullptr) {
-                    // Apply Modifier
-                    // Deal Damage to obj
-                    enemyhealth->m_CurrentHealth -= unitdamage->m_Value;
+                    if ( unittimer->m_Value <= 0.0f )
+                    {
+                        enemyhealth->m_CurrentHealth -= unitdamage->m_Value;
+                        if (enemyhealth->m_CurrentHealth <= 0) {
+                            DeleteEntity(obj2);
+                            Unit_State->isAttacking = false;
+                            BroadcastGlobalEvent<collision_system::UnitTriggerExitEvent>(obj, rf);
+                        }
+                        unittimer->m_Value = unittimer->m_Cooldown;
+                    }
                 }
             }
         }
@@ -163,14 +163,22 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
         // check obj is enemy
         auto Unit_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
 
-        if (Unit_Friendly || Unit_Enemy) {
+        auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
+
+        if (!Unit_State->isAttacking && Unit_Friendly || Unit_Enemy) {
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-            if (anim != nullptr) {
-                anim->m_PlayOnce = false;
+            if (anim)
                 anim->m_CurrentAnimationName = "Armature|Walk";
+
+            // Update Momentum again
+            auto Transform = m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails);
+            auto Waypoint = m_obj.m_pArchetype->FindComponent<waypoint>(m_obj.m_PoolDetails);
+            if ( Transform && Waypoint )
+            {
+                auto Direction = Waypoint->m_Value - Transform->m_Position;
+                Direction /= Direction.Magnitude();
+                rf.m_Momentum = Direction * 4.0f;
             }
-            //// Continue Movement
-            //rf.m_isStatic = false;
         }
     }
 };
