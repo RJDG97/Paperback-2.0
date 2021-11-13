@@ -38,6 +38,8 @@ enum FileActivity
     NEWSCENE,
     OPENSCENE,
     OPENFROMASSET,
+    SAVEPREFAB,
+    LOADPREFAB,
     EXIT
 };
 
@@ -58,6 +60,7 @@ struct imgui_system : paperback::system::instance
     std::vector <const char*> m_ComponentNames = {};
 
     std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
+    std::string m_LoadedPrefabPath, m_LoadedPrefabFile, m_PrefabEntityInfoPath;
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity; //first: pointer to the archetype | second: entity index
 
@@ -74,7 +77,7 @@ struct imgui_system : paperback::system::instance
     FileActivity m_Type = FileActivity::NONE;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck;
+    bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck, m_bLoadPrefab, m_bSavePrefab;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -397,21 +400,7 @@ struct imgui_system : paperback::system::instance
         if (m_FileDialog.showFileDialog("Open Scene", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2{ 700, 310 }))
         {
             if (!m_FileDialog.selected_path.empty())
-            {
-                m_LoadedPath = m_FileDialog.selected_path;
-                m_LoadedFile = m_FileDialog.selected_fn;
-
-                m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
-
-                if (!m_EntityInfoLoadedPath.empty())
-                {
-                    PPB.OpenEditScene(m_FileDialog.selected_path, m_EntityInfoLoadedPath);
-                    EDITOR_TRACE_PRINT(m_FileDialog.selected_fn + " Loaded");
-                }
-                else
-                    EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
-
-            }
+                OpenFile(m_FileDialog.selected_path, m_FileDialog.selected_fn);
         }
         else
             m_bFileOpen = false;
@@ -422,28 +411,202 @@ struct imgui_system : paperback::system::instance
         if (m_FileDialog.showFileDialog("Save Scene As", imgui_addons::ImGuiFileBrowser::DialogMode::SAVE, ImVec2{ 700, 310 }))
         {
             if (!m_FileDialog.selected_path.empty())
-            {
-                m_LoadedPath = m_FileDialog.selected_path;
-                m_LoadedFile = m_FileDialog.selected_fn;
-
-                if (m_LoadedFile.find(".json") == std::string::npos)
-                    m_LoadedFile.append(".json");
-
-                if (m_LoadedPath.find(".json") == std::string::npos)
-                    m_LoadedPath.append(".json");
-
-                m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
-
-                if (!m_EntityInfoLoadedPath.empty())
-                {
-                    PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
-                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
-                }
-            }
+                SaveFileAs(m_FileDialog.selected_path, m_FileDialog.selected_fn);
         }
         else
             m_bFileSaveAs = false; //dialog is closed
     }
+
+    void SaveFileAs(std::string& FilePath, std::string& FileName)
+    {
+        std::string EntityInfoPath;
+
+        if (FileName.find(".json") == std::string::npos)
+            FileName.append(".json");
+
+        if (FilePath.find(".json") == std::string::npos)
+            FilePath.append(".json");
+
+        EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
+
+        if (!EntityInfoPath.empty())
+        {
+            PPB.SaveScene(FilePath, EntityInfoPath);
+            EDITOR_TRACE_PRINT(FileName + " Saved at: " + FilePath);
+
+            //if (SavePrefab)
+            //{
+            //    m_LoadedPrefabPath = FilePath;
+            //    m_LoadedPrefabFile = FileName;
+            //    m_PrefabEntityInfoPath = EntityInfoPath;
+            //}
+            //else
+            //{
+            //    m_LoadedPath = FilePath;
+            //    m_LoadedFile = FileName;
+            //    m_EntityInfoLoadedPath = EntityInfoPath;
+            //}
+        }
+
+        m_bSavePrefab = false;
+    }
+
+    void OpenFile(std::string& FilePath, std::string& FileName)
+    {
+        std::string EntityInfoPath;
+
+        EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
+
+        if (!EntityInfoPath.empty())
+        {
+            if (!m_bLoadPrefab)
+            {
+                PPB.OpenEditScene(FilePath, EntityInfoPath);
+                EDITOR_TRACE_PRINT(FileName + " Loaded");
+
+                m_LoadedPath = FilePath;
+                m_LoadedFile = FileName;
+                m_EntityInfoLoadedPath = EntityInfoPath;
+            }
+            else
+            {
+                PPB.LoadPrefabs(FilePath, EntityInfoPath);
+                EDITOR_TRACE_PRINT("Prefabs from: " + FileName + " Loaded");
+
+                m_LoadedPrefabPath = FilePath;
+                m_LoadedPrefabFile = FileName;
+                m_PrefabEntityInfoPath = EntityInfoPath;
+
+            }
+        }
+        else
+            EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
+
+        m_bLoadPrefab = false;
+    }
+
+    void SaveCheckPopUp()
+    {
+        if (m_bSaveCheck)
+            ImGui::OpenPopup(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?");
+
+        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+        if (ImGui::BeginPopupModal(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Have you save whatever you're working on?");
+
+            if (ImGui::Button(ICON_FA_FOLDER_OPEN " Yes"))
+            {
+                switch (m_Type)
+                {
+                case FileActivity::NEWSCENE:
+                {
+                    ResetScene();
+
+                    EDITOR_INFO_PRINT("New Scene Created");
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+                break;
+                case FileActivity::OPENSCENE:
+                {
+                    ResetScene();
+
+                    m_bFileOpen = true;
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+                break;
+                case FileActivity::OPENFROMASSET:
+                {
+                    if (!m_LoadedPath.empty() && !m_LoadedFile.empty())
+                    {
+                        ResetScene();
+
+                        OpenFile(m_LoadedPath, m_LoadedFile);
+
+                        m_Type = FileActivity::NONE;
+                        ImGui::CloseCurrentPopup();
+                    }
+                }
+                break;
+                }
+            }
+
+            //ImGuiHelp("Click here to save changes");
+
+            ImGui::SameLine();
+
+            if (ImGui::Button(ICON_FA_SAVE " No"))
+            {
+                if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty())
+                {
+                    PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
+                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+                else
+                {
+                    m_bFileSaveAs = true;
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+            }
+
+            ImGui::SameLine();
+
+            if (ImGui::Button(ICON_FA_TIMES " Cancel"))
+            {
+                m_Type = FileActivity::NONE;
+                ImGui::CloseCurrentPopup();
+            }
+
+            //ImGuiHelp("Click here to continue on");
+
+            ImGui::EndPopup();
+        }
+
+        m_bSaveCheck = false;
+    }
+
+    void SaveLoadPrefab()
+    {
+        switch (m_Type)
+        {
+        case FileActivity::SAVEPREFAB:
+        {
+            if (!m_LoadedPrefabPath.empty() && !m_PrefabEntityInfoPath.empty())
+            {
+                PPB.SavePrefabs(m_LoadedPrefabFile, m_PrefabEntityInfoPath);
+                EDITOR_TRACE_PRINT(m_LoadedPrefabFile + " Saved at: " + m_LoadedPrefabPath);
+
+                m_Type = FileActivity::NONE;
+            }
+            else
+            {
+                m_bSavePrefab = true;
+                m_bFileSaveAs = true;
+                m_Type = FileActivity::NONE;
+
+            }
+        }
+        break;
+        case FileActivity::LOADPREFAB:
+        {
+            m_bLoadPrefab = true;
+            m_bFileOpen = true;
+            m_Type = FileActivity::NONE;
+        }
+        break;
+        }
+    }
+
     void EnumerationCombo(std::vector<const char*> Value_List, const std::string& Name, paperback::u8& Selection)
     {
         //const char* current_item = Value_List[Selection];
@@ -635,103 +798,6 @@ struct imgui_system : paperback::system::instance
 
             ImGui::EndPopup();
         }
-    }
-
-    void SaveCheckPopUp()
-    {
-        if (m_bSaveCheck)
-            ImGui::OpenPopup(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?");
-
-        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-
-        if (ImGui::BeginPopupModal(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?", NULL, ImGuiWindowFlags_AlwaysAutoResize))
-        {
-            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Have you save whatever you're working on?");
-
-            if (ImGui::Button(ICON_FA_FOLDER_OPEN " Yes"))
-            {
-                switch (m_Type)
-                {
-                case FileActivity::NEWSCENE:
-                {
-                    ResetScene();
-                    EDITOR_INFO_PRINT("New Scene Created");
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-                break;
-                case FileActivity::OPENSCENE:
-                {
-                    ResetScene();
-
-                    m_bFileOpen = true;
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-                break;
-                case FileActivity::OPENFROMASSET:
-                {
-                    if (!m_LoadedPath.empty() && !m_LoadedFile.empty())
-                    {
-                        ResetScene();
-
-                        m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
-
-                        if (!m_EntityInfoLoadedPath.empty())
-                        {
-                            PPB.OpenEditScene(m_LoadedPath, m_EntityInfoLoadedPath);
-                            EDITOR_TRACE_PRINT(m_LoadedFile + " Loaded");
-                        }
-                        else
-                            EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
-
-                        m_Type = FileActivity::NONE;
-                        ImGui::CloseCurrentPopup();
-                    }
-                }
-                break;
-                }
-            }
-
-            //ImGuiHelp("Click here to save changes");
-
-            ImGui::SameLine();
-
-            if (ImGui::Button(ICON_FA_SAVE " No"))
-            {
-                if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty())
-                {
-                    PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
-                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-                else
-                {
-                    m_bFileSaveAs = true;
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-            }
-
-            ImGui::SameLine();
-
-            if (ImGui::Button(ICON_FA_TIMES " Cancel"))
-            {
-                m_Type = FileActivity::NONE;
-                ImGui::CloseCurrentPopup();
-            }
-
-            //ImGuiHelp("Click here to continue on");
-
-            ImGui::EndPopup();
-        }
-
-        m_bSaveCheck = false;
     }
 
     void ImGuiHelp(const char* description, int symbol = 0) {

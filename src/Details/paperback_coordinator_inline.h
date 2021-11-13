@@ -278,7 +278,7 @@ namespace paperback::coordinator
 	//           Save Scene
 	//-----------------------------------
 	PPB_INLINE
-	void instance::SaveScene(const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
+	void instance::SaveScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
 	{
 		paperback::component::temp_guid Temp = {};
 		paperback::archetype::TempMgr TempMgr;
@@ -301,31 +301,66 @@ namespace paperback::coordinator
 		// Serialize Prefabs 
 		for (auto& Archetype : PPB.GetArchetypeList())
 		{
-			//if ( Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID) ) //Have prefab component
-			//{
-			//	JFile.StartObject().WriteKey((Archetype->GetName()).c_str()).StartArray();
 
-			//	//Serialize GUIDs
+			// Serialize Prefabs Instances + Normal Entities
+			JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
 
-			//	JFile.StartObject().WriteKey("Guid").StartArray();
-			//	auto& ComponentInfoArray = Archetype->GetComponentInfos();
+			//Serialize GUIDs
 
-			//	for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
-			//	{
-			//		Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
-			//		JFile.WriteGuid(Temp);
-			//	}
+			JFile.StartObject().WriteKey("Guid").StartArray();
 
-			//	JFile.EndArray().EndObject();
+			auto& ComponentInfoArray = Archetype->GetComponentInfos();
 
-			//	//Serialize Components
+			for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+			{
+				Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+				JFile.WriteGuid(Temp);
+			}
 
-			//	Archetype->SerializeAllEntities(JFile);
+			JFile.EndArray().EndObject();
 
-			//	JFile.EndArray().EndObject();
-			//}
-			//else
-			//{
+			//Serialize Components
+
+			if (Archetype->GetCurrentEntityCount())
+				Archetype->SerializeAllEntities(JFile);
+			else
+				continue;
+
+			JFile.EndArray().EndObject();
+		}
+
+		JFile.EndArray().EndObject().EndWriter();
+
+		// Save the entity info after everything else
+		SaveEntityInfo(EntityInfoPath);
+	}
+
+	PPB_INLINE
+	void instance::SavePrefabs( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
+	{
+		paperback::component::temp_guid Temp = {};
+		paperback::archetype::TempMgr TempMgr;
+
+		paperback::JsonFile JFile;
+
+		JFile.StartWriter(FilePath);
+		JFile.StartObject().WriteKey("Entities");
+		JFile.StartArray();
+
+		//Save Archetype Manager
+		TempMgr.EntityHead = m_ArchetypeMgr.GetEntityHead();
+
+		JFile.StartObject().WriteKey("Archetype Manager");
+
+		JFile.StartObject().Write(TempMgr).EndObject();
+
+		JFile.EndObject();
+
+		// Serialize Prefabs 
+		for (auto& Archetype : PPB.GetArchetypeList())
+		{
+			if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
+			{
 				// Serialize Prefabs Instances + Normal Entities
 				JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
 
@@ -348,14 +383,14 @@ namespace paperback::coordinator
 				Archetype->SerializeAllEntities(JFile);
 
 				JFile.EndArray().EndObject();
-
-			//}
+			}
 		}
 
 		JFile.EndArray().EndObject().EndWriter();
 
 		// Save the entity info after everything else
 		SaveEntityInfo(EntityInfoPath);
+
 	}
 
 	PPB_INLINE
@@ -383,18 +418,23 @@ namespace paperback::coordinator
 		JFile.EndObject();
 
 		JFile.EndArray().EndObject().EndWriter();
+	}
 
+	PPB_INLINE
+	void instance::LoadPrefabs( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
+	{
+		JsonFile Jfile;
+
+		Jfile.StartReader(FilePath);
+		Jfile.LoadEntities("Entities");
+		Jfile.EndReader();
+
+		LoadEntityInfo(EntityInfoPath);
 	}
 
 	PPB_INLINE
 	void instance::OpenScene( const std::string& SceneName = "" ) noexcept
 	{
-		/*JsonFile Jfile;
-		Initialize();
-		Jfile.StartReader(FilePath);
-		Jfile.LoadEntities("Entities");
-		Jfile.EndReader();*/
-
 		if (SceneName == "")
 		{
 			//if no arg given then "launching" so just reload scene manager
@@ -402,7 +442,6 @@ namespace paperback::coordinator
 		}
 		else
 		{
-
 			//arg given, changing state
 			if (m_SceneMgr.TriggerChangeScene(SceneName))
 			{

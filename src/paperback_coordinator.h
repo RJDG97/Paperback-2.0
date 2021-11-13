@@ -135,7 +135,7 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		PPB_INLINE
-		void SaveScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept;
+		void SaveScene( const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
 
 		PPB_INLINE
 		void OpenScene(const std::string& SceneName) noexcept;
@@ -145,12 +145,15 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		void SaveEntityInfo( const std::string& FilePath ) noexcept;
-
-		PPB_INLINE		
-		void SaveSingleEntity(const std::string& FilePath, const paperback::entity::info& EntityInfo) noexcept;
 		
 		PPB_INLINE
 		void OpenEditScene(const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
+
+		PPB_INLINE
+		void SavePrefabs(const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
+
+		PPB_INLINE
+		void LoadPrefabs(const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
 
 		PPB_INLINE
 		bool VerifyState(const std::string& StateName) noexcept;

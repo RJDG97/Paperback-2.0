@@ -1,5 +1,6 @@
 #pragma once
 #include "Editor/Panels/ArchetypeInspector.h"
+#include "Systems/ImguiSystem.h"
 
 void ArchetypeInspector::Panel()
 {
@@ -20,11 +21,24 @@ void ArchetypeInspector::PrefabPanel()
 
     ImGui::BeginMenuBar();
 
-    if (ImGui::MenuItem("Create Default Prefab"))
+    if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE))
     {
         PPB.CreatePrefab();
-        EDITOR_INFO_PRINT("Created: A Default Prefab");
+        EDITOR_INFO_PRINT("Added a Default Prefab");
     }
+
+    m_Imgui.ImGuiHelp("Spawns a Default Prefab");
+
+
+    if (ImGui::MenuItem(ICON_FA_SAVE))
+    {
+        m_Imgui.m_Type = FileActivity::SAVEPREFAB;
+    }
+
+    if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN))
+        m_Imgui.m_Type = FileActivity::LOADPREFAB;
+
+    m_Imgui.ImGuiHelp("Saves Prefabs/Archetypes Only");
 
     ImGui::EndMenuBar();
 
