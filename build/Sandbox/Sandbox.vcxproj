@@ -166,6 +166,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d /i "$(OutDir)Paperback_V2.lib" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /d /i "$(ProjectDir)imgui.ini" "$(SolutionDir)..\..\executables\Release"
 xcopy /y /d /i "$(OutDir)Sandbox.exe" "$(SolutionDir)..\..\executables\Release"
 xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono-2.0-sgen.dll" "$(SolutionDir)..\..\executables\Release"
 xcopy /y /i "$(ProjectDir)Dependencies\Scriptlib.dll" "$(SolutionDir)..\..\executables\Release\Dependencies\"
