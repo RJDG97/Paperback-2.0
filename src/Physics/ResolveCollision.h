@@ -202,7 +202,7 @@ bool CheapaabbDynamic(
 }
 
 // pseudo
-bool CheapaabbStatic(
+bool CheapaabbBounce(
 	boundingbox* Bbox1,
 	rigidforce* rf1,
 	transform& t1,
@@ -289,6 +289,102 @@ bool CheapaabbStatic(
 			dir = direction::z;
 			vel1.z = -vel1.z;
 			acc1.z = -acc1.z;
+
+			rf1->m_Momentum = vel1 * rf1->m_Mass;
+			rf1->m_Forces = acc1 * rf1->m_Mass;
+		}
+	}
+	return true;
+}
+
+// pseudo
+bool CheapaabbStatic(
+	boundingbox* Bbox1,
+	rigidforce* rf1,
+	transform& t1,
+	boundingbox* Bbox2,
+	rigidbody* rb2,
+	transform& t2)
+
+	//	paperback::Vector3f& Bbox1min, paperback::Vector3f& Bbox1max,
+	//	paperback::Vector3f& mom1, paperback::Vector3f& f1, 
+	//	paperback::Vector3f& t1, float mass1,
+	//	paperback::Vector3f& Bbox2min, paperback::Vector3f& Bbox2max,
+	//	paperback::Vector3f& mom2, paperback::Vector3f& f2, 
+	//	paperback::Vector3f& t2, float mass2)
+{
+	if (rf1->m_Mass == 0.f)
+		return false;
+
+	paperback::Vector3f vel1 = rf1->m_Momentum / rf1->m_Mass;
+	paperback::Vector3f vel2 = rb2->m_Velocity;
+	paperback::Vector3f acc1 = rf1->m_Forces / rf1->m_Mass;
+	paperback::Vector3f acc2 = rb2->m_Accel;
+
+	paperback::Vector3f velab = vel1 - vel2; // uncorrupt
+	paperback::Vector3f ab = t1.m_Position - t2.m_Position;
+	// lol
+	// get pen_depth (+ve), shoulld be a super small value
+	paperback::Vector3f pen_depth = ((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min))
+		- paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));
+
+	// case 1/3, useless cases is 0.f - currently (+ve)
+	paperback::Vector3f t_resolve =
+		paperback::Vector3f(abs(velab.x), abs(velab.y), abs(velab.z));
+
+	// determine collision side, smaller ratio = likely side
+	direction dir = direction::none;
+	float xx = 0.f, yy = 0.f, zz = 0.f; // default value
+
+	// cull insignificant values
+	// case 2/4
+	if ((velab.x > 0.f && ab.x < 0.f) || (velab.x < 0.f && ab.x > 0.f))
+		xx = pen_depth.x / t_resolve.x;
+	if ((velab.y > 0.f && ab.y < 0.f) || (velab.y < 0.f && ab.y > 0.f))
+		yy = pen_depth.y / t_resolve.y;
+	if ((velab.z > 0.f && ab.z < 0.f) || (velab.z < 0.f && ab.z > 0.f))
+		zz = pen_depth.z / t_resolve.z;
+
+	// determined side, higher = earlier intersect,
+	// resolve penetration depth, aabb style      after that resolve momentum/force
+	if (xx > yy)
+	{
+		if (xx > zz)
+		{
+			dir = direction::x;
+			vel1.x = 0.f;
+			acc1.x = 0.f;
+
+			rf1->m_Momentum = vel1 * rf1->m_Mass;
+			rf1->m_Forces = acc1 * rf1->m_Mass;
+		}
+		else
+		{
+			dir = direction::z;
+			vel1.z = 0.f;
+			acc1.z = 0.f;
+
+			rf1->m_Momentum = vel1 * rf1->m_Mass;
+			rf1->m_Forces = acc1 * rf1->m_Mass;
+		}
+	}
+	else
+	{
+		if (yy > zz)
+		{
+			dir = direction::y;
+			vel1.y = 0.f;
+			acc1.y = 0.f;
+
+			rf1->m_Momentum = vel1 * rf1->m_Mass;
+			rf1->m_Forces = acc1 * rf1->m_Mass;
+		}
+
+		else
+		{
+			dir = direction::z;
+			vel1.z = 0.f;
+			acc1.z = 0.f;
 
 			rf1->m_Momentum = vel1 * rf1->m_Mass;
 			rf1->m_Forces = acc1 * rf1->m_Mass;
