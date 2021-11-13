@@ -308,13 +308,7 @@ namespace paperback::deserialize
                 NewArchetype->GetComponent<socketed>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<socketed>();
 
             if (obj.is_type<damage>())
-            {
-                auto& a = obj.get_value<damage>();
-                std::cout << a.m_Value << std::endl;
                 NewArchetype->GetComponent<damage>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<damage>();
-                auto& b = NewArchetype->GetComponent<damage>(paperback::vm::PoolDetails{ 0, EntityCounter });
-                    std::cout << b.m_Value << std::endl;
-            }
 
             if (obj.is_type<name>())
                 NewArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<name>();

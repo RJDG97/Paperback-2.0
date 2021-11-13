@@ -199,6 +199,7 @@ struct imgui_system : paperback::system::instance
                 EditorMenuBar();
                 OpenSaveFile();
                 SaveCheckPopUp();
+                SaveLoadPrefab();
 
                 //Call Windows Here
                 ImGui::PushFont(m_Imgfont);
@@ -225,6 +226,47 @@ struct imgui_system : paperback::system::instance
                 ImGui::UpdatePlatformWindows();
                 ImGui::RenderPlatformWindowsDefault();
                 glfwMakeContextCurrent(backup_current_context);
+            }
+
+            if (PPB.IsMousePress(GLFW_MOUSE_BUTTON_LEFT))
+            {
+                if (!PPB.GetArchetypeList().empty())
+                {
+                    for (auto& Archetype : PPB.GetArchetypeList())
+                    {
+                        for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
+                        {
+                            auto EntityBB = Archetype->FindComponent<boundingbox>(paperback::vm::PoolDetails{ 0, i });
+                            auto Entity = Archetype->FindComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
+                            if (!Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
+                            {
+                                if (EntityBB) //if the entity has boundingbox
+                                {
+                                    paperback::Vector3f CamPos, Ray, RayDir;
+                                    float t = 0.0f;
+
+                                    CamPos.x = Camera3D::GetInstanced().GetPosition().x;
+                                    CamPos.y = Camera3D::GetInstanced().GetPosition().y;
+                                    CamPos.z = Camera3D::GetInstanced().GetPosition().z;
+
+                                    Ray.x = PPB.GetMousePosition().x;
+                                    Ray.y = PPB.GetMousePosition().y;
+                                    Ray.z = PPB.GetMousePosition().z;
+
+                                    RayDir = Ray - CamPos;
+
+
+                                    if (RayAabb(CamPos, RayDir, EntityBB->Min, EntityBB->Max, t))
+                                    {
+                                        // if collide 
+                                        std::cout << Entity->m_GlobalIndex << std::endl;
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -769,7 +811,6 @@ struct imgui_system : paperback::system::instance
 
     }
 
-    //void DisplayEnumTypes
     void ResetScene()
     {
         if (m_SelectedEntity.first)
