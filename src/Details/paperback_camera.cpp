@@ -37,12 +37,13 @@ Camera3D::Camera3D() :
 	m_Up{ glm::vec3{0.f, 1.f, 0.f} },
 	m_Radius{ 1.f },
 	m_Azimuth{ 0.f },
-	m_Theta{ 90.f }
+	m_Theta{ 60.f }
 {
-	m_Target = glm::vec3{ 0.f, 3.f, 0.f };
-	m_Position = glm::vec3{ 0.f, 3.f, 5.f };
+	m_Target = glm::vec3{ 0.f, 3.f, -5.f };
+	m_Position = glm::vec3{ 0.f, 3.f, 0.f };
 
 	m_Front = m_Target - m_Position;
+	UpdateVectors();
 	m_View = glm::lookAt(m_Position, m_Target, m_Up);
 	m_Projection = glm::perspective(glm::radians(59.f), 1920.f / 1080.f, 1.f, 200.f);
 }
