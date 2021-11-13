@@ -751,7 +751,7 @@
                         }
                     },
                     "Currency": {
-                        "Currency": 500
+                        "Currency": 10000
                     },
                     "Name": {
                         "Name": ""
@@ -1087,7 +1087,7 @@
                         "Prefab GID": 15
                     },
                     "Currency": {
-                        "Currency": 500
+                        "Currency": 10000
                     },
                     "Name": {
                         "Name": ""
@@ -1137,7 +1137,7 @@
                         }
                     },
                     "Timer": {
-                        "Cooldown Timer": 0.0,
+                        "Cooldown Timer": 2.0,
                         "Timer": 0.0
                     },
                     "Parent": {
@@ -1216,12 +1216,12 @@
                     },
                     "structunitstate": {},
                     "Health": {
-                        "Current Health": 0,
-                        "Max Health": 0
+                        "Current Health": 9,
+                        "Max Health": 9
                     },
                     "Damage": {
                         "Damage Type": 0,
-                        "Damage": 0
+                        "Damage": 3
                     },
                     "Name": {
                         "Name": "Enemy"
@@ -1272,7 +1272,7 @@
                         }
                     },
                     "Timer": {
-                        "Cooldown Timer": 0.0,
+                        "Cooldown Timer": 2.0,
                         "Timer": 0.0
                     },
                     "Parent": {
@@ -1351,8 +1351,8 @@
                     },
                     "structunitstate": {},
                     "Health": {
-                        "Current Health": 5,
-                        "Max Health": 5
+                        "Current Health": 9,
+                        "Max Health": 9
                     },
                     "Damage": {
                         "Damage Type": 0,
@@ -1382,7 +1382,7 @@
                         }
                     },
                     "Timer": {
-                        "Cooldown Timer": 0.0,
+                        "Cooldown Timer": 2.0,
                         "Timer": 0.0
                     },
                     "Parent": {
@@ -1461,8 +1461,8 @@
                     },
                     "structunitstate": {},
                     "Health": {
-                        "Current Health": 5,
-                        "Max Health": 5
+                        "Current Health": 9,
+                        "Max Health": 9
                     },
                     "Damage": {
                         "Damage Type": 0,
@@ -1492,7 +1492,7 @@
                         }
                     },
                     "Timer": {
-                        "Cooldown Timer": 0.0,
+                        "Cooldown Timer": 2.0,
                         "Timer": 0.0
                     },
                     "Parent": {
@@ -1571,8 +1571,8 @@
                     },
                     "structunitstate": {},
                     "Health": {
-                        "Current Health": 5,
-                        "Max Health": 5
+                        "Current Health": 9,
+                        "Max Health": 9
                     },
                     "Damage": {
                         "Damage Type": 0,

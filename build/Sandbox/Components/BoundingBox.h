@@ -13,6 +13,7 @@ struct boundingbox
 
 	paperback::Vector3f Min, Max;
 	bool m_Collided;
+	std::unordered_map<uint32_t, bool> m_CollisionState;
 
 };
 // -- To do:
