@@ -37,7 +37,9 @@ struct collision_system : paperback::system::instance
         ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2,
             unitstate* state2, waypointv1* wp2)  noexcept // -> bool
             {
-                assert(Entity.IsZombie() == false);
+                //assert(Entity.IsZombie() == false);
+                if ( Entity.IsZombie() )
+                    return;
 
                 // Do not check against self
                 if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return;//false;
@@ -57,6 +59,18 @@ struct collision_system : paperback::system::instance
                     // added to parameters
                     if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                     {                        
+                        // if both waypoint users collides
+                        if (state && state2) // if it has a state component
+                        {
+                            if (!state->isAttacking && RigidForce && RF) {
+                                BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this first (on entry)
+                            }
+                            else if (RigidForce && RF) {
+                                BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this after (constant collision)
+                            }
+                            
+                            state->isAttacking = true;
+                        }
 
                         if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
                             BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF); // this first (on entry)
@@ -69,6 +83,12 @@ struct collision_system : paperback::system::instance
                     }
                     else {
                         Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
+                        if (state && /*!state2 &&*/ state->isAttacking && RigidForce && !Boundingbox->m_Collided) {
+                            BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce); // Exits collision
+                            state->isAttacking = false; 
+                        }
+                        
+                        Boundingbox->m_Collided = BB->m_Collided = false; // this is the debug line
                     }
                 }
                 if (Sphere && Ball)
