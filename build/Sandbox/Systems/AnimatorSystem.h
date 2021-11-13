@@ -31,6 +31,7 @@ struct animator_system : paperback::system::instance
 		tools::query Query;
 		Query.m_Must.AddFromComponents<animator, mesh>();
 		Query.m_OneOf.AddFromComponents<parent, animator>();
+		Query.m_NoneOf.AddFromComponents<prefab>();
 
 		ForEach(Search(Query), [&](animator& Ator, mesh& Model, parent* Parent) noexcept
 		{
