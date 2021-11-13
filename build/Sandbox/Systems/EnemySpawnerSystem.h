@@ -25,12 +25,13 @@ struct enemy_spawner_system : paperback::system::instance
         m_ActiveSpawner.m_Must.AddFromComponents<transform, timer, enemy_spawner, counter>();
         m_ActiveSpawner.m_NoneOf.AddFromComponents<prefab, reference_prefab>();
 
-        // Friendly Prefab
-        m_ActiveEnemy.m_Must.AddFromComponents<prefab, transform, waypoint, mesh, animator, health, damage, enemy>();
+        // Enemy Prefab
+        m_ActiveEnemy.m_Must.AddFromComponents<prefab, transform, waypoint, waypoint_tag, mesh, animator, health, damage, enemy>();
         m_ActiveEnemy.m_NoneOf.AddFromComponents<counter>();
     }
 
-	void operator()( entity& Entity, transform& Transform, timer& Timer, counter& Counter, enemy_spawner& Spawner ) noexcept
+    // Enemy Spawner
+	void operator()( entity& Entity, transform& Transform, timer& Timer, counter& Counter, enemy_spawner& Spawner, waypoint_tag& STag ) noexcept
 	{
         if (Counter.m_Value > 0 && Timer.m_Value <= 0.0f)
         {
@@ -41,14 +42,14 @@ struct enemy_spawner_system : paperback::system::instance
 
 
             // Find Enemy Prefab Details (Archetype& and GID)
-            //auto& EnemyPrefab   = m_Coordinator.GetArchetype( Spawner.m_EnemyPrefabGuid );
-            //auto EnemyPrefabGID = EnemyPrefab.FindPrefabEntityGID( Spawner.m_PrefabType );
+            auto& EnemyPrefab   = m_Coordinator.GetArchetype( Spawner.m_EnemyPrefabGuid );
+            auto EnemyPrefabGID = EnemyPrefab.FindPrefabEntityGID( Spawner.m_PrefabType );
 
-            //// Find Enemy Prefab Details (Archetype& and GID)
-            auto Enemies = Search( m_ActiveEnemy );
-            if (Enemies.size() != 1 ) return;
-            auto& Enemy = *( Enemies[0] );
-            auto EnemyPrefabGID = Enemy.FindPrefabEntityGID( Spawner.m_PrefabType );
+            ////// Find Enemy Prefab Details (Archetype& and GID)
+            //auto Enemies = Search( m_ActiveEnemy );
+            //if (Enemies.size() != 1 ) return;
+            //auto& Enemy = *( Enemies[0] );
+            //auto EnemyPrefabGID = Enemy.FindPrefabEntityGID( Spawner.m_PrefabType );
 
             if ( EnemyPrefabGID == paperback::settings::invalid_index_v ) return;
 
@@ -56,12 +57,22 @@ struct enemy_spawner_system : paperback::system::instance
             auto PrefabInfo = GetEntityInfo( EnemyPrefabGID );
             auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab( PrefabInfo.m_PoolDetails.m_PoolIndex );
 
-            // Update Animator Component
+            // Update Components
             auto& IInfo = GetEntityInfo( InstanceGID );
-            IInfo.m_pArchetype->GetComponent<animator>( IInfo.m_PoolDetails ).m_PlayOnce = false;
+            auto [ITransform, ITag, IAnimator] = IInfo.m_pArchetype->GetComponents<transform, waypoint_tag, animator>( IInfo.m_PoolDetails );
+
+            ITransform.m_Position = Transform.m_Position;
+            ITag.m_Value = STag.m_Value;
+            IAnimator.m_PlayOnce = false;
 
             --Counter.m_Value;
         }
+
+        //if ( Counter.m_Value == 0 )
+        //{
+        //    Counter.m_Value = 1;
+        //    Timer.m_Value = Timer.m_Cooldown;
+        //}
 	}
 
     // Updates enemy spawner count
