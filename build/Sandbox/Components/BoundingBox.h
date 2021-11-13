@@ -14,13 +14,23 @@ struct boundingbox
 	paperback::Vector3f Min, Max;
 	bool m_Collided;
 
+	// used in debugDraw
+	boundingbox(
+		paperback::Vector3f minimum = paperback::Vector3f{},
+		paperback::Vector3f maximum = paperback::Vector3f{},
+		bool collide = false) :
+		Min{ minimum },
+		Max{ maximum },
+		m_Collided {collide}
+	{}
+
 };
 // -- To do:
 //		center of BoundingBox
 //		this will mainly be used as a 1st/2nd step collision check
 //			IN PRINCIPLE, ITS SIMILAR TO AABB, but it'll not be used as AABB - there's a specific struct for this
 
-// ----- End of header guard
+
 
 
 namespace RR_BOUNDINGBOX
@@ -35,4 +45,5 @@ namespace RR_BOUNDINGBOX
 	}
 }
 
+// ----- End of header guard
 #endif

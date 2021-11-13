@@ -3,7 +3,7 @@
 #define POLYGON_SHAPE_H
 
 #include "Math/Vector3f.h"
-#include "Triangle.h"
+//#include "Triangle.h"
 
 template <size_t N = 4>
 struct Polygon_shape
@@ -13,8 +13,7 @@ struct Polygon_shape
 		.m_pName = "Polygon_shape"
 	};
 
-private:													// ----- Private members
-	Triangle m_arrSegments[N];
+	//Triangle m_arrSegments[N];
 };
 
 // -- To do:

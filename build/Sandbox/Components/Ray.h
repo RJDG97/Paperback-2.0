@@ -2,9 +2,8 @@
 #ifndef RAY_H
 #define RAY_H
 
-#include "Math/Vector3f.h"
+#include "Math/Math_includes.h"
 
-//template <size_t N = 3>
 struct Ray
 {
 	constexpr static auto typedef_v = paperback::component::type::data
@@ -12,28 +11,27 @@ struct Ray
 		.m_pName = "Ray"
 	};
 
-	//LineSegment m_arrSegments[N];
+	paperback::Vector3f m_Start;
+	paperback::Vector3f m_Direction;
 
-	paperback::Vector3f m_start;
-	paperback::Vector3f m_direction;
+	bool				m_Collided;
 
-	Ray()
-	{
-		m_start = m_direction = paperback::Vector3f{};
-	}
-
-	Ray(paperback::Vector3f start, paperback::Vector3f dir)
-	{
-		m_start = start;
-		m_direction = dir;
-	}
+	// utilized in debugDraw
+	Ray(
+		paperback::Vector3f start = paperback::Vector3f{},
+		paperback::Vector3f dir = paperback::Vector3f{},
+		bool collide = false) :
+		m_Start{start},
+		m_Direction{dir},
+		m_Collided{collide}
+	{}
 
 	// add a transform later for utility purposes
 
-	paperback::Vector3f CastRay(float t)
-	{
-		return m_start + m_direction * t;
-	}
+	//paperback::Vector3f CastRay(float t)
+	//{
+	//	return m_start + m_direction * t;
+	//}
 };
 // -- To do:
 //		crossProduct -> normal

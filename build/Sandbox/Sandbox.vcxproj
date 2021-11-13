@@ -174,10 +174,14 @@
     <ClInclude Include="Components\CollisionLayer.h" />
     <ClInclude Include="Components\component_includes.h" />
     <ClInclude Include="Components\EntityScript.h" />
+    <ClInclude Include="Components\Frustrum.h" />
+    <ClInclude Include="Components\LineSegment.h" />
     <ClInclude Include="Components\Listener.h" />
     <ClInclude Include="Components\Mesh.h" />
     <ClInclude Include="Components\Offset.h" />
     <ClInclude Include="Components\Parent.h" />
+    <ClInclude Include="Components\Plane.h" />
+    <ClInclude Include="Components\Ray.h" />
     <ClInclude Include="Components\Rigidbody.h" />
     <ClInclude Include="Components\RigidForce.h" />
     <ClInclude Include="Components\Rotation.h" />
@@ -186,6 +190,7 @@
     <ClInclude Include="Components\Sphere.h" />
     <ClInclude Include="Components\Timer.h" />
     <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Components\Triangle.h" />
     <ClInclude Include="Components\WaypointUserv1.h" />
     <ClInclude Include="Components\Waypointv1.h" />
     <ClInclude Include="Components\Waypointv2.h" />

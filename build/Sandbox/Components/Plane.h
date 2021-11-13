@@ -2,8 +2,7 @@
 #ifndef PLANE_H
 #define PLANE_H
 
-#include "Math/Vector3f.h"
-#include "Math/Vector4f.h"
+#include "Math/Math_includes.h"
 
 struct Plane
 {
@@ -12,29 +11,25 @@ struct Plane
 		.m_pName = "Plane"
 	};
 
+	// distance from origin computed as
+	// m_data.w = Dot(origin - pointOnPlane, normal)
+
 	paperback::Vector4f m_data;
+	bool				m_Collided;
 
+	// no appropriate default constructor error
 	Plane()
+		:
+		m_data{ paperback::Vector4f{} }
+	{}
+
+	// utilized in geometry.h
+	Plane(paperback::Vector3f a, paperback::Vector3f b, paperback::Vector3f c)
 	{
-		m_data = paperback::Vector4f{};
+		Set(a, b, c);
 	}
 
-	// Create the plane from a triangle
-	Plane(const paperback::Vector3f& p0, 
-		const paperback::Vector3f& p1, 
-		const paperback::Vector3f& p2)
-	{
-		Set(p0, p1, p2);
-	}
-
-	// Create the plane from a point and a normal
-	Plane(const paperback::Vector3f& normal, 
-		const paperback::Vector3f& point)
-	{
-		Set(normal, point);
-	}
-
-	// Create a plane from a triangle. The plane's normal should be normalized.
+	// Set a plane from triangle
 	void Set(const paperback::Vector3f& p0, 
 		const paperback::Vector3f& p1, 
 		const paperback::Vector3f& p2)
@@ -51,7 +46,7 @@ struct Plane
 		m_data = paperback::Vector4f(n.x, n.y, n.z, D);
 	}
 
-	// Create a plane from a point and a normal. The plane's normal should be normalized.
+	// Set a plane from point and normal
 	void Set(const paperback::Vector3f& normal, 
 		const paperback::Vector3f& point)
 	{
@@ -63,17 +58,10 @@ struct Plane
 		m_data = paperback::Vector4f(n.x, n.y, n.z, D);
 	}
 
-	// Get the normal of this plane
+	// Get plane normal
 	paperback::Vector3f GetNormal() const
 	{
 		return paperback::Vector3f(m_data.x, m_data.y, m_data.z);
-	}
-
-	// Get the 'd' value (the distance from the origin) 
-	// which can be computed as Dot(origin - pointOnPlane, normal)
-	float GetDistance() const
-	{
-		return m_data.w;
 	}
 };
 

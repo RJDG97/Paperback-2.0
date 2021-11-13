@@ -3,6 +3,8 @@
 #include "../Functionality/Renderer/Renderer.h"
 #include "Math/Vector3f.h"
 
+
+
 struct debug_system : paperback::system::instance
 {
 
@@ -170,7 +172,7 @@ struct debug_system : paperback::system::instance
         const paperback::Vector3f& Bottom_left,
         const paperback::Vector3f& Bottom_right)
     {
-
+        // 4 lines
         Vec.push_back(Top_left);
         Vec.push_back(Top_right);
 
@@ -223,6 +225,8 @@ struct debug_system : paperback::system::instance
         Cube.m_Collided = false;
     }
 
+    
+
     // draws a "cube" depending on given data
     // data has to be pairs of vectors
     void DrawDebugLines(std::vector<paperback::Vector3f> Vec, bool IsCollide = false)
@@ -247,17 +251,37 @@ struct debug_system : paperback::system::instance
 
 
     PPB_FORCEINLINE
-    void operator()(paperback::component::entity& Entity, transform& Transform, boundingbox* Cube, sphere* Ball) noexcept
+    void operator()(paperback::component::entity& Entity, transform& Transform, boundingbox* Cube, sphere* Ball
+        , LineSegment* line, Ray* ray, Triangle* triangle, Plane* plane, Frustum* frustum
+        ) noexcept
     {
 
         if (m_IsDebug)
         {
         
-            if (Cube)
-                DrawCubeCollision(*Cube, Transform);
+            //if (Cube)
+            //    DrawCubeCollision(*Cube, Transform);
 
             if (Ball)
                 DrawSphereCollision(*Ball, Transform);
+
+
+            if (line)
+                DrawLine(*line, Transform);
+            if (Cube)
+                DrawBoundingBox(*Cube, Transform);
+            if (triangle)
+                DrawTriangle(*triangle, Transform);
+            //// not in use
+            //if ()
+            //    DrawQuad();
+            if (frustum)
+                DrawFrustum(*frustum, Transform);
+            if (ray)
+                DrawRay(*ray, 5.f, Transform);
+            if (plane)
+                DrawPlane(*plane, 5.f, 5.f, Transform);
+
         }
     }
 
@@ -310,75 +334,270 @@ struct debug_system : paperback::system::instance
         m_Points[1].clear();
     }
 
-    // HOW IT WORKS: set parameters -> Convert vertices to circle/square draw
-    //DrawPoint(const Vector3f& point)
+    //----------------------------------------------------------------
+    // Passes in a vector of LineSegment to draw Shape
+    void DebugDrawLineSegment(std::vector<LineSegment> lines, bool IsCollide = false)
+    {
+        for (LineSegment& line : lines)
+        {
+            m_Points[IsCollide].push_back(ConvertMathVecToGLMVec(line.m_Start));
+            m_Points[IsCollide].push_back(ConvertMathVecToGLMVec(line.m_End));
+        }
+    }
+
+    // Returns the orthonormal basis
+    void ComputeOrthogonalBasis(paperback::Vector3f& u, paperback::Vector3f& v, paperback::Vector3f& w)
+    {
+        if (u.x == 0.f && u.y == 0.f)
+            v = paperback::Vector3f(0.f, 1.0f, 0.f);
+        else
+        {
+            v.x = -u.y;
+            v.y = u.x;
+            v.z = 0.f;
+        }
+        
+        w = (u.Cross(v)).Normalized();
+        v.Normalize();
+        u.Normalize();
+    }
+
+    void DrawLine(LineSegment& line, transform& Transform)
+    {
+        std::vector<LineSegment> shape;
+        shape.emplace_back(LineSegment(
+            line.m_Start + Transform.m_Position + Transform.m_Offset, 
+            line.m_End + Transform.m_Position + Transform.m_Offset,
+            line.m_Collided));
+        DebugDrawLineSegment(shape, line.m_Collided);
+
+        // seems unnecessary part
+        line.m_Collided = false;
+    }
+
+    void DrawBoundingBox(boundingbox& bbox, transform& Transform)
+    {
+        std::vector<LineSegment> shape;
+        boundingbox cube(
+            bbox.Min + Transform.m_Position + Transform.m_Offset,
+            bbox.Max + Transform.m_Position + Transform.m_Offset,
+            bbox.m_Collided);
+
+        //vertical line
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Min.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Min.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Max.z), paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Max.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+
+        //horizontal line
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Min.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Max.z), paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Min.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Max.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+
+        //inward line
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Min.z), paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+
+        DebugDrawLineSegment(shape, cube.m_Collided);
+
+        // seems unnecessary part
+        bbox.m_Collided = false;
+    }
+
+    void DrawTriangle(Triangle& triangle, transform& Transform)
+    {
+        // Draw 3 edges of a triangle
+        std::vector<LineSegment> shape;
+
+        Triangle tri{ 
+            triangle.m_pointA + Transform.m_Position + Transform.m_Offset,
+            triangle.m_pointB + Transform.m_Position + Transform.m_Offset, 
+            triangle.m_pointC + Transform.m_Position + Transform.m_Offset, 
+            triangle.m_Collided};
+
+        // Draw the 3 edges
+        shape.emplace_back(LineSegment(tri.m_pointA, tri.m_pointB, tri.m_Collided));
+        shape.emplace_back(LineSegment(tri.m_pointB, tri.m_pointC, tri.m_Collided));
+        shape.emplace_back(LineSegment(tri.m_pointC, tri.m_pointA, tri.m_Collided));
+
+        DebugDrawLineSegment(shape, tri.m_Collided);
+
+        // seems unnecessary part
+        triangle.m_Collided = false;
+    }
+
+    void DrawQuad(
+        paperback::Vector3f& p0, 
+        paperback::Vector3f& p1, 
+        paperback::Vector3f& p2, 
+        paperback::Vector3f& p3, 
+        bool collide,
+        transform& Transform)
+    {
+        std::vector<LineSegment> shape;
+
+        // Draw 4 edges
+        shape.emplace_back(LineSegment(p0 + Transform.m_Position + Transform.m_Offset, p1 + Transform.m_Position + Transform.m_Offset));
+        shape.emplace_back(LineSegment(p1 + Transform.m_Position + Transform.m_Offset, p2 + Transform.m_Position + Transform.m_Offset));
+        shape.emplace_back(LineSegment(p2 + Transform.m_Position + Transform.m_Offset, p3 + Transform.m_Position + Transform.m_Offset));
+        shape.emplace_back(LineSegment(p3 + Transform.m_Position + Transform.m_Offset, p0 + Transform.m_Position + Transform.m_Offset));
+
+        DebugDrawLineSegment(shape, collide);
+    }
+
+    void DrawFrustum(Frustum& frustum, transform& Transform)
+    {
+        // Draw 6 faces of frustum using the 8 frustum points
+        std::vector<LineSegment> shape;
+
+        Frustum frus{
+        frustum.m_pointA + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointB + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointC + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointD + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointE + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointF + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointG + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointH + Transform.m_Position + Transform.m_Offset,
+        frustum.m_Collided
+        };
+
+        // Near plane
+        shape.emplace_back(LineSegment(frus.m_pointA, frus.m_pointB, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointB, frus.m_pointC, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointC, frus.m_pointD, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointD, frus.m_pointA, frus.m_Collided));
+
+        // Connecting lines
+        shape.emplace_back(LineSegment(frus.m_pointA, frus.m_pointE, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointB, frus.m_pointF, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointC, frus.m_pointG, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointD, frus.m_pointH, frus.m_Collided));
+
+        // Far plane
+        shape.emplace_back(LineSegment(frus.m_pointE, frus.m_pointF, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointF, frus.m_pointG, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointG, frus.m_pointH, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointH, frus.m_pointE, frus.m_Collided));
+
+        DebugDrawLineSegment(shape, frus.m_Collided);
+
+        // seems unnecessary part
+        frustum.m_Collided = false;
+    }
+
+    // Draw ray (used for plane normal drawing)
+    void DrawArrow(Ray& ray, float t, transform& Transform, std::vector<LineSegment>& shape)
+    {
+        // Line of the ray
+        LineSegment line(
+            ray.m_Start + Transform.m_Position + Transform.m_Offset,
+            ray.m_Start + t * ray.m_Direction + Transform.m_Position + Transform.m_Offset,
+            ray.m_Collided);
+        shape.emplace_back(line);
+
+        // Compute orthonormal basis
+        paperback::Vector3f u = ray.m_Direction, v, w;
+        ComputeOrthogonalBasis(u, v, w);
+
+        // Arrow head drawing, get delta angle per segment
+        int segments = 40;
+        const float delta = 2.f * PIf / segments;
+        float angle = 0.f;
+
+        // Size of arrow head              <radius, height>
+        std::pair<float, float> arrowSz = { 0.25f, 0.5f };
+
+        // Start point of arrow head disc
+        paperback::Vector3f p = line.m_End - u * arrowSz.second;
+
+        // Draw a cone for arrow head
+        for (int i = 0; i < segments; ++i)
+        {
+            // Add line segment of arrowhead disc border
+            LineSegment currLine(
+                p + cosf(angle) * v * arrowSz.first + sinf(angle) * w * arrowSz.first,
+                p + cosf(angle + delta) * v * arrowSz.first + sinf(angle + delta) * w * arrowSz.first,
+                ray.m_Collided);
+
+            shape.emplace_back(currLine);
+
+            // End of ray
+            if (!(i % 2))
+            {
+                currLine.m_End = p + u * arrowSz.second;
+                shape.emplace_back(currLine);
+            }
+            angle += delta;
+        }
+    }
+
+    void DrawRay(Ray& ray, float t, transform& Transform)
+    {
+        // Draw a ray given time length
+        std::vector<LineSegment> shape;
+        DrawArrow(ray, t, Transform, shape);
+
+        DebugDrawLineSegment(shape, ray.m_Collided);
+
+        // seems unnecessary part
+        ray.m_Collided = false;
+    }
+
+    void DrawPlane(Plane& plane, float sizeX, float sizeY, transform& Transform)
+    {
+        // Draw quad with a normal at plane's center
+        std::vector<LineSegment> shape;
+
+        // Get n and p0
+        paperback::Vector3f n = 
+            paperback::Vector3f(plane.m_data.x, plane.m_data.y, plane.m_data.z);
+        paperback::Vector3f p0 = n * plane.m_data.w;
+
+        // Get v and w
+        paperback::Vector3f v, w;
+        ComputeOrthogonalBasis(n, v, w);
+
+        // Construct the plane
+        v *= sizeX, w *= sizeY;
+        shape.emplace_back(LineSegment(p0 + v + w + Transform.m_Position + Transform.m_Offset, p0 + v - w + Transform.m_Position + Transform.m_Offset, plane.m_Collided));
+        shape.emplace_back(LineSegment(p0 + v - w + Transform.m_Position + Transform.m_Offset, p0 - v - w + Transform.m_Position + Transform.m_Offset, plane.m_Collided));
+        shape.emplace_back(LineSegment(p0 - v - w + Transform.m_Position + Transform.m_Offset, p0 - v + w + Transform.m_Position + Transform.m_Offset, plane.m_Collided));
+        shape.emplace_back(LineSegment(p0 - v + w + Transform.m_Position + Transform.m_Offset, p0 + v + w + Transform.m_Position + Transform.m_Offset, plane.m_Collided));
+
+        // Construct the normal ray
+        Ray ray(p0, n, plane.m_Collided);
+        DrawArrow(ray, 1.f, Transform, shape);
+
+        DebugDrawLineSegment(shape, plane.m_Collided);
+
+        // seems unnecessary part
+        plane.m_Collided = false;
+    }
+
+    //----------------------------------------------------------------
+
+    // shape.mSegments.pushback(a vector of linesegments)
+    // ALWAYS HAVE TRANSFORM AND OBJ
+    // paperback::Vector3f center = Transform.m_Position + Transform.m_Offset;
+
+    // All of the lines use to draw this shape
+    // std::vector<LineSegment> mSegments;
+
+    //// HOW IT WORKS: set parameters -> Convert vertices to circle/square draw
+    //void DrawPoint(const Vector3f& point)
     //{
     //    return DrawSphere(Sphere(point, 0.1f));
     //}
     //
-    //DrawLine(const LineSegment& line)
-    //{
-    //    shape = GetNewShape();
-    //    shape.mSegments.emplace_back(line);
-    //    return shape;
-    //}
-    //
-    //ComputeOrthogonalBasis(Vector3f& u, Vector3f& v, Vector3f& w)
-    //{
-    //    if (u.x == 0.f && u.y == 0.f)
-    //        v = Vector3f(0.f, 1.0f, 0.f);
-    //    else
-    //    {
-    //        v.x = -u.y;
-    //        v.y = u.x;
-    //        v.z = 0.f;
-    //    }
-    //    w = (u.Cross(v)).Normalized();
-    //    v = v.Normalized();
-    //}
-    //
-    //DrawCone(const Vector3f& point, const Vector3f& u, const Vector3f& v,
-    //    const Vector3f& w, disc& d, int a)
-    //{
-    //    LineSegment line;
-    //    const float angle = Math::cTwoPi / 40.f;
-    //    float b = 0.f;
-    //    for (int i = 0; i < 40; ++i)
-    //    {
-    //        line.mStart = point + cosf(b) * v + sinf(b) * w;
-    //        line.mEnd = point + cosf(b + angle) * v + sinf(b + angle) * w;
-    //        d.emplace_back(line);
-    //        if ((i % a) == 0)
-    //        {
-    //            line.mEnd = point + u;
-    //            d.emplace_back(line);
-    //        }
-    //        b += angle;
-    //    }
-    //}
-    //DrawRay(const Ray& ray, float t)
-    //{
-    //    // Draw a ray to a given t-length. The ray must have an arrow head for visualization
-    //    shape = GetNewShape();
-    //    LineSegment line;
-    //    line.mStart = ray.mStart;
-    //    line.mEnd = ray.mStart + t * ray.mDirection;
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    // cone
-    //    Vector3f u = ray.mDirection,
-    //        v = Vector3f::cZero,
-    //        w = Vector3f::cZero;
-    //    ComputeOrthogonalBasis(u, v, w);
-    //    DrawCone(line.mEnd - u, u, v, w, shape.mSegments, 2);
-    //    return shape;
-    //}
-    //
-    //DrawDisc(const Vector3f& point, const float& radius, const Vector3f& u,
+    //void DrawDisc(const Vector3f& point, const float& radius, const Vector3f& u,
     //    const Vector3f& v, const Vector3f& w, disc& d)
     //{
     //    LineSegment line;
-    //    const float angle = Math::cTwoPi / 40.0f;
+    //    const float angle = 2.f * PIf / 40.0f;
     //    float b = 0.f;
     //    for (int i = 0; i < 40; ++i)
     //    {
@@ -389,16 +608,11 @@ struct debug_system : paperback::system::instance
     //    }
     //}
     //
-    //DrawSphere(const Sphere& sphere)
+    //void DrawSphere(const sphere& ball, transform& Transform)
     //{
     //    // Draw a sphere with 4 rings: x-axis, y-axis, z-axis, and the horizon disc.
-    //    shape = GetNewShape();
+    //    std::vector<LineSegment> shape;
     //    Vector3f End;
-    //
-    //    if (mApplication)
-    //        End = mApplication->mCamera.mTranslation;
-    //    else
-    //        End = Vector3f::cZero;
     //
     //    // distance of view to sphere
     //    Vector3f viewDir = sphere.mCenter - End;
@@ -427,212 +641,5 @@ struct debug_system : paperback::system::instance
     //        Vector3f::cXAxis, Vector3f::cZAxis, Vector3f::cYAxis, shape.mSegments);
     //    return shape;
     //}
-    //
-    //DrawAabb(const Aabb& aabb)
-    //{
-    //    // Draw all edges of an aabb. Make sure to not mis-match edges!
-    //    shape = GetNewShape();
-    //    LineSegment line;
-    //
-    //    //vertical line
-    //    line.mStart = Vector3(aabb.mMin.x, aabb.mMin.y, aabb.mMin.z);
-    //    line.mEnd = Vector3(aabb.mMin.x, aabb.mMax.y, aabb.mMin.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMax.x, aabb.mMin.y, aabb.mMin.z);
-    //    line.mEnd = Vector3(aabb.mMax.x, aabb.mMax.y, aabb.mMin.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMin.x, aabb.mMin.y, aabb.mMax.z);
-    //    line.mEnd = Vector3(aabb.mMin.x, aabb.mMax.y, aabb.mMax.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMax.x, aabb.mMin.y, aabb.mMax.z);
-    //    line.mEnd = Vector3(aabb.mMax.x, aabb.mMax.y, aabb.mMax.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    //horizontal line
-    //    line.mStart = Vector3(aabb.mMin.x, aabb.mMin.y, aabb.mMin.z);
-    //    line.mEnd = Vector3(aabb.mMax.x, aabb.mMin.y, aabb.mMin.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMin.x, aabb.mMin.y, aabb.mMax.z);
-    //    line.mEnd = Vector3(aabb.mMax.x, aabb.mMin.y, aabb.mMax.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMin.x, aabb.mMax.y, aabb.mMin.z);
-    //    line.mEnd = Vector3(aabb.mMax.x, aabb.mMax.y, aabb.mMin.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMin.x, aabb.mMax.y, aabb.mMax.z);
-    //    line.mEnd = Vector3(aabb.mMax.x, aabb.mMax.y, aabb.mMax.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    //inward line
-    //    line.mStart = Vector3(aabb.mMin.x, aabb.mMin.y, aabb.mMin.z);
-    //    line.mEnd = Vector3(aabb.mMin.x, aabb.mMin.y, aabb.mMax.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMax.x, aabb.mMin.y, aabb.mMin.z);
-    //    line.mEnd = Vector3(aabb.mMax.x, aabb.mMin.y, aabb.mMax.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMin.x, aabb.mMax.y, aabb.mMin.z);
-    //    line.mEnd = Vector3(aabb.mMin.x, aabb.mMax.y, aabb.mMax.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = Vector3(aabb.mMax.x, aabb.mMax.y, aabb.mMin.z);
-    //    line.mEnd = Vector3(aabb.mMax.x, aabb.mMax.y, aabb.mMax.z);
-    //    shape.mSegments.emplace_back(line);
-    //    return shape;
-    //}
-    //
-    //DrawTriangle(const Triangle& triangle)
-    //{
-    //    // Draw the 3 edges of a triangles
-    //    DebugShape& shape = GetNewShape();
-    //    LineSegment line;
-    //
-    //    line.mStart = triangle.mPoints[0];
-    //    line.mEnd = triangle.mPoints[1];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = triangle.mPoints[1];
-    //    line.mEnd = triangle.mPoints[2];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = triangle.mPoints[2];
-    //    line.mEnd = triangle.mPoints[0];
-    //    shape.mSegments.emplace_back(line);
-    //    return shape;
-    //}
-    //
-    //DrawPlane(const Plane& plane, float sizeX, float sizeY)
-    //{
-    //    // Draw a quad with a normal at the plane's center.
-    //    shape = GetNewShape();
-    //    Vector3f plane_normal = Vector3f(plane.mData.x, plane.mData.y, plane.mData.z);
-    //    Vector3f plane_point = Vector3f(plane_normal.x, plane_normal.y, plane_normal.z) * plane.mData.w;
-    //    Vector3f vec_horizontal;
-    //
-    //    if (plane_normal != Vector3(1.0f, 0.0f, 0.0f))
-    //        vec_horizontal = plane_normal.Cross(Vector3(1.0f, 0.0f, 0.0f));
-    //    else vec_horizontal = plane_normal.Cross(Vector3(0.0f, 1.0f, 0.0f));
-    //
-    //    vec_horizontal.Normalize();
-    //    Vector3 vec_vertical = vec_horizontal.Cross(plane_normal);
-    //
-    //    LineSegment line;
-    //    line.mStart = plane_point + Vector3(vec_horizontal.x, vec_horizontal.y, vec_horizontal.z)
-    //        + Vector3(vec_vertical.x, vec_vertical.y, vec_vertical.z);
-    //    line.mEnd = plane_point + Vector3(vec_horizontal.x, vec_horizontal.y, vec_horizontal.z)
-    //        - Vector3(vec_vertical.x, vec_vertical.y, vec_vertical.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = line.mEnd;
-    //    line.mEnd = plane_point - Vector3(vec_horizontal.x, vec_horizontal.y, vec_horizontal.z)
-    //        - Vector3(vec_vertical.x, vec_vertical.y, vec_vertical.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = line.mEnd;
-    //    line.mEnd = plane_point - Vector3(vec_horizontal.x, vec_horizontal.y, vec_horizontal.z)
-    //        + Vector3(vec_vertical.x, vec_vertical.y, vec_vertical.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = line.mEnd;
-    //    line.mEnd = plane_point + Vector3(vec_horizontal.x, vec_horizontal.y, vec_horizontal.z)
-    //        + Vector3(vec_vertical.x, vec_vertical.y, vec_vertical.z);
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    // normal
-    //    line.mStart = plane_point;
-    //    line.mEnd = plane_point + plane_normal;
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    return shape;
-    //}
-    //
-    //DrawQuad(const Vector3f& p0, const Vector3f& p1, const Vector3f& p2, const Vector3f& p3)
-    //{
-    //    // Draw the4 edges of a quad. Make sure to look at this and make sure the quad is not bow-tied.
-    //    shape = GetNewShape();
-    //    LineSegment line;
-    //
-    //    line.mStart = p0;
-    //    line.mEnd = p1;
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = p1;
-    //    line.mEnd = p2;
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = p2;
-    //    line.mEnd = p3;
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = p3;
-    //    line.mEnd = p0;
-    //    shape.mSegments.emplace_back(line);
-    //    return shape;
-    //}
-    //
-    //DrawFrustum(const Frustum& frustum)
-    //{
-    //    // Draw the 6 faces of the frustum using the 8 frustum points.
-    //    // See Frustum.Set for the point order. For example, Points[4] is left-bottom-front.
-    //    shape = GetNewShape();
-    //    LineSegment line;
-    //
-    //    // near plane
-    //    line.mStart = frustum.mPoints[0];
-    //    line.mEnd = frustum.mPoints[1];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[1];
-    //    line.mEnd = frustum.mPoints[2];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[2];
-    //    line.mEnd = frustum.mPoints[3];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[3];
-    //    line.mEnd = frustum.mPoints[0];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    // 4 lines (inward ones)
-    //    line.mStart = frustum.mPoints[0];
-    //    line.mEnd = frustum.mPoints[4];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[1];
-    //    line.mEnd = frustum.mPoints[5];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[2];
-    //    line.mEnd = frustum.mPoints[6];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[3];
-    //    line.mEnd = frustum.mPoints[7];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    // far plane
-    //    line.mStart = frustum.mPoints[4];
-    //    line.mEnd = frustum.mPoints[5];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[5];
-    //    line.mEnd = frustum.mPoints[6];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[6];
-    //    line.mEnd = frustum.mPoints[7];
-    //    shape.mSegments.emplace_back(line);
-    //
-    //    line.mStart = frustum.mPoints[7];
-    //    line.mEnd = frustum.mPoints[4];
-    //    shape.mSegments.emplace_back(line);
-    //    return shape;
-    //}
+    
 };

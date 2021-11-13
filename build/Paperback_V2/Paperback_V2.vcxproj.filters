@@ -297,19 +297,10 @@
     <ClInclude Include="..\..\src\Shapes\Circle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\LineSegment.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Plane.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Polygon_shape.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Triangle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h">
@@ -371,12 +362,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Physics\AwaitDeploy.h">
       <Filter>Source\Gameplay Code\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Ray.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Frustrum.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

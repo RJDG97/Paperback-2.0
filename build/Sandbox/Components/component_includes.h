@@ -18,3 +18,8 @@
 #include "CollisionLayer.h"
 #include "Waypointv1.h"
 #include "WaypointUserv1.h"
+#include "Ray.h"
+#include "LineSegment.h"
+#include "Plane.h"
+#include "Triangle.h"
+#include "Frustrum.h"
