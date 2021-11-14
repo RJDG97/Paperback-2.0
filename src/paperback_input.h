@@ -58,6 +58,9 @@ public:
 	glm::vec3 GetMousePosition() const noexcept;
 
 	PPB_INLINE
+	glm::vec3 GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) const noexcept;
+
+	PPB_INLINE
 	void UpateInputs() noexcept;
 
 private:

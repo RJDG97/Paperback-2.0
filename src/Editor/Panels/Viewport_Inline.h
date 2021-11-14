@@ -118,7 +118,12 @@ void EditorViewport::MouseSelection()
 							float t = 0.0f;
 
 							CamPos = Camera3D::GetInstanced().GetPosition();
-							RayDir = PPB.GetMousePosition();
+							RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y }, {Max.x, Max.y});
+
+							if (RayDir == glm::vec3{})
+							{
+								continue;
+							}
 
 							if (RayAabb({ CamPos.x, CamPos.y, CamPos.z }, { RayDir.x, RayDir.y, RayDir.z }, EntityPos->m_Position + EntityBB->Min, EntityPos->m_Position + EntityBB->Max, t))
 							{
