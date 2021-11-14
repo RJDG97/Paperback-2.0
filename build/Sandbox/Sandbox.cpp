@@ -55,6 +55,8 @@ int main(int argc, char* argv[])
 void InitializeGame()
 {
     // Register Components
+    // DO NOT ADD A COMPONENT TO THE MIDDLE
+    // OF THIS LIST
     {
         PPB.RegisterComponents<
              mesh
@@ -93,6 +95,7 @@ void InitializeGame()
         ,    friendly_spawner // Tag
         ,    enemy_spawner    // Tag
         ,    player           // Tag
+        ,    waypoint_tag
         >();
     }
 

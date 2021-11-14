@@ -222,6 +222,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
     <ClInclude Include="Components\Transform.h" />
     <ClInclude Include="Components\Waypoint.h" />
     <ClInclude Include="Components\UnitState.h" />
+    <ClInclude Include="Components\WaypointTag.h" />
     <ClInclude Include="Components\Waypointv1.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />

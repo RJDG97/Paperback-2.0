@@ -346,16 +346,14 @@ namespace paperback::deserialize
             if (obj.is_type<player>())
                 NewArchetype->GetComponent<player>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<player>();
 
-
-
-
-
             if (obj.is_type<waypointv1>())
                 NewArchetype->GetComponent<waypointv1>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypointv1>();
 
             if (obj.is_type<unitstate>())
                 NewArchetype->GetComponent<unitstate>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<unitstate>();
 
+            if (obj.is_type<waypoint_tag>())
+                NewArchetype->GetComponent<waypoint_tag>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypoint_tag>();
         }
     }
 

@@ -617,6 +617,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< waypointv1 >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< unitstate >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< unitstate >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< waypoint_tag >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< waypoint_tag >(Index));
 
 		else
 			return rttr::instance();

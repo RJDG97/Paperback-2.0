@@ -207,5 +207,8 @@
     <ClInclude Include="Systems\WaypointSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
+    <ClInclude Include="Components\WaypointTag.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

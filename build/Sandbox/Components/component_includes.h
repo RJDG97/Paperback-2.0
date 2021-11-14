@@ -35,3 +35,4 @@
 #include "UnitState.h"
 #include "Player.h"
 #include "Shield.h"
+#include "WaypointTag.h"
