@@ -37,7 +37,7 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
 
         // if friendly units
-        if (!Unit_State->isAttacking && (Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) {
+        if (Unit_State && !Unit_State->isAttacking && (Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) {
 
             // Pause Movement
             rf.m_Momentum = {};
@@ -165,7 +165,7 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
 
         auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
 
-        if (!Unit_State->isAttacking && Unit_Friendly || Unit_Enemy) {
+        if (Unit_State && !Unit_State->isAttacking && (Unit_Friendly || Unit_Enemy)) {
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
             if (anim)
                 anim->m_CurrentAnimationName = "Armature|Walk";
