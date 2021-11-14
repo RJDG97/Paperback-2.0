@@ -16,6 +16,7 @@ void EditorViewport::Panel()
 		ViewportTwo();
 
 		Gizmo();
+		MouseSelection();
 
 		ImGui::EndTabBar();
 	}
@@ -82,6 +83,55 @@ void EditorViewport::ViewportMenuBar()
 	}
 
 	ImGui::EndMenuBar();
+}
+
+void EditorViewport::MouseSelection()
+{
+	ImVec2 Min = ImGui::GetWindowContentRegionMin();
+	ImVec2 Max = ImGui::GetWindowContentRegionMax();
+
+	Min.x += ImGui::GetWindowPos().x;
+	Min.y += ImGui::GetWindowPos().y;
+	Max.x += ImGui::GetWindowPos().x;
+	Max.y += ImGui::GetWindowPos().y;
+
+	ImVec2 ScreenPos = ImGui::GetCursorScreenPos();
+	ImVec2 CursorPos = ImGui::GetCursorPos(); //base on the API tis one is coords in world coordinates?
+
+	if (PPB.IsMousePress(GLFW_MOUSE_BUTTON_LEFT))
+	{
+		if (!PPB.GetArchetypeList().empty())
+		{
+			for (auto& Archetype : PPB.GetArchetypeList())
+			{
+				for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
+				{
+					auto EntityBB = Archetype->FindComponent<boundingbox>(paperback::vm::PoolDetails{ 0, i });
+					auto EntityPos = Archetype->FindComponent<transform>(paperback::vm::PoolDetails{ 0, i });
+					auto Entity = Archetype->FindComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
+
+					if (!Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID)) //is not a prefab entity
+					{
+						if (EntityBB) //if the entity has boundingbox
+						{
+							glm::vec3 CamPos, RayDir;
+							float t = 0.0f;
+
+							CamPos = Camera3D::GetInstanced().GetPosition();
+							RayDir = PPB.GetMousePosition();
+
+							if (RayAabb({ CamPos.x, CamPos.y, CamPos.z }, { RayDir.x, RayDir.y, RayDir.z }, EntityPos->m_Position + EntityBB->Min, EntityPos->m_Position + EntityBB->Max, t))
+							{
+								// if collide 
+								std::cout << Entity->m_GlobalIndex << std::endl;
+							}
+						}
+
+					}
+				}
+			}
+		}
+	}
 }
 
 void EditorViewport::Gizmo()

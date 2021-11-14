@@ -27,6 +27,9 @@ namespace paperback::deserialize
     void ReadEntities(rapidjson::Value::MemberIterator it);
 
     PPB_INLINE
+    void ReadPrefabs(rapidjson::Value::MemberIterator it);
+
+    PPB_INLINE
     void ReadEntityInfo(rapidjson::Value::MemberIterator it);
 
     PPB_INLINE

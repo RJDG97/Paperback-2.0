@@ -31,6 +31,8 @@ struct EditorViewport : paperback::editor::instance
 
     void Gizmo();
 
+    void MouseSelection();
+
     void ViewportMenuBar();
 
     void ComposeTransform();
