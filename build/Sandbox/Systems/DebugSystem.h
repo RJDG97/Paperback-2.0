@@ -266,38 +266,7 @@ struct debug_system : paperback::system::instance
     void DebugInputTest()
     {
 
-        if (PPB.IsKeyPressDown(GLFW_KEY_J))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ -1.0f, 0.0f, 0.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_L))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 1.0f, 0.0f, 0.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_I))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 0.0f, -1.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_K))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 0.0f, 1.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_O))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 1.0f, 0.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_U))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 0.0f, -1.0f, 0.0f });
-        }
-
-        if (PPB.IsKeyPressUp(GLFW_KEY_8))
+        /*if (PPB.IsKeyPressUp(GLFW_KEY_8))
         {
 
             PPB.OpenScene("Editor");
@@ -316,7 +285,7 @@ struct debug_system : paperback::system::instance
 
             PPB.OpenScene("Combat");
             DEBUG_LOG("Debug access to Combat State");
-        }
+        }*/
     }
 
     const std::array<std::vector<glm::vec3>, 2>& GetPoints() const

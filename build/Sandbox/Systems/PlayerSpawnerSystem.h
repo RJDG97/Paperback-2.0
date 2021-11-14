@@ -47,12 +47,6 @@ struct player_spawner_system : paperback::system::instance
             auto& FriendlyPrefab   = m_Coordinator.GetArchetype( Spawner.m_FriendlyPrefabGuid );
             auto FriendlyPrefabGID = FriendlyPrefab.FindPrefabEntityGID( Spawner.m_PrefabType );
 
-            ////// Find Enemy Prefab Details (Archetype& and GID)                         - Just store friendly tagged unit guid
-            //auto Enemies = Search( m_ActiveFriendly );
-            //if (Enemies.size() != 1 ) return;
-            //auto& Enemy = *( Enemies[0] );
-            //auto EnemyPrefabGID = Enemy.FindPrefabEntityGID( Spawner.m_PrefabType );
-
             if ( FriendlyPrefabGID == paperback::settings::invalid_index_v ) return;
 
             // Find Enemy Prefab Info and Clone
@@ -69,13 +63,6 @@ struct player_spawner_system : paperback::system::instance
 
             --Counter.m_Value;
         }
-
-        //if ( Counter.m_Value == 0 )
-        //{
-        //    Counter.m_Value = 3;
-        //    Timer.m_Value = 10.0f;
-        //    Timer.m_Cooldown = 2.0f;
-        //}
 	}
 
     // Updates player spawner count

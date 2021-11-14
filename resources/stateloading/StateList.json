@@ -3,6 +3,6 @@
     "Editor": "../../resources/assetloading/BlankScene_EntityInfo.json",
     "Combat": "../../resources/assetloading/GameplayScene.json",
     "Combat": "../../resources/assetloading/GameplayScene_EntityInfo.json",
-    "Workshop": "../../resources/assetloading/LevelBlockout.json",
-    "Workshop": "../../resources/assetloading/LevelBlockout_EntityInfo.json"
+    "Workshop": "../../resources/assetloading/LevelBlockoutScene.json",
+    "Workshop": "../../resources/assetloading/LevelBlockoutScene_EntityInfo.json"
 }
