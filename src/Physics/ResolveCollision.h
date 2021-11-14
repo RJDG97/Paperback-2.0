@@ -18,6 +18,51 @@ enum direction
 	none
 };
 
+void InElastic_collision_1D(float& v1, float& a1, const float mass1,
+	float& v2, float& a2, const float mass2)
+{
+	if (mass1 != mass2)
+	{
+		float total_mass = mass1 + mass2;
+
+		float obj1 = (mass1 * v1)
+			+ (mass2 * v2);
+		float obj3 = (mass1 * a1)
+			+ (mass2 * a2);
+
+		v1 = v2 = obj1 / total_mass;
+		a1 = a2 = obj3 / total_mass;
+	}
+}
+
+// combined
+void Elastic_InElastic_1D(float& v1, float& a1, const float mass1,
+	float& v2, float& a2, const float mass2, const float restituition)// 0.f - 1.f
+{
+	if (mass1 != mass2)
+	{
+		float total_mass = mass1 + mass2;
+
+		float obj1 = ((restituition * mass2) * (v2 - v1)
+			+ ((mass1 * v1)
+			+ (mass2 * v2))) / total_mass;
+		float obj2 = ((restituition * mass1) * (v1 - v2)
+			+ ((mass1 * v1)
+			+ (mass2 * v2))) / total_mass;
+		float obj3 = ((restituition * mass2) * (a2 - a1)
+			+ ((mass1 * a1)
+			+ (mass2 * a2))) / total_mass;
+		float obj4 = ((restituition * mass1) * (a1 - a2)
+			+ ((mass1 * a1)
+			+ (mass2 * a2))) / total_mass;
+
+		v1 = obj1;
+		v2 = obj2;
+		a1 = obj3;
+		a2 = obj4;
+	}
+}
+
 // cheap 1D
 void Cheap_Elastic_collision_1D(float& v1, float& a1, const float mass1,
 	float& v2, float& a2, const float mass2)
