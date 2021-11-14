@@ -362,29 +362,27 @@ namespace paperback::coordinator
 			{
 				if (Archetype->GetCurrentEntityCount() == 0)
 					continue;
-				else
+
+				JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
+
+				//Serialize GUIDs
+
+				JFile.StartObject().WriteKey("Guid").StartArray();
+
+				auto& ComponentInfoArray = Archetype->GetComponentInfos();
+
+				for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
 				{
-					JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
-
-					//Serialize GUIDs
-
-					JFile.StartObject().WriteKey("Guid").StartArray();
-
-					auto& ComponentInfoArray = Archetype->GetComponentInfos();
-
-					for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
-					{
-						Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
-						JFile.WriteGuid(Temp);
-					}
-
-					JFile.EndArray().EndObject();
-
-					//Serialize Components
-					Archetype->SerializeAllEntities(JFile);
-
-					JFile.EndArray().EndObject();
+					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+					JFile.WriteGuid(Temp);
 				}
+
+				JFile.EndArray().EndObject();
+
+				//Serialize Components
+				Archetype->SerializeAllEntities(JFile);
+
+				JFile.EndArray().EndObject();
 			}
 		}
 

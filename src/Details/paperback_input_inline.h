@@ -116,26 +116,26 @@ bool Input::IsScrollDown() noexcept
 
 glm::vec3 Input::GetMousePosition() const noexcept
 {
-	GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
-	auto& WindowDetails = PPB.GetSystem< window_system >().E;
+	//GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
+	//auto& WindowDetails = PPB.GetSystem< window_system >().E;
 
-	// Get x and y values
-	double X, Y;
-	glfwGetCursorPos(m_pWindow, &X, &Y);
+	//// Get x and y values
+	//double X, Y;
+	//glfwGetCursorPos(m_pWindow, &X, &Y);
 
-	// Find point in NDC
-	glm::vec4 NDCPoint = glm::vec4{ (2.f * X) / WindowDetails.m_Width - 1.f, 1.f - (2.f * Y) / WindowDetails.m_Height, -1.f, 1.f };
-	// Find point in view
-	glm::vec4 ViewPoint = glm::inverse(Camera3D::GetInstanced().GetProjection()) * NDCPoint;
-	ViewPoint = glm::vec4{ ViewPoint.x, ViewPoint.y, -1.f, 0.f };
-	// Find point world
-	glm::vec3 WorldPoint = glm::inverse(Camera3D::GetInstanced().GetView()) * ViewPoint;
+	//// Find point in NDC
+	//glm::vec4 NDCPoint = glm::vec4{ (2.f * X) / WindowDetails.m_Width - 1.f, 1.f - (2.f * Y) / WindowDetails.m_Height, -1.f, 1.f };
+	//// Find point in view
+	//glm::vec4 ViewPoint = glm::inverse(Camera3D::GetInstanced().GetProjection()) * NDCPoint;
+	//ViewPoint = glm::vec4{ ViewPoint.x, ViewPoint.y, -1.f, 0.f };
+	//// Find point world
+	//glm::vec3 WorldPoint = glm::inverse(Camera3D::GetInstanced().GetView()) * ViewPoint;
 
-	glm::vec3 WorldPointNorm = glm::normalize(WorldPoint);
+	//glm::vec3 WorldPointNorm = glm::normalize(WorldPoint);
 
-	return WorldPointNorm;
+	//return WorldPoint;
 
-	//return glm::vec3{ 0 };
+	return glm::vec3{ 0 };
 }
 
 

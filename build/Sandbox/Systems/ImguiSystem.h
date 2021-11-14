@@ -132,7 +132,7 @@ struct imgui_system : paperback::system::instance
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 
         m_bImgui = true;
-        m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = false;
+        m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
 
         m_Log.Init(); //Init ImTerm (Console)
@@ -226,47 +226,6 @@ struct imgui_system : paperback::system::instance
                 ImGui::UpdatePlatformWindows();
                 ImGui::RenderPlatformWindowsDefault();
                 glfwMakeContextCurrent(backup_current_context);
-            }
-
-            if (PPB.IsMousePress(GLFW_MOUSE_BUTTON_LEFT))
-            {
-                if (!PPB.GetArchetypeList().empty())
-                {
-                    for (auto& Archetype : PPB.GetArchetypeList())
-                    {
-                        for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
-                        {
-                            auto EntityBB = Archetype->FindComponent<boundingbox>(paperback::vm::PoolDetails{ 0, i });
-                            auto Entity = Archetype->FindComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
-                            if (!Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
-                            {
-                                if (EntityBB) //if the entity has boundingbox
-                                {
-                                    paperback::Vector3f CamPos, Ray, RayDir;
-                                    float t = 0.0f;
-
-                                    CamPos.x = Camera3D::GetInstanced().GetPosition().x;
-                                    CamPos.y = Camera3D::GetInstanced().GetPosition().y;
-                                    CamPos.z = Camera3D::GetInstanced().GetPosition().z;
-
-                                    Ray.x = PPB.GetMousePosition().x;
-                                    Ray.y = PPB.GetMousePosition().y;
-                                    Ray.z = PPB.GetMousePosition().z;
-
-                                    RayDir = Ray - CamPos;
-
-
-                                    if (RayAabb(CamPos, RayDir, EntityBB->Min, EntityBB->Max, t))
-                                    {
-                                        // if collide 
-                                        std::cout << Entity->m_GlobalIndex << std::endl;
-                                    }
-                                }
-
-                            }
-                        }
-                    }
-                }
             }
         }
     }
@@ -469,25 +428,16 @@ struct imgui_system : paperback::system::instance
         if (FilePath.find(".json") == std::string::npos)
             FilePath.append(".json");
 
-        EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
+        if (!m_bSavePrefab)
+            EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
 
         if (!EntityInfoPath.empty())
         {
-            PPB.SaveScene(FilePath, EntityInfoPath);
+            if (!m_bSavePrefab)
+                PPB.SaveScene(FilePath, EntityInfoPath);
+            else
+                PPB.SavePrefabs(FilePath, EntityInfoPath); //To remove the need of entityinfo
             EDITOR_TRACE_PRINT(FileName + " Saved at: " + FilePath);
-
-            //if (SavePrefab)
-            //{
-            //    m_LoadedPrefabPath = FilePath;
-            //    m_LoadedPrefabFile = FileName;
-            //    m_PrefabEntityInfoPath = EntityInfoPath;
-            //}
-            //else
-            //{
-            //    m_LoadedPath = FilePath;
-            //    m_LoadedFile = FileName;
-            //    m_EntityInfoLoadedPath = EntityInfoPath;
-            //}
         }
 
         m_bSavePrefab = false;
