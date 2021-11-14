@@ -131,8 +131,6 @@ glm::vec3 Input::GetMousePosition() const noexcept
 	// Find point world
 	glm::vec3 WorldPoint = glm::inverse(Camera3D::GetInstanced().GetView()) * ViewPoint;
 
-	glm::vec3 WorldPointNorm = glm::normalize(WorldPoint);
-
 	return WorldPoint;
 }
 
@@ -157,8 +155,6 @@ glm::vec3 Input::GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 view
 	ViewPoint = glm::vec4{ ViewPoint.x, ViewPoint.y, -1.f, 0.f };
 	// Find point world
 	glm::vec3 WorldPoint = glm::inverse(Camera3D::GetInstanced().GetView()) * ViewPoint;
-
-	glm::vec3 WorldPointNorm = glm::normalize(WorldPoint);
 
 	return WorldPoint;
 }

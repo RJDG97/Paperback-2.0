@@ -102,46 +102,56 @@ void EditorViewport::MouseSelection()
 {
 	if (PPB.IsMousePress(GLFW_MOUSE_BUTTON_LEFT))
 	{
-		if (!PPB.GetArchetypeList().empty())
+		if (m_Imgui.SetEditorMode(m_Imgui.m_bImgui))
 		{
-			for (auto& Archetype : PPB.GetArchetypeList())
+			if (!PPB.GetArchetypeList().empty())
 			{
-				for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
+				for (auto& Archetype : PPB.GetArchetypeList())
 				{
-					auto EntityBB = Archetype->FindComponent<boundingbox>(paperback::vm::PoolDetails{ 0, i });
-					auto EntityPos = Archetype->FindComponent<transform>(paperback::vm::PoolDetails{ 0, i });
-					auto Entity = Archetype->FindComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
-
-					if (!Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID)) //is not a prefab entity
+					for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
 					{
-						if (EntityBB) //if the entity has boundingbox
+						auto EntityBB = Archetype->FindComponent<boundingbox>(paperback::vm::PoolDetails{ 0, i });
+						auto EntityPos = Archetype->FindComponent<transform>(paperback::vm::PoolDetails{ 0, i });
+						auto Entity = Archetype->FindComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
+
+						if (!Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID)) //is not a prefab entity
 						{
-							glm::vec3 CamPos, RayDir;
-							float t = 0.0f;
-
-							ImVec2 Min = ImGui::GetWindowContentRegionMin();
-							ImVec2 Max = ImGui::GetWindowContentRegionMax();
-
-							Min.x += ImGui::GetWindowPos().x;
-							Min.y += ImGui::GetWindowPos().y;
-							Max.x += ImGui::GetWindowPos().x;
-							Max.y += ImGui::GetWindowPos().y;
-
-							CamPos = Camera3D::GetInstanced().GetPosition();
-							RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y - 70.0f }, {Max.x, Max.y - 70.0f});
-
-							if (RayDir == glm::vec3{})
+							if (EntityBB) //if the entity has boundingbox
 							{
-								continue;
+								glm::vec3 CamPos, RayDir;
+								float t = 0.0f;
+
+								ImVec2 Min = ImGui::GetWindowContentRegionMin();
+								ImVec2 Max = ImGui::GetWindowContentRegionMax();
+
+								Min.x += ImGui::GetWindowPos().x;
+								Min.y += ImGui::GetWindowPos().y;
+								Max.x += ImGui::GetWindowPos().x;
+								Max.y += ImGui::GetWindowPos().y;
+
+								//ImGui::GetForegroundDrawList()->AddRect(Min, Max, IM_COL32(255, 255, 0, 255));
+
+								CamPos = Camera3D::GetInstanced().GetPosition();
+								RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y - 70.0f }, { Max.x, Max.y - 70.0f });
+
+								if (RayDir == glm::vec3{})
+								{
+									continue;
+								}
+
+								if (RayAabb({ CamPos.x, CamPos.y, CamPos.z }, { RayDir.x, RayDir.y, RayDir.z }, EntityPos->m_Position + EntityBB->Min, EntityPos->m_Position + EntityBB->Max, t))
+								{
+
+									auto& EntityInfo = PPB.GetEntityInfo(Entity->m_GlobalIndex);
+
+									m_Imgui.m_SelectedEntity.first = EntityInfo.m_pArchetype;
+									m_Imgui.m_SelectedEntity.second = EntityInfo.m_PoolDetails.m_PoolIndex;
+									m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
+
+								}
 							}
 
-							if (RayAabb({ CamPos.x, CamPos.y, CamPos.z }, { RayDir.x, RayDir.y, RayDir.z }, EntityPos->m_Position + EntityBB->Min, EntityPos->m_Position + EntityBB->Max, t))
-							{
-								// if collide 
-								std::cout << Entity->m_GlobalIndex << std::endl;
-							}
 						}
-
 					}
 				}
 			}

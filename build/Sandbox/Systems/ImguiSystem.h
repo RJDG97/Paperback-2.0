@@ -812,6 +812,15 @@ struct imgui_system : paperback::system::instance
 
         return a.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
     }
+
+    bool SetEditorMode(bool Editor)
+    {
+        if (Editor)
+            return ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow) || ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow);
+        else
+            return false;
+
+    }
 };
 
 #include "Editor/Panels/EntityInspector_Inline.h"
