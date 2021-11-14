@@ -145,12 +145,12 @@ GLuint TextureLoader::LoadDDSTexture(const std::string& File, const bool& GammaC
 
 		for (size_t level = 0; level < file.GetMipCount(); ++level)
 		{
-			auto data = file.GetImageData(level, 0);
+			auto data = file.GetImageData( static_cast<uint32_t>( level ), 0);
 
 			auto width = data->m_width;
 			auto height = data->m_height;
 
-			glCompressedTextureSubImage2D(texture, level, 0, 0, width, height, internalformat, data->m_memSlicePitch, data->m_mem);
+			glCompressedTextureSubImage2D(texture, static_cast<uint32_t>( level ), 0, 0, width, height, internalformat, data->m_memSlicePitch, data->m_mem);
 		}
 
 		return texture;
@@ -192,12 +192,12 @@ GLuint TextureLoader::LoadDDSSkyboxTexture(const std::vector<std::string>& Files
 
 		for (size_t level = 0; level < file.GetMipCount(); ++level)
 		{
-			auto data = file.GetImageData(level, 0);
+			auto data = file.GetImageData( static_cast<uint32_t>( level ), 0);
 
 			auto width = data->m_width;
 			auto height = data->m_height;
 
-			glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, level, 0, 0, width, height, GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT, data->m_memSlicePitch, data->m_mem);
+			glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, static_cast<uint32_t>( level ), 0, 0, width, height, GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT, data->m_memSlicePitch, data->m_mem);
 		}
 	}
 

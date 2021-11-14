@@ -54,9 +54,7 @@ int main(int argc, char* argv[])
 
 void InitializeGame()
 {
-    // Register Components
-    // DO NOT ADD A COMPONENT TO THE MIDDLE
-    // OF THIS LIST
+    // Register Components - Add to the end of the list
     {
         PPB.RegisterComponents<
              mesh
@@ -122,7 +120,6 @@ void InitializeGame()
             onevent_UnitTrigger_system
         ,   onevent_UnitTriggerStay_system
         ,   onevent_UnitTriggerExit_system
-            //onevent_WaypointTrigger_system
         >();
     }
     // Entity Creation

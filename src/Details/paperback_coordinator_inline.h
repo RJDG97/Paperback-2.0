@@ -99,11 +99,6 @@ namespace paperback::coordinator
 
 	void scene_mgr::RemoveScene(const std::string& Name)
 	{
-
-		//removes scene from list of scenes
-		//check if scene exists
-
-		//if yes, remove
 	}
 
 	void scene_mgr::UpdateScene(const std::string& Path, const std::string& Info)
@@ -121,8 +116,6 @@ namespace paperback::coordinator
 
 	void scene_mgr::SaveScenes()
 	{
-
-		//look into porting save logic from imgui system
 	}
 
 	bool scene_mgr::TriggerChangeScene(const std::string& Name)
