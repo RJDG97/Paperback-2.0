@@ -1,8 +1,8 @@
 {
     "Editor": "../../resources/assetloading/BlankScene.json",
     "Editor": "../../resources/assetloading/BlankScene_EntityInfo.json",
-    "Combat": "../../resources/assetloading/LevelTwo.json",
-    "Combat": "../../resources/assetloading/LevelTwo_EntityInfo.json",
-    "Workshop": "../../resources/assetloading/LevelTwo.json",
-    "Workshop": "../../resources/assetloading/LevelTwo_EntityInfo.json"
+    "Combat": "../../resources/assetloading/GameplayScene.json",
+    "Combat": "../../resources/assetloading/GameplayScene_EntityInfo.json",
+    "Workshop": "../../resources/assetloading/LevelBlockout.json",
+    "Workshop": "../../resources/assetloading/LevelBlockout_EntityInfo.json"
 }
