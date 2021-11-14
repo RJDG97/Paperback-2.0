@@ -137,22 +137,22 @@ Renderer::~Renderer()
 {
 	glDeleteVertexArrays(1, &m_VAO);
 	glDeleteVertexArrays(1, &m_DebugVAO);
+	
+	glDeleteFramebuffers( static_cast<GLsizei>( m_ShadowBuffer.m_FrameBuffer.size() ), m_ShadowBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_ShadowBuffer.m_BufferTexture.size() ), m_ShadowBuffer.m_BufferTexture.data());
 
-	glDeleteFramebuffers(m_ShadowBuffer.m_FrameBuffer.size(), m_ShadowBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_ShadowBuffer.m_BufferTexture.size(), m_ShadowBuffer.m_BufferTexture.data());
-
-	glDeleteFramebuffers(m_LightingBuffer.m_FrameBuffer.size(), m_LightingBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_LightingBuffer.m_BufferTexture.size(), m_LightingBuffer.m_BufferTexture.data());
+	glDeleteFramebuffers( static_cast<GLsizei>( m_LightingBuffer.m_FrameBuffer.size() ), m_LightingBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_LightingBuffer.m_BufferTexture.size() ), m_LightingBuffer.m_BufferTexture.data());
 	glDeleteRenderbuffers(1, &m_LightingBuffer.m_RenderBuffer);
 
-	glDeleteFramebuffers(m_BlurBuffer.m_FrameBuffer.size(), m_BlurBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_BlurBuffer.m_BufferTexture.size(), m_BlurBuffer.m_BufferTexture.data());
+	glDeleteFramebuffers( static_cast<GLsizei>( m_BlurBuffer.m_FrameBuffer.size() ), m_BlurBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_BlurBuffer.m_BufferTexture.size() ), m_BlurBuffer.m_BufferTexture.data());
 
-	glDeleteFramebuffers(m_UIBuffer.m_FrameBuffer.size(), m_UIBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_UIBuffer.m_BufferTexture.size(), m_UIBuffer.m_BufferTexture.data());
+	glDeleteFramebuffers( static_cast<GLsizei>( m_UIBuffer.m_FrameBuffer.size() ), m_UIBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_UIBuffer.m_BufferTexture.size() ), m_UIBuffer.m_BufferTexture.data());
 
-	glDeleteFramebuffers(m_FinalBuffer.m_FrameBuffer.size(), m_FinalBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_FinalBuffer.m_BufferTexture.size(), m_FinalBuffer.m_BufferTexture.data());
+	glDeleteFramebuffers( static_cast<GLsizei>( m_FinalBuffer.m_FrameBuffer.size() ), m_FinalBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_FinalBuffer.m_BufferTexture.size() ), m_FinalBuffer.m_BufferTexture.data());
 	glDeleteRenderbuffers(1, &m_FinalBuffer.m_RenderBuffer);
 }
 
