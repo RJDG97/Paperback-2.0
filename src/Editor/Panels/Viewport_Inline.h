@@ -7,9 +7,9 @@
 void EditorViewport::Panel()
 {
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-	ImGui::Begin(EditorViewport::typedef_v.m_pName, &m_bEnabled, ImGuiWindowFlags_MenuBar);
+	ImGui::Begin(EditorViewport::typedef_v.m_pName, &m_bEnabled);// ImGuiWindowFlags_MenuBar);
 
-	ViewportMenuBar();
+	//ViewportMenuBar();
 
 	//if (ImGui::BeginTabBar("##Viewports"))
 	//{
@@ -100,17 +100,6 @@ void EditorViewport::ViewportMenuBar()
 
 void EditorViewport::MouseSelection()
 {
-	ImVec2 Min = ImGui::GetWindowContentRegionMin();
-	ImVec2 Max = ImGui::GetWindowContentRegionMax();
-
-	Min.x += ImGui::GetWindowPos().x;
-	Min.y += ImGui::GetWindowPos().y;
-	Max.x += ImGui::GetWindowPos().x;
-	Max.y += ImGui::GetWindowPos().y;
-
-	ImVec2 ScreenPos = ImGui::GetCursorScreenPos();
-	ImVec2 CursorPos = ImGui::GetCursorPos(); //base on the API tis one is coords in world coordinates?
-
 	if (PPB.IsMousePress(GLFW_MOUSE_BUTTON_LEFT))
 	{
 		if (!PPB.GetArchetypeList().empty())
@@ -130,8 +119,16 @@ void EditorViewport::MouseSelection()
 							glm::vec3 CamPos, RayDir;
 							float t = 0.0f;
 
+							ImVec2 Min = ImGui::GetWindowContentRegionMin();
+							ImVec2 Max = ImGui::GetWindowContentRegionMax();
+
+							Min.x += ImGui::GetWindowPos().x;
+							Min.y += ImGui::GetWindowPos().y;
+							Max.x += ImGui::GetWindowPos().x;
+							Max.y += ImGui::GetWindowPos().y;
+
 							CamPos = Camera3D::GetInstanced().GetPosition();
-							RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y }, {Max.x, Max.y});
+							RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y - 70.0f }, {Max.x, Max.y - 70.0f});
 
 							if (RayDir == glm::vec3{})
 							{
