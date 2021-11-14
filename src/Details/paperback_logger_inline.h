@@ -4,9 +4,6 @@
 
 namespace paperback
 {
-	//logger::MTWriter logger::mt_writer;
-	//logger::MTLogger logger::mt_logger;
-
 	void logger::Init( void )
 	{
         spdlog::set_pattern("%^[%T] %n: %v%$");
@@ -32,12 +29,10 @@ namespace paperback
 		spdlog::set_level( spdlog::level::trace );
 		mt_logger = spdlog::basic_logger_mt( "System", "../../logs/DebugLog__" + GetCurrent() + ".txt" );
 		spdlog::flush_every( std::chrono::seconds(5) );
-		//mt_logger->flush_on( spdlog::level::trace );
 	#else
 		spdlog::set_level( spdlog::level::err );
 		mt_logger = spdlog::basic_logger_mt( "System", "../../logs/ReleaseLog__" + GetCurrent() + ".txt" );
 		spdlog::flush_every( std::chrono::seconds(5) );
-		//mt_logger->flush_on( spdlog::level::err );
 	#endif
 	}
 }

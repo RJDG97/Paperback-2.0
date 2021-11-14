@@ -38,10 +38,7 @@ namespace paperback::event
     template < paperback::concepts::Event T_EVENT >
     void manager::RemoveEvent( void ) noexcept
     {
-        //for ( auto begin = m_GlobalEvents.begin(), end = m_GlobalEvents.end(); begin != end; ++begin )
-        //{
 
-        //}
     }
 
     template < paperback::concepts::Event T_EVENT

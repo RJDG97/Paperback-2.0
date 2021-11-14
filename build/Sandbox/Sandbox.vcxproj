@@ -231,7 +231,6 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
     <ClInclude Include="Systems\EnemySpawnerSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
-    <ClInclude Include="Systems\OnEvent_UpdateHealth.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\PlayerSpawnerSystem.h" />

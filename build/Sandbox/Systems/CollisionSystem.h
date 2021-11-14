@@ -17,7 +17,7 @@ struct collision_system : paperback::system::instance
 
     using query = std::tuple< paperback::query::none_of<prefab> >;
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1,
+    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1,
         unitstate* state, waypointv1* wp1) noexcept
     {
         if ( Entity.IsZombie() ) return;
@@ -34,62 +34,58 @@ struct collision_system : paperback::system::instance
 
         Boundingbox->m_Collided = false;
 
-        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2,
-            unitstate* state2, waypointv1* wp2)  noexcept // -> bool
+        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2,
+                                       unitstate* state2, waypointv1* wp2 )  noexcept
+        {
+            if ( Entity.IsZombie() ) return;
+
+            // Do not check against self
+            if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return;
+
+            // Add to collision map
+            auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
+            if (map == Boundingbox->m_CollisionState.end()) {
+                const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
+            }
+
+            xf.x = Xform.m_Position.x + Xform.m_Offset.x;
+            xf.y = Xform.m_Position.y + Xform.m_Offset.y;
+            xf.z = Xform.m_Position.z + Xform.m_Offset.z;
+
+            // Collision Detection
+            if ( Boundingbox && BB)
             {
-                //assert(Entity.IsZombie() == false);
-                if ( Entity.IsZombie() )
-                    return;
-
-                // Do not check against self
-                if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return;//false;
-
-                // Add to collision map
-                auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
-                if (map == Boundingbox->m_CollisionState.end()) {
-                    const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
-                }
-
-                xf.x = Xform.m_Position.x + Xform.m_Offset.x;
-                xf.y = Xform.m_Position.y + Xform.m_Offset.y;
-                xf.z = Xform.m_Position.z + Xform.m_Offset.z;
-                // Collision Detection
-                if ( Boundingbox && BB)
+                if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                 {
-                    // added to parameters
-                    if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
-                    {                        
-                        if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) // this first (on entry)
-                            BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
-                        else // this after (constant collision)
-                            BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
-                        
-                        Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
-
-                        Boundingbox->m_Collided = true; // this is the debug line
-                    }
+                    // On entry
+                    if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) 
+                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                    // Constant collision
                     else
-                    {
-                        if(Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) // no longer colliding
-                            BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                    
+                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
 
-                        Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
-                    }
+                    Boundingbox->m_Collided = true;
                 }
-                if (Sphere && Ball)
+                else
                 {
-                    // added to parameters
-                    if (SphereSphere(tf, Sphere->m_fRadius, xf, Ball->m_fRadius))
-                    {
-                        Sphere->m_Collided = Ball->m_Collided = true;
-                    }
-                    else
-                        Sphere->m_Collided = Ball->m_Collided = false;
-                }
-                // 
+                    // No longer colliding
+                    if( Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) )
+                        BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
 
-                /* Return true on deletion of collided entities */
-                //return false; 
-            });
+                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
+                }
+            }
+            if (Sphere && Ball)
+            {
+                if (SphereSphere(tf, Sphere->m_fRadius, xf, Ball->m_fRadius))
+                {
+                    Sphere->m_Collided = Ball->m_Collided = true;
+                }
+                else
+                    Sphere->m_Collided = Ball->m_Collided = false;
+            }
+        });
     }
 };

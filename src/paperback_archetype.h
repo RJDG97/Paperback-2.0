@@ -107,12 +107,6 @@ namespace paperback::archetype
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
 
-        //// Called by the Prefab Instance Archetype to Allocate Memory
-        //PPB_INLINE
-        //void InitializePrefabInstances( const u32 InstanceCount
-        //                              , const u32 PrefabPoolIndex
-        //                              , vm::instance& PrefabPool ) noexcept;
-
 
         //-----------------------------------
         //       Data Member Getters

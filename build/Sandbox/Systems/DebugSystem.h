@@ -3,8 +3,6 @@
 #include "../Functionality/Renderer/Renderer.h"
 #include "Math/Vector3f.h"
 
-//#include "Editor/EditorLogger.h"
-
 struct debug_system : paperback::system::instance
 {
 

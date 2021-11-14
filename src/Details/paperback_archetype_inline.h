@@ -255,17 +255,6 @@ namespace paperback::archetype
             }
     }
 
-    //void instance::InitializePrefabInstances( const u32 InstanceCount
-    //                                        , const u32 PrefabPoolIndex
-    //                                        , vm::instance& PrefabPool ) noexcept
-    //{
-    //    for ( u32 i = 0; i < InstanceCount; ++i )
-    //    {
-    //        // Copy prefab components
-    //        ClonePrefabComponents( PrefabPoolIndex, PrefabPool );
-    //    }
-    //}
-
     //-----------------------------------
     //             Getters
     //-----------------------------------

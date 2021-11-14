@@ -232,7 +232,7 @@ namespace paperback::vm
 			auto& Info = m_pCoordinator->GetEntityInfo( m_MoveHead );
             RemoveTransferredEntity( Info.m_PoolDetails.m_PoolIndex );
 			m_MoveHead = Info.m_Validation.m_Next;
-			ResetMInfo( Info ); // Updated this
+			ResetMInfo( Info );
         }
 	}
 
@@ -489,7 +489,6 @@ namespace paperback::vm
 		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
 			if ( m_ComponentInfo[i]->m_UID == UIDComponent ) { return static_cast<int>(i); }
 
-		//PPB_ASSERT_MSG( true, "Pool GetComponentIndex - Cannot find component within memory pool" );
 		return -1;
 	}
 
@@ -499,7 +498,6 @@ namespace paperback::vm
 		for ( size_t i = 0, end = m_NumberOfComponents; i < end; ++i )
 			if ( m_ComponentInfo[i]->m_Guid == Guid ) { return static_cast<int>(i); }
 
-		//PPB_ASSERT_MSG( true, "Pool GetComponentIndex - Cannot find component within memory pool" );
 		return -1;
 	}
 
@@ -609,10 +607,6 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< waypoint >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< player >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< player >(Index));
-
-
-
-
 		else if (Comp_Guid.m_Value == component::info_v< waypointv1 >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< waypointv1 >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< unitstate >.m_Guid.m_Value)
@@ -667,8 +661,7 @@ namespace paperback::vm
 		// Removing an entity with the parent component
 		if ( CInfo.m_Guid == component::info_v<parent>.m_Guid )
 		{
-
-			/*Unity's Implementation - Deletes children before parent, on deletion of parent*/
+			// Deletes children before parent, on deletion of parent
 			auto& Parent       = GetComponent<parent>( PoolIndex );
 			auto  ChildrenList = Parent.m_ChildrenGlobalIndexes;
 

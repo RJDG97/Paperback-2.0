@@ -29,19 +29,7 @@ enum class CollisionLayer : paperback::u8
     INTERACTABLE,
     HOLE
 };
-// references
 
-// Typedefs
-// impt: m_bits = uint64_t
-
-//using AABBType = std::unordered_map<EntityID, AABB*>;
-//using CollidableLayer = tools::bits<static_cast<int>(CollisionLayer::NONE)>;
-//using CollidableLayers = std::pair<CollidableLayer, bool>;
-
-// Maps a collision layer to a bitset that tells the system which layers are collidable
-//std::unordered_map<CollisionLayer, CollidableLayers> collision_layer_arr_;
-// Saves a copy of all valid AABBs on each layer
-//std::map<CollisionLayer, AABBType> collision_map_;
 
 struct collidable
 {
