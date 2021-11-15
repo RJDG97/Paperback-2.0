@@ -437,6 +437,69 @@ namespace paperback::deserialize
         }
     }
 
+    void ReadPrefabs(rapidjson::Value::MemberIterator it)
+    {
+        using NewComponentInfoList = std::array<const component::info*, settings::max_components_per_entity_v>;
+        std::string TempName{};
+        for (rapidjson::Value::ValueIterator itr = it->value.Begin(); itr != it->value.End(); itr++)
+        {
+            for (rapidjson::Value::MemberIterator mitr = itr->MemberBegin(); mitr != itr->MemberEnd(); mitr++)
+            {
+                NewComponentInfoList CList{};
+                paperback::u32 Counter = 0, EntityCounter = 0;
+                paperback::archetype::instance* NewArchetype = nullptr;
+                tools::bits ArchetypeSignature;
+
+                TempName = mitr->name.GetString(); //Archetype Manager Name Appears in this layer
+
+                if (mitr->value.IsArray() && !TempName.empty())
+                {
+                    for (rapidjson::Value::ValueIterator vitr = mitr->value.Begin(); vitr != mitr->value.End(); vitr++)
+                    {
+                        if (NewArchetype)
+                        {
+                            NewArchetype->AccessGuard([&]()
+                                {
+                                    NewArchetype->CreatePrefab();
+                                    NewArchetype->SetName(TempName);
+
+                                    for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
+                                        ReadComponents(Mitr, NewArchetype, EntityCounter);
+
+                                    EntityCounter++;
+                                }
+                            );
+                        }
+                        else
+                        {
+                            // Load Each Archetype's Components GUID
+                            for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
+                            {
+                                if (Mitr->value.IsArray())
+                                {
+                                    rttr::variant obj = rttr::type::get_by_name(Mitr->name.GetString()).get_constructor().invoke();
+
+                                    if (obj.is_type<paperback::component::temp_guid>())
+                                    {
+                                        for (rapidjson::Value::ValueIterator Vitr = Mitr->value.Begin(); Vitr != Mitr->value.End(); Vitr++)
+                                        {
+                                            paperback::component::type::guid TempGuid{ Vitr->GetUint64() };
+
+                                            CList[Counter] = PPB.FindComponentInfo(TempGuid);
+                                            ArchetypeSignature.Set(CList[Counter++]->m_UID);
+                                        }
+
+                                        NewArchetype = &PPB.GetOrCreateArchetype(ArchetypeSignature); // Replace with Create Prefab
+                                        PPB_ASSERT_MSG(NewArchetype == nullptr, "Prefab Archetype Failed to Init");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     //variation of normal for use with general case read
     void ReadStringPairs(std::stringstream& stream, rapidjson::Value& json_object)

@@ -336,17 +336,8 @@ namespace paperback::coordinator
 		paperback::JsonFile JFile;
 
 		JFile.StartWriter(FilePath);
-		JFile.StartObject().WriteKey("Entities");
+		JFile.StartObject().WriteKey("Prefabs");
 		JFile.StartArray();
-
-		//Save Archetype Manager
-		TempMgr.EntityHead = m_ArchetypeMgr.GetEntityHead();
-
-		JFile.StartObject().WriteKey("Archetype Manager");
-
-		JFile.StartObject().Write(TempMgr).EndObject();
-
-		JFile.EndObject();
 
 		// Serialize Prefabs 
 		for (auto& Archetype : PPB.GetArchetypeList())
@@ -377,13 +368,19 @@ namespace paperback::coordinator
 
 				JFile.EndArray().EndObject();
 			}
+
+			JFile.EndArray().EndObject();
+
+			//Serialize Components
+			Archetype->SerializePrefabEntities(JFile);
+
+			JFile.EndArray().EndObject();
 		}
 
 		JFile.EndArray().EndObject().EndWriter();
 
 		// Save the entity info after everything else
-		SaveEntityInfo(EntityInfoPath);
-
+		//SaveEntityInfo(EntityInfoPath);
 	}
 
 	PPB_INLINE
@@ -417,12 +414,12 @@ namespace paperback::coordinator
 	void instance::LoadPrefabs( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
 	{
 		JsonFile Jfile;
-
+		Initialize();
 		Jfile.StartReader(FilePath);
-		Jfile.LoadEntities("Entities");
+		Jfile.LoadEntities("Prefabs");
 		Jfile.EndReader();
 
-		LoadEntityInfo(EntityInfoPath);
+		//LoadEntityInfo(EntityInfoPath);
 	}
 
 	PPB_INLINE

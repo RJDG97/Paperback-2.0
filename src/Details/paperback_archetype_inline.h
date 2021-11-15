@@ -255,6 +255,36 @@ namespace paperback::archetype
             }
     }
 
+    void instance::SerializePrefabEntities(paperback::JsonFile& JFile) noexcept
+    {
+        for (auto& Pool : m_ComponentPool)
+            for (u32 i = 0, max = Pool.GetCurrentEntityCount(); i < max; ++i)
+            {
+                ////Remove all references from the prefab components
+                //auto Prefab = FindComponent<prefab>(vm::PoolDetails{ 0, i });
+
+                //if (Prefab)
+                //    if (!Prefab->m_ReferencePrefabGIDs.empty())
+                //            Prefab->m_ReferencePrefabGIDs.clear();
+
+                JFile.StartObject();
+                Pool.SerializePoolComponentsAtEntityIndex(i, JFile);
+                JFile.EndObject();
+            }
+    }
+
+
+    //void instance::InitializePrefabInstances( const u32 InstanceCount
+    //                                        , const u32 PrefabPoolIndex
+    //                                        , vm::instance& PrefabPool ) noexcept
+    //{
+    //    for ( u32 i = 0; i < InstanceCount; ++i )
+    //    {
+    //        // Copy prefab components
+    //        ClonePrefabComponents( PrefabPoolIndex, PrefabPool );
+    //    }
+    //}
+
     //-----------------------------------
     //             Getters
     //-----------------------------------
