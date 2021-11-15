@@ -15,39 +15,6 @@
 //};
 
 
-//void Cheap_Elastic_collision_3D(paperback::Vector3f&& v1, paperback::Vector3f&& a1, const float mass1,
-//	paperback::Vector3f&& v2, paperback::Vector3f&& a2, const float mass2)
-//{
-//	if (mass1 != mass2)
-//	{
-//		float total_mass = mass1 + mass2;
-//		float var1 = (mass1 - mass2) / total_mass,
-//			var2 = (2 * mass2) / total_mass,
-//			var3 = (2 * mass1) / total_mass,
-//			var4 = (mass2 - mass1) / total_mass;
-//
-//		paperback::Vector3f& obj1 = (var1 * v1)
-//			+ (var2 * v2);
-//		paperback::Vector3f& obj2 = (var3 * v1)
-//			+ (var4 * v2);
-//		paperback::Vector3f& obj3 = (var1 * a1)
-//			+ (var2 * a2);
-//		paperback::Vector3f& obj4 = (var3 * a1)
-//			+ (var4 * a2);
-//
-//		v1 = obj1;
-//		v2 = obj2;
-//		a1 = obj3;
-//		a2 = obj4;
-//	}
-//	else // Swap
-//	{
-//		paperback::MathUtils::Swap<paperback::Vector3f>(v1, v2);
-//		paperback::MathUtils::Swap<paperback::Vector3f>(a1, a2);
-//	}
-//}
-
-
 // rect vs rect, working, use if needed,  ---- only m_Coordinator.DeltaTime() not defined, not available
 //bool Specific_AabbAabb(const paperback::Vector3f& aabbMin0, const paperback::Vector3f& aabbMax0,
 //	const paperback::Vector3f& vel0,
@@ -208,20 +175,6 @@
 //			paperback::MathUtils::Swap<float>(Bbox1.z, Bbox2.z);
 //		}
 //	}
-//}
-
-//// could include inv mass if want for computation to be visual
-//void Elastic_collision_2D(paperback::Vector3f& Bbox1, const float mass1,
-//	paperback::Vector3f& Bbox2, const float mass2)
-//{
-//	float total_mass = mass1 + mass2;
-//	paperback::Vector3f obj1 = ((mass1 - mass2) * (Bbox1 / total_mass))
-//		+ ((2 * mass2) * (Bbox2 / total_mass));
-//	paperback::Vector3f obj2 = ((2 * mass1) * (Bbox1 / total_mass))
-//		+ ((mass2 - mass1) * (Bbox2 / total_mass));
-//	Bbox1 = obj1;
-//	Bbox2 = obj2;
-//
 //}
 
 //paperback::Vector3f GetNormSwept(paperback::Vector3f vel,
