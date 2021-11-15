@@ -105,9 +105,15 @@ namespace paperback::vm
 			auto		pData =  m_MemoryPool[i];
 
 			// Unlink Parent & Child relationship on deletion of entity
-			UnlinkParentAndChildOnDelete( pInfo, PoolIndex, EntityGlobalIndex );
+			//UnlinkParentAndChildOnDelete( pInfo, PoolIndex, EntityGlobalIndex );
+
+			if ( pInfo.m_Guid == component::info_v<parent>.m_Guid )
+				m_pCoordinator->BroadcastEvent<OnEvent_ParentDeleted>( GetComponent<parent>( PoolIndex ) );
+			else if ( pInfo.m_Guid == component::info_v<child>.m_Guid )
+				m_pCoordinator->BroadcastEvent<OnEvent_ChildDeleted>( GetComponent<child>( PoolIndex ), EntityGlobalIndex );
+			
 			// Abandon Prefab Instances when Deleting Prefab
-			//AbandonPrefabInstancesOnPrefabDelete( pInfo, EntityGlobalIndex );                      //To replace with events -jp
+			//AbandonPrefabInstancesOnPrefabDelete( pInfo, EntityGlobalIndex );
 
 			// Deleting last Entity
 			if ( PoolIndex == m_CurrentEntityCount )
@@ -656,37 +662,6 @@ namespace paperback::vm
 		m_MoveHead = MovedEntity.m_GlobalIndex;
 	}
 
-	void instance::UnlinkParentAndChildOnDelete( const component::info& CInfo, const u32 PoolIndex, const u32 GlobalIndex ) noexcept
-	{
-		// Removing an entity with the parent component
-		if ( CInfo.m_Guid == component::info_v<parent>.m_Guid )
-		{
-			// Deletes children before parent, on deletion of parent
-			auto& Parent       = GetComponent<parent>( PoolIndex );
-			auto  ChildrenList = Parent.m_ChildrenGlobalIndexes;
-
-			for ( const auto ChildGID : ChildrenList )
-			{
-				auto& ChildInfo = m_pCoordinator->GetEntityInfo( ChildGID );
-				if ( ChildInfo.m_pArchetype )
-					ChildInfo.m_pArchetype->DestroyEntity( ChildInfo.m_pArchetype->GetComponent<paperback::component::entity>( ChildInfo.m_PoolDetails ) );
-			}
-
-			// Clear the parent's list
-			ChildrenList.clear();
-		}
-		// Removing an entity with a child component
-		if ( CInfo.m_Guid == component::info_v<child>.m_Guid )
-		{
-			// Get parent info
-			auto& Child       = GetComponent<child>( PoolIndex );
-			auto& ParentInfo  = m_pCoordinator->GetEntityInfo( Child.m_ParentGlobalIndex );
-
-			auto Parent = ParentInfo.m_pArchetype->GetComponent<parent>( ParentInfo.m_PoolDetails );
-			Parent.RemoveChild( GlobalIndex );
-		}
-	}
-
 	void instance::AbandonPrefabInstancesOnPrefabDelete( const component::info& CInfo
 													   , const u32 GlobalIndex ) noexcept
 	{
@@ -698,16 +673,17 @@ namespace paperback::vm
 
 			if (Prefab.m_ReferencePrefabGIDs.size() != 0)
 			{
-				// Get Prefab Instance Archetype (Cloned Entities)
-				auto& PrefabInstanceArchetype = *(m_pCoordinator->GetEntityInfo(*(Prefab.m_ReferencePrefabGIDs.begin())).m_pArchetype);
+				// Get Prefab Instance Archetype
+				auto& PrefabInstanceArchetype = *( m_pCoordinator->GetEntityInfo(*(Prefab.m_ReferencePrefabGIDs.begin())).m_pArchetype );
 
-				PPB_ASSERT_MSG(PrefabInstanceArchetype.GetCurrentEntityCount() != Prefab.m_ReferencePrefabGIDs.size(),
-					"Different Prefab Instance Counts in PrefabInstanceArchetype & ReferencePrefabGIDs");
-
-				for (size_t i = 0, max = Prefab.m_ReferencePrefabGIDs.size(); i < max; ++i)
+				for ( auto begin = Prefab.m_ReferencePrefabGIDs.begin()
+                    , end = Prefab.m_ReferencePrefabGIDs.end(); begin != end; ++begin )
 				{
-					m_pCoordinator->AddOrRemoveComponents< std::tuple<>, std::tuple<reference_prefab> >
-						(PrefabInstanceArchetype.GetComponent<paperback::component::entity>(vm::PoolDetails{ .m_Key = 0, .m_PoolIndex = 0 }));
+					const auto& InstanceInfo = m_pCoordinator->GetEntityInfo( *begin );
+
+					m_pCoordinator->AddOrRemoveComponents< std::tuple<>
+														 , std::tuple< reference_prefab > >
+														 ( PrefabInstanceArchetype.GetComponent<paperback::component::entity>( InstanceInfo.m_PoolDetails ) );
 				}
 			}
 		}

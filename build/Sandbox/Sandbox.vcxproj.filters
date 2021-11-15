@@ -207,5 +207,8 @@
     <ClInclude Include="Components\WaypointTag.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

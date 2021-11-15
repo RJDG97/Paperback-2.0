@@ -197,7 +197,7 @@ GLuint TextureLoader::LoadDDSSkyboxTexture(const std::vector<std::string>& Files
 			auto width = data->m_width;
 			auto height = data->m_height;
 
-			glCompressedTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + face, static_cast<uint32_t>( level ), 0, 0, width, height, GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT, data->m_memSlicePitch, data->m_mem);
+			glCompressedTexSubImage2D( static_cast<GLenum>( GL_TEXTURE_CUBE_MAP_POSITIVE_X + face ), static_cast<uint32_t>( level ), 0, 0, width, height, GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT, data->m_memSlicePitch, data->m_mem);
 		}
 	}
 
