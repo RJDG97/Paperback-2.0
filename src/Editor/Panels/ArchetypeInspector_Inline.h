@@ -67,49 +67,22 @@ void ArchetypeInspector::PrefabPanel()
 
             if (Filter.PassFilter(ArchetypeName.c_str()))
             {
-                //m_Imgui.ImguiHelp("Click to edit, Right Click on the prefab to spawn, on empty space for a default prefab, double click to edit");
                 if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
                 {
-                    if (ImGui::InputText(("##ArchetypeName" +Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+                    auto Prefab = Archetype->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, i });
+
+                    if (ImGui::InputText(("##ArchetypeName" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
                         Archetype->SetName(std::string(Buffer));
 
-                    if (ImGui::IsItemHovered()) //view components
+                    DisplayPrefabComponents(Archetype, i, Prefab);
+
+                    if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
                     {
-                        m_Imgui.m_pArchetype = Archetype;
-                        m_Imgui.m_ComponentNames.clear();
+                        m_Imgui.m_SelectedEntity.first = Archetype;
+                        m_Imgui.m_SelectedEntity.second = i;
 
-                        for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
-                            m_Imgui.m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
-
-                        ImGui::BeginTooltip();
-
-                        if (!m_Imgui.m_ComponentNames.empty() && m_Imgui.m_pArchetype)
-                        {
-                            auto Prefab = m_Imgui.m_pArchetype->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, i });
-
-                            if (Prefab)
-                                if(Prefab->m_ReferencePrefabGIDs.size())
-                                    ImGui::Text("Number of Instances: %d", Prefab->m_ReferencePrefabGIDs.size());
-
-                            ImGui::Separator();
-
-                            ImGui::Text("Archetype Components: ");
-
-                            for (auto& Names : m_Imgui.m_ComponentNames)
-                                ImGui::Text(Names);
-                        }
-
-                        ImGui::EndTooltip();
-
-                        if (ImGui::IsMouseDoubleClicked(0))
-                        {
-                            m_Imgui.m_SelectedEntity.first = Archetype;
-                            m_Imgui.m_SelectedEntity.second = i;
-
-                            m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
-                            EDITOR_WARN_PRINT("Editing Prefab: " + Archetype->GetName());
-                        }
-
+                        m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
+                        EDITOR_WARN_PRINT("Editing Prefab: " + Archetype->GetName());
                     }
 
                     if (ImGui::BeginPopupContextItem())
@@ -132,10 +105,7 @@ void ArchetypeInspector::PrefabPanel()
 
                     auto ParentPrefab = Archetype->FindComponent<parent>(paperback::vm::PoolDetails{ 0, i });
                     if (ParentPrefab)
-                    {
-                        DisplayPrefabChildren(*ParentPrefab);
-                        //Display the kids below
-                    }
+                        m_Imgui.DisplayChildEntities(*ParentPrefab);
                 }
             }
         }
@@ -145,7 +115,7 @@ void ArchetypeInspector::PrefabPanel()
 
 void ArchetypeInspector::ArchetypePanel()
 {
-    ImGui::BeginChild("Files", { ImGui::GetContentRegionAvailWidth(), ImGui::GetContentRegionAvail().y}, true);
+    ImGui::BeginChild("Files", { ImGui::GetContentRegionAvailWidth(), ImGui::GetContentRegionAvail().y }, true);
     ImGui::Text("Prefab Instances");
     int Index = 0;
     std::string ArchetypeName;
@@ -168,30 +138,7 @@ void ArchetypeInspector::ArchetypePanel()
                 if (ImGui::InputText(("##ArchetypeName" + std::to_string(Index)).c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
                     Archetype->SetName(std::string(Buffer));
 
-                if (ImGui::IsItemHovered()) //view components
-                {
-                    m_Imgui.m_pArchetype = Archetype;
-                    m_Imgui.m_ComponentNames.clear();
-
-                    for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
-                        m_Imgui.m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
-
-                    ImGui::BeginTooltip();
-
-                    if (!m_Imgui.m_ComponentNames.empty() && m_Imgui.m_pArchetype)
-                    {
-                        ImGui::Text("Number of Entities: %d", m_Imgui.m_pArchetype->GetCurrentEntityCount());
-
-                        ImGui::Separator();
-
-                        ImGui::Text("Archetype Components: ");
-
-                        for (auto& Names : m_Imgui.m_ComponentNames)
-                            ImGui::Text(Names);
-                    }
-
-                    ImGui::EndTooltip();
-                }
+                DisplayPrefabComponents(Archetype, 0, nullptr);
             }
         }
     }
@@ -199,122 +146,36 @@ void ArchetypeInspector::ArchetypePanel()
     ImGui::EndChild();
 }
 
-void ArchetypeInspector::DisplayPrefabChildren(parent& Parent)
+void ArchetypeInspector::DisplayPrefabComponents(paperback::archetype::instance* Archetype, paperback::u32 i, prefab* Prefab)
 {
-    int Index = 0;
-    paperback::u32 ChildToUnlink;
+    m_Imgui.m_pArchetype = Archetype;
+    m_Imgui.m_ComponentNames.clear();
 
-    std::array<const paperback::component::info*, 1 > ComponentRemove;
-
-    paperback::archetype::instance* SelectedChild = nullptr;
-    paperback::u32 ChildIndex = paperback::u32_max;
-
-    bool b_NodeOpen = false, Unlink = false;
-
-    if (Parent.m_ChildrenGlobalIndexes.size() != 0)
+    if (ImGui::IsItemHovered())
     {
-        for (auto& Child : Parent.m_ChildrenGlobalIndexes)
+        for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
+            m_Imgui.m_ComponentNames.push_back(Archetype->GetComponentInfos()[i]->m_pName);
+
+        ImGui::BeginTooltip();
+
+        if (!m_Imgui.m_ComponentNames.empty() && m_Imgui.m_pArchetype)
         {
-            Index++;
-
-            auto& ChildEntityInfo = PPB.GetEntityInfo(Child); //get the entity info
-
-            ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == ChildEntityInfo.m_pArchetype && m_Imgui.m_SelectedEntity.second == ChildEntityInfo.m_PoolDetails.m_PoolIndex) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
-
-            auto ChildParent = ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails);
-            if (ChildParent)
-                NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+            if (Prefab)
+            {
+                if (Prefab->m_ReferencePrefabGIDs.size())
+                    ImGui::Text("Number of Instances: %d", Prefab->m_ReferencePrefabGIDs.size());
+            }
             else
-                NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+                ImGui::Text("Number of Entities: %d", m_Imgui.m_pArchetype->GetCurrentEntityCount());
 
+            ImGui::Separator();
 
-            b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + ChildEntityInfo.m_pArchetype->GetName() + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + std::to_string(Index)).c_str(),
-                NodeFlags, (ChildEntityInfo.m_pArchetype->GetName() + " [" + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + "]").c_str());
+            ImGui::Text("Archetype Components: ");
 
-            if (ImGui::IsItemClicked())
-            {
-                m_Imgui.m_SelectedEntity.first = ChildEntityInfo.m_pArchetype;
-                m_Imgui.m_SelectedEntity.second = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
-                m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
-            }
-
-            if (ImGui::IsItemHovered()) //view components
-            {
-                m_Imgui.m_pArchetype = ChildEntityInfo.m_pArchetype;
-                m_Imgui.m_ComponentNames.clear();
-
-                for (paperback::u32 i = 0; i < ChildEntityInfo.m_pArchetype->GetComponentCount(); ++i)
-                    m_Imgui.m_ComponentNames.push_back(ChildEntityInfo.m_pArchetype->GetComponentInfos()[i]->m_pName);
-
-                ImGui::BeginTooltip();
-
-                if (!m_Imgui.m_ComponentNames.empty() && m_Imgui.m_pArchetype)
-                {
-                    ImGui::Text("Number of Entities: %d", m_Imgui.m_pArchetype->GetCurrentEntityCount());
-
-                    ImGui::Separator();
-
-                    ImGui::Text("Archetype Components: ");
-
-                    for (auto& Names : m_Imgui.m_ComponentNames)
-                        ImGui::Text(Names);
-                }
-
-                ImGui::EndTooltip();
-            }
-
-            //bool Deleted = false;
-
-            if (ImGui::BeginPopupContextItem())
-            {
-                //if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
-                //{
-                //    m_Imgui.m_SelectedEntity.first = ChildEntityInfo.m_pArchetype;
-                //    m_Imgui.m_SelectedEntity.second = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
-                //    Deleted = true;
-                //}
-
-                if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
-                {
-                    ChildToUnlink = Child;
-
-                    SelectedChild = ChildEntityInfo.m_pArchetype;
-                    ChildIndex = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
-
-                    Unlink = true;
-                }
-
-                ImGui::EndPopup();
-            }
-
-            if (b_NodeOpen)
-            {
-                if (ChildParent)
-                    DisplayPrefabChildren(*ChildParent);
-
-                ImGui::TreePop();
-            }
+            for (auto& Names : m_Imgui.m_ComponentNames)
+                ImGui::Text(Names);
         }
-        if (Unlink && SelectedChild)
-        {
-            Parent.RemoveChild(ChildToUnlink);
-            ComponentRemove[0] = &paperback::component::info_v<child>;
 
-            PPB.AddOrRemoveComponents(SelectedChild->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), {}, ComponentRemove);
-
-            SelectedChild = nullptr;
-            ChildIndex = {};
-
-            if (m_Imgui.m_SelectedEntity.first)
-            {
-                m_Imgui.m_SelectedEntity.first = nullptr;
-                m_Imgui.m_SelectedEntity.second = paperback::u32_max;
-            }
-
-            if (!m_Imgui.m_Components.empty())
-                m_Imgui.m_Components.clear();
-
-            Unlink = false;
-        }
+        ImGui::EndTooltip();
     }
 }

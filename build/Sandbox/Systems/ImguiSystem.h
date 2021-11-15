@@ -393,6 +393,10 @@ struct imgui_system : paperback::system::instance
         ImGui::EndMenuBar();
     }
 
+    //-----------------------------------
+    //        File Loading/Saving
+    //-----------------------------------
+
     void OpenSaveFile()
     {
         if (m_bFileOpen)
@@ -599,6 +603,10 @@ struct imgui_system : paperback::system::instance
         }
     }
 
+    //-----------------------------------
+    //        Property Display
+    //-----------------------------------
+
     void EnumerationCombo(std::vector<const char*> Value_List, const std::string& Name, paperback::u8& Selection)
     {
         //const char* current_item = Value_List[Selection];
@@ -761,6 +769,10 @@ struct imgui_system : paperback::system::instance
 
     }
 
+    //-----------------------------------
+    //        Helper Fns
+    //-----------------------------------
+
     void ResetScene()
     {
         if (m_SelectedEntity.first)
@@ -775,6 +787,26 @@ struct imgui_system : paperback::system::instance
         if (!PPB.GetArchetypeList().empty())
             PPB.ResetAllArchetypes();
     }
+
+    std::string SetEntityInfoPath(std::string& Path, std::string& FileName)
+    {
+        std::string a = Path.substr(0, Path.find(FileName.c_str()));
+
+        return a.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
+    }
+
+    bool SetEditorMode(bool Editor)
+    {
+        if (Editor)
+            return ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow) || ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow);
+        else
+            return false;
+
+    }
+
+    //-----------------------------------
+    //   Functions Used between Panels
+    //-----------------------------------
 
     void PopUpMessage(const std::string& WindowName, const char* Message) {
 
@@ -806,20 +838,109 @@ struct imgui_system : paperback::system::instance
         }
     }
 
-    std::string SetEntityInfoPath(std::string& Path, std::string& FileName)
+    void DisplayChildEntities(parent& Parent/*, bool DisplayEntity */)
     {
-        std::string a = Path.substr(0, Path.find(FileName.c_str()));
+        int Index = 0;
+        paperback::u32 ChildToUnlink;
+        std::array<const paperback::component::info*, 1 > ComponentRemove;
 
-        return a.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
-    }
+        paperback::archetype::instance* SelectedChild = nullptr;
+        paperback::u32 ChildIndex = paperback::u32_max;
 
-    bool SetEditorMode(bool Editor)
-    {
-        if (Editor)
-            return ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow) || ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow);
-        else
-            return false;
+        bool b_NodeOpen = false, Unlink = false;
 
+        if (Parent.m_ChildrenGlobalIndexes.size() != 0)
+        {
+            for (auto& Child : Parent.m_ChildrenGlobalIndexes)
+            {
+                Index++;
+
+                auto& ChildEntityInfo = PPB.GetEntityInfo(Child); //get the entity info
+
+                ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == ChildEntityInfo.m_pArchetype && m_SelectedEntity.second == ChildEntityInfo.m_PoolDetails.m_PoolIndex) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
+
+                auto ChildParent = ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails);
+
+                if (ChildParent)
+                    NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+                else
+                    NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+
+
+                b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + ChildEntityInfo.m_pArchetype->GetName() + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + std::to_string(Index)).c_str(),
+                    NodeFlags, (ChildEntityInfo.m_pArchetype->GetName() + " [" + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + "]").c_str());
+
+                if (ImGui::IsItemClicked())
+                {
+                    m_SelectedEntity.first = ChildEntityInfo.m_pArchetype;
+                    m_SelectedEntity.second = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+                    m_Components = m_SelectedEntity.first->GetEntityComponents(m_SelectedEntity.second);
+                }
+
+                //bool Deleted = false;
+
+                if (ImGui::BeginPopupContextItem())
+                {
+                    //if (DisplayEntity)
+                    //{
+                    //    if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                    //    {
+                    //        m_Imgui.m_SelectedEntity.first = ChildEntityInfo.m_pArchetype;
+                    //        m_Imgui.m_SelectedEntity.second = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+                    //        Deleted = true;
+                    //    }
+                    //}
+
+                    if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
+                    {
+                        ChildToUnlink = Child;
+
+                        SelectedChild = ChildEntityInfo.m_pArchetype;
+                        ChildIndex = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+
+                        Unlink = true;
+                    }
+
+                    ImGui::EndPopup();
+                }
+
+                if (b_NodeOpen)
+                {
+                    if (ChildParent)
+                        DisplayChildEntities(*ChildParent);
+
+                    ImGui::TreePop();
+                }
+
+                //if (Deleted)
+                //    ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
+
+            }
+
+            //DeleteEntity(ICON_FA_TRASH " Delete?", m_SelectedEntity.second);
+
+            if (Unlink && SelectedChild)
+            {
+                Parent.RemoveChild(ChildToUnlink);
+                ComponentRemove[0] = &paperback::component::info_v<child>;
+
+                PPB.AddOrRemoveComponents(SelectedChild->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second }), {}, ComponentRemove);
+
+                SelectedChild = nullptr;
+                ChildIndex = {};
+
+                if (m_SelectedEntity.first)
+                {
+                    m_SelectedEntity.first = nullptr;
+                    m_SelectedEntity.second = paperback::u32_max;
+                }
+
+                if (!m_Components.empty())
+                    m_Components.clear();
+
+                Unlink = false;
+            }
+        }
     }
 };
 
