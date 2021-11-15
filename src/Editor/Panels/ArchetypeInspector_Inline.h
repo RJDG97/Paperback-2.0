@@ -12,13 +12,8 @@ void ArchetypeInspector::Panel()
     ImGui::End();
 }
 
-void ArchetypeInspector::PrefabPanel()
+void ArchetypeInspector::MenuBar()
 {
-    ImGui::BeginChild("Prefabs", { ImGui::GetContentRegionAvailWidth(), ImGui::GetContentRegionAvail().y / 2 }, true, ImGuiWindowFlags_MenuBar);
-
-    int Index = 0;
-    std::string ArchetypeName;
-
     ImGui::BeginMenuBar();
 
     if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE))
@@ -41,6 +36,15 @@ void ArchetypeInspector::PrefabPanel()
     //m_Imgui.ImGuiHelp("Saves Prefabs/Archetypes Only");
 
     ImGui::EndMenuBar();
+}
+
+void ArchetypeInspector::PrefabPanel()
+{
+    ImGui::BeginChild("Prefabs", { ImGui::GetContentRegionAvailWidth(), ImGui::GetContentRegionAvail().y / 2 }, true, ImGuiWindowFlags_MenuBar);
+
+    MenuBar();
+    int Index = 0;
+    std::string ArchetypeName;
 
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 170.0f);
@@ -55,6 +59,7 @@ void ArchetypeInspector::PrefabPanel()
 
         ImGui::EndPopup();
     }
+
 
     for (auto& Archetype : PPB.GetArchetypeList())
     {
@@ -175,7 +180,6 @@ void ArchetypeInspector::DisplayPrefabComponents(paperback::archetype::instance*
             for (auto& Names : m_Imgui.m_ComponentNames)
                 ImGui::Text(Names);
         }
-
         ImGui::EndTooltip();
     }
 }

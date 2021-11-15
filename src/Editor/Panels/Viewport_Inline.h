@@ -6,24 +6,44 @@
 
 void EditorViewport::Panel()
 {
-	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-	ImGui::Begin(EditorViewport::typedef_v.m_pName, &m_bEnabled);// ImGuiWindowFlags_MenuBar);
-
-	//ViewportMenuBar();
-
-	//if (ImGui::BeginTabBar("##Viewports"))
-	//{
-	//	ViewportOne();
-	//	ViewportTwo();
-
-	//	Gizmo();
-	//	MouseSelection();
-
-	//	ImGui::EndTabBar();
-	//}
-
+	ViewportMenuBar();
+	ViewportTwo();
 	ViewportOne();
-	//ViewportTwo();
+}
+
+void EditorViewport::ViewportOne()
+{
+	//Renders the game
+
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+	ImGui::Begin("Viewport #1", &m_bEnabled);
+
+	ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
+
+	paperback::u64 TextureID = Renderer::GetInstanced().GetFinalImage();
+
+	ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+	Gizmo();
+	MouseSelection();
+
+	ImGui::End();
+	ImGui::PopStyleVar();
+
+}
+
+void EditorViewport::ViewportTwo()
+{
+	// Renders the UI
+
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+	ImGui::Begin("Viewport #2", &m_bEnabled);
+
+	ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
+
+	paperback::u64 TextureID = Renderer::GetInstanced().GetUIOverlay();
+
+	ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 
 	Gizmo();
 	MouseSelection();
@@ -32,70 +52,40 @@ void EditorViewport::Panel()
 	ImGui::PopStyleVar();
 }
 
-void EditorViewport::ViewportOne()
-{
-	//Renders the game
-
-	//if (ImGui::BeginTabItem("Viewport #1"))
-	//{
-	//	ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
-
-	//	paperback::u64 TextureID = Renderer::GetInstanced().GetFinalImage();
-
-	//	ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-	//	ImGui::EndTabItem();
-	//}
-	ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
-
-	paperback::u64 TextureID = Renderer::GetInstanced().GetFinalImage();
-
-	ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
-}
-
-void EditorViewport::ViewportTwo()
-{
-	// Renders the UI
-
-	if (ImGui::BeginTabItem("Viewport #2"))
-	{
-		ImVec2 ViewportPanelSize = ImGui::GetContentRegionAvail();
-
-		paperback::u64 TextureID = Renderer::GetInstanced().GetUIOverlay();
-
-		ImGui::Image(reinterpret_cast<void*>(TextureID), ViewportPanelSize, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-		ImGui::EndTabItem();
-	}
-}
-
 void EditorViewport::ViewportMenuBar()
 {
-	ImGui::BeginMenuBar();
+	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove);
 
-	if (ImGui::Button(ICON_FA_ARROWS_ALT))
+	if (ImGui::SmallButton(ICON_FA_ARROWS_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;	
 	}
-	if (ImGui::Button(ICON_FA_EXPAND_ALT))
+
+	ImGui::SameLine(); 
+
+	if (ImGui::SmallButton(ICON_FA_EXPAND_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::SCALE;
 	}
+	ImGui::SameLine();
 
-	if (ImGui::Button(ICON_FA_SYNC_ALT))
+	if (ImGui::SmallButton(ICON_FA_SYNC_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 	}
 
-	if (ImGui::Button(ICON_FA_BROOM))
+	ImGui::SameLine();
+
+	if (ImGui::SmallButton(ICON_FA_BROOM))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = -1;
 	}
 
-	ImGui::EndMenuBar();
+	ImGui::End();
 }
 
 void EditorViewport::MouseSelection()
@@ -128,8 +118,6 @@ void EditorViewport::MouseSelection()
 								Min.y += ImGui::GetWindowPos().y;
 								Max.x += ImGui::GetWindowPos().x;
 								Max.y += ImGui::GetWindowPos().y;
-
-								//ImGui::GetForegroundDrawList()->AddRect(Min, Max, IM_COL32(255, 255, 0, 255));
 
 								CamPos = Camera3D::GetInstanced().GetPosition();
 								RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y - 70.0f }, { Max.x, Max.y - 70.0f });

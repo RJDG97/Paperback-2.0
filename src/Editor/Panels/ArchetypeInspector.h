@@ -27,6 +27,4 @@ struct ArchetypeInspector : paperback::editor::instance
     void MenuBar();
 
     void DisplayPrefabComponents(paperback::archetype::instance* Archetype, paperback::u32 i, prefab* Prefab);
-
-    void DisplayPrefabArchetype(paperback::archetype::instance* Archetype, paperback::u32 i, std::string TextLabel, prefab* Prefab);
 };  
