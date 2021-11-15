@@ -54,7 +54,7 @@ void EditorViewport::ViewportTwo()
 
 void EditorViewport::ViewportMenuBar()
 {
-	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove);
+	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
 	if (ImGui::SmallButton(ICON_FA_ARROWS_ALT))
 	{
@@ -62,14 +62,14 @@ void EditorViewport::ViewportMenuBar()
 			m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;	
 	}
 
-	ImGui::SameLine(); 
+	ImGui::SameLine(10.0f); 
 
 	if (ImGui::SmallButton(ICON_FA_EXPAND_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::SCALE;
 	}
-	ImGui::SameLine();
+	ImGui::SameLine(10.0f);
 
 	if (ImGui::SmallButton(ICON_FA_SYNC_ALT))
 	{
@@ -77,13 +77,22 @@ void EditorViewport::ViewportMenuBar()
 			m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 	}
 
-	ImGui::SameLine();
+	ImGui::SameLine(10.0f);
 
 	if (ImGui::SmallButton(ICON_FA_BROOM))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = -1;
 	}
+
+	//if (ImGui::SmallButton(ICON_FA_BROOM))
+	//{
+	//	//Play Button <-> Stop Button
+	//}
+	//if (ImGui::SmallButton(ICON_FA_BROOM))
+	//{
+	//	//Pause Button
+	//}
 
 	ImGui::End();
 }
@@ -134,7 +143,7 @@ void EditorViewport::MouseSelection()
 
 									m_Imgui.m_SelectedEntity.first = EntityInfo.m_pArchetype;
 									m_Imgui.m_SelectedEntity.second = EntityInfo.m_PoolDetails.m_PoolIndex;
-									m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
+									//m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
 
 								}
 							}
