@@ -351,7 +351,7 @@ namespace paperback::archetype
 
     void manager::Terminate( void ) noexcept
     {
-        // Delete All Entities
+        ResetAllArchetypes();
     }
 
 
