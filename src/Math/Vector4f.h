@@ -38,7 +38,13 @@ namespace paperback
     struct Vector4f
     {
         PPB_INLINE
-        Vector4f() {};
+        Vector4f() 
+        {
+            x = 0.f;
+            y = 0.f;
+            z = 0.f;
+            w = 0.f;
+        };
 
         PPB_INLINE
         explicit Vector4f(float x_, float y_, float z_, float w_)

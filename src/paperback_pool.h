@@ -25,6 +25,18 @@ namespace paperback::vm
 
 		using MemoryPool = std::array<std::byte*, paperback::settings::max_components_per_entity_v>;
 
+
+		//-----------------------------------
+		//          System Event
+		//-----------------------------------
+
+		struct OnEvent_ParentDeleted : paperback::event::instance< const parent& >{};
+
+		struct OnEvent_ChildDeleted : paperback::event::instance< const child&
+																, const u32& >{};
+
+		struct OnEvent_PrefabDeleted : paperback::event::instance< const component::info&
+																 , const u32& >{};
 		//-----------------------------------
 		//            Default
 		//-----------------------------------
@@ -151,11 +163,6 @@ namespace paperback::vm
 
 		PPB_INLINE
 		void MarkEntityAsMoved( const u32 MovedEntity ) noexcept;
-
-		PPB_INLINE
-		void UnlinkParentAndChildOnDelete( const component::info& CInfo
-										 , const u32 PoolIndex
-										 , const u32 GlobalIndex ) noexcept;
 
 		PPB_INLINE
 		void AbandonPrefabInstancesOnPrefabDelete( const component::info& CInfo

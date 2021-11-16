@@ -242,6 +242,56 @@ namespace paperback::archetype
 
 
     //-----------------------------------
+    //             Prefab
+    //-----------------------------------
+
+    template < typename T_COMPONENT >
+    void instance::UpdatePrefabInstanceComponent( const vm::PoolDetails& Details, const T_COMPONENT& PrefabComponent ) noexcept
+    {
+        // Grab Prefab Entity's Prefab Component - To Access All Prefab Instances
+        const auto& Prefab = GetComponent<prefab>( Details );
+
+        if ( Prefab.m_ReferencePrefabGIDs.size() <= 0 ) return;
+
+        // Save Address of Prefab Instance Data
+        const auto& CInfo   = component::info_v<T_COMPONENT>;
+        const auto CopyCtor = CInfo.m_Copy;
+        const auto CSize    = CInfo.m_Size;
+        const auto CGuid    = CInfo.m_Guid.m_Value;
+        auto& PIArchetype   = *( m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) ).m_pArchetype );
+
+        // For All Prefab Instances
+        for ( auto begin = Prefab.m_ReferencePrefabGIDs.begin()
+            , end = Prefab.m_ReferencePrefabGIDs.end(); begin != end; ++begin )
+        {
+            // Grab Prefab Instance Info
+            const auto& InstanceInfo = m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) );
+            const auto& RefPrefab    = PIArchetype.GetComponent<reference_prefab>( InstanceInfo.m_PoolDetails );
+
+            // If Reference Prefab Did Not Override T_COMPONENT
+            if ( !RefPrefab.HasModified( CGuid ) )
+            {
+                // Grab Component To Be Updated In Prefab Instance
+                auto& Mod_Component = PIArchetype.GetComponent<T_COMPONENT>( InstanceInfo.m_PoolDetails );
+
+                // Copy Data
+                if ( CopyCtor )
+                {
+                    CopyCtor( static_cast<std::byte*>( &Mod_Component )
+                            , static_cast<std::byte*>( &PrefabComponent ) );
+                }
+                else
+                {
+                    memcpy( static_cast<void*>( &Mod_Component )
+                          , static_cast<void*>( &PrefabComponent )
+                          , CSize );
+                }
+            }
+        }
+    }
+
+
+    //-----------------------------------
     //              Save
     //-----------------------------------
     void instance::SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept

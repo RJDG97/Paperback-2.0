@@ -120,6 +120,8 @@ void InitializeGame()
             onevent_UnitTrigger_system
         ,   onevent_UnitTriggerStay_system
         ,   onevent_UnitTriggerExit_system
+        ,   onevent_ParentDeleted_system
+        ,   onevent_ChildDeleted_system
         >();
     }
     // Entity Creation
