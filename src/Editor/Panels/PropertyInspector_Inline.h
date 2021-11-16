@@ -11,7 +11,6 @@ void DetailsWindow::Panel()
 	ImGui::End();
 }
 
-
 void DetailsWindow::DisplayProperties()
 {
     static ImGuiTextFilter Filter;
@@ -359,7 +358,7 @@ void DetailsWindow::ChildCombo()
                     {
                         if (ParentPrefab)
                         {
-                            //if parent is a prefab -> Potential children have to be prefabs as well
+                            //if new parent is a prefab -> Potential children have to be prefabs as well
 
                             if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
                             {
@@ -374,10 +373,8 @@ void DetailsWindow::ChildCombo()
                             {
                                 // Non Parent Entities Entity Component
                                 auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-
                                 DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity, Archetype);
                             }
-
                         }
                     }
                 }

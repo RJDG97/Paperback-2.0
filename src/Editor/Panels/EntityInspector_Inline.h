@@ -13,6 +13,7 @@ void EntityInspector::DisplayEntities()
 {
     int Index = 0, NumEntities = 0;
     bool b_NodeOpen = false;
+    std::array<const paperback::component::info*, 1 > ComponentAdd;
 
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 150.0f);
@@ -55,11 +56,40 @@ void EntityInspector::DisplayEntities()
 
                             if (ImGui::BeginPopupContextItem())
                             {
-                                if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                                if (!Archetype->GetComponentBits().Has(paperback::component::info_v<reference_prefab>.m_UID))
                                 {
-                                    m_Imgui.m_SelectedEntity.first = Archetype;
-                                    m_Imgui.m_SelectedEntity.second = i;
-                                    Deleted = true;
+                                    if (ImGui::MenuItem("Create as Prefab"))
+                                    {
+                                        m_Imgui.m_SelectedEntity.first = Archetype;
+                                        m_Imgui.m_SelectedEntity.second = i;
+
+                                        ComponentAdd[0] = &paperback::component::info_v<prefab>;
+
+                                        if (!m_Imgui.m_SelectedEntity.first->GetComponentBits().Has(paperback::component::info_v<parent>.m_UID))
+                                        {
+                                            
+                                            PPB.AddOrRemoveComponents(m_Imgui.m_SelectedEntity.first->GetComponent
+                                            <paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), ComponentAdd, {});
+                                        }
+                                        else
+                                        {
+                                            //entity is a parent + its a normal entity
+                                            auto& Parent = m_Imgui.m_SelectedEntity.first->GetComponent<parent>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
+                                            if (Parent.m_ChildrenGlobalIndexes.size() != 0)
+                                            {
+                                                for (auto& Child : Parent.m_ChildrenGlobalIndexes)
+                                                {
+                                                    auto& EntityInfo = PPB.GetEntityInfo(Child);
+
+                                                    //add prefab component to the children as well
+
+                                                    PPB.AddOrRemoveComponents(EntityInfo.m_pArchetype->GetComponent<paperback::component::entity>
+                                                                             (EntityInfo.m_PoolDetails), ComponentAdd, {});
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
 
                                 if (ImGui::MenuItem("Clone Entity"))
@@ -71,6 +101,14 @@ void EntityInspector::DisplayEntities()
                                         <paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }));
                                 }
 
+                                ImGui::Separator();
+
+                                if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                                {
+                                    m_Imgui.m_SelectedEntity.first = Archetype;
+                                    m_Imgui.m_SelectedEntity.second = i;
+                                    Deleted = true;
+                                }
 
                                 ImGui::EndPopup();
                             }
