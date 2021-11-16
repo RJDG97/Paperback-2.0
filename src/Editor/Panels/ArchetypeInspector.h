@@ -21,8 +21,6 @@ struct ArchetypeInspector : paperback::editor::instance
     void Panel();
 
     void PrefabPanel();
-
-    void ArchetypePanel();
     
     void MenuBar();
 

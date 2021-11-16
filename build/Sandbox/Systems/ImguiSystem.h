@@ -838,6 +838,17 @@ struct imgui_system : paperback::system::instance
         }
     }
 
+    void UpdateComponents(paperback::u32 EntityGlobalIndex)
+    {
+        //Get Entity Info
+
+        auto& EntityInfo = PPB.GetEntityInfo(EntityGlobalIndex);
+
+        m_SelectedEntity.first = EntityInfo.m_pArchetype;
+        m_SelectedEntity.second = EntityInfo.m_PoolDetails.m_PoolIndex;
+        m_Components = m_SelectedEntity.first->GetEntityComponents(m_SelectedEntity.second);
+    }
+
     void DisplayChildEntities(parent& Parent/*, bool DisplayEntity */)
     {
         int Index = 0;

@@ -50,6 +50,7 @@ void DetailsWindow::DisplayProperties()
                         auto PropertyType = property.get_type(); //etc vector 3, std::string etc
                         auto PropertyName = property.get_name().to_string();
 
+
                         if (PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic())
                             m_Imgui.DisplayBaseTypes(PropertyName, PropertyType, PropertyValue);
 
@@ -131,7 +132,7 @@ void DetailsWindow::AddComponent()
                             {
                                 m_Imgui.m_Components.clear();
                                 ImGui::EndCombo();
-                                UpdateComponents(GlobalIndex);
+                                m_Imgui.UpdateComponents(GlobalIndex);
 
                                 return;
                             }
@@ -179,7 +180,7 @@ void DetailsWindow::RemoveComponent()
                         {
                             m_Imgui.m_Components.clear();
                             ImGui::EndCombo();
-                            UpdateComponents(GlobalIndex);
+                            m_Imgui.UpdateComponents(GlobalIndex);
                             return;
                         }
                         else
@@ -193,18 +194,6 @@ void DetailsWindow::RemoveComponent()
             ImGui::EndCombo();
         }
     }
-}
-
-void DetailsWindow::UpdateComponents( paperback::u32 EntityGlobalIndex )
-{
-    //Get Entity Info
-
-    auto& EntityInfo = PPB.GetEntityInfo(EntityGlobalIndex);
-
-    m_Imgui.m_SelectedEntity.first = EntityInfo.m_pArchetype;
-    m_Imgui.m_SelectedEntity.second = EntityInfo.m_PoolDetails.m_PoolIndex;
-    m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
-
 }
 
 void DetailsWindow::ParentComponent()

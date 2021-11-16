@@ -20,7 +20,6 @@ void EntityInspector::Panel()
 void EntityInspector::DisplayEntities()
 {
     int Index = 0, NumEntities = 0;
-    bool b_NodeOpen = false;
     std::array<const paperback::component::info*, 1 > ComponentAdd;
 
     static ImGuiTextFilter Filter;
@@ -42,18 +41,30 @@ void EntityInspector::DisplayEntities()
 
                         if (Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) == nullptr) //not a prefab entity
                         {
-                            ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow; //update this
-
+                            auto Name = Archetype->FindComponent<name>(paperback::vm::PoolDetails({ 0, i }));
                             auto Parent = Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i }));
 
-                            if (Parent)
-                                NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+                            if (Name)
+                            {
+                                auto& String = Name->m_Value;
+                                char Buffer[256]{};
+
+                                std::copy(String.begin(), String.end(), Buffer);
+
+                                if (ImGui::InputText(("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(),
+                                    Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+                                    Name->m_Value = std::string(Buffer); //update Name
+
+                            }
                             else
-                                NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+                            {
+                                //Add in missing name component
+                                ComponentAdd[0] = &paperback::component::info_v<name>;
+                                PPB.AddOrRemoveComponents(Archetype->GetComponent
+                                    <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), ComponentAdd, {});
+                            }
 
-                            b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, (Archetype->GetName() + " [" + std::to_string(i) + "]").c_str());
-
-                            if (ImGui::IsItemClicked())
+                            if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
                             {
                                 m_Imgui.m_SelectedEntity.first = Archetype;
                                 m_Imgui.m_SelectedEntity.second = i;
@@ -78,6 +89,8 @@ void EntityInspector::DisplayEntities()
                                             
                                             PPB.AddOrRemoveComponents(m_Imgui.m_SelectedEntity.first->GetComponent
                                             <paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }), ComponentAdd, {});
+
+                                            //Add updatecomponent fn here?
                                         }
                                         else
                                         {
@@ -121,13 +134,10 @@ void EntityInspector::DisplayEntities()
                                 ImGui::EndPopup();
                             }
 
-                            if (b_NodeOpen)
-                            {
-                                if (Parent)
-                                    m_Imgui.DisplayChildEntities(*Parent);
+                            if (Parent)
+                                m_Imgui.DisplayChildEntities(*Parent);
 
-                                ImGui::TreePop();
-                            }
+                            
 
                             if (Deleted)
                                 ImGui::OpenPopup(ICON_FA_TRASH " Delete?");

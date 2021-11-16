@@ -38,7 +38,7 @@ namespace paperback::archetype
 
     void manager::CreatePrefab( void ) noexcept
     {
-		auto& Archetype = GetOrCreateArchetype<prefab, transform>( );
+		auto& Archetype = GetOrCreateArchetype<prefab, transform, name>( );
         Archetype.CreatePrefab( );
     }
 

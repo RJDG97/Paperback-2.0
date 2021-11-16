@@ -9,7 +9,7 @@ struct name
 		.m_pName = "Name"
 	};
 
-	std::string m_Value;
+	std::string m_Value = "Unnamed Entity";
 };
 
 namespace RR_Name

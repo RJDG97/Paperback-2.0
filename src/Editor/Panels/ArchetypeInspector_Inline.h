@@ -7,7 +7,7 @@ void ArchetypeInspector::Panel()
     ImGui::Begin(ArchetypeInspector::typedef_v.m_pName, &m_bEnabled);
 
     PrefabPanel();
-    ArchetypePanel();
+    //ArchetypePanel();
 
     ImGui::End();
 }
@@ -64,6 +64,7 @@ void ArchetypeInspector::PrefabPanel()
     for (auto& Archetype : PPB.GetArchetypeList())
     {
         ++Index;
+
         for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
         {
             char Buffer[256]{};
@@ -109,6 +110,7 @@ void ArchetypeInspector::PrefabPanel()
                     }
 
                     auto ParentPrefab = Archetype->FindComponent<parent>(paperback::vm::PoolDetails{ 0, i });
+
                     if (ParentPrefab)
                         m_Imgui.DisplayChildEntities(*ParentPrefab);
                 }
