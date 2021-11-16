@@ -26,16 +26,24 @@ struct DetailsWindow : paperback::editor::instance
 
     void RemoveComponent();
 
+    void UpdateComponents( paperback::u32 EntityGlobalIndex );
+
+//-----------------------------------
+//        Component Combos
+//-----------------------------------
+
     void ParentComponent();
 
     void ChildCombo();
+
+    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i, 
+                                  parent& NewParent, paperback::component::entity NewParentEntity, 
+                                  paperback::archetype::instance* Archetype);
 
     void MeshCombo();
 
     void AnimatorComponent();
 
     void SocketedComponent();
-
-    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i, parent& NewParent, paperback::component::entity NewParentEntity, paperback::archetype::instance* Archetype);
 
 };

@@ -4,6 +4,14 @@ void EntityInspector::Panel()
 {
     ImGui::Begin(EntityInspector::typedef_v.m_pName, &m_bEnabled);
 
+    if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
+    {
+        m_Imgui.m_SelectedEntity.first = {};
+
+        if (!m_Imgui.m_Components.empty())
+            m_Imgui.m_Components.clear();
+    }
+
     DisplayEntities();
 
     ImGui::End();

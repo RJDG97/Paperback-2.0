@@ -52,6 +52,7 @@ void DetailsWindow::DisplayProperties()
 
                         if (PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic())
                             m_Imgui.DisplayBaseTypes(PropertyName, PropertyType, PropertyValue);
+
                         if ((PropertyType.get_wrapped_type() == rttr::type::get< std::string >() ||
                             PropertyType == rttr::type::get< std::string>()) &&
                             ComponentInstance.first.get_type().get_name().to_string() != "Mesh" &&
@@ -118,17 +119,20 @@ void DetailsWindow::AddComponent()
                             auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }); //first instance
 
                             ComponentAdd[0] = CompPInfo;
+
+                            //Get global index of the current selected entity
+                            auto GlobalIndex = Entity.m_GlobalIndex;
+
                             PPB.AddOrRemoveComponents(Entity, ComponentAdd, {});
 
                             EDITOR_INFO_PRINT("Added: " + std::string(CompPInfo->m_pName) + " Component");
-
-                            m_Imgui.m_SelectedEntity.first = nullptr;
-                            m_Imgui.m_SelectedEntity.second = paperback::u32_max;
 
                             if (!m_Imgui.m_Components.empty())
                             {
                                 m_Imgui.m_Components.clear();
                                 ImGui::EndCombo();
+                                UpdateComponents(GlobalIndex);
+
                                 return;
                             }
                             else
@@ -163,19 +167,19 @@ void DetailsWindow::RemoveComponent()
                         auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }); //first instance
                         ComponentRemove[0] = (m_Imgui.m_SelectedEntity.first->GetComponentInfos()[i]);
 
+                        //Get global index of the current selected entity
+                        auto GlobalIndex = Entity.m_GlobalIndex;
                         std::string Temp = m_Imgui.m_SelectedEntity.first->GetName();
 
                         PPB.AddOrRemoveComponents(Entity, {}, ComponentRemove);
 
                         EDITOR_INFO_PRINT("Removed: " + Temp + " Component");
                         
-                        m_Imgui.m_SelectedEntity.first = nullptr;
-                        m_Imgui.m_SelectedEntity.second = paperback::u32_max;
-
                         if (!m_Imgui.m_Components.empty())
                         {
                             m_Imgui.m_Components.clear();
                             ImGui::EndCombo();
+                            UpdateComponents(GlobalIndex);
                             return;
                         }
                         else
@@ -189,6 +193,18 @@ void DetailsWindow::RemoveComponent()
             ImGui::EndCombo();
         }
     }
+}
+
+void DetailsWindow::UpdateComponents( paperback::u32 EntityGlobalIndex )
+{
+    //Get Entity Info
+
+    auto& EntityInfo = PPB.GetEntityInfo(EntityGlobalIndex);
+
+    m_Imgui.m_SelectedEntity.first = EntityInfo.m_pArchetype;
+    m_Imgui.m_SelectedEntity.second = EntityInfo.m_PoolDetails.m_PoolIndex;
+    m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
+
 }
 
 void DetailsWindow::ParentComponent()
