@@ -93,6 +93,7 @@ namespace paperback
 #include "paperback_archetype_mgr.h"
 #include "paperback_system.h"
 #include "paperback_system_mgr.h"
+#include "paperback_statemgr.h"
 #include "paperback_coordinator.h"
 
 
@@ -120,5 +121,6 @@ namespace paperback
 #include "Details/paperback_bitset_inline.h"
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_coordinator_inline.h"
+#include "Details/paperback_statemgr_inline.h"
 
 #endif

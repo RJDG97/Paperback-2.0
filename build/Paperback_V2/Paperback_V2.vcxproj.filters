@@ -456,6 +456,12 @@
     <ClInclude Include="..\..\src\Details\paperback_event_mgr_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\paperback_statemgr.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_statemgr_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
