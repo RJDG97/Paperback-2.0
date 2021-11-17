@@ -299,4 +299,10 @@ struct debug_system : paperback::system::instance
         m_Points[0].clear();
         m_Points[1].clear();
     }
+
+    PPB_INLINE
+        void OnStateChange(void) noexcept
+    {
+        m_IsDebug = (PPB.VerifyState("Editor")) ? true : false;
+    }
 };
