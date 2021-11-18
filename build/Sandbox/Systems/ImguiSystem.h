@@ -908,6 +908,7 @@ struct imgui_system : paperback::system::instance
 
         paperback::archetype::instance* SelectedChild = nullptr;
         paperback::u32 ChildIndex = paperback::u32_max;
+        std::string ChildName{};
 
         bool b_NodeOpen = false, Unlink = false;
 
@@ -922,15 +923,27 @@ struct imgui_system : paperback::system::instance
                 ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == ChildEntityInfo.m_pArchetype && m_SelectedEntity.second == ChildEntityInfo.m_PoolDetails.m_PoolIndex) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
 
                 auto ChildParent = ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails);
+                auto Name = ChildEntityInfo.m_pArchetype->FindComponent<name>(ChildEntityInfo.m_PoolDetails);
 
                 if (ChildParent)
                     NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
                 else
                     NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
 
+                if (Name)
+                    ChildName = Name->m_Value;
+                else
+                {
+                    ComponentRemove[0] = &paperback::component::info_v<name>;
+                    PPB.AddOrRemoveComponents(ChildEntityInfo.m_pArchetype->GetComponent<paperback::component::entity>(ChildEntityInfo.m_PoolDetails), ComponentRemove, {});
+
+                    if (!m_Components.empty())
+                        UpdateComponents(Child);
+
+                }
 
                 b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + ChildEntityInfo.m_pArchetype->GetName() + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + std::to_string(Index)).c_str(),
-                    NodeFlags, (ChildEntityInfo.m_pArchetype->GetName() + " [" + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + "]").c_str());
+                    NodeFlags, /*(ChildEntityInfo.m_pArchetype->GetName() + " [" + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + "]").c_str()*/ ChildName.c_str());
 
                 if (ImGui::IsItemClicked())
                 {
