@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Physics/PhysicsMaterial.h"
 #include "Math/Vector3f.h"
-#include "Math/MathUtils.h"
 
 struct rigidbody
 {

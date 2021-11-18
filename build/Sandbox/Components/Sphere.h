@@ -2,8 +2,7 @@
 #ifndef SPHERE_H
 #define SPHERE_H
 
-#include "Math/Vector3f.h"
-#include "Math/MathUtils.h"
+#include "Math/Math_includes.h"
 
 struct sphere
 {
@@ -12,7 +11,7 @@ struct sphere
 		.m_pName = "Sphere"
 	};
 
-	float				m_fRadius;							// ----- Radius of circle
+	float				m_Radius;							// ----- Radius of circle
 	bool				m_Collided;							// ----- collided
 };
 
@@ -23,7 +22,7 @@ namespace RR_SPHERE
 	{
 	   rttr::registration::class_<sphere>(sphere::typedef_v.m_pName)
 		   .constructor()(rttr::policy::ctor::as_object)
-		   .property("Radius", &sphere::m_fRadius)(rttr::policy::prop::as_reference_wrapper)
+		   .property("Radius", &sphere::m_Radius)(rttr::policy::prop::as_reference_wrapper)
 		   .property("Is Collide", &sphere::m_Collided);
 	}
 }

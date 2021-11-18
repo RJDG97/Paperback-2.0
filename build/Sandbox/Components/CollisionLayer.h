@@ -30,7 +30,6 @@ enum class CollisionLayer : paperback::u8
     HOLE
 };
 
-
 struct collidable
 {
     constexpr static auto typedef_v = paperback::component::type::data

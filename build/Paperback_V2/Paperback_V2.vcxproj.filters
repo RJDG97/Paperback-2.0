@@ -294,22 +294,7 @@
     <ClInclude Include="..\..\src\Physics\PhysicsMaterial.h">
       <Filter>Source\Gameplay Code\Physics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Circle.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\LineSegment.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Plane.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Polygon_shape.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h">
-      <Filter>Source\Gameplay Code\Shapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Shapes\Triangle.h">
       <Filter>Source\Gameplay Code\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Json\paperback_serialize_inline.h">
@@ -455,6 +440,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Details\paperback_event_mgr_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\Fake_GJK.h">
+      <Filter>Source\Gameplay Code\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
