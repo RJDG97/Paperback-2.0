@@ -37,8 +37,7 @@ struct DetailsWindow : paperback::editor::instance
     void ChildCombo();
 
     void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i, 
-                                  parent& NewParent, paperback::component::entity NewParentEntity, 
-                                  paperback::archetype::instance* Archetype);
+                                  parent& NewParent, paperback::component::entity NewParentEntity);
 
     void MeshCombo();
 

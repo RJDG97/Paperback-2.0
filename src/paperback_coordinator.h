@@ -135,28 +135,28 @@ namespace paperback::coordinator
 		//-----------------------------------
 
 		PPB_INLINE
-		void SaveScene( const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
+		void SaveScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept;
 
 		PPB_INLINE
-		void OpenScene(const std::string& SceneName) noexcept;
+		void OpenScene( const std::string& SceneName) noexcept;
 
 		PPB_INLINE
-		void LoadEntityInfo(const std::string& FilePath) noexcept;
+		void LoadEntityInfo( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
 		void SaveEntityInfo( const std::string& FilePath ) noexcept;
 		
 		PPB_INLINE
-		void OpenEditScene(const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
+		void OpenEditScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept;
 
 		PPB_INLINE
-		void SavePrefabs(const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
+		void SavePrefabs( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
-		void LoadPrefabs(const std::string& FilePath, const std::string& EntityInfoPath) noexcept;
+		void LoadPrefabs( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
-		bool VerifyState(const std::string& StateName) noexcept;
+		bool VerifyState( const std::string& StateName ) noexcept;
 
 		PPB_INLINE
 		void ResetSystems() noexcept;

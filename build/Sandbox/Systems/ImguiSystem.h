@@ -60,7 +60,7 @@ struct imgui_system : paperback::system::instance
     std::vector <const char*> m_ComponentNames = {};
 
     std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
-    std::string m_LoadedPrefabPath, m_LoadedPrefabFile, m_PrefabEntityInfoPath;
+    std::string m_LoadedPrefabPath, m_LoadedPrefabFile;
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity; //first: pointer to the archetype | second: entity index
 
@@ -433,30 +433,32 @@ struct imgui_system : paperback::system::instance
             FilePath.append(".json");
 
         if (!m_bSavePrefab)
+        {
             EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
 
-        if (!EntityInfoPath.empty())
-        {
-            if (!m_bSavePrefab)
+            if (!EntityInfoPath.empty())
                 PPB.SaveScene(FilePath, EntityInfoPath);
-            else
-                PPB.SavePrefabs(FilePath, EntityInfoPath); //To remove the need of entityinfo
-            EDITOR_TRACE_PRINT(FileName + " Saved at: " + FilePath);
+        }
+        else
+        {
+            PPB.SavePrefabs(FilePath); //To remove the need of entityinfo
+            m_bSavePrefab = false;
         }
 
-        m_bSavePrefab = false;
+        EDITOR_TRACE_PRINT(FileName + " Saved at: " + FilePath);
     }
 
     void OpenFile(std::string& FilePath, std::string& FileName)
     {
         std::string EntityInfoPath;
 
-        EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
-
-        if (!EntityInfoPath.empty())
+        if (!m_bLoadPrefab)
         {
-            if (!m_bLoadPrefab)
+            EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
+
+            if (!EntityInfoPath.empty())
             {
+
                 PPB.OpenEditScene(FilePath, EntityInfoPath);
                 EDITOR_TRACE_PRINT(FileName + " Loaded");
 
@@ -465,20 +467,18 @@ struct imgui_system : paperback::system::instance
                 m_EntityInfoLoadedPath = EntityInfoPath;
             }
             else
-            {
-                PPB.LoadPrefabs(FilePath, EntityInfoPath);
-                EDITOR_TRACE_PRINT("Prefabs from: " + FileName + " Loaded");
-
-                m_LoadedPrefabPath = FilePath;
-                m_LoadedPrefabFile = FileName;
-                m_PrefabEntityInfoPath = EntityInfoPath;
-
-            }
+                EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
         }
         else
-            EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
+        {
+            PPB.LoadPrefabs(FilePath);
+            EDITOR_TRACE_PRINT("Prefabs from: " + FileName + " Loaded");
 
-        m_bLoadPrefab = false;
+            m_LoadedPrefabPath = FilePath;
+            m_LoadedPrefabFile = FileName;
+
+            m_bLoadPrefab = false;
+        }
     }
 
     void SaveCheckPopUp()
@@ -499,7 +499,7 @@ struct imgui_system : paperback::system::instance
                 case FileActivity::NEWSCENE:
                 {
                     ResetScene();
-
+                    PPB.Initialize();
                     EDITOR_INFO_PRINT("New Scene Created");
 
                     m_Type = FileActivity::NONE;
@@ -577,9 +577,9 @@ struct imgui_system : paperback::system::instance
         {
         case FileActivity::SAVEPREFAB:
         {
-            if (!m_LoadedPrefabPath.empty() && !m_PrefabEntityInfoPath.empty())
+            if (!m_LoadedPrefabPath.empty())
             {
-                PPB.SavePrefabs(m_LoadedPrefabFile, m_PrefabEntityInfoPath);
+                PPB.SavePrefabs(m_LoadedPrefabFile);
                 EDITOR_TRACE_PRINT(m_LoadedPrefabFile + " Saved at: " + m_LoadedPrefabPath);
 
                 m_Type = FileActivity::NONE;
@@ -849,6 +849,57 @@ struct imgui_system : paperback::system::instance
         m_Components = m_SelectedEntity.first->GetEntityComponents(m_SelectedEntity.second);
     }
 
+    void LinkParentChild(paperback::component::entity& Entity, parent& NewParent, paperback::component::entity NewParentEntity)
+    {
+        paperback::u32 OldParentGID;
+        std::array<const paperback::component::info*, 1 > ComponentAdd;
+
+        auto& EntityInfo = PPB.GetEntityInfo(Entity.m_GlobalIndex);
+
+        if (EntityInfo.m_pArchetype->FindComponent<child>(EntityInfo.m_PoolDetails) != nullptr) //Check for Child Component
+        {
+            //Get the Child Component
+            auto& Child = EntityInfo.m_pArchetype->GetComponent<child>(EntityInfo.m_PoolDetails);
+            OldParentGID = Child.m_ParentGlobalIndex; //Get Old Parent GID
+
+            //Check if already attached to a parent
+            if (OldParentGID != NewParentEntity.m_GlobalIndex)
+            {
+                auto& OldParent = PPB.GetEntityInfo(OldParentGID);
+
+                //Old Parent remove child
+                OldParent.m_pArchetype->GetComponent<parent>(OldParent.m_PoolDetails).RemoveChild(Entity.m_GlobalIndex);
+            }
+
+            //if (OldParentGID == Entity.m_GlobalIndex) //check if parent entity matches the current selected child
+            //{
+            //    EDITOR_WARN_PRINT("Unable to add entity as a child");
+            //    return;
+            //}
+
+            //Link Child to Existing Parent
+            NewParent.AddChild(Entity.m_GlobalIndex);
+            //Update Child's Parent GID
+            Child.AddParent(NewParentEntity.m_GlobalIndex);
+        }
+        else
+        {
+            //save new child GID
+            auto EntityIndex = Entity.m_GlobalIndex;
+            //Link Child to Existing Parent
+            NewParent.AddChild(EntityIndex);
+
+            //Add in child component
+            ComponentAdd[0] = &paperback::component::info_v<child>;
+            PPB.AddOrRemoveComponents(Entity, ComponentAdd, {});
+
+            //Add Parent GID to Child
+            auto& Info = PPB.GetEntityInfo(EntityIndex);
+            Info.m_pArchetype->GetComponent<child>(Info.m_PoolDetails).AddParent(NewParentEntity.m_GlobalIndex);
+        }
+
+    }
+
     void DisplayChildEntities(parent& Parent/*, bool DisplayEntity */)
     {
         int Index = 0;
@@ -935,7 +986,8 @@ struct imgui_system : paperback::system::instance
                 Parent.RemoveChild(ChildToUnlink);
                 ComponentRemove[0] = &paperback::component::info_v<child>;
 
-                PPB.AddOrRemoveComponents(SelectedChild->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second }), {}, ComponentRemove);
+                auto& Entity = SelectedChild->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, ChildIndex });
+                PPB.AddOrRemoveComponents(Entity, {}, ComponentRemove);
 
                 SelectedChild = nullptr;
                 ChildIndex = {};
@@ -947,7 +999,8 @@ struct imgui_system : paperback::system::instance
                 }
 
                 if (!m_Components.empty())
-                    m_Components.clear();
+                    UpdateComponents(Entity.m_GlobalIndex);
+
 
                 Unlink = false;
             }

@@ -18,7 +18,7 @@ namespace RR_Name
     {
        rttr::registration::class_<name>( name::typedef_v.m_pName )
 		   .constructor()( rttr::policy::ctor::as_object )
-		   .property( "Name", &name::m_Value );
+		   .property( "Name", &name::m_Value )( rttr::policy::prop::as_reference_wrapper );
     }
 }
 

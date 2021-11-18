@@ -133,10 +133,12 @@ namespace paperback
     {
         rapidjson::Value::MemberIterator it = doc->FindMember(Archetype);
         if (it != doc->MemberEnd())
-            if (Archetype == "Entities") //Load Entities + Prefabs + Archetype Mgr
-                deserialize::ReadEntities(it);
+            if (Archetype == "Entities") //Load Entities + Archetype Mgr
+                deserialize::ReadEntities(it, false);
             else if (Archetype == "All Entity Info") // Load Entity Infos
                 deserialize::ReadEntityInfo(it);
+            else if (Archetype == "Prefabs")
+                deserialize::ReadEntities(it, true); //Load Prefabs
 
         return *this;
     }

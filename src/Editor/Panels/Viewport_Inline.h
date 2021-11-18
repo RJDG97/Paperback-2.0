@@ -54,7 +54,7 @@ void EditorViewport::ViewportTwo()
 
 void EditorViewport::ViewportMenuBar()
 {
-	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoTitleBar);
 
 	if (ImGui::SmallButton(ICON_FA_ARROWS_ALT))
 	{
@@ -62,14 +62,14 @@ void EditorViewport::ViewportMenuBar()
 			m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;	
 	}
 
-	ImGui::SameLine(10.0f); 
+	ImGui::SameLine(); 
 
 	if (ImGui::SmallButton(ICON_FA_EXPAND_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::SCALE;
 	}
-	ImGui::SameLine(10.0f);
+	ImGui::SameLine();
 
 	if (ImGui::SmallButton(ICON_FA_SYNC_ALT))
 	{
@@ -77,7 +77,7 @@ void EditorViewport::ViewportMenuBar()
 			m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 	}
 
-	ImGui::SameLine(10.0f);
+	ImGui::SameLine();
 
 	if (ImGui::SmallButton(ICON_FA_BROOM))
 	{

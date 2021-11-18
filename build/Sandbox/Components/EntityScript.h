@@ -16,6 +16,6 @@ namespace RR_EntityScript
     {
          rttr::registration::class_<entityscript>(entityscript::typedef_v.m_pName)
            .constructor()(rttr::policy::ctor::as_object)
-           .property("Script ID", &entityscript::m_ScriptID);
+           .property("Script ID", &entityscript::m_ScriptID)(rttr::policy::prop::as_reference_wrapper);
     }
 }

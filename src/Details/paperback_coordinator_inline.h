@@ -328,7 +328,7 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
-	void instance::SavePrefabs( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
+	void instance::SavePrefabs( const std::string& FilePath ) noexcept
 	{
 		paperback::component::temp_guid Temp = {};
 		paperback::archetype::TempMgr TempMgr;
@@ -342,49 +342,48 @@ namespace paperback::coordinator
 		// Serialize Prefabs 
 		for (auto& Archetype : PPB.GetArchetypeList())
 		{
-			if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
+			if (!Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
+				continue;
+
+			if (Archetype->GetCurrentEntityCount() == 0)
+				continue;
+
+			JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
+
+			//Serialize GUIDs
+
+			JFile.StartObject().WriteKey("Guid").StartArray();
+
+			auto& ComponentInfoArray = Archetype->GetComponentInfos();
+
+			for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
 			{
-				if (Archetype->GetCurrentEntityCount() == 0)
-					continue;
-
-				JFile.StartObject().WriteKey(Archetype->GetName()).StartArray();
-
-				//Serialize GUIDs
-
-				JFile.StartObject().WriteKey("Guid").StartArray();
-
-				auto& ComponentInfoArray = Archetype->GetComponentInfos();
-
-				for (paperback::u32 i = 0; i < Archetype->GetComponentCount(); ++i)
-				{
-					Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
-					JFile.WriteGuid(Temp);
-				}
-
-				JFile.EndArray().EndObject();
-
-				//Serialize Components
-				Archetype->SerializeAllEntities(JFile);
-
-				JFile.EndArray().EndObject();
+				Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+				JFile.WriteGuid(Temp);
 			}
 
 			JFile.EndArray().EndObject();
 
-			//Serialize Components
-			Archetype->SerializePrefabEntities(JFile);
 
+			for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
+			{
+				auto& Prefab = Archetype->GetComponent<prefab>(paperback::vm::PoolDetails{ 0, i });
+
+				if (!Prefab.m_ReferencePrefabGIDs.empty())
+					Prefab.m_ReferencePrefabGIDs.clear();
+			}
+
+			//Serialize Components
+
+			Archetype->SerializeAllEntities(JFile);
 			JFile.EndArray().EndObject();
 		}
 
 		JFile.EndArray().EndObject().EndWriter();
-
-		// Save the entity info after everything else
-		//SaveEntityInfo(EntityInfoPath);
 	}
 
 	PPB_INLINE
-	void instance::SaveEntityInfo( const std::string& FilePath) noexcept
+	void instance::SaveEntityInfo( const std::string& FilePath ) noexcept
 	{
 		paperback::entity::TempInfo Tempinfo{};
 		// Probably just save into the same file everytime
@@ -411,10 +410,10 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
-	void instance::LoadPrefabs( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
+	void instance::LoadPrefabs( const std::string& FilePath ) noexcept
 	{
 		JsonFile Jfile;
-		Initialize();
+		//Initialize();
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Prefabs");
 		Jfile.EndReader();
