@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 4
+                "EntityHead": 0
             }
         },
         {
@@ -37,7 +37,7 @@
                         }
                     },
                     "EntityScript": {
-                        "Script ID": "CameraScript"
+                        "Script ID": "CameraMovement"
                     }
                 }
             ]

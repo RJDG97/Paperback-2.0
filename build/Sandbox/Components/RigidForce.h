@@ -17,9 +17,10 @@ struct rigidforce
     float m_threshold = .25f;
 
     // variables
-    float m_staticFriction;									// -- Friction, defaulted to 1.f
-    float m_dynamicFriction;
-    paperback::Vector3f m_Forces;						// -- Sum of Forces of rigidbody
+    float m_staticFriction;									// -- Friction when static
+    float m_dynamicFriction;                                // -- Friction when moving
+    float m_Restitution;                                    // -- 0.f to 1.f -> 0 = no bounce, 1 = bounce
+    paperback::Vector3f m_Forces;						    // -- Sum of Forces of rigidbody
     paperback::Vector3f m_Momentum;                         // -- Momentum of rigidbody
 
     // temporary, used to manipulate movement in editor
@@ -28,6 +29,7 @@ struct rigidforce
     rigidforce() :
         m_staticFriction{ .5f },
         m_dynamicFriction{ 0.25f },
+        m_Restitution{1.f},
         m_Forces{ paperback::Vector3f{} },
         m_Momentum{ paperback::Vector3f{} },
         m_isStatic{false}
@@ -36,6 +38,7 @@ struct rigidforce
     rigidforce(float mass) :
         m_staticFriction{ .5f },
         m_dynamicFriction{ 0.25f },
+        m_Restitution{ 1.f },
         m_Forces{ paperback::Vector3f{} },
         m_Momentum{ paperback::Vector3f{} },
         m_isStatic{ false }
@@ -51,6 +54,7 @@ namespace RR_RIGIDFORCE
            .constructor()(rttr::policy::ctor::as_object)
            .property("Static Friction", &rigidforce::m_staticFriction)(rttr::policy::prop::as_reference_wrapper)
            .property("Dynamic Friction", &rigidforce::m_dynamicFriction)(rttr::policy::prop::as_reference_wrapper)
+           .property("Restitution", &rigidforce::m_dynamicFriction)(rttr::policy::prop::as_reference_wrapper)
            .property("Force", &rigidforce::m_Forces)(rttr::policy::prop::as_reference_wrapper)
            .property("Moment", &rigidforce::m_Momentum)(rttr::policy::prop::as_reference_wrapper)
            .property("Threshold", &rigidforce::m_threshold)(rttr::policy::prop::as_reference_wrapper);
