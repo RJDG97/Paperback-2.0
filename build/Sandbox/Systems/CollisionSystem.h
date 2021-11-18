@@ -17,7 +17,7 @@ struct collision_system : paperback::system::instance
 
     using query = std::tuple< paperback::query::none_of<prefab> >;
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere,
+    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, mass* m1,
         unitstate* state) noexcept
     {
         if ( Entity.IsZombie() ) return;
@@ -34,7 +34,7 @@ struct collision_system : paperback::system::instance
 
         Boundingbox->m_Collided = false;
 
-        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball,
+        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, mass* m2,
                                        unitstate* state2)  noexcept
         {
             if ( Entity.IsZombie() ) return;
@@ -57,12 +57,16 @@ struct collision_system : paperback::system::instance
             {
                 if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                 {
-                    // On entry
-                    if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) 
-                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
-                    // Constant collision
-                    else
-                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                    // boounce
+                    if(RigidForce && RF && m1 && m2)
+                        CheapaabbDynamic(Boundingbox, RigidForce, Transform, m1, BB, RF, Xform, m2);
+
+                    //// On entry
+                    //if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) 
+                    //    BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                    //// Constant collision
+                    //else
+                    //    BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
                     
                     Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
 
@@ -70,9 +74,9 @@ struct collision_system : paperback::system::instance
                 }
                 else
                 {
-                    // No longer colliding
-                    if( Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) )
-                        BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+                    //// No longer colliding
+                    //if( Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) )
+                    //    BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
 
                     Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
                 }
