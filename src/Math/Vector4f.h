@@ -320,7 +320,7 @@ namespace paperback
         {
             return IsValid(x) && IsValid(y) && IsValid(z) && IsValid(w);
         }
-
+        // here
         union
         {
             #pragma warning(disable : 4201)
@@ -332,11 +332,6 @@ namespace paperback
             float array[4];
         };
 
-        //static const Vector4f cZero;
-        //static const Vector4f cXAxis;
-        //static const Vector4f cYAxis;
-        //static const Vector4f cZAxis;
-        //static const Vector4f cWAxis;
     };
 
     PPB_INLINE
@@ -429,12 +424,6 @@ namespace paperback
             start[2] + tValue * (end[2] - start[2]),
             start[3] + tValue * (end[3] - start[3]));
     }
-
-    //const Vector4f Vector4f::cZero(0.0f, 0.0f, 0.0f, 0.0f);
-    //const Vector4f Vector4f::cXAxis(1.0f, 0.0f, 0.0f, 0.0f);
-    //const Vector4f Vector4f::cYAxis(0.0f, 1.0f, 0.0f, 0.0f);
-    //const Vector4f Vector4f::cZAxis(0.0f, 0.0f, 1.0f, 0.0f);
-    //const Vector4f Vector4f::cWAxis(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 //#include "Vector3f.hpp"

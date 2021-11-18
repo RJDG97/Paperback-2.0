@@ -12,7 +12,14 @@ namespace paperback
 	{
 		float m[MTX_TOTAL_ELEMENTS];					// -- Arr of 16 floats [shared mem]
 		float m2[4][4];									// -- Arr of 4x4 floats [shared mem]
-		Mtx4x4() = default;								// -- Class constructor
+
+		//-------------------------------------------------------------------------------
+		Mtx4x4()										// -- Default constructor
+		{
+			for (int i = 0; i < MTX_TOTAL_ELEMENTS; ++i)
+				m[i] = 0.f;
+		}
+
 		Mtx4x4(float* _pArr)							// -- Constructs a Mtx4x4 object via a float arr
 			: m()
 		{
@@ -37,7 +44,7 @@ namespace paperback
 			m2[3][0] = m30, m2[3][1] = m31, m2[3][2] = m32, m2[3][3] = m33;
 		}
 
-		Mtx4x4(const Mtx4x4 &rhs)							// -- Copy constructor
+		Mtx4x4(const Mtx4x4 &rhs)						// -- Copy constructor
 			: m()
 		{
 			// -- Copy values
@@ -46,7 +53,9 @@ namespace paperback
 		}
 
 		inline Mtx4x4& operator=(const Mtx4x4&);		// -- Assignment operator
-		Mtx4x4& operator*=(const Mtx4x4 &rhs)				// -- operator*=
+
+		//-------------------------------------------------------------------------------
+		Mtx4x4& operator*=(const Mtx4x4 &rhs)			// -- operator*=
 		{
 			// -- Create float array to store results
 			float arr[MTX_TOTAL_ELEMENTS];
@@ -85,12 +94,15 @@ namespace paperback
 
 		inline Mtx4x4 operator*(const Mtx4x4&);		// -- operator*
 		inline Vector3f operator*(const Vector3f&);	// -- Multiplies a matrix with a vector
+
+		//-------------------------------------------------------------------------------
 		static inline Mtx4x4 Identity();				// -- Returns the identity matrix
 		static inline Mtx4x4 Trans(const Vector3f&);	// -- Returns the translation matrix
 		static inline Mtx4x4 Scale(const Vector3f&);	// -- Returns the scale matrix
 		static inline Mtx4x4 RotX(float angle);			// -- Returns the rotation matrix in the X axis
 		static inline Mtx4x4 RotY(float angle);			// -- Returns the rotation matrix in the Y axis
 		static inline Mtx4x4 RotZ(float angle);			// -- Returns the rotation matrix in the Z axis
+		
 		static inline Mtx4x4 RotRad2D(float angle)		// -- Returns the rotation matrix (Z axis) taking in an angle in radians
 		{
 			//return RotZ(angle);
@@ -101,6 +113,7 @@ namespace paperback
 			//return RotZ(MathUtils::DegToRad(angle));
 			return Mtx4x4{};
 		}
+
 		static Mtx4x4 LookAt(const Vector3f& up,		// -- Gets the LookAt matrix, taking in the up vector of the camera,
 			const Vector3f& target,	// -- target pos of the camera
 			const Vector3f& pos)		// -- and the camera's position.
