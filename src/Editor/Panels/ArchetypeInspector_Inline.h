@@ -67,9 +67,9 @@ void ArchetypeInspector::PrefabPanel()
 
         for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
         {
-            char Buffer[256]{};
-            ArchetypeName = Archetype->GetName() + " [" + std::to_string(i) + "]";
-            std::copy(ArchetypeName.begin(), ArchetypeName.end(), Buffer);
+            //char Buffer[256]{};
+            //ArchetypeName = Archetype->GetName() + " [" + std::to_string(i) + "]";
+            //std::copy(ArchetypeName.begin(), ArchetypeName.end(), Buffer);
 
             if (Filter.PassFilter(ArchetypeName.c_str()))
             {
@@ -96,6 +96,8 @@ void ArchetypeInspector::PrefabPanel()
                         if (!m_Imgui.m_Components.empty())
                             m_Imgui.UpdateComponents(Entity.m_GlobalIndex);
                     }
+                    //if (ImGui::InputText(("##ArchetypeName" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), Buffer, IM_ARRAYSIZE(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+                    //    Archetype->SetName(std::string(Buffer));
 
                     DisplayPrefabComponents(Archetype, i, Prefab);
 
