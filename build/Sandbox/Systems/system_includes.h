@@ -13,6 +13,7 @@
 #include "EnemySpawnerSystem.h"
 #include "PlayerSpawnerSystem.h"
 #include "WaypointSystem.h"
+#include "ResolutionSystem.h"
 
 // Event
 #include "OnEvent_CollisionSystem.h"

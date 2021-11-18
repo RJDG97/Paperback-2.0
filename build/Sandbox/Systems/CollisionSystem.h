@@ -17,8 +17,8 @@ struct collision_system : paperback::system::instance
 
     using query = std::tuple< paperback::query::none_of<prefab> >;
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1,
-        unitstate* state, waypointv1* wp1) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere,
+        unitstate* state) noexcept
     {
         if ( Entity.IsZombie() ) return;
        
@@ -34,8 +34,8 @@ struct collision_system : paperback::system::instance
 
         Boundingbox->m_Collided = false;
 
-        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2,
-                                       unitstate* state2, waypointv1* wp2 )  noexcept
+        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball,
+                                       unitstate* state2)  noexcept
         {
             if ( Entity.IsZombie() ) return;
 
@@ -79,7 +79,7 @@ struct collision_system : paperback::system::instance
             }
             if (Sphere && Ball)
             {
-                if (SphereSphere(tf, Sphere->m_fRadius, xf, Ball->m_fRadius))
+                if (SphereSphere(tf, Sphere->m_Radius, xf, Ball->m_Radius))
                 {
                     Sphere->m_Collided = Ball->m_Collided = true;
                 }
