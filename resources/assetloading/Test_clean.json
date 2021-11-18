@@ -11,7 +11,8 @@
                     "Guid": [
                         0,
                         10055872472107209861,
-                        17008353085049151909
+                        17008353085049151909,
+                        14351128073332756358
                     ]
                 },
                 {
@@ -19,7 +20,9 @@
                         "Global Index": 3
                     },
                     "Prefab": {
-                        "Prefab": []
+                        "Prefab": [
+                            7
+                        ]
                     },
                     "Transform": {
                         "Offset": {
@@ -32,6 +35,45 @@
                             "y": 0.0,
                             "z": 0.0
                         }
+                    },
+                    "EntityScript": {
+                        "Script ID": "CameraScript"
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": "CameraScript"
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 3
                     }
                 }
             ]
