@@ -1010,8 +1010,6 @@
                         }
                     },
                     "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
                         "Threshold": 0.25
@@ -1120,8 +1118,6 @@
                         }
                     },
                     "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
                         "Threshold": 0.25
@@ -1259,8 +1255,6 @@
                         }
                     },
                     "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
                         "Threshold": 0.25
@@ -1400,8 +1394,6 @@
                         }
                     },
                     "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
                         "Threshold": 0.25
