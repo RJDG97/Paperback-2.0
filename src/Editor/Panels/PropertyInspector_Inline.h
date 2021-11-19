@@ -53,7 +53,6 @@ void DetailsWindow::DisplayProperties()
                         auto PropertyType = property.get_type(); //etc vector 3, std::string etc
                         auto PropertyName = property.get_name().to_string();
 
-
                         if (PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic())
                             m_Imgui.DisplayBaseTypes(PropertyName, PropertyType, PropertyValue);
 
@@ -70,6 +69,9 @@ void DetailsWindow::DisplayProperties()
 
                         if (ComponentInstance.first.get_type().get_name().to_string() == "Parent")
                             ParentComponent();
+
+                        if (ComponentInstance.first.get_type().get_name().to_string() == "Prefab")
+                            PrefabComponent();
 
                         auto ReferencePrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                         auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
@@ -204,19 +206,33 @@ void DetailsWindow::RemoveComponent()
 
 void DetailsWindow::ParentComponent()
 {
-    if (m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second })))
-    {
-        auto& Parent = m_Imgui.m_SelectedEntity.first->GetComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+    auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
 
-        if (Parent.m_ChildrenGlobalIndexes.size() != 0)
+    if (Parent)
+    {
+        if (Parent->m_ChildrenGlobalIndexes.size() != 0)
         {
-            for (auto& Child : Parent.m_ChildrenGlobalIndexes)
-                ImGui::Text("Child GID: %d", Child);
+            for (auto& Child : Parent->m_ChildrenGlobalIndexes)
+                ImGui::Text("Child GID: %lu", Child);
         }
         else
             ImGui::Text("No Child is attached to this parent");
 
         ChildCombo();
+    }
+}
+
+void DetailsWindow::PrefabComponent()
+{
+    auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+
+    if (Prefab)
+    {
+        if (Prefab->m_ReferencePrefabGIDs.size() != 0)
+        {
+            for (auto& Instance : Prefab->m_ReferencePrefabGIDs)
+                ImGui::Text("Instance GID: %lu", Instance);
+        }
     }
 }
 
@@ -417,5 +433,9 @@ void DetailsWindow::DisplayAvailableChildren(paperback::component::entity& Entit
             }
         }
     }
+}
 
+bool DetailsWindow::PrefabRefComboCheck(std::string& PreviousEntry, std::string& NewEntry)
+{
+    return (PreviousEntry == NewEntry);
 }

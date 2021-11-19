@@ -3,6 +3,8 @@
 
 struct DetailsWindow : paperback::editor::instance
 {
+    bool ComboUpdated = false;
+
     constexpr static auto typedef_v = paperback::editor::type::update
     {
         .m_pName = "Property Inspector"
@@ -26,23 +28,28 @@ struct DetailsWindow : paperback::editor::instance
 
     void RemoveComponent();
 
-    void UpdateComponents( paperback::u32 EntityGlobalIndex );
+    bool PrefabRefComboCheck(std::string& PreviousEntry, std::string& NewEntry);
 
 //-----------------------------------
-//        Component Combos
+//           Components
 //-----------------------------------
 
     void ParentComponent();
 
-    void ChildCombo();
-
-    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i, 
-                                  parent& NewParent, paperback::component::entity NewParentEntity);
-
-    void MeshCombo();
-
     void AnimatorComponent();
 
     void SocketedComponent();
+
+    void PrefabComponent();
+
+//-----------------------------------
+//        Component Combos
+//-----------------------------------
+    void ChildCombo();
+
+    void MeshCombo();
+
+    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i,
+        parent& NewParent, paperback::component::entity NewParentEntity);
 
 };

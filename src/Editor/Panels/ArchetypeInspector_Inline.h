@@ -42,7 +42,7 @@ void ArchetypeInspector::MenuBar()
 void ArchetypeInspector::PrefabPanel()
 {
     std::array<const paperback::component::info*, 1 > ComponentAddRemove;
-    bool b_NodeOpen = false;
+    bool bOpen = false;
     int Index = 0;
     std::string ArchetypeName;
 
@@ -71,21 +71,21 @@ void ArchetypeInspector::PrefabPanel()
             {
                 if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
                 {
+
+                    ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_SpanAvailWidth;
+
                     auto Prefab = Archetype->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, i });
                     auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
                     auto Name = Archetype->FindComponent<name>(paperback::vm::PoolDetails({ 0, i }));
                     auto ParentPrefab = Archetype->FindComponent<parent>(paperback::vm::PoolDetails{ 0, i });
 
-                    ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
-
                     if (ParentPrefab)
-                        NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
-                    else
-                        NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
-
+                        NodeFlags |= ImGuiTreeNodeFlags_DefaultOpen;
 
                     if (Name)
-                        b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, Name->m_Value.c_str());
+                    {
+                        bOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, Name->m_Value.c_str());
+                    }
                     else
                     {
                         //Add in missing name component
@@ -140,13 +140,14 @@ void ArchetypeInspector::PrefabPanel()
                         ImGui::EndPopup();
                     }
 
-                    if (b_NodeOpen)
+                    if (bOpen)
                     {
                         if (ParentPrefab)
                             m_Imgui.DisplayChildEntities(*ParentPrefab);
-
                         ImGui::TreePop();
                     }
+
+
                 }
             }
         }

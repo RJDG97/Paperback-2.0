@@ -206,7 +206,6 @@ struct imgui_system : paperback::system::instance
                 ImGui::PushFont(m_Imgfont);
 
                 PanelsRun();
-                //ImGui::ShowDemoWindow();
 
                 ImGui::PopFont();
                 ImGui::End(); //End of Docking Space
@@ -962,11 +961,10 @@ struct imgui_system : paperback::system::instance
 
                     if (!m_Components.empty())
                         UpdateComponents(Child);
-
                 }
 
                 b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + ChildEntityInfo.m_pArchetype->GetName() + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + std::to_string(Index)).c_str(),
-                    NodeFlags, /*(ChildEntityInfo.m_pArchetype->GetName() + " [" + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + "]").c_str()*/ ChildName.c_str());
+                    NodeFlags, ChildName.c_str());
 
                 if (ImGui::IsItemClicked())
                 {
