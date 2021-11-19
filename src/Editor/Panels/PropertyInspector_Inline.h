@@ -44,6 +44,9 @@ void DetailsWindow::DisplayProperties()
             {
                 if (ImGui::CollapsingHeader(ComponentInstance.first.get_type().get_name().to_string().c_str(), ImGuiTreeNodeFlags_DefaultOpen))
                 {
+                    auto ReferencePrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+                    auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
                     for (auto& property : ComponentInstance.first.get_type().get_properties())
                     {
                         rttr::variant PropertyValue = property.get_value(ComponentInstance.first);
@@ -68,13 +71,11 @@ void DetailsWindow::DisplayProperties()
                             m_Imgui.DisplayClassType(PropertyName, PropertyType, PropertyValue);
 
                         if (ComponentInstance.first.get_type().get_name().to_string() == "Parent")
-                            ParentComponent();
+                            ParentComponent(ReferencePrefab, ComponentInstance.second.m_Value);
 
                         if (ComponentInstance.first.get_type().get_name().to_string() == "Prefab")
                             PrefabComponent();
 
-                        auto ReferencePrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
-                        auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
 
                         if (Prefab)
                         {
@@ -95,11 +96,13 @@ void DetailsWindow::DisplayProperties()
                     }
 
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Mesh")
-                        MeshCombo();
+                    {
+                        MeshCombo(ReferencePrefab, ComponentInstance.second.m_Value);
+                    }
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Animator")
-                        AnimatorComponent();
+                        AnimatorComponent(ReferencePrefab, ComponentInstance.second.m_Value);
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Socketed")
-                        SocketedComponent();
+                        SocketedComponent(ReferencePrefab, ComponentInstance.second.m_Value);
                 }
             }
         }
@@ -204,7 +207,7 @@ void DetailsWindow::RemoveComponent()
     }
 }
 
-void DetailsWindow::ParentComponent()
+void DetailsWindow::ParentComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
 {
     auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
 
@@ -218,7 +221,7 @@ void DetailsWindow::ParentComponent()
         else
             ImGui::Text("No Child is attached to this parent");
 
-        ChildCombo();
+        ChildCombo(ReferencePrefab, CompGuid);
     }
 }
 
@@ -236,12 +239,14 @@ void DetailsWindow::PrefabComponent()
     }
 }
 
-void DetailsWindow::MeshCombo()
+void DetailsWindow::MeshCombo(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
 {
     RenderResourceManager& Manager = RenderResourceManager::GetInstanced();
 
     //Get Mesh Component
     auto& EntityMesh = m_Imgui.m_SelectedEntity.first->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
+    std::string PrevMesh = EntityMesh.m_Model.c_str(), PrevTexture = EntityMesh.m_Texture.c_str();
 
     if (ImGui::BeginCombo("##ModelMeshes", EntityMesh.m_Model.empty() ? "Choose Model" : EntityMesh.m_Model.c_str()))
     {
@@ -254,6 +259,12 @@ void DetailsWindow::MeshCombo()
                     if (ImGui::Selectable(MeshName.c_str()))
                     {
                         EntityMesh.m_Model = MeshName;
+
+                        if (ReferencePrefab)
+                        {
+                            if (!PrefabRefComboCheck(PrevMesh, EntityMesh.m_Model))
+                                ReferencePrefab->AddModifiedComponentGuid(CompGuid);
+                        }
                     }
                 }
             }
@@ -273,6 +284,11 @@ void DetailsWindow::MeshCombo()
                     if (ImGui::Selectable(TextureName.c_str()))
                     {
                         EntityMesh.m_Texture = TextureName;
+                        if (ReferencePrefab)
+                        {
+                            if (!PrefabRefComboCheck(PrevTexture, EntityMesh.m_Texture))
+                                ReferencePrefab->AddModifiedComponentGuid(CompGuid);
+                        }
                     }
                 }
             }
@@ -282,16 +298,18 @@ void DetailsWindow::MeshCombo()
     }
 }
 
-void DetailsWindow::AnimatorComponent()
+void DetailsWindow::AnimatorComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
 {
     RenderResourceManager& RRM = RenderResourceManager::GetInstanced();
     //get Mesh component -> m_Model
     auto EntityMesh = m_Imgui.m_SelectedEntity.first->FindComponent<mesh>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
     auto EntityAnimator = m_Imgui.m_SelectedEntity.first->FindComponent<animator>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
 
+
     if (EntityMesh && EntityAnimator)
     {
         auto& AnimationMap = RRM.m_Models[EntityMesh->m_Model].GetAnimations(); //Get the animations that is avaliable for the model
+        std::string PrevAnim = EntityAnimator->m_CurrentAnimationName.c_str();
 
         if (ImGui::BeginCombo("##ModelAnimation", EntityAnimator->m_CurrentAnimationName.empty() ? "Choose an animation" : EntityAnimator->m_CurrentAnimationName.c_str()))
         {
@@ -302,6 +320,12 @@ void DetailsWindow::AnimatorComponent()
                     if (ImGui::Selectable(AnimString.c_str()))
                     {
                         EntityAnimator->m_CurrentAnimationName = AnimString;
+
+                        if (ReferencePrefab)
+                        {
+                            if (!PrefabRefComboCheck(PrevAnim, EntityAnimator->m_CurrentAnimationName))
+                                ReferencePrefab->AddModifiedComponentGuid(CompGuid);
+                        }
                     }
                 }
             }
@@ -310,12 +334,13 @@ void DetailsWindow::AnimatorComponent()
     }
 }
 
-void DetailsWindow::SocketedComponent()
+void DetailsWindow::SocketedComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
 {
     RenderResourceManager& RRM = RenderResourceManager::GetInstanced();
 
     auto EntityChild = m_Imgui.m_SelectedEntity.first->FindComponent<child>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
     auto EntitySocketed = m_Imgui.m_SelectedEntity.first->FindComponent<socketed>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
     if (EntitySocketed)
     {
         if (EntityChild)
@@ -329,6 +354,8 @@ void DetailsWindow::SocketedComponent()
 
             if (ParentMesh && ParentAnimator)
             {
+                std::string PrevSocket = EntitySocketed->m_ParentSocket;
+
                 auto& AnimationMap = RRM.m_Models[ParentMesh->m_Model].GetAnimations(); //Get the animations that is avaliable for the model
                 ImGui::Text("Parent Socket: ");
 
@@ -345,6 +372,12 @@ void DetailsWindow::SocketedComponent()
                                 if (ImGui::Selectable(BoneString.c_str()))
                                 {
                                     EntitySocketed->m_ParentSocket = BoneString;
+                                    if (ReferencePrefab)
+                                    {
+                                        if (!PrefabRefComboCheck(PrevSocket, EntitySocketed->m_ParentSocket))
+                                            ReferencePrefab->AddModifiedComponentGuid(CompGuid);
+                                    }
+
                                 }
                             }
 
@@ -361,7 +394,7 @@ void DetailsWindow::SocketedComponent()
     }
 }
 
-void DetailsWindow::ChildCombo()
+void DetailsWindow::ChildCombo(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
 {
     if (ImGui::BeginCombo("##Potential Children", "Potential Children")) //TBD IDK WHAT TO NAME TIS
     {
@@ -390,7 +423,7 @@ void DetailsWindow::ChildCombo()
                             if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
                             {
                                 auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-                                DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity);
+                                DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity, ReferencePrefab, CompGuid);
                             }
                         }
                         else
@@ -400,7 +433,7 @@ void DetailsWindow::ChildCombo()
                             {
                                 // Non Parent Entities Entity Component
                                 auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-                                DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity);
+                                DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity, ReferencePrefab, CompGuid);
                             }
                         }
                     }
@@ -411,9 +444,16 @@ void DetailsWindow::ChildCombo()
     }
 }
 
-void DetailsWindow::DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i, parent& NewParent, paperback::component::entity NewParentEntity)
+void DetailsWindow::DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i, parent& NewParent, paperback::component::entity NewParentEntity,
+                                             reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
 {
     std::string EntityName{};
+    
+    int NumChild = 0;
+
+    if (NewParent.m_ChildrenGlobalIndexes.size())
+        NumChild = NewParent.m_ChildrenGlobalIndexes.size();
+
 
     if (NewParent.m_ChildrenGlobalIndexes.find(Entity.m_GlobalIndex) == NewParent.m_ChildrenGlobalIndexes.end()) //not already a child of the selected entity
     {
@@ -430,6 +470,14 @@ void DetailsWindow::DisplayAvailableChildren(paperback::component::entity& Entit
             if (ImGui::Selectable(EntityName.c_str()))
             {
                 m_Imgui.LinkParentChild(Entity, NewParent, NewParentEntity);
+
+                if (ReferencePrefab)
+                {
+                    if (NumChild != NewParent.m_ChildrenGlobalIndexes.size()) //added in more kids
+                    {
+                        ReferencePrefab->AddModifiedComponentGuid(CompGuid);
+                    }
+                }
             }
         }
     }
