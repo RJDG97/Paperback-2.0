@@ -42,7 +42,7 @@ void ArchetypeInspector::MenuBar()
 void ArchetypeInspector::PrefabPanel()
 {
     std::array<const paperback::component::info*, 1 > ComponentAddRemove;
-
+    bool b_NodeOpen = false;
     int Index = 0;
     std::string ArchetypeName;
 
@@ -74,15 +74,18 @@ void ArchetypeInspector::PrefabPanel()
                     auto Prefab = Archetype->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, i });
                     auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
                     auto Name = Archetype->FindComponent<name>(paperback::vm::PoolDetails({ 0, i }));
+                    auto ParentPrefab = Archetype->FindComponent<parent>(paperback::vm::PoolDetails{ 0, i });
+
+                    ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
+
+                    if (ParentPrefab)
+                        NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+                    else
+                        NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+
 
                     if (Name)
-                    {
-                        auto& String = Name->m_Value;
-                        char Buffer[256]{};
-
-                        std::copy(String.begin(), String.end(), Buffer);
-                        ImGui::Selectable(Name->m_Value.c_str());
-                    }
+                        b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, Name->m_Value.c_str());
                     else
                     {
                         //Add in missing name component
@@ -101,7 +104,7 @@ void ArchetypeInspector::PrefabPanel()
                         m_Imgui.m_SelectedEntity.second = i;
 
                         m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
-                        //EDITOR_TRACE_PRINT("Editing Prefab: " + Name->m_Value);
+                        EDITOR_TRACE_PRINT("Editing Prefab: " + Archetype->GetName());
                     }
 
                     if (ImGui::BeginPopupContextItem())
@@ -114,33 +117,36 @@ void ArchetypeInspector::PrefabPanel()
 
                             m_Imgui.m_pArchetype->ClonePrefab(EntityInfo.m_PoolDetails.m_PoolIndex);
 
-                            EDITOR_INFO_PRINT( EntityName.m_Value + " is added to the scene" );
+                            EDITOR_INFO_PRINT("Prefab Instance:" + EntityName.m_Value + " is added to the scene");
                         }
                         m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
 
 
-                        if (ImGui::MenuItem(" Remove Prefab"))
-                        {
-                            std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
+                        //if (ImGui::MenuItem(" Remove Prefab"))
+                        //{
+                        //    std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
 
-                            ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
-                            PPB.AddOrRemoveComponents(Archetype->GetComponent
-                                <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {} , ComponentAddRemove);
+                        //    ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
+                        //    PPB.AddOrRemoveComponents(Archetype->GetComponent
+                        //        <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {} , ComponentAddRemove);
 
-                            if (!m_Imgui.m_Components.empty())
-                                m_Imgui.UpdateComponents(Entity.m_GlobalIndex);
+                        //    if (!m_Imgui.m_Components.empty())
+                        //        m_Imgui.UpdateComponents(Entity.m_GlobalIndex);
 
-                            EDITOR_WARN_PRINT("Removed Prefab Component from: " + Temp);
-                        }
-                        m_Imgui.ImGuiHelp("Removes prefab component\n Instances will become normal entities");
+                        //    EDITOR_WARN_PRINT("Removed Prefab Component from: " + Temp);
+                        //}
+                        //m_Imgui.ImGuiHelp("Removes prefab component\n Instances will become normal entities");
 
                         ImGui::EndPopup();
                     }
 
-                    auto ParentPrefab = Archetype->FindComponent<parent>(paperback::vm::PoolDetails{ 0, i });
+                    if (b_NodeOpen)
+                    {
+                        if (ParentPrefab)
+                            m_Imgui.DisplayChildEntities(*ParentPrefab);
 
-                    if (ParentPrefab)
-                        m_Imgui.DisplayChildEntities(*ParentPrefab);
+                        ImGui::TreePop();
+                    }
                 }
             }
         }

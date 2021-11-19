@@ -951,7 +951,7 @@ struct imgui_system : paperback::system::instance
                 if (ChildParent)
                     NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
                 else
-                    NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+                    NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Bullet;
 
                 if (Name)
                     ChildName = Name->m_Value;

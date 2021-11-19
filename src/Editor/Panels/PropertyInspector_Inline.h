@@ -4,9 +4,7 @@
 
 void DetailsWindow::Panel()
 {
-
     DisplayProperties();
-
 }
 
 void DetailsWindow::DisplayProperties()

@@ -21,8 +21,9 @@ void EntityInspector::DisplayEntities()
 {
     int Index = 0, NumEntities = 0;
     std::array<const paperback::component::info*, 1 > ComponentAddRemove;
-    paperback::u32 DragDropEntityGID;
-    bool Link = false;
+    //paperback::u32 DragDropEntityGID;
+    bool b_NodeOpen = false/*, Link = false*/;
+
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 150.0f);
 
@@ -38,23 +39,22 @@ void EntityInspector::DisplayEntities()
                 {
                     if ( Archetype->FindComponent<prefab>(paperback::vm::PoolDetails({ 0, i })) == nullptr ) //not a child entity
                     {
-                        ++NumEntities;
-
                         if (Archetype->FindComponent<child>(paperback::vm::PoolDetails({ 0, i })) == nullptr) //not a prefab entity
                         {
                             auto Name = Archetype->FindComponent<name>(paperback::vm::PoolDetails({ 0, i }));
                             auto Parent = Archetype->FindComponent<parent>(paperback::vm::PoolDetails({ 0, i }));
                             auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
 
+                            ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
+
+                            if (Parent)
+                                NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+                            else
+                                NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+
+
                             if (Name)
-                            {
-                                auto& String = Name->m_Value;
-                                char Buffer[256]{};
-
-                                std::copy(String.begin(), String.end(), Buffer);
-
-                                ImGui::Selectable(Name->m_Value.c_str());
-                            }
+                                b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, Name->m_Value.c_str());
                             else
                             {
                                 //Add in missing name component
@@ -162,16 +162,17 @@ void EntityInspector::DisplayEntities()
                             //    {
                             //        //no parent component -> Can just link
                             //        std::array<const paperback::component::info*, 1 > ComponentAdd = &paperback::component::info_v<parent>;
-
-
                             //    }
-
                             //    ImGui::EndDragDropTarget();
-
                             //}
 
-                            if (Parent)
-                                m_Imgui.DisplayChildEntities(*Parent);
+                            if (b_NodeOpen)
+                            {
+                                if (Parent)
+                                    m_Imgui.DisplayChildEntities(*Parent);
+
+                                ImGui::TreePop();
+                            }
 
                             if (Deleted)
                                 ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
