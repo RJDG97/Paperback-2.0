@@ -114,7 +114,7 @@ void ArchetypeInspector::PrefabPanel()
 
                             m_Imgui.m_pArchetype->ClonePrefab(EntityInfo.m_PoolDetails.m_PoolIndex);
 
-                            EDITOR_INFO_PRINT("Prefab Instance:" + EntityName.m_Value + " is added to the scene");
+                            EDITOR_INFO_PRINT( EntityName.m_Value + " is added to the scene" );
                         }
                         m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
 

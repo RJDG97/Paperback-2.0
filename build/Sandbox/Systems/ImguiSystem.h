@@ -921,7 +921,6 @@ struct imgui_system : paperback::system::instance
             auto& Info = PPB.GetEntityInfo(EntityIndex);
             Info.m_pArchetype->GetComponent<child>(Info.m_PoolDetails).AddParent(NewParentEntity.m_GlobalIndex);
         }
-
     }
 
     void DisplayChildEntities(parent& Parent/*, bool DisplayEntity */)

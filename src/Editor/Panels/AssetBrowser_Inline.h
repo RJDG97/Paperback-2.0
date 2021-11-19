@@ -26,7 +26,7 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height)
     bool Opened = false;
 
     // Print out all directories
-    ImGui::BeginChild("File Directories", { window_width / 5.5f, window_height }, true);
+    ImGui::BeginChild("File Directories", { window_width / 8, window_height }, true);
 
     ImGui::Text("Folders/Directories:");
 
@@ -55,7 +55,7 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height)
 void AssetBrowser::DisplayFolderFiles(float window_width, float window_height)
 {
 
-    ImGui::BeginChild("Files", { window_width / 2 , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
+    ImGui::BeginChild("Files", { window_width / 5 , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
 
     CheckFileType();
 

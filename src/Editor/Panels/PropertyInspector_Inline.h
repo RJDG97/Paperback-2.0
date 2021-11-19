@@ -4,15 +4,15 @@
 
 void DetailsWindow::Panel()
 {
-	ImGui::Begin(DetailsWindow::typedef_v.m_pName, &m_bEnabled);
 
     DisplayProperties();
 
-	ImGui::End();
 }
 
 void DetailsWindow::DisplayProperties()
 {
+    ImGui::Begin(DetailsWindow::typedef_v.m_pName, &m_bEnabled);
+
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 150.0f);
 
@@ -32,9 +32,14 @@ void DetailsWindow::DisplayProperties()
             ImGui::NewLine();
 
         ImGui::PopItemWidth();
+    }
+    ImGui::End();
 
-        ImGui::Separator();
 
+    ImGui::Begin("##EntitiesProperties", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize);
+
+    if (!m_Imgui.m_Components.empty())
+    {
         for (auto& ComponentInstance : m_Imgui.m_Components)
         {
             if (Filter.PassFilter(ComponentInstance.first.get_type().get_name().to_string().c_str()))
@@ -99,6 +104,9 @@ void DetailsWindow::DisplayProperties()
             }
         }
     }
+
+    ImGui::End();
+
 }
 
 void DetailsWindow::AddComponent()
