@@ -54,7 +54,7 @@ void EditorViewport::ViewportTwo()
 
 void EditorViewport::ViewportMenuBar()
 {
-	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoTitleBar);
+	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoDecoration);
 
 	if (ImGui::SmallButton(ICON_FA_ARROWS_ALT))
 	{
@@ -101,7 +101,7 @@ void EditorViewport::MouseSelection()
 {
 	if (PPB.IsMousePress(GLFW_MOUSE_BUTTON_LEFT))
 	{
-		if (m_Imgui.SetEditorMode(m_Imgui.m_bImgui))
+		if (ImGui::IsWindowHovered() && !ImGuizmo::IsOver())
 		{
 			if (!PPB.GetArchetypeList().empty())
 			{
@@ -138,16 +138,13 @@ void EditorViewport::MouseSelection()
 
 								if (RayAabb({ CamPos.x, CamPos.y, CamPos.z }, { RayDir.x, RayDir.y, RayDir.z }, EntityPos->m_Position + EntityBB->Min, EntityPos->m_Position + EntityBB->Max, t))
 								{
-
 									auto& EntityInfo = PPB.GetEntityInfo(Entity->m_GlobalIndex);
 
 									m_Imgui.m_SelectedEntity.first = EntityInfo.m_pArchetype;
 									m_Imgui.m_SelectedEntity.second = EntityInfo.m_PoolDetails.m_PoolIndex;
-									//m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
-
+									m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
 								}
 							}
-
 						}
 					}
 				}

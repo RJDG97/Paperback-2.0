@@ -40,6 +40,7 @@ enum FileActivity
     OPENFROMASSET,
     SAVEPREFAB,
     LOADPREFAB,
+    LOADFROMASSET,
     EXIT
 };
 
@@ -426,14 +427,14 @@ struct imgui_system : paperback::system::instance
     {
         std::string EntityInfoPath;
 
-        if (FileName.find(".json") == std::string::npos)
-            FileName.append(".json");
-
-        if (FilePath.find(".json") == std::string::npos)
-            FilePath.append(".json");
-
         if (!m_bSavePrefab)
         {
+            if (FileName.find(".json") == std::string::npos)
+                FileName.append(".json");
+
+            if (FilePath.find(".json") == std::string::npos)
+                FilePath.append(".json");
+
             EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
 
             if (!EntityInfoPath.empty())
@@ -441,7 +442,13 @@ struct imgui_system : paperback::system::instance
         }
         else
         {
-            PPB.SavePrefabs(FilePath); //To remove the need of entityinfo
+            if (FileName.find(".prefab") == std::string::npos)
+                FileName.append(".prefab");
+
+            if (FilePath.find(".prefab") == std::string::npos)
+                FilePath.append(".prefab");
+
+            PPB.SavePrefabs(FilePath);
             m_bSavePrefab = false;
         }
 
@@ -471,11 +478,15 @@ struct imgui_system : paperback::system::instance
         }
         else
         {
+
+            if (FilePath.find(".prefab") == std::string::npos)
+            {
+                EDITOR_CRITICAL_PRINT("Trying to load a Non Prefab File");
+                return;
+            }
+            
             PPB.LoadPrefabs(FilePath);
             EDITOR_TRACE_PRINT("Prefabs from: " + FileName + " Loaded");
-
-            m_LoadedPrefabPath = FilePath;
-            m_LoadedPrefabFile = FileName;
 
             m_bLoadPrefab = false;
         }
@@ -577,20 +588,24 @@ struct imgui_system : paperback::system::instance
         {
         case FileActivity::SAVEPREFAB:
         {
-            if (!m_LoadedPrefabPath.empty())
-            {
-                PPB.SavePrefabs(m_LoadedPrefabFile);
-                EDITOR_TRACE_PRINT(m_LoadedPrefabFile + " Saved at: " + m_LoadedPrefabPath);
+            //if (!m_LoadedPrefabPath.empty())
+            //{
+            //    PPB.SavePrefabs(m_LoadedPrefabFile);
+            //    EDITOR_TRACE_PRINT(m_LoadedPrefabFile + " Saved at: " + m_LoadedPrefabPath);
 
-                m_Type = FileActivity::NONE;
-            }
-            else
-            {
-                m_bSavePrefab = true;
-                m_bFileSaveAs = true;
-                m_Type = FileActivity::NONE;
+            //    m_Type = FileActivity::NONE;
+            //}
+            //else
+            //{
+            //    m_bSavePrefab = true;
+            //    m_bFileSaveAs = true;
+            //    m_Type = FileActivity::NONE;
 
-            }
+            //}
+
+            m_bSavePrefab = true;
+            m_bFileSaveAs = true;
+            m_Type = FileActivity::NONE;
         }
         break;
         case FileActivity::LOADPREFAB:
@@ -598,6 +613,16 @@ struct imgui_system : paperback::system::instance
             m_bLoadPrefab = true;
             m_bFileOpen = true;
             m_Type = FileActivity::NONE;
+        }
+        break;
+        case FileActivity::LOADFROMASSET:
+        {
+            if (!m_LoadedPrefabPath.empty())
+            {
+                m_bLoadPrefab = true;
+                OpenFile(m_LoadedPrefabPath, m_LoadedPrefabFile);
+                m_Type = FileActivity::NONE;
+            }
         }
         break;
         }
@@ -791,7 +816,6 @@ struct imgui_system : paperback::system::instance
     std::string SetEntityInfoPath(std::string& Path, std::string& FileName)
     {
         std::string a = Path.substr(0, Path.find(FileName.c_str()));
-
         return a.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
     }
 
