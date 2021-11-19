@@ -632,6 +632,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< Ray >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< Triangle >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< Triangle >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< mass >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< mass >(Index));
 
 
 		else

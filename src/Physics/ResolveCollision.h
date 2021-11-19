@@ -112,21 +112,31 @@ bool CheapaabbDynamic(
 	if (m1->m_Mass == 0.f || m2->m_Mass == 0.f)
 		return false;
 
+	// Relative Velocity
 	paperback::Vector3f vel1 = rf1->m_Momentum / m1->m_Mass;
-	paperback::Vector3f vel2 = rf2->m_Momentum / m1->m_Mass;
-	paperback::Vector3f acc1 = rf1->m_Forces / m2->m_Mass;
+	paperback::Vector3f vel2 = rf2->m_Momentum / m2->m_Mass;
+
+	// Compute Acceleration
+	paperback::Vector3f acc1 = rf1->m_Forces / m1->m_Mass;
 	paperback::Vector3f acc2 = rf2->m_Forces / m2->m_Mass;
 
+	// Abs Resultant Vector
 	paperback::Vector3f velab = vel1 - vel2; // uncorrupt
+	// Position Difference
 	paperback::Vector3f ab = t1.m_Position - t2.m_Position;
-	// lol
+	
 	// get pen_depth (+ve), shoulld be a super small value
-	paperback::Vector3f pen_depth = (((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min)) / 2)
-		- paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));
+	// Penetration Depth
+	paperback::Vector3f pen_depth = (((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min)) / 2)		// Length between the 2 Colliders
+		                            - paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));				// Distance between the 2 Colliders
 
 	// case 1/3, useless cases is 0.f - currently (+ve)
-	paperback::Vector3f t_resolve =
-		paperback::Vector3f(abs(velab.x), abs(velab.y), abs(velab.z));
+	// Abs Resultant Vector
+	paperback::Vector3f t_resolve = paperback::Vector3f(abs(velab.x), abs(velab.y), abs(velab.z));
+
+	// This Covers The Else Case (Basically skips force addition if both objects are stationary within each other)
+	if ( t_resolve.x == 0.0f && t_resolve.y == 0.0f && t_resolve.z == 0.0f )
+		return true;
 
 	// determine collision side, smaller ratio = likely side
 	direction dir = direction::none;
@@ -141,10 +151,8 @@ bool CheapaabbDynamic(
 	if ((velab.z > 0.f && ab.z < 0.f) || (velab.z < 0.f && ab.z > 0.f))
 		zz = (pen_depth.z) / t_resolve.z;
 
-	m_Coordinator.DeltaTime();
-	// restitution
+	// Bounciness Scale -> Restitution = 1.0f for max Bounciness
 	float restitution = (rf1->m_Restitution + rf2->m_Restitution) / 2;
-	std::cout << restitution << std::endl;
 
 	// determined side, higher = earlier intersect,
 	// resolve penetration depth, aabb style      after that resolve momentum/force
@@ -176,7 +184,7 @@ bool CheapaabbDynamic(
 		}
 		else
 		{
-			dir = direction::z;
+			dir = direction::z; // Qn: Why got 2 z axis checks?
 			// case 3
 			if (ab.z > 0.f)
 			{
@@ -226,17 +234,52 @@ bool CheapaabbDynamic(
 		{
 			dir = direction::z;
 			// case 3
+			//if (ab.z > 0.f)
+			//{
+			//	t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+			//	t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+			//}
+			//// case 1
+			//else
+			//{
+			//	t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+			//	t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+			//}
+
+
 			if (ab.z > 0.f)
-			{
-				t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
-				t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
-			}
-			// case 1
-			else
-			{
-				t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
-				t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
-			}
+            {
+
+                if (t_resolve.z > 0.0f)
+                {
+                    t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+                    t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+                }
+                else
+                {
+
+                    t1.m_Position.z += pen_depth.z;
+                }
+            }
+            // case 1
+            else
+            {
+
+                if (t_resolve.z > 0.0f)
+                {
+                    t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+                    t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+                }
+                else
+                {
+
+                    t2.m_Position.z += pen_depth.z;
+                }
+            }
+
+
+
+
 			Elastic_InElastic_1D(vel1.z, acc1.z, m1->m_Mass,
 				vel2.z, acc2.z, m2->m_Mass, restitution);
 			rf1->m_Momentum = vel1 * m1->m_Mass;

@@ -146,16 +146,16 @@
                         }
                     },
                     "RigidForce": {
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
+                        "Static Friction": 1.0,
+                        "Dynamic Friction": 1.0,
                         "Restitution": 0.0,
                         "Force": {
-                            "x": -2.0,
+                            "x": -4.0,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Moment": {
-                            "x": -4.0,
+                            "x": -6.0,
                             "y": 0.0,
                             "z": 0.0
                         },
@@ -232,16 +232,16 @@
                         }
                     },
                     "RigidForce": {
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
+                        "Static Friction": 1.0,
+                        "Dynamic Friction": 1.0,
                         "Restitution": 0.0,
                         "Force": {
-                            "x": 3.0,
+                            "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Moment": {
-                            "x": 5.0,
+                            "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
@@ -261,7 +261,7 @@
                         "Is Collide": false
                     },
                     "Mass": {
-                        "Mass": 3.0,
+                        "Mass": 4.999998092651367,
                         "Inv Mass": 0.0
                     }
                 }

@@ -10,8 +10,9 @@ struct physics_system : paperback::system::instance
 
     int DebugTest = 0;
 
-    using query = std::tuple<
-        paperback::query::one_of<>
+    using query = std::tuple
+    <
+        paperback::query::none_of<prefab>
     >;
 
     // Helper function to ensure that momentum is -ve or +ve depending on current momentum

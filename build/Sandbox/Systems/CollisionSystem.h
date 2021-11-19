@@ -15,10 +15,12 @@ struct collision_system : paperback::system::instance
     struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity&, rigidforce&, rigidforce& > {};
     struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
 
-    using query = std::tuple< paperback::query::none_of<prefab> >;
+    using query = std::tuple
+    <
+        paperback::query::none_of<prefab>
+    >;
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, mass* m1,
-        unitstate* state) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, mass* m1 ) noexcept
     {
         if ( Entity.IsZombie() ) return;
        
@@ -29,13 +31,9 @@ struct collision_system : paperback::system::instance
         Query.m_OneOf.AddFromComponents< boundingbox, sphere >();
         Query.m_NoneOf.AddFromComponents< prefab >();
 
-        paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
-        paperback::Vector3f xf;
-
         Boundingbox->m_Collided = false;
 
-        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, mass* m2,
-                                       unitstate* state2)  noexcept
+        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, mass* m2 )  noexcept
         {
             if ( Entity.IsZombie() ) return;
 
@@ -48,18 +46,15 @@ struct collision_system : paperback::system::instance
                 const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
             }
 
-            xf.x = Xform.m_Position.x + Xform.m_Offset.x;
-            xf.y = Xform.m_Position.y + Xform.m_Offset.y;
-            xf.z = Xform.m_Position.z + Xform.m_Offset.z;
-
             // Collision Detection
             if ( Boundingbox && BB)
             {
-                if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
+                if ( AabbAabb( Transform.m_Position + Boundingbox->Min, Transform.m_Position + Boundingbox->Max
+                             , Xform.m_Position + BB->Min, Xform.m_Position + BB->Max ) )
                 {
-                    // boounce
-                    if(RigidForce && RF && m1 && m2)
-                        CheapaabbDynamic(Boundingbox, RigidForce, Transform, m1, BB, RF, Xform, m2);
+                    // Dynamic Collision Check & Resolution
+                    if ( RigidForce && RF && m1 && m2 )
+                        CheapaabbDynamic( Boundingbox, RigidForce, Transform, m1, BB, RF, Xform, m2 );
 
                     //// On entry
                     //if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) 
@@ -83,7 +78,7 @@ struct collision_system : paperback::system::instance
             }
             if (Sphere && Ball)
             {
-                if (SphereSphere(tf, Sphere->m_Radius, xf, Ball->m_Radius))
+                if ( SphereSphere( Transform.m_Position, Sphere->m_Radius, Xform.m_Position, Ball->m_Radius) )
                 {
                     Sphere->m_Collided = Ball->m_Collided = true;
                 }
