@@ -229,6 +229,49 @@ bool RayAabb(const paperback::Vector3f& rayStart, const paperback::Vector3f& ray
     return true;
 }
 
+// set t = 0.f at first
+bool RayAabbTimeTaken(const paperback::Vector3f& rayStart, const paperback::Vector3f& rayDir,
+    const paperback::Vector3f& aabbMin, const paperback::Vector3f& aabbMax, paperback::Vector3f& t)
+{
+    //-?
+    float t_max = FLT_MAX; // std::numeric_limits<float>::max()
+    paperback::Vector3f n = rayDir.Normalized();
+
+    // Compute using the axis formula. Test all 3 axis
+    for (size_t i = 0; i < 3; ++i)
+    {
+        // Check for 0 condition, check direction of ray
+        if (n[static_cast<unsigned>(i)] == 0.f)
+        {
+            if (rayStart[static_cast<unsigned>(i)] >
+                aabbMax[static_cast<unsigned>(i)] ||
+                rayStart[static_cast<unsigned>(i)] <
+                aabbMin[static_cast<unsigned>(i)])
+                return false;
+
+            continue;
+        }
+
+        // Obtain the 2 slab intersections
+        float max = (aabbMax[static_cast<unsigned>(i)] -
+            rayStart[static_cast<unsigned>(i)]) / n[static_cast<unsigned>(i)];
+        float min = (aabbMin[static_cast<unsigned>(i)] -
+            rayStart[static_cast<unsigned>(i)]) / n[static_cast<unsigned>(i)];
+        if (max < min)
+            std::swap(max, min);
+
+        //1
+        if (t[static_cast<unsigned>(i)] > max || t_max < min) return false;
+
+        // min > max = no intersection
+        t[static_cast<unsigned>(i)] = std::max(t[static_cast<unsigned>(i)], min);
+        t_max = std::min(t_max, max);
+
+        if (t[static_cast<unsigned>(i)] > t_max) return false;
+    }
+    return true;
+}
+
 IntersectionType::Type PlaneTriangle(const paperback::Vector4f& plane,
     const paperback::Vector3f& triP0, const paperback::Vector3f& triP1, const paperback::Vector3f& triP2,
     float epsilon)

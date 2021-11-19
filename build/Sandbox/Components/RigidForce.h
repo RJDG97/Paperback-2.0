@@ -54,7 +54,7 @@ namespace RR_RIGIDFORCE
            .constructor()(rttr::policy::ctor::as_object)
            .property("Static Friction", &rigidforce::m_staticFriction)(rttr::policy::prop::as_reference_wrapper)
            .property("Dynamic Friction", &rigidforce::m_dynamicFriction)(rttr::policy::prop::as_reference_wrapper)
-           .property("Restitution", &rigidforce::m_dynamicFriction)(rttr::policy::prop::as_reference_wrapper)
+           .property("Restitution", &rigidforce::m_Restitution)(rttr::policy::prop::as_reference_wrapper)
            .property("Force", &rigidforce::m_Forces)(rttr::policy::prop::as_reference_wrapper)
            .property("Moment", &rigidforce::m_Momentum)(rttr::policy::prop::as_reference_wrapper)
            .property("Threshold", &rigidforce::m_threshold)(rttr::policy::prop::as_reference_wrapper);

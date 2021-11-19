@@ -13,7 +13,7 @@ struct Ray
 	};
 
 	paperback::Vector3f m_Start;
-	paperback::Vector3f m_Direction;
+	paperback::Vector3f m_Direction;	// -- Direction is the speed (not normalized*)
 
 	bool				m_Collided;
 

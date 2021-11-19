@@ -9,6 +9,8 @@
 #include "Components/Rigidbody.h"
 #include "Components/Mass.h"
 
+#define Gap 0.01f
+
 enum direction
 {
 	x,
@@ -20,18 +22,15 @@ enum direction
 void InElastic_collision_1D(float& v1, float& a1, const float mass1,
 	float& v2, float& a2, const float mass2)
 {
-	if (mass1 != mass2)
-	{
-		float total_mass = mass1 + mass2;
+	float total_mass = mass1 + mass2;
 
-		float obj1 = (mass1 * v1)
-			+ (mass2 * v2);
-		float obj3 = (mass1 * a1)
-			+ (mass2 * a2);
+	float obj1 = (mass1 * v1)
+		+ (mass2 * v2);
+	float obj3 = (mass1 * a1)
+		+ (mass2 * a2);
 
-		v1 = v2 = obj1 / total_mass;
-		a1 = a2 = obj3 / total_mass;
-	}
+	v1 = v2 = obj1 / total_mass;
+	a1 = a2 = obj3 / total_mass;
 }
 
 // cheap 1D
@@ -71,28 +70,25 @@ void Cheap_Elastic_collision_1D(float& v1, float& a1, const float mass1,
 void Elastic_InElastic_1D(float& v1, float& a1, const float mass1,
 	float& v2, float& a2, const float mass2, const float restituition)// 0.f - 1.f
 {
-	if (mass1 != mass2)
-	{
-		float total_mass = mass1 + mass2;
+	float total_mass = mass1 + mass2;
 
-		float obj1 = ((restituition * mass2) * (v2 - v1)
-			+ ((mass1 * v1)
-				+ (mass2 * v2))) / total_mass;
-		float obj2 = ((restituition * mass1) * (v1 - v2)
-			+ ((mass1 * v1)
-				+ (mass2 * v2))) / total_mass;
-		float obj3 = ((restituition * mass2) * (a2 - a1)
-			+ ((mass1 * a1)
-				+ (mass2 * a2))) / total_mass;
-		float obj4 = ((restituition * mass1) * (a1 - a2)
-			+ ((mass1 * a1)
-				+ (mass2 * a2))) / total_mass;
+	float obj1 = (
+		(restituition * mass2) * (v2 - v1) + ((mass1 * v1) + (mass2 * v2))
+		) / total_mass;
+	float obj2 = (
+		(restituition * mass1) * (v1 - v2) + ((mass1 * v1) + (mass2 * v2))
+		) / total_mass;
+	float obj3 = (
+		(restituition * mass2) * (a2 - a1) + ((mass1 * a1) + (mass2 * a2))
+		) / total_mass;
+	float obj4 = (
+		(restituition * mass1) * (a1 - a2) + ((mass1 * a1) + (mass2 * a2))
+		) / total_mass;
 
-		v1 = obj1;
-		v2 = obj2;
-		a1 = obj3;
-		a2 = obj4;
-	}
+	v1 = obj1;
+	v2 = obj2;
+	a1 = obj3;
+	a2 = obj4;
 }
 
 // pseudo
@@ -125,7 +121,7 @@ bool CheapaabbDynamic(
 	paperback::Vector3f ab = t1.m_Position - t2.m_Position;
 	// lol
 	// get pen_depth (+ve), shoulld be a super small value
-	paperback::Vector3f pen_depth = ((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min))
+	paperback::Vector3f pen_depth = (((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min)) / 2)
 		- paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));
 
 	// case 1/3, useless cases is 0.f - currently (+ve)
@@ -136,14 +132,19 @@ bool CheapaabbDynamic(
 	direction dir = direction::none;
 	float xx = 0.f, yy = 0.f, zz = 0.f; // default value
 
-	// cull insignificant values
+	// determine which side hit and whos first
 	// case 2/4
 	if ((velab.x > 0.f && ab.x < 0.f) || (velab.x < 0.f && ab.x > 0.f))
-		xx = pen_depth.x / t_resolve.x;
+		xx = (pen_depth.x) / t_resolve.x;
 	if ((velab.y > 0.f && ab.y < 0.f) || (velab.y < 0.f && ab.y > 0.f))
-		yy = pen_depth.y / t_resolve.y;
+		yy = (pen_depth.y) / t_resolve.y;
 	if ((velab.z > 0.f && ab.z < 0.f) || (velab.z < 0.f && ab.z > 0.f))
-		zz = pen_depth.z / t_resolve.z;
+		zz = (pen_depth.z) / t_resolve.z;
+
+	m_Coordinator.DeltaTime();
+	// restitution
+	float restitution = (rf1->m_Restitution + rf2->m_Restitution) / 2;
+	std::cout << restitution << std::endl;
 
 	// determined side, higher = earlier intersect,
 	// resolve penetration depth, aabb style      after that resolve momentum/force
@@ -153,21 +154,21 @@ bool CheapaabbDynamic(
 		{
 			dir = direction::x;
 			// warning!!!! t_resolve , likely pen_depth issue causing snapping problem
-			//// case 3
-			//if (ab.x > 0.f)
-			//{
-			//	t1.x += (abs(vel1.x) / t_resolve.x * pen_depth.x);
-			//	t2.x -= (abs(vel2.x) / t_resolve.x * pen_depth.x);
-			//}
-			//// case 1
-			//else
-			//{
-			//	t1.x -= (abs(vel1.x) / t_resolve.x * pen_depth.x);
-			//	t2.x += (abs(vel2.x) / t_resolve.x * pen_depth.x);
-			//}
+			// case 3
+			if (ab.x > 0.f)
+			{
+				t1.m_Position.x += (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap);
+				t2.m_Position.x -= (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap);
+			}
+			// case 1
+			else
+			{
+				t1.m_Position.x -= (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap);
+				t2.m_Position.x += (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap);
+			}
 			// temporary holder before refining
-			Cheap_Elastic_collision_1D(vel1.x, acc1.x, m1->m_Mass,
-				vel2.x, acc2.x, m2->m_Mass);
+			Elastic_InElastic_1D(vel1.x, acc1.x, m1->m_Mass,
+				vel2.x, acc2.x, m2->m_Mass, restitution);
 			rf1->m_Momentum = vel1 * m1->m_Mass;
 			rf2->m_Momentum = vel2 * m2->m_Mass;
 			rf1->m_Forces = acc1 * m1->m_Mass;
@@ -176,20 +177,20 @@ bool CheapaabbDynamic(
 		else
 		{
 			dir = direction::z;
-			//// case 3
-			//if (ab.z > 0.f)
-			//{
-			//	t1.z += (abs(vel1.z) / t_resolve.z * pen_depth.z);
-			//	t2.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z);
-			//}
-			//// case 1
-			//else
-			//{
-			//	t1.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z);
-			//	t2.z += (abs(vel2.z) / t_resolve.z * pen_depth.z);
-			//}
-			Cheap_Elastic_collision_1D(vel1.z, acc1.z, m1->m_Mass,
-				vel2.z, acc2.z, m2->m_Mass);
+			// case 3
+			if (ab.z > 0.f)
+			{
+				t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+				t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+			}
+			// case 1
+			else
+			{
+				t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+				t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+			}
+			Elastic_InElastic_1D(vel1.z, acc1.z, m1->m_Mass,
+				vel2.z, acc2.z, m2->m_Mass, restitution);
 			rf1->m_Momentum = vel1 * m1->m_Mass;
 			rf2->m_Momentum = vel2 * m2->m_Mass;
 			rf1->m_Forces = acc1 * m1->m_Mass;
@@ -201,20 +202,20 @@ bool CheapaabbDynamic(
 		if (yy > zz)
 		{
 			dir = direction::y;
-			//// case 3
-			//if (ab.y > 0.f)
-			//{
-			//	t1.y += (abs(vel1.y) / t_resolve.y * pen_depth.y);
-			//	t2.y -= (abs(vel2.y) / t_resolve.y * pen_depth.y);
-			//}
-			//// case 1
-			//else
-			//{
-			//	t1.y -= (abs(vel1.y) / t_resolve.y * pen_depth.y);
-			//	t2.y += (abs(vel2.y) / t_resolve.y * pen_depth.y);
-			//}
-			Cheap_Elastic_collision_1D(vel1.y, acc1.y, m1->m_Mass,
-				vel2.y, acc2.y, m2->m_Mass);
+			// case 3
+			if (ab.y > 0.f)
+			{
+				t1.m_Position.y += (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap);
+				t2.m_Position.y -= (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap);
+			}
+			// case 1
+			else
+			{
+				t1.m_Position.y -= (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap);
+				t2.m_Position.y += (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap);
+			}
+			Elastic_InElastic_1D(vel1.y, acc1.y, m1->m_Mass,
+				vel2.y, acc2.y, m2->m_Mass, restitution);
 			rf1->m_Momentum = vel1 * m1->m_Mass;
 			rf2->m_Momentum = vel2 * m2->m_Mass;
 			rf1->m_Forces = acc1 * m1->m_Mass;
@@ -224,20 +225,20 @@ bool CheapaabbDynamic(
 		else
 		{
 			dir = direction::z;
-			//// case 3
-			//if (ab.z > 0.f)
-			//{
-			//	t1.z += (abs(vel1.z) / t_resolve.z * pen_depth.z);
-			//	t2.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z);
-			//}
-			//// case 1
-			//else
-			//{
-			//	t1.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z);
-			//	t2.z += (abs(vel2.z) / t_resolve.z * pen_depth.z);
-			//}
-			Cheap_Elastic_collision_1D(vel1.z, acc1.z, m1->m_Mass,
-				vel2.z, acc2.z, m2->m_Mass);
+			// case 3
+			if (ab.z > 0.f)
+			{
+				t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+				t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+			}
+			// case 1
+			else
+			{
+				t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+				t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+			}
+			Elastic_InElastic_1D(vel1.z, acc1.z, m1->m_Mass,
+				vel2.z, acc2.z, m2->m_Mass, restitution);
 			rf1->m_Momentum = vel1 * m1->m_Mass;
 			rf2->m_Momentum = vel2 * m2->m_Mass;
 			rf1->m_Forces = acc1 * m1->m_Mass;

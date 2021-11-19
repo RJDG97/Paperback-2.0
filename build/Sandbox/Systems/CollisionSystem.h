@@ -70,7 +70,7 @@ struct collision_system : paperback::system::instance
                     
                     Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
 
-                    Boundingbox->m_Collided = true;
+                    Boundingbox->m_Collided = BB->m_Collided = true;
                 }
                 else
                 {

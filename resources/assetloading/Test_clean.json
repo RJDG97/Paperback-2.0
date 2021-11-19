@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 0
+                "EntityHead": 1
             }
         },
         {
@@ -148,6 +148,7 @@
                     "RigidForce": {
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
+                        "Restitution": 0.0,
                         "Force": {
                             "x": -2.0,
                             "y": 0.0,
@@ -233,6 +234,7 @@
                     "RigidForce": {
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
+                        "Restitution": 0.0,
                         "Force": {
                             "x": 3.0,
                             "y": 0.0,
@@ -259,7 +261,7 @@
                         "Is Collide": false
                     },
                     "Mass": {
-                        "Mass": 5.0,
+                        "Mass": 3.0,
                         "Inv Mass": 0.0
                     }
                 }
