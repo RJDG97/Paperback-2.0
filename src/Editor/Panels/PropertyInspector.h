@@ -34,23 +34,23 @@ struct DetailsWindow : paperback::editor::instance
 //           Components
 //-----------------------------------
 
-    void ParentComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid);
+    void ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
 
-    void AnimatorComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid);
+    void AnimatorComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
 
-    void SocketedComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid);
+    void SocketedComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
 
     void PrefabComponent();
 
 //-----------------------------------
 //        Component Combos
 //-----------------------------------
-    void ChildCombo(reference_prefab* ReferencePrefab, paperback::u32 CompGuid);
+    void ChildCombo(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
 
-    void MeshCombo(reference_prefab* ReferencePrefab, paperback::u32 CompGuid);
+    void MeshCombo(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
 
-    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i,
+    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u64 i,
         parent& NewParent, paperback::component::entity NewParentEntity,
-        reference_prefab* ReferencePrefab, paperback::u32 CompGuid);
+        prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
 
 };

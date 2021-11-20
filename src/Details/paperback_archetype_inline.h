@@ -246,18 +246,18 @@ namespace paperback::archetype
     //-----------------------------------
 
     template < typename T_COMPONENT >
-    void instance::UpdatePrefabInstanceComponent( const vm::PoolDetails& Details, const T_COMPONENT& PrefabComponent ) noexcept
+    void instance::UpdatePrefabInstanceComponent( vm::PoolDetails& Details, T_COMPONENT& PrefabComponent ) noexcept
     {
         // Grab Prefab Entity's Prefab Component - To Access All Prefab Instances
-        const auto& Prefab = GetComponent<prefab>( Details );
+        auto& Prefab = GetComponent<prefab>( Details );
 
         if ( Prefab.m_ReferencePrefabGIDs.size() <= 0 ) return;
 
         // Save Address of Prefab Instance Data
-        const auto& CInfo   = component::info_v<T_COMPONENT>;
-        const auto CopyCtor = CInfo.m_Copy;
-        const auto CSize    = CInfo.m_Size;
-        const auto CGuid    = CInfo.m_Guid.m_Value;
+        auto& CInfo   = component::info_v<T_COMPONENT>;
+        auto CopyCtor = CInfo.m_Copy;
+        auto CSize    = CInfo.m_Size;
+        auto CGuid    = CInfo.m_Guid.m_Value;
         auto& PIArchetype   = *( m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) ).m_pArchetype );
 
         // For All Prefab Instances
@@ -265,8 +265,8 @@ namespace paperback::archetype
             , end = Prefab.m_ReferencePrefabGIDs.end(); begin != end; ++begin )
         {
             // Grab Prefab Instance Info
-            const auto& InstanceInfo = m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) );
-            const auto& RefPrefab    = PIArchetype.GetComponent<reference_prefab>( InstanceInfo.m_PoolDetails );
+            auto& InstanceInfo = m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) );
+            auto& RefPrefab    = PIArchetype.GetComponent<reference_prefab>( InstanceInfo.m_PoolDetails );
 
             // If Reference Prefab Did Not Override T_COMPONENT
             if ( !RefPrefab.HasModified( CGuid ) )
@@ -277,13 +277,13 @@ namespace paperback::archetype
                 // Copy Data
                 if ( CopyCtor )
                 {
-                    CopyCtor( static_cast<std::byte*>( &Mod_Component )
-                            , static_cast<std::byte*>( &PrefabComponent ) );
+                    CopyCtor( reinterpret_cast<std::byte*>( &Mod_Component )
+                            , reinterpret_cast<std::byte*>( &PrefabComponent ) );
                 }
                 else
                 {
-                    memcpy( static_cast<void*>( &Mod_Component )
-                          , static_cast<void*>( &PrefabComponent )
+                    memcpy( reinterpret_cast<void*>( &Mod_Component )
+                          , reinterpret_cast<void*>( &PrefabComponent )
                           , CSize );
                 }
             }

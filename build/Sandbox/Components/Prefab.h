@@ -28,7 +28,7 @@ namespace RR_Prefab
     {
        rttr::registration::class_<prefab>( prefab::typedef_v.m_pName )
 		   .constructor()( rttr::policy::ctor::as_object )
-		   .property( "Prefab", &prefab::m_ReferencePrefabGIDs);
+		   .property( "Prefab Instances GID", &prefab::m_ReferencePrefabGIDs);
     }
 }
 

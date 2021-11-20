@@ -71,7 +71,7 @@ void DetailsWindow::DisplayProperties()
                             m_Imgui.DisplayClassType(PropertyName, PropertyType, PropertyValue);
 
                         if (ComponentInstance.first.get_type().get_name().to_string() == "Parent")
-                            ParentComponent(ReferencePrefab, ComponentInstance.second.m_Value);
+                            ParentComponent(Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
 
                         if (ComponentInstance.first.get_type().get_name().to_string() == "Prefab")
                             PrefabComponent();
@@ -87,9 +87,7 @@ void DetailsWindow::DisplayProperties()
                         if (ReferencePrefab)
                         {
                             if (ImGui::IsItemEdited())
-                            {
                                 ReferencePrefab->AddModifiedComponentGuid(ComponentInstance.second.m_Value);
-                            }
 
                             //if have reset button -> Call ResetModifiedComponentGuid
                         }
@@ -97,12 +95,12 @@ void DetailsWindow::DisplayProperties()
 
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Mesh")
                     {
-                        MeshCombo(ReferencePrefab, ComponentInstance.second.m_Value);
+                        MeshCombo(Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
                     }
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Animator")
-                        AnimatorComponent(ReferencePrefab, ComponentInstance.second.m_Value);
+                        AnimatorComponent(Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Socketed")
-                        SocketedComponent(ReferencePrefab, ComponentInstance.second.m_Value);
+                        SocketedComponent(Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
                 }
             }
         }
@@ -207,7 +205,7 @@ void DetailsWindow::RemoveComponent()
     }
 }
 
-void DetailsWindow::ParentComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
+void DetailsWindow::ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
 
@@ -221,7 +219,7 @@ void DetailsWindow::ParentComponent(reference_prefab* ReferencePrefab, paperback
         else
             ImGui::Text("No Child is attached to this parent");
 
-        ChildCombo(ReferencePrefab, CompGuid);
+        ChildCombo(Prefab, ReferencePrefab, CompGuid);
     }
 }
 
@@ -234,12 +232,12 @@ void DetailsWindow::PrefabComponent()
         if (Prefab->m_ReferencePrefabGIDs.size() != 0)
         {
             for (auto& Instance : Prefab->m_ReferencePrefabGIDs)
-                ImGui::Text("Instance GID: %lu", Instance);
+                ImGui::Text("Prefab Instance GID: %lu", Instance);
         }
     }
 }
 
-void DetailsWindow::MeshCombo(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
+void DetailsWindow::MeshCombo(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     RenderResourceManager& Manager = RenderResourceManager::GetInstanced();
 
@@ -260,9 +258,17 @@ void DetailsWindow::MeshCombo(reference_prefab* ReferencePrefab, paperback::u32 
                     {
                         EntityMesh.m_Model = MeshName;
 
-                        if (ReferencePrefab)
+                        if (!PrefabRefComboCheck(PrevMesh, EntityMesh.m_Model))
                         {
-                            if (!PrefabRefComboCheck(PrevMesh, EntityMesh.m_Model))
+                            if (Prefab)
+                            {
+                                auto& EntityInfo = PPB.GetEntityInfo(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
+                                    (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex);
+
+                                EntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(EntityInfo.m_PoolDetails, EntityMesh);
+                            }
+
+                            if (ReferencePrefab)
                                 ReferencePrefab->AddModifiedComponentGuid(CompGuid);
                         }
                     }
@@ -284,9 +290,18 @@ void DetailsWindow::MeshCombo(reference_prefab* ReferencePrefab, paperback::u32 
                     if (ImGui::Selectable(TextureName.c_str()))
                     {
                         EntityMesh.m_Texture = TextureName;
-                        if (ReferencePrefab)
+
+                        if (!PrefabRefComboCheck(PrevTexture, EntityMesh.m_Texture))
                         {
-                            if (!PrefabRefComboCheck(PrevTexture, EntityMesh.m_Texture))
+                            if (Prefab)
+                            {
+                                auto& EntityInfo = PPB.GetEntityInfo(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
+                                    (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex);
+
+                                EntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(EntityInfo.m_PoolDetails, EntityMesh);
+                            }
+
+                            if (ReferencePrefab)
                                 ReferencePrefab->AddModifiedComponentGuid(CompGuid);
                         }
                     }
@@ -298,13 +313,12 @@ void DetailsWindow::MeshCombo(reference_prefab* ReferencePrefab, paperback::u32 
     }
 }
 
-void DetailsWindow::AnimatorComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
+void DetailsWindow::AnimatorComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     RenderResourceManager& RRM = RenderResourceManager::GetInstanced();
     //get Mesh component -> m_Model
     auto EntityMesh = m_Imgui.m_SelectedEntity.first->FindComponent<mesh>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
     auto EntityAnimator = m_Imgui.m_SelectedEntity.first->FindComponent<animator>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
-
 
     if (EntityMesh && EntityAnimator)
     {
@@ -321,9 +335,17 @@ void DetailsWindow::AnimatorComponent(reference_prefab* ReferencePrefab, paperba
                     {
                         EntityAnimator->m_CurrentAnimationName = AnimString;
 
-                        if (ReferencePrefab)
+                        if (!PrefabRefComboCheck(PrevAnim, EntityAnimator->m_CurrentAnimationName))
                         {
-                            if (!PrefabRefComboCheck(PrevAnim, EntityAnimator->m_CurrentAnimationName))
+                            if (Prefab)
+                            {
+                                auto& EntityInfo = PPB.GetEntityInfo(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
+                                    (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex);
+
+                                EntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(EntityInfo.m_PoolDetails, *EntityAnimator);
+                            }
+
+                            if (ReferencePrefab)
                                 ReferencePrefab->AddModifiedComponentGuid(CompGuid);
                         }
                     }
@@ -334,7 +356,7 @@ void DetailsWindow::AnimatorComponent(reference_prefab* ReferencePrefab, paperba
     }
 }
 
-void DetailsWindow::SocketedComponent(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
+void DetailsWindow::SocketedComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     RenderResourceManager& RRM = RenderResourceManager::GetInstanced();
 
@@ -372,15 +394,22 @@ void DetailsWindow::SocketedComponent(reference_prefab* ReferencePrefab, paperba
                                 if (ImGui::Selectable(BoneString.c_str()))
                                 {
                                     EntitySocketed->m_ParentSocket = BoneString;
-                                    if (ReferencePrefab)
+
+                                    if (!PrefabRefComboCheck(PrevSocket, EntitySocketed->m_ParentSocket))
                                     {
-                                        if (!PrefabRefComboCheck(PrevSocket, EntitySocketed->m_ParentSocket))
+                                        if (Prefab)
+                                        {
+                                            //Get EntityInfo
+                                            auto& EntityInfo = PPB.GetEntityInfo(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
+                                                                                (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex);
+                                            EntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(EntityInfo.m_PoolDetails, *EntitySocketed);
+                                        }
+
+                                        if (ReferencePrefab)
                                             ReferencePrefab->AddModifiedComponentGuid(CompGuid);
                                     }
-
                                 }
                             }
-
                             ImGui::EndCombo();
                         }
                     }
@@ -394,7 +423,7 @@ void DetailsWindow::SocketedComponent(reference_prefab* ReferencePrefab, paperba
     }
 }
 
-void DetailsWindow::ChildCombo(reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
+void DetailsWindow::ChildCombo(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     if (ImGui::BeginCombo("##Potential Children", "Potential Children")) //TBD IDK WHAT TO NAME TIS
     {
@@ -423,7 +452,7 @@ void DetailsWindow::ChildCombo(reference_prefab* ReferencePrefab, paperback::u32
                             if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
                             {
                                 auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-                                DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity, ReferencePrefab, CompGuid);
+                                DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity, Prefab, ReferencePrefab, CompGuid);
                             }
                         }
                         else
@@ -433,7 +462,7 @@ void DetailsWindow::ChildCombo(reference_prefab* ReferencePrefab, paperback::u32
                             {
                                 // Non Parent Entities Entity Component
                                 auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails({ 0, i }));
-                                DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity, ReferencePrefab, CompGuid);
+                                DisplayAvailableChildren(Entity, i, NewParent, NewParentEntity, Prefab, ReferencePrefab, CompGuid);
                             }
                         }
                     }
@@ -444,21 +473,16 @@ void DetailsWindow::ChildCombo(reference_prefab* ReferencePrefab, paperback::u32
     }
 }
 
-void DetailsWindow::DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i, parent& NewParent, paperback::component::entity NewParentEntity,
-                                             reference_prefab* ReferencePrefab, paperback::u32 CompGuid)
+void DetailsWindow::DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u64 i, parent& NewParent, paperback::component::entity NewParentEntity,
+                                             prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     std::string EntityName{};
     
-    int NumChild = 0;
-
-    if (NewParent.m_ChildrenGlobalIndexes.size())
-        NumChild = NewParent.m_ChildrenGlobalIndexes.size();
-
+    size_t NumChild = NewParent.m_ChildrenGlobalIndexes.size() ? NewParent.m_ChildrenGlobalIndexes.size() : 0;
 
     if (NewParent.m_ChildrenGlobalIndexes.find(Entity.m_GlobalIndex) == NewParent.m_ChildrenGlobalIndexes.end()) //not already a child of the selected entity
     {
-        if (Entity.m_GlobalIndex != m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
-            (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex) //Not the entity itself
+        if (Entity.m_GlobalIndex != m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex) //Not the entity itself
         {
             auto Name = PPB.GetEntityInfo(Entity.m_GlobalIndex).m_pArchetype->FindComponent<name>(PPB.GetEntityInfo(Entity.m_GlobalIndex).m_PoolDetails);
 
@@ -471,12 +495,17 @@ void DetailsWindow::DisplayAvailableChildren(paperback::component::entity& Entit
             {
                 m_Imgui.LinkParentChild(Entity, NewParent, NewParentEntity);
 
-                if (ReferencePrefab)
+                //after linking check number of children
+                if (NumChild != NewParent.m_ChildrenGlobalIndexes.size()) //More children are added in
                 {
-                    if (NumChild != NewParent.m_ChildrenGlobalIndexes.size()) //added in more kids
+                    if (Prefab)
                     {
-                        ReferencePrefab->AddModifiedComponentGuid(CompGuid);
+                        auto& ParentEntityInfo = PPB.GetEntityInfo(NewParentEntity.m_GlobalIndex);
+                        ParentEntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(ParentEntityInfo.m_PoolDetails, NewParent);
                     }
+
+                    if (ReferencePrefab)
+                        ReferencePrefab->AddModifiedComponentGuid(CompGuid);
                 }
             }
         }

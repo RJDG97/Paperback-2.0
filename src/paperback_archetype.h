@@ -106,7 +106,7 @@ namespace paperback::archetype
 
         // Called By The Prefab Entity's Archetype - Passing Updated Component of Prefab Entity
         template < typename T_COMPONENT >
-        void UpdatePrefabInstanceComponent( const vm::PoolDetails& Details, const T_COMPONENT& PrefabComponent ) noexcept;
+        void UpdatePrefabInstanceComponent( vm::PoolDetails& Details, T_COMPONENT& PrefabComponent ) noexcept;
 
 
         //-----------------------------------
