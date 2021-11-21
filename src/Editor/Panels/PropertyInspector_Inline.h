@@ -46,6 +46,8 @@ void DetailsWindow::DisplayProperties()
                 {
                     auto ReferencePrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                     auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+                    auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+                    auto& EntityInfo = PPB.GetEntityInfo(Entity.m_GlobalIndex);
 
                     for (auto& property : ComponentInstance.first.get_type().get_properties())
                     {
@@ -94,13 +96,11 @@ void DetailsWindow::DisplayProperties()
                     }
 
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Mesh")
-                    {
-                        MeshCombo(Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
-                    }
+                        MeshCombo(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Animator")
-                        AnimatorComponent(Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
+                        AnimatorComponent(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
                     if (ComponentInstance.first.get_type().get_name().to_string() == "Socketed")
-                        SocketedComponent(Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
+                        SocketedComponent(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second.m_Value);
                 }
             }
         }
@@ -237,7 +237,7 @@ void DetailsWindow::PrefabComponent()
     }
 }
 
-void DetailsWindow::MeshCombo(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
+void DetailsWindow::MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     RenderResourceManager& Manager = RenderResourceManager::GetInstanced();
 
@@ -262,9 +262,6 @@ void DetailsWindow::MeshCombo(prefab* Prefab, reference_prefab* ReferencePrefab,
                         {
                             if (Prefab)
                             {
-                                auto& EntityInfo = PPB.GetEntityInfo(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
-                                    (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex);
-
                                 EntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(EntityInfo.m_PoolDetails, EntityMesh);
                             }
 
@@ -295,9 +292,6 @@ void DetailsWindow::MeshCombo(prefab* Prefab, reference_prefab* ReferencePrefab,
                         {
                             if (Prefab)
                             {
-                                auto& EntityInfo = PPB.GetEntityInfo(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
-                                    (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex);
-
                                 EntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(EntityInfo.m_PoolDetails, EntityMesh);
                             }
 
@@ -313,7 +307,7 @@ void DetailsWindow::MeshCombo(prefab* Prefab, reference_prefab* ReferencePrefab,
     }
 }
 
-void DetailsWindow::AnimatorComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
+void DetailsWindow::AnimatorComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     RenderResourceManager& RRM = RenderResourceManager::GetInstanced();
     //get Mesh component -> m_Model
@@ -339,9 +333,6 @@ void DetailsWindow::AnimatorComponent(prefab* Prefab, reference_prefab* Referenc
                         {
                             if (Prefab)
                             {
-                                auto& EntityInfo = PPB.GetEntityInfo(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
-                                    (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex);
-
                                 EntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(EntityInfo.m_PoolDetails, *EntityAnimator);
                             }
 
@@ -356,7 +347,7 @@ void DetailsWindow::AnimatorComponent(prefab* Prefab, reference_prefab* Referenc
     }
 }
 
-void DetailsWindow::SocketedComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
+void DetailsWindow::SocketedComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid)
 {
     RenderResourceManager& RRM = RenderResourceManager::GetInstanced();
 
@@ -399,9 +390,6 @@ void DetailsWindow::SocketedComponent(prefab* Prefab, reference_prefab* Referenc
                                     {
                                         if (Prefab)
                                         {
-                                            //Get EntityInfo
-                                            auto& EntityInfo = PPB.GetEntityInfo(m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>
-                                                                                (paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_GlobalIndex);
                                             EntityInfo.m_pArchetype->UpdatePrefabInstanceComponent(EntityInfo.m_PoolDetails, *EntitySocketed);
                                         }
 

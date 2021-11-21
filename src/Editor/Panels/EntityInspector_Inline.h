@@ -58,7 +58,7 @@ void EntityInspector::DisplayEntities()
 
                         if (Filter.PassFilter(EntityName.c_str()))
                         {
-                            ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0);
+                            ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
 
                             if (Parent)
                                 NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
@@ -87,7 +87,7 @@ void EntityInspector::DisplayEntities()
 
                                         ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
                                         auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
-                                        std::string Temp = m_Imgui.m_SelectedEntity.first->GetComponent<name>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second }).m_Value;
+                                        std::string Temp = EntityName;
 
                                         if (Parent)
                                         {
