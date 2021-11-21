@@ -32,6 +32,11 @@ namespace paperback::component
                                           {
                                               std::destroy_at( reinterpret_cast<T_COMPONENT*>( Ptr ) );
                                           }
+            ,   .m_UpdateInstances    = []( std::byte* Ptr, const vm::PoolDetails Details, paperback::archetype::instance* Prefab ) noexcept
+                                        {
+                                            T_COMPONENT& C = *( reinterpret_cast<T_COMPONENT*>( Ptr ) );
+                                            Prefab->UpdatePrefabInstanceComponent( Details, C );
+                                        }
             ,   .m_Copy               = std::is_trivially_copy_assignable_v<T_COMPONENT>
                                         ? nullptr
                                         : []( std::byte* Destination, const std::byte* Source ) noexcept

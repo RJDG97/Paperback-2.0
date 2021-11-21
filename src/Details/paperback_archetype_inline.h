@@ -245,8 +245,12 @@ namespace paperback::archetype
     //             Prefab
     //-----------------------------------
 
+    // std::byte* b = PrefabArchetype->FindComponent( Details, CGuid.m_Value )
+    // const auto& ComponentInfo = *PPB.FindComponentInfo( CGuid )
+    // ComponentInfo.m_UpdateInstances( b, PoolDetails_Prefab, PrefabArchetype )
+
     template < typename T_COMPONENT >
-    void instance::UpdatePrefabInstanceComponent( vm::PoolDetails& Details, T_COMPONENT& PrefabComponent ) noexcept
+    void instance::UpdatePrefabInstanceComponent( const vm::PoolDetails& Details, T_COMPONENT& PrefabComponent ) noexcept
     {
         // Grab Prefab Entity's Prefab Component - To Access All Prefab Instances
         auto& Prefab = GetComponent<prefab>( Details );
@@ -265,7 +269,7 @@ namespace paperback::archetype
             , end = Prefab.m_ReferencePrefabGIDs.end(); begin != end; ++begin )
         {
             // Grab Prefab Instance Info
-            auto& InstanceInfo = m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) );
+            const auto& InstanceInfo = m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) );
             auto& RefPrefab    = PIArchetype.GetComponent<reference_prefab>( InstanceInfo.m_PoolDetails );
 
             // If Reference Prefab Did Not Override T_COMPONENT
@@ -327,6 +331,11 @@ namespace paperback::archetype
     T_COMPONENT* instance::FindComponent( const PoolDetails Details ) noexcept
     {
         return m_ComponentPool[ Details.m_Key ].FindComponent<T_COMPONENT>( Details.m_PoolIndex );
+    }
+
+    std::byte* instance::FindComponent( const PoolDetails Details, const u32 ComponentGuid ) noexcept
+    {
+        return m_ComponentPool[ Details.m_Key ].FindComponent( Details.m_PoolIndex, ComponentGuid );
     }
 
     template < typename... T_COMPONENTS >
