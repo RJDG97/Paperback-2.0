@@ -22,9 +22,9 @@ struct EntityInspector : paperback::editor::instance
 
     void DisplayEntities();
 
-    void DisplayChildEntities( parent& Parent ); //Recursively Display
-
     void DeleteEntity( std::string WindowName, paperback::u32 EntityIndex );
+
+    void UnlinkChildPrefabs(parent* Parent); //recursively unlink child instances
 };
 
 

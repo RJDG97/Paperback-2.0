@@ -930,6 +930,7 @@ struct imgui_system : paperback::system::instance
         paperback::archetype::instance* SelectedChild = nullptr;
         paperback::u32 ChildIndex = paperback::u32_max;
         std::string ChildName{};
+        size_t InstCount;
 
         bool b_NodeOpen = false, Unlink = false;
 
@@ -945,6 +946,11 @@ struct imgui_system : paperback::system::instance
 
                 auto ChildParent = ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails);
                 auto Name = ChildEntityInfo.m_pArchetype->FindComponent<name>(ChildEntityInfo.m_PoolDetails);
+                auto RefPrefab = ChildEntityInfo.m_pArchetype->FindComponent<reference_prefab>(ChildEntityInfo.m_PoolDetails);
+                auto Prefab = ChildEntityInfo.m_pArchetype->FindComponent<prefab>(ChildEntityInfo.m_PoolDetails);
+
+                if (Prefab)
+                    InstCount = Prefab->m_ReferencePrefabGIDs.size() ? Prefab->m_ReferencePrefabGIDs.size() : 0;
 
                 if (ChildParent)
                     NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
@@ -986,16 +992,18 @@ struct imgui_system : paperback::system::instance
                     //    }
                     //}
 
-                    if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
+                    if (/*!RefPrefab ||*/ !InstCount) // If its a refprefab or a prefab who has instances in the world -> cannot amend
                     {
-                        ChildToUnlink = Child;
+                        if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
+                        {
+                            ChildToUnlink = Child;
 
-                        SelectedChild = ChildEntityInfo.m_pArchetype;
-                        ChildIndex = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+                            SelectedChild = ChildEntityInfo.m_pArchetype;
+                            ChildIndex = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
 
-                        Unlink = true;
+                            Unlink = true;
+                        }
                     }
-
                     ImGui::EndPopup();
                 }
 
@@ -1020,6 +1028,7 @@ struct imgui_system : paperback::system::instance
                 ComponentRemove[0] = &paperback::component::info_v<child>;
 
                 auto& Entity = SelectedChild->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, ChildIndex });
+                paperback::u32 GID = Entity.m_GlobalIndex;
                 PPB.AddOrRemoveComponents(Entity, {}, ComponentRemove);
 
                 SelectedChild = nullptr;
@@ -1032,7 +1041,7 @@ struct imgui_system : paperback::system::instance
                 }
 
                 if (!m_Components.empty())
-                    UpdateComponents(Entity.m_GlobalIndex);
+                    UpdateComponents(GID);
 
                 Unlink = false;
             }

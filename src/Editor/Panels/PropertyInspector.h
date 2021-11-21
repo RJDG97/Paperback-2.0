@@ -34,23 +34,23 @@ struct DetailsWindow : paperback::editor::instance
 //           Components
 //-----------------------------------
 
-    void ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
+    void ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
-    void AnimatorComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
+    void AnimatorComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
-    void SocketedComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
+    void SocketedComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
     void PrefabComponent();
 
 //-----------------------------------
 //        Component Combos
 //-----------------------------------
-    void ChildCombo(prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
+    void ChildCombo(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
-    void MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
+    void MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
-    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u64 i,
+    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i,
         parent& NewParent, paperback::component::entity NewParentEntity,
-        prefab* Prefab, reference_prefab* ReferencePrefab, paperback::u64 CompGuid);
+        prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
 };

@@ -114,13 +114,11 @@ void ArchetypeInspector::PrefabPanel()
                         {
                             if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE " Clone Prefab"))
                             {
-                                auto& EntityName = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i });
-
                                 auto& EntityInfo = PPB.GetEntityInfo(Entity.m_GlobalIndex);
 
                                 m_Imgui.m_pArchetype->ClonePrefab(EntityInfo.m_PoolDetails.m_PoolIndex);
 
-                                EDITOR_INFO_PRINT("Prefab Instance:" + EntityName.m_Value + " is added to the scene");
+                                EDITOR_INFO_PRINT("Prefab Instance:" + ArchetypeName + " is added to the scene");
                             }
                             m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
 

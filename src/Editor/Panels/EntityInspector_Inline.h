@@ -89,8 +89,9 @@ void EntityInspector::DisplayEntities()
                                         auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                                         std::string Temp = EntityName;
 
-                                        if (Parent)
+                                        if (!Parent)
                                         {
+                                            //Not a parent + normal entity
                                             PPB.AddOrRemoveComponents(Entity, ComponentAddRemove, {});
 
                                             if (!m_Imgui.m_Components.empty())
@@ -99,7 +100,7 @@ void EntityInspector::DisplayEntities()
                                         else
                                         {
                                             //entity is a parent + its a normal entity
-                                            if (Parent->m_ChildrenGlobalIndexes.size() != 0)
+                                            if (Parent->m_ChildrenGlobalIndexes.size())
                                             {
                                                 for (auto& Child : Parent->m_ChildrenGlobalIndexes)
                                                 {
@@ -209,10 +210,13 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
             {
                 auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityIndex });
                 auto RefPrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, EntityIndex });
+                auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails{ 0, EntityIndex });
 
                 if (RefPrefab)
                 {
                     //Get referenced prefab gid + EntityInfo
+                    if (Parent)
+                        UnlinkChildPrefabs(Parent);
 
                     auto& Info = PPB.GetEntityInfo(RefPrefab->m_PrefabGID);
                     //unlink prefab reference link from the main prefab
@@ -236,6 +240,31 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
                 ImGui::CloseCurrentPopup();
 
             ImGui::EndPopup();
+        }
+    }
+}
+
+void EntityInspector::UnlinkChildPrefabs(parent* Parent)
+{
+    if (Parent->m_ChildrenGlobalIndexes.size())
+    {
+        for (auto& Child : Parent->m_ChildrenGlobalIndexes)
+        {
+            //Get the reference prefab component of the child
+            auto& EntityInfo = PPB.GetEntityInfo(Child);
+            auto& ChildRefPrefab = EntityInfo.m_pArchetype->GetComponent<reference_prefab>(EntityInfo.m_PoolDetails);
+
+            //Get Referencing Prefab EntityInfo
+            auto& PrefabEntityInfo = PPB.GetEntityInfo(ChildRefPrefab.m_PrefabGID);
+            //unlink prefab reference link from the main prefab
+            PrefabEntityInfo.m_pArchetype->GetComponent<prefab>(PrefabEntityInfo.m_PoolDetails).RemovePrefabInstance(Child);
+
+            //Check if any of the child is also a parent
+
+            auto ChildParent = EntityInfo.m_pArchetype->FindComponent<parent>(EntityInfo.m_PoolDetails);
+
+            if (ChildParent)
+                UnlinkChildPrefabs(ChildParent);
         }
     }
 }
