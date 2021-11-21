@@ -29,7 +29,6 @@
 #include "Editor/Panels/ConsoleTerminal.h"
 #include "Editor/Panels/WindowSettings.h"
 
-
 namespace fs = std::filesystem;
 
 enum FileActivity
@@ -1034,7 +1033,6 @@ struct imgui_system : paperback::system::instance
 
                 if (!m_Components.empty())
                     UpdateComponents(Entity.m_GlobalIndex);
-
 
                 Unlink = false;
             }
