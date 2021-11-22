@@ -19,59 +19,13 @@ enum direction
 	none
 };
 
-void InElastic_collision_1D(float& v1, float& a1, const float mass1,
-	float& v2, float& a2, const float mass2)
-{
-	float total_mass = mass1 + mass2;
-
-	float obj1 = (mass1 * v1)
-		+ (mass2 * v2);
-	float obj3 = (mass1 * a1)
-		+ (mass2 * a2);
-
-	v1 = v2 = obj1 / total_mass;
-	a1 = a2 = obj3 / total_mass;
-}
-
-// cheap 1D
-void Cheap_Elastic_collision_1D(float& v1, float& a1, const float mass1,
-	float& v2, float& a2, const float mass2)
-{
-	if (mass1 != mass2)
-	{
-		float total_mass = mass1 + mass2;
-		float var1 = (mass1 - mass2) / total_mass,
-			var2 = (2 * mass2) / total_mass,
-			var3 = (2 * mass1) / total_mass,
-			var4 = (mass2 - mass1) / total_mass;
-
-		float obj1 = (var1 * v1)
-			+ (var2 * v2);
-		float obj2 = (var3 * v1)
-			+ (var4 * v2);
-		float obj3 = (var1 * a1)
-			+ (var2 * a2);
-		float obj4 = (var3 * a1)
-			+ (var4 * a2);
-
-		v1 = obj1;
-		v2 = obj2;
-		a1 = obj3;
-		a2 = obj4;
-	}
-	else // Swap
-	{
-		paperback::MathUtils::Swap<float>(v1, v2);
-		paperback::MathUtils::Swap<float>(a1, a2);
-	}
-}
-
 // combined
 void Elastic_InElastic_1D(float& v1, float& a1, const float mass1,
 	float& v2, float& a2, const float mass2, const float restituition)// 0.f - 1.f
 {
 	float total_mass = mass1 + mass2;
 
+	// general formula for resolving velocity and acceleration
 	float obj1 = (
 		(restituition * mass2) * (v2 - v1) + ((mass1 * v1) + (mass2 * v2))
 		) / total_mass;
@@ -85,6 +39,7 @@ void Elastic_InElastic_1D(float& v1, float& a1, const float mass1,
 		(restituition * mass1) * (a1 - a2) + ((mass1 * a1) + (mass2 * a2))
 		) / total_mass;
 
+	// updates both objs velocity and acceleration
 	v1 = obj1;
 	v2 = obj2;
 	a1 = obj3;
@@ -125,7 +80,8 @@ bool CheapaabbDynamic(
 	// Position Difference
 	paperback::Vector3f ab = t1.m_Position - t2.m_Position;
 	
-	// get pen_depth (+ve), shoulld be a super small value
+	// get pen_depth (+ve), usually ** a super small value
+	// small value when fps = 30 ~ 60,  if 1 fps, likely to be a large value
 	// Penetration Depth
 	paperback::Vector3f pen_depth = (((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min)) / 2)		// Length between the 2 Colliders
 		                            - paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));				// Distance between the 2 Colliders
@@ -142,8 +98,17 @@ bool CheapaabbDynamic(
 	direction dir = direction::none;
 	float xx = 0.f, yy = 0.f, zz = 0.f; // default value
 
-	// determine which side hit and whos first
-	// case 2/4
+	// for xx, yy, zz
+	// distance (pen_depth) = velocity (velab -> total accumulated velocity) * time
+	// therefore, time (xx) = distance / velocity
+	// in this case, xx will calculate the **** time taken *** to travel the pen_depth distance
+	// the smaller the xx, the higher the distance the object travel BEFORE colliding with the other object
+
+	// so the higher the xx, the shorter the distance the object travelled BEFORE collision
+	
+	// instead of spamming raycasting to aabb (predicting movement), this simply calculates AFTER the collision
+
+	// case 2/4     determine which side hit and whos first
 	if ((velab.x > 0.f && ab.x < 0.f) || (velab.x < 0.f && ab.x > 0.f))
 		xx = (pen_depth.x) / t_resolve.x;
 	if ((velab.y > 0.f && ab.y < 0.f) || (velab.y < 0.f && ab.y > 0.f))

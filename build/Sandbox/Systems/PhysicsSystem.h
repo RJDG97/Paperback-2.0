@@ -108,27 +108,29 @@ struct physics_system : paperback::system::instance
             RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
             RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
 
-            // momentum && accel
+            // momentum && accel only
             if (!RigidForce->m_Momentum.IsZero() && !RigidForce->m_Forces.IsZero())
             {
-                // friction
+                // friction in action, reduces momentum
                 RigidForce->m_Momentum.DecrementValue(
                     RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
 
+                // accumulate momentum
                 RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
 
+                // friction in action, reduces acceleration
                 RigidForce->m_Forces.DecrementValue(
                     RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
             }
-            // momentum
+            // momentum only
             else if (RigidForce->m_Forces.IsZero())
             {
-                // friction
+                // friction in action, reduces momentum
                 RigidForce->m_Momentum.DecrementValue(
                     RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
             }
 
-            // accumulate result
+            // accumulate result into rigidbody and update position
             if (RigidBody && Mass)
             {
                 RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce->m_Forces);
