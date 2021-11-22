@@ -34,22 +34,23 @@ struct DetailsWindow : paperback::editor::instance
 //           Components
 //-----------------------------------
 
-    void ParentComponent();
+    void ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
-    void AnimatorComponent();
+    void AnimatorComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
-    void SocketedComponent();
+    void SocketedComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
     void PrefabComponent();
 
 //-----------------------------------
 //        Component Combos
 //-----------------------------------
-    void ChildCombo();
+    void ChildCombo(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
-    void MeshCombo();
+    void MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
     void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i,
-        parent& NewParent, paperback::component::entity NewParentEntity);
+        parent& NewParent, paperback::component::entity NewParentEntity,
+        prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
 
 };

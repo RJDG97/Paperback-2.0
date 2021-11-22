@@ -118,6 +118,9 @@ namespace paperback::vm
 		template < typename T_COMPONENT >
 		T_COMPONENT* FindComponent( const u32 PoolIndex ) const noexcept;
 
+		PPB_INLINE
+		std::byte* FindComponent( const u32 PoolIndex, const component::type::guid ComponentGuid ) const noexcept;
+
 		template < typename T_COMPONENT >
 		T_COMPONENT& GetComponent( const u32 PoolIndex ) const noexcept;
 
