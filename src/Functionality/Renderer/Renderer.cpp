@@ -113,6 +113,38 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("DragonHead", "../../resources/models/nui/DragonHead.nui");
 	m_Resources.Load3DMeshNUI("BottomPath", "../../resources/models/nui/BottomPath.nui");
 
+	// Cards
+	m_Resources.LoadTextures("CardBack", "../../resources/textures/UI/Cards/CardBack.dds", true);
+	m_Resources.LoadTextures("PaperWeapon_PaperShield", "../../resources/textures/UI/Cards/PaperWeapon_PaperShield.dds", true);
+	m_Resources.LoadTextures("RockWeapon_RockShield", "../../resources/textures/UI/Cards/RockWeapon_RockShield.dds", true);
+	m_Resources.LoadTextures("ScissorsWeapon_ScissorsShield", "../../resources/textures/UI/Cards/ScissorsWeapon_ScissorsShield.dds", true);
+
+	// Health Bars
+		// Enemy
+	m_Resources.LoadTextures("EnemyHPBar", "../../resources/textures/UI/HealthBars/EnemyHPBar.dds", true);
+	m_Resources.LoadTextures("EnemyHPBar_Background", "../../resources/textures/UI/HealthBars/EnemyHPBar_Background.dds", true);
+	m_Resources.LoadTextures("EnemyHPBar_Fill", "../../resources/textures/UI/HealthBars/EnemyHPBar_Fill.dds", true);
+	
+		// Player
+	m_Resources.LoadTextures("PlayerHPBar", "../../resources/textures/UI/HealthBars/PlayerHPBar.dds", true);
+	m_Resources.LoadTextures("PlayerHPBar_Background", "../../resources/textures/UI/HealthBars/PlayerHPBar_Background.dds", true);
+	m_Resources.LoadTextures("PlayerHPBar_Fill", "../../resources/textures/UI/HealthBars/PlayerHPBar_Fill.dds", true);
+
+	// RPS Icons
+	m_Resources.LoadTextures("BluePaperRedRock", "../../resources/textures/UI/RPSStatusIcons/BluePaperRedRock.dds", true);
+	m_Resources.LoadTextures("BlueRockRedScissors", "../../resources/textures/UI/RPSStatusIcons/BlueRockRedScissors.dds", true);
+	m_Resources.LoadTextures("BlueScissorsRedPaper", "../../resources/textures/UI/RPSStatusIcons/BlueScissorsRedPaper.dds", true);
+	m_Resources.LoadTextures("NeutralPaper", "../../resources/textures/UI/RPSStatusIcons/NeutralPaper.dds", true);
+	m_Resources.LoadTextures("NeutralRock", "../../resources/textures/UI/RPSStatusIcons/NeutralRock.dds", true);
+	m_Resources.LoadTextures("NeutralScissors", "../../resources/textures/UI/RPSStatusIcons/NeutralScissors.dds", true);
+	m_Resources.LoadTextures("RedBannerPaperPaper", "../../resources/textures/UI/RPSStatusIcons/RedBannerPaperPaper.dds", true);
+	m_Resources.LoadTextures("RedBannerRockRock", "../../resources/textures/UI/RPSStatusIcons/RedBannerRockRock.dds", true);
+	m_Resources.LoadTextures("RedBannerScissorsScissors", "../../resources/textures/UI/RPSStatusIcons/RedBannerScissorsScissors.dds", true);
+	m_Resources.LoadTextures("RedPaperBlueRock", "../../resources/textures/UI/RPSStatusIcons/RedPaperBlueRock.dds", true);
+	m_Resources.LoadTextures("RedRockBlueScissors", "../../resources/textures/UI/RPSStatusIcons/RedRockBlueScissors.dds", true);
+	m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
+	m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
+
 	// Enable alpha blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
