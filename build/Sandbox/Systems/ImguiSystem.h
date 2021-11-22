@@ -946,7 +946,7 @@ struct imgui_system : paperback::system::instance
 
                 auto ChildParent = ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails);
                 auto Name = ChildEntityInfo.m_pArchetype->FindComponent<name>(ChildEntityInfo.m_PoolDetails);
-                auto RefPrefab = ChildEntityInfo.m_pArchetype->FindComponent<reference_prefab>(ChildEntityInfo.m_PoolDetails);
+                //auto RefPrefab = ChildEntityInfo.m_pArchetype->FindComponent<reference_prefab>(ChildEntityInfo.m_PoolDetails);
                 auto Prefab = ChildEntityInfo.m_pArchetype->FindComponent<prefab>(ChildEntityInfo.m_PoolDetails);
 
                 if (Prefab)
@@ -992,7 +992,7 @@ struct imgui_system : paperback::system::instance
                     //    }
                     //}
 
-                    if (/*!RefPrefab ||*/ !InstCount) // If its a refprefab or a prefab who has instances in the world -> cannot amend
+                    if (!InstCount) // If its a refprefab or a prefab who has instances in the world -> cannot amend
                     {
                         if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
                         {

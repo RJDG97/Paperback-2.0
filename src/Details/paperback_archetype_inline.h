@@ -333,7 +333,7 @@ namespace paperback::archetype
         return m_ComponentPool[ Details.m_Key ].FindComponent<T_COMPONENT>( Details.m_PoolIndex );
     }
 
-    std::byte* instance::FindComponent( const PoolDetails Details, const u32 ComponentGuid ) noexcept
+    std::byte* instance::FindComponent( const PoolDetails Details, const component::type::guid ComponentGuid ) noexcept
     {
         return m_ComponentPool[ Details.m_Key ].FindComponent( Details.m_PoolIndex, ComponentGuid );
     }

@@ -72,7 +72,7 @@ namespace paperback::archetype
         T_COMPONENT* FindComponent( const PoolDetails Details ) noexcept;
 
         PPB_INLINE
-        std::byte* FindComponent( const PoolDetails Details, const u32 ComponentGuid ) noexcept;
+        std::byte* FindComponent( const PoolDetails Details, const component::type::guid ComponentGuid ) noexcept;
 
         template < typename... T_COMPONENTS >
         std::tuple<T_COMPONENTS*...> FindComponents( const PoolDetails Details ) noexcept;

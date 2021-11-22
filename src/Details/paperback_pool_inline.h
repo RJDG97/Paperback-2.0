@@ -477,7 +477,7 @@ namespace paperback::vm
 		);
 	}
 
-	std::byte* instance::FindComponent( const u32 PoolIndex, const u32 ComponentGuid ) const noexcept
+	std::byte* instance::FindComponent( const u32 PoolIndex, const component::type::guid ComponentGuid) const noexcept
 	{
 		//auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_UID );
 		auto ComponentIndex = GetComponentIndex( ComponentGuid );
