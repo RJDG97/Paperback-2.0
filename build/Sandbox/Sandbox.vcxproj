@@ -187,6 +187,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
   <ItemGroup>
     <ClInclude Include="Components\AABB.h" />
     <ClInclude Include="Components\Animator.h" />
+    <ClInclude Include="Components\Base.h" />
     <ClInclude Include="Components\BoundingBox.h" />
     <ClInclude Include="Components\Child.h" />
     <ClInclude Include="Components\CollisionLayer.h" />
@@ -201,6 +202,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
     <ClInclude Include="Components\Friendly.h" />
     <ClInclude Include="Components\FriendlySpawner.h" />
     <ClInclude Include="Components\Health.h" />
+    <ClInclude Include="Components\HealthBar.h" />
     <ClInclude Include="Components\Listener.h" />
     <ClInclude Include="Components\Mesh.h" />
     <ClInclude Include="Components\Name.h" />
@@ -220,6 +222,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
     <ClInclude Include="Components\Sphere.h" />
     <ClInclude Include="Components\Timer.h" />
     <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Components\Unit.h" />
     <ClInclude Include="Components\Waypoint.h" />
     <ClInclude Include="Components\UnitState.h" />
     <ClInclude Include="Components\WaypointTag.h" />
@@ -229,8 +232,10 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
     <ClInclude Include="Systems\EnemySpawnerSystem.h" />
+    <ClInclude Include="Systems\HealthSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
+    <ClInclude Include="Systems\OnEvent_HealthSystem.h" />
     <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />

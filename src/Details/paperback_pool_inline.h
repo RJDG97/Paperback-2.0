@@ -629,7 +629,12 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< unitstate >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< waypoint_tag >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< waypoint_tag >(Index));
-
+		else if (Comp_Guid.m_Value == component::info_v< healthbar >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< healthbar >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< base >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< base >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< unit >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< unit >(Index));
 		else
 			return rttr::instance();
 	}

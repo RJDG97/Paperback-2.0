@@ -13,7 +13,9 @@
 #include "EnemySpawnerSystem.h"
 #include "PlayerSpawnerSystem.h"
 #include "WaypointSystem.h"
+#include "HealthSystem.h"
 
 // Event
 #include "OnEvent_CollisionSystem.h"
 #include "OnEvent_ParentOrChildDeleted.h"
+#include "OnEvent_HealthSystem.h"
