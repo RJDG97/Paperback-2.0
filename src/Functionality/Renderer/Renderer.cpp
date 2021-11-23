@@ -359,6 +359,26 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 		m_BlurBuffer.m_BufferTexture.push_back(blurTexture[i]);
 	}
 
+	// Delete old ui buffer textures
+	glDeleteTextures(static_cast<GLsizei>(m_UIBuffer.m_BufferTexture.size()), m_UIBuffer.m_BufferTexture.data());
+	m_UIBuffer.m_BufferTexture.clear();
+
+	// Create ui texture
+	GLuint uiTexture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &uiTexture);
+
+	glTextureStorage2D(uiTexture, 1, GL_RGBA16F, Width, Height);
+	glTextureParameteri(uiTexture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameteri(uiTexture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTextureParameteri(uiTexture, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(uiTexture, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	// Attach texture to framebuffer
+	glNamedFramebufferTexture(m_UIBuffer.m_FrameBuffer[0], GL_COLOR_ATTACHMENT0, uiTexture, 0);
+
+	// Add texture to framebuffer object
+	m_UIBuffer.m_BufferTexture.push_back(uiTexture);
+
 	// Delete old final buffer textures
 	glDeleteTextures(static_cast<GLsizei>(m_FinalBuffer.m_BufferTexture.size()), m_FinalBuffer.m_BufferTexture.data());
 	m_FinalBuffer.m_BufferTexture.clear();
