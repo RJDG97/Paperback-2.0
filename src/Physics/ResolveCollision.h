@@ -19,6 +19,7 @@ enum direction
 	none
 };
 
+
 // combined
 void Elastic_InElastic_1D(float& v1, float& a1, const float mass1,
 	float& v2, float& a2, const float mass2, const float restituition)// 0.f - 1.f
@@ -47,37 +48,46 @@ void Elastic_InElastic_1D(float& v1, float& a1, const float mass1,
 }
 
 // pseudo
-bool CheapaabbDynamic(
-	boundingbox* Bbox1,
-	rigidforce* rf1,
-	transform& t1,
-	mass* m1,
-	boundingbox* Bbox2,
-	rigidforce* rf2,
-	transform& t2,
-	mass* m2)
-
-	//	paperback::Vector3f& Bbox1min, paperback::Vector3f& Bbox1max,
-	//	paperback::Vector3f& mom1, paperback::Vector3f& f1, 
-	//	paperback::Vector3f& t1, float mass1,
-	//	paperback::Vector3f& Bbox2min, paperback::Vector3f& Bbox2max,
-	//	paperback::Vector3f& mom2, paperback::Vector3f& f2, 
-	//	paperback::Vector3f& t2, float mass2)
+bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* m1,
+					   boundingbox* Bbox2, rigidforce* rf2, transform& t2, mass* m2 )
 {
-	if (m1->m_Mass == 0.f || m2->m_Mass == 0.f)
-		return false;
+	//if ( m1 && m2 && ( m1->m_Mass == 0.f || m2->m_Mass == 0.f ) )
+	//	return false;
 
-	// Relative Velocity
-	paperback::Vector3f vel1 = rf1->m_Momentum / m1->m_Mass;
-	paperback::Vector3f vel2 = rf2->m_Momentum / m2->m_Mass;
+	paperback::Vector3f vel1{}, vel2{}, acc1{}, acc2{};
+	float mass1{}, mass2{};
 
-	// Compute Acceleration
-	paperback::Vector3f acc1 = rf1->m_Forces / m1->m_Mass;
-	paperback::Vector3f acc2 = rf2->m_Forces / m2->m_Mass;
+
+
+	// Replacement for below
+	if ( m1 && m1->m_Mass != 0.0f )
+	{
+		vel1 = rf1->m_Momentum / m1->m_Mass;
+		acc1 = rf1->m_Forces / m1->m_Mass;
+		mass1 = m1->m_Mass;
+	}
+	if ( m2 && m2->m_Mass != 0.0f )
+	{
+		vel2 = rf2->m_Momentum / m2->m_Mass;
+		acc2 = rf2->m_Forces / m2->m_Mass;
+		mass2 = m2->m_Mass;
+	}
+
+	//// Relative Velocity
+	//paperback::Vector3f vel1 = rf1->m_Momentum / m1->m_Mass;
+	//paperback::Vector3f vel2 = rf2->m_Momentum / m2->m_Mass;
+
+	//// Compute Acceleration
+	//paperback::Vector3f acc1 = rf1->m_Forces / m1->m_Mass;
+	//paperback::Vector3f acc2 = rf2->m_Forces / m2->m_Mass;
+
+
+
+
 
 	// Abs Resultant Vector
 	paperback::Vector3f velab = vel1 - vel2; // uncorrupt
-	// Position Difference
+	// Position Difference - Dist between both entities
 	paperback::Vector3f ab = t1.m_Position - t2.m_Position;
 	
 	// get pen_depth (+ve), usually ** a super small value
@@ -130,22 +140,22 @@ bool CheapaabbDynamic(
 			// case 3
 			if (ab.x > 0.f)
 			{
-				t1.m_Position.x += (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap);
-				t2.m_Position.x -= (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap);
+				t1.m_Position.x += m1 ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+				t2.m_Position.x -= m2 ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
 			}
 			// case 1
 			else
 			{
-				t1.m_Position.x -= (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap);
-				t2.m_Position.x += (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap);
+				t1.m_Position.x -= m1 ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+				t2.m_Position.x += m2 ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
 			}
 			// temporary holder before refining
-			Elastic_InElastic_1D(vel1.x, acc1.x, m1->m_Mass,
-				vel2.x, acc2.x, m2->m_Mass, restitution);
-			rf1->m_Momentum = vel1 * m1->m_Mass;
-			rf2->m_Momentum = vel2 * m2->m_Mass;
-			rf1->m_Forces = acc1 * m1->m_Mass;
-			rf2->m_Forces = acc2 * m2->m_Mass;
+			Elastic_InElastic_1D(vel1.x, acc1.x, mass1/*m1->m_Mass*/,
+				vel2.x, acc2.x, mass2/*m2->m_Mass*/, restitution);
+			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
 		}
 		else
 		{
@@ -153,21 +163,21 @@ bool CheapaabbDynamic(
 			// case 3
 			if (ab.z > 0.f)
 			{
-				t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
-				t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+				t1.m_Position.z += m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+				t2.m_Position.z -= m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
 			}
 			// case 1
 			else
 			{
-				t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
-				t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+				t1.m_Position.z -= m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+				t2.m_Position.z += m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
 			}
-			Elastic_InElastic_1D(vel1.z, acc1.z, m1->m_Mass,
-				vel2.z, acc2.z, m2->m_Mass, restitution);
-			rf1->m_Momentum = vel1 * m1->m_Mass;
-			rf2->m_Momentum = vel2 * m2->m_Mass;
-			rf1->m_Forces = acc1 * m1->m_Mass;
-			rf2->m_Forces = acc2 * m2->m_Mass;
+			Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
+				vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
+			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
 		}
 	}
 	else
@@ -178,21 +188,21 @@ bool CheapaabbDynamic(
 			// case 3
 			if (ab.y > 0.f)
 			{
-				t1.m_Position.y += (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap);
-				t2.m_Position.y -= (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap);
+				t1.m_Position.y += m1 ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+				t2.m_Position.y -= m2 ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
 			}
 			// case 1
 			else
 			{
-				t1.m_Position.y -= (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap);
-				t2.m_Position.y += (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap);
+				t1.m_Position.y -= m1 ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+				t2.m_Position.y += m2 ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
 			}
-			Elastic_InElastic_1D(vel1.y, acc1.y, m1->m_Mass,
-				vel2.y, acc2.y, m2->m_Mass, restitution);
-			rf1->m_Momentum = vel1 * m1->m_Mass;
-			rf2->m_Momentum = vel2 * m2->m_Mass;
-			rf1->m_Forces = acc1 * m1->m_Mass;
-			rf2->m_Forces = acc2 * m2->m_Mass;
+			Elastic_InElastic_1D(vel1.y, acc1.y, mass1/*m1->m_Mass*/,
+				vel2.y, acc2.y, mass2/*m2->m_Mass*/, restitution);
+			rf1->m_Momentum = t1.m_Position.y > t2.m_Position.y ? paperback::Vector3f{} : vel1 * mass1/*m1->m_Mass*/;
+			rf2->m_Momentum = t2.m_Position.y > t1.m_Position.y ? paperback::Vector3f{} : vel2 * mass2/*m2->m_Mass*/;
+			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
 		}
 
 		else
@@ -217,13 +227,13 @@ bool CheapaabbDynamic(
 
                 if (t_resolve.z > 0.0f)
                 {
-                    t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
-                    t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+                    t1.m_Position.z += m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+					t2.m_Position.z -= m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
                 }
                 else
                 {
 
-                    t1.m_Position.z += pen_depth.z;
+					t1.m_Position.z += m1 ? pen_depth.z : 0.0f;
                 }
             }
             // case 1
@@ -232,25 +242,25 @@ bool CheapaabbDynamic(
 
                 if (t_resolve.z > 0.0f)
                 {
-                    t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
-                    t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+                    t1.m_Position.z -= m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+					t2.m_Position.z += m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
                 }
                 else
                 {
 
-                    t2.m_Position.z += pen_depth.z;
+					t2.m_Position.z += m2 ? pen_depth.z : 0.0f;
                 }
             }
 
 
 
 
-			Elastic_InElastic_1D(vel1.z, acc1.z, m1->m_Mass,
-				vel2.z, acc2.z, m2->m_Mass, restitution);
-			rf1->m_Momentum = vel1 * m1->m_Mass;
-			rf2->m_Momentum = vel2 * m2->m_Mass;
-			rf1->m_Forces = acc1 * m1->m_Mass;
-			rf2->m_Forces = acc2 * m2->m_Mass;
+			Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
+				vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
+			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
 		}
 	}
 	return true;

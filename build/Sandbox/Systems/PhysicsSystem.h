@@ -102,8 +102,12 @@ struct physics_system : paperback::system::instance
     // map check collision out of bounds check
     void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce, mass* Mass) noexcept
     {
-        if (RigidForce != nullptr)
+        if ( RigidForce )
         {
+            //// Apply Gravity If Non-Static
+            //if ( !RigidForce->m_isStatic && Mass )
+            //    RigidForce->m_Momentum.y += -9.8f * Mass->m_Mass * DeltaTime();
+
             // minimum value threshold
             RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
             RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);

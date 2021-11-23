@@ -53,7 +53,10 @@ struct collision_system : paperback::system::instance
                              , Xform.m_Position + BB->Min, Xform.m_Position + BB->Max ) )
                 {
                     // Dynamic Collision Check & Resolution
-                    if ( RigidForce && RF && m1 && m2 )
+                    /*
+                    - For static objects, RF.m_isStatic will be true and mass component should not be added
+                    */
+                    if ( RigidForce && RF /*&& m1 && m2*/ )
                         CheapaabbDynamic( Boundingbox, RigidForce, Transform, m1, BB, RF, Xform, m2 );
 
                     //// On entry

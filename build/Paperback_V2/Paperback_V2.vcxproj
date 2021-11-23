@@ -321,7 +321,7 @@ xcopy "$(ProjectDir)..\Sandbox\Dependencies\Scriptlib.dll" "$(TargetDir)Dependen
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(OutDir)"
 xcopy /y /d "$(ProjectDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(OutDir)"
 xcopy /y "$(ProjectDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(OutDir)"
-xcopy /y "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"
+xcopy /y /d "$(ProjectDir)\..\..\dependencies\glew\lib\glew32.dll" "$(OutDir)"
 xcopy /y /i "$(ProjectDir)..\Sandbox\Dependencies\mono\lib\mono-2.0-sgen.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

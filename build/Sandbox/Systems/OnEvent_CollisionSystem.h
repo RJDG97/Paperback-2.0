@@ -38,9 +38,9 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         // if friendly units
         if (Unit_State && !Unit_State->isAttacking && (Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) {
 
-            // Pause Movement
-            rf.m_Momentum = {};
-            rf.m_Forces = {};
+            //// Pause Movement
+            //rf.m_Momentum = {};
+            //rf.m_Forces = {};
 
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
             // change animation
@@ -51,9 +51,9 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         // if oposing units
         if ((Unit_1_Friendly && Unit_2_Enemy) || (Unit_1_Enemy && Unit_2_Friendly)) {
 
-            // Pause Movement
-            rf.m_Momentum = {};
-            rf.m_Forces = {};
+            //// Pause Movement
+            //rf.m_Momentum = {};
+            //rf.m_Forces = {};
             
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
 
@@ -100,9 +100,9 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
 
         // if oposing units
         if (Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly) {
-            // Pause Movement
-            rf.m_Momentum = {};
-            rf.m_Forces = {};
+            //// Pause Movement
+            //rf.m_Momentum = {};
+            //rf.m_Forces = {};
 
             // get animator component
             animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);

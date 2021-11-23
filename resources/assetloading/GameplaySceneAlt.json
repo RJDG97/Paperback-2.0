@@ -1,0 +1,2223 @@
+{
+    "Entities": [
+        {
+            "Archetype Manager": {
+                "EntityHead": 41
+            }
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 0
+                    },
+                    "Mesh": {
+                        "Model": "NationalStadium",
+                        "Texture": "NationalStadium_Normal.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000007934868337,
+                            "y": 0.0020000007934868337,
+                            "z": 0.0020000007934868337
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            1,
+                            3
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 63.89583969116211,
+                            "y": 24.16985511779785,
+                            "z": 63.89583969116211
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 5.463905334472656,
+                            "y": -0.6475270390510559,
+                            "z": -0.9775969982147217
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 4
+                    },
+                    "Mesh": {
+                        "Model": "Sandpit",
+                        "Texture": "Sandpit_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            6
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.045760929584503177,
+                            "y": -5.570000171661377,
+                            "z": -5.985112190246582
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 1
+                    },
+                    "Mesh": {
+                        "Model": "HDBBlock",
+                        "Texture": "HDB_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000007934868337,
+                            "y": 0.0020000007934868337,
+                            "z": 0.0020000007934868337
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.6459999084472658,
+                            "y": 1.0049999952316285,
+                            "z": -6.200000286102295
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 6
+                    },
+                    "Mesh": {
+                        "Model": "NationalStadium",
+                        "Texture": "NationalStadium_Normal.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 4.605653285980225,
+                            "y": 0.5554952621459961,
+                            "z": -5.900012016296387
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 4
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 3
+                    },
+                    "Mesh": {
+                        "Model": "Sandpit",
+                        "Texture": "Sandpit_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.06247133016586304,
+                            "y": 0.14777374267578126,
+                            "z": -5.985112190246582
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 4
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        14351128073332756358
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 2
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            8
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": ""
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 8
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": "CameraMovement"
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 2
+                    }
+                }
+            ]
+        },
+        {
+            "Enemy Racquet": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        18207278796319661883
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Mesh": {
+                        "Model": "TableTennisRacket_Red",
+                        "Texture": "TableTennisRacket_Red_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 5
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": 35.0,
+                            "y": -20.0,
+                            "z": -30.0
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 270.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Sync Animation With Parent": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 10
+                    },
+                    "Mesh": {
+                        "Model": "TableTennisRacket_Blue",
+                        "Texture": "TableTennisRacket_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 9
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            42
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": 35.0,
+                            "y": -20.0,
+                            "z": -30.0
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 270.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Sync Animation With Parent": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 12
+                    },
+                    "Mesh": {
+                        "Model": "TableTennisRacket_Blue",
+                        "Texture": "TableTennisRacket_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 11
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": 35.0,
+                            "y": -20.0,
+                            "z": -30.0
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 270.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Sync Animation With Parent": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 14
+                    },
+                    "Mesh": {
+                        "Model": "TableTennisRacket_Blue",
+                        "Texture": "TableTennisRacket_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 13
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": 35.0,
+                            "y": -20.0,
+                            "z": -30.0
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 270.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Sync Animation With Parent": true
+                    }
+                }
+            ]
+        },
+        {
+            "Player": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        15718167817694166966,
+                        16415915133639986106,
+                        1837782323380021369
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 15
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            23
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Currency": {
+                        "Currency": 10000
+                    },
+                    "Name": {
+                        "Name": ""
+                    },
+                    "Player": {}
+                }
+            ]
+        },
+        {
+            "Player": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        15172211932757996706,
+                        15718167817694166966,
+                        16415915133639986106,
+                        1837782323380021369
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 23
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 15
+                    },
+                    "Currency": {
+                        "Currency": 10000
+                    },
+                    "Name": {
+                        "Name": ""
+                    },
+                    "Player": {}
+                }
+            ]
+        },
+        {
+            "Friendly Unit": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        11205371835887103269,
+                        10545082205294364554,
+                        13451667849426907147,
+                        1065973164513037885,
+                        15320754602131540736,
+                        305827872934614293,
+                        16415915133639986106,
+                        11735907707121220559
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 13
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 2.0,
+                        "Timer": 0.0
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            14
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.0999999046325685,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 1.0000001192092896,
+                        "Dynamic Friction": 0.49999991059303286,
+                        "Restitution": -7.450580596923828e-8,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Collidable": {
+                        "Collision Layer": 0,
+                        "Collidable Layers": ""
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "structunitstate": {},
+                    "Health": {
+                        "Current Health": 9,
+                        "Max Health": 9
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 3
+                    },
+                    "Cost": {
+                        "Cost": 100
+                    },
+                    "Name": {
+                        "Name": "Bot"
+                    },
+                    "Friendly": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 11
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 2.0,
+                        "Timer": 0.0
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            12
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.0999999046325685,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 1.0,
+                        "Dynamic Friction": 0.49999991059303286,
+                        "Restitution": -7.450580596923828e-8,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Collidable": {
+                        "Collision Layer": 0,
+                        "Collidable Layers": ""
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "structunitstate": {},
+                    "Health": {
+                        "Current Health": 9,
+                        "Max Health": 9
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 3
+                    },
+                    "Cost": {
+                        "Cost": 100
+                    },
+                    "Name": {
+                        "Name": "Mid"
+                    },
+                    "Friendly": {}
+                }
+            ]
+        },
+        {
+            "Friendly Waypoint": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        15172211932757996706,
+                        10545082205294364554,
+                        11735907707121220559,
+                        17186729781244516098
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 21
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.999993085861206,
+                            "y": 0.5,
+                            "z": -5.994861602783203
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 19
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -7.5
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 28
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.5450000762939455,
+                            "y": 0.5,
+                            "z": -4.922195911407471
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 19
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 2.5,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 29
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.0,
+                            "y": 0.5,
+                            "z": -4.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 19
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -2.5
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 30
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.04500000178813934,
+                            "y": 0.5,
+                            "z": -7.497000217437744
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 19
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 3.299999952316284,
+                            "y": 0.5,
+                            "z": -6.0
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 31
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.017000000923871995,
+                            "y": 0.5000076293945313,
+                            "z": -2.505000114440918
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 19
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 3.299999952316284,
+                            "y": 0.5,
+                            "z": -4.0
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 32
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 2.500999927520752,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 19
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 2.5,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 100
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 39
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.3010001182556154,
+                            "y": 0.5,
+                            "z": -6.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10545082205294364554,
+                            17186729781244516098,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 19
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 3.299999952316284,
+                            "y": 0.5,
+                            "z": -6.0
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 100
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 40
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.3010001182556154,
+                            "y": 0.5,
+                            "z": -4.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 19
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 3.299999952316284,
+                            "y": 0.5,
+                            "z": -6.0
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 100
+                    }
+                }
+            ]
+        },
+        {
+            "Friendly Waypoint": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        10545082205294364554,
+                        11735907707121220559,
+                        17186729781244516098
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 19
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            21,
+                            29,
+                            28,
+                            30,
+                            31,
+                            39,
+                            32,
+                            40
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.0999999046325685,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 3.200000047683716,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 0
+                    }
+                }
+            ]
+        },
+        {
+            "Enemy Waypoint": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        15172211932757996706,
+                        10545082205294364554,
+                        5786312103493353911,
+                        17186729781244516098
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 22
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.299999952316284,
+                            "y": 0.5,
+                            "z": -6.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 20
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -7.5
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 24
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 2.799999952316284,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10545082205294364554,
+                            17186729781244516098,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 20
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": -1.899999976158142,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 33
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.299999952316284,
+                            "y": 0.5,
+                            "z": -4.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 20
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -2.5
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 34
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -7.5
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10545082205294364554,
+                            17186729781244516098,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 20
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": -3.0,
+                            "y": 0.5,
+                            "z": -6.0
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 35
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.5,
+                            "z": -2.5
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 20
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": -3.0999999046325685,
+                            "y": 0.5,
+                            "z": -4.0
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 36
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -1.899999976158142,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10545082205294364554,
+                            17186729781244516098,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 20
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": -1.899999976158142,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 100
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 37
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.009425640106201,
+                            "y": 0.5,
+                            "z": -4.0370001792907719
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17186729781244516098,
+                            10545082205294364554,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 20
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": -1.899999976158142,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 100
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 38
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.009425640106201,
+                            "y": 0.5,
+                            "z": -6.0370001792907719
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10545082205294364554,
+                            17186729781244516098,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 20
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": -3.0,
+                            "y": 0.5,
+                            "z": -5.900000095367432
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 100
+                    }
+                }
+            ]
+        },
+        {
+            "Enemy Waypoint": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        10545082205294364554,
+                        5786312103493353911,
+                        17186729781244516098
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 20
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            22,
+                            38,
+                            24,
+                            33,
+                            34,
+                            35,
+                            36,
+                            37
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.0999999046325685,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": -3.200000047683716,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 0
+                    }
+                }
+            ]
+        },
+        {
+            "Enemy Spawner": [
+                {
+                    "Guid": [
+                        0,
+                        12091664775214799190,
+                        17008353085049151909,
+                        8554424544401306422,
+                        1877326664829159341,
+                        17186729781244516098
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 16
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 2.0,
+                        "Timer": -5320.826171875
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.5969998836517336,
+                            "y": 0.5,
+                            "z": -5.5407023429870609
+                        }
+                    },
+                    "Counter": {
+                        "Counter": 0
+                    },
+                    "EnemySpawner": {
+                        "Enemy Prefab Type": "EnemyTagged",
+                        "Enemy Prefab Guid": 185603528130702194
+                    },
+                    "WaypointTag": {
+                        "Tag": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 18
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 2.0,
+                        "Timer": -5320.826171875
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 2.735529661178589,
+                            "y": 0.5,
+                            "z": -4.756246566772461
+                        }
+                    },
+                    "Counter": {
+                        "Counter": 0
+                    },
+                    "EnemySpawner": {
+                        "Enemy Prefab Type": "EnemyTagged",
+                        "Enemy Prefab Guid": 185603528130702194
+                    },
+                    "WaypointTag": {
+                        "Tag": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 17
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 2.0,
+                        "Timer": -5320.826171875
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 3.065000057220459,
+                            "y": 0.5,
+                            "z": -4.020999908447266
+                        }
+                    },
+                    "Counter": {
+                        "Counter": 0
+                    },
+                    "EnemySpawner": {
+                        "Enemy Prefab Type": "EnemyTagged",
+                        "Enemy Prefab Guid": 185603528130702194
+                    },
+                    "WaypointTag": {
+                        "Tag": 2
+                    }
+                }
+            ]
+        },
+        {
+            "Friendly Spawner": [
+                {
+                    "Guid": [
+                        0,
+                        12091664775214799190,
+                        17008353085049151909,
+                        8554424544401306422,
+                        17805353329567919643,
+                        17186729781244516098
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 25
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 0.0,
+                        "Timer": -5320.826171875
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.766584634780884,
+                            "y": 0.5,
+                            "z": -6.020421504974365
+                        }
+                    },
+                    "Counter": {
+                        "Counter": 0
+                    },
+                    "FriendlySpawner": {
+                        "Friendly Prefab Type": "FriendlyTagged",
+                        "Friendly Prefab Guid": 2839222658276310020
+                    },
+                    "WaypointTag": {
+                        "Tag": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 26
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 0.0,
+                        "Timer": -360.3169250488281
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.3087592124938967,
+                            "y": 0.5,
+                            "z": -4.960065841674805
+                        }
+                    },
+                    "Counter": {
+                        "Counter": 0
+                    },
+                    "FriendlySpawner": {
+                        "Friendly Prefab Type": "FriendlyTagged",
+                        "Friendly Prefab Guid": 2839222658276310020
+                    },
+                    "WaypointTag": {
+                        "Tag": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 27
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 0.0,
+                        "Timer": -5320.826171875
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.0922365188598635,
+                            "y": 0.49999237060546877,
+                            "z": -4.010089874267578
+                        }
+                    },
+                    "Counter": {
+                        "Counter": 0
+                    },
+                    "FriendlySpawner": {
+                        "Friendly Prefab Type": "FriendlyTagged",
+                        "Friendly Prefab Guid": 2839222658276310020
+                    },
+                    "WaypointTag": {
+                        "Tag": 2
+                    }
+                }
+            ]
+        },
+        {
+            "Friendly Unit Tagged": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        11205371835887103269,
+                        10545082205294364554,
+                        13451667849426907147,
+                        1065973164513037885,
+                        15320754602131540736,
+                        305827872934614293,
+                        16415915133639986106,
+                        11735907707121220559,
+                        17186729781244516098,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 9
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.0029999420512467624,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 2.0,
+                        "Timer": 0.0
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            10
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": -90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.683450222015381,
+                            "y": 0.5,
+                            "z": -5.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 1.0,
+                        "Dynamic Friction": 0.49999991059303286,
+                        "Restitution": -7.450580596923828e-8,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Collidable": {
+                        "Collision Layer": 0,
+                        "Collidable Layers": ""
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "structunitstate": {},
+                    "Health": {
+                        "Current Health": 9,
+                        "Max Health": 9
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 3
+                    },
+                    "Cost": {
+                        "Cost": 100
+                    },
+                    "Name": {
+                        "Name": "FriendlyTagged"
+                    },
+                    "Friendly": {},
+                    "WaypointTag": {
+                        "Tag": 0
+                    },
+                    "Mass": {
+                        "Mass": 5.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Enemy Unit Tagged": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        11205371835887103269,
+                        10545082205294364554,
+                        13451667849426907147,
+                        1065973164513037885,
+                        15320754602131540736,
+                        16415915133639986106,
+                        5786312103493353911,
+                        17186729781244516098,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 5
+                    },
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.0029999632388353349,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 2.0,
+                        "Timer": 0.0
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            7
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 2.939574718475342,
+                            "y": 0.5,
+                            "z": -4.812205791473389
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 1.0,
+                        "Dynamic Friction": 0.49999991059303286,
+                        "Restitution": -7.450580596923828e-8,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Collidable": {
+                        "Collision Layer": 0,
+                        "Collidable Layers": ""
+                    },
+                    "Waypoint": {
+                        "Destination": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "structunitstate": {},
+                    "Health": {
+                        "Current Health": 9,
+                        "Max Health": 9
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 3
+                    },
+                    "Name": {
+                        "Name": "EnemyTagged"
+                    },
+                    "Enemy": {},
+                    "WaypointTag": {
+                        "Tag": 0
+                    },
+                    "Mass": {
+                        "Mass": 5.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        }
+    ]
+}
