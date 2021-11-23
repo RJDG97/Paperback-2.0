@@ -231,8 +231,9 @@ void DetailsWindow::ParentComponent(prefab* Prefab, reference_prefab* ReferenceP
     {
         if (Parent->m_ChildrenGlobalIndexes.size())
         {
+            ImGui::Text("Children GIDs: ");
             for (auto& Child : Parent->m_ChildrenGlobalIndexes)
-                ImGui::Text("Child GID: %lu", Child);
+                ImGui::Text("%lu", Child);
         }
         else
             ImGui::Text("No Child is attached to this parent");
@@ -256,6 +257,8 @@ void DetailsWindow::PrefabComponent()
             for (auto& Instance : Prefab->m_ReferencePrefabGIDs)
                 ImGui::Text("Prefab Instance GID: %lu", Instance);
         }
+        else
+            ImGui::Text("There are no Instances");
     }
 }
 

@@ -21,15 +21,15 @@ void ArchetypeInspector::MenuBar()
     if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE))
     {
         PPB.CreatePrefab();
-        EDITOR_INFO_PRINT("Added a Default Prefab");
+        EDITOR_INFO_PRINT("Blank Prefab created");
     }
 
-    m_Imgui.ImGuiHelp("Spawns a Default Prefab");
+    m_Imgui.ImGuiHelp("Creates a Blank Prefab");
 
     if (ImGui::MenuItem(ICON_FA_SAVE))
         m_Imgui.m_Type = FileActivity::SAVEPREFAB;
 
-    m_Imgui.ImGuiHelp("Saves All Prefabs");
+    m_Imgui.ImGuiHelp("Saves ALL Prefabs in the Inspector");
 
     if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN))
         m_Imgui.m_Type = FileActivity::LOADPREFAB;
@@ -51,11 +51,13 @@ void ArchetypeInspector::PrefabPanel()
 
     if (ImGui::BeginPopupContextWindow(0, 1, false))
     {
-        if (ImGui::MenuItem("Create Default Prefab"))
+        if (ImGui::MenuItem("Add Blank Prefab"))
         {
             PPB.CreatePrefab();
-            EDITOR_INFO_PRINT("Created: A Default Prefab");
+            EDITOR_INFO_PRINT("Blank Prefab created");
         }
+
+        m_Imgui.ImGuiHelp("Creates a Blank Prefab");
 
         ImGui::EndPopup();
     }
@@ -123,20 +125,42 @@ void ArchetypeInspector::PrefabPanel()
                             m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
 
 
-                            //if (ImGui::MenuItem(" Remove Prefab"))
-                            //{
-                            //    std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
+                            if (ImGui::MenuItem(ICON_FA_TIMES " Remove Prefab"))
+                            {
+                                std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
 
-                            //    ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
-                            //    PPB.AddOrRemoveComponents(Archetype->GetComponent
-                            //        <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {} , ComponentAddRemove);
+                                //Abandon all instances before removing the prefab component
+                                if (Prefab->m_ReferencePrefabGIDs.size())
+                                {
+                                    for (auto& Instance : Prefab->m_ReferencePrefabGIDs)
+                                    {
+                                        ComponentAddRemove[0] = &paperback::component::info_v<reference_prefab>;
+                                        auto& InstanceEntityInfo = PPB.GetEntityInfo(Instance);
 
-                            //    if (!m_Imgui.m_Components.empty())
-                            //        m_Imgui.UpdateComponents(Entity.m_GlobalIndex);
+                                        PPB.AddOrRemoveComponents(InstanceEntityInfo.m_pArchetype->GetComponent<paperback::component::entity>(InstanceEntityInfo.m_PoolDetails),
+                                                                 {}, ComponentAddRemove);
+                                    }
+                                }
+                            }
+                               ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
+                               PPB.AddOrRemoveComponents(Archetype->GetComponent
+                                   <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {} , ComponentAddRemove);
 
-                            //    EDITOR_WARN_PRINT("Removed Prefab Component from: " + Temp);
-                            //}
-                            //m_Imgui.ImGuiHelp("Removes prefab component\n Instances will become normal entities");
+                               if (!m_Imgui.m_Components.empty())
+                                   m_Imgui.m_Components.clear();
+
+                                m_Imgui.m_pArchetype = nullptr;
+
+                            m_Imgui.ImGuiHelp("Prefab & its instances will become normal entities");
+
+                            ImGui::Separator();
+
+                            if (ImGui::MenuItem(ICON_FA_SAVE " Save this prefab"))
+                            {
+
+                            }
+
+                            m_Imgui.ImGuiHelp("Saves the selected prefab");
 
                             ImGui::EndPopup();
                         }
