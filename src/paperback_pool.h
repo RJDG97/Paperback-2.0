@@ -35,8 +35,9 @@ namespace paperback::vm
 		struct OnEvent_ChildDeleted : paperback::event::instance< const child&
 																, const u32& >{};
 
-		struct OnEvent_PrefabDeleted : paperback::event::instance< const component::info&
-																 , const u32& >{};
+		struct OnEvent_ReferencePrefabDeleted : paperback::event::instance< const reference_prefab&
+																		  , const u32& >{};
+
 		//-----------------------------------
 		//            Default
 		//-----------------------------------

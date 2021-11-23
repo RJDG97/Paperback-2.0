@@ -111,6 +111,8 @@ namespace paperback::vm
 				m_pCoordinator->BroadcastEvent<OnEvent_ParentDeleted>( GetComponent<parent>( PoolIndex ) );
 			else if ( pInfo.m_Guid == component::info_v<child>.m_Guid )
 				m_pCoordinator->BroadcastEvent<OnEvent_ChildDeleted>( GetComponent<child>( PoolIndex ), EntityGlobalIndex );
+			else if (pInfo.m_Guid == component::info_v<reference_prefab>.m_Guid)
+				m_pCoordinator->BroadcastEvent< OnEvent_ReferencePrefabDeleted >(GetComponent<reference_prefab>(PoolIndex), EntityGlobalIndex);
 			
 			// Abandon Prefab Instances when Deleting Prefab
 			//AbandonPrefabInstancesOnPrefabDelete( pInfo, EntityGlobalIndex );

@@ -122,6 +122,7 @@ void InitializeGame()
         ,   onevent_UnitTriggerExit_system
         ,   onevent_ParentDeleted_system
         ,   onevent_ChildDeleted_system
+        ,   onevent_ReferencePrefabDeleted_system
         >();
     }
     // Entity Creation

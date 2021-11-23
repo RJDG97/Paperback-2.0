@@ -210,5 +210,8 @@
     <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\OnEvent_ReferencePrefabDeleted.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

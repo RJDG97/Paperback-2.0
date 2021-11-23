@@ -17,3 +17,4 @@
 // Event
 #include "OnEvent_CollisionSystem.h"
 #include "OnEvent_ParentOrChildDeleted.h"
+#include "OnEvent_ReferencePrefabDeleted.h"
