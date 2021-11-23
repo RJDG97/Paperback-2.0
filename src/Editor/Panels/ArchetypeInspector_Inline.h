@@ -125,7 +125,7 @@ void ArchetypeInspector::PrefabPanel()
                             m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
 
 
-                            if (ImGui::MenuItem(ICON_FA_TIMES " Remove Prefab"))
+                            if (ImGui::MenuItem("Remove Prefab"))
                             {
                                 std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
 
@@ -138,20 +138,25 @@ void ArchetypeInspector::PrefabPanel()
                                         auto& InstanceEntityInfo = PPB.GetEntityInfo(Instance);
 
                                         PPB.AddOrRemoveComponents(InstanceEntityInfo.m_pArchetype->GetComponent<paperback::component::entity>(InstanceEntityInfo.m_PoolDetails),
-                                                                 {}, ComponentAddRemove);
+                                            {}, ComponentAddRemove);
                                     }
-                                }
-                            }
-                               ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
-                               PPB.AddOrRemoveComponents(Archetype->GetComponent
-                                   <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {} , ComponentAddRemove);
 
-                               if (!m_Imgui.m_Components.empty())
-                                   m_Imgui.m_Components.clear();
+                                    //clear the list
+                                    Prefab->m_ReferencePrefabGIDs.clear();
+                                }
+
+                                //Remove prefab component
+                                ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
+                                PPB.AddOrRemoveComponents(Archetype->GetComponent
+                                    <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {}, ComponentAddRemove);
+
+                                if (!m_Imgui.m_Components.empty())
+                                    m_Imgui.m_Components.clear();
 
                                 m_Imgui.m_pArchetype = nullptr;
 
-                            m_Imgui.ImGuiHelp("Prefab & its instances will become normal entities");
+                                EDITOR_WARN_PRINT("Removed Prefab Component from: " + Temp);
+                            }
 
                             ImGui::Separator();
 
