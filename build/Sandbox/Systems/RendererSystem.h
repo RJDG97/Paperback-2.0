@@ -5,6 +5,7 @@
 #include "../Functionality/Renderer/Renderer.h"
 #include "glm/inc/gtx/transform.hpp"
 #include "../Systems/WindowSystem.h"
+#include "Math/Math_includes.h"
 
 struct render_system : paperback::system::instance
 {
@@ -81,6 +82,39 @@ struct render_system : paperback::system::instance
 			else
 				uis[Mesh.m_Texture].push_back(t);
 		});
+
+		std::vector<paperback::Spline::SplinePoint> spline_points;
+		spline_points.push_back({ { -5.0f, 2.0f, -5.0f } });
+		spline_points.push_back({{ 4.0f, 2.0f, -6.0f }});
+		spline_points.push_back({{ 7.0f, 5.0f, -5.0f }});
+		spline_points.push_back({{ 7.5f, 5.5f, -4.0f }});
+		spline_points.push_back({{ 8.0f, 3.0f, -5.0f }});
+		
+		std::vector<paperback::Vector3f> control_points;
+		control_points.push_back({ -5.0f, 2.1f, -5.0f }); control_points.push_back({ -5.0f, 1.9f, -5.0f });
+		control_points.push_back({ 4.0f, 2.1f, -5.0f }); control_points.push_back({ 4.0f, 1.9f, -5.0f });
+		control_points.push_back({ 7.0f, 5.1f, -5.0f }); control_points.push_back({ 7.0f, 4.9f, -5.0f });
+		control_points.push_back({ 7.5f, 5.4f, -4.0f }); control_points.push_back({ 7.5f, 5.6f, -4.0f });
+		control_points.push_back({ 8.0f, 3.1f, -5.0f }); control_points.push_back({ 8.0f, 2.9f, -5.0f });
+		GetSystem<debug_system>().DrawDebugLines(control_points, true);
+
+		paperback::Spline spline{ spline_points, true };
+
+		for (float i = 0.0f ; i < static_cast<float>(spline_points.size()) - 0.05f ; i += 0.05f)
+		{
+			std::vector<paperback::Vector3f> render_points;
+			render_points.push_back(spline.GetSplinePoint(i).m_Point);
+			render_points.push_back(spline.GetSplinePoint(i + 0.05f).m_Point);
+			GetSystem<debug_system>().DrawDebugLines(render_points, false);
+		}
+
+		for (float i = 0.0f; i < static_cast<float>(spline_points.size()); i += 0.3f)
+		{
+			std::vector<paperback::Vector3f> render_points;
+			render_points.push_back(spline.GetSplinePoint(i).m_Point);
+			render_points.push_back(spline.GetSplinePoint(i).m_Point + spline.GetSplineGradient(i).m_Point.Normalized());
+			GetSystem<debug_system>().DrawDebugLines(render_points, true);
+		}
 
 		auto points = GetSystem<debug_system>().GetPoints();
 

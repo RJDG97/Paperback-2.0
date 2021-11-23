@@ -462,6 +462,9 @@
     <ClInclude Include="..\..\src\Details\paperback_statemgr_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Math\Spline.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

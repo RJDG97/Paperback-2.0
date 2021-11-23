@@ -150,9 +150,6 @@
     <ClInclude Include="Systems\WindowSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\AnimatorSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
@@ -209,6 +206,9 @@
     </ClInclude>
     <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\AnimatorSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
