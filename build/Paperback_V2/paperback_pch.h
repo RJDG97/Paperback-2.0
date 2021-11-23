@@ -36,6 +36,4 @@
 #include "glm/inc/glm.hpp"
 #include "glm/inc/gtx/transform.hpp"
 
-//#include "Paperback.h"
-
 #endif

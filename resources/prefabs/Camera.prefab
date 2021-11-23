@@ -1,0 +1,43 @@
+{
+    "Prefabs": [
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        14351128073332756358,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 2
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": "CameraMovement"
+                    },
+                    "Name": {
+                        "Name": "CameraScript"
+                    }
+                }
+            ]
+        }
+    ]
+}

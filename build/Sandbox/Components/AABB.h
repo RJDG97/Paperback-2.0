@@ -14,17 +14,6 @@ struct aabb
 
 	paperback::Vector3f m_point[8];
 	bool m_Collided;
-
-
 };
-// -- To do:
-//		crossProduct -> normal
-//		center of triangle
-//		vector to cover the triangle
-//		for rotational physics, have a matrix to set all 3 points when in rotation
 
-// for the normal, left hand, -> thumb x center finger = index finger
-//   or               (negative)  -center finger x thumb = index finger
-
-// ----- End of header guard
 #endif

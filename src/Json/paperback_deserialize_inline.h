@@ -41,6 +41,28 @@ namespace paperback::deserialize
         return rttr::variant();
     }
 
+    void ExtractWrapperType(rttr::variant& Obj, rttr::variant& Extracted)
+    {
+        if (Obj.get_type() == rttr::type::get<std::reference_wrapper<bool>>())
+            Obj.get_value<std::reference_wrapper<bool> >().get() = Extracted.get_value<bool>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<std::string>>())
+            Obj.get_value<std::reference_wrapper<std::string >>().get() = Extracted.get_value<std::string>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<int>>())
+            Obj.get_value<std::reference_wrapper<int>>().get() = Extracted.get_value<int>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<int64_t>>())
+            Obj.get_value<std::reference_wrapper<int64_t>>().get() = Extracted.get_value<int64_t>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<unsigned >>())
+            Obj.get_value<std::reference_wrapper<unsigned> >().get() = Extracted.get_value<unsigned>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<uint64_t >>())
+            Obj.get_value<std::reference_wrapper<uint64_t >>().get() = Extracted.get_value<uint64_t>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<float> >())
+            Obj.get_value<std::reference_wrapper<float >>().get() = static_cast<float>(Extracted.get_value<double>());
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<paperback::i32> >())
+            Obj.get_value<std::reference_wrapper<paperback::i32>>().get() = Extracted.get_value<paperback::i32>();
+        else if (Obj.get_type() == rttr::type::get<std::reference_wrapper<paperback::u32> >())
+            Obj.get_value<std::reference_wrapper<paperback::u32>>().get() = Extracted.get_value<paperback::u32>();
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////
 
     void ReadArray(rttr::variant_sequential_view& view, rapidjson::Value& json_array_value)
@@ -167,8 +189,13 @@ namespace paperback::deserialize
             default:
             {
                 rttr::variant extracted_value = ExtractBasicType(json_value);
-                if (extracted_value.convert(value_t))
-                    prop.set_value(obj, extracted_value);
+                if (value_t.is_wrapper())
+                {
+                    auto val = prop.get_value(obj);
+                    ExtractWrapperType(val, extracted_value);
+                }
+                else if (extracted_value.convert(value_t))
+                    prop.set_value(obj, extracted_value);            
             }
             }
         }
@@ -205,7 +232,7 @@ namespace paperback::deserialize
         }
     }
 
-    void ReadComponents( rapidjson::Value::MemberIterator it, paperback::archetype::instance* NewArchetype, u32 EntityCounter)
+    void ReadComponents( rapidjson::Value::MemberIterator it, paperback::archetype::instance* NewArchetype, u32 EntityCounter, bool LoadPrefab)
     {
         if (NewArchetype)
         {
@@ -230,7 +257,10 @@ namespace paperback::deserialize
                 NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
 
             if (obj.is_type<component::entity>())
-                NewArchetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<paperback::component::entity>();
+            {
+                if (!LoadPrefab)
+                    NewArchetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<paperback::component::entity>();
+            }
 
             if (obj.is_type<sound>())
                 NewArchetype->GetComponent<sound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<sound>();
@@ -271,15 +301,66 @@ namespace paperback::deserialize
             if (obj.is_type<reference_prefab>())
                 NewArchetype->GetComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<reference_prefab>();
 
+            if (obj.is_type<listener>())
+                NewArchetype->GetComponent<listener>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<listener>();
+
             if (obj.is_type<offset>())
                 NewArchetype->GetComponent<offset>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<offset>();
 
-            if (obj.is_type<offset>())
+            if (obj.is_type<socketed>())
                 NewArchetype->GetComponent<socketed>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<socketed>();
+
+            if (obj.is_type<damage>())
+                NewArchetype->GetComponent<damage>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<damage>();
+
+            if (obj.is_type<name>())
+                NewArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<name>();
+
+            if (obj.is_type<cost>())
+                NewArchetype->GetComponent<cost>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<cost>();
+
+            if (obj.is_type<counter>())
+                NewArchetype->GetComponent<counter>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<counter>();
+
+            if (obj.is_type<currency>())
+                NewArchetype->GetComponent<currency>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<currency>();
+
+            if (obj.is_type<enemy>())
+                NewArchetype->GetComponent<enemy>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<enemy>();
+
+            if (obj.is_type<enemy_spawner>())
+                NewArchetype->GetComponent<enemy_spawner>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<enemy_spawner>();
+
+            if (obj.is_type<friendly>())
+                NewArchetype->GetComponent<friendly>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<friendly>();
+
+            if (obj.is_type<friendly_spawner>())
+                NewArchetype->GetComponent<friendly_spawner>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<friendly_spawner>();
+
+            if (obj.is_type<health>())
+                NewArchetype->GetComponent<health>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<health>();
+
+            if (obj.is_type<selected>())
+                NewArchetype->GetComponent<selected>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<selected>();
+
+            if (obj.is_type<waypoint>())
+                NewArchetype->GetComponent<waypoint>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypoint>();
+
+            if (obj.is_type<player>())
+                NewArchetype->GetComponent<player>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<player>();
+
+            if (obj.is_type<waypointv1>())
+                NewArchetype->GetComponent<waypointv1>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypointv1>();
+
+            if (obj.is_type<unitstate>())
+                NewArchetype->GetComponent<unitstate>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<unitstate>();
+
+            if (obj.is_type<waypoint_tag>())
+                NewArchetype->GetComponent<waypoint_tag>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypoint_tag>();
         }
     }
 
-    void ReadEntities( rapidjson::Value::MemberIterator it )
+    void ReadEntities( rapidjson::Value::MemberIterator it, bool ReadPrefabs )
     {
         using NewComponentInfoList = std::array<const component::info*, settings::max_components_per_entity_v>;
         std::string TempName{};
@@ -292,7 +373,7 @@ namespace paperback::deserialize
                 paperback::archetype::instance* NewArchetype = nullptr;
                 tools::bits ArchetypeSignature;
 
-                TempName = mitr->name.GetString(); //Archetype Manager Name Appears in this layer
+                TempName = mitr->name.GetString(); 
 
                 if (mitr->value.IsArray() && !TempName.empty())
                 {
@@ -302,11 +383,15 @@ namespace paperback::deserialize
                         {
                             NewArchetype->AccessGuard([&]()
                                 {
-                                    NewArchetype->CreateEntity();
+
+                                    if (!ReadPrefabs)
+                                        NewArchetype->CreateEntity();
+                                    else
+                                        NewArchetype->CreatePrefab();
                                     NewArchetype->SetName(TempName);
 
                                     for (rapidjson::Value::MemberIterator Mitr = vitr->MemberBegin(); Mitr != vitr->MemberEnd(); Mitr++)
-                                        ReadComponents(Mitr, NewArchetype, EntityCounter);
+                                        ReadComponents(Mitr, NewArchetype, EntityCounter, ReadPrefabs);
 
                                     EntityCounter++;
                                 }
@@ -343,22 +428,23 @@ namespace paperback::deserialize
                 {
                    // Shld enter here first since Archetype Manager stuff isnt in an array + First item in the json
                    //Access the Archetype Manager Data Stuff
+                    if (!ReadPrefabs)
+                    {
+                        rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
+                        rttr::variant obj = type.get_constructor().invoke();
 
-                   rttr::type type = rttr::type::get_by_name(mitr->name.GetString());
-                   rttr::variant obj = type.get_constructor().invoke();
+                        if (!obj.is_type<paperback::component::temp_guid>())
+                            ReadRecursive(obj, mitr->value);
 
-                   if (!obj.is_type<paperback::component::temp_guid>())
-                       ReadRecursive(obj, mitr->value);
-
-                   if (obj.is_type<paperback::archetype::TempMgr>())
-                   {
-                       PPB.SetEntityHead(obj.get_value<paperback::archetype::TempMgr>().EntityHead);
-                   }
+                        if (obj.is_type<paperback::archetype::TempMgr>())
+                        {
+                            PPB.SetEntityHead(obj.get_value<paperback::archetype::TempMgr>().EntityHead);
+                        }
+                    }
                 }
             }
         }
     }
-
 
     //variation of normal for use with general case read
     void ReadStringPairs(std::stringstream& stream, rapidjson::Value& json_object)

@@ -26,7 +26,7 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height)
     bool Opened = false;
 
     // Print out all directories
-    ImGui::BeginChild("File Directories", { window_width / 5.5f, window_height }, true);
+    ImGui::BeginChild("File Directories", { window_width / 8, window_height }, true);
 
     ImGui::Text("Folders/Directories:");
 
@@ -55,7 +55,7 @@ void AssetBrowser::DisplayFolders(float window_width, float window_height)
 void AssetBrowser::DisplayFolderFiles(float window_width, float window_height)
 {
 
-    ImGui::BeginChild("Files", { window_width / 2 , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
+    ImGui::BeginChild("Files", { window_width / 5 , window_height }, true, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_HorizontalScrollbar);
 
     CheckFileType();
 
@@ -137,6 +137,14 @@ void AssetBrowser::CheckFileType()
                                 m_Imgui.m_bSaveCheck = true;
                             }
                         }
+
+                        if (File.path().extension() == ".prefab")
+                        {
+                            m_Imgui.m_LoadedPrefabPath = fs::absolute(File.path()).generic_string();
+                            m_Imgui.m_LoadedPrefabFile = File.path().filename().generic_string();
+
+                            m_Imgui.m_Type = FileActivity::LOADFROMASSET;
+                        }
                     }
 
                     //if (ImGui::BeginPopupContextItem())
@@ -213,6 +221,8 @@ void AssetBrowser::DisplayFiles(fs::path File, std::string FileName)
         ImGui::Selectable(FileString(ICON_FA_FILE_WORD, FileName).c_str());
     else if (File.extension() == ".ttf")
         ImGui::Selectable(FileString(ICON_FA_FONT, FileName).c_str());
+    else if (File.extension() == ".prefab")
+        ImGui::Selectable(FileString(ICON_FA_CUBES, FileName).c_str());
     else
         ImGui::Text(FileString(ICON_FA_EXCLAMATION_CIRCLE, FileName).c_str()); // will update when needed
 

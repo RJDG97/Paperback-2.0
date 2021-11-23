@@ -29,7 +29,6 @@
 #include "Editor/Panels/ConsoleTerminal.h"
 #include "Editor/Panels/WindowSettings.h"
 
-
 namespace fs = std::filesystem;
 
 enum FileActivity
@@ -38,6 +37,9 @@ enum FileActivity
     NEWSCENE,
     OPENSCENE,
     OPENFROMASSET,
+    SAVEPREFAB,
+    LOADPREFAB,
+    LOADFROMASSET,
     EXIT
 };
 
@@ -58,6 +60,7 @@ struct imgui_system : paperback::system::instance
     std::vector <const char*> m_ComponentNames = {};
 
     std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
+    std::string m_LoadedPrefabPath, m_LoadedPrefabFile;
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity; //first: pointer to the archetype | second: entity index
 
@@ -74,7 +77,7 @@ struct imgui_system : paperback::system::instance
     FileActivity m_Type = FileActivity::NONE;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck;
+    bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck, m_bLoadPrefab, m_bSavePrefab;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -129,7 +132,7 @@ struct imgui_system : paperback::system::instance
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 
         m_bImgui = true;
-        m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = false;
+        m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
 
         m_Log.Init(); //Init ImTerm (Console)
@@ -196,12 +199,12 @@ struct imgui_system : paperback::system::instance
                 EditorMenuBar();
                 OpenSaveFile();
                 SaveCheckPopUp();
+                SaveLoadPrefab();
 
                 //Call Windows Here
                 ImGui::PushFont(m_Imgfont);
 
                 PanelsRun();
-                //ImGui::ShowDemoWindow();
 
                 ImGui::PopFont();
                 ImGui::End(); //End of Docking Space
@@ -239,7 +242,6 @@ struct imgui_system : paperback::system::instance
     PPB_INLINE
     void OnStateChange(void) noexcept
     {
-
         m_bImgui = (PPB.VerifyState("Editor")) ? true : false;
     }
 
@@ -390,6 +392,10 @@ struct imgui_system : paperback::system::instance
         ImGui::EndMenuBar();
     }
 
+    //-----------------------------------
+    //        File Loading/Saving
+    //-----------------------------------
+
     void OpenSaveFile()
     {
         if (m_bFileOpen)
@@ -398,21 +404,7 @@ struct imgui_system : paperback::system::instance
         if (m_FileDialog.showFileDialog("Open Scene", imgui_addons::ImGuiFileBrowser::DialogMode::OPEN, ImVec2{ 700, 310 }))
         {
             if (!m_FileDialog.selected_path.empty())
-            {
-                m_LoadedPath = m_FileDialog.selected_path;
-                m_LoadedFile = m_FileDialog.selected_fn;
-
-                m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
-
-                if (!m_EntityInfoLoadedPath.empty())
-                {
-                    PPB.OpenEditScene(m_FileDialog.selected_path, m_EntityInfoLoadedPath);
-                    EDITOR_TRACE_PRINT(m_FileDialog.selected_fn + " Loaded");
-                }
-                else
-                    EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
-
-            }
+                OpenFile(m_FileDialog.selected_path, m_FileDialog.selected_fn);
         }
         else
             m_bFileOpen = false;
@@ -423,27 +415,259 @@ struct imgui_system : paperback::system::instance
         if (m_FileDialog.showFileDialog("Save Scene As", imgui_addons::ImGuiFileBrowser::DialogMode::SAVE, ImVec2{ 700, 310 }))
         {
             if (!m_FileDialog.selected_path.empty())
-            {
-                m_LoadedPath = m_FileDialog.selected_path;
-                m_LoadedFile = m_FileDialog.selected_fn;
-
-                if (m_LoadedFile.find(".json") == std::string::npos)
-                    m_LoadedFile.append(".json");
-
-                if (m_LoadedPath.find(".json") == std::string::npos)
-                    m_LoadedPath.append(".json");
-
-                m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
-
-                if (!m_EntityInfoLoadedPath.empty())
-                {
-                    PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
-                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
-                }
-            }
+                SaveFileAs(m_FileDialog.selected_path, m_FileDialog.selected_fn);
         }
         else
             m_bFileSaveAs = false; //dialog is closed
+    }
+
+    void SaveFileAs(std::string& FilePath, std::string& FileName)
+    {
+        std::string EntityInfoPath;
+
+        if (!m_bSavePrefab)
+        {
+            if (FileName.find(".json") == std::string::npos)
+                FileName.append(".json");
+
+            if (FilePath.find(".json") == std::string::npos)
+                FilePath.append(".json");
+
+            EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
+
+            if (!EntityInfoPath.empty())
+                PPB.SaveScene(FilePath, EntityInfoPath);
+        }
+        else
+        {
+            if (FileName.find(".prefab") == std::string::npos)
+                FileName.append(".prefab");
+
+            if (FilePath.find(".prefab") == std::string::npos)
+                FilePath.append(".prefab");
+
+            PPB.SavePrefabs(FilePath);
+            m_bSavePrefab = false;
+        }
+
+        EDITOR_TRACE_PRINT(FileName + " Saved at: " + FilePath);
+    }
+
+    void OpenFile(std::string& FilePath, std::string& FileName)
+    {
+        std::string EntityInfoPath;
+
+        if (!m_bLoadPrefab)
+        {
+            EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
+
+            if (!EntityInfoPath.empty())
+            {
+
+                PPB.OpenEditScene(FilePath, EntityInfoPath);
+                EDITOR_TRACE_PRINT(FileName + " Loaded");
+
+                m_LoadedPath = FilePath;
+                m_LoadedFile = FileName;
+                m_EntityInfoLoadedPath = EntityInfoPath;
+            }
+            else
+                EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
+        }
+        else
+        {
+
+            if (FilePath.find(".prefab") == std::string::npos)
+            {
+                EDITOR_CRITICAL_PRINT("Trying to load a Non Prefab File");
+                return;
+            }
+            
+            PPB.LoadPrefabs(FilePath);
+            EDITOR_TRACE_PRINT("Prefabs from: " + FileName + " Loaded");
+
+            m_bLoadPrefab = false;
+        }
+    }
+
+    void SaveCheckPopUp()
+    {
+        if (m_bSaveCheck)
+            ImGui::OpenPopup(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?");
+
+        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+        if (ImGui::BeginPopupModal(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+        {
+            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Have you save whatever you're working on?");
+
+            if (ImGui::Button(ICON_FA_FOLDER_OPEN " Yes"))
+            {
+                switch (m_Type)
+                {
+                case FileActivity::NEWSCENE:
+                {
+                    ResetScene();
+                    PPB.Initialize();
+                    EDITOR_INFO_PRINT("New Scene Created");
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+                break;
+                case FileActivity::OPENSCENE:
+                {
+                    ResetScene();
+
+                    m_bFileOpen = true;
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+                break;
+                case FileActivity::OPENFROMASSET:
+                {
+                    if (!m_LoadedPath.empty() && !m_LoadedFile.empty())
+                    {
+                        ResetScene();
+
+                        OpenFile(m_LoadedPath, m_LoadedFile);
+
+                        m_Type = FileActivity::NONE;
+                        ImGui::CloseCurrentPopup();
+                    }
+                }
+                break;
+                }
+            }
+
+            //ImGuiHelp("Click here to save changes");
+
+            ImGui::SameLine();
+
+            if (ImGui::Button(ICON_FA_SAVE " No"))
+            {
+                if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty())
+                {
+                    PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
+                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+                else
+                {
+                    m_bFileSaveAs = true;
+
+                    m_Type = FileActivity::NONE;
+                    ImGui::CloseCurrentPopup();
+                }
+            }
+
+            ImGui::SameLine();
+
+            if (ImGui::Button(ICON_FA_TIMES " Cancel"))
+            {
+                m_Type = FileActivity::NONE;
+                ImGui::CloseCurrentPopup();
+            }
+
+            //ImGuiHelp("Click here to continue on");
+
+            ImGui::EndPopup();
+        }
+
+        m_bSaveCheck = false;
+    }
+
+    void SaveLoadPrefab()
+    {
+        switch (m_Type)
+        {
+        case FileActivity::SAVEPREFAB:
+        {
+            //if (!m_LoadedPrefabPath.empty())
+            //{
+            //    PPB.SavePrefabs(m_LoadedPrefabFile);
+            //    EDITOR_TRACE_PRINT(m_LoadedPrefabFile + " Saved at: " + m_LoadedPrefabPath);
+
+            //    m_Type = FileActivity::NONE;
+            //}
+            //else
+            //{
+            //    m_bSavePrefab = true;
+            //    m_bFileSaveAs = true;
+            //    m_Type = FileActivity::NONE;
+
+            //}
+
+            m_bSavePrefab = true;
+            m_bFileSaveAs = true;
+            m_Type = FileActivity::NONE;
+        }
+        break;
+        case FileActivity::LOADPREFAB:
+        {
+            m_bLoadPrefab = true;
+            m_bFileOpen = true;
+            m_Type = FileActivity::NONE;
+        }
+        break;
+        case FileActivity::LOADFROMASSET:
+        {
+            if (!m_LoadedPrefabPath.empty())
+            {
+                m_bLoadPrefab = true;
+                OpenFile(m_LoadedPrefabPath, m_LoadedPrefabFile);
+                m_Type = FileActivity::NONE;
+            }
+        }
+        break;
+        }
+    }
+
+    //-----------------------------------
+    //        Property Display
+    //-----------------------------------
+
+    void EnumerationCombo(std::vector<const char*> Value_List, const std::string& Name, paperback::u8& Selection)
+    {
+        //const char* current_item = Value_List[Selection];
+        if (ImGui::BeginCombo(("##" + Name).c_str(), "Choose Layer"))
+        {
+            for (unsigned i = 0; i < Value_List.size(); ++i)
+            {
+                //bool is_selected = (current_item == Value_List[i]);
+                if (ImGui::Selectable(Value_List[i]))
+                    Selection = i;
+            }
+            ImGui::EndCombo();
+        }
+    }
+
+    void DisplayEnumeration(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue, rttr::instance& Instance, rttr::property Property)
+    {
+        auto Enumeration = PropertyType.get_enumeration();
+        auto EnumList = Enumeration.get_names();
+        std::vector<const char*> ValueList;
+
+        for (auto& Enum : EnumList)
+            ValueList.push_back(Enum.data());
+
+        auto Selection = PropertyValue.get_value<paperback::u8>();
+        EnumerationCombo(ValueList, PropertyName, Selection);
+
+        auto Result = Enumeration.name_to_value(Enumeration.value_to_name(Selection));
+
+        if (PropertyName == "Collidable Layers")
+        {
+            auto EntityCollideLayers = m_SelectedEntity.first->FindComponent<collidable>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second });
+
+            paperback::u8 Layer = Result.get_value<paperback::u8>();
+            EntityCollideLayers->Set(Layer); //need to test
+        }
+        else
+            Property.set_value(Instance, Result);
     }
 
     void DisplayClassType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
@@ -500,7 +724,7 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        if (PropertyType == rttr::type::get<int>() || PropertyType == rttr::type::get<std::reference_wrapper<int>>())
+        else if (PropertyType == rttr::type::get<int>() || PropertyType == rttr::type::get<std::reference_wrapper<int>>())
         {
             if (!PropertyType.is_wrapper())
             {
@@ -515,7 +739,7 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        if (PropertyType == rttr::type::get<bool>() || PropertyType == rttr::type::get <std::reference_wrapper<bool>>())
+        else if (PropertyType == rttr::type::get<bool>() || PropertyType == rttr::type::get <std::reference_wrapper<bool>>())
         {
             if (!PropertyType.is_wrapper())
             {
@@ -528,21 +752,50 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        if (PropertyType == rttr::type::get<size_t>())
+        else if (PropertyType == rttr::type::get<size_t>())
         {
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
             ImGui::Text("%d", PropertyValue.get_value<size_t>());
         }
 
-        if (PropertyType == rttr::type::get<paperback::u32>())
+        else if (PropertyType == rttr::type::get<paperback::u32>() /*|| PropertyType == rttr::type::get <std::reference_wrapper<paperback::u32>>()*/)
         {
-            ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-            ImGui::Text("%d", PropertyValue.get_value<paperback::u32>());
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("%d", PropertyValue.get_value<paperback::u32>());
+            }
+            //else
+            //{
+            //    ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+            //    ImGui::PushItemWidth(200.0f);
+            //    ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U32, &(PropertyValue.get_value<std::reference_wrapper<paperback::u32>>().get()), (int*)1);
+            //    ImGui::PopItemWidth();
+            //}
+        }
+
+        else if (PropertyType == rttr::type::get<paperback::i32>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::i32>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("%d", PropertyValue.get_value<paperback::i32>());
+            }
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::PushItemWidth(200.0f);
+                ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<paperback::i32>>().get()), 1);
+                ImGui::PopItemWidth();
+            }
         }
 
     }
 
-    //void DisplayEnumTypes
+    //-----------------------------------
+    //        Helper Fns
+    //-----------------------------------
+
     void ResetScene()
     {
         if (m_SelectedEntity.first)
@@ -553,7 +806,29 @@ struct imgui_system : paperback::system::instance
 
         if (!m_Components.empty())
             m_Components.clear();
+
+        if (!PPB.GetArchetypeList().empty())
+            PPB.ResetAllArchetypes();
     }
+
+    std::string SetEntityInfoPath(std::string& Path, std::string& FileName)
+    {
+        std::string a = Path.substr(0, Path.find(FileName.c_str()));
+        return a.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
+    }
+
+    bool SetEditorMode(bool Editor)
+    {
+        if (Editor)
+            return ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow) || ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow);
+        else
+            return false;
+
+    }
+
+    //-----------------------------------
+    //   Functions Used between Panels
+    //-----------------------------------
 
     void PopUpMessage(const std::string& WindowName, const char* Message) {
 
@@ -568,103 +843,6 @@ struct imgui_system : paperback::system::instance
 
             ImGui::EndPopup();
         }
-    }
-
-    void SaveCheckPopUp()
-    {
-        if (m_bSaveCheck)
-            ImGui::OpenPopup(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?");
-
-        ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
-
-        if (ImGui::BeginPopupModal(ICON_FA_EXCLAMATION_TRIANGLE " Confirm?", NULL, ImGuiWindowFlags_AlwaysAutoResize))
-        {
-            ImGui::TextColored(ImVec4{ 1.0f, 0.0f, 0.0f, 1.0f }, "Have you save whatever you're working on?");
-
-            if (ImGui::Button(ICON_FA_FOLDER_OPEN " Yes"))
-            {
-                switch (m_Type)
-                {
-                case FileActivity::NEWSCENE:
-                {
-                    ResetScene();
-                    EDITOR_INFO_PRINT("New Scene Created");
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-                break;
-                case FileActivity::OPENSCENE:
-                {
-                    ResetScene();
-
-                    m_bFileOpen = true;
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-                break;
-                case FileActivity::OPENFROMASSET:
-                {
-                    if (!m_LoadedPath.empty() && !m_LoadedFile.empty())
-                    {
-                        ResetScene();
-
-                        m_EntityInfoLoadedPath = SetEntityInfoPath(m_LoadedPath, m_LoadedFile);
-
-                        if (!m_EntityInfoLoadedPath.empty())
-                        {
-                            PPB.OpenEditScene(m_LoadedPath, m_EntityInfoLoadedPath);
-                            EDITOR_TRACE_PRINT(m_LoadedFile + " Loaded");
-                        }
-                        else
-                            EDITOR_CRITICAL_PRINT("Missing EntityInfo File");
-
-                        m_Type = FileActivity::NONE;
-                        ImGui::CloseCurrentPopup();
-                    }
-                }
-                break;
-                }
-            }
-
-            //ImGuiHelp("Click here to save changes");
-
-            ImGui::SameLine();
-
-            if (ImGui::Button(ICON_FA_SAVE " No"))
-            {
-                if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty())
-                {
-                    PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
-                    EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-                else
-                {
-                    m_bFileSaveAs = true;
-
-                    m_Type = FileActivity::NONE;
-                    ImGui::CloseCurrentPopup();
-                }
-            }
-
-            ImGui::SameLine();
-
-            if (ImGui::Button(ICON_FA_TIMES " Cancel"))
-            {
-                m_Type = FileActivity::NONE;
-                ImGui::CloseCurrentPopup();
-            }
-
-            //ImGuiHelp("Click here to continue on");
-
-            ImGui::EndPopup();
-        }
-
-        m_bSaveCheck = false;
     }
 
     void ImGuiHelp(const char* description, int symbol = 0) {
@@ -682,11 +860,192 @@ struct imgui_system : paperback::system::instance
         }
     }
 
-    std::string SetEntityInfoPath(std::string& Path, std::string& FileName)
+    void UpdateComponents(paperback::u32 EntityGlobalIndex)
     {
-        std::string a = Path.substr(0, Path.find(FileName.c_str()));
+        //Get Entity Info
 
-        return a.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
+        auto& EntityInfo = PPB.GetEntityInfo(EntityGlobalIndex);
+
+        m_SelectedEntity.first = EntityInfo.m_pArchetype;
+        m_SelectedEntity.second = EntityInfo.m_PoolDetails.m_PoolIndex;
+        m_Components = m_SelectedEntity.first->GetEntityComponents(m_SelectedEntity.second);
+    }
+
+    void LinkParentChild(paperback::component::entity& Entity, parent& NewParent, paperback::component::entity NewParentEntity)
+    {
+        paperback::u32 OldParentGID;
+        std::array<const paperback::component::info*, 1 > ComponentAdd;
+
+        auto& EntityInfo = PPB.GetEntityInfo(Entity.m_GlobalIndex);
+
+        if (EntityInfo.m_pArchetype->FindComponent<child>(EntityInfo.m_PoolDetails) != nullptr) //Check for Child Component
+        {
+            //Get the Child Component
+            auto& Child = EntityInfo.m_pArchetype->GetComponent<child>(EntityInfo.m_PoolDetails);
+            OldParentGID = Child.m_ParentGlobalIndex; //Get Old Parent GID
+
+            //Check if already attached to a parent
+            if (OldParentGID != NewParentEntity.m_GlobalIndex)
+            {
+                auto& OldParent = PPB.GetEntityInfo(OldParentGID);
+
+                //Old Parent remove child
+                OldParent.m_pArchetype->GetComponent<parent>(OldParent.m_PoolDetails).RemoveChild(Entity.m_GlobalIndex);
+            }
+
+            //if (OldParentGID == Entity.m_GlobalIndex) //check if parent entity matches the current selected child
+            //{
+            //    EDITOR_WARN_PRINT("Unable to add entity as a child");
+            //    return;
+            //}
+
+            //Link Child to Existing Parent
+            NewParent.AddChild(Entity.m_GlobalIndex);
+            //Update Child's Parent GID
+            Child.AddParent(NewParentEntity.m_GlobalIndex);
+        }
+        else
+        {
+            //save new child GID
+            auto EntityIndex = Entity.m_GlobalIndex;
+            //Link Child to Existing Parent
+            NewParent.AddChild(EntityIndex);
+
+            //Add in child component
+            ComponentAdd[0] = &paperback::component::info_v<child>;
+            PPB.AddOrRemoveComponents(Entity, ComponentAdd, {});
+
+            //Add Parent GID to Child
+            auto& Info = PPB.GetEntityInfo(EntityIndex);
+            Info.m_pArchetype->GetComponent<child>(Info.m_PoolDetails).AddParent(NewParentEntity.m_GlobalIndex);
+        }
+    }
+
+    void DisplayChildEntities(parent& Parent/*, bool DisplayEntity */)
+    {
+        int Index = 0;
+        paperback::u32 ChildToUnlink;
+        std::array<const paperback::component::info*, 1 > ComponentRemove;
+
+        paperback::archetype::instance* SelectedChild = nullptr;
+        paperback::u32 ChildIndex = paperback::u32_max;
+        std::string ChildName{};
+        size_t InstCount;
+
+        bool b_NodeOpen = false, Unlink = false;
+
+        if (Parent.m_ChildrenGlobalIndexes.size() != 0)
+        {
+            for (auto& Child : Parent.m_ChildrenGlobalIndexes)
+            {
+                Index++;
+
+                auto& ChildEntityInfo = PPB.GetEntityInfo(Child); //get the entity info
+
+                ImGuiTreeNodeFlags NodeFlags = ((m_SelectedEntity.first == ChildEntityInfo.m_pArchetype && m_SelectedEntity.second == ChildEntityInfo.m_PoolDetails.m_PoolIndex) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
+
+                auto ChildParent = ChildEntityInfo.m_pArchetype->FindComponent<parent>(ChildEntityInfo.m_PoolDetails);
+                auto Name = ChildEntityInfo.m_pArchetype->FindComponent<name>(ChildEntityInfo.m_PoolDetails);
+                //auto RefPrefab = ChildEntityInfo.m_pArchetype->FindComponent<reference_prefab>(ChildEntityInfo.m_PoolDetails);
+                auto Prefab = ChildEntityInfo.m_pArchetype->FindComponent<prefab>(ChildEntityInfo.m_PoolDetails);
+
+                if (Prefab)
+                    InstCount = Prefab->m_ReferencePrefabGIDs.size() ? Prefab->m_ReferencePrefabGIDs.size() : 0;
+
+                if (ChildParent)
+                    NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+                else
+                    NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+
+                if (Name)
+                    ChildName = Name->m_Value;
+                else
+                {
+                    ComponentRemove[0] = &paperback::component::info_v<name>;
+                    PPB.AddOrRemoveComponents(ChildEntityInfo.m_pArchetype->GetComponent<paperback::component::entity>(ChildEntityInfo.m_PoolDetails), ComponentRemove, {});
+
+                    if (!m_Components.empty())
+                        UpdateComponents(Child);
+                }
+
+                b_NodeOpen = ImGui::TreeNodeEx((char*)("##" + ChildEntityInfo.m_pArchetype->GetName() + std::to_string(ChildEntityInfo.m_PoolDetails.m_PoolIndex) + std::to_string(Index)).c_str(),
+                    NodeFlags, ChildName.c_str());
+
+                if (ImGui::IsItemClicked())
+                {
+                    m_SelectedEntity.first = ChildEntityInfo.m_pArchetype;
+                    m_SelectedEntity.second = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+                    m_Components = m_SelectedEntity.first->GetEntityComponents(m_SelectedEntity.second);
+                }
+
+                //bool Deleted = false;
+
+                if (ImGui::BeginPopupContextItem())
+                {
+                    //if (DisplayEntity)
+                    //{
+                    //    if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                    //    {
+                    //        m_Imgui.m_SelectedEntity.first = ChildEntityInfo.m_pArchetype;
+                    //        m_Imgui.m_SelectedEntity.second = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+                    //        Deleted = true;
+                    //    }
+                    //}
+
+                    if (!InstCount) // If its a refprefab or a prefab who has instances in the world -> cannot amend
+                    {
+                        if (ImGui::MenuItem(ICON_FA_TRASH "UnParent?"))
+                        {
+                            ChildToUnlink = Child;
+
+                            SelectedChild = ChildEntityInfo.m_pArchetype;
+                            ChildIndex = ChildEntityInfo.m_PoolDetails.m_PoolIndex;
+
+                            Unlink = true;
+                        }
+                    }
+                    ImGui::EndPopup();
+                }
+
+                if (b_NodeOpen)
+                {
+                    if (ChildParent)
+                        DisplayChildEntities(*ChildParent);
+
+                    ImGui::TreePop();
+                }
+
+                //if (Deleted)
+                //    ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
+
+            }
+
+            //DeleteEntity(ICON_FA_TRASH " Delete?", m_SelectedEntity.second);
+
+            if (Unlink && SelectedChild)
+            {
+                Parent.RemoveChild(ChildToUnlink);
+                ComponentRemove[0] = &paperback::component::info_v<child>;
+
+                auto& Entity = SelectedChild->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, ChildIndex });
+                paperback::u32 GID = Entity.m_GlobalIndex;
+                PPB.AddOrRemoveComponents(Entity, {}, ComponentRemove);
+
+                SelectedChild = nullptr;
+                ChildIndex = {};
+
+                if (m_SelectedEntity.first)
+                {
+                    m_SelectedEntity.first = nullptr;
+                    m_SelectedEntity.second = paperback::u32_max;
+                }
+
+                if (!m_Components.empty())
+                    UpdateComponents(GID);
+
+                Unlink = false;
+            }
+        }
     }
 };
 

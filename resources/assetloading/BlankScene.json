@@ -1,0 +1,304 @@
+{
+    "Entities": [
+        {
+            "Archetype Manager": {
+                "EntityHead": 6
+            }
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 3
+                    },
+                    "Mesh": {
+                        "Model": "Sandpit",
+                        "Texture": "Sandpit_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.06247133016586304,
+                            "y": 0.14777374267578126,
+                            "z": -5.985112190246582
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "SandPit"
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 8
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": "CameraMovement"
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 2
+                    },
+                    "Name": {
+                        "Name": "CameraScriptEntity"
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "DefaultPrefab_A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 5
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "DefaultPrefab_B"
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        14351128073332756358,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 2
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            8
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                  "EntityScript": {
+                    "Script ID": "CameraMovement"
+                  },
+                    "Name": {
+                        "Name": "CameraScript"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 4
+                    },
+                    "Mesh": {
+                        "Model": "Sandpit",
+                        "Texture": "Sandpit_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.03644561767578125,
+                            "y": -5.570000171661377,
+                            "z": -5.985112190246582
+                        }
+                    },
+                    "Name": {
+                        "Name": "Sandpit?"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 0
+                    },
+                    "Mesh": {
+                        "Model": "NationalStadium",
+                        "Texture": "NationalStadium_Normal.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000007934868337,
+                            "y": 0.0020000007934868337,
+                            "z": 0.0020000007934868337
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab": [
+                            3
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 63.89583969116211,
+                            "y": 24.16985511779785,
+                            "z": 63.89583969116211
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.760828733444214,
+                            "y": -6.2400007247924809,
+                            "z": -15.919798851013184
+                        }
+                    },
+                    "Name": {
+                        "Name": "Stadium?"
+                    }
+                }
+            ]
+        }
+    ]
+}

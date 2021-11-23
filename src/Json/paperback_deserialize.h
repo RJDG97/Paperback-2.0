@@ -24,14 +24,16 @@ namespace paperback::deserialize
     void ReadObject(rttr::instance obj, rapidjson::Document& doc);
 
     PPB_INLINE
-    void ReadEntities(rapidjson::Value::MemberIterator it);
+    void ReadEntities(rapidjson::Value::MemberIterator it, bool ReadPrefabs = false );
 
     PPB_INLINE
     void ReadEntityInfo(rapidjson::Value::MemberIterator it);
 
     PPB_INLINE
-    void ReadComponents(rapidjson::Value::MemberIterator it, paperback::archetype::instance* NewArchetype, u32 EntityCounter);
+    void ReadComponents(rapidjson::Value::MemberIterator it, paperback::archetype::instance* NewArchetype, u32 EntityCounter, bool LoadPrefab);
 
+    PPB_INLINE
+    void ExtractWrapperType(rttr::variant& Obj, rttr::variant& Extracted);
 
     //used for general use case
     PPB_INLINE

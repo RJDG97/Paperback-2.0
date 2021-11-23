@@ -1,7 +1,5 @@
 #pragma once
 
-// bool attached to an entity to specify which waypoint
-// set to select to use for friendly units
 struct selected
 {
     constexpr static auto typedef_v = paperback::component::type::data

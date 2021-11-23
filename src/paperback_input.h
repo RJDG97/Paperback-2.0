@@ -8,8 +8,8 @@ class Input
 {
 public:
 
-	struct KeyPressed : paperback::event::instance< int > {};
-    struct MousePressed : paperback::event::instance< int > {};
+	struct KeyPressed   : paperback::event::instance< const size_t& > {};
+    struct MousePressed : paperback::event::instance< const size_t& > {};
 
 	PPB_INLINE
 	Input( paperback::coordinator::instance& Coordinator ) noexcept;
@@ -56,6 +56,9 @@ public:
 	// Return screen position of mouse
 	PPB_INLINE
 	glm::vec3 GetMousePosition() const noexcept;
+
+	PPB_INLINE
+	glm::vec3 GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) const noexcept;
 
 	PPB_INLINE
 	void UpateInputs() noexcept;

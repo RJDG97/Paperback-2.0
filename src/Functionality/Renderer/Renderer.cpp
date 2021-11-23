@@ -74,8 +74,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("RedUnitAnimated", "../../resources/models/nui/RedUnitAnimated.nui");
 	m_Resources.Load3DMeshNUI("BlueUnitAnimated", "../../resources/models/nui/BlueUnitAnimated.nui");
 
-	m_Resources.Load3DMeshNUI("BadmintonRacket_Blue", "../../resources/models/nui/BadmintonRacket_Blue.nui");
-	m_Resources.Load3DMeshNUI("BadmintonRacket_Red", "../../resources/models/nui/BadmintonRacket_Red.nui");
+	m_Resources.Load3DMeshNUI("BadmintonRacketAnimated_Blue", "../../resources/models/nui/BadmintonRacketAnimated_Blue.nui");
+	m_Resources.Load3DMeshNUI("BadmintonRacketAnimated_Red", "../../resources/models/nui/BadmintonRacketAnimated_Red.nui");
 
 	m_Resources.Load3DMeshNUI("TableTennisRacket_Red", "../../resources/models/nui/TableTennisRacket_Red.nui");
 	m_Resources.Load3DMeshNUI("TableTennisRacket_Blue", "../../resources/models/nui/TableTennisRacket_Blue.nui");
@@ -89,8 +89,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("FrisbeeShield_Blue", "../../resources/models/nui/FrisbeeShield_Blue.nui");
 	m_Resources.Load3DMeshNUI("FrisbeeShield_Red", "../../resources/models/nui/FrisbeeShield_Red.nui");
 	
-	m_Resources.Load3DMeshNUI("FloorballStick_Red", "../../resources/models/nui/FloorballStick_Red.nui");
-	m_Resources.Load3DMeshNUI("FloorballStick_Blue", "../../resources/models/nui/FloorballStick_Blue.nui");
+	m_Resources.Load3DMeshNUI("FloorballStickAnimated_Red", "../../resources/models/nui/FloorballStickAnimated_Red.nui");
+	m_Resources.Load3DMeshNUI("FloorballStickAnimated_Blue", "../../resources/models/nui/FloorballStickAnimated_Blue.nui");
 	
 	m_Resources.Load3DMeshNUI("TopPathSlope", "../../resources/models/nui/TopPathSlope.nui");
 	m_Resources.Load3DMeshNUI("TopPath", "../../resources/models/nui/TopPath.nui");
@@ -112,6 +112,38 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("DragonHead", "../../resources/models/nui/DragonHead.nui");
 	m_Resources.Load3DMeshNUI("BottomPath", "../../resources/models/nui/BottomPath.nui");
+
+	// Cards
+	m_Resources.LoadTextures("CardBack", "../../resources/textures/UI/Cards/CardBack.dds", true);
+	m_Resources.LoadTextures("PaperWeapon_PaperShield", "../../resources/textures/UI/Cards/PaperWeapon_PaperShield.dds", true);
+	m_Resources.LoadTextures("RockWeapon_RockShield", "../../resources/textures/UI/Cards/RockWeapon_RockShield.dds", true);
+	m_Resources.LoadTextures("ScissorsWeapon_ScissorsShield", "../../resources/textures/UI/Cards/ScissorsWeapon_ScissorsShield.dds", true);
+
+	// Health Bars
+		// Enemy
+	m_Resources.LoadTextures("EnemyHPBar", "../../resources/textures/UI/HealthBars/EnemyHPBar.dds", true);
+	m_Resources.LoadTextures("EnemyHPBar_Background", "../../resources/textures/UI/HealthBars/EnemyHPBar_Background.dds", true);
+	m_Resources.LoadTextures("EnemyHPBar_Fill", "../../resources/textures/UI/HealthBars/EnemyHPBar_Fill.dds", true);
+	
+		// Player
+	m_Resources.LoadTextures("PlayerHPBar", "../../resources/textures/UI/HealthBars/PlayerHPBar.dds", true);
+	m_Resources.LoadTextures("PlayerHPBar_Background", "../../resources/textures/UI/HealthBars/PlayerHPBar_Background.dds", true);
+	m_Resources.LoadTextures("PlayerHPBar_Fill", "../../resources/textures/UI/HealthBars/PlayerHPBar_Fill.dds", true);
+
+	// RPS Icons
+	m_Resources.LoadTextures("BluePaperRedRock", "../../resources/textures/UI/RPSStatusIcons/BluePaperRedRock.dds", true);
+	m_Resources.LoadTextures("BlueRockRedScissors", "../../resources/textures/UI/RPSStatusIcons/BlueRockRedScissors.dds", true);
+	m_Resources.LoadTextures("BlueScissorsRedPaper", "../../resources/textures/UI/RPSStatusIcons/BlueScissorsRedPaper.dds", true);
+	m_Resources.LoadTextures("NeutralPaper", "../../resources/textures/UI/RPSStatusIcons/NeutralPaper.dds", true);
+	m_Resources.LoadTextures("NeutralRock", "../../resources/textures/UI/RPSStatusIcons/NeutralRock.dds", true);
+	m_Resources.LoadTextures("NeutralScissors", "../../resources/textures/UI/RPSStatusIcons/NeutralScissors.dds", true);
+	m_Resources.LoadTextures("RedBannerPaperPaper", "../../resources/textures/UI/RPSStatusIcons/RedBannerPaperPaper.dds", true);
+	m_Resources.LoadTextures("RedBannerRockRock", "../../resources/textures/UI/RPSStatusIcons/RedBannerRockRock.dds", true);
+	m_Resources.LoadTextures("RedBannerScissorsScissors", "../../resources/textures/UI/RPSStatusIcons/RedBannerScissorsScissors.dds", true);
+	m_Resources.LoadTextures("RedPaperBlueRock", "../../resources/textures/UI/RPSStatusIcons/RedPaperBlueRock.dds", true);
+	m_Resources.LoadTextures("RedRockBlueScissors", "../../resources/textures/UI/RPSStatusIcons/RedRockBlueScissors.dds", true);
+	m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
+	m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -137,22 +169,22 @@ Renderer::~Renderer()
 {
 	glDeleteVertexArrays(1, &m_VAO);
 	glDeleteVertexArrays(1, &m_DebugVAO);
+	
+	glDeleteFramebuffers( static_cast<GLsizei>( m_ShadowBuffer.m_FrameBuffer.size() ), m_ShadowBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_ShadowBuffer.m_BufferTexture.size() ), m_ShadowBuffer.m_BufferTexture.data());
 
-	glDeleteFramebuffers(m_ShadowBuffer.m_FrameBuffer.size(), m_ShadowBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_ShadowBuffer.m_BufferTexture.size(), m_ShadowBuffer.m_BufferTexture.data());
-
-	glDeleteFramebuffers(m_LightingBuffer.m_FrameBuffer.size(), m_LightingBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_LightingBuffer.m_BufferTexture.size(), m_LightingBuffer.m_BufferTexture.data());
+	glDeleteFramebuffers( static_cast<GLsizei>( m_LightingBuffer.m_FrameBuffer.size() ), m_LightingBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_LightingBuffer.m_BufferTexture.size() ), m_LightingBuffer.m_BufferTexture.data());
 	glDeleteRenderbuffers(1, &m_LightingBuffer.m_RenderBuffer);
 
-	glDeleteFramebuffers(m_BlurBuffer.m_FrameBuffer.size(), m_BlurBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_BlurBuffer.m_BufferTexture.size(), m_BlurBuffer.m_BufferTexture.data());
+	glDeleteFramebuffers( static_cast<GLsizei>( m_BlurBuffer.m_FrameBuffer.size() ), m_BlurBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_BlurBuffer.m_BufferTexture.size() ), m_BlurBuffer.m_BufferTexture.data());
 
-	glDeleteFramebuffers(m_UIBuffer.m_FrameBuffer.size(), m_UIBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_UIBuffer.m_BufferTexture.size(), m_UIBuffer.m_BufferTexture.data());
+	glDeleteFramebuffers( static_cast<GLsizei>( m_UIBuffer.m_FrameBuffer.size() ), m_UIBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_UIBuffer.m_BufferTexture.size() ), m_UIBuffer.m_BufferTexture.data());
 
-	glDeleteFramebuffers(m_FinalBuffer.m_FrameBuffer.size(), m_FinalBuffer.m_FrameBuffer.data());
-	glDeleteTextures(m_FinalBuffer.m_BufferTexture.size(), m_FinalBuffer.m_BufferTexture.data());
+	glDeleteFramebuffers( static_cast<GLsizei>( m_FinalBuffer.m_FrameBuffer.size() ), m_FinalBuffer.m_FrameBuffer.data());
+	glDeleteTextures( static_cast<GLsizei>( m_FinalBuffer.m_BufferTexture.size() ), m_FinalBuffer.m_BufferTexture.data());
 	glDeleteRenderbuffers(1, &m_FinalBuffer.m_RenderBuffer);
 }
 

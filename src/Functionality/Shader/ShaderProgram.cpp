@@ -182,7 +182,7 @@ void ShaderProgram::SetUniform(GLchar const* Name, std::vector<glm::mat4>& Val, 
 	GLint Location = glGetUniformLocation(m_ShaderHandle, Name);
 
 	if (Location >= 0)
-		glUniformMatrix4fv(Location, Size, GL_FALSE, glm::value_ptr(Val[0]));
+		glUniformMatrix4fv(Location, static_cast<GLsizei>( Size ), GL_FALSE, glm::value_ptr(Val[0]));
 	else
 		throw std::exception{ ("Uniform not found: " + std::string{Name}).c_str() };
 }

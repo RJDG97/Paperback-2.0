@@ -53,7 +53,6 @@ namespace paperback::archetype
         PPB_INLINE
         ~manager() 
         {
-            ResetAllArchetypes();
         }
 
         PPB_INLINE

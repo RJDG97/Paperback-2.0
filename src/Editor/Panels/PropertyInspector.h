@@ -3,6 +3,8 @@
 
 struct DetailsWindow : paperback::editor::instance
 {
+    bool ComboUpdated = false;
+
     constexpr static auto typedef_v = paperback::editor::type::update
     {
         .m_pName = "Property Inspector"
@@ -20,13 +22,35 @@ struct DetailsWindow : paperback::editor::instance
 
     void Panel();
 
+    void DisplayProperties();
+
     void AddComponent();
 
     void RemoveComponent();
 
-    void ParentComponent();
+    bool PrefabRefComboCheck(std::string& PreviousEntry, std::string& NewEntry);
 
-    void ChildCombo();
+//-----------------------------------
+//           Components
+//-----------------------------------
 
-    void MeshCombo();
+    void ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+
+    void AnimatorComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+
+    void SocketedComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+
+    void PrefabComponent();
+
+//-----------------------------------
+//        Component Combos
+//-----------------------------------
+    void ChildCombo(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+
+    void MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+
+    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i,
+        parent& NewParent, paperback::component::entity NewParentEntity,
+        prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+
 };

@@ -11,115 +11,81 @@ struct collision_system : paperback::system::instance
         .m_pName = "collision_system"
     };
 
-    struct UnitTriggerEvent : paperback::event::instance< entity& , rigidforce&> {};
-    struct UnitTriggerStayEvent : paperback::event::instance< entity& > {};
+    struct UnitTriggerEvent : paperback::event::instance< entity& , entity&, rigidforce&, rigidforce&> {};
+    struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity&, rigidforce&, rigidforce& > {};
     struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, /*rigidbody& rb,*/rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1) noexcept
+    using query = std::tuple< paperback::query::none_of<prefab> >;
+
+    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce* RigidForce,  boundingbox * Boundingbox, sphere* Sphere, collidable* col1,
+        unitstate* state, waypointv1* wp1) noexcept
     {
         if ( Entity.IsZombie() ) return;
-
+       
         // Initialize Query
         tools::query Query;
+
         Query.m_Must.AddFromComponents < transform >();
         Query.m_OneOf.AddFromComponents< boundingbox, sphere >();
+        Query.m_NoneOf.AddFromComponents< prefab >();
 
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
 
-        ForEach( Search( Query ), [&](paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2) noexcept -> bool
+        Boundingbox->m_Collided = false;
+
+        ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2,
+                                       unitstate* state2, waypointv1* wp2 )  noexcept
+        {
+            if ( Entity.IsZombie() ) return;
+
+            // Do not check against self
+            if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return;
+
+            // Add to collision map
+            auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
+            if (map == Boundingbox->m_CollisionState.end()) {
+                const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
+            }
+
+            xf.x = Xform.m_Position.x + Xform.m_Offset.x;
+            xf.y = Xform.m_Position.y + Xform.m_Offset.y;
+            xf.z = Xform.m_Position.z + Xform.m_Offset.z;
+
+            // Collision Detection
+            if ( Boundingbox && BB)
             {
-                assert(Entity.IsZombie() == false);
-
-                // Do not check against self
-                if ( (&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie()) ) return false;
-
-                xf.x = Xform.m_Position.x + Xform.m_Offset.x;
-                xf.y = Xform.m_Position.y + Xform.m_Offset.y;
-                xf.z = Xform.m_Position.z + Xform.m_Offset.z;
-
-                // Collision Detection
-                if ( Boundingbox && BB)
+                if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                 {
-                    if (col1 && col2)
-                    {
-                        if (col1->m_CollidableLayers.Has(col2->m_CollisionLayer)) // Only checks if it has a layer?
-                        {
-                            // added to parameters
-                            if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
-                            {
-                                if (RigidForce && RF)
-                                {
-                                    bool checker = CheapaabbDynamic(
-                                        Boundingbox,
-                                        RigidForce,
-                                        Transform,
-                                        BB,
-                                        RF,
-                                        Xform);
-                                }
-                                // Check if layer is unit
-                                    // If first instance of collision (may be an issue with gravity)
-                                    if (!Boundingbox->m_Collided && RigidForce)
-                                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
-                                    else // Was previously already colliding
-                                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity);
-
-                                    Boundingbox->m_Collided = /*BB->m_Collided = */true;
-                            }
-                            else
-                                if (Boundingbox->m_Collided && RigidForce)
-                                    BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
-                            Boundingbox->m_Collided = /*BB->m_Collided = */false;
-                        }
-                    }
+                    // On entry
+                    if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) 
+                        BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                    // Constant collision
                     else
-                    {
-                        // added to parameters
-                        if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
-                        {
-                            if (RigidForce && RF)
-                            {
-                                bool checker = CheapaabbDynamic(
-                                    Boundingbox,
-                                    RigidForce,
-                                    Transform,
-                                    BB,
-                                    RF,
-                                    Xform);
-                            }
-                            // Remove once layering component integration is resolved
-                                // If first instance of collision (may be an issue with gravity)
-                                if (!Boundingbox->m_Collided && RigidForce)
-                                    BroadcastGlobalEvent<UnitTriggerEvent>(Entity, *RigidForce);
-                                else // Was previously already colliding
-                                    BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity);
+                        BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                    
+                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
 
-                            Boundingbox->m_Collided = /*BB->m_Collided = */true;
-                        }
-                        else
-                        {
-                            if (Boundingbox->m_Collided && RigidForce)
-                                BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
-
-                            Boundingbox->m_Collided = /*BB->m_Collided = */false;
-                        }
-                    }
-
+                    Boundingbox->m_Collided = true;
                 }
-                if (Sphere && Ball)
+                else
                 {
-                    // added to parameters
-                    if (SphereSphere(tf, Sphere->m_fRadius, xf, Ball->m_fRadius))
-                    {
-                        Sphere->m_Collided = Ball->m_Collided = true;
-                    }
-                    else
-                        Sphere->m_Collided = Ball->m_Collided = false;
+                    // No longer colliding
+                    if( Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) )
+                        BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+
+                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
                 }
-                
-                /* Return true on deletion of collided entities */
-                return false;
-            });
+            }
+            if (Sphere && Ball)
+            {
+                if (SphereSphere(tf, Sphere->m_fRadius, xf, Ball->m_fRadius))
+                {
+                    Sphere->m_Collided = Ball->m_Collided = true;
+                }
+                else
+                    Sphere->m_Collided = Ball->m_Collided = false;
+            }
+        });
     }
 };

@@ -79,12 +79,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;Dependencies/mono/include;../../dependencies/rttr/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
-    <LibraryPath>../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Debug;Dependencies/mono/lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Debug;Dependencies/mono/lib;$(ProjectDir)EngineLib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>../../src;../Sandbox;../../src/Settings;../../dependencies;../../dependencies/rttr/include;Dependencies/mono/include;../../dependencies/spdlog/include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;Dependencies/mono/lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)/../../dependencies/xcore/dependencies/zstd/build/VS2010/libzstd/bin/x64_Release/;Dependencies/mono/lib;$(ProjectDir)EngineLib/Release;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -117,7 +117,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level2</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;PAPERBACK_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -127,12 +127,23 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)/../../dependencies/xcore;$(ProjectDir)/../../dependencies/rttr/lib;$(ProjectDir)/../../dependencies/mono/lib;$(ProjectDir)/../../dependencies/soil/lib;$(ProjectDir)/../../dependencies/glew/lib;$(ProjectDir)/../../dependencies/glfw/lib;$(ProjectDir)/../../dependencies/assimp/lib;$(ProjectDir)/../../dependencies/fmod/core/lib/x64;$(ProjectDir)/../../dependencies/fmod/studio/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mono-2.0-sgen.lib;fmodL_vc.lib;fmodstudioL_vc.lib;assimp-vc142-mtd.lib;glew32.lib;glfw3.lib;opengl32.lib;soil2.lib;librttr_core_d.lib;libzstd_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../../dependencies/xcore;$(ProjectDir)/../../dependencies/rttr/lib;$(ProjectDir)/../../dependencies/mono/lib;$(ProjectDir)/../../dependencies/soil/lib;$(ProjectDir)/../../dependencies/glew/lib;$(ProjectDir)/../../dependencies/glfw/lib;$(ProjectDir)/../../dependencies/assimp/lib;$(ProjectDir)/../../dependencies/fmod/core/lib/x64;$(ProjectDir)/../../dependencies/fmod/studio/lib/x64;$(ProjectDir)EngineLib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mono-2.0-sgen.lib;fmodL_vc.lib;fmodstudioL_vc.lib;assimp-vc142-mtd.lib;glew32.lib;glfw3.lib;opengl32.lib;soil2.lib;librttr_core_d.lib;libzstd_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Paperback_V2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "$(ProjectDir)\..\Paperback_V2\x64\Debug\Paperback_V2.lib" "$(OutDir)"</Command>
+      <Command>xcopy /y /d /i "$(SolutionDir)x64\Debug\Paperback_V2.lib" "$(SolutionDir)..\..\executables\Debug"
+xcopy /y /d /i "$(SolutionDir)x64\Debug\Sandbox.exe" "$(SolutionDir)..\..\executables\Debug"
+xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono-2.0-sgen.dll" "$(SolutionDir)..\..\executables\Debug"
+xcopy /y /i "$(ProjectDir)Dependencies\Scriptlib.dll" "$(SolutionDir)..\..\executables\Debug\Dependencies\"
+xcopy /y /i "$(SolutionDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudioL.dll" "$(SolutionDir)..\..\executables\Debug"
+xcopy /y /i "$(SolutionDir)\..\..\dependencies\glew\lib\glew32.dll" "$(SolutionDir)..\..\executables\Debug"
+xcopy /y /i "$(SolutionDir)\..\..\dependencies\fmod\core\lib\x64\fmodL.dll" "$(SolutionDir)..\..\executables\Debug"
+xcopy /y /i "$(SolutionDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(SolutionDir)..\..\executables\Debug"
+xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(SolutionDir)..\..\executables\Debug\Dependencies\mono\lib\mono\4.5\"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy /y /d /i "$(OutDir)Paperback_V2.lib" "$(ProjectDir)\EngineLib\Debug\"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -150,21 +161,28 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)/../../dependencies/xcore;$(ProjectDir)/../../dependencies/rttr/lib;$(ProjectDir)/../../dependencies/mono/lib;$(ProjectDir)/../../dependencies/soil/lib;$(ProjectDir)/../../dependencies/glew/lib;$(ProjectDir)/../../dependencies/glfw/lib;$(ProjectDir)/../../dependencies/assimp/lib;$(ProjectDir)/../../dependencies/fmod/core/lib/x64;$(ProjectDir)/../../dependencies/fmod/studio/lib/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mono-2.0-sgen.lib;fmod_vc.lib;fmodstudio_vc.lib;assimp-vc142-mtd.lib;glew32.lib;glfw3.lib;opengl32.lib;soil2.lib;librttr_core.lib;libzstd_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)/../../dependencies/xcore;$(ProjectDir)/../../dependencies/rttr/lib;$(ProjectDir)/../../dependencies/mono/lib;$(ProjectDir)/../../dependencies/soil/lib;$(ProjectDir)/../../dependencies/glew/lib;$(ProjectDir)/../../dependencies/glfw/lib;$(ProjectDir)/../../dependencies/assimp/lib;$(ProjectDir)/../../dependencies/fmod/core/lib/x64;$(ProjectDir)/../../dependencies/fmod/studio/lib/x64;$(ProjectDir)EngineLib/Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mono-2.0-sgen.lib;fmod_vc.lib;fmodstudio_vc.lib;assimp-vc142-mtd.lib;glew32.lib;glfw3.lib;opengl32.lib;soil2.lib;librttr_core.lib;libzstd_static.lib;Paperback_V2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "$(ProjectDir)\..\Paperback_V2\x64\Release\Paperback_V2.lib" "$(OutDir)"</Command>
+      <Command>xcopy /y /d /i "$(OutDir)Paperback_V2.lib" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /d /i "$(ProjectDir)imgui.ini" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /d /i "$(OutDir)Sandbox.exe" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono-2.0-sgen.dll" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /i "$(ProjectDir)Dependencies\Scriptlib.dll" "$(SolutionDir)..\..\executables\Release\Dependencies\"
+xcopy /y /i "$(SolutionDir)\..\..\dependencies\fmod\studio\lib\x64\fmodstudio.dll" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /i "$(SolutionDir)\..\..\dependencies\glew\lib\glew32.dll" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /i "$(SolutionDir)\..\..\dependencies\fmod\core\lib\x64\fmod.dll" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /i "$(SolutionDir)\..\..\dependencies\assimp\lib\assimp-vc142-mtd.dll" "$(SolutionDir)..\..\executables\Release"
+xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(SolutionDir)..\..\executables\Release\Dependencies\mono\lib\mono\4.5\"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy /y /d /i "$(OutDir)Paperback_V2.lib" "$(ProjectDir)EngineLib\Release\"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="PCH\sandbox_pch.cpp" />
     <ClCompile Include="Sandbox.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Paperback_V2\Paperback_V2.vcxproj">
-      <Project>{dff970d7-f444-4b6f-8e8b-41d4680fd616}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\AABB.h" />
@@ -188,12 +206,14 @@
     <ClInclude Include="Components\Name.h" />
     <ClInclude Include="Components\Offset.h" />
     <ClInclude Include="Components\Parent.h" />
+    <ClInclude Include="Components\Player.h" />
     <ClInclude Include="Components\Prefab.h" />
     <ClInclude Include="Components\ReferencePrefab.h" />
     <ClInclude Include="Components\Rigidbody.h" />
     <ClInclude Include="Components\RigidForce.h" />
     <ClInclude Include="Components\Rotation.h" />
     <ClInclude Include="Components\Scale.h" />
+    <ClInclude Include="Components\Shield.h" />
     <ClInclude Include="Components\Socketed.h" />
     <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />
@@ -201,6 +221,9 @@
     <ClInclude Include="Components\Timer.h" />
     <ClInclude Include="Components\Transform.h" />
     <ClInclude Include="Components\Waypoint.h" />
+    <ClInclude Include="Components\UnitState.h" />
+    <ClInclude Include="Components\WaypointTag.h" />
+    <ClInclude Include="Components\Waypointv1.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
@@ -208,7 +231,7 @@
     <ClInclude Include="Systems\EnemySpawnerSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
-    <ClInclude Include="Systems\OnEvent_UpdateHealth.h" />
+    <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\PlayerSpawnerSystem.h" />
@@ -217,6 +240,7 @@
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
     <ClInclude Include="Systems\TimerSystem.h" />
+    <ClInclude Include="Systems\WaypointSystem.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,102 +4,84 @@ struct player_spawner_system : paperback::system::instance
 {
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
-		.m_pName = "timer_system"
+		.m_pName = "PlayerSpawnerSystem"
 	};
 
     using query = std::tuple
     <
-        paperback::query::must<transform, friendly_spawner>
-    ,   paperback::query::none_of<reference_prefab>
+        paperback::query::must<transform, timer, counter, friendly_spawner>
+    ,   paperback::query::none_of<prefab, reference_prefab, enemy_spawner>
     >;
 
-    //tools::query m_QueryPlayerSpawner;
-    tools::query m_Player;
-    tools::query m_PlayerPrefabArchetype;
+    tools::query m_QueryPlayer;
+    tools::query m_ActiveSpawner;
+    tools::query m_ActiveFriendly;
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
         RegisterGlobalEventClass<Input::KeyPressed>( this );
         RegisterGlobalEventClass<Input::MousePressed>( this );
+        
+        // Query for player
+        m_QueryPlayer.m_Must.AddFromComponents<reference_prefab, currency, player>();
+        m_QueryPlayer.m_NoneOf.AddFromComponents<prefab>();
 
-        //// Entity Spawner
-        //m_QueryPlayerSpawner.m_Must.AddFromComponents<transform, waypoint, friendly_spawner>();
-        //m_QueryPlayerSpawner.m_NoneOf.AddFromComponents<reference_prefab, prefab, counter>();
-
-        // Actual Player
-        /*
-            entity, transform, reference_prefab, cost (Money)
-        */
-        m_Player.m_Must.AddFromComponents<transform, reference_prefab, cost>();
-        //m_QueryPlayerSpawner.m_NoneOf.AddFromComponents<reference_prefab, prefab, counter>();
+        // Query for spawner
+        m_ActiveSpawner.m_Must.AddFromComponents<transform, timer, friendly_spawner, counter>();
+        m_ActiveSpawner.m_NoneOf.AddFromComponents<prefab, reference_prefab>();
 
         // Friendly Prefab
-        m_PlayerPrefabArchetype.m_Must.AddFromComponents<prefab, transform, waypoint, mesh, animator, health, damage, friendly>();
-        m_PlayerPrefabArchetype.m_NoneOf.AddFromComponents<counter>();
+        m_ActiveFriendly.m_Must.AddFromComponents<prefab, transform, waypoint, waypoint_tag, mesh, animator, health, damage, friendly>();
+        m_ActiveFriendly.m_NoneOf.AddFromComponents<counter>();
     }
 
-    // Note this Entity should not be a Prefab Instance (Because of Add/Remove)
-    // The spawning should be in an Event? On buttom press or sth
-	void operator()( entity& Entity, transform& Transform, counter& Counter, waypoint& Waypoint ) noexcept
+    // Enemy Spawner
+	void operator()( entity& Entity, transform& Transform, timer& Timer, counter& Counter, friendly_spawner& Spawner, waypoint_tag& STag ) noexcept
 	{
-        //if ( Timer.m_Value <= 0.0f && Counter.m_Value > 0 )
-        //{
-        //    // Reset timer
-        //    Timer.m_Value = 0.2f;
+        if (Counter.m_Value > 0 && Timer.m_Value <= 0.0f)
+        {
+            if (Spawner.m_FriendlyPrefabGuid == 0) return;
 
-        //    // Searches for Player Unit Archetype
-        //    auto Friendlies = Search( m_PlayerPrefabArchetype );
-        //    if ( Friendlies.size() != 1 ) return;
-        //    // Grab Archetype&
-        //    auto& Friendly = *( Friendlies[0] );
+            // Find Enemy Prefab Details (Archetype& and GID)
+            auto& FriendlyPrefab   = m_Coordinator.GetArchetype( Spawner.m_FriendlyPrefabGuid );
+            auto FriendlyPrefabGID = FriendlyPrefab.FindPrefabEntityGID( Spawner.m_PrefabType );
 
-        //    // Temporary, Clone Prefab 0 in Archetype
-        //    auto  ClonedGID  = Friendly.ClonePrefab( 0 ); // Hardcoded part for Prefab Entity Index
-        //    auto& ClonedInfo = GetEntityInfo( ClonedGID );
+            if ( FriendlyPrefabGID == paperback::settings::invalid_index_v ) return;
 
-        //    // Update values of new friendly
-        //    auto [CTransform, CWaypoint] = Friendly.GetComponents<transform, waypoint>( ClonedInfo.m_PoolDetails );
-        //    CTransform.m_Position = Transform.m_Position;
-        //    CWaypoint.m_Value = Waypoint.m_Value;
-        //}
+            // Find Enemy Prefab Info and Clone
+            auto PrefabInfo = GetEntityInfo( FriendlyPrefabGID );
+            auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab( PrefabInfo.m_PoolDetails.m_PoolIndex );
 
-        //if ( --Counter.m_Value <= 0 )
-        //        m_Coordinator.AddOrRemoveComponents<std::tuple<>, std::tuple<counter>>( Entity );
+            // Update Components
+            auto& IInfo = GetEntityInfo( InstanceGID );
+            auto [ITransform, ITag, IAnimator] = IInfo.m_pArchetype->GetComponents<transform, waypoint_tag, animator>( IInfo.m_PoolDetails );
+
+            ITransform.m_Position = Transform.m_Position;
+            ITag.m_Value = STag.m_Value;
+            IAnimator.m_PlayOnce = false;
+
+            --Counter.m_Value;
+        }
 	}
 
-	void OnEvent( int Key ) noexcept
+    // Updates player spawner count
+	void OnEvent( const size_t& Key ) noexcept
     {
-        if ( Key == GLFW_KEY_SPACE )
+        // This check is to be replaced with Player Controller
+        if ( Key == GLFW_KEY_1 || Key == GLFW_KEY_2 || Key == GLFW_KEY_3 )
         {
-      //      // Grab Player Unit Prefab
-      //      auto Friendlies = Search( m_PlayerPrefabArchetype );
-      //      if ( Friendlies.size() != 1 ) return;
-      //      auto& Friendly = *( Friendlies[0] );
+            // Player Info Loop
+		    ForEach( Search( m_ActiveSpawner ), [&]( entity& Entity, timer& Timer, counter& Counter, waypoint_tag& Tag ) noexcept
+            {
+                if ( !( Key == GLFW_KEY_1 && Tag.m_Value == 0 ) &&
+                     !( Key == GLFW_KEY_2 && Tag.m_Value == 1 ) &&
+                     !( Key == GLFW_KEY_3 && Tag.m_Value == 2 ) )
+                    return;
 
-		    //ForEach( Search( m_Player ), [&]( const entity& Entity, cost& Money ) noexcept
-      //      {
-      //          // Name should be passed by collision entity or sth (If card)
-      //          auto PrefabGID = Friendly.FindPrefabEntityGID( "Normal" );
-      //          if ( PrefabGID == paperback::settings::invalid_index_v ) return;
-      //          auto PrefabInfo = GetEntityInfo( PrefabGID );
-
-      //          auto [ CTransform, CWaypoint ] = PrefabInfo.m_pArchetype->GetComponents<transform, waypoint>( PrefabInfo.m_PoolDetails );
-      //          //CTransform.m_Position = Transform.m_Position;
-      //          //CWaypoint.m_Value = Waypoint.m_Value;
-      //      });
-
-            //ForEach( Search( m_QueryPlayerSpawner ), [&]( const entity& Entity, timer& Timer ) noexcept
-            //{
-            //    Timer.m_Value = 0.0f;
-            //    // Add counter component to the spawner ( Deactivates this system until wave is over )
-            //    m_Coordinator.AddOrRemoveComponents<std::tuple<counter>>( Entity, [&]( counter& Counter )
-            //                  {
-            //                      //Counter.m_Value = (( Wave.m_Value / 2 ) + 1 ) * 3;
-            //                      //Counter.m_Value = Counter.m_Value / ( ( Wave.m_Value / 3 ) + 1 );
-            //                      Counter.m_Value = 1;
-            //                  });
-            //});
+                Timer.m_Value = 0.0f;
+                Counter.m_Value = 1;
+            });
         }
     }
 };

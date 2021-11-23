@@ -83,7 +83,7 @@ struct physics_system : paperback::system::instance
                 assert(Entity.IsZombie() == false);
 
                 AddForce(RF.m_Forces, Vec);
-                RF.m_MagForce = 1.0f; // this is magnitudeSq
+                RF.m_MagForce = 1.0f;
                 RF.m_isAccel = true;
             });
     }
@@ -107,15 +107,18 @@ struct physics_system : paperback::system::instance
     {
         if (RigidForce != nullptr)
         {
+            // non-waypoint users
             if (RigidForce->m_isAccel)
             {
                 RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
             }
             else
             {
+                // minimum value threshold
                 RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
                 RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
 
+                // momentum && accel
                 if (!RigidForce->m_Momentum.IsZero() && !RigidForce->m_Forces.IsZero())
                 {
                     RigidForce->m_Momentum.DecrementValue(
@@ -126,6 +129,7 @@ struct physics_system : paperback::system::instance
                     RigidForce->m_Forces.DecrementValue(
                         RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
                 }
+                // momentum
                 else if (RigidForce->m_Forces.IsZero())
                 {
                     RigidForce->m_Momentum.DecrementValue(
@@ -136,71 +140,17 @@ struct physics_system : paperback::system::instance
             {
                 RigidBody->m_Accel = ConvertToAccel(RigidForce->m_Mass, RigidForce->m_Forces);
                 RigidBody->m_Velocity = ConvertToVelocity(RigidForce->m_Mass, RigidForce->m_Momentum);
+
+                //if (wu && wu->isAttacking)
+                //{
+                //    // stay still and attacks
+                //}
+                //else
+                //{
+                //    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+                //}
                 Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
             }
         }
-
-        
-
-        /*
-            Remove if unnecessary - Add Remove Component Reference
-            1st Tuple = Add
-            2nd Tuple = Remove
-        */
-        {
-            //// Remove Bullet Component Test
-            //if ( !BulletTest )
-            //    TRACE_PRINT( "Component removed successfully" );
-
-            //if ( BulletTest && Entity )
-            //{
-            //    TRACE_PRINT( "Entity Global Index: " + std::to_string(Entity->m_GlobalIndex) );
-
-            //    auto UpdatedEntityComponent = m_Coordinator.AddOrRemoveComponents< std::tuple<>,                          // Tuple of Components to Add
-            //                                                                       std::tuple<bullet> >( *Entity );       // Tuple of Components to Remove
-
-            //    INFO_PRINT( "Removing bullet component from entity in Physics System" );
-            //    return;
-            //}
-
-
-            //// Add Bullet Component Test
-            //if ( BulletTest )
-            //    TRACE_PRINT( "Component added successfully - ID: " + std::to_string( Entity->m_GlobalIndex ) );
-
-            //if ( !BulletTest && Entity )
-            //{
-            //    TRACE_PRINT( "Entity Global Index: " + std::to_string(Entity->m_GlobalIndex) );
-
-            //    auto UpdatedEntityComponent = m_Coordinator.AddOrRemoveComponents< std::tuple<bullet> >( *Entity );
-
-            //    INFO_PRINT( "Adding bullet component to entity in Physics System" );
-            //    return;
-            //}
-        }
-
-        // X-Out-Of-Bounds
-        /*if (Transform.m_Position.m_X < 0.0f)
-        {
-            Transform.m_Position.m_X = 0.0f;
-            RigidBody.m_Velocity.m_X = -RigidBody.m_Velocity.m_X;
-        }
-        else if (Transform.m_Position.m_X >= m_Engine.m_Width)
-        {
-            Transform.m_Position.m_X = m_Engine.m_Width;
-            RigidBody.m_Velocity.m_X = -RigidBody.m_Velocity.m_X;
-        }
-
-        // Y-Out-Of-Bounds
-        if (Transform.m_Position.m_Y < 0.0f)
-        {
-            Transform.m_Position.m_Y = 0.0f;
-            RigidBody.m_Velocity.m_Y = -RigidBody.m_Velocity.m_Y;
-        }
-        else if (Transform.m_Position.m_Y >= m_Engine.m_Height)
-        {
-            Transform.m_Position.m_Y = m_Engine.m_Height;
-            RigidBody.m_Velocity.m_Y = -RigidBody.m_Velocity.m_Y;
-        }*/
     }
 };

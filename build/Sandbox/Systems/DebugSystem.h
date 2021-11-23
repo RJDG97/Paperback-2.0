@@ -3,8 +3,6 @@
 #include "../Functionality/Renderer/Renderer.h"
 #include "Math/Vector3f.h"
 
-//#include "Editor/EditorLogger.h"
-
 struct debug_system : paperback::system::instance
 {
 
@@ -266,37 +264,6 @@ struct debug_system : paperback::system::instance
     void DebugInputTest()
     {
 
-        if (PPB.IsKeyPressDown(GLFW_KEY_J))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ -1.0f, 0.0f, 0.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_L))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 1.0f, 0.0f, 0.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_I))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 0.0f, -1.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_K))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 0.0f, 1.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_O))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 0.0f, 1.0f, 0.0f });
-        }
-        if (PPB.IsKeyPressDown(GLFW_KEY_U))
-        {
-
-            GetSystem<physics_system>().ApplyForceAll({ 0.0f, -1.0f, 0.0f });
-        }
-
         if (PPB.IsKeyPressUp(GLFW_KEY_8))
         {
 
@@ -331,5 +298,11 @@ struct debug_system : paperback::system::instance
         DebugInputTest();
         m_Points[0].clear();
         m_Points[1].clear();
+    }
+
+    PPB_INLINE
+        void OnStateChange(void) noexcept
+    {
+        m_IsDebug = (PPB.VerifyState("Editor")) ? true : false;
     }
 };

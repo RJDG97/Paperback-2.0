@@ -121,6 +121,7 @@ namespace paperback::component
 
         using Constructor   =  void( std::byte* ) noexcept;
         using Destructor    =  void( std::byte* ) noexcept;
+        using UpdateInst    =  void( std::byte*, const vm::PoolDetails, paperback::archetype::instance* ) noexcept;
         using Copy          =  void( std::byte* Destination, const std::byte* Source ) noexcept;
         using Move          =  void( std::byte* Destination, std::byte* Source ) noexcept;
 
@@ -130,6 +131,7 @@ namespace paperback::component
         mutable u32            m_Size;
         Constructor*           m_Constructor;
         Destructor*            m_Destructor;
+        UpdateInst*            m_UpdateInstances;
         Copy*                  m_Copy;
         Move*                  m_Move;
         const char*            m_pName;

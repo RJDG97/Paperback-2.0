@@ -7,7 +7,6 @@ namespace paperback::component
     {
         if ( component::info_v<T_COMPONENT>.m_UID == component::info::invalid_id_v )
             component::info_v<T_COMPONENT>.m_UID = m_ComponentUID++;
-        // Weird bug with paperback::component::entity having duplicate instances
         else if ( component::info_v<T_COMPONENT>.m_UID == 0 )
             ++m_ComponentUID;
 

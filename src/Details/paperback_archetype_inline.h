@@ -242,6 +242,60 @@ namespace paperback::archetype
 
 
     //-----------------------------------
+    //             Prefab
+    //-----------------------------------
+
+    // std::byte* b = PrefabArchetype->FindComponent( Details, CGuid.m_Value )
+    // const auto& ComponentInfo = *PPB.FindComponentInfo( CGuid )
+    // ComponentInfo.m_UpdateInstances( b, PoolDetails_Prefab, PrefabArchetype )
+
+    template < typename T_COMPONENT >
+    void instance::UpdatePrefabInstanceComponent( const vm::PoolDetails& Details, T_COMPONENT& PrefabComponent ) noexcept
+    {
+        // Grab Prefab Entity's Prefab Component - To Access All Prefab Instances
+        auto& Prefab = GetComponent<prefab>( Details );
+
+        if ( Prefab.m_ReferencePrefabGIDs.size() <= 0 ) return;
+
+        // Save Address of Prefab Instance Data
+        auto& CInfo   = component::info_v<T_COMPONENT>;
+        auto CopyCtor = CInfo.m_Copy;
+        auto CSize    = CInfo.m_Size;
+        auto CGuid    = CInfo.m_Guid.m_Value;
+        auto& PIArchetype   = *( m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) ).m_pArchetype );
+
+        // For All Prefab Instances
+        for ( auto begin = Prefab.m_ReferencePrefabGIDs.begin()
+            , end = Prefab.m_ReferencePrefabGIDs.end(); begin != end; ++begin )
+        {
+            // Grab Prefab Instance Info
+            const auto& InstanceInfo = m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) );
+            auto& RefPrefab    = PIArchetype.GetComponent<reference_prefab>( InstanceInfo.m_PoolDetails );
+
+            // If Reference Prefab Did Not Override T_COMPONENT
+            if ( !RefPrefab.HasModified( CGuid ) )
+            {
+                // Grab Component To Be Updated In Prefab Instance
+                auto& Mod_Component = PIArchetype.GetComponent<T_COMPONENT>( InstanceInfo.m_PoolDetails );
+
+                // Copy Data
+                if ( CopyCtor )
+                {
+                    CopyCtor( reinterpret_cast<std::byte*>( &Mod_Component )
+                            , reinterpret_cast<std::byte*>( &PrefabComponent ) );
+                }
+                else
+                {
+                    memcpy( reinterpret_cast<void*>( &Mod_Component )
+                          , reinterpret_cast<void*>( &PrefabComponent )
+                          , CSize );
+                }
+            }
+        }
+    }
+
+
+    //-----------------------------------
     //              Save
     //-----------------------------------
     void instance::SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept
@@ -254,17 +308,6 @@ namespace paperback::archetype
                 Jfile.EndObject();
             }
     }
-
-    //void instance::InitializePrefabInstances( const u32 InstanceCount
-    //                                        , const u32 PrefabPoolIndex
-    //                                        , vm::instance& PrefabPool ) noexcept
-    //{
-    //    for ( u32 i = 0; i < InstanceCount; ++i )
-    //    {
-    //        // Copy prefab components
-    //        ClonePrefabComponents( PrefabPoolIndex, PrefabPool );
-    //    }
-    //}
 
     //-----------------------------------
     //             Getters
@@ -288,6 +331,11 @@ namespace paperback::archetype
     T_COMPONENT* instance::FindComponent( const PoolDetails Details ) noexcept
     {
         return m_ComponentPool[ Details.m_Key ].FindComponent<T_COMPONENT>( Details.m_PoolIndex );
+    }
+
+    std::byte* instance::FindComponent( const PoolDetails Details, const component::type::guid ComponentGuid ) noexcept
+    {
+        return m_ComponentPool[ Details.m_Key ].FindComponent( Details.m_PoolIndex, ComponentGuid );
     }
 
     template < typename... T_COMPONENTS >
@@ -324,11 +372,11 @@ namespace paperback::archetype
             E.g. using query = std::tuple< paperback::query::must< my_tag_component > >;
         */
         
-        if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
-        {
-            WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
-            ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
-        }
+        //if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
+        //{
+        //    WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
+        //    ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
+        //}
     
         auto& MemoryPool = Pool.GetMemoryPool();
         std::array<std::byte*, sizeof...(T_COMPONENTS)> ComponentArray;
@@ -361,11 +409,11 @@ namespace paperback::archetype
             E.g. using query = std::tuple< paperback::query::must< my_tag_component > >;
         */
 
-        if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
-        {
-            WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
-            ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
-        }
+        //if constexpr ( !(( paperback::BaseType<T_COMPONENTS>::typedef_v.id_v == paperback::component::type::id::DATA ) && ... ) )
+        //{
+        //    WARN_PRINT( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
+        //    ERROR_LOG( "Using component::type::id::TAG component in operator() parameter list - Consider adding tag components in the query instead" );
+        //}
     
         auto& MemoryPool = Pool.GetMemoryPool();
         std::array<std::byte*, sizeof...(T_COMPONENTS)> ComponentArray;

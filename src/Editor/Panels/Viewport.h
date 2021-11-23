@@ -26,7 +26,12 @@ struct EditorViewport : paperback::editor::instance
 
     void Panel();
 
+    void ViewportOne();
+    void ViewportTwo();
+
     void Gizmo();
+
+    void MouseSelection();
 
     void ViewportMenuBar();
 
