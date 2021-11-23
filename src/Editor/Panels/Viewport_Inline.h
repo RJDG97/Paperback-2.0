@@ -258,7 +258,7 @@ void EditorViewport::ComposeTransform()
 
 	}
 
-	if (PrevRotate != bRot->m_Value)
+	if (bRot && PrevRotate != bRot->m_Value)
 	{
 		if (Prefab)
 		{
@@ -274,7 +274,7 @@ void EditorViewport::ComposeTransform()
 			RefPrefab->AddModifiedComponentGuid(paperback::component::info_v<rotation>.m_Guid.m_Value);
 	}
 
-	if (PrevScale != bScale->m_Value)
+	if (bScale && PrevScale != bScale->m_Value)
 	{
 		if (Prefab)
 		{
