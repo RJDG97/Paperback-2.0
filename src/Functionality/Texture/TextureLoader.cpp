@@ -110,6 +110,44 @@ GLuint TextureLoader::LoadSkyboxTexture(const std::vector<std::string>& Files)
 	return texture;
 }
 
+GLuint TextureLoader::LoadDDSAtlas(const std::string& File)
+{
+	tinyddsloader::DDSFile file;
+	file.Load(File.c_str());
+
+	if (file.GetFormat() == tinyddsloader::DDSFile::DXGIFormat::B8G8R8A8_UNorm && file.GetTextureDimension() == tinyddsloader::DDSFile::TextureDimension::Texture2D)
+	{
+		// Generate texture
+		GLuint texture;
+		glCreateTextures(GL_TEXTURE_2D, 1, &texture);
+
+		glTextureParameteri(texture, GL_TEXTURE_BASE_LEVEL, 0);
+		glTextureParameteri(texture, GL_TEXTURE_MAX_LEVEL, file.GetMipCount() - 1);
+
+		glTextureParameteri(texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+		glTextureParameteri(texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		glTextureParameteri(texture, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTextureParameteri(texture, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		glTextureStorage2D(texture, file.GetMipCount(), GL_RGBA8, file.GetWidth(), file.GetHeight());
+
+		for (size_t level = 0; level < file.GetMipCount(); ++level)
+		{
+			auto data = file.GetImageData(level, 0);
+
+			auto width = data->m_width;
+			auto height = data->m_height;
+
+			glTextureSubImage2D(texture, level, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data->m_mem);
+		}
+
+		return texture;
+	}
+
+	return 0;
+}
+
 GLuint TextureLoader::LoadDDSTexture(const std::string& File, const bool& GammaCorrect)
 {
 	tinyddsloader::DDSFile file;
@@ -117,9 +155,19 @@ GLuint TextureLoader::LoadDDSTexture(const std::string& File, const bool& GammaC
 
 	GLenum internalformat = GL_RGB;
 
-	if (file.GetFormat() == tinyddsloader::DDSFile::DXGIFormat::BC1_UNorm && file.GetTextureDimension() == tinyddsloader::DDSFile::TextureDimension::Texture2D)
+	if (file.GetTextureDimension() == tinyddsloader::DDSFile::TextureDimension::Texture2D)
 	{
-		internalformat = GammaCorrect ? GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT : GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
+		switch (file.GetFormat())
+		{
+		case tinyddsloader::DDSFile::DXGIFormat::BC1_UNorm:
+			internalformat = GammaCorrect ? GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT : GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
+			break;
+		case tinyddsloader::DDSFile::DXGIFormat::BC3_UNorm:
+			internalformat = GammaCorrect ? GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT : GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
+			break;
+		default:
+			return 0;
+		}
 
 		// Generate texture
 		GLuint texture;
@@ -140,8 +188,6 @@ GLuint TextureLoader::LoadDDSTexture(const std::string& File, const bool& GammaC
 		glTextureParameteri(texture, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 		glTextureStorage2D(texture, file.GetMipCount(), internalformat, file.GetWidth(), file.GetHeight());
-
-		//file.Flip();
 
 		for (size_t level = 0; level < file.GetMipCount(); ++level)
 		{

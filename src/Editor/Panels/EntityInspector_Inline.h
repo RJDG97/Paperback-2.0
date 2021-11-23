@@ -192,6 +192,8 @@ void EntityInspector::DisplayEntities()
 
 void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 EntityIndex)
 {
+    std::string Temp = {};
+
     if (m_Imgui.m_SelectedEntity.first)
     {
         ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
@@ -200,7 +202,11 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
         {
             ImGui::TextColored(ImVec4{ 0.863f, 0.078f, 0.235f , 1.0f }, "Deleting: ");
 
-            ImGui::Text((m_Imgui.m_SelectedEntity.first->GetName() + " [" + std::to_string(m_Imgui.m_SelectedEntity.second) + "]").c_str());
+            auto EntityName = m_Imgui.m_SelectedEntity.first->FindComponent<name>(paperback::vm::PoolDetails{ 0, EntityIndex });
+
+            if (EntityName) Temp = EntityName->m_Value;
+
+            ImGui::Text(Temp.c_str());
 
             ImGui::TextColored(ImVec4{ 0.863f, 0.078f, 0.235f , 1.0f }, "This cannot be undone");
 
@@ -209,22 +215,9 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
             if (ImGui::Button("Yes"))
             {
                 auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, EntityIndex });
-                auto RefPrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(paperback::vm::PoolDetails{ 0, EntityIndex });
-                auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails{ 0, EntityIndex });
-
-                if (RefPrefab)
-                {
-                    //Get referenced prefab gid + EntityInfo
-                    if (Parent)
-                        UnlinkChildPrefabs(Parent);
-
-                    auto& Info = PPB.GetEntityInfo(RefPrefab->m_PrefabGID);
-                    //unlink prefab reference link from the main prefab
-                    Info.m_pArchetype->GetComponent<prefab>(Info.m_PoolDetails).RemovePrefabInstance(Entity.m_GlobalIndex);
-                }
 
                 PPB.DeleteEntity(Entity);
-                EDITOR_INFO_PRINT("Deleted: " + m_Imgui.m_SelectedEntity.first->GetName() + " [" + std::to_string(m_Imgui.m_SelectedEntity.second) + "]");
+                EDITOR_INFO_PRINT("Deleted: " + Temp);
 
                 m_Imgui.m_SelectedEntity = { nullptr, paperback::u32_max };
 
@@ -240,31 +233,6 @@ void EntityInspector::DeleteEntity(std::string WindowName, paperback::u32 Entity
                 ImGui::CloseCurrentPopup();
 
             ImGui::EndPopup();
-        }
-    }
-}
-
-void EntityInspector::UnlinkChildPrefabs(parent* Parent)
-{
-    if (Parent->m_ChildrenGlobalIndexes.size())
-    {
-        for (auto& Child : Parent->m_ChildrenGlobalIndexes)
-        {
-            //Get the reference prefab component of the child
-            auto& EntityInfo = PPB.GetEntityInfo(Child);
-            auto& ChildRefPrefab = EntityInfo.m_pArchetype->GetComponent<reference_prefab>(EntityInfo.m_PoolDetails);
-
-            //Get Referencing Prefab EntityInfo
-            auto& PrefabEntityInfo = PPB.GetEntityInfo(ChildRefPrefab.m_PrefabGID);
-            //unlink prefab reference link from the main prefab
-            PrefabEntityInfo.m_pArchetype->GetComponent<prefab>(PrefabEntityInfo.m_PoolDetails).RemovePrefabInstance(Child);
-
-            //Check if any of the child is also a parent
-
-            auto ChildParent = EntityInfo.m_pArchetype->FindComponent<parent>(EntityInfo.m_PoolDetails);
-
-            if (ChildParent)
-                UnlinkChildPrefabs(ChildParent);
         }
     }
 }

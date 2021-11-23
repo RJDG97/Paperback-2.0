@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "Sound.h"
 #include "Mesh.h"
+#include "Text.h"
 #include "Scale.h"
 #include "Rotation.h"
 #include "RigidForce.h"

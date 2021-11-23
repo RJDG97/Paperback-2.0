@@ -97,6 +97,7 @@ void InitializeGame()
         ,    healthbar        // Tag
         ,    unit             // Tag
         ,    waypoint_tag
+        ,    text
         >();
     }
 
@@ -128,6 +129,7 @@ void InitializeGame()
         ,   onevent_UpdateHealth_system
         ,   onevent_ParentDeleted_system
         ,   onevent_ChildDeleted_system
+        ,   onevent_ReferencePrefabDeleted_system
         >();
     }
     // Entity Creation
