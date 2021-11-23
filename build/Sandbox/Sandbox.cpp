@@ -94,6 +94,7 @@ void InitializeGame()
         ,    enemy_spawner    // Tag
         ,    player           // Tag
         ,    waypoint_tag
+        ,    text
         >();
     }
 

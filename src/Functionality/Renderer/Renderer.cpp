@@ -70,6 +70,7 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Skybox", "../../resources/shaders/Skybox.vert", "../../resources/shaders/Skybox.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 	m_Resources.LoadShader("UI", "../../resources/shaders/UI.vert", "../../resources/shaders/UI.frag");
+	m_Resources.LoadShader("Text", "../../resources/shaders/Text.vert", "../../resources/shaders/Text.frag");
 
 	m_Resources.Load3DMeshNUI("RedUnitAnimated", "../../resources/models/nui/RedUnitAnimated.nui");
 	m_Resources.Load3DMeshNUI("BlueUnitAnimated", "../../resources/models/nui/BlueUnitAnimated.nui");
@@ -112,6 +113,8 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("DragonHead", "../../resources/models/nui/DragonHead.nui");
 	m_Resources.Load3DMeshNUI("BottomPath", "../../resources/models/nui/BottomPath.nui");
+
+	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
 
 	// Cards
 	m_Resources.LoadTextures("CardBack", "../../resources/textures/UI/Cards/CardBack.dds", true);
@@ -182,6 +185,7 @@ Renderer::~Renderer()
 
 	glDeleteFramebuffers( static_cast<GLsizei>( m_UIBuffer.m_FrameBuffer.size() ), m_UIBuffer.m_FrameBuffer.data());
 	glDeleteTextures( static_cast<GLsizei>( m_UIBuffer.m_BufferTexture.size() ), m_UIBuffer.m_BufferTexture.data());
+	glDeleteRenderbuffers(1, &m_UIBuffer.m_RenderBuffer);
 
 	glDeleteFramebuffers( static_cast<GLsizei>( m_FinalBuffer.m_FrameBuffer.size() ), m_FinalBuffer.m_FrameBuffer.data());
 	glDeleteTextures( static_cast<GLsizei>( m_FinalBuffer.m_BufferTexture.size() ), m_FinalBuffer.m_BufferTexture.data());
@@ -296,8 +300,15 @@ void Renderer::SetUpFramebuffer(int Width, int Height)
 	// Attach texture to framebuffer
 	glNamedFramebufferTexture(uiFbo, GL_COLOR_ATTACHMENT0, uiTexture, 0);
 
+	// Create ui render buffer 
+	GLuint uiRbo;
+	glCreateRenderbuffers(1, &uiRbo);
+	glNamedRenderbufferStorage(uiRbo, GL_DEPTH_COMPONENT32F, Width, Height);
+	glNamedFramebufferRenderbuffer(uiFbo, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, uiRbo);
+
 	m_UIBuffer.m_FrameBuffer.push_back(uiFbo);
 	m_UIBuffer.m_BufferTexture.push_back(uiTexture);
+	m_UIBuffer.m_RenderBuffer = uiRbo;
 
 	// Create final framebuffer
 	GLuint finalFbo;
@@ -395,6 +406,10 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glDeleteTextures(static_cast<GLsizei>(m_UIBuffer.m_BufferTexture.size()), m_UIBuffer.m_BufferTexture.data());
 	m_UIBuffer.m_BufferTexture.clear();
 
+	// Delete old ui buffer rbo
+	glDeleteRenderbuffers(1, &m_UIBuffer.m_RenderBuffer);
+	m_UIBuffer.m_RenderBuffer = 0;
+
 	// Create ui texture
 	GLuint uiTexture;
 	glCreateTextures(GL_TEXTURE_2D, 1, &uiTexture);
@@ -410,6 +425,13 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 
 	// Add texture to framebuffer object
 	m_UIBuffer.m_BufferTexture.push_back(uiTexture);
+
+	// Create ui render buffer 
+	GLuint uiRbo;
+	glCreateRenderbuffers(1, &uiRbo);
+	glNamedRenderbufferStorage(uiRbo, GL_DEPTH_COMPONENT32F, Width, Height);
+	glNamedFramebufferRenderbuffer(m_UIBuffer.m_FrameBuffer[0], GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, uiRbo);
+	m_UIBuffer.m_RenderBuffer = uiRbo;
 
 	// Delete old final buffer textures
 	glDeleteTextures(static_cast<GLsizei>(m_FinalBuffer.m_BufferTexture.size()), m_FinalBuffer.m_BufferTexture.data());
@@ -445,11 +467,12 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
 	UIPass(UIs);
+	TextPass(Texts);
 
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -575,7 +598,7 @@ void Renderer::SkyBoxRender()
 void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs)
 {
 	// Clear depth and color buffer
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Bind shader
 	m_Resources.m_Shaders["UI"].Use();
@@ -626,6 +649,101 @@ void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm
 
 	// Unbind shader
 	m_Resources.m_Shaders["UI"].UnUse();
+}
+
+void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts)
+{
+	// Bind shader
+	RenderResourceManager::GetInstanced().m_Shaders["Text"].Use();
+
+	// Bind vao
+	glBindVertexArray(m_VAO);
+
+	// Create the array to store vertice indexes
+	std::vector<GLushort> index = { 0,1,2,3,4,5 };
+
+	// Create a handle for ebo
+	GLuint ebo;
+	glCreateBuffers(1, &ebo);
+	glNamedBufferStorage(ebo, sizeof(GLushort) * index.size(), reinterpret_cast<GLvoid*>(index.data()), GL_DYNAMIC_STORAGE_BIT);
+
+	glVertexArrayElementBuffer(m_VAO, ebo);
+
+	glm::vec2 uv0{ 0.f, 1.f };
+	glm::vec2 uv1{ 0.f, 0.f };
+	glm::vec2 uv2{ 1.f, 0.f };
+	glm::vec2 uv3{ 1.f, 1.f };
+
+	for (const auto& fonttype : Texts)
+	{
+		std::string name{ fonttype.first };
+		auto& font = m_Resources.m_Fonts[name];
+
+		m_Resources.m_Shaders["Text"].SetUniform("uTextured", true);
+
+		// Bind font atlas
+		glBindTextureUnit(0, font.GetTexture());
+		m_Resources.m_Shaders["Text"].SetUniform("uFontAtlas", 0);
+		m_Resources.m_Shaders["Text"].SetUniform("uImageSize", static_cast<float>(font.GetImageSize()));
+
+		for (const auto& text : fonttype.second)
+		{
+			m_Resources.m_Shaders["Text"].SetUniform("uTransform", const_cast<glm::mat4&>(text.second));
+
+			float advance = 0;
+
+			for (size_t i = 0; i < text.first.size(); ++i)
+			{
+				const auto& letter = font.GetLetter(text.first[i]);
+
+				float xpos = (advance + letter.m_Offset.x) / m_Width;
+				float ypos = -(letter.m_LetterSize.y + letter.m_Offset.y) / m_Height;
+
+				float w = letter.m_LetterSize.x / m_Width;
+				float h = letter.m_LetterSize.y / m_Height;
+
+				glm::vec3 p0{ xpos, ypos, 0 };
+				glm::vec3 p1{ xpos + w, ypos, 0 };
+				glm::vec3 p2{ xpos, ypos + h, 0 };
+				glm::vec3 p3{ xpos + w, ypos + h, 0 };
+
+				std::vector<Model::Vertex> vertices;
+
+				vertices.push_back({ p2, glm::vec3{0,0,1}, uv1, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p0, glm::vec3{0,0,1}, uv0, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p1, glm::vec3{0,0,1}, uv3, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p2, glm::vec3{0,0,1}, uv1, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p1, glm::vec3{0,0,1}, uv3, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p3, glm::vec3{0,0,1}, uv2, glm::vec3{0}, glm::vec3{0} });
+
+				// Create a handle for vbo
+				GLuint vbo;
+				glCreateBuffers(1, &vbo);
+
+				// Set size of vbo
+				glNamedBufferStorage(vbo, sizeof(Model::Vertex) * vertices.size(), vertices.data(), GL_DYNAMIC_STORAGE_BIT);
+
+				glVertexArrayVertexBuffer(m_VAO, 0, vbo, 0, sizeof(Model::Vertex));
+
+				m_Resources.m_Shaders["Text"].SetUniform("uAtlasPosition", const_cast<glm::vec2&>(letter.m_LetterPosition));
+				m_Resources.m_Shaders["Text"].SetUniform("uAtlasSize", const_cast<glm::vec2&>(letter.m_LetterSize));
+
+				glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(index.size()), GL_UNSIGNED_SHORT, NULL);
+
+				glDeleteBuffers(1, &vbo);
+
+				advance += letter.m_Advance;
+			}
+		}
+	}
+
+	glDeleteBuffers(1, &ebo);
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	// Unbind shader
+	RenderResourceManager::GetInstanced().m_Shaders["Text"].UnUse();
 }
 
 void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)

@@ -165,6 +165,9 @@
     <ClInclude Include="Systems\TimerSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\OnEvent_UpdateHealth.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
     <ClInclude Include="Systems\PlayerSpawnerSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
@@ -189,26 +192,8 @@
     <ClInclude Include="Components\Name.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\UnitState.h">
+    <ClInclude Include="Components\Text.h">
       <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Waypointv1.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Player.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Shield.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\WaypointSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\WaypointTag.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h">
-      <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
