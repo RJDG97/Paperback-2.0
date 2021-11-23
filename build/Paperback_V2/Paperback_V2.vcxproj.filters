@@ -82,6 +82,9 @@
     <ClCompile Include="..\..\dependencies\dearImGui\ImGuiFileBrowser.cpp">
       <Filter>Dependencies\dearImGui\ImGuiFileBrowser</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Font\Font.cpp">
+      <Filter>Source\Tools\Functionality\Font</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -462,6 +465,9 @@
     <ClInclude Include="..\..\src\Details\paperback_statemgr_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Font\Font.h">
+      <Filter>Source\Tools\Functionality\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -553,6 +559,9 @@
     </Filter>
     <Filter Include="Dependencies\dearImGui\ImGuiFileBrowser">
       <UniqueIdentifier>{55f48a8f-b224-4ef4-a213-118c0cc60494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\Font">
+      <UniqueIdentifier>{c2e7d3f4-3992-4cbe-a68a-2e7fe25c91ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
