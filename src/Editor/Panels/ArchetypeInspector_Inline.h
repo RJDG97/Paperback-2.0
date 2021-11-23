@@ -112,6 +112,8 @@ void ArchetypeInspector::PrefabPanel()
 
                         if (ImGui::BeginPopupContextItem())
                         {
+                            //m_Imgui.m_pArchetype = Archetype;
+
                             if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE " Clone Prefab"))
                             {
                                 auto& EntityInfo = PPB.GetEntityInfo(Entity.m_GlobalIndex);
@@ -123,19 +125,39 @@ void ArchetypeInspector::PrefabPanel()
                             m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
 
 
-                            //if (ImGui::MenuItem(" Remove Prefab"))
-                            //{
-                            //    std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
+                            if (ImGui::MenuItem("Remove Prefab"))
+                            {
+                                std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
 
-                            //    ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
-                            //    PPB.AddOrRemoveComponents(Archetype->GetComponent
-                            //        <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {} , ComponentAddRemove);
+                                //Abandon all instances before removing the prefab component
+                                if (Prefab->m_ReferencePrefabGIDs.size())
+                                {
+                                    for (auto& Instance : Prefab->m_ReferencePrefabGIDs)
+                                    {
+                                        ComponentAddRemove[0] = &paperback::component::info_v<reference_prefab>;
+                                        auto& InstanceEntityInfo = PPB.GetEntityInfo(Instance);
 
-                            //    if (!m_Imgui.m_Components.empty())
-                            //        m_Imgui.UpdateComponents(Entity.m_GlobalIndex);
+                                        PPB.AddOrRemoveComponents(InstanceEntityInfo.m_pArchetype->GetComponent<paperback::component::entity>(InstanceEntityInfo.m_PoolDetails),
+                                                                 {}, ComponentAddRemove);
+                                    }
 
-                            //    EDITOR_WARN_PRINT("Removed Prefab Component from: " + Temp);
-                            //}
+                                    //clear the list
+                                    Prefab->m_ReferencePrefabGIDs.clear();
+                                }
+
+                                //Remove prefab component
+                                ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
+                                PPB.AddOrRemoveComponents(Archetype->GetComponent
+                                    <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {} , ComponentAddRemove);
+
+                                if (!m_Imgui.m_Components.empty())
+                                    m_Imgui.m_Components.clear();
+
+                                m_Imgui.m_pArchetype = nullptr;
+
+                                EDITOR_WARN_PRINT("Removed Prefab Component from: " + Temp);
+                            }
+
                             //m_Imgui.ImGuiHelp("Removes prefab component\n Instances will become normal entities");
 
                             ImGui::EndPopup();
