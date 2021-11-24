@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 26
+                "EntityHead": 36
             }
         },
         {
@@ -142,6 +142,139 @@
                     },
                     "Name": {
                         "Name": "DragonSpineSupport"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 27
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RockPaperScissorsIcon"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.30000001192092898,
+                            "y": 0.30000001192092898,
+                            "z": 0.30000001192092898
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.800000011920929,
+                            "y": -0.20000000298023225,
+                            "z": -0.4000000059604645
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            5691439207370049121,
+                            9604788041699812520,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 26
+                    },
+                    "Name": {
+                        "Name": "RPS"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 33
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PlayerHPBar"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.800000011920929,
+                            "y": 0.20000000298023225,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.5,
+                            "y": 0.800000011920929,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 32
+                    },
+                    "Name": {
+                        "Name": "PlayerHealthBar"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 35
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "EnemyHPBar"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.800000011920929,
+                            "y": 0.20000000298023225,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.5,
+                            "y": 0.800000011920929,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 34
+                    },
+                    "Name": {
+                        "Name": "EnemyHealthBar"
                     }
                 }
             ]
@@ -367,6 +500,135 @@
                     },
                     "Name": {
                         "Name": "DragonSpineSupport"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 26
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RedRockBlueScissors"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            27
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 7.463203430175781,
+                            "z": 22.137128829956056
+                        }
+                    },
+                    "Name": {
+                        "Name": "RPS"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 32
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PlayerHPBar"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.800000011920929,
+                            "y": 0.20000000298023225,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            33
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.5,
+                            "y": 0.800000011920929,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "PlayerHealthBar"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 34
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "EnemyHPBar"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.800000011920929,
+                            "y": 0.20000000298023225,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            35
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "EnemyHealthBar"
                     }
                 }
             ]
@@ -1354,183 +1616,6 @@
                         14486341741652966143,
                         8536778051349317767,
                         17008353085049151909,
-                        3617555656175080491,
-                        16415915133639986106,
-                        5786312103493353911,
-                        16062924579251041610
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 10
-                    },
-                    "Mesh": {
-                        "Model": "NationalStadium",
-                        "Texture": "NationalStadium_BaseColour.dds"
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            11
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -20.338958740234376,
-                            "y": 9.177729606628418,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Stadium"
-                    },
-                    "Enemy": {},
-                    "Base": {}
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        5786312103493353911,
-                        16062924579251041610
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 11
-                    },
-                    "Mesh": {
-                        "Model": "NationalStadium",
-                        "Texture": "NationalStadium_BaseColour.dds"
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -20.338958740234376,
-                            "y": 9.17773151397705,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 10
-                    },
-                    "Name": {
-                        "Name": "Stadium"
-                    },
-                    "Enemy": {},
-                    "Base": {}
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
                         1065973164513037885,
                         16415915133639986106,
                         11735907707121220559,
@@ -1665,19 +1750,479 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            17008353085049151909
+                            17008353085049151909,
+                            1065973164513037885
                         ],
                         "Prefab GID": 16
                     },
                     "Health": {
-                        "Current Health": 0,
-                        "Max Health": 0
+                        "Current Health": 10,
+                        "Max Health": 10
                     },
                     "Name": {
                         "Name": "HDB"
                     },
                     "Friendly": {},
                     "Base": {}
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        1065973164513037885,
+                        16415915133639986106,
+                        11735907707121220559,
+                        2661418819877430928
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 29
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PlayerHPBar_Fill"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.699999988079071,
+                            "y": 0.029999999329447748,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.44999998807907107,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 28
+                    },
+                    "Health": {
+                        "Current Health": 10,
+                        "Max Health": 10
+                    },
+                    "Name": {
+                        "Name": "PlayerHealth"
+                    },
+                    "Friendly": {},
+                    "HealthBar": {}
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        1065973164513037885,
+                        16415915133639986106,
+                        11735907707121220559,
+                        2661418819877430928
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 28
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PlayerHPBar_Fill"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.699999988079071,
+                            "y": 0.05000000074505806,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            29
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.07732677459716797,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Health": {
+                        "Current Health": 10,
+                        "Max Health": 10
+                    },
+                    "Name": {
+                        "Name": "PlayerHealth"
+                    },
+                    "Friendly": {},
+                    "HealthBar": {}
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        1065973164513037885,
+                        16415915133639986106,
+                        5786312103493353911,
+                        16062924579251041610
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 11
+                    },
+                    "Mesh": {
+                        "Model": "NationalStadium",
+                        "Texture": "NationalStadium_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -20.338958740234376,
+                            "y": 9.17773151397705,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 10
+                    },
+                    "Health": {
+                        "Current Health": 0,
+                        "Max Health": 0
+                    },
+                    "Name": {
+                        "Name": "Stadium"
+                    },
+                    "Enemy": {},
+                    "Base": {}
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        3617555656175080491,
+                        1065973164513037885,
+                        16415915133639986106,
+                        5786312103493353911,
+                        16062924579251041610
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 10
+                    },
+                    "Mesh": {
+                        "Model": "NationalStadium",
+                        "Texture": "NationalStadium_BaseColour.dds"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            11
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -20.338958740234376,
+                            "y": 9.177729606628418,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Health": {
+                        "Current Health": 0,
+                        "Max Health": 0
+                    },
+                    "Name": {
+                        "Name": "Stadium"
+                    },
+                    "Enemy": {},
+                    "Base": {}
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        1065973164513037885,
+                        16415915133639986106,
+                        5786312103493353911,
+                        2661418819877430928
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 30
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "EnemyHPBar_Fill"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.800000011920929,
+                            "y": 0.029999999329447748,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            31
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Health": {
+                        "Current Health": 0,
+                        "Max Health": 0
+                    },
+                    "Name": {
+                        "Name": "EnemyHealth"
+                    },
+                    "Enemy": {},
+                    "HealthBar": {}
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        1065973164513037885,
+                        16415915133639986106,
+                        5786312103493353911,
+                        2661418819877430928
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 31
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "EnemyHPBar_Fill"
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.699999988079071,
+                            "y": 0.029999999329447748,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.44999998807907107,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 30
+                    },
+                    "Health": {
+                        "Current Health": 0,
+                        "Max Health": 0
+                    },
+                    "Name": {
+                        "Name": "EnemyHealth"
+                    },
+                    "Enemy": {},
+                    "HealthBar": {}
                 }
             ]
         }
