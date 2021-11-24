@@ -21,7 +21,11 @@ struct onevent_ReferencePrefabDeleted_system : paperback::system::instance
     void OnEvent(const reference_prefab& RefPrefab, const paperback::u32& InstanceGID) noexcept
     {
         auto& PrefabInfo = GetEntityInfo(RefPrefab.m_PrefabGID);
-        auto& Prefab = PrefabInfo.m_pArchetype->GetComponent<prefab>(PrefabInfo.m_PoolDetails);
-        Prefab.RemovePrefabInstance(InstanceGID);
+
+        if ( PrefabInfo.m_pArchetype )
+        {
+            auto& Prefab = PrefabInfo.m_pArchetype->GetComponent<prefab>(PrefabInfo.m_PoolDetails);
+            Prefab.RemovePrefabInstance(InstanceGID);
+        }
     }
 };
