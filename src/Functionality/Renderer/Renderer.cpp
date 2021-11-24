@@ -831,7 +831,7 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 	glm::mat4 projection = Camera3D::GetInstanced().GetProjection();
 	glm::vec3 position = Camera3D::GetInstanced().GetPosition();
 
-	m_Resources.m_Shaders["Light"].SetUniform("uShadowBias", 0.05f);
+	//m_Resources.m_Shaders["Light"].SetUniform("uShadowBias", 0.05f);
 
 	m_Resources.m_Shaders["Light"].SetUniform("uView", const_cast<glm::mat4&>(view));
 	m_Resources.m_Shaders["Light"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
