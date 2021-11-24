@@ -70,6 +70,7 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Skybox", "../../resources/shaders/Skybox.vert", "../../resources/shaders/Skybox.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 	m_Resources.LoadShader("UI", "../../resources/shaders/UI.vert", "../../resources/shaders/UI.frag");
+	m_Resources.LoadShader("Text", "../../resources/shaders/Text.vert", "../../resources/shaders/Text.frag");
 
 	m_Resources.Load3DMeshNUI("RedUnitAnimated", "../../resources/models/nui/RedUnitAnimated.nui");
 	m_Resources.Load3DMeshNUI("BlueUnitAnimated", "../../resources/models/nui/BlueUnitAnimated.nui");
@@ -113,6 +114,42 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("DragonHead", "../../resources/models/nui/DragonHead.nui");
 	m_Resources.Load3DMeshNUI("BottomPath", "../../resources/models/nui/BottomPath.nui");
 
+	m_Resources.Load3DMeshNUI("Railing", "../../resources/models/nui/Railing.nui");
+
+	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
+
+	// Cards
+	m_Resources.LoadTextures("CardBack", "../../resources/textures/UI/Cards/CardBack.dds", true);
+	m_Resources.LoadTextures("PaperWeapon_PaperShield", "../../resources/textures/UI/Cards/PaperWeapon_PaperShield.dds", true);
+	m_Resources.LoadTextures("RockWeapon_RockShield", "../../resources/textures/UI/Cards/RockWeapon_RockShield.dds", true);
+	m_Resources.LoadTextures("ScissorsWeapon_ScissorsShield", "../../resources/textures/UI/Cards/ScissorsWeapon_ScissorsShield.dds", true);
+
+	// Health Bars
+		// Enemy
+	m_Resources.LoadTextures("EnemyHPBar", "../../resources/textures/UI/HealthBars/EnemyHPBar.dds", true);
+	m_Resources.LoadTextures("EnemyHPBar_Background", "../../resources/textures/UI/HealthBars/EnemyHPBar_Background.dds", true);
+	m_Resources.LoadTextures("EnemyHPBar_Fill", "../../resources/textures/UI/HealthBars/EnemyHPBar_Fill.dds", true);
+	
+		// Player
+	m_Resources.LoadTextures("PlayerHPBar", "../../resources/textures/UI/HealthBars/PlayerHPBar.dds", true);
+	m_Resources.LoadTextures("PlayerHPBar_Background", "../../resources/textures/UI/HealthBars/PlayerHPBar_Background.dds", true);
+	m_Resources.LoadTextures("PlayerHPBar_Fill", "../../resources/textures/UI/HealthBars/PlayerHPBar_Fill.dds", true);
+
+	// RPS Icons
+	m_Resources.LoadTextures("BluePaperRedRock", "../../resources/textures/UI/RPSStatusIcons/BluePaperRedRock.dds", true);
+	m_Resources.LoadTextures("BlueRockRedScissors", "../../resources/textures/UI/RPSStatusIcons/BlueRockRedScissors.dds", true);
+	m_Resources.LoadTextures("BlueScissorsRedPaper", "../../resources/textures/UI/RPSStatusIcons/BlueScissorsRedPaper.dds", true);
+	m_Resources.LoadTextures("NeutralPaper", "../../resources/textures/UI/RPSStatusIcons/NeutralPaper.dds", true);
+	m_Resources.LoadTextures("NeutralRock", "../../resources/textures/UI/RPSStatusIcons/NeutralRock.dds", true);
+	m_Resources.LoadTextures("NeutralScissors", "../../resources/textures/UI/RPSStatusIcons/NeutralScissors.dds", true);
+	m_Resources.LoadTextures("RedBannerPaperPaper", "../../resources/textures/UI/RPSStatusIcons/RedBannerPaperPaper.dds", true);
+	m_Resources.LoadTextures("RedBannerRockRock", "../../resources/textures/UI/RPSStatusIcons/RedBannerRockRock.dds", true);
+	m_Resources.LoadTextures("RedBannerScissorsScissors", "../../resources/textures/UI/RPSStatusIcons/RedBannerScissorsScissors.dds", true);
+	m_Resources.LoadTextures("RedPaperBlueRock", "../../resources/textures/UI/RPSStatusIcons/RedPaperBlueRock.dds", true);
+	m_Resources.LoadTextures("RedRockBlueScissors", "../../resources/textures/UI/RPSStatusIcons/RedRockBlueScissors.dds", true);
+	m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
+	m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
+
 	// Enable alpha blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -123,12 +160,9 @@ Renderer::Renderer() :
 	// Enable face cullling
 	glEnable(GL_CULL_FACE);
 
-	// Set up framebuffers
-	//SetUpFramebuffer();
-
 	m_Light.m_Position = glm::vec3{ 1.f, 1.f, 1.f };
 	m_Light.m_Direction = glm::normalize(glm::vec3{ 0.f } - m_Light.m_Position);
-	m_Light.m_Projection = glm::ortho(-50.f, 50.f, -50.f, 50.f, -50.f, 50.f);
+	m_Light.m_Projection = glm::ortho(-20.f, 20.f, -20.f, 20.f, -20.f, 20.f);
 	m_Light.m_View = glm::lookAt(m_Light.m_Position, glm::vec3{ 0.f }, glm::vec3{ 0.f, 1.f, 0.f });
 	m_Light.m_Transform = m_Light.m_Projection * m_Light.m_View;
 }
@@ -150,6 +184,7 @@ Renderer::~Renderer()
 
 	glDeleteFramebuffers( static_cast<GLsizei>( m_UIBuffer.m_FrameBuffer.size() ), m_UIBuffer.m_FrameBuffer.data());
 	glDeleteTextures( static_cast<GLsizei>( m_UIBuffer.m_BufferTexture.size() ), m_UIBuffer.m_BufferTexture.data());
+	glDeleteRenderbuffers(1, &m_UIBuffer.m_RenderBuffer);
 
 	glDeleteFramebuffers( static_cast<GLsizei>( m_FinalBuffer.m_FrameBuffer.size() ), m_FinalBuffer.m_FrameBuffer.data());
 	glDeleteTextures( static_cast<GLsizei>( m_FinalBuffer.m_BufferTexture.size() ), m_FinalBuffer.m_BufferTexture.data());
@@ -264,8 +299,15 @@ void Renderer::SetUpFramebuffer(int Width, int Height)
 	// Attach texture to framebuffer
 	glNamedFramebufferTexture(uiFbo, GL_COLOR_ATTACHMENT0, uiTexture, 0);
 
+	// Create ui render buffer 
+	GLuint uiRbo;
+	glCreateRenderbuffers(1, &uiRbo);
+	glNamedRenderbufferStorage(uiRbo, GL_DEPTH_COMPONENT32F, Width, Height);
+	glNamedFramebufferRenderbuffer(uiFbo, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, uiRbo);
+
 	m_UIBuffer.m_FrameBuffer.push_back(uiFbo);
 	m_UIBuffer.m_BufferTexture.push_back(uiTexture);
+	m_UIBuffer.m_RenderBuffer = uiRbo;
 
 	// Create final framebuffer
 	GLuint finalFbo;
@@ -359,6 +401,37 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 		m_BlurBuffer.m_BufferTexture.push_back(blurTexture[i]);
 	}
 
+	// Delete old ui buffer textures
+	glDeleteTextures(static_cast<GLsizei>(m_UIBuffer.m_BufferTexture.size()), m_UIBuffer.m_BufferTexture.data());
+	m_UIBuffer.m_BufferTexture.clear();
+
+	// Delete old ui buffer rbo
+	glDeleteRenderbuffers(1, &m_UIBuffer.m_RenderBuffer);
+	m_UIBuffer.m_RenderBuffer = 0;
+
+	// Create ui texture
+	GLuint uiTexture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &uiTexture);
+
+	glTextureStorage2D(uiTexture, 1, GL_RGBA16F, Width, Height);
+	glTextureParameteri(uiTexture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTextureParameteri(uiTexture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTextureParameteri(uiTexture, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTextureParameteri(uiTexture, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	// Attach texture to framebuffer
+	glNamedFramebufferTexture(m_UIBuffer.m_FrameBuffer[0], GL_COLOR_ATTACHMENT0, uiTexture, 0);
+
+	// Add texture to framebuffer object
+	m_UIBuffer.m_BufferTexture.push_back(uiTexture);
+
+	// Create ui render buffer 
+	GLuint uiRbo;
+	glCreateRenderbuffers(1, &uiRbo);
+	glNamedRenderbufferStorage(uiRbo, GL_DEPTH_COMPONENT32F, Width, Height);
+	glNamedFramebufferRenderbuffer(m_UIBuffer.m_FrameBuffer[0], GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, uiRbo);
+	m_UIBuffer.m_RenderBuffer = uiRbo;
+
 	// Delete old final buffer textures
 	glDeleteTextures(static_cast<GLsizei>(m_FinalBuffer.m_BufferTexture.size()), m_FinalBuffer.m_BufferTexture.data());
 	m_FinalBuffer.m_BufferTexture.clear();
@@ -393,11 +466,12 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
 	UIPass(UIs);
+	TextPass(Texts);
 
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -523,7 +597,7 @@ void Renderer::SkyBoxRender()
 void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs)
 {
 	// Clear depth and color buffer
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Bind shader
 	m_Resources.m_Shaders["UI"].Use();
@@ -574,6 +648,101 @@ void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm
 
 	// Unbind shader
 	m_Resources.m_Shaders["UI"].UnUse();
+}
+
+void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts)
+{
+	// Bind shader
+	RenderResourceManager::GetInstanced().m_Shaders["Text"].Use();
+
+	// Bind vao
+	glBindVertexArray(m_VAO);
+
+	// Create the array to store vertice indexes
+	std::vector<GLushort> index = { 0,1,2,3,4,5 };
+
+	// Create a handle for ebo
+	GLuint ebo;
+	glCreateBuffers(1, &ebo);
+	glNamedBufferStorage(ebo, sizeof(GLushort) * index.size(), reinterpret_cast<GLvoid*>(index.data()), GL_DYNAMIC_STORAGE_BIT);
+
+	glVertexArrayElementBuffer(m_VAO, ebo);
+
+	glm::vec2 uv0{ 0.f, 1.f };
+	glm::vec2 uv1{ 0.f, 0.f };
+	glm::vec2 uv2{ 1.f, 0.f };
+	glm::vec2 uv3{ 1.f, 1.f };
+
+	for (const auto& fonttype : Texts)
+	{
+		std::string name{ fonttype.first };
+		auto& font = m_Resources.m_Fonts[name];
+
+		m_Resources.m_Shaders["Text"].SetUniform("uTextured", true);
+
+		// Bind font atlas
+		glBindTextureUnit(0, font.GetTexture());
+		m_Resources.m_Shaders["Text"].SetUniform("uFontAtlas", 0);
+		m_Resources.m_Shaders["Text"].SetUniform("uImageSize", static_cast<float>(font.GetImageSize()));
+
+		for (const auto& text : fonttype.second)
+		{
+			m_Resources.m_Shaders["Text"].SetUniform("uTransform", const_cast<glm::mat4&>(text.second));
+
+			float advance = 0;
+
+			for (size_t i = 0; i < text.first.size(); ++i)
+			{
+				const auto& letter = font.GetLetter(text.first[i]);
+
+				float xpos = (advance + letter.m_Offset.x) / m_Width;
+				float ypos = -(letter.m_LetterSize.y + letter.m_Offset.y) / m_Height;
+
+				float w = letter.m_LetterSize.x / m_Width;
+				float h = letter.m_LetterSize.y / m_Height;
+
+				glm::vec3 p0{ xpos, ypos, 0 };
+				glm::vec3 p1{ xpos + w, ypos, 0 };
+				glm::vec3 p2{ xpos, ypos + h, 0 };
+				glm::vec3 p3{ xpos + w, ypos + h, 0 };
+
+				std::vector<Model::Vertex> vertices;
+
+				vertices.push_back({ p2, glm::vec3{0,0,1}, uv1, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p0, glm::vec3{0,0,1}, uv0, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p1, glm::vec3{0,0,1}, uv3, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p2, glm::vec3{0,0,1}, uv1, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p1, glm::vec3{0,0,1}, uv3, glm::vec3{0}, glm::vec3{0} });
+				vertices.push_back({ p3, glm::vec3{0,0,1}, uv2, glm::vec3{0}, glm::vec3{0} });
+
+				// Create a handle for vbo
+				GLuint vbo;
+				glCreateBuffers(1, &vbo);
+
+				// Set size of vbo
+				glNamedBufferStorage(vbo, sizeof(Model::Vertex) * vertices.size(), vertices.data(), GL_DYNAMIC_STORAGE_BIT);
+
+				glVertexArrayVertexBuffer(m_VAO, 0, vbo, 0, sizeof(Model::Vertex));
+
+				m_Resources.m_Shaders["Text"].SetUniform("uAtlasPosition", const_cast<glm::vec2&>(letter.m_LetterPosition));
+				m_Resources.m_Shaders["Text"].SetUniform("uAtlasSize", const_cast<glm::vec2&>(letter.m_LetterSize));
+
+				glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(index.size()), GL_UNSIGNED_SHORT, NULL);
+
+				glDeleteBuffers(1, &vbo);
+
+				advance += letter.m_Advance;
+			}
+		}
+	}
+
+	glDeleteBuffers(1, &ebo);
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	// Unbind shader
+	RenderResourceManager::GetInstanced().m_Shaders["Text"].UnUse();
 }
 
 void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
@@ -661,8 +830,6 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 	glm::mat4 projection = Camera3D::GetInstanced().GetProjection();
 	glm::vec3 position = Camera3D::GetInstanced().GetPosition();
 
-	m_Resources.m_Shaders["Light"].SetUniform("uShadowBias", 0.05f);
-
 	m_Resources.m_Shaders["Light"].SetUniform("uView", const_cast<glm::mat4&>(view));
 	m_Resources.m_Shaders["Light"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
 	m_Resources.m_Shaders["Light"].SetUniform("uCameraPosition", const_cast<glm::vec3&>(position));
@@ -683,6 +850,7 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 		for (const auto& instance : model.second)
 		{
 			m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
+			m_Resources.m_Shaders["Light"].SetUniform("uShadowBias", static_cast<float>(instance.m_ShadowBias));
 
 			if (instance.m_BoneTransforms)
 			{

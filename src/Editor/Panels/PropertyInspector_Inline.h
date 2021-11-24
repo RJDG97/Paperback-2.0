@@ -224,7 +224,7 @@ void DetailsWindow::RemoveComponent()
 
 void DetailsWindow::ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid)
 {
-    size_t InstCount;
+    size_t InstCount = 0;
     auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
 
     if (Parent)
@@ -241,7 +241,7 @@ void DetailsWindow::ParentComponent(prefab* Prefab, reference_prefab* ReferenceP
         if (Prefab)
             InstCount = Prefab->m_ReferencePrefabGIDs.size() ? Prefab->m_ReferencePrefabGIDs.size() : 0;
         
-        if (!InstCount) //There are no instances in the world
+        if ((Prefab && !InstCount) || !ReferencePrefab) //Selected Entity is a prefab & has no instances in the world OR isnt a ref prefab
             ChildCombo(Prefab, ReferencePrefab, CompGuid);
     }
 }

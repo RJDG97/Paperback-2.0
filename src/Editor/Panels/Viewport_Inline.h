@@ -241,7 +241,7 @@ void EditorViewport::ComposeTransform()
 			Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
 	}
 
-	if (PrevTrans != bTrans->m_Position)
+	if (bTrans && PrevTrans != bTrans->m_Position)
 	{
 		if (Prefab)
 		{
@@ -255,10 +255,9 @@ void EditorViewport::ComposeTransform()
 
 		if (RefPrefab)
 			RefPrefab->AddModifiedComponentGuid(paperback::component::info_v<transform>.m_Guid.m_Value);
-
 	}
 
-	if (PrevRotate != bRot->m_Value)
+	if (bRot && PrevRotate != bRot->m_Value)
 	{
 		if (Prefab)
 		{
@@ -274,7 +273,7 @@ void EditorViewport::ComposeTransform()
 			RefPrefab->AddModifiedComponentGuid(paperback::component::info_v<rotation>.m_Guid.m_Value);
 	}
 
-	if (PrevScale != bScale->m_Value)
+	if (bScale && PrevScale != bScale->m_Value)
 	{
 		if (Prefab)
 		{

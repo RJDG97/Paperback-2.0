@@ -114,6 +114,8 @@ void ArchetypeInspector::PrefabPanel()
 
                         if (ImGui::BeginPopupContextItem())
                         {
+                            //m_Imgui.m_pArchetype = Archetype;
+
                             if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE " Clone Prefab"))
                             {
                                 auto& EntityInfo = PPB.GetEntityInfo(Entity.m_GlobalIndex);

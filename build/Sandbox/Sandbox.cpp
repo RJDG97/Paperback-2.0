@@ -93,7 +93,11 @@ void InitializeGame()
         ,    friendly_spawner // Tag
         ,    enemy_spawner    // Tag
         ,    player           // Tag
+        ,    base             // Tag
+        ,    healthbar        // Tag
+        ,    unit             // Tag
         ,    waypoint_tag
+        ,    text
         >();
     }
 
@@ -114,14 +118,18 @@ void InitializeGame()
         ,   enemy_spawner_system
         ,   timer_system
         ,   waypoint_system
+        ,   health_system
         >();
 
         PPB.RegisterSystems <
             onevent_UnitTrigger_system
         ,   onevent_UnitTriggerStay_system
         ,   onevent_UnitTriggerExit_system
+        ,   onevent_NoHealth_system
+        ,   onevent_UpdateHealth_system
         ,   onevent_ParentDeleted_system
         ,   onevent_ChildDeleted_system
+        ,   onevent_ReferencePrefabDeleted_system
         >();
     }
     // Entity Creation

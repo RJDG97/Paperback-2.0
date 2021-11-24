@@ -26,6 +26,9 @@
     <Filter Include="Source Files\Systems\Details\Event">
       <UniqueIdentifier>{06096dbf-5745-486c-b75f-43abf82640be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Components\Details\Tags">
+      <UniqueIdentifier>{3e613674-9a12-413c-9c6b-c11bd41949f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sandbox.cpp">
@@ -174,12 +177,6 @@
     <ClInclude Include="Components\Counter.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Friendly.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Enemy.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="Components\FriendlySpawner.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
@@ -195,9 +192,6 @@
     <ClInclude Include="Components\Waypointv1.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Player.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Shield.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
@@ -208,6 +202,30 @@
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Friendly.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Enemy.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Player.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\HealthBar.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Base.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\HealthSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Unit.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\OnEvent_HealthSystem.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
   </ItemGroup>
