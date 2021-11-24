@@ -21,6 +21,6 @@ namespace RR_Mesh
 			.constructor()( rttr::policy::ctor::as_object )
 			.property( "Model", &mesh::m_Model )
 			.property( "Texture", &mesh::m_Texture )
-			.property( "Shadow Bias", &mesh::m_Bias );
+			.property( "Shadow Bias", &mesh::m_Bias )(rttr::policy::prop::as_reference_wrapper);
 	}
 }

@@ -118,6 +118,10 @@ namespace paperback::archetype
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
 
+        PPB_INLINE
+        void SerializePrefabEntity( paperback::JsonFile& Jfile, u32 Index ) noexcept;
+
+
         //-----------------------------------
         //       Data Member Getters
         //-----------------------------------

@@ -180,112 +180,57 @@ void EditorViewport::ComposeTransform()
 	glm::mat4 CameraProjection = Camera3D::GetInstanced().GetProjection();
 
 	auto EntityDetails = paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second });
-	auto& Entity = m_Imgui.m_SelectedEntity.first->GetComponent<paperback::component::entity>(EntityDetails);
+
 	auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(EntityDetails);
-	auto RefPrefab = m_Imgui.m_SelectedEntity.first->FindComponent<reference_prefab>(EntityDetails);
 
 	auto bTrans = m_Imgui.m_SelectedEntity.first->FindComponent<transform>(EntityDetails);
 	auto bRot = m_Imgui.m_SelectedEntity.first->FindComponent<rotation>(EntityDetails);
 	auto bScale = m_Imgui.m_SelectedEntity.first->FindComponent<scale>(EntityDetails);
-	auto bChild = m_Imgui.m_SelectedEntity.first->FindComponent<child>(EntityDetails);
-
-
-	if (bTrans) //for normal entities
+	
+	if (!Prefab) //Gizmo only shows for non prefab entities
 	{
-		model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
-		PrevTrans = bTrans->m_Position;
-	}
+		if (bTrans) //for normal entities
+			model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
 
-	if (bRot)
-	{
-		model = glm::rotate(model, glm::radians(bRot->m_Value.x), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-		model = glm::rotate(model, glm::radians(bRot->m_Value.y), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-		model = glm::rotate(model, glm::radians(bRot->m_Value.z), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-
-		PrevRotate = bRot->m_Value;
-	}
-	else
-	{
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-	}
-
-	if (bScale)
-	{
-		model = glm::scale(model, glm::vec3(bScale->m_Value.x, bScale->m_Value.y, bScale->m_Value.z));
-		PrevScale = bScale->m_Value;
-	}
-	else
-		model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
-
-	ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
-
-	if (ImGuizmo::IsUsing())
-	{
-		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
-
-		if (bTrans)
-			Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
-
-		//if (bRot)
-		//{
-		//	glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
-
-		//	bRot->m_Value.x += TempRot.x;
-		//	bRot->m_Value.y += TempRot.y;
-		//	bRot->m_Value.z += TempRot.z;
-		//}
+		if (bRot)
+		{
+			model = glm::rotate(model, glm::radians(bRot->m_Value.x), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
+			model = glm::rotate(model, glm::radians(bRot->m_Value.y), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
+			model = glm::rotate(model, glm::radians(bRot->m_Value.z), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
+		}
+		else
+		{
+			model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
+		}
 
 		if (bScale)
-			Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
-	}
+			model = glm::scale(model, glm::vec3(bScale->m_Value.x, bScale->m_Value.y, bScale->m_Value.z));
 
-	if (bTrans && PrevTrans != bTrans->m_Position)
-	{
-		if (Prefab)
+		else
+			model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
+
+		ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
+
+		if (ImGuizmo::IsUsing())
 		{
-			if (Prefab->m_ReferencePrefabGIDs.size())
-			{
-				std::byte* b = m_Imgui.m_SelectedEntity.first->FindComponent(EntityDetails, paperback::component::info_v<transform>.m_Guid);
-				const auto& ComponentInfo = *PPB.FindComponentInfo(paperback::component::info_v<transform>.m_Guid);
-				ComponentInfo.m_UpdateInstances(b, EntityDetails, m_Imgui.m_SelectedEntity.first);
-			}
+			Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
+
+			if (bTrans)
+				Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
+
+			//if (bRot)
+			//{
+			//	glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
+
+			//	bRot->m_Value.x += TempRot.x;
+			//	bRot->m_Value.y += TempRot.y;
+			//	bRot->m_Value.z += TempRot.z;
+			//}
+
+			if (bScale)
+				Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
 		}
-
-		if (RefPrefab)
-			RefPrefab->AddModifiedComponentGuid(paperback::component::info_v<transform>.m_Guid.m_Value);
-	}
-
-	if (bRot && PrevRotate != bRot->m_Value)
-	{
-		if (Prefab)
-		{
-			if (Prefab->m_ReferencePrefabGIDs.size())
-			{
-				std::byte* b = m_Imgui.m_SelectedEntity.first->FindComponent(EntityDetails, paperback::component::info_v<rotation>.m_Guid);
-				const auto& ComponentInfo = *PPB.FindComponentInfo(paperback::component::info_v<rotation>.m_Guid);
-				ComponentInfo.m_UpdateInstances(b, EntityDetails, m_Imgui.m_SelectedEntity.first);
-			}
-		}
-
-		if (RefPrefab)
-			RefPrefab->AddModifiedComponentGuid(paperback::component::info_v<rotation>.m_Guid.m_Value);
-	}
-
-	if (bScale && PrevScale != bScale->m_Value)
-	{
-		if (Prefab)
-		{
-			if (Prefab->m_ReferencePrefabGIDs.size())
-			{
-				std::byte* b = m_Imgui.m_SelectedEntity.first->FindComponent(EntityDetails, paperback::component::info_v<scale>.m_Guid);
-				const auto& ComponentInfo = *PPB.FindComponentInfo(paperback::component::info_v<scale>.m_Guid);
-				ComponentInfo.m_UpdateInstances(b, EntityDetails, m_Imgui.m_SelectedEntity.first);
-			}
-		}
-
-		if (RefPrefab)
-			RefPrefab->AddModifiedComponentGuid(paperback::component::info_v<scale>.m_Guid.m_Value);
 	}
 }

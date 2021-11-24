@@ -256,11 +256,10 @@ namespace paperback::coordinator
 
 		//Serialize Components
 
-		PrefabArchetype->SerializeAllEntities(JFile);
+		PrefabArchetype->SerializePrefabEntity(JFile, Index);
 		JFile.EndArray().EndObject();
 
 		JFile.EndArray().EndObject().EndWriter();
-
 	}
 
 

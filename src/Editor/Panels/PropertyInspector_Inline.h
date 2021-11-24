@@ -63,26 +63,25 @@ void DetailsWindow::DisplayProperties()
 
                         if ((PropertyType.get_wrapped_type() == rttr::type::get< std::string >() ||
                             PropertyType == rttr::type::get< std::string>()) &&
-                            ComponentInstance.first.get_type().get_name().to_string() != "Mesh" &&
-                            ComponentInstance.first.get_type().get_name().to_string() != "Socketed" &&
-                            ComponentInstance.first.get_type().get_name().to_string() != "Animator")
+                            ComponentInstance.second != paperback::component::info_v< mesh >.m_Guid &&
+                            ComponentInstance.second != paperback::component::info_v< socketed >.m_Guid &&
+                            ComponentInstance.second != paperback::component::info_v< animator >.m_Guid)
 
                             m_Imgui.DisplayStringType(PropertyName, PropertyType, PropertyValue);
 
                         if (PropertyType.is_class())
                             m_Imgui.DisplayClassType(PropertyName, PropertyType, PropertyValue);
 
-                        if (ComponentInstance.first.get_type().get_name().to_string() == "Parent" )
+                        if (ComponentInstance.second == paperback::component::info_v< parent >.m_Guid)
                             ParentComponent(Prefab, ReferencePrefab, ComponentInstance.second);
 
-                        if (ComponentInstance.first.get_type().get_name().to_string() == "Prefab")
+                        if (ComponentInstance.second == paperback::component::info_v< prefab >.m_Guid)
                             PrefabComponent();
-
 
                         if (Prefab)
                         {
-                            if (ImGui::IsItemEdited() && ComponentInstance.second.m_Value != paperback::component::info_v< prefab >.m_Guid.m_Value
-                                && ComponentInstance.second.m_Value != paperback::component::info_v< paperback::component::entity >.m_Guid.m_Value) //Dont update the prefab component & entity component
+                            if (ImGui::IsItemEdited() && ComponentInstance.second != paperback::component::info_v< prefab >.m_Guid
+                                && ComponentInstance.second != paperback::component::info_v< paperback::component::entity >.m_Guid) //Dont update the prefab component & entity component
                             {
                                 if (Prefab->m_ReferencePrefabGIDs.size())
                                 {
@@ -95,19 +94,19 @@ void DetailsWindow::DisplayProperties()
 
                         if (ReferencePrefab)
                         {
-                            if (ImGui::IsItemEdited() && ComponentInstance.second.m_Value != paperback::component::info_v< prefab >.m_Guid.m_Value
-                                && ComponentInstance.second.m_Value != paperback::component::info_v< paperback::component::entity >.m_Guid.m_Value) //Dont update the prefab component & entity component
+                            if (ImGui::IsItemEdited() && ComponentInstance.second != paperback::component::info_v< prefab >.m_Guid
+                                && ComponentInstance.second != paperback::component::info_v< paperback::component::entity >.m_Guid) //Dont update the prefab component & entity component
                                 ReferencePrefab->AddModifiedComponentGuid(ComponentInstance.second.m_Value);
 
                             //if have reset button -> Call ResetModifiedComponentGuid
                         }
                     }
 
-                    if (ComponentInstance.first.get_type().get_name().to_string() == "Mesh")
+                    if (ComponentInstance.second == paperback::component::info_v< mesh >.m_Guid)
                         MeshCombo(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second);
-                    if (ComponentInstance.first.get_type().get_name().to_string() == "Animator")
+                    if (ComponentInstance.second == paperback::component::info_v< animator >.m_Guid)
                         AnimatorComponent(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second);
-                    if (ComponentInstance.first.get_type().get_name().to_string() == "Socketed")
+                    if (ComponentInstance.second == paperback::component::info_v< socketed >.m_Guid)
                         SocketedComponent(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second);
                 }
             }

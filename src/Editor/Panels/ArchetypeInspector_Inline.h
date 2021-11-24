@@ -164,7 +164,10 @@ void ArchetypeInspector::PrefabPanel()
 
                             if (ImGui::MenuItem(ICON_FA_SAVE " Save this prefab"))
                             {
+                                m_Imgui.m_SelectedEntity.first = Archetype;
+                                m_Imgui.m_SelectedEntity.second = i;
 
+                                m_Imgui.m_Type = FileActivity::SAVEINDIVIDUALPREFAB;
                             }
 
                             m_Imgui.ImGuiHelp("Saves the selected prefab");

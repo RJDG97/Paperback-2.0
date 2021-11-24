@@ -309,6 +309,13 @@ namespace paperback::archetype
             }
     }
 
+    void instance::SerializePrefabEntity( paperback::JsonFile& Jfile, u32 Index ) noexcept
+    {
+        Jfile.StartObject();
+        m_ComponentPool[0].SerializePoolComponentsAtEntityIndex(Index, Jfile);
+        Jfile.EndObject();
+    }
+
     //-----------------------------------
     //             Getters
     //-----------------------------------

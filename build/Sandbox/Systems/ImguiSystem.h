@@ -38,6 +38,7 @@ enum FileActivity
     OPENSCENE,
     OPENFROMASSET,
     SAVEPREFAB,
+    SAVEINDIVIDUALPREFAB,
     LOADPREFAB,
     LOADFROMASSET,
     EXIT
@@ -77,7 +78,7 @@ struct imgui_system : paperback::system::instance
     FileActivity m_Type = FileActivity::NONE;
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
-    bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck, m_bLoadPrefab, m_bSavePrefab;
+    bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck, m_bLoadPrefab, m_bSavePrefab, m_bSaveIndiPrefab;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -132,7 +133,7 @@ struct imgui_system : paperback::system::instance
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 
         m_bImgui = true;
-        m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = false;
+        m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = m_bSaveIndiPrefab = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
 
         m_Log.Init(); //Init ImTerm (Console)
@@ -230,7 +231,7 @@ struct imgui_system : paperback::system::instance
     }
 
     PPB_INLINE
-        void OnSystemTerminated(void) noexcept
+    void OnSystemTerminated(void) noexcept
     {
         PanelMapClear();
 
@@ -306,7 +307,9 @@ struct imgui_system : paperback::system::instance
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
+    //-----------------------------------
+    //        Editor Functions
+    //-----------------------------------
 
     void EditorMenuBar()
     {
@@ -344,10 +347,10 @@ struct imgui_system : paperback::system::instance
                     m_bFileSaveAs = true;
                 }
 
-                if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
-                {
-                    //TBC
-                }
+                //if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
+                //{
+                //    //TBC
+                //}
 
                 ImGui::EndMenu();
             }
@@ -446,7 +449,14 @@ struct imgui_system : paperback::system::instance
             if (FilePath.find(".prefab") == std::string::npos)
                 FilePath.append(".prefab");
 
-            PPB.SavePrefabs(FilePath);
+            if (m_bSaveIndiPrefab)
+            {
+                PPB.SaveIndividualPrefab(FilePath, m_SelectedEntity.first, m_SelectedEntity.second);
+                m_bSaveIndiPrefab = false;
+            }
+            else
+                PPB.SavePrefabs(FilePath);
+
             m_bSavePrefab = false;
         }
 
@@ -586,21 +596,14 @@ struct imgui_system : paperback::system::instance
         {
         case FileActivity::SAVEPREFAB:
         {
-            //if (!m_LoadedPrefabPath.empty())
-            //{
-            //    PPB.SavePrefabs(m_LoadedPrefabFile);
-            //    EDITOR_TRACE_PRINT(m_LoadedPrefabFile + " Saved at: " + m_LoadedPrefabPath);
-
-            //    m_Type = FileActivity::NONE;
-            //}
-            //else
-            //{
-            //    m_bSavePrefab = true;
-            //    m_bFileSaveAs = true;
-            //    m_Type = FileActivity::NONE;
-
-            //}
-
+            m_bSavePrefab = true;
+            m_bFileSaveAs = true;
+            m_Type = FileActivity::NONE;
+        }
+        break;
+        case FileActivity::SAVEINDIVIDUALPREFAB:
+        {
+            m_bSaveIndiPrefab = true;
             m_bSavePrefab = true;
             m_bFileSaveAs = true;
             m_Type = FileActivity::NONE;
@@ -683,7 +686,6 @@ struct imgui_system : paperback::system::instance
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
             ImGui::Text("%d", PropertyValue.get_value<paperback::component::entity::Validation>());
         }
-
     }
 
     void DisplayStringType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
@@ -734,7 +736,12 @@ struct imgui_system : paperback::system::instance
             {
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
                 ImGui::PushItemWidth(200.0f);
-                ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1);
+
+                if (PropertyName != "Shadow Bias")
+                    ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1);
+                else
+                    ImGui::SliderInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1, 10);
+
                 ImGui::PopItemWidth();
             }
         }
@@ -789,7 +796,6 @@ struct imgui_system : paperback::system::instance
                 ImGui::PopItemWidth();
             }
         }
-
     }
 
     //-----------------------------------
@@ -823,7 +829,6 @@ struct imgui_system : paperback::system::instance
             return ImGui::IsWindowFocused(ImGuiFocusedFlags_AnyWindow) || ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow);
         else
             return false;
-
     }
 
     //-----------------------------------
