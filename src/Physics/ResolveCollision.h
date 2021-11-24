@@ -83,8 +83,6 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 
 
 
-
-
 	// Abs Resultant Vector
 	paperback::Vector3f velab = vel1 - vel2; // uncorrupt
 	// Position Difference - Dist between both entities
@@ -149,9 +147,27 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 				t1.m_Position.x -= m1 ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
 				t2.m_Position.x += m2 ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
 			}
-			// temporary holder before refining
-			Elastic_InElastic_1D(vel1.x, acc1.x, mass1/*m1->m_Mass*/,
-				vel2.x, acc2.x, mass2/*m2->m_Mass*/, restitution);
+
+			//// both objs are movable
+			//if (mass1 > 0.f && mass2 > 0.f)
+			//{
+				Elastic_InElastic_1D(vel1.x, acc1.x, mass1/*m1->m_Mass*/,
+					vel2.x, acc2.x, mass2/*m2->m_Mass*/, restitution);
+			//}
+			//// object 1 has mass, object 2 is immovable
+			//else if (mass1 > 0.f)
+			//{
+			//	vel1.x = acc1.x = 0.f;
+			//}
+			//// object 2 has mass, object 1 is immovable
+			//else if (mass2 > 0.f)
+			//{
+			//	vel2.x = acc2.x = 0.f;
+			//}
+			//else
+			//{
+			//	// in the event both mass are 0.f, do nothing
+			//}
 			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
 			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
 			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
@@ -172,8 +188,27 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 				t1.m_Position.z -= m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
 				t2.m_Position.z += m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
 			}
-			Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
-				vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
+
+			//// both objs are movable
+			//if (mass1 > 0.f && mass2 > 0.f)
+			//{
+				Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
+					vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
+			//}
+			//// object 1 has mass, object 2 is immovable
+			//else if (mass1 > 0.f)
+			//{
+			//	vel1.z = acc1.z = 0.f;
+			//}
+			//// object 2 has mass, object 1 is immovable
+			//else if (mass2 > 0.f)
+			//{
+			//	vel2.z = acc2.z = 0.f;
+			//}
+			//else
+			//{
+			//	// in the event both mass are 0.f, do nothing
+			//}
 			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
 			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
 			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
@@ -197,8 +232,28 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 				t1.m_Position.y -= m1 ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
 				t2.m_Position.y += m2 ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
 			}
-			Elastic_InElastic_1D(vel1.y, acc1.y, mass1/*m1->m_Mass*/,
-				vel2.y, acc2.y, mass2/*m2->m_Mass*/, restitution);
+
+			//// both objs are movable
+			//if (mass1 > 0.f && mass2 > 0.f)
+			//{
+				Elastic_InElastic_1D(vel1.y, acc1.y, mass1/*m1->m_Mass*/,
+					vel2.y, acc2.y, mass2/*m2->m_Mass*/, restitution);
+			//}
+			//// object 1 has mass, object 2 is immovable
+			//else if (mass1 > 0.f)
+			//{
+			//	vel1.y = acc1.y = 0.f;
+			//}
+			//// object 2 has mass, object 1 is immovable
+			//else if (mass2 > 0.f)
+			//{
+			//	vel2.y = acc2.y = 0.f;
+			//}
+			//else
+			//{
+			//	// in the event both mass are 0.f, do nothing
+			//}
+
 			rf1->m_Momentum = t1.m_Position.y > t2.m_Position.y ? paperback::Vector3f{} : vel1 * mass1/*m1->m_Mass*/;
 			rf2->m_Momentum = t2.m_Position.y > t1.m_Position.y ? paperback::Vector3f{} : vel2 * mass2/*m2->m_Mass*/;
 			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
@@ -252,11 +307,27 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
                 }
             }
 
+			//// both objs are movable
+			//if (mass1 > 0.f && mass2 > 0.f)
+			//{
+				Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
+					vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
+			//}
+			//// object 1 has mass, object 2 is immovable
+			//else if (mass1 > 0.f)
+			//{
+			//	vel1.z = acc1.z = 0.f;
+			//}
+			//// object 2 has mass, object 1 is immovable
+			//else if (mass2 > 0.f)
+			//{
+			//	vel2.z = acc2.z = 0.f;
+			//}
+			//else
+			//{
+			//	// in the event both mass are 0.f, do nothing
+			//}
 
-
-
-			Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
-				vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
 			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
 			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
 			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
