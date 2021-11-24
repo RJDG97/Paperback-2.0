@@ -160,12 +160,9 @@ Renderer::Renderer() :
 	// Enable face cullling
 	glEnable(GL_CULL_FACE);
 
-	// Set up framebuffers
-	//SetUpFramebuffer();
-
 	m_Light.m_Position = glm::vec3{ 1.f, 1.f, 1.f };
 	m_Light.m_Direction = glm::normalize(glm::vec3{ 0.f } - m_Light.m_Position);
-	m_Light.m_Projection = glm::ortho(-50.f, 50.f, -50.f, 50.f, -50.f, 50.f);
+	m_Light.m_Projection = glm::ortho(-20.f, 20.f, -20.f, 20.f, -20.f, 20.f);
 	m_Light.m_View = glm::lookAt(m_Light.m_Position, glm::vec3{ 0.f }, glm::vec3{ 0.f, 1.f, 0.f });
 	m_Light.m_Transform = m_Light.m_Projection * m_Light.m_View;
 }
@@ -833,8 +830,6 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 	glm::mat4 projection = Camera3D::GetInstanced().GetProjection();
 	glm::vec3 position = Camera3D::GetInstanced().GetPosition();
 
-	//m_Resources.m_Shaders["Light"].SetUniform("uShadowBias", 0.05f);
-
 	m_Resources.m_Shaders["Light"].SetUniform("uView", const_cast<glm::mat4&>(view));
 	m_Resources.m_Shaders["Light"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
 	m_Resources.m_Shaders["Light"].SetUniform("uCameraPosition", const_cast<glm::vec3&>(position));
@@ -855,6 +850,7 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 		for (const auto& instance : model.second)
 		{
 			m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
+			m_Resources.m_Shaders["Light"].SetUniform("uShadowBias", static_cast<float>(instance.m_ShadowBias));
 
 			if (instance.m_BoneTransforms)
 			{

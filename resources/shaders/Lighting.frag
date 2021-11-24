@@ -52,7 +52,7 @@ float ShadowValue(vec4 lFragPosition, vec3 Normal, vec3 LightDir)
 	{
 		ProjectedCoords = (ProjectedCoords + 1.0f) / 2.0f;
 		float CurrentDepth = ProjectedCoords.z;
-		float Bias = max(0.025f * (1.0f - dot(Normal, LightDir)), 0.0005f);
+		float Bias = max(uShadowBias * 0.0025f * (1.0f - dot(Normal, LightDir)), uShadowBias * 0.00005f);
 
 		int SampleRadius = 2;
 		vec2 TexelSize = 1.0 / textureSize(uShadowMap, 0);

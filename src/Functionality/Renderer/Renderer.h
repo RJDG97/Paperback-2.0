@@ -17,6 +17,7 @@ public:
 		glm::mat4 m_Transform;
 		glm::mat4* m_ParentSocketTransform;
 		std::vector<glm::mat4>* m_BoneTransforms;
+		int m_ShadowBias;
 	};
 
 	~Renderer();
