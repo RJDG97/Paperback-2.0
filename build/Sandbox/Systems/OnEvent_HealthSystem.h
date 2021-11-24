@@ -67,10 +67,23 @@ struct onevent_UpdateHealth_system : paperback::system::instance
 
     }
 
-    void OnEvent(entity& obj, entity& obj2, health& Health) noexcept
+    void OnEvent(entity& obj, entity& obj2, health& Health, health& Health2) noexcept
     {
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
 
+        if (Health.m_MaxHealth != Health2.m_MaxHealth) {
+            Health.m_MaxHealth = Health2.m_MaxHealth;
+        }
+
         // set the healthbar size according to the current health/max health
+        if (Health.m_CurrentHealth != Health2.m_CurrentHealth) {
+            Health.m_CurrentHealth = Health2.m_CurrentHealth;
+
+            scale* Scale = &m_obj.m_pArchetype->GetComponent<scale>(m_obj.m_PoolDetails);
+            transform* position = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
+            // Update UI Texture
+            Scale->m_Value.x *= ((Health.m_CurrentHealth * 1.0f)/ (Health.m_MaxHealth * 1.0f));
+            // Update Position
+        }
     }
 };
