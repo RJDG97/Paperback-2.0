@@ -41,10 +41,6 @@ struct health_system : paperback::system::instance
                     // Do not check against self
                     if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return;
 
-                    // Test Health
-                    //if (PPB.IsKeyPress(GLFW_KEY_G))
-                    //    Dynamic_Health.m_CurrentHealth -= 2;
-
                     if (Friend && Dynamic_Friend)
                         BroadcastGlobalEvent<UpdateHealthEvent>(Entity, Dynamic_Entity, Health, Dynamic_Health);
                     else if (Enemy && Dynamic_Enemy)

@@ -81,9 +81,22 @@ struct onevent_UpdateHealth_system : paperback::system::instance
 
             scale* Scale = &m_obj.m_pArchetype->GetComponent<scale>(m_obj.m_PoolDetails);
             transform* position = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
+            auto Friendly = m_obj.m_pArchetype->FindComponent<friendly>(m_obj.m_PoolDetails);
+            auto Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
+            float offset = Scale->m_Value.x;
             // Update UI Texture
             Scale->m_Value.x *= ((Health.m_CurrentHealth * 1.0f)/ (Health.m_MaxHealth * 1.0f));
-            // Update Position
+
+            // Update position
+            offset -= Scale->m_Value.x;
+        
+            if (Friendly) {
+                position->m_Position.x += offset / 2;
+            }
+            else if (Enemy) {
+                position->m_Position.x -= offset / 2;
+            }
+            
         }
     }
 };

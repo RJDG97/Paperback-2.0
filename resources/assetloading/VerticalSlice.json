@@ -24,7 +24,7 @@
                     },
                     "Mesh": {
                         "Model": "DragonTailLeft",
-                        "Texture": ""
+                        "Texture": "DragonTail_Left_BaseColour.dds"
                     },
                     "Scale": {
                         "Scale": {
@@ -53,7 +53,9 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            9604788041699812520
+                        ],
                         "Prefab GID": 20
                     },
                     "Name": {
@@ -66,7 +68,7 @@
                     },
                     "Mesh": {
                         "Model": "DragonTailRight",
-                        "Texture": ""
+                        "Texture": "DragonTail_Right_BaseColour.dds"
                     },
                     "Scale": {
                         "Scale": {
@@ -95,7 +97,9 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            9604788041699812520
+                        ],
                         "Prefab GID": 22
                     },
                     "Name": {
@@ -108,7 +112,7 @@
                     },
                     "Mesh": {
                         "Model": "DragonSpineSupport",
-                        "Texture": ""
+                        "Texture": "DragonSpine_BaseColour.dds"
                     },
                     "Scale": {
                         "Scale": {
@@ -137,7 +141,9 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            9604788041699812520
+                        ],
                         "Prefab GID": 24
                     },
                     "Name": {
@@ -226,7 +232,9 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
                         "Prefab GID": 32
                     },
                     "Name": {
@@ -1793,7 +1801,7 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.699999988079071,
+                            "x": 0.6800000071525574,
                             "y": 0.029999999329447748,
                             "z": 0.0
                         }
@@ -1812,9 +1820,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 0.44999998807907107,
-                            "y": 0.6000000238418579,
-                            "z": 0.0
+                            "x": 0.4399999976158142,
+                            "y": 0.800000011920929,
+                            "z": 0.10000000149011612
                         }
                     },
                     "ReferencePrefab": {
@@ -2183,7 +2191,7 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.699999988079071,
+                            "x": 0.6800000071525574,
                             "y": 0.029999999329447748,
                             "z": 0.0
                         }
@@ -2202,9 +2210,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -0.44999998807907107,
-                            "y": 0.6000000238418579,
-                            "z": 0.0
+                            "x": -0.4399999976158142,
+                            "y": 0.800000011920929,
+                            "z": 1.0
                         }
                     },
                     "ReferencePrefab": {
