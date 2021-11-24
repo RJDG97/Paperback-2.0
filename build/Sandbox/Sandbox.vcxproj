@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClInclude Include="Components\AABB.h" />
     <ClInclude Include="Components\Animator.h" />
+    <ClInclude Include="Components\Base.h" />
     <ClInclude Include="Components\BoundingBox.h" />
     <ClInclude Include="Components\Child.h" />
     <ClInclude Include="Components\CollisionLayer.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Components\Friendly.h" />
     <ClInclude Include="Components\FriendlySpawner.h" />
     <ClInclude Include="Components\Health.h" />
+    <ClInclude Include="Components\HealthBar.h" />
     <ClInclude Include="Components\Listener.h" />
     <ClInclude Include="Components\Mesh.h" />
     <ClInclude Include="Components\Name.h" />
@@ -201,15 +203,19 @@
     <ClInclude Include="Components\Text.h" />
     <ClInclude Include="Components\Timer.h" />
     <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Components\Unit.h" />
     <ClInclude Include="Components\Waypoint.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
     <ClInclude Include="Systems\EnemySpawnerSystem.h" />
+    <ClInclude Include="Systems\HealthSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
-    <ClInclude Include="Systems\OnEvent_UpdateHealth.h" />
+    <ClInclude Include="Systems\OnEvent_HealthSystem.h" />
+    <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h" />
+    <ClInclude Include="Systems\OnEvent_ReferencePrefabDeleted.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\PlayerSpawnerSystem.h" />

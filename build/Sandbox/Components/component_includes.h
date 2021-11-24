@@ -37,3 +37,6 @@
 #include "Player.h"
 #include "Shield.h"
 #include "WaypointTag.h"
+#include "HealthBar.h"
+#include "Base.h"
+#include "Unit.h"

@@ -114,6 +114,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("DragonHead", "../../resources/models/nui/DragonHead.nui");
 	m_Resources.Load3DMeshNUI("BottomPath", "../../resources/models/nui/BottomPath.nui");
 
+	m_Resources.Load3DMeshNUI("Railing", "../../resources/models/nui/Railing.nui");
+
 	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
 
 	// Cards

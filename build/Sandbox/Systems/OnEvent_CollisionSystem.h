@@ -120,7 +120,6 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                     {
                         enemyhealth->m_CurrentHealth -= unitdamage->m_Value;
                         if (enemyhealth->m_CurrentHealth <= 0) {
-                            DeleteEntity(obj2);
                             Unit_State->isAttacking = false;
                             BroadcastGlobalEvent<collision_system::UnitTriggerExitEvent>(obj, rf);
                         }
