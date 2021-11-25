@@ -2,6 +2,12 @@
 
 #include "Systems/DebugSystem.h"
 
+static constexpr auto ResetForces = [&]( rigidforce& RF1, rigidforce& RF2 )
+                                    {
+                                        RF1.m_Momentum = {}; RF1.m_Forces = {};
+                                        RF2.m_Momentum = {}; RF2.m_Forces = {};
+                                    };
+
 struct onevent_UnitTrigger_system : paperback::system::instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
@@ -21,49 +27,61 @@ struct onevent_UnitTrigger_system : paperback::system::instance
 
     }
 
-    void OnEvent(entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2) noexcept
+    void OnEvent( entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2 ) noexcept
     {
-        // Play Animation
-        auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
+        // Get Entity Info
+        auto m_obj  = GetEntityInfo(obj.m_GlobalIndex);
         auto m_obj2 = GetEntityInfo(obj2.m_GlobalIndex);
-        // check obj is friendly
-        auto Unit_1_Friendly = m_obj.m_pArchetype->FindComponent<friendly>(m_obj.m_PoolDetails);
-        auto Unit_2_Friendly = m_obj2.m_pArchetype->FindComponent<friendly>(m_obj2.m_PoolDetails);
-        // check obj is enemy
-        auto Unit_1_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
-        auto Unit_2_Enemy = m_obj2.m_pArchetype->FindComponent<enemy>(m_obj2.m_PoolDetails);
 
-        auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
+        // Get Relevant Components
+        auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State ]  = m_obj.m_pArchetype->FindComponents < friendly, enemy, unitstate >( m_obj.m_PoolDetails );
+        auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate >( m_obj2.m_PoolDetails );
 
-        // if friendly units
-        if (Unit_State && !Unit_State->isAttacking && (Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) {
+        // Same Unit Type && Not Currently Fighting - IDLE
+        if ( Unit_State && !Unit_State->isAttacking && 
+            (Unit_1_Friendly && Unit_2_Friendly) || 
+            (Unit_1_Enemy && Unit_2_Enemy) )
+        {
+            // Disable Movement - Maintain Collision
+            ResetForces( rf, rf2 );
+            
+            // Set Unit's State to Idle
+            Unit_State->SetState( UnitState::IDLE );
 
-            //// Pause Movement
-            //rf.m_Momentum = {};
-            //rf.m_Forces = {};
+            auto Unit_1_Anim = m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails);
 
-            animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-            // change animation
-            if (anim)
-                anim->m_CurrentAnimationName = "Armature|Idle";
+            // Set Unit to Idle Permanently
+            if ( Unit_1_Anim && Unit_1_Anim->m_FinishedAnimating )
+            {
+                Unit_1_Anim->m_CurrentAnimationName = "Armature|Idle";
+                Unit_1_Anim->m_PlayOnce = false;
+            }
         }
 
-        // if oposing units
-        if ((Unit_1_Friendly && Unit_2_Enemy) || (Unit_1_Enemy && Unit_2_Friendly)) {
+        // Diff Unit Types - ATTACK
+        else if ( (Unit_1_Friendly && Unit_2_Enemy) || 
+                  (Unit_1_Enemy && Unit_2_Friendly) )
+        {
+            // Disable Movement - Maintain Collision
+            ResetForces( rf, rf2 );
 
-            //// Pause Movement
-            //rf.m_Momentum = {};
-            //rf.m_Forces = {};
-            
-            animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-
-            if (anim && anim->m_FinishedAnimating)
-                anim->m_CurrentAnimationName = "Armature|Attack";
-
+            // Set Unit's State to Attack
+            Unit_State->SetState( UnitState::ATTACK );
             Unit_State->isAttacking = true;
+
+            auto Unit_1_Anim = m_obj.m_pArchetype->FindComponent<animator>( m_obj.m_PoolDetails );
+
+            // Update Animation
+            if ( Unit_1_Anim && Unit_1_Anim->m_FinishedAnimating )
+            {
+                Unit_1_Anim->m_CurrentAnimationName = "Armature|Attack";
+                Unit_1_Anim->m_PlayOnce = true;
+            }
         }
     }
 };
+
+
 
 struct onevent_UnitTriggerStay_system : paperback::system::instance
 {
@@ -83,54 +101,79 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
     {
     }
 
-    void OnEvent(entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2) noexcept
+    void OnEvent( entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2, bool& Skip ) noexcept
     {
         //Check if animation is attack and if finished
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
         auto m_obj2 = GetEntityInfo(obj2.m_GlobalIndex);
-        // check obj is friendly
-        auto Unit_1_Friendly = m_obj.m_pArchetype->FindComponent<friendly>(m_obj.m_PoolDetails);
-        auto Unit_2_Friendly = m_obj2.m_pArchetype->FindComponent<friendly>(m_obj2.m_PoolDetails);
-        // check obj is enemy
-        auto Unit_1_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
-        auto Unit_2_Enemy = m_obj2.m_pArchetype->FindComponent<enemy>(m_obj2.m_PoolDetails);
 
-        auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
-        auto Unit_State2 = m_obj2.m_pArchetype->FindComponent<unitstate>(m_obj2.m_PoolDetails);
+        auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate >( m_obj.m_PoolDetails );
+        auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate >( m_obj2.m_PoolDetails );
 
-        // if oposing units
-        if (Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly) {
-            //// Pause Movement
-            //rf.m_Momentum = {};
-            //rf.m_Forces = {};
+        // Different Unit Types
+        if (Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly)
+        {
+            // Disable Movement - Maintain Collision
+            ResetForces( rf, rf2 );
 
-            // get animator component
-            animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-            anim->m_CurrentAnimationName = "Armature|Attack";
-            if (anim && anim->m_FinishedAnimating) {
-                // Check player attack against obj defense
-                damage* unitdamage = &m_obj.m_pArchetype->GetComponent<damage>(m_obj.m_PoolDetails);
-                timer* unittimer = &m_obj.m_pArchetype->GetComponent<timer>(m_obj.m_PoolDetails);
-                health* enemyhealth = &m_obj2.m_pArchetype->GetComponent<health>(m_obj2.m_PoolDetails);
+            auto Unit_1_Anim = m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails);
 
-                if (unitdamage != nullptr && enemyhealth != nullptr) {
-                    // Apply Modifier
-                    // Deal Damage to obj
-                    if ( unittimer->m_Value <= 0.0f )
+            // Set Animation to Attack
+            if ( Unit_1_Anim )
+            {
+                Unit_1_Anim->m_CurrentAnimationName = "Armature|Attack";
+                Unit_1_Anim->m_PlayOnce = true;
+            }
+
+            // Current Animation Is Complete
+            if ( Unit_1_Anim && Unit_1_Anim->m_FinishedAnimating )
+            {
+                auto [ Damage_1, Timer_1 ] = m_obj.m_pArchetype->FindComponents< damage, timer >( m_obj.m_PoolDetails );
+                auto [ Health_2 ]          = m_obj2.m_pArchetype->FindComponents< health >( m_obj2.m_PoolDetails );
+
+                // Update Unit Health
+                if ( Damage_1 && Health_2 && Timer_1 )
+                {
+                    if ( Timer_1->m_Value <= 0.0f )
                     {
-                        enemyhealth->m_CurrentHealth -= unitdamage->m_Value;
-                        if (enemyhealth->m_CurrentHealth <= 0) {
-                            DeleteEntity(obj2);
+                        // Update Health
+                        Health_2->m_CurrentHealth -= Damage_1->m_Value;
+
+                        // Delete Entity
+                        if ( Health_2->m_CurrentHealth <= 0 )
+                        {
+                            DeleteEntity( obj2 );
                             Unit_State->isAttacking = false;
-                            BroadcastGlobalEvent<collision_system::UnitTriggerExitEvent>(obj, rf);
+                            BroadcastGlobalEvent<collision_system::UnitTriggerExitEvent>( obj, rf, Skip );
                         }
-                        unittimer->m_Value = unittimer->m_Cooldown;
+
+                        // Reset Timer
+                        Timer_1->m_Value = Timer_1->m_Cooldown;
                     }
                 }
             }
         }
+        // Same Unit Type
+        else if ( (Unit_1_Friendly && Unit_2_Friendly) || 
+                  (Unit_1_Enemy && Unit_2_Enemy) )
+        {
+            // Disable Movement - Maintain Collision
+            ResetForces( rf, rf2 );
+
+            // Set to IDLE
+            if ( Unit_State->IsNotState( UnitState::ATTACK ) &&
+                 Unit_State2->IsNotState( UnitState::ATTACK ) )
+            {
+                Unit_State->SetState( UnitState::IDLE );
+
+                // Helps to Re-Enable movement when SAME Unit Types collide - This also causes the units to overshot
+                BroadcastGlobalEvent<collision_system::UnitTriggerExitEvent>(obj, rf, Skip);
+            }
+        }
     }
 };
+
+
 
 struct onevent_UnitTriggerExit_system : paperback::system::instance
 {
@@ -151,22 +194,27 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
 
     }
 
-    void OnEvent(entity& obj, rigidforce& rf) noexcept
+    void OnEvent( entity& obj, rigidforce& rf, bool& Skip ) noexcept
     {
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
-        // check obj is friendly
-        auto Unit_Friendly = m_obj.m_pArchetype->FindComponent<friendly>(m_obj.m_PoolDetails);
-        // check obj is enemy
-        auto Unit_Enemy = m_obj.m_pArchetype->FindComponent<enemy>(m_obj.m_PoolDetails);
 
-        auto Unit_State = m_obj.m_pArchetype->FindComponent<unitstate>(m_obj.m_PoolDetails);
+        auto [ Unit_Friendly, Unit_Enemy, Unit_State ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate >( m_obj.m_PoolDetails );
 
-        if (Unit_State && !Unit_State->isAttacking && (Unit_Friendly || Unit_Enemy)) {
-            animator* anim = &m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-            if (anim)
-                anim->m_CurrentAnimationName = "Armature|Walk";
+        // Not Attacking & Is Unit
+        if ( Unit_State && !Unit_State->isAttacking && 
+             (Unit_Friendly || Unit_Enemy) )
+        {
+            auto Unit_Anim = m_obj.m_pArchetype->FindComponent<animator>( m_obj.m_PoolDetails );
 
-            // Update Momentum again
+            // Update Walking Animation
+            if ( Unit_Anim )
+            {
+                Unit_Anim->m_CurrentAnimationName = "Armature|Walk";
+                Unit_Anim->m_PlayOnce = false;
+                Unit_State->SetState( UnitState::WALK );
+            }
+
+            // Update Force
             auto Transform = m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails);
             auto Waypoint = m_obj.m_pArchetype->FindComponent<waypoint>(m_obj.m_PoolDetails);
             if ( Transform && Waypoint )
@@ -174,6 +222,7 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
                 auto Direction = Waypoint->m_Value - Transform->m_Position;
                 Direction /= Direction.Magnitude();
                 rf.m_Momentum = Direction * 4.0f;
+                Skip = true;
             }
         }
     }

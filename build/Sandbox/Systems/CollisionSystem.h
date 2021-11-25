@@ -11,9 +11,9 @@ struct collision_system : paperback::system::instance
         .m_pName = "collision_system"
     };
 
-    struct UnitTriggerEvent : paperback::event::instance< entity& , entity&, rigidforce&, rigidforce&> {};
-    struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity&, rigidforce&, rigidforce& > {};
-    struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce& > {};
+    struct UnitTriggerEvent : paperback::event::instance< entity& , entity&, rigidforce&, rigidforce& > {};
+    struct UnitTriggerStayEvent : paperback::event::instance< entity&, entity&, rigidforce&, rigidforce&, bool& > {};
+    struct UnitTriggerExitEvent : paperback::event::instance< entity&, rigidforce&, bool& > {};
 
     using query = std::tuple
     <
@@ -25,6 +25,7 @@ struct collision_system : paperback::system::instance
         if ( Entity.IsZombie() ) return;
        
         // Initialize Query
+        bool SkipUnit = false;
         tools::query Query;
 
         Query.m_Must.AddFromComponents < transform >();
@@ -49,32 +50,30 @@ struct collision_system : paperback::system::instance
             // Collision Detection
             if ( Boundingbox && BB)
             {
+                // If Both Entities Are Colliding Already
                 if ( AabbAabb( Transform.m_Position + Boundingbox->Min, Transform.m_Position + Boundingbox->Max
                              , Xform.m_Position + BB->Min, Xform.m_Position + BB->Max ) )
                 {
-                    // Dynamic Collision Check & Resolution
-                    /*
-                    - For static objects, RF.m_isStatic will be true and mass component should not be added
-                    */
-                    if ( RigidForce && RF /*&& m1 && m2*/ )
-                        CheapaabbDynamic( Boundingbox, RigidForce, Transform, m1, BB, RF, Xform, m2 );
-
-                    //// On entry
-                    //if(!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) 
-                    //    BroadcastGlobalEvent<UnitTriggerEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
-                    //// Constant collision
-                    //else
-                    //    BroadcastGlobalEvent<UnitTriggerStayEvent>(Entity, Dynamic_Entity, *RigidForce, *RF);
-                    
+                    // Update Collision State of Current Entity to Other Entity
                     Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
-
                     Boundingbox->m_Collided = BB->m_Collided = true;
+
+                    // Current Entity is NOT Colliding with Other Entity
+                    if( !Boundingbox->m_CollisionState.at( Dynamic_Entity.m_GlobalIndex ) )
+                        BroadcastGlobalEvent<UnitTriggerEvent>( Entity, Dynamic_Entity, *RigidForce, *RF );
+                    // Current Entity is ALREADY Colliding with Other Entity
+                    else
+                        BroadcastGlobalEvent<UnitTriggerStayEvent>( Entity, Dynamic_Entity, *RigidForce, *RF, SkipUnit );
+
+                    // Collision Response
+                    if ( RigidForce && RF && !SkipUnit /*&& m1 && m2*/ )
+                        CheapaabbDynamic( Boundingbox, RigidForce, Transform, m1, BB, RF, Xform, m2 );
                 }
                 else
                 {
-                    //// No longer colliding
-                    //if( Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) )
-                    //    BroadcastGlobalEvent<UnitTriggerExitEvent>(Entity, *RigidForce);
+                    // No longer colliding
+                    if( Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) )
+                        BroadcastGlobalEvent<UnitTriggerExitEvent>( Entity, *RigidForce, SkipUnit );
 
                     Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
                 }
