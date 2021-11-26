@@ -94,6 +94,8 @@ void InitializeGame()
         ,    enemy_spawner    // Tag
         ,    player           // Tag
         ,    waypoint_tag
+        ,    path
+        ,    path_follower
         >();
     }
 
@@ -106,6 +108,7 @@ void InitializeGame()
         ,   scripting_system
         ,   window_system
         ,   debug_system
+        ,   path_system
         ,   render_system
         ,   imgui_system
         ,   animator_system

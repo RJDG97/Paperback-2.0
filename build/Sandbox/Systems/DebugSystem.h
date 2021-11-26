@@ -223,6 +223,25 @@ struct debug_system : paperback::system::instance
         Cube.m_Collided = false;
     }
 
+    void DrawSpline(paperback::Spline spline)
+    {
+        //Draw sphere at every control point (*no collision, just using an existing function)
+        for (size_t i = 0; i < spline.m_Points.size(); ++i)
+        {
+            sphere temp_sphere{ 0.05f, true };
+            transform temp_transform{ {}, spline.m_Points[i].m_Point };
+            DrawSphereCollision(temp_sphere, temp_transform);
+        }
+
+        for (float i = 0.0f; i < static_cast<float>(spline.m_Points.size() - 3) - 0.05f; i += 0.05f)
+        {
+            std::vector<paperback::Vector3f> render_points;
+            render_points.push_back(spline.GetSplinePoint(i).m_Point);
+            render_points.push_back(spline.GetSplinePoint(i + 0.05f).m_Point);
+            GetSystem<debug_system>().DrawDebugLines(render_points, false);
+        }
+    }
+
     // draws a "cube" depending on given data
     // data has to be pairs of vectors
     void DrawDebugLines(std::vector<paperback::Vector3f> Vec, bool IsCollide = false)
@@ -264,26 +283,26 @@ struct debug_system : paperback::system::instance
     void DebugInputTest()
     {
 
-        if (PPB.IsKeyPressUp(GLFW_KEY_8))
-        {
+        //if (PPB.IsKeyPressUp(GLFW_KEY_8))
+        //{
 
-            PPB.OpenScene("Editor");
-            DEBUG_LOG("Debug access to Editor State");
-        }
+        //    PPB.OpenScene("Editor");
+        //    DEBUG_LOG("Debug access to Editor State");
+        //}
 
-        if (PPB.IsKeyPressUp(GLFW_KEY_9))
-        {
+        //if (PPB.IsKeyPressUp(GLFW_KEY_9))
+        //{
 
-            PPB.OpenScene("Workshop");
-            DEBUG_LOG("Debug access to Workshop State");
-        }
+        //    PPB.OpenScene("Workshop");
+        //    DEBUG_LOG("Debug access to Workshop State");
+        //}
 
-        if (PPB.IsKeyPressUp(GLFW_KEY_0))
-        {
+        //if (PPB.IsKeyPressUp(GLFW_KEY_0))
+        //{
 
-            PPB.OpenScene("Combat");
-            DEBUG_LOG("Debug access to Combat State");
-        }
+        //    PPB.OpenScene("Combat");
+        //    DEBUG_LOG("Debug access to Combat State");
+        //}
     }
 
     const std::array<std::vector<glm::vec3>, 2>& GetPoints() const

@@ -36,3 +36,5 @@
 #include "Player.h"
 #include "Shield.h"
 #include "WaypointTag.h"
+#include "Path.h"
+#include "PathFollower.h"

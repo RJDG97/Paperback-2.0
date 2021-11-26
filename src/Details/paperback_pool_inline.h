@@ -543,22 +543,22 @@ namespace paperback::vm
 	rttr::instance instance::GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept
 	{
 
-		if ( Comp_Guid.m_Value == component::info_v< component::entity >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< component::entity >( Index ));
-		else if ( Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< transform >( Index ));
+		if (Comp_Guid.m_Value == component::info_v< component::entity >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< component::entity >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< transform >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< scale >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< scale >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< rotation >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< rotation >(Index));
-		else if ( Comp_Guid.m_Value == component::info_v< rigidbody >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< rigidbody >( Index ));
-		else if ( Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< timer >( Index ));
-		else if ( Comp_Guid.m_Value == component::info_v< mesh >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< mesh >( Index ));
-		else if ( Comp_Guid.m_Value == component::info_v< sound >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< sound >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< rigidbody >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< rigidbody >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< timer >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< mesh >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< mesh >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< sound >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< sound >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< entityscript >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< entityscript >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< collidable >.m_Guid.m_Value)
@@ -619,6 +619,10 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< unitstate >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< waypoint_tag >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< waypoint_tag >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< path >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< path >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< path_follower >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< path_follower >(Index));
 
 		else
 			return rttr::instance();

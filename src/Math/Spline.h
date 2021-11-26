@@ -7,10 +7,8 @@
 
 namespace paperback
 {
-	class Spline
+	struct Spline
 	{
-	public:
-
 		struct SplinePoint
 		{
 			Vector3f m_Point;
@@ -21,9 +19,15 @@ namespace paperback
 
 		Spline(std::vector<SplinePoint> points, bool looped)
 			: m_Points {points},
-			  m_Looped {looped}
+			  m_Looped {looped},
+			  m_TotalLength {}
 		{
-
+			for (int i = 0; i < m_Points.size() - 3; ++i)
+			{
+				float length { CalculateSegmentLength(i) };
+				m_Points[i].m_Length = length;
+				m_TotalLength += length;
+			}
 		}
 
 		SplinePoint GetSplinePoint(float t)
@@ -45,7 +49,7 @@ namespace paperback
 					p1 = static_cast<int>(t);
 					p2 = (p1 + 1) % m_Points.size();
 					p3 = (p2 + 1) % m_Points.size();
-					p0 = p1 >= 1 ? p1 - 1 : m_Points.size() - 1;
+					p0 = p1 >= 1 ? p1 - 1 : static_cast<int>(m_Points.size()) - 1;
 				}
 				
 				t = t - static_cast<int>(t);
@@ -64,7 +68,7 @@ namespace paperback
 			return {};
 		}
 
-		SplinePoint GetSplineGradient(float t)
+		Vector3f GetSplineGradient(float t)
 		{
 			if (m_Points.size() >= 4)
 			{
@@ -83,7 +87,7 @@ namespace paperback
 					p1 = static_cast<int>(t);
 					p2 = (p1 + 1) % m_Points.size();
 					p3 = (p2 + 1) % m_Points.size();
-					p0 = p1 >= 1 ? p1 - 1 : m_Points.size() - 1;
+					p0 = p1 >= 1 ? p1 - 1 : static_cast<int>(m_Points.size()) - 1;
 				}
 
 				t = t - static_cast<int>(t);
@@ -96,7 +100,7 @@ namespace paperback
 				float q2 = -9.0f * tt + 8.0f * t + 1.0f;
 				float q3 = 3.0f * tt - 2.0f * t;
 				
-				return { 0.5f * (m_Points[p0].m_Point * q0 + m_Points[p1].m_Point * q1 + m_Points[p2].m_Point * q2 + m_Points[p3].m_Point * q3), 0.0f };
+				return 0.5f * (m_Points[p0].m_Point * q0 + m_Points[p1].m_Point * q1 + m_Points[p2].m_Point * q2 + m_Points[p3].m_Point * q3);
 			}
 
 			return {};
@@ -105,11 +109,10 @@ namespace paperback
 		float CalculateSegmentLength(int node)
 		{
 			float length{};
-			float step_size{};
 
 			SplinePoint old_point{ GetSplinePoint(static_cast<float>(node)) };
 
-			for (float t = 0; t < 1.0f; t += step_size)
+			for (float t = 0; t < 1.0f; t += 0.05f)
 			{
 				SplinePoint new_point = GetSplinePoint(static_cast<float>(node) + t);
 				length += sqrtf((new_point.m_Point.x - old_point.m_Point.x) * (new_point.m_Point.x - old_point.m_Point.x) +
@@ -126,16 +129,17 @@ namespace paperback
 		{
 			int i{};
 
-			for (int i = 0; p > m_Points[i].m_Length; ++i)
+			for (; p > m_Points[i].m_Length; ++i)
 			{
 				p -= m_Points[i].m_Length;
 			}
-		}
 
-	private:
+			return static_cast<float>(i + p / m_Points[i].m_Length);
+		}
 
 		std::vector<SplinePoint> m_Points;
 		bool m_Looped;
+		float m_TotalLength;
 	};
 }
 

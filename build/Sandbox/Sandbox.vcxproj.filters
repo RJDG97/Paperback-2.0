@@ -210,5 +210,14 @@
     <ClInclude Include="Systems\AnimatorSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Path.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\PathSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PathFollower.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
