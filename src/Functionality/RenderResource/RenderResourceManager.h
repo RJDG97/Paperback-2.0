@@ -5,6 +5,7 @@
 #include "../Mesh/MeshBuilder.h"
 #include "../Shader/ShaderBuilder.h"
 #include "../Texture/TextureLoader.h"
+#include "../Font/Font.h"
 #include "../NUI/NUILoader.h"
 
 class RenderResourceManager
@@ -15,6 +16,8 @@ public:
 	// Helper function to create shaders
 	void LoadShader(const std::string& Name, const std::string& Vert, const std::string& Frag);
 
+	// Unloads all fonts
+	void UnloadAllFonts();
 	// Unloads all textures
 	void UnloadAllTextures();
 	// Unload all materials
@@ -24,6 +27,9 @@ public:
 
 	void Load3DMeshNUI(const std::string& Mesh, const std::string& File);
 	void LoadMaterialNUI(const std::string& material_name, NUILoader::TempMaterial& material_data);
+
+	// Load fonts
+	void LoadFonts(const std::string& Name, const std::string& File);
 
 	// Load textures
 	std::string LoadTextures(const std::string& Texture, const std::string& File, const bool& GammaCorrect);
@@ -40,6 +46,8 @@ public:
 	// Unload 3D mesh
 	void Unload3DMesh(const std::string& Mesh);
 
+	// Map of fonts
+	std::unordered_map<std::string, Font> m_Fonts;
 	// Map of 2D textures
 	std::unordered_map<std::string, GLuint> m_Textures;
 	// Map of Materials

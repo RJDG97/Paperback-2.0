@@ -88,6 +88,9 @@ namespace paperback::coordinator
 		void SavePrefabs( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
+		void SaveIndividualPrefab( const std::string& FilePath, paperback::archetype::instance* PrefabArchetype, const paperback::u32 Index ) noexcept;
+
+		PPB_INLINE
 		void LoadPrefabs( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE

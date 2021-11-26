@@ -71,6 +71,9 @@ namespace paperback::archetype
         template < typename T_COMPONENT >
         T_COMPONENT* FindComponent( const PoolDetails Details ) noexcept;
 
+        PPB_INLINE
+        std::byte* FindComponent( const PoolDetails Details, const component::type::guid ComponentGuid ) noexcept;
+
         template < typename... T_COMPONENTS >
         std::tuple<T_COMPONENTS*...> FindComponents( const PoolDetails Details ) noexcept;
 
@@ -106,8 +109,7 @@ namespace paperback::archetype
 
         // Called By The Prefab Entity's Archetype - Passing Updated Component of Prefab Entity
         template < typename T_COMPONENT >
-        void UpdatePrefabInstanceComponent( const vm::PoolDetails& Details, const T_COMPONENT& PrefabComponent ) noexcept;
-
+        void UpdatePrefabInstanceComponent( const vm::PoolDetails& Details, T_COMPONENT& PrefabComponent ) noexcept;
 
         //-----------------------------------
         //              Save
@@ -115,6 +117,10 @@ namespace paperback::archetype
 
         PPB_INLINE
         void SerializeAllEntities( paperback::JsonFile& Jfile ) noexcept;
+
+        PPB_INLINE
+        void SerializePrefabEntity( paperback::JsonFile& Jfile, u32 Index ) noexcept;
+
 
         //-----------------------------------
         //       Data Member Getters
@@ -149,7 +155,6 @@ namespace paperback::archetype
 
         PPB_INLINE
         const guid& GetArchetypeGuid( void ) const noexcept;
-
 
     private:
 

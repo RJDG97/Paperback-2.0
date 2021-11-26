@@ -21,15 +21,15 @@ void ArchetypeInspector::MenuBar()
     if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE))
     {
         PPB.CreatePrefab();
-        EDITOR_INFO_PRINT("Added a Default Prefab");
+        EDITOR_INFO_PRINT("Blank Prefab created");
     }
 
-    m_Imgui.ImGuiHelp("Spawns a Default Prefab");
+    m_Imgui.ImGuiHelp("Creates a Blank Prefab");
 
     if (ImGui::MenuItem(ICON_FA_SAVE))
         m_Imgui.m_Type = FileActivity::SAVEPREFAB;
 
-    m_Imgui.ImGuiHelp("Saves All Prefabs");
+    m_Imgui.ImGuiHelp("Saves ALL Prefabs in the Inspector");
 
     if (ImGui::MenuItem(ICON_FA_FOLDER_OPEN))
         m_Imgui.m_Type = FileActivity::LOADPREFAB;
@@ -51,11 +51,13 @@ void ArchetypeInspector::PrefabPanel()
 
     if (ImGui::BeginPopupContextWindow(0, 1, false))
     {
-        if (ImGui::MenuItem("Create Default Prefab"))
+        if (ImGui::MenuItem("Add Blank Prefab"))
         {
             PPB.CreatePrefab();
-            EDITOR_INFO_PRINT("Created: A Default Prefab");
+            EDITOR_INFO_PRINT("Blank Prefab created");
         }
+
+        m_Imgui.ImGuiHelp("Creates a Blank Prefab");
 
         ImGui::EndPopup();
     }
@@ -67,87 +69,119 @@ void ArchetypeInspector::PrefabPanel()
 
         for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
         {
-            if (Filter.PassFilter(ArchetypeName.c_str()))
+            if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID)) //has a prefab component
             {
-                if (Archetype->GetComponentBits().Has(paperback::component::info_v<prefab>.m_UID))
+                if (Archetype->FindComponent<child>(paperback::vm::PoolDetails{ 0, i }) == nullptr) // isnt a child -> child prefab will be displayed through their parents
                 {
-
-                    ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_SpanAvailWidth;
-
                     auto Prefab = Archetype->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, i });
                     auto& Entity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
                     auto Name = Archetype->FindComponent<name>(paperback::vm::PoolDetails({ 0, i }));
                     auto ParentPrefab = Archetype->FindComponent<parent>(paperback::vm::PoolDetails{ 0, i });
 
-                    if (ParentPrefab)
-                        NodeFlags |= ImGuiTreeNodeFlags_DefaultOpen;
-
                     if (Name)
-                    {
-                        bOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, Name->m_Value.c_str());
-                    }
+                        ArchetypeName = Name->m_Value;
                     else
                     {
                         //Add in missing name component
                         ComponentAddRemove[0] = &paperback::component::info_v<name>;
                         PPB.AddOrRemoveComponents(Entity, ComponentAddRemove, {});
-                        
+
                         if (!m_Imgui.m_Components.empty())
                             m_Imgui.UpdateComponents(Entity.m_GlobalIndex);
                     }
 
-                    DisplayPrefabComponents(Archetype, i, Prefab);
-
-                    if (ImGui::IsItemClicked())
+                    if (Filter.PassFilter(ArchetypeName.c_str()))
                     {
-                        m_Imgui.m_SelectedEntity.first = Archetype;
-                        m_Imgui.m_SelectedEntity.second = i;
+                        ImGuiTreeNodeFlags NodeFlags = ((m_Imgui.m_SelectedEntity.first == Archetype && m_Imgui.m_SelectedEntity.second == i) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
 
-                        m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
-                        EDITOR_TRACE_PRINT("Editing Prefab: " + Archetype->GetName());
-                    }
-
-                    if (ImGui::BeginPopupContextItem())
-                    {
-                        if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE " Clone Prefab"))
-                        {
-                            auto& EntityName = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i });
-
-                            auto& EntityInfo = PPB.GetEntityInfo(Entity.m_GlobalIndex);
-
-                            m_Imgui.m_pArchetype->ClonePrefab(EntityInfo.m_PoolDetails.m_PoolIndex);
-
-                            EDITOR_INFO_PRINT("Prefab Instance:" + EntityName.m_Value + " is added to the scene");
-                        }
-                        m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
-
-
-                        //if (ImGui::MenuItem(" Remove Prefab"))
-                        //{
-                        //    std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
-
-                        //    ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
-                        //    PPB.AddOrRemoveComponents(Archetype->GetComponent
-                        //        <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {} , ComponentAddRemove);
-
-                        //    if (!m_Imgui.m_Components.empty())
-                        //        m_Imgui.UpdateComponents(Entity.m_GlobalIndex);
-
-                        //    EDITOR_WARN_PRINT("Removed Prefab Component from: " + Temp);
-                        //}
-                        //m_Imgui.ImGuiHelp("Removes prefab component\n Instances will become normal entities");
-
-                        ImGui::EndPopup();
-                    }
-
-                    if (bOpen)
-                    {
                         if (ParentPrefab)
-                            m_Imgui.DisplayChildEntities(*ParentPrefab);
-                        ImGui::TreePop();
+                            NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_DefaultOpen;
+                        else
+                            NodeFlags |= ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Leaf;
+
+                        bOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, ArchetypeName.c_str());
+
+                        DisplayPrefabComponents(Archetype, i, Prefab);
+
+                        if (ImGui::IsItemClicked())
+                        {
+                            m_Imgui.m_SelectedEntity.first = Archetype;
+                            m_Imgui.m_SelectedEntity.second = i;
+
+                            m_Imgui.m_Components = m_Imgui.m_SelectedEntity.first->GetEntityComponents(m_Imgui.m_SelectedEntity.second);
+                            EDITOR_TRACE_PRINT("Editing Prefab: " + ArchetypeName);
+                        }
+
+                        if (ImGui::BeginPopupContextItem())
+                        {
+                            //m_Imgui.m_pArchetype = Archetype;
+
+                            if (ImGui::MenuItem(ICON_FA_PLUS_SQUARE " Clone Prefab"))
+                            {
+                                auto& EntityInfo = PPB.GetEntityInfo(Entity.m_GlobalIndex);
+
+                                m_Imgui.m_pArchetype->ClonePrefab(EntityInfo.m_PoolDetails.m_PoolIndex);
+
+                                EDITOR_INFO_PRINT("Prefab Instance:" + ArchetypeName + " is added to the scene");
+                            }
+                            m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
+
+
+                            if (ImGui::MenuItem("Remove Prefab"))
+                            {
+                                std::string Temp = m_Imgui.m_pArchetype->GetComponent<name>(paperback::vm::PoolDetails{ 0, i }).m_Value;
+
+                                //Abandon all instances before removing the prefab component
+                                if (Prefab->m_ReferencePrefabGIDs.size())
+                                {
+                                    for (auto& Instance : Prefab->m_ReferencePrefabGIDs)
+                                    {
+                                        ComponentAddRemove[0] = &paperback::component::info_v<reference_prefab>;
+                                        auto& InstanceEntityInfo = PPB.GetEntityInfo(Instance);
+
+                                        PPB.AddOrRemoveComponents(InstanceEntityInfo.m_pArchetype->GetComponent<paperback::component::entity>(InstanceEntityInfo.m_PoolDetails),
+                                            {}, ComponentAddRemove);
+                                    }
+
+                                    //clear the list
+                                    Prefab->m_ReferencePrefabGIDs.clear();
+                                }
+
+                                //Remove prefab component
+                                ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
+                                PPB.AddOrRemoveComponents(Archetype->GetComponent
+                                    <paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }), {}, ComponentAddRemove);
+
+                                if (!m_Imgui.m_Components.empty())
+                                    m_Imgui.m_Components.clear();
+
+                                m_Imgui.m_pArchetype = nullptr;
+
+                                EDITOR_WARN_PRINT("Removed Prefab Component from: " + Temp);
+                            }
+
+                            ImGui::Separator();
+
+                            if (ImGui::MenuItem(ICON_FA_SAVE " Save this prefab"))
+                            {
+                                m_Imgui.m_SelectedEntity.first = Archetype;
+                                m_Imgui.m_SelectedEntity.second = i;
+
+                                m_Imgui.m_Type = FileActivity::SAVEINDIVIDUALPREFAB;
+                            }
+
+                            m_Imgui.ImGuiHelp("Saves the selected prefab");
+
+                            ImGui::EndPopup();
+                        }
+
+                        if (bOpen)
+                        {
+                            if (ParentPrefab)
+                                m_Imgui.DisplayChildEntities(*ParentPrefab);
+                            ImGui::TreePop();
+                        }
                     }
-
-
                 }
             }
         }

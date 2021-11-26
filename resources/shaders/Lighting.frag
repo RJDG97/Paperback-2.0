@@ -45,28 +45,31 @@ uniform vec3 uCameraPosition;
 
 float ShadowValue(vec4 lFragPosition, vec3 Normal, vec3 LightDir)
 {
+	float Shadow = 0.0f;
 	vec3 ProjectedCoords = lFragPosition.xyz / lFragPosition.w;
-	ProjectedCoords = ProjectedCoords * 0.5 + 0.5;
 
-	float CurrentDepth = ProjectedCoords.z;
-
-	float Bias = max(uShadowBias * (1.0 - dot(Normal, LightDir)), (uShadowBias * 0.1));
-	//float Bias = 0.0005 * tan(acos(dot(Normal, LightDir)));
-	float Shadow = 0.0;
-	vec2 TexelSize = 1.0 / textureSize(uShadowMap, 0);
-	
-	for(int x = -1; x <= 1; ++x)
+	if(ProjectedCoords.z <= 1.0f)
 	{
-		for(int y = -1; y <= 1; ++y)
-		{
-			float PCF = texture(uShadowMap, ProjectedCoords.xy + vec2(x,y) * TexelSize).r;
-			Shadow += CurrentDepth - Bias > PCF ? 1.0 : 0.0;
-		}
-	}
-	Shadow /= 9.0;
+		ProjectedCoords = (ProjectedCoords + 1.0f) / 2.0f;
+		float CurrentDepth = ProjectedCoords.z;
+		float Bias = max(uShadowBias * 0.0025f * (1.0f - dot(Normal, LightDir)), uShadowBias * 0.00005f);
 
-	if(ProjectedCoords.z > 1.0)
-		Shadow = 0.0;
+		int SampleRadius = 2;
+		vec2 TexelSize = 1.0 / textureSize(uShadowMap, 0);
+
+		for(int y = -SampleRadius; y <= SampleRadius; y++)
+		{
+			for(int x = -SampleRadius; x <= SampleRadius; x++)
+			{
+				float ClosestDepth = texture(uShadowMap, ProjectedCoords.xy + vec2(x,y) * TexelSize).r;
+
+				if(CurrentDepth > ClosestDepth + Bias)
+					Shadow += 1.0f;
+			}
+		}
+
+		Shadow /= pow(SampleRadius * 2 + 1, 2);
+	}
 
 	return Shadow;
 }

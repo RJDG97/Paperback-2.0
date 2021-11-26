@@ -11,7 +11,9 @@ struct render_system : paperback::system::instance
 {
 	GLFWwindow* m_pWindow;
 	RenderResourceManager* m_Resources;
-
+	tools::query Query;
+	tools::query QueryText;
+	
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
 		.m_pName = "render_system"
@@ -24,6 +26,13 @@ struct render_system : paperback::system::instance
 		Renderer::GetInstanced().SetUpFramebuffer(window.E.m_Width, window.E.m_Height);
 		m_pWindow = window.m_pWindow;
 		m_Resources = &RenderResourceManager::GetInstanced();
+
+		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation>();
+		Query.m_OneOf.AddFromComponents<animator, socketed, mesh>();
+		Query.m_NoneOf.AddFromComponents<prefab>();
+
+		QueryText.m_Must.AddFromComponents<transform, text, scale, rotation>();
+		QueryText.m_NoneOf.AddFromComponents<prefab>();
 	}
 
 	PPB_FORCEINLINE
@@ -44,6 +53,7 @@ struct render_system : paperback::system::instance
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
 		std::unordered_map<std::string_view, std::vector<glm::mat4>> uis;
+		std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>> texts;
 
 		// Reference quad
 		//glm::mat4 t{ 1.0f };
@@ -55,37 +65,63 @@ struct render_system : paperback::system::instance
 		//objects["Quad"].push_back({ t });
 
 		// Populate map
-		tools::query Query;
-		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation>();
-		Query.m_OneOf.AddFromComponents<animator, socketed, mesh>();
-		Query.m_NoneOf.AddFromComponents<prefab>();
-
 		ForEach( Search( Query ), [&]( transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator* Animator, socketed* Socketed) noexcept
 		{
+			if (Mesh.m_Model != "Quad")
+			{
+				glm::mat4 t{ 1.0f };
+				t = glm::translate(t, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z });
+				t = glm::rotate(t, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
+				t = glm::rotate(t, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
+				t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
+				t = glm::scale(t, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
+
+				Renderer::TransformInfo transform_info{ t };
+
+				transform_info.m_ShadowBias = Mesh.m_Bias;
+
+				if (Socketed)
+					transform_info.m_ParentSocketTransform = &Socketed->m_BoneTransform;
+
+				if (Animator)
+					transform_info.m_BoneTransforms = &Animator->m_FinalBoneMatrices;
+
+				objects[Mesh.m_Model].push_back(transform_info);
+			}
+			else
+			{
+				glm::mat4 t{ 1.0f };
+				t = glm::translate(t, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z * -1 });
+				t = glm::rotate(t, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
+				t = glm::rotate(t, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
+				t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
+				t = glm::scale(t, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
+
+				uis[Mesh.m_Texture].push_back(t);
+			}
+		});
+
+		ForEach(Search(QueryText), [&](transform& Transform, text& Text, scale& Scale, rotation& Rotation) noexcept
+		{
 			glm::mat4 t{ 1.0f };
-			t = glm::translate(t, glm::vec3{Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z});
+			t = glm::translate(t, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z * -1 });
 			t = glm::rotate(t, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
 			t = glm::rotate(t, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
 			t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
 			t = glm::scale(t, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
 
-			Renderer::TransformInfo transform_info{ t };
-
-			if (Socketed)
-				transform_info.m_ParentSocketTransform = &Socketed->m_BoneTransform;
-
-			if (Animator)
-				transform_info.m_BoneTransforms = &Animator->m_FinalBoneMatrices;
-
-			if(Mesh.m_Model != "Quad")
-				objects[Mesh.m_Model].push_back(transform_info);
-			else
-				uis[Mesh.m_Texture].push_back(t);
+			texts[Text.m_Font].push_back(std::make_pair(Text.m_Text, t));
 		});
+
+		glm::mat4 transform{ 1.f };
+		transform = glm::translate(transform, glm::vec3{ -0.2, 0.2, -1 * 0.1 });
+		transform = glm::scale(transform, glm::vec3{ 5,5,5 });
+
+		texts["arial"].push_back(std::make_pair("Hello", transform));
 
 		auto points = GetSystem<debug_system>().GetPoints();
 
-		Renderer::GetInstanced().Render(objects, uis, &points);
+		Renderer::GetInstanced().Render(objects, uis, texts, &points);
 	}
 
 	PPB_FORCEINLINE

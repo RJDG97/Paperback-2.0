@@ -256,6 +256,15 @@ namespace paperback::deserialize
             if (obj.is_type<mesh>())
                 NewArchetype->GetComponent<mesh>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mesh>();
 
+            if (obj.is_type<base>())
+                NewArchetype->GetComponent<base>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<base>();
+
+            if (obj.is_type<healthbar>())
+                NewArchetype->GetComponent<healthbar>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<healthbar>();
+
+            if (obj.is_type<unit>())
+                NewArchetype->GetComponent<unit>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<unit>();
+
             if (obj.is_type<component::entity>())
             {
                 if (!LoadPrefab)

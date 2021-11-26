@@ -170,6 +170,8 @@ void EditorViewport::Gizmo()
 
 void EditorViewport::ComposeTransform()
 {
+	paperback::Vector3f PrevTrans, PrevScale, PrevRotate;
+
 	glm::mat4 model{ 1.0f };
 	glm::vec3 Trans, Rot, Scale;
 
@@ -179,61 +181,56 @@ void EditorViewport::ComposeTransform()
 
 	auto EntityDetails = paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second });
 
+	auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(EntityDetails);
+
 	auto bTrans = m_Imgui.m_SelectedEntity.first->FindComponent<transform>(EntityDetails);
 	auto bRot = m_Imgui.m_SelectedEntity.first->FindComponent<rotation>(EntityDetails);
 	auto bScale = m_Imgui.m_SelectedEntity.first->FindComponent<scale>(EntityDetails);
-	auto bChild = m_Imgui.m_SelectedEntity.first->FindComponent<child>(EntityDetails);
-
-
-	if (bTrans) //for normal entities
-		model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
-
-	//else if (bTrans && bChild)
-	//{
-	//	auto Combi = bTrans->m_Offset + bTrans->m_Position;
-	//	model = glm::translate(model, glm::vec3(Combi.x, Combi.y, Combi.z));
-	//}
-	//else
-	//	model = glm::translate(model, glm::vec3(1, 1, 1));
-
-
-	if (bRot)
+	
+	if (!Prefab) //Gizmo only shows for non prefab entities
 	{
-		model = glm::rotate(model, glm::radians(bRot->m_Value.x), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-		model = glm::rotate(model, glm::radians(bRot->m_Value.y), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-		model = glm::rotate(model, glm::radians(bRot->m_Value.z), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-	}
-	else
-	{
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-	}
+		if (bTrans) //for normal entities
+			model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
 
-	if (bScale)
-		model = glm::scale(model, glm::vec3(bScale->m_Value.x, bScale->m_Value.y, bScale->m_Value.z));
-	else
-		model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
-
-	ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
-
-	if (ImGuizmo::IsUsing())
-	{
-		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
-
-		if (bTrans)
-			Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
-
-		//if (bRot)
-		//{
-		//	glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
-
-		//	bRot->m_Value.x += TempRot.x;
-		//	bRot->m_Value.y += TempRot.y;
-		//	bRot->m_Value.z += TempRot.z;
-		//}
+		if (bRot)
+		{
+			model = glm::rotate(model, glm::radians(bRot->m_Value.x), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
+			model = glm::rotate(model, glm::radians(bRot->m_Value.y), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
+			model = glm::rotate(model, glm::radians(bRot->m_Value.z), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
+		}
+		else
+		{
+			model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
+		}
 
 		if (bScale)
-			Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
+			model = glm::scale(model, glm::vec3(bScale->m_Value.x, bScale->m_Value.y, bScale->m_Value.z));
+
+		else
+			model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
+
+		ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
+
+		if (ImGuizmo::IsUsing())
+		{
+			Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
+
+			if (bTrans)
+				Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
+
+			//if (bRot)
+			//{
+			//	glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
+
+			//	bRot->m_Value.x += TempRot.x;
+			//	bRot->m_Value.y += TempRot.y;
+			//	bRot->m_Value.z += TempRot.z;
+			//}
+
+			if (bScale)
+				Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
+		}
 	}
 }

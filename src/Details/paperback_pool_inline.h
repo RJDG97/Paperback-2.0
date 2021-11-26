@@ -111,6 +111,8 @@ namespace paperback::vm
 				m_pCoordinator->BroadcastEvent<OnEvent_ParentDeleted>( GetComponent<parent>( PoolIndex ) );
 			else if ( pInfo.m_Guid == component::info_v<child>.m_Guid )
 				m_pCoordinator->BroadcastEvent<OnEvent_ChildDeleted>( GetComponent<child>( PoolIndex ), EntityGlobalIndex );
+			else if (pInfo.m_Guid == component::info_v<reference_prefab>.m_Guid)
+				m_pCoordinator->BroadcastEvent< OnEvent_ReferencePrefabDeleted >(GetComponent<reference_prefab>(PoolIndex), EntityGlobalIndex);
 			
 			// Abandon Prefab Instances when Deleting Prefab
 			//AbandonPrefabInstancesOnPrefabDelete( pInfo, EntityGlobalIndex );
@@ -477,6 +479,16 @@ namespace paperback::vm
 		);
 	}
 
+	std::byte* instance::FindComponent( const u32 PoolIndex, const component::type::guid ComponentGuid) const noexcept
+	{
+		//auto ComponentIndex = GetComponentIndex( component::info_v<T_COMPONENT>.m_UID );
+		auto ComponentIndex = GetComponentIndex( ComponentGuid );
+
+		if ( ComponentIndex == -1 ) return nullptr;
+
+		return &m_MemoryPool[ ComponentIndex ][ PoolIndex * m_ComponentInfo[ComponentIndex]->m_Size];
+	}
+
 	template < typename T_COMPONENT >
 	T_COMPONENT& instance::GetComponent( const u32 PoolIndex ) const noexcept
 	{
@@ -624,6 +636,12 @@ namespace paperback::vm
 		else if (Comp_Guid.m_Value == component::info_v< path_follower >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< path_follower >(Index));
 
+		else if (Comp_Guid.m_Value == component::info_v< healthbar >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< healthbar >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< base >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< base >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< unit >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< unit >(Index));
 		else
 			return rttr::instance();
 	}

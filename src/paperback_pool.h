@@ -35,8 +35,9 @@ namespace paperback::vm
 		struct OnEvent_ChildDeleted : paperback::event::instance< const child&
 																, const u32& >{};
 
-		struct OnEvent_PrefabDeleted : paperback::event::instance< const component::info&
-																 , const u32& >{};
+		struct OnEvent_ReferencePrefabDeleted : paperback::event::instance< const reference_prefab&
+																		  , const u32& >{};
+
 		//-----------------------------------
 		//            Default
 		//-----------------------------------
@@ -117,6 +118,9 @@ namespace paperback::vm
 
 		template < typename T_COMPONENT >
 		T_COMPONENT* FindComponent( const u32 PoolIndex ) const noexcept;
+
+		PPB_INLINE
+		std::byte* FindComponent( const u32 PoolIndex, const component::type::guid ComponentGuid ) const noexcept;
 
 		template < typename T_COMPONENT >
 		T_COMPONENT& GetComponent( const u32 PoolIndex ) const noexcept;

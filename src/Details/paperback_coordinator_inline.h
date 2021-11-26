@@ -208,7 +208,7 @@ namespace paperback::coordinator
 			{
 				auto& Prefab = Archetype->GetComponent<prefab>(paperback::vm::PoolDetails{ 0, i });
 
-				if (!Prefab.m_ReferencePrefabGIDs.empty())
+				if (Prefab.m_ReferencePrefabGIDs.size())
 					Prefab.m_ReferencePrefabGIDs.clear();
 			}
 
@@ -222,10 +222,51 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
+	void instance::SaveIndividualPrefab( const std::string& FilePath, paperback::archetype::instance* PrefabArchetype, const paperback::u32 Index ) noexcept
+	{
+		paperback::component::temp_guid Temp = {};
+		paperback::archetype::TempMgr TempMgr;
+
+		paperback::JsonFile JFile;
+
+		JFile.StartWriter(FilePath);
+		JFile.StartObject().WriteKey("Prefabs");
+		JFile.StartArray();
+
+		JFile.StartObject().WriteKey(PrefabArchetype->GetName()).StartArray();
+
+		//Serialize GUIDs
+
+		JFile.StartObject().WriteKey("Guid").StartArray();
+
+		auto& ComponentInfoArray = PrefabArchetype->GetComponentInfos();
+
+		for (paperback::u32 i = 0; i < PrefabArchetype->GetComponentCount(); ++i)
+		{
+			Temp.m_Value = ComponentInfoArray[i]->m_Guid.m_Value;
+			JFile.WriteGuid(Temp);
+		}
+
+		JFile.EndArray().EndObject();
+
+		auto& Prefab = PrefabArchetype->GetComponent<prefab>(paperback::vm::PoolDetails{ 0, Index });
+
+		if (Prefab.m_ReferencePrefabGIDs.size())
+			Prefab.m_ReferencePrefabGIDs.clear();
+
+		//Serialize Components
+
+		PrefabArchetype->SerializePrefabEntity(JFile, Index);
+		JFile.EndArray().EndObject();
+
+		JFile.EndArray().EndObject().EndWriter();
+	}
+
+
+	PPB_INLINE
 	void instance::SaveEntityInfo( const std::string& FilePath ) noexcept
 	{
 		paperback::entity::TempInfo Tempinfo{};
-		// Probably just save into the same file everytime
 		paperback::JsonFile JFile;
 
 		JFile.StartWriter( FilePath ).StartObject().WriteKey( "All Entity Info" ).StartArray();
@@ -252,12 +293,9 @@ namespace paperback::coordinator
 	void instance::LoadPrefabs( const std::string& FilePath ) noexcept
 	{
 		JsonFile Jfile;
-		//Initialize();
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("Prefabs");
 		Jfile.EndReader();
-
-		//LoadEntityInfo(EntityInfoPath);
 	}
 
 	PPB_INLINE
