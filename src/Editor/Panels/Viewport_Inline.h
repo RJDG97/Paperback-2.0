@@ -155,7 +155,7 @@ void EditorViewport::MouseSelection()
 
 void EditorViewport::Gizmo()
 {
-	if (m_Imgui.m_SelectedEntity.first) //An entity is selected	
+	if (m_Imgui.m_SelectedEntity.first)
 	{
 		ImGuizmo::SetOrthographic(true);
 		ImGuizmo::SetDrawlist();
@@ -164,14 +164,42 @@ void EditorViewport::Gizmo()
 		float WindowHeight = (float)ImGui::GetWindowHeight();
 		ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, WindowWidth, WindowHeight); //setting the viewport
 
-		ComposeTransform();
+		auto Path = m_Imgui.m_SelectedEntity.first->FindComponent<path>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+		auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+
+		if (!Prefab) //An entity is selected	
+			ComposeTransform();
+
+		if (Path && Prefab && m_Imgui.m_SelectedSplinePoint != -1)
+		{
+			glm::mat4 model{ 1.0f };
+			glm::vec3 Trans, Rot, Scale;
+
+			//Camera
+			glm::mat4 CameraView = Camera3D::GetInstanced().GetView();
+			glm::mat4 CameraProjection = Camera3D::GetInstanced().GetProjection();
+
+			model = glm::translate(model, glm::vec3(Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).x, Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).y, Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).z));
+
+			model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
+
+			model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
+
+			ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
+
+			if (ImGuizmo::IsUsing())
+			{
+				Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
+				Editor::Math::GlmtoVec3(Path->m_Points.at(m_Imgui.m_SelectedSplinePoint), Trans);
+			}
+		}
 	}
 }
 
 void EditorViewport::ComposeTransform()
 {
-	paperback::Vector3f PrevTrans, PrevScale, PrevRotate;
-
 	glm::mat4 model{ 1.0f };
 	glm::vec3 Trans, Rot, Scale;
 
@@ -181,56 +209,51 @@ void EditorViewport::ComposeTransform()
 
 	auto EntityDetails = paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second });
 
-	auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(EntityDetails);
-
 	auto bTrans = m_Imgui.m_SelectedEntity.first->FindComponent<transform>(EntityDetails);
 	auto bRot = m_Imgui.m_SelectedEntity.first->FindComponent<rotation>(EntityDetails);
 	auto bScale = m_Imgui.m_SelectedEntity.first->FindComponent<scale>(EntityDetails);
 	
-	if (!Prefab) //Gizmo only shows for non prefab entities
-	{
-		if (bTrans) //for normal entities
-			model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
+	if (bTrans) //for normal entities
+		model = glm::translate(model, glm::vec3(bTrans->m_Position.x, bTrans->m_Position.y, bTrans->m_Position.z));
 
-		if (bRot)
-		{
-			model = glm::rotate(model, glm::radians(bRot->m_Value.x), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-			model = glm::rotate(model, glm::radians(bRot->m_Value.y), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-			model = glm::rotate(model, glm::radians(bRot->m_Value.z), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-		}
-		else
-		{
-			model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
-			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
-			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
-		}
+	if (bRot)
+	{
+		model = glm::rotate(model, glm::radians(bRot->m_Value.x), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
+		model = glm::rotate(model, glm::radians(bRot->m_Value.y), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
+		model = glm::rotate(model, glm::radians(bRot->m_Value.z), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
+	}
+	else
+	{
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(1, 0, 0));//rotation x = 0.0 degrees
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 1, 0));//rotation y = 0.0 degrees
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0, 0, 1));//rotation z = 0.0 degrees
+	}
+
+	if (bScale)
+		model = glm::scale(model, glm::vec3(bScale->m_Value.x, bScale->m_Value.y, bScale->m_Value.z));
+
+	else
+		model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
+
+	ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
+
+	if (ImGuizmo::IsUsing())
+	{
+		Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
+
+		if (bTrans)
+			Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
+
+		//if (bRot)
+		//{
+		//	glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
+
+		//	bRot->m_Value.x += TempRot.x;
+		//	bRot->m_Value.y += TempRot.y;
+		//	bRot->m_Value.z += TempRot.z;
+		//}
 
 		if (bScale)
-			model = glm::scale(model, glm::vec3(bScale->m_Value.x, bScale->m_Value.y, bScale->m_Value.z));
-
-		else
-			model = glm::scale(model, glm::vec3(1, 1, 1));//scale = 1,1,1
-
-		ImGuizmo::Manipulate(glm::value_ptr(CameraView), glm::value_ptr(CameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(model));
-
-		if (ImGuizmo::IsUsing())
-		{
-			Editor::Math::DecomposeTransform(model, Trans, Scale, Rot);
-
-			if (bTrans)
-				Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
-
-			//if (bRot)
-			//{
-			//	glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
-
-			//	bRot->m_Value.x += TempRot.x;
-			//	bRot->m_Value.y += TempRot.y;
-			//	bRot->m_Value.z += TempRot.z;
-			//}
-
-			if (bScale)
-				Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
-		}
+			Editor::Math::GlmtoVec3(bScale->m_Value, Scale);
 	}
 }

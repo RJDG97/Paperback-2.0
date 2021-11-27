@@ -69,7 +69,7 @@ void DetailsWindow::DisplayProperties()
 
                             m_Imgui.DisplayStringType(PropertyName, PropertyType, PropertyValue);
 
-                        if (PropertyType.is_class())
+                        if (PropertyType.is_class() && ComponentInstance.second != paperback::component::info_v< path >.m_Guid)
                             m_Imgui.DisplayClassType(PropertyName, PropertyType, PropertyValue);
 
                         if (ComponentInstance.second == paperback::component::info_v< parent >.m_Guid)
@@ -108,6 +108,9 @@ void DetailsWindow::DisplayProperties()
                         AnimatorComponent(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second);
                     if (ComponentInstance.second == paperback::component::info_v< socketed >.m_Guid)
                         SocketedComponent(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second);
+                    if (ComponentInstance.second == paperback::component::info_v< path >.m_Guid)
+                        PathComponent();
+
                 }
             }
         }
@@ -247,7 +250,7 @@ void DetailsWindow::ParentComponent(prefab* Prefab, reference_prefab* ReferenceP
 
 void DetailsWindow::PrefabComponent()
 {
-    auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+    auto Prefab = m_Imgui.m_SelectedEntity.first->FindComponent<prefab>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
 
     if (Prefab)
     {
@@ -258,6 +261,82 @@ void DetailsWindow::PrefabComponent()
         }
         else
             ImGui::Text("There are no Instances");
+    }
+}
+
+void DetailsWindow::PathComponent()
+{
+    auto Path = m_Imgui.m_SelectedEntity.first->FindComponent<path>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+    int Count = 0;
+
+    if (Path)
+    {
+        if (Path->m_Points.size())
+        {
+            ImGui::Text("Spline Points:"); ImGui::SameLine(); if (ImGui::Button("Clear Selection"))  m_Imgui.m_SelectedSplinePoint = -1;
+
+            for (size_t i = 0; i < Path->m_Points.size(); ++i)
+            {
+                std::reference_wrapper<paperback::Vector3f> TempPoint = Path->m_Points.at(i);
+
+                if (ImGui::Button(("Point " + std::to_string(i)).c_str(), ImVec2{60.0f, 25.0f}))
+                    m_Imgui.m_SelectedSplinePoint = i;;
+
+                ImGui::SameLine();
+
+                ImGui::DragFloat3(("##SplinePoints" + std::to_string(i)).c_str(), (float*)&(TempPoint.get()), 0.1f, 0.1f);
+            }
+
+            ImGui::Separator();
+
+            ImGui::NewLine();
+
+            ImGui::PushItemWidth(150.0f);
+
+            if (ImGui::BeginCombo("##SplinePointCombo", "Add Points"))
+            {
+                for (size_t i = 0; i < Path->m_Points.size(); ++i)
+                {
+                    if (ImGui::Selectable(std::to_string(i).c_str()))
+                    {
+                        m_Imgui.m_SelectedSplinePoint = -1;
+                        Path->AddPoint(i, Path->m_Points.at(i));
+                    }
+                }
+                ImGui::EndCombo();
+            }
+
+            m_Imgui.ImGuiHelp("New Point is added after the selected Point");
+
+            ImGui::SameLine();
+
+            if (Path->m_Points.size() > 3)
+            {
+                if (ImGui::BeginCombo("##SplinePointComboRemove", "Remove Points"))
+                {
+                    for (size_t i = 0; i < Path->m_Points.size(); ++i)
+                    {
+                        if (ImGui::Selectable(std::to_string(i).c_str()))
+                            Path->RemovePoint(i);
+                    }
+                    ImGui::EndCombo();
+                }
+            }
+
+            ImGui::PopItemWidth();
+        }
+        else
+        {
+            if (ImGui::Button("Add Starting Points")) 
+            {
+                for (size_t i = 0; i < 4; ++i)
+                    Path->AddPoint(0, paperback::Vector3f{ 0.0f, 0.0f, 0.0f });
+            }
+
+            ImGui::SameLine();
+            m_Imgui.ImGuiHelp("Adds the Min number of points needed", true);
+        }
+
     }
 }
 

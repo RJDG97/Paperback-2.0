@@ -42,6 +42,8 @@ struct DetailsWindow : paperback::editor::instance
 
     void PrefabComponent();
 
+    void PathComponent(); // For Spline 
+
 //-----------------------------------
 //        Component Combos
 //-----------------------------------

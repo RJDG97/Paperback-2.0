@@ -67,6 +67,8 @@ struct imgui_system : paperback::system::instance
 
     std::deque< std::pair< std::string, fs::path > > m_DisplayFilePath;
 
+    int m_SelectedSplinePoint = -1;
+
     imgui_addons::ImGuiFileBrowser m_FileDialog; // to access the file dialog addon
     paperback::EditorLogger m_Log;
 
