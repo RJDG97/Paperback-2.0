@@ -611,6 +611,36 @@ namespace paperback::coordinator
 		return m_ArchetypeMgr.GetArchetype( ArchetypeGuid );
 	}
 
+
+	//-----------------------------------
+	//           CPP Scripts
+	//-----------------------------------
+
+	template < paperback::concepts::Script... T_SCRIPT >
+    void instance::RegisterScripts( void ) noexcept
+	{
+		m_ScriptMgr.RegisterScripts<T_SCRIPT...>();
+	}
+
+    template < paperback::concepts::Script T_SCRIPT >
+    T_SCRIPT* instance::FindScript( const paperback::u64 ScriptGuid ) const noexcept
+	{
+		return m_ScriptMgr.FindScript<T_SCRIPT>( ScriptGuid );
+	}
+
+    template < paperback::concepts::Script T_SCRIPT >
+	T_SCRIPT& instance::GetScript( const paperback::u64 ScriptGuid ) const noexcept
+	{
+		return m_ScriptMgr.GetScript<T_SCRIPT>( ScriptGuid );
+	}
+
+    PPB_FORCEINLINE
+    const script::manager::CPPScriptsList& instance::GetScriptsList( void ) const noexcept
+	{
+		return m_ScriptMgr.GetScriptsList();
+	}
+
+
 	//-----------------------------------
 	//              Clock
 	//-----------------------------------

@@ -155,6 +155,7 @@
     <ClInclude Include="..\..\src\Details\paperback_component_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_component_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_coordinator_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_cppscript_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_input_inline.h" />
@@ -220,6 +221,7 @@
     <ClInclude Include="..\..\src\paperback_component_mgr.h" />
     <ClInclude Include="..\..\src\paperback_concepts.h" />
     <ClInclude Include="..\..\src\paperback_coordinator.h" />
+    <ClInclude Include="..\..\src\paperback_cppscript_mgr.h" />
     <ClInclude Include="..\..\src\paperback_data_reflections.h" />
     <ClInclude Include="..\..\src\paperback_event.h" />
     <ClInclude Include="..\..\src\paperback_event_mgr.h" />

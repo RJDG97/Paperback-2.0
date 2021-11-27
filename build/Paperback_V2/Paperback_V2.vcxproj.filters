@@ -468,6 +468,12 @@
     <ClInclude Include="..\..\src\Functionality\Font\Font.h">
       <Filter>Source\Tools\Functionality\Font</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_cppscript_mgr_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_cppscript_mgr.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -526,9 +532,6 @@
     </Filter>
     <Filter Include="Source\Tools\Functionality\Renderer">
       <UniqueIdentifier>{a66abb8d-86cf-4755-baa0-56dcff7207cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Tools\Input">
-      <UniqueIdentifier>{5c11195e-dac3-439a-b149-cb11d8fc289a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Gameplay Code\Scripts">
       <UniqueIdentifier>{25f1021e-2315-4e11-8e8e-36f3861c37c6}</UniqueIdentifier>

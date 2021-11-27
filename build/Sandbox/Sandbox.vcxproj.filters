@@ -153,9 +153,6 @@
     <ClInclude Include="Systems\WindowSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\AnimatorSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
@@ -186,21 +183,6 @@
     <ClInclude Include="Components\Name.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\UnitState.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Waypointv1.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Shield.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\WaypointSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\WaypointTag.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
@@ -208,9 +190,6 @@
       <Filter>Source Files\Components\Details\Tags</Filter>
     </ClInclude>
     <ClInclude Include="Components\Enemy.h">
-      <Filter>Source Files\Components\Details\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Player.h">
       <Filter>Source Files\Components\Details\Tags</Filter>
     </ClInclude>
     <ClInclude Include="Components\HealthBar.h">
@@ -227,6 +206,21 @@
     </ClInclude>
     <ClInclude Include="Systems\OnEvent_HealthSystem.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Button.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\OnEvent_ReferencePrefabDeleted.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Text.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\UISystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\AnimatorSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

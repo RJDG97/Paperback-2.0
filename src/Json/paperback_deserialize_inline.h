@@ -366,6 +366,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<waypoint_tag>())
                 NewArchetype->GetComponent<waypoint_tag>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypoint_tag>();
+
+            if (obj.is_type<button>())
+                NewArchetype->GetComponent<button>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<button>();
         }
     }
 

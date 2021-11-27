@@ -14,6 +14,7 @@
 #include "PlayerSpawnerSystem.h"
 #include "WaypointSystem.h"
 #include "HealthSystem.h"
+#include "UISystem.h"
 
 // Event
 #include "OnEvent_CollisionSystem.h"

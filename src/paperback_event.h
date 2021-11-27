@@ -1,39 +1,5 @@
 #pragma once
 
-/*
-To Use:
-
-	1. Create an Event:
-
-		struct RandomEvent : paperback::event::instance
-		{
-			RandomEvent( paperback::component::entity Entity ) : m_Entity{ Entity } {}
-			Paperback::EntityID m_Entity;
-		};
-
-
-	2. Create a public handler function within the System handling the Event
-
-		void System::TestRandomEvent( std::shared_ptr< RandomEvent > Event )
-		{
-			DEBUG_PRINT("Random Event");
-
-			// To access data ( Probably making a macro for this in the near future )
-			static_cast< RandomEvent* >( *Event )->m_Entity;
-		}
-
-
-	3. Register Event inside OnCreate() - Subscribe Event Function has not been incorporated into Coordinator yet
-
-		Action< std::shared_ptr< RandomEvent > > Event_1 = PPB_BIND( System::TestRandomEvent );
-		m_Coordinator.SubscribeEvent( Event_1 );
-
-
-	4. Publish Event
-
-		m_Coordinator.PublishEvent< RandomEvent >( some_random_entity_component );
-*/
-
 namespace paperback::event
 {
 	//-----------------------------------
@@ -65,7 +31,7 @@ namespace paperback::event
 
         struct global
         {
-            const type::guid        m_Guid       { };
+            const type::guid      m_Guid       { };
             static constexpr auto id_v       = event::type::id::GLOBAL;
 
         };

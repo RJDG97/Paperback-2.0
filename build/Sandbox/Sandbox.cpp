@@ -98,6 +98,7 @@ void InitializeGame()
         ,    unit             // Tag
         ,    waypoint_tag
         ,    text
+        ,    button
         >();
     }
 
@@ -119,6 +120,7 @@ void InitializeGame()
         ,   timer_system
         ,   waypoint_system
         ,   health_system
+        ,   ui_system
         >();
 
         PPB.RegisterSystems <

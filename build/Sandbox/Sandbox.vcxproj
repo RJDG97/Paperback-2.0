@@ -171,6 +171,7 @@
     <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\Base.h" />
     <ClInclude Include="Components\BoundingBox.h" />
+    <ClInclude Include="Components\Button.h" />
     <ClInclude Include="Components\Child.h" />
     <ClInclude Include="Components\CollisionLayer.h" />
     <ClInclude Include="Components\component_includes.h" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
     <ClInclude Include="Systems\TimerSystem.h" />
+    <ClInclude Include="Systems\UISystem.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
