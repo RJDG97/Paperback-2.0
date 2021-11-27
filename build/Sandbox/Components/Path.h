@@ -8,7 +8,7 @@ struct path
 		.m_pName = "Path"
 	};
 
-	paperback::Spline m_Spline;
+	std::vector<paperback::Vector3f> m_Points;
 	int m_ID;
 };
 
@@ -19,7 +19,7 @@ namespace RR_Path
 	{
 		rttr::registration::class_<path>(path::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
-			.property("Spline", &path::m_Spline)
+			.property("Points", &path::m_Points)(rttr::policy::prop::as_reference_wrapper)
 			.property("Path ID", &path::m_ID);
 	}
 }

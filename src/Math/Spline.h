@@ -22,7 +22,7 @@ namespace paperback
 			  m_Looped {looped},
 			  m_TotalLength {}
 		{
-			for (int i = 0; i < m_Points.size() - 3; ++i)
+			for (int i = 0; i < static_cast<int>(m_Points.size() - 3); ++i)
 			{
 				float length { CalculateSegmentLength(i) };
 				m_Points[i].m_Length = length;

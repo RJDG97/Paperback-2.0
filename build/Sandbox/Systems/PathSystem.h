@@ -6,6 +6,7 @@
 #include "../Components/Path.h"
 #include "Math/Math_includes.h"
 #include <algorithm>
+#include <map>
 
 struct path_system : paperback::system::instance
 {
@@ -30,6 +31,7 @@ struct path_system : paperback::system::instance
 	PPB_FORCEINLINE
 	void Update(void) noexcept
 	{
+		//temporary
 		std::vector<paperback::Spline::SplinePoint> spline_points;
 		spline_points.push_back({ { -5.0f, 2.0f, -5.0f } });
 		spline_points.push_back({ { -3.0f, 5.0f, -6.0f } });
@@ -40,16 +42,26 @@ struct path_system : paperback::system::instance
 		spline_points.push_back({ { 10.0f, 4.0f, -4.0f } });
 		paperback::Spline spline{ spline_points, false };
 
+		std::map<int, paperback::Spline> splines;
+
 		tools::query Query_Paths;
-		Query_Paths.m_Must.AddFromComponents<path>();
+		Query_Paths.m_Must.AddFromComponents<path, transform>();
 
 		if (debug_sys->m_IsDebug)
 		{
 			debug_sys->DrawSpline(spline);
 
-			ForEach(Search(Query_Paths), [&](path& Path) noexcept
+			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform) noexcept
 			{
-				debug_sys->DrawSpline(Path.m_Spline);
+				std::vector<paperback::Spline::SplinePoint> spline_points;
+
+				for (auto& point : Path.m_Points)
+				{
+					spline_points.push_back({ Transform.m_Position + point });
+				}
+
+				splines[Path.m_ID] = { spline_points, false };
+				debug_sys->DrawSpline(splines[Path.m_ID]);
 			});
 		}
 
@@ -94,13 +106,12 @@ struct path_system : paperback::system::instance
 				vec.push_back(Transform.m_Position);
 				debug_sys->DrawDebugLines(vec, true);
 
-				/*ForEach(Search(Query_Paths), [&](path& Path) noexcept
+				auto it = splines.find(PathFollower.m_ID);
+
+				if (it != splines.end())
 				{
-					if (Path.m_ID == PathFollower.m_ID)
-					{
-						Path.m_Spline
-					}
-				});*/
+					//use that spline
+				}
 			}
 		});
 	}
