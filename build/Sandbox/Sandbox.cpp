@@ -5,6 +5,7 @@
 //-----------------------------------
 #include "Components/component_includes.h"
 #include "Systems/system_includes.h"
+#include "Scripts/scripts_includes.h"
 
 //-----------------------------------
 //      Forward Declarations
@@ -135,6 +136,10 @@ void InitializeGame()
         ,   onevent_ParentDeleted_system
         ,   onevent_ChildDeleted_system
         ,   onevent_ReferencePrefabDeleted_system
+        >();
+
+        PPB.RegisterScripts<
+            card_script
         >();
     }
     // Entity Creation

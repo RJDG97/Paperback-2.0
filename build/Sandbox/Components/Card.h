@@ -7,7 +7,8 @@ struct card
 		.m_pName = "Card"
 	};
 
-	paperback::u32     m_unitgid;
+	paperback::u32     m_UnitGID;
+	int				   m_index;
 };
 
 namespace RR_Card
@@ -16,6 +17,6 @@ namespace RR_Card
 	{
 	   rttr::registration::class_<card>(card::typedef_v.m_pName)
 		   .constructor()(rttr::policy::ctor::as_object)
-			.property("Unit", &card::m_unitgid)(rttr::policy::prop::as_reference_wrapper);
+			.property("Unit GID", &card::m_UnitGID)(rttr::policy::prop::as_reference_wrapper);
 	}
 }

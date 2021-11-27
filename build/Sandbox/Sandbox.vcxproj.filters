@@ -29,6 +29,12 @@
     <Filter Include="Source Files\Components\Details\Tags">
       <UniqueIdentifier>{3e613674-9a12-413c-9c6b-c11bd41949f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Scripts">
+      <UniqueIdentifier>{59b353a1-8e3b-4cf5-93bd-78c0fd3b2815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scripts\Details">
+      <UniqueIdentifier>{2d0f3efb-98a8-47ed-bdeb-27f69313b5be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sandbox.cpp">
@@ -230,6 +236,12 @@
     </ClInclude>
     <ClInclude Include="Systems\DeckSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\scripts_includes.h">
+      <Filter>Source Files\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\CardScript.h">
+      <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
