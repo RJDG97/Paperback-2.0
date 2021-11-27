@@ -849,7 +849,16 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 		
 		for (const auto& instance : model.second)
 		{
-			m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
+			if (instance.m_ParentSocketTransform)
+			{
+				glm::mat4 transform = instance.m_Transform * (*instance.m_ParentSocketTransform);
+				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
+			}
+			else
+			{
+				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
+			}
+
 			m_Resources.m_Shaders["Light"].SetUniform("uShadowBias", static_cast<float>(instance.m_ShadowBias));
 
 			if (instance.m_BoneTransforms)
@@ -860,16 +869,6 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 			else
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uHasBones", false);
-			}
-
-			if (instance.m_ParentSocketTransform)
-			{
-				m_Resources.m_Shaders["Light"].SetUniform("uHasSocketed", true);
-				m_Resources.m_Shaders["Light"].SetUniform("uParentSocketTransform", *instance.m_ParentSocketTransform);
-			}
-			else
-			{
-				m_Resources.m_Shaders["Light"].SetUniform("uHasSocketed", false);
 			}
 
 			for (auto& submesh : SubMeshes)
