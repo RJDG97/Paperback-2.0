@@ -172,6 +172,7 @@
     <ClInclude Include="Components\Base.h" />
     <ClInclude Include="Components\BoundingBox.h" />
     <ClInclude Include="Components\Button.h" />
+    <ClInclude Include="Components\Card.h" />
     <ClInclude Include="Components\Child.h" />
     <ClInclude Include="Components\CollisionLayer.h" />
     <ClInclude Include="Components\component_includes.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Components\Counter.h" />
     <ClInclude Include="Components\Currency.h" />
     <ClInclude Include="Components\Damage.h" />
+    <ClInclude Include="Components\Deck.h" />
     <ClInclude Include="Components\Enemy.h" />
     <ClInclude Include="Components\EnemySpawner.h" />
     <ClInclude Include="Components\EntityScript.h" />
@@ -210,6 +212,7 @@
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
+    <ClInclude Include="Systems\DeckSystem.h" />
     <ClInclude Include="Systems\EnemySpawnerSystem.h" />
     <ClInclude Include="Systems\HealthSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />

@@ -222,5 +222,14 @@
     <ClInclude Include="Systems\AnimatorSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Card.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Deck.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\DeckSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

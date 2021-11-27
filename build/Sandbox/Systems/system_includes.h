@@ -15,6 +15,7 @@
 #include "WaypointSystem.h"
 #include "HealthSystem.h"
 #include "UISystem.h"
+#include "DeckSystem.h"
 
 // Event
 #include "OnEvent_CollisionSystem.h"

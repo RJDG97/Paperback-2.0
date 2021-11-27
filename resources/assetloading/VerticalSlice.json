@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 36
+                "EntityHead": 40
             }
         },
         {
@@ -24,7 +24,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonTailLeft",
-                        "Texture": "DragonTail_Left_BaseColour.dds"
+                        "Texture": "DragonTail_Left_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -68,7 +69,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonTailRight",
-                        "Texture": "DragonTail_Right_BaseColour.dds"
+                        "Texture": "DragonTail_Right_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -112,7 +114,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonSpineSupport",
-                        "Texture": "DragonSpine_BaseColour.dds"
+                        "Texture": "DragonSpine_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -156,7 +159,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "RockPaperScissorsIcon"
+                        "Texture": "RockPaperScissorsIcon",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -203,7 +207,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar"
+                        "Texture": "PlayerHPBar",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -247,7 +252,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "EnemyHPBar"
+                        "Texture": "EnemyHPBar",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -387,7 +393,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonTailLeft",
-                        "Texture": ""
+                        "Texture": "",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -430,7 +437,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonTailRight",
-                        "Texture": ""
+                        "Texture": "",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -473,7 +481,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonSpineSupport",
-                        "Texture": ""
+                        "Texture": "",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -516,7 +525,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "RedRockBlueScissors"
+                        "Texture": "RedRockBlueScissors",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -559,7 +569,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar"
+                        "Texture": "PlayerHPBar",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -602,7 +613,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "EnemyHPBar"
+                        "Texture": "EnemyHPBar",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -638,6 +650,48 @@
                     "Name": {
                         "Name": "EnemyHealthBar"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 37
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PaperWeapon_PaperShield",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "PaperCard"
+                    }
                 }
             ]
         },
@@ -661,7 +715,8 @@
                     },
                     "Mesh": {
                         "Model": "Sandpit",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -733,7 +788,8 @@
                     },
                     "Mesh": {
                         "Model": "Sandpit",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -806,7 +862,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonSlideLeft",
-                        "Texture": "DragonSlide_Left_BaseColour.dds"
+                        "Texture": "DragonSlide_Left_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -860,7 +917,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonSlideRight",
-                        "Texture": "DragonSlide_Right_BaseColour.dds"
+                        "Texture": "DragonSlide_Right_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -930,7 +988,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonSlideLeft",
-                        "Texture": "DragonSlide_Left_BaseColour.dds"
+                        "Texture": "DragonSlide_Left_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -985,7 +1044,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonSlideRight",
-                        "Texture": "DragonSlide_Right_BaseColour.dds"
+                        "Texture": "DragonSlide_Right_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1057,7 +1117,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonHead",
-                        "Texture": "DragonHead_BaseColour.dds"
+                        "Texture": "DragonHead_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1125,7 +1186,8 @@
                     },
                     "Mesh": {
                         "Model": "TopPath",
-                        "Texture": "TopPath_BaseColour.dds"
+                        "Texture": "TopPath_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1193,7 +1255,8 @@
                     },
                     "Mesh": {
                         "Model": "BottomPath",
-                        "Texture": "BottomPath_BaseColour.dds"
+                        "Texture": "BottomPath_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1261,7 +1324,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonSpine",
-                        "Texture": "DragonSpine_BaseColour.dds"
+                        "Texture": "DragonSpine_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1346,7 +1410,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonHead",
-                        "Texture": "DragonHead_BaseColour.dds"
+                        "Texture": "DragonHead_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1413,7 +1478,8 @@
                     },
                     "Mesh": {
                         "Model": "TopPath",
-                        "Texture": "TopPath_BaseColour.dds"
+                        "Texture": "TopPath_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1483,7 +1549,8 @@
                     },
                     "Mesh": {
                         "Model": "BottomPath",
-                        "Texture": "BottomPath_BaseColour.dds"
+                        "Texture": "BottomPath_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1550,7 +1617,8 @@
                     },
                     "Mesh": {
                         "Model": "DragonSpine",
-                        "Texture": "DragonSpine_BaseColour.dds"
+                        "Texture": "DragonSpine_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1636,7 +1704,8 @@
                     },
                     "Mesh": {
                         "Model": "HDBBlock",
-                        "Texture": "HDB_BaseColour.dds"
+                        "Texture": "HDB_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1716,7 +1785,8 @@
                     },
                     "Mesh": {
                         "Model": "HDBBlock",
-                        "Texture": "HDB_BaseColour.dds"
+                        "Texture": "HDB_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1797,7 +1867,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar_Fill"
+                        "Texture": "PlayerHPBar_Fill",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1866,7 +1937,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar_Fill"
+                        "Texture": "PlayerHPBar_Fill",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -1935,7 +2007,8 @@
                     },
                     "Mesh": {
                         "Model": "NationalStadium",
-                        "Texture": "NationalStadium_BaseColour.dds"
+                        "Texture": "NationalStadium_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -2028,7 +2101,8 @@
                     },
                     "Mesh": {
                         "Model": "NationalStadium",
-                        "Texture": "NationalStadium_BaseColour.dds"
+                        "Texture": "NationalStadium_BaseColour.dds",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -2120,7 +2194,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "EnemyHPBar_Fill"
+                        "Texture": "EnemyHPBar_Fill",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -2187,7 +2262,8 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "EnemyHPBar_Fill"
+                        "Texture": "EnemyHPBar_Fill",
+                        "Shadow Bias": 1
                     },
                     "Scale": {
                         "Scale": {
@@ -2231,6 +2307,157 @@
                     },
                     "Enemy": {},
                     "HealthBar": {}
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        12242167150514887405
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 36
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "CardBack",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "CardBack"
+                    },
+                    "Card": {
+                        "Unit": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 38
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RockWeapon_RockShield",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "RockCard"
+                    },
+                    "Card": {
+                        "Unit": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 39
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ScissorsWeapon_ScissorsShield",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "ScissorCard"
+                    },
+                    "Card": {
+                        "Unit": 0
+                    }
                 }
             ]
         }

@@ -99,6 +99,8 @@ void InitializeGame()
         ,    waypoint_tag
         ,    text
         ,    button
+        ,    card
+        ,    deck
         >();
     }
 
@@ -121,6 +123,7 @@ void InitializeGame()
         ,   waypoint_system
         ,   health_system
         ,   ui_system
+        ,   deck_system
         >();
 
         PPB.RegisterSystems <

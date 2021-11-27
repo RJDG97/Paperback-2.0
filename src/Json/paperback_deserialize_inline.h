@@ -280,6 +280,12 @@ namespace paperback::deserialize
             if (obj.is_type<entityscript>())
                 NewArchetype->GetComponent<entityscript>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<entityscript>();
 
+            if (obj.is_type<card>())
+                NewArchetype->GetComponent<card>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<card>();
+
+            if (obj.is_type<deck>())
+                NewArchetype->GetComponent<deck>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<deck>();
+
             if (obj.is_type<collidable>())
                 NewArchetype->GetComponent<collidable>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<collidable>();
             
