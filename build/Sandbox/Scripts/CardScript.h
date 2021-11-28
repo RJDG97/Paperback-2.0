@@ -18,7 +18,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
     {
     }
 
-    void OnClick(paperback::u32 PrefabGID, int PositionIndex ) noexcept override
+    void OnClick(paperback::component::entity& Entity, paperback::u32 PrefabGID, int PositionIndex ) noexcept override
     {
         auto list = m_Coordinator.Search<paperback::component::entity>();
 
@@ -81,7 +81,6 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
             });
 
         // Delete Card
-        //auto obj = m_Coordinator.GetEntityInfo(Entity.m_GlobalIndex);
-        //m_Coordinator.DeleteEntity(obj);
+        m_Coordinator.DeleteEntity(Entity);
     }
 };

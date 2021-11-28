@@ -140,7 +140,7 @@ struct ui_system : paperback::system::instance
 
                             // Run OnClick Script If Valid
                             auto Script = FindScript<paperback::script::card_interface>( Card->m_ReferencedScript );
-                            if ( Script ) Script->OnClick( Card->m_UnitGID, Card->m_PositionIndex );
+                            if ( Script ) Script->OnClick(Entity, Card->m_UnitGID, Card->m_PositionIndex );
                         }
                     }
                     // Key Pressed - Not Released Yet
