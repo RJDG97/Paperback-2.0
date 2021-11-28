@@ -31,6 +31,6 @@ namespace RR_Path
 		rttr::registration::class_<path>(path::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("Points", &path::m_Points)
-			.property("Path ID", &path::m_ID);
+			.property("Path ID", &path::m_ID)(rttr::policy::prop::as_reference_wrapper);
 	}
 }
