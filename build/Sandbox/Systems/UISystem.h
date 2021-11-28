@@ -103,7 +103,7 @@ struct ui_system : paperback::system::instance
         {
             auto MPos = GetMousePositionInUI();
 
-            ForEach( Search( m_ButtonQuery ), [&]( transform& Transform, scale& Scale, button* Button, card* Card, selected* Selected ) noexcept
+            ForEach( Search( m_ButtonQuery ), [&]( entity& Entity, transform& Transform, scale& Scale, button* Button, card* Card, selected* Selected ) noexcept
             {
                 if ( UICollided( Transform, Scale, paperback::Vector3f{ MPos.x, MPos.y, MPos.z } ) )
                 {

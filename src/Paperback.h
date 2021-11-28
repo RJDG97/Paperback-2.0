@@ -72,7 +72,6 @@ namespace paperback
 // Reflection
 //----------------------------------
 #include <rttr/registration>
-#include "paperback_data_reflections.h"
 
 //----------------------------------
 // Files
@@ -133,5 +132,7 @@ namespace paperback
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_coordinator_inline.h"
 #include "Details/paperback_statemgr_inline.h"
+
+#include "paperback_data_reflections.h"
 
 #endif
