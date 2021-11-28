@@ -38,7 +38,7 @@ namespace RR_Card
 	{
 	   rttr::registration::class_<card>( card::typedef_v.m_pName )
 		   .constructor()( rttr::policy::ctor::as_object )
-			.property( "Card Textures", &card::m_CardStateTextures)(rttr::policy::prop::as_reference_wrapper )
+			.property( "Card Textures", &card::m_CardStateTextures)
 			.property( "Original Position", &card::m_OriginalPosition )
 			.property( "Script Guid", &card::m_ReferencedScript )
 			.property( "Unit GID", &card::m_UnitGID )(rttr::policy::prop::as_reference_wrapper )

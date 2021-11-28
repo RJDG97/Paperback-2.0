@@ -675,10 +675,20 @@ struct imgui_system : paperback::system::instance
 
     void DisplayClassType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
     {
-        if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>())
+        if (PropertyType == rttr::type::get<std::reference_wrapper<paperback::Vector3f>>() || PropertyType == rttr::type::get<paperback::Vector3f>())
         {
-            ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-            ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(PropertyValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()), 0.1f, 0.1f);
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("x: %.1f", PropertyValue.get_value<paperback::Vector3f>().x); ImGui::SameLine();
+                ImGui::Text("y: %.1f", PropertyValue.get_value<paperback::Vector3f>().y); ImGui::SameLine();
+                ImGui::Text("z: %.1f", PropertyValue.get_value<paperback::Vector3f>().z);
+            }
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::DragFloat3(("##" + PropertyName).c_str(), (float*)&(PropertyValue.get_value<std::reference_wrapper<paperback::Vector3f>>().get()), 0.1f, 0.1f);
+            }
         }
 
         if (PropertyType == rttr::type::get<paperback::component::entity::Validation>())
@@ -726,6 +736,52 @@ struct imgui_system : paperback::system::instance
             }
         }
 
+        else if (PropertyType == rttr::type::get<bool>() || PropertyType == rttr::type::get <std::reference_wrapper<bool>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("%d", PropertyValue.get_value<bool>());
+            }
+            else
+            {
+                ImGui::Checkbox(PropertyName.c_str(), &(PropertyValue.get_value<std::reference_wrapper<bool>>().get()));
+            }
+        }
+
+
+        else if (PropertyType == rttr::type::get<paperback::u32>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::u32>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("%llu", PropertyValue.get_value<paperback::u32>());
+            }
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::PushItemWidth(150.0f);
+                ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U32, &(PropertyValue.get_value<std::reference_wrapper<paperback::u32>>().get()));
+                ImGui::PopItemWidth();
+            }
+        }
+
+        else if (PropertyType == rttr::type::get<paperback::u64>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::u64>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("%llu", PropertyValue.get_value<paperback::u64>());
+            }
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::PushItemWidth(150.0f);
+                ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U64, &(PropertyValue.get_value<std::reference_wrapper<paperback::u64>>().get()));
+                ImGui::PopItemWidth();
+            }
+        }
+
         else if (PropertyType == rttr::type::get<int>() || PropertyType == rttr::type::get<std::reference_wrapper<int>>())
         {
             if (!PropertyType.is_wrapper())
@@ -746,71 +802,10 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        else if (PropertyType == rttr::type::get<bool>() || PropertyType == rttr::type::get <std::reference_wrapper<bool>>())
-        {
-            if (!PropertyType.is_wrapper())
-            {
-                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::Text("%d", PropertyValue.get_value<bool>());
-            }
-            else
-            {
-                ImGui::Checkbox(PropertyName.c_str(), &(PropertyValue.get_value<std::reference_wrapper<bool>>().get()));
-            }
-        }
-
         else if (PropertyType == rttr::type::get<size_t>())
         {
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
             ImGui::Text("%d", PropertyValue.get_value<size_t>());
-        }
-
-        else if (PropertyType == rttr::type::get<paperback::u32>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::u32>>())
-        {
-            if (!PropertyType.is_wrapper())
-            {
-                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::Text("%lu", PropertyValue.get_value<paperback::u32>());
-            }
-            else
-            {
-                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::PushItemWidth(150.0f);
-                ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U32, &(PropertyValue.get_value<std::reference_wrapper<paperback::u32>>().get()));
-                ImGui::PopItemWidth();
-            }
-        }
-
-        else if (PropertyType == rttr::type::get<paperback::i32>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::i32>>())
-        {
-            if (!PropertyType.is_wrapper())
-            {
-                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::Text("%d", PropertyValue.get_value<paperback::i32>());
-            }
-            else
-            {
-                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::PushItemWidth(150.0f);
-                ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_S32, &(PropertyValue.get_value<std::reference_wrapper<paperback::i32>>().get()));
-                ImGui::PopItemWidth();
-            }
-        }
-
-        else if (PropertyType == rttr::type::get<paperback::u64>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::u64>>())
-        {
-            if (!PropertyType.is_wrapper())
-            {
-                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::Text("%llu", PropertyValue.get_value<paperback::u64>());
-            }
-            else
-            {
-                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::PushItemWidth(150.0f);
-                ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U64, &(PropertyValue.get_value<std::reference_wrapper<paperback::u64>>().get()));
-                ImGui::PopItemWidth();
-            }
         }
     }
 

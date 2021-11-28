@@ -42,6 +42,10 @@ struct DetailsWindow : paperback::editor::instance
 
     void PrefabComponent();
 
+    void DeckComponent();
+
+    //void CardComponent();
+
 //-----------------------------------
 //        Component Combos
 //-----------------------------------
