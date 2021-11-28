@@ -10,6 +10,7 @@ struct path_follower
 	int m_ID;
 	float m_Distance;
 	float m_TravelSpeed;
+	paperback::Vector3f m_Direction;
 };
 
 
