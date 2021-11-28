@@ -2415,7 +2415,15 @@
                         "Name": "ScissorCard"
                     },
                     "Card": {
-                        "Unit GID": 0
+                      "Card Textures": [
+                            "",
+                            "",
+                            ""
+                      ],
+                      "Script Guid": 0,
+                      "Unit GID": 0,
+                      "Card State": 0,
+                      "Position Index": 0
                     }
                 },
                 {
@@ -2462,7 +2470,15 @@
                         "Name": "RockCard"
                     },
                     "Card": {
-                        "Unit GID": 0
+                      "Card Textures": [
+                            "",
+                            "",
+                            ""
+                      ],
+                      "Script Guid": 0,
+                      "Unit GID": 0,
+                      "Card State": 0,
+                      "Position Index": 0
                     }
                 }
             ]
@@ -2526,7 +2542,15 @@
                         "Name": "CardBack"
                     },
                     "Card": {
-                        "Unit GID": 0
+                      "Card Textures": [
+                            "",
+                            "",
+                            ""
+                      ],
+                      "Script Guid": 0,
+                      "Unit GID": 0,
+                      "Card State": 0,
+                      "Position Index": 0
                     },
                     "Deck": {
                         "Deck Details": [
@@ -2607,7 +2631,15 @@
                         "Name": "CardBack"
                     },
                     "Card": {
-                        "Unit GID": 0
+                      "Card Textures": [
+                            "",
+                            "",
+                            ""
+                      ],
+                      "Script Guid": 0,
+                      "Unit GID": 0,
+                      "Card State": 0,
+                      "Position Index": 0
                     },
                     "Deck": {
                         "Deck Details": [
@@ -2687,7 +2719,15 @@
                         "Name": "ScissorCard"
                     },
                     "Card": {
-                        "Unit GID": 0
+                      "Card Textures": [
+                            "",
+                            "",
+                            ""
+                      ],
+                      "Script Guid": 0,
+                      "Unit GID": 0,
+                      "Card State": 0,
+                      "Position Index": 0
                     }
                 },
                 {
@@ -2735,7 +2775,15 @@
                         "Name": "RockCard"
                     },
                     "Card": {
-                        "Unit GID": 0
+                      "Card Textures": [
+                            "",
+                            "",
+                            ""
+                      ],
+                      "Script Guid": 0,
+                      "Unit GID": 0,
+                      "Card State": 0,
+                      "Position Index": 0
                     }
                 }
             ]

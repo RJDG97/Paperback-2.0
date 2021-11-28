@@ -8,8 +8,8 @@ struct ui_system : paperback::system::instance
     };
 
     using query = std::tuple< 
-        paperback::query::must<transform, scale, rotation, mesh, button>
-    ,   paperback::query::one_of<>
+        paperback::query::must<transform, scale, rotation, mesh>
+    ,   paperback::query::one_of<button, card>
     ,   paperback::query::none_of<prefab> 
     >;
 
@@ -25,7 +25,7 @@ struct ui_system : paperback::system::instance
     }
 
     PPB_FORCEINLINE
-    bool ButtonCollided( transform& Transform, scale& Scale, const paperback::Vector3f MousePos ) const noexcept
+    bool UICollided( transform& Transform, scale& Scale, const paperback::Vector3f MousePos ) const noexcept
     {
         float btm_left_x { Transform.m_Position.x - ( Scale.m_Value.x * 0.5f ) }
             , btm_left_y { Transform.m_Position.y - ( Scale.m_Value.y * 0.5f ) }
@@ -39,27 +39,53 @@ struct ui_system : paperback::system::instance
 	    return false;
     }
 
-    void operator()( transform& Transform, scale& Scale, mesh& Mesh, button& Button ) noexcept
+    void operator()( transform& Transform, scale& Scale, mesh& Mesh, button* Button, card* Card ) noexcept
     {
+        // Grab Mouse Coords
         auto pos = GetMousePositionInUI();
 
-        if ( ButtonCollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, pos.z } ) )
+        if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, pos.z } ) )
         {
-            Button.SetButtonState( ButtonState::HOVERED );
-            // Mesh.m_Texture = Button.m_ButtonStateTextures[ Button.m_ButtonState ];
+            if ( Button && Button->m_bActive )
+            {
+                Button->SetButtonState( ButtonState::HOVERED );
+                // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
 
-            // Run OnHover Script If Valid
-            auto Script = FindScript<paperback::script::button_interface>( Button.m_ReferencedScript );
-            if ( Script ) Script->OnHover();
+                // Run OnHover Script If Valid
+                auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );
+                if ( Script ) Script->OnHover();
+            }
+            else if ( Card )
+            {
+                // Update Card State
+                Card->SetCardState( CardState::CLICKED );
+                // Mesh.m_Texture = Card->m_CardStateTextures[ Card->m_ButtonState ];
+                // 
+                // Run OnClick Script If Valid
+                auto Script = FindScript<paperback::script::card_interface>( Card->m_ReferencedScript );
+                if ( Script ) Script->OnHover();
+            }
         }
         else
         {
-            Button.SetButtonState( ButtonState::DEFAULT );
-            // Mesh.m_Texture = Button.m_ButtonStateTextures[ Button.m_ButtonState ];
+            if ( Button && Button->m_bActive )
+            {
+                Button->SetButtonState( ButtonState::DEFAULT );
+                // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
 
-            //// Run Default Script If Valid
-            // auto Script = FindScript<paperback::script::button_interface>( Button.m_ReferencedScript );
-            // if ( Script ) Script->Run();
+                //// Run Default Script If Valid
+                // auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );
+                // if ( Script ) Script->Run();
+            }
+            else if ( Card )
+            {
+                Card->SetCardState( CardState::DEFAULT );
+                // Mesh.m_Texture = Card->m_CardStateTextures[ Card->m_CardState ];
+
+                //// Run Default Script If Valid
+                // auto Script = FindScript<paperback::script::card_interface>( Card->m_ReferencedScript );
+                // if ( Script ) Script->Run();
+            }
         }
     }
 
@@ -74,15 +100,30 @@ struct ui_system : paperback::system::instance
         {
             auto pos = GetMousePositionInUI();
 
-            ForEach( Search( m_ButtonQuery ), [&]( transform& Transform, scale& Scale, button& Button ) noexcept
+            ForEach( Search( m_ButtonQuery ), [&]( transform& Transform, scale& Scale, button* Button, card* Card ) noexcept
             {
-                if ( ButtonCollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, pos.z } ) && Button.m_bActive )
+                if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, pos.z } ) )
                 {
-                    // Update Button State
-                    Button.SetButtonState( ButtonState::CLICKED );
-                    // Run OnClick Script If Valid
-                    auto Script = FindScript<paperback::script::button_interface>( Button.m_ReferencedScript );
-                    if ( Script ) Script->OnClick();
+                    if ( Button && Button->m_bActive )
+                    {
+                        // Update Button State
+                        Button->SetButtonState( ButtonState::CLICKED );
+                        // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
+
+                        // Run OnClick Script If Valid
+                        auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );
+                        if ( Script ) Script->OnClick();
+                    }
+                    else if ( Card )
+                    {
+                        // Update Card State
+                        Card->SetCardState( CardState::CLICKED );
+                        // Mesh.m_Texture = Card->m_CardStateTextures[ Card->m_CardState ];
+
+                        // Run OnClick Script If Valid
+                        auto Script = FindScript<paperback::script::card_interface>( Card->m_ReferencedScript );
+                        if ( Script ) Script->OnClick( Card->m_UnitGID, Card->m_PositionIndex );
+                    }
                 }
             });
         }

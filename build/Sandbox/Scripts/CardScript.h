@@ -19,7 +19,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
         TRACE_PRINT("Button Hovered!");
     }
 
-    void OnClick(void) noexcept override
+    void OnClick( paperback::u32 PrefabGID, int PositionIndex ) noexcept override
     {
         auto list = m_Coordinator.Search<paperback::component::entity>();
         TRACE_PRINT("Button Clicked!");
@@ -29,15 +29,18 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
 
         //  {
                 //// Check if GID is Valid
-                //if (Card->m_UnitGID == paperback::settings::invalid_index_v) return;
                 //// Get Unit Info and Spawn unit
                 //auto PrefabInfo = GetEntityInfo(Card->m_UnitGID);
-                //auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
-                //// <Update Instance Info>
-                //// Call Get Object Pos Index
-                //int index = Card->m_index;
-                //// Delete Card
-                //DeleteEntity(obj);
+                //if ( PrefabInfo.m_pArchetype )
+                //{
+                //    auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
+                //    // <Update Instance Info>
+                //    // Call Get Object Pos Index
+                //    int index = Card->m_index;
+                //    // Delete Card
+                //    DeleteEntity(obj);
+                //    BroadcastGlobalEvent<CardSpawnEvent>( index );
+                //}
         //  }
 
         // Spawn new Card
@@ -66,7 +69,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
 
                         //while (CardsAvail) {
                         //    // Randomize card spawned
-                        //    int cardindex = rand() % 2;
+                        //    int cardindex = rand() % 3;
                         //    // If card is available
                         //    if (Deck->m_Deck[cardindex].m_Count > 0) {
                         //        // Decrease available card count
@@ -74,7 +77,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
 
                         //        // Spawn Card
                         //        // Check if GID is Valid
-                        //        if (Deck->m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return;
+                        //        if (Deck->m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return; // Check Archetype* rather than GID, default value for uninitialized variables are prolly 0
                         //        // Get Unit Info and Spawn unit
                         //        auto PrefabInfo = GetEntityInfo(Deck->m_Deck[cardindex].m_CardGID);
                         //        auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
@@ -91,5 +94,8 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                         //}
                 // }
         // }
+
+        // Broadcast Event For New Card After Using Old Card
+        // BroadcastGlobalEvent<UnitSpawnEvent>(Card);
     }
 };
