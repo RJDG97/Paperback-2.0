@@ -633,45 +633,45 @@ struct imgui_system : paperback::system::instance
     //        Property Display
     //-----------------------------------
 
-    void EnumerationCombo(std::vector<const char*> Value_List, const std::string& Name, paperback::u8& Selection)
-    {
-        //const char* current_item = Value_List[Selection];
-        if (ImGui::BeginCombo(("##" + Name).c_str(), "Choose Layer"))
-        {
-            for (unsigned i = 0; i < Value_List.size(); ++i)
-            {
-                //bool is_selected = (current_item == Value_List[i]);
-                if (ImGui::Selectable(Value_List[i]))
-                    Selection = i;
-            }
-            ImGui::EndCombo();
-        }
-    }
+    //void EnumerationCombo(std::vector<const char*> Value_List, const std::string& Name, paperback::u8& Selection)
+    //{
+    //    //const char* current_item = Value_List[Selection];
+    //    if (ImGui::BeginCombo(("##" + Name).c_str(), "Choose Layer"))
+    //    {
+    //        for (unsigned i = 0; i < Value_List.size(); ++i)
+    //        {
+    //            //bool is_selected = (current_item == Value_List[i]);
+    //            if (ImGui::Selectable(Value_List[i]))
+    //                Selection = i;
+    //        }
+    //        ImGui::EndCombo();
+    //    }
+    //}
 
-    void DisplayEnumeration(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue, rttr::instance& Instance, rttr::property Property)
-    {
-        auto Enumeration = PropertyType.get_enumeration();
-        auto EnumList = Enumeration.get_names();
-        std::vector<const char*> ValueList;
+    //void DisplayEnumeration(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue, rttr::instance& Instance, rttr::property Property)
+    //{
+    //    auto Enumeration = PropertyType.get_enumeration();
+    //    auto EnumList = Enumeration.get_names();
+    //    std::vector<const char*> ValueList;
 
-        for (auto& Enum : EnumList)
-            ValueList.push_back(Enum.data());
+    //    for (auto& Enum : EnumList)
+    //        ValueList.push_back(Enum.data());
 
-        auto Selection = PropertyValue.get_value<paperback::u8>();
-        EnumerationCombo(ValueList, PropertyName, Selection);
+    //    auto Selection = PropertyValue.get_value<paperback::u8>();
+    //    EnumerationCombo(ValueList, PropertyName, Selection);
 
-        auto Result = Enumeration.name_to_value(Enumeration.value_to_name(Selection));
+    //    auto Result = Enumeration.name_to_value(Enumeration.value_to_name(Selection));
 
-        if (PropertyName == "Collidable Layers")
-        {
-            auto EntityCollideLayers = m_SelectedEntity.first->FindComponent<collidable>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second });
+    //    if (PropertyName == "Collidable Layers")
+    //    {
+    //        auto EntityCollideLayers = m_SelectedEntity.first->FindComponent<collidable>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second });
 
-            paperback::u8 Layer = Result.get_value<paperback::u8>();
-            EntityCollideLayers->Set(Layer); //need to test
-        }
-        else
-            Property.set_value(Instance, Result);
-    }
+    //        paperback::u8 Layer = Result.get_value<paperback::u8>();
+    //        EntityCollideLayers->Set(Layer); //need to test
+    //    }
+    //    else
+    //        Property.set_value(Instance, Result);
+    //}
 
     void DisplayClassType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
     {
@@ -720,7 +720,7 @@ struct imgui_system : paperback::system::instance
             else
             {
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::PushItemWidth(200.0f);
+                ImGui::PushItemWidth(150.0f);
                 ImGui::InputFloat(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<float>>().get()), 0.1f);
                 ImGui::PopItemWidth();
             }
@@ -735,7 +735,7 @@ struct imgui_system : paperback::system::instance
             else
             {
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::PushItemWidth(200.0f);
+                ImGui::PushItemWidth(150.0f);
 
                 if (PropertyName != "Shadow Bias")
                     ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1);
@@ -765,20 +765,20 @@ struct imgui_system : paperback::system::instance
             ImGui::Text("%d", PropertyValue.get_value<size_t>());
         }
 
-        else if (PropertyType == rttr::type::get<paperback::u32>() /*|| PropertyType == rttr::type::get <std::reference_wrapper<paperback::u32>>()*/)
+        else if (PropertyType == rttr::type::get<paperback::u32>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::u32>>())
         {
             if (!PropertyType.is_wrapper())
             {
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::Text("%d", PropertyValue.get_value<paperback::u32>());
+                ImGui::Text("%lu", PropertyValue.get_value<paperback::u32>());
             }
-            //else
-            //{
-            //    ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-            //    ImGui::PushItemWidth(200.0f);
-            //    ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U32, &(PropertyValue.get_value<std::reference_wrapper<paperback::u32>>().get()), (int*)1);
-            //    ImGui::PopItemWidth();
-            //}
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::PushItemWidth(150.0f);
+                ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U32, &(PropertyValue.get_value<std::reference_wrapper<paperback::u32>>().get()));
+                ImGui::PopItemWidth();
+            }
         }
 
         else if (PropertyType == rttr::type::get<paperback::i32>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::i32>>())
@@ -791,8 +791,24 @@ struct imgui_system : paperback::system::instance
             else
             {
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::PushItemWidth(200.0f);
-                ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<paperback::i32>>().get()), 1);
+                ImGui::PushItemWidth(150.0f);
+                ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_S32, &(PropertyValue.get_value<std::reference_wrapper<paperback::i32>>().get()));
+                ImGui::PopItemWidth();
+            }
+        }
+
+        else if (PropertyType == rttr::type::get<paperback::u64>() || PropertyType == rttr::type::get <std::reference_wrapper<paperback::u64>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::Text("%llu", PropertyValue.get_value<paperback::u64>());
+            }
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::PushItemWidth(150.0f);
+                ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U64, &(PropertyValue.get_value<std::reference_wrapper<paperback::u64>>().get()));
                 ImGui::PopItemWidth();
             }
         }
