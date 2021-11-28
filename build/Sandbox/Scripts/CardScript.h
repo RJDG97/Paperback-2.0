@@ -50,34 +50,34 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                         CardsAvail = true;
                 }
                 // if no available cards
-                if (!CardsAvail)
+                //if (!CardsAvail)
                     // Lose Game State
 
-                    while (CardsAvail) {
-                        // Randomize card spawned
-                        int cardindex = rand() % 3;
-                        // If card is available
-                        if (Deck.m_Deck[cardindex].m_Count > 0) {
-                            // Decrease available card count
-                            Deck.m_Deck[cardindex].m_Count--;
+                while (CardsAvail) {
+                    // Randomize card spawned
+                    int cardindex = rand() % 3;
+                    // If card is available
+                    if (Deck.m_Deck[cardindex].m_Count > 0) {
+                        // Decrease available card count
+                        Deck.m_Deck[cardindex].m_Count--;
 
-                            // Spawn Card
-                            // Check if GID is Valid
-                            if (Deck.m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return; // Check Archetype* rather than GID, default value for uninitialized variables are prolly 0
-                            // Get Unit Info and Spawn unit
-                            auto PrefabInfo = m_Coordinator.GetEntityInfo(Deck.m_Deck[cardindex].m_CardGID);
-                            auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
-                            // Update Card properties
-                            auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);
-                            // Update Position
-                            transform* Transform = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
-                            Transform->m_Position = Deck.m_Position[PositionIndex];
-                            // Update Card Index (position)
-                            card* Card = &m_obj.m_pArchetype->GetComponent<card>(m_obj.m_PoolDetails);
-                            Card->m_PositionIndex = PositionIndex;
-                            break;
-                        }
+                        // Spawn Card
+                        // Check if GID is Valid
+                        if (Deck.m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return; // Check Archetype* rather than GID, default value for uninitialized variables are prolly 0
+                        // Get Unit Info and Spawn unit
+                        auto PrefabInfo = m_Coordinator.GetEntityInfo(Deck.m_Deck[cardindex].m_CardGID);
+                        auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
+                        // Update Card properties
+                        auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);
+                        // Update Position
+                        transform* Transform = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
+                        Transform->m_Position = Deck.m_Position[PositionIndex];
+                        // Update Card Index (position)
+                        card* Card = &m_obj.m_pArchetype->GetComponent<card>(m_obj.m_PoolDetails);
+                        Card->m_PositionIndex = PositionIndex;
+                        break;
                     }
+                }
             });
 
         // Delete Card
