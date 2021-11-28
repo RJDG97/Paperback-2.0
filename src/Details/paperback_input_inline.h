@@ -168,15 +168,25 @@ void Input::UpateInputs() noexcept
 	//for (auto& key : m_Keys)
 	for ( size_t i = 0, max = m_Keys.size(); i < max; ++i )
 	{
+		// Button Click Broadcast
 		if ( m_Keys[i].m_Current == GLFW_PRESS && m_Keys[i].m_Previous != GLFW_PRESS )
-			m_Coordinator.BroadcastEvent<KeyPressed>( i );
+			m_Coordinator.BroadcastEvent<KeyClicked>( i, true );
+		// Button Pressed Broadcast - Not Releasing Yet
+		else if ( m_Keys[i].m_Current == GLFW_PRESS && m_Keys[i].m_Previous == GLFW_PRESS )
+			m_Coordinator.BroadcastEvent<KeyPressed>( i, false );
+
 		m_Keys[i].m_Previous = m_Keys[i].m_Current;
 	}
 
 	for ( size_t i = 0, max = m_Buttons.size(); i < max; ++i )
 	{
-		if ( m_Buttons[i].m_Current == GLFW_PRESS && m_Buttons[i].m_Previous != GLFW_PRESS )
-			m_Coordinator.BroadcastEvent<MousePressed>( i );
+		// Mouse Click Broadcast
+		if ( m_Buttons[i].m_Current != GLFW_PRESS && m_Buttons[i].m_Previous == GLFW_PRESS )
+			m_Coordinator.BroadcastEvent<MouseClicked>( i, true );
+		// Mouse Pressed Broadcast - Not Releasing Yet
+		else if ( m_Buttons[i].m_Current == GLFW_PRESS && m_Buttons[i].m_Previous == GLFW_PRESS )
+			m_Coordinator.BroadcastEvent<MousePressed>( i, false );
+
 		m_Buttons[i].m_Previous = m_Buttons[i].m_Current;
 	}
 }

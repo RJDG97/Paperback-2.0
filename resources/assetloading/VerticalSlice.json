@@ -290,51 +290,6 @@
                     "Name": {
                         "Name": "EnemyHealthBar"
                     }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 41
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "PaperWeapon_PaperShield",
-                        "Shadow Bias": 1
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.5,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": -0.6000000238418579,
-                            "z": 0.0
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 37
-                    },
-                    "Name": {
-                        "Name": "PaperCard"
-                    }
                 }
             ]
         },
@@ -694,50 +649,6 @@
                     },
                     "Name": {
                         "Name": "EnemyHealthBar"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 37
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "PaperWeapon_PaperShield",
-                        "Shadow Bias": 1
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.5,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            41
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "PaperCard"
                     }
                 }
             ]
@@ -2368,132 +2279,6 @@
                         14486341741652966143,
                         17008353085049151909,
                         16415915133639986106,
-                        12242167150514887405
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 39
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "ScissorsWeapon_ScissorsShield",
-                        "Shadow Bias": 1
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.5,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            42
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "ScissorCard"
-                    },
-                    "Card": {
-                      "Card Textures": [
-                            "",
-                            "",
-                            ""
-                      ],
-                      "Script Guid": 0,
-                      "Unit GID": 0,
-                      "Card State": 0,
-                      "Position Index": 0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 38
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "RockWeapon_RockShield",
-                        "Shadow Bias": 1
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.5,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            43
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "RockCard"
-                    },
-                    "Card": {
-                      "Card Textures": [
-                            "",
-                            "",
-                            ""
-                      ],
-                      "Script Guid": 0,
-                      "Unit GID": 0,
-                      "Card State": 0,
-                      "Position Index": 0
-                    }
-                }
-            ]
-        },
-        {
-            "HDBbase": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        10055872472107209861,
-                        14486341741652966143,
-                        17008353085049151909,
-                        16415915133639986106,
                         12242167150514887405,
                         1864794444832660246
                     ]
@@ -2542,30 +2327,26 @@
                         "Name": "CardBack"
                     },
                     "Card": {
-                      "Card Textures": [
+                        "Card Textures": [
                             "",
                             "",
                             ""
-                      ],
-                      "Script Guid": 0,
-                      "Unit GID": 0,
-                      "Card State": 0,
-                      "Position Index": 0
+                        ],
+                        "Original Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Script Guid": 0,
+                        "Unit GID": 0,
+                        "Card State": 0,
+                        "Position Index": 0
                     },
                     "Deck": {
                         "Deck Details": [
-                            {
-                                "m_CardGID": 0,
-                                "m_Count": 0
-                            },
-                            {
-                                "m_CardGID": 0,
-                                "m_Count": 0
-                            },
-                            {
-                                "m_CardGID": 0,
-                                "m_Count": 0
-                            }
+                            {},
+                            {},
+                            {}
                         ]
                     }
                 }
@@ -2631,30 +2412,26 @@
                         "Name": "CardBack"
                     },
                     "Card": {
-                      "Card Textures": [
+                        "Card Textures": [
                             "",
                             "",
                             ""
-                      ],
-                      "Script Guid": 0,
-                      "Unit GID": 0,
-                      "Card State": 0,
-                      "Position Index": 0
+                        ],
+                        "Original Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Script Guid": 0,
+                        "Unit GID": 0,
+                        "Card State": 0,
+                        "Position Index": 0
                     },
                     "Deck": {
                         "Deck Details": [
-                            {
-                                "m_CardGID": 41,
-                                "m_Count": 9
-                            },
-                            {
-                                "m_CardGID": 42,
-                                "m_Count": 9
-                            },
-                            {
-                                "m_CardGID": 43,
-                                "m_Count": 9
-                            }
+                            {},
+                            {},
+                            {}
                         ]
                     }
                 }
@@ -2670,65 +2447,10 @@
                         14486341741652966143,
                         17008353085049151909,
                         15172211932757996706,
+                        1403357374979003626,
                         16415915133639986106,
                         12242167150514887405
                     ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 42
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "ScissorsWeapon_ScissorsShield",
-                        "Shadow Bias": 1
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.5,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -0.30000001192092898,
-                            "y": -0.6000000238418579,
-                            "z": 0.0
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 39
-                    },
-                    "Name": {
-                        "Name": "ScissorCard"
-                    },
-                    "Card": {
-                      "Card Textures": [
-                            "",
-                            "",
-                            ""
-                      ],
-                      "Script Guid": 0,
-                      "Unit GID": 0,
-                      "Card State": 0,
-                      "Position Index": 0
-                    }
                 },
                 {
                     "Entity": {
@@ -2771,19 +2493,361 @@
                         ],
                         "Prefab GID": 38
                     },
+                    "Selected": {
+                        "Selected": false
+                    },
                     "Name": {
                         "Name": "RockCard"
                     },
                     "Card": {
-                      "Card Textures": [
+                        "Card Textures": [
                             "",
                             "",
                             ""
-                      ],
-                      "Script Guid": 0,
-                      "Unit GID": 0,
-                      "Card State": 0,
-                      "Position Index": 0
+                        ],
+                        "Original Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Script Guid": 0,
+                        "Unit GID": 0,
+                        "Card State": 0,
+                        "Position Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 42
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ScissorsWeapon_ScissorsShield",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.30000001192092898,
+                            "y": -0.6000000238418579,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 39
+                    },
+                    "Selected": {
+                        "Selected": false
+                    },
+                    "Name": {
+                        "Name": "ScissorCard"
+                    },
+                    "Card": {
+                        "Card Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Original Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Script Guid": 0,
+                        "Unit GID": 0,
+                        "Card State": 0,
+                        "Position Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 41
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PaperWeapon_PaperShield",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -0.6000000238418579,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 37
+                    },
+                    "Selected": {
+                        "Selected": false
+                    },
+                    "Name": {
+                        "Name": "PaperCard"
+                    },
+                    "Card": {
+                        "Card Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Original Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Script Guid": 0,
+                        "Unit GID": 0,
+                        "Card State": 0,
+                        "Position Index": 0
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        1403357374979003626,
+                        16415915133639986106,
+                        12242167150514887405
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 38
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RockWeapon_RockShield",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            43
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Selected": {
+                        "Selected": false
+                    },
+                    "Name": {
+                        "Name": "RockCard"
+                    },
+                    "Card": {
+                        "Card Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Original Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Script Guid": 0,
+                        "Unit GID": 0,
+                        "Card State": 0,
+                        "Position Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 39
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ScissorsWeapon_ScissorsShield",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            42
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Selected": {
+                        "Selected": false
+                    },
+                    "Name": {
+                        "Name": "ScissorCard"
+                    },
+                    "Card": {
+                        "Card Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Original Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Script Guid": 0,
+                        "Unit GID": 0,
+                        "Card State": 0,
+                        "Position Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 37
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PaperWeapon_PaperShield",
+                        "Shadow Bias": 1
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            41
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Selected": {
+                        "Selected": false
+                    },
+                    "Name": {
+                        "Name": "PaperCard"
+                    },
+                    "Card": {
+                        "Card Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Original Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Script Guid": 0,
+                        "Unit GID": 0,
+                        "Card State": 0,
+                        "Position Index": 0
                     }
                 }
             ]

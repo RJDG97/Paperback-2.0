@@ -16,14 +16,14 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
     // Override virtual functions defined within button_interface
     void OnHover(void) noexcept override
     {
-        TRACE_PRINT("Button Hovered!");
+        //TRACE_PRINT("Button Hovered!");
     }
 
     void OnClick( paperback::u32 PrefabGID, int PositionIndex ) noexcept override
     {
         auto list = m_Coordinator.Search<paperback::component::entity>();
-        TRACE_PRINT("Button Clicked!");
-        TRACE_PRINT("Number Of Archetypes w/ Entity Component: " + std::to_string(list.size()));
+        //TRACE_PRINT("Button Clicked!");
+        //TRACE_PRINT("Number Of Archetypes w/ Entity Component: " + std::to_string(list.size()));
 
         // BroadcastGlobalEvent<UnitSpawnEvent>(Card);
 

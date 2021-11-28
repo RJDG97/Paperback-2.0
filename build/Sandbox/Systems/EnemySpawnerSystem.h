@@ -70,10 +70,10 @@ struct enemy_spawner_system : paperback::system::instance
 	}
 
     // Updates enemy spawner count
-	void OnEvent( const size_t& Key ) noexcept
+	void OnEvent( const size_t& Key, const bool& Clicked ) noexcept
     {
         // This check is to be replaced with Player Controller
-        if ( Key == GLFW_KEY_4 )
+        if ( Key == GLFW_KEY_4 && Clicked )
         {
             // Player Info Loop
 		    ForEach( Search( m_ActiveSpawner ), [&]( entity& Entity, timer& Timer, counter& Counter ) noexcept

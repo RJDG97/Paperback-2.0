@@ -14,12 +14,15 @@ struct ui_system : paperback::system::instance
     >;
 
     tools::query m_ButtonQuery;
+    bool         m_Picked = false;
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
-        RegisterGlobalEventClass<Input::KeyPressed>( this );
-        RegisterGlobalEventClass<Input::MousePressed>( this );
+        RegisterGlobalEventClass<Input::KeyPressed>( this );      // Held Down - Not Released ( Passes False )
+        RegisterGlobalEventClass<Input::KeyClicked>( this );      // Released                 ( Passes True )
+        RegisterGlobalEventClass<Input::MousePressed>( this );    // Held Down - Not Released ( Passes False )
+        RegisterGlobalEventClass<Input::MouseClicked>( this );    // Released                 ( Passes True )
 
         m_ButtonQuery.AddQueryFromTuple( xcore::types::null_tuple_v< query > );
     }
@@ -90,7 +93,7 @@ struct ui_system : paperback::system::instance
     }
 
     // On Event Key / Mouse Pressed
-    void OnEvent( const size_t& Key ) noexcept
+    void OnEvent( const size_t& Key, const bool& Clicked ) noexcept
     {
         if ( Key == GLFW_KEY_ESCAPE )
         {
@@ -98,31 +101,67 @@ struct ui_system : paperback::system::instance
         }
         else if ( Key == GLFW_MOUSE_BUTTON_1 )
         {
-            auto pos = GetMousePositionInUI();
+            auto MPos = GetMousePositionInUI();
 
-            ForEach( Search( m_ButtonQuery ), [&]( transform& Transform, scale& Scale, button* Button, card* Card ) noexcept
+            ForEach( Search( m_ButtonQuery ), [&]( transform& Transform, scale& Scale, button* Button, card* Card, selected* Selected ) noexcept
             {
-                if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, pos.z } ) )
+                if ( UICollided( Transform, Scale, paperback::Vector3f{ MPos.x, MPos.y, MPos.z } ) )
                 {
-                    if ( Button && Button->m_bActive )
+                    // Key Pressed & Released
+                    if ( Clicked )
                     {
-                        // Update Button State
-                        Button->SetButtonState( ButtonState::CLICKED );
-                        // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
+                        // Button Is On The Active Layer
+                        if ( Button && Button->m_bActive )
+                        {
+                            // Update Button State
+                            Button->SetButtonState( ButtonState::CLICKED );
+                            // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
 
-                        // Run OnClick Script If Valid
-                        auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );
-                        if ( Script ) Script->OnClick();
+                            // Run OnClick Script If Valid
+                            auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );
+                            if ( Script ) Script->OnClick();
+                        }
+                        // System Has Released A Card
+                        else if ( m_Picked && Card && Selected && Selected->m_Value )
+                        {
+                            // On Placement of Card, Reset
+                            m_Picked = false;
+                            Selected->m_Value = false;
+
+                            // Update Card State
+                            Card->SetCardState( CardState::CLICKED );
+                            // Mesh.m_Texture = Card->m_CardStateTextures[ Card->m_CardState ];
+
+                            /*
+                            Verify If Card Was Placed On Lane
+                            Else:
+                            Transform.m_Position = Card.m_OriginalPosition;
+                            */
+
+                            // Run OnClick Script If Valid
+                            auto Script = FindScript<paperback::script::card_interface>( Card->m_ReferencedScript );
+                            if ( Script ) Script->OnClick( Card->m_UnitGID, Card->m_PositionIndex );
+                        }
                     }
-                    else if ( Card )
+                    // Key Pressed - Not Released Yet
+                    else
                     {
-                        // Update Card State
-                        Card->SetCardState( CardState::CLICKED );
-                        // Mesh.m_Texture = Card->m_CardStateTextures[ Card->m_CardState ];
+                        // System Has Selected A Card
+                        if ( Card && Selected && Selected->m_Value )
+                        {
+                            //// Offset between Cursor & Card Position
+                            //auto Cursor = paperback::Vector3f{ MPos.x, MPos.y, 0.0f};
+                            //auto Offset = Cursor - Transform.m_Position;
+                            //Transform.m_Position = Cursor + Offset;
 
-                        // Run OnClick Script If Valid
-                        auto Script = FindScript<paperback::script::card_interface>( Card->m_ReferencedScript );
-                        if ( Script ) Script->OnClick( Card->m_UnitGID, Card->m_PositionIndex );
+                            Transform.m_Position = paperback::Vector3f{ MPos.x, MPos.y, 0.0f };
+                        }
+                        // System Yet To Pick Card
+                        else if ( !m_Picked && Card && Selected )
+                        {
+                            m_Picked = true;
+                            Selected->m_Value = true;
+                        }
                     }
                 }
             });

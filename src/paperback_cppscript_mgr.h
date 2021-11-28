@@ -52,7 +52,7 @@ namespace paperback::script
         virtual void OnHover           ( void )                                       noexcept                                { };   // On Mouse Hover
         virtual void OnUnHover         ( void )                                       noexcept                                { };   // On Mouse Un-Hover
         virtual void OnPressed         ( void )                                       noexcept                                { };   // On Mouse Pressed
-        virtual void Onreleased        ( void )                                       noexcept                                { };   // On Mouse Released
+        virtual void OnReleased        ( void )                                       noexcept                                { };   // On Mouse Released
     };
 
     //-----------------------------------
@@ -67,7 +67,7 @@ namespace paperback::script
         virtual void OnHover           ( void )                                       noexcept                                { };   // On Mouse Hover
         virtual void OnUnHover         ( void )                                       noexcept                                { };   // On Mouse Un-Hover
         virtual void OnPressed         ( void )                                       noexcept                                { };   // On Mouse Pressed
-        virtual void Onreleased        ( void )                                       noexcept                                { };   // On Mouse Released
+        virtual void OnReleased        ( void )                                       noexcept                                { };   // On Mouse Released
     };
     
 
