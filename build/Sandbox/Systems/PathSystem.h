@@ -36,21 +36,22 @@ struct path_system : paperback::system::instance
 		tools::query Query_Paths;
 		Query_Paths.m_Must.AddFromComponents<path, transform>();
 
-		if (debug_sys->m_IsDebug)
+		ForEach(Search(Query_Paths), [&](path& Path, transform& Transform) noexcept
 		{
-			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform) noexcept
+			std::vector<paperback::Spline::SplinePoint> spline_points;
+
+			for (auto& point : Path.m_Points)
 			{
-				std::vector<paperback::Spline::SplinePoint> spline_points;
+				spline_points.push_back({ Transform.m_Position + point });
+			}
 
-				for (auto& point : Path.m_Points)
-				{
-					spline_points.push_back({ Transform.m_Position + point });
-				}
-
-				splines[Path.m_ID] = { spline_points, false };
+			splines[Path.m_ID] = { spline_points, false };
+				
+			if (debug_sys->m_IsDebug)
+			{
 				debug_sys->DrawSpline(splines[Path.m_ID]);
-			});
-		}
+			}
+		});
 
 		tools::query Query_Units;
 		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation>();
