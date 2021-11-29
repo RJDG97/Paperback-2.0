@@ -10,7 +10,7 @@ struct health_system : paperback::system::instance
     };
 
     struct NoHealthEvent : paperback::event::instance< entity&> {};
-    struct UpdateHealthEvent : paperback::event::instance< entity&, entity&, health&, health&> {};
+    struct UpdateHealthEvent : paperback::event::instance< entity&, entity&, health&, health&, transform&, boundingbox&> {};
 
     using query = std::tuple< 
         paperback::query::one_of<entity, healthbar, friendly, enemy>
@@ -30,11 +30,12 @@ struct health_system : paperback::system::instance
             // Initialize Query
             tools::query Query;
 
-            Query.m_Must.AddFromComponents < health, base>();
+            Query.m_Must.AddFromComponents < health, base, transform, boundingbox>();
             Query.m_OneOf.AddFromComponents < friendly, enemy>();
             Query.m_NoneOf.AddFromComponents< prefab >();
 
-            ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, health& Dynamic_Health, base& Dyanmic_Base, friendly* Dynamic_Friend, enemy* Dynamic_Enemy)  noexcept
+            ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, health& Dynamic_Health, transform& Dynamic_Transform,
+                                                                boundingbox& Box, base& Dyanmic_Base, friendly* Dynamic_Friend, enemy* Dynamic_Enemy)  noexcept
                 {
                     if (Entity.IsZombie()) return;
 
@@ -42,9 +43,9 @@ struct health_system : paperback::system::instance
                     if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return;
 
                     if (Friend && Dynamic_Friend)
-                        BroadcastGlobalEvent<UpdateHealthEvent>(Entity, Dynamic_Entity, Health, Dynamic_Health);
+                        BroadcastGlobalEvent<UpdateHealthEvent>(Entity, Dynamic_Entity, Health, Dynamic_Health, Dynamic_Transform, Box);
                     else if (Enemy && Dynamic_Enemy)
-                        BroadcastGlobalEvent<UpdateHealthEvent>(Entity, Dynamic_Entity, Health, Dynamic_Health);
+                        BroadcastGlobalEvent<UpdateHealthEvent>(Entity, Dynamic_Entity, Health, Dynamic_Health, Dynamic_Transform, Box);
                 });
         }
     }
