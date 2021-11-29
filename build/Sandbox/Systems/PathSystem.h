@@ -45,7 +45,7 @@ struct path_system : paperback::system::instance
 				spline_points.push_back({ Transform.m_Position + point });
 			}
 
-			splines[Path.m_ID] = { spline_points, false };
+			splines.emplace(Path.m_ID, paperback::Spline{ spline_points, false });
 				
 			if (debug_sys->m_IsDebug)
 			{
