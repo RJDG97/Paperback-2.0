@@ -2127,7 +2127,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "RockWeapon_RockShield",
+                        "Texture": "RockCard",
                         "Shadow Bias": 1
                     },
                     "Scale": {
@@ -2151,8 +2151,8 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 0.30000001192092898,
-                            "y": -0.6000000238418579,
+                            "x": 0.15000000596046449,
+                            "y": -0.8999999761581421,
                             "z": 0.0
                         }
                     },
@@ -2191,7 +2191,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "ScissorsWeapon_ScissorsShield",
+                        "Texture": "ScissorsCard",
                         "Shadow Bias": 1
                     },
                     "Scale": {
@@ -2215,9 +2215,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -0.30000001192092898,
-                            "y": -0.6000000238418579,
-                            "z": 0.0
+                            "x": -0.15000000596046449,
+                            "y": -0.8999999761581421,
+                            "z": 0.30000001192092898
                         }
                     },
                     "ReferencePrefab": {
@@ -2255,7 +2255,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PaperWeapon_PaperShield",
+                        "Texture": "PaperCard",
                         "Shadow Bias": 1
                     },
                     "Scale": {
@@ -2280,8 +2280,8 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -0.6000000238418579,
-                            "z": 0.0
+                            "y": -0.8999999761581421,
+                            "z": 0.20000000298023225
                         }
                     },
                     "ReferencePrefab": {
@@ -2336,7 +2336,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "RockWeapon_RockShield",
+                        "Texture": "RockCard",
                         "Shadow Bias": 1
                     },
                     "Scale": {
@@ -2399,7 +2399,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "ScissorsWeapon_ScissorsShield",
+                        "Texture": "ScissorsCard",
                         "Shadow Bias": 1
                     },
                     "Scale": {
@@ -2462,7 +2462,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PaperWeapon_PaperShield",
+                        "Texture": "PaperCard",
                         "Shadow Bias": 1
                     },
                     "Scale": {
@@ -2596,19 +2596,19 @@
                         ],
                         "Deck Pos": [
                             {
-                                "x": -0.30000001192092898,
-                                "y": -0.6000000238418579,
+                                "x": 0.15000000596046449,
+                                "y": -0.8999999761581421,
                                 "z": 0.0
                             },
                             {
                                 "x": 0.0,
-                                "y": -0.6000000238418579,
-                                "z": 0.0
+                                "y": -0.8999999761581421,
+                                "z": 0.20000000298023225
                             },
                             {
-                                "x": 0.30000001192092898,
-                                "y": -0.6000000238418579,
-                                "z": 0.0
+                                "x": -0.15000000596046449,
+                                "y": -0.8999999761581421,
+                                "z": 0.30000001192092898
                             }
                         ]
                     }

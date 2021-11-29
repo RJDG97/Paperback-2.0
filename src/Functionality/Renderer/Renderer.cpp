@@ -150,6 +150,10 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
 	m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
 
+	m_Resources.LoadTextures("PaperCard", "../../resources/textures/PaperCard.dds", true);
+	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/ScissorsCard.dds", true);
+	m_Resources.LoadTextures("RockCard", "../../resources/textures/RockCard.dds", true);
+
 	// Enable alpha blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
