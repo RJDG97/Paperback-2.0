@@ -45,10 +45,12 @@ public:
 	void MoveUp();
 	void MoveDown();
 
-	void RotateRight();
-	void RotateLeft();
-	void RotateUp();
-	void RotateDown();
+	void RotateRight(const float m_Speed = 0.1f);
+	void RotateLeft(const float m_Speed = 0.1f);
+	void RotateUp(const float m_Speed = 0.1f);
+	void RotateDown(const float m_Speed = 0.1f);
+
+	void RotateWithMouse();
 
 	static Camera3D& GetInstanced();
 	Camera3D(const Camera3D&) = delete;
@@ -56,7 +58,7 @@ public:
 
 private:
 	Camera3D();
-
+	
 	void UpdateView();
 	void UpdateVectors();
 

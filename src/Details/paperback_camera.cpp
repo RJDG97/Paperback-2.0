@@ -137,9 +137,9 @@ void Camera3D::MoveDown()
 	UpdateView();
 }
 
-void Camera3D::RotateRight()
+void Camera3D::RotateRight(const float m_Speed)
 {
-	m_Azimuth -= 0.1f;
+	m_Azimuth -= m_Speed;
 
 	if (m_Azimuth < 0.f)
 		m_Azimuth += 360.f;
@@ -149,9 +149,9 @@ void Camera3D::RotateRight()
 	UpdateView();
 }
 
-void Camera3D::RotateLeft()
+void Camera3D::RotateLeft(const float m_Speed)
 {
-	m_Azimuth += 0.1f;
+	m_Azimuth += m_Speed;
 
 	if (m_Azimuth > 360.f)
 		m_Azimuth -= 360.f;
@@ -161,9 +161,9 @@ void Camera3D::RotateLeft()
 	UpdateView();
 }
 
-void Camera3D::RotateUp()
+void Camera3D::RotateUp(const float m_Speed)
 {
-	m_Theta += 0.1f;
+	m_Theta += m_Speed;
 
 	if (m_Theta > 179.f)
 		m_Theta = 179.f;
@@ -173,9 +173,9 @@ void Camera3D::RotateUp()
 	UpdateView();
 }
 
-void Camera3D::RotateDown()
+void Camera3D::RotateDown(const float m_Speed)
 {
-	m_Theta -= 0.1f;
+	m_Theta -= m_Speed;
 
 	if (m_Theta < 1.f)
 		m_Theta = 1.f;
@@ -183,6 +183,38 @@ void Camera3D::RotateDown()
 	UpdateVectors();
 
 	UpdateView();
+}
+
+
+void Camera3D::RotateWithMouse()
+{
+	/*if (PPB.IsMouseDown(GLFW_MOUSE_BUTTON_RIGHT))
+	{
+		glm::vec2 direction = PPB.GetMouseDirection();
+		float length = glm::length(direction);
+
+		length = length <= 50.f ? length : 50.f;
+
+		direction = glm::normalize(direction) * length * 0.01f;
+
+		if (direction.x < 0)
+		{
+			RotateLeft(direction.x * -1.f);
+		}
+		else if (direction.x > 0)
+		{
+			RotateRight(direction.x);
+		}
+
+		if (direction.y > 0)
+		{
+			RotateDown(direction.y);
+		}
+		else if (direction.y < 0)
+		{
+			RotateUp(direction.y * -1.f);
+		}
+	}*/
 }
 
 void Camera3D::UpdateView()

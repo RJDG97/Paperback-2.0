@@ -134,12 +134,12 @@ GLuint TextureLoader::LoadDDSAtlas(const std::string& File)
 
 		for (size_t level = 0; level < file.GetMipCount(); ++level)
 		{
-			auto data = file.GetImageData(level, 0);
+			auto data = file.GetImageData(static_cast<uint32_t>(level), 0);
 
 			auto width = data->m_width;
 			auto height = data->m_height;
 
-			glTextureSubImage2D(texture, level, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data->m_mem);
+			glTextureSubImage2D(texture, static_cast<GLint>(level), 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data->m_mem);
 		}
 
 		return texture;

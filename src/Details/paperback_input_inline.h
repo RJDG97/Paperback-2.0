@@ -59,6 +59,16 @@ void Input::SetMouse(int Key, int Action) noexcept
 {
 	// Set button state
 	m_Buttons[Key].m_Current = static_cast<int8_t>(Action);
+
+	if (IsMousePress(GLFW_MOUSE_BUTTON_RIGHT))
+	{
+		double X, Y;
+		GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
+
+		glfwGetCursorPos(m_pWindow, &X, &Y);
+
+		m_MouseOriginPosition = glm::vec2{ X, Y };
+	}
 }
 
 void Input::SetScroll(double Y) noexcept
@@ -112,6 +122,16 @@ bool Input::IsScrollDown() noexcept
 	}
 
 	return false;
+}
+
+glm::vec2 Input::GetMouseDirection() const noexcept
+{
+	double X, Y;
+	GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
+
+	glfwGetCursorPos(m_pWindow, &X, &Y);
+
+	return glm::vec2{ X, Y } - m_MouseOriginPosition;
 }
 
 glm::vec3 Input::GetMousePosition() const noexcept

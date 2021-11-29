@@ -722,6 +722,11 @@ namespace paperback::coordinator
 		return m_Input.GetMousePosition();
 	}
 
+	glm::vec2 instance::GetMouseDirection() noexcept
+	{
+		return m_Input.GetMouseDirection();
+	}
+
 	glm::vec3 instance::GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) noexcept
 	{
 		return m_Input.GetViewportMousePosition(viewport_min, viewport_max);
