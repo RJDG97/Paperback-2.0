@@ -5,6 +5,7 @@
 RenderResourceManager::RenderResourceManager()
 {
 	m_Models["Quad"] = MeshBuilder::Build2DMesh();
+	m_Models["Plane"] = m_Models["Quad"];
 	m_Models["Screen"] = MeshBuilder::BuildScreenMesh();
 
 	const std::vector<glm::vec3> skyboxVerts = {

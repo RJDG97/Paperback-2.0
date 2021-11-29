@@ -165,6 +165,9 @@ GLuint TextureLoader::LoadDDSTexture(const std::string& File, const bool& GammaC
 		case tinyddsloader::DDSFile::DXGIFormat::BC3_UNorm:
 			internalformat = GammaCorrect ? GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT : GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
 			break;
+		case tinyddsloader::DDSFile::DXGIFormat::BC5_UNorm:
+			internalformat = GammaCorrect ? GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT : GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+			break;
 		default:
 			return 0;
 		}

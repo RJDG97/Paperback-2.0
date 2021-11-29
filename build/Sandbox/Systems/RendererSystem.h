@@ -53,7 +53,7 @@ struct render_system : paperback::system::instance
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
 		std::unordered_map<std::string_view, std::vector<glm::mat4>> uis;
-		std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>> texts;
+		std::unordered_map<std::string_view, std::vector<Renderer::TextInfo>> texts;
 
 		// Reference quad
 		//glm::mat4 t{ 1.0f };
@@ -91,7 +91,7 @@ struct render_system : paperback::system::instance
 			else
 			{
 				glm::mat4 t{ 1.0f };
-				t = glm::translate(t, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z * -1 });
+				t = glm::translate(t, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z * -1.0 });
 				t = glm::rotate(t, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
 				t = glm::rotate(t, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
 				t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
@@ -103,21 +103,20 @@ struct render_system : paperback::system::instance
 
 		ForEach(Search(QueryText), [&](transform& Transform, text& Text, scale& Scale, rotation& Rotation) noexcept
 		{
-			glm::mat4 t{ 1.0f };
-			t = glm::translate(t, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z * -1 });
-			t = glm::rotate(t, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
-			t = glm::rotate(t, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
-			t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
-			t = glm::scale(t, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
+			glm::mat4 transform{ 1.0f };
+			transform = glm::translate(transform, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z * -1.0 });
+			transform = glm::rotate(transform, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
+			transform = glm::rotate(transform, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
+			transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
+			transform = glm::scale(transform, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
 
-			texts[Text.m_Font].push_back(std::make_pair(Text.m_Text, t));
+			glm::vec3 color{ Text.m_Color.x, Text.m_Color.y, Text.m_Color.z };
+			color /= 255.f;
+
+			Renderer::TextInfo text_info{ transform, color, Text.m_Text };
+
+			texts[Text.m_Font].push_back(text_info);
 		});
-
-		glm::mat4 transform{ 1.f };
-		transform = glm::translate(transform, glm::vec3{ -0.2, 0.2, -1 * 0.1 });
-		transform = glm::scale(transform, glm::vec3{ 5,5,5 });
-
-		texts["arial"].push_back(std::make_pair("Hello", transform));
 
 		auto points = GetSystem<debug_system>().GetPoints();
 

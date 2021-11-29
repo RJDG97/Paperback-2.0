@@ -20,12 +20,19 @@ public:
 		int m_ShadowBias;
 	};
 
+	struct TextInfo
+	{
+		glm::mat4 m_Transform;
+		glm::vec3 m_Color;
+		std::string m_Text;
+	};
+
 	~Renderer();
 
 	// Render object
 	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, 
 				const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, 
-				const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts,
+				const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts,
 				const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
 
 	GLuint GetUIOverlay();
@@ -69,7 +76,7 @@ private:
 	void SkyBoxRender();
 
 	void UIPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs);
-	void TextPass(const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts);
+	void TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts);
 	void ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void BlurPass();

@@ -470,7 +470,7 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
@@ -654,7 +654,7 @@ void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm
 	m_Resources.m_Shaders["UI"].UnUse();
 }
 
-void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts)
+void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts)
 {
 	// Bind shader
 	RenderResourceManager::GetInstanced().m_Shaders["Text"].Use();
@@ -691,13 +691,14 @@ void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<s
 
 		for (const auto& text : fonttype.second)
 		{
-			m_Resources.m_Shaders["Text"].SetUniform("uTransform", const_cast<glm::mat4&>(text.second));
+			m_Resources.m_Shaders["Text"].SetUniform("uTransform", const_cast<glm::mat4&>(text.m_Transform));
+			m_Resources.m_Shaders["Text"].SetUniform("uColor", const_cast<glm::vec3&>(text.m_Color));
 
 			float advance = 0;
 
-			for (size_t i = 0; i < text.first.size(); ++i)
+			for (size_t i = 0; i < text.m_Text.size(); ++i)
 			{
-				const auto& letter = font.GetLetter(text.first[i]);
+				const auto& letter = font.GetLetter(text.m_Text[i]);
 
 				float xpos = (advance + letter.m_Offset.x) / m_Width;
 				float ypos = -(letter.m_LetterSize.y + letter.m_Offset.y) / m_Height;
