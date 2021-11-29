@@ -249,5 +249,9 @@
     <ClInclude Include="Scripts\CardScript.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Player.h" />
+    <ClInclude Include="Components\Spawner.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

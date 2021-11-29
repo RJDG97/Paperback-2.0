@@ -559,6 +559,8 @@ namespace paperback::vm
 			return rttr::instance( GetComponent< component::entity >( Index ));
 		else if ( Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value )
 			return rttr::instance( GetComponent< transform >( Index ));
+		else if (Comp_Guid.m_Value == component::info_v< spawner >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< spawner >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< card >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< card >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< deck >.m_Guid.m_Value)

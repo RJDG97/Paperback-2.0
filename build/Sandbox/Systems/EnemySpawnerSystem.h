@@ -9,81 +9,86 @@ struct enemy_spawner_system : paperback::system::instance
 
     using query = std::tuple
     <
-        paperback::query::must<transform, timer, counter, enemy_spawner>
-    ,   paperback::query::none_of<prefab, reference_prefab>
+        paperback::query::must<transform, timer, spawner>
+    ,   paperback::query::none_of<prefab>
     >;
-
-    tools::query m_ActiveSpawner;
-    tools::query m_ActiveEnemy;
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
-        RegisterGlobalEventClass<Input::KeyPressed>( this );
-        RegisterGlobalEventClass<Input::MousePressed>( this );
-        
-        m_ActiveSpawner.m_Must.AddFromComponents<transform, timer, enemy_spawner, counter>();
-        m_ActiveSpawner.m_NoneOf.AddFromComponents<prefab, reference_prefab>();
-
-        // Enemy Prefab
-        m_ActiveEnemy.m_Must.AddFromComponents<prefab, transform, waypoint, waypoint_tag, mesh, animator, health, damage, enemy>();
-        m_ActiveEnemy.m_NoneOf.AddFromComponents<counter>();
     }
 
     // Enemy Spawner
-	void operator()( entity& Entity, transform& Transform, timer& Timer, counter& Counter, enemy_spawner& Spawner, waypoint_tag& STag ) noexcept
+	void operator()( entity& Entity, transform& Transform, timer& Timer, spawner& Spawner ) noexcept
 	{
-        if (Counter.m_Value > 0 && Timer.m_Value <= 0.0f)
+        if (Timer.m_Value <= 0.0f)
         {
-            if (Spawner.m_EnemyPrefabGuid == 0) return;
-
+            Timer.m_Cooldown = 8.0f;
             // Reset timer
             Timer.m_Value = Timer.m_Cooldown;
 
+            // <Update Instance Info>
+            tools::query Spawner_Query;
 
-            // Find Enemy Prefab Details (Archetype& and GID)
-            auto& EnemyPrefab   = m_Coordinator.GetArchetype( Spawner.m_EnemyPrefabGuid );
-            auto EnemyPrefabGID = EnemyPrefab.FindPrefabEntityGID( Spawner.m_PrefabType );
+            Spawner_Query.m_Must.AddFromComponents < deck, enemy>();
+            Spawner_Query.m_NoneOf.AddFromComponents< prefab >();
 
-            if ( EnemyPrefabGID == paperback::settings::invalid_index_v ) return;
+            m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Dyanmic_Deck)  noexcept
+                {
+                    bool CardsAvail = false;
+                    // Check if cards are available
+                    for (int i = 0; i < Dyanmic_Deck.m_Deck.size(); i++) {
+                        if (Dyanmic_Deck.m_Deck[i].m_Count > 0)
+                            CardsAvail = true;
+                    }
+                    // if no available cards
+                    //if (!CardsAvail)
+                        // Win Game State
 
-            // Find Enemy Prefab Info and Clone
-            auto PrefabInfo = GetEntityInfo( EnemyPrefabGID );
-            auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab( PrefabInfo.m_PoolDetails.m_PoolIndex );
+                    while (CardsAvail) {
+                        // Randomize card spawned
+                        int cardindex = rand() % 3;
+                        // If card is available
+                        if (Dyanmic_Deck.m_Deck[cardindex].m_Count > 0) {
+                            // Decrease available card count
+                            Dyanmic_Deck.m_Deck[cardindex].m_Count--;
 
-            // Update Components
-            auto& IInfo = GetEntityInfo( InstanceGID );
-            auto [ITransform, ITag, IAnimator] = IInfo.m_pArchetype->GetComponents<transform, waypoint_tag, animator>( IInfo.m_PoolDetails );
+                            // Spawn Card
+                            // Check if GID is Valid
+                            if (Dyanmic_Deck.m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return; // Check Archetype* rather than GID, default value for uninitialized variables are prolly 0
+                            // Get Unit Info and Spawn unit
+                            auto PrefabInfo = m_Coordinator.GetEntityInfo(Dyanmic_Deck.m_Deck[cardindex].m_CardGID);
+                            auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
+                            // Update Card properties
+                            auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);
+                            transform* Transform = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
+                            path_follower* Path = &m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
+                            Spawner.lane = rand() % 3;
+                            Transform->m_Position = Spawner.m_Position[Spawner.lane];
+                            Path->m_ID = Spawner.lane;
 
-            ITransform.m_Position = Transform.m_Position;
-            ITag.m_Value = STag.m_Value;
-            IAnimator.m_PlayOnce = false;
-
-            --Counter.m_Value;
+                            break;
+                        }
+                    }
+                });
         }
-
-        //if ( Counter.m_Value == 0 )
-        //{
-        //    Counter.m_Value = 1;
-        //    Timer.m_Value = Timer.m_Cooldown;
-        //}
 	}
 
     // Updates enemy spawner count
 	void OnEvent( const size_t& Key, const bool& Clicked ) noexcept
     {
         // This check is to be replaced with Player Controller
-        if ( Key == GLFW_KEY_4 && Clicked )
-        {
-            // Player Info Loop
-		    ForEach( Search( m_ActiveSpawner ), [&]( entity& Entity, timer& Timer, counter& Counter ) noexcept
-            {
-                if ( Counter.m_Value <= 0 )
-                {
-                    Timer.m_Value = Timer.m_Cooldown;
-                    Counter.m_Value = 1;
-                }
-            });
-        }
+      //  if ( Key == GLFW_KEY_4 && Clicked )
+      //  {
+      //      // Player Info Loop
+		    //ForEach( Search( m_ActiveSpawner ), [&]( entity& Entity, timer& Timer, counter& Counter ) noexcept
+      //      {
+      //          if ( Counter.m_Value <= 0 )
+      //          {
+      //              Timer.m_Value = Timer.m_Cooldown;
+      //              Counter.m_Value = 1;
+      //          }
+      //      });
+      //  }
     }
 };

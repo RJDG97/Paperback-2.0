@@ -104,6 +104,7 @@ void InitializeGame()
         ,    deck
         ,    path
         ,    path_follower
+        ,    spawner
         >();
     }
 
