@@ -205,6 +205,7 @@
     <ClInclude Include="Components\Socketed.h" />
     <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />
+    <ClInclude Include="Components\Spawner.h" />
     <ClInclude Include="Components\Sphere.h" />
     <ClInclude Include="Components\Text.h" />
     <ClInclude Include="Components\Timer.h" />
