@@ -53,12 +53,12 @@ Renderer::Renderer() :
 
 	glBindVertexArray(0);
 
-	std::vector<std::string> files = { "../../resources/textures/right.dds",
-								   "../../resources/textures/left.dds",
-								   "../../resources/textures/top.dds",
-								   "../../resources/textures/bottom.dds",
-								   "../../resources/textures/front.dds",
-								   "../../resources/textures/back.dds" };
+	std::vector<std::string> files = { "../../resources/textures/Skybox/right.dds",
+								   "../../resources/textures/Skybox/left.dds",
+								   "../../resources/textures/Skybox/top.dds",
+								   "../../resources/textures/Skybox/bottom.dds",
+								   "../../resources/textures/Skybox/front.dds",
+								   "../../resources/textures/Skybox/back.dds" };
 
 	RenderResourceManager::GetInstanced().LoadSkyboxTexture(files);
 
@@ -150,9 +150,13 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
 	m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
 
-	m_Resources.LoadTextures("PaperCard", "../../resources/textures/PaperCard.dds", true);
-	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/ScissorsCard.dds", true);
-	m_Resources.LoadTextures("RockCard", "../../resources/textures/RockCard.dds", true);
+	m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard_Mirrored.dds", true);
+	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard_Mirrored.dds", true);
+	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard_Mirrored.dds", true);
+
+	m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard.dds", true);
+	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard.dds", true);
+	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard.dds", true);
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
