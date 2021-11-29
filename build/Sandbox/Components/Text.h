@@ -19,8 +19,8 @@ namespace RR_Text
 	{
 		rttr::registration::class_<text>(text::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
-			.property("Font", &text::m_Font)
-			.property("Text", &text::m_Text)
-			.property("Color", &text::m_Color);
+			.property("Font", &text::m_Font)(rttr::policy::prop::as_reference_wrapper)
+			.property("Text", &text::m_Text)(rttr::policy::prop::as_reference_wrapper)
+			.property("Color", &text::m_Color)(rttr::policy::prop::as_reference_wrapper);
 	}
 }

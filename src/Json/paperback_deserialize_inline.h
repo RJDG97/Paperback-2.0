@@ -244,6 +244,9 @@ namespace paperback::deserialize
             if (!obj.is_type<paperback::component::temp_guid>())
                 ReadRecursive(obj, Value);
 
+            if (obj.is_type<text>())
+                NewArchetype->GetComponent<text>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<text>();
+
             if (obj.is_type<transform>())
                 NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<transform>();
 
