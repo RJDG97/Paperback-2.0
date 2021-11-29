@@ -98,12 +98,12 @@ void InitializeGame()
         ,    healthbar        // Tag
         ,    unit             // Tag
         ,    waypoint_tag
-        ,    path
-        ,    path_follower
         ,    text
         ,    button
         ,    card
         ,    deck
+        ,    path
+        ,    path_follower
         >();
     }
 
