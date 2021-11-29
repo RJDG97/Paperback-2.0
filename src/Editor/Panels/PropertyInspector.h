@@ -44,6 +44,10 @@ struct DetailsWindow : paperback::editor::instance
 
     void PathComponent(); // For Spline 
 
+    void DeckComponent();
+
+    //void CardComponent();
+
 //-----------------------------------
 //        Component Combos
 //-----------------------------------

@@ -211,6 +211,24 @@ namespace paperback::coordinator
 		PPB_INLINE
 		paperback::archetype::instance& GetArchetype( const u64 ArchetypeGuid ) noexcept;
 
+
+		//-----------------------------------
+		//           CPP Scripts
+		//-----------------------------------
+
+		template < paperback::concepts::Script... T_SCRIPT >
+        void RegisterScripts( void ) noexcept;
+
+        template < paperback::concepts::Script T_SCRIPT >
+        T_SCRIPT* FindScript( const paperback::u64 ScriptGuid ) const noexcept;
+
+        template < paperback::concepts::Script T_SCRIPT >
+        T_SCRIPT& GetScript( const paperback::u64 ScriptGuid ) const noexcept;
+
+        PPB_FORCEINLINE
+        const script::manager::CPPScriptsList& GetScriptsList( void ) const noexcept;
+
+
 		//-----------------------------------
 		//              Clock
 		//-----------------------------------
@@ -304,6 +322,7 @@ namespace paperback::coordinator
 		component::manager			m_CompMgr;						// Component Manager
 		archetype::manager			m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				m_SystemMgr{ m_Clock };			// System Manager
+		script::manager				m_ScriptMgr{ *this };			// CPP Scripts Manager
 		Input						m_Input{ *this };				// Input
 		bool						m_GameActive = true;			// Game Status
 	};

@@ -14,6 +14,8 @@
 #include "PlayerSpawnerSystem.h"
 #include "WaypointSystem.h"
 #include "HealthSystem.h"
+#include "UISystem.h"
+#include "DeckSystem.h"
 #include "PathSystem.h"
 
 // Event

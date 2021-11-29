@@ -13,6 +13,9 @@ namespace paperback
 		template < typename T_EVENT >
 		concept Event						= std::is_base_of_v< paperback::event::event_interface, T_EVENT >;
 
+		template < typename T_SCRIPT >
+		concept Script						= std::is_base_of_v< paperback::script::script_interface, T_SCRIPT >;
+
 		template < typename T_SYSTEM >
 		concept HasEvent					= !( std::is_same_v< typename T_SYSTEM::events, system::system_interface::events > );
 

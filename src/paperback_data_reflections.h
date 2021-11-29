@@ -1,12 +1,17 @@
 #pragma once
 #include "glm/inc/glm.hpp"
 #include "Math/Vector3f.h" 
+#include "../Sandbox/Components/Deck.h"
 
 namespace paperback
 {
 	// register the math libs here
 	RTTR_REGISTRATION
-	{ 
+	{
+		rttr::registration::class_<CardDetails>("CardDetails")
+			.constructor()(rttr::policy::ctor::as_object)
+			.property("Card GID", &CardDetails::m_CardGID)
+			.property("Count", &CardDetails::m_Count);
 
 		rttr::registration::class_<paperback::Vector3f>("Vector3f")
 			.constructor()(rttr::policy::ctor::as_object)

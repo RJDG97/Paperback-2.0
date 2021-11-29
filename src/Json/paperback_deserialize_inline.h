@@ -280,6 +280,12 @@ namespace paperback::deserialize
             if (obj.is_type<entityscript>())
                 NewArchetype->GetComponent<entityscript>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<entityscript>();
 
+            if (obj.is_type<card>())
+                NewArchetype->GetComponent<card>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<card>();
+
+            if (obj.is_type<deck>())
+                NewArchetype->GetComponent<deck>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<deck>();
+
             if (obj.is_type<collidable>())
                 NewArchetype->GetComponent<collidable>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<collidable>();
             
@@ -366,6 +372,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<waypoint_tag>())
                 NewArchetype->GetComponent<waypoint_tag>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<waypoint_tag>();
+
+            if (obj.is_type<button>())
+                NewArchetype->GetComponent<button>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<button>();
 
             if (obj.is_type<path>())
                 NewArchetype->GetComponent<path>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<path>();

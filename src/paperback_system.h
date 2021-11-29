@@ -293,6 +293,21 @@ namespace paperback::system
 		template< typename T_SYSTEM >
 		T_SYSTEM& GetSystem( void ) noexcept;
 
+		template < paperback::concepts::Script T_SCRIPT >
+        T_SCRIPT* FindScript( const paperback::u64 ScriptGuid ) const noexcept;
+
+        template < paperback::concepts::Script T_SCRIPT >
+        T_SCRIPT& GetScript( const paperback::u64 ScriptGuid ) const noexcept;
+
+		PPB_INLINE
+		glm::vec3 GetMousePosition() noexcept;
+
+		PPB_INLINE
+		glm::vec3 GetMousePositionInUI() noexcept;
+
+		PPB_INLINE
+		glm::vec3 GetViewportMousePosition( glm::vec2 viewport_min, glm::vec2 viewport_max ) noexcept;
+
 		PPB_FORCEINLINE
 		float DeltaTime() const noexcept;
 

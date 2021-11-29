@@ -555,10 +555,14 @@ namespace paperback::vm
 	rttr::instance instance::GetComponentInstance( const component::type::guid Comp_Guid, const u32 Index ) noexcept
 	{
 
-		if (Comp_Guid.m_Value == component::info_v< component::entity >.m_Guid.m_Value)
-			return rttr::instance(GetComponent< component::entity >(Index));
-		else if (Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value)
-			return rttr::instance(GetComponent< transform >(Index));
+		if ( Comp_Guid.m_Value == component::info_v< component::entity >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< component::entity >( Index ));
+		else if ( Comp_Guid.m_Value == component::info_v< transform >.m_Guid.m_Value )
+			return rttr::instance( GetComponent< transform >( Index ));
+		else if (Comp_Guid.m_Value == component::info_v< card >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< card >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< deck >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< deck >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< scale >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< scale >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< rotation >.m_Guid.m_Value)
@@ -642,6 +646,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< base >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< unit >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< unit >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< button >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< button >(Index));
 		else
 			return rttr::instance();
 	}

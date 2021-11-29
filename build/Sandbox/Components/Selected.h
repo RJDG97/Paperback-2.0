@@ -7,7 +7,7 @@ struct selected
         .m_pName = "Selected"
     };
 
-    bool m_Value;
+    bool m_Value = false;
 };
 
 namespace RR_Selected

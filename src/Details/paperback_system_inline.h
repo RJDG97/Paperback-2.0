@@ -201,6 +201,35 @@ namespace paperback::system
 		return m_Coordinator.GetSystem<T_SYSTEM>();
 	}
 
+	template < paperback::concepts::Script T_SCRIPT >
+    T_SCRIPT* instance::FindScript( const paperback::u64 ScriptGuid ) const noexcept
+	{
+		return m_Coordinator.FindScript<T_SCRIPT>( ScriptGuid );
+	}
+
+    template < paperback::concepts::Script T_SCRIPT >
+    T_SCRIPT& instance::GetScript( const paperback::u64 ScriptGuid ) const noexcept
+	{
+		return m_Coordinator.GetScript<T_SCRIPT>( ScriptGuid );
+	}
+
+	glm::vec3 instance::GetMousePosition() noexcept
+	{
+		return m_Coordinator.GetMousePosition();
+	}
+
+	glm::vec3 instance::GetMousePositionInUI() noexcept
+	{
+		auto pos = m_Coordinator.GetMousePosition();
+		pos.y = (pos.y + 0.5f) * 2;
+		return pos;
+	}
+
+	glm::vec3 instance::GetViewportMousePosition( glm::vec2 viewport_min, glm::vec2 viewport_max ) noexcept
+	{
+		return m_Coordinator.GetViewportMousePosition(viewport_min, viewport_max);
+	}
+
 	PPB_FORCEINLINE
 	float instance::DeltaTime() const noexcept
 	{

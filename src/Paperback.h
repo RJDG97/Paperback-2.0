@@ -44,6 +44,10 @@ namespace paperback
 		struct system_interface;
 		struct instance;
 	}
+	namespace script
+	{
+		struct script_interface;
+	}
 	namespace component
 	{
 		struct info;
@@ -68,7 +72,6 @@ namespace paperback
 // Reflection
 //----------------------------------
 #include <rttr/registration>
-#include "paperback_data_reflections.h"
 
 //----------------------------------
 // Files
@@ -96,6 +99,7 @@ namespace paperback
 #include "paperback_pool.h"
 #include "paperback_archetype.h"
 #include "paperback_archetype_mgr.h"
+#include "paperback_cppscript_mgr.h"
 #include "paperback_system.h"
 #include "paperback_system_mgr.h"
 #include "paperback_statemgr.h"
@@ -122,10 +126,13 @@ namespace paperback
 #include "Details/paperback_pool_inline.h"
 #include "Details/paperback_archetype_inline.h"
 #include "Details/paperback_archetype_mgr_inline.h"
+#include "Details/paperback_cppscript_mgr_inline.h"
 #include "Details/paperback_query_inline.h"
 #include "Details/paperback_bitset_inline.h"
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_coordinator_inline.h"
 #include "Details/paperback_statemgr_inline.h"
+
+#include "paperback_data_reflections.h"
 
 #endif

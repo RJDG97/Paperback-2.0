@@ -111,6 +111,8 @@ void DetailsWindow::DisplayProperties()
                     if (ComponentInstance.second == paperback::component::info_v< path >.m_Guid)
                         PathComponent();
 
+                    if (ComponentInstance.second == paperback::component::info_v< deck >.m_Guid)
+                        DeckComponent();
                 }
             }
         }
@@ -220,6 +222,35 @@ void DetailsWindow::RemoveComponent()
                 }
             }
             ImGui::EndCombo();
+        }
+    }
+}
+
+void DetailsWindow::DeckComponent()
+{
+    auto Deck = m_Imgui.m_SelectedEntity.first->FindComponent<deck>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+
+    if (Deck)
+    {
+        if (Deck->m_Deck.size())
+        {
+            ImGui::Text("Card Details: ");
+
+            for (size_t i = 0; i < Deck->m_Deck.size(); ++i)
+            {
+                ImGui::Text("Card %d", i); ImGui::SameLine();
+                ImGui::Text("Card GID: %lu", Deck->m_Deck[i].m_CardGID); ImGui::SameLine();
+                ImGui::Text("Card Count : %d", Deck->m_Deck[i].m_Count);
+            }
+        }
+
+        if (Deck->m_Position.size())
+        {
+            for (size_t i = 0; i < Deck->m_Position.size(); ++i)
+            {
+                std::reference_wrapper<paperback::Vector3f> TempPoint = Deck->m_Position[i];
+                ImGui::DragFloat3(("##SplinePoints" + std::to_string(i)).c_str(), (float*)&(TempPoint.get()), 0.1f, 0.1f);
+            }
         }
     }
 }

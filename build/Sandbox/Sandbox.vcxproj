@@ -171,6 +171,8 @@
     <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\Base.h" />
     <ClInclude Include="Components\BoundingBox.h" />
+    <ClInclude Include="Components\Button.h" />
+    <ClInclude Include="Components\Card.h" />
     <ClInclude Include="Components\Child.h" />
     <ClInclude Include="Components\CollisionLayer.h" />
     <ClInclude Include="Components\component_includes.h" />
@@ -178,6 +180,7 @@
     <ClInclude Include="Components\Counter.h" />
     <ClInclude Include="Components\Currency.h" />
     <ClInclude Include="Components\Damage.h" />
+    <ClInclude Include="Components\Deck.h" />
     <ClInclude Include="Components\Enemy.h" />
     <ClInclude Include="Components\EnemySpawner.h" />
     <ClInclude Include="Components\EntityScript.h" />
@@ -209,9 +212,12 @@
     <ClInclude Include="Components\Unit.h" />
     <ClInclude Include="Components\Waypoint.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
+    <ClInclude Include="Scripts\CardScript.h" />
+    <ClInclude Include="Scripts\scripts_includes.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
+    <ClInclude Include="Systems\DeckSystem.h" />
     <ClInclude Include="Systems\EnemySpawnerSystem.h" />
     <ClInclude Include="Systems\HealthSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
@@ -228,6 +234,7 @@
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
     <ClInclude Include="Systems\TimerSystem.h" />
+    <ClInclude Include="Systems\UISystem.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

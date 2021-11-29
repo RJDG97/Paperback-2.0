@@ -8,8 +8,10 @@ class Input
 {
 public:
 
-	struct KeyPressed   : paperback::event::instance< const size_t& > {};
-    struct MousePressed : paperback::event::instance< const size_t& > {};
+	struct KeyPressed   : paperback::event::instance< const size_t&, const bool& > {};		// Held Down - Not Released ( Passes False )
+	struct KeyClicked   : paperback::event::instance< const size_t&, const bool& > {};		// Released                 ( Passes True )
+    struct MousePressed : paperback::event::instance< const size_t&, const bool& > {};		// Held Down - Not Released ( Passes False )
+    struct MouseClicked : paperback::event::instance< const size_t&, const bool& > {};		// Released                 ( Passes True )
 
 	PPB_INLINE
 	Input( paperback::coordinator::instance& Coordinator ) noexcept;
