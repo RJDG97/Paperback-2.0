@@ -32,7 +32,8 @@ struct collision_system : paperback::system::instance
         paperback::Vector3f tf = { Transform.m_Position.x + Transform.m_Offset.x, Transform.m_Position.y + Transform.m_Offset.y, Transform.m_Position.z + Transform.m_Offset.z };
         paperback::Vector3f xf;
 
-        Boundingbox->m_Collided = false;
+        if(Boundingbox)
+            Boundingbox->m_Collided = false;
 
         ForEach( Search( Query ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, sphere* Ball, collidable* col2,
                                        unitstate* state2, waypointv1* wp2 )  noexcept
@@ -42,12 +43,6 @@ struct collision_system : paperback::system::instance
             // Do not check against self
             if ((&Entity == &Dynamic_Entity) || (Dynamic_Entity.IsZombie())) return;
 
-            // Add to collision map
-            auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
-            if (map == Boundingbox->m_CollisionState.end()) {
-                const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
-            }
-
             xf.x = Xform.m_Position.x + Xform.m_Offset.x;
             xf.y = Xform.m_Position.y + Xform.m_Offset.y;
             xf.z = Xform.m_Position.z + Xform.m_Offset.z;
@@ -55,6 +50,12 @@ struct collision_system : paperback::system::instance
             // Collision Detection
             if ( Boundingbox && BB)
             {
+                // Add to collision map
+                auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
+                if (map == Boundingbox->m_CollisionState.end()) {
+                    const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
+                }
+
                 if (AabbAabb(tf + Boundingbox->Min, tf + Boundingbox->Max, xf + BB->Min, xf + BB->Max))
                 {
                     // On entry
