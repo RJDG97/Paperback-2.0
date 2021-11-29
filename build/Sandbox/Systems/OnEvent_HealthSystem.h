@@ -67,7 +67,7 @@ struct onevent_UpdateHealth_system : paperback::system::instance
 
     }
 
-    void OnEvent(entity& obj, entity& obj2, health& Health, health& Health2) noexcept
+    void OnEvent(entity& obj, entity& obj2, health& Health, health& Health2, transform& Base, boundingbox& Box) noexcept
     {
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
 
@@ -89,6 +89,8 @@ struct onevent_UpdateHealth_system : paperback::system::instance
 
             // Update position
             offset -= Scale->m_Value.x;
+
+            Base.m_Position.y -= (Box.Max.y - Box.Min.y) * (offset);
         
             if (Friendly) {
                 position->m_Position.x += offset / 2;

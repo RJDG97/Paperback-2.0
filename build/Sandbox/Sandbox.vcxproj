@@ -193,6 +193,9 @@
     <ClInclude Include="Components\Name.h" />
     <ClInclude Include="Components\Offset.h" />
     <ClInclude Include="Components\Parent.h" />
+    <ClInclude Include="Components\Path.h" />
+    <ClInclude Include="Components\PathFollower.h" />
+    <ClInclude Include="Components\Player.h" />
     <ClInclude Include="Components\Prefab.h" />
     <ClInclude Include="Components\ReferencePrefab.h" />
     <ClInclude Include="Components\Rigidbody.h" />
@@ -223,6 +226,7 @@
     <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h" />
     <ClInclude Include="Systems\OnEvent_ReferencePrefabDeleted.h" />
     <ClInclude Include="Systems\ParentChildSystem.h" />
+    <ClInclude Include="Systems\PathSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\PlayerSpawnerSystem.h" />
     <ClInclude Include="Systems\RendererSystem.h" />

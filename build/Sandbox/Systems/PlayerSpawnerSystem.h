@@ -66,10 +66,10 @@ struct player_spawner_system : paperback::system::instance
 	}
 
     // Updates player spawner count
-	void OnEvent( const size_t& Key ) noexcept
+	void OnEvent( const size_t& Key, const bool& Clicked ) noexcept
     {
         // This check is to be replaced with Player Controller
-        if ( Key == GLFW_KEY_1 || Key == GLFW_KEY_2 || Key == GLFW_KEY_3 )
+        if ( (Key == GLFW_KEY_1 || Key == GLFW_KEY_2 || Key == GLFW_KEY_3) && Clicked )
         {
             // Player Info Loop
 		    ForEach( Search( m_ActiveSpawner ), [&]( entity& Entity, timer& Timer, counter& Counter, waypoint_tag& Tag ) noexcept

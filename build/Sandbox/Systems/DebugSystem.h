@@ -223,6 +223,28 @@ struct debug_system : paperback::system::instance
         Cube.m_Collided = false;
     }
 
+    void DrawSpline(paperback::Spline spline)
+    {
+        if (spline.m_Points.size())
+        {
+            //Draw sphere at every control point (*no collision, just using an existing function)
+            for (size_t i = 0; i < spline.m_Points.size(); ++i)
+            {
+                sphere temp_sphere{ 0.05f, true };
+                transform temp_transform{ {}, spline.m_Points[i].m_Point };
+                DrawSphereCollision(temp_sphere, temp_transform);
+            }
+
+            for (float i = 0.0f; i < static_cast<float>(spline.m_Points.size() - 3) - 0.05f; i += 0.05f)
+            {
+                std::vector<paperback::Vector3f> render_points;
+                render_points.push_back(spline.GetSplinePoint(i).m_Point);
+                render_points.push_back(spline.GetSplinePoint(i + 0.05f).m_Point);
+                GetSystem<debug_system>().DrawDebugLines(render_points, false);
+            }
+        }
+    }
+
     // draws a "cube" depending on given data
     // data has to be pairs of vectors
     void DrawDebugLines(std::vector<paperback::Vector3f> Vec, bool IsCollide = false)

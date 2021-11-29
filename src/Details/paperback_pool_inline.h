@@ -567,14 +567,14 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< scale >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< rotation >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< rotation >(Index));
-		else if ( Comp_Guid.m_Value == component::info_v< rigidbody >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< rigidbody >( Index ));
-		else if ( Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< timer >( Index ));
-		else if ( Comp_Guid.m_Value == component::info_v< mesh >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< mesh >( Index ));
-		else if ( Comp_Guid.m_Value == component::info_v< sound >.m_Guid.m_Value )
-			return rttr::instance( GetComponent< sound >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< rigidbody >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< rigidbody >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< timer >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< timer >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< mesh >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< mesh >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< sound >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< sound >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< entityscript >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< entityscript >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< collidable >.m_Guid.m_Value)
@@ -635,6 +635,11 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< unitstate >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< waypoint_tag >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< waypoint_tag >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< path >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< path >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< path_follower >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< path_follower >(Index));
+
 		else if (Comp_Guid.m_Value == component::info_v< healthbar >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< healthbar >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< base >.m_Guid.m_Value)

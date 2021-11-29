@@ -5,6 +5,7 @@
 #include "../Functionality/Renderer/Renderer.h"
 #include "glm/inc/gtx/transform.hpp"
 #include "../Systems/WindowSystem.h"
+#include "Math/Math_includes.h"
 
 struct render_system : paperback::system::instance
 {

@@ -375,6 +375,12 @@ namespace paperback::deserialize
 
             if (obj.is_type<button>())
                 NewArchetype->GetComponent<button>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<button>();
+
+            if (obj.is_type<path>())
+                NewArchetype->GetComponent<path>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<path>();
+
+            if (obj.is_type<path_follower>())
+                NewArchetype->GetComponent<path_follower>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<path_follower>();
         }
     }
 

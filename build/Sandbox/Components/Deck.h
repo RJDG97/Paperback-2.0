@@ -22,6 +22,7 @@ namespace RR_Deck
 	{
 	   rttr::registration::class_<deck>(deck::typedef_v.m_pName)
 		   .constructor()(rttr::policy::ctor::as_object)
-			.property("Deck Details", &deck::m_Deck)(rttr::policy::prop::as_reference_wrapper);
+			.property("Deck Details", &deck::m_Deck)
+			.property("Deck Pos", &deck::m_Position);
 	}
 }

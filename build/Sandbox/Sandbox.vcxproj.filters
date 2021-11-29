@@ -165,9 +165,6 @@
     <ClInclude Include="Components\Socketed.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\AnimatorSystem.h">
-      <Filter>Source Files\Systems\Details</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\TimerSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
@@ -213,6 +210,18 @@
     <ClInclude Include="Systems\OnEvent_HealthSystem.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\AnimatorSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Path.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\PathSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PathFollower.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
     <ClInclude Include="Components\Button.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
@@ -223,9 +232,6 @@
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="Systems\UISystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\AnimatorSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
     <ClInclude Include="Components\Card.h">
