@@ -474,12 +474,17 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
+
+	glDepthFunc(GL_LEQUAL);
+
 	UIPass(UIs);
 	TextPass(Texts);
+
+	glDepthFunc(GL_LESS);
 
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -602,7 +607,7 @@ void Renderer::SkyBoxRender()
 	m_Resources.m_Shaders["Skybox"].UnUse();
 }
 
-void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs)
+void Renderer::UIPass(const std::map<float, std::vector<UIInfo>>& UIs)
 {
 	// Clear depth and color buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -618,34 +623,34 @@ void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm
 	glVertexArrayVertexBuffer(m_VAO, 0, quad.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
 	glVertexArrayElementBuffer(m_VAO, quad.GetSubMeshes()[0].m_EBO);
 
-	for (const auto& ui : UIs)
+	for (const auto& order : UIs)
 	{
-		std::string name{ ui.first };
-
-		if (!name.empty())
+		for (const auto& ui : order.second)
 		{
-			const auto& texture = m_Resources.m_Textures.find(name);
+			std::string name{ ui.m_Texture };
 
-			if (texture != m_Resources.m_Textures.end())
+			if (!name.empty())
 			{
-				m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", true);
+				const auto& texture = m_Resources.m_Textures.find(name);
 
-				glBindTextureUnit(0, texture->second);
-				m_Resources.m_Shaders["UI"].SetUniform("uDiffuse", 0);
+				if (texture != m_Resources.m_Textures.end())
+				{
+					m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", true);
+
+					glBindTextureUnit(0, texture->second);
+					m_Resources.m_Shaders["UI"].SetUniform("uDiffuse", 0);
+				}
+				else
+				{
+					m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", false);
+				}
 			}
 			else
 			{
 				m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", false);
 			}
-		}
-		else
-		{
-			m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", false);
-		}
 
-		for (const auto& transform : ui.second)
-		{
-			m_Resources.m_Shaders["UI"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
+			m_Resources.m_Shaders["UI"].SetUniform("uModel", const_cast<glm::mat4&>(ui.m_Transform));
 
 			glDrawElements(quad.GetPrimitive(), quad.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 		}

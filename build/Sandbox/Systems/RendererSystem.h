@@ -52,7 +52,8 @@ struct render_system : paperback::system::instance
 	{
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
-		std::unordered_map<std::string_view, std::vector<glm::mat4>> uis;
+		std::map<float, std::vector<Renderer::UIInfo>> uis;
+		//std::unordered_map<std::string_view, std::vector<glm::mat4>> uis;
 		std::unordered_map<std::string_view, std::vector<Renderer::TextInfo>> texts;
 
 		// Reference quad
@@ -97,7 +98,9 @@ struct render_system : paperback::system::instance
 				t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
 				t = glm::scale(t, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
 
-				uis[Mesh.m_Texture].push_back(t);
+				Renderer::UIInfo ui_info{ t, Mesh.m_Texture };
+
+				uis[Transform.m_Position.z].push_back(ui_info);
 			}
 		});
 

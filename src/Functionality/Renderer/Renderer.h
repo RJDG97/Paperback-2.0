@@ -20,6 +20,12 @@ public:
 		int m_ShadowBias;
 	};
 
+	struct UIInfo
+	{
+		glm::mat4 m_Transform;
+		std::string m_Texture;
+	};
+
 	struct TextInfo
 	{
 		glm::mat4 m_Transform;
@@ -31,7 +37,7 @@ public:
 
 	// Render object
 	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, 
-				const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, 
+				const std::map<float, std::vector<UIInfo>>& UIs,
 				const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts,
 				const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
 
@@ -75,7 +81,7 @@ private:
 
 	void SkyBoxRender();
 
-	void UIPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs);
+	void UIPass(const std::map<float, std::vector<UIInfo>>& UIs);
 	void TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts);
 	void ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);

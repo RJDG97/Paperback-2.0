@@ -2,36 +2,6 @@
 #include "../paperback_camera.h"
 #include "glm/inc/gtx/transform.hpp"
 
-glm::mat4 Camera::GetView() const
-{
-	return m_View;
-}
-
-glm::mat4 Camera::GetProjection() const
-{
-	return m_Projection;
-}
-
-glm::vec3 Camera::GetPosition() const
-{
-	return m_Position;
-}
-
-Camera2D::Camera2D()
-{
-	m_Target = glm::vec3{ 0.f };
-	m_Position = glm::vec3{ 0, 0, 10.f };
-	m_Projection = glm::ortho(-960.f, 960.f, -540.f, 540.f, 1.f, 200.f);
-	m_View = glm::lookAt(m_Position, m_Target, glm::vec3{ 0.f, 1.f, 0.f });
-}
-
-Camera2D& Camera2D::GetInstanced()
-{
-	static Camera2D camera;
-
-	return camera;
-}
-
 Camera3D::Camera3D() :
 	m_Right{ glm::vec3{1.f, 0.f, 0.f} },
 	m_Up{ glm::vec3{0.f, 1.f, 0.f} },
@@ -51,6 +21,21 @@ Camera3D::Camera3D() :
 glm::vec3 Camera3D::GetForwardVector() const
 {
 	return m_Front;
+}
+
+glm::mat4 Camera3D::GetView() const
+{
+	return m_View;
+}
+
+glm::mat4 Camera3D::GetProjection() const
+{
+	return m_Projection;
+}
+
+glm::vec3 Camera3D::GetPosition() const
+{
+	return m_Position;
 }
 
 void Camera3D::SetPosition(const glm::vec3& Position)
