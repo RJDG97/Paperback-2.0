@@ -1,4 +1,5 @@
 #pragma once
+#include "../Sandbox/Scripts/scripts_includes.h"
 
 //-----------------------------------
 //      Sample Button Script
@@ -40,7 +41,7 @@ namespace paperback::script
         m_Coordinator{ Coordinator }
     {
         // Testing Script Register
-        RegisterScripts<test_button_script>();
+        RegisterScripts<test_button_script, levelselect_button_mainmenu_script>();
 
         // Printing list of Guids & Script Names
         auto& List = GetScriptsList();

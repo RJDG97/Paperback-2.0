@@ -214,7 +214,9 @@
     <ClInclude Include="Components\Waypoint.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Scripts\CardScript.h" />
+    <ClInclude Include="Scripts\LevelSelect_Button_MainMenu.h" />
     <ClInclude Include="Scripts\scripts_includes.h" />
+    <ClInclude Include="Scripts\UI_Layers.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
