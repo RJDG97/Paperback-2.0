@@ -58,7 +58,7 @@ void DetailsWindow::DisplayProperties()
                         auto PropertyType = property.get_type(); //etc vector 3, std::string etc
                         auto PropertyName = property.get_name().to_string();
 
-                        if (PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic())
+                        if (PropertyType.get_wrapped_type().is_arithmetic() || PropertyType.is_arithmetic() && PropertyName != "Script Guid")
                             m_Imgui.DisplayBaseTypes(PropertyName, PropertyType, PropertyValue);
 
                         if ((PropertyType.get_wrapped_type() == rttr::type::get< std::string >() ||
@@ -102,17 +102,21 @@ void DetailsWindow::DisplayProperties()
                         }
                     }
 
-                    if (ComponentInstance.second == paperback::component::info_v< mesh >.m_Guid)
-                        MeshCombo(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second);
-                    if (ComponentInstance.second == paperback::component::info_v< animator >.m_Guid)
-                        AnimatorComponent(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second);
-                    if (ComponentInstance.second == paperback::component::info_v< socketed >.m_Guid)
-                        SocketedComponent(EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second);
-                    if (ComponentInstance.second == paperback::component::info_v< path >.m_Guid)
+                    if ( ComponentInstance.second == paperback::component::info_v< mesh >.m_Guid)
+                        MeshCombo( EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second );
+                    if ( ComponentInstance.second == paperback::component::info_v< animator >.m_Guid )
+                        AnimatorComponent( EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second );
+                    if ( ComponentInstance.second == paperback::component::info_v< socketed >.m_Guid)
+                        SocketedComponent( EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second );
+                    if ( ComponentInstance.second == paperback::component::info_v< path >.m_Guid )
                         PathComponent();
-
-                    if (ComponentInstance.second == paperback::component::info_v< deck >.m_Guid)
+                    if ( ComponentInstance.second == paperback::component::info_v< deck >.m_Guid )
                         DeckComponent();
+                    if ( ComponentInstance.second == paperback::component::info_v< card >.m_Guid )
+                        CardComponent( EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second );
+                    if ( ComponentInstance.second == paperback::component::info_v< button >.m_Guid )
+                        ButtonComponent( EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second );
+
                 }
             }
         }
@@ -226,6 +230,90 @@ void DetailsWindow::RemoveComponent()
     }
 }
 
+void DetailsWindow::CardComponent( paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid )
+{
+    paperback::u64 PrevScript;
+    auto Card = m_Imgui.m_SelectedEntity.first->FindComponent<card>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+
+    if (Card)
+    {
+        PrevScript = Card->m_ReferencedScript;
+
+        if (PPB.GetScriptsList().size())
+        {
+            if (ImGui::BeginCombo("##AvaliableScripts", ("Script GID: " + std::to_string(Card->m_ReferencedScript)).c_str()))
+            {
+                for (auto& ScriptInfo : PPB.GetScriptsList())
+                {
+                    if (ScriptInfo.first->m_Guid.m_Value != Card->m_ReferencedScript)
+                    {
+                        if (ImGui::Selectable((std::string(ScriptInfo.first->m_pName) + " | " + std::to_string(ScriptInfo.first->m_Guid.m_Value)).c_str()))
+                        {
+                            Card->m_ReferencedScript = ScriptInfo.first->m_Guid.m_Value;
+
+                            if (Prefab)
+                            {
+                                if (Prefab->m_ReferencePrefabGIDs.size())
+                                {
+                                    std::byte* b = m_Imgui.m_SelectedEntity.first->FindComponent(EntityInfo.m_PoolDetails, CompGuid);
+                                    const auto& ComponentInfo = *PPB.FindComponentInfo(CompGuid);
+                                    ComponentInfo.m_UpdateInstances(b, EntityInfo.m_PoolDetails, m_Imgui.m_SelectedEntity.first);
+                                }
+                            }
+
+                            if (ReferencePrefab)
+                                ReferencePrefab->AddModifiedComponentGuid(CompGuid.m_Value);
+                        }
+                    }
+                }
+
+                ImGui::EndCombo();
+            }
+        }
+    }
+}
+
+void DetailsWindow::ButtonComponent( paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid )
+{
+    auto Button = m_Imgui.m_SelectedEntity.first->FindComponent<button>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
+
+    if (Button)
+    {
+        if (PPB.GetScriptsList().size())
+        {
+            if (ImGui::BeginCombo("##AvaliableScripts", ("Script GID:  " + std::to_string(Button->m_ReferencedScript)).c_str()))
+            {
+                for (auto& ScriptInfo : PPB.GetScriptsList())
+                {
+                    if (ScriptInfo.first->m_Guid.m_Value != Button->m_ReferencedScript)
+                    {
+                        if (ImGui::Selectable( ( std::string(ScriptInfo.first->m_pName) + " | " + std::to_string(ScriptInfo.first->m_Guid.m_Value) ).c_str()))
+                        {
+                            Button->m_ReferencedScript = ScriptInfo.first->m_Guid.m_Value;
+
+                            if (Prefab)
+                            {
+                                if (Prefab->m_ReferencePrefabGIDs.size())
+                                {
+                                    std::byte* b = m_Imgui.m_SelectedEntity.first->FindComponent(EntityInfo.m_PoolDetails, CompGuid);
+                                    const auto& ComponentInfo = *PPB.FindComponentInfo(CompGuid);
+                                    ComponentInfo.m_UpdateInstances(b, EntityInfo.m_PoolDetails, m_Imgui.m_SelectedEntity.first);
+                                }
+                            }
+
+                            if (ReferencePrefab)
+                                ReferencePrefab->AddModifiedComponentGuid(CompGuid.m_Value);
+                        }
+                    }
+                }
+
+                ImGui::EndCombo();
+            }
+        }
+    }
+}
+
+
 void DetailsWindow::DeckComponent()
 {
     auto Deck = m_Imgui.m_SelectedEntity.first->FindComponent<deck>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
@@ -255,7 +343,7 @@ void DetailsWindow::DeckComponent()
     }
 }
 
-void DetailsWindow::ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid)
+void DetailsWindow::ParentComponent( prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid )
 {
     size_t InstCount = 0;
     auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));

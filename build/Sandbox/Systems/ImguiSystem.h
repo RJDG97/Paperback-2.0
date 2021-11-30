@@ -746,9 +746,7 @@ struct imgui_system : paperback::system::instance
                 ImGui::Text("%d", PropertyValue.get_value<bool>());
             }
             else
-            {
                 ImGui::Checkbox(PropertyName.c_str(), &(PropertyValue.get_value<std::reference_wrapper<bool>>().get()));
-            }
         }
 
 
@@ -807,7 +805,7 @@ struct imgui_system : paperback::system::instance
         else if (PropertyType == rttr::type::get<size_t>())
         {
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-            ImGui::Text("%d", PropertyValue.get_value<size_t>());
+            ImGui::Text("llu", PropertyValue.get_value<size_t>());
         }
     }
 

@@ -59,7 +59,7 @@ namespace RR_Button
 		   .property( "Button Textures", &button::m_ButtonStateTextures )( rttr::policy::prop::as_reference_wrapper )
 		   .property( "Button State", &button::m_ButtonState )
 		   .property( "Layer Grouping", &button::m_Group )( rttr::policy::prop::as_reference_wrapper )
-		   .property( "Script Guid", &button::m_ReferencedScript )(rttr::policy::prop::as_reference_wrapper)
+		   .property( "Script Guid", &button::m_ReferencedScript )
 		   .property( "Active Status", &button::m_bActive);
     }
 }

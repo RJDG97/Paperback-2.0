@@ -88,6 +88,7 @@ void EntityInspector::DisplayEntities()
                                         ComponentAddRemove[0] = &paperback::component::info_v<prefab>;
                                         auto Parent = m_Imgui.m_SelectedEntity.first->FindComponent<parent>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
                                         std::string Temp = EntityName;
+                                        auto& EntityGlobalIndex = Entity.m_GlobalIndex;
 
                                         if (!Parent)
                                         {
@@ -95,7 +96,7 @@ void EntityInspector::DisplayEntities()
                                             PPB.AddOrRemoveComponents(Entity, ComponentAddRemove, {});
 
                                             if (!m_Imgui.m_Components.empty())
-                                                m_Imgui.UpdateComponents(Entity.m_GlobalIndex);
+                                                m_Imgui.UpdateComponents(EntityGlobalIndex);
                                         }
                                         else
                                         {

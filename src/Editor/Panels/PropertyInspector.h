@@ -34,11 +34,11 @@ struct DetailsWindow : paperback::editor::instance
 //           Components
 //-----------------------------------
 
-    void ParentComponent(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+    void ParentComponent( prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
 
-    void AnimatorComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+    void AnimatorComponent( paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
 
-    void SocketedComponent(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+    void SocketedComponent( paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
 
     void PrefabComponent();
 
@@ -46,17 +46,19 @@ struct DetailsWindow : paperback::editor::instance
 
     void DeckComponent();
 
-    //void CardComponent();
+    void CardComponent( paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
+
+    void ButtonComponent( paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
 
 //-----------------------------------
 //        Component Combos
 //-----------------------------------
-    void ChildCombo(prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+    void ChildCombo( prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
 
-    void MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+    void MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
 
-    void DisplayAvailableChildren(paperback::component::entity& Entity, paperback::u32 i,
+    void DisplayAvailableChildren( paperback::component::entity& Entity, paperback::u32 i,
         parent& NewParent, paperback::component::entity NewParentEntity,
-        prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid);
+        prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
 
 };
