@@ -76,6 +76,12 @@ namespace paperback::coordinator
 		void OpenScene( const std::string& SceneName) noexcept;
 
 		PPB_INLINE
+		void QueueScene( const std::string& SceneName ) noexcept;
+
+		PPB_INLINE
+		void OpenQueuedScene() noexcept;
+
+		PPB_INLINE
 		void LoadEntityInfo( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
@@ -331,6 +337,7 @@ namespace paperback::coordinator
 		script::manager				m_ScriptMgr{ *this };			// CPP Scripts Manager
 		Input						m_Input{ *this };				// Input
 		bool						m_GameActive = true;			// Game Status
+		std::string					m_QueuedSceneName = "";			// Currently Queued Scene to change
 	};
 }
 

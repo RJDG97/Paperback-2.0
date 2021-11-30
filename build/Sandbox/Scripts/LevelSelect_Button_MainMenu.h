@@ -21,6 +21,6 @@ struct levelselect_button_mainmenu_script : paperback::script::button_interface 
     void OnClick() noexcept override
     {
         
-        PPB.OpenScene("LevelSelect");
+        PPB.QueueScene("LevelSelect");
     }
 };

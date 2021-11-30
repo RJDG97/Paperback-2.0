@@ -318,6 +318,28 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
+	void instance::QueueScene(const std::string& SceneName) noexcept 
+	{
+	
+		if (m_QueuedSceneName == "")
+			m_QueuedSceneName = SceneName;
+	}
+
+	PPB_INLINE
+	void instance::OpenQueuedScene() noexcept
+	{
+
+		if (m_QueuedSceneName != "")
+		{
+
+			std::string temp = m_QueuedSceneName;
+			m_QueuedSceneName = "";
+
+			OpenScene(temp);
+		}
+	}
+
+	PPB_INLINE
 	void instance::LoadEntityInfo(const std::string& FilePath) noexcept
 	{
 		JsonFile Jfile;
