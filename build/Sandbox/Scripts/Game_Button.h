@@ -1,14 +1,14 @@
 #pragma once
 
-struct levelselect_button_mainmenu_script : paperback::script::button_interface // Inherited Type (1)
+struct mainmenu_button_script : paperback::script::button_interface // Inherited Type (1)
 {
     static constexpr auto typedef_v = paperback::script::type::button
     {
-        .m_pName = "LevelSelect Button MainMenu Script"
+        .m_pName = "Main Menu Button Script"
     };
 
     // You have to define this constructor - For internal registration
-    levelselect_button_mainmenu_script(paperback::coordinator::instance& Instance) noexcept :
+    mainmenu_button_script(paperback::coordinator::instance& Instance) noexcept :
         // Override paperback::script::button_interface with the Inherited Type (1)
         paperback::script::button_interface{ Instance }
     { }
@@ -21,6 +21,6 @@ struct levelselect_button_mainmenu_script : paperback::script::button_interface 
     void OnClick() noexcept override
     {
         
-        PPB.QueueScene("LevelSelect");
+        PPB.QueueScene("MainMenu");
     }
 };

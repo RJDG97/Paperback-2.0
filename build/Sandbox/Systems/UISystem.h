@@ -168,6 +168,12 @@ struct ui_system : paperback::system::instance
         }
     }
 
+    PPB_INLINE
+    void OnFrameEnd() noexcept
+    {
+
+        PPB.OpenQueuedScene();
+    }
 
     //given a layer, disable/enable all buttons with spe
     void ToggleLayerObjects(int LayerID, bool SetToggle)
