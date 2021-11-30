@@ -318,7 +318,29 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
-	void instance::LoadEntityInfo( const std::string& FilePath ) noexcept
+	void instance::QueueScene(const std::string& SceneName) noexcept 
+	{
+	
+		if (m_QueuedSceneName == "")
+			m_QueuedSceneName = SceneName;
+	}
+
+	PPB_INLINE
+	void instance::OpenQueuedScene() noexcept
+	{
+
+		if (m_QueuedSceneName != "")
+		{
+
+			std::string temp = m_QueuedSceneName;
+			m_QueuedSceneName = "";
+
+			OpenScene(temp);
+		}
+	}
+
+	PPB_INLINE
+	void instance::LoadEntityInfo(const std::string& FilePath) noexcept
 	{
 		JsonFile Jfile;
 
@@ -543,6 +565,16 @@ namespace paperback::coordinator
 		}
 	}
 
+	void instance::TogglePause( const bool& Status ) noexcept
+	{
+		m_SystemMgr.TogglePause( Status );
+	}
+
+	void instance::QuitGame() noexcept
+	{
+
+		m_GameActive = false;
+	}
 
 	//-----------------------------------
 	//             Getters
@@ -720,6 +752,11 @@ namespace paperback::coordinator
 	glm::vec3 instance::GetMousePosition() noexcept
 	{
 		return m_Input.GetMousePosition();
+	}
+
+	glm::vec2 instance::GetMouseDirection() noexcept
+	{
+		return m_Input.GetMouseDirection();
 	}
 
 	glm::vec3 instance::GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) noexcept

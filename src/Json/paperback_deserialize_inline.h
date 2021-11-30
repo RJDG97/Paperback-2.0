@@ -244,6 +244,9 @@ namespace paperback::deserialize
             if (!obj.is_type<paperback::component::temp_guid>())
                 ReadRecursive(obj, Value);
 
+            if (obj.is_type<text>())
+                NewArchetype->GetComponent<text>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<text>();
+
             if (obj.is_type<transform>())
                 NewArchetype->GetComponent<transform>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<transform>();
 
@@ -258,6 +261,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<base>())
                 NewArchetype->GetComponent<base>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<base>();
+
+            if (obj.is_type<spawner>())
+                NewArchetype->GetComponent<spawner>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<spawner>();
 
             if (obj.is_type<healthbar>())
                 NewArchetype->GetComponent<healthbar>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<healthbar>();

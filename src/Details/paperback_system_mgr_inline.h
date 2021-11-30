@@ -86,6 +86,11 @@ namespace paperback::system
 		m_Events.m_OnFrameEnd.BroadcastEvent();
 	}
 
+	void manager::TogglePause( const bool& Status ) noexcept
+	{
+		m_Events.m_OnPause.BroadcastEvent( Status );
+	}
+
 	void manager::Terminate( void ) noexcept
 	{
 		m_Events.m_OnSystemTerminated.BroadcastEvent();
@@ -118,12 +123,12 @@ namespace paperback::system
 			m_Events.m_OnFrameStart.RegisterEvent< &system_t::System_OnFrameStart >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::PreUpdate != &system_interface::PreUpdate)
-			m_Events.m_OnPreUpdate.RegisterEvent< &system_t::PreUpdate >( static_cast<system_t*>( System ) );
+			m_Events.m_OnPreUpdate.RegisterEvent< &system_t::System_OnPreUpdate >( static_cast<system_t*>( System ) );
 
 		m_Events.m_OnUpdate.RegisterEvent< &system_t::System_OnUpdate >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::PostUpdate != &system_interface::PostUpdate )
-			m_Events.m_OnPostUpdate.RegisterEvent< &system_t::PostUpdate >( static_cast<system_t*>( System ) );
+			m_Events.m_OnPostUpdate.RegisterEvent< &system_t::System_OnPostUpdate >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::OnFrameEnd != &system_interface::OnFrameEnd )
 			m_Events.m_OnFrameEnd.RegisterEvent< &system_t::System_OnFrameEnd >( static_cast<system_t*>( System ) );
@@ -131,8 +136,11 @@ namespace paperback::system
 		if constexpr ( &T_SYSTEM::OnSystemTerminated != &system_interface::OnSystemTerminated )
 			m_Events.m_OnSystemTerminated.RegisterEvent< &T_SYSTEM::OnSystemTerminated >( static_cast<system_t*>( System ) );
 
-		if constexpr (&T_SYSTEM::OnStateChange != &system_interface::OnStateChange)
-			m_Events.m_OnStateChange.RegisterEvent< &T_SYSTEM::OnStateChange >(static_cast<system_t*>(System));
+		if constexpr ( &T_SYSTEM::OnStateChange != &system_interface::OnStateChange )
+			m_Events.m_OnStateChange.RegisterEvent< &T_SYSTEM::OnStateChange >( static_cast<system_t*>( System ) );
+
+		if constexpr ( &T_SYSTEM::OnPause != &system_interface::OnPause )
+			m_Events.m_OnPause.RegisterEvent< &T_SYSTEM::OnPause >( static_cast<system_t*>( System ) );
 	}
 
 	void manager::ResetSystems( void ) noexcept

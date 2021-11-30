@@ -55,6 +55,10 @@ public:
 	PPB_INLINE
 	bool IsScrollDown() noexcept;
 
+	// Return direction of mouse movement
+	PPB_INLINE
+	glm::vec2 GetMouseDirection() const noexcept;
+
 	// Return screen position of mouse
 	PPB_INLINE
 	glm::vec3 GetMousePosition() const noexcept;
@@ -78,6 +82,9 @@ private:
 
 	// Array of mouse inputs
 	std::array<Inputstate, GLFW_MOUSE_BUTTON_LAST> m_Buttons;
+
+	// Mouse positions
+	glm::vec2 m_MouseOriginPosition;
 
 	// Offset of scroll wheel
 	double m_YAxis;

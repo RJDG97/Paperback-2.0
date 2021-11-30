@@ -205,6 +205,7 @@
     <ClInclude Include="Components\Socketed.h" />
     <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />
+    <ClInclude Include="Components\Spawner.h" />
     <ClInclude Include="Components\Sphere.h" />
     <ClInclude Include="Components\Text.h" />
     <ClInclude Include="Components\Timer.h" />
@@ -213,7 +214,14 @@
     <ClInclude Include="Components\Waypoint.h" />
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Scripts\CardScript.h" />
+    <ClInclude Include="Scripts\Credits_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\How2Play_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\LevelSelect_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\MainMenu_Button.h" />
+    <ClInclude Include="Scripts\Quit_Button.h" />
     <ClInclude Include="Scripts\scripts_includes.h" />
+    <ClInclude Include="Scripts\Settings_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\UI_Layers.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />

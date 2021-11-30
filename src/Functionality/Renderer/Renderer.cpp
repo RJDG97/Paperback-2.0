@@ -53,12 +53,12 @@ Renderer::Renderer() :
 
 	glBindVertexArray(0);
 
-	std::vector<std::string> files = { "../../resources/textures/right.dds",
-								   "../../resources/textures/left.dds",
-								   "../../resources/textures/top.dds",
-								   "../../resources/textures/bottom.dds",
-								   "../../resources/textures/front.dds",
-								   "../../resources/textures/back.dds" };
+	std::vector<std::string> files = { "../../resources/textures/Skybox/right.dds",
+								   "../../resources/textures/Skybox/left.dds",
+								   "../../resources/textures/Skybox/top.dds",
+								   "../../resources/textures/Skybox/bottom.dds",
+								   "../../resources/textures/Skybox/front.dds",
+								   "../../resources/textures/Skybox/back.dds" };
 
 	RenderResourceManager::GetInstanced().LoadSkyboxTexture(files);
 
@@ -150,9 +150,13 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
 	m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
 
-	m_Resources.LoadTextures("PaperCard", "../../resources/textures/PaperCard.dds", true);
-	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/ScissorsCard.dds", true);
-	m_Resources.LoadTextures("RockCard", "../../resources/textures/RockCard.dds", true);
+	m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard_Mirrored.dds", true);
+	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard_Mirrored.dds", true);
+	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard_Mirrored.dds", true);
+
+	m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard.dds", true);
+	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard.dds", true);
+	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard.dds", true);
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
@@ -470,12 +474,17 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs, const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
+
+	glDepthFunc(GL_LEQUAL);
+
 	UIPass(UIs);
 	TextPass(Texts);
+
+	glDepthFunc(GL_LESS);
 
 	// Bind shadow frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ShadowBuffer.m_FrameBuffer[0]);
@@ -598,7 +607,7 @@ void Renderer::SkyBoxRender()
 	m_Resources.m_Shaders["Skybox"].UnUse();
 }
 
-void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& UIs)
+void Renderer::UIPass(const std::map<float, std::vector<UIInfo>>& UIs)
 {
 	// Clear depth and color buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -614,34 +623,34 @@ void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm
 	glVertexArrayVertexBuffer(m_VAO, 0, quad.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
 	glVertexArrayElementBuffer(m_VAO, quad.GetSubMeshes()[0].m_EBO);
 
-	for (const auto& ui : UIs)
+	for (const auto& order : UIs)
 	{
-		std::string name{ ui.first };
-
-		if (!name.empty())
+		for (const auto& ui : order.second)
 		{
-			const auto& texture = m_Resources.m_Textures.find(name);
+			std::string name{ ui.m_Texture };
 
-			if (texture != m_Resources.m_Textures.end())
+			if (!name.empty())
 			{
-				m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", true);
+				const auto& texture = m_Resources.m_Textures.find(name);
 
-				glBindTextureUnit(0, texture->second);
-				m_Resources.m_Shaders["UI"].SetUniform("uDiffuse", 0);
+				if (texture != m_Resources.m_Textures.end())
+				{
+					m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", true);
+
+					glBindTextureUnit(0, texture->second);
+					m_Resources.m_Shaders["UI"].SetUniform("uDiffuse", 0);
+				}
+				else
+				{
+					m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", false);
+				}
 			}
 			else
 			{
 				m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", false);
 			}
-		}
-		else
-		{
-			m_Resources.m_Shaders["UI"].SetUniform("uTexturedDiffuse", false);
-		}
 
-		for (const auto& transform : ui.second)
-		{
-			m_Resources.m_Shaders["UI"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
+			m_Resources.m_Shaders["UI"].SetUniform("uModel", const_cast<glm::mat4&>(ui.m_Transform));
 
 			glDrawElements(quad.GetPrimitive(), quad.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 		}
@@ -654,7 +663,7 @@ void Renderer::UIPass(const std::unordered_map<std::string_view, std::vector<glm
 	m_Resources.m_Shaders["UI"].UnUse();
 }
 
-void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<std::pair<std::string, glm::mat4>>>& Texts)
+void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts)
 {
 	// Bind shader
 	RenderResourceManager::GetInstanced().m_Shaders["Text"].Use();
@@ -691,13 +700,14 @@ void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<s
 
 		for (const auto& text : fonttype.second)
 		{
-			m_Resources.m_Shaders["Text"].SetUniform("uTransform", const_cast<glm::mat4&>(text.second));
+			m_Resources.m_Shaders["Text"].SetUniform("uTransform", const_cast<glm::mat4&>(text.m_Transform));
+			m_Resources.m_Shaders["Text"].SetUniform("uColor", const_cast<glm::vec3&>(text.m_Color));
 
 			float advance = 0;
 
-			for (size_t i = 0; i < text.first.size(); ++i)
+			for (size_t i = 0; i < text.m_Text.size(); ++i)
 			{
-				const auto& letter = font.GetLetter(text.first[i]);
+				const auto& letter = font.GetLetter(text.m_Text[i]);
 
 				float xpos = (advance + letter.m_Offset.x) / m_Width;
 				float ypos = -(letter.m_LetterSize.y + letter.m_Offset.y) / m_Height;
@@ -853,7 +863,16 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 		
 		for (const auto& instance : model.second)
 		{
-			m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
+			if (instance.m_ParentSocketTransform)
+			{
+				glm::mat4 transform = instance.m_Transform * (*instance.m_ParentSocketTransform);
+				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
+			}
+			else
+			{
+				m_Resources.m_Shaders["Light"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
+			}
+
 			m_Resources.m_Shaders["Light"].SetUniform("uShadowBias", static_cast<float>(instance.m_ShadowBias));
 
 			if (instance.m_BoneTransforms)
@@ -864,16 +883,6 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 			else
 			{
 				m_Resources.m_Shaders["Light"].SetUniform("uHasBones", false);
-			}
-
-			if (instance.m_ParentSocketTransform)
-			{
-				m_Resources.m_Shaders["Light"].SetUniform("uHasSocketed", true);
-				m_Resources.m_Shaders["Light"].SetUniform("uParentSocketTransform", *instance.m_ParentSocketTransform);
-			}
-			else
-			{
-				m_Resources.m_Shaders["Light"].SetUniform("uHasSocketed", false);
 			}
 
 			for (auto& submesh : SubMeshes)

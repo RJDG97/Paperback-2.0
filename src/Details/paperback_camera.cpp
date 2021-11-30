@@ -2,36 +2,6 @@
 #include "../paperback_camera.h"
 #include "glm/inc/gtx/transform.hpp"
 
-glm::mat4 Camera::GetView() const
-{
-	return m_View;
-}
-
-glm::mat4 Camera::GetProjection() const
-{
-	return m_Projection;
-}
-
-glm::vec3 Camera::GetPosition() const
-{
-	return m_Position;
-}
-
-Camera2D::Camera2D()
-{
-	m_Target = glm::vec3{ 0.f };
-	m_Position = glm::vec3{ 0, 0, 10.f };
-	m_Projection = glm::ortho(-960.f, 960.f, -540.f, 540.f, 1.f, 200.f);
-	m_View = glm::lookAt(m_Position, m_Target, glm::vec3{ 0.f, 1.f, 0.f });
-}
-
-Camera2D& Camera2D::GetInstanced()
-{
-	static Camera2D camera;
-
-	return camera;
-}
-
 Camera3D::Camera3D() :
 	m_Right{ glm::vec3{1.f, 0.f, 0.f} },
 	m_Up{ glm::vec3{0.f, 1.f, 0.f} },
@@ -51,6 +21,21 @@ Camera3D::Camera3D() :
 glm::vec3 Camera3D::GetForwardVector() const
 {
 	return m_Front;
+}
+
+glm::mat4 Camera3D::GetView() const
+{
+	return m_View;
+}
+
+glm::mat4 Camera3D::GetProjection() const
+{
+	return m_Projection;
+}
+
+glm::vec3 Camera3D::GetPosition() const
+{
+	return m_Position;
 }
 
 void Camera3D::SetPosition(const glm::vec3& Position)
@@ -137,9 +122,9 @@ void Camera3D::MoveDown()
 	UpdateView();
 }
 
-void Camera3D::RotateRight()
+void Camera3D::RotateRight(const float m_Speed)
 {
-	m_Azimuth -= 0.1f;
+	m_Azimuth -= m_Speed;
 
 	if (m_Azimuth < 0.f)
 		m_Azimuth += 360.f;
@@ -149,9 +134,9 @@ void Camera3D::RotateRight()
 	UpdateView();
 }
 
-void Camera3D::RotateLeft()
+void Camera3D::RotateLeft(const float m_Speed)
 {
-	m_Azimuth += 0.1f;
+	m_Azimuth += m_Speed;
 
 	if (m_Azimuth > 360.f)
 		m_Azimuth -= 360.f;
@@ -161,9 +146,9 @@ void Camera3D::RotateLeft()
 	UpdateView();
 }
 
-void Camera3D::RotateUp()
+void Camera3D::RotateUp(const float m_Speed)
 {
-	m_Theta += 0.1f;
+	m_Theta += m_Speed;
 
 	if (m_Theta > 179.f)
 		m_Theta = 179.f;
@@ -173,9 +158,9 @@ void Camera3D::RotateUp()
 	UpdateView();
 }
 
-void Camera3D::RotateDown()
+void Camera3D::RotateDown(const float m_Speed)
 {
-	m_Theta -= 0.1f;
+	m_Theta -= m_Speed;
 
 	if (m_Theta < 1.f)
 		m_Theta = 1.f;
@@ -183,6 +168,38 @@ void Camera3D::RotateDown()
 	UpdateVectors();
 
 	UpdateView();
+}
+
+
+void Camera3D::RotateWithMouse()
+{
+	/*if (PPB.IsMouseDown(GLFW_MOUSE_BUTTON_RIGHT))
+	{
+		glm::vec2 direction = PPB.GetMouseDirection();
+		float length = glm::length(direction);
+
+		length = length <= 50.f ? length : 50.f;
+
+		direction = glm::normalize(direction) * length * 0.01f;
+
+		if (direction.x < 0)
+		{
+			RotateLeft(direction.x * -1.f);
+		}
+		else if (direction.x > 0)
+		{
+			RotateRight(direction.x);
+		}
+
+		if (direction.y > 0)
+		{
+			RotateDown(direction.y);
+		}
+		else if (direction.y < 0)
+		{
+			RotateUp(direction.y * -1.f);
+		}
+	}*/
 }
 
 void Camera3D::UpdateView()

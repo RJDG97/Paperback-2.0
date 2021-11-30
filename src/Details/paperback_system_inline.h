@@ -45,6 +45,7 @@ namespace paperback::system
 	template < typename USER_SYSTEM >
 	void details::completed<USER_SYSTEM>::System_OnFrameStart( void ) noexcept
 	{
+		if ( std::is_base_of_v< system::pausable_instance, USER_SYSTEM > && USER_SYSTEM::m_bPaused ) return;
 		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
 		USER_SYSTEM::OnFrameStart(  );
 	}
@@ -52,6 +53,7 @@ namespace paperback::system
 	template < typename USER_SYSTEM >
 	void details::completed<USER_SYSTEM>::System_OnPreUpdate( void ) noexcept
 	{
+		if ( std::is_base_of_v< system::pausable_instance, USER_SYSTEM > && USER_SYSTEM::m_bPaused ) return;
 		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
 		USER_SYSTEM::PreUpdate(  );
 	}
@@ -59,6 +61,7 @@ namespace paperback::system
 	template < typename USER_SYSTEM >
 	void details::completed<USER_SYSTEM>::System_OnUpdate( void ) noexcept
 	{
+		if ( std::is_base_of_v< system::pausable_instance, USER_SYSTEM > && USER_SYSTEM::m_bPaused ) return;
 		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
 
 		if constexpr ( &USER_SYSTEM::Update != &system_interface::Update )
@@ -75,6 +78,7 @@ namespace paperback::system
 	template < typename USER_SYSTEM >
 	void details::completed<USER_SYSTEM>::System_OnPostUpdate( void ) noexcept
 	{
+		if ( std::is_base_of_v< system::pausable_instance, USER_SYSTEM > && USER_SYSTEM::m_bPaused ) return;
 		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
 		USER_SYSTEM::PostUpdate(  );
 	}
@@ -82,6 +86,7 @@ namespace paperback::system
 	template < typename USER_SYSTEM >
 	void details::completed<USER_SYSTEM>::System_OnFrameEnd( void ) noexcept
 	{
+		if ( std::is_base_of_v< system::pausable_instance, USER_SYSTEM > && USER_SYSTEM::m_bPaused ) return;
 		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
 		USER_SYSTEM::OnFrameEnd(  );
 	}
