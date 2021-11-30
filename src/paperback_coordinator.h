@@ -220,6 +220,8 @@ namespace paperback::coordinator
 		PPB_INLINE
 		paperback::archetype::instance& GetArchetype( const u64 ArchetypeGuid ) noexcept;
 
+		PPB_INLINE
+		void QuitGame() noexcept;
 
 		//-----------------------------------
 		//           CPP Scripts

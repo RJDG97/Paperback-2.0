@@ -570,6 +570,11 @@ namespace paperback::coordinator
 		m_SystemMgr.TogglePause( Status );
 	}
 
+	void instance::QuitGame() noexcept
+	{
+
+		m_GameActive = false;
+	}
 
 	//-----------------------------------
 	//             Getters

@@ -41,7 +41,13 @@ namespace paperback::script
         m_Coordinator{ Coordinator }
     {
         // Testing Script Register
-        RegisterScripts<test_button_script, levelselect_button_mainmenu_script>();
+        RegisterScripts<test_button_script, 
+                        levelselect_button_mainmenu_script,
+                        credits_button_mainmenu_script,
+                        how2play_button_mainmenu_script,
+                        mainmenu_button_script,
+                        quit_button_script,
+                        settings_button_mainmenu_script>();
 
         // Printing list of Guids & Script Names
         auto& List = GetScriptsList();
