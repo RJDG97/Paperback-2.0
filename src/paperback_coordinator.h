@@ -170,6 +170,9 @@ namespace paperback::coordinator
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;
 
+		PPB_INLINE
+		void TogglePause( const bool& Status ) noexcept;
+
 
 		//-----------------------------------
 		//        Getters / Setters

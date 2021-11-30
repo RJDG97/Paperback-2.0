@@ -543,6 +543,11 @@ namespace paperback::coordinator
 		}
 	}
 
+	void instance::TogglePause( const bool& Status ) noexcept
+	{
+		m_SystemMgr.TogglePause( Status );
+	}
+
 
 	//-----------------------------------
 	//             Getters

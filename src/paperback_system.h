@@ -205,20 +205,25 @@ namespace paperback::system
 		using events = std::tuple<>;
 
 		// Main System Loops
-		void OnSystemCreated    ( void ) noexcept {}
-        void OnFrameStart       ( void ) noexcept {}
-        void PreUpdate          ( void ) noexcept {}
-		void Update		        ( void ) noexcept {}
-		void PostUpdate         ( void ) noexcept {}
-		void OnFrameEnd         ( void ) noexcept {}
-		void OnSystemTerminated ( void ) noexcept {}
-		void OnStateChange		( void ) noexcept {}
-		// Event
-		void OnEvent            ( ... )  noexcept {}	};
+		void OnSystemCreated    ( void )        noexcept {}
+        void OnFrameStart       ( void )        noexcept {}
+        void PreUpdate          ( void )        noexcept {}
+		void Update		        ( void )        noexcept {}
+		void PostUpdate         ( void )        noexcept {}
+		void OnFrameEnd         ( void )        noexcept {}
+		void OnSystemTerminated ( void )        noexcept {}
+		void OnStateChange		( void )        noexcept {}
+		// Event						        
+		void OnEvent            ( ... )         noexcept {}
+		void OnPause			( const bool& ) noexcept {}
+
+
+		bool m_bPaused = false;
+	};
 
 
 	//-----------------------------------
-	//        System Instance
+	//    System Instance - Default
 	//-----------------------------------
 
 	struct instance : system_interface
@@ -313,6 +318,16 @@ namespace paperback::system
 
 
 		paperback::coordinator::instance& m_Coordinator;
+	};
+
+
+	//-----------------------------------
+	//    System Instance - Pausable
+	//-----------------------------------
+
+	struct pausable_instance : instance
+	{
+		void OnPause( const bool& Status ) noexcept { m_bPaused = Status; }
 	};
 
 

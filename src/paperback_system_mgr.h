@@ -21,6 +21,7 @@ namespace paperback::system
 			paperback::event::instance<> m_OnFrameEnd;
 			paperback::event::instance<> m_OnSystemTerminated;
 			paperback::event::instance<> m_OnStateChange;
+			paperback::event::instance<const bool&> m_OnPause;
 		};
 
 		//-----------------------------------
@@ -57,6 +58,9 @@ namespace paperback::system
 
 		PPB_INLINE
 		void Run( void ) noexcept;
+
+		PPB_INLINE
+		void TogglePause( const bool& Status ) noexcept;
 
 		PPB_INLINE
 		void ResetSystems( void ) noexcept;
