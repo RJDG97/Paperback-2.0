@@ -274,5 +274,11 @@
     <ClInclude Include="Scripts\MainMenu_Button.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\QuitWindow_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\QuitCancel_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

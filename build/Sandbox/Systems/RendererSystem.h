@@ -68,6 +68,10 @@ struct render_system : paperback::system::instance
 		// Populate map
 		ForEach( Search( Query ), [&]( transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator* Animator, socketed* Socketed) noexcept
 		{
+
+			if (!Mesh.m_Active)
+				return;
+
 			if (Mesh.m_Model != "Quad")
 			{
 				glm::mat4 t{ 1.0f };

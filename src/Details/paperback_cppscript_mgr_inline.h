@@ -47,7 +47,9 @@ namespace paperback::script
                         how2play_button_mainmenu_script,
                         mainmenu_button_script,
                         quit_button_script,
-                        settings_button_mainmenu_script>();
+                        settings_button_mainmenu_script,
+                        quitwindow_button_mainmenu_script,
+                        quitcancel_button_mainmenu_script>();
 
         // Printing list of Guids & Script Names
         auto& List = GetScriptsList();

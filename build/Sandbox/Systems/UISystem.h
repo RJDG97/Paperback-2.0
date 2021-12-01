@@ -176,16 +176,18 @@ struct ui_system : paperback::system::pausable_instance
     }
 
     //given a layer, disable/enable all buttons with spe
-    void ToggleLayerObjects(int LayerID, bool SetToggle)
+    void ToggleLayerObjects(int LayerID, bool SetToggle) noexcept
     {
 
-        ForEach(Search(m_ButtonQuery), [&](entity& Entity, transform& Transform, scale& Scale, button* Button) noexcept
+        ForEach(Search(m_ButtonQuery), [&](entity& Entity, button* Button, mesh* Mesh) noexcept
         {
 
-            if (Button && Button->m_Group == LayerID)
+            if (Button && Button->m_Group == LayerID && Mesh)
             {
 
                 //do toggle code here
+                Button->m_bActive = SetToggle;
+                Mesh->m_Active = SetToggle;
             }
         });
     }
