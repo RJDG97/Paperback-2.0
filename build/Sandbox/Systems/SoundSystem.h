@@ -5,7 +5,7 @@
 #include "Components/Timer.h"
 #include "Systems/DebugSystem.h"
 
-struct sound_system : paperback::system::instance
+struct sound_system : paperback::system::pausable_instance
 {
 
 private:

@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <map>
 
-struct path_system : paperback::system::instance
+struct path_system : paperback::system::pausable_instance
 {
 	debug_system* debug_sys;
 

@@ -1,10 +1,10 @@
 #pragma once
 
-struct enemy_spawner_system : paperback::system::instance
+struct enemy_spawner_system : paperback::system::pausable_instance
 {
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
-		.m_pName = "timer_system"
+		.m_pName = "enemy_spawner_system"
 	};
 
     using query = std::tuple
@@ -33,12 +33,12 @@ struct enemy_spawner_system : paperback::system::instance
             Spawner_Query.m_Must.AddFromComponents < deck, enemy>();
             Spawner_Query.m_NoneOf.AddFromComponents< prefab >();
 
-            m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Dyanmic_Deck)  noexcept
+            m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Dynamic_Deck)  noexcept
                 {
                     bool CardsAvail = false;
                     // Check if cards are available
-                    for (int i = 0; i < Dyanmic_Deck.m_Deck.size(); i++) {
-                        if (Dyanmic_Deck.m_Deck[i].m_Count > 0)
+                    for (int i = 0; i < Dynamic_Deck.m_Deck.size(); i++) {
+                        if (Dynamic_Deck.m_Deck[i].m_Count > 0)
                             CardsAvail = true;
                     }
                     // if no available cards
@@ -49,15 +49,15 @@ struct enemy_spawner_system : paperback::system::instance
                         // Randomize card spawned
                         int cardindex = rand() % 3;
                         // If card is available
-                        if (Dyanmic_Deck.m_Deck[cardindex].m_Count > 0) {
+                        if (Dynamic_Deck.m_Deck[cardindex].m_Count > 0) {
                             // Decrease available card count
-                            Dyanmic_Deck.m_Deck[cardindex].m_Count--;
+                            Dynamic_Deck.m_Deck[cardindex].m_Count--;
 
                             // Spawn Card
                             // Check if GID is Valid
-                            if (Dyanmic_Deck.m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return; // Check Archetype* rather than GID, default value for uninitialized variables are prolly 0
+                            if (Dynamic_Deck.m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return; // Check Archetype* rather than GID, default value for uninitialized variables are prolly 0
                             // Get Unit Info and Spawn unit
-                            auto PrefabInfo = m_Coordinator.GetEntityInfo(Dyanmic_Deck.m_Deck[cardindex].m_CardGID);
+                            auto PrefabInfo = m_Coordinator.GetEntityInfo(Dynamic_Deck.m_Deck[cardindex].m_CardGID);
                             auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
                             // Update Card properties
                             auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);

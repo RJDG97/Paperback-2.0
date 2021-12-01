@@ -2,7 +2,7 @@
 
 #include "Systems/DebugSystem.h"
 
-struct health_system : paperback::system::instance
+struct health_system : paperback::system::pausable_instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
     {

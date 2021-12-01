@@ -1,7 +1,7 @@
 #pragma once
 #include "Math/Vector3f.h"
 
-struct physics_system : paperback::system::instance
+struct physics_system : paperback::system::pausable_instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
     {

@@ -4,6 +4,8 @@
 #include <dearImGui/IconsFontAwesome5.h>
 #include <sstream>
 #include <filesystem>
+
+#include "../../../src/paperback_camera.h"
 //----------------------------------
 // ImGui Headers
 //----------------------------------
@@ -41,6 +43,8 @@ enum FileActivity
     SAVEINDIVIDUALPREFAB,
     LOADPREFAB,
     LOADFROMASSET,
+    PLAYBUTTON,
+    STOPBUTTON,
     EXIT
 };
 
@@ -53,7 +57,7 @@ struct imgui_system : paperback::system::instance
     PanelList m_Panels;
 
     GLFWwindow* m_pWindow;
-    ImFont* m_Imgfont;
+    ImFont* m_Imgfont; 
 
     paperback::archetype::instance* m_pArchetype; //refers back to the archetype that the entity is referencing to
 
@@ -69,6 +73,8 @@ struct imgui_system : paperback::system::instance
 
     int m_SelectedSplinePoint = -1;
 
+    //glm::vec3 m_CameraOriginalPosition {};
+
     imgui_addons::ImGuiFileBrowser m_FileDialog; // to access the file dialog addon
     paperback::EditorLogger m_Log;
 
@@ -81,6 +87,7 @@ struct imgui_system : paperback::system::instance
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
     bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck, m_bLoadPrefab, m_bSavePrefab, m_bSaveIndiPrefab;
+    bool m_bPaused;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -123,20 +130,21 @@ struct imgui_system : paperback::system::instance
         io.FontDefault = io.Fonts->AddFontFromFileTTF("../../resources/fonts/FredokaOne-Regular.ttf", 16.0f);
         static const ImWchar iconranges[] = { ICON_MIN_FA, ICON_MAX_FA, 0 };
         ImFontConfig iconsconfig; iconsconfig.MergeMode = true; iconsconfig.PixelSnapH = true;
-        m_Imgfont = io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 14.0f, &iconsconfig, iconranges);
+        m_Imgfont = io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAS, 16.0f, &iconsconfig, iconranges);
 
         //////////// End iof ImGui Context Setup///////////////////////////
 
-        m_bDockspaceopen = true;
-        m_bFullscreenpersistant = true;
+        m_bDockspaceopen = m_bFullscreenpersistant = true;
         m_bFullscreen = m_bFullscreenpersistant;
 
         m_Dockspaceflags = ImGuiDockNodeFlags_PassthruCentralNode;
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 
-        m_bImgui = true;
+        m_bImgui = m_bPaused = true;
         m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = m_bSaveIndiPrefab = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
+
+        //m_CameraOriginalPosition = Camera3D::GetInstanced().GetPosition();
 
         m_Log.Init(); //Init ImTerm (Console)
 
@@ -147,6 +155,8 @@ struct imgui_system : paperback::system::instance
                    WindowSettings, AssetBrowser, ConsoleTerminal
         >();
 
+        PPB.TogglePause(true); 
+        
         EDITOR_INFO_PRINT("Editor Loaded");
     }
 
@@ -203,13 +213,13 @@ struct imgui_system : paperback::system::instance
                 OpenSaveFile();
                 SaveCheckPopUp();
                 SaveLoadPrefab();
+                ButtonToggle();
 
                 //Call Windows Here
                 ImGui::PushFont(m_Imgfont);
-
                 PanelsRun();
-
                 ImGui::PopFont();
+
                 ImGui::End(); //End of Docking Space
             }
 
@@ -475,6 +485,7 @@ struct imgui_system : paperback::system::instance
 
             if (!EntityInfoPath.empty())
             {
+                //m_CameraOriginalPosition = Camera3D::GetInstanced().GetPosition();
 
                 PPB.OpenEditScene(FilePath, EntityInfoPath);
                 EDITOR_TRACE_PRINT(FileName + " Loaded");
@@ -591,6 +602,34 @@ struct imgui_system : paperback::system::instance
 
         m_bSaveCheck = false;
     }
+    
+    void ButtonToggle()
+    {
+        switch (m_Type)
+        {
+        case FileActivity::PLAYBUTTON:
+        {
+            //Serialize the scene into a temp location
+            PPB.SaveScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
+            m_bPaused = false;
+            PPB.TogglePause(m_bPaused);
+
+            m_Type = FileActivity::NONE;
+        }
+        break;
+        case FileActivity::STOPBUTTON:
+        {
+            //Load back the scene from the temp location -> Same everytime?
+            ResetScene();
+            PPB.OpenEditScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
+            m_bPaused = true;
+            PPB.TogglePause(m_bPaused);
+
+            m_Type = FileActivity::NONE;
+        }
+        break;
+        }
+    }
 
     void SaveLoadPrefab()
     {
@@ -634,46 +673,6 @@ struct imgui_system : paperback::system::instance
     //-----------------------------------
     //        Property Display
     //-----------------------------------
-
-    //void EnumerationCombo(std::vector<const char*> Value_List, const std::string& Name, paperback::u8& Selection)
-    //{
-    //    //const char* current_item = Value_List[Selection];
-    //    if (ImGui::BeginCombo(("##" + Name).c_str(), "Choose Layer"))
-    //    {
-    //        for (unsigned i = 0; i < Value_List.size(); ++i)
-    //        {
-    //            //bool is_selected = (current_item == Value_List[i]);
-    //            if (ImGui::Selectable(Value_List[i]))
-    //                Selection = i;
-    //        }
-    //        ImGui::EndCombo();
-    //    }
-    //}
-
-    //void DisplayEnumeration(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue, rttr::instance& Instance, rttr::property Property)
-    //{
-    //    auto Enumeration = PropertyType.get_enumeration();
-    //    auto EnumList = Enumeration.get_names();
-    //    std::vector<const char*> ValueList;
-
-    //    for (auto& Enum : EnumList)
-    //        ValueList.push_back(Enum.data());
-
-    //    auto Selection = PropertyValue.get_value<paperback::u8>();
-    //    EnumerationCombo(ValueList, PropertyName, Selection);
-
-    //    auto Result = Enumeration.name_to_value(Enumeration.value_to_name(Selection));
-
-    //    if (PropertyName == "Collidable Layers")
-    //    {
-    //        auto EntityCollideLayers = m_SelectedEntity.first->FindComponent<collidable>(paperback::vm::PoolDetails{ 0, m_SelectedEntity.second });
-
-    //        paperback::u8 Layer = Result.get_value<paperback::u8>();
-    //        EntityCollideLayers->Set(Layer); //need to test
-    //    }
-    //    else
-    //        Property.set_value(Instance, Result);
-    //}
 
     void DisplayClassType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
     {
@@ -815,6 +814,8 @@ struct imgui_system : paperback::system::instance
 
     void ResetScene()
     {
+        //Camera3D::GetInstanced().SetPosition(m_CameraOriginalPosition);
+
         if (m_SelectedEntity.first)
         {
             m_SelectedEntity.first = nullptr;

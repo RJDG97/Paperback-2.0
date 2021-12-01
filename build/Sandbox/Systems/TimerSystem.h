@@ -1,6 +1,6 @@
 #pragma once
 
-struct timer_system : paperback::system::instance
+struct timer_system : paperback::system::pausable_instance
 {
 	constexpr static auto typedef_v = paperback::system::type::update
 	{

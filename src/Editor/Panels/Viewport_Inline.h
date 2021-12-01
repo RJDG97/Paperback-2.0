@@ -54,6 +54,8 @@ void EditorViewport::ViewportTwo()
 
 void EditorViewport::ViewportMenuBar()
 {
+	std::string PlayIcon{} ;
+
 	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoDecoration);
 
 	if (ImGui::SmallButton(ICON_FA_ARROWS_ALT))
@@ -85,15 +87,20 @@ void EditorViewport::ViewportMenuBar()
 			m_GizmoType = -1;
 	}
 
-	//if (ImGui::SmallButton(ICON_FA_BROOM))
-	//{
-	//	//Play Button <-> Stop Button
-	//}
-	//if (ImGui::SmallButton(ICON_FA_BROOM))
-	//{
-	//	//Pause Button
-	//}
+	ImGui::SameLine();
 
+	if (m_Imgui.m_bPaused)
+		PlayIcon = ICON_FA_PLAY;
+	else
+		PlayIcon = ICON_FA_STOP;
+
+	if (ImGui::SmallButton(PlayIcon.c_str()))
+	{
+		if (m_Imgui.m_bPaused)
+			m_Imgui.m_Type = FileActivity::PLAYBUTTON;
+		else
+			m_Imgui.m_Type = FileActivity::STOPBUTTON;
+	}
 	ImGui::End();
 }
 

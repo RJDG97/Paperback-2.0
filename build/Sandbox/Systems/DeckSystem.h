@@ -2,7 +2,7 @@
 
 #include "Systems/DebugSystem.h"
 
-struct deck_system : paperback::system::instance
+struct deck_system : paperback::system::pausable_instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
     {

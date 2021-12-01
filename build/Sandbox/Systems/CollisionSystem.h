@@ -4,7 +4,7 @@
 #include "Systems/DebugSystem.h"
 #include "Physics/ResolveCollision.h"
 
-struct collision_system : paperback::system::instance
+struct collision_system : paperback::system::pausable_instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
     {

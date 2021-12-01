@@ -1,6 +1,6 @@
 #pragma once
 
-struct player_spawner_system : paperback::system::instance
+struct player_spawner_system : paperback::system::pausable_instance
 {
 	constexpr static auto typedef_v = paperback::system::type::update
 	{

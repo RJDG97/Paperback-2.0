@@ -119,7 +119,6 @@ void InitializeGame()
         ,   debug_system
         ,   path_system
         ,   render_system
-        ,   imgui_system
         ,   animator_system
         ,   parentchild_system
         ,   player_spawner_system
@@ -129,6 +128,7 @@ void InitializeGame()
         ,   health_system
         ,   ui_system
         ,   deck_system
+        ,   imgui_system
         >();
 
         PPB.RegisterSystems <
