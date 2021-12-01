@@ -11,6 +11,8 @@
 #include "Credits_Button_MainMenu.h"
 #include "How2Play_Button_MainMenu.h"
 #include "Settings_Button_MainMenu.h"
+#include "QuitWindow_Button_MainMenu.h"
+#include "QuitCancel_Button_MainMenu.h"
 
 //General common button
 #include "MainMenu_Button.h"

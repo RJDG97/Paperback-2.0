@@ -218,6 +218,8 @@
     <ClInclude Include="Scripts\How2Play_Button_MainMenu.h" />
     <ClInclude Include="Scripts\LevelSelect_Button_MainMenu.h" />
     <ClInclude Include="Scripts\MainMenu_Button.h" />
+    <ClInclude Include="Scripts\QuitCancel_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\QuitWindow_Button_MainMenu.h" />
     <ClInclude Include="Scripts\Quit_Button.h" />
     <ClInclude Include="Scripts\scripts_includes.h" />
     <ClInclude Include="Scripts\Settings_Button_MainMenu.h" />

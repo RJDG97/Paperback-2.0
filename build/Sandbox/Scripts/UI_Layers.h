@@ -1,6 +1,6 @@
 #pragma once
 
-enum UILayer
+enum UI_LAYER
 {
 	BASE = 0,
 	PLAYUI,			//for buttons that are toggable only during gameplay

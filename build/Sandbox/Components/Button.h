@@ -60,6 +60,6 @@ namespace RR_Button
 		   .property( "Button State", &button::m_ButtonState )
 		   .property( "Layer Grouping", &button::m_Group )( rttr::policy::prop::as_reference_wrapper )
 		   .property( "Script Guid", &button::m_ReferencedScript )(rttr::policy::prop::as_reference_wrapper)
-		   .property( "Active Status", &button::m_bActive);
+		   .property( "Active Status", &button::m_bActive)( rttr::policy::prop::as_reference_wrapper );
     }
 }
