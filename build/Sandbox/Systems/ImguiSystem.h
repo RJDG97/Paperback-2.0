@@ -256,6 +256,11 @@ struct imgui_system : paperback::system::instance
     void OnStateChange(void) noexcept
     {
         m_bImgui = (PPB.VerifyState("Editor")) ? true : false;
+
+        if (m_bImgui)
+            PPB.TogglePause(true);
+        else
+            PPB.TogglePause(false);
     }
 
 
