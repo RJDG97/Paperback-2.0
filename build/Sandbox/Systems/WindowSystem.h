@@ -56,6 +56,7 @@ struct window_system : paperback::system::instance
         
         glfwSetKeyCallback(m_pWindow, KeyboardCallback);
         glfwSetMouseButtonCallback(m_pWindow, MouseCallback);
+        glfwSetWindowCloseCallback(m_pWindow, GLFWWindowCloseCallback);
 
         // Init glew
         GLenum Err = glewInit();
@@ -77,6 +78,7 @@ struct window_system : paperback::system::instance
         //{
         //    FullScreen();
         //}
+
 
         m_Coordinator.UpdateInputs();
         glfwPollEvents();
@@ -101,6 +103,11 @@ struct window_system : paperback::system::instance
         (void)window;
         (void)mods;
         PPB.SetMouse(key, action);
+    }
+
+    static void GLFWWindowCloseCallback(GLFWwindow* window)
+    {
+        PPB.QuitGame();
     }
 
     //void FullScreen()
