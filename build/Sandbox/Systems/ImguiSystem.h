@@ -163,6 +163,12 @@ struct imgui_system : paperback::system::instance
     PPB_INLINE
     void Update(void)
     {
+        if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
+        {
+
+            PPB.QuitGame();
+        }
+
         if (m_bImgui)
         {
             // ImGui New Frame

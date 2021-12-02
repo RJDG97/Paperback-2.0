@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 11
+                "EntityHead": 12
             }
         },
         {
@@ -143,64 +143,6 @@
             ]
         },
         {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        10055872472107209861,
-                        17008353085049151909,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 7
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "DefaultPrefab_A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 5
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "DefaultPrefab_B"
-                    }
-                }
-            ]
-        },
-        {
             "HDBbase": [
                 {
                     "Guid": [
@@ -235,6 +177,7 @@
                         "Prefab Instances GID": [
                             6,
                             3,
+                            11,
                             1,
                             9,
                             10
@@ -296,14 +239,14 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar_Fill",
+                        "Texture": "StartGameButton_Unselected",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.20000000298023225,
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
                             "z": 0.0
                         }
                     },
@@ -311,7 +254,7 @@
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 180.0
                         }
                     },
                     "Transform": {
@@ -322,7 +265,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -0.05000000074505806,
+                            "y": -0.15000000596046449,
                             "z": 0.0
                         }
                     },
@@ -332,7 +275,8 @@
                             2550044418833058707,
                             5691439207370049121,
                             17008353085049151909,
-                            16415915133639986106
+                            16415915133639986106,
+                            14486341741652966143
                         ],
                         "Prefab GID": 4
                     },
@@ -345,9 +289,9 @@
                             "",
                             ""
                         ],
-                        "Button State": 0,
+                        "Button State": 2,
                         "Layer Grouping": 0,
-                        "Script Guid": 10524160257522196382,
+                        "Script Guid": 16614706341257434777,
                         "Active Status": true
                     }
                 },
@@ -357,14 +301,14 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar_Fill",
+                        "Texture": "QuitGameButton_Unselected",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.20000000298023225,
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
                             "z": 0.0
                         }
                     },
@@ -372,7 +316,7 @@
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 180.0
                         }
                     },
                     "Transform": {
@@ -383,7 +327,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -0.6499999761581421,
+                            "y": -0.75,
                             "z": 0.0
                         }
                     },
@@ -393,7 +337,8 @@
                             2550044418833058707,
                             5691439207370049121,
                             17008353085049151909,
-                            16415915133639986106
+                            16415915133639986106,
+                            14486341741652966143
                         ],
                         "Prefab GID": 4
                     },
@@ -418,14 +363,14 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar_Fill",
+                        "Texture": "YesButton_Unselected",
                         "Shadow Bias": 1,
                         "Active": false
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.20000000298023225,
+                            "x": 0.28999999165534975,
+                            "y": 0.25,
                             "z": 0.0
                         }
                     },
@@ -433,7 +378,7 @@
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 180.0
                         }
                     },
                     "Transform": {
@@ -444,8 +389,8 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -0.20000000298023225,
-                            "z": 0.0
+                            "y": -0.30000001192092898,
+                            "z": 1.0
                         }
                     },
                     "ReferencePrefab": {
@@ -454,7 +399,8 @@
                             9604788041699812520,
                             5691439207370049121,
                             17008353085049151909,
-                            16415915133639986106
+                            16415915133639986106,
+                            14486341741652966143
                         ],
                         "Prefab GID": 4
                     },
@@ -479,14 +425,14 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar_Fill",
+                        "Texture": "NoButton_Unselected",
                         "Shadow Bias": 1,
                         "Active": false
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.20000000298023225,
+                            "x": 0.28999999165534975,
+                            "y": 0.25,
                             "z": 0.0
                         }
                     },
@@ -494,7 +440,7 @@
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 180.0
                         }
                     },
                     "Transform": {
@@ -505,8 +451,8 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": 0.10000000149011612,
-                            "z": 0.0
+                            "y": 0.0,
+                            "z": 1.0
                         }
                     },
                     "ReferencePrefab": {
@@ -515,7 +461,8 @@
                             2550044418833058707,
                             5691439207370049121,
                             17008353085049151909,
-                            16415915133639986106
+                            16415915133639986106,
+                            14486341741652966143
                         ],
                         "Prefab GID": 4
                     },
@@ -540,14 +487,14 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "PlayerHPBar_Fill",
+                        "Texture": "HowToPlayButton_Unselected",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.20000000298023225,
-                            "y": 0.20000000298023225,
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
                             "z": 0.0
                         }
                     },
@@ -555,7 +502,7 @@
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 180.0
                         }
                     },
                     "Transform": {
@@ -566,7 +513,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -0.3499999940395355,
+                            "y": -0.44999998807907107,
                             "z": 0.0
                         }
                     },
@@ -576,7 +523,8 @@
                             2550044418833058707,
                             5691439207370049121,
                             17008353085049151909,
-                            16415915133639986106
+                            16415915133639986106,
+                            14486341741652966143
                         ],
                         "Prefab GID": 4
                     },
@@ -593,6 +541,126 @@
                         "Layer Grouping": 0,
                         "Script Guid": 2641508614138430193,
                         "Active Status": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 11
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "QuitGameConfirmationPanel",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "QuitBackground"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 5,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": false
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "DefaultPrefab_A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 5
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "DefaultPrefab_B"
                     }
                 }
             ]

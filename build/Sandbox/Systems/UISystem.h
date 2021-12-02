@@ -1,4 +1,5 @@
 #pragma once
+#include "../Scripts/UI_Layers.h"
 
 struct ui_system : paperback::system::pausable_instance
 {
@@ -173,6 +174,24 @@ struct ui_system : paperback::system::pausable_instance
     {
 
         PPB.OpenQueuedScene();
+
+        if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE))
+        {
+            
+            if (PPB.VerifyState("Editor"))
+            {
+                return;
+            }
+            else if (!PPB.VerifyState("MainMenu") && !PPB.VerifyState("HowToPlay") && !PPB.VerifyState("Credits")
+                    && !PPB.VerifyState("LevelSelect") && !PPB.VerifyState("GameWin") && !PPB.VerifyState("GameLoss")
+                    && !PPB.VerifyState("Settings"))
+            {
+
+                PPB.TogglePause(true);
+                ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
+                ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
+            }
+        }
     }
 
     //given a layer, disable/enable all buttons with spe

@@ -143,7 +143,22 @@ void InitializeGame()
         >();
 
         PPB.RegisterScripts<
-            card_script
+            card_script,
+            levelselect_button_mainmenu_script,
+            credits_button_mainmenu_script,
+            how2play_button_mainmenu_script,
+            mainmenu_button_script,
+            quit_button_script,
+            settings_button_mainmenu_script,
+            quitwindow_button_mainmenu_script,
+            quitcancel_button_mainmenu_script,
+            pausecancel_button_game_script,
+            pauseenable_button_game_script,
+            quitcancel_button_game_script,
+            quitwindow_button_game_script,
+            returnmainmenu_cancel_button_game_script,
+            returnmainmenu_window_button_game_script,
+            startgame_button_script
         >();
     }
     // Entity Creation

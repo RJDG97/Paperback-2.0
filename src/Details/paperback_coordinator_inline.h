@@ -40,8 +40,8 @@ namespace paperback::coordinator
 
 			m_SystemMgr.Run();
 
-			if (IsKeyPressDown(GLFW_KEY_ESCAPE))
-				m_GameActive = false;
+			/*if (IsKeyPressDown(GLFW_KEY_ESCAPE))
+				m_GameActive = false;*/
 
 			XCORE_PERF_FRAME_MARK_END( "paperback::frame" )
 		}

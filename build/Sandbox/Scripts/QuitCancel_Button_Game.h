@@ -1,14 +1,15 @@
 #pragma once
+#include "../../Sandbox/Systems/UISystem.h"
 
-struct mainmenu_button_script : paperback::script::button_interface // Inherited Type (1)
+struct quitwindow_button_game_script : paperback::script::button_interface // Inherited Type (1)
 {
     static constexpr auto typedef_v = paperback::script::type::button
     {
-        .m_pName = "Main Menu Button Script"
+        .m_pName = "Quit Window Button Game Script"
     };
 
     // You have to define this constructor - For internal registration
-    mainmenu_button_script(paperback::coordinator::instance& Instance) noexcept :
+    quitwindow_button_game_script(paperback::coordinator::instance& Instance) noexcept :
         // Override paperback::script::button_interface with the Inherited Type (1)
         paperback::script::button_interface{ Instance }
     { }
@@ -21,8 +22,7 @@ struct mainmenu_button_script : paperback::script::button_interface // Inherited
     void OnClick() noexcept override
     {
 
-        PPB.TogglePause(false);
-        
-        PPB.QueueScene("MainMenu");
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), false);
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::QUIT), true);
     }
 };
