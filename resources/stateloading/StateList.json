@@ -1,8 +1,8 @@
 {
-    "MainMenu": "../../resources/assetloading/MainMenuScene.json",
-    "MainMenu": "../../resources/assetloading/MainMenuScene_EntityInfo.json",
     "Editor": "../../resources/assetloading/VerticalSlice.json",
     "Editor": "../../resources/assetloading/VerticalSlice_EntityInfo.json",
+    "MainMenu": "../../resources/assetloading/MainMenuScene.json",
+    "MainMenu": "../../resources/assetloading/MainMenuScene_EntityInfo.json",
     "HowToPlay": "../../resources/assetloading/HowToPlay.json",
     "HowToPlay": "../../resources/assetloading/HowToPlay_EntityInfo.json",
     "Settings": "../../resources/assetloading/GameplayScene.json",
