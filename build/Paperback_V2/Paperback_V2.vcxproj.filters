@@ -441,7 +441,7 @@
     <ClInclude Include="..\..\src\Details\paperback_event_mgr_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Physics\Fake_GJK.h">
+    <ClInclude Include="..\..\src\Physics\GJK.h">
       <Filter>Source\Gameplay Code\Physics</Filter>
     </ClInclude>
   </ItemGroup>
