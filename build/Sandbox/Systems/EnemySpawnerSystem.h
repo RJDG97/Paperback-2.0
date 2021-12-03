@@ -42,8 +42,10 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                             CardsAvail = true;
                     }
                     // if no available cards
-                    //if (!CardsAvail)
+                    if (!CardsAvail) {
                         // Win Game State
+                        PPB.QueueScene("GameWin");
+                    }
 
                     while (CardsAvail) {
                         // Randomize card spawned
