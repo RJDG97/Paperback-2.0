@@ -4114,8 +4114,8 @@
                         "Prefab GID": 10
                     },
                     "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
+                        "Current Health": 60,
+                        "Max Health": 60
                     },
                     "Name": {
                         "Name": "Stadium"
@@ -4241,8 +4241,8 @@
                         "Is Collide": false
                     },
                     "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
+                        "Current Health": 60,
+                        "Max Health": 60
                     },
                     "Name": {
                         "Name": "Stadium"
@@ -4366,8 +4366,8 @@
                         "Prefab GID": 16
                     },
                     "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
+                        "Current Health": 60,
+                        "Max Health": 60
                     },
                     "Name": {
                         "Name": "HDB"
@@ -4488,8 +4488,8 @@
                         "Is Collide": false
                     },
                     "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
+                        "Current Health": 60,
+                        "Max Health": 60
                     },
                     "Name": {
                         "Name": "HDB"
