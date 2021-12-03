@@ -81,7 +81,7 @@ public:
             FMOD_STUDIO_PLAYBACK_STATE be;
             m_SoundFiles.back().m_pSound->getPlaybackState(&be);
 
-            m_SoundFiles.back().m_pSound->setVolume(0.05f);
+            m_SoundFiles.back().m_pSound->setVolume(0.1f);
 
             if (be != 0)
                 ERROR_LOG("Play Sound Event Playback State: " + be);
