@@ -20,7 +20,6 @@ struct quit_button_script : paperback::script::button_interface // Inherited Typ
 
     void OnClick() noexcept override
     {
-
         PPB.QuitGame();
     }
 };

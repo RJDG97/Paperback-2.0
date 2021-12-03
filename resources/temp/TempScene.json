@@ -25,7 +25,8 @@
                     "Mesh": {
                         "Model": "DragonTailLeft",
                         "Texture": "DragonTail_Left_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -70,7 +71,8 @@
                     "Mesh": {
                         "Model": "DragonTailRight",
                         "Texture": "DragonTail_Right_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -115,7 +117,8 @@
                     "Mesh": {
                         "Model": "DragonSpineSupport",
                         "Texture": "DragonSpine_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -160,7 +163,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "RockPaperScissorsIcon",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -208,7 +212,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "PlayerHPBar",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -253,7 +258,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "EnemyHPBar",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -394,7 +400,8 @@
                     "Mesh": {
                         "Model": "DragonTailLeft",
                         "Texture": "",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -438,7 +445,8 @@
                     "Mesh": {
                         "Model": "DragonTailRight",
                         "Texture": "",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -482,7 +490,8 @@
                     "Mesh": {
                         "Model": "DragonSpineSupport",
                         "Texture": "",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -526,7 +535,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "RedRockBlueScissors",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -570,7 +580,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "PlayerHPBar",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -614,7 +625,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "EnemyHPBar",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -674,7 +686,8 @@
                     "Mesh": {
                         "Model": "Sandpit",
                         "Texture": "Sandpit_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -747,7 +760,8 @@
                     "Mesh": {
                         "Model": "Sandpit",
                         "Texture": "Sandpit_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -821,7 +835,8 @@
                     "Mesh": {
                         "Model": "DragonSlideLeft",
                         "Texture": "DragonSlide_Left_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -876,7 +891,8 @@
                     "Mesh": {
                         "Model": "DragonSlideRight",
                         "Texture": "DragonSlide_Right_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -947,7 +963,8 @@
                     "Mesh": {
                         "Model": "DragonSlideLeft",
                         "Texture": "DragonSlide_Left_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1003,7 +1020,8 @@
                     "Mesh": {
                         "Model": "DragonSlideRight",
                         "Texture": "DragonSlide_Right_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1076,7 +1094,8 @@
                     "Mesh": {
                         "Model": "DragonHead",
                         "Texture": "DragonHead_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1162,7 +1181,8 @@
                     "Mesh": {
                         "Model": "DragonHead",
                         "Texture": "DragonHead_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1248,7 +1268,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "PlayerHPBar_Fill",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1318,7 +1339,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "PlayerHPBar_Fill",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1386,7 +1408,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "EnemyHPBar_Fill",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1454,7 +1477,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "EnemyHPBar_Fill",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1523,7 +1547,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "RockCard",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1587,7 +1612,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "ScissorsCard",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1651,7 +1677,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "PaperCard",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1732,7 +1759,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "RockCard",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1795,7 +1823,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "ScissorsCard",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1858,7 +1887,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "PaperCard",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -1947,7 +1977,8 @@
                     "Mesh": {
                         "Model": "BlueUnitAnimated",
                         "Texture": "Unit_Blue_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -2060,7 +2091,8 @@
                     "Mesh": {
                         "Model": "BlueUnitAnimated",
                         "Texture": "Unit_Blue_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -2173,7 +2205,8 @@
                     "Mesh": {
                         "Model": "BlueUnitAnimated",
                         "Texture": "Unit_Blue_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -2312,7 +2345,8 @@
                     "Mesh": {
                         "Model": "RedUnitAnimated",
                         "Texture": "Unit_Red_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -2425,7 +2459,8 @@
                     "Mesh": {
                         "Model": "RedUnitAnimated",
                         "Texture": "Unit_Red_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -2538,7 +2573,8 @@
                     "Mesh": {
                         "Model": "RedUnitAnimated",
                         "Texture": "Unit_Red_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -2669,7 +2705,8 @@
                     "Mesh": {
                         "Model": "TopPath",
                         "Texture": "TopPath_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -2865,7 +2902,8 @@
                     "Mesh": {
                         "Model": "BottomPath",
                         "Texture": "BottomPath_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -3018,7 +3056,8 @@
                     "Mesh": {
                         "Model": "DragonSpine",
                         "Texture": "DragonSpine_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -3154,7 +3193,8 @@
                     "Mesh": {
                         "Model": "TopPath",
                         "Texture": "TopPath_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -3227,7 +3267,8 @@
                     "Mesh": {
                         "Model": "BottomPath",
                         "Texture": "BottomPath_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -3381,7 +3422,8 @@
                     "Mesh": {
                         "Model": "DragonSpine",
                         "Texture": "DragonSpine_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -3521,7 +3563,8 @@
                     "Mesh": {
                         "Model": "HDBBlock",
                         "Texture": "HDB_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -3639,7 +3682,8 @@
                     "Mesh": {
                         "Model": "HDBBlock",
                         "Texture": "HDB_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -3755,7 +3799,8 @@
                     "Mesh": {
                         "Model": "NationalStadium",
                         "Texture": "NationalStadium_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -3876,7 +3921,8 @@
                     "Mesh": {
                         "Model": "NationalStadium",
                         "Texture": "NationalStadium_BaseColour.dds",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -4136,7 +4182,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "CardBack",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -4232,7 +4279,8 @@
                     "Mesh": {
                         "Model": "Quad",
                         "Texture": "CardBack",
-                        "Shadow Bias": 1
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {

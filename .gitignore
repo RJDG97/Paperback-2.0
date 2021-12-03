@@ -358,3 +358,5 @@ dependencies/xcore/
 /build/CSScript/ScriptRuntimelib.dll
 /build/CSScript/Scriptlib.dll
 /build/Sandbox/mcs_ScriptRuntimelib_output.txt
+resources/temp/TempScene.json
+resources/temp/TempEntityInfo.json

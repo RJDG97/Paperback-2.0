@@ -165,8 +165,9 @@ struct imgui_system : paperback::system::instance
     {
         if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
         {
-
-            PPB.QuitGame();
+            //PPB.QuitGame();
+            if (!m_bPaused)
+                m_Type = FileActivity::STOPBUTTON;
         }
 
         if (m_bImgui)
@@ -370,10 +371,11 @@ struct imgui_system : paperback::system::instance
                     m_bFileSaveAs = true;
                 }
 
-                //if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
-                //{
-                //    //TBC
-                //}
+                if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
+                {
+                    EDITOR_WARN_PRINT("Shutting Down Editor...");
+                    PPB.QuitGame();
+                }
 
                 ImGui::EndMenu();
             }
@@ -498,6 +500,12 @@ struct imgui_system : paperback::system::instance
             {
                 //m_CameraOriginalPosition = Camera3D::GetInstanced().GetPosition();
 
+                if (!m_bPaused)
+                {
+                    m_bPaused = true;
+                    PPB.TogglePause(m_bPaused);
+                }
+
                 PPB.OpenEditScene(FilePath, EntityInfoPath);
                 EDITOR_TRACE_PRINT(FileName + " Loaded");
 
@@ -510,13 +518,18 @@ struct imgui_system : paperback::system::instance
         }
         else
         {
-
             if (FilePath.find(".prefab") == std::string::npos)
             {
                 EDITOR_CRITICAL_PRINT("Trying to load a Non Prefab File");
                 return;
             }
             
+            if (!m_bPaused)
+            {
+                EDITOR_CRITICAL_PRINT("Unable to load prefab file when there is a active scene running");
+                return;
+            }
+
             PPB.LoadPrefabs(FilePath);
             EDITOR_TRACE_PRINT("Prefabs from: " + FileName + " Loaded");
 
@@ -552,7 +565,6 @@ struct imgui_system : paperback::system::instance
                 case FileActivity::OPENSCENE:
                 {
                     ResetScene();
-
                     m_bFileOpen = true;
 
                     m_Type = FileActivity::NONE;
@@ -574,8 +586,6 @@ struct imgui_system : paperback::system::instance
                 break;
                 }
             }
-
-            //ImGuiHelp("Click here to save changes");
 
             ImGui::SameLine();
 
@@ -606,8 +616,6 @@ struct imgui_system : paperback::system::instance
                 ImGui::CloseCurrentPopup();
             }
 
-            //ImGuiHelp("Click here to continue on");
-
             ImGui::EndPopup();
         }
 
@@ -625,6 +633,8 @@ struct imgui_system : paperback::system::instance
             m_bPaused = false;
             PPB.TogglePause(m_bPaused);
 
+            EDITOR_TRACE_PRINT("Playing Active Scene...");
+
             m_Type = FileActivity::NONE;
         }
         break;
@@ -635,6 +645,9 @@ struct imgui_system : paperback::system::instance
             PPB.OpenEditScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
             m_bPaused = true;
             PPB.TogglePause(m_bPaused);
+
+            EDITOR_INFO_PRINT("Stopped Active Scene...");
+
 
             m_Type = FileActivity::NONE;
         }
