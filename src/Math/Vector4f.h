@@ -38,7 +38,7 @@ namespace paperback
     struct Vector4f
     {
         PPB_INLINE
-        Vector4f() 
+        Vector4f()
         {
             x = 0.f;
             y = 0.f;
@@ -214,7 +214,7 @@ namespace paperback
                 "Vector4 - Division by Zero.");
             return Vector4f(x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w);
         }
-        
+
         PPB_INLINE
         void Set(float x_, float y_, float z_, float w_)
         {
@@ -320,23 +320,18 @@ namespace paperback
         {
             return IsValid(x) && IsValid(y) && IsValid(z) && IsValid(w);
         }
-
+        //-------------------------------------------------------------------------------
         union
         {
-            #pragma warning(disable : 4201)
+#pragma warning(disable : 4201)
             struct
             {
                 float x, y, z, w;
             };
-            #pragma warning(default : 4201)
+#pragma warning(default : 4201)
             float array[4];
         };
 
-        //static const Vector4f cZero;
-        //static const Vector4f cXAxis;
-        //static const Vector4f cYAxis;
-        //static const Vector4f cZAxis;
-        //static const Vector4f cWAxis;
     };
 
     PPB_INLINE
@@ -429,12 +424,6 @@ namespace paperback
             start[2] + tValue * (end[2] - start[2]),
             start[3] + tValue * (end[3] - start[3]));
     }
-
-    //const Vector4f Vector4f::cZero(0.0f, 0.0f, 0.0f, 0.0f);
-    //const Vector4f Vector4f::cXAxis(1.0f, 0.0f, 0.0f, 0.0f);
-    //const Vector4f Vector4f::cYAxis(0.0f, 1.0f, 0.0f, 0.0f);
-    //const Vector4f Vector4f::cZAxis(0.0f, 0.0f, 1.0f, 0.0f);
-    //const Vector4f Vector4f::cWAxis(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 //#include "Vector3f.hpp"

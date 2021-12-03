@@ -57,6 +57,7 @@ namespace paperback
 		return Result;
 	}
 
+	//-------------------------------------------------------------------------------
 	// -- Returns the identity matrix
 	inline Mtx4x4 Mtx4x4::Identity()
 	{

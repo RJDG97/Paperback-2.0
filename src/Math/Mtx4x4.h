@@ -12,7 +12,14 @@ namespace paperback
 	{
 		float m[MTX_TOTAL_ELEMENTS];					// -- Arr of 16 floats [shared mem]
 		float m2[4][4];									// -- Arr of 4x4 floats [shared mem]
-		Mtx4x4() = default;								// -- Class constructor
+
+		//-------------------------------------------------------------------------------
+		Mtx4x4()										// -- Default constructor
+		{
+			for (int i = 0; i < MTX_TOTAL_ELEMENTS; ++i)
+				m[i] = 0.f;
+		}
+
 		Mtx4x4(float* _pArr)							// -- Constructs a Mtx4x4 object via a float arr
 			: m()
 		{
@@ -46,7 +53,9 @@ namespace paperback
 		}
 
 		inline Mtx4x4& operator=(const Mtx4x4&);		// -- Assignment operator
-		Mtx4x4& operator*=(const Mtx4x4 &rhs)				// -- operator*=
+
+		//-------------------------------------------------------------------------------
+		Mtx4x4& operator*=(const Mtx4x4& rhs)			// -- operator*=
 		{
 			// -- Create float array to store results
 			float arr[MTX_TOTAL_ELEMENTS];
@@ -85,6 +94,8 @@ namespace paperback
 
 		inline Mtx4x4 operator*(const Mtx4x4&);		// -- operator*
 		inline Vector3f operator*(const Vector3f&);	// -- Multiplies a matrix with a vector
+
+		//-------------------------------------------------------------------------------
 		static inline Mtx4x4 Identity();				// -- Returns the identity matrix
 		static inline Mtx4x4 Trans(const Vector3f&);	// -- Returns the translation matrix
 		static inline Mtx4x4 Scale(const Vector3f&);	// -- Returns the scale matrix

@@ -23,6 +23,8 @@ namespace paperback
 			};
 			float array[3];
 		};
+
+		//-------------------------------------------------------------------------------
 		Vector3f(float _x, float _y, float _z)						        //------ Overloaded constructor
 			: x(_x), y(_y), z(_z)
 		{}
@@ -32,10 +34,11 @@ namespace paperback
 		Vector3f()													        //------ Default constructor
 			: Vector3f(0.f, 0.f, 0.f)
 		{}
+
 		PPB_INLINE void Set(float _x, float _y, float _z);				    //------ Sets all components to _x, _y, _z
 		PPB_INLINE void Set(const Vector3f& Other);						    //------ Sets all components to Vector3f param via operator=
-		//----------------------------------------------------------------------//
-
+		
+		//-------------------------------------------------------------------------------
 		PPB_INLINE float MagnitudeSq() const;							    //------ Returns the squared magnitude 
 		PPB_INLINE float Magnitude() const;								    //------ Returns the magnitude
 		PPB_INLINE void Normalize();									    //------ Normalizes the vector
@@ -58,7 +61,7 @@ namespace paperback
 		inline bool IsZero(void) const;								        //------ Checks if a vector is zero
 		inline void Negate();										        //------ Negates the vector via operator-
 
-		//----------------------------------------------------------------------//
+		//-------------------------------------------------------------------------------
 		PPB_INLINE Vector3f operator-() const;							    //------ Negates all components
 		PPB_INLINE Vector3f& operator*=(float Scalar);					    //------ Vector3f *= Scalar
 		PPB_INLINE Vector3f operator*(float Scalar) const;				    //------ Vector3f * Scalar
@@ -82,8 +85,8 @@ namespace paperback
 			ErrorIf(index > 2, "Math::Vector3 - Subscript out of range.");
 			return array[index];
 		}
-		//----------------------------------------------------------------------//
 
+		//-------------------------------------------------------------------------------
 		PPB_INLINE float MagnitudeFast() const;								//------ Find approximated magnitude of a vector using fast inverse sqrt
 		PPB_INLINE Vector3f NormalizedFast() const;						    //------ Normalizing of a vector with fast inverse sqrt
 		PPB_INLINE Vector3f ScaleToLength(float Salar) const;			    //------ Returns a scaled vector of desired length
@@ -104,6 +107,7 @@ namespace paperback
 		inline Vector3f& LockingValue(const Vector3f& lock);			    //------ max vector.
 		inline Vector3f& CutoffValue(const Vector3f& lock);			        //------ min cutoff vector.
 		inline Vector3f& DecrementValue(float lock);			            //------ decrement vector.
+		inline Vector3f& DecrementValue(const Vector3f& lock);			    //------ decrement vector.
 	};
 
 	//------ Operator overload | operator* | Scalar * Vector3f

@@ -255,4 +255,14 @@ namespace paperback
 			z -= (z > EPSILON) ? lock : -lock;
 		return *this;
 	}
+
+	inline Vector3f& Vector3f::DecrementValue(const Vector3f& lock) {
+		if (abs(x) > EPSILON)
+			x -= (x > EPSILON) ? lock.x : -lock.x;
+		if (abs(y) > EPSILON)
+			y -= (y > EPSILON) ? lock.x : -lock.x;
+		if (abs(z) > EPSILON)
+			z -= (z > EPSILON) ? lock.x : -lock.x;
+		return *this;
+	}
 }
