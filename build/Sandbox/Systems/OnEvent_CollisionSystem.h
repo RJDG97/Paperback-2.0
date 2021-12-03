@@ -149,7 +149,6 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                         // Delete Entity
                         if (!Base_2 && Health_2->m_CurrentHealth <= 0 )
                         {
-                            DeleteEntity( obj2 );
                             Unit_State->SetState( UnitState::WALK );
                             BroadcastGlobalEvent<collision_system::OnCollisionExit>( obj, rf, Skip );
                         }
