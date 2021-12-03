@@ -105,6 +105,7 @@ void InitializeGame()
         ,    path
         ,    path_follower
         ,    spawner
+        ,    mass
         >();
     }
 

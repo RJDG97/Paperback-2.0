@@ -10,8 +10,9 @@ struct physics_system : paperback::system::pausable_instance
 
     int DebugTest = 0;
 
-    using query = std::tuple<
-        paperback::query::one_of<>
+    using query = std::tuple
+    <
+        paperback::query::none_of<prefab>
     >;
 
     // Helper function to ensure that momentum is -ve or +ve depending on current momentum
@@ -53,40 +54,37 @@ struct physics_system : paperback::system::pausable_instance
         return  (Mass > 0) ? Momentum / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
     }
 
-    //test helper function to apply forces on all entities with rigidforce components
-    void ApplyForceAll(paperback::Vector3f Vec)
-    {
-        tools::query Query;
-        Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
+    ////test helper function to apply forces on all entities with rigidforce components
+    //void ApplyForceAll(paperback::Vector3f Vec)
+    //{
+    //    tools::query Query;
+    //    Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
 
-        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
-            {
-                assert(Entity.IsZombie() == false);
+    //    ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
+    //        {
+    //            assert(Entity.IsZombie() == false);
 
-                if (!RF.m_isStatic)
-                {
-                    AddMomentum(RF.m_Momentum, Vec);
-                    RF.m_MagMoment = 1.0f;
-                }
-            });
-    }
+    //            if (!RF.m_isStatic)
+    //            {
+    //                AddMomentum(RF.m_Momentum, Vec);
+    //            }
+    //        });
+    //}
 
-    //test helper function to apply forces on all entities with rigidforce components
-    void ApplyAccelAll(paperback::Vector3f Vec)
-    {
+    ////test helper function to apply forces on all entities with rigidforce components
+    //void ApplyAccelAll(paperback::Vector3f Vec)
+    //{
 
-        tools::query Query;
-        Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
+    //    tools::query Query;
+    //    Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
 
-        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
-            {
-                assert(Entity.IsZombie() == false);
+    //    ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
+    //        {
+    //            assert(Entity.IsZombie() == false);
 
-                AddForce(RF.m_Forces, Vec);
-                RF.m_MagForce = 1.0f;
-                RF.m_isAccel = true;
-            });
-    }
+    //            AddForce(RF.m_Forces, Vec);
+    //        });
+    //}
 
     //test helper function to decelerate on all entities with rigidforce components
     void NotAccelerating()
@@ -98,57 +96,49 @@ struct physics_system : paperback::system::pausable_instance
         ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
             {
                 assert(Entity.IsZombie() == false);
-                RF.m_isAccel = false;
             });
     }
 
     // map check collision out of bounds check
-    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce) noexcept
+    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce, mass* Mass) noexcept
     {
-        if (RigidForce != nullptr)
+        if ( RigidForce )
         {
-            // non-waypoint users
-            if (RigidForce->m_isAccel)
+            //// Apply Gravity If Non-Static
+            //if ( !RigidForce->m_isStatic && Mass )
+            //    RigidForce->m_Momentum.y += -9.8f * Mass->m_Mass * DeltaTime();
+
+            // minimum value threshold
+            RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
+            RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
+
+            // momentum && accel only
+            if (!RigidForce->m_Momentum.IsZero() && !RigidForce->m_Forces.IsZero())
             {
+                // friction in action, reduces momentum
+                RigidForce->m_Momentum.DecrementValue(
+                    RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
+
+                // accumulate momentum
                 RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
+
+                // friction in action, reduces acceleration
+                RigidForce->m_Forces.DecrementValue(
+                    RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
             }
-            else
+            // momentum only
+            else if (RigidForce->m_Forces.IsZero())
             {
-                // minimum value threshold
-                RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
-                RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
-
-                // momentum && accel
-                if (!RigidForce->m_Momentum.IsZero() && !RigidForce->m_Forces.IsZero())
-                {
-                    RigidForce->m_Momentum.DecrementValue(
-                        RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
-
-                    RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
-
-                    RigidForce->m_Forces.DecrementValue(
-                        RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
-                }
-                // momentum
-                else if (RigidForce->m_Forces.IsZero())
-                {
-                    RigidForce->m_Momentum.DecrementValue(
-                        RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
-                }
+                // friction in action, reduces momentum
+                RigidForce->m_Momentum.DecrementValue(
+                    RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
             }
-            if (RigidBody)
-            {
-                RigidBody->m_Accel = ConvertToAccel(RigidForce->m_Mass, RigidForce->m_Forces);
-                RigidBody->m_Velocity = ConvertToVelocity(RigidForce->m_Mass, RigidForce->m_Momentum);
 
-                //if (wu && wu->isAttacking)
-                //{
-                //    // stay still and attacks
-                //}
-                //else
-                //{
-                //    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
-                //}
+            // accumulate result into rigidbody and update position
+            if (RigidBody && Mass)
+            {
+                RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce->m_Forces);
+                RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce->m_Momentum);
                 Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
             }
         }

@@ -387,6 +387,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<path_follower>())
                 NewArchetype->GetComponent<path_follower>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<path_follower>();
+
+            if (obj.is_type<mass>())
+                NewArchetype->GetComponent<mass>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mass>();
         }
     }
 

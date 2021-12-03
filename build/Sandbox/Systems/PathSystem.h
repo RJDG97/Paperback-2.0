@@ -54,11 +54,11 @@ struct path_system : paperback::system::pausable_instance
 		});
 
 		tools::query Query_Units;
-		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation>();
+		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation, unitstate>();
 		Query_Units.m_OneOf.AddFromComponents<friendly, enemy>();
 		Query_Units.m_NoneOf.AddFromComponents<prefab>();
 
-		ForEach(Search(Query_Units), [&](rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation, friendly* Friendly, enemy* Enemy) noexcept
+		ForEach(Search(Query_Units), [&](rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation, unitstate& Unit, friendly* Friendly, enemy* Enemy) noexcept
 		{
 			auto spline = splines.find(PathFollower.m_ID);
 
@@ -70,7 +70,7 @@ struct path_system : paperback::system::pausable_instance
 					Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
 				}
 
-				else
+				else if ( Unit.IsNotState(UnitState::ATTACK) && Unit.IsNotState(UnitState::IDLE) )
 				{
 					float normalized_offset{ spline->second.GetNormalizedOffset(PathFollower.m_Distance) };
 

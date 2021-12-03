@@ -46,3 +46,4 @@
 #include "Card.h"
 #include "Deck.h"
 #include "Spawner.h"
+#include "Mass.h"
