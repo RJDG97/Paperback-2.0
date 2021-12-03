@@ -285,7 +285,7 @@ public:
     // entity that is processed by soundsystem will specifically have sound and timer components
     // entity must have either transform or rigidbody, can have both if is 3D
     PPB_FORCEINLINE
-    void operator()(paperback::component::entity& Entity, timer& Timer, sound& Sound, transform* Transform, rigidbody* Rigidbody, listener* Listener) noexcept
+    void operator()(paperback::component::entity& Entity, sound& Sound, transform* Transform, rigidbody* Rigidbody, listener* Listener) noexcept
     {
         if ( Entity.IsZombie() )
             return;

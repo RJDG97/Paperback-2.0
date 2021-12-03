@@ -1,10 +1,10 @@
 {
-    "Editor": "../../resources/assetloading/VerticalSlice.json",
-    "Editor": "../../resources/assetloading/VerticalSlice_EntityInfo.json",
     "MainMenu": "../../resources/assetloading/MainMenuScene.json",
     "MainMenu": "../../resources/assetloading/MainMenuScene_EntityInfo.json",
-    "HowToPlay": "../../resources/assetloading/LevelBlockoutScene.json",
-    "HowToPlay": "../../resources/assetloading/LevelBlockoutScene_EntityInfo.json",
+    "Editor": "../../resources/assetloading/VerticalSlice.json",
+    "Editor": "../../resources/assetloading/VerticalSlice_EntityInfo.json",
+    "HowToPlay": "../../resources/assetloading/HowToPlay.json",
+    "HowToPlay": "../../resources/assetloading/HowToPlay_EntityInfo.json",
     "Settings": "../../resources/assetloading/GameplayScene.json",
     "Settings": "../../resources/assetloading/GameplayScene_EntityInfo.json",
     "Credits": "../../resources/assetloading/GameplayScene.json",
@@ -13,8 +13,8 @@
     "LevelSelect": "../../resources/assetloading/LevelBlockoutScene_EntityInfo.json",
     "Combat": "../../resources/assetloading/VerticalSliceAlt.json",
     "Combat": "../../resources/assetloading/VerticalSliceAlt_EntityInfo.json",
-    "GameWin": "../../resources/assetloading/GameplayScene.json",
-    "GameWin": "../../resources/assetloading/GameplayScene_EntityInfo.json",
-    "GameLoss": "../../resources/assetloading/GameplayScene.json",
-    "GameLoss": "../../resources/assetloading/GameplayScene_EntityInfo.json"
+    "GameWin": "../../resources/assetloading/GameWin.json",
+    "GameWin": "../../resources/assetloading/GameWin_EntityInfo.json",
+    "GameLoss": "../../resources/assetloading/GameLose.json",
+    "GameLoss": "../../resources/assetloading/GameLose_EntityInfo.json"
 }
