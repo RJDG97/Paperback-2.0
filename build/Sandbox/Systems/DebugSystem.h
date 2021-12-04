@@ -264,7 +264,7 @@ struct debug_system : paperback::system::instance
     void OnSystemCreated( void ) noexcept
     {
 
-        m_IsDebug = true;
+        m_IsDebug = false;
     }
 
 
@@ -345,7 +345,7 @@ struct debug_system : paperback::system::instance
     PPB_INLINE
         void OnStateChange(void) noexcept
     {
-        m_IsDebug = (PPB.VerifyState("Editor")) ? true : false;
+         // m_IsDebug = (PPB.VerifyState("Editor")) ? true : false;
     }
 
     //----------------------------------------------------------------

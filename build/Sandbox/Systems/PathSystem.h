@@ -70,7 +70,7 @@ struct path_system : paperback::system::pausable_instance
 					Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
 				}
 
-				else if ( Unit.IsNotState(UnitState::ATTACK) && Unit.IsNotState(UnitState::IDLE) )
+				else if (Unit.IsNotState(UnitState::ATTACK) && Unit.IsNotState(UnitState::IDLE))
 				{
 					float normalized_offset{ spline->second.GetNormalizedOffset(PathFollower.m_Distance) };
 
@@ -83,7 +83,7 @@ struct path_system : paperback::system::pausable_instance
 					paperback::Vector3f destination{ spline->second.GetSplinePoint(normalized_offset).m_Point };
 					paperback::Vector3f gradient{ spline->second.GetSplineGradient(normalized_offset).Normalized() };
 					paperback::Vector3f direction{ (destination - Transform.m_Position).Normalized() };
-					
+
 					//Rotation.m_Value += GetRotationAngles(PathFollower.m_Direction, direction);
 					PathFollower.m_Direction = direction;
 
@@ -100,7 +100,10 @@ struct path_system : paperback::system::pausable_instance
 					std::vector<paperback::Vector3f> vec;
 					vec.push_back(destination);
 					vec.push_back(Transform.m_Position);
-					debug_sys->DrawDebugLines(vec, true);
+					if (debug_sys->m_IsDebug)
+					{
+						debug_sys->DrawDebugLines(vec, true);
+					}
 				}
 			}
 		});
