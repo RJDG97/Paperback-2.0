@@ -3,7 +3,6 @@
 #define AABB_H
 
 #include "Math/Vector3f.h"
-#include "Shapes/LineSegment.h"
 
 struct aabb
 {

@@ -106,11 +106,17 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         auto m_obj2 = GetEntityInfo(obj2.m_GlobalIndex);
 
         // Get Relevant Components
-        auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate >( m_obj.m_PoolDetails );
-        auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate >( m_obj2.m_PoolDetails );
+        auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1 ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate, base >( m_obj.m_PoolDetails );
+        auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, Base_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, base >( m_obj2.m_PoolDetails );
+
+        if (Base_1) {
+            // Disable Movement - Maintain Collision
+            ResetForces(rf, rf2);
+            return;
+        }
 
         // Different Unit Types - ATTACK
-        if ( Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly )
+        if ( Unit_State && Unit_1_Friendly && Unit_2_Enemy || Unit_1_Enemy && Unit_2_Friendly )
         {
             // Disable Movement - Maintain Collision
             ResetForces( rf, rf2 );
@@ -130,20 +136,45 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
             if ( Unit_1_Anim )
             {
                 auto [ Damage_1, Timer_1 ] = m_obj.m_pArchetype->FindComponents< damage, timer >( m_obj.m_PoolDetails );
-                auto [ Health_2 ]          = m_obj2.m_pArchetype->FindComponents< health >( m_obj2.m_PoolDetails );
+                auto [ Damage_2, Health_2 ]          = m_obj2.m_pArchetype->FindComponents< damage, health >( m_obj2.m_PoolDetails );
 
                 // Update Unit Health
-                if ( Damage_1 && Health_2 && Timer_1 )
+                if ( Damage_1 && Health_2 && (Timer_1 || Base_2) )
                 {
                     if ( Timer_1->m_Value <= 0.0f )
                     {
-                        // Update Health
-                        Health_2->m_CurrentHealth -= Damage_1->m_Value;
+                        if (Base_2 || Damage_1->m_Type == Damage_2->m_Type) {
+                            // Update Health
+                            Health_2->m_CurrentHealth -= Damage_1->m_Value;
+                        }
+                        else if (Damage_1->m_Type == 0 && Damage_2->m_Type == 1) {
+                            // Paper & Scissor
+                            Health_2->m_CurrentHealth -= Damage_1->m_Value/2;
+                        }
+                        else if (Damage_1->m_Type == 0 && Damage_2->m_Type == 2) {
+                            // Paper & Rock
+                            Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                        }
+                        else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 0) {
+                            // Scissor & Paper
+                            Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                        }
+                        else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 2) {
+                            // Scissor & Rock
+                            Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
+                        }
+                        else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 0) {
+                            // Rock & Paper
+                            Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
+                        }
+                        else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 1) {
+                            // Rock & Scissor
+                            Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                        }
 
                         // Delete Entity
-                        if ( Health_2->m_CurrentHealth <= 0 )
+                        if (!Base_2 && Health_2->m_CurrentHealth <= 0 )
                         {
-                            DeleteEntity( obj2 );
                             Unit_State->SetState( UnitState::WALK );
                             BroadcastGlobalEvent<collision_system::OnCollisionExit>( obj, rf, Skip );
                         }
@@ -162,7 +193,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
             ResetForces( rf, rf2 );
 
             // Set to IDLE
-            if ( Unit_State->IsNotState( UnitState::ATTACK ) &&
+            if (Unit_State && Unit_State2 && Unit_State->IsNotState( UnitState::ATTACK ) &&
                  Unit_State2->IsState( UnitState::ATTACK ) )
             {
                 // Helps to Re-Enable movement when SAME Unit Types collide - This also causes the units to overshot

@@ -85,7 +85,7 @@ struct collision_system : paperback::system::pausable_instance
             }
             if (Sphere && Ball)
             {
-                if ( SphereSphere( Transform.m_Position, Sphere->m_fRadius, Xform.m_Position, Ball->m_fRadius) )
+                if ( SphereSphere( Transform.m_Position, Sphere->m_Radius, Xform.m_Position, Ball->m_Radius) )
                 {
                     Sphere->m_Collided = Ball->m_Collided = true;
                 }

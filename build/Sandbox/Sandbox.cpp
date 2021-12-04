@@ -106,6 +106,11 @@ void InitializeGame()
         ,    path_follower
         ,    spawner
         ,    mass
+        ,    Frustum
+        ,    LineSegment
+        ,    Plane
+        ,    Ray
+        ,    Triangle
         >();
     }
 

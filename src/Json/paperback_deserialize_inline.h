@@ -390,6 +390,21 @@ namespace paperback::deserialize
 
             if (obj.is_type<mass>())
                 NewArchetype->GetComponent<mass>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<mass>();
+
+            if (obj.is_type<Frustum>())
+                NewArchetype->GetComponent<Frustum>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<Frustum>();
+
+            if (obj.is_type<LineSegment>())
+                NewArchetype->GetComponent<LineSegment>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<LineSegment>();
+
+            if (obj.is_type<Plane>())
+                NewArchetype->GetComponent<Plane>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<Plane>();
+
+            if (obj.is_type<Ray>())
+                NewArchetype->GetComponent<Ray>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<Ray>();
+
+            if (obj.is_type<Triangle>())
+                NewArchetype->GetComponent<Triangle>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<Triangle>();
         }
     }
 

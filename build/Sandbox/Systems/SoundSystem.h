@@ -81,7 +81,7 @@ public:
             FMOD_STUDIO_PLAYBACK_STATE be;
             m_SoundFiles.back().m_pSound->getPlaybackState(&be);
 
-            m_SoundFiles.back().m_pSound->setVolume(0.05f);
+            m_SoundFiles.back().m_pSound->setVolume(0.1f);
 
             if (be != 0)
                 ERROR_LOG("Play Sound Event Playback State: " + be);
@@ -285,7 +285,7 @@ public:
     // entity that is processed by soundsystem will specifically have sound and timer components
     // entity must have either transform or rigidbody, can have both if is 3D
     PPB_FORCEINLINE
-    void operator()(paperback::component::entity& Entity, timer& Timer, sound& Sound, transform* Transform, rigidbody* Rigidbody, listener* Listener) noexcept
+    void operator()(paperback::component::entity& Entity, sound& Sound, transform* Transform, rigidbody* Rigidbody, listener* Listener) noexcept
     {
         if ( Entity.IsZombie() )
             return;

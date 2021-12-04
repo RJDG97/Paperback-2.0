@@ -572,7 +572,6 @@ namespace paperback::coordinator
 
 	void instance::QuitGame() noexcept
 	{
-
 		m_GameActive = false;
 	}
 

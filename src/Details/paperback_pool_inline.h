@@ -654,6 +654,17 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< button >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< mass >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< mass >(Index));
+
+		else if (Comp_Guid.m_Value == component::info_v< Frustum >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< Frustum >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< LineSegment >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< LineSegment >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< Plane >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< Plane >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< Ray >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< Ray >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< Triangle >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< Triangle >(Index));
 		else
 			return rttr::instance();
 	}

@@ -62,8 +62,10 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                         CardsAvail = true;
                 }
                 // if no available cards
-                //if (!CardsAvail)
+                if (!CardsAvail) {
                     // Lose Game State
+                    PPB.QueueScene("GameLoss");
+                }
 
                 while (CardsAvail) {
                     // Randomize card spawned
