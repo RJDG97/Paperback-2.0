@@ -175,7 +175,7 @@ struct ui_system : paperback::system::pausable_instance
 
         PPB.OpenQueuedScene();
 
-        if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE))
+        /*if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE))
         {
             
             if (PPB.VerifyState("Editor"))
@@ -191,7 +191,7 @@ struct ui_system : paperback::system::pausable_instance
                 ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
                 ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
             }
-        }
+        }*/
     }
 
     //given a layer, disable/enable all buttons with spe
