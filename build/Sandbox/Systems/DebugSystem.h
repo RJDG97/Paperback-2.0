@@ -75,7 +75,7 @@ struct debug_system : paperback::system::instance
         paperback::Vector3f top = center;
         paperback::Vector3f bottom = top;
 
-        float radius = Sphere.m_fRadius;
+        float radius = Sphere.m_Radius;
 
         top.y += radius;
         bottom.y -= radius;
@@ -269,17 +269,37 @@ struct debug_system : paperback::system::instance
 
 
     PPB_FORCEINLINE
-    void operator()(paperback::component::entity& Entity, transform& Transform, boundingbox* Cube, sphere* Ball) noexcept
+    void operator()(paperback::component::entity& Entity, transform& Transform,
+        boundingbox* Cube, sphere* Ball,
+        LineSegment* line, Ray* ray,
+        Triangle* triangle, Plane* plane, Frustum* frustum
+        ) noexcept
     {
 
         if (m_IsDebug)
         {
-        
-            if (Cube)
-                DrawCubeCollision(*Cube, Transform);
+            // inefficient, draws 4 extrra lines
+            //if (Cube)
+            //    DrawCubeCollision(*Cube, Transform);
 
             if (Ball)
                 DrawSphereCollision(*Ball, Transform);
+
+            if (line)
+                DrawLine(*line, Transform);
+            if (Cube)
+                DrawBoundingBox(*Cube, Transform);
+            if (triangle)
+                DrawTriangle(*triangle, Transform);
+            //// not in use
+            //if ()
+            //    DrawQuad();
+            if (frustum)
+                DrawFrustum(*frustum, Transform);
+            if (ray)
+                DrawRay(*ray, 5.f, Transform);
+            if (plane)
+                DrawPlane(*plane, 5.f, 5.f, Transform);
         }
     }
 
@@ -327,4 +347,262 @@ struct debug_system : paperback::system::instance
     {
         m_IsDebug = (PPB.VerifyState("Editor")) ? true : false;
     }
+
+    //----------------------------------------------------------------
+    // Passes in a vector of LineSegment to draw Shape
+    void DebugDrawLineSegment(std::vector<LineSegment> lines, bool IsCollide = false)
+    {
+        for (LineSegment& line : lines)
+        {
+            m_Points[IsCollide].push_back(ConvertMathVecToGLMVec(line.m_Start));
+            m_Points[IsCollide].push_back(ConvertMathVecToGLMVec(line.m_End));
+        }
+    }
+
+    // Returns the orthonormal basis
+    void ComputeOrthogonalBasis(paperback::Vector3f& u, paperback::Vector3f& v, paperback::Vector3f& w)
+    {
+        if (u.x == 0.f && u.y == 0.f)
+            v = paperback::Vector3f(0.f, 1.0f, 0.f);
+        else
+        {
+            v.x = -u.y;
+            v.y = u.x;
+            v.z = 0.f;
+        }
+
+        w = (u.Cross(v)).Normalized();
+        v.Normalize();
+        u.Normalize();
+    }
+
+    void DrawLine(LineSegment& line, transform& Transform)
+    {
+        std::vector<LineSegment> shape;
+        shape.emplace_back(LineSegment(
+            line.m_Start + Transform.m_Position + Transform.m_Offset,
+            line.m_End + Transform.m_Position + Transform.m_Offset,
+            line.m_Collided));
+        DebugDrawLineSegment(shape, line.m_Collided);
+
+        // seems unnecessary part
+        line.m_Collided = false;
+    }
+
+    void DrawBoundingBox(boundingbox& bbox, transform& Transform)
+    {
+        std::vector<LineSegment> shape;
+        boundingbox cube(
+            bbox.Min + Transform.m_Position + Transform.m_Offset,
+            bbox.Max + Transform.m_Position + Transform.m_Offset,
+            bbox.m_Collided);
+
+        //vertical line
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Min.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Min.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Max.z), paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Max.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+
+        //horizontal line
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Min.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Max.z), paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Min.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Max.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+
+        //inward line
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Min.x, cube.Min.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Min.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Min.z), paperback::Vector3f(cube.Min.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+        shape.emplace_back(LineSegment(paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Min.z), paperback::Vector3f(cube.Max.x, cube.Max.y, cube.Max.z), cube.m_Collided));
+
+        DebugDrawLineSegment(shape, cube.m_Collided);
+
+        // seems unnecessary part
+        bbox.m_Collided = false;
+    }
+
+    void DrawTriangle(Triangle& triangle, transform& Transform)
+    {
+        // Draw 3 edges of a triangle
+        std::vector<LineSegment> shape;
+
+        Triangle tri{
+            triangle.m_pointA + Transform.m_Position + Transform.m_Offset,
+            triangle.m_pointB + Transform.m_Position + Transform.m_Offset,
+            triangle.m_pointC + Transform.m_Position + Transform.m_Offset,
+            triangle.m_Collided };
+
+        // Draw the 3 edges
+        shape.emplace_back(LineSegment(tri.m_pointA, tri.m_pointB, tri.m_Collided));
+        shape.emplace_back(LineSegment(tri.m_pointB, tri.m_pointC, tri.m_Collided));
+        shape.emplace_back(LineSegment(tri.m_pointC, tri.m_pointA, tri.m_Collided));
+
+        DebugDrawLineSegment(shape, tri.m_Collided);
+
+        // seems unnecessary part
+        triangle.m_Collided = false;
+    }
+
+    void DrawQuad(
+        paperback::Vector3f& p0,
+        paperback::Vector3f& p1,
+        paperback::Vector3f& p2,
+        paperback::Vector3f& p3,
+        bool& collide,
+        transform& Transform)
+    {
+        std::vector<LineSegment> shape;
+
+        // Draw 4 edges
+        shape.emplace_back(LineSegment(p0 + Transform.m_Position + Transform.m_Offset, p1 + Transform.m_Position + Transform.m_Offset));
+        shape.emplace_back(LineSegment(p1 + Transform.m_Position + Transform.m_Offset, p2 + Transform.m_Position + Transform.m_Offset));
+        shape.emplace_back(LineSegment(p2 + Transform.m_Position + Transform.m_Offset, p3 + Transform.m_Position + Transform.m_Offset));
+        shape.emplace_back(LineSegment(p3 + Transform.m_Position + Transform.m_Offset, p0 + Transform.m_Position + Transform.m_Offset));
+
+        DebugDrawLineSegment(shape, collide);
+
+        // seems unnecessary part
+        collide = false;
+    }
+
+    void DrawFrustum(Frustum& frustum, transform& Transform)
+    {
+        // Draw 6 faces of frustum using the 8 frustum points
+        std::vector<LineSegment> shape;
+
+        Frustum frus{
+        frustum.m_pointA + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointB + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointC + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointD + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointE + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointF + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointG + Transform.m_Position + Transform.m_Offset,
+        frustum.m_pointH + Transform.m_Position + Transform.m_Offset,
+        frustum.m_Collided
+        };
+
+        // Near plane
+        shape.emplace_back(LineSegment(frus.m_pointA, frus.m_pointB, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointB, frus.m_pointC, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointC, frus.m_pointD, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointD, frus.m_pointA, frus.m_Collided));
+
+        // Connecting lines
+        shape.emplace_back(LineSegment(frus.m_pointA, frus.m_pointE, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointB, frus.m_pointF, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointC, frus.m_pointG, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointD, frus.m_pointH, frus.m_Collided));
+
+        // Far plane
+        shape.emplace_back(LineSegment(frus.m_pointE, frus.m_pointF, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointF, frus.m_pointG, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointG, frus.m_pointH, frus.m_Collided));
+        shape.emplace_back(LineSegment(frus.m_pointH, frus.m_pointE, frus.m_Collided));
+
+        DebugDrawLineSegment(shape, frus.m_Collided);
+
+        // seems unnecessary part
+        frustum.m_Collided = false;
+    }
+
+    // Draw ray (used for plane normal drawing)
+    void DrawArrow(Ray& ray, float t, transform& Transform, std::vector<LineSegment>& shape)
+    {
+        // Line of the ray
+        LineSegment line(
+            ray.m_Start + Transform.m_Position + Transform.m_Offset,
+            ray.m_Start + t * ray.m_Direction + Transform.m_Position + Transform.m_Offset,
+            ray.m_Collided);
+        shape.emplace_back(line);
+
+        // Compute orthonormal basis
+        paperback::Vector3f u = ray.m_Direction, v, w;
+        ComputeOrthogonalBasis(u, v, w);
+
+        // Arrow head drawing, get delta angle per segment
+        int segments = 40;
+        const float delta = 2.f * PIf / segments;
+        float angle = 0.f;
+
+        // Size of arrow head              <radius, height>
+        std::pair<float, float> arrowSz = { 0.25f, 0.5f };
+
+        // Start point of arrow head disc
+        paperback::Vector3f p = line.m_End - u * arrowSz.second;
+
+        // Draw a cone for arrow head
+        for (int i = 0; i < segments; ++i)
+        {
+            // Add line segment of arrowhead disc border
+            LineSegment currLine(
+                p + cosf(angle) * v * arrowSz.first + sinf(angle) * w * arrowSz.first,
+                p + cosf(angle + delta) * v * arrowSz.first + sinf(angle + delta) * w * arrowSz.first,
+                ray.m_Collided);
+
+            shape.emplace_back(currLine);
+
+            // End of ray
+            if (!(i % 2))
+            {
+                currLine.m_End = p + u * arrowSz.second;
+                shape.emplace_back(currLine);
+            }
+            angle += delta;
+        }
+    }
+
+    // how to fix editor picking issue:
+    // screen space vs world space
+    // the cursor coordinates and the screen coordinates DO NOT MATCH
+    // Solution:
+    // 1: print cursor pos at max and min
+    // 2: verify max and min of the screen space coordinates
+    // 3: make sure cursor 0,0 matches screen 0,0
+    // cursor 0,0 is TOP LEFT by default
+    void DrawRay(Ray& ray, float t, transform& Transform)
+    {
+        // Draw a ray given time length
+        std::vector<LineSegment> shape;
+        DrawArrow(ray, t, Transform, shape);
+
+        DebugDrawLineSegment(shape, ray.m_Collided);
+
+        // seems unnecessary part
+        ray.m_Collided = false;
+    }
+
+    void DrawPlane(Plane& plane, float sizeX, float sizeY, transform& Transform)
+    {
+        // Draw quad with a normal at plane's center
+        std::vector<LineSegment> shape;
+
+        // Get n and p0
+        paperback::Vector3f n =
+            paperback::Vector3f(plane.m_data.x, plane.m_data.y, plane.m_data.z);
+        paperback::Vector3f p0 = n * plane.m_data.w;
+
+        // Get v and w
+        paperback::Vector3f v, w;
+        ComputeOrthogonalBasis(n, v, w);
+
+        // Construct the plane
+        v *= sizeX, w *= sizeY;
+        shape.emplace_back(LineSegment(p0 + v + w + Transform.m_Position + Transform.m_Offset, p0 + v - w + Transform.m_Position + Transform.m_Offset, plane.m_Collided));
+        shape.emplace_back(LineSegment(p0 + v - w + Transform.m_Position + Transform.m_Offset, p0 - v - w + Transform.m_Position + Transform.m_Offset, plane.m_Collided));
+        shape.emplace_back(LineSegment(p0 - v - w + Transform.m_Position + Transform.m_Offset, p0 - v + w + Transform.m_Position + Transform.m_Offset, plane.m_Collided));
+        shape.emplace_back(LineSegment(p0 - v + w + Transform.m_Position + Transform.m_Offset, p0 + v + w + Transform.m_Position + Transform.m_Offset, plane.m_Collided));
+
+        // Construct the normal ray
+        Ray ray(p0, n, plane.m_Collided);
+        DrawArrow(ray, 1.f, Transform, shape);
+
+        DebugDrawLineSegment(shape, plane.m_Collided);
+
+        // seems unnecessary part
+        plane.m_Collided = false;
+    }
+
+    //----------------------------------------------------------------
+    // to be added later after camera manipulation
 };

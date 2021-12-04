@@ -174,6 +174,7 @@
     <ClInclude Include="Components\Button.h" />
     <ClInclude Include="Components\Card.h" />
     <ClInclude Include="Components\Child.h" />
+    <ClInclude Include="Components\Circle.h" />
     <ClInclude Include="Components\CollisionLayer.h" />
     <ClInclude Include="Components\component_includes.h" />
     <ClInclude Include="Components\Cost.h" />
@@ -186,8 +187,10 @@
     <ClInclude Include="Components\EntityScript.h" />
     <ClInclude Include="Components\Friendly.h" />
     <ClInclude Include="Components\FriendlySpawner.h" />
+    <ClInclude Include="Components\Frustrum.h" />
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="Components\HealthBar.h" />
+    <ClInclude Include="Components\LineSegment.h" />
     <ClInclude Include="Components\Listener.h" />
     <ClInclude Include="Components\Mass.h" />
     <ClInclude Include="Components\Mesh.h" />
@@ -196,8 +199,11 @@
     <ClInclude Include="Components\Parent.h" />
     <ClInclude Include="Components\Path.h" />
     <ClInclude Include="Components\PathFollower.h" />
+    <ClInclude Include="Components\Plane.h" />
     <ClInclude Include="Components\Player.h" />
+    <ClInclude Include="Components\Polygon_shape.h" />
     <ClInclude Include="Components\Prefab.h" />
+    <ClInclude Include="Components\Ray.h" />
     <ClInclude Include="Components\ReferencePrefab.h" />
     <ClInclude Include="Components\Rigidbody.h" />
     <ClInclude Include="Components\RigidForce.h" />
@@ -211,6 +217,7 @@
     <ClInclude Include="Components\Text.h" />
     <ClInclude Include="Components\Timer.h" />
     <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Components\Triangle.h" />
     <ClInclude Include="Components\Unit.h" />
     <ClInclude Include="Components\UnitState.h" />
     <ClInclude Include="Components\Waypoint.h" />
