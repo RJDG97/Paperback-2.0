@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 52
+                "EntityHead": 62
             }
         },
         {
@@ -1305,8 +1305,8 @@
                         "Prefab GID": 28
                     },
                     "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
+                        "Current Health": 60,
+                        "Max Health": 60
                     },
                     "Name": {
                         "Name": "PlayerHealth"
@@ -1514,8 +1514,8 @@
                         "Prefab GID": 30
                     },
                     "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
+                        "Current Health": 60,
+                        "Max Health": 60
                     },
                     "Name": {
                         "Name": "EnemyHealth"
@@ -3015,15 +3015,15 @@
                         "Deck Details": [
                             {
                                 "Card GID": 47,
-                                "Count": 10
+                                "Count": 9
                             },
                             {
                                 "Card GID": 48,
-                                "Count": 10
+                                "Count": 9
                             },
                             {
                                 "Card GID": 49,
-                                "Count": 10
+                                "Count": 9
                             }
                         ],
                         "Deck Pos": [
@@ -3345,7 +3345,18 @@
                     "RigidForce": {
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3465,7 +3476,18 @@
                     "RigidForce": {
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3585,7 +3607,18 @@
                     "RigidForce": {
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3733,7 +3766,18 @@
                     "RigidForce": {
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3853,7 +3897,18 @@
                     "RigidForce": {
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3973,7 +4028,18 @@
                     "RigidForce": {
                         "Static Friction": 0.5,
                         "Dynamic Friction": 0.25,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4055,8 +4121,8 @@
                         }
                     },
                     "Timer": {
-                        "Cooldown Timer": 10.0,
-                        "Timer": -186.3463592529297
+                        "Cooldown Timer": 8.0,
+                        "Timer": 5.0569305419921879
                     },
                     "Rotation": {
                         "Rotation": {
@@ -4092,7 +4158,18 @@
                     "RigidForce": {
                         "Static Friction": 0.0,
                         "Dynamic Friction": 0.0,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4225,7 +4302,18 @@
                     "RigidForce": {
                         "Static Friction": 0.0,
                         "Dynamic Friction": 0.0,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4342,7 +4430,18 @@
                     "RigidForce": {
                         "Static Friction": 0.0,
                         "Dynamic Friction": 0.0,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4472,7 +4571,18 @@
                     "RigidForce": {
                         "Static Friction": 0.0,
                         "Dynamic Friction": 0.0,
-                        "Restitution": 0.0
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4514,6 +4624,533 @@
                                 "z": 9.0
                             }
                         ]
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        2550044418833058707
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 52
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PauseButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            53,
+                            54,
+                            55,
+                            56,
+                            57,
+                            58,
+                            59
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "TemplateButton"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 0,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": true
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        2550044418833058707
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 53
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PauseButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.15000000596046449,
+                            "y": 0.20000000298023225,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.800000011920929,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "PauseButton"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 1,
+                        "Script Guid": 676647853506430990,
+                        "Active Status": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 54
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ResumeGameButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "ResumeButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 2,
+                        "Script Guid": 11808865971164719594,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 55
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "QuitToMainMenuButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "QuitToMenuButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 363949741224754573,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 56
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PauseGamePanel",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "PauseBackground_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 2,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 57
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "YesButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.25,
+                            "y": -0.15000000596046449,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "ReturnMainMenuButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 4,
+                        "Script Guid": 7594871342180465470,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 58
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "NoButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.25,
+                            "y": -0.15000000596046449,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "CancelMainMenuButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 4,
+                        "Script Guid": 9376503613259406693,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 59
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ReturnToMainMenuPanel",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "ReturnMainMenuBackground_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 4,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": false
                     }
                 }
             ]
