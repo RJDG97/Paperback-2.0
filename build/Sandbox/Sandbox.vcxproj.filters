@@ -331,5 +331,8 @@
     <ClInclude Include="Components\Triangle.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\CameraSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
