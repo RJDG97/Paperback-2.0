@@ -683,7 +683,9 @@
                     "Sound": {
                         "Path": "",
                         "Sound Event ID": 0,
-                        "3D Sound": false
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
@@ -726,7 +728,9 @@
                     "Sound": {
                         "Path": "event:/MenuBGM",
                         "Sound Event ID": 0,
-                        "3D Sound": false
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
                     },
                     "Transform": {
                         "Offset": {
@@ -741,7 +745,9 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            14302600151082817442
+                        ],
                         "Prefab GID": 12
                     },
                     "Name": {
