@@ -54,11 +54,12 @@ void EditorViewport::ViewportTwo()
 
 void EditorViewport::ViewportMenuBar()
 {
-	std::string PlayIcon{} ;
+	std::string PlayIcon{}, DebugIcon{};
+	std::stringstream ss;
 
 	ImGui::Begin("##uitoolbar", nullptr, ImGuiWindowFlags_NoDecoration);
 
-	if (ImGui::SmallButton(ICON_FA_ARROWS_ALT))
+	if (ImGui::Button(ICON_FA_ARROWS_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;	
@@ -66,14 +67,14 @@ void EditorViewport::ViewportMenuBar()
 
 	ImGui::SameLine(); 
 
-	if (ImGui::SmallButton(ICON_FA_EXPAND_ALT))
+	if (ImGui::Button(ICON_FA_EXPAND_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::SCALE;
 	}
 	ImGui::SameLine();
 
-	if (ImGui::SmallButton(ICON_FA_SYNC_ALT))
+	if (ImGui::Button(ICON_FA_SYNC_ALT))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = ImGuizmo::OPERATION::ROTATE;
@@ -81,11 +82,23 @@ void EditorViewport::ViewportMenuBar()
 
 	ImGui::SameLine();
 
-	if (ImGui::SmallButton(ICON_FA_BROOM))
+	if (ImGui::Button(ICON_FA_BROOM))
 	{
 		if (!ImGuizmo::IsUsing())
 			m_GizmoType = -1;
 	}
+
+	ImGui::SameLine();
+
+	std::reference_wrapper<bool> TempBool = PPB.GetSystem< debug_system >().m_IsDebug;
+
+	ImGui::Checkbox(ICON_FA_WRENCH, &TempBool.get());
+
+	m_Imgui.ImGuiHelp("Toggle Debug Lines");
+
+	ImGui::SameLine();
+
+	ImGui::Text(" | ");
 
 	ImGui::SameLine();
 
@@ -94,13 +107,15 @@ void EditorViewport::ViewportMenuBar()
 	else
 		PlayIcon = ICON_FA_STOP;
 
-	if (ImGui::SmallButton(PlayIcon.c_str()))
+	if (ImGui::Button(PlayIcon.c_str()))
 	{
 		if (m_Imgui.m_bPaused)
 			m_Imgui.m_Type = FileActivity::PLAYBUTTON;
 		else
 			m_Imgui.m_Type = FileActivity::STOPBUTTON;
 	}
+
+	m_Imgui.ImGuiHelp("Play Current Scene");
 	ImGui::End();
 }
 

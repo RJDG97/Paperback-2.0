@@ -45,7 +45,7 @@ enum FileActivity
     LOADFROMASSET,
     PLAYBUTTON,
     STOPBUTTON,
-    EXIT
+    EXITAPP
 };
 
 struct imgui_system : paperback::system::instance
@@ -165,7 +165,6 @@ struct imgui_system : paperback::system::instance
     {
         if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
         {
-            //PPB.QuitGame();
             if (!m_bPaused)
                 m_Type = FileActivity::STOPBUTTON;
         }
@@ -373,8 +372,8 @@ struct imgui_system : paperback::system::instance
 
                 if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
                 {
-                    EDITOR_WARN_PRINT("Shutting Down Editor...");
-                    PPB.QuitGame();
+                    m_Type = FileActivity::EXITAPP;
+                    m_bSaveCheck = true;
                 }
 
                 ImGui::EndMenu();
@@ -582,6 +581,15 @@ struct imgui_system : paperback::system::instance
                         m_Type = FileActivity::NONE;
                         ImGui::CloseCurrentPopup();
                     }
+                }
+                break;
+                case FileActivity::EXITAPP:
+                {
+                    ImGui::CloseCurrentPopup();                    
+                    EDITOR_WARN_PRINT("Shutting Down Editor...");
+                    m_Type = FileActivity::NONE;
+
+                    PPB.QuitGame();
                 }
                 break;
                 }
