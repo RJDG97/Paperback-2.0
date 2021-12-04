@@ -308,6 +308,9 @@ namespace paperback::system
 		glm::vec3 GetMousePosition() noexcept;
 
 		PPB_INLINE
+		glm::vec2 GetMouseDirection() noexcept;
+
+		PPB_INLINE
 		glm::vec3 GetMousePositionInUI() noexcept;
 
 		PPB_INLINE

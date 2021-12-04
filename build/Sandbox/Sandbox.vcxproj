@@ -234,6 +234,7 @@
     <ClInclude Include="Scripts\StartGame_Button.h" />
     <ClInclude Include="Scripts\UI_Layers.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
+    <ClInclude Include="Systems\CameraSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
     <ClInclude Include="Systems\DeckSystem.h" />

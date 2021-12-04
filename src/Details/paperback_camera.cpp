@@ -171,35 +171,32 @@ void Camera3D::RotateDown(const float m_Speed)
 }
 
 
-void Camera3D::RotateWithMouse()
+void Camera3D::RotateWithMouse(glm::vec2 Direction)
 {
-	/*if (PPB.IsMouseDown(GLFW_MOUSE_BUTTON_RIGHT))
+	glm::vec2 direction = Direction;
+	float length = glm::length(direction);
+
+	length = length <= 50.f ? length : 50.f;
+
+	direction = glm::normalize(direction) * length * 0.01f;
+
+	if (direction.x < 0)
 	{
-		glm::vec2 direction = PPB.GetMouseDirection();
-		float length = glm::length(direction);
+		RotateLeft(direction.x * -1.f);
+	}
+	else if (direction.x > 0)
+	{
+		RotateRight(direction.x);
+	}
 
-		length = length <= 50.f ? length : 50.f;
-
-		direction = glm::normalize(direction) * length * 0.01f;
-
-		if (direction.x < 0)
-		{
-			RotateLeft(direction.x * -1.f);
-		}
-		else if (direction.x > 0)
-		{
-			RotateRight(direction.x);
-		}
-
-		if (direction.y > 0)
-		{
-			RotateDown(direction.y);
-		}
-		else if (direction.y < 0)
-		{
-			RotateUp(direction.y * -1.f);
-		}
-	}*/
+	if (direction.y > 0)
+	{
+		RotateDown(direction.y);
+	}
+	else if (direction.y < 0)
+	{
+		RotateUp(direction.y * -1.f);
+	}
 }
 
 void Camera3D::UpdateView()

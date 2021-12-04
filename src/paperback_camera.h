@@ -29,7 +29,7 @@ public:
 	void RotateUp(const float m_Speed = 0.1f);
 	void RotateDown(const float m_Speed = 0.1f);
 
-	void RotateWithMouse();
+	void RotateWithMouse(glm::vec2 Direction);
 
 	static Camera3D& GetInstanced();
 	Camera3D(const Camera3D&) = delete;

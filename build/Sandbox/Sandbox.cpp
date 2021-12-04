@@ -130,6 +130,7 @@ void InitializeGame()
         ,   ui_system
         ,   deck_system
         ,   imgui_system
+        ,   camera_system
         >();
 
         PPB.RegisterSystems <

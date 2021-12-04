@@ -17,6 +17,7 @@
 #include "UISystem.h"
 #include "DeckSystem.h"
 #include "PathSystem.h"
+#include "CameraSystem.h"
 
 // Event
 #include "OnEvent_CollisionSystem.h"
