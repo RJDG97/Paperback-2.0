@@ -87,16 +87,24 @@ struct path_system : paperback::system::instance
 					paperback::Vector3f destination{ spline->second.GetSplinePoint(normalized_offset).m_Point };
 					paperback::Vector3f gradient{ spline->second.GetSplineGradient(normalized_offset).Normalized() };
 					paperback::Vector3f direction{ (destination - Transform.m_Position) };
+					paperback::Vector3f norm_direction{ direction.Normalized() };
 
 					//Rotation.m_Value += GetRotationAngles(PathFollower.m_Direction, direction);
 					//PathFollower.m_Direction = direction;
 
 					float temp{ direction.Magnitude() * direction.Magnitude() * direction.Magnitude() };
 					float speed_modifier{ std::min(1.0f, 1.0f / temp) };
-					float climb_modifier{};
+					float climb_modifier{1.0f};
 
-					direction.y > 0 ? climb_modifier = 1.0f - std::min(0.7f, direction.y) :
-						climb_modifier = 1.0f + std::min(0.7f, abs(direction.y));
+					if (norm_direction.y > 0.1)
+					{
+						climb_modifier = 0.5f;
+					}
+
+					else if (norm_direction.y < -0.1)
+					{
+						climb_modifier = 2.0f;
+					}
 
 					Rigidforce.m_Momentum = direction * PathFollower.m_TravelSpeed * climb_modifier;
 					PathFollower.m_Distance += speed_modifier * PathFollower.m_TravelSpeed * climb_modifier * m_Coordinator.DeltaTime();
@@ -197,6 +205,7 @@ struct path_system : paperback::system::instance
 							lane_box.m_Position + lane_box.m_Min, lane_box.m_Position + lane_box.m_Max, t))
 				{
 					lane = lane_box.m_Lane;
+					break;
 				}
 			}
 
