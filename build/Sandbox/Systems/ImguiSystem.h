@@ -165,7 +165,23 @@ struct imgui_system : paperback::system::instance
         if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
         {
             if (!m_bPaused)
+            {
+                if (!m_bImgui)
+                    m_bImgui = true;
+
                 m_Type = FileActivity::STOPBUTTON;
+            }
+        }
+
+        if ((PPB.IsKeyPressUp(GLFW_KEY_F11) || PPB.IsKeyPressUp(GLFW_KEY_F)) && PPB.VerifyState("Editor"))
+        {
+            if (!m_bPaused)
+            {
+                if (m_bImgui)
+                    m_bImgui = false;
+                else
+                    m_bImgui = true;
+            }
         }
 
         if (m_bImgui)
