@@ -31,12 +31,15 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, Sound_1 ]  = m_obj.m_pArchetype->FindComponents < friendly, enemy, unitstate, base, sound >( m_obj.m_PoolDetails );
         auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, CapturePt_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, capture_point >( m_obj2.m_PoolDetails );
 
+        // Disable Movement - Maintain Collision
+        ResetForces(rf, rf2);
+
         // Same Unit Type && Not Currently Fighting - WALK
         if ( Unit_State && Unit_State->IsNotState( UnitState::ATTACK ) &&
             ((Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) )
         {
-            // Disable Movement - Maintain Collision
-            ResetForces( rf, rf2 );
+            if (Unit_State && Unit_State->IsState(UnitState::DEAD))
+                return;
             
             // Set Unit's State to Walk
             Unit_State->SetState( UnitState::WALK );
@@ -59,8 +62,6 @@ struct onevent_UnitTrigger_system : paperback::system::instance
             if (Base_1 || Sound_1)
             {
                 Sound_1->m_Trigger = true;
-                // Disable Movement - Maintain Collision
-                ResetForces(rf, rf2);
                 return;
             }
 
@@ -125,6 +126,9 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
             // Disable Movement - Maintain Collision
             ResetForces( rf, rf2 );
 
+            if (Unit_State->IsState(UnitState::DEAD))
+                return;
+
             // Set Unit's State to Attack
             Unit_State->SetState( UnitState::ATTACK );
 
@@ -141,7 +145,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
             if ( Unit_1_Anim )
             {
                 auto [ Damage_1, Timer_1 ]  = m_obj.m_pArchetype->FindComponents< damage, timer >( m_obj.m_PoolDetails );
-                auto [ Damage_2, Health_2 ] = m_obj2.m_pArchetype->FindComponents< damage, health >( m_obj2.m_PoolDetails );
+                auto [ Damage_2, Health_2, Anim_2 ] = m_obj2.m_pArchetype->FindComponents< damage, health, animator >( m_obj2.m_PoolDetails );
 
                 // Update Unit Health
                 if ( Damage_1 && Health_2 && (Timer_1 || Base_2) )
@@ -185,8 +189,11 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                             // Delete Entity
                             if (!Base_2 && Health_2->m_CurrentHealth <= 0 )
                             {
-                                //Unit_State->SetState( UnitState::WALK );
-                                DeleteEntity( obj2 );
+                                Anim_2->m_CurrentAnimationName = "Armature|Death";
+                                Anim_2->m_PlayOnce = true;
+                                Anim_2->m_FinishedAnimating = false;
+                                Unit_State2->SetState(UnitState::DEAD);
+                                //DeleteEntity( obj2 );
                                 BroadcastGlobalEvent<collision_system::OnCollisionExit>( obj, rf, Skip );
                             }
                         }
@@ -223,6 +230,9 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         {
             // Disable Movement - Maintain Collision
             ResetForces( rf, rf2 );
+
+            if (Unit_State->IsState(UnitState::DEAD))
+                return;
 
             // Set to IDLE
             if (Unit_State && Unit_State2 && Unit_State->IsNotState( UnitState::ATTACK ) &&
@@ -264,6 +274,9 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
         // Not Attacking & Is Unit
         if ( Unit_State && (Unit_Friendly || Unit_Enemy) )
         {
+            if (Unit_State->IsState(UnitState::DEAD))
+                return;
+
             auto Unit_Anim = m_obj.m_pArchetype->FindComponent<animator>( m_obj.m_PoolDetails );
 
             // Update Walking Animation
