@@ -21,7 +21,7 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         RegisterGlobalEventClass<collision_system::OnCollisionEnter>(this);
     }
 
-    void OnEvent( entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2 ) noexcept
+    void OnEvent( entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2, bool& Skip) noexcept
     {
         // Get Entity Info
         auto m_obj  = GetEntityInfo(obj.m_GlobalIndex);
@@ -76,6 +76,8 @@ struct onevent_UnitTrigger_system : paperback::system::instance
                 Unit_1_Anim->m_PlayOnce = false;
             }
         }
+
+        Skip = true;
     }
 };
 
