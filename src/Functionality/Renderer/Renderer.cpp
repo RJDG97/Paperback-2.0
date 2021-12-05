@@ -196,6 +196,8 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("LeftButton_Unselected", "../../resources/textures/UI/Menus/Buttons/LeftButton_Unselected_Mirrored.dds", true);
 	m_Resources.LoadTextures("RightButton_Selected", "../../resources/textures/UI/Menus/Buttons/RightButton_Selected_Mirrored.dds", true);
 	m_Resources.LoadTextures("RightButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RightButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("CloseButton_Selected", "../../resources/textures/UI/Menus/Buttons/CloseButton_Selected.dds", true);
+	m_Resources.LoadTextures("CloseButton_Unselected", "../../resources/textures/UI/Menus/Buttons/CloseButton_Unselected.dds", true);
 
 	//How To Play assets
 	m_Resources.LoadTextures("CapturePoint_HowToPlay", "../../resources/textures/UI/Menus/How to Play/CapturePoint_HowToPlay_Mirrored.dds", true);

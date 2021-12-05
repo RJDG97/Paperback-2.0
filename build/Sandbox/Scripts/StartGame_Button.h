@@ -21,6 +21,9 @@ struct startgame_button_script : paperback::script::button_interface // Inherite
     void OnClick() noexcept override
     {
 
+        if (!PPB.GetSystem<ui_system>().SetButtonLock())
+            return;
+
         PPB.QueueScene("Combat");
     }
 };

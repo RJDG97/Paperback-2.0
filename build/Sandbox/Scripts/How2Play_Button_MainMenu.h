@@ -20,7 +20,12 @@ struct how2play_button_mainmenu_script : paperback::script::button_interface // 
 
     void OnClick() noexcept override
     {
-        
-        PPB.QueueScene("HowToPlay");
+
+        if (!PPB.GetSystem<ui_system>().SetButtonLock())
+            return;
+
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY1), true);
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY), true);
     }
 };
