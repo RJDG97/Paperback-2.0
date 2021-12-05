@@ -36,8 +36,10 @@ struct enemy_spawner_system : paperback::system::pausable_instance
             m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Dynamic_Deck)  noexcept
                 {
                     bool CardsAvail = false;
+                    int deckno = 0;
                     // Check if cards are available
                     for (int i = 0; i < Dynamic_Deck.m_Deck.size(); i++) {
+                        deckno += Dynamic_Deck.m_Deck[i].m_Count;
                         if (Dynamic_Deck.m_Deck[i].m_Count > 0)
                             CardsAvail = true;
                     }
@@ -54,6 +56,18 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                         if (Dynamic_Deck.m_Deck[cardindex].m_Count > 0) {
                             // Decrease available card count
                             Dynamic_Deck.m_Deck[cardindex].m_Count--;
+                            deckno--;
+
+                            // Initialize Query
+                            tools::query Text_Query;
+
+                            Text_Query.m_Must.AddFromComponents < text, enemy>();
+                            Text_Query.m_NoneOf.AddFromComponents< prefab >();
+
+                            m_Coordinator.ForEach(m_Coordinator.Search(Text_Query), [&](paperback::component::entity& Dynamic_Entity, text& Text)  noexcept
+                                {
+                                    Text.m_Text = std::to_string(deckno);
+                                });
 
                             // Spawn Card
                             // Check if GID is Valid
