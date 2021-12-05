@@ -61,6 +61,9 @@ public:
 
 	// Return screen position of mouse
 	PPB_INLINE
+	glm::vec2 Get2DMousePosition() const noexcept;
+
+	PPB_INLINE
 	glm::vec3 GetMousePosition() const noexcept;
 
 	PPB_INLINE

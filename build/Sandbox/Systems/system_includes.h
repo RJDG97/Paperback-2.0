@@ -24,3 +24,4 @@
 #include "OnEvent_ParentOrChildDeleted.h"
 #include "OnEvent_HealthSystem.h"
 #include "OnEvent_ReferencePrefabDeleted.h"
+#include "OnEvent_PointCaptured.h"

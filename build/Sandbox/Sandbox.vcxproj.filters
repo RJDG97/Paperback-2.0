@@ -259,9 +259,6 @@
     <ClInclude Include="Components\Player.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Mass.h">
-      <Filter>Source Files\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Scripts\UI_Layers.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
@@ -310,29 +307,14 @@
     <ClInclude Include="Scripts\StartGame_Button.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Circle.h">
+    <ClInclude Include="Components\Mass.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Frustrum.h">
+    <ClInclude Include="CapturePoint.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\LineSegment.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Plane.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Polygon_shape.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Ray.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Triangle.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\CameraSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
+    <ClInclude Include="Systems\OnEvent_PointCaptured.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

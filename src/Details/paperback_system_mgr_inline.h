@@ -46,7 +46,8 @@ namespace paperback::system
 		m_SystemMap.emplace( std::make_pair( system::info_v<T_SYSTEM>.m_Guid, pSystem ) );
 
 		// Set System Query In Advance
-		if constexpr ( T_SYSTEM::typedef_v.id_v != paperback::system::type::id::SYSTEM_EVENT )
+		if constexpr ( T_SYSTEM::typedef_v.id_v != paperback::system::type::id::SYSTEM_EVENT &&
+			           T_SYSTEM::typedef_v.id_v != paperback::system::type::id::GLOBAL_SYSTEM_EVENT )
 			InitializeSystemQuery<T_SYSTEM>();
 
 		// If System is an Event System
@@ -57,7 +58,7 @@ namespace paperback::system
 				.RegisterEvent< &T_SYSTEM::OnEvent >( reinterpret_cast<system_t*>( pSystem ) );
 		}
 		// If System is an Update System
-		else
+		else if constexpr ( T_SYSTEM::typedef_v.id_v == paperback::system::type::id::UPDATE )
 		{
 			// Initialize and Save System Functionality as Events
 			InitializeSystemUpdateEvents( static_cast<T_SYSTEM*>( pSystem ) );

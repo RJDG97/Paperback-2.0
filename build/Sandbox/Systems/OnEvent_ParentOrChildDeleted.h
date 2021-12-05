@@ -2,7 +2,7 @@
 
 struct onevent_ParentDeleted_system : paperback::system::instance
 {
-    constexpr static auto typedef_v = paperback::system::type::update
+    constexpr static auto typedef_v = paperback::system::type::global_system_event
     {
         .m_pName = "OnEvent_ParentDeleted"
     };
@@ -11,12 +11,6 @@ struct onevent_ParentDeleted_system : paperback::system::instance
     void OnSystemCreated( void ) noexcept
     {
         RegisterGlobalEventClass< paperback::vm::instance::OnEvent_ParentDeleted >( this );
-    }
-
-    PPB_FORCEINLINE
-    void operator()( paperback::component::entity& Entity ) noexcept
-    {
-
     }
 
     void OnEvent( const parent& Parent ) noexcept
@@ -36,7 +30,7 @@ struct onevent_ParentDeleted_system : paperback::system::instance
 
 struct onevent_ChildDeleted_system : paperback::system::instance
 {
-    constexpr static auto typedef_v = paperback::system::type::update
+    constexpr static auto typedef_v = paperback::system::type::global_system_event
     {
         .m_pName = "OnEvent_ChildDeleted"
     };
@@ -45,12 +39,6 @@ struct onevent_ChildDeleted_system : paperback::system::instance
     void OnSystemCreated( void ) noexcept
     {
         RegisterGlobalEventClass< paperback::vm::instance::OnEvent_ChildDeleted >( this );
-    }
-
-    PPB_FORCEINLINE
-    void operator()( paperback::component::entity& Entity ) noexcept
-    {
-
     }
 
     void OnEvent( const child& Child, const paperback::u32& GlobalIndex ) noexcept
