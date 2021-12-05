@@ -158,11 +158,15 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard.dds", true);
 	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard.dds", true);
 
+
 	// Menu Backgrounds
 	m_Resources.LoadTextures("MainMenuBackground", "../../resources/textures/UI/Menus/Backgrounds/MainMenuBackground_Mirrored.dds", true);
 	m_Resources.LoadTextures("PauseGamePanel", "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel_Mirrored.dds", true);
 	m_Resources.LoadTextures("QuitGameConfirmationPanel", "../../resources/textures/UI/Menus/Backgrounds/QuitGameConfirmationPanel_Mirrored.dds", true);
 	m_Resources.LoadTextures("ReturnToMainMenuPanel", "../../resources/textures/UI/Menus/Backgrounds/ReturnToMainMenuPanel_Mirrored.dds", true);
+	m_Resources.LoadTextures("YouLostTitle", "../../resources/textures/UI/Menus/Backgrounds/YouLostTitle_Mirrored.dds", true);
+	m_Resources.LoadTextures("YouWonTitle", "../../resources/textures/UI/Menus/Backgrounds/YouWonTitle_Mirrored.dds", true);
+
 
 	// Buttons
 	m_Resources.LoadTextures("PauseButton_Unselected", "../../resources/textures/UI/Menus/Buttons/PauseButton_Unselected_Mirrored.dds", true);
@@ -193,16 +197,16 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("RightButton_Selected", "../../resources/textures/UI/Menus/Buttons/RightButton_Selected_Mirrored.dds", true);
 	m_Resources.LoadTextures("RightButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RightButton_Unselected_Mirrored.dds", true);
 
+	//How To Play assets
+	m_Resources.LoadTextures("CapturePoint_HowToPlay", "../../resources/textures/UI/Menus/How to Play/CapturePoint_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("Controls_HowToPlay", "../../resources/textures/UI/Menus/How to Play/Controls_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("DeckSize_HowToPlay", "../../resources/textures/UI/Menus/How to Play/DeckSize_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("Objective_HowToPlay", "../../resources/textures/UI/Menus/How to Play/Objective_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("RPS_HowToPlay", "../../resources/textures/UI/Menus/How to Play/RPS_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("SummonUnits_HowToPlay", "../../resources/textures/UI/Menus/How to Play/SummonUnits_HowToPlay_Mirrored.dds", true);
+
 	// Activity Log
 	m_Resources.LoadTextures("ActivityLog", "../../resources/textures/UI/ActivityFeedBackground.dds", true);
-
-	//How To Play assets
-	m_Resources.LoadTextures("CapturePoint_HowToPlay", "../../resources/textures/UI/Menus/HowToPlay/CapturePoint_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("Controls_HowToPlay", "../../resources/textures/UI/Menus/HowToPlay/Controls_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("DeckSize_HowToPlay", "../../resources/textures/UI/Menus/HowToPlay/DeckSize_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("Objective_HowToPlay", "../../resources/textures/UI/Menus/HowToPlay/Objective_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("RPS_HowToPlay", "../../resources/textures/UI/Menus/HowToPlay/RPS_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("SummonUnits_HowToPlay", "../../resources/textures/UI/Menus/HowToPlay/SummonUnits_HowToPlay_Mirrored.dds", true);
 
 
 	// Enable alpha blending
