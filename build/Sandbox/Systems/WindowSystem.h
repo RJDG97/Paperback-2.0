@@ -2,6 +2,7 @@
 
 //#include "paperback_pch.h"
 #include "Json/paperback_json.h"
+#include "../Functionality/Renderer/Renderer.h"
 
 struct window_system : paperback::system::instance
 {
@@ -38,7 +39,7 @@ struct window_system : paperback::system::instance
         glfwWindowHint(GLFW_RED_BITS, 8); glfwWindowHint(GLFW_GREEN_BITS, 8);
         glfwWindowHint(GLFW_BLUE_BITS, 8); glfwWindowHint(GLFW_ALPHA_BITS, 8);
         glfwWindowHint(GLFW_REFRESH_RATE, GLFW_DONT_CARE);
-        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 
         JFile.StartReader("../../resources/assetloading/config.json").LoadObjects(E).EndReader();
 
@@ -57,6 +58,7 @@ struct window_system : paperback::system::instance
         glfwSetKeyCallback(m_pWindow, KeyboardCallback);
         glfwSetMouseButtonCallback(m_pWindow, MouseCallback);
         glfwSetWindowCloseCallback(m_pWindow, GLFWWindowCloseCallback);
+        glfwSetWindowMaximizeCallback(m_pWindow, GLFWWindowMaximizeCallback);
 
         // Init glew
         GLenum Err = glewInit();
@@ -108,6 +110,27 @@ struct window_system : paperback::system::instance
     static void GLFWWindowCloseCallback(GLFWwindow* window)
     {
         PPB.QuitGame();
+    }
+
+    static void GLFWWindowMaximizeCallback(GLFWwindow* window, int maximize)
+    {   
+        auto& WindowDetails = PPB.GetSystem< window_system >().E;
+        if (maximize) {
+            // Get Primary monitor size
+            GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+            const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+            // Set window size to monitor size
+            WindowDetails.m_Width = mode->width;
+            WindowDetails.m_Height = mode->height;
+        }
+        else {
+            // Restore window size
+            glfwRestoreWindow(window);
+            glfwGetWindowSize(window, &WindowDetails.m_Width, &WindowDetails.m_Height);
+        }
+        // Update Window Size
+        glfwSetWindowSize(window, WindowDetails.m_Width, WindowDetails.m_Height);
+        Renderer::GetInstanced().UpdateFramebufferSize(WindowDetails.m_Width, WindowDetails.m_Height);
     }
 
     //void FullScreen()

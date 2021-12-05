@@ -168,6 +168,9 @@ void InitializeGame()
             startgame_button_script
         >();
     }
+    // Set Window maximized initially
+    auto& Window = PPB.GetSystem< window_system >();
+    glfwMaximizeWindow(Window.m_pWindow);
     // Entity Creation
     {
 		PPB.OpenScene();
