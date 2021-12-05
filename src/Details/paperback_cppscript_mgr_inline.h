@@ -19,14 +19,14 @@ struct test_button_script : paperback::script::button_interface // Inherited Typ
     // Override virtual functions defined within button_interface
     void OnHover( void ) noexcept override
     {
-        TRACE_PRINT( "Button Hovered!" );
+        //TRACE_PRINT( "Button Hovered!" );
     }
 
     void OnClick( void ) noexcept override
     {
-        auto list = m_Coordinator.Search<paperback::component::entity>();
-        TRACE_PRINT( "Button Clicked!" );
-        TRACE_PRINT( "Number Of Archetypes w/ Entity Component: " + std::to_string( list.size() ) );
+        // auto list = m_Coordinator.Search<paperback::component::entity>();
+        // TRACE_PRINT( "Button Clicked!" );
+        // TRACE_PRINT( "Number Of Archetypes w/ Entity Component: " + std::to_string( list.size() ) );
     }
 };
 
