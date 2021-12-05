@@ -3,6 +3,9 @@
 
 struct ui_system : paperback::system::pausable_instance
 {
+
+    bool m_FrameButtonLock{}; //used to ensure that only 1 onclick event can be processed per frame to prevent multi chain spam in a single frame
+
     constexpr static auto typedef_v = paperback::system::type::update
     {
         .m_pName = "UI System"
@@ -170,6 +173,8 @@ struct ui_system : paperback::system::pausable_instance
 
         PPB.OpenQueuedScene();
 
+        m_FrameButtonLock = false; //resets the lock
+
         /*if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE))
         {
             
@@ -204,5 +209,17 @@ struct ui_system : paperback::system::pausable_instance
                 Mesh->m_Active = SetToggle;
             }
         });
+    }
+
+    //prevents more buttons clicks from being processed per frame
+    bool SetButtonLock()
+    {
+
+        if (m_FrameButtonLock)
+            return false;
+
+        m_FrameButtonLock = true;
+
+        return true;
     }
 };

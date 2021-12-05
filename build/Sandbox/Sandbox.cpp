@@ -168,7 +168,20 @@ void InitializeGame()
             quitwindow_button_game_script,
             returnmainmenu_cancel_button_game_script,
             returnmainmenu_window_button_game_script,
-            startgame_button_script
+            startgame_button_script,
+            how2play_cancel_button_mainmenu_script,
+            page1_how2play_next_button_mainmenu_script,
+            page1_how2play_prev_button_mainmenu_script,
+            page2_how2play_next_button_mainmenu_script,
+            page2_how2play_prev_button_mainmenu_script,
+            page3_how2play_next_button_mainmenu_script,
+            page3_how2play_prev_button_mainmenu_script,
+            page4_how2play_next_button_mainmenu_script,
+            page4_how2play_prev_button_mainmenu_script,
+            page5_how2play_next_button_mainmenu_script,
+            page5_how2play_prev_button_mainmenu_script,
+            page6_how2play_next_button_mainmenu_script,
+            page6_how2play_prev_button_mainmenu_script
         >();
     }
     // Set Window maximized initially

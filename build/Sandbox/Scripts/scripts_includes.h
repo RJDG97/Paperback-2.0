@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Systems/UISystem.h"
+
 #include "CardScript.h"
 
 //button scripts
@@ -13,6 +15,19 @@
 #include "Settings_Button_MainMenu.h"
 #include "QuitWindow_Button_MainMenu.h"
 #include "QuitCancel_Button_MainMenu.h"
+#include "How2Play_Cancel_Button_MainMenu.h"
+#include "Page1How2Play_Next_Button_MainMenu.h"
+#include "Page1How2Play_Prev_Button_MainMenu.h"
+#include "Page2How2Play_Next_Button_MainMenu.h"
+#include "Page2How2Play_Prev_Button_MainMenu.h"
+#include "Page3How2Play_Next_Button_MainMenu.h"
+#include "Page3How2Play_Prev_Button_MainMenu.h"
+#include "Page4How2Play_Next_Button_MainMenu.h"
+#include "Page4How2Play_Prev_Button_MainMenu.h"
+#include "Page5How2Play_Next_Button_MainMenu.h"
+#include "Page5How2Play_Prev_Button_MainMenu.h"
+#include "Page6How2Play_Next_Button_MainMenu.h"
+#include "Page6How2Play_Prev_Button_MainMenu.h"
 
 //gameplay buttons
 #include "PauseEnable_Button_Game.h"
