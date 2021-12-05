@@ -74,7 +74,7 @@ struct path_system : paperback::system::instance
 					Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
 				}
 
-				else if (Unit.IsNotState(UnitState::ATTACK) && Unit.IsNotState(UnitState::IDLE))
+				else if (Unit.IsNotState(UnitState::DEAD) && Unit.IsNotState(UnitState::ATTACK) && Unit.IsNotState(UnitState::IDLE))
 				{
 					float normalized_offset{ spline->second.GetNormalizedOffset(PathFollower.m_Distance) };
 
