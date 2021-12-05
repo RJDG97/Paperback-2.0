@@ -2,7 +2,7 @@
 
 struct onevent_NoHealth_system : paperback::system::instance
 {
-    constexpr static auto typedef_v = paperback::system::type::update
+    constexpr static auto typedef_v = paperback::system::type::global_system_event
     {
         .m_pName = "onevent_NoHealth_system"
     };
@@ -11,12 +11,6 @@ struct onevent_NoHealth_system : paperback::system::instance
         void OnSystemCreated(void) noexcept
     {
         RegisterGlobalEventClass<health_system::NoHealthEvent>(this);
-    }
-
-    PPB_FORCEINLINE
-        void operator()(paperback::component::entity& Entity) noexcept
-    {
-
     }
 
     void OnEvent(entity& obj) noexcept
@@ -52,7 +46,7 @@ struct onevent_NoHealth_system : paperback::system::instance
 
 struct onevent_UpdateHealth_system : paperback::system::instance
 {
-    constexpr static auto typedef_v = paperback::system::type::update
+    constexpr static auto typedef_v = paperback::system::type::global_system_event
     {
         .m_pName = "onevent_UpdateHealth_system"
     };
@@ -61,12 +55,6 @@ struct onevent_UpdateHealth_system : paperback::system::instance
         void OnSystemCreated(void) noexcept
     {
         RegisterGlobalEventClass<health_system::UpdateHealthEvent>(this);
-    }
-
-    PPB_FORCEINLINE
-        void operator()(paperback::component::entity& Entity) noexcept
-    {
-
     }
 
     void OnEvent(entity& obj, entity& obj2, health& Health, health& Health2, transform& Base, boundingbox& Box) noexcept

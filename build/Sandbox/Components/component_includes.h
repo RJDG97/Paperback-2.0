@@ -44,6 +44,8 @@
 #include "Deck.h"
 #include "Spawner.h"
 #include "Mass.h"
+#include "CapturePoint.h"
+
 // shapes
 #include "AABB.h"
 #include "BoundingBox.h"

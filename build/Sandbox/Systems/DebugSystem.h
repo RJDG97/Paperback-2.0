@@ -223,6 +223,43 @@ struct debug_system : paperback::system::instance
         Cube.m_Collided = false;
     }
 
+    void DrawCube(boundingbox& Cube, paperback::Vector3f& Position)
+    {
+        std::vector<paperback::Vector3f> debugdraw;
+
+        paperback::Vector3f front_top_left, front_top_right, front_bottom_left, front_bottom_right,
+            back_top_left, back_top_right, back_bottom_left, back_bottom_right, diff;
+
+        front_top_right = front_top_left = front_bottom_left = front_bottom_right = Cube.Max + Position;
+        back_bottom_left = back_top_left = back_top_right = back_bottom_right = Cube.Min + Position;
+        diff = front_top_right - back_bottom_left;
+
+        front_top_left -= paperback::Vector3f{ diff.x, 0.0f, 0.0f };
+        front_bottom_left -= paperback::Vector3f{ diff.x, diff.y, 0.0f };
+        front_bottom_right -= paperback::Vector3f{ 0.0f, diff.y, 0.0f };
+
+        back_top_right += paperback::Vector3f{ diff.x, diff.y, 0.0f };
+        back_top_left += paperback::Vector3f{ 0.0f, diff.y, 0.0f };
+        back_bottom_right += paperback::Vector3f{ diff.x, 0.0f, 0.0f };
+
+        //form 4 squares, front, back, top, bottom
+        //front
+        ConvertVerticesToSquareDraw(debugdraw, front_top_left, front_top_right, front_bottom_left, front_bottom_right);
+
+        //back
+        ConvertVerticesToSquareDraw(debugdraw, back_top_left, back_top_right, back_bottom_left, back_bottom_right);
+
+        //top
+        ConvertVerticesToSquareDraw(debugdraw, back_top_left, back_top_right, front_top_left, front_top_right);
+
+        //bottom
+        ConvertVerticesToSquareDraw(debugdraw, back_bottom_left, back_bottom_right, front_bottom_left, front_bottom_right);
+
+        DrawDebugLines(debugdraw, Cube.m_Collided);
+
+        Cube.m_Collided = false;
+    }
+
     void DrawSpline(paperback::Spline spline)
     {
         if (spline.m_Points.size())
@@ -264,7 +301,7 @@ struct debug_system : paperback::system::instance
     void OnSystemCreated( void ) noexcept
     {
 
-        m_IsDebug = true;
+        m_IsDebug = false;
     }
 
 
@@ -345,7 +382,7 @@ struct debug_system : paperback::system::instance
     PPB_INLINE
         void OnStateChange(void) noexcept
     {
-        m_IsDebug = (PPB.VerifyState("Editor")) ? true : false;
+         // m_IsDebug = (PPB.VerifyState("Editor")) ? true : false;
     }
 
     //----------------------------------------------------------------

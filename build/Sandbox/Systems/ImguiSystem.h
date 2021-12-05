@@ -1,11 +1,9 @@
 #pragma once
-#include "WindowSystem.h"
 
-#include <dearImGui/IconsFontAwesome5.h>
+#include "WindowSystem.h"
 #include <sstream>
 #include <filesystem>
 
-#include "../../../src/paperback_camera.h"
 //----------------------------------
 // ImGui Headers
 //----------------------------------
@@ -15,6 +13,7 @@
 #include <dearImGui/imgui_internal.h>
 #include <dearImGui/ImGuiFileBrowser.h>
 #include <dearImGui/ImGuizmo/ImGuizmo.h>
+#include <dearImGui/IconsFontAwesome5.h>
 //----------------------------------
 // Panel Headers
 //----------------------------------
@@ -45,7 +44,7 @@ enum FileActivity
     LOADFROMASSET,
     PLAYBUTTON,
     STOPBUTTON,
-    EXIT
+    EXITAPP
 };
 
 struct imgui_system : paperback::system::instance
@@ -64,7 +63,7 @@ struct imgui_system : paperback::system::instance
     std::vector < std::pair < rttr::instance, paperback::component::type::guid> > m_Components = {};
     std::vector <const char*> m_ComponentNames = {};
 
-    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
+    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
     std::string m_LoadedPrefabPath, m_LoadedPrefabFile;
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity; //first: pointer to the archetype | second: entity index
@@ -165,9 +164,24 @@ struct imgui_system : paperback::system::instance
     {
         if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
         {
-            //PPB.QuitGame();
             if (!m_bPaused)
+            {
+                if (!m_bImgui)
+                    m_bImgui = true;
+
                 m_Type = FileActivity::STOPBUTTON;
+            }
+        }
+
+        if ((PPB.IsKeyPressUp(GLFW_KEY_F11) || PPB.IsKeyPressUp(GLFW_KEY_F)) && PPB.VerifyState("Editor"))
+        {
+            if (!m_bPaused)
+            {
+                if (m_bImgui)
+                    m_bImgui = false;
+                else
+                    m_bImgui = true;
+            }
         }
 
         if (m_bImgui)
@@ -373,8 +387,8 @@ struct imgui_system : paperback::system::instance
 
                 if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit"))
                 {
-                    EDITOR_WARN_PRINT("Shutting Down Editor...");
-                    PPB.QuitGame();
+                    m_Type = FileActivity::EXITAPP;
+                    m_bSaveCheck = true;
                 }
 
                 ImGui::EndMenu();
@@ -582,6 +596,15 @@ struct imgui_system : paperback::system::instance
                         m_Type = FileActivity::NONE;
                         ImGui::CloseCurrentPopup();
                     }
+                }
+                break;
+                case FileActivity::EXITAPP:
+                {
+                    ImGui::CloseCurrentPopup();                    
+                    EDITOR_WARN_PRINT("Shutting Down Editor...");
+                    m_Type = FileActivity::NONE;
+
+                    PPB.QuitGame();
                 }
                 break;
                 }
@@ -828,7 +851,7 @@ struct imgui_system : paperback::system::instance
         else if (PropertyType == rttr::type::get<size_t>())
         {
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-            ImGui::Text("llu", PropertyValue.get_value<size_t>());
+            ImGui::Text("%llu", PropertyValue.get_value<size_t>());
         }
     }
 

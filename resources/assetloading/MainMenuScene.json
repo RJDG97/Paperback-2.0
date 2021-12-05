@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 14
+                "EntityHead": 15
             }
         },
         {
@@ -176,6 +176,7 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             6,
+                            14,
                             3,
                             11,
                             1,
@@ -266,7 +267,7 @@
                         "Position": {
                             "x": 0.0,
                             "y": -0.15000000596046449,
-                            "z": 0.0
+                            "z": 1.0
                         }
                     },
                     "ReferencePrefab": {
@@ -290,7 +291,7 @@
                             ""
                         ],
                         "Button State": 2,
-                        "Layer Grouping": 0,
+                        "Layer Grouping": 1,
                         "Script Guid": 16614706341257434777,
                         "Active Status": true
                     }
@@ -328,7 +329,7 @@
                         "Position": {
                             "x": 0.0,
                             "y": -0.75,
-                            "z": 0.0
+                            "z": 1.0
                         }
                     },
                     "ReferencePrefab": {
@@ -352,7 +353,7 @@
                             ""
                         ],
                         "Button State": 0,
-                        "Layer Grouping": 0,
+                        "Layer Grouping": 1,
                         "Script Guid": 1655581845290842461,
                         "Active Status": true
                     }
@@ -514,7 +515,7 @@
                         "Position": {
                             "x": 0.0,
                             "y": -0.44999998807907107,
-                            "z": 0.0
+                            "z": 1.0
                         }
                     },
                     "ReferencePrefab": {
@@ -538,7 +539,7 @@
                             ""
                         ],
                         "Button State": 0,
-                        "Layer Grouping": 0,
+                        "Layer Grouping": 1,
                         "Script Guid": 2641508614138430193,
                         "Active Status": true
                     }
@@ -603,6 +604,68 @@
                         "Layer Grouping": 5,
                         "Script Guid": 13682510419229256612,
                         "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 14
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "MainMenuBackground",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Background"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 0,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": true
                     }
                 }
             ]
@@ -683,7 +746,9 @@
                     "Sound": {
                         "Path": "",
                         "Sound Event ID": 0,
-                        "3D Sound": false
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
@@ -726,7 +791,9 @@
                     "Sound": {
                         "Path": "event:/MenuBGM",
                         "Sound Event ID": 0,
-                        "3D Sound": false
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
                     },
                     "Transform": {
                         "Offset": {
@@ -741,7 +808,9 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            14302600151082817442
+                        ],
                         "Prefab GID": 12
                     },
                     "Name": {

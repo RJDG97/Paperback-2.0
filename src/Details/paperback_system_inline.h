@@ -228,10 +228,9 @@ namespace paperback::system
 		return m_Coordinator.GetMouseDirection();
 	}
 
-	glm::vec3 instance::GetMousePositionInUI() noexcept
+	glm::vec2 instance::GetMousePositionInUI() noexcept
 	{
-		auto pos = m_Coordinator.GetMousePosition();
-		pos.y = (pos.y + 0.5f) * 2;
+		auto pos = m_Coordinator.Get2DMousePosition();
 		return pos;
 	}
 

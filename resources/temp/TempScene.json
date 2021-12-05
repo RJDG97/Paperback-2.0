@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 52
+                "EntityHead": 66
             }
         },
         {
@@ -1275,7 +1275,7 @@
                         "Scale": {
                             "x": 0.6800000071525574,
                             "y": 0.029999999329447748,
-                            "z": 0.0
+                            "z": 0.6800000071525574
                         }
                     },
                     "Rotation": {
@@ -1305,8 +1305,8 @@
                         "Prefab GID": 28
                     },
                     "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
+                        "Current Health": 60,
+                        "Max Health": 60
                     },
                     "Name": {
                         "Name": "PlayerHealth"
@@ -1443,8 +1443,8 @@
                         }
                     },
                     "Health": {
-                        "Current Health": 0,
-                        "Max Health": 0
+                        "Current Health": 10,
+                        "Max Health": 10
                     },
                     "Name": {
                         "Name": "EnemyHealth"
@@ -1484,7 +1484,7 @@
                         "Scale": {
                             "x": 0.6800000071525574,
                             "y": 0.029999999329447748,
-                            "z": 0.0
+                            "z": 0.6800000071525574
                         }
                     },
                     "Rotation": {
@@ -1514,8 +1514,8 @@
                         "Prefab GID": 30
                     },
                     "Health": {
-                        "Current Health": 0,
-                        "Max Health": 0
+                        "Current Health": 60,
+                        "Max Health": 60
                     },
                     "Name": {
                         "Name": "EnemyHealth"
@@ -1947,742 +1947,6 @@
             ]
         },
         {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        15204223096342135753,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        13451667849426907147,
-                        1065973164513037885,
-                        15320754602131540736,
-                        16415915133639986106,
-                        11735907707121220559,
-                        6834572007998493698,
-                        223102351977301267
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 44
-                    },
-                    "Mesh": {
-                        "Model": "BlueUnitAnimated",
-                        "Texture": "Unit_Blue_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5,
-                            "y": -0.30000001192092898,
-                            "z": -0.4000000059604645
-                        },
-                        "Max Point": {
-                            "x": 0.5,
-                            "y": 0.8999999761581421,
-                            "z": 0.4000000059604645
-                        },
-                        "Is Collide": false
-                    },
-                    "Unitstate": {
-                        "Attacking": false
-                    },
-                    "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
-                    },
-                    "Damage": {
-                        "Damage Type": 0,
-                        "Damage": 2
-                    },
-                    "Name": {
-                        "Name": "FriendlyPaperUnit"
-                    },
-                    "Friendly": {},
-                    "Unit": {},
-                    "Path Follower": {
-                        "Path ID": 0,
-                        "Distance": 0.0,
-                        "Travel Speed": 5.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 46
-                    },
-                    "Mesh": {
-                        "Model": "BlueUnitAnimated",
-                        "Texture": "Unit_Blue_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5,
-                            "y": -0.30000001192092898,
-                            "z": -0.4000000059604645
-                        },
-                        "Max Point": {
-                            "x": 0.5,
-                            "y": 0.8999999761581421,
-                            "z": 0.4000000059604645
-                        },
-                        "Is Collide": false
-                    },
-                    "Unitstate": {
-                        "Attacking": false
-                    },
-                    "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
-                    },
-                    "Damage": {
-                        "Damage Type": 2,
-                        "Damage": 2
-                    },
-                    "Name": {
-                        "Name": "FriendlyRockUnit"
-                    },
-                    "Friendly": {},
-                    "Unit": {},
-                    "Path Follower": {
-                        "Path ID": 0,
-                        "Distance": 0.0,
-                        "Travel Speed": 5.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 45
-                    },
-                    "Mesh": {
-                        "Model": "BlueUnitAnimated",
-                        "Texture": "Unit_Blue_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5,
-                            "y": -0.30000001192092898,
-                            "z": -0.4000000059604645
-                        },
-                        "Max Point": {
-                            "x": 0.5,
-                            "y": 0.8999999761581421,
-                            "z": 0.4000000059604645
-                        },
-                        "Is Collide": false
-                    },
-                    "Unitstate": {
-                        "Attacking": false
-                    },
-                    "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
-                    },
-                    "Damage": {
-                        "Damage Type": 1,
-                        "Damage": 2
-                    },
-                    "Name": {
-                        "Name": "FriendlyScissorUnit"
-                    },
-                    "Friendly": {},
-                    "Unit": {},
-                    "Path Follower": {
-                        "Path ID": 0,
-                        "Distance": 0.0,
-                        "Travel Speed": 5.0
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        15204223096342135753,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        13451667849426907147,
-                        1065973164513037885,
-                        15320754602131540736,
-                        16415915133639986106,
-                        5786312103493353911,
-                        6834572007998493698,
-                        223102351977301267
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 47
-                    },
-                    "Mesh": {
-                        "Model": "RedUnitAnimated",
-                        "Texture": "Unit_Red_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5,
-                            "y": -0.30000001192092898,
-                            "z": -0.4000000059604645
-                        },
-                        "Max Point": {
-                            "x": 0.5,
-                            "y": 0.8999999761581421,
-                            "z": 0.4000000059604645
-                        },
-                        "Is Collide": false
-                    },
-                    "Unitstate": {
-                        "Attacking": false
-                    },
-                    "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
-                    },
-                    "Damage": {
-                        "Damage Type": 0,
-                        "Damage": 2
-                    },
-                    "Name": {
-                        "Name": "EnemyPaperUnit"
-                    },
-                    "Enemy": {},
-                    "Unit": {},
-                    "Path Follower": {
-                        "Path ID": 0,
-                        "Distance": 0.0,
-                        "Travel Speed": 5.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 48
-                    },
-                    "Mesh": {
-                        "Model": "RedUnitAnimated",
-                        "Texture": "Unit_Red_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5,
-                            "y": -0.30000001192092898,
-                            "z": -0.4000000059604645
-                        },
-                        "Max Point": {
-                            "x": 0.5,
-                            "y": 0.8999999761581421,
-                            "z": 0.4000000059604645
-                        },
-                        "Is Collide": false
-                    },
-                    "Unitstate": {
-                        "Attacking": false
-                    },
-                    "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
-                    },
-                    "Damage": {
-                        "Damage Type": 1,
-                        "Damage": 2
-                    },
-                    "Name": {
-                        "Name": "EnemyScissorUnit"
-                    },
-                    "Enemy": {},
-                    "Unit": {},
-                    "Path Follower": {
-                        "Path ID": 0,
-                        "Distance": 0.0,
-                        "Travel Speed": 5.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 49
-                    },
-                    "Mesh": {
-                        "Model": "RedUnitAnimated",
-                        "Texture": "Unit_Red_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "Armature|Walk",
-                        "Play Once": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Mass": 5.0,
-                        "Inverse Mass": 0.20000000298023225,
-                        "Static Friction": 0.5,
-                        "Dynamic Friction": 0.25,
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5,
-                            "y": -0.30000001192092898,
-                            "z": -0.4000000059604645
-                        },
-                        "Max Point": {
-                            "x": 0.5,
-                            "y": 0.8999999761581421,
-                            "z": 0.4000000059604645
-                        },
-                        "Is Collide": false
-                    },
-                    "Unitstate": {
-                        "Attacking": false
-                    },
-                    "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
-                    },
-                    "Damage": {
-                        "Damage Type": 2,
-                        "Damage": 2
-                    },
-                    "Name": {
-                        "Name": "EnemyRockUnit"
-                    },
-                    "Enemy": {},
-                    "Unit": {},
-                    "Path Follower": {
-                        "Path ID": 0,
-                        "Distance": 0.0,
-                        "Travel Speed": 5.0
-                    }
-                }
-            ]
-        },
-        {
             "Camera": [
                 {
                     "Guid": [
@@ -2772,124 +2036,114 @@
                     "Path": {
                         "Points": [
                             {
-                                "x": 10.800000190734864,
-                                "y": 0.800000011920929,
-                                "z": 11.100000381469727
+                                "x": 9.800000190734864,
+                                "y": 1.0,
+                                "z": 10.600000381469727
                             },
                             {
-                                "x": 10.800000190734864,
-                                "y": 0.800000011920929,
-                                "z": 11.100000381469727
+                                "x": 9.800000190734864,
+                                "y": 1.0,
+                                "z": 10.600000381469727
                             },
                             {
                                 "x": 9.600000381469727,
-                                "y": 0.800000011920929,
+                                "y": 1.0,
                                 "z": 8.399999618530274
                             },
                             {
                                 "x": 9.100000381469727,
-                                "y": 0.800000011920929,
+                                "y": 1.0,
                                 "z": 2.799999952316284
                             },
                             {
-                                "x": 7.400000095367432,
-                                "y": 0.800000011920929,
+                                "x": 7.599999904632568,
+                                "y": 1.0,
                                 "z": 0.0
                             },
                             {
-                                "x": 5.900000095367432,
-                                "y": 0.800000011920929,
+                                "x": 6.0,
+                                "y": 1.0,
                                 "z": -2.0999999046325685
                             },
                             {
                                 "x": 4.599999904632568,
-                                "y": 0.800000011920929,
+                                "y": 1.0,
                                 "z": -3.700000047683716
                             },
                             {
-                                "x": 1.7999999523162842,
-                                "y": 0.800000011920929,
-                                "z": -6.5
+                                "x": 0.10000000149011612,
+                                "y": 1.0,
+                                "z": -8.199999809265137
                             },
                             {
-                                "x": -1.399999976158142,
-                                "y": 0.800000011920929,
-                                "z": -9.300000190734864
+                                "x": -1.899999976158142,
+                                "y": 1.0,
+                                "z": -9.5
                             },
                             {
                                 "x": -5.0,
-                                "y": 0.800000011920929,
+                                "y": 1.0,
                                 "z": -10.699999809265137
                             },
                             {
                                 "x": -8.399999618530274,
-                                "y": 0.800000011920929,
+                                "y": 1.0,
                                 "z": -11.399999618530274
                             },
                             {
-                                "x": -10.300000190734864,
-                                "y": 0.800000011920929,
+                                "x": -10.199999809265137,
+                                "y": 1.0,
                                 "z": -10.0
                             },
                             {
                                 "x": -10.300000190734864,
-                                "y": 0.800000011920929,
+                                "y": 1.0,
                                 "z": -8.300000190734864
                             },
                             {
-                                "x": -9.300000190734864,
-                                "y": 0.800000011920929,
-                                "z": -6.099999904632568
+                                "x": -8.5,
+                                "y": 1.0,
+                                "z": -5.099999904632568
                             },
                             {
-                                "x": -8.899999618530274,
-                                "y": 0.800000011920929,
-                                "z": -4.5
+                                "x": -8.800000190734864,
+                                "y": 1.0,
+                                "z": -3.5
                             },
                             {
-                                "x": -10.199999809265137,
-                                "y": 0.800000011920929,
-                                "z": -2.0999999046325685
-                            },
-                            {
-                                "x": -11.199999809265137,
-                                "y": 0.800000011920929,
+                                "x": -10.699999809265137,
+                                "y": 1.0,
                                 "z": -1.5
                             },
                             {
-                                "x": -13.199999809265137,
-                                "y": 1.7999999523162842,
-                                "z": -0.10000000149011612
-                            },
-                            {
-                                "x": -13.199999809265137,
-                                "y": 1.7999999523162842,
+                                "x": -12.899999618530274,
+                                "y": 2.0,
                                 "z": -0.10000000149011612
                             },
                             {
                                 "x": -14.699999809265137,
-                                "y": 2.700000047683716,
+                                "y": 3.0,
                                 "z": 1.0
                             },
                             {
                                 "x": -18.100000381469728,
-                                "y": 5.199999809265137,
+                                "y": 5.5,
                                 "z": 3.0
                             },
                             {
-                                "x": -21.0,
+                                "x": -20.600000381469728,
                                 "y": 7.599999904632568,
                                 "z": 4.599999904632568
                             },
                             {
-                                "x": -23.799999237060548,
-                                "y": 7.400000095367432,
-                                "z": 7.099999904632568
+                                "x": -22.600000381469728,
+                                "y": 7.599999904632568,
+                                "z": 6.800000190734863
                             },
                             {
-                                "x": -23.799999237060548,
-                                "y": 7.400000095367432,
-                                "z": 7.099999904632568
+                                "x": -22.600000381469728,
+                                "y": 7.599999904632568,
+                                "z": 6.800000190734863
                             }
                         ],
                         "Path ID": 0
@@ -2966,14 +2220,14 @@
                     "Path": {
                         "Points": [
                             {
-                                "x": 12.0,
+                                "x": 10.5,
                                 "y": 0.800000011920929,
-                                "z": -4.300000190734863
+                                "z": -3.799999952316284
                             },
                             {
-                                "x": 12.0,
+                                "x": 10.5,
                                 "y": 0.800000011920929,
-                                "z": -4.300000190734863
+                                "z": -3.799999952316284
                             },
                             {
                                 "x": 4.099999904632568,
@@ -3038,12 +2292,12 @@
                             {
                                 "x": -22.700000762939454,
                                 "y": 8.100000381469727,
-                                "z": -8.899999618530274
+                                "z": -9.0
                             },
                             {
                                 "x": -22.700000762939454,
                                 "y": 8.100000381469727,
-                                "z": -8.899999618530274
+                                "z": -9.0
                             }
                         ],
                         "Path ID": 2
@@ -3120,18 +2374,18 @@
                     "Path": {
                         "Points": [
                             {
-                                "x": 15.0,
+                                "x": 15.5,
                                 "y": -3.0,
                                 "z": 4.0
                             },
                             {
-                                "x": 15.0,
+                                "x": 15.5,
                                 "y": -3.0,
                                 "z": 4.0
                             },
                             {
                                 "x": 13.0,
-                                "y": -3.5,
+                                "y": -3.0,
                                 "z": 3.4000000953674318
                             },
                             {
@@ -3256,7 +2510,118 @@
                         "Name": "Top Path"
                     },
                     "Path": {
-                        "Points": [],
+                        "Points": [
+                            {
+                                "x": 9.800000190734864,
+                                "y": 1.0,
+                                "z": 10.600000381469727
+                            },
+                            {
+                                "x": 9.800000190734864,
+                                "y": 1.0,
+                                "z": 10.600000381469727
+                            },
+                            {
+                                "x": 9.600000381469727,
+                                "y": 1.0,
+                                "z": 8.399999618530274
+                            },
+                            {
+                                "x": 9.100000381469727,
+                                "y": 1.0,
+                                "z": 2.799999952316284
+                            },
+                            {
+                                "x": 7.599999904632568,
+                                "y": 1.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 6.0,
+                                "y": 1.0,
+                                "z": -2.0999999046325685
+                            },
+                            {
+                                "x": 4.599999904632568,
+                                "y": 1.0,
+                                "z": -3.700000047683716
+                            },
+                            {
+                                "x": 0.10000000149011612,
+                                "y": 1.0,
+                                "z": -8.199999809265137
+                            },
+                            {
+                                "x": -1.899999976158142,
+                                "y": 1.0,
+                                "z": -9.5
+                            },
+                            {
+                                "x": -5.0,
+                                "y": 1.0,
+                                "z": -10.699999809265137
+                            },
+                            {
+                                "x": -8.399999618530274,
+                                "y": 1.0,
+                                "z": -11.399999618530274
+                            },
+                            {
+                                "x": -10.199999809265137,
+                                "y": 1.0,
+                                "z": -10.0
+                            },
+                            {
+                                "x": -10.300000190734864,
+                                "y": 1.0,
+                                "z": -8.300000190734864
+                            },
+                            {
+                                "x": -8.5,
+                                "y": 1.0,
+                                "z": -5.099999904632568
+                            },
+                            {
+                                "x": -8.800000190734864,
+                                "y": 1.0,
+                                "z": -3.5
+                            },
+                            {
+                                "x": -10.699999809265137,
+                                "y": 1.0,
+                                "z": -1.5
+                            },
+                            {
+                                "x": -12.899999618530274,
+                                "y": 2.0,
+                                "z": -0.10000000149011612
+                            },
+                            {
+                                "x": -14.699999809265137,
+                                "y": 3.0,
+                                "z": 1.0
+                            },
+                            {
+                                "x": -18.100000381469728,
+                                "y": 5.5,
+                                "z": 3.0
+                            },
+                            {
+                                "x": -20.600000381469728,
+                                "y": 7.599999904632568,
+                                "z": 4.599999904632568
+                            },
+                            {
+                                "x": -22.600000381469728,
+                                "y": 7.599999904632568,
+                                "z": 6.800000190734863
+                            },
+                            {
+                                "x": -22.600000381469728,
+                                "y": 7.599999904632568,
+                                "z": 6.800000190734863
+                            }
+                        ],
                         "Path ID": 0
                     }
                 },
@@ -3332,14 +2697,14 @@
                     "Path": {
                         "Points": [
                             {
-                                "x": 12.0,
+                                "x": 10.5,
                                 "y": 0.800000011920929,
-                                "z": -4.300000190734863
+                                "z": -3.799999952316284
                             },
                             {
-                                "x": 12.0,
+                                "x": 10.5,
                                 "y": 0.800000011920929,
-                                "z": -4.300000190734863
+                                "z": -3.799999952316284
                             },
                             {
                                 "x": 4.099999904632568,
@@ -3409,7 +2774,7 @@
                             {
                                 "x": -22.700000762939454,
                                 "y": 8.100000381469727,
-                                "z": -8.899999618530274
+                                "z": -9.0
                             }
                         ],
                         "Path ID": 2
@@ -3487,18 +2852,18 @@
                     "Path": {
                         "Points": [
                             {
-                                "x": 15.0,
+                                "x": 15.5,
                                 "y": -3.0,
                                 "z": 4.0
                             },
                             {
-                                "x": 15.0,
+                                "x": 15.5,
                                 "y": -3.0,
                                 "z": 4.0
                             },
                             {
-                                "x": 13.0,
-                                "y": -3.5,
+                                "x": 13.300000190734864,
+                                "y": -3.0,
                                 "z": 3.4000000953674318
                             },
                             {
@@ -3533,484 +2898,6 @@
                             }
                         ],
                         "Path ID": 1
-                    }
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        3617555656175080491,
-                        15172211932757996706,
-                        1065973164513037885,
-                        16415915133639986106,
-                        11735907707121220559,
-                        16062924579251041610,
-                        17181171452395271051
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 17
-                    },
-                    "Mesh": {
-                        "Model": "HDBBlock",
-                        "Texture": "HDB_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": -87.30000305175781,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 17.407609939575197,
-                            "y": 4.217556953430176,
-                            "z": 4.243843078613281
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -2.0,
-                            "y": -3.5,
-                            "z": -5.0
-                        },
-                        "Max Point": {
-                            "x": 2.0,
-                            "y": 3.5,
-                            "z": 5.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            1065973164513037885,
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 16
-                    },
-                    "Health": {
-                        "Current Health": 10,
-                        "Max Health": 10
-                    },
-                    "Name": {
-                        "Name": "HDB"
-                    },
-                    "Friendly": {},
-                    "Base": {},
-                    "Spawner": {
-                        "Spawn Position": [
-                            {
-                                "x": 14.899999618530274,
-                                "y": 1.600000023841858,
-                                "z": -1.399999976158142
-                            },
-                            {
-                                "x": 14.699999809265137,
-                                "y": 1.5,
-                                "z": 3.5999999046325685
-                            },
-                            {
-                                "x": 14.699999809265137,
-                                "y": 1.5,
-                                "z": 9.0
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        3617555656175080491,
-                        1065973164513037885,
-                        16415915133639986106,
-                        11735907707121220559,
-                        16062924579251041610,
-                        17181171452395271051
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 16
-                    },
-                    "Mesh": {
-                        "Model": "HDBBlock",
-                        "Texture": "HDB_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            17
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": -87.30000305175781,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 18.236618041992189,
-                            "y": 4.217556953430176,
-                            "z": 4.204748153686523
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Health": {
-                        "Current Health": 0,
-                        "Max Health": 0
-                    },
-                    "Name": {
-                        "Name": "HDB"
-                    },
-                    "Friendly": {},
-                    "Base": {},
-                    "Spawner": {
-                        "Spawn Position": [
-                            {
-                                "x": 14.899999618530274,
-                                "y": 1.600000023841858,
-                                "z": -1.399999976158142
-                            },
-                            {
-                                "x": 14.699999809265137,
-                                "y": 1.5,
-                                "z": 3.5999999046325685
-                            },
-                            {
-                                "x": 14.699999809265137,
-                                "y": 1.5,
-                                "z": 9.0
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        12091664775214799190,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        3617555656175080491,
-                        15172211932757996706,
-                        1065973164513037885,
-                        16415915133639986106,
-                        5786312103493353911,
-                        16062924579251041610,
-                        17181171452395271051
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 11
-                    },
-                    "Mesh": {
-                        "Model": "NationalStadium",
-                        "Texture": "NationalStadium_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Timer": {
-                        "Cooldown Timer": 10.0,
-                        "Timer": -36.89179992675781
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -20.338958740234376,
-                            "y": 9.17773151397705,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -3.5,
-                            "y": -1.0,
-                            "z": -3.5
-                        },
-                        "Max Point": {
-                            "x": 3.5,
-                            "y": 3.5,
-                            "z": 3.5
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 10
-                    },
-                    "Health": {
-                        "Current Health": 0,
-                        "Max Health": 0
-                    },
-                    "Name": {
-                        "Name": "Stadium"
-                    },
-                    "Enemy": {},
-                    "Base": {},
-                    "Spawner": {
-                        "Spawn Position": [
-                            {
-                                "x": -18.0,
-                                "y": 8.5,
-                                "z": -4.0
-                            },
-                            {
-                                "x": -16.0,
-                                "y": 8.5,
-                                "z": -1.0
-                            },
-                            {
-                                "x": -18.0,
-                                "y": 8.5,
-                                "z": 4.0
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        12091664775214799190,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        3617555656175080491,
-                        1065973164513037885,
-                        16415915133639986106,
-                        5786312103493353911,
-                        16062924579251041610,
-                        17181171452395271051
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 10
-                    },
-                    "Mesh": {
-                        "Model": "NationalStadium",
-                        "Texture": "NationalStadium_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Timer": {
-                        "Cooldown Timer": 10.0,
-                        "Timer": 0.0
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            11
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -20.338958740234376,
-                            "y": 9.177729606628418,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Health": {
-                        "Current Health": 0,
-                        "Max Health": 0
-                    },
-                    "Name": {
-                        "Name": "Stadium"
-                    },
-                    "Enemy": {},
-                    "Base": {},
-                    "Spawner": {
-                        "Spawn Position": [
-                            {
-                                "x": -18.0,
-                                "y": 8.5,
-                                "z": -4.0
-                            },
-                            {
-                                "x": -16.0,
-                                "y": 8.5,
-                                "z": -1.0
-                            },
-                            {
-                                "x": -18.0,
-                                "y": 8.5,
-                                "z": 4.0
-                            }
-                        ]
                     }
                 }
             ]
@@ -4069,9 +2956,9 @@
                         ],
                         "Deck Pos": [
                             {
-                                "x": -18.0,
+                                "x": -17.459999084472658,
                                 "y": 8.5,
-                                "z": -4.0
+                                "z": -3.799999952316284
                             },
                             {
                                 "x": -16.0,
@@ -4079,9 +2966,9 @@
                                 "z": -1.0
                             },
                             {
-                                "x": -18.0,
+                                "x": -17.600000381469728,
                                 "y": 8.5,
-                                "z": 4.0
+                                "z": 3.799999952316284
                             }
                         ]
                     }
@@ -4128,22 +3015,22 @@
                         "Deck Details": [
                             {
                                 "Card GID": 47,
-                                "Count": 10
+                                "Count": 9
                             },
                             {
                                 "Card GID": 48,
-                                "Count": 10
+                                "Count": 9
                             },
                             {
                                 "Card GID": 49,
-                                "Count": 10
+                                "Count": 9
                             }
                         ],
                         "Deck Pos": [
                             {
-                                "x": -18.0,
+                                "x": -17.459999084472658,
                                 "y": 8.5,
-                                "z": -4.0
+                                "z": -3.799999952316284
                             },
                             {
                                 "x": -16.0,
@@ -4151,9 +3038,9 @@
                                 "z": -1.0
                             },
                             {
-                                "x": -18.0,
+                                "x": -17.600000381469728,
                                 "y": 8.5,
-                                "z": 4.0
+                                "z": 3.799999952316284
                             }
                         ]
                     }
@@ -4350,6 +3237,2536 @@
                             }
                         ]
                     }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        13451667849426907147,
+                        1065973164513037885,
+                        15320754602131540736,
+                        16415915133639986106,
+                        11735907707121220559,
+                        6834572007998493698,
+                        223102351977301267,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 44
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 3.0,
+                        "Timer": 0.0
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Unit State": {
+                        "Current State": 1
+                    },
+                    "Health": {
+                        "Current Health": 10,
+                        "Max Health": 10
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 2
+                    },
+                    "Name": {
+                        "Name": "FriendlyPaperUnit"
+                    },
+                    "Friendly": {},
+                    "Unit": {},
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 5.0
+                    },
+                    "Mass": {
+                        "Mass": 5.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 46
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 3.0,
+                        "Timer": 0.0
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Unit State": {
+                        "Current State": 1
+                    },
+                    "Health": {
+                        "Current Health": 10,
+                        "Max Health": 10
+                    },
+                    "Damage": {
+                        "Damage Type": 2,
+                        "Damage": 2
+                    },
+                    "Name": {
+                        "Name": "FriendlyRockUnit"
+                    },
+                    "Friendly": {},
+                    "Unit": {},
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 5.0
+                    },
+                    "Mass": {
+                        "Mass": 5.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 45
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 3.0,
+                        "Timer": 0.0
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Unit State": {
+                        "Current State": 1
+                    },
+                    "Health": {
+                        "Current Health": 10,
+                        "Max Health": 10
+                    },
+                    "Damage": {
+                        "Damage Type": 1,
+                        "Damage": 2
+                    },
+                    "Name": {
+                        "Name": "FriendlyScissorUnit"
+                    },
+                    "Friendly": {},
+                    "Unit": {},
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 5.0
+                    },
+                    "Mass": {
+                        "Mass": 5.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        13451667849426907147,
+                        1065973164513037885,
+                        15320754602131540736,
+                        16415915133639986106,
+                        5786312103493353911,
+                        6834572007998493698,
+                        223102351977301267,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 47
+                    },
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 3.0,
+                        "Timer": 0.0
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Unit State": {
+                        "Current State": 1
+                    },
+                    "Health": {
+                        "Current Health": 10,
+                        "Max Health": 10
+                    },
+                    "Damage": {
+                        "Damage Type": 0,
+                        "Damage": 2
+                    },
+                    "Name": {
+                        "Name": "EnemyPaperUnit"
+                    },
+                    "Enemy": {},
+                    "Unit": {},
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 5.0
+                    },
+                    "Mass": {
+                        "Mass": 5.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 48
+                    },
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 3.0,
+                        "Timer": 0.0
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Unit State": {
+                        "Current State": 1
+                    },
+                    "Health": {
+                        "Current Health": 10,
+                        "Max Health": 10
+                    },
+                    "Damage": {
+                        "Damage Type": 1,
+                        "Damage": 2
+                    },
+                    "Name": {
+                        "Name": "EnemyScissorUnit"
+                    },
+                    "Enemy": {},
+                    "Unit": {},
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 5.0
+                    },
+                    "Mass": {
+                        "Mass": 5.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 49
+                    },
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 3.0,
+                        "Timer": 0.0
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.5,
+                        "Dynamic Friction": 0.25,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Unit State": {
+                        "Current State": 1
+                    },
+                    "Health": {
+                        "Current Health": 10,
+                        "Max Health": 10
+                    },
+                    "Damage": {
+                        "Damage Type": 2,
+                        "Damage": 2
+                    },
+                    "Name": {
+                        "Name": "EnemyRockUnit"
+                    },
+                    "Enemy": {},
+                    "Unit": {},
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 5.0
+                    },
+                    "Mass": {
+                        "Mass": 5.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        1065973164513037885,
+                        16415915133639986106,
+                        5786312103493353911,
+                        16062924579251041610,
+                        17181171452395271051
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 11
+                    },
+                    "Mesh": {
+                        "Model": "NationalStadium",
+                        "Texture": "NationalStadium_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 8.0,
+                        "Timer": 5.0569305419921879
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -20.338958740234376,
+                            "y": 9.17773151397705,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -3.5,
+                            "y": -1.0,
+                            "z": -3.5
+                        },
+                        "Max Point": {
+                            "x": 3.5,
+                            "y": 2.0,
+                            "z": 3.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 10
+                    },
+                    "Health": {
+                        "Current Health": 60,
+                        "Max Health": 60
+                    },
+                    "Name": {
+                        "Name": "Stadium"
+                    },
+                    "Enemy": {},
+                    "Base": {},
+                    "Spawner": {
+                        "Spawn Position": [
+                            {
+                                "x": -18.0,
+                                "y": 8.5,
+                                "z": -4.0
+                            },
+                            {
+                                "x": -16.0,
+                                "y": 8.5,
+                                "z": -1.0
+                            },
+                            {
+                                "x": -18.0,
+                                "y": 8.5,
+                                "z": 4.0
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        12091664775214799190,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        1065973164513037885,
+                        16415915133639986106,
+                        5786312103493353911,
+                        16062924579251041610,
+                        17181171452395271051
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 10
+                    },
+                    "Mesh": {
+                        "Model": "NationalStadium",
+                        "Texture": "NationalStadium_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Timer": {
+                        "Cooldown Timer": 10.0,
+                        "Timer": 0.0
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            11
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -20.338958740234376,
+                            "y": 9.177729606628418,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Health": {
+                        "Current Health": 60,
+                        "Max Health": 60
+                    },
+                    "Name": {
+                        "Name": "Stadium"
+                    },
+                    "Enemy": {},
+                    "Base": {},
+                    "Spawner": {
+                        "Spawn Position": [
+                            {
+                                "x": -18.0,
+                                "y": 8.5,
+                                "z": -4.0
+                            },
+                            {
+                                "x": -16.0,
+                                "y": 8.5,
+                                "z": -1.0
+                            },
+                            {
+                                "x": -18.0,
+                                "y": 8.5,
+                                "z": 4.0
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        1065973164513037885,
+                        16415915133639986106,
+                        11735907707121220559,
+                        16062924579251041610,
+                        17181171452395271051
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 17
+                    },
+                    "Mesh": {
+                        "Model": "HDBBlock",
+                        "Texture": "HDB_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": -87.30000305175781,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 17.407609939575197,
+                            "y": 4.217556953430176,
+                            "z": 4.243843078613281
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -2.0,
+                            "y": -3.5,
+                            "z": -5.0
+                        },
+                        "Max Point": {
+                            "x": 2.0,
+                            "y": 6.5,
+                            "z": 5.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            1065973164513037885,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 16
+                    },
+                    "Health": {
+                        "Current Health": 60,
+                        "Max Health": 60
+                    },
+                    "Name": {
+                        "Name": "HDB"
+                    },
+                    "Friendly": {},
+                    "Base": {},
+                    "Spawner": {
+                        "Spawn Position": [
+                            {
+                                "x": 15.0,
+                                "y": 1.600000023841858,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 15.0,
+                                "y": 1.5,
+                                "z": 3.700000047683716
+                            },
+                            {
+                                "x": 15.0,
+                                "y": 1.5,
+                                "z": 9.0
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        1065973164513037885,
+                        16415915133639986106,
+                        11735907707121220559,
+                        16062924579251041610,
+                        17181171452395271051
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 16
+                    },
+                    "Mesh": {
+                        "Model": "HDBBlock",
+                        "Texture": "HDB_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            17
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": -87.30000305175781,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 18.236618041992189,
+                            "y": 4.217556953430176,
+                            "z": 4.204748153686523
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Health": {
+                        "Current Health": 60,
+                        "Max Health": 60
+                    },
+                    "Name": {
+                        "Name": "HDB"
+                    },
+                    "Friendly": {},
+                    "Base": {},
+                    "Spawner": {
+                        "Spawn Position": [
+                            {
+                                "x": 15.0,
+                                "y": 1.600000023841858,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 15.0,
+                                "y": 1.5,
+                                "z": 3.700000047683716
+                            },
+                            {
+                                "x": 15.0,
+                                "y": 1.5,
+                                "z": 9.0
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        2550044418833058707
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 52
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PauseButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            53,
+                            54,
+                            55,
+                            56,
+                            57,
+                            58,
+                            59
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "TemplateButton"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 0,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": true
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        2550044418833058707
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 53
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PauseButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.15000000596046449,
+                            "y": 0.20000000298023225,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.800000011920929,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "PauseButton"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 1,
+                        "Script Guid": 676647853506430990,
+                        "Active Status": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 54
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ResumeGameButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "ResumeButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 2,
+                        "Script Guid": 11808865971164719594,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 55
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "QuitToMainMenuButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "QuitToMenuButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 363949741224754573,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 56
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "PauseGamePanel",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "PauseBackground_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 2,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 57
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "YesButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.25,
+                            "y": -0.15000000596046449,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "ReturnMainMenuButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 4,
+                        "Script Guid": 7594871342180465470,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 58
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "NoButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.25,
+                            "y": -0.15000000596046449,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "CancelMainMenuButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 4,
+                        "Script Guid": 9376503613259406693,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 59
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ReturnToMainMenuPanel",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 52
+                    },
+                    "Name": {
+                        "Name": "ReturnMainMenuBackground_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 4,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        13107566195444653040,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        1065973164513037885,
+                        16415915133639986106,
+                        9543330243219282276
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 62
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            61,
+                            60
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            63
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Health": {
+                        "Current Health": 20,
+                        "Max Health": 40
+                    },
+                    "Name": {
+                        "Name": "Capture Point"
+                    },
+                    "Capture Point": {
+                        "Captured": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        16415915133639986106,
+                        5786312103493353911
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 61
+                    },
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 62
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.8999999761581421,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            64
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Enemy Flag"
+                    },
+                    "Enemy": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        16415915133639986106,
+                        11735907707121220559
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 60
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 62
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.8999999761581421,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            65
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Friendly Flag"
+                    },
+                    "Friendly": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        13107566195444653040,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        1065973164513037885,
+                        16415915133639986106,
+                        9543330243219282276
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 63
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            64,
+                            65
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 9.115264892578125,
+                            "y": 2.3434407711029054,
+                            "z": -15.246135711669922
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 62
+                    },
+                    "Health": {
+                        "Current Health": 20,
+                        "Max Health": 40
+                    },
+                    "Name": {
+                        "Name": "Capture Point"
+                    },
+                    "Capture Point": {
+                        "Captured": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        5786312103493353911
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 64
+                    },
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 63
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.8999999761581421,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 61
+                    },
+                    "Name": {
+                        "Name": "Enemy Flag"
+                    },
+                    "Enemy": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        11735907707121220559
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 65
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 63
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.8999999761581421,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 60
+                    },
+                    "Name": {
+                        "Name": "Friendly Flag"
+                    },
+                    "Friendly": {}
                 }
             ]
         }

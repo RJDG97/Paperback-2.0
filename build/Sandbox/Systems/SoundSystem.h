@@ -15,6 +15,7 @@ private:
     {
         FMOD::Studio::EventInstance* m_pSound = nullptr; // contains pointer to playing sound
         size_t m_ID; // contains the id to match with entity that spawned the sound
+        bool m_IsTriggerable; // clone of variable in component for deciding if entity is to be purged on sound play completion
     };
 
 public:
@@ -61,7 +62,7 @@ public:
     //play event 
     // helper function
     // loads and plays an event from the current loaded bank
-    void PlaySoundEvent( const std::string_view& Path) 
+    void PlaySoundEvent( const std::string_view& Path, bool IsTriggerable = false ) 
     {
 
         FMOD::Studio::EventDescription* event = nullptr;
@@ -73,18 +74,24 @@ public:
             m_SoundFiles.back().m_ID = ++m_SoundCounter;
 
             event->createInstance(&m_SoundFiles.back().m_pSound);
-            FMOD_RESULT result = m_SoundFiles.back().m_pSound->start(); 
-            
-            ERROR_LOG("Play Sound Event Result: " + result);
+            m_SoundFiles.back().m_IsTriggerable = IsTriggerable;
 
-            //in case of extra load case to debug log
-            FMOD_STUDIO_PLAYBACK_STATE be;
-            m_SoundFiles.back().m_pSound->getPlaybackState(&be);
+            if (!IsTriggerable)
+            {
 
-            m_SoundFiles.back().m_pSound->setVolume(0.1f);
+                FMOD_RESULT result = m_SoundFiles.back().m_pSound->start();
 
-            if (be != 0)
-                ERROR_LOG("Play Sound Event Playback State: " + be);
+                ERROR_LOG("Play Sound Event Result: " + result);
+
+                //in case of extra load case to debug log
+                FMOD_STUDIO_PLAYBACK_STATE be;
+                m_SoundFiles.back().m_pSound->getPlaybackState(&be);
+
+                m_SoundFiles.back().m_pSound->setVolume(0.1f);
+
+                if (be != 0)
+                    ERROR_LOG("Play Sound Event Playback State: " + be);
+            }
         }
         else {
 
@@ -110,6 +117,7 @@ public:
         for (SoundFile& sound : m_SoundFiles)
         {
 
+            sound.m_IsTriggerable = false;
             StopSoundEvent(sound.m_pSound);
         }
     }
@@ -317,8 +325,26 @@ public:
         {
 
             //if no, then create new entry and add into record of currently playing sounds
-            PlaySoundEvent( Sound.m_SoundID );
+            PlaySoundEvent( Sound.m_SoundID, Sound.m_IsTriggerable );
             Sound.m_SoundPlayTag = m_SoundCounter;
+        }
+        else if (Sound.m_IsTriggerable)
+        {
+
+            //sound exists and is triggerable
+            //check current playback status
+            FMOD_STUDIO_PLAYBACK_STATE be;
+            sound_check->m_pSound->getPlaybackState(&be);
+                
+
+            //if sound is stopped or yet to begin, check trigger status
+            if (be == 2 && Sound.m_Trigger)
+            {
+
+                //trigger is active, play the sound and reset trigger
+                Sound.m_Trigger = false;
+                sound_check->m_pSound->start();
+            }
         }
         else
         {
@@ -361,7 +387,7 @@ public:
             sound.m_pSound->getPlaybackState(&be);
 
             //if sound has stopped, mark for removal
-            if (be == 2) {
+            if (be == 2 && !sound.m_IsTriggerable) {
 
                 sound.m_ID = 0;
             }

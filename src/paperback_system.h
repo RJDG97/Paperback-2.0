@@ -85,6 +85,7 @@ namespace paperback::system
 		{
 			UPDATE = 0
 		,	SYSTEM_EVENT
+		,	GLOBAL_SYSTEM_EVENT
 		,	NOTIFY_PREFAB_MODIFIED		// Future Implementation
 		,	NOTIFY_COMPONENT_ADDED		// Future Implementation
 		,	NOTIFY_COMPONENT_REMOVED	// Future Implementation
@@ -110,6 +111,14 @@ namespace paperback::system
 		struct update
 		{
 			static constexpr auto id_v = id::UPDATE;
+
+            type::guid                   m_Guid { };
+            const char*                  m_pName{ };
+		};
+
+		struct global_system_event
+		{
+			static constexpr auto id_v = id::GLOBAL_SYSTEM_EVENT;
 
             type::guid                   m_Guid { };
             const char*                  m_pName{ };
@@ -311,7 +320,7 @@ namespace paperback::system
 		glm::vec2 GetMouseDirection() noexcept;
 
 		PPB_INLINE
-		glm::vec3 GetMousePositionInUI() noexcept;
+		glm::vec2 GetMousePositionInUI() noexcept;
 
 		PPB_INLINE
 		glm::vec3 GetViewportMousePosition( glm::vec2 viewport_min, glm::vec2 viewport_max ) noexcept;

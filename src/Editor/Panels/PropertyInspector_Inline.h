@@ -18,7 +18,7 @@ void DetailsWindow::DisplayProperties()
     {
         ImGui::PushItemWidth(120.0f);
 
-        if (!m_Imgui.m_SelectedEntity.first->GetComponentBits().Has(paperback::component::info_v<reference_prefab>.m_UID)) //Cannot amend components if 
+        if (!m_Imgui.m_SelectedEntity.first->GetComponentBits().Has(paperback::component::info_v<reference_prefab>.m_UID)) 
         {
             AddComponent();
 

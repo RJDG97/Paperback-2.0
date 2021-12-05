@@ -48,7 +48,7 @@ struct ui_system : paperback::system::pausable_instance
         // Grab Mouse Coords
         auto pos = GetMousePositionInUI();
 
-        if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, pos.z } ) )
+        if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, 0.0f } ) )
         {
             if ( Button && Button->m_bActive )
             {
@@ -106,7 +106,7 @@ struct ui_system : paperback::system::pausable_instance
 
             ForEach( Search( m_ButtonQuery ), [&]( entity& Entity, transform& Transform, scale& Scale, button* Button, card* Card, selected* Selected ) noexcept
             {
-                if ( UICollided( Transform, Scale, paperback::Vector3f{ MPos.x, MPos.y, MPos.z } ) )
+                if ( UICollided( Transform, Scale, paperback::Vector3f{ MPos.x, MPos.y, 0.0f } ) )
                 {
                     // Key Pressed & Released
                     if ( Clicked )
@@ -150,11 +150,6 @@ struct ui_system : paperback::system::pausable_instance
                         // System Has Selected A Card
                         if ( Card && Selected && Selected->m_Value )
                         {
-                            //// Offset between Cursor & Card Position
-                            //auto Cursor = paperback::Vector3f{ MPos.x, MPos.y, 0.0f};
-                            //auto Offset = Cursor - Transform.m_Position;
-                            //Transform.m_Position = Cursor + Offset;
-
                             Transform.m_Position = paperback::Vector3f{ MPos.x, MPos.y, 0.0f };
                         }
                         // System Yet To Pick Card
@@ -175,7 +170,7 @@ struct ui_system : paperback::system::pausable_instance
 
         PPB.OpenQueuedScene();
 
-        if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE))
+        /*if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE))
         {
             
             if (PPB.VerifyState("Editor"))
@@ -191,7 +186,7 @@ struct ui_system : paperback::system::pausable_instance
                 ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
                 ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
             }
-        }
+        }*/
     }
 
     //given a layer, disable/enable all buttons with spe

@@ -405,6 +405,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<Triangle>())
                 NewArchetype->GetComponent<Triangle>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<Triangle>();
+
+            if (obj.is_type<capture_point>())
+                NewArchetype->GetComponent<capture_point>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<capture_point>();
         }
     }
 
