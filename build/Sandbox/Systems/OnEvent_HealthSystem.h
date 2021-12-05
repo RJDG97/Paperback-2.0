@@ -18,9 +18,11 @@ struct onevent_NoHealth_system : paperback::system::instance
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
         
         // if Unit health is 0 despawn
-        auto Unit = m_obj.m_pArchetype->FindComponent<unit>(m_obj.m_PoolDetails);
+        auto [ Unit, Anim, Unit_State] = m_obj.m_pArchetype->FindComponents<unit, animator, unitstate>(m_obj.m_PoolDetails);
         if (Unit) {
-            DeleteEntity(obj);
+            if (Unit_State->IsState(UnitState::DEAD) && Anim->m_FinishedAnimating) {
+                DeleteEntity(obj);
+            }
             return;
         }
 

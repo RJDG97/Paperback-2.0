@@ -11,7 +11,7 @@ struct collision_system : paperback::system::pausable_instance
         .m_pName = "collision_system"
     };
 
-    struct OnCollisionEnter       : paperback::event::instance< entity& , entity&, rigidforce&, rigidforce& > {};
+    struct OnCollisionEnter       : paperback::event::instance< entity& , entity&, rigidforce&, rigidforce&, bool& > {};
     struct OnCollisionStay        : paperback::event::instance< entity&, entity&, rigidforce&, rigidforce&, bool& > {};
     struct OnCollisionExit        : paperback::event::instance< entity&, rigidforce&, bool& > {};
 
@@ -59,10 +59,7 @@ struct collision_system : paperback::system::pausable_instance
                     {
                         // Current Entity is NOT Colliding with Other Entity
                         if (!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) {
-                            BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, *RigidForce, *RF);
-                            // Update Collision State of Current Entity to Other Entity
-                            Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
-                            Boundingbox->m_Collided = BB->m_Collided = true;
+                            BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, *RigidForce, *RF, SkipUnit);
                         }
                         // Current Entity is ALREADY Colliding with Other Entity
                         else
@@ -71,6 +68,10 @@ struct collision_system : paperback::system::pausable_instance
                         // Collision Response
                         if ( !SkipUnit )
                             CheapaabbDynamic( Boundingbox, RigidForce, Transform, m1, BB, RF, Xform, m2 );
+                    
+                        // Update Collision State of Current Entity to Other Entity
+                        Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
+                        Boundingbox->m_Collided = BB->m_Collided = true;
                     }
 
                     NotCollided = false;
