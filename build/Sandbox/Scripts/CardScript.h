@@ -64,11 +64,15 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
         Deck_Query.m_Must.AddFromComponents < deck, friendly>();
         Deck_Query.m_NoneOf.AddFromComponents< prefab >();
         
-        m_Coordinator.ForEach(m_Coordinator.Search(Deck_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Deck)  noexcept
+        m_Coordinator.ForEach(m_Coordinator.Search(Deck_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Deck, sound& Sound)  noexcept
             {
+                Sound.m_Trigger = true;
+
                 bool CardsAvail = false;
+                int deckno = 0;
                 // Check if cards are available
                 for (int i = 0; i < Deck.m_Deck.size(); i++) {
+                    deckno += Deck.m_Deck[i].m_Count;
                     if (Deck.m_Deck[i].m_Count > 0)
                         CardsAvail = true;
                 }
@@ -85,6 +89,18 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                     if (Deck.m_Deck[cardindex].m_Count > 0) {
                         // Decrease available card count
                         Deck.m_Deck[cardindex].m_Count--;
+                        deckno--;
+
+                        // Initialize Query
+                        tools::query Text_Query;
+
+                        Text_Query.m_Must.AddFromComponents < text, friendly>();
+                        Text_Query.m_NoneOf.AddFromComponents< prefab >();
+
+                        m_Coordinator.ForEach(m_Coordinator.Search(Text_Query), [&](paperback::component::entity& Dynamic_Entity, text& Text)  noexcept
+                            {
+                                Text.m_Text = std::to_string(deckno);
+                            });
 
                         // Spawn Card
                         // Check if GID is Valid

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 3
+                "EntityHead": 1
             }
         },
         {
@@ -175,7 +175,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            6
+                            6,
+                            3
                         ]
                     },
                     "Rotation": {
@@ -234,6 +235,68 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
+                        "Texture": "YouLostTitle",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Background"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 0,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 3
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
                         "Texture": "QuitToMainMenuButton_Unselected",
                         "Shadow Bias": 1,
                         "Active": true
@@ -266,8 +329,8 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            9604788041699812520,
                             2550044418833058707,
+                            9604788041699812520,
                             5691439207370049121,
                             17008353085049151909,
                             16415915133639986106,

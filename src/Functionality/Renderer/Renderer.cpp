@@ -158,36 +158,55 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard.dds", true);
 	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard.dds", true);
 
+
 	// Menu Backgrounds
-	m_Resources.LoadTextures("MainMenuBackground", "../../resources/textures/UI/Menus/Backgrounds/MainMenuBackground.dds", true);
-	m_Resources.LoadTextures("PauseGamePanel", "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel.dds", true);
-	m_Resources.LoadTextures("QuitGameConfirmationPanel", "../../resources/textures/UI/Menus/Backgrounds/QuitGameConfirmationPanel.dds", true);
-	m_Resources.LoadTextures("ReturnToMainMenuPanel", "../../resources/textures/UI/Menus/Backgrounds/ReturnToMainMenuPanel.dds", true);
+	m_Resources.LoadTextures("MainMenuBackground", "../../resources/textures/UI/Menus/Backgrounds/MainMenuBackground_Mirrored.dds", true);
+	m_Resources.LoadTextures("PauseGamePanel", "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel_Mirrored.dds", true);
+	m_Resources.LoadTextures("QuitGameConfirmationPanel", "../../resources/textures/UI/Menus/Backgrounds/QuitGameConfirmationPanel_Mirrored.dds", true);
+	m_Resources.LoadTextures("ReturnToMainMenuPanel", "../../resources/textures/UI/Menus/Backgrounds/ReturnToMainMenuPanel_Mirrored.dds", true);
+	m_Resources.LoadTextures("YouLostTitle", "../../resources/textures/UI/Menus/Backgrounds/YouLostTitle_Mirrored.dds", true);
+	m_Resources.LoadTextures("YouWonTitle", "../../resources/textures/UI/Menus/Backgrounds/YouWonTitle_Mirrored.dds", true);
+
 
 	// Buttons
-	m_Resources.LoadTextures("PauseButton_Unselected", "../../resources/textures/UI/Menus/Buttons/PauseButton_Unselected.dds", true);
-	m_Resources.LoadTextures("CreditsButton_Selected", "../../resources/textures/UI/Menus/Buttons/CreditsButton_Selected.dds", true);
-	m_Resources.LoadTextures("CreditsButton_Unselected", "../../resources/textures/UI/Menus/Buttons/CreditsButton_Unselected.dds", true);
-	m_Resources.LoadTextures("HowToPlayButton_Selected", "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Selected.dds", true);
-	m_Resources.LoadTextures("HowToPlayButton_Unselected", "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Unselected.dds", true);
-	m_Resources.LoadTextures("QuitGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Selected.dds", true);
-	m_Resources.LoadTextures("QuitGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Unselected.dds", true);
-	m_Resources.LoadTextures("QuitToMainMenuButton_Selected", "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Selected.dds", true);
-	m_Resources.LoadTextures("QuitToMainMenuButton_Unselected", "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected.dds", true);
-	m_Resources.LoadTextures("RestartLevelButton_Selected", "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Selected.dds", true);
-	m_Resources.LoadTextures("RestartLevelButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Unselected.dds", true);
-	m_Resources.LoadTextures("ResumeGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Selected.dds", true);
-	m_Resources.LoadTextures("ResumeGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Unselected.dds", true);
-	m_Resources.LoadTextures("SelectLevelButton_Selected", "../../resources/textures/UI/Menus/Buttons/SelectLevelButton_Selected.dds", true);
-	m_Resources.LoadTextures("SelectLevelButton_Unselected", "../../resources/textures/UI/Menus/Buttons/SelectLevelButton_Unselected.dds", true);
-	m_Resources.LoadTextures("SettingsButton_Selected", "../../resources/textures/UI/Menus/Buttons/SettingsButton_Selected.dds", true);
-	m_Resources.LoadTextures("SettingsButton_Unselected", "../../resources/textures/UI/Menus/Buttons/SettingsButton_Unselected.dds", true);
-	m_Resources.LoadTextures("StartGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/StartGameButton_Selected.dds", true);
-	m_Resources.LoadTextures("StartGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/StartGameButton_Unselected.dds", true);
-	m_Resources.LoadTextures("YesButton_Selected", "../../resources/textures/UI/Menus/Buttons/YesButton_Selected.dds", true);
-	m_Resources.LoadTextures("YesButton_Unselected", "../../resources/textures/UI/Menus/Buttons/YesButton_Unselected.dds", true);
-	m_Resources.LoadTextures("NoButton_Selected", "../../resources/textures/UI/Menus/Buttons/NoButton_Selected.dds", true);
-	m_Resources.LoadTextures("NoButton_Unselected", "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected.dds", true);
+	m_Resources.LoadTextures("PauseButton_Unselected", "../../resources/textures/UI/Menus/Buttons/PauseButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("CreditsButton_Selected", "../../resources/textures/UI/Menus/Buttons/CreditsButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("CreditsButton_Unselected", "../../resources/textures/UI/Menus/Buttons/CreditsButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("HowToPlayButton_Selected", "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("HowToPlayButton_Unselected", "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("QuitGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("QuitGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("QuitToMainMenuButton_Selected", "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("QuitToMainMenuButton_Unselected", "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("RestartLevelButton_Selected", "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("RestartLevelButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("ResumeGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("ResumeGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("SelectLevelButton_Selected", "../../resources/textures/UI/Menus/Buttons/SelectLevelButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("SelectLevelButton_Unselected", "../../resources/textures/UI/Menus/Buttons/SelectLevelButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("SettingsButton_Selected", "../../resources/textures/UI/Menus/Buttons/SettingsButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("SettingsButton_Unselected", "../../resources/textures/UI/Menus/Buttons/SettingsButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("StartGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/StartGameButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("StartGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/StartGameButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("YesButton_Selected", "../../resources/textures/UI/Menus/Buttons/YesButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("YesButton_Unselected", "../../resources/textures/UI/Menus/Buttons/YesButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("NoButton_Selected", "../../resources/textures/UI/Menus/Buttons/NoButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("NoButton_Unselected", "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("LeftButton_Selected", "../../resources/textures/UI/Menus/Buttons/LeftButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("LeftButton_Unselected", "../../resources/textures/UI/Menus/Buttons/LeftButton_Unselected_Mirrored.dds", true);
+	m_Resources.LoadTextures("RightButton_Selected", "../../resources/textures/UI/Menus/Buttons/RightButton_Selected_Mirrored.dds", true);
+	m_Resources.LoadTextures("RightButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RightButton_Unselected_Mirrored.dds", true);
+
+	//How To Play assets
+	m_Resources.LoadTextures("CapturePoint_HowToPlay", "../../resources/textures/UI/Menus/How to Play/CapturePoint_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("Controls_HowToPlay", "../../resources/textures/UI/Menus/How to Play/Controls_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("DeckSize_HowToPlay", "../../resources/textures/UI/Menus/How to Play/DeckSize_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("Objective_HowToPlay", "../../resources/textures/UI/Menus/How to Play/Objective_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("RPS_HowToPlay", "../../resources/textures/UI/Menus/How to Play/RPS_HowToPlay_Mirrored.dds", true);
+	m_Resources.LoadTextures("SummonUnits_HowToPlay", "../../resources/textures/UI/Menus/How to Play/SummonUnits_HowToPlay_Mirrored.dds", true);
+
+	// Activity Log
+	m_Resources.LoadTextures("ActivityLog", "../../resources/textures/UI/ActivityFeedBackground.dds", true);
 
 
 	// Enable alpha blending
@@ -798,8 +817,8 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 
 	// Clear shadow depth buffer
 	glClear(GL_DEPTH_BUFFER_BIT);
-	//glCullFace(GL_FRONT);
-	glDisable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
+
 	// Bind shader
 	m_Resources.m_Shaders["Shadow"].Use();
 
@@ -854,8 +873,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 	// Unbind shader
 	m_Resources.m_Shaders["Shadow"].UnUse();
 
-	//glCullFace(GL_BACK);
-	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 }
 
 void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
