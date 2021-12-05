@@ -1,11 +1,9 @@
 #pragma once
-#include "WindowSystem.h"
 
-#include <dearImGui/IconsFontAwesome5.h>
+#include "WindowSystem.h"
 #include <sstream>
 #include <filesystem>
 
-#include "../../../src/paperback_camera.h"
 //----------------------------------
 // ImGui Headers
 //----------------------------------
@@ -15,6 +13,7 @@
 #include <dearImGui/imgui_internal.h>
 #include <dearImGui/ImGuiFileBrowser.h>
 #include <dearImGui/ImGuizmo/ImGuizmo.h>
+#include <dearImGui/IconsFontAwesome5.h>
 //----------------------------------
 // Panel Headers
 //----------------------------------
@@ -64,7 +63,7 @@ struct imgui_system : paperback::system::instance
     std::vector < std::pair < rttr::instance, paperback::component::type::guid> > m_Components = {};
     std::vector <const char*> m_ComponentNames = {};
 
-    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile = {}, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
+    std::string m_LoadedPath, m_LoadedFile, m_SelectedFile, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
     std::string m_LoadedPrefabPath, m_LoadedPrefabFile;
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity; //first: pointer to the archetype | second: entity index
@@ -836,7 +835,7 @@ struct imgui_system : paperback::system::instance
         else if (PropertyType == rttr::type::get<size_t>())
         {
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-            ImGui::Text("llu", PropertyValue.get_value<size_t>());
+            ImGui::Text("%llu", PropertyValue.get_value<size_t>());
         }
     }
 
