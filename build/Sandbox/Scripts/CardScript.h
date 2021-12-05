@@ -30,7 +30,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
             auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
             auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);
             transform* Transform = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
-            path_follower* Path = &m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
+            path_follower* Path_Follower = &m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
 
             // <Update Instance Info>
             tools::query Spawner_Query;
@@ -38,11 +38,22 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
             Spawner_Query.m_Must.AddFromComponents < spawner, friendly>();
             Spawner_Query.m_NoneOf.AddFromComponents< prefab >();
 
-            m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, spawner& Spawner)  noexcept
+            tools::query Path_Query;
+
+            Path_Query.m_Must.AddFromComponents < path, selected>();
+            Path_Query.m_NoneOf.AddFromComponents< prefab >();
+
+            m_Coordinator.ForEach(m_Coordinator.Search(Path_Query), [&](path& Path, selected& Selected)  noexcept
+            {
+                if (Selected.m_Value)
                 {
-                    Transform->m_Position = Spawner.m_Position[Spawner.lane];
-                    Path->m_ID = Spawner.lane;
-                });
+                    m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, spawner& Spawner)  noexcept
+                        {
+                            Transform->m_Position = Spawner.m_Position[Path.m_ID];
+                            Path_Follower->m_ID = Path.m_ID;
+                        });
+                }
+            });
         }
 
         // Spawn new Card

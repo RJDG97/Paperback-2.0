@@ -49,12 +49,12 @@ struct animator_system : paperback::system::pausable_instance
 
 			Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
 
-			if (Ator.m_PlayOnce && Ator.m_CurrentTime >= current_anim.GetDuration())
+			if (Ator.m_CurrentTime >= current_anim.GetDuration())
 			{
 				Ator.m_FinishedAnimating = true;
 			}
 
-			else
+			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating))
 			{
 				Ator.m_CurrentTime = fmod(Ator.m_CurrentTime, current_anim.GetDuration());
 
