@@ -28,7 +28,7 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         auto m_obj2 = GetEntityInfo(obj2.m_GlobalIndex);
 
         // Get Relevant Components
-        auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State ]  = m_obj.m_pArchetype->FindComponents < friendly, enemy, unitstate >( m_obj.m_PoolDetails );
+        auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, Sound_1 ]  = m_obj.m_pArchetype->FindComponents < friendly, enemy, unitstate, base, sound >( m_obj.m_PoolDetails );
         auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, CapturePt_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, capture_point >( m_obj2.m_PoolDetails );
 
         // Same Unit Type && Not Currently Fighting - WALK
@@ -56,8 +56,13 @@ struct onevent_UnitTrigger_system : paperback::system::instance
                   (Unit_1_Enemy && Unit_2_Friendly) || 
                   ((Unit_1_Friendly || Unit_1_Enemy) && CapturePt_2 && !CapturePt_2->m_Captured ))
         {
-            // Disable Movement - Maintain Collision
-            ResetForces( rf, rf2 );
+            if (Base_1 || Sound_1)
+            {
+                Sound_1->m_Trigger = true;
+                // Disable Movement - Maintain Collision
+                ResetForces(rf, rf2);
+                return;
+            }
 
             // Set Unit's State to Attack
             Unit_State->SetState( UnitState::ATTACK );
@@ -99,7 +104,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         auto m_obj2 = GetEntityInfo(obj2.m_GlobalIndex);
 
         // Get Relevant Components
-        auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, CapturePt ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point >( m_obj.m_PoolDetails );
+        auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, CapturePt, Sound_1 ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point, sound >( m_obj.m_PoolDetails );
         auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, Base_2, CapturePt_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point >( m_obj2.m_PoolDetails );
 
         // Skip if it's Base or Capture Point
@@ -141,6 +146,8 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                 {
                     if ( Timer_1->m_Value <= 0.0f )
                     {
+                        if (Sound_1)
+                            Sound_1->m_Trigger = true;
                         // Unit vs Unit or Base
                         if ( !CapturePt_2 )
                         {

@@ -55,15 +55,15 @@ struct collision_system : paperback::system::pausable_instance
                 if ( AabbAabb( Transform.m_Position + Boundingbox->Min, Transform.m_Position + Boundingbox->Max
                              , Xform.m_Position + BB->Min, Xform.m_Position + BB->Max ) )
                 {
-                    // Update Collision State of Current Entity to Other Entity
-                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
-                    Boundingbox->m_Collided = BB->m_Collided = true;
-
                     if ( RigidForce && RF )
                     {
                         // Current Entity is NOT Colliding with Other Entity
-                        if( !Boundingbox->m_CollisionState.at( Dynamic_Entity.m_GlobalIndex ) )
-                            BroadcastGlobalEvent<OnCollisionEnter>( Entity, Dynamic_Entity, *RigidForce, *RF );
+                        if (!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) {
+                            BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, *RigidForce, *RF);
+                            // Update Collision State of Current Entity to Other Entity
+                            Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
+                            Boundingbox->m_Collided = BB->m_Collided = true;
+                        }
                         // Current Entity is ALREADY Colliding with Other Entity
                         else
                             BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, *RigidForce, *RF, SkipUnit );

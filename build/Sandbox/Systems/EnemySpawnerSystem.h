@@ -33,8 +33,9 @@ struct enemy_spawner_system : paperback::system::pausable_instance
             Spawner_Query.m_Must.AddFromComponents < deck, enemy>();
             Spawner_Query.m_NoneOf.AddFromComponents< prefab >();
 
-            m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Dynamic_Deck)  noexcept
+            m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Dynamic_Deck, sound& Sound)  noexcept
                 {
+                    Sound.m_Trigger = true;
                     bool CardsAvail = false;
                     int deckno = 0;
                     // Check if cards are available

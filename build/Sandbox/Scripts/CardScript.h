@@ -64,8 +64,10 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
         Deck_Query.m_Must.AddFromComponents < deck, friendly>();
         Deck_Query.m_NoneOf.AddFromComponents< prefab >();
         
-        m_Coordinator.ForEach(m_Coordinator.Search(Deck_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Deck)  noexcept
+        m_Coordinator.ForEach(m_Coordinator.Search(Deck_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Deck, sound& Sound)  noexcept
             {
+                Sound.m_Trigger = true;
+
                 bool CardsAvail = false;
                 int deckno = 0;
                 // Check if cards are available
