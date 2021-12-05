@@ -20,41 +20,41 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
 
     void OnClick(paperback::component::entity& Entity, paperback::u32 PrefabGID, int PositionIndex ) noexcept override
     {
-        auto list = m_Coordinator.Search<paperback::component::entity>();
+        tools::query Path_Query;
 
-        // Check if GID is Valid
-        // Get Unit Info and Spawn unit
-        auto PrefabInfo = m_Coordinator.GetEntityInfo(PrefabGID);
-        if ( PrefabInfo.m_pArchetype )
+        Path_Query.m_Must.AddFromComponents < path, selected>();
+        Path_Query.m_NoneOf.AddFromComponents< prefab >();
+
+        m_Coordinator.ForEach(m_Coordinator.Search(Path_Query), [&](path& Path, selected& Selected)  noexcept
         {
-            auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
-            auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);
-            transform* Transform = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
-            path_follower* Path_Follower = &m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
-
-            // <Update Instance Info>
-            tools::query Spawner_Query;
-
-            Spawner_Query.m_Must.AddFromComponents < spawner, friendly>();
-            Spawner_Query.m_NoneOf.AddFromComponents< prefab >();
-
-            tools::query Path_Query;
-
-            Path_Query.m_Must.AddFromComponents < path, selected>();
-            Path_Query.m_NoneOf.AddFromComponents< prefab >();
-
-            m_Coordinator.ForEach(m_Coordinator.Search(Path_Query), [&](path& Path, selected& Selected)  noexcept
+            if (Selected.m_Value)
             {
-                if (Selected.m_Value)
+                auto list = m_Coordinator.Search<paperback::component::entity>();
+
+                // Check if GID is Valid
+                // Get Unit Info and Spawn unit
+                auto PrefabInfo = m_Coordinator.GetEntityInfo(PrefabGID);
+                if ( PrefabInfo.m_pArchetype )
                 {
+                    auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
+                    auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);
+                    transform* Transform = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
+                    path_follower* Path_Follower = &m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
+
+                    // <Update Instance Info>
+                    tools::query Spawner_Query;
+
+                    Spawner_Query.m_Must.AddFromComponents < spawner, friendly>();
+                    Spawner_Query.m_NoneOf.AddFromComponents< prefab >();
+
                     m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, spawner& Spawner)  noexcept
-                        {
-                            Transform->m_Position = Spawner.m_Position[Path.m_ID];
-                            Path_Follower->m_ID = Path.m_ID;
-                        });
+                    {
+                        Transform->m_Position = Spawner.m_Position[Path.m_ID];
+                        Path_Follower->m_ID = Path.m_ID;
+                    });
                 }
-            });
-        }
+            }
+        });
 
         // Spawn new Card
        

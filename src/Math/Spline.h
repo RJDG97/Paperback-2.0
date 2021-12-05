@@ -131,6 +131,11 @@ namespace paperback
 
 			for (; p > m_Points[i].m_Length; ++i)
 			{
+				if (i == m_Points.size() - 1)
+				{
+					return static_cast<float>(m_Points.size() - 1);
+				}
+
 				p -= m_Points[i].m_Length;
 			}
 

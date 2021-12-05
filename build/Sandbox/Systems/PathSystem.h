@@ -172,48 +172,46 @@ struct path_system : paperback::system::instance
 			for (int i = 0 ; i < splines.size() ; ++i)
 			{
 				float interval{ 3.0f };
-				float distance{};
 
-				for (float normalized_offset = 0.0f; normalized_offset < static_cast<float>(splines[i].m_Points.size()) - 3.5f; distance += interval)
+				for (float normalized_offset = 0.0f, distance = 0.0f;
+					 normalized_offset < static_cast<float>(splines[i].m_Points.size()) - 3.5f;
+					 distance += interval)
 				{
 					paperback::Vector3f box_point{ splines[i].GetSplinePoint(normalized_offset).m_Point };
-					paperback::Vector3f min{ -1.7f, -1.7f, -1.7f };
-					paperback::Vector3f max{ 1.7f, 1.7f, 1.7f };
+					paperback::Vector3f min{ -2.2f, -2.2f, -2.2f };
+					paperback::Vector3f max{ -min };
 					lane_boxes.push_back({ min, max, box_point, i });
 					normalized_offset = splines[i].GetNormalizedOffset(distance);
 				}
 			}
 
 			int lane{-1};
-			glm::vec3 CamPos, RayDir;
 			float t = 0.0f;
-
-			CamPos = Camera3D::GetInstanced().GetPosition();
-			RayDir = PPB.GetMousePosition();
+			glm::vec3 CamPos{ Camera3D::GetInstanced().GetPosition() };
+			glm::vec3 RayDir{ PPB.GetMousePosition() };
 
 			for (auto& lane_box : lane_boxes)
 			{
-				//reset all the selecteds
 				if (RayAabb({ CamPos.x, CamPos.y, CamPos.z },
 							{ RayDir.x, RayDir.y, RayDir.z },
 							lane_box.m_Position + lane_box.m_Min, lane_box.m_Position + lane_box.m_Max, t))
 				{
 					lane = lane_box.m_Lane;
-
-					ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected) noexcept
-					{
-						if (Path.m_ID == lane_box.m_Lane)
-						{
-							Selected.m_Value = true;
-						}
-
-						else
-						{
-							Selected.m_Value = false;
-						}
-					});
 				}
 			}
+
+			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected) noexcept
+			{
+				if (Path.m_ID == lane)
+				{
+					Selected.m_Value = true;
+				}
+
+				else
+				{
+					Selected.m_Value = false;
+				}
+			});
 
 			//if (debug_sys->m_IsDebug)
 			//{
