@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 62
+                "EntityHead": 70
             }
         },
         {
@@ -295,6 +295,102 @@
                     },
                     "Name": {
                         "Name": "EnemyHealthBar"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 60
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ActivityLog",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.20000000298023225,
+                            "y": 0.20000000298023225,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.800000011920929,
+                            "y": -0.6000000238418579,
+                            "z": 0.20000000298023225
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 62
+                    },
+                    "Name": {
+                        "Name": "TextBGPlayerDeck"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 61
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ActivityLog",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.30000001192092898,
+                            "y": 0.10000000149011612,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.6800000071525574,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 62
+                    },
+                    "Name": {
+                        "Name": "TextBGEnemyDeck"
                     }
                 }
             ]
@@ -661,6 +757,52 @@
                     },
                     "Name": {
                         "Name": "EnemyHealthBar"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 62
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ActivityLog",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            60,
+                            61
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "TextBG"
                     }
                 }
             ]
@@ -2059,15 +2201,15 @@
                         "Deck Details": [
                             {
                                 "Card GID": 47,
-                                "Count": 9
+                                "Count": 10
                             },
                             {
                                 "Card GID": 48,
-                                "Count": 9
+                                "Count": 10
                             },
                             {
                                 "Card GID": 49,
-                                "Count": 9
+                                "Count": 10
                             }
                         ],
                         "Deck Pos": [
@@ -4285,7 +4427,7 @@
                         "Prefab GID": 12
                     },
                     "Selected": {
-                        "Selected": false
+                        "Selected": true
                     },
                     "Name": {
                         "Name": "Top Path"
@@ -4771,7 +4913,7 @@
                         "Is Collide": false
                     },
                     "Selected": {
-                        "Selected": false
+                        "Selected": true
                     },
                     "Name": {
                         "Name": "Top Path"
@@ -5171,6 +5313,450 @@
                             }
                         ],
                         "Path ID": 1
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        3030050882574831430
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 63
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 5.0,
+                            "y": 5.0,
+                            "z": 5.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            64,
+                            65
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "CardDeckText"
+                    },
+                    "Text": {
+                        "Font": "arial",
+                        "Text": "This",
+                        "Color": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        11735907707121220559,
+                        3030050882574831430
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 66
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            67
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "CardNumberFriend"
+                    },
+                    "Friendly": {},
+                    "Text": {
+                        "Font": "arial",
+                        "Text": "27",
+                        "Color": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        11735907707121220559,
+                        3030050882574831430
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 67
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.7900000214576721,
+                            "y": -0.6299999952316284,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3030050882574831430,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 66
+                    },
+                    "Name": {
+                        "Name": "CardNumberFriend"
+                    },
+                    "Friendly": {},
+                    "Text": {
+                        "Font": "arial",
+                        "Text": "27",
+                        "Color": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        3030050882574831430
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 64
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.7200000286102295,
+                            "y": -0.5699999928474426,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3030050882574831430,
+                            16415915133639986106,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 63
+                    },
+                    "Name": {
+                        "Name": "CardDeckTextFriend"
+                    },
+                    "Text": {
+                        "Font": "arial",
+                        "Text": "Remaining Cards",
+                        "Color": {
+                            "x": 225.0,
+                            "y": 225.0,
+                            "z": 225.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 65
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.10000000149011612,
+                            "y": 0.699999988079071,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3030050882574831430,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 63
+                    },
+                    "Name": {
+                        "Name": "CardDeckText"
+                    },
+                    "Text": {
+                        "Font": "arial",
+                        "Text": "Enemy Deck: ",
+                        "Color": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        5786312103493353911,
+                        3030050882574831430
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 68
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            69
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.03999999910593033,
+                            "y": 0.699999988079071,
+                            "z": 1.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "CardNumberEnemy"
+                    },
+                    "Enemy": {},
+                    "Text": {
+                        "Font": "arial",
+                        "Text": "30",
+                        "Color": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        5786312103493353911,
+                        3030050882574831430
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 69
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.03999999910593033,
+                            "y": 0.699999988079071,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 68
+                    },
+                    "Name": {
+                        "Name": "CardNumberEnemy"
+                    },
+                    "Enemy": {},
+                    "Text": {
+                        "Font": "arial",
+                        "Text": "30",
+                        "Color": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
+                        }
                     }
                 }
             ]
