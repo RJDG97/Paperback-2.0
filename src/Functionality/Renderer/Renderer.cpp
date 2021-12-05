@@ -798,8 +798,8 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 
 	// Clear shadow depth buffer
 	glClear(GL_DEPTH_BUFFER_BIT);
-	//glCullFace(GL_FRONT);
-	glDisable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
+
 	// Bind shader
 	m_Resources.m_Shaders["Shadow"].Use();
 
@@ -854,8 +854,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 	// Unbind shader
 	m_Resources.m_Shaders["Shadow"].UnUse();
 
-	//glCullFace(GL_BACK);
-	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 }
 
 void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
