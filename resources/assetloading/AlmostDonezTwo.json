@@ -5280,7 +5280,7 @@
                         "Name": "Capture Point"
                     },
                     "Capture Point": {
-                        "Captured": false
+                        "Capture Status": false
                     }
                 }
             ]
@@ -5541,9 +5541,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 9.115264892578125,
-                            "y": 2.3434407711029054,
-                            "z": -15.246135711669922
+                            "x": 9.239110946655274,
+                            "y": 1.6063690185546876,
+                            "z": -15.532044410705567
                         }
                     },
                     "RigidForce": {
@@ -5564,14 +5564,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.4000000059604645
                         },
                         "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.5
                         },
                         "Is Collide": false
                     },
@@ -5589,7 +5589,7 @@
                         "Name": "Capture Point"
                     },
                     "Capture Point": {
-                        "Captured": false
+                        "Capture Status": false
                     }
                 }
             ]

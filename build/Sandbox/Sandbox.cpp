@@ -106,6 +106,7 @@ void InitializeGame()
         ,    path_follower
         ,    spawner
         ,    mass
+        ,    capture_point
         ,    Frustum
         ,    LineSegment
         ,    Plane
@@ -147,6 +148,8 @@ void InitializeGame()
         ,   onevent_ParentDeleted_system
         ,   onevent_ChildDeleted_system
         ,   onevent_ReferencePrefabDeleted_system
+        ,   onevent_PointCaptured_system
+        ,   onevent_CapturePointDamaged_system
         >();
 
         PPB.RegisterScripts<

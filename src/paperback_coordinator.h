@@ -292,6 +292,9 @@ namespace paperback::coordinator
 		bool IsMouseUp( int Key ) noexcept;
 
 		PPB_INLINE
+		glm::vec2 Get2DMousePosition() noexcept;
+
+		PPB_INLINE
 		glm::vec3 GetMousePosition() noexcept;
 
 		PPB_INLINE

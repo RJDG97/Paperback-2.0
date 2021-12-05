@@ -748,6 +748,11 @@ namespace paperback::coordinator
 		return m_Input.IsMouseUp( Key );
 	}
 
+	glm::vec2 instance::Get2DMousePosition() noexcept
+	{
+		return m_Input.Get2DMousePosition();
+	}
+
 	glm::vec3 instance::GetMousePosition() noexcept
 	{
 		return m_Input.GetMousePosition();

@@ -134,6 +134,21 @@ glm::vec2 Input::GetMouseDirection() const noexcept
 	return glm::vec2{ X, Y } - m_MouseOriginPosition;
 }
 
+glm::vec2 Input::Get2DMousePosition() const noexcept
+{
+	GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
+	auto& WindowDetails = PPB.GetSystem< window_system >().E;
+
+	// Get x and y values
+	double X, Y;
+	glfwGetCursorPos(m_pWindow, &X, &Y);
+
+	// Find point in NDC
+	glm::vec2 NDCPoint = glm::vec2{ (2.f * X) / WindowDetails.m_Width - 1.f, 1.f - (2.f * Y) / WindowDetails.m_Height };
+
+	return NDCPoint;
+}
+
 glm::vec3 Input::GetMousePosition() const noexcept
 {
 	GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;

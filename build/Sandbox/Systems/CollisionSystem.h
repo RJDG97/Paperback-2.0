@@ -11,9 +11,9 @@ struct collision_system : paperback::system::pausable_instance
         .m_pName = "collision_system"
     };
 
-    struct OnCollisionEnter : paperback::event::instance< entity& , entity&, rigidforce&, rigidforce& > {};
-    struct OnCollisionStay : paperback::event::instance< entity&, entity&, rigidforce&, rigidforce&, bool& > {};
-    struct OnCollisionExit : paperback::event::instance< entity&, rigidforce&, bool& > {};
+    struct OnCollisionEnter       : paperback::event::instance< entity& , entity&, rigidforce&, rigidforce& > {};
+    struct OnCollisionStay        : paperback::event::instance< entity&, entity&, rigidforce&, rigidforce&, bool& > {};
+    struct OnCollisionExit        : paperback::event::instance< entity&, rigidforce&, bool& > {};
 
     using query = std::tuple
     <
@@ -72,6 +72,7 @@ struct collision_system : paperback::system::pausable_instance
                         if ( !SkipUnit )
                             CheapaabbDynamic( Boundingbox, RigidForce, Transform, m1, BB, RF, Xform, m2 );
                     }
+
                     NotCollided = false;
                 }
                 else
