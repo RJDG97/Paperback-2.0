@@ -59,9 +59,10 @@ struct onevent_UnitTrigger_system : paperback::system::instance
                   (Unit_1_Enemy && Unit_2_Friendly) || 
                   ((Unit_1_Friendly || Unit_1_Enemy) && CapturePt_2 && !CapturePt_2->m_Captured ))
         {
-            if (Base_1 || Sound_1)
+            if (Base_1)
             {
-                Sound_1->m_Trigger = true;
+                if (Sound_1)
+                    Sound_1->m_Trigger = true;
                 return;
             }
 

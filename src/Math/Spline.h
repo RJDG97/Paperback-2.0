@@ -42,6 +42,11 @@ namespace paperback
 					p1 = p0 + 1;
 					p2 = p1 + 1;
 					p3 = p2 + 1;
+
+					if (t > m_Points.size() - 4)
+					{
+						return m_Points[m_Points.size() - 2];
+					}
 				}
 
 				else
@@ -80,6 +85,14 @@ namespace paperback
 					p1 = p0 + 1;
 					p2 = p1 + 1;
 					p3 = p2 + 1;
+
+					if (t > m_Points.size() - 4)
+					{
+						p0 = m_Points.size() - 4;
+						p1 = p0 + 1;
+						p2 = p1 + 1;
+						p3 = p2 + 1;
+					}
 				}
 
 				else
@@ -131,9 +144,9 @@ namespace paperback
 
 			for (; p > m_Points[i].m_Length; ++i)
 			{
-				if (i == m_Points.size() - 1)
+				if (i == m_Points.size() - 3)
 				{
-					return static_cast<float>(m_Points.size() - 1);
+					return static_cast<float>(m_Points.size() - 3);
 				}
 
 				p -= m_Points[i].m_Length;
