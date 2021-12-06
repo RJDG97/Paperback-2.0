@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 87
+                "EntityHead": 83
             }
         },
         {
@@ -1831,7 +1831,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 89
+                        "Global Index": 97
                     },
                     "Mesh": {
                         "Model": "Quad",
@@ -2121,7 +2121,7 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             42,
-                            89
+                            97
                         ]
                     },
                     "Rotation": {
@@ -3223,7 +3223,7 @@
                     "Friendly": {},
                     "Text": {
                         "Font": "arial",
-                        "Text": "26",
+                        "Text": "25",
                         "Color": {
                             "x": 255.0,
                             "y": 255.0,
@@ -3846,7 +3846,7 @@
                             },
                             {
                                 "Card GID": 39,
-                                "Count": 8
+                                "Count": 7
                             }
                         ],
                         "Deck Pos": [
@@ -5752,7 +5752,8 @@
                     },
                     "Parent": {
                         "Children GID": [
-                            73
+                            73,
+                            87
                         ]
                     },
                     "Offset": {
@@ -5895,7 +5896,8 @@
                     },
                     "Parent": {
                         "Children GID": [
-                            81
+                            81,
+                            88
                         ]
                     },
                     "Offset": {
@@ -6756,7 +6758,8 @@
                     },
                     "Parent": {
                         "Children GID": [
-                            86
+                            86,
+                            92
                         ]
                     },
                     "Offset": {
@@ -6867,6 +6870,385 @@
                     "Mass": {
                         "Mass": 5.0,
                         "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        18207278796319661883,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 88
+                    },
+                    "Mesh": {
+                        "Model": "TableTennisRacket_Blue",
+                        "Texture": "TableTennisRacket_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 46
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": -0.36000001430511477,
+                            "y": -0.4000000059604645,
+                            "z": -0.20000000298023225
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 180.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        },
+                        "Sync Animation With Parent": false
+                    },
+                    "Name": {
+                        "Name": "FriendlyRockWeapon"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 92
+                    },
+                    "Mesh": {
+                        "Model": "TableTennisRacket_Red",
+                        "Texture": "TableTennisRacket_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 49
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": -0.36000001430511477,
+                            "y": -0.4000000059604645,
+                            "z": -0.20000000298023225
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 180.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        },
+                        "Sync Animation With Parent": false
+                    },
+                    "Name": {
+                        "Name": "EnemyRockWeapon"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        8376831551428810534,
+                        14486341741652966143,
+                        17008353085049151909,
+                        18207278796319661883,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 91
+                    },
+                    "Mesh": {
+                        "Model": "FloorballStickAnimated_Blue",
+                        "Texture": "FloorballStick_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "floorball stick",
+                        "Socket Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Sync Animation With Parent": false
+                    },
+                    "Name": {
+                        "Name": "FriendlyPaperWeaponChild"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        18207278796319661883,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 87
+                    },
+                    "Mesh": {
+                        "Model": "FloorballStickAnimated_Blue",
+                        "Texture": "FloorballStick_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 45
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "floorball stick|FloorballStickAttack",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 80.0999984741211,
+                            "y": 270.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Sync Animation With Parent": true
+                    },
+                    "Name": {
+                        "Name": "FriendlyPaperWeaponParent"
                     }
                 }
             ]
