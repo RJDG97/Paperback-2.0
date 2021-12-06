@@ -233,6 +233,32 @@ namespace paperback::coordinator
 		JFile.StartObject().WriteKey("Prefabs");
 		JFile.StartArray();
 
+		SaveChildPrefab(JFile, PrefabArchetype, Index);
+
+		auto Parent = PrefabArchetype->FindComponent<parent>(paperback::vm::PoolDetails{ 0, Index });
+
+		if (Parent)
+		{
+			if (Parent->m_ChildrenGlobalIndexes.size())
+			{
+				for (auto& Child : Parent->m_ChildrenGlobalIndexes)
+				{
+					auto& ChildEntityInfo = GetEntityInfo(Child);
+					SaveChildPrefab(JFile, ChildEntityInfo.m_pArchetype, ChildEntityInfo.m_PoolDetails.m_PoolIndex);
+				}
+			}
+		}
+
+		JFile.EndArray().EndObject().EndWriter();
+	}
+
+
+	PPB_INLINE
+	void instance::SaveChildPrefab( paperback::JsonFile& JFile, paperback::archetype::instance* PrefabArchetype, const paperback::u32 Index ) noexcept
+	{
+		paperback::component::temp_guid Temp = {};
+		paperback::archetype::TempMgr TempMgr;
+
 		JFile.StartObject().WriteKey(PrefabArchetype->GetName()).StartArray();
 
 		//Serialize GUIDs
@@ -258,8 +284,6 @@ namespace paperback::coordinator
 
 		PrefabArchetype->SerializePrefabEntity(JFile, Index);
 		JFile.EndArray().EndObject();
-
-		JFile.EndArray().EndObject().EndWriter();
 	}
 
 
