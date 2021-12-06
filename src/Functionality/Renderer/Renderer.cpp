@@ -219,10 +219,10 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("ActivityLog", "../../resources/textures/UI/ActivityFeedBackground.dds", true);
 
 	// Capture Point
-	m_Resources.LoadTextures("CapturePointPole_BaseColour", "../../resources/textures/Capture/CapturePointPole_BaseColour.dds", true);
-	m_Resources.LoadTextures("Flag_Blue_BaseColour", "../../resources/textures/Capture/Flag_Blue_BaseColour.dds", true);
-	m_Resources.LoadTextures("Flag_Red_BaseColour", "../../resources/textures/Capture/Flag_Red_BaseColour.dds", true);
-	m_Resources.LoadTextures("Flag_Specular", "../../resources/textures/Capture/Flag_Specular.dds", true);
+	m_Resources.LoadTextures("CapturePointPole_BaseColour", "../../resources/textures/CapturePointPole_BaseColour.dds", true);
+	m_Resources.LoadTextures("Flag_Blue_BaseColour", "../../resources/textures/Flag_Blue_BaseColour.dds", true);
+	m_Resources.LoadTextures("Flag_Red_BaseColour", "../../resources/textures/Flag_Red_BaseColour.dds", true);
+	m_Resources.LoadTextures("Flag_Specular", "../../resources/textures/Flag_Specular.dds", true);
 
 	// Lane Selection
 	m_Resources.LoadTextures("SelectedLane_BaseColour", "../../resources/textures/SelectedLane_BaseColour.dds", true);
