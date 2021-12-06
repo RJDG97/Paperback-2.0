@@ -227,6 +227,14 @@ Renderer::Renderer() :
 	// Lane Selection
 	m_Resources.LoadTextures("SelectedLane_BaseColour", "../../resources/textures/SelectedLane_BaseColour.dds", true);
 
+	// RPS Unit Icons
+	m_Resources.LoadTextures("BluePaper_Icon", "../../resources/textures/RPS/BluePaper_Icon.dds", true);
+	m_Resources.LoadTextures("BlueRock_Icon", "../../resources/textures/RPS/BlueRock_Icon.dds", true);
+	m_Resources.LoadTextures("BlueScissors_Icon", "../../resources/textures/RPS/BlueScissors_Icon.dds", true);
+	m_Resources.LoadTextures("RedPaper_Icon", "../../resources/textures/RPS/RedPaper_Icon.dds", true);
+	m_Resources.LoadTextures("RedRock_Icon", "../../resources/textures/RPS/RedRock_Icon.dds", true);
+	m_Resources.LoadTextures("RedScissors_Icon", "../../resources/textures/RPS/RedScissors_Icon.dds", true);
+
 	// Enable alpha blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
