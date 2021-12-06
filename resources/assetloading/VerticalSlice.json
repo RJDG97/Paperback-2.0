@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 70
+                "EntityHead": 74
             }
         },
         {
@@ -392,6 +392,156 @@
                     "Name": {
                         "Name": "TextBGEnemyDeck"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 71
+                    },
+                    "Mesh": {
+                        "Model": "TopLaneSelected",
+                        "Texture": "SelectedLane_BaseColour",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 87.69999694824219,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.10000000149011612,
+                            "y": 4.71999979019165,
+                            "z": 13.300000190734864
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 70
+                    },
+                    "Name": {
+                        "Name": "Selected Top Path"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 72
+                    },
+                    "Mesh": {
+                        "Model": "MiddleLaneSelected",
+                        "Texture": "SelectedLane_BaseColour",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 87.69999694824219,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.10000000149011612,
+                            "y": 4.71999979019165,
+                            "z": -0.5
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 70
+                    },
+                    "Name": {
+                        "Name": "Selected Mid Path"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 73
+                    },
+                    "Mesh": {
+                        "Model": "BottomLaneSelected",
+                        "Texture": "SelectedLane_BaseColour",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.00989999994635582,
+                            "y": 0.009999999776482582,
+                            "z": 0.00989999994635582
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 87.5999984741211,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.4000000059604645,
+                            "y": 5.099999904632568,
+                            "z": -10.600000381469727
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 70
+                    },
+                    "Name": {
+                        "Name": "Selected Bottom Path"
+                    }
                 }
             ]
         },
@@ -508,7 +658,9 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            21
+                            21,
+                            72,
+                            73
                         ]
                     },
                     "Rotation": {
@@ -804,6 +956,51 @@
                     "Name": {
                         "Name": "TextBG"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 70
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            71
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Selected Path"
+                    }
                 }
             ]
         },
@@ -1046,7 +1243,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 120.5,
+                            "y": 119.0,
                             "z": 0.0
                         }
                     },
@@ -1070,12 +1267,15 @@
                         },
                         "Position": {
                             "x": -10.938075065612793,
-                            "y": 4.5254716873168949,
+                            "y": 4.400000095367432,
                             "z": -8.644068717956543
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
                         "Prefab GID": 8
                     },
                     "Name": {
@@ -2978,7 +3178,7 @@
                         "Prefab GID": 12
                     },
                     "Selected": {
-                        "Selected": true
+                        "Selected": false
                     },
                     "Name": {
                         "Name": "Top Path"
@@ -3464,7 +3664,7 @@
                         "Is Collide": false
                     },
                     "Selected": {
-                        "Selected": true
+                        "Selected": false
                     },
                     "Name": {
                         "Name": "Top Path"

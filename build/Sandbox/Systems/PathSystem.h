@@ -186,7 +186,7 @@ struct path_system : paperback::system::instance
 					 distance += interval)
 				{
 					paperback::Vector3f box_point{ splines[i].GetSplinePoint(normalized_offset).m_Point };
-					paperback::Vector3f min{ -2.2f, -2.2f, -2.2f };
+					paperback::Vector3f min{ -2.3f, -2.3f, -2.3f };
 					paperback::Vector3f max{ -min };
 					lane_boxes.push_back({ min, max, box_point, i });
 					normalized_offset = splines[i].GetNormalizedOffset(distance);
@@ -206,6 +206,7 @@ struct path_system : paperback::system::instance
 							lane_box.m_Position + lane_box.m_Min, lane_box.m_Position + lane_box.m_Max, t))
 				{
 					lane = lane_box.m_Lane;
+					break;
 				}
 			}
 
@@ -222,8 +223,8 @@ struct path_system : paperback::system::instance
 				}
 			});
 
-			//if (debug_sys->m_IsDebug)
-			//{
+			if (debug_sys->m_IsDebug)
+			{
 				for (auto& lane_box : lane_boxes)
 				{
 					if (lane_box.m_Lane == lane)
@@ -238,7 +239,7 @@ struct path_system : paperback::system::instance
 						debug_sys->DrawCube(cube, lane_box.m_Position);
 					}
 				}
-			//}
+			}
 		}
 	}
 };
