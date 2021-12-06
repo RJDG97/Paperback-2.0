@@ -135,6 +135,38 @@ void InitializeGame()
     {
 		PPB.OpenScene();
 
+        //// my bad, i thin i interpret the data wrongly and added quaternions
+        //// since its in degrees
+        //rotation rot(60.f, 90.f, 180.f);
+        //// compose with Mat4x4
+        //Mtx4x4 X_axis, Y_axis, Z_axis, finals;
+        //X_axis.RotX(rot.m_Value.x);
+        //Y_axis.RotY(rot.m_Value.y);
+        //Z_axis.RotZ(rot.m_Value.z);
+        //// compose
+        //finals = Z_axis * Y_axis * X_axis;
+        //// convert to euler
+        //// -- m00, m01, m02, m03
+        //// -- m10, m11, m12, m13
+        //// -- m20, m21, m22, m23
+        //// -- m30, m31, m32, m33
+        //float sy = std::sqrtf(finals.m2[0][0] * finals.m2[0][0] + finals.m2[1][0] * finals.m2[1][0]);
+        //bool singular = sy < 1e-6;
+        //
+        //paperback::Vector3f eul;
+        //if (!singular)
+        //{
+        //    eul.x = std::atan2(finals.m2[2][1], finals.m2[2][2]);
+        //    eul.y = std::atan2(finals.m2[2][0], sy);
+        //    eul.z = std::atan2(finals.m2[1][0], finals.m2[0][0]);
+        //}
+        //else
+        //{
+        //    eul.x = std::atan2(finals.m2[1][2], finals.m2[1][1]);
+        //    eul.y = std::atan2(finals.m2[2][0], sy);
+        //    eul.z = 0.f;
+        //}
+
         //// Right Box
         //PPB.CreateEntity([&](transform& Transform, mesh& Mesh,
         //    scale& Scale, rotation& Rotation,

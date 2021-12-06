@@ -199,6 +199,7 @@
     <ClInclude Include="..\..\src\Math\Math_includes.h" />
     <ClInclude Include="..\..\src\Math\Mtx4x4.h" />
     <ClInclude Include="..\..\src\Math\Mtx4x4.hpp" />
+    <ClInclude Include="..\..\src\Math\Quaternion.h" />
     <ClInclude Include="..\..\src\Math\Vector3f.h" />
     <ClInclude Include="..\..\src\Math\Vector3f.hpp" />
     <ClInclude Include="..\..\src\Math\Vector3fData.h" />

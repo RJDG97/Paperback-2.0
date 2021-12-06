@@ -444,6 +444,9 @@
     <ClInclude Include="..\..\src\Physics\GJK.h">
       <Filter>Source\Gameplay Code\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Math\Quaternion.h">
+      <Filter>Source\Gameplay Code\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

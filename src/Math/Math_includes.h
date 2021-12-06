@@ -4,5 +4,6 @@
 #include "Mtx4x4.h"
 #include "Vector3fData.h"
 #include "Vector4f.h"
+#include "Quaternion.h"
 
 #endif
