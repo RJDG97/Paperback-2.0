@@ -54,38 +54,6 @@ struct physics_system : paperback::system::pausable_instance
         return  (Mass > 0) ? Momentum / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
     }
 
-    ////test helper function to apply forces on all entities with rigidforce components
-    //void ApplyForceAll(paperback::Vector3f Vec)
-    //{
-    //    tools::query Query;
-    //    Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
-
-    //    ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
-    //        {
-    //            assert(Entity.IsZombie() == false);
-
-    //            if (!RF.m_isStatic)
-    //            {
-    //                AddMomentum(RF.m_Momentum, Vec);
-    //            }
-    //        });
-    //}
-
-    ////test helper function to apply forces on all entities with rigidforce components
-    //void ApplyAccelAll(paperback::Vector3f Vec)
-    //{
-
-    //    tools::query Query;
-    //    Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
-
-    //    ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
-    //        {
-    //            assert(Entity.IsZombie() == false);
-
-    //            AddForce(RF.m_Forces, Vec);
-    //        });
-    //}
-
     //test helper function to decelerate on all entities with rigidforce components
     void NotAccelerating()
     {

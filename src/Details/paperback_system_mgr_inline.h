@@ -87,6 +87,11 @@ namespace paperback::system
 		m_Events.m_OnFrameEnd.BroadcastEvent();
 	}
 
+	void manager::ToggleDebug( const bool& Status ) noexcept
+	{
+		m_Events.m_OnDebug.BroadcastEvent( Status );
+	}
+
 	void manager::TogglePause( const bool& Status ) noexcept
 	{
 		m_Events.m_OnPause.BroadcastEvent( Status );

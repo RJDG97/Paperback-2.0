@@ -1,6 +1,5 @@
 #pragma once
 
-//#include "paperback_pch.h"
 #include "Json/paperback_json.h"
 #include "../Functionality/Renderer/Renderer.h"
 

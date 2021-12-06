@@ -15,10 +15,12 @@ struct onevent_PointCaptured_system : paperback::system::instance
     {
         RegisterGlobalEventClass<onevent_UnitTriggerStay_system::PointCaptured>(this);
 
-        m_FriendlyDeckQuery.m_Must.AddFromComponents < deck, friendly >();
+        m_FriendlyDeckQuery.m_Must.AddFromComponents < friendly >();
+        m_FriendlyDeckQuery.m_OneOf.AddFromComponents < deck, text >();
         m_FriendlyDeckQuery.m_NoneOf.AddFromComponents < prefab >();
 
-        m_EnemyDeckQuery.m_Must.AddFromComponents < deck, enemy >();
+        m_EnemyDeckQuery.m_Must.AddFromComponents < enemy >();
+        m_EnemyDeckQuery.m_OneOf.AddFromComponents < deck, text >();
         m_EnemyDeckQuery.m_NoneOf.AddFromComponents < prefab >();
     }
 
@@ -26,10 +28,17 @@ struct onevent_PointCaptured_system : paperback::system::instance
     {
         auto RefillDeck = [&]( const tools::query& Query )
                           {
-                              ForEach( Search( Query ), [&]( deck& Deck ) noexcept
+                              ForEach( Search( Query ), [&]( deck* Deck, text* Text ) noexcept
                               {
-                                  for ( auto& Card : Deck.m_Deck )
-                                      Card.m_Count = 10;
+                                  if ( Deck )
+                                  {
+                                      for ( auto& Card : Deck->m_Deck )
+                                          Card.m_Count = 10;
+                                  }
+                                  else if ( Text )
+                                  {
+                                      Text->m_Text = std::to_string(30);
+                                  }
                               });
                           };
 

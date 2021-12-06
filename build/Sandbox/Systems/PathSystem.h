@@ -121,6 +121,17 @@ struct path_system : paperback::system::instance
 					{
 						debug_sys->DrawDebugLines(vec, true);
 					}
+
+
+					//handle unit rotation
+					if (Rigidbody.m_Velocity.MagnitudeSq() > 0.0001f)
+					{
+
+						Rotation.m_Value.y = PPB.GetSystem<debug_system>().DirtyRotationAnglesFromDirectionalVec(Rigidbody.m_Velocity).y;
+						/*paperback::Vector3f rot = PPB.GetSystem<debug_system>().DirtyRotationAnglesFromDirectionalVec(Rigidbody.m_Velocity);
+						Rotation.m_Value.y = rot.y;
+						Rotation.m_Value.x = rot.x;*/
+					}
 				}
 			}
 		});
