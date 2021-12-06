@@ -31,9 +31,6 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, Sound_1 ]  = m_obj.m_pArchetype->FindComponents < friendly, enemy, unitstate, base, sound >( m_obj.m_PoolDetails );
         auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, CapturePt_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, capture_point >( m_obj2.m_PoolDetails );
 
-        // Disable Movement - Maintain Collision
-        ResetForces(rf, rf2);
-
         // Same Unit Type && Not Currently Fighting - WALK
         if ( Unit_State && Unit_State->IsNotState( UnitState::ATTACK ) &&
             ((Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) )
@@ -65,6 +62,9 @@ struct onevent_UnitTrigger_system : paperback::system::instance
                     Sound_1->m_Trigger = true;
                 return;
             }
+
+            // Disable Movement - Maintain Collision
+            ResetForces(rf, rf2);
 
             // Set Unit's State to Attack
             Unit_State->SetState( UnitState::ATTACK );
