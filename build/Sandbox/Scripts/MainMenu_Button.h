@@ -24,6 +24,7 @@ struct mainmenu_button_script : paperback::script::button_interface // Inherited
         if (!PPB.GetSystem<ui_system>().SetButtonLock())
             return;
 
+        PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.TogglePause(false);
         
         PPB.QueueScene("MainMenu");

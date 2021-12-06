@@ -24,6 +24,7 @@ struct page2_how2play_next_button_mainmenu_script : paperback::script::button_in
         if (!PPB.GetSystem<ui_system>().SetButtonLock())
             return;
 
+        PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY2), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY3), true);
     }

@@ -24,6 +24,7 @@ struct startgame_button_script : paperback::script::button_interface // Inherite
         if (!PPB.GetSystem<ui_system>().SetButtonLock())
             return;
 
+        PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.QueueScene("Combat");
     }
 };

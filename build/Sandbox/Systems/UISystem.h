@@ -12,13 +12,14 @@ struct ui_system : paperback::system::pausable_instance
     };
 
     using query = std::tuple< 
-        paperback::query::must<transform, scale, rotation, mesh>
-    ,   paperback::query::one_of<button, card>
+        paperback::query::must<transform, scale, rotation, mesh, name>
+    ,   paperback::query::one_of<button, card, sound>
     ,   paperback::query::none_of<prefab> 
     >;
 
     tools::query m_ButtonQuery;
     bool         m_Picked = false;
+    std::string  m_CurrentButtonHovered{};
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
@@ -174,24 +175,14 @@ struct ui_system : paperback::system::pausable_instance
         PPB.OpenQueuedScene();
 
         m_FrameButtonLock = false; //resets the lock
+    }
 
-        /*if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE))
-        {
-            
-            if (PPB.VerifyState("Editor"))
-            {
-                return;
-            }
-            else if (!PPB.VerifyState("MainMenu") && !PPB.VerifyState("HowToPlay") && !PPB.VerifyState("Credits")
-                    && !PPB.VerifyState("LevelSelect") && !PPB.VerifyState("GameWin") && !PPB.VerifyState("GameLoss")
-                    && !PPB.VerifyState("Settings"))
-            {
+    PPB_INLINE
+    void OnStateChange() noexcept
+    {
 
-                PPB.TogglePause(true);
-                ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
-                ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
-            }
-        }*/
+        m_FrameButtonLock = false;
+        m_CurrentButtonHovered = "";
     }
 
     //given a layer, disable/enable all buttons with spe
@@ -221,5 +212,31 @@ struct ui_system : paperback::system::pausable_instance
         m_FrameButtonLock = true;
 
         return true;
+    }
+
+    bool SetHoverLock(const std::string& Compare)
+    {
+
+        if (Compare == m_CurrentButtonHovered)
+            return false;
+
+        m_CurrentButtonHovered = Compare;
+
+        return true;
+    }
+
+    void TriggerSoundEntity(const std::string& EntityName)
+    {
+
+        ForEach(Search(m_ButtonQuery), [&](entity& Entity, name& Name, sound* Sound) noexcept
+        {
+
+            if (Name.m_Value == EntityName && Sound)
+            {
+
+                Sound->m_Trigger = true;
+                return;
+            }
+        });
     }
 };

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 34
+                "EntityHead": 36
             }
         },
         {
@@ -1930,60 +1930,32 @@
                 {
                     "Guid": [
                         0,
+                        9604788041699812520,
+                        5691439207370049121,
                         14302600151082817442,
-                        10055872472107209861,
-                        17008353085049151909,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 12
-                    },
-                    "Sound": {
-                        "Path": "",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": false,
-                        "Trigger": false
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            13
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "BGMObject"
-                    }
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        14302600151082817442,
+                        14486341741652966143,
                         17008353085049151909,
                         15172211932757996706,
-                        16415915133639986106
+                        16415915133639986106,
+                        2550044418833058707
                     ]
                 },
                 {
                     "Entity": {
                         "Global Index": 13
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Sound": {
                         "Path": "event:/MenuBGM",
@@ -1991,6 +1963,13 @@
                         "3D Sound": false,
                         "Triggerable": false,
                         "Trigger": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Transform": {
                         "Offset": {
@@ -2006,12 +1985,240 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            14302600151082817442
+                            14302600151082817442,
+                            16415915133639986106
                         ],
                         "Prefab GID": 12
                     },
                     "Name": {
+                        "Name": "MenuBGMObject"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 0,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 34
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/ButtonHover",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14302600151082817442,
+                            16415915133639986106,
+                            9604788041699812520,
+                            2550044418833058707
+                        ],
+                        "Prefab GID": 12
+                    },
+                    "Name": {
+                        "Name": "ButtonHoverSFX"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 0,
+                        "Script Guid": 0,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 35
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/ButtonClick",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14302600151082817442,
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 12
+                    },
+                    "Name": {
+                        "Name": "ButtonClickSFX"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 0,
+                        "Script Guid": 0,
+                        "Active Status": false
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14302600151082817442,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        2550044418833058707
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 12
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/MenuBGM",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            13,
+                            34,
+                            35
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
                         "Name": "BGMObject"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 0,
+                        "Script Guid": 13682510419229256612,
+                        "Active Status": false
                     }
                 }
             ]

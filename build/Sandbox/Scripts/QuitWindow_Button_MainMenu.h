@@ -25,6 +25,7 @@ struct quitcancel_button_mainmenu_script : paperback::script::button_interface /
         if (!PPB.GetSystem<ui_system>().SetButtonLock())
             return;
 
+        PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::QUIT), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), true);
     }

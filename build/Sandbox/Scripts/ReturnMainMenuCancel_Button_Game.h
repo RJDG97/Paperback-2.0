@@ -22,6 +22,7 @@ struct returnmainmenu_cancel_button_game_script : paperback::script::button_inte
     void OnClick() noexcept override
     {
 
+        PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::RETURNMAINMENU), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
     }

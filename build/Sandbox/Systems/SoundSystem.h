@@ -16,6 +16,7 @@ private:
         FMOD::Studio::EventInstance* m_pSound = nullptr; // contains pointer to playing sound
         size_t m_ID; // contains the id to match with entity that spawned the sound
         bool m_IsTriggerable; // clone of variable in component for deciding if entity is to be purged on sound play completion
+        bool m_Verified; // used to verify if a soundfile being played has a corresponding active sound component
     };
 
 public:
@@ -327,12 +328,15 @@ public:
             //if no, then create new entry and add into record of currently playing sounds
             PlaySoundEvent( Sound.m_SoundID, Sound.m_IsTriggerable );
             Sound.m_SoundPlayTag = m_SoundCounter;
+            m_SoundFiles.back().m_Verified = true;
         }
         else if (Sound.m_IsTriggerable)
         {
 
             //sound exists and is triggerable
             //check current playback status
+
+            sound_check->m_Verified = true;
             FMOD_STUDIO_PLAYBACK_STATE be;
             sound_check->m_pSound->getPlaybackState(&be);
                 
@@ -359,6 +363,8 @@ public:
                 sound_check->m_ID = 0;
                 return;
             }
+
+            sound_check->m_Verified = true;
         }
 
 
@@ -381,26 +387,33 @@ public:
         // call fmod default stuff IF there's something that needs to be "globally" called 
         m_pStudioSystem->update();
 
+        //set sound file for deletion if not verified to have corresponding sound component or has stopped and is not triggerable
         for (SoundFile& sound : m_SoundFiles) {
 
             FMOD_STUDIO_PLAYBACK_STATE be;
             sound.m_pSound->getPlaybackState(&be);
 
             //if sound has stopped, mark for removal
-            if (be == 2 && !sound.m_IsTriggerable) {
+            if ((be == 2 && !sound.m_IsTriggerable) || !sound.m_Verified) {
 
                 sound.m_ID = 0;
             }
         }
 
         //remove all sound files tagged with id 0 since 0 is default tag value which should have been replaced with non-zero from start
-        auto end = std::remove_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [](SoundFile& sound) { return sound.m_ID == 0; });
+        auto end = std::remove_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [](SoundFile& sound) { return (sound.m_ID == 0); });
 
         if (end != std::end(m_SoundFiles))
             m_SoundFiles.erase(end, m_SoundFiles.end());
 
         //update listener position
         SetListenerPosition();
+
+        //reset verification status for next loop
+        for (SoundFile& sound : m_SoundFiles) {
+
+            sound.m_Verified = false;
+        }
     }
 
     // Terminate system
@@ -411,6 +424,7 @@ public:
         for (SoundFile& sound : m_SoundFiles) {
 
             StopSoundEvent(sound.m_pSound);
+            sound.m_Verified = false;
         }
 
         m_SoundFiles.clear();

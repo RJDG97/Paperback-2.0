@@ -22,6 +22,7 @@ struct pauseenable_button_game_script : paperback::script::button_interface // I
     void OnClick() noexcept override
     {
 
+        PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.TogglePause(true);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
