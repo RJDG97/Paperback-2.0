@@ -13,6 +13,7 @@ struct scripting_system : paperback::system::instance
 
 	// Map of entity ID's and Script instances
 	std::unordered_map< uint32_t, std::unique_ptr<Script> > scriptlist;
+	tools::query m_QueryEntityScripts;
 
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
@@ -22,15 +23,15 @@ struct scripting_system : paperback::system::instance
 	void OnSystemCreated(void) noexcept
 	{
 		m_pMono = &Mono::GetInstanced();
+
+		m_QueryEntityScripts.m_Must.AddFromComponents<paperback::component::entity, entityscript>();
+		m_QueryEntityScripts.m_NoneOf.AddFromComponents<prefab>();
 	}
 
 	void Update(void) noexcept
 	{
-		tools::query Query;
-		Query.m_Must.AddFromComponents<paperback::component::entity, entityscript>();
-
 		// Run each entity with the entity script component
-		ForEach(Search(Query), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
 			{
 				// check for an instance of this entity's script
 				auto Found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);

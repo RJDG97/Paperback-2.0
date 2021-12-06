@@ -177,6 +177,9 @@ namespace paperback::coordinator
 					, T_FUNCTION&& Function ) noexcept;
 
 		PPB_INLINE
+		void ToggleDebug( const bool& Status ) noexcept;
+
+		PPB_INLINE
 		void TogglePause( const bool& Status ) noexcept;
 
 

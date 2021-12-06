@@ -565,6 +565,11 @@ namespace paperback::coordinator
 		}
 	}
 
+	void instance::ToggleDebug( const bool& Status ) noexcept
+	{
+		m_SystemMgr.ToggleDebug( Status );
+	}
+
 	void instance::TogglePause( const bool& Status ) noexcept
 	{
 		m_SystemMgr.TogglePause( Status );

@@ -214,20 +214,23 @@ namespace paperback::system
 		using events = std::tuple<>;
 
 		// Main System Loops
-		void OnSystemCreated    ( void )        noexcept {}
-        void OnFrameStart       ( void )        noexcept {}
-        void PreUpdate          ( void )        noexcept {}
-		void Update		        ( void )        noexcept {}
-		void PostUpdate         ( void )        noexcept {}
-		void OnFrameEnd         ( void )        noexcept {}
-		void OnSystemTerminated ( void )        noexcept {}
-		void OnStateChange		( void )        noexcept {}
+		void OnSystemCreated    ( void )        noexcept {}				// Executed on RegisterSystem()
+        void OnFrameStart       ( void )        noexcept {}				// Executed on System Run - 1
+        void PreUpdate          ( void )        noexcept {}				// Executed on System Run - 2
+		void Update		        ( void )        noexcept {}				// Executed on System Run - 3
+		void PostUpdate         ( void )        noexcept {}				// Executed on System Run - 4
+		void OnFrameEnd         ( void )        noexcept {}				// Executed on System Run - 5
+		void OnSystemTerminated ( void )        noexcept {}				// Executed on Program Termination
+		void OnStateChange		( void )        noexcept {}				// Executed on Scene Change - LoadScene
+
 		// Event						        
-		void OnEvent            ( ... )         noexcept {}
-		void OnPause			( const bool& ) noexcept {}
+		void OnEvent            ( ... )         noexcept {}				// System Event - Override with required parameters
+		void OnDebug            ( const bool& ) noexcept {}				// Executed on SystemMgr's "m_Events.m_OnDebug.BroadcastEvent( Status );"
+		void OnPause			( const bool& ) noexcept {}				// Executed on SystemMgr's "m_Events.m_OnPause.BroadcastEvent( Status );"
 
 
 		bool m_bPaused = false;
+		bool m_bDebug  = false;
 	};
 
 
