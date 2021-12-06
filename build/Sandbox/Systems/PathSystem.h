@@ -194,18 +194,18 @@ struct path_system : paperback::system::instance
 			}
 
 			int lane{-1};
-			float t = 0.0f;
 			glm::vec3 CamPos{ Camera3D::GetInstanced().GetPosition() };
 			glm::vec3 RayDir{ PPB.GetMousePosition() };
 
-			for (auto& lane_box : lane_boxes)
+			for (auto lane_box : lane_boxes)
 			{
+				float t = 0.0f;
+
 				if (RayAabb({ CamPos.x, CamPos.y, CamPos.z },
 							{ RayDir.x, RayDir.y, RayDir.z },
 							lane_box.m_Position + lane_box.m_Min, lane_box.m_Position + lane_box.m_Max, t))
 				{
 					lane = lane_box.m_Lane;
-					break;
 				}
 			}
 
