@@ -124,6 +124,13 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("MiddleLaneSelected", "../../resources/models/nui/MiddleLaneSelected.nui");
 	m_Resources.Load3DMeshNUI("BottomLaneSelected", "../../resources/models/nui/BottomLaneSelected.nui");
 
+	m_Resources.Load3DMeshNUI("BluePaperIcon", "../../resources/models/nui/BluePaperIcon.nui");
+	m_Resources.Load3DMeshNUI("BlueRockIcon", "../../resources/models/nui/BlueRockIcon.nui");
+	m_Resources.Load3DMeshNUI("BlueScissorsIcon", "../../resources/models/nui/BlueScissorsIcon.nui");
+	m_Resources.Load3DMeshNUI("RedPaperIcon", "../../resources/models/nui/RedPaperIcon.nui");
+	m_Resources.Load3DMeshNUI("RedRockIcon", "../../resources/models/nui/RedRockIcon.nui");
+	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
+
 	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
 
 	// Cards
@@ -228,12 +235,12 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("SelectedLane_BaseColour", "../../resources/textures/SelectedLane_BaseColour.dds", true);
 
 	// RPS Unit Icons
-	m_Resources.LoadTextures("BluePaper_Icon", "../../resources/textures/RPS/BluePaper_Icon.dds", true);
-	m_Resources.LoadTextures("BlueRock_Icon", "../../resources/textures/RPS/BlueRock_Icon.dds", true);
-	m_Resources.LoadTextures("BlueScissors_Icon", "../../resources/textures/RPS/BlueScissors_Icon.dds", true);
-	m_Resources.LoadTextures("RedPaper_Icon", "../../resources/textures/RPS/RedPaper_Icon.dds", true);
-	m_Resources.LoadTextures("RedRock_Icon", "../../resources/textures/RPS/RedRock_Icon.dds", true);
-	m_Resources.LoadTextures("RedScissors_Icon", "../../resources/textures/RPS/RedScissors_Icon.dds", true);
+	m_Resources.LoadTextures("BluePaperCoin_BaseColour", "../../resources/textures/BluePaperCoin_BaseColour.dds", true);
+	m_Resources.LoadTextures("BlueRockCoin_BaseColour", "../../resources/textures/BlueRockCoin_BaseColour.dds", true);
+	m_Resources.LoadTextures("BlueScissorsCoin_BaseColour", "../../resources/textures/BlueScissorsCoin_BaseColour.dds", true);
+	m_Resources.LoadTextures("RedPaperCoin_BaseColour", "../../resources/textures/RedPaperCoin_BaseColour.dds", true);
+	m_Resources.LoadTextures("RedRockCoin_BaseColour", "../../resources/textures/RedRockCoin_BaseColour.dds", true);
+	m_Resources.LoadTextures("RedScissorsCoin_BaseColour", "../../resources/textures/RedScissorsCoin_BaseColour.dds", true);
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
