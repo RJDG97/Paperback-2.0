@@ -385,6 +385,51 @@ struct debug_system : paperback::system::instance
          // m_IsDebug = (PPB.VerifyState("Editor")) ? true : false;
     }
 
+
+    paperback::Vector3f axis_xz_rot{ 0.f, 0.f, -1.f };
+    paperback::Vector3f axis_yz_rot{ 1.f, 0.f, 0.f };
+    paperback::Vector3f axis_xy_rot{ 0.f, 1.f, 0.f }; 
+    const float PI = 3.14159f;
+
+    PPB_INLINE
+    paperback::Vector3f DirtyRotationAnglesFromDirectionalVec(const paperback::Vector3f& Directional)
+    {
+    
+        paperback::Vector3f xz{}, yz{}, xy{};
+        
+        //xz
+        xz.x = Directional.x;
+        xz.z = Directional.z;
+        
+        //yz
+        yz.y = Directional.y;
+        yz.z = Directional.z;
+
+        //xy
+        xy.x = Directional.x;
+        xy.y = Directional.y;
+
+        //using xz component, get Y rotational value
+        //project xz component onto X-Z plane, with 0 starting from (0, 0, -1) serving as "north"
+        float dot = xz.Dot(axis_xz_rot);
+        float det = xz.x * axis_xz_rot.z - xz.z * axis_xz_rot.x;
+        float angle_y = atan2(det, dot);
+
+        //using yz component, get X rotational value
+        //project yz component onto y-z plane, with 0 starting from (1, 0, 0) serving as "north"
+        dot = yz.Dot(axis_yz_rot);
+        det = yz.y * axis_yz_rot.z - yz.z * axis_yz_rot.y;
+        float angle_x = atan2(det, dot);
+
+        //using xy component, get Z rotational value
+        //project xy component onto x-y plane, with 0 starting from (0, 1, 0) serving as "north"
+        dot = xy.Dot(axis_xy_rot);
+        det = xy.x * axis_xy_rot.y - xy.y * axis_xy_rot.x;
+        float angle_z = atan2(det, dot);
+
+        return { angle_x / PI * 180, angle_y / PI * 180, angle_z / PI * 180 };
+    }
+
     //----------------------------------------------------------------
     // Passes in a vector of LineSegment to draw Shape
     void DebugDrawLineSegment(std::vector<LineSegment> lines, bool IsCollide = false)
