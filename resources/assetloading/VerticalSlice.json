@@ -3223,7 +3223,7 @@
                     "Friendly": {},
                     "Text": {
                         "Font": "arial",
-                        "Text": "25",
+                        "Text": "27",
                         "Color": {
                             "x": 255.0,
                             "y": 255.0,
@@ -3842,11 +3842,11 @@
                             },
                             {
                                 "Card GID": 38,
-                                "Count": 8
+                                "Count": 9
                             },
                             {
                                 "Card GID": 39,
-                                "Count": 7
+                                "Count": 8
                             }
                         ],
                         "Deck Pos": [
