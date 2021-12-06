@@ -20,6 +20,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
 
     void OnClick(paperback::component::entity& Entity, paperback::u32 PrefabGID, int PositionIndex ) noexcept override
     {
+        bool lane_found{};
         tools::query Path_Query;
 
         Path_Query.m_Must.AddFromComponents < path, selected>();
@@ -29,6 +30,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
         {
             if (Selected.m_Value)
             {
+                lane_found = true;
                 auto list = m_Coordinator.Search<paperback::component::entity>();
 
                 // Check if GID is Valid
@@ -55,6 +57,12 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                 }
             }
         });
+
+        //dont spawn new card
+        if (!lane_found)
+        {
+            return;
+        }
 
         // Spawn new Card
        
