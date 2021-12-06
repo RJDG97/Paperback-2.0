@@ -116,6 +116,14 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("Railing", "../../resources/models/nui/Railing.nui");
 
+	m_Resources.Load3DMeshNUI("Flag_Blue", "../../resources/models/nui/Flag_Blue.nui");
+	m_Resources.Load3DMeshNUI("Flag_Red", "../../resources/models/nui/Flag_Red.nui");
+	m_Resources.Load3DMeshNUI("CapturePointPole", "../../resources/models/nui/CapturePointPole.nui");
+
+	m_Resources.Load3DMeshNUI("TopLaneSelected", "../../resources/models/nui/TopLaneSelected.nui");
+	m_Resources.Load3DMeshNUI("MiddleLaneSelected", "../../resources/models/nui/MiddleLaneSelected.nui");
+	m_Resources.Load3DMeshNUI("BottomLaneSelected", "../../resources/models/nui/BottomLaneSelected.nui");
+
 	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
 
 	// Cards
@@ -210,6 +218,14 @@ Renderer::Renderer() :
 	// Activity Log
 	m_Resources.LoadTextures("ActivityLog", "../../resources/textures/UI/ActivityFeedBackground.dds", true);
 
+	// Capture Point
+	m_Resources.LoadTextures("CapturePointPole_BaseColour", "../../resources/textures/Capture/CapturePointPole_BaseColour.dds", true);
+	m_Resources.LoadTextures("Flag_Blue_BaseColour", "../../resources/textures/Capture/Flag_Blue_BaseColour.dds", true);
+	m_Resources.LoadTextures("Flag_Red_BaseColour", "../../resources/textures/Capture/Flag_Red_BaseColour.dds", true);
+	m_Resources.LoadTextures("Flag_Specular", "../../resources/textures/Capture/Flag_Specular.dds", true);
+
+	// Lane Selection
+	m_Resources.LoadTextures("SelectedLane_BaseColour", "../../resources/textures/SelectedLane_BaseColour.dds", true);
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
