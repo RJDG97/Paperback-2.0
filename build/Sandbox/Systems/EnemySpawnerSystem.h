@@ -13,10 +13,7 @@ struct enemy_spawner_system : paperback::system::pausable_instance
     ,   paperback::query::none_of<prefab>
     >;
 
-    PPB_FORCEINLINE
-    void OnSystemCreated( void ) noexcept
-    {
-    }
+    struct OnLowDeckCount : paperback::event::instance<>{};
 
     // Enemy Spawner
 	void operator()( entity& Entity, transform& Transform, timer& Timer, spawner& Spawner ) noexcept
@@ -49,6 +46,8 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                         // Win Game State
                         PPB.QueueScene("GameWin");
                     }
+                    else if ( deckno <= 15 )
+                        m_Coordinator.BroadcastEvent<enemy_spawner_system::OnLowDeckCount>();
 
                     while (CardsAvail) {
                         // Randomize card spawned

@@ -112,6 +112,7 @@ void InitializeGame()
         ,    Plane
         ,    Ray
         ,    Triangle
+        ,    spawner_details
         >();
     }
 
@@ -150,6 +151,7 @@ void InitializeGame()
         ,   onevent_ReferencePrefabDeleted_system
         ,   onevent_PointCaptured_system
         ,   onevent_CapturePointDamaged_system
+        ,   onevent_LowDeckCount_system
         >();
 
         PPB.RegisterScripts<

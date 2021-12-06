@@ -408,6 +408,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<capture_point>())
                 NewArchetype->GetComponent<capture_point>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<capture_point>();
+
+            if (obj.is_type<spawner_details>())
+                NewArchetype->GetComponent<spawner_details>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<spawner_details>();
         }
     }
 

@@ -81,6 +81,8 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                     // Lose Game State
                     PPB.QueueScene("GameLoss");
                 }
+                else if (deckno <= 15)
+                    m_Coordinator.BroadcastEvent<enemy_spawner_system::OnLowDeckCount>();
 
                 while (CardsAvail) {
                     // Randomize card spawned

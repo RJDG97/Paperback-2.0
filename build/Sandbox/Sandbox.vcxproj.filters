@@ -316,44 +316,11 @@
     <ClInclude Include="Systems\OnEvent_PointCaptured.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\Page1How2Play_Next_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
+    <ClInclude Include="Systems\OnEvent_LowDeckCount.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Scripts\How2Play_Cancel_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page1How2Play_Prev_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page2How2Play_Next_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page2How2Play_Prev_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page3How2Play_Next_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page3How2Play_Prev_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page4How2Play_Next_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page4How2Play_Prev_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page5How2Play_Next_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page5How2Play_Prev_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page6How2Play_Next_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Scripts\Page6How2Play_Prev_Button_MainMenu.h">
-      <Filter>Source Files\Scripts\Details</Filter>
+    <ClInclude Include="Components\SpawnerDetails.h">
+      <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -45,6 +45,7 @@
 #include "Spawner.h"
 #include "Mass.h"
 #include "CapturePoint.h"
+#include "SpawnerDetails.h"
 
 // shapes
 #include "AABB.h"

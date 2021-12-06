@@ -208,6 +208,7 @@
     <ClInclude Include="Components\Selected.h" />
     <ClInclude Include="Components\Sound.h" />
     <ClInclude Include="Components\Spawner.h" />
+    <ClInclude Include="Components\SpawnerDetails.h" />
     <ClInclude Include="Components\Sphere.h" />
     <ClInclude Include="Components\Text.h" />
     <ClInclude Include="Components\Timer.h" />
@@ -219,21 +220,8 @@
     <ClInclude Include="Scripts\CardScript.h" />
     <ClInclude Include="Scripts\Credits_Button_MainMenu.h" />
     <ClInclude Include="Scripts\How2Play_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\How2Play_Cancel_Button_MainMenu.h" />
     <ClInclude Include="Scripts\LevelSelect_Button_MainMenu.h" />
     <ClInclude Include="Scripts\MainMenu_Button.h" />
-    <ClInclude Include="Scripts\Page1How2Play_Next_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page1How2Play_Prev_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page2How2Play_Next_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page2How2Play_Prev_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page3How2Play_Next_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page3How2Play_Prev_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page4How2Play_Next_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page4How2Play_Prev_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page5How2Play_Next_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page5How2Play_Prev_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page6How2Play_Next_Button_MainMenu.h" />
-    <ClInclude Include="Scripts\Page6How2Play_Prev_Button_MainMenu.h" />
     <ClInclude Include="Scripts\PauseCancel_Button_Game.h" />
     <ClInclude Include="Scripts\PauseEnable_Button_Game.h" />
     <ClInclude Include="Scripts\QuitCancel_Button_Game.h" />
@@ -256,6 +244,7 @@
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
     <ClInclude Include="Systems\OnEvent_HealthSystem.h" />
+    <ClInclude Include="Systems\OnEvent_LowDeckCount.h" />
     <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h" />
     <ClInclude Include="Systems\OnEvent_PointCaptured.h" />
     <ClInclude Include="Systems\OnEvent_ReferencePrefabDeleted.h" />

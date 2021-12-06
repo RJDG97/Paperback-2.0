@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 79
+                "EntityHead": 76
             }
         },
         {
@@ -1884,11 +1884,11 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 83
+                        "Global Index": 43
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "ScissorsCard",
+                        "Texture": "RockCard",
                         "Shadow Bias": 1,
                         "Active": true
                     },
@@ -1919,14 +1919,16 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 39
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 38
                     },
                     "Selected": {
                         "Selected": false
                     },
                     "Name": {
-                        "Name": "ScissorCard"
+                        "Name": "RockCard"
                     },
                     "Card": {
                         "Card Textures": [
@@ -1940,7 +1942,7 @@
                             "z": 0.0
                         },
                         "Script Guid": 5980955924384015211,
-                        "Unit GID": 45,
+                        "Unit GID": 46,
                         "Card State": 0,
                         "Position Index": 2
                     }
@@ -2110,7 +2112,9 @@
                         }
                     },
                     "Prefab": {
-                        "Prefab Instances GID": []
+                        "Prefab Instances GID": [
+                            43
+                        ]
                     },
                     "Rotation": {
                         "Rotation": {
@@ -2173,8 +2177,7 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            42,
-                            83
+                            42
                         ]
                     },
                     "Rotation": {
@@ -3175,7 +3178,7 @@
                         "Prefab GID": 12
                     },
                     "Selected": {
-                        "Selected": true
+                        "Selected": false
                     },
                     "Name": {
                         "Name": "Top Path"
@@ -3661,7 +3664,7 @@
                         "Is Collide": false
                     },
                     "Selected": {
-                        "Selected": true
+                        "Selected": false
                     },
                     "Name": {
                         "Name": "Top Path"
@@ -5718,7 +5721,7 @@
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": true,
-                        "Trigger": true
+                        "Trigger": false
                     },
                     "Rotation": {
                         "Rotation": {
@@ -5753,11 +5756,11 @@
                         "Deck Details": [
                             {
                                 "Card GID": 37,
-                                "Count": 10
+                                "Count": 9
                             },
                             {
                                 "Card GID": 38,
-                                "Count": 8
+                                "Count": 9
                             },
                             {
                                 "Card GID": 39,
@@ -6135,422 +6138,6 @@
                     },
                     "Name": {
                         "Name": "BGM"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        13107566195444653040,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        1065973164513037885,
-                        16415915133639986106,
-                        9543330243219282276
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 76
-                    },
-                    "Mesh": {
-                        "Model": "CapturePointPole",
-                        "Texture": "CapturePointPole_BaseColour",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            78,
-                            77
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.6000000238418579,
-                            "y": -1.399999976158142,
-                            "z": -0.4000000059604645
-                        },
-                        "Max Point": {
-                            "x": 0.6000000238418579,
-                            "y": 0.20000000298023225,
-                            "z": 0.4000000059604645
-                        },
-                        "Is Collide": false
-                    },
-                    "Health": {
-                        "Current Health": 30,
-                        "Max Health": 60
-                    },
-                    "Name": {
-                        "Name": "Capture Point"
-                    },
-                    "Capture Point": {
-                        "Captured": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        17008353085049151909,
-                        16415915133639986106,
-                        5786312103493353911
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 78
-                    },
-                    "Mesh": {
-                        "Model": "Flag_Red",
-                        "Texture": "Flag_Red_BaseColour",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 76
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.4000000059604645,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": -90.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Enemy Flag"
-                    },
-                    "Enemy": {}
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        17008353085049151909,
-                        16415915133639986106,
-                        11735907707121220559
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 77
-                    },
-                    "Mesh": {
-                        "Model": "Flag_Blue",
-                        "Texture": "Flag_Blue_BaseColour",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 76
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.4000000059604645,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Player Flag"
-                    },
-                    "Friendly": {}
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        10055872472107209861,
-                        17008353085049151909,
-                        16415915133639986106,
-                        17181171452395271051,
-                        9543330243219282276,
-                        362204274408976276
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 82
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            43
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Capture Point Spawner"
-                    },
-                    "Spawner": {
-                        "Spawn Position": [
-                            {
-                                "x": 7.400000095367432,
-                                "y": 2.799999952316284,
-                                "z": -17.0
-                            },
-                            {
-                                "x": 0.30000001192092898,
-                                "y": 6.599999904632568,
-                                "z": -2.700000047683716
-                            },
-                            {
-                                "x": 0.6000000238418579,
-                                "y": 2.5999999046325685,
-                                "z": 11.0
-                            }
-                        ]
-                    },
-                    "Capture Point": {
-                        "Captured": false
-                    },
-                    "Spawner Details": {
-                        "Prefab GID": 76
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        17008353085049151909,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17181171452395271051,
-                        9543330243219282276,
-                        362204274408976276
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 43
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 82
-                    },
-                    "Name": {
-                        "Name": "Capture Point Spawner"
-                    },
-                    "Spawner": {
-                        "Spawn Position": [
-                            {
-                                "x": 7.400000095367432,
-                                "y": 2.799999952316284,
-                                "z": -17.0
-                            },
-                            {
-                                "x": 0.30000001192092898,
-                                "y": 6.599999904632568,
-                                "z": -2.700000047683716
-                            },
-                            {
-                                "x": 0.6000000238418579,
-                                "y": 2.5999999046325685,
-                                "z": 11.0
-                            }
-                        ]
-                    },
-                    "Capture Point": {
-                        "Captured": false
-                    },
-                    "Spawner Details": {
-                        "Prefab GID": 76
                     }
                 }
             ]
