@@ -125,6 +125,7 @@ void InitializeGame()
         ,   scripting_system
         ,   window_system
         ,   debug_system
+        ,   ui_system
         ,   path_system
         ,   render_system
         ,   animator_system
@@ -134,7 +135,6 @@ void InitializeGame()
         ,   timer_system
         ,   waypoint_system
         ,   health_system
-        ,   ui_system
         ,   deck_system
         ,   imgui_system
         ,   camera_system

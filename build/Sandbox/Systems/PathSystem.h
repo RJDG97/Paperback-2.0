@@ -3,6 +3,7 @@
 #define _PATHSYSTEM_H_
 
 #include "DebugSystem.h"
+#include "UISystem.h"
 #include "../Components/Path.h"
 #include "Math/Math_includes.h"
 #include <algorithm>
@@ -11,6 +12,7 @@
 struct path_system : paperback::system::instance
 {
 	debug_system* debug_sys;
+	ui_system* ui_sys;
 
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
@@ -21,8 +23,10 @@ struct path_system : paperback::system::instance
 	void OnSystemCreated(void) noexcept
 	{
 		debug_sys = &GetSystem<debug_system>();
+		ui_sys = &GetSystem<ui_system>();
 
 		RegisterGlobalEventClass<Input::MousePressed>(this);
+		RegisterGlobalEventClass<Input::MouseClicked>(this);
 	}
 
 	PPB_FORCEINLINE
@@ -37,9 +41,10 @@ struct path_system : paperback::system::instance
 
 		//draw splines
 		tools::query Query_Paths;
-		Query_Paths.m_Must.AddFromComponents<path, transform, selected>();
+		Query_Paths.m_Must.AddFromComponents<path, transform, selected, mesh>();
+		Query_Paths.m_NoneOf.AddFromComponents<prefab>();
 
-		ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected) noexcept
+		ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected, mesh& Mesh) noexcept
 		{
 			std::vector<paperback::Spline::SplinePoint> spline_points;
 
@@ -147,14 +152,15 @@ struct path_system : paperback::system::instance
 
 	void OnEvent(const size_t& Key, const bool& Clicked) noexcept
 	{
-		if (Key == GLFW_MOUSE_BUTTON_1)
+		if (!Clicked && Key == GLFW_MOUSE_BUTTON_1 && ui_sys->m_Picked)
 		{
 			std::map<int, paperback::Spline> splines;
 
 			tools::query Query_Paths;
-			Query_Paths.m_Must.AddFromComponents<path, transform, selected>();
+			Query_Paths.m_Must.AddFromComponents<path, transform, selected, mesh>();
+			Query_Paths.m_NoneOf.AddFromComponents<prefab>();
 
-			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected) noexcept
+			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected, mesh& Mesh) noexcept
 			{
 				std::vector<paperback::Spline::SplinePoint> spline_points;
 
@@ -210,16 +216,18 @@ struct path_system : paperback::system::instance
 				}
 			}
 
-			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected) noexcept
+			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected, mesh& Mesh) noexcept
 			{
 				if (Path.m_ID == lane)
 				{
 					Selected.m_Value = true;
+					Mesh.m_Active = true;
 				}
 
 				else
 				{
 					Selected.m_Value = false;
+					Mesh.m_Active = false;
 				}
 			});
 
@@ -240,6 +248,19 @@ struct path_system : paperback::system::instance
 					}
 				}
 			}
+		}
+
+		else if (Clicked)
+		{
+			tools::query Query_Paths;
+			Query_Paths.m_Must.AddFromComponents<path, transform, selected, mesh>();
+			Query_Paths.m_NoneOf.AddFromComponents<prefab>();
+
+			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected, mesh& Mesh) noexcept
+			{
+				Selected.m_Value = false;
+				Mesh.m_Active = false;
+			});
 		}
 	}
 };
