@@ -18,6 +18,7 @@
 #include "DeckSystem.h"
 #include "PathSystem.h"
 #include "CameraSystem.h"
+#include "IconSystem.h"
 
 // Event
 #include "OnEvent_CollisionSystem.h"

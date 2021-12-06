@@ -189,6 +189,7 @@
     <ClInclude Include="Components\FriendlySpawner.h" />
     <ClInclude Include="Components\Health.h" />
     <ClInclude Include="Components\HealthBar.h" />
+    <ClInclude Include="Components\Icon.h" />
     <ClInclude Include="Components\Listener.h" />
     <ClInclude Include="Components\Mass.h" />
     <ClInclude Include="Components\Mesh.h" />
@@ -241,6 +242,7 @@
     <ClInclude Include="Systems\DeckSystem.h" />
     <ClInclude Include="Systems\EnemySpawnerSystem.h" />
     <ClInclude Include="Systems\HealthSystem.h" />
+    <ClInclude Include="Systems\IconSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
     <ClInclude Include="Systems\OnEvent_HealthSystem.h" />

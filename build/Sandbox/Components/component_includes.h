@@ -46,6 +46,7 @@
 #include "Mass.h"
 #include "CapturePoint.h"
 #include "SpawnerDetails.h"
+#include "Icon.h"
 
 // shapes
 #include "AABB.h"

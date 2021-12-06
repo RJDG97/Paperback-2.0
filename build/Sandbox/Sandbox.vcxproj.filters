@@ -322,5 +322,11 @@
     <ClInclude Include="Components\SpawnerDetails.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Icon.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\IconSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

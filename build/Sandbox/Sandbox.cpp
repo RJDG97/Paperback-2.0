@@ -113,7 +113,10 @@ void InitializeGame()
         ,    Ray
         ,    Triangle
         ,    spawner_details
+        ,    icon             // Tag
         >();
+
+        // Register Components - Add to the end of the list
     }
 
     // Register Systems
@@ -138,6 +141,7 @@ void InitializeGame()
         ,   deck_system
         ,   imgui_system
         ,   camera_system
+        ,   icon_system
         >();
 
         PPB.RegisterSystems <
