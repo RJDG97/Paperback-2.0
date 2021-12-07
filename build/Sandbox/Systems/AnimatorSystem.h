@@ -5,7 +5,7 @@
 #include "../Components/Animator.h"
 #include "../Components/Mesh.h"
 
-struct animator_system : paperback::system::instance
+struct animator_system : paperback::system::pausable_instance
 {
 	RenderResourceManager* m_Resources;
 
