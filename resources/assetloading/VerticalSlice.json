@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 91
+                "EntityHead": 83
             }
         },
         {
@@ -805,6 +805,49 @@
                     },
                     "Name": {
                         "Name": "TextBG"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 96
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "FriendlyPaperWeapon"
                     }
                 }
             ]
@@ -5609,7 +5652,8 @@
                     },
                     "Parent": {
                         "Children GID": [
-                            72
+                            72,
+                            93
                         ]
                     },
                     "Offset": {
@@ -5784,7 +5828,7 @@
                         }
                     },
                     "Animator": {
-                        "Current Animation": "Armature|Attack",
+                        "Current Animation": "Armature|Walk",
                         "Play Once": false
                     },
                     "Rigidbody": {
@@ -6472,7 +6516,8 @@
                     },
                     "Parent": {
                         "Children GID": [
-                            84
+                            84,
+                            95
                         ]
                     },
                     "Offset": {
@@ -6615,7 +6660,8 @@
                     },
                     "Parent": {
                         "Children GID": [
-                            85
+                            85,
+                            91
                         ]
                     },
                     "Offset": {
@@ -7068,9 +7114,9 @@
                         10055872472107209861,
                         14486341741652966143,
                         15204223096342135753,
+                        17008353085049151909,
                         18207278796319661883,
-                        16415915133639986106,
-                        17008353085049151909
+                        16415915133639986106
                     ]
                 },
                 {
@@ -7078,7 +7124,7 @@
                         "Global Index": 87
                     },
                     "Mesh": {
-                        "Model": "FloorballStickAnimated_Red",
+                        "Model": "FloorballStickAnimated_Blue",
                         "Texture": "FloorballStick_Normal.dds",
                         "Shadow Bias": 1,
                         "Active": true
@@ -7124,6 +7170,18 @@
                         "Current Animation": "floorball stick|FloorballStickAttack",
                         "Play Once": false
                     },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
                     "Socketed": {
                         "Parent Socket": "LowerArm.R",
                         "Socket Postion Offset": {
@@ -7145,6 +7203,58 @@
                     },
                     "Name": {
                         "Name": "FriendlyScissorsWeapon"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 91
+                    },
+                    "Mesh": {
+                        "Model": "FloorballStickAnimated_Red",
+                        "Texture": "FloorballStick_Normal.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 48
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "floorball stick|FloorballStickAttack",
+                        "Play Once": false
                     },
                     "Transform": {
                         "Offset": {
@@ -7157,6 +7267,279 @@
                             "y": 0.0,
                             "z": 0.0
                         }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": 0.0,
+                            "y": -0.20000000298023225,
+                            "z": -0.20000000298023225
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 150.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        },
+                        "Sync Animation With Parent": true
+                    },
+                    "Name": {
+                        "Name": "EnemyScissorsWeapon"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 95
+                    },
+                    "Mesh": {
+                        "Model": "BadmintonRacketAnimated_Red",
+                        "Texture": "BadmintonRacket_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 47
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "badminton racket|BadmintonRacketAttack",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": 0.0,
+                            "y": -0.20000000298023225,
+                            "z": -0.20000000298023225
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 150.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        },
+                        "Sync Animation With Parent": true
+                    },
+                    "Name": {
+                        "Name": "EnemyPaperWeapon"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 93
+                    },
+                    "Mesh": {
+                        "Model": "BadmintonRacketAnimated_Blue",
+                        "Texture": "BadmintonRacket_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 44
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "badminton racket|BadmintonRacketAttack",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "LowerArm.R",
+                        "Socket Postion Offset": {
+                            "x": 0.0,
+                            "y": -0.20000000298023225,
+                            "z": -0.20000000298023225
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 150.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        },
+                        "Sync Animation With Parent": true
+                    },
+                    "Name": {
+                        "Name": "FriendlyPaperWeapon"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        18207278796319661883,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 94
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "",
+                        "Play Once": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Socketed": {
+                        "Parent Socket": "",
+                        "Socket Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Socket Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Socket Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Sync Animation With Parent": false
+                    },
+                    "Name": {
+                        "Name": "FriendlyPaperWeapon"
                     }
                 }
             ]
