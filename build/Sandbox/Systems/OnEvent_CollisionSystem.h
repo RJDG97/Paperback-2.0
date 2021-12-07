@@ -169,37 +169,39 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                         if (Sound_1)
                             Sound_1->m_Trigger = true;
                         // Unit vs Unit or Base
-                        if ( !CapturePt_2 || !Base_2 )
+                        if ( !CapturePt_2 )
                         {
-                            if (Base_2 || Damage_1->m_Type == Damage_2->m_Type) {
+                            if (Base_2 || (Damage_2 && Damage_1->m_Type == Damage_2->m_Type)) {
                                 // Update Health
                                 Health_2->m_CurrentHealth -= Damage_1->m_Value;
                             }
-                            else if (Damage_1->m_Type == 0 && Damage_2->m_Type == 1) {
-                                // Paper & Scissor
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value/2;
+                            else if (Damage_2)
+                            {
+                                if (Damage_1->m_Type == 0 && Damage_2->m_Type == 1) {
+                                    // Paper & Scissor
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
+                                }
+                                else if (Damage_1->m_Type == 0 && Damage_2->m_Type == 2) {
+                                    // Paper & Rock
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                                }
+                                else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 0) {
+                                    // Scissor & Paper
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                                }
+                                else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 2) {
+                                    // Scissor & Rock
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
+                                }
+                                else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 0) {
+                                    // Rock & Paper
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
+                                }
+                                else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 1) {
+                                    // Rock & Scissor
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                                }
                             }
-                            else if (Damage_1->m_Type == 0 && Damage_2->m_Type == 2) {
-                                // Paper & Rock
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
-                            }
-                            else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 0) {
-                                // Scissor & Paper
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
-                            }
-                            else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 2) {
-                                // Scissor & Rock
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
-                            }
-                            else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 0) {
-                                // Rock & Paper
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
-                            }
-                            else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 1) {
-                                // Rock & Scissor
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
-                            }
-
                             // Delete Entity
                             if (!Base_2 && Health_2->m_CurrentHealth <= 0 )
                             {
