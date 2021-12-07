@@ -56,15 +56,15 @@ struct onevent_UnitTrigger_system : paperback::system::instance
                   (Unit_1_Enemy && Unit_2_Friendly) || 
                   ((Unit_1_Friendly || Unit_1_Enemy) && CapturePt_2 && !CapturePt_2->m_Captured ))
         {
+            // Disable Movement - Maintain Collision
+            ResetForces(rf, rf2);
+
             if (Base_1)
             {
                 if (Sound_1)
                     Sound_1->m_Trigger = true;
                 return;
             }
-
-            // Disable Movement - Maintain Collision
-            ResetForces(rf, rf2);
 
             // Set Unit's State to Attack
             Unit_State->SetState( UnitState::ATTACK );
@@ -121,10 +121,13 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, CapturePt, Sound_1 ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point, sound >( m_obj.m_PoolDetails );
         auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, Base_2, CapturePt_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point >( m_obj2.m_PoolDetails );
 
+        ResetForces(rf, rf2);
+
         // Skip if it's Base or Capture Point
         if (Base_1 || CapturePt)
         {
             // Disable Movement - Maintain Collision
+            Skip = true;
             ResetForces(rf, rf2);
             return;
         }
@@ -166,7 +169,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                         if (Sound_1)
                             Sound_1->m_Trigger = true;
                         // Unit vs Unit or Base
-                        if ( !CapturePt_2 )
+                        if ( !CapturePt_2 || !Base_2 )
                         {
                             if (Base_2 || Damage_1->m_Type == Damage_2->m_Type) {
                                 // Update Health
@@ -204,7 +207,6 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                                 Anim_2->m_PlayOnce = true;
                                 Anim_2->m_FinishedAnimating = false;
                                 Unit_State2->SetState(UnitState::DEAD);
-                                //DeleteEntity( obj2 );
                                 BroadcastGlobalEvent<collision_system::OnCollisionExit>( obj, rf, Skip );
                             }
                         }
@@ -216,7 +218,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
 
                             // Health <= 0   - Friendlies Captured
                             // Health >= Max - Enemies Captured
-                            if ( Health_2->m_CurrentHealth <= 0 || Health_2->m_CurrentHealth >= Health_2->m_MaxHealth )
+                            if ( Health_2->m_CurrentHealth <= 0 || Health_2->m_CurrentHealth >= Health_2->m_MaxHealth && CapturePt_2 )
                             {
                                 CapturePt_2->m_Captured = true;
                                 // Reset Movement
