@@ -49,9 +49,29 @@ struct animator_system : paperback::system::pausable_instance
 
 			Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
 
-			if (Ator.m_CurrentTime >= current_anim.GetDuration())
+			// if it is the end of the animation
+			if (!Ator.m_FinishedAnimating && Ator.m_CurrentTime >= current_anim.GetDuration())
 			{
 				Ator.m_FinishedAnimating = true;
+
+				//set to last frame
+				Ator.m_CurrentTime = 0.0f;
+
+				std::vector<std::tuple<socketed*, animator*, mesh*, parent*>> children_data;
+
+				if (Parent)
+				{
+					for (const auto& ChildGlobalIndex : Parent->m_ChildrenGlobalIndexes)
+					{
+						auto& ChildInfo = GetEntityInfo(ChildGlobalIndex);
+						auto [CSocketed, CAnimator, CMesh, CParent] = ChildInfo.m_pArchetype->FindComponents<socketed, animator, mesh, parent>(ChildInfo.m_PoolDetails);
+						children_data.push_back({ CSocketed, CAnimator, CMesh, CParent });
+					}
+				}
+
+				CalculateBoneTransform(&current_anim.GetRootNode(), glm::mat4{ 1.0f }, current_anim, Ator, children_data);
+
+				Ator.m_CurrentTime += 1.0f;
 			}
 
 			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating))

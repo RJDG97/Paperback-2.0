@@ -31,6 +31,7 @@ namespace RR_Animator
 		rttr::registration::class_<animator>(animator::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("Current Animation", &animator::m_CurrentAnimationName)(rttr::policy::prop::as_reference_wrapper)
-			.property("Play Once", &animator::m_PlayOnce)(rttr::policy::prop::as_reference_wrapper);
+			.property("Play Once", &animator::m_PlayOnce)(rttr::policy::prop::as_reference_wrapper)
+			.property("Current Time", &animator::m_CurrentTime);
 	}
 }
