@@ -1,6 +1,6 @@
 #pragma once
 
-struct parentchild_system : paperback::system::pausable_instance
+struct parentchild_system : paperback::system::instance
 {
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
