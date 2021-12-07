@@ -71,6 +71,16 @@ struct onevent_UnitTrigger_system : paperback::system::instance
 
             auto Unit_1_Anim = m_obj.m_pArchetype->FindComponent<animator>( m_obj.m_PoolDetails );
 
+            auto Unit_1_Parent = m_obj.m_pArchetype->GetComponent<parent>(m_obj.m_PoolDetails);
+
+            for (auto child : Unit_1_Parent.m_ChildrenGlobalIndexes) {
+                auto m_childobj = GetEntityInfo(child);
+                auto m_ChildAnim = m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+                if (&m_ChildAnim) {
+                    m_ChildAnim.m_PlayOnce = false;
+                }
+            }
+
             // Update Animation
             if ( Unit_1_Anim && Unit_1_Anim->m_FinishedAnimating )
             {
@@ -270,15 +280,13 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
 
         // Get Relevant Components
-        auto [ Unit_Friendly, Unit_Enemy, Unit_State ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate >( m_obj.m_PoolDetails );
+        auto [ Unit_Friendly, Unit_Enemy, Unit_State, Unit_Anim, Unit_1_Parent] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate, animator, parent >( m_obj.m_PoolDetails );
 
         // Not Attacking & Is Unit
         if ( Unit_State && (Unit_Friendly || Unit_Enemy) )
         {
             if (Unit_State->IsState(UnitState::DEAD))
                 return;
-
-            auto Unit_Anim = m_obj.m_pArchetype->FindComponent<animator>( m_obj.m_PoolDetails );
 
             // Update Walking Animation
             if ( Unit_Anim )
@@ -287,6 +295,14 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
                 Unit_Anim->m_PlayOnce = false;
                 Unit_State->SetState( UnitState::WALK );
                 Skip = true;
+            }
+
+            for (auto child : Unit_1_Parent->m_ChildrenGlobalIndexes) {
+                auto m_childobj = GetEntityInfo(child);
+                auto m_ChildAnim = m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+                if (&m_ChildAnim) {
+                    m_ChildAnim.m_PlayOnce = true;
+                }
             }
         }
     }
