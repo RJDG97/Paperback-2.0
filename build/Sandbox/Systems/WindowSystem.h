@@ -113,7 +113,8 @@ struct window_system : paperback::system::instance
 
     static void GLFWWindowMaximizeCallback(GLFWwindow* window, int maximize)
     {   
-        float offset = 70.f;
+        //float offset = 70.f;
+        int offset = 70;
         auto& WindowDetails = PPB.GetSystem< window_system >().E;
         if (maximize) {
             // Get Primary monitor size

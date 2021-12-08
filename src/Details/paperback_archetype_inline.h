@@ -273,7 +273,7 @@ namespace paperback::archetype
             auto& RefPrefab    = PIArchetype.GetComponent<reference_prefab>( InstanceInfo.m_PoolDetails );
 
             // If Reference Prefab Did Not Override T_COMPONENT
-            if ( !RefPrefab.HasModified( CGuid ) )
+            if ( !RefPrefab.HasModified( static_cast<paperback::u32>(CGuid) ) )
             {
                 // Grab Component To Be Updated In Prefab Instance
                 auto& Mod_Component = PIArchetype.GetComponent<T_COMPONENT>( InstanceInfo.m_PoolDetails );
