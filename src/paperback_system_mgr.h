@@ -21,6 +21,7 @@ namespace paperback::system
 			paperback::event::instance<> m_OnFrameEnd;
 			paperback::event::instance<> m_OnSystemTerminated;
 			paperback::event::instance<> m_OnStateChange;
+			paperback::event::instance<> m_OnStateLoad;
 			paperback::event::instance<const bool&> m_OnDebug;
 			paperback::event::instance<const bool&> m_OnPause;
 		};
@@ -68,6 +69,9 @@ namespace paperback::system
 
 		PPB_INLINE
 		void ResetSystems( void ) noexcept;
+
+		PPB_INLINE
+		void ReloadSystems( void ) noexcept;
 
 		PPB_INLINE
 		void Terminate( void ) noexcept;

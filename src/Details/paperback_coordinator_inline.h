@@ -320,7 +320,6 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::QueueScene(const std::string& SceneName) noexcept 
 	{
-	
 		if (m_QueuedSceneName == "")
 			m_QueuedSceneName = SceneName;
 	}
@@ -328,7 +327,6 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::OpenQueuedScene() noexcept
 	{
-
 		if (m_QueuedSceneName != "")
 		{
 
@@ -352,7 +350,6 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::OpenEditScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
 	{
-
 		m_SceneMgr.UpdateScene(FilePath, EntityInfoPath);
 		m_SceneMgr.ReloadScene();
 	}
@@ -360,15 +357,19 @@ namespace paperback::coordinator
 	PPB_INLINE
 	bool instance::VerifyState( const std::string& StateName ) noexcept
 	{
-
 		return m_SceneMgr.VerifyScene( StateName );
 	}
 
 	PPB_INLINE
 	void instance::ResetSystems() noexcept
 	{
-
 		m_SystemMgr.ResetSystems();
+	}
+
+	PPB_INLINE
+	void instance::ReloadSystems() noexcept
+	{
+		m_SystemMgr.ReloadSystems();
 	}
 
 

@@ -105,6 +105,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void ResetSystems() noexcept;
 
+		PPB_INLINE
+		void ReloadSystems() noexcept;
+
 		//-----------------------------------
 		//    Archetype / Entity Methods
 		//-----------------------------------

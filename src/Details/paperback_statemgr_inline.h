@@ -18,14 +18,17 @@ namespace paperback::coordinator
 		if (m_ScenePath == "" || m_InfoPath == "")
 			return;
 
-		PPB.ResetSystems();
-
 		JsonFile Jfile;
+
+		// On Initial State Change - Pre-Load
+		PPB.ResetSystems();
 
 		PPB.Initialize();
 		Jfile.StartReader(m_ScenePath);
 		Jfile.LoadEntities("Entities");
 		Jfile.EndReader();
+
+		PPB.ReloadSystems();
 
 		PPB.LoadEntityInfo(m_InfoPath);
 	}

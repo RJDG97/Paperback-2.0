@@ -11,8 +11,16 @@
 
 struct path_system : paperback::system::pausable_instance
 {
+	// System Ptrs
 	debug_system* debug_sys;
 	ui_system* ui_sys;
+
+	// Queries
+	tools::query Query_Paths;
+	tools::query Query_Units;
+
+	// Map of splines
+	std::map<int, paperback::Spline> splines;
 
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
@@ -25,49 +33,51 @@ struct path_system : paperback::system::pausable_instance
 		debug_sys = &GetSystem<debug_system>();
 		ui_sys = &GetSystem<ui_system>();
 
+		Query_Paths.m_Must.AddFromComponents<path, transform, selected, mesh>();
+		Query_Paths.m_NoneOf.AddFromComponents<prefab>();
+
+		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation, unitstate>();
+		Query_Units.m_OneOf.AddFromComponents<friendly, enemy>();
+		Query_Units.m_NoneOf.AddFromComponents<prefab>();
+
 		RegisterGlobalEventClass<Input::MousePressed>(this);
 		RegisterGlobalEventClass<Input::MouseClicked>(this);
 	}
 
-	PPB_FORCEINLINE
-	void PreUpdate(void) noexcept
+	PPB_INLINE
+	void OnStateChange( void ) noexcept
 	{
+		splines.clear();
+	}
+
+	PPB_INLINE
+	void OnStateLoad( void ) noexcept
+	{
+		ForEach(Search(Query_Paths), [&]( path& Path, transform& Transform ) noexcept
+		{
+			std::vector<paperback::Spline::SplinePoint> spline_points;
+		
+			for (auto& point : Path.m_Points)
+			{
+				spline_points.push_back({ Transform.m_Position + point });
+			}
+		
+			splines.emplace(Path.m_ID, paperback::Spline{ spline_points, false });
+		});
 	}
 
 	PPB_FORCEINLINE
 	void Update(void) noexcept
 	{
-		std::map<int, paperback::Spline> splines;
-
-		//draw splines
-		tools::query Query_Paths;
-		Query_Paths.m_Must.AddFromComponents<path, transform, selected, mesh>();
-		Query_Paths.m_NoneOf.AddFromComponents<prefab>();
-
-		ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected, mesh& Mesh) noexcept
+		ForEach(Search(Query_Paths), [&]( path& Path ) noexcept
 		{
-			std::vector<paperback::Spline::SplinePoint> spline_points;
-
-			for (auto& point : Path.m_Points)
-			{
-				spline_points.push_back({ Transform.m_Position + point });
-			}
-
-			splines.emplace(Path.m_ID, paperback::Spline{ spline_points, false });
-				
 			if (debug_sys->m_IsDebug)
 			{
 				debug_sys->DrawSpline(splines[Path.m_ID]);
 			}
 		});
 
-		//move units
-		tools::query Query_Units;
-		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation, unitstate>();
-		Query_Units.m_OneOf.AddFromComponents<friendly, enemy>();
-		Query_Units.m_NoneOf.AddFromComponents<prefab>();
-
-		ForEach(Search(Query_Units), [&](rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation, unitstate& Unit, friendly* Friendly, enemy* Enemy) noexcept
+		ForEach(Search(Query_Units), [&]( rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation, unitstate& Unit, friendly* Friendly, enemy* Enemy ) noexcept
 		{
 			auto spline = splines.find(PathFollower.m_ID);
 
@@ -165,24 +175,6 @@ struct path_system : paperback::system::pausable_instance
 	{
 		if (!Clicked && Key == GLFW_MOUSE_BUTTON_1 && ui_sys->m_Picked)
 		{
-			std::map<int, paperback::Spline> splines;
-
-			tools::query Query_Paths;
-			Query_Paths.m_Must.AddFromComponents<path, transform, selected, mesh>();
-			Query_Paths.m_NoneOf.AddFromComponents<prefab>();
-
-			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected, mesh& Mesh) noexcept
-			{
-				std::vector<paperback::Spline::SplinePoint> spline_points;
-
-				for (auto& point : Path.m_Points)
-				{
-					spline_points.push_back({ Transform.m_Position + point });
-				}
-
-				splines.emplace(Path.m_ID, paperback::Spline{ spline_points, false });
-			});
-
 			//lane selection
 			struct lane_box
 			{
@@ -227,7 +219,7 @@ struct path_system : paperback::system::pausable_instance
 				}
 			}
 
-			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected, mesh& Mesh) noexcept
+			ForEach(Search(Query_Paths), [&]( path& Path, selected& Selected, mesh& Mesh ) noexcept
 			{
 				if (Path.m_ID == lane)
 				{
@@ -263,11 +255,7 @@ struct path_system : paperback::system::pausable_instance
 
 		else if (Clicked)
 		{
-			tools::query Query_Paths;
-			Query_Paths.m_Must.AddFromComponents<path, transform, selected, mesh>();
-			Query_Paths.m_NoneOf.AddFromComponents<prefab>();
-
-			ForEach(Search(Query_Paths), [&](path& Path, transform& Transform, selected& Selected, mesh& Mesh) noexcept
+			ForEach(Search(Query_Paths), [&]( selected& Selected, mesh& Mesh ) noexcept
 			{
 				Selected.m_Value = false;
 				Mesh.m_Active = false;
