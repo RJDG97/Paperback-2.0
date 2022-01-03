@@ -42,7 +42,7 @@ struct scripting_system : paperback::system::instance
 					if (Valid)
 						Script->second->Init(script.m_ScriptID); // Initialize if successful
 					// Run entity's start script
-					Script->second->Start();
+					Script->second->Start(Dynamic_Entity.m_GlobalIndex);
 				}
 				else
 				{	// run entity's update script

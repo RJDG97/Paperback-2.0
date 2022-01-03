@@ -7,7 +7,7 @@ namespace CSScript
 {
     public interface MonoBehaviour
     {
-        void Start();
+        void Start(UInt32 ID);
         void Update(float dt);
         void Destroy();
     }

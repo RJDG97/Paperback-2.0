@@ -7,15 +7,18 @@ namespace CSScript
 {
     public class CameraMovement : MonoBehaviour
     {
+        UInt32 m_ID;
         public static CameraMovement getInst()
         {
             return new CameraMovement();
         }
-        public void Start()
+        public void Start(UInt32 ID)
         {
+            m_ID = ID;
         }
         public void Update(float dt)
         {
+            Debug.Log(m_ID.ToString());
             if (Input.IsMouseDown(Input.PB_MOUSE_BUTTON_2))
             {
                 if (Input.IsKeyPressDown(Input.PB_W))

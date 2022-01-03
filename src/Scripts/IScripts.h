@@ -38,7 +38,7 @@ public:
 
 			if (m_pMonoObj) {
 
-				str = "." + m_ScriptClass + ":Start()";
+				str = "." + m_ScriptClass + ":Start(uint)";
 				m_pStart = Mono::GetInstanced().ImportFunction(m_pClass, m_pMonoObj, str.c_str());
 
 				str = "." + m_ScriptClass + ":Update(single)";
@@ -50,10 +50,10 @@ public:
 		}
 	}
 
-	void Start()
+	void Start(uint32_t ID)
 	{
 		if (m_pStart)
-			Mono::GetInstanced().RunImportFn(m_pMonoObj, m_pStart);
+			Mono::GetInstanced().RunImportFn(m_pMonoObj, m_pStart, ID);
 	}
 
 	void Update(float dt)
