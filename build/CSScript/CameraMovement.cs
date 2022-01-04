@@ -20,15 +20,15 @@ namespace CSScript
         }
         public void Update(float dt)
         {
+            Tools.MathLib.Vector3 test = new Tools.MathLib.Vector3(0.0003f, 0.0003f, 0.0003f);
+            m_transform.m_Position = m_transform.m_Position - test;
+
             Debug.Log("Position x:");
             Debug.Log(m_transform.m_Position.x.ToString());
             Debug.Log("Position y:");
             Debug.Log(m_transform.m_Position.y.ToString());
             Debug.Log("Position z:");
             Debug.Log(m_transform.m_Position.z.ToString());
-
-            Tools.MathLib.Vector3 test = new Tools.MathLib.Vector3(0.1f, 0.1f, 0.1f);
-            m_transform.m_Position = m_transform.m_Position - test;
 
             if (Input.IsMouseDown(Input.PB_MOUSE_BUTTON_2))
             {
