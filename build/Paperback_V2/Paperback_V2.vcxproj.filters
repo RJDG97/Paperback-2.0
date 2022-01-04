@@ -462,6 +462,9 @@
     <ClInclude Include="..\..\src\paperback_cppscript_mgr.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Transform.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

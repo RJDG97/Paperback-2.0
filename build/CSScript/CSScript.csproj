@@ -49,11 +49,13 @@
     <Compile Include="Tools\Camera.cs" />
     <Compile Include="Tools\Debug.cs" />
     <Compile Include="Tools\Inputs.cs" />
+    <Compile Include="Tools\MathLib.cs" />
     <Compile Include="Tools\MonoBehaviour.cs" />
     <Compile Include="QuitScript.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CameraMovement.cs" />
+    <Compile Include="Tools\Transform.cs" />
     <Compile Include="Unit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

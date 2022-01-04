@@ -8,6 +8,7 @@ namespace CSScript
     public class CameraMovement : MonoBehaviour
     {
         UInt32 m_ID;
+        Transform m_transform;
         public static CameraMovement getInst()
         {
             return new CameraMovement();
@@ -15,10 +16,20 @@ namespace CSScript
         public void Start(UInt32 ID)
         {
             m_ID = ID;
+            m_transform = new Transform(m_ID);
         }
         public void Update(float dt)
         {
-            Debug.Log(m_ID.ToString());
+            Debug.Log("Position x:");
+            Debug.Log(m_transform.m_Position.x.ToString());
+            Debug.Log("Position y:");
+            Debug.Log(m_transform.m_Position.y.ToString());
+            Debug.Log("Position z:");
+            Debug.Log(m_transform.m_Position.z.ToString());
+
+            Tools.MathLib.Vector3 test = new Tools.MathLib.Vector3(0.1f, 0.1f, 0.1f);
+            m_transform.m_Position = m_transform.m_Position - test;
+
             if (Input.IsMouseDown(Input.PB_MOUSE_BUTTON_2))
             {
                 if (Input.IsKeyPressDown(Input.PB_W))
