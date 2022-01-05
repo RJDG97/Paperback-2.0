@@ -158,7 +158,7 @@ public:
 
     const std::unordered_map<std::string, BoneInfo>& GetBoneIDMap() { return m_BoneInfoMap; }
 
-
+    std::unordered_map<std::string, BoneInfo>* FindBoneIDMap() { return &m_BoneInfoMap; }
 
 };
 

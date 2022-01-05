@@ -175,6 +175,10 @@ namespace paperback::coordinator
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;
 
+		template < concepts::Callable_Void T_FUNCTION >
+        void ForEach( const std::vector<paperback::u32>& NeighbourList
+					, T_FUNCTION&& Function ) noexcept;
+
         template < concepts::Callable_Bool T_FUNCTION >
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;
@@ -228,6 +232,7 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		void QuitGame() noexcept;
+		
 
 		//-----------------------------------
 		//           CPP Scripts
@@ -244,6 +249,59 @@ namespace paperback::coordinator
 
         PPB_FORCEINLINE
         const script::manager::CPPScriptsList& GetScriptsList( void ) const noexcept;
+
+
+		//-----------------------------------
+		//       Default Hash Grid
+		//-----------------------------------
+
+		PPB_INLINE
+        void InitializeGrid( void ) noexcept;
+
+        PPB_INLINE
+        void ResetGrid( void ) noexcept;
+
+
+		//-----------------------------------
+		//         Query Hash Grid
+		//-----------------------------------
+		
+		// Returns Vector of GID
+		PPB_INLINE
+		std::vector<paperback::u32> SearchNeighbours( const paperback::Vector3f&  Position                              // Entity Position
+		                                            , const paperback::Vector3f&  MinScale                              // Area To Query - Min Offset
+		                                            , const paperback::Vector3f&  MaxScale                              // Area To Query - Max Offset
+		                                            , const float                 Multiplier = 1.5f ) const noexcept;   // Area Multiplier
+		
+		
+		//-----------------------------------
+		//         Update Hash Grid
+		//-----------------------------------
+		
+		PPB_INLINE
+		void InsertUnit( const paperback::u32        GlobalIndex                // Entity Global Index
+		               , const paperback::Vector3f&  Position                   // Entity Position
+		               , const paperback::Vector3f&  MinScale                   // Bounding Box Min
+		               , const paperback::Vector3f&  MaxScale ) noexcept;       // Bounding Box Max
+		
+		PPB_INLINE
+		void UpdateUnit( const paperback::u32        GlobalIndex                // Entity Global Index
+		               , const paperback::Vector3f&  PrevPosition               // Prev Entity Position
+		               , const paperback::Vector3f&  CurrPosition               // Curr Entity Position
+		               , const paperback::Vector3f&  MinScale                   // Bounding Box Min
+		               , const paperback::Vector3f&  MaxScale ) noexcept;       // Bounding Box Max
+		
+		
+		//-----------------------------------
+		//             Setters
+		//-----------------------------------
+		
+		PPB_INLINE
+        void SetBoundaries( const paperback::Vector3f& Min
+                          , const paperback::Vector3f& Max ) noexcept;
+
+		PPB_FORCEINLINE
+		void SetCellSize( const paperback::u32 CellSize = paperback::settings::partition_cell_size_v ) noexcept;
 
 
 		//-----------------------------------
@@ -338,17 +396,18 @@ namespace paperback::coordinator
 
 	private:
 
-		scene_mgr					m_SceneMgr;						// Scene Manager
-		std::vector<fs::path>		m_DragDropFiles;				// External Files 
-		tools::clock				m_Clock;						// Timer
-		event::manager				m_GlobalEventMgr;				// Global Event Manager
-		component::manager			m_CompMgr;						// Component Manager
-		archetype::manager			m_ArchetypeMgr{ *this };		// Archetype Manager
-		system::manager				m_SystemMgr{ m_Clock };			// System Manager
-		script::manager				m_ScriptMgr{ *this };			// CPP Scripts Manager
-		Input						m_Input{ *this };				// Input
-		bool						m_GameActive = true;			// Game Status
-		std::string					m_QueuedSceneName = "";			// Currently Queued Scene to change
+		scene_mgr					        m_SceneMgr;						// Scene Manager
+		std::vector<fs::path>		        m_DragDropFiles;				// External Files 
+		tools::clock				        m_Clock;						// Timer
+		event::manager				        m_GlobalEventMgr;				// Global Event Manager
+		component::manager			        m_CompMgr;						// Component Manager
+		archetype::manager			        m_ArchetypeMgr{ *this };		// Archetype Manager
+		system::manager				        m_SystemMgr{ m_Clock };			// System Manager
+		script::manager				        m_ScriptMgr{ *this };			// CPP Scripts Manager
+		partition::spatial_hash_grid        m_HashGrid{ *this };			// Hash Grid
+		Input						        m_Input{ *this };				// Input
+		bool						        m_GameActive = true;			// Game Status
+		std::string					        m_QueuedSceneName = "";			// Currently Queued Scene to change
 	};
 }
 
