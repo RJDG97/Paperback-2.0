@@ -9,20 +9,27 @@ using System.Runtime.CompilerServices;
 
 namespace CSScript
 {
-    public class Transform
+    public unsafe class Transform
     {
+        private void* m_Address;
         private UInt32 m_ID;
+        public Transform(UInt32 id)
+        {
+            // m_ID = ID;
+            id = 40; // For testing (Cardback)
+            m_Address = getaddress(id);
+        }
 
         public Tools.MathLib.Vector3 m_Offset
         {
             get
             {
-                return getoffset(m_ID);
+                return getoffset(m_Address);
             }
             set
             {
                 //m_Offset = value;
-                setoffset(m_ID, value.x, value.y, value.z);
+                setoffset(m_Address, value.x, value.y, value.z);
             }
         }
 
@@ -30,31 +37,28 @@ namespace CSScript
         {
             get
             {
-                return getposition(m_ID);
+                return getposition(m_Address);
             }
             set
             {
                 //m_Position = value;
-                setposition(m_ID, value.x, value.y, value.z);
+                setposition(m_Address, value.x, value.y, value.z);
             }
         }
 
-        public Transform(UInt32 ID)
-        {
-            // m_ID = ID;
-            m_ID = 40; // For testing (Cardback)
-        }
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getoffset(UInt32 ID);
+        private extern static Tools.MathLib.Vector3 getoffset(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setoffset(UInt32 ID, float x, float y, float z);
+        private extern static void setoffset(void* address, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getposition(UInt32 ID);
+        private extern static Tools.MathLib.Vector3 getposition(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setposition(UInt32 ID, float x, float y, float z);
+        private extern static void setposition(void* address, float x, float y, float z);
     }
 }

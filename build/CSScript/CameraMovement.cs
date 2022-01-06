@@ -20,7 +20,7 @@ namespace CSScript
         }
         public void Update(float dt)
         {
-            Tools.MathLib.Vector3 test = new Tools.MathLib.Vector3(0.0003f, 0.0003f, 0.0003f);
+            Tools.MathLib.Vector3 test = new Tools.MathLib.Vector3(0.03f, 0.03f, 0.03f);
             m_transform.m_Position = m_transform.m_Position - test;
 
             Debug.Log("Position x:");
