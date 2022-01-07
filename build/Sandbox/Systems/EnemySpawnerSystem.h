@@ -87,7 +87,7 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                                 path_follower* Path = &m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
                                 Spawner.lane = rand() % 3;
                                 Transform->m_Position = Spawner.m_Position[Spawner.lane];
-                                Path->m_ID = Spawner.lane;
+                                Path->m_PathID = Spawner.lane;
                             }
 
                             break;

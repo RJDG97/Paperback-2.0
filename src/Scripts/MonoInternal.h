@@ -6,6 +6,7 @@
 #include "Scripts/Scripts_Application.h"
 #include "Scripts/Scripts_Debug.h"
 #include "Scripts/Scripts_Transform.h"
+#include "Scripts/Scripts_PathFollower.h"
 
 namespace MONO_INTERNALS
 {
@@ -16,5 +17,6 @@ namespace MONO_INTERNALS
 		MONO_APPLICATION::AddInternals();
 		MONO_DEBUG::AddInternalCall();
 		MONO_TRANSFORM::AddInternalCall();
+		MONO_PATHFOLLOWER::AddInternalCall();
 	}
 }

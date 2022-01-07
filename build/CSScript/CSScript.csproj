@@ -57,6 +57,7 @@
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CameraMovement.cs" />
+    <Compile Include="Tools\PathFollower.cs" />
     <Compile Include="Tools\Transform.cs" />
     <Compile Include="Unit.cs" />
   </ItemGroup>

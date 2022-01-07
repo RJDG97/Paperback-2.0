@@ -9,6 +9,7 @@ namespace CSScript
     {
         UInt32 m_ID;
         Transform m_transform;
+        PathFollower m_pathfollower;
         public static CameraMovement getInst()
         {
             return new CameraMovement();
@@ -17,6 +18,7 @@ namespace CSScript
         {
             m_ID = ID;
             m_transform = new Transform(m_ID);
+            //m_pathfollower = new PathFollower(m_ID);
         }
         public void Update(float dt)
         {
@@ -52,6 +54,14 @@ namespace CSScript
                     Camera.RotateLeft();
                 if (Input.IsKeyPressDown(Input.PB_RIGHT))
                     Camera.RotateRight();
+                if (Input.IsKeyPressDown(Input.PB_L))
+                {
+                    m_pathfollower = new PathFollower(94);
+                    m_pathfollower.m_PathID += 1;
+                    m_pathfollower.m_PathID = m_pathfollower.m_PathID % 2;
+                    m_pathfollower.m_TravelSpeed = 50.0f;
+                    m_pathfollower.m_Reversed = !m_pathfollower.m_Reversed;
+                }
             }
         }
         public void Destroy()
