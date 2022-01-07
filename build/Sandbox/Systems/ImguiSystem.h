@@ -4,6 +4,7 @@
 #include <sstream>
 #include <filesystem>
 #include "SoundSystem.h"
+#include "../../../src/Functionality/RenderResource/RenderResourceLoader.h"
 
 //----------------------------------
 // ImGui Headers
@@ -88,6 +89,7 @@ struct imgui_system : paperback::system::instance
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
     bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck, m_bLoadPrefab, m_bSavePrefab, m_bSaveIndiPrefab;
     bool m_bPaused;
+    RenderResourceLoader& m_Loader{ RenderResourceLoader::GetInstanced() };
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -143,6 +145,7 @@ struct imgui_system : paperback::system::instance
         m_bImgui = m_bPaused = true;
         m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = m_bSaveIndiPrefab = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
+        
 
         //m_CameraOriginalPosition = Camera3D::GetInstanced().GetPosition();
 
@@ -155,7 +158,9 @@ struct imgui_system : paperback::system::instance
                    WindowSettings, AssetBrowser, ConsoleTerminal
         >();
 
-        PPB.TogglePause(true); 
+        //PPB.TogglePause(true); 
+        if (PPB.VerifyState("Editor"))
+            m_Loader.ReadTextureJson("D:/Repo/Paperback-2.0/resources/textureload.texture");
         
         EDITOR_INFO_PRINT("Editor Loaded");
     }

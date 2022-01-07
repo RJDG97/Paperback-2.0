@@ -24,26 +24,34 @@ void RenderResourceLoader::ReadAssetJson( const std::string& File, rapidjson::Do
 void RenderResourceLoader::ReadTextureJson( std::string File )
 {
 	TextureLoad Temp;
-	rapidjson::Document Doc;
 
-	ReadAssetJson(File, Doc);
-	const rapidjson::Value& TextureInfo = Doc;
-	//add assert
+	std::ifstream InputFile(File);
 
-	for (rapidjson::Value::ConstMemberIterator it = TextureInfo.MemberBegin(); it != TextureInfo.MemberEnd(); ++it)
+	if (InputFile.is_open())
 	{
-		std::stringstream buffer{};
+		std::stringstream FileBuffer{};
+		FileBuffer << InputFile.rdbuf();
+		InputFile.close();
 
-		Temp.TextureName = it->name.GetString();
-		buffer << it->value.GetString();
-		buffer >> Temp.TexturePath >> Temp.TextureBool;
+		rapidjson::Document Doc;
+		Doc.Parse(FileBuffer.str().c_str());
+		const rapidjson::Value& TextureInfo = Doc;
 
-		m_Manager.LoadTextures(Temp.TextureName, Temp.TexturePath, Temp.TextureBool);
-		m_LoadedTextures.push_back(Temp);
+		for (rapidjson::Value::ConstMemberIterator it = TextureInfo.MemberBegin(); it != TextureInfo.MemberEnd(); ++it)
+		{
+			std::stringstream buffer{};
 
-		Temp.TextureName.clear(); 
-		Temp.TexturePath.clear(); 
-		Temp.TextureBool = false;
+			Temp.TextureName = it->name.GetString();
+			buffer << it->value.GetString();
+			buffer >> Temp.TexturePath >> Temp.TextureBool;
+
+			m_Manager.LoadTextures(Temp.TextureName, Temp.TexturePath, Temp.TextureBool);
+			m_LoadedTextures.push_back(Temp);
+
+			Temp.TextureName.clear();
+			Temp.TexturePath.clear();
+			Temp.TextureBool = false;
+		}
 	}
 }
 
