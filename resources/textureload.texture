@@ -1,0 +1,8 @@
+{
+	"PaperCard": "../../resources/textures/Cards/PaperCard_Mirrored.dds true",
+	"ScissorsCard": "../../resources/textures/Cards/ScissorsCard_Mirrored.dds true",
+	"RockCard": "../../resources/textures/Cards/RockCard_Mirrored.dds true",
+	"PaperCard": "../../resources/textures/Cards/PaperCard.dds true",
+	"ScissorsCard": "../../resources/textures/Cards/ScissorsCard.dds true",
+	"RockCard": "../../resources/textures/Cards/RockCard.dds true"
+}

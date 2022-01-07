@@ -7,7 +7,8 @@
 // 190, 245, 267, 292, 306, 342, 418
 
 Renderer::Renderer() :
-	m_Resources{ RenderResourceManager::GetInstanced() }
+	m_Resources{ RenderResourceManager::GetInstanced() },
+	m_Loader{ RenderResourceLoader::GetInstanced() }
 {
 	// Create a handle for vao
 	glCreateVertexArrays(1, &m_VAO);
@@ -158,14 +159,15 @@ Renderer::Renderer() :
 	m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
 	m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
 
-	m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard_Mirrored.dds", true);
-	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard_Mirrored.dds", true);
-	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard_Mirrored.dds", true);
+	//m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard_Mirrored.dds", true);
+	//m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard_Mirrored.dds", true);
+	//m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard_Mirrored.dds", true);
 
-	m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard.dds", true);
-	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard.dds", true);
-	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard.dds", true);
+	//m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard.dds", true);
+	//m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard.dds", true);
+	//m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard.dds", true);
 
+	m_Loader.ReadTextureJson("D:/Repo/Paperback-2.0/resources/textureload.texture");
 
 	// Menu Backgrounds
 	m_Resources.LoadTextures("MainMenuBackground", "../../resources/textures/UI/Menus/Backgrounds/MainMenuBackground_Mirrored.dds", true);
