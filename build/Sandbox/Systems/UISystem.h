@@ -18,8 +18,8 @@ struct ui_system : paperback::system::pausable_instance
     >;
 
     tools::query m_ButtonQuery;
-    bool         m_Picked = false;
     std::string  m_CurrentButtonHovered{};
+    bool         m_Picked = false;
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept

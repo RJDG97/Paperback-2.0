@@ -1,6 +1,5 @@
 #pragma once
 
-//#include "paperback_pch.h"
 #include "Json/paperback_json.h"
 #include "../Functionality/Renderer/Renderer.h"
 
@@ -114,6 +113,8 @@ struct window_system : paperback::system::instance
 
     static void GLFWWindowMaximizeCallback(GLFWwindow* window, int maximize)
     {   
+        //float offset = 70.f;
+        int offset = 70;
         auto& WindowDetails = PPB.GetSystem< window_system >().E;
         if (maximize) {
             // Get Primary monitor size
@@ -121,7 +122,7 @@ struct window_system : paperback::system::instance
             const GLFWvidmode* mode = glfwGetVideoMode(monitor);
             // Set window size to monitor size
             WindowDetails.m_Width = mode->width;
-            WindowDetails.m_Height = mode->height;
+            WindowDetails.m_Height = mode->height - offset;
         }
         else {
             // Restore window size

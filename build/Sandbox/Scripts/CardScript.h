@@ -20,6 +20,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
 
     void OnClick(paperback::component::entity& Entity, paperback::u32 PrefabGID, int PositionIndex ) noexcept override
     {
+        bool lane_found{};
         tools::query Path_Query;
 
         Path_Query.m_Must.AddFromComponents < path, selected>();
@@ -29,6 +30,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
         {
             if (Selected.m_Value)
             {
+                lane_found = true;
                 auto list = m_Coordinator.Search<paperback::component::entity>();
 
                 // Check if GID is Valid
@@ -52,9 +54,22 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                         Transform->m_Position = Spawner.m_Position[Path.m_ID];
                         Path_Follower->m_ID = Path.m_ID;
                     });
+
+
+
+                    // Add Unit To Hash Grid - After Position Update
+                    auto [Entity, Xform, Box, Prefab] = m_obj.m_pArchetype->FindComponents<paperback::component::entity, transform, boundingbox, prefab>( m_obj.m_PoolDetails );
+                    if ( !Prefab && Entity && Xform && Box )
+                        m_Coordinator.UpdateUnit( Entity->m_GlobalIndex, {0.0f,0.0f,0.0f}, Xform->m_Position, Box->Min, Box->Max );
                 }
             }
         });
+
+        //dont spawn new card
+        if (!lane_found)
+        {
+            return;
+        }
 
         // Spawn new Card
        

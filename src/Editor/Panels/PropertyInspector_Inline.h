@@ -399,7 +399,7 @@ void DetailsWindow::PathComponent()
                 std::reference_wrapper<paperback::Vector3f> TempPoint = Path->m_Points.at(i);
 
                 if (ImGui::Button(("Point " + std::to_string(i)).c_str(), ImVec2{60.0f, 25.0f}))
-                    m_Imgui.m_SelectedSplinePoint = i;;
+                    m_Imgui.m_SelectedSplinePoint = static_cast<int>(i);;
 
                 ImGui::SameLine();
 
@@ -419,7 +419,7 @@ void DetailsWindow::PathComponent()
                     if (ImGui::Selectable(std::to_string(i).c_str()))
                     {
                         m_Imgui.m_SelectedSplinePoint = -1;
-                        Path->AddPoint(i, Path->m_Points.at(i));
+                        Path->AddPoint(static_cast<int>(i), Path->m_Points.at(static_cast<int>(i)));
                     }
                 }
                 ImGui::EndCombo();
@@ -436,7 +436,7 @@ void DetailsWindow::PathComponent()
                     for (size_t i = 0; i < Path->m_Points.size(); ++i)
                     {
                         if (ImGui::Selectable(std::to_string(i).c_str()))
-                            Path->RemovePoint(i);
+                            Path->RemovePoint(static_cast<int>(i));
                     }
                     ImGui::EndCombo();
                 }

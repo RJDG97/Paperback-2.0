@@ -31,9 +31,6 @@ struct onevent_UnitTrigger_system : paperback::system::instance
         auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, Sound_1 ]  = m_obj.m_pArchetype->FindComponents < friendly, enemy, unitstate, base, sound >( m_obj.m_PoolDetails );
         auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, CapturePt_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, capture_point >( m_obj2.m_PoolDetails );
 
-        // Disable Movement - Maintain Collision
-        ResetForces(rf, rf2);
-
         // Same Unit Type && Not Currently Fighting - WALK
         if ( Unit_State && Unit_State->IsNotState( UnitState::ATTACK ) &&
             ((Unit_1_Friendly && Unit_2_Friendly) || (Unit_1_Enemy && Unit_2_Enemy)) )
@@ -59,6 +56,9 @@ struct onevent_UnitTrigger_system : paperback::system::instance
                   (Unit_1_Enemy && Unit_2_Friendly) || 
                   ((Unit_1_Friendly || Unit_1_Enemy) && CapturePt_2 && !CapturePt_2->m_Captured ))
         {
+            // Disable Movement - Maintain Collision
+            ResetForces(rf, rf2);
+
             if (Base_1)
             {
                 if (Sound_1)
@@ -70,6 +70,16 @@ struct onevent_UnitTrigger_system : paperback::system::instance
             Unit_State->SetState( UnitState::ATTACK );
 
             auto Unit_1_Anim = m_obj.m_pArchetype->FindComponent<animator>( m_obj.m_PoolDetails );
+
+            auto Unit_1_Parent = m_obj.m_pArchetype->GetComponent<parent>(m_obj.m_PoolDetails);
+
+            for (auto child : Unit_1_Parent.m_ChildrenGlobalIndexes) {
+                auto m_childobj = GetEntityInfo(child);
+                auto m_ChildAnim = m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+                if (&m_ChildAnim) {
+                    m_ChildAnim.m_PlayOnce = false;
+                }
+            }
 
             // Update Animation
             if ( Unit_1_Anim && Unit_1_Anim->m_FinishedAnimating )
@@ -101,7 +111,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
          RegisterGlobalEventClass<collision_system::OnCollisionStay>(this);
      }
 
-    void OnEvent( entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2, bool& Skip ) noexcept
+    void OnEvent( entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2, boundingbox& box, boundingbox& box2, bool& Skip ) noexcept
     {
         // Get Entity Info
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
@@ -111,10 +121,13 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, CapturePt, Sound_1 ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point, sound >( m_obj.m_PoolDetails );
         auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, Base_2, CapturePt_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point >( m_obj2.m_PoolDetails );
 
+        ResetForces(rf, rf2);
+
         // Skip if it's Base or Capture Point
         if (Base_1 || CapturePt)
         {
             // Disable Movement - Maintain Collision
+            Skip = true;
             ResetForces(rf, rf2);
             return;
         }
@@ -158,35 +171,37 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                         // Unit vs Unit or Base
                         if ( !CapturePt_2 )
                         {
-                            if (Base_2 || Damage_1->m_Type == Damage_2->m_Type) {
+                            if (Base_2 || (Damage_2 && Damage_1->m_Type == Damage_2->m_Type)) {
                                 // Update Health
                                 Health_2->m_CurrentHealth -= Damage_1->m_Value;
                             }
-                            else if (Damage_1->m_Type == 0 && Damage_2->m_Type == 1) {
-                                // Paper & Scissor
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value/2;
+                            else if (Damage_2)
+                            {
+                                if (Damage_1->m_Type == 0 && Damage_2->m_Type == 1) {
+                                    // Paper & Scissor
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
+                                }
+                                else if (Damage_1->m_Type == 0 && Damage_2->m_Type == 2) {
+                                    // Paper & Rock
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                                }
+                                else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 0) {
+                                    // Scissor & Paper
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                                }
+                                else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 2) {
+                                    // Scissor & Rock
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
+                                }
+                                else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 0) {
+                                    // Rock & Paper
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
+                                }
+                                else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 1) {
+                                    // Rock & Scissor
+                                    Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
+                                }
                             }
-                            else if (Damage_1->m_Type == 0 && Damage_2->m_Type == 2) {
-                                // Paper & Rock
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
-                            }
-                            else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 0) {
-                                // Scissor & Paper
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
-                            }
-                            else if (Damage_1->m_Type == 1 && Damage_2->m_Type == 2) {
-                                // Scissor & Rock
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
-                            }
-                            else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 0) {
-                                // Rock & Paper
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value / 2;
-                            }
-                            else if (Damage_1->m_Type == 2 && Damage_2->m_Type == 1) {
-                                // Rock & Scissor
-                                Health_2->m_CurrentHealth -= Damage_1->m_Value * 2;
-                            }
-
                             // Delete Entity
                             if (!Base_2 && Health_2->m_CurrentHealth <= 0 )
                             {
@@ -194,8 +209,39 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                                 Anim_2->m_PlayOnce = true;
                                 Anim_2->m_FinishedAnimating = false;
                                 Unit_State2->SetState(UnitState::DEAD);
-                                //DeleteEntity( obj2 );
                                 BroadcastGlobalEvent<collision_system::OnCollisionExit>( obj, rf, Skip );
+
+
+
+
+
+
+
+
+                                // if box2 is dead
+                                for ( auto& [id, colliding] : box2.m_CollisionState )
+                                {
+                                    if ( colliding )
+                                    {
+                                        const auto& OtherInfo = GetEntityInfo( id );
+
+                                        if ( OtherInfo.m_pArchetype )
+                                        {
+                                            auto [Box, RForce, REntity] = OtherInfo.m_pArchetype->FindComponents<boundingbox, rigidforce, entity>( OtherInfo.m_PoolDetails );
+
+                                            if ( Box )
+                                            {
+                                                auto It = Box->m_CollisionState.find( obj2.m_GlobalIndex );
+                                                if ( It != Box->m_CollisionState.end() )
+                                                    Box->m_CollisionState.at( obj2.m_GlobalIndex ) = false;
+                                            }
+                                            if ( REntity && RForce )
+                                            {
+                                                BroadcastGlobalEvent<collision_system::OnCollisionExit>( *REntity, *RForce, Skip );
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                         // Capture Point
@@ -206,13 +252,44 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
 
                             // Health <= 0   - Friendlies Captured
                             // Health >= Max - Enemies Captured
-                            if ( Health_2->m_CurrentHealth <= 0 || Health_2->m_CurrentHealth >= Health_2->m_MaxHealth )
+                            if ( Health_2->m_CurrentHealth <= 0 || Health_2->m_CurrentHealth >= Health_2->m_MaxHealth && CapturePt_2 )
                             {
                                 CapturePt_2->m_Captured = true;
                                 // Reset Movement
                                 BroadcastGlobalEvent<collision_system::OnCollisionExit>( obj, rf, Skip );
                                 // Update Card Decks
                                 BroadcastGlobalEvent<onevent_UnitTriggerStay_system::PointCaptured>( Unit_1_Friendly ? true : false );
+
+
+
+
+
+
+
+                                // if box2 is dead
+                                for ( auto& [id, colliding] : box2.m_CollisionState )
+                                {
+                                    if ( colliding )
+                                    {
+                                        const auto& OtherInfo = GetEntityInfo( id );
+
+                                        if ( OtherInfo.m_pArchetype )
+                                        {
+                                            auto [Box, RForce, REntity] = OtherInfo.m_pArchetype->FindComponents<boundingbox, rigidforce, entity>( OtherInfo.m_PoolDetails );
+
+                                            if ( Box )
+                                            {
+                                                auto It = Box->m_CollisionState.find( obj2.m_GlobalIndex );
+                                                if ( It != Box->m_CollisionState.end() )
+                                                    Box->m_CollisionState.at( obj2.m_GlobalIndex ) = false;
+                                            }
+                                            if ( REntity && RForce )
+                                            {
+                                                BroadcastGlobalEvent<collision_system::OnCollisionExit>( *REntity, *RForce, Skip );
+                                            }
+                                        }
+                                    }
+                                }
                             }
 
                             // Update Position of Flags
@@ -241,6 +318,10 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
             {
                 // Helps to Re-Enable movement when SAME Unit Types collide - This also causes the units to overshot
                 BroadcastGlobalEvent<collision_system::OnCollisionExit>(obj, rf, Skip);
+
+
+                // UPDATE COLLISION STATE - NEW
+                box.m_CollisionState.at(obj2.m_GlobalIndex) = false;
             }
         }
         // Skip Capture Points that have been Captured
@@ -270,15 +351,13 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
 
         // Get Relevant Components
-        auto [ Unit_Friendly, Unit_Enemy, Unit_State ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate >( m_obj.m_PoolDetails );
+        auto [ Unit_Friendly, Unit_Enemy, Unit_State, Unit_Anim, Unit_1_Parent] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate, animator, parent >( m_obj.m_PoolDetails );
 
         // Not Attacking & Is Unit
         if ( Unit_State && (Unit_Friendly || Unit_Enemy) )
         {
             if (Unit_State->IsState(UnitState::DEAD))
                 return;
-
-            auto Unit_Anim = m_obj.m_pArchetype->FindComponent<animator>( m_obj.m_PoolDetails );
 
             // Update Walking Animation
             if ( Unit_Anim )
@@ -287,6 +366,14 @@ struct onevent_UnitTriggerExit_system : paperback::system::instance
                 Unit_Anim->m_PlayOnce = false;
                 Unit_State->SetState( UnitState::WALK );
                 Skip = true;
+            }
+
+            for (auto child : Unit_1_Parent->m_ChildrenGlobalIndexes) {
+                auto m_childobj = GetEntityInfo(child);
+                auto m_ChildAnim = m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
+                if (&m_ChildAnim) {
+                    m_ChildAnim.m_PlayOnce = true;
+                }
             }
         }
     }

@@ -87,9 +87,24 @@ namespace paperback::system
 		m_Events.m_OnFrameEnd.BroadcastEvent();
 	}
 
+	void manager::ToggleDebug( const bool& Status ) noexcept
+	{
+		m_Events.m_OnDebug.BroadcastEvent( Status );
+	}
+
 	void manager::TogglePause( const bool& Status ) noexcept
 	{
 		m_Events.m_OnPause.BroadcastEvent( Status );
+	}
+
+	void manager::ResetSystems( void ) noexcept
+	{
+		m_Events.m_OnStateChange.BroadcastEvent();
+	}
+
+	void manager::ReloadSystems( void ) noexcept
+	{
+		m_Events.m_OnStateLoad.BroadcastEvent();
 	}
 
 	void manager::Terminate( void ) noexcept
@@ -140,13 +155,10 @@ namespace paperback::system
 		if constexpr ( &T_SYSTEM::OnStateChange != &system_interface::OnStateChange )
 			m_Events.m_OnStateChange.RegisterEvent< &T_SYSTEM::OnStateChange >( static_cast<system_t*>( System ) );
 
+		if constexpr ( &T_SYSTEM::OnStateLoad != &system_interface::OnStateLoad )
+			m_Events.m_OnStateLoad.RegisterEvent< &T_SYSTEM::OnStateLoad >( static_cast<system_t*>( System ) );
+
 		if constexpr ( &T_SYSTEM::OnPause != &system_interface::OnPause )
 			m_Events.m_OnPause.RegisterEvent< &T_SYSTEM::OnPause >( static_cast<system_t*>( System ) );
-	}
-
-	void manager::ResetSystems( void ) noexcept
-	{
-
-		m_Events.m_OnStateChange.BroadcastEvent();
 	}
 }

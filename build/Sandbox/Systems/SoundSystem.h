@@ -379,13 +379,9 @@ public:
         }
     }
 
-
     PPB_FORCEINLINE
-    void OnFrameEnd(void) noexcept 
+    void CleanUpSounds()
     {
-
-        // call fmod default stuff IF there's something that needs to be "globally" called 
-        m_pStudioSystem->update();
 
         //set sound file for deletion if not verified to have corresponding sound component or has stopped and is not triggerable
         for (SoundFile& sound : m_SoundFiles) {
@@ -406,14 +402,25 @@ public:
         if (end != std::end(m_SoundFiles))
             m_SoundFiles.erase(end, m_SoundFiles.end());
 
-        //update listener position
-        SetListenerPosition();
-
         //reset verification status for next loop
         for (SoundFile& sound : m_SoundFiles) {
 
             sound.m_Verified = false;
         }
+
+        // call fmod default stuff IF there's something that needs to be "globally" called 
+        m_pStudioSystem->update();
+    }
+
+
+    PPB_FORCEINLINE
+    void OnFrameEnd(void) noexcept 
+    {
+
+        CleanUpSounds();
+
+        //update listener position
+        SetListenerPosition();
     }
 
     // Terminate system
@@ -439,4 +446,12 @@ public:
 
         StopAllSounds();
     }
+
+    PPB_FORCEINLINE
+    void EditorStopAllSounds()
+    {
+
+        StopAllSounds();
+        CleanUpSounds();
+    };
 };

@@ -45,17 +45,18 @@ struct animator_system : paperback::system::pausable_instance
 
 		if (anims.find(Ator.m_CurrentAnimationName) != anims.end())
 		{
-			auto& current_anim{ anims[Ator.m_CurrentAnimationName] };
-
-			Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
-
-			if (Ator.m_CurrentTime >= current_anim.GetDuration())
-			{
-				Ator.m_FinishedAnimating = true;
-			}
-
 			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating))
 			{
+				auto& current_anim{ anims[Ator.m_CurrentAnimationName] };
+
+				Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
+
+				// if it is the end of the animation
+				if (Ator.m_CurrentTime >= current_anim.GetDuration())
+				{
+					Ator.m_FinishedAnimating = true;
+				}
+
 				Ator.m_CurrentTime = fmod(Ator.m_CurrentTime, current_anim.GetDuration());
 
 				std::vector<std::tuple<socketed*, animator*, mesh*, parent*>> children_data;
@@ -85,12 +86,12 @@ struct animator_system : paperback::system::pausable_instance
 			global_transformation = parent_transform * bone->Update(ator.m_CurrentTime);
 		}
 
-		auto bone_info_map{ current_anim.GetBoneIDMap() };
+		auto bone_info_map = current_anim.FindBoneIDMap();
 
-		if (bone_info_map.find(node->name) != bone_info_map.end())
+		if (bone_info_map->find(node->name) != bone_info_map->end())
 		{
-			int index{ bone_info_map[node->name].id };
-			glm::mat4 offset{ bone_info_map[node->name].offset };
+			int index{ (*bone_info_map)[node->name].id };
+			glm::mat4 offset{ (*bone_info_map)[node->name].offset };
 
 			glm::mat4 transform{};
 
@@ -124,7 +125,7 @@ struct animator_system : paperback::system::pausable_instance
 					std::get<0>(child_data)->m_BoneTransform = transform * socket_offset;
 				}
 
-				if (std::get<0>(child_data) && std::get<1>(child_data) && std::get<0>(child_data)->m_SyncAnimationWithParent)
+				if (std::get<0>(child_data) && std::get<1>(child_data) && std::get<0>(child_data)->m_SyncAnimationWithParent && !std::get<1>(child_data)->m_FinishedAnimating)
 				{
 					std::get<1>(child_data)->m_CurrentTime = ator.m_CurrentTime;
 					UpdateAnimator(*std::get<1>(child_data), *std::get<2>(child_data), std::get<3>(child_data));

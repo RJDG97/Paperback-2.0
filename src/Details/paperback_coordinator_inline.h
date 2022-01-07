@@ -5,6 +5,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//            Default
 	//-----------------------------------
+
 	instance::instance( void ) noexcept
 	{
 		paperback::logger::Init();
@@ -62,6 +63,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//          Registration
 	//-----------------------------------
+
 	template < concepts::System... T_SYSTEMS >
 	constexpr void instance::RegisterSystems( void ) noexcept
 	{
@@ -109,6 +111,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//           Save Scene
 	//-----------------------------------
+
 	PPB_INLINE
 	void instance::SaveScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
 	{
@@ -325,6 +328,9 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::OpenScene( const std::string& SceneName = "" ) noexcept
 	{
+		// Reset Hash Grid
+		ResetGrid();
+
 		if (SceneName == "")
 		{
 			//if no arg given then "launching" so just reload scene manager
@@ -339,12 +345,14 @@ namespace paperback::coordinator
 				m_SceneMgr.ChangeScene();
 			}
 		}
+
+		// Initialize Hash Grid
+		InitializeGrid();
 	}
 
 	PPB_INLINE
 	void instance::QueueScene(const std::string& SceneName) noexcept 
 	{
-	
 		if (m_QueuedSceneName == "")
 			m_QueuedSceneName = SceneName;
 	}
@@ -352,7 +360,6 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::OpenQueuedScene() noexcept
 	{
-
 		if (m_QueuedSceneName != "")
 		{
 
@@ -376,7 +383,6 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::OpenEditScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
 	{
-
 		m_SceneMgr.UpdateScene(FilePath, EntityInfoPath);
 		m_SceneMgr.ReloadScene();
 	}
@@ -384,21 +390,26 @@ namespace paperback::coordinator
 	PPB_INLINE
 	bool instance::VerifyState( const std::string& StateName ) noexcept
 	{
-
 		return m_SceneMgr.VerifyScene( StateName );
 	}
 
 	PPB_INLINE
 	void instance::ResetSystems() noexcept
 	{
-
 		m_SystemMgr.ResetSystems();
+	}
+
+	PPB_INLINE
+	void instance::ReloadSystems() noexcept
+	{
+		m_SystemMgr.ReloadSystems();
 	}
 
 
 	//-----------------------------------
 	//       Entity / Archetype
 	//-----------------------------------
+
 	template < typename... T_COMPONENTS >
 	archetype::instance& instance::GetOrCreateArchetype( void ) noexcept
 	{
@@ -454,6 +465,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//      Add Remove Components
 	//-----------------------------------
+
 	template < concepts::TupleSpecialization T_TUPLE_ADD
 			 , concepts::TupleSpecialization T_TUPLE_REMOVE
 			 , concepts::Callable T_FUNCTION >
@@ -482,6 +494,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//             Query
 	//-----------------------------------
+
 	template < typename... T_COMPONENTS >
 	std::vector<archetype::instance*> instance::Search() const noexcept
 	{
@@ -502,6 +515,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//            Game Loop
 	//-----------------------------------
+
 	template < concepts::Callable_Void T_FUNCTION>
 	void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList
 						  , T_FUNCTION&& Function ) noexcept
@@ -536,6 +550,45 @@ namespace paperback::coordinator
 							... );
 						}( xcore::types::null_tuple_v< func_traits::args_tuple > );
 					}
+				});
+			}
+		}
+	}
+
+	template < concepts::Callable_Void T_FUNCTION>
+	void instance::ForEach( const std::vector<paperback::u32>& NeighbourList
+						  , T_FUNCTION&& Function ) noexcept
+	{
+		using func_traits = xcore::function::traits<T_FUNCTION>;
+
+		for ( const auto GID : NeighbourList )
+        {
+			tools::query FuncQuery;							  // Query For Archetype
+            const auto&  Info = GetEntityInfo( GID );		  // Get Entity Info
+
+			FuncQuery.AddQueryFromFunction<T_FUNCTION>();     // Assign Query
+
+            if ( Info.m_pArchetype && Info.m_pArchetype->GetComponentBits().Compare( FuncQuery.m_Must )
+				                   && Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) )
+            {
+				Info.m_pArchetype->AccessGuard( [&]
+				{
+					[&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
+					{
+						Function( [&]<typename T_C>( std::tuple<T_C>* ) constexpr noexcept -> T_C
+								  {
+									  auto pComponent = Info.m_pArchetype->FindComponent( Info.m_PoolDetails, component::info_v<T_C>.m_Guid );
+									  if constexpr (std::is_pointer_v<T_C>)
+									  {
+										  if ( pComponent ) return reinterpret_cast<T_C>( pComponent );
+										  else return reinterpret_cast<T_C>( nullptr );
+									  }
+									  else return reinterpret_cast<T_C>( *pComponent );
+				
+								  }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
+						... );
+					}( xcore::types::null_tuple_v< func_traits::args_tuple > );
+					
 				});
 			}
 		}
@@ -589,6 +642,11 @@ namespace paperback::coordinator
 		}
 	}
 
+	void instance::ToggleDebug( const bool& Status ) noexcept
+	{
+		m_SystemMgr.ToggleDebug( Status );
+	}
+
 	void instance::TogglePause( const bool& Status ) noexcept
 	{
 		m_SystemMgr.TogglePause( Status );
@@ -599,9 +657,11 @@ namespace paperback::coordinator
 		m_GameActive = false;
 	}
 
+
 	//-----------------------------------
 	//             Getters
 	//-----------------------------------
+
 	paperback::entity::info& instance::GetEntityInfo( component::entity& Entity ) const noexcept
 	{
 		return m_ArchetypeMgr.GetEntityInfo( Entity );
@@ -697,8 +757,83 @@ namespace paperback::coordinator
 
 
 	//-----------------------------------
+	//       Default Hash Grid
+	//-----------------------------------
+
+	PPB_INLINE
+    void instance::InitializeGrid( void ) noexcept
+	{
+		m_HashGrid.Initialize();
+	}
+
+    PPB_INLINE
+    void instance::ResetGrid( void ) noexcept
+	{
+		m_HashGrid.Reset();
+	}
+
+
+	//-----------------------------------
+	//         Query Hash Grid
+	//-----------------------------------
+	
+	PPB_INLINE
+	std::vector<paperback::u32> instance::SearchNeighbours( const paperback::Vector3f&  Position                              // Entity Position
+	                                                      , const paperback::Vector3f&  MinScale                              // Area To Query - Min Offset
+	                                                      , const paperback::Vector3f&  MaxScale                              // Area To Query - Max Offset
+	                                                      , const float                 Multiplier ) const noexcept           // Area Multiplier
+	{
+		return m_HashGrid.SearchNeighbours( Position, MinScale, MaxScale, Multiplier );
+	}
+	
+	
+	//-----------------------------------
+	//         Update Hash Grid
+	//-----------------------------------
+	
+	PPB_INLINE
+	void instance::InsertUnit( const paperback::u32        GlobalIndex                // Entity Global Index
+	                         , const paperback::Vector3f&  Position                   // Entity Position
+	                         , const paperback::Vector3f&  MinScale                   // Bounding Box Min
+	                         , const paperback::Vector3f&  MaxScale ) noexcept        // Bounding Box Max
+	{
+		m_HashGrid.InsertUnit( GlobalIndex, Position, MinScale, MaxScale );
+	}
+	
+	PPB_INLINE
+	void instance::UpdateUnit( const paperback::u32        GlobalIndex                // Entity Global Index
+	                         , const paperback::Vector3f&  PrevPosition               // Prev Entity Position
+	                         , const paperback::Vector3f&  CurrPosition               // Curr Entity Position
+	                         , const paperback::Vector3f&  MinScale                   // Bounding Box Min
+	                         , const paperback::Vector3f&  MaxScale ) noexcept        // Bounding Box Max
+	{
+		m_HashGrid.UpdateUnit( GlobalIndex, PrevPosition, CurrPosition, MinScale, MaxScale );
+	}
+
+
+	//-----------------------------------
+	//             Setters
+	//-----------------------------------
+	
+	PPB_INLINE
+    void instance::SetBoundaries( const paperback::Vector3f& Min
+                                , const paperback::Vector3f& Max ) noexcept
+	{
+		m_HashGrid.SetBoundaries( Min, Max );
+	}
+
+	PPB_FORCEINLINE
+	void instance::SetCellSize( const paperback::u32 CellSize ) noexcept
+	{
+		m_HashGrid.SetCellSize( CellSize );
+	}
+
+
+
+	//-----------------------------------
 	//              Clock
 	//-----------------------------------
+
 	float instance::DeltaTime() const noexcept
 	{
 		return m_Clock.DeltaTime();
@@ -727,6 +862,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//              Input
 	//-----------------------------------
+
 	void instance::UpdateInputs() noexcept
 	{
 		m_Input.UpateInputs();

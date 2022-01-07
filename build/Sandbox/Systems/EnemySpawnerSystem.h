@@ -13,7 +13,22 @@ struct enemy_spawner_system : paperback::system::pausable_instance
     ,   paperback::query::none_of<prefab>
     >;
 
+    // Data Members
+    tools::query Spawner_Query;
+    tools::query Text_Query;
+
+    // Event
     struct OnLowDeckCount : paperback::event::instance<>{};
+
+    PPB_FORCEINLINE
+	void OnSystemCreated( void ) noexcept
+	{
+        Spawner_Query.m_Must.AddFromComponents < deck, enemy>();
+        Spawner_Query.m_NoneOf.AddFromComponents< prefab >();
+
+        Text_Query.m_Must.AddFromComponents < text, enemy>();
+        Text_Query.m_NoneOf.AddFromComponents< prefab >();
+	}
 
     // Enemy Spawner
 	void operator()( entity& Entity, transform& Transform, timer& Timer, spawner& Spawner ) noexcept
@@ -23,13 +38,7 @@ struct enemy_spawner_system : paperback::system::pausable_instance
             Timer.m_Cooldown = 8.0f;
             // Reset timer
             Timer.m_Value = Timer.m_Cooldown;
-
-            // <Update Instance Info>
-            tools::query Spawner_Query;
-
-            Spawner_Query.m_Must.AddFromComponents < deck, enemy>();
-            Spawner_Query.m_NoneOf.AddFromComponents< prefab >();
-
+        
             m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Dynamic_Deck, sound& Sound)  noexcept
                 {
                     Sound.m_Trigger = true;
@@ -48,8 +57,9 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                     }
                     else if ( deckno <= 15 )
                         m_Coordinator.BroadcastEvent<enemy_spawner_system::OnLowDeckCount>();
-
+        
                     while (CardsAvail) {
+
                         // Randomize card spawned
                         int cardindex = rand() % 3;
                         // If card is available
@@ -57,54 +67,41 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                             // Decrease available card count
                             Dynamic_Deck.m_Deck[cardindex].m_Count--;
                             deckno--;
-
-                            // Initialize Query
-                            tools::query Text_Query;
-
-                            Text_Query.m_Must.AddFromComponents < text, enemy>();
-                            Text_Query.m_NoneOf.AddFromComponents< prefab >();
-
+        
                             m_Coordinator.ForEach(m_Coordinator.Search(Text_Query), [&](paperback::component::entity& Dynamic_Entity, text& Text)  noexcept
                                 {
                                     Text.m_Text = std::to_string(deckno);
                                 });
-
+        
                             // Spawn Card
                             // Check if GID is Valid
-                            if (Dynamic_Deck.m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return; // Check Archetype* rather than GID, default value for uninitialized variables are prolly 0
+                            if (Dynamic_Deck.m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return;
                             // Get Unit Info and Spawn unit
                             auto PrefabInfo = m_Coordinator.GetEntityInfo(Dynamic_Deck.m_Deck[cardindex].m_CardGID);
-                            auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
-                            // Update Card properties
-                            auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);
-                            transform* Transform = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
-                            path_follower* Path = &m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
-                            Spawner.lane = rand() % 3;
-                            Transform->m_Position = Spawner.m_Position[Spawner.lane];
-                            Path->m_ID = Spawner.lane;
+        
+                            if ( PrefabInfo.m_pArchetype )
+                            {
+                                auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
+                                // Update Card properties
+                                auto m_obj = m_Coordinator.GetEntityInfo(InstanceGID);
+                                transform* Transform = &m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
+                                path_follower* Path = &m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
+                                Spawner.lane = rand() % 3;
+                                Transform->m_Position = Spawner.m_Position[Spawner.lane];
+                                Path->m_ID = Spawner.lane;
+        
+        
 
+                                // Add Unit To Hash Grid - After Position Update
+                                auto [Entity, Xform, Box, Prefab] = m_obj.m_pArchetype->FindComponents<paperback::component::entity, transform, boundingbox, prefab>( m_obj.m_PoolDetails );
+                                if ( !Prefab && Entity && Xform && Box )
+                                    m_Coordinator.UpdateUnit( Entity->m_GlobalIndex, {0.0f,0.0f,0.0f}, Xform->m_Position, Box->Min, Box->Max );
+                            }
+        
                             break;
                         }
                     }
                 });
         }
 	}
-
-    // Updates enemy spawner count
-	void OnEvent( const size_t& Key, const bool& Clicked ) noexcept
-    {
-        // This check is to be replaced with Player Controller
-      //  if ( Key == GLFW_KEY_4 && Clicked )
-      //  {
-      //      // Player Info Loop
-		    //ForEach( Search( m_ActiveSpawner ), [&]( entity& Entity, timer& Timer, counter& Counter ) noexcept
-      //      {
-      //          if ( Counter.m_Value <= 0 )
-      //          {
-      //              Timer.m_Value = Timer.m_Cooldown;
-      //              Counter.m_Value = 1;
-      //          }
-      //      });
-      //  }
-    }
 };

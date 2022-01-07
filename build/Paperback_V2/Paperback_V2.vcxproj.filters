@@ -468,6 +468,18 @@
     <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.h">
       <Filter>Source\Tools\Functionality\RenderResource</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_nbitset_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_nbitset.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\paperback_hash_grid.h">
+      <Filter>Source\Paperback Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Details\paperback_hash_grid_inline.h">
+      <Filter>Source\Paperback Engine\Details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

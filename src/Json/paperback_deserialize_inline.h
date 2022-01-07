@@ -349,6 +349,9 @@ namespace paperback::deserialize
             if (obj.is_type<enemy>())
                 NewArchetype->GetComponent<enemy>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<enemy>();
 
+            if (obj.is_type<icon>())
+                NewArchetype->GetComponent<icon>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<icon>();
+
             if (obj.is_type<enemy_spawner>())
                 NewArchetype->GetComponent<enemy_spawner>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<enemy_spawner>();
 

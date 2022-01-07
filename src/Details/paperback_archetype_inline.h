@@ -95,6 +95,10 @@ namespace paperback::archetype
             m_ComponentPool[ UpdatedPoolDetails.m_Key ].CloneComponents( PoolIndex, EntityInfo.m_PoolDetails.m_PoolIndex, &m_ComponentPool[ EntityInfo.m_PoolDetails.m_Key ] );
         */
 
+        // Insert Entity Into Hash Grid
+        auto [ EntityC, Transform, Box, Prefab ] = FindComponents<paperback::component::entity, transform, boundingbox, prefab>( UpdatedPoolDetails );
+        if ( !Prefab && EntityC && Transform && Box ) m_Coordinator.InsertUnit( EntityC->m_GlobalIndex, Transform->m_Position, Box->Min, Box->Max );
+
         return ClonedEntity.m_GlobalIndex;
     }
 
@@ -127,6 +131,10 @@ namespace paperback::archetype
         Cloned_ReferencePrefab.m_PrefabGID = GetComponent<paperback::component::entity>( m_PrefabDetails ).m_GlobalIndex;
 
         GetComponent<prefab>( m_PrefabDetails ).AddPrefabInstance( ClonedPrefab.m_GlobalIndex );
+
+        // Insert Entity Into Hash Grid
+        auto [ Entity, Transform, Box, Prefab ] = PrefabInstanceArchetype.FindComponents<paperback::component::entity, transform, boundingbox, prefab>( PI_PoolDetails );
+        if ( !Prefab && Entity && Transform && Box ) m_Coordinator.InsertUnit( Entity->m_GlobalIndex, Transform->m_Position, Box->Min, Box->Max );
 
         return ClonedPrefab.m_GlobalIndex;
     }
@@ -273,7 +281,7 @@ namespace paperback::archetype
             auto& RefPrefab    = PIArchetype.GetComponent<reference_prefab>( InstanceInfo.m_PoolDetails );
 
             // If Reference Prefab Did Not Override T_COMPONENT
-            if ( !RefPrefab.HasModified( CGuid ) )
+            if ( !RefPrefab.HasModified( static_cast<paperback::u32>(CGuid) ) )
             {
                 // Grab Component To Be Updated In Prefab Instance
                 auto& Mod_Component = PIArchetype.GetComponent<T_COMPONENT>( InstanceInfo.m_PoolDetails );

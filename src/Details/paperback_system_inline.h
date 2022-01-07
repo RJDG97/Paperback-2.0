@@ -187,6 +187,13 @@ namespace paperback::system
 		m_Coordinator.ForEach<T_FUNCTION>( ArchetypeList, std::forward<T_FUNCTION&&>( Function ) );
 	}
 
+	template < concepts::Callable_Void T_FUNCTION>
+    void instance::ForEach( const std::vector<paperback::u32>& NeighbourList
+						  , T_FUNCTION&& Function ) noexcept
+	{
+		m_Coordinator.ForEach<T_FUNCTION>( NeighbourList, std::forward<T_FUNCTION&&>( Function ) );
+	}
+
     template < concepts::Callable_Bool T_FUNCTION>
     void instance::ForEach( const std::vector<archetype::instance*>& ArchetypeList
 						  , T_FUNCTION&& Function ) noexcept
