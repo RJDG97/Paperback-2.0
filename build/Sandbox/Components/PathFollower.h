@@ -12,7 +12,7 @@ struct path_follower
 	float m_TravelSpeed;
 	bool m_BackAndForth;
 	bool m_Reversed;
-	bool m_Stopped;
+	bool m_PauseTravel;
 
 	paperback::Vector3f m_Direction;
 	bool m_FinishedTravelling;
@@ -30,6 +30,6 @@ namespace RR_PathFollower
 			.property("Travel Speed", &path_follower::m_TravelSpeed)(rttr::policy::prop::as_reference_wrapper)
 			.property("Back and Forth", &path_follower::m_BackAndForth)(rttr::policy::prop::as_reference_wrapper)
 			.property("Reversed", &path_follower::m_Reversed)(rttr::policy::prop::as_reference_wrapper)
-			.property("Stopped", &path_follower::m_Stopped)(rttr::policy::prop::as_reference_wrapper);
+			.property("Pause Travel", &path_follower::m_PauseTravel)(rttr::policy::prop::as_reference_wrapper);
 	}
 }

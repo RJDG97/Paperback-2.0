@@ -80,7 +80,7 @@ struct path_system : paperback::system::pausable_instance
 		{
 			auto spline = splines.find(PathFollower.m_PathID);
 
-			if (spline != splines.end())
+			if (spline != splines.end() && !PathFollower.m_PauseTravel)
 			{
 				if (PathFollower.m_TravelSpeed <= 0.0f)
 				{

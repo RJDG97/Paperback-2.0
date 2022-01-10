@@ -241,6 +241,7 @@
     <ClInclude Include="..\..\src\Physics\ResolveCollision.h" />
     <ClInclude Include="..\..\src\Scripts\IScripts.h" />
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_AABB.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Application.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h" />

@@ -61,6 +61,7 @@ namespace CSScript
                     m_pathfollower.m_PathID = m_pathfollower.m_PathID % 2;
                     m_pathfollower.m_TravelSpeed = 50.0f;
                     m_pathfollower.m_Reversed = !m_pathfollower.m_Reversed;
+                    m_pathfollower.m_PauseTravel = !m_pathfollower.m_PauseTravel;
                 }
             }
         }

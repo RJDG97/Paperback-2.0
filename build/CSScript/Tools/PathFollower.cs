@@ -81,16 +81,16 @@ namespace CSScript
             }
         }
 
-        public bool m_Stopped
+        public bool m_PauseTravel
         {
             get
             {
-                return getstopped(m_Address);
+                return getpausetravel(m_Address);
             }
             set
             {
                 //m_Position = value;
-                setstopped(m_Address, value);
+                setpausetravel(m_Address, value);
             }
         }
 
@@ -128,9 +128,9 @@ namespace CSScript
         private extern static void setreversed(void* address, bool traversed);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getstopped(void* address);
+        private extern static bool getpausetravel(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstopped(void* address, bool stopped);
+        private extern static void setpausetravel(void* address, bool stopped);
     }
 }

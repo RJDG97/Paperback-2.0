@@ -36,9 +36,9 @@ namespace MONO_PATHFOLLOWER
 		return reinterpret_cast<path_follower*>(address)->m_Reversed;
 	}
 
-	MONO_EXPORT bool GetStopped(void* address)
+	MONO_EXPORT bool GetPauseTravel(void* address)
 	{
-		return reinterpret_cast<path_follower*>(address)->m_Stopped;
+		return reinterpret_cast<path_follower*>(address)->m_PauseTravel;
 	}
 
 	MONO_EXPORT void SetPathID(void* address, int path_id)
@@ -66,9 +66,9 @@ namespace MONO_PATHFOLLOWER
 		reinterpret_cast<path_follower*>(address)->m_Reversed = traversed;
 	}
 
-	MONO_EXPORT void SetStopped(void* address, bool stopped)
+	MONO_EXPORT void SetPauseTravel(void* address, bool stopped)
 	{
-		reinterpret_cast<path_follower*>(address)->m_Stopped = stopped;
+		reinterpret_cast<path_follower*>(address)->m_PauseTravel = stopped;
 	}
 
 	void AddInternalCall()
@@ -79,12 +79,12 @@ namespace MONO_PATHFOLLOWER
 		mono_add_internal_call("CSScript.PathFollower::gettravelspeed(void*)", &MONO_PATHFOLLOWER::GetTravelSpeed);
 		mono_add_internal_call("CSScript.PathFollower::getbackandforth(void*)", &MONO_PATHFOLLOWER::GetBackAndForth);
 		mono_add_internal_call("CSScript.PathFollower::getreversed(void*)", &MONO_PATHFOLLOWER::GetReversed);
-		mono_add_internal_call("CSScript.PathFollower::getstopped(void*)", &MONO_PATHFOLLOWER::GetStopped);
+		mono_add_internal_call("CSScript.PathFollower::getpausetravel(void*)", &MONO_PATHFOLLOWER::GetPauseTravel);
 		mono_add_internal_call("CSScript.PathFollower::setpathid(void*,int)", &MONO_PATHFOLLOWER::SetPathID);
 		mono_add_internal_call("CSScript.PathFollower::setdistance(void*,single)", &MONO_PATHFOLLOWER::SetDistance);
 		mono_add_internal_call("CSScript.PathFollower::settravelspeed(void*,single)", &MONO_PATHFOLLOWER::SetTravelSpeed);
 		mono_add_internal_call("CSScript.PathFollower::setbackandforth(void*,bool)", &MONO_PATHFOLLOWER::SetBackAndForth);
 		mono_add_internal_call("CSScript.PathFollower::setreversed(void*,bool)", &MONO_PATHFOLLOWER::SetReversed);
-		mono_add_internal_call("CSScript.PathFollower::setstopped(void*,bool)", &MONO_PATHFOLLOWER::SetStopped);
+		mono_add_internal_call("CSScript.PathFollower::setpausetravel(void*,bool)", &MONO_PATHFOLLOWER::SetPauseTravel);
 	}
 }
