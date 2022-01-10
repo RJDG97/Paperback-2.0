@@ -242,7 +242,9 @@
     <ClInclude Include="..\..\src\Scripts\IScripts.h" />
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_AABB.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Animator.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Application.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_BoundingBox.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
