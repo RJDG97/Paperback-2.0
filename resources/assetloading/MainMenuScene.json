@@ -175,12 +175,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            14,
                             6,
-                            11,
+                            14,
                             3,
-                            9,
+                            11,
                             1,
+                            9,
                             10,
                             15,
                             16,
@@ -557,7 +557,7 @@
                             "",
                             ""
                         ],
-                        "Button State": 0,
+                        "Button State": 2,
                         "Layer Grouping": 1,
                         "Script Guid": 2641508614138430193,
                         "Active Status": true
@@ -2094,7 +2094,7 @@
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": true,
-                        "Trigger": false
+                        "Trigger": true
                     },
                     "Rotation": {
                         "Rotation": {

@@ -1,4 +1,5 @@
 #pragma once
+#include "../Functionality/RenderResource/RenderResourceLoader.h"
 
 namespace paperback::coordinator
 {
@@ -371,13 +372,19 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
-	void instance::LoadEntityInfo(const std::string& FilePath) noexcept
+	void instance::LoadEntityInfo( const std::string& FilePath ) noexcept
 	{
 		JsonFile Jfile;
 
 		Jfile.StartReader(FilePath);
 		Jfile.LoadEntities("All Entity Info");
 		Jfile.EndReader();
+	}
+
+	PPB_INLINE
+	void instance::LoadTextures( const std::string& FilePath ) noexcept
+	{
+		RenderResourceLoader::GetInstanced().ReadTextureJson(FilePath);
 	}
 
 	PPB_INLINE

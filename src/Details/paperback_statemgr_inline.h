@@ -1,4 +1,5 @@
 #pragma once
+#include "../Functionality/RenderResource/RenderResourceManager.h"
 
 namespace paperback::coordinator
 {
@@ -6,16 +7,17 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//            Scene
 	//-----------------------------------
-	scene::scene(const std::string& Name, const std::string& Path, const std::string& Info) :
+	scene::scene(const std::string& Name, const std::string& Path, const std::string& Info, const std::string& Tex) :
 		m_Name{ Name },
 		m_ScenePath{ Path },
-		m_InfoPath{ Info }
+		m_InfoPath{ Info },
+		m_TexPath{ Tex }
 	{}
 
-	void scene::Load() 
+	void scene::Load()
 	{
 
-		if (m_ScenePath == "" || m_InfoPath == "")
+		if (m_ScenePath == "" || m_InfoPath == "" || m_TexPath == "")
 			return;
 
 		JsonFile Jfile;
@@ -31,11 +33,13 @@ namespace paperback::coordinator
 		PPB.ReloadSystems();
 
 		PPB.LoadEntityInfo(m_InfoPath);
+
+		if (!PPB.VerifyState("Editor"))
+			PPB.LoadTextures(m_TexPath);
 	}
 
 	void scene::Unload()
 	{
-
 		if (!PPB.GetArchetypeList().empty())
 			PPB.ResetAllArchetypes();
 	}
@@ -52,13 +56,16 @@ namespace paperback::coordinator
 		return m_Name;
 	}
 
-	void scene::UpdatePath(const std::string& Path, const std::string& Info)
+	void scene::UpdatePath(const std::string& Path, const std::string& Info, const std::string& Tex)
 	{
 
 		m_ScenePath = Path;
 
 		if (Info != "")
 			m_InfoPath = Info;
+
+		if (Tex != "")
+			m_TexPath = Tex;
 	}
 
 	//-----------------------------------
@@ -78,13 +85,12 @@ namespace paperback::coordinator
 		Jfile.StartReader("../../resources/stateloading/StateList.json").LoadStringPairs(buffer).EndReader();
 
 		//process buffer
-		
-		std::string name{}, path{}, info{};
-		while (buffer >> name >> path >> name >> info)
-		{
 
-			AddScene(name, path, info);
-			name = path = info = "";
+		std::string name{}, path{}, info{}, tex{};
+		while (buffer >> name >> path >> name >> info >> name >> tex)
+		{
+			AddScene(name, path, info, tex);
+			name = path = info = tex = "";
 		}
 	}
 
@@ -94,10 +100,10 @@ namespace paperback::coordinator
 		m_Scenes[m_CurrentSceneIndex].Unload();
 	}
 
-	void scene_mgr::AddScene(const std::string& Name, const std::string& Path, const std::string& Info)
+	void scene_mgr::AddScene(const std::string& Name, const std::string& Path, const std::string& Info, const std::string& Tex)
 	{
 
-		m_Scenes.push_back({ Name, Path, Info });
+		m_Scenes.push_back({ Name, Path, Info, Tex });
 	}
 
 	void scene_mgr::RemoveScene(const std::string& Name)

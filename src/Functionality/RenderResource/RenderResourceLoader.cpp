@@ -1,31 +1,14 @@
 #include "RenderResourceLoader.h"
 #include <fstream>
 
-RenderResourceLoader::RenderResourceLoader(): m_Manager{RenderResourceManager::GetInstanced()}
-{
-	m_LoadedTextures = {};
-}
+RenderResourceLoader::RenderResourceLoader(): m_Manager{RenderResourceManager::GetInstanced()} {}
 
-void RenderResourceLoader::ReadAssetJson( const std::string& File, rapidjson::Document& Doc)
-{
-	std::ifstream InputFile(File);
-	std::stringstream Buffer{};
-	std::string Input{};
-
-	while (std::getline(InputFile, Input))
-	{
-		Buffer << Input << "\n";
-	}
-	InputFile.close();
-
-	Doc.Parse(Buffer.str().c_str());
-}
-
-void RenderResourceLoader::ReadTextureJson( std::string File )
+std::vector< TextureLoad > RenderResourceLoader::ReadTextureJson( std::string File, bool Load )
 {
 	TextureLoad Temp;
 
 	std::ifstream InputFile(File);
+	std::vector< TextureLoad > TempLoad {};
 
 	if (InputFile.is_open())
 	{
@@ -46,13 +29,17 @@ void RenderResourceLoader::ReadTextureJson( std::string File )
 			buffer >> Temp.TexturePath >> Temp.TextureBool;
 
 			m_Manager.LoadTextures(Temp.TextureName, Temp.TexturePath, Temp.TextureBool);
-			m_LoadedTextures.push_back(Temp);
+			
+			if (Load)
+				TempLoad.push_back(Temp);
 
 			Temp.TextureName.clear();
 			Temp.TexturePath.clear();
 			Temp.TextureBool = false;
 		}
 	}
+
+	return TempLoad;
 }
 
 RenderResourceLoader& RenderResourceLoader::GetInstanced()

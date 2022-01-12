@@ -24,7 +24,9 @@
                     },
                     "Mesh": {
                         "Model": "NationalStadium",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -69,7 +71,9 @@
                     },
                     "Mesh": {
                         "Model": "Sandpit",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -111,7 +115,9 @@
                     },
                     "Mesh": {
                         "Model": "DragonHead",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -156,7 +162,9 @@
                     },
                     "Mesh": {
                         "Model": "DragonSlideLeft",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -201,7 +209,9 @@
                     },
                     "Mesh": {
                         "Model": "DragonSlideRight",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -246,7 +256,9 @@
                     },
                     "Mesh": {
                         "Model": "BottomPath",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -291,7 +303,9 @@
                     },
                     "Mesh": {
                         "Model": "TopPath",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -336,7 +350,9 @@
                     },
                     "Mesh": {
                         "Model": "DragonSpineSupport",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -381,7 +397,9 @@
                     },
                     "Mesh": {
                         "Model": "DragonTailRight",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -426,7 +444,9 @@
                     },
                     "Mesh": {
                         "Model": "DragonTailLeft",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -471,7 +491,9 @@
                     },
                     "Mesh": {
                         "Model": "DragonSpine",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -516,7 +538,9 @@
                     },
                     "Mesh": {
                         "Model": "HDBBlock",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -561,7 +585,9 @@
                     },
                     "Mesh": {
                         "Model": "PlayerBaseMound",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -606,7 +632,9 @@
                     },
                     "Mesh": {
                         "Model": "HDBBlock",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -694,64 +722,6 @@
                         0,
                         10055872472107209861,
                         17008353085049151909,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 7
-                    },
-                    "Prefab": {
-                        "Prefab": []
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Default"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 5
-                    },
-                    "Prefab": {
-                        "Prefab": []
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Default_B"
-                    }
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        10055872472107209861,
-                        17008353085049151909,
                         14351128073332756358,
                         16415915133639986106
                     ]
@@ -761,9 +731,7 @@
                         "Global Index": 2
                     },
                     "Prefab": {
-                        "Prefab": [
-                            8
-                        ]
+                        "Prefab Instances GID": []
                     },
                     "Transform": {
                         "Offset": {
@@ -805,7 +773,9 @@
                     },
                     "Mesh": {
                         "Model": "NationalStadium",
-                        "Texture": "NationalStadium_Normal.dds"
+                        "Texture": "NationalStadium_Normal.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -815,22 +785,7 @@
                         }
                     },
                     "Prefab": {
-                        "Prefab": [
-                            11,
-                            3,
-                            6,
-                            9,
-                            1,
-                            10,
-                            12,
-                            13,
-                            14,
-                            15,
-                            16,
-                            17,
-                            18,
-                            19
-                        ]
+                        "Prefab Instances GID": []
                     },
                     "Rotation": {
                         "Rotation": {
@@ -861,7 +816,9 @@
                     },
                     "Mesh": {
                         "Model": "Sandpit",
-                        "Texture": "Sandpit_BaseColour.dds"
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -871,7 +828,7 @@
                         }
                     },
                     "Prefab": {
-                        "Prefab": []
+                        "Prefab Instances GID": []
                     },
                     "Rotation": {
                         "Rotation": {
@@ -894,6 +851,64 @@
                     },
                     "Name": {
                         "Name": "Sandpit"
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 7
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Default"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 5
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Default_B"
                     }
                 }
             ]

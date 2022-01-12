@@ -14,6 +14,7 @@ struct TextureLoad
 	std::string TextureName{};
 	std::string TexturePath{};
 	bool TextureBool = false;
+	bool Saved = false;
 };
 
 struct RenderResourceLoader
@@ -21,13 +22,10 @@ struct RenderResourceLoader
 	RenderResourceLoader();
 
 	public:
-	void ReadAssetJson( const std::string& File, rapidjson::Document& Doc );
-	void ReadTextureJson( std::string File );
+	std::vector< TextureLoad > ReadTextureJson( std::string File, bool Load = false );
 	
 	static RenderResourceLoader& GetInstanced();
 
-	//probs store the path in a container over here
-	std::vector< TextureLoad > m_LoadedTextures;
 	RenderResourceManager& m_Manager;
 };
 #endif
