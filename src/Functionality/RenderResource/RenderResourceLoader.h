@@ -7,6 +7,8 @@
 #include <filesystem>
 namespace fs = std::filesystem;
 #include "rapidjson/document.h"
+#include "rapidjson/stringbuffer.h"
+#include "rapidjson/prettywriter.h"
 #include "RenderResourceManager.h"
 
 struct TextureLoad
@@ -22,11 +24,13 @@ struct RenderResourceLoader
 	RenderResourceLoader();
 
 	public:
-	std::vector< TextureLoad > ReadTextureJson( std::string File, bool Load = false );
-	
+	void ReadTextureJson( std::string File, bool Load = false );
+
+	void LoadTexture();
+
 	static RenderResourceLoader& GetInstanced();
 
 	RenderResourceManager& m_Manager;
-	std::vector<TextureLoad> m_LevelTextures;
+	std::vector<TextureLoad> m_LevelTextures, m_LoadedTextures;
 };
 #endif

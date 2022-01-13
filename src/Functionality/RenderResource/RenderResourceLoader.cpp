@@ -3,14 +3,13 @@
 
 RenderResourceLoader::RenderResourceLoader(): m_Manager{RenderResourceManager::GetInstanced()} {}
 
-std::vector< TextureLoad > RenderResourceLoader::ReadTextureJson( std::string File, bool Load )
+void RenderResourceLoader::ReadTextureJson( std::string File, bool Load )
 {
 	//m_LevelTextures.clear();
 
 	TextureLoad Temp;
 
 	std::ifstream InputFile(File);
-	std::vector< TextureLoad > TempLoad {};
 
 	if (InputFile.is_open())
 	{
@@ -33,7 +32,7 @@ std::vector< TextureLoad > RenderResourceLoader::ReadTextureJson( std::string Fi
 			m_Manager.LoadTextures(Temp.TextureName, Temp.TexturePath, Temp.TextureBool);
 
 			if (Load)
-				TempLoad.push_back(Temp);
+				m_LoadedTextures.push_back(Temp);
 			else
 				m_LevelTextures.push_back(Temp);
 
@@ -42,8 +41,62 @@ std::vector< TextureLoad > RenderResourceLoader::ReadTextureJson( std::string Fi
 			Temp.TextureBool = false;
 		}
 	}
+}
 
-	return TempLoad;
+void RenderResourceLoader::LoadTexture()
+{
+	//goes thru the all folders and loads any not found on the json
+
+	//for editor on load (once)
+
+	for (auto& Path : fs::recursive_directory_iterator("../../resources/textures"))
+	{
+		if (fs::is_regular_file(Path) && Path.path().extension() == ".dds")
+		{
+			if (Path.path().parent_path() == "../../resources/textures\\Skybox" || Path.path().parent_path() == "../../resources/textures")
+				continue;
+
+			std::string TexName = Path.path().stem().generic_string().c_str();
+
+			if (TexName.find("_Mirrored") != std::string::npos)
+			{
+				std::string Temp = TexName.substr(0, TexName.find_last_of("_"));
+
+				if (!m_Manager.m_Textures.contains(Temp)) //if the texture isnt found in the texture container
+				{
+					m_LoadedTextures.push_back({ Temp, Path.path().generic_string().c_str(), true });
+				}
+			}
+			else
+			{
+				if (!m_Manager.m_Textures.contains(TexName)) //if the texture isnt found in the texture container
+				{
+					m_LoadedTextures.push_back({ TexName, Path.path().generic_string().c_str(), true });
+				}
+			}
+		}
+	}
+
+	if (m_LoadedTextures.size())
+	{
+		rapidjson::StringBuffer sb;
+		rapidjson::PrettyWriter<rapidjson::StringBuffer> Writer(sb);
+
+		std::ofstream Filestream("../../resources/textureload.texture");
+
+		Writer.StartObject();
+
+		for (auto& Tex : m_LoadedTextures)
+		{
+			if (Filestream.is_open())
+			{
+				Writer.Key(Tex.TextureName.c_str());
+				Writer.String((Tex.TexturePath + " " + std::to_string(Tex.TextureBool)).c_str());
+			}
+		}
+		Writer.EndObject();
+		Filestream << sb.GetString();
+	}
 }
 
 RenderResourceLoader& RenderResourceLoader::GetInstanced()

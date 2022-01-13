@@ -2,6 +2,7 @@
 #include "Editor/EditorInclude.h"
 #include <filesystem>
 #include <cstring>
+#include "../../Functionality/RenderResource/RenderResourceLoader.h"
 
 namespace fs = std::filesystem;
 
@@ -50,5 +51,9 @@ struct AssetBrowser : paperback::editor::instance
     std::string DirectoryName( fs::directory_entry Directory );
 
     std::string FileString( std::string icon, std::string file_name );
+    
+    void AddTextures();
+
+    void FileMenuBar();
 
 };

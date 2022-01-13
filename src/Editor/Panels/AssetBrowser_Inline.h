@@ -124,6 +124,18 @@ void AssetBrowser::CheckFileType()
                 {
                     DisplayFiles(File.path(), FileName);
 
+                    //if (ImGui::BeginPopupContextItem())
+                    //{
+                    //    if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
+                    //    {
+                    //        m_Imgui.m_FileToDelete = File.path().generic_string();
+                    //        m_bDelete = true;
+                    //        m_bDeleteFile = true;
+                    //    }
+
+                    //    ImGui::EndPopup();
+                    //}
+
                     if (ImGui::IsItemHovered() && ImGui::IsMouseDoubleClicked(0))
                     {
                         if (File.path().extension() == ".json")
@@ -146,18 +158,6 @@ void AssetBrowser::CheckFileType()
                             m_Imgui.m_Type = FileActivity::LOADFROMASSET;
                         }
                     }
-
-                    //if (ImGui::BeginPopupContextItem())
-                    //{
-                    //    if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
-                    //    {
-                    //        m_Imgui.m_FileToDelete = File.path().generic_string();
-                    //        m_bDelete = true;
-                    //        m_bDeleteFile = true;
-                    //    }
-
-                    //    ImGui::EndPopup();
-                    //}
                 }
             }
 
@@ -407,13 +407,10 @@ void AssetBrowser::DragDropExternal()
                     auto Destination = m_Imgui.m_SelectedPath / Path.filename();
                     fs::copy_file(Path, Destination, fs::copy_options::overwrite_existing);
 
-                    //if (m_Imgui.m_SelectedPath.parent_path() == "../../resources/textures" && Path.extension() == ".dds")
+                    //if ((m_Imgui.m_SelectedPath.parent_path() == "../../resources/textures" || m_Imgui.m_SelectedPath == "../../resources/textures") && Path.extension() == ".dds")
                     //{
-                    //    std::cout << Path.filename().generic_string().c_str() << " | " << Destination.generic_string().c_str() << std::endl;
+                    //    m_Imgui.m_TexturesToLoad.push_back({ Path.stem().generic_string().c_str(), Destination.generic_string().c_str(), true });
                     //}
-                        //m_Imgui.m_TexturesToLoad.push_back({ Path.filename().generic_string().c_str(), Destination.generic_string().c_str(), true });
-                    //std::cout << m_Imgui.m_SelectedPath.parent_path().generic_string().c_str() << Path.extension().generic_string().c_str() << std::endl;
-                    std::cout << m_Imgui.m_SelectedPath.parent_path().generic_string().c_str() << " | " << Destination.generic_string().c_str() << std::endl;
 
                 }
                 PPB.GetDragDropFiles().clear();
@@ -421,6 +418,14 @@ void AssetBrowser::DragDropExternal()
             ImGui::EndDragDropTarget();
         }
     }
+
+    if (m_Imgui.m_TexturesToLoad.size())
+        AddTextures();
+}
+
+void AssetBrowser::AddTextures()
+{
+    //load into the engine + pushback into the vector + serialize into the json
 }
 
 std::string AssetBrowser::DirectoryName(fs::directory_entry Directory) {

@@ -100,7 +100,7 @@ struct imgui_system : paperback::system::instance
     bool m_bPaused;
 
     RenderResourceLoader& m_Loader{ RenderResourceLoader::GetInstanced() };
-    std::vector< TextureLoad > m_LoadedTextures, m_TexturesToLoad;
+    std::vector< TextureLoad > m_TexturesToLoad;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -171,7 +171,10 @@ struct imgui_system : paperback::system::instance
 
         //PPB.TogglePause(true); 
         if (PPB.VerifyState("Editor"))
-            m_LoadedTextures = m_Loader.ReadTextureJson("../../resources/textureload.texture", true);
+        {
+            m_Loader.ReadTextureJson("../../resources/textureload.texture", true);
+            m_Loader.LoadTexture();
+        }
 
         EDITOR_INFO_PRINT("Editor Loaded");
     }
@@ -914,9 +917,9 @@ struct imgui_system : paperback::system::instance
 
                     if (Mesh) //only find the entities with mesh component
                     {
-                        if (m_LoadedTextures.size())
+                        if (m_Loader.m_LoadedTextures.size())
                         {
-                            for (auto& Tex : m_LoadedTextures)
+                            for (auto& Tex : m_Loader.m_LoadedTextures)
                             {
                                 if (Mesh->m_Texture == Tex.TextureName) // Get the texture data
                                 {                                    
