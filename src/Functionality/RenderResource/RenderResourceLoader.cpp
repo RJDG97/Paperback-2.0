@@ -5,6 +5,8 @@ RenderResourceLoader::RenderResourceLoader(): m_Manager{RenderResourceManager::G
 
 std::vector< TextureLoad > RenderResourceLoader::ReadTextureJson( std::string File, bool Load )
 {
+	//m_LevelTextures.clear();
+
 	TextureLoad Temp;
 
 	std::ifstream InputFile(File);
@@ -29,9 +31,11 @@ std::vector< TextureLoad > RenderResourceLoader::ReadTextureJson( std::string Fi
 			buffer >> Temp.TexturePath >> Temp.TextureBool;
 
 			m_Manager.LoadTextures(Temp.TextureName, Temp.TexturePath, Temp.TextureBool);
-			
+
 			if (Load)
 				TempLoad.push_back(Temp);
+			else
+				m_LevelTextures.push_back(Temp);
 
 			Temp.TextureName.clear();
 			Temp.TexturePath.clear();

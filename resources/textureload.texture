@@ -67,12 +67,12 @@
 	"CloseButton_Selected": "../../resources/textures/UI/Menus/Buttons/CloseButton_Selected.dds 1",
 	"CloseButton_Unselected": "../../resources/textures/UI/Menus/Buttons/CloseButton_Unselected.dds 1",
 
-	"CapturePoint_HowToPlay": "../../resources/textures/UI/Menus/How to Play/CapturePoint_HowToPlay_Mirrored.dds 1",
-	"Controls_HowToPlay": "../../resources/textures/UI/Menus/How to Play/Controls_HowToPlay_Mirrored.dds 1",
-	"DeckSize_HowToPlay": "../../resources/textures/UI/Menus/How to Play/DeckSize_HowToPlay_Mirrored.dds 1",
-	"Objective_HowToPlay": "../../resources/textures/UI/Menus/How to Play/Objective_HowToPlay_Mirrored.dds 1",
-	"RPS_HowToPlay": "../../resources/textures/UI/Menus/How to Play/RPS_HowToPlay_Mirrored.dds 1",
-	"SummonUnits_HowToPlay": "../../resources/textures/UI/Menus/How to Play/SummonUnits_HowToPlay_Mirrored.dds 1",
+	"CapturePoint_HowToPlay": "../../resources/textures/UI/Menus/HowtoPlay/CapturePoint_HowToPlay_Mirrored.dds 1",
+	"Controls_HowToPlay": "../../resources/textures/UI/Menus/HowtoPlay/Controls_HowToPlay_Mirrored.dds 1",
+	"DeckSize_HowToPlay": "../../resources/textures/UI/Menus/HowtoPlay/DeckSize_HowToPlay_Mirrored.dds 1",
+	"Objective_HowToPlay": "../../resources/textures/UI/Menus/HowtoPlay/Objective_HowToPlay_Mirrored.dds 1",
+	"RPS_HowToPlay": "../../resources/textures/UI/Menus/HowtoPlay/RPS_HowToPlay_Mirrored.dds 1",
+	"SummonUnits_HowToPlay": "../../resources/textures/UI/Menus/HowtoPlay/SummonUnits_HowToPlay_Mirrored.dds 1",
 
 	"ActivityLog": "../../resources/textures/UI/ActivityFeedBackground.dds 1",
 

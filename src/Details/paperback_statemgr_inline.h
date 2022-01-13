@@ -34,25 +34,32 @@ namespace paperback::coordinator
 
 		PPB.LoadEntityInfo(m_InfoPath);
 
-		if (!PPB.VerifyState("Editor"))
-			PPB.LoadTextures(m_TexPath);
+		PPB.LoadTextures(m_TexPath);
 	}
 
 	void scene::Unload()
 	{
 		if (!PPB.GetArchetypeList().empty())
 			PPB.ResetAllArchetypes();
+
+		if (!PPB.VerifyState("Editor") && RenderResourceLoader::GetInstanced().m_LevelTextures.size())
+		{
+			for (auto& Tex : RenderResourceLoader::GetInstanced().m_LevelTextures)
+			{
+				RenderResourceManager::GetInstanced().UnloadTextures(Tex.TextureName);
+			}
+
+			RenderResourceLoader::GetInstanced().m_LevelTextures.clear();
+		}
 	}
 
 	void scene::UpdateName(const std::string& Name)
 	{
-
 		m_Name = Name;
 	}
 
 	const std::string& scene::GetName()
 	{
-
 		return m_Name;
 	}
 

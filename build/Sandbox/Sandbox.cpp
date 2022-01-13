@@ -139,7 +139,7 @@ void InitializeGame()
         ,   waypoint_system
         ,   health_system
         ,   deck_system
-//        ,   imgui_system
+        ,   imgui_system
         ,   camera_system
         ,   icon_system
         >();

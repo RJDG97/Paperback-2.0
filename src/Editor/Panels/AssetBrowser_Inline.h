@@ -377,12 +377,12 @@ void AssetBrowser::DeleteFolderContents()
 void AssetBrowser::DragDropExternal()
 {
     glfwSetDropCallback(PPB.GetSystem<window_system>().m_pWindow, [](GLFWwindow* Window, int Count, const char** Paths)
-        {
+    {
             auto& Files = PPB.GetDragDropFiles();
 
             for (int i = 0; i < Count; ++i)
                 Files.push_back(Paths[i]);
-        });
+    });
 
     if (!PPB.GetDragDropFiles().empty())
     {
@@ -405,7 +405,16 @@ void AssetBrowser::DragDropExternal()
                 for (const auto& Path : PPB.GetDragDropFiles())
                 {
                     auto Destination = m_Imgui.m_SelectedPath / Path.filename();
-                    fs::copy_file(Path, Destination);
+                    fs::copy_file(Path, Destination, fs::copy_options::overwrite_existing);
+
+                    //if (m_Imgui.m_SelectedPath.parent_path() == "../../resources/textures" && Path.extension() == ".dds")
+                    //{
+                    //    std::cout << Path.filename().generic_string().c_str() << " | " << Destination.generic_string().c_str() << std::endl;
+                    //}
+                        //m_Imgui.m_TexturesToLoad.push_back({ Path.filename().generic_string().c_str(), Destination.generic_string().c_str(), true });
+                    //std::cout << m_Imgui.m_SelectedPath.parent_path().generic_string().c_str() << Path.extension().generic_string().c_str() << std::endl;
+                    std::cout << m_Imgui.m_SelectedPath.parent_path().generic_string().c_str() << " | " << Destination.generic_string().c_str() << std::endl;
+
                 }
                 PPB.GetDragDropFiles().clear();
             }

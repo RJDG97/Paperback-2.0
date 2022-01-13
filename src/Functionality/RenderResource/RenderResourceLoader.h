@@ -27,5 +27,6 @@ struct RenderResourceLoader
 	static RenderResourceLoader& GetInstanced();
 
 	RenderResourceManager& m_Manager;
+	std::vector<TextureLoad> m_LevelTextures;
 };
 #endif

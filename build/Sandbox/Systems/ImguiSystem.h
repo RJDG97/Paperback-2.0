@@ -100,7 +100,7 @@ struct imgui_system : paperback::system::instance
     bool m_bPaused;
 
     RenderResourceLoader& m_Loader{ RenderResourceLoader::GetInstanced() };
-    std::vector< TextureLoad > m_LoadedTextures;
+    std::vector< TextureLoad > m_LoadedTextures, m_TexturesToLoad;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -171,7 +171,7 @@ struct imgui_system : paperback::system::instance
 
         //PPB.TogglePause(true); 
         if (PPB.VerifyState("Editor"))
-            m_LoadedTextures = m_Loader.ReadTextureJson("D:/Repo/Paperback-2.0/resources/textureload.texture", true);
+            m_LoadedTextures = m_Loader.ReadTextureJson("../../resources/textureload.texture", true);
 
         EDITOR_INFO_PRINT("Editor Loaded");
     }
