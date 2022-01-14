@@ -15,7 +15,7 @@ struct TextureLoad
 {
 	std::string TextureName{};
 	std::string TexturePath{};
-	bool TextureBool = false;
+	bool TextureBool = true;
 	bool Saved = false;
 };
 
@@ -25,12 +25,15 @@ struct RenderResourceLoader
 
 	public:
 	void ReadTextureJson( std::string File, bool Load = false );
-
-	void LoadTexture();
+	void LoadTextureOnInit();
+	void AddNewTexture();
+	void CheckAndLoad( const std::string& Name, const std::string& Path );
+	void SerializeTextures();
+	void RemoveTexture( std::string TexName );
 
 	static RenderResourceLoader& GetInstanced();
 
 	RenderResourceManager& m_Manager;
-	std::vector<TextureLoad> m_LevelTextures, m_LoadedTextures;
+	std::vector<TextureLoad> m_LevelTextures, m_LoadedTextures, m_TexturesToLoad;
 };
 #endif

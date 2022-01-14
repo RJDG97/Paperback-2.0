@@ -100,7 +100,6 @@ struct imgui_system : paperback::system::instance
     bool m_bPaused;
 
     RenderResourceLoader& m_Loader{ RenderResourceLoader::GetInstanced() };
-    std::vector< TextureLoad > m_TexturesToLoad;
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -173,7 +172,7 @@ struct imgui_system : paperback::system::instance
         if (PPB.VerifyState("Editor"))
         {
             m_Loader.ReadTextureJson("../../resources/textureload.texture", true);
-            m_Loader.LoadTexture();
+            m_Loader.LoadTextureOnInit();
         }
 
         EDITOR_INFO_PRINT("Editor Loaded");
@@ -895,6 +894,9 @@ struct imgui_system : paperback::system::instance
 
         if (!PPB.GetArchetypeList().empty())
             PPB.ResetAllArchetypes();
+
+        for (auto& Tex : m_Loader.m_LoadedTextures)
+            Tex.TextureBool = false; //reset the bool when opening a new scene
     }
 
     void SaveLevelTextures( const std::string& TexturePath )
@@ -943,6 +945,9 @@ struct imgui_system : paperback::system::instance
 
         Writer.EndObject();
         Filestream << sb.GetString();
+
+        for (auto& Tex : m_Loader.m_LoadedTextures)
+            Tex.Saved = false; //reset after saving one level
     }
 
     std::string SetEntityInfoPath(std::string& Path, std::string& FileName, FileExt Extension )

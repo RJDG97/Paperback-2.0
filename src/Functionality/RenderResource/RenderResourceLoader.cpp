@@ -5,8 +5,6 @@ RenderResourceLoader::RenderResourceLoader(): m_Manager{RenderResourceManager::G
 
 void RenderResourceLoader::ReadTextureJson( std::string File, bool Load )
 {
-	//m_LevelTextures.clear();
-
 	TextureLoad Temp;
 
 	std::ifstream InputFile(File);
@@ -43,40 +41,77 @@ void RenderResourceLoader::ReadTextureJson( std::string File, bool Load )
 	}
 }
 
-void RenderResourceLoader::LoadTexture()
+void RenderResourceLoader::LoadTextureOnInit()
 {
 	//goes thru the all folders and loads any not found on the json
 
-	//for editor on load (once)
+	//for editor on load (once) ->this fn is for if user copy files into the texture folder before running the engine
 
 	for (auto& Path : fs::recursive_directory_iterator("../../resources/textures"))
 	{
 		if (fs::is_regular_file(Path) && Path.path().extension() == ".dds")
 		{
+			//skip skybox textures & textures generated from loading meshes
 			if (Path.path().parent_path() == "../../resources/textures\\Skybox" || Path.path().parent_path() == "../../resources/textures")
 				continue;
 
-			std::string TexName = Path.path().stem().generic_string().c_str();
+			CheckAndLoad(Path.path().stem().generic_string().c_str(), Path.path().generic_string().c_str());
 
-			if (TexName.find("_Mirrored") != std::string::npos)
-			{
-				std::string Temp = TexName.substr(0, TexName.find_last_of("_"));
-
-				if (!m_Manager.m_Textures.contains(Temp)) //if the texture isnt found in the texture container
-				{
-					m_LoadedTextures.push_back({ Temp, Path.path().generic_string().c_str(), true });
-				}
-			}
-			else
-			{
-				if (!m_Manager.m_Textures.contains(TexName)) //if the texture isnt found in the texture container
-				{
-					m_LoadedTextures.push_back({ TexName, Path.path().generic_string().c_str(), true });
-				}
-			}
 		}
 	}
 
+	SerializeTextures();
+}
+
+void RenderResourceLoader::AddNewTexture()
+{
+	for (auto& Tex : m_TexturesToLoad)
+	{
+		CheckAndLoad(Tex.TextureName, Tex.TexturePath);
+	}
+
+	SerializeTextures();
+}
+
+void RenderResourceLoader::CheckAndLoad( const std::string& Name, const std::string& Path )
+{
+	if (Name.find("_Mirrored") != std::string::npos)
+	{
+		std::string Temp = Name.substr(0, Name.find_last_of("_"));
+
+		if (!m_Manager.m_Textures.contains(Temp)) //if the texture isnt found in the texture container
+		{
+			m_Manager.LoadTextures(Temp, Path, true);
+			m_LoadedTextures.push_back({ Temp, Path });
+		}
+		else
+		{
+			m_Manager.UnloadTextures(Temp);
+			RemoveTexture(Temp);
+			m_Manager.LoadTextures(Temp, Path, true);
+			m_LoadedTextures.push_back({ Temp, Path });
+		}
+
+	}
+	else
+	{
+		if (!m_Manager.m_Textures.contains(Name)) //if the texture isnt found in the texture container
+		{
+			m_Manager.LoadTextures(Name, Path, true);
+			m_LoadedTextures.push_back({ Name, Path });
+		}
+		else 
+		{
+			m_Manager.UnloadTextures(Name);
+			RemoveTexture(Name);
+			m_Manager.LoadTextures(Name, Path, true);
+			m_LoadedTextures.push_back({ Name, Path });
+		}
+	}
+}
+
+void RenderResourceLoader::SerializeTextures()
+{
 	if (m_LoadedTextures.size())
 	{
 		rapidjson::StringBuffer sb;
@@ -98,6 +133,19 @@ void RenderResourceLoader::LoadTexture()
 		Filestream << sb.GetString();
 	}
 }
+
+void RenderResourceLoader::RemoveTexture( std::string TexName )
+{
+	for (auto it = m_LoadedTextures.begin(); it != m_LoadedTextures.end(); ++it)
+	{
+		if (it->TextureName == TexName)
+		{
+			it = m_LoadedTextures.erase(it);
+			break;
+		}
+	}
+}
+
 
 RenderResourceLoader& RenderResourceLoader::GetInstanced()
 {
