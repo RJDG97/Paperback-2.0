@@ -162,20 +162,18 @@ void AssetBrowser::CheckFileType()
                     FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
                 }
             }
-
         }
 
         DeleteFolderContents();
-
     }
 }
 
 void AssetBrowser::DisplayFiles(fs::path File, std::string FileName)
 {
 
-    if (File.extension() == ".png")
+    if (File.extension() == ".png" || File.extension() == ".jpg" || File.extension() == ".dds")
         ImGui::Selectable(FileString(ICON_FA_FILE_IMAGE, FileName).c_str());
-    else if (File.extension() == ".json")
+    else if (File.extension() == ".json" || File.extension() == ".texture" || File.extension() == ".mesh")
         ImGui::Selectable(FileString(ICON_FA_FILE_CODE, FileName).c_str());
     else if (File.extension() == ".nui")
         ImGui::Selectable(FileString(ICON_FA_KIWI_BIRD, FileName).c_str());

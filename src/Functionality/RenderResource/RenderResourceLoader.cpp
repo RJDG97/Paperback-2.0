@@ -1,4 +1,6 @@
 #include "RenderResourceLoader.h"
+#include "Editor/EditorLogger.h"
+#include "Editor/EditorLogger_Inline.h"
 #include <fstream>
 
 RenderResourceLoader::RenderResourceLoader(): m_Manager{RenderResourceManager::GetInstanced()} {}
@@ -61,6 +63,8 @@ void RenderResourceLoader::LoadTextureOnInit()
 	}
 
 	SerializeTextures();
+	EDITOR_TRACE_PRINT("All Textures not on the Json has been loaded");
+
 }
 
 void RenderResourceLoader::AddNewTexture()
@@ -83,13 +87,21 @@ void RenderResourceLoader::CheckAndLoad( const std::string& Name, const std::str
 		{
 			m_Manager.LoadTextures(Temp, Path, true);
 			m_LoadedTextures.push_back({ Temp, Path });
+
+			EDITOR_TRACE_PRINT("Loaded: " + Temp + "Texture");
+
 		}
 		else
 		{
-			m_Manager.UnloadTextures(Temp);
-			RemoveTexture(Temp);
-			m_Manager.LoadTextures(Temp, Path, true);
-			m_LoadedTextures.push_back({ Temp, Path });
+			if (CheckTexture(Temp, Path)) //if the texture name & path given is the exact same (trying to override file)
+			{
+				m_Manager.UnloadTextures(Temp);
+				RemoveTexture(Temp);
+				m_Manager.LoadTextures(Temp, Path, true);
+				m_LoadedTextures.push_back({ Temp, Path });
+
+				EDITOR_TRACE_PRINT("Updated: " + Temp + "Texture");
+			}
 		}
 
 	}
@@ -99,13 +111,22 @@ void RenderResourceLoader::CheckAndLoad( const std::string& Name, const std::str
 		{
 			m_Manager.LoadTextures(Name, Path, true);
 			m_LoadedTextures.push_back({ Name, Path });
+
+			EDITOR_TRACE_PRINT("Loaded: " + Name + "Texture");
+
 		}
 		else 
 		{
-			m_Manager.UnloadTextures(Name);
-			RemoveTexture(Name);
-			m_Manager.LoadTextures(Name, Path, true);
-			m_LoadedTextures.push_back({ Name, Path });
+			if (CheckTexture(Name, Path))
+			{
+				m_Manager.UnloadTextures(Name);
+				RemoveTexture(Name);
+				m_Manager.LoadTextures(Name, Path, true);
+				m_LoadedTextures.push_back({ Name, Path });
+
+				EDITOR_TRACE_PRINT("Updated: " + Name + "Texture");
+
+			}
 		}
 	}
 }
@@ -144,6 +165,19 @@ void RenderResourceLoader::RemoveTexture( std::string TexName )
 			break;
 		}
 	}
+}
+
+bool RenderResourceLoader::CheckTexture( std::string TexName, std::string Path )
+{
+	for (auto it = m_LoadedTextures.begin(); it != m_LoadedTextures.end(); ++it)
+	{
+		if (it->TextureName == TexName && it->TexturePath == Path)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

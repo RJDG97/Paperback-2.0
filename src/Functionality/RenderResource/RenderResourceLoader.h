@@ -30,6 +30,7 @@ struct RenderResourceLoader
 	void CheckAndLoad( const std::string& Name, const std::string& Path );
 	void SerializeTextures();
 	void RemoveTexture( std::string TexName );
+	bool CheckTexture( std::string TexName, std::string Path );
 
 	static RenderResourceLoader& GetInstanced();
 
