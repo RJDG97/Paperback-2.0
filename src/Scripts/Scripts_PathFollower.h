@@ -13,62 +13,86 @@ namespace MONO_PATHFOLLOWER
 
 	MONO_EXPORT int GetPathID(void* address)
 	{
-		return reinterpret_cast<path_follower*>(address)->m_PathID;
+		if (address)
+			return reinterpret_cast<path_follower*>(address)->m_PathID;
+
+		return {};
 	}
 
 	MONO_EXPORT float GetDistance(void* address)
 	{
-		return reinterpret_cast<path_follower*>(address)->m_Distance;
+		if (address)
+			return reinterpret_cast<path_follower*>(address)->m_Distance;
+
+		return {};
 	}
 
 	MONO_EXPORT float GetTravelSpeed(void* address)
 	{
-		return reinterpret_cast<path_follower*>(address)->m_TravelSpeed;
+		if (address)
+			return reinterpret_cast<path_follower*>(address)->m_TravelSpeed;
+
+		return {};
 	}
 
 	MONO_EXPORT bool GetBackAndForth(void* address)
 	{
-		return reinterpret_cast<path_follower*>(address)->m_BackAndForth;
+		if (address)
+			return reinterpret_cast<path_follower*>(address)->m_BackAndForth;
+
+		return {};
 	}
 
 	MONO_EXPORT bool GetReversed(void* address)
 	{
-		return reinterpret_cast<path_follower*>(address)->m_Reversed;
+		if (address)
+			return reinterpret_cast<path_follower*>(address)->m_Reversed;
+
+		return {};
 	}
 
 	MONO_EXPORT bool GetPauseTravel(void* address)
 	{
-		return reinterpret_cast<path_follower*>(address)->m_PauseTravel;
+		if (address)
+			return reinterpret_cast<path_follower*>(address)->m_PauseTravel;
+
+		return {};
 	}
 
 	MONO_EXPORT void SetPathID(void* address, int path_id)
 	{
-		reinterpret_cast<path_follower*>(address)->m_PathID = path_id;
+		if (address)
+			reinterpret_cast<path_follower*>(address)->m_PathID = path_id;
 	}
 
 	MONO_EXPORT void SetDistance(void* address, float distance)
 	{
-		reinterpret_cast<path_follower*>(address)->m_Distance = distance;
+		if (address)
+			reinterpret_cast<path_follower*>(address)->m_Distance = distance;
 	}
 
 	MONO_EXPORT void SetTravelSpeed(void* address, float travel_speed)
 	{
-		reinterpret_cast<path_follower*>(address)->m_TravelSpeed = travel_speed;
+		if (address)
+			reinterpret_cast<path_follower*>(address)->m_TravelSpeed = travel_speed;
 	}
 
 	MONO_EXPORT void SetBackAndForth(void* address, bool back_and_forth)
 	{
-		reinterpret_cast<path_follower*>(address)->m_BackAndForth = back_and_forth;
+		if (address)
+			reinterpret_cast<path_follower*>(address)->m_BackAndForth = back_and_forth;
 	}
 
 	MONO_EXPORT void SetReversed(void* address, bool traversed)
 	{
-		reinterpret_cast<path_follower*>(address)->m_Reversed = traversed;
+		if (address)
+			reinterpret_cast<path_follower*>(address)->m_Reversed = traversed;
 	}
 
 	MONO_EXPORT void SetPauseTravel(void* address, bool stopped)
 	{
-		reinterpret_cast<path_follower*>(address)->m_PauseTravel = stopped;
+		if (address)
+			reinterpret_cast<path_follower*>(address)->m_PauseTravel = stopped;
 	}
 
 	void AddInternalCall()

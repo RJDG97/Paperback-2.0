@@ -35,11 +35,11 @@ namespace CSScript
         {
             get
             {
-                return getcurrenttime(m_Address);
+                return getcurrentanimationtime(m_Address);
             }
             set
             {
-                setcurrenttime(m_Address, value);
+                setcurrentanimationtime(m_Address, value);
             }
         }
 
@@ -85,10 +85,10 @@ namespace CSScript
         private extern static void setcurrentanimationname(void* address, String new_name);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getcurrenttime(void* address);
+        private extern static float getcurrentanimationtime(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setcurrenttime(void* address, float time);
+        private extern static void setcurrentanimationtime(void* address, float time);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static bool getplayonce(void* address);

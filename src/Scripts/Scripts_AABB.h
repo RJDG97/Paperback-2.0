@@ -13,7 +13,10 @@ namespace MONO_AABB
 
 	MONO_EXPORT bool GetCollided(void* address)
 	{
-		return reinterpret_cast<aabb*>(address)->m_Collided;
+		if (address)
+			return reinterpret_cast<aabb*>(address)->m_Collided;
+
+		return {};
 	}
 
 	void AddInternalCall()

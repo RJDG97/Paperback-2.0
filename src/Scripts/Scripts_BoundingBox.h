@@ -13,42 +13,47 @@ namespace MONO_BOUNDINGBOX
 
 	MONO_EXPORT paperback::Vector3f GetMin(void* address)
 	{
-		return reinterpret_cast<boundingbox*>(address)->Min;
+		if (address)
+			return reinterpret_cast<boundingbox*>(address)->Min;
+
+		return {};
 	}
 
 	MONO_EXPORT void SetMin(void* address, float x, float y, float z)
 	{
-		reinterpret_cast<boundingbox*>(address)->Min = {x, y, z};
+		if (address)
+			reinterpret_cast<boundingbox*>(address)->Min = {x, y, z};
 	}
 
 	MONO_EXPORT paperback::Vector3f GetMax(void* address)
 	{
-		return reinterpret_cast<boundingbox*>(address)->Max;
+		if (address)
+			return reinterpret_cast<boundingbox*>(address)->Max;
+
+		return {};
 	}
 
 	MONO_EXPORT void SetMax(void* address, float x, float y, float z)
 	{
-		reinterpret_cast<boundingbox*>(address)->Max = { x, y, z };
+		if (address)
+			reinterpret_cast<boundingbox*>(address)->Max = { x, y, z };
 	}
 
 	MONO_EXPORT bool GetCollided(void* address)
 	{
-		return reinterpret_cast<boundingbox*>(address)->m_Collided;
-	}
+		if (address)
+			return reinterpret_cast<boundingbox*>(address)->m_Collided;
 
-	MONO_EXPORT std::vector<bool> GetCollidedState(void* address)
-	{
-		return reinterpret_cast<boundingbox*>(address)->m_CollisionState;
+		return {};
 	}
 
 	void AddInternalCall()
 	{
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getaddress(uint)", &MONO_ANIMATOR::GetAddress);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getmin(void*)", &MONO_ANIMATOR::GetMin);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::setmin(void*,single,single,single)", &MONO_ANIMATOR::SetMin);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getmax(void*)", &MONO_ANIMATOR::GetMax);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::setmax(void*,single,single,single)", &MONO_ANIMATOR::SetMax);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getcollided(void*)", &MONO_ANIMATOR::GetCollided);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getcollisionstate(void*)", &MONO_ANIMATOR::GetCollidedState);
+		mono_add_internal_call("CSScript.BOUNDINGBOX::getaddress(uint)", &MONO_BOUNDINGBOX::GetAddress);
+		mono_add_internal_call("CSScript.BOUNDINGBOX::getmin(void*)", &MONO_BOUNDINGBOX::GetMin);
+		mono_add_internal_call("CSScript.BOUNDINGBOX::setmin(void*,single,single,single)", &MONO_BOUNDINGBOX::SetMin);
+		mono_add_internal_call("CSScript.BOUNDINGBOX::getmax(void*)", &MONO_BOUNDINGBOX::GetMax);
+		mono_add_internal_call("CSScript.BOUNDINGBOX::setmax(void*,single,single,single)", &MONO_BOUNDINGBOX::SetMax);
+		mono_add_internal_call("CSScript.BOUNDINGBOX::getcollided(void*)", &MONO_BOUNDINGBOX::GetCollided);
 	}
 }

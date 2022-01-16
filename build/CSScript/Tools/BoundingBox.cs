@@ -51,13 +51,6 @@ namespace CSScript
             }
         }
 
-        public List<bool> m_CollisionState
-        {
-            get
-            {
-                return getcollisionstate(m_Address);
-            }
-        }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
@@ -76,8 +69,5 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static bool getcollided(void* address);
-
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static List<bool> getcollisionstate(void* address);
     }
 }

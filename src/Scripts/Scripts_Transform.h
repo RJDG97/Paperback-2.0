@@ -13,22 +13,30 @@ namespace MONO_TRANSFORM
 
 	MONO_EXPORT paperback::Vector3f GetOffset(void* address)
 	{
-		return reinterpret_cast<transform*>(address)->m_Offset;
+		if (address)
+			return reinterpret_cast<transform*>(address)->m_Offset;
+
+		return {};
 	}
 
 	MONO_EXPORT paperback::Vector3f GetPosition(void* address)
 	{
-		return reinterpret_cast<transform*>(address)->m_Position;
+		if (address)
+			return reinterpret_cast<transform*>(address)->m_Position;
+
+		return {};
 	}
 
 	MONO_EXPORT void SetOffset(void* address, float x, float y, float z)
 	{
-		reinterpret_cast<transform*>(address)->m_Offset = {x, y, z};
+		if (address)
+			reinterpret_cast<transform*>(address)->m_Offset = {x, y, z};
 	}
 
 	MONO_EXPORT void SetPosition(void* address, float x, float y, float z)
 	{
-		reinterpret_cast<transform*>(address)->m_Position = { x, y, z };
+		if (address)
+			reinterpret_cast<transform*>(address)->m_Position = { x, y, z };
 	}
 
 	void AddInternalCall()

@@ -13,47 +13,64 @@ namespace MONO_ANIMATOR
 
 	MONO_EXPORT std::string GetCurrentAnimationName(void* address)
 	{
-		return reinterpret_cast<animator*>(address)->m_CurrentAnimationName;
+		if (address)
+			return reinterpret_cast<animator*>(address)->m_CurrentAnimationName;
+
+		return {};
 	}
 
 	MONO_EXPORT void SetCurrentAnimationName(void* address, std::string new_name)
 	{
-		reinterpret_cast<animator*>(address)->m_CurrentAnimationName = new_name;
+		if (address)
+			reinterpret_cast<animator*>(address)->m_CurrentAnimationName = new_name;
 	}
 
-	MONO_EXPORT std::string GetCurrentTime(void* address)
+	MONO_EXPORT float GetCurrentAnimationTime(void* address)
 	{
-		return reinterpret_cast<animator*>(address)->m_CurrentTime;
+		if (address)
+			return reinterpret_cast<animator*>(address)->m_CurrentTime;
+
+		return {};
 	}
 
-	MONO_EXPORT void SetCurrentTime(void* address, float time)
+	MONO_EXPORT void SetCurrentAnimationTime(void* address, float time)
 	{
-		reinterpret_cast<animator*>(address)->m_CurrentTime = time;
+		if (address)
+			reinterpret_cast<animator*>(address)->m_CurrentTime = time;
 	}
 
-	MONO_EXPORT std::string GetPlayOnce(void* address)
+	MONO_EXPORT bool GetPlayOnce(void* address)
 	{
-		return reinterpret_cast<animator*>(address)->m_PlayOnce;
+		if (address)
+			return reinterpret_cast<animator*>(address)->m_PlayOnce;
+
+		return {};
 	}
 
 	MONO_EXPORT void SetPlayOnce(void* address, bool play_once)
 	{
-		reinterpret_cast<animator*>(address)->m_PlayOnce = play_once;
+		if (address)
+			reinterpret_cast<animator*>(address)->m_PlayOnce = play_once;
 	}
 
-	MONO_EXPORT std::string GetFinishedAnimating(void* address)
+	MONO_EXPORT bool GetFinishedAnimating(void* address)
 	{
-		return reinterpret_cast<animator*>(address)->m_FinishedAnimating;
+		if (address)
+			return reinterpret_cast<animator*>(address)->m_FinishedAnimating;
+
+		return {};
 	}
 
-	MONO_EXPORT std::string GetPauseAnimation(void* address)
+	MONO_EXPORT bool GetPauseAnimation(void* address)
 	{
-		return reinterpret_cast<animator*>(address)->m_PauseAnimation;
+		if (address)
+			return reinterpret_cast<animator*>(address)->m_PauseAnimation;
 	}
 
 	MONO_EXPORT void SetPauseAnimation(void* address, bool play_once)
 	{
-		reinterpret_cast<animator*>(address)->m_PauseAnimation = play_once;
+		if (address)
+			reinterpret_cast<animator*>(address)->m_PauseAnimation = play_once;
 	}
 
 	void AddInternalCall()
@@ -61,8 +78,8 @@ namespace MONO_ANIMATOR
 		mono_add_internal_call("CSScript.ANIMATOR::getaddress(uint)", &MONO_ANIMATOR::GetAddress);
 		mono_add_internal_call("CSScript.ANIMATOR::getcurrentanimationname(void*)", &MONO_ANIMATOR::GetCurrentAnimationName);
 		mono_add_internal_call("CSScript.ANIMATOR::setcurrentanimationname(void*,string)", &MONO_ANIMATOR::SetCurrentAnimationName);
-		mono_add_internal_call("CSScript.ANIMATOR::getcurrenttime(void*)", &MONO_ANIMATOR::GetCurrentTime);
-		mono_add_internal_call("CSScript.ANIMATOR::setcurrenttime(void*,single)", &MONO_ANIMATOR::SetCurrentTime);
+		mono_add_internal_call("CSScript.ANIMATOR::getcurrentanimationtime(void*)", &MONO_ANIMATOR::GetCurrentAnimationTime);
+		mono_add_internal_call("CSScript.ANIMATOR::setcurrentanimationtime(void*,single)", &MONO_ANIMATOR::SetCurrentAnimationTime);
 		mono_add_internal_call("CSScript.ANIMATOR::getplayonce(void*)", &MONO_ANIMATOR::GetPlayOnce);
 		mono_add_internal_call("CSScript.ANIMATOR::setplayonce(void*,bool)", &MONO_ANIMATOR::SetPlayOnce);
 		mono_add_internal_call("CSScript.ANIMATOR::getfinishedanimating(void*)", &MONO_ANIMATOR::GetFinishedAnimating);
