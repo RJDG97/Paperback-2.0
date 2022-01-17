@@ -19,8 +19,8 @@ struct animator
 	std::vector<glm::mat4> m_FinalBoneMatrices;
 	std::string m_CurrentAnimationName;
 	float m_CurrentTime{};
-	bool m_PlayOnce;
-	bool m_FinishedAnimating;
+	bool m_PlayOnce{};
+	bool m_FinishedAnimating{};
 };
 
 

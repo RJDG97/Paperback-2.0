@@ -3,6 +3,7 @@
 #include "WindowSystem.h"
 #include <sstream>
 #include <filesystem>
+#include "SoundSystem.h"
 
 //----------------------------------
 // ImGui Headers
@@ -668,6 +669,7 @@ struct imgui_system : paperback::system::instance
             PPB.OpenEditScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
             m_bPaused = true;
             PPB.TogglePause(m_bPaused);
+            PPB.GetSystem<sound_system>().EditorStopAllSounds();
 
             EDITOR_INFO_PRINT("Stopped Active Scene...");
 

@@ -162,8 +162,10 @@
     <ClInclude Include="..\..\src\Details\paperback_cppscript_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_hash_grid_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_input_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_logger_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_nbitset_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_pool_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_statemgr_inline.h" />
@@ -231,8 +233,10 @@
     <ClInclude Include="..\..\src\paperback_data_reflections.h" />
     <ClInclude Include="..\..\src\paperback_event.h" />
     <ClInclude Include="..\..\src\paperback_event_mgr.h" />
+    <ClInclude Include="..\..\src\paperback_hash_grid.h" />
     <ClInclude Include="..\..\src\paperback_input.h" />
     <ClInclude Include="..\..\src\paperback_logger.h" />
+    <ClInclude Include="..\..\src\paperback_nbitset.h" />
     <ClInclude Include="..\..\src\paperback_pool.h" />
     <ClInclude Include="..\..\src\paperback_query.h" />
     <ClInclude Include="..\..\src\paperback_settings.h" />

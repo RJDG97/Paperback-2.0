@@ -54,6 +54,13 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                         Transform->m_Position = Spawner.m_Position[Path.m_ID];
                         Path_Follower->m_ID = Path.m_ID;
                     });
+
+
+
+                    // Add Unit To Hash Grid - After Position Update
+                    auto [Entity, Xform, Box, Prefab] = m_obj.m_pArchetype->FindComponents<paperback::component::entity, transform, boundingbox, prefab>( m_obj.m_PoolDetails );
+                    if ( !Prefab && Entity && Xform && Box )
+                        m_Coordinator.UpdateUnit( Entity->m_GlobalIndex, {0.0f,0.0f,0.0f}, Xform->m_Position, Box->Min, Box->Max );
                 }
             }
         });

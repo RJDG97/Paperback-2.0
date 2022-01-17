@@ -111,7 +111,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
          RegisterGlobalEventClass<collision_system::OnCollisionStay>(this);
      }
 
-    void OnEvent( entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2, bool& Skip ) noexcept
+    void OnEvent( entity& obj, entity& obj2, rigidforce& rf, rigidforce& rf2, boundingbox& box, boundingbox& box2, bool& Skip ) noexcept
     {
         // Get Entity Info
         auto m_obj = GetEntityInfo(obj.m_GlobalIndex);
@@ -210,6 +210,38 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                                 Anim_2->m_FinishedAnimating = false;
                                 Unit_State2->SetState(UnitState::DEAD);
                                 BroadcastGlobalEvent<collision_system::OnCollisionExit>( obj, rf, Skip );
+
+
+
+
+
+
+
+
+                                // if box2 is dead
+                                for ( auto& [id, colliding] : box2.m_CollisionState )
+                                {
+                                    if ( colliding )
+                                    {
+                                        const auto& OtherInfo = GetEntityInfo( id );
+
+                                        if ( OtherInfo.m_pArchetype )
+                                        {
+                                            auto [Box, RForce, REntity] = OtherInfo.m_pArchetype->FindComponents<boundingbox, rigidforce, entity>( OtherInfo.m_PoolDetails );
+
+                                            if ( Box )
+                                            {
+                                                auto It = Box->m_CollisionState.find( obj2.m_GlobalIndex );
+                                                if ( It != Box->m_CollisionState.end() )
+                                                    Box->m_CollisionState.at( obj2.m_GlobalIndex ) = false;
+                                            }
+                                            if ( REntity && RForce )
+                                            {
+                                                BroadcastGlobalEvent<collision_system::OnCollisionExit>( *REntity, *RForce, Skip );
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                         // Capture Point
@@ -227,6 +259,37 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
                                 BroadcastGlobalEvent<collision_system::OnCollisionExit>( obj, rf, Skip );
                                 // Update Card Decks
                                 BroadcastGlobalEvent<onevent_UnitTriggerStay_system::PointCaptured>( Unit_1_Friendly ? true : false );
+
+
+
+
+
+
+
+                                // if box2 is dead
+                                for ( auto& [id, colliding] : box2.m_CollisionState )
+                                {
+                                    if ( colliding )
+                                    {
+                                        const auto& OtherInfo = GetEntityInfo( id );
+
+                                        if ( OtherInfo.m_pArchetype )
+                                        {
+                                            auto [Box, RForce, REntity] = OtherInfo.m_pArchetype->FindComponents<boundingbox, rigidforce, entity>( OtherInfo.m_PoolDetails );
+
+                                            if ( Box )
+                                            {
+                                                auto It = Box->m_CollisionState.find( obj2.m_GlobalIndex );
+                                                if ( It != Box->m_CollisionState.end() )
+                                                    Box->m_CollisionState.at( obj2.m_GlobalIndex ) = false;
+                                            }
+                                            if ( REntity && RForce )
+                                            {
+                                                BroadcastGlobalEvent<collision_system::OnCollisionExit>( *REntity, *RForce, Skip );
+                                            }
+                                        }
+                                    }
+                                }
                             }
 
                             // Update Position of Flags
@@ -255,6 +318,10 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
             {
                 // Helps to Re-Enable movement when SAME Unit Types collide - This also causes the units to overshot
                 BroadcastGlobalEvent<collision_system::OnCollisionExit>(obj, rf, Skip);
+
+
+                // UPDATE COLLISION STATE - NEW
+                box.m_CollisionState.at(obj2.m_GlobalIndex) = false;
             }
         }
         // Skip Capture Points that have been Captured

@@ -221,7 +221,8 @@ namespace paperback::system
 		void PostUpdate         ( void )        noexcept {}				// Executed on System Run - 4
 		void OnFrameEnd         ( void )        noexcept {}				// Executed on System Run - 5
 		void OnSystemTerminated ( void )        noexcept {}				// Executed on Program Termination
-		void OnStateChange		( void )        noexcept {}				// Executed on Scene Change - LoadScene
+		void OnStateChange		( void )        noexcept {}				// Executed on Scene Change - Pre-LoadScene
+		void OnStateLoad		( void )        noexcept {}				// Executed on Scene Change - Post LoadScene
 
 		// Event						        
 		void OnEvent            ( ... )         noexcept {}				// System Event - Override with required parameters
@@ -298,6 +299,10 @@ namespace paperback::system
 
 		template < concepts::Callable_Void T_FUNCTION >
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
+					, T_FUNCTION&& Function ) noexcept;
+
+		template < concepts::Callable_Void T_FUNCTION >
+        void ForEach( const std::vector<paperback::u32>& NeighbourList
 					, T_FUNCTION&& Function ) noexcept;
 
         template < concepts::Callable_Bool T_FUNCTION >

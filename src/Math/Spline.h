@@ -88,7 +88,7 @@ namespace paperback
 
 					if (t > m_Points.size() - 4)
 					{
-						p0 = m_Points.size() - 4;
+						p0 = static_cast<int>(m_Points.size()) - 4;
 						p1 = p0 + 1;
 						p2 = p1 + 1;
 						p3 = p2 + 1;
