@@ -66,6 +66,7 @@
     <Compile Include="Tools\PathFollower.cs" />
     <Compile Include="Tools\Scale.cs" />
     <Compile Include="Tools\Rotation.cs" />
+    <Compile Include="Tools\Socketed.cs" />
     <Compile Include="Tools\Transform.cs" />
     <Compile Include="Unit.cs" />
   </ItemGroup>
