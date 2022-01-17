@@ -3,17 +3,24 @@
 #define _RENDERERSYSTEM_H_
 
 #include "../Functionality/Renderer/Renderer.h"
+#include "../Functionality/Camera/Camera.h"
 #include "glm/inc/gtx/transform.hpp"
 #include "../Systems/WindowSystem.h"
 #include "Math/Math_includes.h"
+
+#include <iostream>
 
 struct render_system : paperback::system::instance
 {
 	GLFWwindow* m_pWindow;
 	RenderResourceManager* m_Resources;
+	Camera2D m_Camera2D;
+	Camera3D m_Camera3D;
+
 	tools::query Query;
 	tools::query QueryText;
-	
+	tools::query QueryCamera;
+
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
 		.m_pName = "render_system"
@@ -22,6 +29,11 @@ struct render_system : paperback::system::instance
 	PPB_FORCEINLINE
 	void OnSystemCreated(void) noexcept
 	{
+		RegisterGlobalEventClass<Input::KeyPressed>(this);      // Held Down - Not Released ( Passes False )
+		RegisterGlobalEventClass<Input::KeyClicked>(this);      // Released                 ( Passes True )
+		RegisterGlobalEventClass<Input::MousePressed>(this);    // Held Down - Not Released ( Passes False )
+		RegisterGlobalEventClass<Input::MouseClicked>(this);
+
 		const auto& window = GetSystem<window_system>();
 		Renderer::GetInstanced().SetUpFramebuffer(window.E.m_Width, window.E.m_Height);
 		m_pWindow = window.m_pWindow;
@@ -33,6 +45,9 @@ struct render_system : paperback::system::instance
 
 		QueryText.m_Must.AddFromComponents<transform, text, scale, rotation>();
 		QueryText.m_NoneOf.AddFromComponents<prefab>();
+
+		QueryCamera.m_Must.AddFromComponents<transform, camera>();
+		QueryCamera.m_NoneOf.AddFromComponents<prefab>();
 	}
 
 	PPB_FORCEINLINE
@@ -53,17 +68,7 @@ struct render_system : paperback::system::instance
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
 		std::map<float, std::vector<Renderer::UIInfo>> uis;
-		//std::unordered_map<std::string_view, std::vector<glm::mat4>> uis;
 		std::unordered_map<std::string_view, std::vector<Renderer::TextInfo>> texts;
-
-		// Reference quad
-		//glm::mat4 t{ 1.0f };
-		//t = glm::mat4{ 1.0f };
-		//t = glm::translate(t, glm::vec3{ 0, 0, 0 });
-		//t = glm::rotate(t, glm::radians(-90.f), glm::vec3{ 1.f, 0.f, 0.f });
-		//t = glm::scale(t, glm::vec3{ 40,40,40 });
-
-		//objects["Quad"].push_back({ t });
 
 		// Populate map
 		ForEach( Search( Query ), [&]( transform& Transform, mesh& Mesh, scale& Scale, rotation& Rotation, animator* Animator, socketed* Socketed) noexcept
@@ -96,7 +101,7 @@ struct render_system : paperback::system::instance
 			else
 			{
 				glm::mat4 t{ 1.0f };
-				t = glm::translate(t, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z * -1.0 });
+				t = glm::translate(t, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z });
 				t = glm::rotate(t, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
 				t = glm::rotate(t, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
 				t = glm::rotate(t, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
@@ -111,11 +116,11 @@ struct render_system : paperback::system::instance
 		ForEach(Search(QueryText), [&](transform& Transform, text& Text, scale& Scale, rotation& Rotation) noexcept
 		{
 			glm::mat4 transform{ 1.0f };
-			transform = glm::translate(transform, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z * -1.0 });
+			transform = glm::translate(transform, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z });
 			transform = glm::rotate(transform, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
 			transform = glm::rotate(transform, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
 			transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
-			transform = glm::scale(transform, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
+			transform = glm::scale(transform, glm::vec3{ Scale.m_Value.x * Text.m_FontSize, Scale.m_Value.y * Text.m_FontSize, Scale.m_Value.z });
 
 			glm::vec3 color{ Text.m_Color.x, Text.m_Color.y, Text.m_Color.z };
 			color /= 255.f;
@@ -127,7 +132,51 @@ struct render_system : paperback::system::instance
 
 		auto points = GetSystem<debug_system>().GetPoints();
 
-		Renderer::GetInstanced().Render(objects, uis, texts, &points);
+		Camera3D cam = m_Camera3D;
+
+		//if (test)
+		//{
+		//	// Populate map
+		//	ForEach(Search(QueryCamera), [&](transform& Transform, camera& Cam) noexcept
+		//	{
+		//		glm::vec3 position = Cam.m_Position;
+		//		glm::mat4 view = Cam.m_View;
+		//		glm::mat4 projection = Cam.m_Projection;
+
+		//		cam = Camera3D{ position, view, projection };
+		//	});
+		//}
+
+		Renderer::GetInstanced().Render(objects, cam, uis, texts, m_Camera2D, &points);
+	}
+
+	// On Event Key / Mouse Pressed
+	void OnEvent(const size_t& Key, const bool& Clicked) noexcept
+	{
+		if (Key == GLFW_MOUSE_BUTTON_RIGHT && !Clicked)
+		{
+			auto direction = GetMouseDirection();
+
+			m_Camera3D.RotateWithMouse(direction);
+		}
+
+		if (Key == GLFW_KEY_W)
+		{
+			m_Camera3D.MoveForward();
+		}
+		else if (Key == GLFW_KEY_S)
+		{
+			m_Camera3D.MoveBackward();
+		}
+
+		if (Key == GLFW_KEY_A)
+		{
+			m_Camera3D.MoveLeft();
+		}
+		else if (Key == GLFW_KEY_D)
+		{
+			m_Camera3D.MoveRight();
+		}
 	}
 
 	PPB_FORCEINLINE

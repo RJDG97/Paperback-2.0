@@ -85,6 +85,9 @@
     <ClCompile Include="..\..\src\Functionality\Font\Font.cpp">
       <Filter>Source\Tools\Functionality\Font</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Camera\Camera.cpp">
+      <Filter>Source\Tools\Functionality\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -462,6 +465,9 @@
     <ClInclude Include="..\..\src\paperback_cppscript_mgr.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Camera\Camera.h">
+      <Filter>Source\Tools\Functionality\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -553,6 +559,9 @@
     </Filter>
     <Filter Include="Source\Tools\Functionality\Font">
       <UniqueIdentifier>{c2e7d3f4-3992-4cbe-a68a-2e7fe25c91ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\Camera">
+      <UniqueIdentifier>{558cb910-9b70-4988-b828-2f8cf3e85300}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

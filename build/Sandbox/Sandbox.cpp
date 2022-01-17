@@ -114,6 +114,8 @@ void InitializeGame()
         ,    Triangle
         ,    spawner_details
         ,    icon             // Tag
+        ,    ui
+        ,    camera
         >();
 
         // Register Components - Add to the end of the list

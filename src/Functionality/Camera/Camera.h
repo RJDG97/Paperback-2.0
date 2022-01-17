@@ -1,16 +1,41 @@
 #pragma once
-#include "glm/inc/glm.hpp"
+#include <glm/inc/glm.hpp>
 
-class cam
+class Camera
 {
 public:
-	~cam() = default;
-
-	glm::vec3 GetForwardVector() const;
-
 	glm::mat4 GetView() const;
 	glm::mat4 GetProjection() const;
 	glm::vec3 GetPosition() const;
+
+	glm::mat4 m_View;
+	glm::mat4 m_Projection;
+	glm::vec3 m_Target;
+	glm::vec3 m_Position;
+};
+
+class Camera2D : public Camera
+{
+public:
+	Camera2D();
+	~Camera2D() = default;
+
+	Camera2D(const Camera2D&) = delete;
+	Camera2D& operator=(const Camera2D&) = delete;
+};
+
+class Camera3D : public Camera
+{
+public:
+	Camera3D();
+	~Camera3D() = default;
+
+	Camera3D(const Camera3D&);
+	Camera3D& operator=(const Camera3D&);
+
+	Camera3D(const glm::vec3& Position, const glm::mat4& View, const glm::mat4& Projection);
+
+	glm::vec3 GetForwardVector() const;
 
 	void SetPosition(const glm::vec3& Position);
 	void SetTarget(const glm::vec3& Target);
@@ -29,20 +54,9 @@ public:
 
 	void RotateWithMouse(glm::vec2 Direction);
 
-	static cam& GetInstanced();
-	cam(const cam&) = delete;
-	cam& operator=(const cam&) = delete;
-
 private:
-	cam();
-	
 	void UpdateView();
 	void UpdateVectors();
-
-	glm::mat4 m_View;
-	glm::mat4 m_Projection;
-	glm::vec3 m_Target;
-	glm::vec3 m_Position;
 
 	glm::vec3 m_Right;
 	glm::vec3 m_Up;

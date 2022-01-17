@@ -161,10 +161,10 @@ glm::vec3 Input::GetMousePosition() const noexcept
 	// Find point in NDC
 	glm::vec4 NDCPoint = glm::vec4{ (2.f * X) / WindowDetails.m_Width - 1.f, 1.f - (2.f * Y) / WindowDetails.m_Height, -1.f, 1.f };
 	// Find point in view
-	glm::vec4 ViewPoint = glm::inverse(Camera3D::GetInstanced().GetProjection()) * NDCPoint;
+	glm::vec4 ViewPoint = glm::inverse(cam::GetInstanced().GetProjection()) * NDCPoint;
 	ViewPoint = glm::vec4{ ViewPoint.x, ViewPoint.y, -1.f, 0.f };
 	// Find point world
-	glm::vec3 WorldPoint = glm::inverse(Camera3D::GetInstanced().GetView()) * ViewPoint;
+	glm::vec3 WorldPoint = glm::inverse(cam::GetInstanced().GetView()) * ViewPoint;
 
 	return WorldPoint;
 }
@@ -186,10 +186,10 @@ glm::vec3 Input::GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 view
 	// Find point in NDC
 	glm::vec4 NDCPoint = glm::vec4{ (2.f * (X- viewport_min.x)) / (viewport_max.x - viewport_min.x) - 1.f, 1.f - (2.f * (Y- viewport_min.y)) / (viewport_max.y - viewport_min.y), -1.f, 1.f };
 	// Find point in view
-	glm::vec4 ViewPoint = glm::inverse(Camera3D::GetInstanced().GetProjection()) * NDCPoint;
+	glm::vec4 ViewPoint = glm::inverse(cam::GetInstanced().GetProjection()) * NDCPoint;
 	ViewPoint = glm::vec4{ ViewPoint.x, ViewPoint.y, -1.f, 0.f };
 	// Find point world
-	glm::vec3 WorldPoint = glm::inverse(Camera3D::GetInstanced().GetView()) * ViewPoint;
+	glm::vec3 WorldPoint = glm::inverse(cam::GetInstanced().GetView()) * ViewPoint;
 
 	return WorldPoint;
 }

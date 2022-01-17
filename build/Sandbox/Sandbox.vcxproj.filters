@@ -328,5 +328,14 @@
     <ClInclude Include="Systems\IconSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
+    <ClInclude Include="Components\UI.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\CameraSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Camera.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

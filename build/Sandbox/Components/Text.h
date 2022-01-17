@@ -11,6 +11,7 @@ struct text
 	std::string m_Text;
 
 	paperback::Vector3f m_Color;
+	float m_FontSize = 1;
 };
 
 namespace RR_Text
@@ -21,6 +22,7 @@ namespace RR_Text
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("Font", &text::m_Font)(rttr::policy::prop::as_reference_wrapper)
 			.property("Text", &text::m_Text)(rttr::policy::prop::as_reference_wrapper)
-			.property("Color", &text::m_Color)(rttr::policy::prop::as_reference_wrapper);
+			.property("Color", &text::m_Color)(rttr::policy::prop::as_reference_wrapper)
+			.property("FontSize", &text::m_FontSize)(rttr::policy::prop::as_reference_wrapper);
 	}
 }

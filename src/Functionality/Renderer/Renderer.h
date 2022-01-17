@@ -5,8 +5,9 @@
 #include <string>
 #include <unordered_map>
 #include <array>
-#include "glm/inc/glm.hpp"
+#include <glm/inc/glm.hpp>
 #include "../RenderResource/RenderResourceManager.h"
+#include "../Camera/Camera.h"
 
 class Renderer
 {
@@ -37,8 +38,10 @@ public:
 
 	// Render object
 	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, 
+				const Camera3D& Camera,
 				const std::map<float, std::vector<UIInfo>>& UIs,
 				const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts,
+				const Camera2D& UICamera,
 				const std::array<std::vector<glm::vec3>, 2>* Points = nullptr);
 
 	GLuint GetUIOverlay();
@@ -77,14 +80,14 @@ private:
 	};
 
 	// Render debug objects
-	void DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points);
+	void DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points, const Camera3D& SceneCamera);
 
-	void SkyBoxRender();
+	void SkyBoxRender(const Camera3D& SceneCamera);
 
-	void UIPass(const std::map<float, std::vector<UIInfo>>& UIs);
-	void TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts);
+	void UIPass(const std::map<float, std::vector<UIInfo>>& UIs, const Camera2D& UICamera);
+	void TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera);
 	void ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
-	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
+	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera);
 	void BlurPass();
 	void CompositePass();
 	void MergePass();

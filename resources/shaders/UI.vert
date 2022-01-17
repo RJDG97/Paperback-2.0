@@ -7,9 +7,11 @@ layout (location=2) in vec2 vVertexUV;
 layout (location=0) out vec2 vUV;
 
 uniform mat4 uModel;
+uniform mat4 uView;
+uniform mat4 uProjection;
 
 void main()
 {
 	vUV = vVertexUV;
-	gl_Position = uModel * vec4(vVertexPosition, 1.0);
+	gl_Position = uProjection * uView * uModel * vec4(vVertexPosition, 1.0);
 }
