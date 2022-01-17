@@ -165,7 +165,7 @@ struct imgui_system : paperback::system::instance
     {
         if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
         {
-            if (!m_bPaused)
+            if (!PPB.GetPauseBool())
             {
                 if (!m_bImgui)
                     m_bImgui = true;
@@ -176,7 +176,7 @@ struct imgui_system : paperback::system::instance
 
         if ((PPB.IsKeyPressUp(GLFW_KEY_F11) || PPB.IsKeyPressUp(GLFW_KEY_F)) && PPB.VerifyState("Editor"))
         {
-            if (!m_bPaused)
+            if (!PPB.GetPauseBool())
             {
                 if (m_bImgui)
                     m_bImgui = false;
@@ -515,10 +515,11 @@ struct imgui_system : paperback::system::instance
             {
                 //m_CameraOriginalPosition = Camera3D::GetInstanced().GetPosition();
 
-                if (!m_bPaused)
+                if (!PPB.GetPauseBool())
                 {
                     m_bPaused = true;
-                    PPB.TogglePause(m_bPaused);
+                    PPB.SetPauseBool(true);
+                    PPB.TogglePause(PPB.GetPauseBool());
                 }
 
                 PPB.OpenEditScene(FilePath, EntityInfoPath);
@@ -539,7 +540,7 @@ struct imgui_system : paperback::system::instance
                 return;
             }
             
-            if (!m_bPaused)
+            if (!PPB.GetPauseBool())
             {
                 EDITOR_CRITICAL_PRINT("Unable to load prefab file when there is a active scene running");
                 return;
@@ -655,7 +656,8 @@ struct imgui_system : paperback::system::instance
             //Serialize the scene into a temp location
             PPB.SaveScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
             m_bPaused = false;
-            PPB.TogglePause(m_bPaused);
+            PPB.SetPauseBool(false);
+            PPB.TogglePause(PPB.GetPauseBool());
 
             EDITOR_TRACE_PRINT("Playing Active Scene...");
 
@@ -668,7 +670,8 @@ struct imgui_system : paperback::system::instance
             ResetScene();
             PPB.OpenEditScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
             m_bPaused = true;
-            PPB.TogglePause(m_bPaused);
+            PPB.SetPauseBool(true);
+            PPB.TogglePause(PPB.GetPauseBool());
             PPB.GetSystem<sound_system>().EditorStopAllSounds();
 
             EDITOR_INFO_PRINT("Stopped Active Scene...");

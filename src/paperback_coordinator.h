@@ -232,6 +232,12 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		void QuitGame() noexcept;
+
+		PPB_INLINE
+		void SetPauseBool( bool Paused ) noexcept;
+
+		PPB_INLINE
+		bool GetPauseBool() noexcept;
 		
 
 		//-----------------------------------
@@ -408,6 +414,7 @@ namespace paperback::coordinator
 		Input						        m_Input{ *this };				// Input
 		bool						        m_GameActive = true;			// Game Status
 		std::string					        m_QueuedSceneName = "";			// Currently Queued Scene to change
+		bool								m_bPaused = true;
 	};
 }
 

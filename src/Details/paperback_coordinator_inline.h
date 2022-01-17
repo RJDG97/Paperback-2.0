@@ -702,6 +702,11 @@ namespace paperback::coordinator
 		return m_ArchetypeMgr.GetArchetype( ArchetypeGuid );
 	}
 
+	bool instance::GetPauseBool() noexcept
+	{
+		return m_bPaused;
+	}
+
 
 	//-----------------------------------
 	//           CPP Scripts
@@ -804,7 +809,10 @@ namespace paperback::coordinator
 		m_HashGrid.SetCellSize( CellSize );
 	}
 
-
+	void instance::SetPauseBool( bool Paused ) noexcept
+	{
+		m_bPaused = Paused;
+	}
 
 	//-----------------------------------
 	//              Clock
