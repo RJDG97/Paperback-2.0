@@ -9,6 +9,11 @@
 #include "Scripts/Scripts_Animator.h"
 #include "Scripts/Scripts_BoundingBox.h"
 #include "Scripts/Scripts_Transform.h"
+#include "Scripts/Scripts_Mesh.h"
+#include "Scripts/Scripts_Name.h"
+#include "Scripts/Scripts_Offset.h"
+#include "Scripts/Scripts_Rotation.h"
+#include "Scripts/Scripts_Scale.h"
 #include "Scripts/Scripts_PathFollower.h"
 
 namespace MONO_INTERNALS
@@ -23,6 +28,11 @@ namespace MONO_INTERNALS
 		MONO_ANIMATOR::AddInternalCall();
 		MONO_BOUNDINGBOX::AddInternalCall();
 		MONO_TRANSFORM::AddInternalCall();
+		MONO_MESH::AddInternalCall();
+		MONO_NAME::AddInternalCall();
+		MONO_OFFSET::AddInternalCall();
+		MONO_ROTATION::AddInternalCall();
+		MONO_SCALE::AddInternalCall();
 		MONO_PATHFOLLOWER::AddInternalCall();
 	}
 }

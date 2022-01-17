@@ -248,7 +248,11 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Mesh.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Offset.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_PathFollower.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Rotation.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Scale.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Transform.h" />
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />

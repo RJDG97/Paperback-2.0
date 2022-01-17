@@ -65,6 +65,8 @@ namespace MONO_ANIMATOR
 	{
 		if (address)
 			return reinterpret_cast<animator*>(address)->m_PauseAnimation;
+
+		return {};
 	}
 
 	MONO_EXPORT void SetPauseAnimation(void* address, bool play_once)

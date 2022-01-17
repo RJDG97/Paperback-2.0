@@ -477,6 +477,18 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Animator.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Mesh.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Offset.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Rotation.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Scale.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
