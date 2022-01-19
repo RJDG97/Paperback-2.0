@@ -78,6 +78,8 @@ struct camera
 	float m_Radius = 1.f;
 	float m_Theta = 90.f;
 	float m_Azimuth = 0.f;
+
+	bool m_Active = true;
 };
 
 namespace RR_Camera
@@ -86,6 +88,7 @@ namespace RR_Camera
 	{
 		rttr::registration::class_<camera>(camera::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
+			.property("Active", &camera::m_Active)(rttr::policy::prop::as_reference_wrapper)
 			.property("Radius", &camera::m_Radius)(rttr::policy::prop::as_reference_wrapper)
 			.property("Theta", &camera::m_Theta)(rttr::policy::prop::as_reference_wrapper)
 			.property("Azimuth", &camera::m_Azimuth)(rttr::policy::prop::as_reference_wrapper);

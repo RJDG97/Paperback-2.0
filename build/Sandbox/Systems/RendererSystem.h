@@ -134,18 +134,25 @@ struct render_system : paperback::system::instance
 
 		Camera3D cam = m_Camera3D;
 
-		//if (test)
-		//{
-		//	// Populate map
-		//	ForEach(Search(QueryCamera), [&](transform& Transform, camera& Cam) noexcept
-		//	{
-		//		glm::vec3 position = Cam.m_Position;
-		//		glm::mat4 view = Cam.m_View;
-		//		glm::mat4 projection = Cam.m_Projection;
+		if (!PPB.GetPauseBool())
+		{
+			bool found = false;
 
-		//		cam = Camera3D{ position, view, projection };
-		//	});
-		//}
+			// Populate map
+			ForEach(Search(QueryCamera), [&](transform& Transform, camera& Cam) noexcept
+			{
+				if (found || !Cam.m_Active)
+					return;
+
+				glm::vec3 position = Cam.m_Position;
+				glm::mat4 view = Cam.m_View;
+				glm::mat4 projection = Cam.m_Projection;
+
+				cam = Camera3D{ position, view, projection };
+
+				found = true;
+			});
+		}
 
 		Renderer::GetInstanced().Render(objects, cam, uis, texts, m_Camera2D, &points);
 	}
