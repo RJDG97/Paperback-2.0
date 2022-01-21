@@ -73,6 +73,14 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 		mass2 = m2->m_Mass;
 	}
 
+
+	//used to decide resolution type
+	//0 - both are non-moving, do nothing
+	//1 - both are moving, do both
+	//2 - only obj1 is moving, do obj1
+	//3 - only obj2 is moving, do obj2
+	int resolutioncase = (mass1) ? ((mass2) ? 1 : 2) : ((mass2) ? 3 : 0);
+
 	//// Relative Velocity
 	//paperback::Vector3f vel1 = rf1->m_Momentum / m1->m_Mass;
 	//paperback::Vector3f vel2 = rf2->m_Momentum / m2->m_Mass;
@@ -100,7 +108,65 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 
 	// This Covers The Else Case (Basically skips force addition if both objects are stationary within each other)
 	if ( t_resolve.x == 0.0f && t_resolve.y == 0.0f && t_resolve.z == 0.0f )
-		return true;
+		return false;
+
+	//EDIT
+	//alternative use instead of xx/yy/zz but using "face area"
+	//concept uses "surface area with highest ratio of contact"
+	//makes following assumptions:
+	//	1) collision detection happened already, so only need to check surface area ratios
+	//	2) objects are of a relatively uniform cube, aka opposing sides have the same area
+	//  3) ratio is against smallest face
+	//only calculates for 3 axis and based on that isolates the cases
+	//main logic: 
+	//	1) get area of contact between the two
+	//	2) set area over smallest area in comparison to get ratio
+	//	3) apply for other 2 axis
+
+	float rel_horizontal_contact, rel_vertical_contact, small_area, area_one, area_two, x_ratio, y_ratio, z_ratio;
+
+	//since bounding box values are relative coordinates, need to convert to global coordinates
+	paperback::Vector3f box1_min, box1_max, box2_min, box2_max;
+	box1_min = t1.m_Position + Bbox1->Min;
+	box1_max = t1.m_Position + Bbox1->Max;
+	box2_min = t2.m_Position + Bbox2->Min;
+	box2_max = t2.m_Position + Bbox2->Max;
+
+	//start with faces along the X axis, uses z and y values for calculation
+	rel_horizontal_contact = std::min(box1_max.z, box2_max.z) - std::max(box1_min.z, box2_min.z);
+	rel_vertical_contact = std::min(box1_max.y, box2_max.y) - std::max(box1_min.y, box2_min.y);
+	area_one = (box1_max.y - box1_min.y) * (box1_max.z - box1_min.z);
+	area_two = (box2_max.y - box2_min.y) * (box2_max.z - box2_min.z);
+	area_one = abs(area_one);
+	area_two = abs(area_two);
+	small_area = (area_one < area_two) ? area_one : area_two;
+
+	x_ratio = abs(rel_horizontal_contact * rel_vertical_contact) / small_area;
+
+	//follow up with faces along the y axis, uses x and z values for calculation
+	rel_horizontal_contact = std::min(box1_max.z, box2_max.z) - std::max(box1_min.z, box2_min.z);
+	rel_vertical_contact = std::min(box1_max.x, box2_max.x) - std::max(box1_min.x, box2_min.x);
+	area_one = (box1_max.x - box1_min.x) * (box1_max.z - box1_min.z);
+	area_two = (box2_max.x - box2_min.x) * (box2_max.z - box2_min.z);
+	area_one = abs(area_one);
+	area_two = abs(area_two);
+	small_area = (area_one < area_two) ? area_one : area_two;
+
+	y_ratio = abs((rel_horizontal_contact * rel_vertical_contact) / small_area);
+
+	//finally end with faces along the z axis, uses x and y values for calculation
+	rel_horizontal_contact = std::min(box1_max.x, box2_max.x) - std::max(box1_min.x, box2_min.x);
+	rel_vertical_contact = std::min(box1_max.y, box2_max.y) - std::max(box1_min.y, box2_min.y);
+	area_one = (box1_max.x - box1_min.x) * (box1_max.x - box1_min.x);
+	area_two = (box2_max.y - box2_min.y) * (box2_max.y - box2_min.y);
+	area_one = abs(area_one);
+	area_two = abs(area_two);
+	small_area = (area_one < area_two) ? area_one : area_two;
+
+	z_ratio = abs(rel_horizontal_contact * rel_vertical_contact) / small_area;
+
+
+
 
 	// determine collision side, smaller ratio = likely side
 	direction dir = direction::none;
@@ -117,223 +183,567 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 	// instead of spamming raycasting to aabb (predicting movement), this simply calculates AFTER the collision
 
 	// case 2/4     determine which side hit and whos first
-	if ((velab.x > 0.f && ab.x < 0.f) || (velab.x < 0.f && ab.x > 0.f))
+	/*if ((velab.x > 0.f && ab.x < 0.f) || (velab.x < 0.f && ab.x > 0.f))
 		xx = (pen_depth.x) / t_resolve.x;
 	if ((velab.y > 0.f && ab.y < 0.f) || (velab.y < 0.f && ab.y > 0.f))
 		yy = (pen_depth.y) / t_resolve.y;
 	if ((velab.z > 0.f && ab.z < 0.f) || (velab.z < 0.f && ab.z > 0.f))
-		zz = (pen_depth.z) / t_resolve.z;
+		zz = (pen_depth.z) / t_resolve.z;*/
 
 	// Bounciness Scale -> Restitution = 1.0f for max Bounciness
 	float restitution = (rf1->m_Restitution + rf2->m_Restitution) / 2;
 
+
+	if (x_ratio > y_ratio && x_ratio > z_ratio)
+	{
+		dir = direction::x;
+		// warning!!!! t_resolve , likely pen_depth issue causing snapping problem
+		// case 3
+		if (ab.x > 0.f)
+		{
+			if (resolutioncase == 1)
+			{
+				t1.m_Position.x += (m1 && t_resolve.x > 0.0f) ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+				t2.m_Position.x -= (m2 && t_resolve.x > 0.0f) ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 2)
+			{
+
+				t1.m_Position.x += (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 3)
+			{
+
+				t2.m_Position.x -= (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+			}
+		}
+		// case 1
+		else
+		{
+			if (resolutioncase == 1)
+			{
+				t1.m_Position.x -= (m1 && t_resolve.x > 0.0f) ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+				t2.m_Position.x += (m2 && t_resolve.x > 0.0f) ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 2)
+			{
+
+				t1.m_Position.x -= (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 3)
+			{
+
+				t2.m_Position.x += (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+			}
+		}
+
+		//// both objs are movable
+		//if (mass1 > 0.f && mass2 > 0.f)
+		//{
+		Elastic_InElastic_1D(vel1.x, acc1.x, mass1/*m1->m_Mass*/,
+			vel2.x, acc2.x, mass2/*m2->m_Mass*/, restitution);
+		//}
+		//// object 1 has mass, object 2 is immovable
+		//else if (mass1 > 0.f)
+		//{
+		//	vel1.x = acc1.x = 0.f;
+		//}
+		//// object 2 has mass, object 1 is immovable
+		//else if (mass2 > 0.f)
+		//{
+		//	vel2.x = acc2.x = 0.f;
+		//}
+		//else
+		//{
+		//	// in the event both mass are 0.f, do nothing
+		//}
+		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+	}
+	else if (y_ratio > x_ratio && y_ratio > z_ratio)
+	{
+		dir = direction::y;
+		// case 3
+		if (ab.y > 0.f)
+		{
+			if (resolutioncase == 1)
+			{
+				t1.m_Position.y += (m1 && t_resolve.y > 0.0f) ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+				t2.m_Position.y -= (m2 && t_resolve.y > 0.0f) ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+
+			}
+			else if (resolutioncase == 2)
+			{
+
+				t1.m_Position.y += (m1 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+				rf1->m_Momentum.y = 0.0f;
+				rf1->m_Forces.y = 0.0f;
+			}
+			else if (resolutioncase == 3)
+			{
+
+				t2.m_Position.y -= (m2 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+				rf2->m_Momentum.y = 0.0f;
+				rf2->m_Forces.y = 0.0f;
+			}
+		}
+		// case 1
+		else
+		{
+			if (resolutioncase == 1)
+			{
+				t1.m_Position.y -= (m1 && t_resolve.y > 0.0f) ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+				t2.m_Position.y += (m2 && t_resolve.y > 0.0f) ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 2)
+			{
+
+				t1.m_Position.y -= (m1 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 3)
+			{
+
+				t2.m_Position.y += (m2 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+			}
+		}
+		//// both objs are movable
+		//if (mass1 > 0.f && mass2 > 0.f)
+		//{
+		Elastic_InElastic_1D(vel1.y, acc1.y, mass1/*m1->m_Mass*/,
+			vel2.y, acc2.y, mass2/*m2->m_Mass*/, restitution);
+		//}
+		//// object 1 has mass, object 2 is immovable
+		//else if (mass1 > 0.f)
+		//{
+		//	vel1.y = acc1.y = 0.f;
+		//}
+		//// object 2 has mass, object 1 is immovable
+		//else if (mass2 > 0.f)
+		//{
+		//	vel2.y = acc2.y = 0.f;
+		//}
+		//else
+		//{
+		//	// in the event both mass are 0.f, do nothing
+		//}
+
+		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+	}
+	else if (z_ratio > x_ratio && z_ratio > y_ratio)
+	{
+		dir = direction::z; // Qn: Why got 2 z axis checks?
+			   // case 3
+		if (ab.z > 0.f)
+		{
+			if (resolutioncase == 1)
+			{
+				t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+				t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 2)
+			{
+
+				t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 3)
+			{
+
+				t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+			}
+		}
+		// case 1
+		else
+		{
+			if (resolutioncase == 1)
+			{
+				t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+				t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 2)
+			{
+
+				t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+			}
+			else if (resolutioncase == 3)
+			{
+
+				t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+			}
+		}
+
+		//// both objs are movable
+		//if (mass1 > 0.f && mass2 > 0.f)
+		//{
+		Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
+			vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
+		//}
+		//// object 1 has mass, object 2 is immovable
+		//else if (mass1 > 0.f)
+		//{
+		//	vel1.z = acc1.z = 0.f;
+		//}
+		//// object 2 has mass, object 1 is immovable
+		//else if (mass2 > 0.f)
+		//{
+		//	vel2.z = acc2.z = 0.f;
+		//}
+		//else
+		//{
+		//	// in the event both mass are 0.f, do nothing
+		//}
+		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+	}
+
 	// determined side, higher = earlier intersect,
 	// resolve penetration depth, aabb style      after that resolve momentum/force
-	if (xx > yy)
-	{
-		if (xx > zz)
-		{
-			dir = direction::x;
-			// warning!!!! t_resolve , likely pen_depth issue causing snapping problem
-			// case 3
-			if (ab.x > 0.f)
-			{
-				t1.m_Position.x += m1 ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
-				t2.m_Position.x -= m2 ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
-			}
-			// case 1
-			else
-			{
-				t1.m_Position.x -= m1 ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
-				t2.m_Position.x += m2 ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
-			}
+	//if (x_ratio > y_ratio)//(xx > yy)
+	//{
+	//	if (x_ratio > z_ratio)//(xx > zz)
+	//	{
+	//		dir = direction::x;
+	//		// warning!!!! t_resolve , likely pen_depth issue causing snapping problem
+	//		// case 3
+	//		if (ab.x > 0.f)
+	//		{
+	//			if (resolutioncase == 1)
+	//			{
+	//				t1.m_Position.x += (m1 && t_resolve.x > 0.0f) ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+	//				t2.m_Position.x -= (m2 && t_resolve.x > 0.0f) ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 2)
+	//			{
+	//				
+	//				t1.m_Position.x += (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 3)
+	//			{
 
-			//// both objs are movable
-			//if (mass1 > 0.f && mass2 > 0.f)
-			//{
-				Elastic_InElastic_1D(vel1.x, acc1.x, mass1/*m1->m_Mass*/,
-					vel2.x, acc2.x, mass2/*m2->m_Mass*/, restitution);
-			//}
-			//// object 1 has mass, object 2 is immovable
-			//else if (mass1 > 0.f)
-			//{
-			//	vel1.x = acc1.x = 0.f;
-			//}
-			//// object 2 has mass, object 1 is immovable
-			//else if (mass2 > 0.f)
-			//{
-			//	vel2.x = acc2.x = 0.f;
-			//}
-			//else
-			//{
-			//	// in the event both mass are 0.f, do nothing
-			//}
-			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
-			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
-			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
-		}
-		else
-		{
-			dir = direction::z; // Qn: Why got 2 z axis checks?
-			// case 3
-			if (ab.z > 0.f)
-			{
-				t1.m_Position.z += m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
-				t2.m_Position.z -= m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
-			}
-			// case 1
-			else
-			{
-				t1.m_Position.z -= m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
-				t2.m_Position.z += m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
-			}
+	//				t1.m_Position.x -= (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+	//			}
+	//		}
+	//		// case 1
+	//		else
+	//		{
+	//			if (resolutioncase == 1)
+	//			{
+	//				t1.m_Position.x -= (m1 && t_resolve.x > 0.0f) ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+	//				t2.m_Position.x += (m2 && t_resolve.x > 0.0f) ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 2)
+	//			{
 
-			//// both objs are movable
-			//if (mass1 > 0.f && mass2 > 0.f)
-			//{
-				Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
-					vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
-			//}
-			//// object 1 has mass, object 2 is immovable
-			//else if (mass1 > 0.f)
-			//{
-			//	vel1.z = acc1.z = 0.f;
-			//}
-			//// object 2 has mass, object 1 is immovable
-			//else if (mass2 > 0.f)
-			//{
-			//	vel2.z = acc2.z = 0.f;
-			//}
-			//else
-			//{
-			//	// in the event both mass are 0.f, do nothing
-			//}
-			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
-			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
-			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
-		}
-	}
-	else
-	{
-		if (yy > zz)
-		{
-			dir = direction::y;
-			// case 3
-			if (ab.y > 0.f)
-			{
-				t1.m_Position.y += m1 ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
-				t2.m_Position.y -= m2 ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
-			}
-			// case 1
-			else
-			{
-				t1.m_Position.y -= m1 ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
-				t2.m_Position.y += m2 ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
-			}
+	//				t1.m_Position.x -= (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 3)
+	//			{
 
-			//// both objs are movable
-			//if (mass1 > 0.f && mass2 > 0.f)
-			//{
-				Elastic_InElastic_1D(vel1.y, acc1.y, mass1/*m1->m_Mass*/,
-					vel2.y, acc2.y, mass2/*m2->m_Mass*/, restitution);
-			//}
-			//// object 1 has mass, object 2 is immovable
-			//else if (mass1 > 0.f)
-			//{
-			//	vel1.y = acc1.y = 0.f;
-			//}
-			//// object 2 has mass, object 1 is immovable
-			//else if (mass2 > 0.f)
-			//{
-			//	vel2.y = acc2.y = 0.f;
-			//}
-			//else
-			//{
-			//	// in the event both mass are 0.f, do nothing
-			//}
+	//				t1.m_Position.x += (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+	//			}
+	//		}
 
-			rf1->m_Momentum = t1.m_Position.y > t2.m_Position.y ? paperback::Vector3f{} : vel1 * mass1/*m1->m_Mass*/;
-			rf2->m_Momentum = t2.m_Position.y > t1.m_Position.y ? paperback::Vector3f{} : vel2 * mass2/*m2->m_Mass*/;
-			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
-		}
+	//		//// both objs are movable
+	//		//if (mass1 > 0.f && mass2 > 0.f)
+	//		//{
+	//			Elastic_InElastic_1D(vel1.x, acc1.x, mass1/*m1->m_Mass*/,
+	//				vel2.x, acc2.x, mass2/*m2->m_Mass*/, restitution);
+	//		//}
+	//		//// object 1 has mass, object 2 is immovable
+	//		//else if (mass1 > 0.f)
+	//		//{
+	//		//	vel1.x = acc1.x = 0.f;
+	//		//}
+	//		//// object 2 has mass, object 1 is immovable
+	//		//else if (mass2 > 0.f)
+	//		//{
+	//		//	vel2.x = acc2.x = 0.f;
+	//		//}
+	//		//else
+	//		//{
+	//		//	// in the event both mass are 0.f, do nothing
+	//		//}
+	//		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+	//		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+	//		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+	//		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+	//	}
+	//	else if (x_ratio < z_ratio)//(xx < zz)
+	//	{
+	//		dir = direction::z; // Qn: Why got 2 z axis checks?
+	//		// case 3
+	//		if (ab.z > 0.f)
+	//		{
+	//			if (resolutioncase == 1)
+	//			{
+	//				t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//				t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 2)
+	//			{
 
-		else
-		{
-			dir = direction::z;
-			// case 3
-			//if (ab.z > 0.f)
-			//{
-			//	t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
-			//	t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
-			//}
-			//// case 1
-			//else
-			//{
-			//	t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
-			//	t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
-			//}
+	//				t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 3)
+	//			{
+
+	//				t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//			}
+	//		}
+	//		// case 1
+	//		else
+	//		{
+	//			if (resolutioncase == 1)
+	//			{
+	//				t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//				t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 2)
+	//			{
+
+	//				t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 3)
+	//			{
+
+	//				t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//			}
+	//		}
+
+	//		//// both objs are movable
+	//		//if (mass1 > 0.f && mass2 > 0.f)
+	//		//{
+	//			Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
+	//				vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
+	//		//}
+	//		//// object 1 has mass, object 2 is immovable
+	//		//else if (mass1 > 0.f)
+	//		//{
+	//		//	vel1.z = acc1.z = 0.f;
+	//		//}
+	//		//// object 2 has mass, object 1 is immovable
+	//		//else if (mass2 > 0.f)
+	//		//{
+	//		//	vel2.z = acc2.z = 0.f;
+	//		//}
+	//		//else
+	//		//{
+	//		//	// in the event both mass are 0.f, do nothing
+	//		//}
+	//		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+	//		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+	//		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+	//		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+	//	}
+	//}
+	//else if (x_ratio < y_ratio)//(xx < yy)
+	//{
+	//	if (y_ratio > z_ratio)//(yy > zz)
+	//	{
+	//		dir = direction::y;
+	//		// case 3
+	//		if (ab.y > 0.f)
+	//		{
+	//			if (resolutioncase == 1)
+	//			{
+	//				t1.m_Position.y += (m1 && t_resolve.y > 0.0f) ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+	//				t2.m_Position.y -= (m2 && t_resolve.y > 0.0f) ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+
+	//			}
+	//			else if (resolutioncase == 2) 
+	//			{
+
+	//				t1.m_Position.y += (m1 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+	//				rf1->m_Momentum.y = 0.0f;
+	//				rf1->m_Forces.y = 0.0f;
+	//			}
+	//			else if (resolutioncase == 3)
+	//			{
+
+	//				t2.m_Position.y -= (m2 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+	//				rf2->m_Momentum.y = 0.0f;
+	//				rf2->m_Forces.y = 0.0f;
+	//			}
+	//		}
+	//		// case 1
+	//		else
+	//		{
+	//			if (resolutioncase == 1)
+	//			{
+	//				t1.m_Position.y -= (m1 && t_resolve.y > 0.0f) ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+	//				t2.m_Position.y += (m2 && t_resolve.y > 0.0f) ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 2)
+	//			{
+
+	//				t1.m_Position.y -= (m1 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+	//			}
+	//			else if (resolutioncase == 3)
+	//			{
+
+	//				t1.m_Position.y += (m2 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+	//			}
+	//		}
+	//		//// both objs are movable
+	//		//if (mass1 > 0.f && mass2 > 0.f)
+	//		//{
+	//			Elastic_InElastic_1D(vel1.y, acc1.y, mass1/*m1->m_Mass*/,
+	//				vel2.y, acc2.y, mass2/*m2->m_Mass*/, restitution);
+	//		//}
+	//		//// object 1 has mass, object 2 is immovable
+	//		//else if (mass1 > 0.f)
+	//		//{
+	//		//	vel1.y = acc1.y = 0.f;
+	//		//}
+	//		//// object 2 has mass, object 1 is immovable
+	//		//else if (mass2 > 0.f)
+	//		//{
+	//		//	vel2.y = acc2.y = 0.f;
+	//		//}
+	//		//else
+	//		//{
+	//		//	// in the event both mass are 0.f, do nothing
+	//		//}
+
+	//		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+	//		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+	//		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+	//		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+	//	}
+
+	//	else if (y_ratio < z_ratio)//(yy < zz)
+	//	{
+	//		dir = direction::z;
+	//		// case 3
+	//		//if (ab.z > 0.f)
+	//		//{
+	//		//	t1.m_Position.z += (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+	//		//	t2.m_Position.z -= (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+	//		//}
+	//		//// case 1
+	//		//else
+	//		//{
+	//		//	t1.m_Position.z -= (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap);
+	//		//	t2.m_Position.z += (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap);
+	//		//}
 
 
-			if (ab.z > 0.f)
-            {
+	//		if (ab.z > 0.f)
+ //           {
 
-                if (t_resolve.z > 0.0f)
-                {
-                    t1.m_Position.z += m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
-					t2.m_Position.z -= m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
-                }
-                else
-                {
+ //               if (t_resolve.z > 0.0f)
+ //               {
+	//				if (resolutioncase == 1)
+	//				{
+	//					t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//					t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//				}
+	//				else if (resolutioncase == 2)
+	//				{
 
-					t1.m_Position.z += m1 ? pen_depth.z : 0.0f;
-                }
-            }
-            // case 1
-            else
-            {
+	//					t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//				}
+	//				else if (resolutioncase == 3)
+	//				{
 
-                if (t_resolve.z > 0.0f)
-                {
-                    t1.m_Position.z -= m1 ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
-					t2.m_Position.z += m2 ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
-                }
-                else
-                {
+	//					t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//				}
+ //               }
+ //               else
+ //               {
 
-					t2.m_Position.z += m2 ? pen_depth.z : 0.0f;
-                }
-            }
+	//				if (resolutioncase == 1)
+	//				{
+	//					t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//					t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//				}
+	//				else if (resolutioncase == 2)
+	//				{
 
-			//// both objs are movable
-			//if (mass1 > 0.f && mass2 > 0.f)
-			//{
-				Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
-					vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
-			//}
-			//// object 1 has mass, object 2 is immovable
-			//else if (mass1 > 0.f)
-			//{
-			//	vel1.z = acc1.z = 0.f;
-			//}
-			//// object 2 has mass, object 1 is immovable
-			//else if (mass2 > 0.f)
-			//{
-			//	vel2.z = acc2.z = 0.f;
-			//}
-			//else
-			//{
-			//	// in the event both mass are 0.f, do nothing
-			//}
+	//					t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//				}
+	//				else if (resolutioncase == 3)
+	//				{
 
-			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
-			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
-			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
-		}
-	}
+	//					t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//				}
+ //               }
+ //           }
+ //           // case 1
+ //           else
+ //           {
+	//			if (t_resolve.z > 0.0f)
+	//			{
+	//				if (resolutioncase == 1)
+	//				{
+	//					t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//					t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//				}
+	//				else if (resolutioncase == 2)
+	//				{
+
+	//					t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//				}
+	//				else if (resolutioncase == 3)
+	//				{
+
+	//					t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//				}
+	//			}
+	//			else
+	//			{
+
+	//				if (resolutioncase == 1)
+	//				{
+	//					t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//					t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
+	//				}
+	//				else if (resolutioncase == 2)
+	//				{
+
+	//					t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//				}
+	//				else if (resolutioncase == 3)
+	//				{
+
+	//					t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+	//				}
+	//			}
+ //           }
+
+	//		//// both objs are movable
+	//		//if (mass1 > 0.f && mass2 > 0.f)
+	//		//{
+	//			Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
+	//				vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
+	//		//}
+	//		//// object 1 has mass, object 2 is immovable
+	//		//else if (mass1 > 0.f)
+	//		//{
+	//		//	vel1.z = acc1.z = 0.f;
+	//		//}
+	//		//// object 2 has mass, object 1 is immovable
+	//		//else if (mass2 > 0.f)
+	//		//{
+	//		//	vel2.z = acc2.z = 0.f;
+	//		//}
+	//		//else
+	//		//{
+	//		//	// in the event both mass are 0.f, do nothing
+	//		//}
+
+	//		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+	//		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+	//		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+	//		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+	//	}
+	//}
 	return true;
 }
 

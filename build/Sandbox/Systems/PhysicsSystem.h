@@ -75,8 +75,8 @@ struct physics_system : paperback::system::pausable_instance
 		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, mass* Mass, boundingbox* Box ) noexcept
 		{
             //// Apply Gravity If Non-Static
-            //if ( !RigidForce->m_isStatic && Mass )
-            //    RigidForce->m_Momentum.y += -9.8f * Mass->m_Mass * DeltaTime();
+            if ( Mass )
+                RigidForce.m_Momentum.y += -9.8f * Mass->m_Mass * DeltaTime();
 
             // minimum value threshold
             RigidForce.m_Forces.CutoffValue(RigidForce.m_minthreshold);
