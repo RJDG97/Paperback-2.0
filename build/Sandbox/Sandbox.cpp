@@ -6,6 +6,7 @@
 #include "Components/component_includes.h"
 #include "Systems/system_includes.h"
 #include "Scripts/scripts_includes.h"
+#include "../../src/Input/Details/paperback_input_binding_inline.h"  // Temporary only, change path after
 
 //-----------------------------------
 //      Forward Declarations
@@ -116,6 +117,7 @@ void InitializeGame()
         ,    icon             // Tag
         ,    ui
         ,    camera
+        ,    player_controller
         >();
 
         // Register Components - Add to the end of the list
@@ -191,6 +193,14 @@ void InitializeGame()
             page6_how2play_next_button_mainmenu_script,
             page6_how2play_prev_button_mainmenu_script
         >();
+
+
+
+        // Temporary Input Testing
+        auto Guid = PPB.RegisterBinding<paperback::input::binding::Entity_Movement_Binding>();
+
+        PPB.AssignBindingToAction( Guid, GLFW_KEY_W, paperback::input::device::type::id::KEYBOARD );
+        PPB.AssignBindingToAction( Guid, GLFW_GAMEPAD_BUTTON_A, paperback::input::device::type::id::GAMEPAD );
     }
     // Set Window maximized initially
     auto& Window = PPB.GetSystem< window_system >();

@@ -477,6 +477,45 @@
     <ClInclude Include="..\..\src\Details\paperback_hash_grid_inline.h">
       <Filter>Source\Paperback Engine\Details</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Input\paperback_input_controller.h">
+      <Filter>Source\Tools\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\paperback_input_binding.h">
+      <Filter>Source\Tools\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\paperback_input_action.h">
+      <Filter>Source\Tools\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\Details\paperback_input_binding_inline.h">
+      <Filter>Source\Tools\Input\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\Details\paperback_input_action_inline.h">
+      <Filter>Source\Tools\Input\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\States\paperback_input_state_includes.h">
+      <Filter>Source\Tools\Input\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\Devices\paperback_device_includes.h">
+      <Filter>Source\Tools\Input\Devices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\States\paperback_gamepad_state.h">
+      <Filter>Source\Tools\Input\States\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\States\paperback_keyboard_state.h">
+      <Filter>Source\Tools\Input\States\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\States\paperback_mouse_state.h">
+      <Filter>Source\Tools\Input\States\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\Devices\paperback_gamepad.h">
+      <Filter>Source\Tools\Input\Devices\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\Devices\paperback_mouse.h">
+      <Filter>Source\Tools\Input\Devices\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Input\Devices\paperback_keyboard.h">
+      <Filter>Source\Tools\Input\Devices\Details</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\Functionality\Camera\Camera.h">
       <Filter>Source\Tools\Functionality\Camera</Filter>
     </ClInclude>
@@ -572,8 +611,26 @@
     <Filter Include="Source\Tools\Functionality\Font">
       <UniqueIdentifier>{c2e7d3f4-3992-4cbe-a68a-2e7fe25c91ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Tools\Input">
+      <UniqueIdentifier>{616342aa-ad8e-4c1d-9159-9e5bcec4db31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Input\Details">
+      <UniqueIdentifier>{2ac374e3-08d4-4766-a2f9-2990e77f4228}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Input\Devices">
+      <UniqueIdentifier>{ec813c96-ca1f-4b79-8c81-44849c134d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Input\States">
+      <UniqueIdentifier>{c1970468-e580-4951-9d63-9d503ccffb2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Input\States\Details">
+      <UniqueIdentifier>{916de0db-3955-452c-9911-053a640e71a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Input\Devices\Details">
+      <UniqueIdentifier>{74afabb4-a578-49ed-9c0a-5d64cefd06df}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source\Tools\Functionality\Camera">
-      <UniqueIdentifier>{558cb910-9b70-4988-b828-2f8cf3e85300}</UniqueIdentifier>
+      <UniqueIdentifier>{ce00b03a-58d0-4d06-94f2-51075916382c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

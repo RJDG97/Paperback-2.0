@@ -86,8 +86,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Camera\Camera.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Font\Font.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -203,6 +203,19 @@
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />
     <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h" />
+    <ClInclude Include="..\..\src\Input\Details\paperback_input_action_inline.h" />
+    <ClInclude Include="..\..\src\Input\Details\paperback_input_binding_inline.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_device_includes.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_gamepad.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_keyboard.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_mouse.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_action.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_binding.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_controller.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_gamepad_state.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_input_state_includes.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_keyboard_state.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_mouse_state.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h" />
     <ClInclude Include="..\..\src\Json\paperback_json.h" />

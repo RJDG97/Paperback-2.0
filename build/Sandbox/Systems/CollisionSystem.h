@@ -32,7 +32,7 @@ struct collision_system : paperback::system::pausable_instance
         SphereColliderQuery.m_NoneOf.AddFromComponents< prefab >();
 	}
 
-    // change rf* to &
+
     void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox, sphere* Sphere, mass* m1 ) noexcept
     {
         if ( Entity.IsZombie() ) return;

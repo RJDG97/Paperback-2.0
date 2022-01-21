@@ -53,6 +53,7 @@ namespace paperback::coordinator
 		m_SystemMgr.Terminate();
 		m_ArchetypeMgr.Terminate();
 		m_CompMgr.Terminate();
+		m_Input.Terminate();
 	}
 
 	void instance::QuitApplication(void) noexcept
@@ -707,6 +708,24 @@ namespace paperback::coordinator
 		return m_bPaused;
 	}
 
+	PPB_INLINE
+	input::device::Keyboard_Controls* instance::FindKeyboard( void ) noexcept
+	{
+		return m_Input.FindKeyboard();
+	}
+
+	PPB_INLINE
+	input::device::Mouse_Controls* instance::FindMouse( void ) noexcept
+	{
+		return m_Input.FindMouse();
+	}
+
+	PPB_INLINE
+	input::device::Gamepad_Controls* instance::FindGamepad( void ) noexcept
+	{
+		return m_Input.FindGamepad();
+	}
+
 
 	//-----------------------------------
 	//           CPP Scripts
@@ -849,7 +868,47 @@ namespace paperback::coordinator
 
 	void instance::UpdateInputs() noexcept
 	{
-		m_Input.UpateInputs();
+		m_Input.UpdateInputs();
+	}
+
+	template < typename T_BINDING_CONSTRUCT >
+    paperback::u64 instance::RegisterBinding( void ) noexcept
+	{
+		return m_Input.RegisterBinding<T_BINDING_CONSTRUCT>();
+	}
+
+    PPB_INLINE
+    void instance::AssignBindingToAction( const input::binding::type::guid&   BindingGuid
+                                        , paperback::u32                      Key
+                                        , input::device::type::id             DeviceTypeID
+                                        , input::action::KeyPairing           Pairing ) noexcept
+	{
+		AssignBindingToAction( BindingGuid.m_Value
+							 , Key
+							 , DeviceTypeID
+		                     , Pairing );
+	}
+
+	PPB_INLINE
+    void instance::AssignBindingToAction( const paperback::u64&               BindingGuidValue
+                                        , paperback::u32                      Key
+                                        , input::device::type::id             DeviceTypeID
+                                        , input::action::KeyPairing           Pairing ) noexcept
+	{
+		m_Input.AssignBindingToAction( BindingGuidValue
+									 , Key
+									 , DeviceTypeID
+		                             , Pairing );
+	}
+
+    template < typename... T_ARGS >
+    void instance::BroadcastAction( const paperback::u32          Key
+                                  , const input::device::type::id Type
+                                  , T_ARGS&&...                   Args ) noexcept
+	{
+		m_Input.BroadcastAction( Key
+			                   , Type
+			                   , std::forward<T_ARGS&&>( Args )... );
 	}
 
 	void instance::SetKey( int Key, int Action ) noexcept

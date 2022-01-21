@@ -49,6 +49,7 @@
 #include "SpawnerDetails.h"
 #include "Icon.h"
 #include "Camera.h"
+#include "PlayerController.h"
 
 // shapes
 #include "AABB.h"

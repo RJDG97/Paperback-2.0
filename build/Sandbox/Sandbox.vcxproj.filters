@@ -331,6 +331,9 @@
     <ClInclude Include="Components\UI.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\PlayerController.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
     <ClInclude Include="Systems\CameraSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>

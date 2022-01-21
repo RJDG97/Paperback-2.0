@@ -414,6 +414,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<spawner_details>())
                 NewArchetype->GetComponent<spawner_details>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<spawner_details>();
+
+            if (obj.is_type<player_controller>())
+                NewArchetype->GetComponent<player_controller>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<player_controller>();
         }
     }
 

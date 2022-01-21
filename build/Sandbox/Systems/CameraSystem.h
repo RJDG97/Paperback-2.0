@@ -15,10 +15,10 @@ struct camera_system : paperback::system::instance
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
-        RegisterGlobalEventClass<Input::KeyPressed>(this);      // Held Down - Not Released ( Passes False )
-        RegisterGlobalEventClass<Input::KeyClicked>(this);      // Released                 ( Passes True )
-        RegisterGlobalEventClass<Input::MousePressed>(this);    // Held Down - Not Released ( Passes False )
-        RegisterGlobalEventClass<Input::MouseClicked>(this);
+        RegisterGlobalEventClass<paperback::input::manager::KeyPressed>(this);      // Held Down - Not Released ( Passes False )
+        RegisterGlobalEventClass<paperback::input::manager::KeyClicked>(this);      // Released                 ( Passes True )
+        RegisterGlobalEventClass<paperback::input::manager::MousePressed>(this);    // Held Down - Not Released ( Passes False )
+        RegisterGlobalEventClass<paperback::input::manager::MouseClicked>(this);
 
         m_pCamera = &cam::GetInstanced();
 

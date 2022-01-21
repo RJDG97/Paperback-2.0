@@ -238,6 +238,15 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		bool GetPauseBool() noexcept;
+
+		PPB_INLINE
+		input::device::Keyboard_Controls* FindKeyboard( void ) noexcept;
+
+		PPB_INLINE
+		input::device::Mouse_Controls* FindMouse( void ) noexcept;
+
+		PPB_INLINE
+		input::device::Gamepad_Controls* FindGamepad( void ) noexcept;
 		
 
 		//-----------------------------------
@@ -337,6 +346,26 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void UpdateInputs() noexcept;
 
+		template < typename T_BINDING_CONSTRUCT >
+        paperback::u64 RegisterBinding( void ) noexcept;
+
+        PPB_INLINE
+        void AssignBindingToAction( const input::binding::type::guid&   BindingGuid
+                                  , paperback::u32                      Key
+                                  , input::device::type::id             Type
+                                  , input::action::KeyPairing           Pairing = input::action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+
+		PPB_INLINE
+        void AssignBindingToAction( const paperback::u64&               BindingGuidValue
+                                  , paperback::u32                      Key
+                                  , input::device::type::id             Type
+                                  , input::action::KeyPairing           Pairing = input::action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+
+        template < typename... T_ARGS >
+        void BroadcastAction( const paperback::u32          Key
+                            , const input::device::type::id Type
+                            , T_ARGS&&...                   Args ) noexcept;
+
 		PPB_INLINE
 		void SetKey( int Key, int Action ) noexcept;
 
@@ -411,7 +440,7 @@ namespace paperback::coordinator
 		system::manager				        m_SystemMgr{ m_Clock };			// System Manager
 		script::manager				        m_ScriptMgr{ *this };			// CPP Scripts Manager
 		partition::spatial_hash_grid        m_HashGrid{ *this };			// Hash Grid
-		Input						        m_Input{ *this };				// Input
+		input::manager						m_Input{ *this };				// Input
 		bool						        m_GameActive = true;			// Game Status
 		std::string					        m_QueuedSceneName = "";			// Currently Queued Scene to change
 		bool								m_bPaused = true;

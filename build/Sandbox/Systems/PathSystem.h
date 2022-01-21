@@ -40,8 +40,8 @@ struct path_system : paperback::system::pausable_instance
 		Query_Units.m_OneOf.AddFromComponents<friendly, enemy>();
 		Query_Units.m_NoneOf.AddFromComponents<prefab>();
 
-		RegisterGlobalEventClass<Input::MousePressed>(this);
-		RegisterGlobalEventClass<Input::MouseClicked>(this);
+		RegisterGlobalEventClass<paperback::input::manager::MousePressed>(this);
+		RegisterGlobalEventClass<paperback::input::manager::MouseClicked>(this);
 	}
 
 	PPB_INLINE

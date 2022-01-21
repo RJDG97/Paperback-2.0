@@ -11,5 +11,6 @@ namespace paperback::settings
 	constexpr auto              batched_update_delay_v              = 5;
 	constexpr auto              virtual_page_size_v				    = 4096;
 	constexpr auto              invalid_index_v					    = UINT32_MAX;
+	constexpr auto              invalid_controller_v                = GLFW_JOYSTICK_LAST + 1;
 	constexpr static u32        invalid_delete_index_v              = 0xffffffffu >> 1;
 }

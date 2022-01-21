@@ -4,94 +4,294 @@
 #include "glm/inc/glm.hpp"
 #include "glfw/inc/glfw3.h"
 
-class Input
+
+/****************************************************************************************
+                               ** BINDING CALLBACK **
+
+  Actions   |   E.g. m_KeyboardActions     
+            |        m_MouseActions        
+            |        m_GamepadAxisActions  
+            |        m_GamepadButtonActions
+            |
+  Key       |   Key Event
+            |   E.g. A Pressed, B Pressed, C Pressed, ...
+
+****************************************************************************************/
+
+#define BEGIN_BINDING_EVENT_CALLBACK( Actions, Key )                                                                                   \
+    const auto& Action   = Actions[ Key ];                                                                                             \
+    auto        Bindings = Action.FindBindings();                                                                                      \
+                                                                                                                                       \
+    for ( const auto& Bind : Bindings )                                                                                                \
+    {                                                                                                                                  \
+        auto BindIndex = FindBindingIndex( Bind );                                                                                     \
+                                                                                                                                       \
+        if ( BindIndex != settings::invalid_index_v && BindIndex < m_InputBindingEvents.size() )                                       \
+        {                                                                                                                              \
+            auto& BindingEvent = m_InputBindingEvents[ BindIndex ];
+            // BindingEvent Callback
+
+#define END_BINDING_EVENT_CALLBACK                                                                                                     \
+        }                                                                                                                              \
+        else                                                                                                                           \
+        {                                                                                                                              \
+            WARN_PRINT( "Attempting to execute invalid Binding Event" );                                                               \
+        }                                                                                                                              \
+    }
+
+
+namespace paperback::input
 {
-public:
-
-	struct KeyPressed   : paperback::event::instance< const size_t&, const bool& > {};		// Held Down - Not Released ( Passes False )
-	struct KeyClicked   : paperback::event::instance< const size_t&, const bool& > {};		// Released                 ( Passes True )
-    struct MousePressed : paperback::event::instance< const size_t&, const bool& > {};		// Held Down - Not Released ( Passes False )
-    struct MouseClicked : paperback::event::instance< const size_t&, const bool& > {};		// Released                 ( Passes True )
-
-	PPB_INLINE
-	Input( paperback::coordinator::instance& Coordinator ) noexcept;
-
-	PPB_INLINE
-	~Input() = default;
-
-	// Keyboard button state
-	PPB_INLINE
-	void SetKey(int Key, int Action) noexcept;
-
-	// Check if key is pressed once
-	PPB_INLINE
-	bool IsKeyPress(int Key) const noexcept;
-	// Check if key is held down
-	PPB_INLINE
-	bool IsKeyPressDown(int Key) const noexcept;
-	// Check if key was release
-	PPB_INLINE
-	bool IsKeyPressUp(int Key) const noexcept;
-
-	// Mouse button states
-	PPB_INLINE
-	void SetMouse(int Key, int Action) noexcept;
-	PPB_INLINE
-	void SetScroll(double Y) noexcept;
-
-	// Check if button is press once
-	PPB_INLINE
-	bool IsMousePress(int Key) const noexcept;
-	// Check if button is held down
-	PPB_INLINE
-	bool IsMouseDown(int Key) const noexcept;
-	// Check if button was released
-	PPB_INLINE
-	bool IsMouseUp(int Key) const noexcept;
-
-	// Check for scrolling
-	PPB_INLINE
-	bool IsScrollUp() noexcept;
-	PPB_INLINE
-	bool IsScrollDown() noexcept;
-
-	// Return direction of mouse movement
-	PPB_INLINE
-	glm::vec2 GetMouseDirection() const noexcept;
-
-	// Return screen position of mouse
-	PPB_INLINE
-	glm::vec2 Get2DMousePosition() const noexcept;
-
-	PPB_INLINE
-	glm::vec3 GetMousePosition() const noexcept;
-
-	PPB_INLINE
-	glm::vec3 GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) const noexcept;
-
-	PPB_INLINE
-	void UpateInputs() noexcept;
-
-private:
-	// State of key press
-	struct Inputstate
+	namespace device
 	{
-		int8_t m_Previous;
-		int8_t m_Current;
-	};
+		struct Keyboard_Controls;
+		struct Mouse_Controls;
+		struct Gamepad_Controls;
+	}
 
-	// Array of keys inputs
-	std::array<Inputstate, GLFW_KEY_LAST> m_Keys;
+    class manager
+    {
+    public:
 
-	// Array of mouse inputs
-	std::array<Inputstate, GLFW_MOUSE_BUTTON_LAST> m_Buttons;
+	    // Input Bindings
+	    using BindingList          = std::vector< binding::InputBinding >;
+        using BindingMap           = std::unordered_map< paperback::u64, paperback::u8 >;
+        using BindingConstructList = std::vector< std::pair<const binding::type::info*, std::unique_ptr<binding::instance>> >;
 
-	// Mouse positions
-	glm::vec2 m_MouseOriginPosition;
+	    // Input Bindings
+        using ActionBindings         = std::vector< paperback::u64 >;                                 // Device Action Bindings
+        using PlayerControlBindings  = std::tuple< device::type::id                                   // Player Device Type
+                                                 , ActionBindings >;                                  // Action Bindings
+                                                                                                  
+        // Controller                                                                                 
+        using DeviceMap              = std::unordered_map< paperback::u64, paperback::u8 >;           // Device Guid Mapped To Device List Index
+        using DeviceList             = std::vector< std::pair< const device::type::info*              // Device Info
+                                                             , std::unique_ptr<device::instance>      // Player Device Class ( Keyboard  |  Mouse  |  Gamepad  |  GamepadAxis )
+                                                             >              
+                                                  >;
 
-	// Offset of scroll wheel
-	double m_YAxis;
 
-	// Reference to Coordinator
-	paperback::coordinator::instance& m_Coordinator;
-};
+	    //-----------------------------------
+	    //           Input Events
+	    //-----------------------------------
+
+	    struct KeyPressed     : paperback::event::instance< const size_t&, const bool& > {};		// Held Down - Not Released ( Passes False )
+	    struct KeyClicked     : paperback::event::instance< const size_t&, const bool& > {};		// Released                 ( Passes True )
+        struct MousePressed   : paperback::event::instance< const size_t&, const bool& > {};		// Held Down - Not Released ( Passes False )
+        struct MouseClicked   : paperback::event::instance< const size_t&, const bool& > {};		// Released                 ( Passes True )
+		struct GamepadPressed : paperback::event::instance< const size_t&, const bool& > {};		// Held Down - Not Released ( Passes False )
+        struct GamepadClicked : paperback::event::instance< const size_t&, const bool& > {};		// Released                 ( Passes True )
+
+
+	    //-----------------------------------
+	    //            Default
+	    //-----------------------------------
+
+	    PPB_INLINE
+	    manager( paperback::coordinator::instance& Coordinator ) noexcept;
+
+	    PPB_INLINE
+	    ~manager( void ) noexcept
+		{
+			
+		}
+
+		PPB_INLINE
+		void Terminate( void ) noexcept
+		{
+		}
+
+	    PPB_INLINE
+	    void UpdateInputs( void ) noexcept;
+
+
+	    //-----------------------------------
+        //      Controller Assignment
+        //-----------------------------------
+
+        template < typename T_DEVICE >
+        T_DEVICE* RegisterDevice( void ) noexcept;
+
+		//// To Be Used In External Intercept System
+  //      PPB_INLINE
+  //      PlayerControlBindings GetActiveDevice( const paperback::u64 ControllerGuid ) noexcept;
+
+		PPB_INLINE
+		device::Keyboard_Controls* FindKeyboard( void ) const noexcept;
+
+		PPB_INLINE
+		device::Mouse_Controls* FindMouse( void ) const noexcept;
+
+		PPB_INLINE
+		device::Gamepad_Controls* FindGamepad( void ) const noexcept;
+
+		PPB_INLINE
+		void ResetDevices( void ) noexcept;
+
+
+        //-----------------------------------
+        //         Input Bindings
+        //-----------------------------------
+
+	    template < typename T_BINDING_CONSTRUCT >
+        paperback::u64 RegisterBinding( void ) noexcept;
+
+
+        PPB_INLINE
+        void AssignBindingToAction( const binding::type::guid&   BindingGuid
+                                  , paperback::u32               Key
+                                  , device::type::id             Type
+                                  , action::KeyPairing           Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+
+		PPB_INLINE
+        void AssignBindingToAction( const paperback::u64&        BindingGuidValue
+                                  , paperback::u32               Key
+                                  , device::type::id             Type
+                                  , action::KeyPairing           Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+
+
+        template < typename... T_ARGS >
+        void BroadcastAction( const paperback::u32   Key
+                            , const device::type::id Type
+                            , T_ARGS&&...            Args ) noexcept;
+
+
+
+
+
+
+
+
+
+
+
+	    //-----------------------------------
+	    //            Keyboard
+	    //-----------------------------------
+	
+	    PPB_INLINE
+	    bool IsKeyPress( int Key ) const noexcept;
+
+	    PPB_INLINE
+	    bool IsKeyPressDown( int Key ) const noexcept;
+
+	    PPB_INLINE
+	    bool IsKeyPressUp( int Key ) const noexcept;
+
+
+	    //-----------------------------------
+	    //              Mouse
+	    //-----------------------------------
+	
+	    PPB_INLINE
+	    bool IsMousePress( int Key ) const noexcept;
+
+	    PPB_INLINE
+	    bool IsMouseDown( int Key ) const noexcept;
+
+	    PPB_INLINE
+	    bool IsMouseUp( int Key ) const noexcept;
+
+	    PPB_INLINE
+	    bool IsScrollUp() noexcept;
+
+	    PPB_INLINE
+	    bool IsScrollDown() noexcept;
+
+	
+	    //-----------------------------------
+	    //        Mouse Coordinates
+	    //-----------------------------------
+
+	    PPB_INLINE
+	    glm::vec2 GetMouseDirection() const noexcept;
+
+	    PPB_INLINE // Screen Position
+	    glm::vec2 Get2DMousePosition() const noexcept;
+
+	    PPB_INLINE
+	    glm::vec3 GetMousePosition() const noexcept;
+
+	    PPB_INLINE
+	    glm::vec3 GetViewportMousePosition( glm::vec2 viewport_min
+		                                  , glm::vec2 viewport_max ) const noexcept;
+
+
+	    //-----------------------------------
+	    //             Setters
+	    //-----------------------------------
+
+	    PPB_INLINE
+	    void SetKey( int Key
+		           , int Action ) noexcept;
+
+	    PPB_INLINE
+	    void SetMouse( int Key
+		             , int Action ) noexcept;
+
+	    PPB_INLINE
+	    void SetScroll( double Y ) noexcept;
+
+
+    private:
+
+
+        //-----------------------------------
+        //        Helper Functions
+        //-----------------------------------
+
+        PPB_INLINE
+        paperback::u32 FindBindingIndex( const paperback::u64& BindingGuidValue ) const noexcept
+        {
+            auto it = m_BindingMap.find( BindingGuidValue );
+
+            if ( it != m_BindingMap.end() )
+                return it->second;
+            return settings::invalid_index_v;
+        }
+
+        PPB_INLINE
+        paperback::u32 FindBindingIndex( const binding::type::guid& BindingGuid ) const noexcept
+        {
+            return FindBindingIndex( BindingGuid.m_Value );
+        }
+
+		template < typename T >
+		T* FindDevice( void ) noexcept
+		{
+			if ( m_PlayerDeviceList.size() == 0 || 
+				 m_PlayerDeviceList.size() < static_cast<size_t>( input::device::info_v<T>.m_TypeID ) )
+				return nullptr;
+
+            return reinterpret_cast< BaseType<T>* >( &m_PlayerDeviceList[ static_cast<int>( input::device::info_v<T>.m_TypeID ) ] );
+		}
+
+		template < typename T >
+		const T* FindConstDevice( void ) const noexcept
+		{
+			if ( m_PlayerDeviceList.size() == 0 || 
+				 m_PlayerDeviceList.size() < static_cast<size_t>( input::device::info_v<T>.m_TypeID ) )
+				return nullptr;
+
+            return reinterpret_cast< const BaseType<T>* >( &m_PlayerDeviceList[ static_cast<int>( input::device::info_v<T>.m_TypeID ) ] );
+		}
+
+
+		// Devices
+	    DeviceMap                            m_PlayerDeviceMap;                      // Device Guid Mapped To Controller List Index  |  key = 0  |  mouse = 1
+        DeviceList                           m_PlayerDeviceList;                     // List Of Devices
+
+		// Input Bindings
+        BindingMap                           m_BindingMap;                           // Maps Binding Script Guid to Binding List Index
+        BindingList                          m_InputBindingEvents;                   // Stores Binding Action Callbacks - Actual Execution
+        BindingConstructList                 m_BindingConstructs;                    // Stores Actual Binding Action
+
+		// Device Ptrs
+		device::Keyboard_Controls*           m_Keyboard = nullptr;
+		device::Mouse_Controls*              m_Mouse = nullptr;
+		device::Gamepad_Controls*            m_Gamepad = nullptr;
+
+	    // Reference to Coordinator
+	    paperback::coordinator::instance& m_Coordinator;
+    };
+}

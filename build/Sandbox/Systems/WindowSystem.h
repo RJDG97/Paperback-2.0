@@ -56,6 +56,7 @@ struct window_system : paperback::system::instance
         
         glfwSetKeyCallback(m_pWindow, KeyboardCallback);
         glfwSetMouseButtonCallback(m_pWindow, MouseCallback);
+        glfwSetJoystickCallback(GamepadStatusCallback);
         glfwSetWindowCloseCallback(m_pWindow, GLFWWindowCloseCallback);
         glfwSetWindowMaximizeCallback(m_pWindow, GLFWWindowMaximizeCallback);
 
@@ -104,6 +105,12 @@ struct window_system : paperback::system::instance
         (void)window;
         (void)mods;
         PPB.SetMouse(key, action);
+    }
+
+    static void GamepadStatusCallback( int Device, int DeviceStatus )
+    {
+        auto GP = PPB.FindGamepad();
+        if ( GP ) GP->DeviceStatusCallback( Device, DeviceStatus );
     }
 
     static void GLFWWindowCloseCallback(GLFWwindow* window)
