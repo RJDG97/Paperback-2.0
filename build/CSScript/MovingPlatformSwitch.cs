@@ -21,12 +21,12 @@ namespace CSScript
         {
             m_ID = ID;
             m_Parent = new Parent(m_ID);
-            m_ChildPathFollower = new PathFollower(m_Parent.GetChildofName("Moving Platform"));
+            m_ChildPathFollower = new PathFollower(m_Parent.GetChildIDofName("Moving Platform"));
             m_ChildPathFollower.m_PauseTravel = true;
         }
         public void Update(float dt)
         {
-            if (Input.IsMouseDown(Input.PB_MOUSE_BUTTON_1)) //replace if check with collision
+            if (Input.IsMouseDown(Input.PB_MOUSE_BUTTON_1)) //replace key check with collision check later
             {
                 m_ChildPathFollower.m_PauseTravel = false;
             }

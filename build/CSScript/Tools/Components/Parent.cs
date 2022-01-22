@@ -19,7 +19,7 @@ namespace CSScript
             m_Address = getaddress(id);
         }
 
-        public UInt32 GetChildofName(String child_name)
+        public UInt32 GetChildIDofName(String child_name)
         {
             return getchildid(m_Address, child_name);
         }
