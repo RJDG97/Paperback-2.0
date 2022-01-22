@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Checkpoint.cs" />
+    <Compile Include="GateSwitch .cs" />
     <Compile Include="MovingPlatformSwitch.cs" />
     <Compile Include="Tools\Components\AABB.cs" />
     <Compile Include="Tools\Components\Animator.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Tools\Camera.cs" />
     <Compile Include="Tools\Components\Parent.cs" />
     <Compile Include="Tools\Components\Child.cs" />
+    <Compile Include="Tools\Player.cs" />
     <Compile Include="Tools\Timer.cs" />
     <Compile Include="Tools\Debug.cs" />
     <Compile Include="Tools\Inputs.cs" />
