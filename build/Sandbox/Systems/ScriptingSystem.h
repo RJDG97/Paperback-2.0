@@ -97,7 +97,7 @@ struct scripting_system : paperback::system::pausable_instance
 		}
 	}
 
-	void AddScript(uint32_t entity_id, std::vector<std::string> script_ids)
+	void AddScript(uint32_t entity_id, std::vector<entityscript::ScriptID> script_ids)
 	{
 		ScriptsInfo new_info{};
 
@@ -107,9 +107,9 @@ struct scripting_system : paperback::system::pausable_instance
 
 			if (p_script)
 			{
-				p_script->Init(script_id);
+				p_script->Init(script_id.m_ID);
 				p_script->Start(entity_id);
-				new_info.m_Info.push_back({ script_id, std::move(p_script) });
+				new_info.m_Info.push_back({ script_id.m_ID, std::move(p_script) });
 			}
 		}
 
