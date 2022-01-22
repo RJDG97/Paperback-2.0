@@ -76,7 +76,7 @@ struct scripting_system : paperback::system::pausable_instance
 		});
 
 		//destroy all scripts and remove all entries that are no longer updated
-		std::map<uint32_t, ScriptsInfo>::iterator to_remove{};
+		std::map<uint32_t, ScriptsInfo>::iterator to_remove{ scriptlist.end() };
 
 		for (auto entry = scriptlist.begin() ; entry != scriptlist.end() ; ++entry)
 		{
