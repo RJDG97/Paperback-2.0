@@ -12,7 +12,7 @@ namespace CSScript.Tools
         float m_RemainingTime;
         bool m_Paused;
 
-        public void Timer(float duration)
+        public Timer(float duration)
         {
             m_Duration = duration;
             m_RemainingTime = duration;

@@ -11,10 +11,21 @@ namespace MONO_PARENT
 		return &m_parent;
 	}
 
-	MONO_EXPORT uint32_t GetChildID(void* address)
+	MONO_EXPORT uint32_t GetChildID(void* address, std::string child_name)
 	{
 		if (address)
-			return reinterpret_cast<parent*>(address)->m_ChildGlobalIndex;
+		{
+			std::unordered_set<paperback::u32>& ids = reinterpret_cast<parent*>(address)->m_ChildrenGlobalIndexes;
+
+			for (auto id : ids)
+			{
+				auto m_obj = PPB.GetEntityInfo(id);
+				auto& m_name{ m_obj.m_pArchetype->GetComponent<name>(m_obj.m_PoolDetails) };
+				
+				if (child_name == m_name.m_Value)
+					return id;
+			}
+		}
 
 		return {};
 	}

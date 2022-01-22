@@ -19,18 +19,15 @@ namespace CSScript
             m_Address = getaddress(id);
         }
 
-        public UInt32 m_ChildID
+        public UInt32 GetChildofName(String child_name)
         {
-            get
-            {
-                return getchildid(m_Address);
-            }
+            return getchildid(m_Address, child_name);
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static UInt32 getchildid(void* address);
+        private extern static UInt32 getchildid(void* address, String name);
     }
 }

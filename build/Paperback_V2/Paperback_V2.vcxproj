@@ -252,6 +252,7 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Mass.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Mesh.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Name.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Offset.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Parent.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_PathFollower.h" />
