@@ -39,7 +39,6 @@ namespace CSScript
             }
             set
             {
-                //m_Position = value;
                 setdistance(m_Address, value);
             }
         }

@@ -32,10 +32,22 @@ struct scripting_system : paperback::system::pausable_instance
 		m_QueryEntityScripts.m_NoneOf.AddFromComponents<prefab>();
 	}
 
-	/*void OnPause(void) noexcept
+	void OnPause(const bool&) noexcept
 	{
 		scriptlist.clear();
-	}*/
+
+		// Run each entity with the entity script component
+		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		{
+			// check for an instance of this entity's script
+			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+
+			if (entry_found == scriptlist.end()) {
+
+				AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+			}
+		});
+	}
 
 	void Update(void) noexcept
 	{

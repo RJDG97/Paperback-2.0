@@ -35,6 +35,9 @@
     <Filter Include="Source Files\Scripts\Details">
       <UniqueIdentifier>{2d0f3efb-98a8-47ed-bdeb-27f69313b5be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Components\Details\Deprecated">
+      <UniqueIdentifier>{4824bb9a-03ac-4ceb-ac20-57cb8a2d16d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sandbox.cpp">
@@ -114,22 +117,7 @@
     <ClInclude Include="Components\CollisionLayer.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Cost.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Currency.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Damage.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Health.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Selected.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Waypoint.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="Systems\CollisionSystem.h">
@@ -173,15 +161,6 @@
     </ClInclude>
     <ClInclude Include="Systems\EnemySpawnerSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Counter.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\FriendlySpawner.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\EnemySpawner.h">
-      <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="Components\Name.h">
       <Filter>Source Files\Components\Details</Filter>
@@ -310,9 +289,6 @@
     <ClInclude Include="Components\Mass.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
-    <ClInclude Include="CapturePoint.h">
-      <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\OnEvent_PointCaptured.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
@@ -327,6 +303,33 @@
     </ClInclude>
     <ClInclude Include="Systems\IconSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="CapturePoint.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Cost.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Counter.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Currency.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Damage.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\EnemySpawner.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\FriendlySpawner.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Health.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Waypoint.h">
+      <Filter>Source Files\Components\Details\Deprecated</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

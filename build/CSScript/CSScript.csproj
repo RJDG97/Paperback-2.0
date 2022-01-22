@@ -54,6 +54,7 @@
     <Compile Include="Tools\Camera.cs" />
     <Compile Include="Tools\Debug.cs" />
     <Compile Include="Tools\Inputs.cs" />
+    <Compile Include="Tools\Mass.cs" />
     <Compile Include="Tools\MathLib.cs" />
     <Compile Include="Tools\Mesh.cs" />
     <Compile Include="Tools\MonoBehaviour.cs" />
@@ -64,9 +65,15 @@
     <Compile Include="Tools\Name.cs" />
     <Compile Include="Tools\Offset.cs" />
     <Compile Include="Tools\PathFollower.cs" />
+    <Compile Include="Tools\CollisionLayer.cs" />
+    <Compile Include="Tools\Rigidbody.cs" />
+    <Compile Include="Tools\Rigidforce.cs" />
     <Compile Include="Tools\Scale.cs" />
     <Compile Include="Tools\Rotation.cs" />
     <Compile Include="Tools\Socketed.cs" />
+    <Compile Include="Tools\Sound.cs" />
+    <Compile Include="Tools\Sphere.cs" />
+    <Compile Include="Tools\Text.cs" />
     <Compile Include="Tools\Transform.cs" />
     <Compile Include="Unit.cs" />
   </ItemGroup>

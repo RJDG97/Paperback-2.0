@@ -15,6 +15,13 @@
 #include "Scripts/Scripts_Rotation.h"
 #include "Scripts/Scripts_Scale.h"
 #include "Scripts/Scripts_PathFollower.h"
+#include "Scripts/Scripts_CollisionLayer.h"
+#include "Scripts/Scripts_Mass.h"
+#include "Scripts/Scripts_Rigidbody.h"
+#include "Scripts/Scripts_Rigidforce.h"
+#include "Scripts/Scripts_Sound.h"
+#include "Scripts/Scripts_Sphere.h"
+#include "Scripts/Scripts_Text.h"
 
 namespace MONO_INTERNALS
 {
@@ -33,6 +40,13 @@ namespace MONO_INTERNALS
 		MONO_OFFSET::AddInternalCall();
 		MONO_ROTATION::AddInternalCall();
 		MONO_SCALE::AddInternalCall();
+		MONO_COLLISIONLAYER::AddInternalCall();
 		MONO_PATHFOLLOWER::AddInternalCall();
+		MONO_MASS::AddInternalCall();
+		MONO_RIGIDBODY::AddInternalCall();
+		MONO_RIGIDFORCE::AddInternalCall();
+		MONO_SPHERE::AddInternalCall();
+		MONO_SOUND::AddInternalCall();
+		MONO_TEXT::AddInternalCall();
 	}
 }
