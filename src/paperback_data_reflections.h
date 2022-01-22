@@ -2,6 +2,7 @@
 #include "glm/inc/glm.hpp"
 #include "Math/Vector3f.h" 
 #include "../Sandbox/Components/Deck.h"
+#include "../Sandbox/Components/EntityScript.h"
 
 namespace paperback
 {
@@ -12,6 +13,10 @@ namespace paperback
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("Card GID", &CardDetails::m_CardGID)
 			.property("Count", &CardDetails::m_Count);
+
+		rttr::registration::class_<entityscript::ScriptID>("ScriptID")
+			.constructor()(rttr::policy::ctor::as_object)
+			.property("ID", &entityscript::ScriptID::m_ID);
 
 		rttr::registration::class_<paperback::Vector3f>("Vector3f")
 			.constructor()(rttr::policy::ctor::as_object)
