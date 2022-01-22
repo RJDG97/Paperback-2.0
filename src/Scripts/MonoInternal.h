@@ -22,6 +22,8 @@
 #include "Scripts/Scripts_Sound.h"
 #include "Scripts/Scripts_Sphere.h"
 #include "Scripts/Scripts_Text.h"
+#include "Scripts/Scripts_Child.h"
+#include "Scripts/Scripts_Parent.h"
 
 namespace MONO_INTERNALS
 {
@@ -48,5 +50,7 @@ namespace MONO_INTERNALS
 		MONO_SPHERE::AddInternalCall();
 		MONO_SOUND::AddInternalCall();
 		MONO_TEXT::AddInternalCall();
+		MONO_CHILD::AddInternalCall();
+		MONO_PARENT::AddInternalCall();
 	}
 }
