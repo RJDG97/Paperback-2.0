@@ -11,21 +11,19 @@ namespace paperback::input
         {
             float x = 0.0f
                 , y = 0.0f;
+
+            PPB_INLINE
+            bool Valid( void ) noexcept
+            {
+                if ( x != 0.0f || y != 0.0f ) return true;
+                else                          return false;
+            }
         };
 
         PPB_INLINE
         GamepadState( void ) noexcept
         {
-            for ( int i = 0 ; i < GLFW_JOYSTICK_LAST; ++i )
-            {
-                if ( glfwJoystickPresent(i) )
-                {
-                    m_ControllerID = i;
-                    std::cout << "Gamepad Device Connected During Initialization: " << m_ControllerID << std::endl;
-                    return;
-                }
-                //std::cout << "Checking Active Devices..." << std::endl;
-            }
+            
         }
 
         PPB_INLINE
@@ -55,18 +53,43 @@ namespace paperback::input
                 m_LeftTrigger  = AxisValues[ 4 ];
                 m_RightTrigger = AxisValues[ 5 ];
             }
+
+            if ( m_LeftAxis.Valid() )
+            {
+                m_Current[ GLFW_GAMEPAD_BUTTON_LEFT_THUMB ] = true;
+            }
+
+            if ( m_RightAxis.Valid() )
+            {
+                m_Current[ GLFW_GAMEPAD_BUTTON_RIGHT_THUMB ] = true;
+            }
         }
 
-        std::array< bool, GLFW_GAMEPAD_BUTTON_LAST >               m_Previous{ GLFW_RELEASE };                        // Previous Keyboard State
-        std::array< bool, GLFW_GAMEPAD_BUTTON_LAST >               m_Current{ GLFW_RELEASE };                         // Current Keyboard State
-        std::array< action::instance, GLFW_GAMEPAD_BUTTON_LAST >   m_Actions{ };                                      // Mouse Action Bindings
+        PPB_INLINE
+        void FindActiveController( void ) noexcept
+        {
+            for ( int i = 0 ; i < GLFW_JOYSTICK_LAST; ++i )
+            {
+                if ( glfwJoystickPresent(i) )
+                {
+                    m_ControllerID = i;
+                    INFO_PRINT( ( "Active Gamepad Device Detected: GLFW_JOYSTICK_" + std::to_string(m_ControllerID) ).c_str() );
+                    return;
+                }
+            }
+            WARN_PRINT( "NO Active Gamepad Device Detected" );
+        }
 
-        Vec2                                                       m_LeftAxis{ };
-        Vec2                                                       m_RightAxis{ };
-        float                                                      m_LeftTrigger = 0.0f;
-        float                                                      m_RightTrigger = 0.0f;
+        std::array< bool, GLFW_JOYSTICK_LAST >               m_Previous{ GLFW_RELEASE };                        // Previous Keyboard State
+        std::array< bool, GLFW_JOYSTICK_LAST >               m_Current{ GLFW_RELEASE };                         // Current Keyboard State
+        std::array< action::instance, GLFW_JOYSTICK_LAST >   m_Actions{ };                                      // Mouse Action Bindings
 
-        int                                                        m_ControllerID = settings::invalid_controller_v;   // Active Controller Index - Updated Using Callback
+        Vec2                                                 m_LeftAxis{ };
+        Vec2                                                 m_RightAxis{ };
+        float                                                m_LeftTrigger = 0.0f;
+        float                                                m_RightTrigger = 0.0f;
+
+        int                                                  m_ControllerID = settings::invalid_controller_v;   // Active Controller Index - Updated Using Callback
     };
 }
 

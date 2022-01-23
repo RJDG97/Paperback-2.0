@@ -673,6 +673,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< spawner_details >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< player_controller >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< player_controller >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< camera >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< camera >(Index));
 		else
 			return rttr::instance();
 	}

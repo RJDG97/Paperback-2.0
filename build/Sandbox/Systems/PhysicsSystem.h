@@ -135,11 +135,14 @@ struct physics_system : paperback::system::pausable_instance
                     Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
 
                     // Update Hash Grid - On Position Update
-                    m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
-                                            , OldPosition
-                                            , Transform.m_Position
-                                            , Box->Min
-                                            , Box->Max );
+                    if ( Box )
+                    {  
+                        m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
+                                                , OldPosition
+                                                , Transform.m_Position
+                                                , Box->Min
+                                                , Box->Max );
+                    }
                 }
                 
             }

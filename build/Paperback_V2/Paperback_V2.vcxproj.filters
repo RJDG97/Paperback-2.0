@@ -579,6 +579,9 @@
     <ClInclude Include="..\..\src\Functionality\Camera\Camera.h">
       <Filter>Source\Tools\Functionality\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="..\Sandbox\InputBindings\binding_includes.h">
+      <Filter>Source\Tools\Input\Details</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

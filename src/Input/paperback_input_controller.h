@@ -144,7 +144,7 @@ namespace paperback::input::device
     #define BEGIN_CONTROLLER_CONSTRUCT( player_device_name, control_type )                                              \
         struct player_device_name : device::instance                                                                    \
         {                                                                                                               \
-            using ActionBindings = action::instance::ActionParings;                                                     \
+            using ActionBindings = action::instance::BindingGuids;                                                      \
                                                                                                                         \
             static constexpr auto typedef_v = control_type                                                              \
                                               {                                                                         \
@@ -158,38 +158,42 @@ namespace paperback::input::device
             { }                                                                                                         \
                                                                                                                         \
             PPB_INLINE                                                                                                  \
-            void AddBinding( const int                Key                                                               \
-                           , const paperback::u64     Binding                                                           \
-                           , const action::KeyPairing Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept          \
+            void AddBinding( const int                     Key                                                          \
+                           , const paperback::u64          Binding                                                      \
+                           , const action::BroadcastStatus Status                                                       \
+                           , const action::KeyPairing      Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept     \
             {                                                                                                           \
                 if ( Key > m_State.m_Actions.size() || Key < 0 )                                                        \
                     WARN_PRINT( "Control Device: AddBinding invalid Index" );                                           \
                 else                                                                                                    \
-                    m_State.m_Actions[ Key ].SetBinding( Binding, Pairing );                                            \
+                    m_State.m_Actions[ Key ].SetBinding( Binding, Status, Pairing );                                    \
             }                                                                                                           \
                                                                                                                         \
             PPB_INLINE                                                                                                  \
             void AddBinding( const int                  Key                                                             \
                            , const binding::type::guid& Guid                                                            \
+                           , const action::BroadcastStatus Status                                                       \
                            , const action::KeyPairing   Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept        \
             {                                                                                                           \
-                AddBinding( Key, Guid.m_Value, Pairing );                                                               \
+                AddBinding( Key, Guid.m_Value, Status, Pairing );                                                       \
             }                                                                                                           \
                                                                                                                         \
             PPB_INLINE                                                                                                  \
             void ResetBinding( const paperback::u32     Key                                                             \
+                             , const action::BroadcastStatus Status                                                     \
                              , const action::KeyPairing Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept        \
             {                                                                                                           \
                 if ( Key > m_State.m_Actions.size() || Key < 0 )                                                        \
                     WARN_PRINT( "Control Device: ResetBinding invalid Index" );                                         \
                 else                                                                                                    \
-                    m_State.m_Actions[ Key ].ResetBinding( Pairing );                                                   \
+                    m_State.m_Actions[ Key ].ResetBinding( Status, Pairing );                                           \
             }                                                                                                           \
                                                                                                                         \
             PPB_INLINE                                                                                                  \
-            ActionBindings FindBindings( const paperback::u32 Key ) noexcept                                            \
+            ActionBindings FindBindings( const paperback::u32 Key                                                       \
+                                       , const action::BroadcastStatus Status ) noexcept                                \
             {                                                                                                           \
-                return m_State.m_Actions[ Key ].m_BindingGuids;                                                         \
+                return m_State.m_Actions[ Key ].FindBindings( Status );                                                 \
             }                                                                                                           \
 
     #define END_CONTROLLER_CONSTRUCT                                                                                    \

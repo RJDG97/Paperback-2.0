@@ -38,6 +38,13 @@ namespace paperback::input::action
     ,   PPB_KEY_MAX
     };
 
+    enum class BroadcastStatus : paperback::u8
+    {
+        PRESSED = 0
+    ,   CONTINUOUS
+    ,   RELEASED
+    };
+
 
     //-----------------------------------
     //           Input Action
@@ -66,7 +73,7 @@ namespace paperback::input::action
         //-----------------------------------
 
         PPB_INLINE
-        BindingGuids FindBindings( void ) const noexcept;
+        BindingGuids FindBindings( const action::BroadcastStatus Status ) const noexcept;
         
 
         //-----------------------------------
@@ -74,15 +81,23 @@ namespace paperback::input::action
         //-----------------------------------
 
         PPB_INLINE
-        void SetBinding( const paperback::u64 BindingGuidValue
-                       , const KeyPairing     Pairing = KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+        void SetBinding( const paperback::u64          BindingGuidValue
+                       , const action::BroadcastStatus Status
+                       , const KeyPairing              Pairing = KeyPairing::PPB_DEFAULT_KEY ) noexcept;
 
         PPB_INLINE
-        void SetBinding( const binding::type::guid& BindingGuid
-                       , const KeyPairing           Pairing = KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+        void SetBinding( const binding::type::guid&    BindingGuid
+                       , const action::BroadcastStatus Status
+                       , const KeyPairing              Pairing = KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+
+
+        //-----------------------------------
+        //             Extras
+        //-----------------------------------
 
         PPB_INLINE
-        void ResetBinding( const KeyPairing Pairing = KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+        void ResetBinding( const action::BroadcastStatus Status
+                         , const KeyPairing Pairing = KeyPairing::PPB_DEFAULT_KEY ) noexcept;
 
         PPB_INLINE
         void SetActionType( const action::type::id ActionType = action::type::id::BUTTON ) noexcept;
@@ -92,10 +107,12 @@ namespace paperback::input::action
         //               Data
         //-----------------------------------
 
-        Interaction                                                          m_ActionInteraction{   };                             // Action Modifiers
-        ActionParings                                                        m_BindingGuids     { settings::invalid_index_v };     // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - paperback::u64 = input::type::guid
-        tools::n_bits< static_cast<size_t>(KeyPairing::PPB_KEY_MAX) >        m_PairingModifier  {   };                             // Pairing Key ( Event Triggers on Key && KeyPairing )
-        action::type::id                                                     m_Type             = action::type::id::BUTTON;        // Action Type
+        Interaction                                                          m_ActionInteraction     {   };                             // Action Modifiers
+        ActionParings                                                        m_PressedBindingGuids   { settings::invalid_index_v };     // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - Initial Button Press
+        ActionParings                                                        m_ContinuousBindingGuids{ settings::invalid_index_v };     // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - Held Down
+        ActionParings                                                        m_ReleasedBindingGuids  { settings::invalid_index_v };     // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - On Release
+        tools::n_bits< static_cast<size_t>(KeyPairing::PPB_KEY_MAX) >        m_PairingModifier       {   };                             // Pairing Key ( Event Triggers on Key && KeyPairing )
+        action::type::id                                                     m_Type                  = action::type::id::BUTTON;        // Action Type
     };
 }
 

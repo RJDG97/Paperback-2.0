@@ -6,7 +6,8 @@
 #include "Components/component_includes.h"
 #include "Systems/system_includes.h"
 #include "Scripts/scripts_includes.h"
-#include "../../src/Input/Details/paperback_input_binding_inline.h"  // Temporary only, change path after
+#include "InputBindings/binding_includes.h"
+//#include "../../src/Input/Details/paperback_input_binding_inline.h"  // Temporary only, change path after
 
 //-----------------------------------
 //      Forward Declarations
@@ -195,12 +196,36 @@ void InitializeGame()
         >();
 
 
+        /************************************************************************************/
+        //                 All Control Bindings Should Be Serialized w/ Guids
+        /************************************************************************************/
+        {
+            // Keyboard Registration
+            auto Keyboard_Movement_Forward   = PPB.RegisterBinding<paperback::input::binding::Keyboard_EntityMovement_Forward>();
+            auto Keyboard_Movement_Backwards = PPB.RegisterBinding<paperback::input::binding::Keyboard_EntityMovement_Backwards>();
+            auto Keyboard_Movement_Left      = PPB.RegisterBinding<paperback::input::binding::Keyboard_EntityMovement_Left>();
+            auto Keyboard_Movement_Right     = PPB.RegisterBinding<paperback::input::binding::Keyboard_EntityMovement_Right>();
+            auto Keyboard_Rotate             = PPB.RegisterBinding<paperback::input::binding::Keyboard_Camera_Rotate>();
 
-        // Temporary Input Testing
-        auto Guid = PPB.RegisterBinding<paperback::input::binding::Entity_Movement_Binding>();
+            // Gamepad Registration
+            auto Gamepad_Movement = PPB.RegisterBinding<paperback::input::binding::Gamepad_EntityMovement>();
+            auto Gamepad_Rotate   = PPB.RegisterBinding<paperback::input::binding::Gamepad_Camera_Rotate>();
 
-        PPB.AssignBindingToAction( Guid, GLFW_KEY_W, paperback::input::device::type::id::KEYBOARD );
-        PPB.AssignBindingToAction( Guid, GLFW_GAMEPAD_BUTTON_A, paperback::input::device::type::id::GAMEPAD );
+
+
+            // Keyboard Bindings
+            PPB.AssignBindingToAction( Keyboard_Movement_Forward,   GLFW_KEY_W, input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Backwards, GLFW_KEY_S, input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Left,      GLFW_KEY_A, input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Right,     GLFW_KEY_D, input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Rotate,             GLFW_KEY_Z, input::device::type::id::KEYBOARD );
+
+
+
+            // Gamepad Bindings
+            PPB.AssignBindingToAction( Gamepad_Movement, GLFW_GAMEPAD_BUTTON_LEFT_THUMB,  input::device::type::id::GAMEPAD );
+            PPB.AssignBindingToAction( Gamepad_Rotate,   GLFW_GAMEPAD_BUTTON_RIGHT_THUMB, input::device::type::id::GAMEPAD );
+        }
     }
     // Set Window maximized initially
     auto& Window = PPB.GetSystem< window_system >();

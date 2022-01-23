@@ -290,6 +290,7 @@
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
+    <ClInclude Include="..\Sandbox\InputBindings\binding_includes.h" />
     <ClInclude Include="paperback_pch.h" />
   </ItemGroup>
   <ItemGroup>
