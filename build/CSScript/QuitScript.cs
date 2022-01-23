@@ -7,12 +7,14 @@ namespace CSScript
 {
     public class QuitScript : MonoBehaviour
     {
+        UInt32 m_ID;
         public static QuitScript getInst()
         {
             return new QuitScript();
         }
-        public void Start()
+        public void Start(UInt32 ID)
         {
+            m_ID = ID;
         }
         public void Update(float dt)
         {

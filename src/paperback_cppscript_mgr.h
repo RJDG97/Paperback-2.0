@@ -70,6 +70,21 @@ namespace paperback::script
         virtual void OnReleased        ( void )                                       noexcept                                { };   // On Mouse Released
     };
     
+    //-----------------------------------
+    //         Behaviour Interface
+    //-----------------------------------
+    struct behaviour_interface : script_interface
+    {
+        PPB_FORCEINLINE
+        behaviour_interface            (paperback::coordinator::instance& Instance) noexcept : script_interface{ Instance } { }
+        virtual void Run               (void)                                       noexcept { };   // Default
+        virtual void Init              (void)                                       noexcept { };   // On Init
+        virtual void Update            (void)                                       noexcept { };   // On Update
+        virtual void Destroy           (void)                                       noexcept { };   // On Destroy
+        virtual void OnCollisionEnter  (void)                                       noexcept { };   // On Collision Enter
+        virtual void OnCollisionStay   (void)                                       noexcept { };   // On Collision Stay
+        virtual void OnCollisionExit   (void)                                       noexcept { };   // On Collision Exit
+    };
 
     //-----------------------------------
 	//        Create Script Info

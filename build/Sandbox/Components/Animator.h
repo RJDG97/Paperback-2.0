@@ -21,6 +21,7 @@ struct animator
 	float m_CurrentTime{};
 	bool m_PlayOnce{};
 	bool m_FinishedAnimating{};
+	bool m_PauseAnimation{};
 };
 
 
@@ -32,6 +33,7 @@ namespace RR_Animator
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("Current Animation", &animator::m_CurrentAnimationName)(rttr::policy::prop::as_reference_wrapper)
 			.property("Play Once", &animator::m_PlayOnce)(rttr::policy::prop::as_reference_wrapper)
-			.property("Current Time", &animator::m_CurrentTime);
+			.property("Pause Animation", &animator::m_PauseAnimation)(rttr::policy::prop::as_reference_wrapper)
+			.property("Current Time", &animator::m_CurrentTime)(rttr::policy::prop::as_reference_wrapper);
 	}
 }

@@ -45,7 +45,7 @@ struct animator_system : paperback::system::pausable_instance
 
 		if (anims.find(Ator.m_CurrentAnimationName) != anims.end())
 		{
-			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating))
+			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating) || !Ator.m_PauseAnimation)
 			{
 				auto& current_anim{ anims[Ator.m_CurrentAnimationName] };
 

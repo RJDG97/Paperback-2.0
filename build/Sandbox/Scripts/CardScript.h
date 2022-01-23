@@ -52,7 +52,7 @@ struct card_script : paperback::script::card_interface // Inherited Type (1)
                     m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, spawner& Spawner)  noexcept
                     {
                         Transform->m_Position = Spawner.m_Position[Path.m_ID];
-                        Path_Follower->m_ID = Path.m_ID;
+                        Path_Follower->m_PathID = Path.m_ID;
                     });
 
 

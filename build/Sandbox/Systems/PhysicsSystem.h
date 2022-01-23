@@ -61,6 +61,7 @@ struct physics_system : paperback::system::pausable_instance
 	{
 		Query.m_Must.AddFromComponents<transform, entity, rigidforce>();
 		Query.m_OneOf.AddFromComponents<boundingbox, mass, rigidbody>();
+        Query.m_OneOf.AddFromComponents<name, child, offset>();
 		Query.m_NoneOf.AddFromComponents<prefab>();
 	}
 
@@ -72,7 +73,7 @@ struct physics_system : paperback::system::pausable_instance
     PPB_FORCEINLINE
 	void Update( void ) noexcept
 	{
-		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, mass* Mass, boundingbox* Box ) noexcept
+		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset ) noexcept
 		{
             //// Apply Gravity If Non-Static
             //if ( !RigidForce->m_isStatic && Mass )
@@ -107,19 +108,39 @@ struct physics_system : paperback::system::pausable_instance
             // accumulate result into rigidbody and update position
             if ( RigidBody && Mass )
             {
-                // Save Old Position For Grid Update
-                auto OldPosition = Transform.m_Position;
+                if (Child && Offset)
+                {
+                    // Save Old Position For Grid Update
+                    auto OldPosition = Offset->m_PosOffset;
 
-                RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
-                RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
-                Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+                    RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
+                    RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
+                    Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
 
-                // Update Hash Grid - On Position Update
-                m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
-                                        , OldPosition
-                                        , Transform.m_Position
-                                        , Box->Min
-                                        , Box->Max );
+                    // Update Hash Grid - On Position Update
+                    m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
+                                            , OldPosition
+                                            , Offset->m_PosOffset
+                                            , Box->Min
+                                            , Box->Max );
+                }
+
+                else
+                {
+                    // Save Old Position For Grid Update
+                    auto OldPosition = Transform.m_Position;
+
+                    RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
+                    RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
+                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+
+                    // Update Hash Grid - On Position Update
+                    m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
+                                            , OldPosition
+                                            , Transform.m_Position
+                                            , Box->Min
+                                            , Box->Max );
+                }
                 
             }
         });
