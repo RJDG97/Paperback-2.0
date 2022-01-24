@@ -39,5 +39,15 @@ namespace CSScript
         public void Destroy()
         {
         }
+
+        public void OnCollisionEnter(UInt32 ID)
+        {
+        }
+        public void OnCollisionStay(UInt32 ID)
+        {
+        }
+        public void OnCollisionExit(UInt32 ID)
+        {
+        }
     }
 }
