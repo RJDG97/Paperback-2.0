@@ -38,7 +38,7 @@ struct enemy_spawner_system : paperback::system::pausable_instance
             Timer.m_Cooldown = 8.0f;
             // Reset timer
             Timer.m_Value = Timer.m_Cooldown;
-
+        
             m_Coordinator.ForEach(m_Coordinator.Search(Spawner_Query), [&](paperback::component::entity& Dynamic_Entity, deck& Dynamic_Deck, sound& Sound)  noexcept
                 {
                     Sound.m_Trigger = true;
@@ -57,8 +57,9 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                     }
                     else if ( deckno <= 15 )
                         m_Coordinator.BroadcastEvent<enemy_spawner_system::OnLowDeckCount>();
-
+        
                     while (CardsAvail) {
+
                         // Randomize card spawned
                         int cardindex = rand() % 3;
                         // If card is available
@@ -66,18 +67,18 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                             // Decrease available card count
                             Dynamic_Deck.m_Deck[cardindex].m_Count--;
                             deckno--;
-
+        
                             m_Coordinator.ForEach(m_Coordinator.Search(Text_Query), [&](paperback::component::entity& Dynamic_Entity, text& Text)  noexcept
                                 {
                                     Text.m_Text = std::to_string(deckno);
                                 });
-
+        
                             // Spawn Card
                             // Check if GID is Valid
                             if (Dynamic_Deck.m_Deck[cardindex].m_CardGID == paperback::settings::invalid_index_v) return;
                             // Get Unit Info and Spawn unit
                             auto PrefabInfo = m_Coordinator.GetEntityInfo(Dynamic_Deck.m_Deck[cardindex].m_CardGID);
-
+        
                             if ( PrefabInfo.m_pArchetype )
                             {
                                 auto InstanceGID = PrefabInfo.m_pArchetype->ClonePrefab(PrefabInfo.m_PoolDetails.m_PoolIndex);
@@ -88,8 +89,15 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                                 Spawner.lane = rand() % 3;
                                 Transform->m_Position = Spawner.m_Position[Spawner.lane];
                                 Path->m_PathID = Spawner.lane;
-                            }
+        
+        
 
+                                // Add Unit To Hash Grid - After Position Update
+                                auto [Entity, Xform, Box, Prefab] = m_obj.m_pArchetype->FindComponents<paperback::component::entity, transform, boundingbox, prefab>( m_obj.m_PoolDetails );
+                                if ( !Prefab && Entity && Xform && Box )
+                                    m_Coordinator.UpdateUnit( Entity->m_GlobalIndex, {0.0f,0.0f,0.0f}, Xform->m_Position, Box->Min, Box->Max );
+                            }
+        
                             break;
                         }
                     }

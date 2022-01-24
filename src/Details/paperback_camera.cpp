@@ -2,7 +2,7 @@
 #include "../paperback_camera.h"
 #include "glm/inc/gtx/transform.hpp"
 
-Camera3D::Camera3D() :
+cam::cam() :
 	m_Right{ glm::vec3{1.f, 0.f, 0.f} },
 	m_Up{ glm::vec3{0.f, 1.f, 0.f} },
 	m_Radius{ 1.f },
@@ -18,27 +18,27 @@ Camera3D::Camera3D() :
 	m_Projection = glm::perspective(glm::radians(59.f), 1920.f / 1080.f, 1.f, 200.f);
 }
 
-glm::vec3 Camera3D::GetForwardVector() const
+glm::vec3 cam::GetForwardVector() const
 {
 	return m_Front;
 }
 
-glm::mat4 Camera3D::GetView() const
+glm::mat4 cam::GetView() const
 {
 	return m_View;
 }
 
-glm::mat4 Camera3D::GetProjection() const
+glm::mat4 cam::GetProjection() const
 {
 	return m_Projection;
 }
 
-glm::vec3 Camera3D::GetPosition() const
+glm::vec3 cam::GetPosition() const
 {
 	return m_Position;
 }
 
-void Camera3D::SetPosition(const glm::vec3& Position)
+void cam::SetPosition(const glm::vec3& Position)
 {
 	glm::vec3 lookDirection = glm::normalize(m_Target - m_Position);
 
@@ -48,7 +48,7 @@ void Camera3D::SetPosition(const glm::vec3& Position)
 	UpdateView();
 }
 
-void Camera3D::SetTarget(const glm::vec3& Target)
+void cam::SetTarget(const glm::vec3& Target)
 {
 	glm::vec3 lookDirection = glm::normalize(Target - m_Position);
 	m_Target = lookDirection + m_Position;
@@ -68,7 +68,7 @@ void Camera3D::SetTarget(const glm::vec3& Target)
 	m_Azimuth = glm::degrees(glm::atan(offsetDirection.x, offsetDirection.z));
 }
 
-void Camera3D::MoveForward()
+void cam::MoveForward()
 {
 	glm::vec3 translate = m_Front * 0.1f;
 	m_Target += translate;
@@ -77,7 +77,7 @@ void Camera3D::MoveForward()
 	UpdateView();
 }
 
-void Camera3D::MoveBackward()
+void cam::MoveBackward()
 {
 	glm::vec3 translate = m_Front * 0.1f;
 	m_Target -= translate;
@@ -86,7 +86,7 @@ void Camera3D::MoveBackward()
 	UpdateView();
 }
 
-void Camera3D::MoveRight()
+void cam::MoveRight()
 {
 	glm::vec3 translate = m_Right * 0.1f;
 	m_Target += translate;
@@ -95,7 +95,7 @@ void Camera3D::MoveRight()
 	UpdateView();
 }
 
-void Camera3D::MoveLeft()
+void cam::MoveLeft()
 {
 	glm::vec3 translate = m_Right * 0.1f;
 	m_Target -= translate;
@@ -104,7 +104,7 @@ void Camera3D::MoveLeft()
 	UpdateView();
 }
 
-void Camera3D::MoveUp()
+void cam::MoveUp()
 {
 	glm::vec3 translate = m_Up * 0.1f;
 	m_Target += translate;
@@ -113,7 +113,7 @@ void Camera3D::MoveUp()
 	UpdateView();
 }
 
-void Camera3D::MoveDown()
+void cam::MoveDown()
 {
 	glm::vec3 translate = m_Up * 0.1f;
 	m_Target -= translate;
@@ -122,7 +122,7 @@ void Camera3D::MoveDown()
 	UpdateView();
 }
 
-void Camera3D::RotateRight(const float m_Speed)
+void cam::RotateRight(const float m_Speed)
 {
 	m_Azimuth -= m_Speed;
 
@@ -134,7 +134,7 @@ void Camera3D::RotateRight(const float m_Speed)
 	UpdateView();
 }
 
-void Camera3D::RotateLeft(const float m_Speed)
+void cam::RotateLeft(const float m_Speed)
 {
 	m_Azimuth += m_Speed;
 
@@ -146,7 +146,7 @@ void Camera3D::RotateLeft(const float m_Speed)
 	UpdateView();
 }
 
-void Camera3D::RotateUp(const float m_Speed)
+void cam::RotateUp(const float m_Speed)
 {
 	m_Theta += m_Speed;
 
@@ -158,7 +158,7 @@ void Camera3D::RotateUp(const float m_Speed)
 	UpdateView();
 }
 
-void Camera3D::RotateDown(const float m_Speed)
+void cam::RotateDown(const float m_Speed)
 {
 	m_Theta -= m_Speed;
 
@@ -171,7 +171,7 @@ void Camera3D::RotateDown(const float m_Speed)
 }
 
 
-void Camera3D::RotateWithMouse(glm::vec2 Direction)
+void cam::RotateWithMouse(glm::vec2 Direction)
 {
 	glm::vec2 direction = Direction;
 	float length = glm::length(direction);
@@ -199,12 +199,12 @@ void Camera3D::RotateWithMouse(glm::vec2 Direction)
 	}
 }
 
-void Camera3D::UpdateView()
+void cam::UpdateView()
 {
 	m_View = glm::lookAt(m_Position, m_Target, m_Up);
 }
 
-void Camera3D::UpdateVectors()
+void cam::UpdateVectors()
 {
 	float cosTheta = glm::cos(glm::radians(m_Theta));
 	float sinTheta = glm::sin(glm::radians(m_Theta));
@@ -228,9 +228,9 @@ void Camera3D::UpdateVectors()
 	m_Up = glm::normalize(m_Up);
 }
 
-Camera3D& Camera3D::GetInstanced()
+cam& cam::GetInstanced()
 {
-	static Camera3D camera;
+	static cam camera;
 
 	return camera;
 }

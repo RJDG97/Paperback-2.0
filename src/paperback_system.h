@@ -301,6 +301,10 @@ namespace paperback::system
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;
 
+		template < concepts::Callable_Void T_FUNCTION >
+        void ForEach( const std::vector<paperback::u32>& NeighbourList
+					, T_FUNCTION&& Function ) noexcept;
+
         template < concepts::Callable_Bool T_FUNCTION >
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;

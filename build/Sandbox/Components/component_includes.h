@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "Sound.h"
 #include "Mesh.h"
+#include "UI.h"
 #include "Text.h"
 #include "Scale.h"
 #include "Rotation.h"
@@ -47,6 +48,8 @@
 #include "CapturePoint.h"
 #include "SpawnerDetails.h"
 #include "Icon.h"
+#include "Camera.h"
+#include "PlayerController.h"
 
 // shapes
 #include "AABB.h"

@@ -8,52 +8,52 @@ namespace MONO_CAMERA
 
 	MONO_EXPORT void MoveForward()
 	{
-		Camera3D::GetInstanced().MoveForward();
+		cam::GetInstanced().MoveForward();
 	}
 
 	MONO_EXPORT void MoveBackward()
 	{
-		Camera3D::GetInstanced().MoveBackward();
+		cam::GetInstanced().MoveBackward();
 	}
 
 	MONO_EXPORT void MoveLeft()
 	{
-		Camera3D::GetInstanced().MoveLeft();
+		cam::GetInstanced().MoveLeft();
 	}
 
 	MONO_EXPORT void MoveRight()
 	{
-		Camera3D::GetInstanced().MoveRight();
+		cam::GetInstanced().MoveRight();
 	}
 
 	MONO_EXPORT void MoveUp()
 	{
-		Camera3D::GetInstanced().MoveUp();
+		cam::GetInstanced().MoveUp();
 	}
 
 	MONO_EXPORT void MoveDown()
 	{
-		Camera3D::GetInstanced().MoveDown();
+		cam::GetInstanced().MoveDown();
 	}
 
 	MONO_EXPORT void RotateUp()
 	{
-		Camera3D::GetInstanced().RotateUp();
+		cam::GetInstanced().RotateUp();
 	}
 
 	MONO_EXPORT void RotateDown()
 	{
-		Camera3D::GetInstanced().RotateDown();
+		cam::GetInstanced().RotateDown();
 	}
 
 	MONO_EXPORT void RotateLeft()
 	{
-		Camera3D::GetInstanced().RotateLeft();
+		cam::GetInstanced().RotateLeft();
 	}
 
 	MONO_EXPORT void RotateRight()
 	{
-		Camera3D::GetInstanced().RotateRight();
+		cam::GetInstanced().RotateRight();
 	}
 
 	void AddInternals()

@@ -8,7 +8,7 @@ struct physics_system : paperback::system::pausable_instance
         .m_pName = "physics_system"
     };
 
-    int DebugTest = 0;
+    tools::query Query;
 
     using query = std::tuple
     <
@@ -54,71 +54,98 @@ struct physics_system : paperback::system::pausable_instance
         return  (Mass > 0) ? Momentum / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
     }
 
-    //test helper function to decelerate on all entities with rigidforce components
-    void NotAccelerating()
-    {
 
-        tools::query Query;
-        Query.m_Must.AddFromComponents<transform, rigidbody, rigidforce>();
 
-        ForEach(Search(Query), [&](paperback::component::entity& Entity, transform& Xform, rigidbody& RB, rigidforce& RF) noexcept
-            {
-                assert(Entity.IsZombie() == false);
-            });
-    }
+    PPB_FORCEINLINE
+	void OnSystemCreated(void) noexcept
+	{
+		Query.m_Must.AddFromComponents<transform, entity, rigidforce>();
+		Query.m_OneOf.AddFromComponents<boundingbox, mass, rigidbody>();
+        Query.m_OneOf.AddFromComponents<name, child, offset>();
+		Query.m_NoneOf.AddFromComponents<prefab>();
+	}
 
-    // map check collision out of bounds check
-    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce, mass* Mass, offset* Offset, child* Child) noexcept
-    {
-        if ( RigidForce )
-        {
+    PPB_INLINE
+	void OnStateChange( void ) noexcept
+	{
+	}
+
+    PPB_FORCEINLINE
+	void Update( void ) noexcept
+	{
+		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset ) noexcept
+		{
             //// Apply Gravity If Non-Static
             //if ( !RigidForce->m_isStatic && Mass )
             //    RigidForce->m_Momentum.y += -9.8f * Mass->m_Mass * DeltaTime();
 
             // minimum value threshold
-            RigidForce->m_Forces.CutoffValue(RigidForce->m_minthreshold);
-            RigidForce->m_Momentum.CutoffValue(RigidForce->m_minthreshold);
+            RigidForce.m_Forces.CutoffValue(RigidForce.m_minthreshold);
+            RigidForce.m_Momentum.CutoffValue(RigidForce.m_minthreshold);
 
             // momentum && accel only
-            if (!RigidForce->m_Momentum.IsZero() && !RigidForce->m_Forces.IsZero())
+            if (!RigidForce.m_Momentum.IsZero() && !RigidForce.m_Forces.IsZero())
             {
                 // friction in action, reduces momentum
-                RigidForce->m_Momentum.DecrementValue(
-                    RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
+                RigidForce.m_Momentum.DecrementValue(
+                    RigidForce.m_dynamicFriction * m_Coordinator.DeltaTime());
 
                 // accumulate momentum
-                RigidForce->m_Momentum += (RigidForce->m_Forces * m_Coordinator.DeltaTime());
+                RigidForce.m_Momentum += ( RigidForce.m_Forces * m_Coordinator.DeltaTime() );
 
                 // friction in action, reduces acceleration
-                RigidForce->m_Forces.DecrementValue(
-                    RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
+                RigidForce.m_Forces.DecrementValue(
+                    RigidForce.m_dynamicFriction * m_Coordinator.DeltaTime());
             }
             // momentum only
-            else if (RigidForce->m_Forces.IsZero())
+            else if (RigidForce.m_Forces.IsZero())
             {
                 // friction in action, reduces momentum
-                RigidForce->m_Momentum.DecrementValue(
-                    RigidForce->m_dynamicFriction * m_Coordinator.DeltaTime());
+                RigidForce.m_Momentum.DecrementValue(
+                    RigidForce.m_dynamicFriction * m_Coordinator.DeltaTime());
             }
 
             // accumulate result into rigidbody and update position
-            if (RigidBody && Mass)
+            if ( RigidBody && Mass )
             {
                 if (Child && Offset)
                 {
-                    RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce->m_Forces);
-                    RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce->m_Momentum);
+                    // Save Old Position For Grid Update
+                    auto OldPosition = Offset->m_PosOffset;
+
+                    RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
+                    RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
                     Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+
+                    // Update Hash Grid - On Position Update
+                    m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
+                                            , OldPosition
+                                            , Offset->m_PosOffset
+                                            , Box->Min
+                                            , Box->Max );
                 }
 
                 else
                 {
-                    RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce->m_Forces);
-                    RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce->m_Momentum);
+                    // Save Old Position For Grid Update
+                    auto OldPosition = Transform.m_Position;
+
+                    RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
+                    RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
                     Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+
+                    // Update Hash Grid - On Position Update
+                    if ( Box )
+                    {  
+                        m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
+                                                , OldPosition
+                                                , Transform.m_Position
+                                                , Box->Min
+                                                , Box->Max );
+                    }
                 }
+                
             }
-        }
-    }
+        });
+	}
 };

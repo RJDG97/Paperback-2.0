@@ -38,6 +38,9 @@ namespace tools
         PPB_INLINE
         bool Compare( const bits& Query ) const noexcept;
 
+        PPB_INLINE
+        bool OneOf( const bits& Query ) const noexcept;
+
         //-----------------------------------
         //            Generate
         //-----------------------------------

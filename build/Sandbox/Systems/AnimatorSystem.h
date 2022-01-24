@@ -86,12 +86,12 @@ struct animator_system : paperback::system::pausable_instance
 			global_transformation = parent_transform * bone->Update(ator.m_CurrentTime);
 		}
 
-		auto bone_info_map{ current_anim.GetBoneIDMap() };
+		auto bone_info_map = current_anim.FindBoneIDMap();
 
-		if (bone_info_map.find(node->name) != bone_info_map.end())
+		if (bone_info_map->find(node->name) != bone_info_map->end())
 		{
-			int index{ bone_info_map[node->name].id };
-			glm::mat4 offset{ bone_info_map[node->name].offset };
+			int index{ (*bone_info_map)[node->name].id };
+			glm::mat4 offset{ (*bone_info_map)[node->name].offset };
 
 			glm::mat4 transform{};
 

@@ -85,6 +85,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Camera\Camera.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Font\Font.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -158,8 +162,10 @@
     <ClInclude Include="..\..\src\Details\paperback_cppscript_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_event_mgr_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_hash_grid_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_input_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_logger_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_nbitset_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_pool_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_statemgr_inline.h" />
@@ -187,6 +193,7 @@
     <ClInclude Include="..\..\src\Editor\Panels\Viewport_Inline.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
+    <ClInclude Include="..\..\src\Functionality\Camera\Camera.h" />
     <ClInclude Include="..\..\src\Functionality\Font\Font.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
@@ -196,6 +203,19 @@
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />
     <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h" />
+    <ClInclude Include="..\..\src\Input\Details\paperback_input_action_inline.h" />
+    <ClInclude Include="..\..\src\Input\Details\paperback_input_binding_inline.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_device_includes.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_gamepad.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_keyboard.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_mouse.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_action.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_binding.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_controller.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_gamepad_state.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_input_state_includes.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_keyboard_state.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_mouse_state.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h" />
     <ClInclude Include="..\..\src\Json\paperback_json.h" />
@@ -226,8 +246,10 @@
     <ClInclude Include="..\..\src\paperback_data_reflections.h" />
     <ClInclude Include="..\..\src\paperback_event.h" />
     <ClInclude Include="..\..\src\paperback_event_mgr.h" />
+    <ClInclude Include="..\..\src\paperback_hash_grid.h" />
     <ClInclude Include="..\..\src\paperback_input.h" />
     <ClInclude Include="..\..\src\paperback_logger.h" />
+    <ClInclude Include="..\..\src\paperback_nbitset.h" />
     <ClInclude Include="..\..\src\paperback_pool.h" />
     <ClInclude Include="..\..\src\paperback_query.h" />
     <ClInclude Include="..\..\src\paperback_settings.h" />
@@ -268,6 +290,7 @@
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
+    <ClInclude Include="..\Sandbox\InputBindings\binding_includes.h" />
     <ClInclude Include="paperback_pch.h" />
   </ItemGroup>
   <ItemGroup>

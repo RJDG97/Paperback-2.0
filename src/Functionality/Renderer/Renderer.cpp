@@ -421,7 +421,7 @@ void Renderer::SetUpFramebuffer(int Width, int Height)
 	// Create final render buffer 
 	GLuint finalRbo;
 	glCreateRenderbuffers(1, &finalRbo);
-	glNamedRenderbufferStorage(finalRbo, GL_DEPTH_COMPONENT32F, m_Width, m_Height);
+	glNamedRenderbufferStorage(finalRbo, GL_DEPTH_COMPONENT32F, Width, Height);
 	glNamedFramebufferRenderbuffer(finalFbo, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, finalRbo);
 
 	m_FinalBuffer.m_FrameBuffer.push_back(finalFbo);
@@ -558,15 +558,15 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const Camera3D& SceneCamera, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
 
 	glDepthFunc(GL_LEQUAL);
 
-	UIPass(UIs);
-	TextPass(Texts);
+	UIPass(UIs, UICamera);
+	TextPass(Texts, UICamera);
 
 	glDepthFunc(GL_LESS);
 
@@ -578,9 +578,9 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Ren
 	// Bind to lighting frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_LightingBuffer.m_FrameBuffer[0]);
 	// Render objects
-	RenderPass(Objects);	
+	RenderPass(Objects, SceneCamera);
 	// Render skybox
-	SkyBoxRender();
+	SkyBoxRender(SceneCamera);
 
 	// Disable for post processing
 	glDisable(GL_DEPTH_TEST);
@@ -596,7 +596,7 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Ren
 	// Render debug points
 	if (Points)
 	{
-		DebugRender(*Points);
+		DebugRender(*Points, SceneCamera);
 	}
 
 	// Disable for post processing
@@ -614,7 +614,7 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Ren
 	FinalPass();
 }
 
-void Renderer::DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points)
+void Renderer::DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points, const Camera3D& SceneCamera)
 {
 	// Bind shader
 	m_Resources.m_Shaders["Debug"].Use();
@@ -622,7 +622,7 @@ void Renderer::DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points)
 	// Bind vao
 	glBindVertexArray(m_DebugVAO);
 
-	glm::mat4 transform = Camera3D::GetInstanced().GetProjection() * Camera3D::GetInstanced().GetView();
+	glm::mat4 transform = SceneCamera.GetProjection() * SceneCamera.GetView();
 
 	m_Resources.m_Shaders["Debug"].SetUniform("uTransform", transform);
 
@@ -658,7 +658,7 @@ void Renderer::DebugRender(const std::array<std::vector<glm::vec3>, 2>& Points)
 	m_Resources.m_Shaders["Debug"].UnUse();
 }
 
-void Renderer::SkyBoxRender()
+void Renderer::SkyBoxRender(const Camera3D& SceneCamera)
 {
 	// Bind shader
 	m_Resources.m_Shaders["Skybox"].Use();
@@ -668,8 +668,8 @@ void Renderer::SkyBoxRender()
 
 	glDepthFunc(GL_LEQUAL);
 
-	glm::mat4 view = glm::mat4(glm::mat3(Camera3D::GetInstanced().GetView()));
-	glm::mat4 projection = Camera3D::GetInstanced().GetProjection();
+	glm::mat4 view = glm::mat4(glm::mat3(SceneCamera.GetView()));
+	glm::mat4 projection = SceneCamera.GetProjection();
 
 	m_Resources.m_Shaders["Skybox"].SetUniform("uView", const_cast<glm::mat4&>(view));
 	m_Resources.m_Shaders["Skybox"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
@@ -691,7 +691,7 @@ void Renderer::SkyBoxRender()
 	m_Resources.m_Shaders["Skybox"].UnUse();
 }
 
-void Renderer::UIPass(const std::map<float, std::vector<UIInfo>>& UIs)
+void Renderer::UIPass(const std::map<float, std::vector<UIInfo>>& UIs, const Camera2D& UICamera)
 {
 	// Clear depth and color buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -706,6 +706,12 @@ void Renderer::UIPass(const std::map<float, std::vector<UIInfo>>& UIs)
 	const auto& quad = m_Resources.m_Models["Quad"];
 	glVertexArrayVertexBuffer(m_VAO, 0, quad.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
 	glVertexArrayElementBuffer(m_VAO, quad.GetSubMeshes()[0].m_EBO);
+
+	auto view = UICamera.GetView();
+	auto projection = UICamera.GetProjection();
+
+	m_Resources.m_Shaders["UI"].SetUniform("uView", const_cast<glm::mat4&>(view));
+	m_Resources.m_Shaders["UI"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
 
 	for (const auto& order : UIs)
 	{
@@ -747,7 +753,7 @@ void Renderer::UIPass(const std::map<float, std::vector<UIInfo>>& UIs)
 	m_Resources.m_Shaders["UI"].UnUse();
 }
 
-void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts)
+void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera)
 {
 	// Bind shader
 	RenderResourceManager::GetInstanced().m_Shaders["Text"].Use();
@@ -764,6 +770,12 @@ void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<T
 	glNamedBufferStorage(ebo, sizeof(GLushort) * index.size(), reinterpret_cast<GLvoid*>(index.data()), GL_DYNAMIC_STORAGE_BIT);
 
 	glVertexArrayElementBuffer(m_VAO, ebo);
+
+	auto view = UICamera.GetView();
+	auto projection = UICamera.GetProjection();
+
+	m_Resources.m_Shaders["Text"].SetUniform("uView", const_cast<glm::mat4&>(view));
+	m_Resources.m_Shaders["Text"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
 
 	glm::vec2 uv0{ 0.f, 1.f };
 	glm::vec2 uv1{ 0.f, 0.f };
@@ -909,7 +921,7 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 	glCullFace(GL_BACK);
 }
 
-void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
+void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera)
 {
 	// Change to fit window size
 	glViewport(0, 0, m_Width, m_Height);
@@ -923,9 +935,9 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 	// Bind vao
 	glBindVertexArray(m_VAO);
 
-	glm::mat4 view = Camera3D::GetInstanced().GetView();
-	glm::mat4 projection = Camera3D::GetInstanced().GetProjection();
-	glm::vec3 position = Camera3D::GetInstanced().GetPosition();
+	glm::mat4 view = SceneCamera.GetView();
+	glm::mat4 projection = SceneCamera.GetProjection();
+	glm::vec3 position = SceneCamera.GetPosition();
 
 	m_Resources.m_Shaders["Light"].SetUniform("uView", const_cast<glm::mat4&>(view));
 	m_Resources.m_Shaders["Light"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));

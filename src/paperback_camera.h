@@ -1,12 +1,10 @@
-#ifndef CAMERA_H
-#define CAMERA_H
-
+#pragma once
 #include "glm/inc/glm.hpp"
 
-class Camera3D
+class cam
 {
 public:
-	~Camera3D() = default;
+	~cam() = default;
 
 	glm::vec3 GetForwardVector() const;
 
@@ -31,12 +29,12 @@ public:
 
 	void RotateWithMouse(glm::vec2 Direction);
 
-	static Camera3D& GetInstanced();
-	Camera3D(const Camera3D&) = delete;
-	Camera3D& operator=(const Camera3D&) = delete;
+	static cam& GetInstanced();
+	cam(const cam&) = delete;
+	cam& operator=(const cam&) = delete;
 
 private:
-	Camera3D();
+	cam();
 	
 	void UpdateView();
 	void UpdateVectors();
@@ -54,5 +52,3 @@ private:
 	float m_Theta;
 	float m_Azimuth;
 };
-
-#endif

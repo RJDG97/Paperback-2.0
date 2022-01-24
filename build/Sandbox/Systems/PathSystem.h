@@ -39,8 +39,8 @@ struct path_system : paperback::system::pausable_instance
 		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation>();
 		Query_Units.m_NoneOf.AddFromComponents<prefab>();
 
-		RegisterGlobalEventClass<Input::MousePressed>(this);
-		RegisterGlobalEventClass<Input::MouseClicked>(this);
+		RegisterGlobalEventClass<paperback::input::manager::MousePressed>(this);
+		RegisterGlobalEventClass<paperback::input::manager::MouseClicked>(this);
 	}
 
 	PPB_INLINE
@@ -203,7 +203,7 @@ struct path_system : paperback::system::pausable_instance
 			}
 
 			int lane{-1};
-			glm::vec3 CamPos{ Camera3D::GetInstanced().GetPosition() };
+			glm::vec3 CamPos{ cam::GetInstanced().GetPosition() };
 			glm::vec3 RayDir{ PPB.GetMousePosition() };
 
 			for (auto lane_box : lane_boxes)

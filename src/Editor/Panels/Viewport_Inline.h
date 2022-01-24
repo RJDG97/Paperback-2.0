@@ -150,7 +150,7 @@ void EditorViewport::MouseSelection()
 								Max.x += ImGui::GetWindowPos().x;
 								Max.y += ImGui::GetWindowPos().y;
 
-								CamPos = Camera3D::GetInstanced().GetPosition();
+								CamPos = cam::GetInstanced().GetPosition();
 								RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y - 70.0f }, { Max.x, Max.y - 70.0f });
 
 								if (RayDir == glm::vec3{})
@@ -198,8 +198,8 @@ void EditorViewport::Gizmo()
 			glm::vec3 Trans, Rot, Scale;
 
 			//Camera
-			glm::mat4 CameraView = Camera3D::GetInstanced().GetView();
-			glm::mat4 CameraProjection = Camera3D::GetInstanced().GetProjection();
+			glm::mat4 CameraView = cam::GetInstanced().GetView();
+			glm::mat4 CameraProjection = cam::GetInstanced().GetProjection();
 
 			model = glm::translate(model, glm::vec3(Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).x, Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).y, Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).z));
 
@@ -226,8 +226,8 @@ void EditorViewport::ComposeTransform()
 	glm::vec3 Trans, Rot, Scale;
 
 	//Camera
-	glm::mat4 CameraView = Camera3D::GetInstanced().GetView();
-	glm::mat4 CameraProjection = Camera3D::GetInstanced().GetProjection();
+	glm::mat4 CameraView = cam::GetInstanced().GetView();
+	glm::mat4 CameraProjection = cam::GetInstanced().GetProjection();
 
 	auto EntityDetails = paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second });
 

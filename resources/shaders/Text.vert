@@ -10,9 +10,11 @@ uniform float uImageSize;
 uniform vec2 uAtlasPosition;
 uniform vec2 uAtlasSize;
 uniform mat4 uTransform;
+uniform mat4 uView;
+uniform mat4 uProjection;
 
 void main()
 {
 	vUV = (vVertexUV * uAtlasSize + uAtlasPosition) / uImageSize;
-	gl_Position = uTransform * vec4(vVertexPosition, 1.0);
+	gl_Position = uProjection * uView * uTransform * vec4(vVertexPosition, 1.0);
 }
