@@ -75,6 +75,30 @@ namespace CSScript
             }
         }
 
+        public Int32 m_PauseAtFrame
+        {
+            get
+            {
+                return getpauseatframe(m_Address);
+            }
+            set
+            {
+                setpauseatframe(m_Address, value);
+            }
+        }
+
+        public bool m_Reversed
+        {
+            get
+            {
+                return getreversed(m_Address);
+            }
+            set
+            {
+                setreversed(m_Address, value);
+            }
+        }
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
@@ -104,5 +128,17 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void setpauseanimation(void* address, bool pause_animation);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static Int32 getpauseatframe(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void setpauseatframe(void* address, Int32 pause_animation);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static bool getreversed(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void setreversed(void* address, bool reversed);
     }
 }

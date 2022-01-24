@@ -128,47 +128,71 @@ public:
 
     }
 
-    glm::mat4 Update(float current_time)
+    glm::mat4 Update(float current_time, int pause_at_frame)
     {
-        glm::mat4 translation{ InterpolatePosition(current_time) };
-        glm::mat4 rotation{ InterpolateRotation(current_time) };
-        glm::mat4 scale{ InterpolateScaling(current_time) };
+        glm::mat4 translation{ InterpolatePosition(current_time, pause_at_frame) };
+        glm::mat4 rotation{ InterpolateRotation(current_time, pause_at_frame) };
+        glm::mat4 scale{ InterpolateScaling(current_time, pause_at_frame) };
         return translation * rotation * scale;
     }
 
-    int GetPositionIndex(float animationTime)
+    int GetPositionIndex(float animationTime, int pause_at_frame)
     {
         for (int index = 0; index < m_Positions.size() - 1; ++index)
         {
             if (animationTime < m_Positions[index + 1].m_TimeStamp)
             {
-                return index;
+                if (index != -1 && index > pause_at_frame)
+                {
+                    return pause_at_frame;
+                }
+
+                else
+                {
+                    return index;
+                }
             }
         }
 
         return 0;
     }
 
-    int GetRotationIndex(float animationTime)
+    int GetRotationIndex(float animationTime, pause_at_frame)
     {
         for (int index = 0; index < m_Rotations.size() - 1; ++index)
         {
             if (animationTime < m_Rotations[index + 1].m_TimeStamp)
             {
-                return index;
+                if (index != -1 && index > pause_at_frame)
+                {
+                    return pause_at_frame;
+                }
+
+                else
+                {
+                    return index;
+                }
             }
         }
 
         return 0;
     }
 
-    int GetScaleIndex(float animationTime)
+    int GetScaleIndex(float animationTime, pause_at_frame)
     {
         for (int index = 0; index < m_Scales.size() - 1; ++index)
         {
             if (animationTime < m_Scales[index + 1].m_TimeStamp)
             {
-                return index;
+                if (index != -1 && index > pause_at_frame)
+                {
+                    return pause_at_frame;
+                }
+
+                else
+                {
+                    return index;
+                }
             }
         }
 

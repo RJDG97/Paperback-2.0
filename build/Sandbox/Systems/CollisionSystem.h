@@ -22,11 +22,13 @@ struct collision_system : paperback::system::pausable_instance
 
 
     tools::query SphereColliderQuery;
+    scripting_system* scripting_sys;
 
 
     PPB_FORCEINLINE
 	void OnSystemCreated( void ) noexcept
 	{
+        scripting_sys = GetSystem<scripting_system>();
 		SphereColliderQuery.m_Must.AddFromComponents < transform, sphere, rigidforce >();
         SphereColliderQuery.m_OneOf.AddFromComponents< mass >();
         SphereColliderQuery.m_NoneOf.AddFromComponents< prefab >();
@@ -71,11 +73,23 @@ struct collision_system : paperback::system::pausable_instance
                             {
                                 // Current Entity is NOT Colliding with Other Entity
                                 if (!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) {
-                                    BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, RigidForce, *RF, SkipUnit);
+                                    
+                                    for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+                                    {
+                                        to_update.second->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
+                                    }
+
+                                    //BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, RigidForce, *RF, SkipUnit);
                                 }
                                 // Current Entity is ALREADY Colliding with Other Entity
                                 else
-                                    BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
+                                {
+                                    for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+                                    {
+                                        to_update.second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
+                                    }
+                                }
+                                    //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
                 
                                 // Collision Response
                                 if ( !SkipUnit )
@@ -94,7 +108,11 @@ struct collision_system : paperback::system::pausable_instance
 
             if ( NotCollided && Boundingbox )
             {
-                BroadcastGlobalEvent<OnCollisionExit>(Entity, RigidForce, SkipUnit);
+                for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+                {
+                    to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
+                }
+                //BroadcastGlobalEvent<OnCollisionExit>(Entity, RigidForce, SkipUnit);
             }
         }
         else if ( Sphere )

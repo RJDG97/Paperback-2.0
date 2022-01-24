@@ -15,18 +15,18 @@ struct animator_system : paperback::system::pausable_instance
 	};
 
 	PPB_FORCEINLINE
-	void OnSystemCreated(void) noexcept
+		void OnSystemCreated(void) noexcept
 	{
 		m_Resources = &RenderResourceManager::GetInstanced();
 	}
 
 	PPB_FORCEINLINE
-	void PreUpdate(void) noexcept
+		void PreUpdate(void) noexcept
 	{
 	}
 
 	PPB_FORCEINLINE
-	void Update(void) noexcept
+		void Update(void) noexcept
 	{
 		tools::query Query;
 		Query.m_Must.AddFromComponents<animator, mesh>();
@@ -34,9 +34,9 @@ struct animator_system : paperback::system::pausable_instance
 		Query.m_NoneOf.AddFromComponents<prefab>();
 
 		ForEach(Search(Query), [&](animator& Ator, mesh& Model, parent* Parent) noexcept
-		{
-			UpdateAnimator(Ator, Model, Parent);
-		});
+			{
+				UpdateAnimator(Ator, Model, Parent);
+			});
 	}
 
 	void UpdateAnimator(animator& Ator, mesh& Model, parent* Parent)
@@ -49,15 +49,28 @@ struct animator_system : paperback::system::pausable_instance
 			{
 				auto& current_anim{ anims[Ator.m_CurrentAnimationName] };
 
-				Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
-
-				// if it is the end of the animation
-				if (Ator.m_CurrentTime >= current_anim.GetDuration())
+				if (Ator.m_Reversed)
 				{
-					Ator.m_FinishedAnimating = true;
+					Ator.m_CurrentTime -= current_anim.GetTicksPerSecond() * DeltaTime();
 				}
 
-				Ator.m_CurrentTime = fmod(Ator.m_CurrentTime, current_anim.GetDuration());
+				else
+				{
+					Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
+				}
+
+				// if it is the end of the animation
+				if (!Ator.m_Reversed && Ator.m_CurrentTime >= current_anim.GetDuration())
+				{
+					Ator.m_CurrentTime = fmod(Ator.m_CurrentTime, current_anim.GetDuration());
+				}
+
+				else if (Ator.m_Reversed && Ator.m_CurrentTime < 0.0f))
+				{
+					Ator.m_CurrentTime = current_anim.GetDuration();
+				}
+
+				Ator.m_FinishedAnimating = true;
 
 				std::vector<std::tuple<socketed*, animator*, mesh*, parent*>> children_data;
 
@@ -83,7 +96,7 @@ struct animator_system : paperback::system::pausable_instance
 	
 		if (bone)
 		{
-			global_transformation = parent_transform * bone->Update(ator.m_CurrentTime);
+			global_transformation = parent_transform * bone->Update(ator.m_CurrentTime, ator.m_PauseAtFrame);
 		}
 
 		auto bone_info_map = current_anim.FindBoneIDMap();
