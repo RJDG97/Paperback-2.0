@@ -10,5 +10,9 @@ namespace CSScript
         void Start(UInt32 ID);
         void Update(float dt);
         void Destroy();
+
+        void OnCollisionEnter(UInt32 ID);
+        void OnCollisionStay(UInt32 ID);
+        void OnCollisionExit(UInt32 ID);
     }
 }
