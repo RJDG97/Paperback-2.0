@@ -130,6 +130,67 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("RedPaperIcon", "../../resources/models/nui/RedPaperIcon.nui");
 	m_Resources.Load3DMeshNUI("RedRockIcon", "../../resources/models/nui/RedRockIcon.nui");
 	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
+	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
+
+	m_Resources.Load3DMeshNUI("RectangleBlock_Yellow", "../../resources/models/nui/RectangleBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("RectangleBlock_Red", "../../resources/models/nui/RectangleBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("RectangleBlock_Blue", "../../resources/models/nui/RectangleBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("RectangleBlock_Green", "../../resources/models/nui/RectangleBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("RectangleBlock_Wood", "../../resources/models/nui/RectangleBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Yellow", "../../resources/models/nui/FlatRectangleBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Red", "../../resources/models/nui/FlatRectangleBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Blue", "../../resources/models/nui/FlatRectangleBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Green", "../../resources/models/nui/FlatRectangleBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Wood", "../../resources/models/nui/FlatRectangleBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("SquareBlock_Yellow", "../../resources/models/nui/SquareBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("SquareBlock_Red", "../../resources/models/nui/SquareBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("SquareBlock_Blue", "../../resources/models/nui/SquareBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("SquareBlock_Green", "../../resources/models/nui/SquareBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("SquareBlock_Wood", "../../resources/models/nui/SquareBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("TriangleBlock_Yellow", "../../resources/models/nui/TriangleBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("TriangleBlock_Red", "../../resources/models/nui/TriangleBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("TriangleBlock_Blue", "../../resources/models/nui/TriangleBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("TriangleBlock_Green", "../../resources/models/nui/TriangleBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("TriangleBlock_Wood", "../../resources/models/nui/TriangleBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("BridgeBlock_Yellow", "../../resources/models/nui/BridgeBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("BridgeBlock_Red", "../../resources/models/nui/BridgeBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("BridgeBlock_Blue", "../../resources/models/nui/BridgeBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("BridgeBlock_Green", "../../resources/models/nui/BridgeBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("BridgeBlock_Wood", "../../resources/models/nui/BridgeBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("ConeBlock_Yellow", "../../resources/models/nui/ConeBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("ConeBlock_Red", "../../resources/models/nui/ConeBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("ConeBlock_Blue", "../../resources/models/nui/ConeBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("ConeBlock_Green", "../../resources/models/nui/ConeBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("ConeBlock_Wood", "../../resources/models/nui/ConeBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("CylinderBlock_Yellow", "../../resources/models/nui/CylinderBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("CylinderBlock_Red", "../../resources/models/nui/CylinderBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("CylinderBlock_Blue", "../../resources/models/nui/CylinderBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("CylinderBlock_Green", "../../resources/models/nui/CylinderBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("CylinderBlock_Wood", "../../resources/models/nui/CylinderBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Yellow", "../../resources/models/nui/SemiCircleBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Red", "../../resources/models/nui/SemiCircleBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Blue", "../../resources/models/nui/SemiCircleBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Green", "../../resources/models/nui/SemiCircleBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Wood", "../../resources/models/nui/SemiCircleBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("Ruler", "../../resources/models/nui/Ruler.nui");
+	m_Resources.Load3DMeshNUI("ColourPencilBox", "../../resources/models/nui/ColourPencilBox.nui");
+	m_Resources.Load3DMeshNUI("StrongToy", "../../resources/models/nui/StrongToy.nui");
+	m_Resources.Load3DMeshNUI("JumpToy", "../../resources/models/nui/JumpToy.nui");
+	m_Resources.Load3DMeshNUI("GuardHouse", "../../resources/models/nui/GuardHouse.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
+	//m_Resources.Load3DMeshNUI("CrayonBox", "../../resources/models/nui/RectangleBlock_Wood.nui");
+
+
+
+
 
 	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
 
