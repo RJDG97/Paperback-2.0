@@ -32,10 +32,22 @@ struct scripting_system : paperback::system::pausable_instance
 		m_QueryEntityScripts.m_NoneOf.AddFromComponents<prefab>();
 	}
 
-	/*void OnPause(void) noexcept
+	void OnPause(const bool&) noexcept
 	{
 		scriptlist.clear();
-	}*/
+
+		// Run each entity with the entity script component
+		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		{
+			// check for an instance of this entity's script
+			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+
+			if (entry_found == scriptlist.end()) {
+
+				AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+			}
+		});
+	}
 
 	void Update(void) noexcept
 	{
@@ -64,7 +76,7 @@ struct scripting_system : paperback::system::pausable_instance
 		});
 
 		//destroy all scripts and remove all entries that are no longer updated
-		std::map<uint32_t, ScriptsInfo>::iterator to_remove{};
+		std::map<uint32_t, ScriptsInfo>::iterator to_remove{ scriptlist.end() };
 
 		for (auto entry = scriptlist.begin() ; entry != scriptlist.end() ; ++entry)
 		{
@@ -85,7 +97,7 @@ struct scripting_system : paperback::system::pausable_instance
 		}
 	}
 
-	void AddScript(uint32_t entity_id, std::vector<std::string> script_ids)
+	void AddScript(uint32_t entity_id, std::vector<entityscript::ScriptID> script_ids)
 	{
 		ScriptsInfo new_info{};
 
@@ -95,9 +107,9 @@ struct scripting_system : paperback::system::pausable_instance
 
 			if (p_script)
 			{
-				p_script->Init(script_id);
+				p_script->Init(script_id.m_ID);
 				p_script->Start(entity_id);
-				new_info.m_Info.push_back({ script_id, std::move(p_script) });
+				new_info.m_Info.push_back({ script_id.m_ID, std::move(p_script) });
 			}
 		}
 

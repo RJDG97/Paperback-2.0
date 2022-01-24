@@ -1,6 +1,7 @@
 #pragma once
 #include "Editor/Panels/PropertyInspector.h"
 #include "../../Functionality/RenderResource/RenderResourceManager.h"
+#include "../../build/Sandbox/Components/EntityScript.h"
 
 void DetailsWindow::Panel()
 {
@@ -116,6 +117,10 @@ void DetailsWindow::DisplayProperties()
                         CardComponent( EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second );
                     if ( ComponentInstance.second == paperback::component::info_v< button >.m_Guid )
                         ButtonComponent( EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second );
+                    if (ComponentInstance.second == paperback::component::info_v< entityscript >.m_Guid)
+                        EntityScriptComponent();
+
+
 
                 }
             }
@@ -729,6 +734,52 @@ void DetailsWindow::DisplayAvailableChildren(paperback::component::entity& Entit
             if (ImGui::Selectable(EntityName.c_str()))
             {
                 m_Imgui.LinkParentChild(Entity, NewParent, NewParentEntity);
+            }
+        }
+    }
+}
+
+void DetailsWindow::EntityScriptComponent()
+{
+    auto EntityScript = m_Imgui.m_SelectedEntity.first->FindComponent<entityscript>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
+    std::string ScriptName{};
+
+
+    if (EntityScript)
+    {
+        char Buffer[256]{};
+
+        std::copy(ScriptName.begin(), ScriptName.end(), Buffer);
+
+        ImGui::Text("Enter a Name to Add a Script: ");
+        ImGui::SetNextItemWidth(150.0f);
+        if (ImGui::InputText("##Enter Script Name", Buffer, sizeof(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+        {
+            entityscript::ScriptID Temp;
+            Temp.m_ID = std::string(Buffer);
+            EntityScript->m_ScriptID.push_back(Temp);
+            EDITOR_INFO_PRINT("Added: " + std::string(Buffer) + " EntityScript");
+        }
+
+
+        ImGui::Text("Remove Script: ");
+
+        if (EntityScript->m_ScriptID.size())
+        {
+
+            if (ImGui::BeginCombo("##AvaliableEntityScripts", "Select the Script to remove"))
+            {
+                for (auto i = 0; i < EntityScript->m_ScriptID.size(); ++i)
+                {
+                    if (ImGui::Selectable(EntityScript->m_ScriptID[i].m_ID.c_str()))
+                    {
+                        EDITOR_INFO_PRINT("Remove: " + EntityScript->m_ScriptID[i].m_ID + " EntityScript");
+                        EntityScript->m_ScriptID.erase(EntityScript->m_ScriptID.begin() + i);
+                    }
+                }
+
+                ImGui::EndCombo();
             }
         }
     }

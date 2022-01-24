@@ -68,7 +68,7 @@ struct physics_system : paperback::system::pausable_instance
     }
 
     // map check collision out of bounds check
-    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce, mass* Mass) noexcept
+    void operator()(paperback::component::entity& Entity, transform& Transform, rigidbody* RigidBody, rigidforce* RigidForce, mass* Mass, offset* Offset, child* Child) noexcept
     {
         if ( RigidForce )
         {
@@ -105,9 +105,19 @@ struct physics_system : paperback::system::pausable_instance
             // accumulate result into rigidbody and update position
             if (RigidBody && Mass)
             {
-                RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce->m_Forces);
-                RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce->m_Momentum);
-                Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+                if (Child && Offset)
+                {
+                    RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce->m_Forces);
+                    RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce->m_Momentum);
+                    Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+                }
+
+                else
+                {
+                    RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce->m_Forces);
+                    RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce->m_Momentum);
+                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+                }
             }
         }
     }
