@@ -35,17 +35,6 @@ namespace CSScript
         }
         public void Update(float dt)
         {
-            if (Input.IsMouseDown(Input.PB_MOUSE_BUTTON_1)) //replace key check with collision check later
-            {
-                m_Sound.m_Trigger = true;
-                //m_ChildBoundingBox - toggle collidable
-                m_ChildAnimator.m_PauseAnimation = false;
-            }
-
-            else
-            {
-                m_ChildAnimator.m_PauseAnimation = true;
-            }
         }
         public void Destroy()
         {
@@ -53,12 +42,22 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            if (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/)
+            {
+                m_Sound.m_Trigger = true;
+                //m_ChildBoundingBox - toggle collidable
+                m_ChildAnimator.m_PauseAnimation = false;
+            }
         }
         public void OnCollisionStay(UInt32 ID)
         {
         }
         public void OnCollisionExit(UInt32 ID)
         {
+            if (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/)
+            {
+                m_ChildAnimator.m_PauseAnimation = true;
+            }
         }
     }
 }

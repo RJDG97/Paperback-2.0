@@ -19,6 +19,8 @@ namespace CSScript
         Transform m_RedRoboTransform;
         Transform m_BlueRoboTransform;
 
+        bool m_Activated;
+
         public static GateSwitch getInst()
         {
             return new GateSwitch();
@@ -45,17 +47,6 @@ namespace CSScript
         }
         public void Update(float dt)
         {
-            if (Input.IsMouseDown(Input.PB_MOUSE_BUTTON_1)) //replace key check with BLUE collision check later
-            {
-                m_Sound.m_Trigger = true;
-                m_RedRoboTransform.m_Position = m_RedCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
-            }
-
-            if (Input.IsMouseDown(Input.PB_MOUSE_BUTTON_2)) //replace key check with RED collision check later
-            {
-                m_Sound.m_Trigger = true;
-                m_BlueRoboTransform.m_Position = m_BlueCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
-            }
         }
         public void Destroy()
         {
@@ -63,6 +54,22 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            if (!m_Activated)
+            {
+                if (ID == Player.GetRedRobotID())
+                {
+                    m_Sound.m_Trigger = true;
+                    m_RedRoboTransform.m_Position = m_BlueCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
+                }
+
+                else if (ID == Player.GetBlueRobotID())
+                {
+                    m_Sound.m_Trigger = true;
+                    m_BlueRoboTransform.m_Position = m_RedCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
+                }
+
+                m_Activated = true;
+            }
         }
         public void OnCollisionStay(UInt32 ID)
         {
