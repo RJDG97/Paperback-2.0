@@ -93,13 +93,17 @@ namespace paperback::input::binding
 
             m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
             {
-                //auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
-                //auto Normalized        = DirectionalVector.Normalized();
-                //Normalized.y           = 0.0f;
+                auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                auto Normalized        = DirectionalVector.Normalized();
+                Normalized.y           = 0.0f;
 
-                //Rotate Vector Left But My Math Sucks
+                float x = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
+                float z = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
 
-                //RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                Normalized.x = x;
+                Normalized.z = z;
+
+                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
             });
 
         END_INPUT_ACTION
@@ -115,13 +119,17 @@ namespace paperback::input::binding
 
             m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
             {
-                //auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
-                //auto Normalized        = DirectionalVector.Normalized();
-                //Normalized.y           = 0.0f;
+                auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                auto Normalized        = DirectionalVector.Normalized();
+                Normalized.y           = 0.0f;
 
-                //Rotate Vector Right But My Math Sucks
+                float x = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
+                float z = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
 
-                //RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                Normalized.x = x;
+                Normalized.z = z;
+
+                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
             });
 
         END_INPUT_ACTION
@@ -137,9 +145,10 @@ namespace paperback::input::binding
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
+            auto DebugSys = m_Coordinator.FindSystem<debug_system>();
             auto GP = m_Coordinator.FindGamepad();
 
-            if ( GP )
+            if ( GP && DebugSys )
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
                 {
@@ -147,9 +156,9 @@ namespace paperback::input::binding
                     auto Normalized        = DirectionalVector.Normalized();
                     Normalized.y           = 0.0f;
 
-                    // Compute New Normalized Vector From Direction - ( GP->m_State.m_LeftAxis )
+                    // some rotation thing
 
-                    //RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
                 });
             }
 
@@ -193,7 +202,7 @@ namespace paperback::input::binding
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
                 {
                     Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed );
-                    Camera.RotateUp( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed );
+                    Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed );
                 });
             }
 
