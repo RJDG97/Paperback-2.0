@@ -7,8 +7,8 @@ namespace MONO_SCALE
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_scale = m_obj.m_pArchetype->GetComponent<scale>(m_obj.m_PoolDetails);
-		return &m_scale;
+		void* m_scale = m_obj.m_pArchetype->FindComponent<scale>(m_obj.m_PoolDetails);
+		return m_scale;
 	}
 
 	MONO_EXPORT paperback::Vector3f GetValue(void* address)

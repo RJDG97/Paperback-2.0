@@ -7,8 +7,8 @@ namespace MONO_TEXT
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_text = m_obj.m_pArchetype->GetComponent<text>(m_obj.m_PoolDetails);
-		return &m_text;
+		void* m_text = m_obj.m_pArchetype->FindComponent<text>(m_obj.m_PoolDetails);
+		return m_text;
 	}
 
 	MONO_EXPORT std::string GetFont(void* address)

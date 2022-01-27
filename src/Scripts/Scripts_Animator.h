@@ -7,8 +7,8 @@ namespace MONO_ANIMATOR
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_animator = m_obj.m_pArchetype->GetComponent<animator>(m_obj.m_PoolDetails);
-		return &m_animator;
+		void* m_animator = m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails);
+		return m_animator;
 	}
 
 	MONO_EXPORT std::string GetCurrentAnimationName(void* address)
@@ -19,10 +19,10 @@ namespace MONO_ANIMATOR
 		return {};
 	}
 
-	MONO_EXPORT void SetCurrentAnimationName(void* address, std::string new_name)
+	MONO_EXPORT void SetCurrentAnimationName(void* address, MonoString* new_name)
 	{
 		if (address)
-			reinterpret_cast<animator*>(address)->m_CurrentAnimationName = new_name;
+			reinterpret_cast<animator*>(address)->m_CurrentAnimationName = mono_string_to_utf8(new_name);
 	}
 
 	MONO_EXPORT float GetCurrentAnimationTime(void* address)

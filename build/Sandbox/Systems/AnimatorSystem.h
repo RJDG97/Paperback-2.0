@@ -15,18 +15,18 @@ struct animator_system : paperback::system::pausable_instance
 	};
 
 	PPB_FORCEINLINE
-		void OnSystemCreated(void) noexcept
+	void OnSystemCreated(void) noexcept
 	{
 		m_Resources = &RenderResourceManager::GetInstanced();
 	}
 
 	PPB_FORCEINLINE
-		void PreUpdate(void) noexcept
+	void PreUpdate(void) noexcept
 	{
 	}
 
 	PPB_FORCEINLINE
-		void Update(void) noexcept
+	void Update(void) noexcept
 	{
 		tools::query Query;
 		Query.m_Must.AddFromComponents<animator, mesh>();
@@ -34,9 +34,9 @@ struct animator_system : paperback::system::pausable_instance
 		Query.m_NoneOf.AddFromComponents<prefab>();
 
 		ForEach(Search(Query), [&](animator& Ator, mesh& Model, parent* Parent) noexcept
-			{
-				UpdateAnimator(Ator, Model, Parent);
-			});
+		{
+			UpdateAnimator(Ator, Model, Parent);
+		});
 	}
 
 	void UpdateAnimator(animator& Ator, mesh& Model, parent* Parent)
@@ -65,7 +65,7 @@ struct animator_system : paperback::system::pausable_instance
 					Ator.m_CurrentTime = fmod(Ator.m_CurrentTime, current_anim.GetDuration());
 				}
 
-				else if (Ator.m_Reversed && Ator.m_CurrentTime < 0.0f))
+				else if (Ator.m_Reversed && Ator.m_CurrentTime < 0.0f)
 				{
 					Ator.m_CurrentTime = current_anim.GetDuration();
 				}

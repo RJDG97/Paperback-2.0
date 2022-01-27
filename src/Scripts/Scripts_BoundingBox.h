@@ -7,8 +7,8 @@ namespace MONO_BOUNDINGBOX
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_boundingbox = m_obj.m_pArchetype->GetComponent<boundingbox>(m_obj.m_PoolDetails);
-		return &m_boundingbox;
+		void* m_boundingbox = m_obj.m_pArchetype->FindComponent<boundingbox>(m_obj.m_PoolDetails);
+		return m_boundingbox;
 	}
 
 	MONO_EXPORT paperback::Vector3f GetMin(void* address)

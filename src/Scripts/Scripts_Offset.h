@@ -7,8 +7,8 @@ namespace MONO_OFFSET
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_offset = m_obj.m_pArchetype->GetComponent<offset>(m_obj.m_PoolDetails);
-		return &m_offset;
+		void* m_offset = m_obj.m_pArchetype->FindComponent<offset>(m_obj.m_PoolDetails);
+		return m_offset;
 	}
 
 	MONO_EXPORT paperback::Vector3f GetPosOffset(void* address)

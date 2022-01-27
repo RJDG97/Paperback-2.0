@@ -32,13 +32,13 @@ namespace CSScript
             m_Sound = new Sound(m_ID);
             m_Parent = new Parent(m_ID);
 
-            UInt32 m_RedID = m_Parent.GetChildIDofName("Red Checkpoint");
-            UInt32 m_BlueID = m_Parent.GetChildIDofName("Red Checkpoint");
+            Int32 m_RedID = m_Parent.GetChildIDofName("Red Checkpoint");
+            Int32 m_BlueID = m_Parent.GetChildIDofName("Red Checkpoint");
 
-            m_RedCPBoundingBox = new BoundingBox(m_RedID);
-            m_BlueCPBoundingBox = new BoundingBox(m_BlueID);
-            m_RedCPTransform = new Transform(m_RedID);
-            m_BlueCPTransform = new Transform(m_BlueID);
+            m_RedCPBoundingBox = new BoundingBox((UInt32)m_RedID);
+            m_BlueCPBoundingBox = new BoundingBox((UInt32)m_BlueID);
+            m_RedCPTransform = new Transform((UInt32)m_RedID);
+            m_BlueCPTransform = new Transform((UInt32)m_BlueID);
 
             m_RedRoboTransform = new Transform(Player.GetRedRobotID());
             m_BlueRoboTransform = new Transform(Player.GetBlueRobotID());

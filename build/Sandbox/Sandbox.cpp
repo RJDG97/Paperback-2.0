@@ -128,9 +128,9 @@ void InitializeGame()
     {
         PPB.RegisterSystems<
             physics_system
+        , scripting_system
         ,   collision_system
         ,   sound_system
-        ,   scripting_system
         ,   window_system
         ,   debug_system
         ,   ui_system

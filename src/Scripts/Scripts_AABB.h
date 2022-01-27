@@ -7,8 +7,8 @@ namespace MONO_AABB
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_aabb = m_obj.m_pArchetype->GetComponent<aabb>(m_obj.m_PoolDetails);
-		return &m_aabb;
+		void* m_aabb = m_obj.m_pArchetype->FindComponent<aabb>(m_obj.m_PoolDetails);
+		return m_aabb;
 	}
 
 	MONO_EXPORT bool GetCollided(void* address)

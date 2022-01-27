@@ -7,8 +7,8 @@ namespace MONO_MASS
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_mass = m_obj.m_pArchetype->GetComponent<mass>(m_obj.m_PoolDetails);
-		return &m_mass;
+		void* m_mass = m_obj.m_pArchetype->FindComponent<mass>(m_obj.m_PoolDetails);
+		return m_mass;
 	}
 
 	MONO_EXPORT float GetMass(void* address)

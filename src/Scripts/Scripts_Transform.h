@@ -7,8 +7,8 @@ namespace MONO_TRANSFORM
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_transform = m_obj.m_pArchetype->GetComponent<transform>(m_obj.m_PoolDetails);
-		return &m_transform;
+		void* m_transform = m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails);
+		return m_transform;
 	}
 
 	MONO_EXPORT paperback::Vector3f GetOffset(void* address)

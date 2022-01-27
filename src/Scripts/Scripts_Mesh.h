@@ -7,22 +7,22 @@ namespace MONO_MESH
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_mesh = m_obj.m_pArchetype->GetComponent<mesh>(m_obj.m_PoolDetails);
-		return &m_mesh;
+		void* m_mesh = m_obj.m_pArchetype->FindComponent<mesh>(m_obj.m_PoolDetails);
+		return m_mesh;
 	}
 
-	MONO_EXPORT std::string GetModel(void* address)
+	MONO_EXPORT MonoString* GetModel(void* address)
 	{
 		if (address)
-			return reinterpret_cast<mesh*>(address)->m_Model;
+			return mono_string_new(mono_domain_get(), reinterpret_cast<mesh*>(address)->m_Model.c_str());
 
 		return {};
 	}
 
-	MONO_EXPORT std::string GetTexture(void* address)
+	MONO_EXPORT MonoString* GetTexture(void* address)
 	{
 		if (address)
-			return reinterpret_cast<mesh*>(address)->m_Texture;
+			return mono_string_new(mono_domain_get(), reinterpret_cast<mesh*>(address)->m_Texture.c_str());
 
 		return {};
 	}
@@ -43,16 +43,16 @@ namespace MONO_MESH
 		return {};
 	}
 
-	MONO_EXPORT void SetModel(void* address, std::string model)
+	MONO_EXPORT void SetModel(void* address, MonoString* model)
 	{
 		if (address)
-			reinterpret_cast<mesh*>(address)->m_Model = model;
+			reinterpret_cast<mesh*>(address)->m_Model = mono_string_to_utf8(model);
 	}
 
-	MONO_EXPORT void SetTexture(void* address, std::string texture)
+	MONO_EXPORT void SetTexture(void* address, MonoString* texture)
 	{
 		if (address)
-			reinterpret_cast<mesh*>(address)->m_Texture = texture;
+			reinterpret_cast<mesh*>(address)->m_Texture = mono_string_to_utf8(texture);
 	}
 
 	MONO_EXPORT void SetBias(void* address, int bias)

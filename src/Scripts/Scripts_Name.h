@@ -7,8 +7,8 @@ namespace MONO_NAME
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_name = m_obj.m_pArchetype->GetComponent<name>(m_obj.m_PoolDetails);
-		return &m_name;
+		void* m_name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+		return m_name;
 	}
 
 	MONO_EXPORT std::string GetName(void* address)
@@ -27,8 +27,8 @@ namespace MONO_NAME
 
 	void AddInternalCall()
 	{
-		mono_add_internal_call("CSScript.Mesh::getaddress(uint)", &MONO_NAME::GetAddress);
-		mono_add_internal_call("CSScript.Mesh::getname(void*)", &MONO_NAME::GetName);
-		mono_add_internal_call("CSScript.Mesh::setname(void*,string)", &MONO_NAME::SetName);
+		mono_add_internal_call("CSScript.Name::getaddress(uint)", &MONO_NAME::GetAddress);
+		mono_add_internal_call("CSScript.Name::getname(void*)", &MONO_NAME::GetName);
+		mono_add_internal_call("CSScript.Name::setname(void*,string)", &MONO_NAME::SetName);
 	}
 }

@@ -21,7 +21,14 @@ namespace CSScript
         {
             m_ID = ID;
             m_Parent = new Parent(m_ID);
-            m_ChildPathFollower = new PathFollower(m_Parent.GetChildIDofName("Moving Platform"));
+
+            Int32 m_ChildID = m_Parent.GetChildIDofName("Moving Platform");
+
+            if (m_ChildID != -1)
+            {
+                m_ChildPathFollower = new PathFollower((UInt32)m_ChildID);
+            }
+
             m_ChildPathFollower.m_PauseTravel = true;
         }
         public void Update(float dt)

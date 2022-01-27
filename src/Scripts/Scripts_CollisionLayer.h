@@ -7,8 +7,8 @@ namespace MONO_COLLISIONLAYER
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_collidable = m_obj.m_pArchetype->GetComponent<collidable>(m_obj.m_PoolDetails);
-		return &m_collidable;
+		void* m_collidable = m_obj.m_pArchetype->FindComponent<collidable>(m_obj.m_PoolDetails);
+		return m_collidable;
 	}
 
 	MONO_EXPORT uint8_t GetCollisionLayer(void* address)

@@ -7,8 +7,8 @@ namespace MONO_SOUND
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_sound = m_obj.m_pArchetype->GetComponent<sound>(m_obj.m_PoolDetails);
-		return &m_sound;
+		void* m_sound = m_obj.m_pArchetype->FindComponent<sound>(m_obj.m_PoolDetails);
+		return m_sound;
 	}
 
 	MONO_EXPORT std::string GetSoundID(void* address)

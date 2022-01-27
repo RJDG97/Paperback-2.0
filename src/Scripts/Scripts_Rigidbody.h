@@ -7,8 +7,8 @@ namespace MONO_RIGIDBODY
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_rigidbody = m_obj.m_pArchetype->GetComponent<rigidbody>(m_obj.m_PoolDetails);
-		return &m_rigidbody;
+		void* m_rigidbody = m_obj.m_pArchetype->FindComponent<rigidbody>(m_obj.m_PoolDetails);
+		return m_rigidbody;
 	}
 
 	MONO_EXPORT paperback::Vector3f GetAccel(void* address)

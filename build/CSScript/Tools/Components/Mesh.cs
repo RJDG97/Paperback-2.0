@@ -19,7 +19,7 @@ namespace CSScript
             m_Address = getaddress(id);
         }
 
-        public String m_Model
+        public string m_Model
         {
             get
             {
@@ -31,7 +31,7 @@ namespace CSScript
             }
         }
 
-        public String m_Texture
+        public string m_Texture
         {
             get
             {
@@ -71,16 +71,16 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String getmodel(void* address);
+        private extern static string getmodel(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setmodel(void* address, String model);
+        private extern static void setmodel(void* address, string model);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String gettexture(void* address);
+        private extern static string gettexture(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void settexture(void* address, String texture);
+        private extern static void settexture(void* address, string texture);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static int getbias(void* address);

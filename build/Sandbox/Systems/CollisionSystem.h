@@ -2,6 +2,7 @@
 
 #include "Physics/geometry.h"
 #include "Systems/DebugSystem.h"
+#include "Systems/ScriptingSystem.h"
 #include "Physics/ResolveCollision.h"
 
 struct collision_system : paperback::system::pausable_instance
@@ -28,7 +29,7 @@ struct collision_system : paperback::system::pausable_instance
     PPB_FORCEINLINE
 	void OnSystemCreated( void ) noexcept
 	{
-        scripting_sys = GetSystem<scripting_system>();
+        scripting_sys = &GetSystem<scripting_system>();
 		SphereColliderQuery.m_Must.AddFromComponents < transform, sphere, rigidforce >();
         SphereColliderQuery.m_OneOf.AddFromComponents< mass >();
         SphereColliderQuery.m_NoneOf.AddFromComponents< prefab >();
@@ -102,18 +103,29 @@ struct collision_system : paperback::system::pausable_instance
                 
                             NotCollided = false;
                         }
+
+                        //Current Entity is Colliding with Other Entity in the prev frame
+                        else if (Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
+                        {
+                            for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+                            {
+                                to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
+                            }
+
+                            Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
+                        }
                     }
                 }
             });
 
-            if ( NotCollided && Boundingbox )
-            {
-                for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                {
-                    to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
-                }
-                //BroadcastGlobalEvent<OnCollisionExit>(Entity, RigidForce, SkipUnit);
-            }
+            //if ( NotCollided && Boundingbox )
+            //{
+            //    for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+            //    {
+            //        to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
+            //    }
+            //    //BroadcastGlobalEvent<OnCollisionExit>(Entity, RigidForce, SkipUnit);
+            //}
         }
         else if ( Sphere )
         {

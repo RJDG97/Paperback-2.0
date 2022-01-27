@@ -7,8 +7,8 @@ namespace MONO_PATHFOLLOWER
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_path_follower = m_obj.m_pArchetype->GetComponent<path_follower>(m_obj.m_PoolDetails);
-		return &m_path_follower;
+		void* m_path_follower = m_obj.m_pArchetype->FindComponent<path_follower>(m_obj.m_PoolDetails);
+		return m_path_follower;
 	}
 
 	MONO_EXPORT int GetPathID(void* address)

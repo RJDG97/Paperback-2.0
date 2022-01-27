@@ -19,7 +19,7 @@ namespace CSScript
             m_Address = getaddress(id);
         }
 
-        public String m_CurrentAnimationName
+        public string m_CurrentAnimationName
         {
             get
             {
@@ -103,10 +103,10 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String getcurrentanimationname(void* address);
+        private extern static string getcurrentanimationname(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setcurrentanimationname(void* address, String new_name);
+        private extern static void setcurrentanimationname(void* address, string new_name);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static float getcurrentanimationtime(void* address);

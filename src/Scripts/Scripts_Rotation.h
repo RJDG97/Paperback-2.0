@@ -7,8 +7,8 @@ namespace MONO_ROTATION
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_rotation = m_obj.m_pArchetype->GetComponent<rotation>(m_obj.m_PoolDetails);
-		return &m_rotation;
+		void* m_rotation = m_obj.m_pArchetype->FindComponent<rotation>(m_obj.m_PoolDetails);
+		return m_rotation;
 	}
 
 	MONO_EXPORT paperback::Vector3f GetValue(void* address)

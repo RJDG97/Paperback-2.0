@@ -7,7 +7,7 @@ namespace MONO_RIGIDFORCE
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_rigidforce = m_obj.m_pArchetype->GetComponent<rigidforce>(m_obj.m_PoolDetails);
+		void* m_rigidforce = m_obj.m_pArchetype->FindComponent<rigidforce>(m_obj.m_PoolDetails);
 		return &m_rigidforce;
 	}
 

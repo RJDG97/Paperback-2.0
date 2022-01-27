@@ -24,6 +24,7 @@ struct scripting_system : paperback::system::pausable_instance
 		.m_pName = "scripting_system"
 	};
 
+	PPB_FORCEINLINE
 	void OnSystemCreated(void) noexcept
 	{
 		m_pMono = &Mono::GetInstanced();
@@ -32,23 +33,30 @@ struct scripting_system : paperback::system::pausable_instance
 		m_QueryEntityScripts.m_NoneOf.AddFromComponents<prefab>();
 	}
 
-	void OnPause(const bool&) noexcept
+	PPB_FORCEINLINE
+	void OnPause(const bool& Status) noexcept	//function activates whenever play / pause is clicked
 	{
-		scriptlist.clear();
+		pausable_instance::m_bPaused = Status;
 
-		// Run each entity with the entity script component
-		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		if (!Status) //is paused, play is clicked
 		{
-			// check for an instance of this entity's script
-			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+			scriptlist.clear();
 
-			if (entry_found == scriptlist.end()) {
+			// Run each entity with the entity script component
+			ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+			{
+				// check for an instance of this entity's script
+				auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
-				AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
-			}
-		});
+				if (entry_found == scriptlist.end()) {
+
+					AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+				}
+			});
+		}
 	}
 
+	PPB_FORCEINLINE
 	void Update(void) noexcept
 	{
 		std::vector<uint32_t> updated_script_entries;
@@ -76,13 +84,15 @@ struct scripting_system : paperback::system::pausable_instance
 		});
 
 		//destroy all scripts and remove all entries that are no longer updated
-		std::map<uint32_t, ScriptsInfo>::iterator to_remove{ scriptlist.end() };
+		std::map<uint32_t, ScriptsInfo>::iterator to_remove{};
+		bool need_to_remove{};
 
 		for (auto entry = scriptlist.begin() ; entry != scriptlist.end() ; ++entry)
 		{
-			if (to_remove != scriptlist.end())
+			if (need_to_remove)
 			{
 				scriptlist.erase(to_remove);
+				need_to_remove = false;
 			}
 
 			if (std::find(updated_script_entries.begin(), updated_script_entries.end(), entry->first) == updated_script_entries.end())
@@ -93,6 +103,7 @@ struct scripting_system : paperback::system::pausable_instance
 				}
 
 				to_remove = entry;
+				need_to_remove = true;
 			}
 		}
 	}
@@ -114,11 +125,6 @@ struct scripting_system : paperback::system::pausable_instance
 		}
 
 		scriptlist.insert({ entity_id, std::move(new_info) });
-	}
-
-	void RemoveScript()
-	{
-		//TODO
 	}
 
 	void CompileScripts()

@@ -7,8 +7,8 @@ namespace MONO_SPHERE
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_sphere = m_obj.m_pArchetype->GetComponent<sphere>(m_obj.m_PoolDetails);
-		return &m_sphere;
+		void* m_sphere = m_obj.m_pArchetype->FindComponent<sphere>(m_obj.m_PoolDetails);
+		return m_sphere;
 	}
 
 	MONO_EXPORT float GetRadius(void* address)

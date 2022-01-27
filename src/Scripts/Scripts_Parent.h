@@ -7,11 +7,11 @@ namespace MONO_PARENT
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		auto& m_parent = m_obj.m_pArchetype->GetComponent<parent>(m_obj.m_PoolDetails);
-		return &m_parent;
+		void* m_parent = m_obj.m_pArchetype->FindComponent<parent>(m_obj.m_PoolDetails);
+		return m_parent;
 	}
 
-	MONO_EXPORT uint32_t GetChildID(void* address, std::string child_name)
+	MONO_EXPORT int32_t GetChildIDOfName(void* address, MonoString* child_name)
 	{
 		if (address)
 		{
@@ -22,17 +22,17 @@ namespace MONO_PARENT
 				auto m_obj = PPB.GetEntityInfo(id);
 				auto& m_name{ m_obj.m_pArchetype->GetComponent<name>(m_obj.m_PoolDetails) };
 				
-				if (child_name == m_name.m_Value)
+				if (mono_string_to_utf8(child_name) == m_name.m_Value)
 					return id;
 			}
 		}
 
-		return {};
+		return {-1};
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Parent::getaddress(uint)", &MONO_PARENT::GetAddress);
-		mono_add_internal_call("CSScript.Parent::getchildid(void*)", &MONO_PARENT::GetChildID);
+		mono_add_internal_call("CSScript.Parent::getchildidofname(void*,string)", &MONO_PARENT::GetChildIDOfName);
 	}
 }

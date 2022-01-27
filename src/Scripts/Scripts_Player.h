@@ -19,7 +19,7 @@ namespace MONO_PLAYER
 		//	}
 		//});
 
-		return {};
+		return -1;
 	}
 
 	MONO_EXPORT uint32_t GetBlueRobotID()
@@ -35,7 +35,7 @@ namespace MONO_PLAYER
 		//	}
 		//});
 
-		return {};
+		return -1;
 	}
 
 	void AddInternals()

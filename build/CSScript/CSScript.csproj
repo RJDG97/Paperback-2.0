@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Checkpoint.cs" />
-    <Compile Include="GateSwitch .cs" />
+    <Compile Include="GateSwitch.cs" />
     <Compile Include="MovingPlatformSwitch.cs" />
     <Compile Include="Tools\Components\AABB.cs" />
     <Compile Include="Tools\Components\Animator.cs" />
