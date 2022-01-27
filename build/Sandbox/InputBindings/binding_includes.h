@@ -170,7 +170,7 @@ namespace paperback::input::binding
     //     Camera Control Binding
     //-----------------------------------
 
-    BEGIN_BINDING_CONSTRUCT( Keyboard_Camera_Rotate )
+    BEGIN_BINDING_CONSTRUCT( Mouse_Camera_Rotate )
         BEGIN_INPUT_ACTION
 
             // TODO - Update Query Initialization To Constructor Call
@@ -178,9 +178,35 @@ namespace paperback::input::binding
             Query.m_Must.AddFromComponents< rigidforce, rotation, mass, player_controller, camera >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
-            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( camera& Camera )
+            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
             {
-                // Details TBC - Rotate Using Mouse / Keyboard Buttons?
+                if ( Camera.m_Active && !m_Coordinator.GetPauseBool() )
+                {
+                    auto Direction = m_Coordinator.GetMouseDirection();
+
+                    // TODO - Initialize this from a Global Settings Page
+                    Controller.m_CameraRotationSpeed = 150.0f;
+
+                    Direction = glm::normalize(Direction) * Controller.m_CameraRotationSpeed * 0.01f;
+
+	                if ( Direction.x < 0 )
+	                {
+                        Camera.RotateLeft( Direction.x * -1.f );
+	                }
+	                else if ( Direction.x > 0 )
+	                {
+                        Camera.RotateRight( Direction.x );
+	                }
+
+	                if (Direction.y > 0)
+	                {
+                        Camera.RotateDown( Direction.y );
+	                }
+	                else if (Direction.y < 0)
+	                {
+                        Camera.RotateUp( Direction.y * -1.f );
+	                }
+                }
             });
 
         END_INPUT_ACTION

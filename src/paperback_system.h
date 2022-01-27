@@ -331,6 +331,9 @@ namespace paperback::system
 		glm::vec2 GetMousePositionInUI() noexcept;
 
 		PPB_INLINE
+		bool IsGameActive( void ) noexcept;
+
+		PPB_INLINE
 		glm::vec3 GetViewportMousePosition( glm::vec2 viewport_min, glm::vec2 viewport_max ) noexcept;
 
 		PPB_FORCEINLINE

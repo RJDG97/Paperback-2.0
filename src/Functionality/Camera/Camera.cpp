@@ -222,12 +222,15 @@ void Camera3D::RotateDown(const float m_Speed)
 
 void Camera3D::RotateWithMouse(glm::vec2 Direction)
 {
+	// TO REPLACE W GLOBAL SENS
+	auto MouseSensitivity = 100.0f;
+
 	glm::vec2 direction = Direction;
-	float length = glm::length(direction);
 
-	length = length <= 50.f ? length : 50.f;
+	//float length = glm::length(direction);
+	//length = length <= 50.f ? length : 50.f;
 
-	direction = glm::normalize(direction) * length * 0.01f;
+	direction = glm::normalize(direction) * MouseSensitivity * 0.01f;
 
 	if (direction.x < 0)
 	{

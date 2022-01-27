@@ -160,7 +160,7 @@ struct render_system : paperback::system::instance
 	// On Event Key / Mouse Pressed
 	void OnEvent(const size_t& Key, const bool& Clicked) noexcept
 	{
-		if (Key == GLFW_MOUSE_BUTTON_RIGHT && !Clicked)
+		if (Key == GLFW_MOUSE_BUTTON_RIGHT && !Clicked && !IsGameActive() )
 		{
 			auto direction = GetMouseDirection();
 
