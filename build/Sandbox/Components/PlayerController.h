@@ -7,11 +7,11 @@ struct player_controller
 		.m_pName = "Player Controller"
 	};
 
-	paperback::u64       m_ControllerGuid{ };
-	float                m_MovementForce = 3.0f;
-	float                m_JumpForce = 0.0f;
-	float                m_CameraRotationSpeed = 0.0f;
-	bool                 m_PlayerStatus = true;
+	std::vector<paperback::u64>       m_ControllerGuid{ };
+	float                             m_MovementForce = 3.0f;
+	float                             m_JumpForce = 0.0f;
+	float                             m_CameraRotationSpeed = 0.0f;
+	bool                              m_PlayerStatus = true;
 };
 
 namespace RR_PlayerController

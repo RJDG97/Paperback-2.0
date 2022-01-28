@@ -626,6 +626,13 @@ namespace paperback::coordinator
 
 	void instance::TogglePause( const bool& Status ) noexcept
 	{
+		auto WindowsSystem = FindSystem<window_system>();
+
+		if ( WindowsSystem && Status )
+			glfwSetInputMode( WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL );
+		else if ( WindowsSystem )
+			glfwSetInputMode( WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED );
+
 		m_SystemMgr.TogglePause( Status );
 	}
 
@@ -706,6 +713,15 @@ namespace paperback::coordinator
 	bool instance::GetPauseBool() noexcept
 	{
 		return m_bPaused;
+	}
+
+	
+	GLFWwindow* instance::GetWindowHandle( void ) noexcept
+	{
+		auto Win = FindSystem<window_system>();
+
+		if ( Win ) return Win->m_pWindow;
+		else       return nullptr;
 	}
 
 	PPB_INLINE
@@ -878,33 +894,38 @@ namespace paperback::coordinator
 	}
 
     PPB_INLINE
-    void instance::AssignBindingToAction( const input::binding::type::guid&   BindingGuid
-                                        , paperback::u32                      Key
-                                        , input::device::type::id             DeviceTypeID
-                                        , input::action::KeyPairing           Pairing ) noexcept
+    void instance::AssignBindingToAction( const input::binding::type::guid&         BindingGuid
+                                        , const paperback::u32                      Key
+                                        , const input::device::type::id             DeviceTypeID
+                                        , const input::action::BroadcastStatus      Status
+                                        , const input::action::KeyPairing           Pairing ) noexcept
 	{
 		AssignBindingToAction( BindingGuid.m_Value
 							 , Key
 							 , DeviceTypeID
+							 , Status
 		                     , Pairing );
 	}
 
 	PPB_INLINE
-    void instance::AssignBindingToAction( const paperback::u64&               BindingGuidValue
-                                        , paperback::u32                      Key
-                                        , input::device::type::id             DeviceTypeID
-                                        , input::action::KeyPairing           Pairing ) noexcept
+    void instance::AssignBindingToAction( const paperback::u64&                     BindingGuidValue
+                                        , const paperback::u32                      Key
+                                        , const input::device::type::id             DeviceTypeID
+                                        , const input::action::BroadcastStatus      Status
+                                        , const input::action::KeyPairing           Pairing ) noexcept
 	{
 		m_Input.AssignBindingToAction( BindingGuidValue
 									 , Key
 									 , DeviceTypeID
+									 , Status
 		                             , Pairing );
 	}
 
     template < typename... T_ARGS >
-    void instance::BroadcastAction( const paperback::u32          Key
-                                  , const input::device::type::id Type
-                                  , T_ARGS&&...                   Args ) noexcept
+    void instance::BroadcastAction( const paperback::u32                  Key
+                                  , const input::device::type::id         Type
+                                  , const input::action::BroadcastStatus  Status
+                                  , T_ARGS&&...                           Args ) noexcept
 	{
 		m_Input.BroadcastAction( Key
 			                   , Type

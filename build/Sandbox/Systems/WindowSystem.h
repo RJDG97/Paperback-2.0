@@ -60,6 +60,9 @@ struct window_system : paperback::system::instance
         glfwSetWindowCloseCallback(m_pWindow, GLFWWindowCloseCallback);
         glfwSetWindowMaximizeCallback(m_pWindow, GLFWWindowMaximizeCallback);
 
+        // Assign Active Controller ID
+        QueryActiveController();
+
         // Init glew
         GLenum Err = glewInit();
 
@@ -139,6 +142,13 @@ struct window_system : paperback::system::instance
         // Update Window Size
         glfwSetWindowSize(window, WindowDetails.m_Width, WindowDetails.m_Height);
         Renderer::GetInstanced().UpdateFramebufferSize(WindowDetails.m_Width, WindowDetails.m_Height);
+    }
+
+    PPB_INLINE
+    void QueryActiveController( void ) noexcept
+    {
+        auto GP = m_Coordinator.FindGamepad();
+        if ( GP ) GP->m_State.FindActiveController();
     }
 
     //void FullScreen()

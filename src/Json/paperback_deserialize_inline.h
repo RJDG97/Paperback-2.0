@@ -417,6 +417,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<player_controller>())
                 NewArchetype->GetComponent<player_controller>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<player_controller>();
+
+            if (obj.is_type<camera>())
+                NewArchetype->GetComponent<camera>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<camera>();
         }
     }
 

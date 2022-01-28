@@ -240,6 +240,9 @@ namespace paperback::coordinator
 		bool GetPauseBool() noexcept;
 
 		PPB_INLINE
+		GLFWwindow* GetWindowHandle( void ) noexcept;
+
+		PPB_INLINE
 		input::device::Keyboard_Controls* FindKeyboard( void ) noexcept;
 
 		PPB_INLINE
@@ -350,21 +353,24 @@ namespace paperback::coordinator
         paperback::u64 RegisterBinding( void ) noexcept;
 
         PPB_INLINE
-        void AssignBindingToAction( const input::binding::type::guid&   BindingGuid
-                                  , paperback::u32                      Key
-                                  , input::device::type::id             Type
-                                  , input::action::KeyPairing           Pairing = input::action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+        void AssignBindingToAction( const input::binding::type::guid&         BindingGuid
+                                  , const paperback::u32                      Key
+                                  , const input::device::type::id             Type
+                                  , const input::action::BroadcastStatus      Status = input::action::BroadcastStatus::CONTINUOUS
+                                  , const input::action::KeyPairing           Pairing = input::action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
 
 		PPB_INLINE
-        void AssignBindingToAction( const paperback::u64&               BindingGuidValue
-                                  , paperback::u32                      Key
-                                  , input::device::type::id             Type
-                                  , input::action::KeyPairing           Pairing = input::action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+        void AssignBindingToAction( const paperback::u64&                     BindingGuidValue
+                                  , const paperback::u32                      Key
+                                  , const input::device::type::id             Type
+                                  , const input::action::BroadcastStatus      Status = input::action::BroadcastStatus::CONTINUOUS
+                                  , const input::action::KeyPairing           Pairing = input::action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
 
         template < typename... T_ARGS >
-        void BroadcastAction( const paperback::u32          Key
-                            , const input::device::type::id Type
-                            , T_ARGS&&...                   Args ) noexcept;
+        void BroadcastAction( const paperback::u32                  Key
+                            , const input::device::type::id         Type
+                            , const input::action::BroadcastStatus  Status
+                            , T_ARGS&&...                           Args ) noexcept;
 
 		PPB_INLINE
 		void SetKey( int Key, int Action ) noexcept;

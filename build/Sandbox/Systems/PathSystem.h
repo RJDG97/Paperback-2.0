@@ -36,8 +36,7 @@ struct path_system : paperback::system::pausable_instance
 		Query_Paths.m_Must.AddFromComponents<path, transform, selected, mesh>();
 		Query_Paths.m_NoneOf.AddFromComponents<prefab>();
 
-		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation, unitstate>();
-		Query_Units.m_OneOf.AddFromComponents<friendly, enemy>();
+		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation>();
 		Query_Units.m_NoneOf.AddFromComponents<prefab>();
 
 		RegisterGlobalEventClass<paperback::input::manager::MousePressed>(this);
@@ -77,74 +76,75 @@ struct path_system : paperback::system::pausable_instance
 			}
 		});
 
-		ForEach(Search(Query_Units), [&]( rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation, unitstate& Unit, friendly* Friendly, enemy* Enemy ) noexcept
+		ForEach(Search(Query_Units), [&]( rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation) noexcept
 		{
-			auto spline = splines.find(PathFollower.m_ID);
+			auto spline = splines.find(PathFollower.m_PathID);
 
-			if (spline != splines.end())
+			if (spline != splines.end() && !PathFollower.m_PauseTravel)
 			{
-
-				if (PathFollower.m_Distance >= spline->second.m_TotalLength || PathFollower.m_TravelSpeed <= 0.0f)
+				if (PathFollower.m_TravelSpeed <= 0.0f)
 				{
 					Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
 				}
 
-				else if (Unit.IsNotState(UnitState::DEAD) && Unit.IsNotState(UnitState::ATTACK) && Unit.IsNotState(UnitState::IDLE))
+				else if (!PathFollower.m_Reversed && PathFollower.m_Distance >= spline->second.m_TotalLength ||
+						  PathFollower.m_Reversed && PathFollower.m_Distance <= 0.0f)
 				{
-					float normalized_offset{ spline->second.GetNormalizedOffset(PathFollower.m_Distance) };
+					PathFollower.m_FinishedTravelling = true;
 
-					//Enemies start from the end of the path
-					if (Enemy)
+					if (PathFollower.m_BackAndForth)
 					{
-						normalized_offset = (spline->second.m_Points.size() - 3.01f) - normalized_offset;
+						PathFollower.m_Reversed = !PathFollower.m_Reversed;
+						Movement(spline->second, Rigidforce, Rigidbody, PathFollower, Transform, Rotation);
 					}
 
-					paperback::Vector3f destination{ spline->second.GetSplinePoint(normalized_offset).m_Point };
-					paperback::Vector3f gradient{ spline->second.GetSplineGradient(normalized_offset).Normalized() };
-					paperback::Vector3f direction{ (destination - Transform.m_Position) };
-					paperback::Vector3f norm_direction{ direction.Normalized() };
-
-					//Rotation.m_Value += GetRotationAngles(PathFollower.m_Direction, direction);
-					//PathFollower.m_Direction = direction;
-
-					float temp{ direction.Magnitude() * direction.Magnitude() * direction.Magnitude() };
-					float speed_modifier{ std::min(1.0f, 1.0f / temp) };
-					float climb_modifier{1.0f};
-
-					if (norm_direction.y > 0.1)
+					else
 					{
-						climb_modifier = 0.5f;
+						Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
 					}
+				}
 
-					else if (norm_direction.y < -0.1)
-					{
-						climb_modifier = 2.0f;
-					}
-
-					Rigidforce.m_Momentum = direction * PathFollower.m_TravelSpeed * climb_modifier;
-					PathFollower.m_Distance += speed_modifier * PathFollower.m_TravelSpeed * climb_modifier * m_Coordinator.DeltaTime();
-
-					std::vector<paperback::Vector3f> vec;
-					vec.push_back(destination);
-					vec.push_back(Transform.m_Position);
-					if (debug_sys->m_IsDebug)
-					{
-						debug_sys->DrawDebugLines(vec, true);
-					}
-
-
-					//handle unit rotation
-					if (Rigidbody.m_Velocity.MagnitudeSq() > 0.0001f)
-					{
-
-						Rotation.m_Value.y = PPB.GetSystem<debug_system>().DirtyRotationAnglesFromDirectionalVec(Rigidbody.m_Velocity).y;
-						/*paperback::Vector3f rot = PPB.GetSystem<debug_system>().DirtyRotationAnglesFromDirectionalVec(Rigidbody.m_Velocity);
-						Rotation.m_Value.y = rot.y;
-						Rotation.m_Value.x = rot.x;*/
-					}
+				else
+				{
+					PathFollower.m_FinishedTravelling = false;
+					Movement(spline->second, Rigidforce, Rigidbody, PathFollower, Transform, Rotation);
 				}
 			}
 		});
+	}
+
+	void Movement(paperback::Spline& spline, rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation)
+	{
+		float normalized_offset{ spline.GetNormalizedOffset(PathFollower.m_Distance) };
+
+		paperback::Vector3f destination{ spline.GetSplinePoint(normalized_offset).m_Point };
+		paperback::Vector3f gradient{ spline.GetSplineGradient(normalized_offset).Normalized() };
+		paperback::Vector3f direction{ (destination - Transform.m_Position) };
+		paperback::Vector3f norm_direction{ direction.Normalized() };
+
+		float temp{ direction.Magnitude() * direction.Magnitude() * direction.Magnitude() };
+		float speed_modifier{ std::min(1.0f, 1.0f / temp) };
+
+		Rigidforce.m_Momentum = direction * PathFollower.m_TravelSpeed;
+
+		if (PathFollower.m_Reversed)
+		{
+			PathFollower.m_Distance -= speed_modifier * PathFollower.m_TravelSpeed * m_Coordinator.DeltaTime();
+		}
+
+		else
+		{
+			PathFollower.m_Distance += speed_modifier * PathFollower.m_TravelSpeed * m_Coordinator.DeltaTime();
+		}
+
+		std::vector<paperback::Vector3f> vec;
+		vec.push_back(destination);
+		vec.push_back(Transform.m_Position);
+		
+		if (debug_sys->m_IsDebug)
+		{
+			debug_sys->DrawDebugLines(vec, true);
+		}
 	}
 
 	paperback::Vector3f GetRotationAngles(paperback::Vector3f vec1, paperback::Vector3f vec2)

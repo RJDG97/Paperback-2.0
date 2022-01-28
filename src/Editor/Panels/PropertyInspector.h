@@ -50,6 +50,8 @@ struct DetailsWindow : paperback::editor::instance
 
     void ButtonComponent( paperback::entity::info& EntityInfo, prefab* Prefab, reference_prefab* ReferencePrefab, const paperback::component::type::guid CompGuid );
 
+    void EntityScriptComponent();
+
 //-----------------------------------
 //        Component Combos
 //-----------------------------------

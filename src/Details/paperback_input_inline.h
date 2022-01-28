@@ -144,22 +144,25 @@ namespace paperback::input
 
 
     PPB_INLINE
-    void manager::AssignBindingToAction( const binding::type::guid& BindingGuid
-                                       , paperback::u32             Key
-                                       , device::type::id           Type
-                                       , action::KeyPairing         Pairing ) noexcept
+    void manager::AssignBindingToAction( const binding::type::guid&       BindingGuid
+                                       , const paperback::u32             Key
+                                       , const device::type::id           Type
+                                       , const action::BroadcastStatus    Status
+                                       , const action::KeyPairing         Pairing ) noexcept
     {
 		AssignBindingToAction( BindingGuid.m_Value
-			                     , Key
-			                     , Type
-			                     , Pairing);
+			                 , Key
+			                 , Type
+					         , Status
+			                 , Pairing);
     }
 
 	PPB_INLINE
-    void manager::AssignBindingToAction( const paperback::u64&      BindingGuidValue
-                                       , paperback::u32             Key
-                                       , device::type::id           Type
-                                       , action::KeyPairing         Pairing ) noexcept
+    void manager::AssignBindingToAction( const paperback::u64&            BindingGuidValue
+                                       , const paperback::u32             Key
+                                       , const device::type::id           Type
+                                       , const action::BroadcastStatus    Status
+                                       , const action::KeyPairing         Pairing ) noexcept
     {
 		switch ( Type )
         {
@@ -168,6 +171,7 @@ namespace paperback::input
 				if ( !m_Keyboard ) return;
 
 				m_Keyboard->m_State.m_Actions[ Key ].SetBinding( BindingGuidValue
+					                                           , Status
                                                                , Pairing );
 
                 break;
@@ -177,6 +181,7 @@ namespace paperback::input
 				if ( !m_Mouse ) return;
 
                 m_Mouse->m_State.m_Actions[ Key ].SetBinding( BindingGuidValue
+					                                        , Status
                                                             , Pairing );
 
                 break;
@@ -186,6 +191,7 @@ namespace paperback::input
 				if ( !m_Gamepad ) return;
 
                 m_Gamepad->m_State.m_Actions[ Key ].SetBinding( BindingGuidValue
+					                                          , Status
                                                               , Pairing );
 
                 break;
@@ -194,9 +200,10 @@ namespace paperback::input
 	}
 
     template < typename... T_ARGS >
-    void manager::BroadcastAction( const paperback::u32    Key
-                                 , const device::type::id  Type
-                                 , T_ARGS&&...             Args ) noexcept
+    void manager::BroadcastAction( const paperback::u32           Key
+                                 , const device::type::id         Type
+                                 , const action::BroadcastStatus  Status
+                                 , T_ARGS&&...                    Args ) noexcept
     {
         switch ( Type )
         {
@@ -204,7 +211,7 @@ namespace paperback::input
             {
 				if ( !m_Keyboard ) return;
 
-                BEGIN_BINDING_EVENT_CALLBACK( m_Keyboard->m_State.m_Actions, Key )
+                BEGIN_BINDING_EVENT_CALLBACK( m_Keyboard->m_State.m_Actions, Key, Status )
                     BindingEvent.m_pAction( BindingEvent.m_pClass
 						                  , std::forward<T_ARGS&&>( Args )... );
                 END_BINDING_EVENT_CALLBACK
@@ -215,7 +222,7 @@ namespace paperback::input
             {
 				if ( !m_Mouse ) return;
 
-                BEGIN_BINDING_EVENT_CALLBACK( m_Mouse->m_State.m_Actions, Key )
+                BEGIN_BINDING_EVENT_CALLBACK( m_Mouse->m_State.m_Actions, Key, Status )
                     BindingEvent.m_pAction( BindingEvent.m_pClass
                                           , std::forward<T_ARGS&&>( Args )... );
                 END_BINDING_EVENT_CALLBACK
@@ -226,7 +233,7 @@ namespace paperback::input
             {
 				if ( !m_Gamepad ) return;
 
-                BEGIN_BINDING_EVENT_CALLBACK( m_Gamepad->m_State.m_Actions, Key )
+                BEGIN_BINDING_EVENT_CALLBACK( m_Gamepad->m_State.m_Actions, Key, Status )
                     BindingEvent.m_pAction( BindingEvent.m_pClass
                                           , std::forward<T_ARGS&&>( Args )... );
                 END_BINDING_EVENT_CALLBACK
@@ -292,15 +299,6 @@ namespace paperback::input
 		if ( m_Mouse )
 		{
 			m_Mouse->m_State.m_Current[ Key ] = !!Action;
-
-			if ( IsMousePress(GLFW_MOUSE_BUTTON_RIGHT) )
-			{
-				double X, Y;
-				GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
-
-				glfwGetCursorPos( m_pWindow, &X, &Y );
-				m_Mouse->m_State.m_MouseOriginPosition = glm::vec2{ X, Y };
-			}
 		}
 	}
 
@@ -373,12 +371,7 @@ namespace paperback::input
 	{
 		if ( m_Mouse )
 		{
-			double X, Y;
-			GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
-
-			glfwGetCursorPos( m_pWindow, &X, &Y );
-
-			return glm::vec2{ X, Y } - m_Mouse->m_State.m_MouseOriginPosition;
+			return m_Mouse->m_State.m_CurrPos - m_Mouse->m_State.m_PrevPos;
 		}
 		return glm::vec2{};
 	}
@@ -449,23 +442,48 @@ namespace paperback::input
 
 	void manager::UpdateInputs( void ) noexcept
 	{
+		auto DeltaTime = m_Coordinator.DeltaTime();
+
 		if ( m_Keyboard )
 		{
 			auto& KeyState = m_Keyboard->m_State;
 
 			for ( size_t i = 0, max = KeyState.m_Current.size(); i < max; ++i )
 			{
-				// Key Click Broadcast - Initial Press
-				if ( KeyState.m_Current[i] == GLFW_PRESS && KeyState.m_Previous[i] != GLFW_PRESS )
+				// Button Initial Press
+				if ( KeyState.m_Current[i] == GLFW_PRESS && KeyState.m_Previous[i] == GLFW_RELEASE )
 				{
-					m_Coordinator.BroadcastEvent<KeyClicked>( i, true ); // exec bindings here
+					m_Coordinator.BroadcastEvent<KeyClicked>( i, true );
+
+					// Action Binding Callback
+					BroadcastAction( static_cast<const paperback::u32>( i )
+						           , device::type::id::KEYBOARD
+						           , action::BroadcastStatus::PRESSED
+						           , DeltaTime );
 				}
 
-				// Button Pressed Broadcast - Not Releasing Yet
+				// Button Held Down
 				else if ( KeyState.m_Current[i] == GLFW_PRESS && KeyState.m_Previous[i] == GLFW_PRESS )
 				{
-					m_Coordinator.BroadcastEvent<KeyPressed>( i, false );
-					BroadcastAction( i, device::type::id::KEYBOARD, m_Coordinator.DeltaTime() );
+					// Broadcast Key Event
+					m_Coordinator.BroadcastEvent<KeyPressed>( i
+						                                    , false );
+
+					// Action Binding Callback
+					BroadcastAction( static_cast<const paperback::u32>( i )
+						           , device::type::id::KEYBOARD
+						           , action::BroadcastStatus::CONTINUOUS
+						           , DeltaTime );
+				}
+
+				// Button Released
+				else if ( KeyState.m_Current[i] == GLFW_RELEASE && KeyState.m_Previous[i] == GLFW_PRESS )
+				{
+					// Action Binding Callback
+					BroadcastAction( static_cast<const paperback::u32>( i )
+						           , device::type::id::KEYBOARD
+						           , action::BroadcastStatus::RELEASED
+						           , DeltaTime );
 				}
 
 				KeyState.m_Previous[i] = KeyState.m_Current[i];
@@ -476,15 +494,44 @@ namespace paperback::input
 		{
 			auto& MouseState = m_Mouse->m_State;
 
+			// Update Mouse Coordinates
+			MouseState.UpdateMouseCoordinates();
+
 			for ( size_t i = 0, max = MouseState.m_Current.size(); i < max; ++i )
 			{
-				// Mouse Click Broadcast - Pressed And Released
-				if ( MouseState.m_Current[i] != GLFW_PRESS && MouseState.m_Previous[i] == GLFW_PRESS )
-					m_Coordinator.BroadcastEvent<MouseClicked>( i, true ); // exec bindings here
+				// Mouse Initial Press
+				if ( MouseState.m_Current[i] == GLFW_PRESS && MouseState.m_Previous[i] == GLFW_RELEASE )
+				{
+					// Action Binding Callback
+					BroadcastAction( static_cast<const paperback::u32>( i )
+						           , device::type::id::MOUSE
+						           , action::BroadcastStatus::PRESSED
+						           , DeltaTime );
+				}
 
-				// Mouse Pressed Broadcast - Not Releasing Yet
+				// Mouse Button Held Down
 				else if ( MouseState.m_Current[i] == GLFW_PRESS && MouseState.m_Previous[i] == GLFW_PRESS )
+				{
 					m_Coordinator.BroadcastEvent<MousePressed>( i, false );
+
+					// Action Binding Callback
+					BroadcastAction( static_cast<const paperback::u32>( i )
+						           , device::type::id::MOUSE
+						           , action::BroadcastStatus::CONTINUOUS
+						           , DeltaTime );
+				}
+
+				// Mouse Button Released
+				else if ( MouseState.m_Current[i] == GLFW_RELEASE && MouseState.m_Previous[i] == GLFW_PRESS )
+				{
+					m_Coordinator.BroadcastEvent<MouseClicked>( i, true );
+
+					// Action Binding Callback
+					BroadcastAction( static_cast<const paperback::u32>( i )
+						           , device::type::id::MOUSE
+						           , action::BroadcastStatus::RELEASED
+						           , DeltaTime );
+				}
 				
 				MouseState.m_Previous[i] = MouseState.m_Current[i];
 			}
@@ -499,19 +546,44 @@ namespace paperback::input
 			if ( GamepadState.m_ControllerID != settings::invalid_controller_v && 
 				 glfwJoystickIsGamepad( GamepadState.m_ControllerID ) )
 			{
-				// Get Gamepad State
+				// Get Gamepad State & Update
 				if ( glfwGetGamepadState( GamepadState.m_ControllerID, &GP_State ) )
 				{
-					GamepadState.UpdateGamepadAxis( GP_State.axes );
 					GamepadState.UpdateGamepadCurrentButtons( GP_State.buttons );
+					GamepadState.UpdateGamepadAxis( GP_State.axes );
 				}
 
 				for ( size_t i = 0, max = GamepadState.m_Current.size(); i < max; ++i )
 				{
-					// Input Binding Broadcasts
+					// Gamepad Initial Press
+					if ( GamepadState.m_Current[i] == GLFW_PRESS && GamepadState.m_Previous[i] == GLFW_RELEASE )
+					{
+						// Action Binding Callback
+						BroadcastAction( static_cast<const paperback::u32>( i )
+									   , device::type::id::GAMEPAD
+									   , action::BroadcastStatus::PRESSED
+									   , DeltaTime );
+					}
 
-					if ( GamepadState.m_Current[i] == GLFW_PRESS )
-						TRACE_PRINT( "pressed!!" );
+					// Gamepad Button Held Down
+					else if ( GamepadState.m_Current[i] == GLFW_PRESS && GamepadState.m_Previous[i] == GLFW_PRESS )
+					{
+						// Action Binding Callback
+						BroadcastAction( static_cast<const paperback::u32>( i )
+									   , device::type::id::GAMEPAD
+									   , action::BroadcastStatus::CONTINUOUS
+									   , DeltaTime );
+					}
+
+					// Gamepad Buttoon Released
+					else if ( GamepadState.m_Current[i] == GLFW_RELEASE && GamepadState.m_Previous[i] == GLFW_PRESS )
+					{
+						// Action Binding Callback
+						BroadcastAction( static_cast<const paperback::u32>( i )
+									   , device::type::id::GAMEPAD
+									   , action::BroadcastStatus::RELEASED
+									   , DeltaTime );
+					}
 				
 					GamepadState.m_Previous[i] = GamepadState.m_Current[i];
 				}

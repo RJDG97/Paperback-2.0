@@ -7,7 +7,12 @@ struct entityscript
         .m_pName = "EntityScript"
     };
 
-    std::string m_ScriptID;
+    struct ScriptID
+    {
+        std::string m_ID;
+    };
+
+    std::vector<ScriptID> m_ScriptID;
 };
 
 namespace RR_EntityScript
@@ -16,6 +21,6 @@ namespace RR_EntityScript
     {
          rttr::registration::class_<entityscript>(entityscript::typedef_v.m_pName)
            .constructor()(rttr::policy::ctor::as_object)
-           .property("Script ID", &entityscript::m_ScriptID)(rttr::policy::prop::as_reference_wrapper);
+           .property("Script ID", &entityscript::m_ScriptID);
     }
 }

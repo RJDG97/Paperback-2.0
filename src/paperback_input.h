@@ -18,9 +18,9 @@
 
 ****************************************************************************************/
 
-#define BEGIN_BINDING_EVENT_CALLBACK( Actions, Key )                                                                                   \
+#define BEGIN_BINDING_EVENT_CALLBACK( Actions, Key, Status )                                                                           \
     const auto& Action   = Actions[ Key ];                                                                                             \
-    auto        Bindings = Action.FindBindings();                                                                                      \
+    auto        Bindings = Action.FindBindings( Status );                                                                              \
                                                                                                                                        \
     for ( const auto& Bind : Bindings )                                                                                                \
     {                                                                                                                                  \
@@ -138,31 +138,25 @@ namespace paperback::input
 
 
         PPB_INLINE
-        void AssignBindingToAction( const binding::type::guid&   BindingGuid
-                                  , paperback::u32               Key
-                                  , device::type::id             Type
-                                  , action::KeyPairing           Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+        void AssignBindingToAction( const binding::type::guid&         BindingGuid
+                                  , const paperback::u32               Key
+                                  , const device::type::id             Type
+                                  , const action::BroadcastStatus      Status
+                                  , const action::KeyPairing           Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
 
 		PPB_INLINE
-        void AssignBindingToAction( const paperback::u64&        BindingGuidValue
-                                  , paperback::u32               Key
-                                  , device::type::id             Type
-                                  , action::KeyPairing           Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+        void AssignBindingToAction( const paperback::u64&              BindingGuidValue
+                                  , const paperback::u32               Key
+                                  , const device::type::id             Type
+                                  , const action::BroadcastStatus      Status
+                                  , const action::KeyPairing           Pairing = action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
 
 
         template < typename... T_ARGS >
-        void BroadcastAction( const paperback::u32   Key
-                            , const device::type::id Type
-                            , T_ARGS&&...            Args ) noexcept;
-
-
-
-
-
-
-
-
-
+        void BroadcastAction( const paperback::u32           Key
+                            , const device::type::id         Type
+                            , const action::BroadcastStatus  Status
+                            , T_ARGS&&...                    Args ) noexcept;
 
 
 	    //-----------------------------------
@@ -255,26 +249,6 @@ namespace paperback::input
         {
             return FindBindingIndex( BindingGuid.m_Value );
         }
-
-		template < typename T >
-		T* FindDevice( void ) noexcept
-		{
-			if ( m_PlayerDeviceList.size() == 0 || 
-				 m_PlayerDeviceList.size() < static_cast<size_t>( input::device::info_v<T>.m_TypeID ) )
-				return nullptr;
-
-            return reinterpret_cast< BaseType<T>* >( &m_PlayerDeviceList[ static_cast<int>( input::device::info_v<T>.m_TypeID ) ] );
-		}
-
-		template < typename T >
-		const T* FindConstDevice( void ) const noexcept
-		{
-			if ( m_PlayerDeviceList.size() == 0 || 
-				 m_PlayerDeviceList.size() < static_cast<size_t>( input::device::info_v<T>.m_TypeID ) )
-				return nullptr;
-
-            return reinterpret_cast< const BaseType<T>* >( &m_PlayerDeviceList[ static_cast<int>( input::device::info_v<T>.m_TypeID ) ] );
-		}
 
 
 		// Devices
