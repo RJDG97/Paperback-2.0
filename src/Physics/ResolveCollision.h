@@ -85,16 +85,6 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 	//3 - only obj2 is moving, do obj2
 	int resolutioncase = (mass1) ? ((mass2) ? 1 : 2) : ((mass2) ? 3 : 0);
 
-	//// Relative Velocity
-	//paperback::Vector3f vel1 = rf1->m_Momentum / m1->m_Mass;
-	//paperback::Vector3f vel2 = rf2->m_Momentum / m2->m_Mass;
-
-	//// Compute Acceleration
-	//paperback::Vector3f acc1 = rf1->m_Forces / m1->m_Mass;
-	//paperback::Vector3f acc2 = rf2->m_Forces / m2->m_Mass;
-
-
-
 	// Abs Resultant Vector
 	paperback::Vector3f velab = vel1 - vel2; // uncorrupt
 	// Position Difference - Dist between both entities
@@ -109,10 +99,6 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 	// case 1/3, useless cases is 0.f - currently (+ve)
 	// Abs Resultant Vector
 	paperback::Vector3f t_resolve = paperback::Vector3f(abs(velab.x), abs(velab.y), abs(velab.z));
-
-	// This Covers The Else Case (Basically skips force addition if both objects are stationary within each other)
-	/*if ( t_resolve.x == 0.0f && t_resolve.y == 0.0f && t_resolve.z == 0.0f )
-		return false;*/
 
 	//EDIT
 	//alternative use instead of xx/yy/zz but using "face area"
@@ -174,25 +160,6 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 
 	// determine collision side, smaller ratio = likely side
 	direction dir = direction::none;
-	float xx = 0.f, yy = 0.f, zz = 0.f; // default value
-
-	// for xx, yy, zz
-	// distance (pen_depth) = velocity (velab -> total accumulated velocity) * time
-	// therefore, time (xx) = distance / velocity
-	// in this case, xx will calculate the **** time taken *** to travel the pen_depth distance
-	// the smaller the xx, the higher the distance the object travel BEFORE colliding with the other object
-
-	// so the higher the xx, the shorter the distance the object travelled BEFORE collision
-	
-	// instead of spamming raycasting to aabb (predicting movement), this simply calculates AFTER the collision
-
-	// case 2/4     determine which side hit and whos first
-	/*if ((velab.x > 0.f && ab.x < 0.f) || (velab.x < 0.f && ab.x > 0.f))
-		xx = (pen_depth.x) / t_resolve.x;
-	if ((velab.y > 0.f && ab.y < 0.f) || (velab.y < 0.f && ab.y > 0.f))
-		yy = (pen_depth.y) / t_resolve.y;
-	if ((velab.z > 0.f && ab.z < 0.f) || (velab.z < 0.f && ab.z > 0.f))
-		zz = (pen_depth.z) / t_resolve.z;*/
 
 	// Bounciness Scale -> Restitution = 1.0f for max Bounciness
 	float restitution = (rf1->m_Restitution + rf2->m_Restitution) / 2;

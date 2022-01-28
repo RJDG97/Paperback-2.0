@@ -118,6 +118,7 @@ void InitializeGame()
         ,    ui
         ,    camera
         ,    player_controller
+        ,    slope
         >();
 
         // Register Components - Add to the end of the list
