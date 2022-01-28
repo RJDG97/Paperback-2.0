@@ -92,7 +92,7 @@
                         }
                     },
                     "EntityScript": {
-                        "Script ID": "CameraMovement"
+                        "Script ID": []
                     },
                     "ReferencePrefab": {
                         "Modified Components": [],
@@ -135,7 +135,7 @@
                         }
                     },
                     "EntityScript": {
-                        "Script ID": "CameraMovement"
+                        "Script ID": []
                     },
                     "Name": {
                         "Name": "CameraScript"
@@ -484,7 +484,8 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            5509481706028819786
+                            5509481706028819786,
+                            17639936325783395793
                         ],
                         "Prefab GID": 6
                     },
@@ -492,8 +493,8 @@
                         "Name": "Moving Entity"
                     },
                     "Mass": {
-                        "Mass": 1.0,
-                        "Inv Mass": 1.0
+                        "Mass": 5.0,
+                        "Inv Mass": 0.20000000298023225
                     }
                 },
                 {

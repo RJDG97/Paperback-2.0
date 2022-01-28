@@ -10,6 +10,10 @@
 #include "Components/Mass.h"
 
 #define Gap 0.01f
+#define BOTH_STATIC 0
+#define BOTH_NONSTATIC 1
+#define OBJ1_NONSTATIC 2
+#define OBJ2_NONSTATIC 3
 
 enum direction
 {
@@ -107,8 +111,8 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 	paperback::Vector3f t_resolve = paperback::Vector3f(abs(velab.x), abs(velab.y), abs(velab.z));
 
 	// This Covers The Else Case (Basically skips force addition if both objects are stationary within each other)
-	if ( t_resolve.x == 0.0f && t_resolve.y == 0.0f && t_resolve.z == 0.0f )
-		return false;
+	/*if ( t_resolve.x == 0.0f && t_resolve.y == 0.0f && t_resolve.z == 0.0f )
+		return false;*/
 
 	//EDIT
 	//alternative use instead of xx/yy/zz but using "face area"
@@ -201,17 +205,17 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 		// case 3
 		if (ab.x > 0.f)
 		{
-			if (resolutioncase == 1)
+			if (resolutioncase == BOTH_NONSTATIC)
 			{
 				t1.m_Position.x += (m1 && t_resolve.x > 0.0f) ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
 				t2.m_Position.x -= (m2 && t_resolve.x > 0.0f) ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 2)
+			else if (resolutioncase == OBJ1_NONSTATIC)
 			{
 
 				t1.m_Position.x += (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 3)
+			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
 				t2.m_Position.x -= (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
@@ -220,17 +224,17 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 		// case 1
 		else
 		{
-			if (resolutioncase == 1)
+			if (resolutioncase == BOTH_NONSTATIC)
 			{
 				t1.m_Position.x -= (m1 && t_resolve.x > 0.0f) ? (abs(vel1.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
 				t2.m_Position.x += (m2 && t_resolve.x > 0.0f) ? (abs(vel2.x) / t_resolve.x * pen_depth.x + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 2)
+			else if (resolutioncase == OBJ1_NONSTATIC)
 			{
 
 				t1.m_Position.x -= (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 3)
+			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
 				t2.m_Position.x += (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
@@ -268,23 +272,28 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 		// case 3
 		if (ab.y > 0.f)
 		{
-			if (resolutioncase == 1)
+			if (resolutioncase == BOTH_NONSTATIC)
 			{
+				//obj1 above, reset grav
+				rf1->m_GravityActive = false;
 				t1.m_Position.y += (m1 && t_resolve.y > 0.0f) ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
 				t2.m_Position.y -= (m2 && t_resolve.y > 0.0f) ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
-
 			}
-			else if (resolutioncase == 2)
+			else if (resolutioncase == OBJ1_NONSTATIC)
 			{
 
-				t1.m_Position.y += (m1 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+				//obj1 above, reset grav
+				rf1->m_GravityActive = false;
+				t1.m_Position.y += (m1) ? (pen_depth.y + Gap) : 0.0f;
 				rf1->m_Momentum.y = 0.0f;
 				rf1->m_Forces.y = 0.0f;
+				acc1.y = 0.0f;
+				vel1.y = 0.0f;
 			}
-			else if (resolutioncase == 3)
+			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
-				t2.m_Position.y -= (m2 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+				t2.m_Position.y -= (m2) ? (pen_depth.y + Gap) : 0.0f;
 				rf2->m_Momentum.y = 0.0f;
 				rf2->m_Forces.y = 0.0f;
 			}
@@ -292,20 +301,30 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 		// case 1
 		else
 		{
-			if (resolutioncase == 1)
+			if (resolutioncase == BOTH_NONSTATIC)
 			{
+				//obj2 above, reset grav
+				rf2->m_GravityActive = false;
 				t1.m_Position.y -= (m1 && t_resolve.y > 0.0f) ? (abs(vel1.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
 				t2.m_Position.y += (m2 && t_resolve.y > 0.0f) ? (abs(vel2.y) / t_resolve.y * pen_depth.y + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 2)
+			else if (resolutioncase == OBJ1_NONSTATIC)
 			{
 
-				t1.m_Position.y -= (m1 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+				t1.m_Position.y -= (m1) ? (pen_depth.y + Gap) : 0.0f;
+				rf1->m_Momentum.y = 0.0f;
+				rf1->m_Forces.y = 0.0f;
 			}
-			else if (resolutioncase == 3)
+			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
-				t2.m_Position.y += (m2 && t_resolve.y > 0.0f) ? (pen_depth.y + Gap) : 0.0f;
+				//obj2 above, reset grav
+				rf2->m_GravityActive = false;
+				t2.m_Position.y += (m2) ? (pen_depth.y + Gap) : 0.0f;
+				rf1->m_Momentum.y = 0.0f;
+				rf1->m_Forces.y = 0.0f;
+				acc2.y = 0.0f;
+				vel2.y = 0.0f;
 			}
 		}
 		//// both objs are movable
@@ -340,39 +359,39 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 			   // case 3
 		if (ab.z > 0.f)
 		{
-			if (resolutioncase == 1)
+			if (resolutioncase == BOTH_NONSTATIC)
 			{
 				t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
 				t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 2)
+			else if (resolutioncase == OBJ1_NONSTATIC)
 			{
 
-				t1.m_Position.z += (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+				t1.m_Position.z += (m1) ? (pen_depth.z + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 3)
+			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
-				t2.m_Position.z -= (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+				t2.m_Position.z -= (m2) ? (pen_depth.z + Gap) : 0.0f;
 			}
 		}
 		// case 1
 		else
 		{
-			if (resolutioncase == 1)
+			if (resolutioncase == BOTH_NONSTATIC)
 			{
 				t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (abs(vel1.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
 				t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (abs(vel2.z) / t_resolve.z * pen_depth.z + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 2)
+			else if (resolutioncase == OBJ1_NONSTATIC)
 			{
 
-				t1.m_Position.z -= (m1 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+				t1.m_Position.z -= (m1) ? (pen_depth.z + Gap) : 0.0f;
 			}
-			else if (resolutioncase == 3)
+			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
-				t2.m_Position.z += (m2 && t_resolve.z > 0.0f) ? (pen_depth.z + Gap) : 0.0f;
+				t2.m_Position.z += (m2) ? (pen_depth.z + Gap) : 0.0f;
 			}
 		}
 

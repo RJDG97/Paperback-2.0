@@ -76,8 +76,18 @@ struct physics_system : paperback::system::pausable_instance
 		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset ) noexcept
 		{
             //// Apply Gravity If Non-Static
-            if ( Mass )
-                RigidForce.m_Momentum.y += -9.8f * Mass->m_Mass * DeltaTime();
+                if (Mass && Mass->m_Mass)
+                {
+
+                    if (RigidForce.m_GravityActive)
+                    {
+                        RigidForce.m_Forces.y += -9.8f * Mass->m_Mass * DeltaTime();
+                    }
+                    else
+                    {
+                        RigidForce.m_GravityActive = true;
+                    }
+                }
 
             // minimum value threshold
             RigidForce.m_Forces.CutoffValue(RigidForce.m_minthreshold);
@@ -115,7 +125,7 @@ struct physics_system : paperback::system::pausable_instance
 
                     RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
                     RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
-                    Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+                    Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime() + 0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update
                     m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
@@ -132,7 +142,7 @@ struct physics_system : paperback::system::pausable_instance
 
                     RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
                     RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
-                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
+                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime() + 0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update
                     if ( Box )
