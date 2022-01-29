@@ -50,6 +50,7 @@
 #include "Icon.h"
 #include "Camera.h"
 #include "PlayerController.h"
+#include "Slope.h"
 
 // shapes
 #include "AABB.h"

@@ -299,15 +299,6 @@ namespace paperback::input
 		if ( m_Mouse )
 		{
 			m_Mouse->m_State.m_Current[ Key ] = !!Action;
-
-			if ( IsMousePress(GLFW_MOUSE_BUTTON_RIGHT) )
-			{
-				double X, Y;
-				GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
-
-				glfwGetCursorPos( m_pWindow, &X, &Y );
-				m_Mouse->m_State.m_MouseOriginPosition = glm::vec2{ X, Y };
-			}
 		}
 	}
 
@@ -380,12 +371,7 @@ namespace paperback::input
 	{
 		if ( m_Mouse )
 		{
-			double X, Y;
-			GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
-
-			glfwGetCursorPos( m_pWindow, &X, &Y );
-
-			return glm::vec2{ X, Y } - m_Mouse->m_State.m_MouseOriginPosition;
+			return m_Mouse->m_State.m_CurrPos - m_Mouse->m_State.m_PrevPos;
 		}
 		return glm::vec2{};
 	}
@@ -507,6 +493,9 @@ namespace paperback::input
 		if ( m_Mouse )
 		{
 			auto& MouseState = m_Mouse->m_State;
+
+			// Update Mouse Coordinates
+			MouseState.UpdateMouseCoordinates();
 
 			for ( size_t i = 0, max = MouseState.m_Current.size(); i < max; ++i )
 			{

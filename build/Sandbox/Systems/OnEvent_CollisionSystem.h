@@ -89,7 +89,7 @@ struct onevent_UnitTrigger_system : paperback::system::instance
             }
         }
 
-        Skip = true;
+        //Skip = true;
     }
 };
 
@@ -121,7 +121,7 @@ struct onevent_UnitTriggerStay_system : paperback::system::instance
         auto [ Unit_1_Friendly, Unit_1_Enemy, Unit_State, Base_1, CapturePt, Sound_1 ] = m_obj.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point, sound >( m_obj.m_PoolDetails );
         auto [ Unit_2_Friendly, Unit_2_Enemy, Unit_State2, Base_2, CapturePt_2 ] = m_obj2.m_pArchetype->FindComponents< friendly, enemy, unitstate, base, capture_point >( m_obj2.m_PoolDetails );
 
-        ResetForces(rf, rf2);
+        //ResetForces(rf, rf2);
 
         // Skip if it's Base or Capture Point
         if (Base_1 || CapturePt)

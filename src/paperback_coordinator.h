@@ -240,6 +240,9 @@ namespace paperback::coordinator
 		bool GetPauseBool() noexcept;
 
 		PPB_INLINE
+		GLFWwindow* GetWindowHandle( void ) noexcept;
+
+		PPB_INLINE
 		input::device::Keyboard_Controls* FindKeyboard( void ) noexcept;
 
 		PPB_INLINE

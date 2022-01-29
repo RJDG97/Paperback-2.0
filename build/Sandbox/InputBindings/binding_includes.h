@@ -93,13 +93,17 @@ namespace paperback::input::binding
 
             m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
             {
-                //auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
-                //auto Normalized        = DirectionalVector.Normalized();
-                //Normalized.y           = 0.0f;
+                auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                auto Normalized        = DirectionalVector.Normalized();
+                Normalized.y           = 0.0f;
 
-                //Rotate Vector Left But My Math Sucks
+                float x = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
+                float z = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
 
-                //RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                Normalized.x = x;
+                Normalized.z = z;
+
+                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
             });
 
         END_INPUT_ACTION
@@ -115,13 +119,17 @@ namespace paperback::input::binding
 
             m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
             {
-                //auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
-                //auto Normalized        = DirectionalVector.Normalized();
-                //Normalized.y           = 0.0f;
+                auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                auto Normalized        = DirectionalVector.Normalized();
+                Normalized.y           = 0.0f;
 
-                //Rotate Vector Right But My Math Sucks
+                float x = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
+                float z = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
 
-                //RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                Normalized.x = x;
+                Normalized.z = z;
+
+                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
             });
 
         END_INPUT_ACTION
@@ -137,9 +145,10 @@ namespace paperback::input::binding
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
+            auto DebugSys = m_Coordinator.FindSystem<debug_system>();
             auto GP = m_Coordinator.FindGamepad();
 
-            if ( GP )
+            if ( GP && DebugSys )
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
                 {
@@ -147,9 +156,9 @@ namespace paperback::input::binding
                     auto Normalized        = DirectionalVector.Normalized();
                     Normalized.y           = 0.0f;
 
-                    // Compute New Normalized Vector From Direction - ( GP->m_State.m_LeftAxis )
+                    // some rotation thing
 
-                    //RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
                 });
             }
 
@@ -161,7 +170,7 @@ namespace paperback::input::binding
     //     Camera Control Binding
     //-----------------------------------
 
-    BEGIN_BINDING_CONSTRUCT( Keyboard_Camera_Rotate )
+    BEGIN_BINDING_CONSTRUCT( Mouse_Camera_Rotate )
         BEGIN_INPUT_ACTION
 
             // TODO - Update Query Initialization To Constructor Call
@@ -169,9 +178,35 @@ namespace paperback::input::binding
             Query.m_Must.AddFromComponents< rigidforce, rotation, mass, player_controller, camera >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
-            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( camera& Camera )
+            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
             {
-                // Details TBC - Rotate Using Mouse / Keyboard Buttons?
+                if ( Camera.m_Active && !m_Coordinator.GetPauseBool() )
+                {
+                    auto Direction = m_Coordinator.GetMouseDirection();
+
+                    // TODO - Initialize this from a Global Settings Page
+                    Controller.m_CameraRotationSpeed = 150.0f;
+
+                    Direction = glm::normalize(Direction) * Controller.m_CameraRotationSpeed * 0.01f;
+
+	                if ( Direction.x < 0 )
+	                {
+                        Camera.RotateLeft( Direction.x * -1.f );
+	                }
+	                else if ( Direction.x > 0 )
+	                {
+                        Camera.RotateRight( Direction.x );
+	                }
+
+	                if (Direction.y > 0)
+	                {
+                        Camera.RotateDown( Direction.y );
+	                }
+	                else if (Direction.y < 0)
+	                {
+                        Camera.RotateUp( Direction.y * -1.f );
+	                }
+                }
             });
 
         END_INPUT_ACTION
@@ -193,7 +228,7 @@ namespace paperback::input::binding
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
                 {
                     Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed );
-                    Camera.RotateUp( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed );
+                    Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed );
                 });
             }
 

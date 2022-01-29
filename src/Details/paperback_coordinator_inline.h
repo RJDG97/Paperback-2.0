@@ -626,6 +626,13 @@ namespace paperback::coordinator
 
 	void instance::TogglePause( const bool& Status ) noexcept
 	{
+		auto WindowsSystem = FindSystem<window_system>();
+
+		if ( WindowsSystem && Status )
+			glfwSetInputMode( WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL );
+		else if ( WindowsSystem )
+			glfwSetInputMode( WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED );
+
 		m_SystemMgr.TogglePause( Status );
 	}
 
@@ -706,6 +713,15 @@ namespace paperback::coordinator
 	bool instance::GetPauseBool() noexcept
 	{
 		return m_bPaused;
+	}
+
+	
+	GLFWwindow* instance::GetWindowHandle( void ) noexcept
+	{
+		auto Win = FindSystem<window_system>();
+
+		if ( Win ) return Win->m_pWindow;
+		else       return nullptr;
 	}
 
 	PPB_INLINE

@@ -23,7 +23,7 @@ namespace MONO_SOUND
 	MONO_EXPORT MonoString* GetSoundID(void* address)
 	{
 		if (address)
-			return mono_string_new(mono_domain_get(), reinterpret_cast<sound*>(address)->m_SoundID);
+			return mono_string_new(mono_domain_get(), reinterpret_cast<sound*>(address)->m_SoundID.c_str());
 
 		return {};
 	}

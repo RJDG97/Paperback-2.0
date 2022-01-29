@@ -36,7 +36,7 @@ struct collision_system : paperback::system::pausable_instance
 	}
 
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox, sphere* Sphere, mass* m1 ) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox, sphere* Sphere, mass* m1, slope* Slope1 ) noexcept
     {
         if ( Entity.IsZombie() ) return;
        
@@ -50,7 +50,7 @@ struct collision_system : paperback::system::pausable_instance
 
             auto NeighbourList = m_Coordinator.SearchNeighbours( Transform.m_Position, Boundingbox->Min, Boundingbox->Max );
 
-            ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2 )
+            ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2 )
             {
                 if ( Entity.IsZombie() || Dynamic_Entity.IsZombie() ) return;
 
@@ -93,8 +93,10 @@ struct collision_system : paperback::system::pausable_instance
                                     //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
                 
                                 // Collision Response
-                                if ( !SkipUnit )
-                                    CheapaabbDynamic( Boundingbox, &RigidForce, Transform, m1, BB, RF, Xform, m2 );
+                                if (!SkipUnit)
+                                {
+                                    AABBDynamic(Boundingbox, &RigidForce, Transform, m1, Slope1, BB, RF, Xform, m2, Slope2);
+                                }
                 
                                 // Update Collision State of Current Entity to Other Entity
                                 Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;

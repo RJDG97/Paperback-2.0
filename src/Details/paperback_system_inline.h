@@ -241,6 +241,12 @@ namespace paperback::system
 		return pos;
 	}
 
+	PPB_INLINE
+	bool instance::IsGameActive( void ) noexcept
+	{
+		return !m_Coordinator.GetPauseBool();
+	}
+
 	glm::vec3 instance::GetViewportMousePosition( glm::vec2 viewport_min, glm::vec2 viewport_max ) noexcept
 	{
 		return m_Coordinator.GetViewportMousePosition(viewport_min, viewport_max);

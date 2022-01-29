@@ -20,8 +20,7 @@ struct rigidforce
     paperback::Vector3f m_Forces;						    // -- Sum of Forces of rigidbody
     paperback::Vector3f m_Momentum;                         // -- Momentum of rigidbody
     float m_Restitution;                                    // -- 0.f to 1.f -> 0 = no bounce, 1 = bounce                                           //NEW
-    //bool m_isStatic;
-
+    bool m_GravityActive;                                   // used to check if gravity has to be applied
 };
 
 

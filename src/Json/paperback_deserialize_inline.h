@@ -420,6 +420,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<camera>())
                 NewArchetype->GetComponent<camera>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<camera>();
+
+            if (obj.is_type<slope>())
+                NewArchetype->GetComponent<slope>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<slope>();
         }
     }
 

@@ -184,6 +184,23 @@ struct debug_system : paperback::system::instance
         Vec.push_back(Top_left);
     }
 
+    //given a set of vertices defining a triangle, prepare pairing required
+    void ConvertVerticesToTriangleDraw(std::vector<paperback::Vector3f>& Vec,
+        const paperback::Vector3f& Top,
+        const paperback::Vector3f& Bottom_right,
+        const paperback::Vector3f& Bottom_left)
+    {
+
+        Vec.push_back(Top);
+        Vec.push_back(Bottom_right);
+
+        Vec.push_back(Bottom_right);
+        Vec.push_back(Bottom_left);
+
+        Vec.push_back(Bottom_left);
+        Vec.push_back(Top);
+    }
+
     // draws a square given the provided data
     void DrawCubeCollision(boundingbox& Cube, transform& Transform)
     {
@@ -295,7 +312,126 @@ struct debug_system : paperback::system::instance
         }
     }
 
+    bool DrawSlope(boundingbox& Cube, transform& Transform, slope& Slope)
+    {
 
+        std::vector<paperback::Vector3f> debugdraw;
+
+        paperback::Vector3f front_top_left, front_top_right, front_bottom_left, front_bottom_right,
+            back_top_left, back_top_right, back_bottom_left, back_bottom_right, diff;
+
+        front_top_right = front_top_left = front_bottom_left = front_bottom_right = Cube.Max + Transform.m_Position + Transform.m_Offset;
+        back_bottom_left = back_top_left = back_top_right = back_bottom_right = Cube.Min + Transform.m_Position + Transform.m_Offset;
+        diff = front_top_right - back_bottom_left;
+
+        front_top_left -= paperback::Vector3f{ diff.x, 0.0f, 0.0f };
+        front_bottom_left -= paperback::Vector3f{ diff.x, diff.y, 0.0f };
+        front_bottom_right -= paperback::Vector3f{ 0.0f, diff.y, 0.0f };
+
+        back_top_right += paperback::Vector3f{ diff.x, diff.y, 0.0f };
+        back_top_left += paperback::Vector3f{ 0.0f, diff.y, 0.0f };
+        back_bottom_right += paperback::Vector3f{ diff.x, 0.0f, 0.0f };
+
+        //4 cases
+        //north, south, east, west
+        //draw side triangles + slope square
+        if (Slope.m_North && !Slope.m_South && !Slope.m_East && !Slope.m_West)
+        {
+
+            //north facing slope, slope from -z to +z
+            //left triangle
+            ConvertVerticesToTriangleDraw(debugdraw, front_top_left, front_bottom_left, back_bottom_left);
+
+            //right triangle
+            ConvertVerticesToTriangleDraw(debugdraw, front_top_right, front_bottom_right, back_bottom_right);
+
+            //square
+            //ConvertVerticesToSquareDraw(debugdraw, front_top_left, front_top_right, back_bottom_left, back_bottom_right);
+            
+            //top line
+            debugdraw.push_back(front_top_left);
+            debugdraw.push_back(front_top_right);
+
+            //bottom line
+            debugdraw.push_back(back_bottom_left);
+            debugdraw.push_back(back_bottom_right);
+        }
+        else if (!Slope.m_North && Slope.m_South && !Slope.m_East && !Slope.m_West)
+        {
+
+            //south facing slope, slope from +z to -z
+            //left triangle
+            ConvertVerticesToTriangleDraw(debugdraw, back_top_left, front_bottom_left, back_bottom_left);
+
+            //right triangle
+            ConvertVerticesToTriangleDraw(debugdraw, back_top_right, front_bottom_right, back_bottom_right);
+
+            //square
+            //ConvertVerticesToSquareDraw(debugdraw, back_top_left, back_top_right, front_bottom_right, front_bottom_left);
+            
+            //top line
+            debugdraw.push_back(back_top_left);
+            debugdraw.push_back(back_top_right);
+
+            //bottom line
+            debugdraw.push_back(front_bottom_left);
+            debugdraw.push_back(front_bottom_right);
+        }
+        else if (!Slope.m_North && !Slope.m_South && Slope.m_East && !Slope.m_West)
+        {
+
+            //east facing slope, slope from -x to +x
+            //left triangle
+            ConvertVerticesToTriangleDraw(debugdraw, back_top_left, back_bottom_left, back_bottom_right);
+
+            //right triangle
+            ConvertVerticesToTriangleDraw(debugdraw, front_top_left, front_bottom_left, front_bottom_right);
+
+            //square
+            //ConvertVerticesToSquareDraw(debugdraw, front_top_left, back_top_left , back_bottom_right, front_bottom_right);
+
+            //top line
+            debugdraw.push_back(front_top_left);
+            debugdraw.push_back(back_top_left);
+
+            //bottom line
+            debugdraw.push_back(front_bottom_right);
+            debugdraw.push_back(back_bottom_right);
+        }
+        else if (!Slope.m_North && !Slope.m_South && !Slope.m_East && Slope.m_West)
+        {
+
+            //west facing slope, slope from +x to -x
+            //left triangle
+            ConvertVerticesToTriangleDraw(debugdraw, back_top_right, back_bottom_left, back_bottom_right);
+
+            //right triangle
+            ConvertVerticesToTriangleDraw(debugdraw, front_top_right, front_bottom_left, front_bottom_right);
+
+            //square
+            //ConvertVerticesToSquareDraw(debugdraw, front_top_right, back_top_right, back_bottom_left, front_bottom_left);
+
+            //top line
+            debugdraw.push_back(back_top_right);
+            debugdraw.push_back(front_top_right);
+
+            //bottom line
+            debugdraw.push_back(back_bottom_left);
+            debugdraw.push_back(front_bottom_left);
+        }
+        else
+        {
+
+            //all true or all false
+            //return false if more than one or none is set to true
+            return false;
+        }
+
+        DrawDebugLines(debugdraw, Cube.m_Collided);
+
+        Cube.m_Collided = false;
+        return true;
+    }
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
@@ -309,7 +445,7 @@ struct debug_system : paperback::system::instance
     void operator()(paperback::component::entity& Entity, transform& Transform,
         boundingbox* Cube, sphere* Ball,
         LineSegment* line, Ray* ray,
-        Triangle* triangle, Plane* plane, Frustum* frustum
+        Triangle* triangle, Plane* plane, Frustum* frustum, slope* Slope
         ) noexcept
     {
 
@@ -325,7 +461,12 @@ struct debug_system : paperback::system::instance
             if (line)
                 DrawLine(*line, Transform);
             if (Cube)
-                DrawBoundingBox(*Cube, Transform);
+            {
+                if (Slope && !DrawSlope(*Cube, Transform, *Slope))
+                    DrawBoundingBox(*Cube, Transform);
+                else if (!Slope)
+                    DrawBoundingBox(*Cube, Transform);
+            }
             if (triangle)
                 DrawTriangle(*triangle, Transform);
             //// not in use
@@ -337,6 +478,7 @@ struct debug_system : paperback::system::instance
                 DrawRay(*ray, 5.f, Transform);
             if (plane)
                 DrawPlane(*plane, 5.f, 5.f, Transform);
+
         }
     }
 
