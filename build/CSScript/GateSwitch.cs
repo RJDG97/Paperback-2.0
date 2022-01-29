@@ -12,10 +12,13 @@ namespace CSScript
 
         Sound m_Sound; //switch is parent
         Parent m_Parent; //switch is parent
-        Mesh m_Mesh; //switch is parent
+        BoundingBox m_BoundingBox; //switch is parent
 
         BoundingBox m_ChildBoundingBox; //gate is child
         Animator m_ChildAnimator;
+
+        Rigidbody m_Rigidbody;
+        Rigidforce m_Rigidforce;
 
         public static GateSwitch getInst()
         {
@@ -27,7 +30,7 @@ namespace CSScript
             m_ID = ID;
             m_Sound = new Sound(m_ID);
             m_Parent = new Parent(m_ID);
-            m_Mesh = new Mesh(m_ID);
+            m_BoundingBox = new BoundingBox(m_ID);
 
             m_ChildID = m_Parent.GetChildIDofName("Gate");
 
@@ -38,11 +41,19 @@ namespace CSScript
                 m_ChildAnimator.m_PauseAnimation = true;
             }
 
-            //m_Sound.m_Trigger = false;
+            m_Rigidbody = new Rigidbody(m_ID);
+            m_Rigidforce = new Rigidforce(m_ID);
+
+            m_Sound.m_Trigger = false;
         }
 
         public void Update(float dt)
         {
+            if (Input.IsKeyPressDown(Input.PB_G))
+                m_Rigidbody.m_Velocity += new Tools.MathLib.Vector3(5f, 5f, 5f);
+
+            if (Input.IsKeyPressDown(Input.PB_H))
+                m_Rigidforce.m_Momentum += new Tools.MathLib.Vector3(5f, 5f, 5f);
         }
 
         public void Destroy()

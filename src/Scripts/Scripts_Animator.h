@@ -8,6 +8,15 @@ namespace MONO_ANIMATOR
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_animator = m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_animator)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Animator component." << std::endl;
+		}
+#endif
+
 		return m_animator;
 	}
 
@@ -105,19 +114,19 @@ namespace MONO_ANIMATOR
 
 	void AddInternalCall()
 	{
-		mono_add_internal_call("CSScript.ANIMATOR::getaddress(uint)", &MONO_ANIMATOR::GetAddress);
-		mono_add_internal_call("CSScript.ANIMATOR::getcurrentanimationname(void*)", &MONO_ANIMATOR::GetCurrentAnimationName);
-		mono_add_internal_call("CSScript.ANIMATOR::setcurrentanimationname(void*,string)", &MONO_ANIMATOR::SetCurrentAnimationName);
-		mono_add_internal_call("CSScript.ANIMATOR::getcurrentanimationtime(void*)", &MONO_ANIMATOR::GetCurrentAnimationTime);
-		mono_add_internal_call("CSScript.ANIMATOR::setcurrentanimationtime(void*,single)", &MONO_ANIMATOR::SetCurrentAnimationTime);
-		mono_add_internal_call("CSScript.ANIMATOR::getplayonce(void*)", &MONO_ANIMATOR::GetPlayOnce);
-		mono_add_internal_call("CSScript.ANIMATOR::setplayonce(void*,bool)", &MONO_ANIMATOR::SetPlayOnce);
-		mono_add_internal_call("CSScript.ANIMATOR::getfinishedanimating(void*)", &MONO_ANIMATOR::GetFinishedAnimating);
-		mono_add_internal_call("CSScript.ANIMATOR::getpauseanimation(void*)", &MONO_ANIMATOR::GetPauseAnimation);
-		mono_add_internal_call("CSScript.ANIMATOR::setpauseanimation(void*,bool)", &MONO_ANIMATOR::SetPauseAnimation);
-		mono_add_internal_call("CSScript.ANIMATOR::getpauseatframe(void*)", &MONO_ANIMATOR::GetPauseAtFrame);
-		mono_add_internal_call("CSScript.ANIMATOR::setpauseatframe(void*,int)", &MONO_ANIMATOR::SetPauseAtFrame);
-		mono_add_internal_call("CSScript.ANIMATOR::getreversed(void*)", &MONO_ANIMATOR::GetReversed);
-		mono_add_internal_call("CSScript.ANIMATOR::setreversed(void*,bool)", &MONO_ANIMATOR::SetReversed);
+		mono_add_internal_call("CSScript.Animator::getaddress(uint)", &MONO_ANIMATOR::GetAddress);
+		mono_add_internal_call("CSScript.Animator::getcurrentanimationname(void*)", &MONO_ANIMATOR::GetCurrentAnimationName);
+		mono_add_internal_call("CSScript.Animator::setcurrentanimationname(void*,string)", &MONO_ANIMATOR::SetCurrentAnimationName);
+		mono_add_internal_call("CSScript.Animator::getcurrentanimationtime(void*)", &MONO_ANIMATOR::GetCurrentAnimationTime);
+		mono_add_internal_call("CSScript.Animator::setcurrentanimationtime(void*,single)", &MONO_ANIMATOR::SetCurrentAnimationTime);
+		mono_add_internal_call("CSScript.Animator::getplayonce(void*)", &MONO_ANIMATOR::GetPlayOnce);
+		mono_add_internal_call("CSScript.Animator::setplayonce(void*,bool)", &MONO_ANIMATOR::SetPlayOnce);
+		mono_add_internal_call("CSScript.Animator::getfinishedanimating(void*)", &MONO_ANIMATOR::GetFinishedAnimating);
+		mono_add_internal_call("CSScript.Animator::getpauseanimation(void*)", &MONO_ANIMATOR::GetPauseAnimation);
+		mono_add_internal_call("CSScript.Animator::setpauseanimation(void*,bool)", &MONO_ANIMATOR::SetPauseAnimation);
+		mono_add_internal_call("CSScript.Animator::getpauseatframe(void*)", &MONO_ANIMATOR::GetPauseAtFrame);
+		mono_add_internal_call("CSScript.Animator::setpauseatframe(void*,int)", &MONO_ANIMATOR::SetPauseAtFrame);
+		mono_add_internal_call("CSScript.Animator::getreversed(void*)", &MONO_ANIMATOR::GetReversed);
+		mono_add_internal_call("CSScript.Animator::setreversed(void*,bool)", &MONO_ANIMATOR::SetReversed);
 	}
 }

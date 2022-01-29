@@ -8,6 +8,15 @@ namespace MONO_SPHERE
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_sphere = m_obj.m_pArchetype->FindComponent<sphere>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_sphere)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Sphere component." << std::endl;
+		}
+#endif
+
 		return m_sphere;
 	}
 

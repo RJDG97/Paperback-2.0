@@ -8,6 +8,15 @@ namespace MONO_BOUNDINGBOX
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_boundingbox = m_obj.m_pArchetype->FindComponent<boundingbox>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_boundingbox)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Bounding Box component." << std::endl;
+		}
+#endif
+
 		return m_boundingbox;
 	}
 
@@ -49,11 +58,11 @@ namespace MONO_BOUNDINGBOX
 
 	void AddInternalCall()
 	{
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getaddress(uint)", &MONO_BOUNDINGBOX::GetAddress);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getmin(void*)", &MONO_BOUNDINGBOX::GetMin);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::setmin(void*,single,single,single)", &MONO_BOUNDINGBOX::SetMin);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getmax(void*)", &MONO_BOUNDINGBOX::GetMax);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::setmax(void*,single,single,single)", &MONO_BOUNDINGBOX::SetMax);
-		mono_add_internal_call("CSScript.BOUNDINGBOX::getcollided(void*)", &MONO_BOUNDINGBOX::GetCollided);
+		mono_add_internal_call("CSScript.BoundingBox::getaddress(uint)", &MONO_BOUNDINGBOX::GetAddress);
+		mono_add_internal_call("CSScript.BoundingBox::getmin(void*)", &MONO_BOUNDINGBOX::GetMin);
+		mono_add_internal_call("CSScript.BoundingBox::setmin(void*,single,single,single)", &MONO_BOUNDINGBOX::SetMin);
+		mono_add_internal_call("CSScript.BoundingBox::getmax(void*)", &MONO_BOUNDINGBOX::GetMax);
+		mono_add_internal_call("CSScript.BoundingBox::setmax(void*,single,single,single)", &MONO_BOUNDINGBOX::SetMax);
+		mono_add_internal_call("CSScript.BoundingBox::getcollided(void*)", &MONO_BOUNDINGBOX::GetCollided);
 	}
 }

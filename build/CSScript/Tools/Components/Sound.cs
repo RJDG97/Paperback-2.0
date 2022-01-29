@@ -19,7 +19,7 @@ namespace CSScript
             m_Address = getaddress(id);
         }
 
-        public String m_SoundID
+        public string m_SoundID
         {
             get
             {
@@ -83,7 +83,7 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String getsoundid(void* address);
+        private extern static string getsoundid(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void setsoundid(void* address, String value);

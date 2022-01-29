@@ -8,6 +8,15 @@ namespace MONO_MASS
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_mass = m_obj.m_pArchetype->FindComponent<mass>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_mass)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Mass component." << std::endl;
+		}
+#endif
+
 		return m_mass;
 	}
 

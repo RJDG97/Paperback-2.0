@@ -15,8 +15,6 @@ namespace CSScript
         private UInt32 m_ID;
         public Transform(UInt32 id)
         {
-            // m_ID = ID;
-            id = 40; // For testing (Cardback)
             m_Address = getaddress(id);
         }
 
@@ -28,7 +26,6 @@ namespace CSScript
             }
             set
             {
-                //m_Offset = value;
                 setoffset(m_Address, value.x, value.y, value.z);
             }
         }

@@ -8,6 +8,15 @@ namespace MONO_RIGIDBODY
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_rigidbody = m_obj.m_pArchetype->FindComponent<rigidbody>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_rigidbody)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Rigidbody component." << std::endl;
+		}
+#endif
+
 		return m_rigidbody;
 	}
 

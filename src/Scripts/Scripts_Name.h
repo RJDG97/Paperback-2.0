@@ -11,18 +11,18 @@ namespace MONO_NAME
 		return m_name;
 	}
 
-	MONO_EXPORT std::string GetName(void* address)
+	MONO_EXPORT MonoString* GetName(void* address)
 	{
 		if (address)
-			return reinterpret_cast<name*>(address)->m_Value;
+			return mono_string_new(mono_domain_get(), reinterpret_cast<name*>(address)->m_Value.c_str());
 
 		return {};
 	}
 
-	MONO_EXPORT void SetName(void* address, std::string value)
+	MONO_EXPORT void SetName(void* address, MonoString* value)
 	{
 		if (address)
-			reinterpret_cast<name*>(address)->m_Value = value;
+			reinterpret_cast<name*>(address)->m_Value = mono_string_to_utf8(value);
 	}
 
 	void AddInternalCall()

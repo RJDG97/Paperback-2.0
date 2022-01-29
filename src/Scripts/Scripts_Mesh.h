@@ -8,6 +8,15 @@ namespace MONO_MESH
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_mesh = m_obj.m_pArchetype->FindComponent<mesh>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_mesh)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Mesh component." << std::endl;
+		}
+#endif
+
 		return m_mesh;
 	}
 

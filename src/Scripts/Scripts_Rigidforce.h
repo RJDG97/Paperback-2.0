@@ -8,7 +8,16 @@ namespace MONO_RIGIDFORCE
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_rigidforce = m_obj.m_pArchetype->FindComponent<rigidforce>(m_obj.m_PoolDetails);
-		return &m_rigidforce;
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_rigidforce)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Rigidforce component." << std::endl;
+		}
+#endif
+
+		return m_rigidforce;
 	}
 
 	MONO_EXPORT float GetStaticFriction(void* address)

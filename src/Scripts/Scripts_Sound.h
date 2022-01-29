@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Mono.h"
+#include <string>
 
 namespace MONO_SOUND
 {
@@ -8,21 +9,29 @@ namespace MONO_SOUND
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_sound = m_obj.m_pArchetype->FindComponent<sound>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_sound)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Sound component." << std::endl;
+		}
+#endif
 		return m_sound;
 	}
 
-	MONO_EXPORT std::string GetSoundID(void* address)
+	MONO_EXPORT MonoString* GetSoundID(void* address)
 	{
 		if (address)
-			return reinterpret_cast<sound*>(address)->m_SoundID;
+			return mono_string_new(mono_domain_get(), reinterpret_cast<sound*>(address)->m_SoundID);
 
 		return {};
 	}
 
-	MONO_EXPORT void SetSoundID(void* address, std::string value)
+	MONO_EXPORT void SetSoundID(void* address, MonoString* value)
 	{
 		if (address)
-			reinterpret_cast<sound*>(address)->m_SoundID = value;
+			reinterpret_cast<sound*>(address)->m_SoundID = mono_string_to_utf8(value);
 	}
 
 	MONO_EXPORT uint32_t GetSoundPlayTag(void* address)

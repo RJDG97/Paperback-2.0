@@ -8,6 +8,15 @@ namespace MONO_OFFSET
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_offset = m_obj.m_pArchetype->FindComponent<offset>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_offset)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Offset component." << std::endl;
+		}
+#endif
+
 		return m_offset;
 	}
 

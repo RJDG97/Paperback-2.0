@@ -20,7 +20,7 @@ struct animator
 	std::string m_CurrentAnimationName;
 	float m_CurrentTime{};
 	bool m_PlayOnce{};
-	bool m_FinishedAnimating{};
+	bool m_FinishedAnimating{false};
 	bool m_PauseAnimation{};
 	int m_PauseAtFrame{-1};
 	bool m_Reversed{};
@@ -37,7 +37,7 @@ namespace RR_Animator
 			.property("Play Once", &animator::m_PlayOnce)(rttr::policy::prop::as_reference_wrapper)
 			.property("Pause Animation", &animator::m_PauseAnimation)(rttr::policy::prop::as_reference_wrapper)
 			.property("Current Time", &animator::m_CurrentTime)(rttr::policy::prop::as_reference_wrapper)
-			.property("Pause Animation", &animator::m_PauseAnimation)
+			.property("Pause Animation", &animator::m_PauseAnimation)(rttr::policy::prop::as_reference_wrapper)
 			.property("Pause At Frame", &animator::m_PauseAtFrame)(rttr::policy::prop::as_reference_wrapper);
 	}
 }

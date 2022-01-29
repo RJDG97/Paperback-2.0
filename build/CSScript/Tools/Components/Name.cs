@@ -35,9 +35,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String getname(void* address);
+        private extern static string getname(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setname(void* address, String value);
+        private extern static void setname(void* address, string value);
     }
 }

@@ -45,7 +45,7 @@ struct animator_system : paperback::system::pausable_instance
 
 		if (anims.find(Ator.m_CurrentAnimationName) != anims.end())
 		{
-			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating) || !Ator.m_PauseAnimation)
+			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating) && !Ator.m_PauseAnimation)
 			{
 				auto& current_anim{ anims[Ator.m_CurrentAnimationName] };
 
@@ -63,14 +63,19 @@ struct animator_system : paperback::system::pausable_instance
 				if (!Ator.m_Reversed && Ator.m_CurrentTime >= current_anim.GetDuration())
 				{
 					Ator.m_CurrentTime = fmod(Ator.m_CurrentTime, current_anim.GetDuration());
+					Ator.m_FinishedAnimating = true;
 				}
 
 				else if (Ator.m_Reversed && Ator.m_CurrentTime < 0.0f)
 				{
 					Ator.m_CurrentTime = current_anim.GetDuration();
+					Ator.m_FinishedAnimating = true;
 				}
 
-				Ator.m_FinishedAnimating = true;
+				else
+				{
+					Ator.m_FinishedAnimating = false;
+				}
 
 				std::vector<std::tuple<socketed*, animator*, mesh*, parent*>> children_data;
 

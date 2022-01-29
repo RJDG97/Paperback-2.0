@@ -8,6 +8,15 @@ namespace MONO_SCALE
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_scale = m_obj.m_pArchetype->FindComponent<scale>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_scale)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Scale component." << std::endl;
+		}
+#endif
+
 		return m_scale;
 	}
 

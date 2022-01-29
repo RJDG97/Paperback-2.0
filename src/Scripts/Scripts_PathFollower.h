@@ -8,6 +8,15 @@ namespace MONO_PATHFOLLOWER
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_path_follower = m_obj.m_pArchetype->FindComponent<path_follower>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_path_follower)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no PathFollower component." << std::endl;
+		}
+#endif
+
 		return m_path_follower;
 	}
 
