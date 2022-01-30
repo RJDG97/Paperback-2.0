@@ -17,8 +17,8 @@ namespace CSScript
         BoundingBox m_ChildBoundingBox; //gate is child
         Animator m_ChildAnimator;
 
-        Rigidbody m_Rigidbody;
-        Rigidforce m_Rigidforce;
+        Tools.MathLib.Vector3 m_InitialBoundingBoxMin;
+        Tools.MathLib.Vector3 m_InitialBoundingBoxMax;
 
         public static GateSwitch getInst()
         {
@@ -41,19 +41,14 @@ namespace CSScript
                 m_ChildAnimator.m_PauseAnimation = true;
             }
 
-            m_Rigidbody = new Rigidbody(m_ID);
-            m_Rigidforce = new Rigidforce(m_ID);
-
             m_Sound.m_Trigger = false;
+
+            m_InitialBoundingBoxMin = m_ChildBoundingBox.Min;
+            m_InitialBoundingBoxMax = m_ChildBoundingBox.Max;
         }
 
         public void Update(float dt)
         {
-            if (Input.IsKeyPressDown(Input.PB_G))
-                m_Rigidbody.m_Velocity += new Tools.MathLib.Vector3(5f, 5f, 5f);
-
-            if (Input.IsKeyPressDown(Input.PB_H))
-                m_Rigidforce.m_Momentum += new Tools.MathLib.Vector3(5f, 5f, 5f);
         }
 
         public void Destroy()
@@ -65,7 +60,8 @@ namespace CSScript
             if (m_ChildID != 1 && (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/))
             {
                 m_Sound.m_Trigger = true;
-                //m_ChildBoundingBox - toggle collidable
+                m_ChildBoundingBox.Min = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_ChildBoundingBox.Max = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                 m_ChildAnimator.m_PauseAnimation = false;
             }
         }
@@ -76,6 +72,8 @@ namespace CSScript
         {
             if (m_ChildID != 1 && (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/))
             {
+                m_ChildBoundingBox.Min = m_InitialBoundingBoxMin;
+                m_ChildBoundingBox.Max = m_InitialBoundingBoxMax;
                 m_ChildAnimator.m_PauseAnimation = true;
             }
         }

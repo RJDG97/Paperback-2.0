@@ -12,9 +12,12 @@ namespace CSScript
     {
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern static UInt32 GetRedRobotID();
+        public extern static Int32 GetRedRobotID();
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern static UInt32 GetBlueRobotID();
+        public extern static Int32 GetBlueRobotID();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static void TogglePlayers();
     }
 }

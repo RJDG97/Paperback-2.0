@@ -279,7 +279,7 @@
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h">
+    <ClInclude Include="..\..\src\Scripts\Scripts_CameraTools.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h">
@@ -581,6 +581,9 @@
     </ClInclude>
     <ClInclude Include="..\Sandbox\InputBindings\binding_includes.h">
       <Filter>Source\Tools\Input\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

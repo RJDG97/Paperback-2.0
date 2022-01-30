@@ -81,7 +81,7 @@ struct physics_system : paperback::system::pausable_instance
 
                     if (RigidForce.m_GravityActive)
                     {
-                        RigidForce.m_Forces.y += -9.8f * Mass->m_Mass * DeltaTime();
+                        //RigidForce.m_Forces.y += -9.8f * Mass->m_Mass * DeltaTime();
                     }
                     else
                     {
@@ -128,11 +128,14 @@ struct physics_system : paperback::system::pausable_instance
                     Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime() + 0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update
-                    m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
-                                            , OldPosition
-                                            , Offset->m_PosOffset
-                                            , Box->Min
-                                            , Box->Max );
+                    if (Box)
+                    {
+                        m_Coordinator.UpdateUnit(Entity.m_GlobalIndex
+                            , OldPosition
+                            , Offset->m_PosOffset
+                            , Box->Min
+                            , Box->Max);
+                    }
                 }
 
                 else

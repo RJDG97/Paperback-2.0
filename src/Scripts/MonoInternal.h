@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Mono.h"
-#include "Scripts/Scripts_Camera.h"
+#include "Scripts/Scripts_CameraTools.h"
 #include "Scripts/Scripts_Inputs.h"
 #include "Scripts/Scripts_Application.h"
 #include "Scripts/Scripts_Debug.h"
@@ -25,12 +25,13 @@
 #include "Scripts/Scripts_Child.h"
 #include "Scripts/Scripts_Parent.h"
 #include "Scripts/Scripts_Player.h"
+#include "Scripts/Scripts_Camera.h"
 
 namespace MONO_INTERNALS
 {
 	void MonoAddInternalCall()
 	{
-		MONO_CAMERA::AddInternals();
+		MONO_CAMERA_TOOLS::AddInternals();
 		MONO_INPUTS::AddInternals();
 		MONO_PLAYER::AddInternals();
 		MONO_APPLICATION::AddInternals();
@@ -54,5 +55,6 @@ namespace MONO_INTERNALS
 		MONO_TEXT::AddInternalCall();
 		MONO_CHILD::AddInternalCall();
 		MONO_PARENT::AddInternalCall();
+		MONO_CAMERA::AddInternalCall();
 	}
 }

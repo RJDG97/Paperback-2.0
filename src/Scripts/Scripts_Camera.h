@@ -1,72 +1,43 @@
 #pragma once
 
 #include "Mono.h"
-#include "paperback_camera.h"
 
 namespace MONO_CAMERA
 {
-
-	MONO_EXPORT void MoveForward()
+	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
-		cam::GetInstanced().MoveForward();
+		auto m_obj = PPB.GetEntityInfo(ID);
+		void* m_camera = m_obj.m_pArchetype->FindComponent<camera>(m_obj.m_PoolDetails);
+
+#ifdef PAPERBACK_DEBUG
+		if (!m_camera)
+		{
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Camera component." << std::endl;
+		}
+#endif
+
+		return m_camera;
 	}
 
-	MONO_EXPORT void MoveBackward()
+	MONO_EXPORT bool GetActive(void* address)
 	{
-		cam::GetInstanced().MoveBackward();
+		if (address)
+			return reinterpret_cast<camera*>(address)->m_Active;
+
+		return {};
 	}
 
-	MONO_EXPORT void MoveLeft()
+	MONO_EXPORT void SetActive(void* address, bool value)
 	{
-		cam::GetInstanced().MoveLeft();
+		if (address)
+			reinterpret_cast<camera*>(address)->m_Active = value;
 	}
 
-	MONO_EXPORT void MoveRight()
+	void AddInternalCall()
 	{
-		cam::GetInstanced().MoveRight();
-	}
-
-	MONO_EXPORT void MoveUp()
-	{
-		cam::GetInstanced().MoveUp();
-	}
-
-	MONO_EXPORT void MoveDown()
-	{
-		cam::GetInstanced().MoveDown();
-	}
-
-	MONO_EXPORT void RotateUp()
-	{
-		cam::GetInstanced().RotateUp();
-	}
-
-	MONO_EXPORT void RotateDown()
-	{
-		cam::GetInstanced().RotateDown();
-	}
-
-	MONO_EXPORT void RotateLeft()
-	{
-		cam::GetInstanced().RotateLeft();
-	}
-
-	MONO_EXPORT void RotateRight()
-	{
-		cam::GetInstanced().RotateRight();
-	}
-
-	void AddInternals()
-	{
-		mono_add_internal_call("CSScript.Camera::MoveForward()", &MONO_CAMERA::MoveForward);
-		mono_add_internal_call("CSScript.Camera::MoveBackward()", &MONO_CAMERA::MoveBackward);
-		mono_add_internal_call("CSScript.Camera::MoveLeft()", &MONO_CAMERA::MoveLeft);
-		mono_add_internal_call("CSScript.Camera::MoveRight()", &MONO_CAMERA::MoveRight);
-		mono_add_internal_call("CSScript.Camera::MoveUp()", &MONO_CAMERA::MoveUp);
-		mono_add_internal_call("CSScript.Camera::MoveDown()", &MONO_CAMERA::MoveDown);
-		mono_add_internal_call("CSScript.Camera::RotateUp()", &MONO_CAMERA::RotateUp);
-		mono_add_internal_call("CSScript.Camera::RotateDown()", &MONO_CAMERA::RotateDown);
-		mono_add_internal_call("CSScript.Camera::RotateLeft()", &MONO_CAMERA::RotateLeft);
-		mono_add_internal_call("CSScript.Camera::RotateRight()", &MONO_CAMERA::RotateRight);
+		mono_add_internal_call("CSScript.Camera::getaddress(uint)", &MONO_CAMERA::GetAddress);
+		mono_add_internal_call("CSScript.Camera::getactive(void*)", &MONO_CAMERA::GetActive);
+		mono_add_internal_call("CSScript.Camera::setactive(void*,bool)", &MONO_CAMERA::SetActive);
 	}
 }

@@ -43,6 +43,7 @@ namespace CSScript
             if (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/)
             {
                 m_ChildPathFollower.m_PauseTravel = false;
+                Debug.Log("OKERP");
             }
         }
         public void OnCollisionStay(UInt32 ID)

@@ -40,8 +40,8 @@ namespace CSScript
             m_RedCPTransform = new Transform((UInt32)m_RedID);
             m_BlueCPTransform = new Transform((UInt32)m_BlueID);
 
-            m_RedRoboTransform = new Transform(Player.GetRedRobotID());
-            m_BlueRoboTransform = new Transform(Player.GetBlueRobotID());
+            m_RedRoboTransform = new Transform((UInt32)Player.GetRedRobotID());
+            m_BlueRoboTransform = new Transform((UInt32)Player.GetBlueRobotID());
 
             m_Sound.m_Trigger = false;
         }

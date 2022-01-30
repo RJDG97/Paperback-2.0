@@ -189,6 +189,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void TogglePause( const bool& Status ) noexcept;
 
+		PPB_INLINE
+		void TogglePlayers(void) noexcept;
+
 
 		//-----------------------------------
 		//        Getters / Setters

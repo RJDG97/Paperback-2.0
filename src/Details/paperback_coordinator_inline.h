@@ -636,6 +636,19 @@ namespace paperback::coordinator
 		m_SystemMgr.TogglePause( Status );
 	}
 
+	void instance::TogglePlayers(void) noexcept
+	{
+		tools::query m_QueryPlayer;
+		m_QueryPlayer.m_Must.AddFromComponents<camera, player_controller>();
+		m_QueryPlayer.m_NoneOf.AddFromComponents<prefab>();
+
+		ForEach(Search(m_QueryPlayer), [&](camera& Camera, player_controller& Player_Controller) noexcept
+		{
+			Camera.m_Active = !Camera.m_Active;
+			Player_Controller.m_PlayerStatus = !Player_Controller.m_PlayerStatus;
+		});
+	}
+
 	void instance::QuitGame() noexcept
 	{
 		m_GameActive = false;

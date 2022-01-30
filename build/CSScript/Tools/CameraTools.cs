@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 // For out of c# implementation
 using System.Runtime.CompilerServices;
 
-namespace CSScript
+namespace CSScript.Tools
 {
-    public class Camera
+    public class CameraTools
     {
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
