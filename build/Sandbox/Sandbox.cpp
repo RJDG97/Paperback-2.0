@@ -213,13 +213,17 @@ void InitializeGame()
             auto Gamepad_Movement            = PPB.RegisterBinding<paperback::input::binding::Gamepad_EntityMovement>();
             auto Gamepad_Rotate              = PPB.RegisterBinding<paperback::input::binding::Gamepad_Camera_Rotate>();
 
+            // Generic Gameplay Registration
+            auto Jump_Action                 = PPB.RegisterBinding<paperback::input::binding::Jump_Action>();
+
 
 
             // Keyboard Bindings
-            PPB.AssignBindingToAction( Keyboard_Movement_Forward,   GLFW_KEY_W, input::device::type::id::KEYBOARD );
-            PPB.AssignBindingToAction( Keyboard_Movement_Backwards, GLFW_KEY_S, input::device::type::id::KEYBOARD );
-            PPB.AssignBindingToAction( Keyboard_Movement_Left,      GLFW_KEY_A, input::device::type::id::KEYBOARD );
-            PPB.AssignBindingToAction( Keyboard_Movement_Right,     GLFW_KEY_D, input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Forward,   GLFW_KEY_W,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Backwards, GLFW_KEY_S,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Left,      GLFW_KEY_A,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Right,     GLFW_KEY_D,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Jump_Action,                 GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
 
 
             // Mouse Bindings
@@ -229,6 +233,7 @@ void InitializeGame()
             // Gamepad Bindings
             PPB.AssignBindingToAction( Gamepad_Movement, GLFW_GAMEPAD_BUTTON_LEFT_THUMB,  input::device::type::id::GAMEPAD );
             PPB.AssignBindingToAction( Gamepad_Rotate,   GLFW_GAMEPAD_BUTTON_RIGHT_THUMB, input::device::type::id::GAMEPAD );
+            PPB.AssignBindingToAction( Jump_Action,      GLFW_GAMEPAD_BUTTON_A,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
         }
     }
     // Set Window maximized initially

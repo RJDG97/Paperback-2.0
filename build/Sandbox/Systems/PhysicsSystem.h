@@ -60,7 +60,7 @@ struct physics_system : paperback::system::pausable_instance
 	void OnSystemCreated(void) noexcept
 	{
 		Query.m_Must.AddFromComponents<transform, entity, rigidforce>();
-		Query.m_OneOf.AddFromComponents<boundingbox, mass, rigidbody>();
+		Query.m_OneOf.AddFromComponents<boundingbox, mass, rigidbody, rotation, player_controller>();
         Query.m_OneOf.AddFromComponents<name, child, offset>();
 		Query.m_NoneOf.AddFromComponents<prefab>();
 	}
@@ -73,7 +73,7 @@ struct physics_system : paperback::system::pausable_instance
     PPB_FORCEINLINE
 	void Update( void ) noexcept
 	{
-		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset ) noexcept
+		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, rotation* Rot, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset, player_controller* Controller ) noexcept
 		{
             //// Apply Gravity If Non-Static
                 if (Mass && Mass->m_Mass)
@@ -86,6 +86,7 @@ struct physics_system : paperback::system::pausable_instance
                     else
                     {
                         RigidForce.m_GravityActive = true;
+                        if ( Controller ) Controller->m_OnGround = true;
                     }
                 }
 
@@ -158,6 +159,13 @@ struct physics_system : paperback::system::pausable_instance
                     }
                 }
                 
+            }
+            // Update Rotation
+            if ( RigidBody && Rot && RigidBody->m_Velocity.MagnitudeSq() > 0.01f )
+            {
+                auto Debug = m_Coordinator.FindSystem<debug_system>();
+                if ( Debug )
+                    Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
             }
         });
 	}
