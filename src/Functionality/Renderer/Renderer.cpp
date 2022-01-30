@@ -132,6 +132,10 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
 	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
 
+	// New Game
+
+	// Building Blocks
+
 	m_Resources.Load3DMeshNUI("RectangleBlock_Yellow", "../../resources/models/nui/RectangleBlock_Yellow.nui");
 	m_Resources.Load3DMeshNUI("RectangleBlock_Red", "../../resources/models/nui/RectangleBlock_Red.nui");
 	m_Resources.Load3DMeshNUI("RectangleBlock_Blue", "../../resources/models/nui/RectangleBlock_Blue.nui");
@@ -180,12 +184,28 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("SemiCircleBlock_Green", "../../resources/models/nui/SemiCircleBlock_Green.nui");
 	m_Resources.Load3DMeshNUI("SemiCircleBlock_Wood", "../../resources/models/nui/SemiCircleBlock_Wood.nui");
 
+	m_Resources.Load3DMeshNUI("InteractableBlock2x2", "../../resources/models/nui/InteractableBlock2x2.nui");
+	m_Resources.Load3DMeshNUI("InteractableBlock3x3", "../../resources/models/nui/InteractableBlock3x3.nui");
+
+	// Stationary Props
+
 	m_Resources.Load3DMeshNUI("Ruler", "../../resources/models/nui/Ruler.nui");
 	m_Resources.Load3DMeshNUI("ColourPencilBox", "../../resources/models/nui/ColourPencilBox.nui");
+	m_Resources.Load3DMeshNUI("GuardHouse", "../../resources/models/nui/GuardHouse.nui");
+
+	// Partition Props
+	m_Resources.Load3DMeshNUI("ChildSafetyGate", "../../resources/models/nui/ChildSafetyGate.nui");
+
+	// Moving Platforms
+	m_Resources.Load3DMeshNUI("CraneElevator", "../../resources/models/nui/CraneElevator.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
+	m_Resources.Load3DMeshNUI("CashRegister", "../../resources/models/nui/CashRegister.nui");
+
+	// Characters
 	m_Resources.Load3DMeshNUI("StrongToy", "../../resources/models/nui/StrongToy.nui");
 	m_Resources.Load3DMeshNUI("JumpToy", "../../resources/models/nui/JumpToy.nui");
-	m_Resources.Load3DMeshNUI("GuardHouse", "../../resources/models/nui/GuardHouse.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
+
+
 	//m_Resources.Load3DMeshNUI("CrayonBox", "../../resources/models/nui/RectangleBlock_Wood.nui");
 
 
