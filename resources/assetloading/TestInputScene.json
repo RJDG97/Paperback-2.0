@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 83
+                "EntityHead": 90
             }
         },
         {
@@ -7596,9 +7596,103 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 1.1617016792297364,
-                            "y": 13.181106567382813,
-                            "z": 18.82807159423828
+                            "x": 60.902000427246097,
+                            "y": 5.599999904632568,
+                            "z": 3.427999973297119
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 30.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Test Input Entity"
+                    },
+                    "Mass": {
+                        "Mass": 6.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Camera": {
+                        "Active": true,
+                        "Radius": 6.0,
+                        "Theta": 89.92973327636719,
+                        "Azimuth": 0.07026678323745728
+                    },
+                    "Player Controller": {
+                        "Device Guid": [],
+                        "Movement Force": 80.0,
+                        "Jump Force": 6.0,
+                        "Camera Rotation Speed": 200.0,
+                        "Player Active Status": true,
+                        "Player On Ground Status": true
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 83
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 61.757999420166019,
+                            "y": 0.0,
+                            "z": -2.1498796076713235e-9
                         }
                     },
                     "RigidForce": {
@@ -7619,36 +7713,151 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
+                            "x": -25.0,
+                            "y": -5.0,
+                            "z": -25.0
                         },
                         "Max Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
+                            "x": 25.0,
+                            "y": 5.0,
+                            "z": 25.0
                         },
                         "Is Collide": false
                     },
                     "Name": {
-                        "Name": "Test Input Entity"
+                        "Name": "Test Floor Surface"
                     },
                     "Mass": {
-                        "Mass": 5.0,
+                        "Mass": 0.0,
                         "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 89
                     },
-                    "Camera": {
-                        "Active": true,
-                        "Radius": 6.0,
-                        "Theta": 89.92973327636719,
-                        "Azimuth": 0.07026678323745728
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
                     },
-                    "Player Controller": {
-                        "Device Guid": [],
-                        "Movement Force": 35.0,
-                        "Jump Force": 0.0,
-                        "Camera Rotation Speed": 1.5,
-                        "Player Active Status": true
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 63.902000427246097,
+                            "y": 6.0,
+                            "z": 3.427999973297119
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -2.0,
+                            "y": -0.30000001192092898,
+                            "z": -2.0
+                        },
+                        "Max Point": {
+                            "x": 2.0,
+                            "y": 0.8999999761581421,
+                            "z": 2.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Test Sample Prop"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
                     }
                 }
             ]

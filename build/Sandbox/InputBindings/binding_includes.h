@@ -45,17 +45,20 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
+            Query.m_Must.AddFromComponents< transform, rigidforce, rigidbody, rotation, mass, player_controller, camera >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
-            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
+            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
             {
-                auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
-                auto Normalized        = DirectionalVector.Normalized();
-                Normalized.y           = 0.0f;
+                if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                {
+                    auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                    auto Normalized        = DirectionalVector.Normalized();
+                    Normalized.y           = 0.0f;
 
-                // Not sure if we should use momentum, there seems to be no force cap
-                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                    // Not sure if we should use momentum, there seems to be no force cap
+                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                }
             });
 
         END_INPUT_ACTION
@@ -70,14 +73,17 @@ namespace paperback::input::binding
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
-            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
+            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
             {
-                auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
-                auto Normalized        = DirectionalVector.Normalized();
-                Normalized.y           = 0.0f;
+                if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                {
+                    auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
+                    auto Normalized        = DirectionalVector.Normalized();
+                    Normalized.y           = 0.0f;
 
-                // Not sure if we should use momentum, there seems to be no force cap
-                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                    // Not sure if we should use momentum, there seems to be no force cap
+                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                }
             });
 
         END_INPUT_ACTION
@@ -91,19 +97,22 @@ namespace paperback::input::binding
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
-            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
+            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
             {
-                auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
-                auto Normalized        = DirectionalVector.Normalized();
-                Normalized.y           = 0.0f;
+                if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                {
+                    auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                    auto Normalized        = DirectionalVector.Normalized();
+                    Normalized.y           = 0.0f;
 
-                float x = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
-                float z = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
+                    float x = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
+                    float z = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
 
-                Normalized.x = x;
-                Normalized.z = z;
+                    Normalized.x = x;
+                    Normalized.z = z;
 
-                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                }
             });
 
         END_INPUT_ACTION
@@ -117,19 +126,22 @@ namespace paperback::input::binding
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
-            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
+            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
             {
-                auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
-                auto Normalized        = DirectionalVector.Normalized();
-                Normalized.y           = 0.0f;
+                if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                {
+                    auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                    auto Normalized        = DirectionalVector.Normalized();
+                    Normalized.y           = 0.0f;
 
-                float x = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
-                float z = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
+                    float x = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
+                    float z = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
 
-                Normalized.x = x;
-                Normalized.z = z;
+                    Normalized.x = x;
+                    Normalized.z = z;
 
-                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                }
             });
 
         END_INPUT_ACTION
@@ -150,15 +162,18 @@ namespace paperback::input::binding
 
             if ( GP && DebugSys )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, rotation& Rot, player_controller& Controller, camera& Camera )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
                 {
-                    auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
-                    auto Normalized        = DirectionalVector.Normalized();
-                    Normalized.y           = 0.0f;
+                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                    {
+                        auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
+                        auto Normalized        = DirectionalVector.Normalized();
+                        Normalized.y           = 0.0f;
 
-                    // some rotation thing
+                        // some rotation thing
 
-                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                        RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                    }
                 });
             }
 
@@ -180,12 +195,9 @@ namespace paperback::input::binding
 
             m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
             {
-                if ( Camera.m_Active && !m_Coordinator.GetPauseBool() )
+                if ( Controller.m_PlayerStatus && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                 {
                     auto Direction = m_Coordinator.GetMouseDirection();
-
-                    // TODO - Initialize this from a Global Settings Page
-                    Controller.m_CameraRotationSpeed = 150.0f;
 
                     Direction = glm::normalize(Direction) * Controller.m_CameraRotationSpeed * 0.01f;
 
@@ -227,10 +239,38 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
                 {
-                    Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed );
-                    Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed );
+                    if ( Controller.m_PlayerStatus && Camera.m_Active && !m_Coordinator.GetPauseBool() )
+                    {
+                        Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed );
+                        Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed );
+                    }
                 });
             }
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
+
+    //-----------------------------------
+    //           Jump Action
+    //-----------------------------------
+
+    BEGIN_BINDING_CONSTRUCT( Jump_Action )
+        BEGIN_INPUT_ACTION
+
+            // TODO - Update Query Initialization To Constructor Call
+            tools::query Query;
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera >();
+		    Query.m_NoneOf.AddFromComponents<prefab>();
+
+            m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, rigidforce& RF, rigidbody& RB, camera& Camera )
+            {
+                if ( Controller.m_PlayerStatus && Controller.m_OnGround && Camera.m_Active && !m_Coordinator.GetPauseBool() )
+                {
+                    Controller.m_OnGround = false;
+                    RF.m_Momentum.y = ( 2.0f * Controller.m_JumpForce ) / 0.3f;
+                }
+            });
 
         END_INPUT_ACTION
     END_BINDING_CONSTRUCT
