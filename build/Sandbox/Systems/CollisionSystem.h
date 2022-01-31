@@ -23,6 +23,7 @@ struct collision_system : paperback::system::pausable_instance
 
 
     tools::query SphereColliderQuery;
+    tools::query CollidableQuery;
     scripting_system* scripting_sys;
 
 
@@ -33,6 +34,10 @@ struct collision_system : paperback::system::pausable_instance
 		SphereColliderQuery.m_Must.AddFromComponents < transform, sphere, rigidforce >();
         SphereColliderQuery.m_OneOf.AddFromComponents< mass >();
         SphereColliderQuery.m_NoneOf.AddFromComponents< prefab >();
+
+        CollidableQuery.m_Must.AddFromComponents < transform>();
+        CollidableQuery.m_OneOf.AddFromComponents< rigidforce, boundingbox, mass, slope, bounding_volume >();
+        CollidableQuery.m_NoneOf.AddFromComponents< prefab >();
 	}
 
 
@@ -44,9 +49,9 @@ struct collision_system : paperback::system::pausable_instance
         {
             Boundingbox->m_Collided = false;
 
-            auto NeighbourList = m_Coordinator.SearchNeighbours( Transform.m_Position, Boundingbox->Min, Boundingbox->Max );
+            //auto NeighbourList = m_Coordinator.SearchNeighbours( Transform.m_Position, Boundingbox->Min, Boundingbox->Max );
 
-            ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV )
+            ForEach( Search(CollidableQuery), [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV )
             {
                 if ( Entity.IsZombie() || Dynamic_Entity.IsZombie() ) return;
 
@@ -113,6 +118,74 @@ struct collision_system : paperback::system::pausable_instance
                     }
                 }
             });
+
+            //ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV )
+            //{
+            //    if ( Entity.IsZombie() || Dynamic_Entity.IsZombie() ) return;
+
+            //    // Do not check against self
+            //    if ( &Entity != &Dynamic_Entity )
+            //    {
+            //        // Add to collision map
+            //        auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
+            //        if (map == Boundingbox->m_CollisionState.end()) {
+            //            const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
+            //        }
+            //    
+            //        // Collision Detection
+            //        if ( Boundingbox && BB )
+            //        {
+            //            // If Both Entities Are Colliding Already
+            //            if ( AabbAabb( Transform.m_Position + Boundingbox->Min, Transform.m_Position + Boundingbox->Max
+            //                         , Xform.m_Position + BB->Min, Xform.m_Position + BB->Max ) )
+            //            {
+            //                if ( RF )
+            //                {
+            //                    // Current Entity is NOT Colliding with Other Entity
+            //                    if (!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) {
+            //                        
+            //                        for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+            //                        {
+            //                            to_update.second->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
+            //                        }
+
+            //                        //BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, RigidForce, *RF, SkipUnit);
+            //                    }
+            //                    // Current Entity is ALREADY Colliding with Other Entity
+            //                    else
+            //                    {
+            //                        for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+            //                        {
+            //                            to_update.second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
+            //                        }
+            //                    }
+            //                        //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
+            //    
+            //                    // Collision Response If Not Bounding Volume
+            //                    if ( !BV )
+            //                    {
+            //                        AABBDynamic(Boundingbox, &RigidForce, Transform, m1, Slope1, BB, RF, Xform, m2, Slope2);
+            //                    }
+            //    
+            //                    // Update Collision State of Current Entity to Other Entity
+            //                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
+            //                    Boundingbox->m_Collided = BB->m_Collided = true;
+            //                }
+            //            }
+
+            //            //Current Entity is Colliding with Other Entity in the prev frame
+            //            else if (Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
+            //            {
+            //                for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+            //                {
+            //                    to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
+            //                }
+
+            //                Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
+            //            }
+            //        }
+            //    }
+            //});
 
             //if ( NotCollided && Boundingbox )
             //{
