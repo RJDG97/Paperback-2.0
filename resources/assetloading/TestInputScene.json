@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 90
+                "EntityHead": 100
             }
         },
         {
@@ -432,6 +432,37 @@
                     "Name": {
                         "Name": "Camera"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 98
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GameController"
+                            }
+                        ]
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 90
+                    },
+                    "Name": {
+                        "Name": "Game Controller"
+                    }
                 }
             ]
         },
@@ -472,6 +503,38 @@
                     },
                     "Name": {
                         "Name": "Camera"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 90
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            98
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GameController"
+                            }
+                        ]
+                    },
+                    "Name": {
+                        "Name": "Game Controller"
                     }
                 }
             ]
@@ -5694,7 +5757,8 @@
                         "Current Animation": "Armature|Walk",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -5843,7 +5907,8 @@
                         "Current Animation": "Armature|Walk",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -5992,7 +6057,8 @@
                         "Current Animation": "Armature|Walk",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -6573,7 +6639,8 @@
                         "Current Animation": "Armature|Walk",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -6722,7 +6789,8 @@
                         "Current Animation": "Armature|Walk",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -6871,7 +6939,8 @@
                         "Current Animation": "Armature|Walk",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -7207,7 +7276,8 @@
                         "Current Animation": "floorball stick|FloorballStickAttack",
                         "Play Once": true,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Transform": {
                         "Offset": {
@@ -7295,7 +7365,8 @@
                         "Current Animation": "floorball stick|FloorballStickAttack",
                         "Play Once": true,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Transform": {
                         "Offset": {
@@ -7383,7 +7454,8 @@
                         "Current Animation": "badminton racket|BadmintonRacketAttack",
                         "Play Once": true,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Transform": {
                         "Offset": {
@@ -7471,7 +7543,8 @@
                         "Current Animation": "badminton racket|BadmintonRacketAttack",
                         "Play Once": true,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Transform": {
                         "Offset": {
@@ -7575,7 +7648,8 @@
                         "Current Animation": "Armature|Idle",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -7597,7 +7671,7 @@
                         },
                         "Position": {
                             "x": 60.902000427246097,
-                            "y": 5.599999904632568,
+                            "y": 6.0,
                             "z": 3.427999973297119
                         }
                     },
@@ -7631,7 +7705,130 @@
                         "Is Collide": false
                     },
                     "Name": {
-                        "Name": "Test Input Entity"
+                        "Name": "RedRobot"
+                    },
+                    "Mass": {
+                        "Mass": 6.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Camera": {
+                        "Active": true,
+                        "Radius": 6.0,
+                        "Theta": 89.92973327636719,
+                        "Azimuth": 0.07026678323745728
+                    },
+                    "Player Controller": {
+                        "Device Guid": [],
+                        "Movement Force": 80.0,
+                        "Jump Force": 6.0,
+                        "Camera Rotation Speed": 200.0,
+                        "Player Active Status": true,
+                        "Player On Ground Status": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 99
+                    },
+                    "Mesh": {
+                        "Model": "BlueUnitAnimated",
+                        "Texture": "Unit_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 55.10200119018555,
+                            "y": 6.0,
+                            "z": 3.427999973297119
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 30.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.8999999761581421,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "BlueRobot"
                     },
                     "Mass": {
                         "Mass": 6.0,
@@ -7797,7 +7994,8 @@
                         "Current Animation": "Armature|Idle",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1
                     },
                     "Rigidbody": {
                         "Acceleration": {

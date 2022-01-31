@@ -26,7 +26,7 @@ namespace CSScript
         }
         public void Update(float dt)
         {
-            if (Input.IsKeyPress(Input.PB_TAB))
+            if (Input.IsKeyPress(Input.PB_Q))
             {
                 Player.TogglePlayers();
             }
