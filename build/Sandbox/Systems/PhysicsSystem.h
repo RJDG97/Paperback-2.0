@@ -81,7 +81,7 @@ struct physics_system : paperback::system::pausable_instance
 
                     if (RigidForce.m_GravityActive)
                     {
-                        //RigidForce.m_Forces.y += -9.8f * Mass->m_Mass * DeltaTime();
+                        RigidForce.m_Forces.y += -9.8f * Mass->m_Mass * DeltaTime();
                     }
                     else
                     {
