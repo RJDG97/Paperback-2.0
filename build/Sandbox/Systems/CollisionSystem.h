@@ -39,10 +39,6 @@ struct collision_system : paperback::system::pausable_instance
     void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox, sphere* Sphere, mass* m1, slope* Slope1 ) noexcept
     {
         if ( Entity.IsZombie() ) return;
-       
-        // Initialize Query
-        bool SkipUnit = false;
-        bool NotCollided = true;
              
         if ( Boundingbox )
         {
@@ -50,7 +46,7 @@ struct collision_system : paperback::system::pausable_instance
 
             auto NeighbourList = m_Coordinator.SearchNeighbours( Transform.m_Position, Boundingbox->Min, Boundingbox->Max );
 
-            ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2 )
+            ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV )
             {
                 if ( Entity.IsZombie() || Dynamic_Entity.IsZombie() ) return;
 
@@ -92,8 +88,8 @@ struct collision_system : paperback::system::pausable_instance
                                 }
                                     //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
                 
-                                // Collision Response
-                                if (!SkipUnit)
+                                // Collision Response If Not Bounding Volume
+                                if ( !BV )
                                 {
                                     AABBDynamic(Boundingbox, &RigidForce, Transform, m1, Slope1, BB, RF, Xform, m2, Slope2);
                                 }
@@ -102,8 +98,6 @@ struct collision_system : paperback::system::pausable_instance
                                 Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
                                 Boundingbox->m_Collided = BB->m_Collided = true;
                             }
-                
-                            NotCollided = false;
                         }
 
                         //Current Entity is Colliding with Other Entity in the prev frame

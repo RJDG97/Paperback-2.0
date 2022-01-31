@@ -51,6 +51,7 @@
 #include "Camera.h"
 #include "PlayerController.h"
 #include "Slope.h"
+#include "BoundingVolume.h"
 
 // shapes
 #include "AABB.h"
