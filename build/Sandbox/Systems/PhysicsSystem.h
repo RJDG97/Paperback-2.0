@@ -81,7 +81,7 @@ struct physics_system : paperback::system::pausable_instance
 
                     if (RigidForce.m_GravityActive)
                     {
-                        //RigidForce.m_Forces.y += -9.8f * Mass->m_Mass * DeltaTime();
+                        RigidForce.m_Forces.y += -9.8f * Mass->m_Mass * DeltaTime();
                     }
                     else
                     {
@@ -115,6 +115,16 @@ struct physics_system : paperback::system::pausable_instance
                 RigidForce.m_Momentum.DecrementValue(
                     RigidForce.m_dynamicFriction * m_Coordinator.DeltaTime());
             }
+            else if (RigidForce.m_Momentum.IsZero())
+            {
+
+                // accumulate momentum
+                RigidForce.m_Momentum += (RigidForce.m_Forces * m_Coordinator.DeltaTime());
+
+                // friction in action, reduces acceleration
+                RigidForce.m_Forces.DecrementValue(
+                    RigidForce.m_dynamicFriction * m_Coordinator.DeltaTime());
+            }
 
             // accumulate result into rigidbody and update position
             if ( RigidBody && Mass )
@@ -126,7 +136,7 @@ struct physics_system : paperback::system::pausable_instance
 
                     RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
                     RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
-                    Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime() + 0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
+                    Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update
                     if (Box)
@@ -146,7 +156,7 @@ struct physics_system : paperback::system::pausable_instance
 
                     RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
                     RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
-                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime() + 0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
+                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update
                     if ( Box )
