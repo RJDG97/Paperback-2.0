@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Checkpoint.cs" />
+    <Compile Include="ElevatorSwitch.cs" />
     <Compile Include="GateSwitch.cs" />
     <Compile Include="MovingPlatformSwitch.cs" />
     <Compile Include="Tools\Components\AABB.cs" />
