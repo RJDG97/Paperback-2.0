@@ -119,6 +119,7 @@ void InitializeGame()
         ,    camera
         ,    player_controller
         ,    slope
+        ,    bounding_volume // Tag
         >();
 
         // Register Components - Add to the end of the list
