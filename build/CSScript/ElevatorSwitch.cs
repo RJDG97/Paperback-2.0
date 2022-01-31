@@ -23,7 +23,7 @@ namespace CSScript
         {
             m_ID = ID;
             m_Parent = new Parent(m_ID);
-            m_ChildAnimator = new PathFollower(m_Parent.GetChildIDofName("Elevator"));
+            m_ChildAnimator = new Animator((UInt32)m_Parent.GetChildIDofName("Elevator"));
         }
 
         public void Update(float dt)
