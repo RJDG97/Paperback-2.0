@@ -101,7 +101,7 @@ struct animator_system : paperback::system::pausable_instance
 	
 		if (bone)
 		{
-			global_transformation = parent_transform * bone->Update(ator.m_CurrentTime, ator.m_PauseAtFrame);
+			global_transformation = parent_transform * bone->Update(ator.m_CurrentTime, ator.m_PauseAtFrame, ator.m_PauseAnimation);
 		}
 
 		auto bone_info_map = current_anim.FindBoneIDMap();
