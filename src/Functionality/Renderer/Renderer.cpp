@@ -197,16 +197,27 @@ Renderer::Renderer() :
 
 	// Partition Props
 	m_Resources.Load3DMeshNUI("ChildSafetyGate", "../../resources/models/nui/ChildSafetyGate.nui");
+	m_Resources.Load3DMeshNUI("Billboard", "../../resources/models/nui/Billboard.nui");
+
+	//Gates
+	m_Resources.Load3DMeshNUI("TallGate", "../../resources/models/nui/TallGate.nui");
+	m_Resources.Load3DMeshNUI("TallGateFence", "../../resources/models/nui/TallGateFence.nui");
+	m_Resources.Load3DMeshNUI("ShortGate", "../../resources/models/nui/ShortGate.nui");
+	m_Resources.Load3DMeshNUI("ShortGateFence", "../../resources/models/nui/ShortGateFence.nui");
 
 	// Moving Platforms
 	m_Resources.Load3DMeshNUI("CraneElevator", "../../resources/models/nui/CraneElevator.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
 	m_Resources.Load3DMeshNUI("CashRegister", "../../resources/models/nui/CashRegister.nui");
+	m_Resources.Load3DMeshNUI("TrainTrack", "../../resources/models/nui/TrainTrack.nui");
 
 	// Characters
 	m_Resources.Load3DMeshNUI("StrongToy", "../../resources/models/nui/StrongToy.nui");
 	m_Resources.Load3DMeshNUI("JumpToy", "../../resources/models/nui/JumpToy.nui");
 
+	//Buttons
+	m_Resources.Load3DMeshNUI("ButtonON", "../../resources/models/nui/ButtonON.nui");
+	m_Resources.Load3DMeshNUI("ButtonOFF", "../../resources/models/nui/ButtonOFF.nui");
 
 	//m_Resources.Load3DMeshNUI("CrayonBox", "../../resources/models/nui/RectangleBlock_Wood.nui");
 
