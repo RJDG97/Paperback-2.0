@@ -38,6 +38,7 @@ namespace RR_Animator
 			.property("Pause Animation", &animator::m_PauseAnimation)(rttr::policy::prop::as_reference_wrapper)
 			.property("Current Time", &animator::m_CurrentTime)(rttr::policy::prop::as_reference_wrapper)
 			.property("Pause Animation", &animator::m_PauseAnimation)(rttr::policy::prop::as_reference_wrapper)
-			.property("Pause At Frame", &animator::m_PauseAtFrame)(rttr::policy::prop::as_reference_wrapper);
+			.property("Pause At Frame", &animator::m_PauseAtFrame)(rttr::policy::prop::as_reference_wrapper)
+			.property("Reversed", &animator::m_Reversed)(rttr::policy::prop::as_reference_wrapper);
 	}
 }
