@@ -176,6 +176,18 @@ namespace paperback::partition
                                       , const paperback::Vector3f&  MinScale                   // Bounding Box Min
                                       , const paperback::Vector3f&  MaxScale ) noexcept        // Bounding Box Max
     {
+        auto PrevCellIndexes = ComputeCells( PrevPosition, MinScale, MaxScale );
+        auto CurrCellIndexes = ComputeCells( CurrPosition, MinScale, MaxScale );
+
+        for ( int i = 0, PrevSize = (int)PrevCellIndexes.size(); i < PrevSize; ++i )
+            RemoveEntityFromCell( m_HashedGrid[ PrevCellIndexes[i] ], GlobalIndex );
+        
+        for ( int i = 0, CurrSize = (int)CurrCellIndexes.size(); i < CurrSize; ++i )
+            AppendEntityToCell( m_HashedGrid[ CurrCellIndexes[i] ], GlobalIndex );
+
+
+
+        /*
         auto PrevCellIndexes = ComputeCells( PrevPosition, MinScale, MaxScale, true );
         auto CurrCellIndexes = ComputeCells( CurrPosition, MinScale, MaxScale, true );
 
@@ -207,6 +219,7 @@ namespace paperback::partition
             for ( int i = 0; i < CurrSize; ++i )
                 AppendEntityToCell( m_HashedGrid[ CurrCellIndexes[i] ], GlobalIndex );
         }
+        */
     }
 
     PPB_INLINE

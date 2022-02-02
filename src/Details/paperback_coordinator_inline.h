@@ -839,6 +839,12 @@ namespace paperback::coordinator
 		m_HashGrid.UpdateUnit( GlobalIndex, PrevPosition, CurrPosition, MinScale, MaxScale );
 	}
 
+	PPB_INLINE
+    void instance::ResetGrids( void ) noexcept
+	{
+		m_HashGrid.Reset();
+	}
+
 
 	//-----------------------------------
 	//             Setters

@@ -311,6 +311,9 @@ namespace paperback::coordinator
 		               , const paperback::Vector3f&  CurrPosition               // Curr Entity Position
 		               , const paperback::Vector3f&  MinScale                   // Bounding Box Min
 		               , const paperback::Vector3f&  MaxScale ) noexcept;       // Bounding Box Max
+
+		PPB_INLINE
+        void ResetGrids( void ) noexcept;
 		
 		
 		//-----------------------------------
