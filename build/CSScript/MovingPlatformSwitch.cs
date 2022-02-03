@@ -31,7 +31,7 @@ namespace CSScript
                 m_ChildPathFollower = new PathFollower((UInt32)m_ChildID);
             }
 
-            //m_ChildPathFollower.m_PauseTravel = true;
+            m_ChildPathFollower.m_PauseTravel = true;
         }
         public void Update(float dt)
         {

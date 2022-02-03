@@ -117,7 +117,7 @@ struct path_system : paperback::system::instance
 					}
 
 					else if (!PathFollower.m_Reversed && PathFollower.m_Distance >= spline->second.m_TotalLength ||
-						PathFollower.m_Reversed && PathFollower.m_Distance <= 0.0f)
+							  PathFollower.m_Reversed && PathFollower.m_Distance <= 0.0f)
 					{
 						PathFollower.m_FinishedTravelling = true;
 
@@ -138,6 +138,11 @@ struct path_system : paperback::system::instance
 						PathFollower.m_FinishedTravelling = false;
 						Movement(spline->second, Rigidforce, Rigidbody, PathFollower, Transform, Rotation);
 					}
+				}
+
+				else if (PathFollower.m_PauseTravel)
+				{
+					Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
 				}
 			});
 		}
