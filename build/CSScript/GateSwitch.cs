@@ -57,12 +57,14 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (m_ChildID != 1 && (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/))
+            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             {
                 m_Sound.m_Trigger = true;
                 m_ChildBoundingBox.Min = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                 m_ChildBoundingBox.Max = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_ChildAnimator.m_Reversed = false;
                 m_ChildAnimator.m_PauseAnimation = false;
+                m_ChildAnimator.m_PauseAtFrame = 23;
             }
         }
         public void OnCollisionStay(UInt32 ID)
@@ -70,11 +72,13 @@ namespace CSScript
         }
         public void OnCollisionExit(UInt32 ID)
         {
-            if (m_ChildID != 1 && (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/))
+            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             {
                 m_ChildBoundingBox.Min = m_InitialBoundingBoxMin;
                 m_ChildBoundingBox.Max = m_InitialBoundingBoxMax;
-                m_ChildAnimator.m_PauseAnimation = true;
+                m_ChildAnimator.m_Reversed = true;
+                m_ChildAnimator.m_PauseAnimation = false;
+                m_ChildAnimator.m_PauseAtFrame = 1;
             }
         }
     }

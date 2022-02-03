@@ -8,8 +8,8 @@ namespace CSScript
     public class GameController : MonoBehaviour
     {
         UInt32 m_ID;
-        Camera m_RedCamera;
-        Camera m_BlueCamera;
+        Camera m_JumpUnitCamera;
+        Camera m_PushUnitCamera;
 
         public static GameController getInst()
         {
@@ -18,11 +18,11 @@ namespace CSScript
         public void Start(UInt32 ID)
         {
             m_ID = ID;
-            m_RedCamera = new Camera((UInt32)Player.GetRedRobotID());
-            m_BlueCamera = new Camera((UInt32)Player.GetBlueRobotID());
+            m_JumpUnitCamera = new Camera((UInt32)Player.GetJumpUnitID());
+            m_PushUnitCamera = new Camera((UInt32)Player.GetPushUnitID());
 
-            m_RedCamera.m_Active = true;
-            m_BlueCamera.m_Active = false;
+            m_JumpUnitCamera.m_Active = true;
+            m_PushUnitCamera.m_Active = false;
         }
         public void Update(float dt)
         {

@@ -16,8 +16,8 @@ namespace CSScript
         Transform m_RedCPTransform;
         Transform m_BlueCPTransform;
 
-        Transform m_RedRoboTransform;
-        Transform m_BlueRoboTransform;
+        Transform m_JumpUnitTransform;
+        Transform m_PushUnitTransform;
 
         bool m_Activated;
 
@@ -40,8 +40,8 @@ namespace CSScript
             m_RedCPTransform = new Transform((UInt32)m_RedID);
             m_BlueCPTransform = new Transform((UInt32)m_BlueID);
 
-            m_RedRoboTransform = new Transform((UInt32)Player.GetRedRobotID());
-            m_BlueRoboTransform = new Transform((UInt32)Player.GetBlueRobotID());
+            m_JumpUnitTransform = new Transform((UInt32)Player.GetJumpUnitID());
+            m_PushUnitTransform = new Transform((UInt32)Player.GetPushUnitID());
 
             m_Sound.m_Trigger = false;
         }
@@ -54,22 +54,22 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (!m_Activated)
-            {
-                if (ID == Player.GetRedRobotID())
-                {
-                    m_Sound.m_Trigger = true;
-                    m_RedRoboTransform.m_Position = m_BlueCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
-                }
+            //if (!m_Activated)
+            //{
+            //    if (ID == Player.GetRedRobotID())
+            //    {
+            //        m_Sound.m_Trigger = true;
+            //        m_RedRoboTransform.m_Position = m_BlueCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
+            //    }
 
-                else if (ID == Player.GetBlueRobotID())
-                {
-                    m_Sound.m_Trigger = true;
-                    m_BlueRoboTransform.m_Position = m_RedCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
-                }
+            //    else if (ID == Player.GetBlueRobotID())
+            //    {
+            //        m_Sound.m_Trigger = true;
+            //        m_BlueRoboTransform.m_Position = m_RedCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
+            //    }
 
-                m_Activated = true;
-            }
+            //    m_Activated = true;
+            //}
         }
         public void OnCollisionStay(UInt32 ID)
         {

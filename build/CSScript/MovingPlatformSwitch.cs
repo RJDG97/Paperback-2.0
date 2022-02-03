@@ -12,6 +12,8 @@ namespace CSScript
 
         PathFollower m_ChildPathFollower; //moving platform is child
 
+        Int32 m_ChildID;
+
         public static MovingPlatformSwitch getInst()
         {
             return new MovingPlatformSwitch();
@@ -22,14 +24,14 @@ namespace CSScript
             m_ID = ID;
             m_Parent = new Parent(m_ID);
 
-            Int32 m_ChildID = m_Parent.GetChildIDofName("Moving Platform");
+            m_ChildID = m_Parent.GetChildIDofName("Moving Platform");
 
             if (m_ChildID != -1)
             {
                 m_ChildPathFollower = new PathFollower((UInt32)m_ChildID);
             }
 
-            m_ChildPathFollower.m_PauseTravel = true;
+            //m_ChildPathFollower.m_PauseTravel = true;
         }
         public void Update(float dt)
         {
@@ -40,7 +42,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/)
+            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetJumpUnitID()) /*|| collision with blocks*/)
             {
                 m_ChildPathFollower.m_PauseTravel = false;
             }
@@ -50,7 +52,7 @@ namespace CSScript
         }
         public void OnCollisionExit(UInt32 ID)
         {
-            if (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/)
+            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetJumpUnitID()) /*|| collision with blocks*/)
             {
                 m_ChildPathFollower.m_PauseTravel = true;
             }

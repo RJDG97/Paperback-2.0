@@ -45,7 +45,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/)
+            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/)
             {
                 m_Retracting = false;
                 m_ChildAnimator.m_Reversed = false;
@@ -58,7 +58,7 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
-            if (ID == Player.GetRedRobotID() || ID == Player.GetBlueRobotID() /*|| collision with blocks*/)
+            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/)
             {
                 m_Retracting = true;
                 m_ChildAnimator.m_Reversed = true;
