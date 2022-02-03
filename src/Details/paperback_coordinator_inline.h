@@ -1005,6 +1005,11 @@ namespace paperback::coordinator
 		return m_Input.GetViewportMousePosition(viewport_min, viewport_max);
 	}
 
+	glm::vec3 instance::GetViewportMousePosition() noexcept
+	{
+		return m_Input.GetViewportMousePosition();
+	}
+
 	//-----------------------------------
     //         Event Broadcast
     //-----------------------------------

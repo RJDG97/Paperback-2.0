@@ -585,6 +585,9 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Raycast.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
