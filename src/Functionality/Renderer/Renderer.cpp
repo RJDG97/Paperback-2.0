@@ -194,6 +194,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("GuardHouse", "../../resources/models/nui/GuardHouse.nui");
 	m_Resources.Load3DMeshNUI("Container", "../../resources/models/nui/Container.nui");
 	m_Resources.Load3DMeshNUI("ContainerLid", "../../resources/models/nui/ContainerLid.nui");
+	m_Resources.Load3DMeshNUI("BookABC", "../../resources/models/nui/BookABC.nui");
+	m_Resources.Load3DMeshNUI("BookShape", "../../resources/models/nui/BookShape.nui");
 
 	// Partition Props
 	m_Resources.Load3DMeshNUI("ChildSafetyGate", "../../resources/models/nui/ChildSafetyGate.nui");
