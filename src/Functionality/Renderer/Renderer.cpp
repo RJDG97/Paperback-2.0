@@ -187,7 +187,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("InteractableBlock2x2", "../../resources/models/nui/InteractableBlock2x2.nui");
 	m_Resources.Load3DMeshNUI("InteractableBlock3x3", "../../resources/models/nui/InteractableBlock3x3.nui");
 
-	// Stationary Props
+	// Stationery Props
 
 	m_Resources.Load3DMeshNUI("Ruler", "../../resources/models/nui/Ruler.nui");
 	m_Resources.Load3DMeshNUI("ColourPencilBox", "../../resources/models/nui/ColourPencilBox.nui");
@@ -218,8 +218,15 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("JumpToy", "../../resources/models/nui/JumpToy.nui");
 
 	//Buttons
-	m_Resources.Load3DMeshNUI("ButtonON", "../../resources/models/nui/ButtonON.nui");
+	m_Resources.Load3DMeshNUI("ButtonONN", "../../resources/models/nui/ButtonON.nui");
 	m_Resources.Load3DMeshNUI("ButtonOFF", "../../resources/models/nui/ButtonOFF.nui");
+
+	//Wall&Floor
+	m_Resources.Load3DMeshNUI("Ceiling", "../../resources/models/nui/Ceiling.nui");
+	m_Resources.Load3DMeshNUI("WallSegment1", "../../resources/models/nui/WallSegment1.nui");
+	m_Resources.Load3DMeshNUI("WallSegment2", "../../resources/models/nui/WallSegment2.nui");
+	m_Resources.Load3DMeshNUI("FloorTile", "../../resources/models/nui/FloorTile.nui");
+
 
 	//m_Resources.Load3DMeshNUI("CrayonBox", "../../resources/models/nui/RectangleBlock_Wood.nui");
 
