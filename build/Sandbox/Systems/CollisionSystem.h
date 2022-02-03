@@ -49,7 +49,7 @@ struct collision_system : paperback::system::pausable_instance
         {
             Boundingbox->m_Collided = false;
 
-            auto NeighbourList = m_Coordinator.SearchNeighbours( Transform.m_Position, Boundingbox->Min, Boundingbox->Max );
+            auto NeighbourList = m_Coordinator.SearchNeighbours( Transform.m_Position + Transform.m_Offset, Boundingbox->Min, Boundingbox->Max );
 
             //ForEach( Search(CollidableQuery), [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV )
             //{
@@ -136,8 +136,8 @@ struct collision_system : paperback::system::pausable_instance
                     if ( Boundingbox && BB )
                     {
                         // If Both Entities Are Colliding Already
-                        if ( AabbAabb( Transform.m_Position + Boundingbox->Min, Transform.m_Position + Boundingbox->Max
-                                     , Xform.m_Position + BB->Min, Xform.m_Position + BB->Max ) )
+                        if ( AabbAabb( Transform.m_Position + Transform.m_Offset + Boundingbox->Min, Transform.m_Position + Transform.m_Offset + Boundingbox->Max
+                                     , Xform.m_Position + Xform.m_Offset + BB->Min, Xform.m_Position + Xform.m_Offset + BB->Max ) )
                         {
                             if ( RF )
                             {
@@ -200,7 +200,7 @@ struct collision_system : paperback::system::pausable_instance
         {
             ForEach( Search( SphereColliderQuery ), [&]( paperback::component::entity& Dynamic_Entity, transform& Xform, rigidforce& RF, sphere& Ball, mass* m2 ) noexcept
             {
-                if ( SphereSphere( Transform.m_Position, Sphere->m_Radius, Xform.m_Position, Ball.m_Radius) )
+                if ( SphereSphere( Transform.m_Position + Transform.m_Offset, Sphere->m_Radius, Xform.m_Position + Xform.m_Offset, Ball.m_Radius) )
                 {
                     Sphere->m_Collided = Ball.m_Collided = true;
                 }

@@ -1,6 +1,8 @@
 #pragma once
 #include "Math/Vector3f.h"
 
+const float GRAVITY = -15.8f; //-9.8 is default, use higher value for release due to lower decrement for some reason
+
 struct physics_system : paperback::system::pausable_instance
 {
     constexpr static auto typedef_v = paperback::system::type::update
@@ -81,7 +83,7 @@ struct physics_system : paperback::system::pausable_instance
 
                     if (RigidForce.m_GravityActive)
                     {
-                        RigidForce.m_Forces.y += -9.8f * Mass->m_Mass * DeltaTime();
+                        RigidForce.m_Forces.y += GRAVITY * Mass->m_Mass * DeltaTime();
                     }
                     else
                     {

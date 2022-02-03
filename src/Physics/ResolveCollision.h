@@ -9,7 +9,7 @@
 #include "Components/Rigidbody.h"
 #include "Components/Mass.h"
 
-#define Gap 0.01f
+#define Gap 0.001f
 #define BOTH_STATIC 0
 #define BOTH_NONSTATIC 1
 #define OBJ1_NONSTATIC 2
@@ -93,12 +93,19 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 	// Abs Resultant Vector
 	paperback::Vector3f velab = vel1 - vel2; // uncorrupt
 	// Position Difference - Dist between both entities
-	paperback::Vector3f ab = t1.m_Position - t2.m_Position;
-	
+	paperback::Vector3f ab = (t1.m_Position + t1.m_Offset) - (t2.m_Position + t2.m_Offset);
+
+	//since bounding box values are relative coordinates, need to convert to global coordinates
+	paperback::Vector3f box1_min, box1_max, box2_min, box2_max;
+	box1_min = t1.m_Position + t1.m_Offset + Bbox1->Min;
+	box1_max = t1.m_Position + t1.m_Offset + Bbox1->Max;
+	box2_min = t2.m_Position + t2.m_Offset + Bbox2->Min;
+	box2_max = t2.m_Position + t2.m_Offset + Bbox2->Max;
+
 	// get pen_depth (+ve), usually ** a super small value
 	// small value when fps = 30 ~ 60,  if 1 fps, likely to be a large value
 	// Penetration Depth
-	paperback::Vector3f pen_depth = (((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min)) / 2)		// Length between the 2 Colliders
+	paperback::Vector3f pen_depth = (((box1_max - box1_min) + (box2_max - box2_min)) / 2)		// Length between the 2 Colliders
 		                            - paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));				// Distance between the 2 Colliders
 
 	// case 1/3, useless cases is 0.f - currently (+ve)
@@ -119,13 +126,6 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 	//	3) apply for other 2 axis
 
 	float rel_horizontal_contact, rel_vertical_contact, small_area, area_one, area_two, x_ratio, y_ratio, z_ratio;
-
-	//since bounding box values are relative coordinates, need to convert to global coordinates
-	paperback::Vector3f box1_min, box1_max, box2_min, box2_max;
-	box1_min = t1.m_Position + Bbox1->Min;
-	box1_max = t1.m_Position + Bbox1->Max;
-	box2_min = t2.m_Position + Bbox2->Min;
-	box2_max = t2.m_Position + Bbox2->Max;
 
 	//start with faces along the X axis, uses z and y values for calculation
 	rel_horizontal_contact = std::min(box1_max.z, box2_max.z) - std::max(box1_min.z, box2_min.z);
@@ -817,12 +817,19 @@ bool SlopeaabbDynamic(boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* 
 	// Abs Resultant Vector
 	paperback::Vector3f velab = vel1 - vel2; // uncorrupt
 	// Position Difference - Dist between both entities
-	paperback::Vector3f ab = t1.m_Position - t2.m_Position;
+	paperback::Vector3f ab = (t1.m_Position + t1.m_Offset) - (t2.m_Position + t2.m_Offset);
+
+	//since bounding box values are relative coordinates, need to convert to global coordinates
+	paperback::Vector3f box1_min, box1_max, box2_min, box2_max;
+	box1_min = t1.m_Position + t1.m_Offset + Bbox1->Min;
+	box1_max = t1.m_Position + t1.m_Offset + Bbox1->Max;
+	box2_min = t2.m_Position + t2.m_Offset + Bbox2->Min;
+	box2_max = t2.m_Position + t2.m_Offset + Bbox2->Max;
 
 	// get pen_depth (+ve), usually ** a super small value
 	// small value when fps = 30 ~ 60,  if 1 fps, likely to be a large value
 	// Penetration Depth
-	paperback::Vector3f pen_depth = (((Bbox1->Max - Bbox1->Min) + (Bbox2->Max - Bbox2->Min)) / 2)		// Length between the 2 Colliders
+	paperback::Vector3f pen_depth = (((box1_max - box1_min) + (box2_max - box2_min)) / 2)		// Length between the 2 Colliders
 		- paperback::Vector3f(abs(ab.x), abs(ab.y), abs(ab.z));				// Distance between the 2 Colliders
 
 // case 1/3, useless cases is 0.f - currently (+ve)
@@ -843,13 +850,6 @@ bool SlopeaabbDynamic(boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* 
 	//	3) apply for other 2 axis
 
 	float rel_horizontal_contact, rel_vertical_contact, small_area, area_one, area_two, x_ratio, y_ratio, z_ratio;
-
-	//since bounding box values are relative coordinates, need to convert to global coordinates
-	paperback::Vector3f box1_min, box1_max, box2_min, box2_max;
-	box1_min = t1.m_Position + Bbox1->Min;
-	box1_max = t1.m_Position + Bbox1->Max;
-	box2_min = t2.m_Position + Bbox2->Min;
-	box2_max = t2.m_Position + Bbox2->Max;
 
 	//start with faces along the X axis, uses z and y values for calculation
 	rel_horizontal_contact = std::min(box1_max.z, box2_max.z) - std::max(box1_min.z, box2_min.z);
