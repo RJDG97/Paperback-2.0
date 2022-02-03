@@ -78,7 +78,7 @@ struct physics_system : paperback::system::pausable_instance
 		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, rotation* Rot, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset, player_controller* Controller ) noexcept
 		{
             //// Apply Gravity If Non-Static
-                if (Mass && Mass->m_Mass)
+                if (Mass && Mass->m_Mass && RigidForce.m_GravityAffected)
                 {
 
                     if (RigidForce.m_GravityActive)
