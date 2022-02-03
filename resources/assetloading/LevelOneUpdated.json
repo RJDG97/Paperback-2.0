@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 85
+                "EntityHead": 87
             }
         },
         {
@@ -1519,12 +1519,12 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": 0.44999998807907107,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 17.799999237060548,
+                            "x": 16.5,
                             "y": 0.6000000238418579,
                             "z": 8.0
                         }
@@ -1548,12 +1548,12 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.44999998807907107,
+                            "x": -0.5,
                             "y": -0.4000000059604645,
                             "z": -0.05000000074505806
                         },
                         "Max Point": {
-                            "x": 0.44999998807907107,
+                            "x": 0.5,
                             "y": 0.4000000059604645,
                             "z": 0.05000000074505806
                         },
@@ -1579,19 +1579,19 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 20
+                        "Global Index": 70
                     },
                     "Mesh": {
-                        "Model": "ShortGateFence",
-                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Model": "TrainTrack",
+                        "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
                         }
                     },
                     "Offset": {
@@ -1614,7 +1614,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -1634,12 +1634,12 @@
                         "Offset": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 0.10000000149011612
                         },
                         "Position": {
-                            "x": 16.899999618530275,
-                            "y": 0.6000000238418579,
-                            "z": 8.0
+                            "x": -13.100000381469727,
+                            "y": 2.200000047683716,
+                            "z": 4.699999809265137
                         }
                     },
                     "RigidForce": {
@@ -1661,27 +1661,26 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.4000000059604645,
-                            "z": -0.05000000074505806
+                            "x": -1.399999976158142,
+                            "y": -0.10000000149011612,
+                            "z": -3.200000047683716
                         },
                         "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.4000000059604645,
-                            "z": 0.05000000074505806
+                            "x": 1.399999976158142,
+                            "y": 0.10000000149011612,
+                            "z": 3.200000047683716
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
                             17008353085049151909,
-                            14486341741652966143,
-                            16415915133639986106
+                            3617555656175080491
                         ],
-                        "Prefab GID": 11
+                        "Prefab GID": 67
                     },
                     "Name": {
-                        "Name": "ShortGateFence2"
+                        "Name": "TrainTracks"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -1690,19 +1689,19 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 21
+                        "Global Index": 69
                     },
                     "Mesh": {
-                        "Model": "ShortGateFence",
-                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Model": "TrainTrack",
+                        "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
                         }
                     },
                     "Offset": {
@@ -1725,7 +1724,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -1745,12 +1744,12 @@
                         "Offset": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 0.10000000149011612
                         },
                         "Position": {
-                            "x": 16.0,
-                            "y": 0.6000000238418579,
-                            "z": 8.0
+                            "x": -13.100000381469727,
+                            "y": 2.200000047683716,
+                            "z": -8.100000381469727
                         }
                     },
                     "RigidForce": {
@@ -1772,27 +1771,26 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.4000000059604645,
-                            "z": -0.05000000074505806
+                            "x": -1.399999976158142,
+                            "y": -0.10000000149011612,
+                            "z": -3.200000047683716
                         },
                         "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.4000000059604645,
-                            "z": 0.05000000074505806
+                            "x": 1.399999976158142,
+                            "y": 0.10000000149011612,
+                            "z": 3.200000047683716
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            16415915133639986106,
                             17008353085049151909,
-                            14486341741652966143
+                            3617555656175080491
                         ],
-                        "Prefab GID": 11
+                        "Prefab GID": 67
                     },
                     "Name": {
-                        "Name": "ShortGateFence3"
+                        "Name": "TrainTracks"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -1801,19 +1799,19 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 22
+                        "Global Index": 68
                     },
                     "Mesh": {
-                        "Model": "ShortGateFence",
-                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Model": "TrainTrack",
+                        "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
                         }
                     },
                     "Offset": {
@@ -1836,7 +1834,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -1856,12 +1854,12 @@
                         "Offset": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 0.20000000298023225
                         },
                         "Position": {
-                            "x": 15.100000381469727,
-                            "y": 0.6000000238418579,
-                            "z": 8.0
+                            "x": -13.100000381469727,
+                            "y": 2.200000047683716,
+                            "z": -1.7000000476837159
                         }
                     },
                     "RigidForce": {
@@ -1883,27 +1881,26 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.4000000059604645,
-                            "z": -0.05000000074505806
+                            "x": -1.399999976158142,
+                            "y": -0.10000000149011612,
+                            "z": -3.200000047683716
                         },
                         "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.4000000059604645,
-                            "z": 0.05000000074505806
+                            "x": 1.399999976158142,
+                            "y": 0.10000000149011612,
+                            "z": 3.200000047683716
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            16415915133639986106,
                             17008353085049151909,
-                            14486341741652966143
+                            3617555656175080491
                         ],
-                        "Prefab GID": 11
+                        "Prefab GID": 67
                     },
                     "Name": {
-                        "Name": "ShortGateFence4"
+                        "Name": "TrainTracks"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -1912,19 +1909,19 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 28
+                        "Global Index": 74
                     },
                     "Mesh": {
-                        "Model": "ShortGateFence",
-                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Model": "RectangleBlock_Green",
+                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
+                            "x": 0.019999999552965165,
+                            "y": 0.019999999552965165,
+                            "z": 0.019999999552965165
                         }
                     },
                     "Offset": {
@@ -1947,7 +1944,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -1970,9 +1967,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 9.699999809265137,
-                            "y": 0.6000000238418579,
-                            "z": 8.0
+                            "x": -10.0,
+                            "y": 1.100000023841858,
+                            "z": 10.100000381469727
                         }
                     },
                     "RigidForce": {
@@ -1994,138 +1991,30 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.4000000059604645,
-                            "z": -0.05000000074505806
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -2.0
                         },
                         "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.4000000059604645,
-                            "z": 0.05000000074505806
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 2.0
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
+                            9604788041699812520,
                             14486341741652966143,
                             17008353085049151909,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 11
-                    },
-                    "Name": {
-                        "Name": "ShortGateFence10"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 24
-                    },
-                    "Mesh": {
-                        "Model": "ShortGateFence",
-                        "Texture": "ShortGateFence_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 13.300000190734864,
-                            "y": 0.6000000238418579,
-                            "z": 8.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.4000000059604645,
-                            "z": -0.05000000074505806
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.4000000059604645,
-                            "z": 0.05000000074505806
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
                             16415915133639986106,
-                            17008353085049151909,
-                            14486341741652966143
+                            5691439207370049121,
+                            3617555656175080491
                         ],
-                        "Prefab GID": 11
+                        "Prefab GID": 36
                     },
                     "Name": {
-                        "Name": "ShortGateFence6"
+                        "Name": "RectBlockG"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -2134,19 +2023,19 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 25
+                        "Global Index": 73
                     },
                     "Mesh": {
-                        "Model": "ShortGateFence",
-                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
+                            "x": 0.019999999552965165,
+                            "y": 0.019999999552965165,
+                            "z": 0.019999999552965165
                         }
                     },
                     "Offset": {
@@ -2192,9 +2081,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 12.399999618530274,
-                            "y": 0.6000000238418579,
-                            "z": 8.0
+                            "x": -13.0,
+                            "y": 2.5999999046325685,
+                            "z": 11.100000381469727
                         }
                     },
                     "RigidForce": {
@@ -2216,249 +2105,372 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.4000000059604645,
-                            "z": -0.05000000074505806
+                            "x": -2.0,
+                            "y": -0.5,
+                            "z": -1.0
                         },
                         "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.4000000059604645,
-                            "z": 0.05000000074505806
+                            "x": 2.0,
+                            "y": 0.5,
+                            "z": 1.0
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            17008353085049151909,
+                            9604788041699812520,
                             14486341741652966143,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 11
-                    },
-                    "Name": {
-                        "Name": "ShortGateFence7"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 26
-                    },
-                    "Mesh": {
-                        "Model": "ShortGateFence",
-                        "Texture": "ShortGateFence_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 11.5,
-                            "y": 0.6000000238418579,
-                            "z": 8.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.4000000059604645,
-                            "z": -0.05000000074505806
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.4000000059604645,
-                            "z": 0.05000000074505806
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
                             17008353085049151909,
-                            14486341741652966143,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 11
-                    },
-                    "Name": {
-                        "Name": "ShortGateFence8"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 27
-                    },
-                    "Mesh": {
-                        "Model": "ShortGateFence",
-                        "Texture": "ShortGateFence_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 10.600000381469727,
-                            "y": 0.6000000238418579,
-                            "z": 8.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.4000000059604645,
-                            "z": -0.05000000074505806
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.4000000059604645,
-                            "z": 0.05000000074505806
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
                             16415915133639986106,
-                            17008353085049151909,
-                            14486341741652966143
+                            5691439207370049121,
+                            3617555656175080491
                         ],
-                        "Prefab GID": 11
+                        "Prefab GID": 36
                     },
                     "Name": {
-                        "Name": "ShortGateFence9"
+                        "Name": "FlatRectBlockR"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 72
+                    },
+                    "Mesh": {
+                        "Model": "RectangleBlock_Green",
+                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.019999999552965165,
+                            "y": 0.019999999552965165,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -13.0,
+                            "y": 1.100000023841858,
+                            "z": 11.100000381469727
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -2.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 2.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            14486341741652966143,
+                            17008353085049151909,
+                            16415915133639986106,
+                            5691439207370049121,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 36
+                    },
+                    "Name": {
+                        "Name": "RectBlockG"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 71
+                    },
+                    "Mesh": {
+                        "Model": "RectangleBlock_Blue",
+                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.019999999552965165,
+                            "y": 0.019999999552965165,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -13.0,
+                            "y": 1.100000023841858,
+                            "z": 9.100000381469727
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -2.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 2.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            14486341741652966143,
+                            17008353085049151909,
+                            16415915133639986106,
+                            5691439207370049121,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 36
+                    },
+                    "Name": {
+                        "Name": "RectBlockG"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 66
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.019999999552965165,
+                            "y": 0.019999999552965165,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -13.0,
+                            "y": 2.5999999046325685,
+                            "z": 9.100000381469727
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -2.0,
+                            "y": -0.5,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 2.0,
+                            "y": 0.5,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            14486341741652966143,
+                            17008353085049151909,
+                            16415915133639986106,
+                            5691439207370049121,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 36
+                    },
+                    "Name": {
+                        "Name": "FlatRectBlockR"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -2615,7 +2627,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
@@ -2633,12 +2645,12 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.699999988079071,
+                            "x": -0.699999988079071,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 11.100000381469727,
+                            "x": 12.5,
                             "y": 1.0,
                             "z": 4.0
                         }
@@ -2746,12 +2758,12 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": 0.8999999761581421,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 17.899999618530275,
+                            "x": 17.5,
                             "y": 1.0,
                             "z": 4.0
                         }
@@ -2902,7 +2914,8 @@
                         "Modified Components": [
                             16415915133639986106,
                             17008353085049151909,
-                            3617555656175080491
+                            3617555656175080491,
+                            14486341741652966143
                         ],
                         "Prefab GID": 29
                     },
@@ -2951,7 +2964,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
@@ -2969,12 +2982,12 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.10000000149011612,
+                            "x": -0.699999988079071,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 16.200000762939454,
+                            "x": 17.5,
                             "y": 1.0,
                             "z": 4.0
                         }
@@ -3013,7 +3026,8 @@
                         "Modified Components": [
                             16415915133639986106,
                             17008353085049151909,
-                            3617555656175080491
+                            3617555656175080491,
+                            14486341741652966143
                         ],
                         "Prefab GID": 29
                     },
@@ -6189,19 +6203,245 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 66
+                        "Global Index": 27
                     },
                     "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
+                        "Model": "ShortGateFence",
+                        "Texture": "ShortGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.019999999552965165,
-                            "y": 0.019999999552965165,
-                            "z": 0.019999999552965165
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.44999998807907107,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 18.399999618530275,
+                            "y": 0.6000000238418579,
+                            "z": 8.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.4000000059604645,
+                            "z": -0.05000000074505806
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
+                            "z": 0.05000000074505806
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            5691439207370049121,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 11
+                    },
+                    "Name": {
+                        "Name": "ShortGateFence2"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 26
+                    },
+                    "Mesh": {
+                        "Model": "ShortGateFence",
+                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.44999998807907107,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 15.5,
+                            "y": 0.6000000238418579,
+                            "z": 8.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.4000000059604645,
+                            "z": -0.05000000074505806
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
+                            "z": 0.05000000074505806
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            5691439207370049121,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 11
+                    },
+                    "Name": {
+                        "Name": "ShortGateFence3"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 25
+                    },
+                    "Mesh": {
+                        "Model": "ShortGateFence",
+                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
                         }
                     },
                     "Offset": {
@@ -6242,14 +6482,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": 0.44999998807907107,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -13.0,
-                            "y": 2.5999999046325685,
-                            "z": 9.100000381469727
+                            "x": 13.600000381469727,
+                            "y": 0.6000000238418579,
+                            "z": 8.0
                         }
                     },
                     "RigidForce": {
@@ -6271,30 +6511,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -2.0,
-                            "y": -0.5,
-                            "z": -1.0
+                            "x": -0.5,
+                            "y": -0.4000000059604645,
+                            "z": -0.05000000074505806
                         },
                         "Max Point": {
-                            "x": 2.0,
-                            "y": 0.5,
-                            "z": 1.0
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
+                            "z": 0.05000000074505806
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            9604788041699812520,
                             14486341741652966143,
                             17008353085049151909,
-                            16415915133639986106,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            16415915133639986106
                         ],
-                        "Prefab GID": 36
+                        "Prefab GID": 11
                     },
                     "Name": {
-                        "Name": "FlatRectBlockR"
+                        "Name": "ShortGateFence4"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -6303,19 +6542,132 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 71
+                        "Global Index": 24
                     },
                     "Mesh": {
-                        "Model": "RectangleBlock_Blue",
-                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
+                        "Model": "ShortGateFence",
+                        "Texture": "ShortGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.019999999552965165,
-                            "y": 0.019999999552965165,
-                            "z": 0.019999999552965165
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.44999998807907107,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 13.600000381469727,
+                            "y": 0.6000000238418579,
+                            "z": 8.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.4000000059604645,
+                            "z": -0.05000000074505806
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
+                            "z": 0.05000000074505806
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            5691439207370049121,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 11
+                    },
+                    "Name": {
+                        "Name": "ShortGateFence5"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 28
+                    },
+                    "Mesh": {
+                        "Model": "ShortGateFence",
+                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
                         }
                     },
                     "Offset": {
@@ -6356,14 +6708,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": 0.44999998807907107,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -13.0,
-                            "y": 1.100000023841858,
-                            "z": 9.100000381469727
+                            "x": 11.699999809265137,
+                            "y": 0.6000000238418579,
+                            "z": 8.0
                         }
                     },
                     "RigidForce": {
@@ -6385,30 +6737,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -2.0,
-                            "y": -1.0,
-                            "z": -1.0
+                            "x": -0.5,
+                            "y": -0.4000000059604645,
+                            "z": -0.05000000074505806
                         },
                         "Max Point": {
-                            "x": 2.0,
-                            "y": 1.0,
-                            "z": 1.0
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
+                            "z": 0.05000000074505806
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            9604788041699812520,
                             14486341741652966143,
                             17008353085049151909,
-                            16415915133639986106,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            16415915133639986106
                         ],
-                        "Prefab GID": 36
+                        "Prefab GID": 11
                     },
                     "Name": {
-                        "Name": "RectBlockG"
+                        "Name": "ShortGateFence6"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -6417,19 +6768,132 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 72
+                        "Global Index": 22
                     },
                     "Mesh": {
-                        "Model": "RectangleBlock_Green",
-                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
+                        "Model": "ShortGateFence",
+                        "Texture": "ShortGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.019999999552965165,
-                            "y": 0.019999999552965165,
-                            "z": 0.019999999552965165
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.44999998807907107,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 11.699999809265137,
+                            "y": 0.6000000238418579,
+                            "z": 8.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.4000000059604645,
+                            "z": -0.05000000074505806
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
+                            "z": 0.05000000074505806
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            5691439207370049121,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 11
+                    },
+                    "Name": {
+                        "Name": "ShortGateFence7"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 21
+                    },
+                    "Mesh": {
+                        "Model": "ShortGateFence",
+                        "Texture": "ShortGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
                         }
                     },
                     "Offset": {
@@ -6470,14 +6934,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": 0.44999998807907107,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -13.0,
-                            "y": 1.100000023841858,
-                            "z": 11.100000381469727
+                            "x": 9.800000190734864,
+                            "y": 0.6000000238418579,
+                            "z": 8.0
                         }
                     },
                     "RigidForce": {
@@ -6499,30 +6963,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -2.0,
-                            "y": -1.0,
-                            "z": -1.0
+                            "x": -0.5,
+                            "y": -0.4000000059604645,
+                            "z": -0.05000000074505806
                         },
                         "Max Point": {
-                            "x": 2.0,
-                            "y": 1.0,
-                            "z": 1.0
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
+                            "z": 0.05000000074505806
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            9604788041699812520,
                             14486341741652966143,
                             17008353085049151909,
-                            16415915133639986106,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            16415915133639986106
                         ],
-                        "Prefab GID": 36
+                        "Prefab GID": 11
                     },
                     "Name": {
-                        "Name": "RectBlockG"
+                        "Name": "ShortGateFence8"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -6531,19 +6994,19 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 73
+                        "Global Index": 20
                     },
                     "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
+                        "Model": "ShortGateFence",
+                        "Texture": "ShortGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.019999999552965165,
-                            "y": 0.019999999552965165,
-                            "z": 0.019999999552965165
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
                         }
                     },
                     "Offset": {
@@ -6566,7 +7029,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
@@ -6584,14 +7047,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": -0.44999998807907107,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -13.0,
-                            "y": 2.5999999046325685,
-                            "z": 11.100000381469727
+                            "x": 9.800000190734864,
+                            "y": 0.6000000238418579,
+                            "z": 8.0
                         }
                     },
                     "RigidForce": {
@@ -6613,474 +7076,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -2.0,
-                            "y": -0.5,
-                            "z": -1.0
+                            "x": -0.5,
+                            "y": -0.4000000059604645,
+                            "z": -0.05000000074505806
                         },
                         "Max Point": {
-                            "x": 2.0,
-                            "y": 0.5,
-                            "z": 1.0
+                            "x": 0.5,
+                            "y": 0.4000000059604645,
+                            "z": 0.05000000074505806
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            9604788041699812520,
                             14486341741652966143,
                             17008353085049151909,
-                            16415915133639986106,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            16415915133639986106
                         ],
-                        "Prefab GID": 36
+                        "Prefab GID": 11
                     },
                     "Name": {
-                        "Name": "FlatRectBlockR"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 74
-                    },
-                    "Mesh": {
-                        "Model": "RectangleBlock_Green",
-                        "Texture": "HalfCircleBlock_Green_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.019999999552965165,
-                            "y": 0.019999999552965165,
-                            "z": 0.019999999552965165
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -10.0,
-                            "y": 1.100000023841858,
-                            "z": 10.100000381469727
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -2.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 2.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            9604788041699812520,
-                            14486341741652966143,
-                            17008353085049151909,
-                            16415915133639986106,
-                            5691439207370049121,
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 36
-                    },
-                    "Name": {
-                        "Name": "RectBlockG"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 68
-                    },
-                    "Mesh": {
-                        "Model": "TrainTrack",
-                        "Texture": "TrainTrack_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.20000000298023225
-                        },
-                        "Position": {
-                            "x": -13.100000381469727,
-                            "y": 2.200000047683716,
-                            "z": -1.7000000476837159
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.399999976158142,
-                            "y": -0.10000000149011612,
-                            "z": -3.200000047683716
-                        },
-                        "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.10000000149011612,
-                            "z": 3.200000047683716
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 67
-                    },
-                    "Name": {
-                        "Name": "TrainTracks"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 69
-                    },
-                    "Mesh": {
-                        "Model": "TrainTrack",
-                        "Texture": "TrainTrack_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Position": {
-                            "x": -13.100000381469727,
-                            "y": 2.200000047683716,
-                            "z": -8.100000381469727
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.399999976158142,
-                            "y": -0.10000000149011612,
-                            "z": -3.200000047683716
-                        },
-                        "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.10000000149011612,
-                            "z": 3.200000047683716
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 67
-                    },
-                    "Name": {
-                        "Name": "TrainTracks"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 70
-                    },
-                    "Mesh": {
-                        "Model": "TrainTrack",
-                        "Texture": "TrainTrack_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Position": {
-                            "x": -13.100000381469727,
-                            "y": 2.200000047683716,
-                            "z": 4.699999809265137
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.399999976158142,
-                            "y": -0.10000000149011612,
-                            "z": -3.200000047683716
-                        },
-                        "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.10000000149011612,
-                            "z": 3.200000047683716
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 67
-                    },
-                    "Name": {
-                        "Name": "TrainTracks"
+                        "Name": "ShortGateFence9"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -7143,8 +7161,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            18,
                             66,
+                            18,
                             59,
                             61,
                             62,
@@ -7154,7 +7172,15 @@
                             71,
                             72,
                             73,
-                            74
+                            74,
+                            27,
+                            26,
+                            25,
+                            24,
+                            28,
+                            22,
+                            21,
+                            20
                         ]
                     },
                     "Rotation": {
@@ -7590,15 +7616,7 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            19,
-                            27,
-                            20,
-                            21,
-                            22,
-                            24,
-                            25,
-                            26,
-                            28
+                            19
                         ]
                     },
                     "Rotation": {
@@ -7818,8 +7836,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            45,
                             37,
+                            45,
                             38,
                             41,
                             42,
@@ -8521,215 +8539,6 @@
                 {
                     "Guid": [
                         0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        15204223096342135753,
-                        17008353085049151909,
-                        3617555656175080491,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 76
-                    },
-                    "Mesh": {
-                        "Model": "ShortGate",
-                        "Texture": "ShortGate_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 75
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.5,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            78
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "ShortGateArmature|TallGateOpen",
-                        "Play Once": false,
-                        "Pause Animation": true,
-                        "Current Time": 0.0,
-                        "Pause At Frame": -1,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": -0.44999998807907107,
-                            "z": -0.07999999821186066
-                        },
-                        "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.8999999761581421,
-                            "z": 0.07999999821186066
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Gate"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        14486341741652966143,
-                        15204223096342135753,
-                        17008353085049151909,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 78
-                    },
-                    "Mesh": {
-                        "Model": "ShortGate",
-                        "Texture": "ShortGate_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.006000000052154064,
-                            "y": 0.005999871529638767,
-                            "z": 0.006000000052154064
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 77
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.5,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "ShortGateArmature|TallGateOpen",
-                        "Play Once": false,
-                        "Pause Animation": true,
-                        "Current Time": 0.0,
-                        "Pause At Frame": -1,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 14.24899959564209,
-                            "y": 0.6853501796722412,
-                            "z": 9.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": -0.44999998807907107,
-                            "z": -0.07999999821186066
-                        },
-                        "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.8999999761581421,
-                            "z": 0.07999999821186066
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 76
-                    },
-                    "Name": {
-                        "Name": "Gate"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
                         10055872472107209861,
                         17008353085049151909,
                         16415915133639986106,
@@ -9265,16 +9074,16 @@
                         "Global Index": 77
                     },
                     "Mesh": {
-                        "Model": "SquareBlock_Yellow",
-                        "Texture": "CuboidBlock_Yellow_BaseColour.dds",
+                        "Model": "ButtonOFF",
+                        "Texture": "ButtonON_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.006000000052154064,
-                            "y": 0.005999871529638767,
-                            "z": 0.006000000052154064
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Parent": {
@@ -9308,9 +9117,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 13.74899959564209,
-                            "y": 0.6853501796722412,
-                            "z": 9.0
+                            "x": 15.14900016784668,
+                            "y": 0.12999999523162843,
+                            "z": 7.099999904632568
                         }
                     },
                     "RigidForce": {
@@ -9339,19 +9148,132 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.3100000023841858,
-                            "y": -0.3100000023841858,
-                            "z": -0.3100000023841858
+                            "x": -0.4000000059604645,
+                            "y": -0.019999999552965165,
+                            "z": -0.4000000059604645
                         },
                         "Max Point": {
-                            "x": 0.3100000023841858,
-                            "y": 0.3100000023841858,
-                            "z": 0.3100000023841858
+                            "x": 0.4000000059604645,
+                            "y": 0.019999999552965165,
+                            "z": 0.4000000059604645
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            9604788041699812520,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 75
+                    },
+                    "Name": {
+                        "Name": "GateSwitch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 85
+                    },
+                    "Mesh": {
+                        "Model": "ButtonOFF",
+                        "Texture": "CuboidBlock_Yellow_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            86
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 12.24899959564209,
+                            "y": 0.10000000149011612,
+                            "z": 2.700000047683716
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GateSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.019999999552965165,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.019999999552965165,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            9604788041699812520,
+                            5691439207370049121,
+                            3617555656175080491
+                        ],
                         "Prefab GID": 75
                     },
                     "Name": {
@@ -9513,7 +9435,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            77
+                            77,
+                            85
                         ]
                     },
                     "Rotation": {
@@ -9592,6 +9515,415 @@
                         "Inv Mass": 0.0
                     },
                     "": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 78
+                    },
+                    "Mesh": {
+                        "Model": "ShortGate",
+                        "Texture": "ShortGate_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 77
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.4000000059604645,
+                            "y": 0.30000001192092898,
+                            "z": 0.8999999761581421
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.800000011920929,
+                            "y": 0.800000011920929,
+                            "z": 0.800000011920929
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "ShortGateArmature|TallGateOpen",
+                        "Play Once": false,
+                        "Pause Animation": true,
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.44999998807907107,
+                            "y": 0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 15.548999786376954,
+                            "y": 0.4300000071525574,
+                            "z": 8.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.46000000834465029,
+                            "y": -0.4000000059604645,
+                            "z": -0.07999999821186066
+                        },
+                        "Max Point": {
+                            "x": 0.46000000834465029,
+                            "y": 0.4000000059604645,
+                            "z": 0.07999999821186066
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            8376831551428810534,
+                            17008353085049151909,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 76
+                    },
+                    "Name": {
+                        "Name": "Gate"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 86
+                    },
+                    "Mesh": {
+                        "Model": "ShortGate",
+                        "Texture": "ShortGate_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.007499999832361937,
+                            "y": 0.007499999832361937,
+                            "z": 0.007499999832361937
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 85
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.4000000059604645,
+                            "y": 0.6000000238418579,
+                            "z": 1.2999999523162842
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "ShortGateArmature|TallGateOpen",
+                        "Play Once": false,
+                        "Pause Animation": true,
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.800000011920929,
+                            "y": 0.30000001192092898,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 12.648999214172364,
+                            "y": 0.7000000476837158,
+                            "z": 4.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.8999999761581421,
+                            "y": -0.8999999761581421,
+                            "z": -0.07999999821186066
+                        },
+                        "Max Point": {
+                            "x": 0.8999999761581421,
+                            "y": 0.8999999761581421,
+                            "z": 0.07999999821186066
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            17008353085049151909,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 76
+                    },
+                    "Name": {
+                        "Name": "Gate"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 76
+                    },
+                    "Mesh": {
+                        "Model": "ShortGate",
+                        "Texture": "ShortGate_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 75
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.5,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            78,
+                            86
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "ShortGateArmature|TallGateOpen",
+                        "Play Once": false,
+                        "Pause Animation": true,
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": -0.44999998807907107,
+                            "z": -0.07999999821186066
+                        },
+                        "Max Point": {
+                            "x": 1.399999976158142,
+                            "y": 0.8999999761581421,
+                            "z": 0.07999999821186066
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Gate"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         }
