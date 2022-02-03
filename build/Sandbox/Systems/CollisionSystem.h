@@ -32,7 +32,7 @@ struct collision_system : paperback::system::pausable_instance
 	{
         scripting_sys = &GetSystem<scripting_system>();
 		SphereColliderQuery.m_Must.AddFromComponents < transform, sphere, rigidforce >();
-        SphereColliderQuery.m_OneOf.AddFromComponents< mass >();
+        SphereColliderQuery.m_OneOf.AddFromComponents< mass, bounding_volume >();
         SphereColliderQuery.m_NoneOf.AddFromComponents< prefab >();
 
         CollidableQuery.m_Must.AddFromComponents < transform>();
@@ -41,7 +41,7 @@ struct collision_system : paperback::system::pausable_instance
 	}
 
 
-    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox, sphere* Sphere, mass* m1, slope* Slope1 ) noexcept
+    void operator()( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox, sphere* Sphere, mass* m1, slope* Slope1, bounding_volume* BV) noexcept
     {
         if ( Entity.IsZombie() ) return;
              
@@ -119,7 +119,7 @@ struct collision_system : paperback::system::pausable_instance
             //    }
             //});
 
-            ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV )
+            ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV2 )
             {
                 if ( Entity.IsZombie() || Dynamic_Entity.IsZombie() ) return;
 
@@ -172,7 +172,7 @@ struct collision_system : paperback::system::pausable_instance
                                     //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
                 
                                 // Collision Response If Not Bounding Volume
-                                if ( !BV )
+                                if ( !(BV || BV2) )
                                 {
                                     AABBDynamic(Boundingbox, &RigidForce, Transform, m1, Slope1, BB, RF, Xform, m2, Slope2);
                                 }
