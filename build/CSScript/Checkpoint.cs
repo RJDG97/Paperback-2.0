@@ -11,10 +11,13 @@ namespace CSScript
         Sound m_Sound; //empty game object is parent
         Parent m_Parent; //empty game object is parent
 
-        BoundingBox m_RedCPBoundingBox; //red checkpoint is child
-        BoundingBox m_BlueCPBoundingBox; //blue checkpoint is also child
+        Int32 m_RedCPID;
+        Int32 m_BlueCPID;
         Transform m_RedCPTransform;
         Transform m_BlueCPTransform;
+
+        Int32 m_JumpID;
+        Int32 m_PushID;
 
         Transform m_JumpUnitTransform;
         Transform m_PushUnitTransform;
@@ -32,18 +35,23 @@ namespace CSScript
             m_Sound = new Sound(m_ID);
             m_Parent = new Parent(m_ID);
 
-            Int32 m_RedID = m_Parent.GetChildIDofName("Red Checkpoint");
-            Int32 m_BlueID = m_Parent.GetChildIDofName("Blue Checkpoint");
+            m_RedCPID = m_Parent.GetChildIDofName("Red Checkpoint");
+            m_BlueCPID = m_Parent.GetChildIDofName("Blue Checkpoint");
 
-            m_RedCPBoundingBox = new BoundingBox((UInt32)m_RedID);
-            m_BlueCPBoundingBox = new BoundingBox((UInt32)m_BlueID);
-            m_RedCPTransform = new Transform((UInt32)m_RedID);
-            m_BlueCPTransform = new Transform((UInt32)m_BlueID);
+            if (m_RedCPID != -1 && m_BlueCPID != -1)
+            {
+                m_RedCPTransform = new Transform((UInt32)m_RedCPID);
+                m_BlueCPTransform = new Transform((UInt32)m_BlueCPID);
 
-            m_JumpUnitTransform = new Transform((UInt32)Player.GetJumpUnitID());
-            m_PushUnitTransform = new Transform((UInt32)Player.GetPushUnitID());
+                m_JumpID = Player.GetJumpUnitID();
+                m_PushID = Player.GetPushUnitID();
+
+                m_JumpUnitTransform = new Transform((UInt32)m_JumpID);
+                m_PushUnitTransform = new Transform((UInt32)m_PushID);
+            }
 
             m_Sound.m_Trigger = false;
+            m_Activated = false;
         }
         public void Update(float dt)
         {
@@ -54,16 +62,15 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (!m_Activated)
+            if (!m_Activated && m_RedCPID != -1 && m_BlueCPID != -1)
             {
-                if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID())
+                if (ID == m_JumpID || ID == m_PushID)
                 {
                     m_Sound.m_Trigger = true;
-                    m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
-                    m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
+                    m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                    m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                    m_Activated = true;
                 }
-
-                m_Activated = true;
             }
         }
         public void OnCollisionStay(UInt32 ID)

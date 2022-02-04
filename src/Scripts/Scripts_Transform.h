@@ -9,9 +9,6 @@ namespace MONO_TRANSFORM
 		auto m_obj = PPB.GetEntityInfo(ID);
 		void* m_transform = m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails);
 
-		name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
-		std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value << std::endl;
-
 		return m_transform;
 	}
 
