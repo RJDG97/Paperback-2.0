@@ -200,6 +200,7 @@ Renderer::Renderer() :
 	// Partition Props
 	m_Resources.Load3DMeshNUI("ChildSafetyGate", "../../resources/models/nui/ChildSafetyGate.nui");
 	m_Resources.Load3DMeshNUI("Billboard", "../../resources/models/nui/Billboard.nui");
+	m_Resources.Load3DMeshNUI("FrozenBillboard", "../../resources/models/nui/FrozenBillboard.nui");
 
 	//Gates
 	m_Resources.Load3DMeshNUI("TallGate", "../../resources/models/nui/TallGate.nui");
@@ -226,6 +227,12 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("WallSegment1", "../../resources/models/nui/WallSegment1.nui");
 	m_Resources.Load3DMeshNUI("WallSegment2", "../../resources/models/nui/WallSegment2.nui");
 	m_Resources.Load3DMeshNUI("FloorTile", "../../resources/models/nui/FloorTile.nui");
+
+	//Wire
+	m_Resources.Load3DMeshNUI("WireActivated", "../../resources/models/nui/WireActivated.nui");
+	m_Resources.Load3DMeshNUI("WireDeactivated", "../../resources/models/nui/WireDeactivated.nui");
+	m_Resources.Load3DMeshNUI("WireConnectorActivated", "../../resources/models/nui/WireConnectorActivated.nui");
+	m_Resources.Load3DMeshNUI("WireConnectorDeactivated", "../../resources/models/nui/WireConnectorDeactivated.nui");
 
 
 	//m_Resources.Load3DMeshNUI("CrayonBox", "../../resources/models/nui/RectangleBlock_Wood.nui");
