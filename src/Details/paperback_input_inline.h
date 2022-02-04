@@ -411,10 +411,39 @@ namespace paperback::input
 		return WorldPoint;
 	}
 
+	glm::vec3 manager::GetViewportMousePosition() const noexcept
+	{
+		window_system* Window_System{ &PPB.GetSystem< window_system >() };
+		GLFWwindow* m_pWindow = Window_System->m_pWindow;
+		auto& WindowDetails = Window_System->E;
+
+		// Get x and y values
+		double X, Y;
+		glfwGetCursorPos(m_pWindow, &X, &Y);
+		glm::vec2 viewport_min{ 0.0f, 0.0f };
+		glm::vec2 viewport_max{ Window_System->m_Width, Window_System->m_Height };
+
+		if (X < viewport_min.x || X > viewport_max.x || Y < viewport_min.y || Y > viewport_max.y)
+		{
+			return {};
+		}
+
+		// Find point in NDC
+		glm::vec4 NDCPoint = glm::vec4{ (2.f * (X - viewport_min.x)) / (viewport_max.x - viewport_min.x) - 1.f, 1.f - (2.f * (Y - viewport_min.y)) / (viewport_max.y - viewport_min.y), -1.f, 1.f };
+		// Find point in view
+		glm::vec4 ViewPoint = glm::inverse(cam::GetInstanced().GetProjection()) * NDCPoint;
+		ViewPoint = glm::vec4{ ViewPoint.x, ViewPoint.y, -1.f, 0.f };
+		// Find point world
+		glm::vec3 WorldPoint = glm::inverse(cam::GetInstanced().GetView()) * ViewPoint;
+
+		return WorldPoint;
+	}
+
 	glm::vec3 manager::GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) const noexcept
 	{
-		GLFWwindow* m_pWindow = PPB.GetSystem< window_system >().m_pWindow;
-		auto& WindowDetails = PPB.GetSystem< window_system >().E;
+		window_system* Window_System{ &PPB.GetSystem< window_system >() };
+		GLFWwindow* m_pWindow = Window_System->m_pWindow;
+		auto& WindowDetails = Window_System->E;
 
 		// Get x and y values
 		double X, Y;

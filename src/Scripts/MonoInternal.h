@@ -26,6 +26,7 @@
 #include "Scripts/Scripts_Parent.h"
 #include "Scripts/Scripts_Player.h"
 #include "Scripts/Scripts_Camera.h"
+#include "Scripts/Scripts_Raycast.h"
 
 namespace MONO_INTERNALS
 {
@@ -34,6 +35,7 @@ namespace MONO_INTERNALS
 		MONO_CAMERA_TOOLS::AddInternals();
 		MONO_INPUTS::AddInternals();
 		MONO_PLAYER::AddInternals();
+		MONO_RAYCAST::AddInternals();
 		MONO_APPLICATION::AddInternals();
 		MONO_DEBUG::AddInternalCall();
 		MONO_AABB::AddInternalCall();

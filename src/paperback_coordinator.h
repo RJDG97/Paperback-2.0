@@ -414,6 +414,9 @@ namespace paperback::coordinator
 		PPB_INLINE
 		glm::vec3 GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) noexcept;
 
+		PPB_INLINE
+		glm::vec3 GetViewportMousePosition() noexcept;
+
 		//-----------------------------------
         //         Event Broadcast
         //-----------------------------------

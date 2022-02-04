@@ -21,6 +21,8 @@ namespace CSScript
 
         Transform m_JumpUnitTransform;
         Transform m_PushUnitTransform;
+        Rigidforce m_JumpUnitRigidforce;
+        Rigidforce m_PushUnitRigidforce;
 
         bool m_Activated;
 
@@ -48,6 +50,8 @@ namespace CSScript
 
                 m_JumpUnitTransform = new Transform((UInt32)m_JumpID);
                 m_PushUnitTransform = new Transform((UInt32)m_PushID);
+                m_JumpUnitRigidforce = new Rigidforce((UInt32)m_JumpID);
+                m_PushUnitRigidforce = new Rigidforce((UInt32)m_PushID);
             }
 
             m_Sound.m_Trigger = false;
@@ -69,6 +73,8 @@ namespace CSScript
                     m_Sound.m_Trigger = true;
                     m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
                     m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                    m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                    m_PushUnitRigidforce.m_Momentum =new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                     m_Activated = true;
                 }
             }
