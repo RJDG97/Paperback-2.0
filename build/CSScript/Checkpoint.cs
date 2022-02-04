@@ -33,7 +33,7 @@ namespace CSScript
             m_Parent = new Parent(m_ID);
 
             Int32 m_RedID = m_Parent.GetChildIDofName("Red Checkpoint");
-            Int32 m_BlueID = m_Parent.GetChildIDofName("Red Checkpoint");
+            Int32 m_BlueID = m_Parent.GetChildIDofName("Blue Checkpoint");
 
             m_RedCPBoundingBox = new BoundingBox((UInt32)m_RedID);
             m_BlueCPBoundingBox = new BoundingBox((UInt32)m_BlueID);
@@ -54,22 +54,17 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            //if (!m_Activated)
-            //{
-            //    if (ID == Player.GetRedRobotID())
-            //    {
-            //        m_Sound.m_Trigger = true;
-            //        m_RedRoboTransform.m_Position = m_BlueCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
-            //    }
+            if (!m_Activated)
+            {
+                if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID())
+                {
+                    m_Sound.m_Trigger = true;
+                    m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
+                    m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
+                }
 
-            //    else if (ID == Player.GetBlueRobotID())
-            //    {
-            //        m_Sound.m_Trigger = true;
-            //        m_BlueRoboTransform.m_Position = m_RedCPTransform.m_Position - new Tools.MathLib.Vector3(0.0f, 1.0f, 0.0f);
-            //    }
-
-            //    m_Activated = true;
-            //}
+                m_Activated = true;
+            }
         }
         public void OnCollisionStay(UInt32 ID)
         {

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 174
+                "EntityHead": 177
             }
         },
         {
@@ -216,6 +216,95 @@
                     },
                     "Name": {
                         "Name": "WireGate4"
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 176
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GameController"
+                            }
+                        ]
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 175
+                    },
+                    "Name": {
+                        "Name": "GameController"
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        14351128073332756358,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 175
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            176
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GameController"
+                            }
+                        ]
+                    },
+                    "Name": {
+                        "Name": "GameController"
                     }
                 }
             ]
@@ -15583,42 +15672,42 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
+                            18,
+                            146,
                             130,
                             66,
-                            146,
-                            18,
                             123,
                             59,
                             125,
                             61,
-                            62,
                             126,
-                            63,
+                            62,
                             127,
-                            64,
+                            63,
                             128,
-                            65,
+                            64,
                             129,
-                            71,
+                            65,
                             135,
+                            71,
                             72,
                             73,
-                            74,
                             138,
+                            74,
+                            91,
                             27,
                             155,
-                            91,
+                            90,
                             26,
                             154,
-                            90,
+                            89,
                             25,
                             153,
-                            89,
                             24,
                             152,
+                            92,
                             28,
                             156,
-                            92,
                             22,
                             150,
                             149,
@@ -16325,8 +16414,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            37,
                             45,
+                            37,
                             38,
                             41,
                             42,
@@ -17263,8 +17352,133 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 11.5,
+                            "x": 10.881444931030274,
+                            "y": 0.5,
+                            "z": 10.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 30.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
                             "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.30000001192092898,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.30000001192092898,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Push Unit"
+                    },
+                    "Mass": {
+                        "Mass": 6.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Camera": {
+                        "Active": true,
+                        "Radius": 5.0,
+                        "Theta": 90.0,
+                        "Azimuth": 0.0
+                    },
+                    "Player Controller": {
+                        "Device Guid": [],
+                        "Movement Force": 60.0,
+                        "Jump Force": 4.0,
+                        "Camera Rotation Speed": 200.0,
+                        "Player Active Status": false,
+                        "Player On Ground Status": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 174
+                    },
+                    "Mesh": {
+                        "Model": "JumpToy",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Walk",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 11.5,
+                            "y": 0.5,
                             "z": 10.0
                         }
                     },
@@ -17559,23 +17773,23 @@
                     "Path": {
                         "Points": [
                             {
-                                "x": 0.0,
+                                "x": -3.5999999046325685,
                                 "y": 0.0,
                                 "z": 0.0
                             },
                             {
-                                "x": 0.0,
-                                "y": 0.20000000298023225,
+                                "x": -3.5999999046325685,
+                                "y": 0.0,
                                 "z": 0.0
                             },
                             {
-                                "x": 0.0,
-                                "y": 3.0,
+                                "x": 0.5,
+                                "y": 0.0,
                                 "z": 0.0
                             },
                             {
-                                "x": 0.0,
-                                "y": 3.0,
+                                "x": 0.5,
+                                "y": 0.0,
                                 "z": 0.0
                             }
                         ],
@@ -17667,7 +17881,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 17.249000549316408,
+                            "x": 13.64900016784668,
                             "y": 0.5849999785423279,
                             "z": 10.699999809265137
                         }
@@ -17716,10 +17930,10 @@
                     "Path Follower": {
                         "Path ID": 0,
                         "Distance": 0.0,
-                        "Travel Speed": 3.0,
+                        "Travel Speed": 2.0,
                         "Back and Forth": false,
                         "Reversed": false,
-                        "Pause Travel": false
+                        "Pause Travel": true
                     },
                     "Mass": {
                         "Mass": 6.0,
@@ -17937,7 +18151,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 16.14900016784668,
+                            "x": 12.548999786376954,
                             "y": 0.5849999785423279,
                             "z": 10.699999809265137
                         }
@@ -17980,7 +18194,9 @@
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
                         "Prefab GID": 79
                     },
                     "Name": {
