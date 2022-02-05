@@ -13,6 +13,7 @@ namespace CSScript
         Int32 m_ElevatorID;
         Animator m_ElevatorAnimator;
         Elevator m_ElevatorElevator;
+        Scale m_ElevatorScale;
 
         Int32 m_PlatformID;
         Offset m_PlatformOffset;
@@ -33,6 +34,7 @@ namespace CSScript
             {
                 m_ElevatorAnimator = new Animator((UInt32)m_ElevatorID);
                 m_ElevatorElevator = new Elevator((UInt32)m_ElevatorID);
+                m_ElevatorScale = new Scale((UInt32)m_ElevatorID);
             }
 
             m_PlatformID = m_Parent.GetChildIDofName("Platform");
@@ -47,16 +49,18 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (!m_ElevatorAnimator.m_PauseAnimation) //Not puased, need to continue moving the bounding box
+            if (!m_ElevatorAnimator.m_PauseAnimation) //Not paused, need to continue moving the bounding box
             {
+                float distance = dt * m_ElevatorScale.m_Value.y * 900.0f;
+
                 if (m_ElevatorAnimator.m_Reversed)
                 {
-                    m_PlatformOffset.m_PosOffset -= new Tools.MathLib.Vector3(0.0f, 4.0f * dt, 0.0f);
+                    m_PlatformOffset.m_PosOffset -= new Tools.MathLib.Vector3(0.0f, distance, 0.0f);
                 }
 
                 else
                 {
-                    m_PlatformOffset.m_PosOffset += new Tools.MathLib.Vector3(0.0f, 4.0f * dt, 0.0f);
+                    m_PlatformOffset.m_PosOffset += new Tools.MathLib.Vector3(0.0f, distance, 0.0f);
                 }
             }
         }

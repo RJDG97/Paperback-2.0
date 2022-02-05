@@ -45,6 +45,7 @@ namespace CSScript
             if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetJumpUnitID()) /*|| collision with blocks*/)
             {
                 m_ChildPathFollower.m_PauseTravel = false;
+                m_ChildPathFollower.m_Reversed = false;
             }
         }
         public void OnCollisionStay(UInt32 ID)
@@ -54,7 +55,7 @@ namespace CSScript
         {
             if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetJumpUnitID()) /*|| collision with blocks*/)
             {
-                m_ChildPathFollower.m_PauseTravel = true;
+                m_ChildPathFollower.m_Reversed = true;
             }
         }
     }
