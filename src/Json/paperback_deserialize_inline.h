@@ -426,6 +426,12 @@ namespace paperback::deserialize
 
             if (obj.is_type<elevator>())
                 NewArchetype->GetComponent<elevator>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<elevator>();
+
+            if (obj.is_type<player_interaction>())
+                NewArchetype->GetComponent<player_interaction>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<player_interaction>();
+
+            if (obj.is_type<pushable>())
+                NewArchetype->GetComponent<pushable>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<pushable>();
         }
     }
 

@@ -619,6 +619,50 @@ namespace paperback::coordinator
 		}
 	}
 
+	template < concepts::Callable_Bool T_FUNCTION>
+	void instance::ForEach( const std::vector<paperback::u32>& NeighbourList
+						  , T_FUNCTION&& Function ) noexcept
+	{
+		using func_traits = xcore::function::traits<T_FUNCTION>;
+
+		bool bBreak = false;
+
+		for ( const auto GID : NeighbourList )
+        {
+			tools::query FuncQuery;							  // Query For Archetype
+            const auto&  Info = GetEntityInfo( GID );		  // Get Entity Info
+
+			FuncQuery.AddQueryFromFunction<T_FUNCTION>();     // Assign Query
+
+            if ( Info.m_pArchetype && Info.m_pArchetype->GetComponentBits().Compare( FuncQuery.m_Must )
+				                   && Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) )
+            {
+				Info.m_pArchetype->AccessGuard( [&]
+				{
+					if ( [&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
+					     {
+					     	  return Function( [&]<typename T_C>( std::tuple<T_C>* ) constexpr noexcept -> T_C
+					     	  		    {
+					     	  		 	     auto pComponent = Info.m_pArchetype->FindComponent( Info.m_PoolDetails, component::info_v<T_C>.m_Guid );
+					     	  		 	     if constexpr (std::is_pointer_v<T_C>)
+					     	  		 	     {
+					     	  		 	 	    if ( pComponent ) return reinterpret_cast<T_C>( pComponent );
+					     	  		 	 	    else return reinterpret_cast<T_C>( nullptr );
+					     	  		 	     }
+					     	  		 	     else return reinterpret_cast<T_C>( *pComponent );
+					     	  		    
+					     	  		    }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
+					     	  ... );
+					     }( xcore::types::null_tuple_v< func_traits::args_tuple > ))
+					{
+						bBreak = true;
+					}
+				});
+			}
+			if ( bBreak ) break;
+		}
+	}
+
 	void instance::ToggleDebug( const bool& Status ) noexcept
 	{
 		m_SystemMgr.ToggleDebug( Status );

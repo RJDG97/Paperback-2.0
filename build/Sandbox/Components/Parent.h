@@ -21,6 +21,11 @@ struct parent
         m_ChildrenGlobalIndexes.erase( ChildGlobalIndex );
     }
 
+    bool HasChild( paperback::u32 ChildGlobalIndex ) noexcept
+    {
+        return m_ChildrenGlobalIndexes.contains( ChildGlobalIndex );
+    }
+
 	std::unordered_set<paperback::u32> m_ChildrenGlobalIndexes;
 };
 

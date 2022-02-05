@@ -56,6 +56,30 @@ struct physics_system : paperback::system::pausable_instance
         return  (Mass > 0) ? Momentum / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
     }
 
+    void ApplyAxisCap( float& Val, const float Cap ) noexcept
+    {
+        Val = Val < 0 
+              ? Val < -Cap 
+                ? -Cap
+                : Val
+              : Val > Cap 
+                ? Cap
+                : Val;
+    }
+
+    void ApplyVelocityCap( paperback::Vector3f& Velocity ) noexcept
+    {
+        ApplyAxisCap( Velocity.x, paperback::settings::velocity_axis_cap_v );
+        ApplyAxisCap( Velocity.y, paperback::settings::velocity_axis_cap_v );
+        ApplyAxisCap( Velocity.z, paperback::settings::velocity_axis_cap_v );
+    }
+
+    void ApplyMomentumCap( paperback::Vector3f& Momentum ) noexcept
+    {
+        ApplyAxisCap( Momentum.x, paperback::settings::momentum_axis_cap_v );
+        ApplyAxisCap( Momentum.y, paperback::settings::momentum_axis_cap_v );
+        ApplyAxisCap( Momentum.z, paperback::settings::momentum_axis_cap_v );
+    }
 
 
     PPB_FORCEINLINE
@@ -78,23 +102,26 @@ struct physics_system : paperback::system::pausable_instance
 		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, rotation* Rot, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset, player_controller* Controller ) noexcept
 		{
             //// Apply Gravity If Non-Static
-                if (Mass && Mass->m_Mass && RigidForce.m_GravityAffected)
-                {
+            if (Mass && Mass->m_Mass && RigidForce.m_GravityAffected)
+            {
 
-                    if (RigidForce.m_GravityActive)
-                    {
-                        RigidForce.m_Forces.y += GRAVITY * Mass->m_Mass * DeltaTime();
-                    }
-                    else
-                    {
-                        RigidForce.m_GravityActive = true;
-                        if ( Controller ) Controller->m_OnGround = true;
-                    }
+                if (RigidForce.m_GravityActive)
+                {
+                    RigidForce.m_Forces.y += GRAVITY * Mass->m_Mass * DeltaTime();
                 }
+                else
+                {
+                    RigidForce.m_GravityActive = true;
+                    if ( Controller ) Controller->m_OnGround = true;
+                }
+            }
 
             // minimum value threshold
             RigidForce.m_Forces.CutoffValue(RigidForce.m_minthreshold);
             RigidForce.m_Momentum.CutoffValue(RigidForce.m_minthreshold);
+
+            // Cap Momentum Values
+            ApplyMomentumCap( RigidForce.m_Momentum );
 
             // momentum && accel only
             if (!RigidForce.m_Momentum.IsZero() && !RigidForce.m_Forces.IsZero())
@@ -138,6 +165,10 @@ struct physics_system : paperback::system::pausable_instance
 
                     RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
                     RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
+
+                    // Apply Velocity Cap
+                    ApplyVelocityCap( RigidBody->m_Velocity );
+
                     Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update
@@ -158,6 +189,10 @@ struct physics_system : paperback::system::pausable_instance
 
                     RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
                     RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
+
+                    // Apply Velocity Cap
+                    ApplyVelocityCap( RigidBody->m_Velocity );
+
                     Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update

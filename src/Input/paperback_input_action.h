@@ -62,7 +62,7 @@ namespace paperback::input::action
 
 
         using BindingGuids  = std::vector< paperback::u64 >;
-        using ActionParings = std::array< paperback::u64, static_cast<size_t>( KeyPairing::PPB_KEY_MAX ) >;
+        using ActionParings = std::array< /*paperback::u64*/ BindingGuids, static_cast<size_t>( KeyPairing::PPB_KEY_MAX ) >;
 
         PPB_INLINE
         instance( void ) noexcept;
@@ -107,12 +107,12 @@ namespace paperback::input::action
         //               Data
         //-----------------------------------
 
-        Interaction                                                          m_ActionInteraction     {   };                             // Action Modifiers
-        ActionParings                                                        m_PressedBindingGuids   { settings::invalid_index_v };     // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - Initial Button Press
-        ActionParings                                                        m_ContinuousBindingGuids{ settings::invalid_index_v };     // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - Held Down
-        ActionParings                                                        m_ReleasedBindingGuids  { settings::invalid_index_v };     // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - On Release
-        tools::n_bits< static_cast<size_t>(KeyPairing::PPB_KEY_MAX) >        m_PairingModifier       {   };                             // Pairing Key ( Event Triggers on Key && KeyPairing )
-        action::type::id                                                     m_Type                  = action::type::id::BUTTON;        // Action Type
+        Interaction                                                          m_ActionInteraction     {  };                             // Action Modifiers
+        ActionParings                                                        m_PressedBindingGuids   {  };                             // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - Initial Button Press
+        ActionParings                                                        m_ContinuousBindingGuids{  };                             // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - Held Down
+        ActionParings                                                        m_ReleasedBindingGuids  {  };                             // Action to Binding Mapping - 0 Reserved For Default Action ( No Pairing ) - On Release
+        tools::n_bits< static_cast<size_t>(KeyPairing::PPB_KEY_MAX) >        m_PairingModifier       {  };                             // Pairing Key ( Event Triggers on Key && KeyPairing )
+        action::type::id                                                     m_Type                  = action::type::id::BUTTON;       // Action Type
     };
 }
 

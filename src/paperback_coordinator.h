@@ -183,6 +183,10 @@ namespace paperback::coordinator
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;
 
+		template < concepts::Callable_Bool T_FUNCTION >
+        void ForEach( const std::vector<paperback::u32>& NeighbourList
+					, T_FUNCTION&& Function ) noexcept;
+
 		PPB_INLINE
 		void ToggleDebug( const bool& Status ) noexcept;
 

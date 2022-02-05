@@ -52,6 +52,8 @@
 #include "PlayerController.h"
 #include "Slope.h"
 #include "BoundingVolume.h"
+#include "PlayerInteraction.h"
+#include "Pushable.h"
 #include "Elevator.h"
 
 // shapes
