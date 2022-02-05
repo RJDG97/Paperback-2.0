@@ -51,7 +51,7 @@ namespace CSScript
         {
             if (!m_ElevatorAnimator.m_PauseAnimation) //Not paused, need to continue moving the bounding box
             {
-                float distance = dt * m_ElevatorScale.m_Value.y * 900.0f;
+                float distance = dt * m_ElevatorScale.m_Value.y * 910.0f;
 
                 if (m_ElevatorAnimator.m_Reversed)
                 {

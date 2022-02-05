@@ -45,3 +45,4 @@
 
 //standard scripts
 #include "MainMenu_Mode.h"
+#include "Game_Mode.h"

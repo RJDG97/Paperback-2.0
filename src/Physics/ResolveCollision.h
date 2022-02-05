@@ -9,16 +9,16 @@
 #include "Components/Rigidbody.h"
 #include "Components/Mass.h"
 
-#define Gap 0.001f
-#define BOTH_STATIC 0
-#define BOTH_NONSTATIC 1
-#define OBJ1_NONSTATIC 2
-#define OBJ2_NONSTATIC 3
+const float Gap = 0.001f;
+const float BOTH_STATIC = 0;
+const float BOTH_NONSTATIC = 1;
+const float OBJ1_NONSTATIC = 2;
+const float OBJ2_NONSTATIC = 3;
 
-#define NORTH 0
-#define SOUTH 1
-#define EAST 2
-#define WEST 3
+const float NORTH = 0;
+const float SOUTH = 1;
+const float EAST = 2;
+const float WEST = 3;
 
 enum direction
 {
@@ -69,13 +69,13 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 
 
 	// Replacement for below
-	if ( m1 && m1->m_Mass != 0.0f )
+	if ( m1 && rf1->m_CollisionAffected )
 	{
 		vel1 = rf1->m_Momentum / m1->m_Mass;
 		acc1 = rf1->m_Forces / m1->m_Mass;
 		mass1 = m1->m_Mass;
 	}
-	if ( m2 && m2->m_Mass != 0.0f )
+	if ( m2 && rf2->m_CollisionAffected )
 	{
 		vel2 = rf2->m_Momentum / m2->m_Mass;
 		acc2 = rf2->m_Forces / m2->m_Mass;
@@ -186,11 +186,15 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 			{
 
 				t1.m_Position.x += (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+				vel1.x = 0.0f;
+				acc1.x = 0.0f;
 			}
 			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
 				t2.m_Position.x -= (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+				vel2.x = 0.0f;
+				acc2.x = 0.0f;
 			}
 		}
 		// case 1
@@ -205,11 +209,15 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 			{
 
 				t1.m_Position.x -= (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+				vel1.x = 0.0f;
+				acc1.x = 0.0f;
 			}
 			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
 				t2.m_Position.x += (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+				vel2.x = 0.0f;
+				acc2.x = 0.0f;
 			}
 		}
 
@@ -233,10 +241,18 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 		//{
 		//	// in the event both mass are 0.f, do nothing
 		//}
-		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
-		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
-		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+
+		if (mass1)
+		{
+			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+		}
+
+		if (mass2)
+		{
+			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+		}
 	}
 	else if (y_ratio > x_ratio && y_ratio > z_ratio)
 	{
@@ -284,8 +300,8 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 			{
 
 				t1.m_Position.y -= (m1) ? (pen_depth.y + Gap) : 0.0f;
-				rf1->m_Momentum.y = 0.0f;
-				rf1->m_Forces.y = 0.0f;
+				vel1.y = 0.0f;
+				acc1.y = 0.0f;
 			}
 			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
@@ -293,8 +309,6 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 				//obj2 above, reset grav
 				rf2->m_GravityActive = false;
 				t2.m_Position.y += (m2) ? (pen_depth.y + Gap) : 0.0f;
-				rf1->m_Momentum.y = 0.0f;
-				rf1->m_Forces.y = 0.0f;
 				acc2.y = 0.0f;
 				vel2.y = 0.0f;
 			}
@@ -320,10 +334,17 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 		//	// in the event both mass are 0.f, do nothing
 		//}
 
-		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
-		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
-		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+		if (mass1)
+		{
+			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+		}
+
+		if (mass2)
+		{
+			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+		}
 	}
 	else if (z_ratio > x_ratio && z_ratio > y_ratio)
 	{
@@ -340,11 +361,15 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 			{
 
 				t1.m_Position.z += (m1) ? (pen_depth.z + Gap) : 0.0f;
+				vel1.z = 0.0f;
+				acc1.z = 0.0f;
 			}
 			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
 				t2.m_Position.z -= (m2) ? (pen_depth.z + Gap) : 0.0f;
+				vel2.z = 0.0f;
+				acc2.z = 0.0f;
 			}
 		}
 		// case 1
@@ -359,11 +384,15 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 			{
 
 				t1.m_Position.z -= (m1) ? (pen_depth.z + Gap) : 0.0f;
+				vel1.z = 0.0f;
+				acc1.z = 0.0f;
 			}
 			else if (resolutioncase == OBJ2_NONSTATIC)
 			{
 
 				t2.m_Position.z += (m2) ? (pen_depth.z + Gap) : 0.0f;
+				vel2.z = 0.0f;
+				acc2.z = 0.0f;
 			}
 		}
 
@@ -387,10 +416,17 @@ bool CheapaabbDynamic( boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass*
 		//{
 		//	// in the event both mass are 0.f, do nothing
 		//}
-		rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
-		rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
-		rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-		rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+		if (mass1)
+		{
+			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+		}
+
+		if (mass2)
+		{
+			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+		}
 	}
 
 	// determined side, higher = earlier intersect,
@@ -792,13 +828,13 @@ bool SlopeaabbDynamic(boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* 
 
 
 	// Replacement for below
-	if (m1 && m1->m_Mass != 0.0f)
+	if (m1 && rf1->m_CollisionAffected)
 	{
 		vel1 = rf1->m_Momentum / m1->m_Mass;
 		acc1 = rf1->m_Forces / m1->m_Mass;
 		mass1 = m1->m_Mass;
 	}
-	if (m2 && m2->m_Mass != 0.0f)
+	if (m2 && rf2->m_CollisionAffected)
 	{
 		vel2 = rf2->m_Momentum / m2->m_Mass;
 		acc2 = rf2->m_Forces / m2->m_Mass;
@@ -967,11 +1003,15 @@ bool SlopeaabbDynamic(boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* 
 				{
 
 					t1.m_Position.x += (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+					vel1.x = 0.0f;
+					acc1.x = 0.0f;
 				}
 				else if (resolutioncase == OBJ2_NONSTATIC && slope1_valid)
 				{
 
 					t2.m_Position.x -= (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+					vel2.x = 0.0f;
+					acc2.x = 0.0f;
 				}
 			}
 			// case 1
@@ -987,21 +1027,32 @@ bool SlopeaabbDynamic(boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* 
 				{
 
 					t1.m_Position.x -= (m1 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+					vel1.x = 0.0f;
+					acc1.x = 0.0f;
 				}
 				else if (resolutioncase == OBJ2_NONSTATIC && slope1_valid)
 				{
 
 					t2.m_Position.x += (m2 && t_resolve.x > 0.0f) ? (pen_depth.x + Gap) : 0.0f;
+					vel2.x = 0.0f;
+					acc2.x = 0.0f;
 				}
 			}
 
 			Elastic_InElastic_1D(vel1.x, acc1.x, mass1/*m1->m_Mass*/,
 				vel2.x, acc2.x, mass2/*m2->m_Mass*/, restitution);
 
-			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
-			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
-			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+			if (mass1)
+			{
+				rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+				rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+			}
+
+			if (mass2)
+			{
+				rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+				rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+			}
 		}
 		else
 		{
@@ -1106,11 +1157,15 @@ bool SlopeaabbDynamic(boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* 
 				{
 
 					t1.m_Position.z += (m1) ? (pen_depth.z + Gap) : 0.0f;
+					vel1.z = 0.0f;
+					acc1.z = 0.0f;
 				}
 				else if (resolutioncase == OBJ2_NONSTATIC && slope1_valid)
 				{
 
 					t2.m_Position.z -= (m2) ? (pen_depth.z + Gap) : 0.0f;
+					vel2.z = 0.0f;
+					acc2.z = 0.0f;
 				}
 			}
 			// case 1
@@ -1126,21 +1181,32 @@ bool SlopeaabbDynamic(boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* 
 				{
 
 					t1.m_Position.z -= (m1) ? (pen_depth.z + Gap) : 0.0f;
+					vel1.z = 0.0f;
+					acc1.z = 0.0f;
 				}
 				else if (resolutioncase == OBJ2_NONSTATIC && slope1_valid)
 				{
 
 					t2.m_Position.z += (m2) ? (pen_depth.z + Gap) : 0.0f;
+					vel2.z = 0.0f;
+					acc2.z = 0.0f;
 				}
 			}
 
 			Elastic_InElastic_1D(vel1.z, acc1.z, mass1/*m1->m_Mass*/,
 				vel2.z, acc2.z, mass2/*m2->m_Mass*/, restitution);
 
-			rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
-			rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
-			rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
-			rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+			if (mass1)
+			{
+				rf1->m_Momentum = vel1 * mass1/*m1->m_Mass*/;
+				rf1->m_Forces = acc1 * mass1/*m1->m_Mass*/;
+			}
+
+			if (mass2)
+			{
+				rf2->m_Momentum = vel2 * mass2/*m2->m_Mass*/;
+				rf2->m_Forces = acc2 * mass2/*m2->m_Mass*/;
+			}
 		}
 		else
 		{

@@ -355,8 +355,8 @@
     <ClInclude Include="Components\Pushable.h">
       <Filter>Source Files\Components\Details\Tags</Filter>
     </ClInclude>
-    <ClInclude Include="Components\Elevator.h">
-      <Filter>Source Files\Components\Details</Filter>
+    <ClInclude Include="Scripts\Game_Mode.h">
+      <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

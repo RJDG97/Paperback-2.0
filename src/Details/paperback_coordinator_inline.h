@@ -685,6 +685,7 @@ namespace paperback::coordinator
 			return;
 
 		auto WindowsSystem = FindSystem<window_system>();
+		m_bCursorActive = Status;
 
 		if (WindowsSystem)
 		{

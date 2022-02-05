@@ -55,7 +55,7 @@ namespace paperback::input::binding
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
-                        DirectionalVector.y           = 0.0f;
+                        DirectionalVector.y    = 0.0f;
                         auto Normalized        = DirectionalVector.Normalized();
 
                         // Not sure if we should use momentum, there seems to be no force cap
@@ -83,7 +83,7 @@ namespace paperback::input::binding
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
                         auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
-                        DirectionalVector.y           = 0.0f;
+                        DirectionalVector.y    = 0.0f;
                         auto Normalized        = DirectionalVector.Normalized();
 
                         // Not sure if we should use momentum, there seems to be no force cap
@@ -110,7 +110,7 @@ namespace paperback::input::binding
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
-                        DirectionalVector.y           = 0.0f;
+                        DirectionalVector.y    = 0.0f;
                         auto Normalized        = DirectionalVector.Normalized();
 
                         float x = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
@@ -142,7 +142,7 @@ namespace paperback::input::binding
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
-                        DirectionalVector.y           = 0.0f;
+                        DirectionalVector.y    = 0.0f;
                         auto Normalized        = DirectionalVector.Normalized();
 
                         float x = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
@@ -180,13 +180,53 @@ namespace paperback::input::binding
                     {
                         if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                         {
-                            auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
-                            DirectionalVector.y           = 0.0f;
-                            auto Normalized        = DirectionalVector.Normalized();
+                            auto Axes = GP->m_State.m_LeftAxis;
 
-                            // some rotation thing
+                            /****************************/
+                            //      X-Axis Movement
+                            /****************************/
+                            {
+                                auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                                DirectionalVector.y    = 0.0f;
+                                auto Normalized        = DirectionalVector.Normalized();
 
-                            RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                                // Moving Left
+                                if ( Axes.x > 0.0f )
+                                {
+                                    float x      = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
+                                    float z      = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
+                                    Normalized.x = x;
+                                    Normalized.z = z;
+
+                                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                                }
+                                // Moving Right
+                                else if ( Axes.x < 0.0f )
+                                {
+                                    float x      = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
+                                    float z      = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
+                                    Normalized.x = x;
+                                    Normalized.z = z;
+
+                                    RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                                }
+                            }
+
+
+                            /****************************/
+                            //      Y-Axis Movement
+                            /****************************/
+                            {
+                                // Moving Forward Or Backwards
+                                auto DirectionalVector = Axes.y > 0.0f
+                                                         ? ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position
+                                                         : Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+
+                                DirectionalVector.y    = 0.0f;
+                                auto Normalized        = DirectionalVector.Normalized();
+
+                                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                            }
                         }
                     });
                 }
@@ -261,8 +301,8 @@ namespace paperback::input::binding
                     {
                         if ( Controller.m_PlayerStatus && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                         {
-                            Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed );
-                            Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed );
+                            Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed * 0.01f );
+                            Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed * 0.01f );
                         }
                     });
                 }
