@@ -190,6 +190,9 @@ namespace paperback::coordinator
 		void TogglePause( const bool& Status ) noexcept;
 
 		PPB_INLINE
+		void ToggleCursor( const bool& Status ) noexcept;
+
+		PPB_INLINE
 		void TogglePlayers(void) noexcept;
 
 
@@ -458,7 +461,8 @@ namespace paperback::coordinator
 		input::manager						m_Input{ *this };				// Input
 		bool						        m_GameActive = true;			// Game Status
 		std::string					        m_QueuedSceneName = "";			// Currently Queued Scene to change
-		bool								m_bPaused = true;
+		bool								m_bPaused = false;
+		bool								m_bCursorActive = false;	
 	};
 }
 

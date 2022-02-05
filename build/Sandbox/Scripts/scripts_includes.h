@@ -42,3 +42,6 @@
 #include "MainMenu_Button.h"
 #include "Quit_Button.h"
 #include "StartGame_Button.h"
+
+//standard scripts
+#include "MainMenu_Mode.h"

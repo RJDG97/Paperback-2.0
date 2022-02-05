@@ -193,7 +193,8 @@ void InitializeGame()
             page5_how2play_next_button_mainmenu_script,
             page5_how2play_prev_button_mainmenu_script,
             page6_how2play_next_button_mainmenu_script,
-            page6_how2play_prev_button_mainmenu_script
+            page6_how2play_prev_button_mainmenu_script,
+            mainmenu_mode_script
         >();
 
 

@@ -624,17 +624,40 @@ namespace paperback::coordinator
 		m_SystemMgr.ToggleDebug( Status );
 	}
 
-	void instance::TogglePause( const bool& Status ) noexcept
+	void instance::TogglePause(const bool& Status) noexcept
 	{
+
+		m_bPaused = Status;
+
+		ToggleCursor(Status);
+
+		m_SystemMgr.TogglePause(Status);
+	}
+
+	void instance::ToggleCursor(const bool& Status) noexcept
+	{
+
+		if (Status == m_bCursorActive)
+			return;
+
 		auto WindowsSystem = FindSystem<window_system>();
 
-		if ( WindowsSystem && Status )
-			glfwSetInputMode( WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL );
-		else if ( WindowsSystem )
-			glfwSetInputMode( WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED );
+		if (WindowsSystem)
+		{
 
-		m_SystemMgr.TogglePause( Status );
+			if (Status)
+			{
+
+				glfwSetInputMode(WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			}
+			else
+			{
+
+				glfwSetInputMode(WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			}
+		}
 	}
+
 
 	void instance::TogglePlayers(void) noexcept
 	{

@@ -346,5 +346,8 @@
     <ClInclude Include="Components\Slope.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\MainMenu_Mode.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
