@@ -55,8 +55,8 @@ namespace paperback::input::binding
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                        DirectionalVector.y           = 0.0f;
                         auto Normalized        = DirectionalVector.Normalized();
-                        Normalized.y           = 0.0f;
 
                         // Not sure if we should use momentum, there seems to be no force cap
                         RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
@@ -83,8 +83,8 @@ namespace paperback::input::binding
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
                         auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
+                        DirectionalVector.y           = 0.0f;
                         auto Normalized        = DirectionalVector.Normalized();
-                        Normalized.y           = 0.0f;
 
                         // Not sure if we should use momentum, there seems to be no force cap
                         RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
@@ -110,8 +110,8 @@ namespace paperback::input::binding
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                        DirectionalVector.y           = 0.0f;
                         auto Normalized        = DirectionalVector.Normalized();
-                        Normalized.y           = 0.0f;
 
                         float x = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
                         float z = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
@@ -142,8 +142,8 @@ namespace paperback::input::binding
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
+                        DirectionalVector.y           = 0.0f;
                         auto Normalized        = DirectionalVector.Normalized();
-                        Normalized.y           = 0.0f;
 
                         float x = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
                         float z = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
@@ -181,8 +181,8 @@ namespace paperback::input::binding
                         if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                         {
                             auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
+                            DirectionalVector.y           = 0.0f;
                             auto Normalized        = DirectionalVector.Normalized();
-                            Normalized.y           = 0.0f;
 
                             // some rotation thing
 

@@ -56,54 +56,29 @@ struct physics_system : paperback::system::pausable_instance
         return  (Mass > 0) ? Momentum / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
     }
 
+    void ApplyAxisCap( float& Val, const float Cap ) noexcept
+    {
+        Val = Val < 0 
+              ? Val < -Cap 
+                ? -Cap
+                : Val
+              : Val > Cap 
+                ? Cap
+                : Val;
+    }
+
     void ApplyVelocityCap( paperback::Vector3f& Velocity ) noexcept
     {
-        Velocity.x = Velocity.x < 0 
-                     ? Velocity.x < -paperback::settings::velocity_axis_cap_v 
-                       ? -paperback::settings::velocity_axis_cap_v
-                       : Velocity.x
-                     : Velocity.x > paperback::settings::velocity_axis_cap_v 
-                       ? paperback::settings::velocity_axis_cap_v
-                       : Velocity.x;
-        Velocity.y = Velocity.y < 0 
-                     ? Velocity.y < -paperback::settings::velocity_axis_cap_v 
-                       ? -paperback::settings::velocity_axis_cap_v
-                       : Velocity.y
-                     : Velocity.y > paperback::settings::velocity_axis_cap_v 
-                       ? paperback::settings::velocity_axis_cap_v
-                       : Velocity.y;
-        Velocity.z = Velocity.z < 0 
-                     ? Velocity.z < -paperback::settings::velocity_axis_cap_v 
-                       ? -paperback::settings::velocity_axis_cap_v
-                       : Velocity.z
-                     : Velocity.z > paperback::settings::velocity_axis_cap_v 
-                       ? paperback::settings::velocity_axis_cap_v
-                       : Velocity.z;
+        ApplyAxisCap( Velocity.x, paperback::settings::velocity_axis_cap_v );
+        ApplyAxisCap( Velocity.y, paperback::settings::velocity_axis_cap_v );
+        ApplyAxisCap( Velocity.z, paperback::settings::velocity_axis_cap_v );
     }
 
     void ApplyMomentumCap( paperback::Vector3f& Momentum ) noexcept
     {
-        Momentum.x = Momentum.x < 0 
-                     ? Momentum.x < -paperback::settings::momentum_axis_cap_v 
-                       ? -paperback::settings::momentum_axis_cap_v
-                       : Momentum.x
-                     : Momentum.x > paperback::settings::momentum_axis_cap_v 
-                       ? paperback::settings::momentum_axis_cap_v
-                       : Momentum.x;
-        Momentum.y = Momentum.y < 0 
-                     ? Momentum.y < -paperback::settings::momentum_axis_cap_v 
-                       ? -paperback::settings::momentum_axis_cap_v
-                       : Momentum.y
-                     : Momentum.y > paperback::settings::momentum_axis_cap_v 
-                       ? paperback::settings::momentum_axis_cap_v
-                       : Momentum.y;
-        Momentum.z = Momentum.z < 0 
-                     ? Momentum.z < -paperback::settings::momentum_axis_cap_v 
-                       ? -paperback::settings::momentum_axis_cap_v
-                       : Momentum.z
-                     : Momentum.z > paperback::settings::momentum_axis_cap_v 
-                       ? paperback::settings::momentum_axis_cap_v
-                       : Momentum.z;
+        ApplyAxisCap( Momentum.x, paperback::settings::momentum_axis_cap_v );
+        ApplyAxisCap( Momentum.y, paperback::settings::momentum_axis_cap_v );
+        ApplyAxisCap( Momentum.z, paperback::settings::momentum_axis_cap_v );
     }
 
 
