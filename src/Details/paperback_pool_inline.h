@@ -677,6 +677,10 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< camera >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< slope >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< slope >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< player_interaction >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< player_interaction >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< pushable >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< pushable >(Index));
 		else
 			return rttr::instance();
 	}

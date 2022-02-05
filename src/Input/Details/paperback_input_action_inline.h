@@ -7,9 +7,9 @@ namespace paperback::input::action
 {
     instance::instance( void ) noexcept
     {
-        m_PressedBindingGuids.fill( settings::invalid_index_v );
-        m_ContinuousBindingGuids.fill( settings::invalid_index_v );
-        m_ReleasedBindingGuids.fill( settings::invalid_index_v );
+        //m_PressedBindingGuids.fill( settings::invalid_index_v );
+        //m_ContinuousBindingGuids.fill( settings::invalid_index_v );
+        //m_ReleasedBindingGuids.fill( settings::invalid_index_v );
     }
 
 
@@ -26,21 +26,24 @@ namespace paperback::input::action
         {
             case action::BroadcastStatus::PRESSED:
             {
-                for ( const auto& Bind : m_PressedBindingGuids )
+                for ( const auto& Binds : m_PressedBindingGuids )
+                for ( const auto& Bind : Binds )
                     if ( Bind != settings::invalid_index_v )
                         List.push_back( Bind );
                 break;
             }
             case action::BroadcastStatus::CONTINUOUS:
             {
-                for ( const auto& Bind : m_ContinuousBindingGuids )
+                for ( const auto& Binds : m_ContinuousBindingGuids )
+                for ( const auto& Bind : Binds )
                     if ( Bind != settings::invalid_index_v )
                         List.push_back( Bind );
                 break;
             }
             case action::BroadcastStatus::RELEASED:
             {
-                for ( const auto& Bind : m_ReleasedBindingGuids )
+                for ( const auto& Binds : m_ReleasedBindingGuids )
+                for ( const auto& Bind : Binds )
                     if ( Bind != settings::invalid_index_v )
                         List.push_back( Bind );
                 break;
@@ -72,17 +75,21 @@ namespace paperback::input::action
         {
             case action::BroadcastStatus::PRESSED:
             {
-                m_PressedBindingGuids[ static_cast<paperback::u32>(Pairing) ] = BindingGuidValue;
+                /*
+                Would be good to check if Duplicate Binding Exists first - For All Cases
+                */
+
+                m_PressedBindingGuids[ static_cast<paperback::u32>(Pairing) ].push_back( BindingGuidValue );
                 break;
             }
             case action::BroadcastStatus::CONTINUOUS:
             {
-                m_ContinuousBindingGuids[ static_cast<paperback::u32>(Pairing) ] = BindingGuidValue;
+                m_ContinuousBindingGuids[ static_cast<paperback::u32>(Pairing) ].push_back( BindingGuidValue );
                 break;
             }
             case action::BroadcastStatus::RELEASED:
             {
-                m_ReleasedBindingGuids[ static_cast<paperback::u32>(Pairing) ] = BindingGuidValue;
+                m_ReleasedBindingGuids[ static_cast<paperback::u32>(Pairing) ].push_back( BindingGuidValue );
                 break;
             }
         }
@@ -107,29 +114,28 @@ namespace paperback::input::action
     void instance::ResetBinding( const action::BroadcastStatus Status
                                , const KeyPairing Pairing ) noexcept
     {
-        switch( Status )
-        {
-            case action::BroadcastStatus::PRESSED:
-            {
-                m_PressedBindingGuids[ static_cast<paperback::u32>(Pairing) ] = settings::invalid_index_v;
-                break;
-            }
-            case action::BroadcastStatus::CONTINUOUS:
-            {
-                m_ContinuousBindingGuids[ static_cast<paperback::u32>(Pairing) ] = settings::invalid_index_v;
-                break;
-            }
-            case action::BroadcastStatus::RELEASED:
-            {
-                m_ReleasedBindingGuids[ static_cast<paperback::u32>(Pairing) ] = settings::invalid_index_v;
-                break;
-            }
-        }
+        // TODO: Update FN Params To Accept Binding's GUID to Erase
+        // m_PressedBindingGuids.erase( std::remove( m_PressedBindingGuids.begin(), m_PressedBindingGuids.end(), BindingGuidValue )
+        //                            , vec.end() );
 
-
-        // Reset Binding
-        //m_PressedBindingGuids[ static_cast<paperback::u32>(Pairing) ] = settings::invalid_index_v;
-        //m_PairingModifier.Remove( static_cast<paperback::i32>(Pairing) );
+        //switch( Status )
+        //{
+        //    case action::BroadcastStatus::PRESSED:
+        //    {
+        //        m_PressedBindingGuids[ static_cast<paperback::u32>(Pairing) ] = settings::invalid_index_v;
+        //        break;
+        //    }
+        //    case action::BroadcastStatus::CONTINUOUS:
+        //    {
+        //        m_ContinuousBindingGuids[ static_cast<paperback::u32>(Pairing) ] = settings::invalid_index_v;
+        //        break;
+        //    }
+        //    case action::BroadcastStatus::RELEASED:
+        //    {
+        //        m_ReleasedBindingGuids[ static_cast<paperback::u32>(Pairing) ] = settings::invalid_index_v;
+        //        break;
+        //    }
+        //}
     }
 
     PPB_INLINE

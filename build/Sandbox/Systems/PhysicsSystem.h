@@ -56,6 +56,55 @@ struct physics_system : paperback::system::pausable_instance
         return  (Mass > 0) ? Momentum / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
     }
 
+    void ApplyVelocityCap( paperback::Vector3f& Velocity ) noexcept
+    {
+        Velocity.x = Velocity.x < 0 
+                     ? Velocity.x < -paperback::settings::velocity_axis_cap_v 
+                       ? -paperback::settings::velocity_axis_cap_v
+                       : Velocity.x
+                     : Velocity.x > paperback::settings::velocity_axis_cap_v 
+                       ? paperback::settings::velocity_axis_cap_v
+                       : Velocity.x;
+        Velocity.y = Velocity.y < 0 
+                     ? Velocity.y < -paperback::settings::velocity_axis_cap_v 
+                       ? -paperback::settings::velocity_axis_cap_v
+                       : Velocity.y
+                     : Velocity.y > paperback::settings::velocity_axis_cap_v 
+                       ? paperback::settings::velocity_axis_cap_v
+                       : Velocity.y;
+        Velocity.z = Velocity.z < 0 
+                     ? Velocity.z < -paperback::settings::velocity_axis_cap_v 
+                       ? -paperback::settings::velocity_axis_cap_v
+                       : Velocity.z
+                     : Velocity.z > paperback::settings::velocity_axis_cap_v 
+                       ? paperback::settings::velocity_axis_cap_v
+                       : Velocity.z;
+    }
+
+    void ApplyMomentumCap( paperback::Vector3f& Momentum ) noexcept
+    {
+        Momentum.x = Momentum.x < 0 
+                     ? Momentum.x < -paperback::settings::momentum_axis_cap_v 
+                       ? -paperback::settings::momentum_axis_cap_v
+                       : Momentum.x
+                     : Momentum.x > paperback::settings::momentum_axis_cap_v 
+                       ? paperback::settings::momentum_axis_cap_v
+                       : Momentum.x;
+        Momentum.y = Momentum.y < 0 
+                     ? Momentum.y < -paperback::settings::momentum_axis_cap_v 
+                       ? -paperback::settings::momentum_axis_cap_v
+                       : Momentum.y
+                     : Momentum.y > paperback::settings::momentum_axis_cap_v 
+                       ? paperback::settings::momentum_axis_cap_v
+                       : Momentum.y;
+        Momentum.z = Momentum.z < 0 
+                     ? Momentum.z < -paperback::settings::momentum_axis_cap_v 
+                       ? -paperback::settings::momentum_axis_cap_v
+                       : Momentum.z
+                     : Momentum.z > paperback::settings::momentum_axis_cap_v 
+                       ? paperback::settings::momentum_axis_cap_v
+                       : Momentum.z;
+    }
 
 
     PPB_FORCEINLINE
@@ -78,23 +127,26 @@ struct physics_system : paperback::system::pausable_instance
 		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, rotation* Rot, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset, player_controller* Controller ) noexcept
 		{
             //// Apply Gravity If Non-Static
-                if (Mass && Mass->m_Mass && RigidForce.m_GravityAffected)
-                {
+            if (Mass && Mass->m_Mass && RigidForce.m_GravityAffected)
+            {
 
-                    if (RigidForce.m_GravityActive)
-                    {
-                        RigidForce.m_Forces.y += GRAVITY * Mass->m_Mass * DeltaTime();
-                    }
-                    else
-                    {
-                        RigidForce.m_GravityActive = true;
-                        if ( Controller ) Controller->m_OnGround = true;
-                    }
+                if (RigidForce.m_GravityActive)
+                {
+                    RigidForce.m_Forces.y += GRAVITY * Mass->m_Mass * DeltaTime();
                 }
+                else
+                {
+                    RigidForce.m_GravityActive = true;
+                    if ( Controller ) Controller->m_OnGround = true;
+                }
+            }
 
             // minimum value threshold
             RigidForce.m_Forces.CutoffValue(RigidForce.m_minthreshold);
             RigidForce.m_Momentum.CutoffValue(RigidForce.m_minthreshold);
+
+            // Cap Momentum Values
+            ApplyMomentumCap( RigidForce.m_Momentum );
 
             // momentum && accel only
             if (!RigidForce.m_Momentum.IsZero() && !RigidForce.m_Forces.IsZero())
@@ -138,6 +190,10 @@ struct physics_system : paperback::system::pausable_instance
 
                     RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
                     RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
+
+                    // Apply Velocity Cap
+                    ApplyVelocityCap( RigidBody->m_Velocity );
+
                     Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update
@@ -158,6 +214,10 @@ struct physics_system : paperback::system::pausable_instance
 
                     RigidBody->m_Accel = ConvertToAccel(Mass->m_Mass, RigidForce.m_Forces);
                     RigidBody->m_Velocity = ConvertToVelocity(Mass->m_Mass, RigidForce.m_Momentum);
+
+                    // Apply Velocity Cap
+                    ApplyVelocityCap( RigidBody->m_Velocity );
+
                     Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
                     // Update Hash Grid - On Position Update

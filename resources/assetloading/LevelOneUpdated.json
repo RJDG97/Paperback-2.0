@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 183
+                "EntityHead": 184
             }
         },
         {
@@ -15672,42 +15672,42 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            18,
-                            146,
                             130,
                             66,
+                            146,
+                            18,
                             123,
                             59,
                             125,
                             61,
-                            126,
                             62,
-                            127,
+                            126,
                             63,
-                            128,
+                            127,
                             64,
-                            129,
+                            128,
                             65,
-                            135,
+                            129,
                             71,
+                            135,
                             72,
                             73,
-                            138,
                             74,
-                            91,
+                            138,
                             27,
                             155,
-                            90,
+                            91,
                             26,
                             154,
-                            89,
+                            90,
                             25,
                             153,
+                            89,
                             24,
                             152,
-                            92,
                             28,
                             156,
+                            92,
                             22,
                             150,
                             149,
@@ -16414,8 +16414,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            45,
                             37,
+                            45,
                             38,
                             41,
                             42,
@@ -17286,131 +17286,6 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 17
-                    },
-                    "Mesh": {
-                        "Model": "StrongToy",
-                        "Texture": "StrongToy_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.004999999888241291,
-                            "y": 0.004999999888241291,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "StrongToy_Armature|Idle",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 0.0,
-                        "Pause At Frame": -1,
-                        "Reversed": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.10000000149011612,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 10.881444931030274,
-                            "y": 0.5,
-                            "z": 10.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 30.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.20000000298023225,
-                            "y": -0.30000001192092898,
-                            "z": -0.20000000298023225
-                        },
-                        "Max Point": {
-                            "x": 0.20000000298023225,
-                            "y": 0.30000001192092898,
-                            "z": 0.20000000298023225
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Push Unit"
-                    },
-                    "Mass": {
-                        "Mass": 6.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Camera": {
-                        "Active": true,
-                        "Radius": 5.0,
-                        "Theta": 90.0,
-                        "Azimuth": 0.0
-                    },
-                    "Player Controller": {
-                        "Device Guid": [],
-                        "Movement Force": 60.0,
-                        "Jump Force": 0.0,
-                        "Camera Rotation Speed": 200.0,
-                        "Player Active Status": false,
-                        "Player On Ground Status": true
-                    }
-                },
-                {
-                    "Entity": {
                         "Global Index": 174
                     },
                     "Mesh": {
@@ -17477,7 +17352,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 11.5,
+                            "x": 11.460805892944336,
                             "y": 0.5,
                             "z": 10.0
                         }
@@ -20403,6 +20278,291 @@
                     "Name": {
                         "Name": "Red Checkpoint"
                     }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        1871702054972469046,
+                        15966406150673095094,
+                        6556775953303706852
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 17
+                    },
+                    "Mesh": {
+                        "Model": "StrongToy",
+                        "Texture": "StrongToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "StrongToy_Armature|Idle",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 10.881444931030274,
+                            "y": 0.5,
+                            "z": 10.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 30.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.30000001192092898,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.30000001192092898,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Push Unit"
+                    },
+                    "Mass": {
+                        "Mass": 6.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Camera": {
+                        "Active": true,
+                        "Radius": 5.0,
+                        "Theta": 90.0,
+                        "Azimuth": 0.0
+                    },
+                    "Player Controller": {
+                        "Device Guid": [],
+                        "Movement Force": 60.0,
+                        "Jump Force": 0.0,
+                        "Camera Rotation Speed": 200.0,
+                        "Player Active Status": false,
+                        "Player On Ground Status": true
+                    },
+                    "Player Interaction": {
+                        "Interactable ID": 4294967295,
+                        "Pushing Or Pulling?": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        16993282838665458309
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 183
+                    },
+                    "Mesh": {
+                        "Model": "RedUnitAnimated",
+                        "Texture": "Unit_Red_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Frame": -1,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 11.5,
+                            "y": 0.5,
+                            "z": 8.899999618530274
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 20.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.30000001192092898,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.5,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Test Pushable"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Pushable": {}
                 }
             ]
         }
