@@ -33,7 +33,7 @@
                         }
                     },
                     "EntityScript": {
-                        "Script ID": "CameraMovement"
+                        "Script ID": []
                     },
                     "ReferencePrefab": {
                         "Modified Components": [],
@@ -76,7 +76,7 @@
                         }
                     },
                     "EntityScript": {
-                        "Script ID": "CameraMovement"
+                        "Script ID": []
                     },
                     "Name": {
                         "Name": "CameraScript"
@@ -241,8 +241,8 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.5,
-                            "y": 0.4000000059604645,
+                            "x": 500.0,
+                            "y": 200.0,
                             "z": 0.0
                         }
                     },
@@ -261,7 +261,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -0.75,
+                            "y": -300.0,
                             "z": 1.0
                         }
                     },
@@ -303,8 +303,8 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 2.0,
-                            "y": 2.0,
+                            "x": 1920.0,
+                            "y": 1080.0,
                             "z": 0.0
                         }
                     },
