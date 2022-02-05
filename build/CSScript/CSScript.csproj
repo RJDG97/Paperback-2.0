@@ -57,6 +57,7 @@
     <Compile Include="Tools\Components\BoundingBox.cs" />
     <Compile Include="Tools\CameraTools.cs" />
     <Compile Include="Tools\Components\Camera.cs" />
+    <Compile Include="Tools\Components\Elevator.cs" />
     <Compile Include="Tools\Components\Parent.cs" />
     <Compile Include="Tools\Components\Child.cs" />
     <Compile Include="Tools\Player.cs" />

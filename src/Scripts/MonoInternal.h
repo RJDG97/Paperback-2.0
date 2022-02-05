@@ -26,6 +26,7 @@
 #include "Scripts/Scripts_Parent.h"
 #include "Scripts/Scripts_Player.h"
 #include "Scripts/Scripts_Camera.h"
+#include "Scripts/Scripts_Elevator.h"
 #include "Scripts/Scripts_Raycast.h"
 
 namespace MONO_INTERNALS
@@ -57,6 +58,7 @@ namespace MONO_INTERNALS
 		MONO_TEXT::AddInternalCall();
 		MONO_CHILD::AddInternalCall();
 		MONO_PARENT::AddInternalCall();
+		MONO_ELEVATOR::AddInternalCall();
 		MONO_CAMERA::AddInternalCall();
 	}
 }

@@ -349,5 +349,8 @@
     <ClInclude Include="Scripts\MainMenu_Mode.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Elevator.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

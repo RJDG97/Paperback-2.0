@@ -120,6 +120,7 @@ void InitializeGame()
         ,    player_controller
         ,    slope
         ,    bounding_volume // Tag
+        ,    elevator
         >();
 
         // Register Components - Add to the end of the list

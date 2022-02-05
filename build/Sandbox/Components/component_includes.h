@@ -52,6 +52,7 @@
 #include "PlayerController.h"
 #include "Slope.h"
 #include "BoundingVolume.h"
+#include "Elevator.h"
 
 // shapes
 #include "AABB.h"

@@ -8,34 +8,56 @@ namespace CSScript
     public class ElevatorSwitch : MonoBehaviour
     {
         UInt32 m_ID;
-        bool m_Retracting;
         Parent m_Parent; //switch is parent
 
-        Animator m_ChildAnimator; //Elevator is child
-        //Need its bounding box too, change offset when rising and retracting
+        Int32 m_ElevatorID;
+        Animator m_ElevatorAnimator;
+        Elevator m_ElevatorElevator;
 
-        public static MovingPlatformSwitch getInst()
+        Int32 m_PlatformID;
+        Offset m_PlatformOffset;
+
+        public static ElevatorSwitch getInst()
         {
-            return new MovingPlatformSwitch();
+            return new ElevatorSwitch();
         }
 
         public void Start(UInt32 ID)
         {
             m_ID = ID;
             m_Parent = new Parent(m_ID);
-            m_ChildAnimator = new Animator((UInt32)m_Parent.GetChildIDofName("Elevator"));
+
+            m_ElevatorID = m_Parent.GetChildIDofName("Elevator");
+
+            if (m_ElevatorID != -1)
+            {
+                m_ElevatorAnimator = new Animator((UInt32)m_ElevatorID);
+                m_ElevatorElevator = new Elevator((UInt32)m_ElevatorID);
+            }
+
+            m_PlatformID = m_Parent.GetChildIDofName("Platform");
+
+            if (m_PlatformID != -1)
+            {
+                m_PlatformOffset = new Offset((UInt32)m_PlatformID);
+            }
+
+            m_ElevatorAnimator.m_PauseAtFrame = m_ElevatorElevator.m_StartFrame;
         }
 
         public void Update(float dt)
         {
-            if (m_Retracting)
+            if (!m_ElevatorAnimator.m_PauseAnimation) //Not puased, need to continue moving the bounding box
             {
-                //move offset box up & scale it up
-            }
+                if (m_ElevatorAnimator.m_Reversed)
+                {
+                    m_PlatformOffset.m_PosOffset -= new Tools.MathLib.Vector3(0.0f, 4.0f * dt, 0.0f);
+                }
 
-            else
-            {
-                //move offset box down & scale it down
+                else
+                {
+                    m_PlatformOffset.m_PosOffset += new Tools.MathLib.Vector3(0.0f, 4.0f * dt, 0.0f);
+                }
             }
         }
 
@@ -47,9 +69,19 @@ namespace CSScript
         {
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/)
             {
-                m_Retracting = false;
-                m_ChildAnimator.m_Reversed = false;
-                //m_ChildAnimator.m_PauseAtFrame = something; //depends on what height is needed
+                m_ElevatorAnimator.m_PauseAnimation = false;
+
+                if (m_ElevatorElevator.m_StartFrame < m_ElevatorElevator.m_StopFrame)
+                {
+                    m_ElevatorAnimator.m_Reversed = false;
+                }
+
+                else
+                {
+                    m_ElevatorAnimator.m_Reversed = true;
+                }
+
+                m_ElevatorAnimator.m_PauseAtFrame = m_ElevatorElevator.m_StopFrame;
             }
         }
         public void OnCollisionStay(UInt32 ID)
@@ -60,9 +92,19 @@ namespace CSScript
         {
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/)
             {
-                m_Retracting = true;
-                m_ChildAnimator.m_Reversed = true;
-                m_ChildAnimator.m_PauseAtFrame = 0;
+                m_ElevatorAnimator.m_PauseAnimation = false;
+
+                if (m_ElevatorElevator.m_StartFrame < m_ElevatorElevator.m_StopFrame)
+                {
+                    m_ElevatorAnimator.m_Reversed = true;
+                }
+
+                else
+                {
+                    m_ElevatorAnimator.m_Reversed = false;
+                }
+
+                m_ElevatorAnimator.m_PauseAtFrame = m_ElevatorElevator.m_StartFrame;
             }
         }
     }

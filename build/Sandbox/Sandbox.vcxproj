@@ -219,6 +219,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
     <ClInclude Include="Components\Currency.h" />
     <ClInclude Include="Components\Damage.h" />
     <ClInclude Include="Components\Deck.h" />
+    <ClInclude Include="Components\Elevator.h" />
     <ClInclude Include="Components\Enemy.h" />
     <ClInclude Include="Components\EnemySpawner.h" />
     <ClInclude Include="Components\EntityScript.h" />

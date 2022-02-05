@@ -423,6 +423,9 @@ namespace paperback::deserialize
 
             if (obj.is_type<slope>())
                 NewArchetype->GetComponent<slope>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<slope>();
+
+            if (obj.is_type<elevator>())
+                NewArchetype->GetComponent<elevator>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<elevator>();
         }
     }
 
