@@ -35,10 +35,28 @@ struct ui_system : paperback::system::pausable_instance
     PPB_FORCEINLINE
     bool UICollided( transform& Transform, scale& Scale, const paperback::Vector3f MousePos ) const noexcept
     {
-        float btm_left_x { Transform.m_Position.x - ( Scale.m_Value.x * 0.5f ) }
+
+        paperback::Vector3f screen_tf, screen_scale; //need to convert scale and transform to relative screen positions
+        int width, height;
+
+        auto WindowsSystem = PPB.FindSystem<window_system>();
+
+        glfwGetWindowSize(WindowsSystem->m_pWindow, &width, &height);
+
+        screen_tf.x = Transform.m_Position.x / (0.5 * width);
+        screen_tf.y = Transform.m_Position.y / (0.5 * height);
+        screen_scale.x = Scale.m_Value.x / (0.5 * width);
+        screen_scale.y = Scale.m_Value.y / (0.5 * height);
+
+
+        /*float btm_left_x { Transform.m_Position.x - ( Scale.m_Value.x * 0.5f ) }
             , btm_left_y { Transform.m_Position.y - ( Scale.m_Value.y * 0.5f ) }
             , top_right_x{ Transform.m_Position.x + ( Scale.m_Value.x * 0.5f ) }
-            , top_right_y{ Transform.m_Position.y + ( Scale.m_Value.y * 0.5f ) };
+            , top_right_y{ Transform.m_Position.y + ( Scale.m_Value.y * 0.5f ) };*/
+        float btm_left_x { screen_tf.x - ( screen_scale.x * 0.5f ) }
+            , btm_left_y { screen_tf.y - ( screen_scale.y * 0.5f ) }
+            , top_right_x{ screen_tf.x + ( screen_scale.x * 0.5f ) }
+            , top_right_y{ screen_tf.y + ( screen_scale.y * 0.5f ) };
 
         // Verify if within button
 	    if ( btm_left_x  <= MousePos.x && btm_left_y  <= MousePos.y &&
@@ -82,8 +100,8 @@ struct ui_system : paperback::system::pausable_instance
                 // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
 
                 //// Run Default Script If Valid
-                // auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );
-                // if ( Script ) Script->Run();
+                auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );
+                if ( Script ) Script->Run();
             }
             else if ( Card )
             {
