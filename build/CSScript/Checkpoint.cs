@@ -10,6 +10,7 @@ namespace CSScript
         UInt32 m_ID;
         Sound m_Sound; //empty game object is parent
         Parent m_Parent; //empty game object is parent
+        Name m_Name;
 
         Int32 m_RedCPID;
         Int32 m_BlueCPID;
@@ -26,9 +27,9 @@ namespace CSScript
 
         bool m_Activated;
 
-        public static GateSwitch getInst()
+        public static Checkpoint getInst()
         {
-            return new GateSwitch();
+            return new Checkpoint();
         }
 
         public void Start(UInt32 ID)
@@ -36,6 +37,7 @@ namespace CSScript
             m_ID = ID;
             m_Sound = new Sound(m_ID);
             m_Parent = new Parent(m_ID);
+            m_Name = new Name(m_ID);
 
             m_RedCPID = m_Parent.GetChildIDofName("Red Checkpoint");
             m_BlueCPID = m_Parent.GetChildIDofName("Blue Checkpoint");
@@ -59,6 +61,45 @@ namespace CSScript
         }
         public void Update(float dt)
         {
+            if (m_Name.m_Name == "Checkpoint1" && Input.IsKeyPress(Input.PB_1))
+            {
+                m_Sound.m_Trigger = true;
+                m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_Activated = true;
+            }
+
+            if (m_Name.m_Name == "Checkpoint2" && Input.IsKeyPress(Input.PB_2))
+            {
+                m_Sound.m_Trigger = true;
+                m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_Activated = true;
+            }
+
+            if (m_Name.m_Name == "Checkpoint3" && Input.IsKeyPress(Input.PB_3))
+            {
+                m_Sound.m_Trigger = true;
+                m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_Activated = true;
+            }
+
+            if (m_Name.m_Name == "Checkpoint4" && Input.IsKeyPress(Input.PB_4))
+            {
+                m_Sound.m_Trigger = true;
+                m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                m_Activated = true;
+            }
         }
         public void Destroy()
         {
