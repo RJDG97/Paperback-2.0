@@ -109,6 +109,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\src\Functionality\RenderResource\RenderResourceManager.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -199,6 +203,7 @@
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
     <ClInclude Include="..\..\src\Functionality\Nui\NUILoader.h" />
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h" />
+    <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.h" />
     <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceManager.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />

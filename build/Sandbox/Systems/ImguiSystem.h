@@ -2,8 +2,10 @@
 
 #include "WindowSystem.h"
 #include <sstream>
+#include <ostream>
 #include <filesystem>
 #include "SoundSystem.h"
+#include "../../../src/Functionality/RenderResource/RenderResourceLoader.h"
 
 //----------------------------------
 // ImGui Headers
@@ -48,6 +50,14 @@ enum FileActivity
     EXITAPP
 };
 
+enum FileExt
+{
+    NOEXT = 10,
+    ENTITYINFO,
+    TEXTURE,
+    MESH
+};
+
 struct imgui_system : paperback::system::instance
 {
     using PanelList = std::vector < std::pair <const paperback::editor::type::info*, std::unique_ptr<paperback::editor::instance > >>;
@@ -57,7 +67,7 @@ struct imgui_system : paperback::system::instance
     PanelList m_Panels;
 
     GLFWwindow* m_pWindow;
-    ImFont* m_Imgfont; 
+    ImFont* m_Imgfont;
 
     paperback::archetype::instance* m_pArchetype; //refers back to the archetype that the entity is referencing to
 
@@ -65,7 +75,7 @@ struct imgui_system : paperback::system::instance
     std::vector <const char*> m_ComponentNames = {};
 
     std::string m_LoadedPath, m_LoadedFile, m_SelectedFile, m_FolderToDelete, m_FileToDelete, m_EntityInfoLoadedPath;
-    std::string m_LoadedPrefabPath, m_LoadedPrefabFile;
+    std::string m_LoadedPrefabPath, m_LoadedPrefabFile, m_LoadedTexturePath, m_LoadedMeshPath;
 
     std::pair< paperback::archetype::instance*, paperback::u32 > m_SelectedEntity; //first: pointer to the archetype | second: entity index
 
@@ -88,6 +98,8 @@ struct imgui_system : paperback::system::instance
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
     bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck, m_bLoadPrefab, m_bSavePrefab, m_bSaveIndiPrefab;
     bool m_bPaused;
+
+    RenderResourceLoader& m_Loader{ RenderResourceLoader::GetInstanced() };
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -144,6 +156,7 @@ struct imgui_system : paperback::system::instance
         m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = m_bSaveIndiPrefab = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
 
+
         //m_CameraOriginalPosition = Camera3D::GetInstanced().GetPosition();
 
         m_Log.Init(); //Init ImTerm (Console)
@@ -151,39 +164,24 @@ struct imgui_system : paperback::system::instance
         //-----------------------------------
         //         Register Panels
         //-----------------------------------
-        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, EditorViewport, 
-                   WindowSettings, AssetBrowser, ConsoleTerminal
+        AddPanels< EntityInspector, ArchetypeInspector, DetailsWindow, EditorViewport,
+            WindowSettings, AssetBrowser, ConsoleTerminal
         >();
 
-        PPB.TogglePause(true); 
-        
+        //PPB.TogglePause(true); 
+        if (PPB.VerifyState("Editor"))
+        {
+            m_Loader.ReadTextureJson("../../resources/textureload.texture", true);
+            m_Loader.LoadTextureOnInit();
+        }
+
         EDITOR_INFO_PRINT("Editor Loaded");
     }
 
     PPB_INLINE
-    void Update(void)
+        void Update(void)
     {
-        if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
-        {
-            if (!PPB.GetPauseBool())
-            {
-                if (!m_bImgui)
-                    m_bImgui = true;
-
-                m_Type = FileActivity::STOPBUTTON;
-            }
-        }
-
-        if ((PPB.IsKeyPressUp(GLFW_KEY_F11) || PPB.IsKeyPressUp(GLFW_KEY_F)) && PPB.VerifyState("Editor"))
-        {
-            if (!PPB.GetPauseBool())
-            {
-                if (m_bImgui)
-                    m_bImgui = false;
-                else
-                    m_bImgui = true;
-            }
-        }
+        EditorKeys();
 
         if (m_bImgui)
         {
@@ -265,7 +263,7 @@ struct imgui_system : paperback::system::instance
     }
 
     PPB_INLINE
-    void OnSystemTerminated(void) noexcept
+        void OnSystemTerminated(void) noexcept
     {
         PanelMapClear();
 
@@ -275,7 +273,7 @@ struct imgui_system : paperback::system::instance
     }
 
     PPB_INLINE
-    void OnStateChange(void) noexcept
+        void OnStateChange(void) noexcept
     {
         m_bImgui = (PPB.VerifyState("Editor")) ? true : false;
 
@@ -372,9 +370,10 @@ struct imgui_system : paperback::system::instance
 
                 if (ImGui::MenuItem(ICON_FA_SAVE " Save"))
                 {
-                    if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty())
+                    if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty() && !m_LoadedTexturePath.empty())
                     {
                         PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
+                        //save texture
                         EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
                     }
                     else
@@ -466,7 +465,7 @@ struct imgui_system : paperback::system::instance
 
     void SaveFileAs(std::string& FilePath, std::string& FileName)
     {
-        std::string EntityInfoPath;
+        std::string EntityInfoPath, TexturePath, MeshPath;
 
         if (!m_bSavePrefab)
         {
@@ -476,10 +475,23 @@ struct imgui_system : paperback::system::instance
             if (FilePath.find(".json") == std::string::npos)
                 FilePath.append(".json");
 
-            EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
+            std::string a = FilePath.substr(0, FilePath.find(FileName.c_str()));
 
-            if (!EntityInfoPath.empty())
+            fs::path DirectoryLoc = a.append(FileName.substr(0, FileName.find(".json"))).c_str();
+
+            if (!fs::exists(DirectoryLoc))
+                fs::create_directories(DirectoryLoc); //create the folder
+
+            EntityInfoPath = SetEntityInfoPath(a, FileName, FileExt::ENTITYINFO);
+            TexturePath = SetEntityInfoPath(a, FileName, FileExt::TEXTURE);
+            MeshPath = SetEntityInfoPath(a, FileName, FileExt::MESH);
+
+            if (!EntityInfoPath.empty() && !TexturePath.empty())
+            {
                 PPB.SaveScene(FilePath, EntityInfoPath);
+                //save texture
+                SaveLevelTextures(TexturePath);
+            }
         }
         else
         {
@@ -505,24 +517,28 @@ struct imgui_system : paperback::system::instance
 
     void OpenFile(std::string& FilePath, std::string& FileName)
     {
-        std::string EntityInfoPath;
+        std::string EntityInfoPath, TexturePath, MeshPath;
 
         if (!m_bLoadPrefab)
         {
-            EntityInfoPath = SetEntityInfoPath(FilePath, FileName);
+            std::string a = FilePath.substr(0, FilePath.find(FileName.c_str()));
+
+            std::string DirectoryLoc = a.append(FileName.substr(0, FileName.find(".json"))).c_str();
+
+            EntityInfoPath = SetEntityInfoPath(a, FileName, FileExt::ENTITYINFO);
 
             if (!EntityInfoPath.empty())
             {
                 //m_CameraOriginalPosition = Camera3D::GetInstanced().GetPosition();
 
-                if (!PPB.GetPauseBool())
+                if (!m_bPaused)
                 {
                     m_bPaused = true;
-                    PPB.SetPauseBool(true);
-                    PPB.TogglePause(PPB.GetPauseBool());
+                    PPB.TogglePause(m_bPaused);
                 }
 
                 PPB.OpenEditScene(FilePath, EntityInfoPath);
+                //use filesystem to check if there is a .texture file & .mesh file (eventually)
                 EDITOR_TRACE_PRINT(FileName + " Loaded");
 
                 m_LoadedPath = FilePath;
@@ -539,8 +555,8 @@ struct imgui_system : paperback::system::instance
                 EDITOR_CRITICAL_PRINT("Trying to load a Non Prefab File");
                 return;
             }
-            
-            if (!PPB.GetPauseBool())
+
+            if (!m_bPaused)
             {
                 EDITOR_CRITICAL_PRINT("Unable to load prefab file when there is a active scene running");
                 return;
@@ -594,7 +610,7 @@ struct imgui_system : paperback::system::instance
                         ResetScene();
 
                         OpenFile(m_LoadedPath, m_LoadedFile);
-
+                        //use filesystem to check if there is a .texture file & .mesh file (eventually)
                         m_Type = FileActivity::NONE;
                         ImGui::CloseCurrentPopup();
                     }
@@ -602,7 +618,7 @@ struct imgui_system : paperback::system::instance
                 break;
                 case FileActivity::EXITAPP:
                 {
-                    ImGui::CloseCurrentPopup();                    
+                    ImGui::CloseCurrentPopup();
                     EDITOR_WARN_PRINT("Shutting Down Editor...");
                     m_Type = FileActivity::NONE;
 
@@ -616,9 +632,11 @@ struct imgui_system : paperback::system::instance
 
             if (ImGui::Button(ICON_FA_SAVE " No"))
             {
-                if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty())
+                if (!m_LoadedPath.empty() && !m_EntityInfoLoadedPath.empty() && !m_LoadedTexturePath.empty())
                 {
                     PPB.SaveScene(m_LoadedPath, m_EntityInfoLoadedPath);
+                    //save texture
+                    SaveLevelTextures(m_LoadedTexturePath);
                     EDITOR_TRACE_PRINT(m_LoadedFile + " Saved at: " + m_LoadedPath);
 
                     m_Type = FileActivity::NONE;
@@ -646,7 +664,7 @@ struct imgui_system : paperback::system::instance
 
         m_bSaveCheck = false;
     }
-    
+
     void ButtonToggle()
     {
         switch (m_Type)
@@ -656,8 +674,7 @@ struct imgui_system : paperback::system::instance
             //Serialize the scene into a temp location
             PPB.SaveScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
             m_bPaused = false;
-            PPB.SetPauseBool(false);
-            PPB.TogglePause(PPB.GetPauseBool());
+            PPB.TogglePause(m_bPaused);
 
             EDITOR_TRACE_PRINT("Playing Active Scene...");
 
@@ -670,12 +687,10 @@ struct imgui_system : paperback::system::instance
             ResetScene();
             PPB.OpenEditScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
             m_bPaused = true;
-            PPB.SetPauseBool(true);
-            PPB.TogglePause(PPB.GetPauseBool());
+            PPB.TogglePause(m_bPaused);
             PPB.GetSystem<sound_system>().EditorStopAllSounds();
 
             EDITOR_INFO_PRINT("Stopped Active Scene...");
-
 
             m_Type = FileActivity::NONE;
         }
@@ -879,12 +894,113 @@ struct imgui_system : paperback::system::instance
 
         if (!PPB.GetArchetypeList().empty())
             PPB.ResetAllArchetypes();
+
+        for (auto& Tex : m_Loader.m_LoadedTextures)
+            Tex.TextureBool = false; //reset the bool when opening a new scene
     }
 
-    std::string SetEntityInfoPath(std::string& Path, std::string& FileName)
+    void SaveLevelTextures(const std::string& TexturePath)
     {
-        std::string a = Path.substr(0, Path.find(FileName.c_str()));
-        return a.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
+        //Iterate thru all models in the level -> check model texture name -> compare name with m_LoadedTextures and save those textures the path
+
+        rapidjson::StringBuffer sb;
+        rapidjson::PrettyWriter<rapidjson::StringBuffer> Writer(sb);
+
+        std::ofstream Filestream(TexturePath);
+
+        Writer.StartObject();
+        if (!PPB.GetArchetypeList().empty())
+        {
+            for (auto& Archetype : PPB.GetArchetypeList())
+            {
+                for (paperback::u32 i = 0; i < Archetype->GetCurrentEntityCount(); ++i)
+                {
+                    auto Mesh = Archetype->FindComponent<mesh>(paperback::vm::PoolDetails({ 0, i }));
+
+                    if (Mesh) //only find the entities with mesh component
+                    {
+                        if (m_Loader.m_LoadedTextures.size())
+                        {
+                            for (auto& Tex : m_Loader.m_LoadedTextures)
+                            {
+                                if (Mesh->m_Texture == Tex.TextureName) // Get the texture data
+                                {
+                                    if (!Tex.Saved) //texture hasnt been saved before (As multiple instances might use the same texture)
+                                    {
+                                        if (Filestream.is_open())
+                                        {
+                                            Writer.Key(Tex.TextureName.c_str());
+                                            Writer.String((Tex.TexturePath + " " + std::to_string(Tex.TextureBool)).c_str());
+                                        }
+                                    }
+
+                                    Tex.Saved = true; //Mark texture has been saved already to avoid duplicate/repeated saves
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        Writer.EndObject();
+        Filestream << sb.GetString();
+
+        for (auto& Tex : m_Loader.m_LoadedTextures)
+            Tex.Saved = false; //reset after saving one level
+    }
+
+    std::string SetEntityInfoPath(std::string& Path, std::string& FileName, FileExt Extension)
+    {
+        std::string Temp = Path;
+        Temp.append("/");
+
+        switch (Extension)
+        {
+        case FileExt::ENTITYINFO:
+        {
+            return Temp.append(FileName.substr(0, FileName.find(".json")).append("_EntityInfo.json"));
+        }
+        case FileExt::TEXTURE:
+        {
+            return Temp.append(FileName.substr(0, FileName.find(".json")).append(".texture"));
+        }
+        case FileExt::MESH:
+        {
+            return Temp.append(FileName.substr(0, FileName.find(".json")).append(".mesh"));
+        }
+        case FileExt::NOEXT:
+        {
+
+        }
+        default:
+            return std::string{};
+        }
+    }
+
+    void EditorKeys()
+    {
+        if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
+        {
+            if (!m_bPaused)
+            {
+                if (!m_bImgui)
+                    m_bImgui = true;
+
+                m_Type = FileActivity::STOPBUTTON;
+            }
+        }
+
+        if ((PPB.IsKeyPressUp(GLFW_KEY_F11) || PPB.IsKeyPressUp(GLFW_KEY_F)) && PPB.VerifyState("Editor"))
+        {
+            if (!m_bPaused)
+            {
+                if (m_bImgui)
+                    m_bImgui = false;
+                else
+                    m_bImgui = true;
+            }
+        }
     }
 
     bool SetEditorMode(bool Editor)

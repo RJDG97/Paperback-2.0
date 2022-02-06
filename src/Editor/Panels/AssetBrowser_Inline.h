@@ -1,5 +1,6 @@
 #include "Editor/Panels/AssetBrowser.h"
 #include "Systems/ImguiSystem.h"
+#include "../../Functionality/RenderResource/RenderResourceLoader.h"
 #pragma once
 
 void AssetBrowser::Panel()
@@ -146,22 +147,11 @@ void AssetBrowser::CheckFileType()
                             m_Imgui.m_Type = FileActivity::LOADFROMASSET;
                         }
                     }
-
-                    //if (ImGui::BeginPopupContextItem())
-                    //{
-                    //    if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
-                    //    {
-                    //        m_Imgui.m_FileToDelete = File.path().generic_string();
-                    //        m_bDelete = true;
-                    //        m_bDeleteFile = true;
-                    //    }
-
-                    //    ImGui::EndPopup();
-                    //}
                 }
             }
 
-            if (fs::is_directory(File)) {
+            if (fs::is_directory(File))
+            {
 
                 if (ImGui::Selectable(FileString(ICON_FA_FOLDER, DirectoryName(File)).c_str()))
                 {
@@ -171,47 +161,19 @@ void AssetBrowser::CheckFileType()
 
                     FolderName(m_Imgui.m_SelectedPath, m_Imgui.m_DisplayFilePath);
                 }
-
-                if (ImGui::BeginPopupContextItem())
-                {
-                    if (ImGui::MenuItem(ICON_FA_TRASH "Delete?"))
-                    {
-                        std::string Temp = File.path().generic_string();
-
-                        if (fs::is_empty(File))
-                        {
-                            fs::remove(File);
-                            EDITOR_INFO_PRINT(Temp + " has been deleted");
-                        }
-                        else
-                        {
-                            m_Imgui.m_FolderToDelete = File.path().generic_string();
-                            m_bDelete = true;
-                            m_bDeleteFolder = true;
-                        }
-                    }
-
-                    ImGui::EndPopup();
-                }
             }
-
-
-            if (m_bDelete)
-                ImGui::OpenPopup(ICON_FA_TRASH " Delete?");
-
         }
 
         DeleteFolderContents();
-
     }
 }
 
 void AssetBrowser::DisplayFiles(fs::path File, std::string FileName)
 {
 
-    if (File.extension() == ".png")
+    if (File.extension() == ".png" || File.extension() == ".jpg" || File.extension() == ".dds")
         ImGui::Selectable(FileString(ICON_FA_FILE_IMAGE, FileName).c_str());
-    else if (File.extension() == ".json")
+    else if (File.extension() == ".json" || File.extension() == ".texture" || File.extension() == ".mesh")
         ImGui::Selectable(FileString(ICON_FA_FILE_CODE, FileName).c_str());
     else if (File.extension() == ".nui")
         ImGui::Selectable(FileString(ICON_FA_KIWI_BIRD, FileName).c_str());
@@ -405,13 +367,30 @@ void AssetBrowser::DragDropExternal()
                 for (const auto& Path : PPB.GetDragDropFiles())
                 {
                     auto Destination = m_Imgui.m_SelectedPath / Path.filename();
-                    fs::copy_file(Path, Destination);
+                    fs::copy_file(Path, Destination, fs::copy_options::overwrite_existing);
+
+                    if ((/*m_Imgui.m_SelectedPath.parent_path() != "../../resources/textures" || */m_Imgui.m_SelectedPath != "../../resources/textures") && Path.extension() == ".dds")
+                    {
+                        RenderResourceLoader::GetInstanced().m_TexturesToLoad.push_back({ Path.stem().generic_string().c_str(), Destination.generic_string().c_str() });
+                    }
+
                 }
                 PPB.GetDragDropFiles().clear();
             }
             ImGui::EndDragDropTarget();
         }
     }
+
+    if (RenderResourceLoader::GetInstanced().m_TexturesToLoad.size())
+        RenderResourceLoader::GetInstanced().AddNewTexture();
+}
+
+
+void AssetBrowser::FileMenuBar()
+{
+    ImGui::BeginMenuBar();
+
+    ImGui::EndMenuBar();
 }
 
 std::string AssetBrowser::DirectoryName(fs::directory_entry Directory) {

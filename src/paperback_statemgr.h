@@ -7,11 +7,11 @@ namespace paperback::coordinator
 
 	class scene
 	{
-		std::string m_Name, m_ScenePath, m_InfoPath;
+		std::string m_Name, m_ScenePath, m_InfoPath, m_TexPath;
 
 	public:
 		PPB_INLINE
-		scene(const std::string& Name, const std::string& Path, const std::string& Info); // ctor to set up a scene
+		scene(const std::string& Name, const std::string& Path, const std::string& Info, const std::string& Tex); // ctor to set up a scene
 
 		PPB_INLINE
 		void Load(); //to be called on loading scene, calls m_EntityManager Load()
@@ -26,7 +26,7 @@ namespace paperback::coordinator
 		const std::string& GetName();
 
 		PPB_INLINE
-		void UpdatePath(const std::string& Path, const std::string& Info = ""); // changes the path of the current scene
+		void UpdatePath(const std::string& Path, const std::string& Info = "", const std::string& Tex = ""); // changes the path of the current scene
 	};
 
 	class scene_mgr
@@ -45,7 +45,7 @@ namespace paperback::coordinator
 		~scene_mgr(); // dtor to ensure current scene is unloaded
 
 		PPB_INLINE
-		void AddScene(const std::string& Name, const std::string& Path, const std::string& Info); //manually adds scene to the current list
+		void AddScene(const std::string& Name, const std::string& Path, const std::string& Info, const std::string& Tex); //manually adds scene to the current list
 
 		PPB_INLINE
 		void RemoveScene(const std::string& Name); //manually removes scene

@@ -15,7 +15,7 @@
 #define TINYDDSLOADER_IMPLEMENTATION
 #include "tinydds/inc/tinyddsloader.h"
 
-GLuint TextureLoader::LoadTexture(const std::string File, const bool& GammaCorrect)
+GLuint TextureLoader::LoadTextureOnInit(const std::string File, const bool& GammaCorrect)
 {
 	int width, height, channels;
 	GLfloat anisotropy;
