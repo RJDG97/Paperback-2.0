@@ -88,6 +88,9 @@
     <ClCompile Include="..\..\src\Functionality\Camera\Camera.cpp">
       <Filter>Source\Tools\Functionality\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.cpp">
+      <Filter>Source\Tools\Functionality\RenderResource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -587,6 +590,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Scripts\Scripts_Raycast.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.h">
+      <Filter>Source\Tools\Functionality\RenderResource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

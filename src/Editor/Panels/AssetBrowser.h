@@ -37,6 +37,8 @@ struct AssetBrowser : paperback::editor::instance
 
     void FileTabBar();
 
+    void FileMenuBar();
+
     void CheckFileType();
 
     void MakeNewFolder();

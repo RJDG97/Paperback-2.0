@@ -100,6 +100,9 @@ namespace paperback::coordinator
 		void LoadPrefabs( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
+		void LoadTextures( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE
 		bool VerifyState( const std::string& StateName ) noexcept;
 
 		PPB_INLINE
