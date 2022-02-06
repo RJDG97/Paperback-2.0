@@ -116,8 +116,8 @@ struct path_system : paperback::system::instance
 						Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
 					}
 
-					else if (!PathFollower.m_Reversed && PathFollower.m_Distance >= spline->second.m_TotalLength ||
-							  PathFollower.m_Reversed && PathFollower.m_Distance <= 0.0f)
+					else if ((!PathFollower.m_Reversed && PathFollower.m_Distance >= spline->second.m_TotalLength ||
+							  PathFollower.m_Reversed && PathFollower.m_Distance <= 0.0f))
 					{
 						PathFollower.m_FinishedTravelling = true;
 
@@ -127,9 +127,15 @@ struct path_system : paperback::system::instance
 							Movement(spline->second, Rigidforce, Rigidbody, PathFollower, Transform, Rotation);
 						}
 
-						else
+						else if (Rigidforce.m_Momentum.Magnitude() < 0.1f)
 						{
 							Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
+						}
+
+						else
+						{
+							PathFollower.m_FinishedTravelling = false;
+							Movement(spline->second, Rigidforce, Rigidbody, PathFollower, Transform, Rotation);
 						}
 					}
 
@@ -167,11 +173,22 @@ struct path_system : paperback::system::instance
 		if (PathFollower.m_Reversed)
 		{
 			PathFollower.m_Distance -= speed_modifier * PathFollower.m_TravelSpeed * m_Coordinator.DeltaTime();
+
+			if (PathFollower.m_Distance < 0.0f)
+			{
+				PathFollower.m_Distance = 0.0f;
+			}
 		}
 
 		else
 		{
 			PathFollower.m_Distance += speed_modifier * PathFollower.m_TravelSpeed * m_Coordinator.DeltaTime();
+
+
+			if (PathFollower.m_Distance > spline.m_TotalLength)
+			{
+				PathFollower.m_Distance = spline.m_TotalLength;
+			}
 		}
 
 		std::vector<paperback::Vector3f> vec;

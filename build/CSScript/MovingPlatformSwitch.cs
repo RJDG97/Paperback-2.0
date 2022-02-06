@@ -42,7 +42,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetJumpUnitID()) /*|| collision with blocks*/)
+            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) /*|| collision with blocks*/)
             {
                 m_ChildPathFollower.m_PauseTravel = false;
                 m_ChildPathFollower.m_Reversed = false;
@@ -53,7 +53,7 @@ namespace CSScript
         }
         public void OnCollisionExit(UInt32 ID)
         {
-            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetJumpUnitID()) /*|| collision with blocks*/)
+            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) /*|| collision with blocks*/)
             {
                 m_ChildPathFollower.m_Reversed = true;
             }
