@@ -44,6 +44,7 @@ namespace CSScript
         {
             if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) /*|| collision with blocks*/)
             {
+                Debug.Log("henlorp");
                 m_ChildPathFollower.m_PauseTravel = false;
                 m_ChildPathFollower.m_Reversed = false;
             }

@@ -42,7 +42,7 @@ namespace CSScript
                 m_JumpUnitTransform = new Transform((UInt32)m_JumpUnitID);
             }
 
-            m_PushUnitID = Player.GetJumpUnitID();
+            m_PushUnitID = Player.GetPushUnitID();
 
             if (m_PushUnitID != -1)
             {

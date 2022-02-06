@@ -165,7 +165,7 @@ struct path_system : paperback::system::instance
 		paperback::Vector3f direction{ (destination - Transform.m_Position) };
 		paperback::Vector3f norm_direction{ direction.Normalized() };
 
-		float temp{ direction.Magnitude() * direction.Magnitude() * direction.Magnitude() };
+		float temp{ direction.Magnitude() * direction.Magnitude()};
 		float speed_modifier{ std::min(1.0f, 1.0f / temp) };
 
 		Rigidforce.m_Momentum = direction * PathFollower.m_TravelSpeed;
