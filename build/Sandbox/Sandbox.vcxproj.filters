@@ -358,5 +358,8 @@
     <ClInclude Include="Scripts\Game_Mode.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\OnEvent_ResetAnimation.h">
+      <Filter>Source Files\Systems\Details\Event</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -27,3 +27,4 @@
 #include "OnEvent_ReferencePrefabDeleted.h"
 #include "OnEvent_PointCaptured.h"
 #include "OnEvent_LowDeckCount.h"
+#include "OnEvent_ResetAnimation.h"

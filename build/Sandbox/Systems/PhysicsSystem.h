@@ -10,6 +10,11 @@ struct physics_system : paperback::system::pausable_instance
         .m_pName = "physics_system"
     };
 
+    // Events
+    struct Event_OnStatic : paperback::event::instance< entity& > {};
+    struct Event_OnFalling : paperback::event::instance< entity& > {};
+
+    // Data Member
     tools::query Query;
 
     using query = std::tuple
@@ -86,7 +91,7 @@ struct physics_system : paperback::system::pausable_instance
 	void OnSystemCreated(void) noexcept
 	{
 		Query.m_Must.AddFromComponents<transform, entity, rigidforce>();
-		Query.m_OneOf.AddFromComponents<boundingbox, mass, rigidbody, rotation, player_controller>();
+		Query.m_OneOf.AddFromComponents<boundingbox, mass, rigidbody, rotation, player_controller, player_interaction>();
         Query.m_OneOf.AddFromComponents<name, child, offset>();
 		Query.m_NoneOf.AddFromComponents<prefab>();
 	}
@@ -99,7 +104,8 @@ struct physics_system : paperback::system::pausable_instance
     PPB_FORCEINLINE
 	void Update( void ) noexcept
 	{
-		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, rotation* Rot, mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset, player_controller* Controller ) noexcept
+		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, rotation* Rot
+                                     , mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset, player_controller* Controller, player_interaction* Inter ) noexcept
 		{
             //// Apply Gravity If Non-Static
             if (Mass && Mass->m_Mass && RigidForce.m_GravityAffected)
@@ -211,8 +217,19 @@ struct physics_system : paperback::system::pausable_instance
             if ( RigidBody && Rot && RigidBody->m_Velocity.MagnitudeSq() > 0.01f )
             {
                 auto Debug = m_Coordinator.FindSystem<debug_system>();
-                if ( Debug )
+
+                // TODO - Replace This
+                if ( Debug && Inter && !Inter->m_bPushOrPull )
                     Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
+                else if ( Debug && !Inter )
+                    Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
+
+                if ( RigidBody->m_Velocity.y < -1.0f )
+                    BroadcastGlobalEvent<Event_OnFalling>( Entity );
+            }
+            else
+            {
+                BroadcastGlobalEvent<Event_OnStatic>( Entity );
             }
         });
 	}
