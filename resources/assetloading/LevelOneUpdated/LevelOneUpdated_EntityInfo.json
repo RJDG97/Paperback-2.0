@@ -802,7 +802,17 @@
                 }
             },
             "Entity Info": {
-                "Archetype Guid": 6713221107528023787,
+                "Archetype Guid": 15231217108116637888,
+                "PoolDetails": {
+                    "Pool Key": 0,
+                    "Pool Index": 0
+                },
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Entity Info": {
+                "Archetype Guid": 13240030416564115991,
                 "PoolDetails": {
                     "Pool Key": 0,
                     "Pool Index": 0
@@ -815,17 +825,7 @@
                 "Archetype Guid": 8496601898371233998,
                 "PoolDetails": {
                     "Pool Key": 0,
-                    "Pool Index": 0
-                },
-                "Validation": {
-                    "Validation ID": 0
-                }
-            },
-            "Entity Info": {
-                "Archetype Guid": 694794234138879102,
-                "PoolDetails": {
-                    "Pool Key": 0,
-                    "Pool Index": 0
+                    "Pool Index": 7
                 },
                 "Validation": {
                     "Validation ID": 0
@@ -1265,7 +1265,7 @@
                 "Archetype Guid": 8496601898371233998,
                 "PoolDetails": {
                     "Pool Key": 0,
-                    "Pool Index": 7
+                    "Pool Index": 0
                 },
                 "Validation": {
                     "Validation ID": 0
@@ -1502,20 +1502,20 @@
                 }
             },
             "Entity Info": {
-                "Archetype Guid": 0,
+                "Archetype Guid": 2309354930931340969,
                 "PoolDetails": {
                     "Pool Key": 0,
-                    "Pool Index": 151
+                    "Pool Index": 0
                 },
                 "Validation": {
                     "Validation ID": 0
                 }
             },
             "Entity Info": {
-                "Archetype Guid": 0,
+                "Archetype Guid": 8266321949936413759,
                 "PoolDetails": {
                     "Pool Key": 0,
-                    "Pool Index": 152
+                    "Pool Index": 0
                 },
                 "Validation": {
                     "Validation ID": 0
