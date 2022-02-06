@@ -142,6 +142,12 @@ public:
         {
             if (animationTime < m_Positions[index + 1].m_TimeStamp)
             {
+                if (pause_at_frame != -1 && index == pause_at_frame)
+                {
+                    paused = true;
+                    return pause_at_frame;
+                }
+
                 if (pause_at_frame != -1 && ((!reversed && index > pause_at_frame) || (reversed && index < pause_at_frame)))
                 {
                     paused = true;
@@ -164,6 +170,12 @@ public:
         {
             if (animationTime < m_Rotations[index + 1].m_TimeStamp)
             {
+                if (pause_at_frame != -1 && index == pause_at_frame)
+                {
+                    paused = true;
+                    return pause_at_frame;
+                }
+
                 if (pause_at_frame != -1 && ( (!reversed && index > pause_at_frame) || (reversed && index < pause_at_frame) ))
                 {
                     paused = true;
@@ -186,6 +198,12 @@ public:
         {
             if (animationTime < m_Scales[index + 1].m_TimeStamp)
             {
+                if (pause_at_frame != -1 && index == pause_at_frame)
+                {
+                    paused = true;
+                    return pause_at_frame;
+                }
+
                 if (pause_at_frame != -1 && ((!reversed && index > pause_at_frame) || (reversed && index < pause_at_frame)))
                 {
                     paused = true;
