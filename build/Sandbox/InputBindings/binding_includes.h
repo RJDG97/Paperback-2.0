@@ -45,12 +45,13 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< transform, rigidforce, rigidbody, rotation, mass, player_controller, camera >();
+            Query.m_Must.AddFromComponents< transform, rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
+		    Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
@@ -60,6 +61,22 @@ namespace paperback::input::binding
 
                         // Not sure if we should use momentum, there seems to be no force cap
                         RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+
+                        // Don't Override Jump Animations
+                        if ( Controller.m_OnGround )
+                        {
+                            // Strong Unit
+                            if ( Interaction )
+                            {
+                                if ( Interaction->m_bPushOrPull ) Animator.m_CurrentAnimationName = "StrongToy_Armature|PushWalk";
+                                else                              Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
+                            }
+                            // Jump Unit
+                            else
+                                Animator.m_CurrentAnimationName = "Armature|Walk";
+
+                            Animator.m_PlayOnce = false;
+                        }
                     }
                 });
             }
@@ -73,12 +90,13 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
+            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, animator >();
+            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
@@ -88,6 +106,22 @@ namespace paperback::input::binding
 
                         // Not sure if we should use momentum, there seems to be no force cap
                         RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+
+                        // Don't Override Jump Animations
+                        if ( Controller.m_OnGround )
+                        {
+                            // Strong Unit
+                            if ( Interaction )
+                            {
+                                if ( Interaction->m_bPushOrPull ) Animator.m_CurrentAnimationName = "StrongToy_Armature|PullWalk";
+                                else                              Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightBackward";
+                            }
+                            // Jump Unit
+                            else
+                                Animator.m_CurrentAnimationName = "Armature|Walk";
+
+                            Animator.m_PlayOnce = false;
+                        }
                     }
                 });
             }
@@ -100,12 +134,13 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
+            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, animator, animator >();
+            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
@@ -120,6 +155,19 @@ namespace paperback::input::binding
                         Normalized.z = z;
 
                         RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+
+                        // Don't Override Jump Animations
+                        if ( Controller.m_OnGround )
+                        {
+                            // Strong Unit
+                            if ( Interaction )
+                                Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
+                            // Jump Unit
+                            else
+                                Animator.m_CurrentAnimationName = "Armature|Walk";
+
+                            Animator.m_PlayOnce = false;
+                        }
                     }
                 });
             }
@@ -132,12 +180,13 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
+            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, animator >();
+            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
                     if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                     {
@@ -152,6 +201,19 @@ namespace paperback::input::binding
                         Normalized.z = z;
 
                         RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+
+                        // Don't Override Jump Animations
+                        if ( Controller.m_OnGround )
+                        {
+                            // Strong Unit
+                            if ( Interaction )
+                                Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
+                            // Jump Unit
+                            else
+                                Animator.m_CurrentAnimationName = "Armature|Walk";
+
+                            Animator.m_PlayOnce = false;
+                        }
                     }
                 });
             }
@@ -167,6 +229,7 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
+            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
@@ -176,15 +239,15 @@ namespace paperback::input::binding
 
                 if ( GP && DebugSys )
                 {
-                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera )
+                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                     {
                         if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
                         {
                             auto Axes = GP->m_State.m_LeftAxis;
 
-                            /****************************/
-                            //      X-Axis Movement
-                            /****************************/
+                            ///****************************/
+                            ////      X-Axis Movement
+                            ///****************************/
                             {
                                 auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                                 DirectionalVector.y    = 0.0f;
@@ -218,16 +281,19 @@ namespace paperback::input::binding
                             /****************************/
                             {
                                 // Moving Forward Or Backwards
-                                auto DirectionalVector = Axes.y > 0.0f
+                                auto DirectionalVector2 = Axes.y > 0.0f
                                                          ? ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position
                                                          : Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
 
-                                DirectionalVector.y    = 0.0f;
-                                auto Normalized        = DirectionalVector.Normalized();
+                                DirectionalVector2.y    = 0.0f;
+                                auto Normalized2        = DirectionalVector2.Normalized();
 
-                                RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
+                                RF.m_Momentum += Normalized2 * Controller.m_MovementForce * Dt;
                             }
                         }
+
+
+                        // Yet To Add/Test Animation For Gamepad
                     });
                 }
             }
@@ -321,19 +387,21 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera >();
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
 		    Query.m_NoneOf.AddFromComponents< prefab, player_interaction >();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, rigidforce& RF, rigidbody& RB, camera& Camera )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, rigidforce& RF, rigidbody& RB, camera& Camera, animator& Animator )
                 {
-                    std::cout << "Trying To Jump" << std::endl;
                     if ( Controller.m_PlayerStatus && Controller.m_OnGround && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                     {
-                        std::cout << "Jumping" << std::endl;
                         Controller.m_OnGround = false;
                         RF.m_Momentum.y = ( 2.0f * Controller.m_JumpForce ) / 0.3f;
+
+                        Animator.m_CurrentAnimationName = "Armature|JumpStart";
+                        Animator.m_CurrentTime = 8.07f;
+                        Animator.m_PlayOnce = true;
                     }
                 });
             }

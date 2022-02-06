@@ -165,6 +165,8 @@ void InitializeGame()
         ,   onevent_PointCaptured_system
         ,   onevent_CapturePointDamaged_system
         ,   onevent_LowDeckCount_system
+        ,   onevent_ResetAnimation
+        ,   onevent_FallingAnimation
         >();
 
         PPB.RegisterScripts<
