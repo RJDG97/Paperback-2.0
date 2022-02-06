@@ -215,6 +215,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
 	m_Resources.Load3DMeshNUI("CashRegister", "../../resources/models/nui/CashRegister.nui");
 	m_Resources.Load3DMeshNUI("TrainTrack", "../../resources/models/nui/TrainTrack.nui");
+	m_Resources.Load3DMeshNUI("TrainSupport", "../../resources/models/nui/TrainSupport.nui");
 
 	// Characters
 	m_Resources.Load3DMeshNUI("StrongToy", "../../resources/models/nui/StrongToy.nui");
