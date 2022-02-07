@@ -22,7 +22,7 @@ struct animator
 	bool m_PlayOnce{};
 	bool m_FinishedAnimating{false};
 	bool m_PauseAnimation{};
-	int m_PauseAtTime{-1};
+	float m_PauseAtTime{-1};
 	bool m_Reversed{};
 };
 
