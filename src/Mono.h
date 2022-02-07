@@ -197,8 +197,11 @@ public:
 			else	// Get function without params
 				fn = mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
 
-			// Exception Handling
-			MonoException(exception);
+			if (exception)
+			{
+				// Exception Handling
+				MonoException(exception);
+			}
 		}
 		return fn;
 	}
