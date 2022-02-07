@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 1
+                "EntityHead": 10
             }
         },
         {
@@ -351,6 +351,95 @@
                         "Layer Grouping": 0,
                         "Script Guid": 6991569882842922372,
                         "Active Status": true
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        14302600151082817442,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 1
+                    },
+                    "Sound": {
+                        "Path": "event:/BGM_Credit",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            9
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "BGMObj"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        14302600151082817442,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 9
+                    },
+                    "Sound": {
+                        "Path": "event:/BGM_Credit",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 1
+                    },
+                    "Name": {
+                        "Name": "BGMObj"
                     }
                 }
             ]

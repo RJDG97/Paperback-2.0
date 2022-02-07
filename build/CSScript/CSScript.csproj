@@ -50,7 +50,8 @@
     <Compile Include="Checkpoint.cs" />
     <Compile Include="ElevatorSwitch.cs" />
     <Compile Include="GateSwitch.cs" />
-    <Compile Include="Goal.cs" />
+    <Compile Include="Goal_Level1.cs" />
+    <Compile Include="Goal_Level2.cs" />
     <Compile Include="MovingPlatform.cs" />
     <Compile Include="MovingPlatformSwitch.cs" />
     <Compile Include="Tools\Components\AABB.cs" />
