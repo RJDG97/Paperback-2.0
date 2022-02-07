@@ -84,18 +84,18 @@ namespace MONO_ANIMATOR
 			reinterpret_cast<animator*>(address)->m_PauseAnimation = play_once;
 	}
 
-	MONO_EXPORT bool GetPauseAtFrame(void* address)
+	MONO_EXPORT float GetPauseAtTime(void* address)
 	{
 		if (address)
-			return reinterpret_cast<animator*>(address)->m_PauseAtFrame;
+			return reinterpret_cast<animator*>(address)->m_PauseAtTime;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetPauseAtFrame(void* address, int32_t frame)
+	MONO_EXPORT void SetPauseAtTime(void* address, float time)
 	{
 		if (address)
-			reinterpret_cast<animator*>(address)->m_PauseAtFrame = frame;
+			reinterpret_cast<animator*>(address)->m_PauseAtTime = time;
 	}
 
 	MONO_EXPORT bool GetReversed(void* address)
@@ -124,8 +124,8 @@ namespace MONO_ANIMATOR
 		mono_add_internal_call("CSScript.Animator::getfinishedanimating(void*)", &MONO_ANIMATOR::GetFinishedAnimating);
 		mono_add_internal_call("CSScript.Animator::getpauseanimation(void*)", &MONO_ANIMATOR::GetPauseAnimation);
 		mono_add_internal_call("CSScript.Animator::setpauseanimation(void*,bool)", &MONO_ANIMATOR::SetPauseAnimation);
-		mono_add_internal_call("CSScript.Animator::getpauseatframe(void*)", &MONO_ANIMATOR::GetPauseAtFrame);
-		mono_add_internal_call("CSScript.Animator::setpauseatframe(void*,int)", &MONO_ANIMATOR::SetPauseAtFrame);
+		mono_add_internal_call("CSScript.Animator::getpauseattime(void*)", &MONO_ANIMATOR::GetPauseAtTime);
+		mono_add_internal_call("CSScript.Animator::setpauseattime(void*,single)", &MONO_ANIMATOR::SetPauseAtTime);
 		mono_add_internal_call("CSScript.Animator::getreversed(void*)", &MONO_ANIMATOR::GetReversed);
 		mono_add_internal_call("CSScript.Animator::setreversed(void*,bool)", &MONO_ANIMATOR::SetReversed);
 	}

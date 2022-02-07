@@ -19,27 +19,27 @@ namespace CSScript
             m_Address = getaddress(id);
         }
 
-        public Int32 m_StartFrame
+        public float m_StartTime
         {
             get
             {
-                return getstartframe(m_Address);
+                return getstarttime(m_Address);
             }
             set
             {
-                setstartframe(m_Address, value);
+                setstarttime(m_Address, value);
             }
         }
 
-        public Int32 m_StopFrame
+        public float m_StopTime
         {
             get
             {
-                return getstopframe(m_Address);
+                return getstoptime(m_Address);
             }
             set
             {
-                setstopframe(m_Address, value);
+                setstoptime(m_Address, value);
             }
         }
 
@@ -60,16 +60,16 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Int32 getstartframe(void* address);
+        private extern static float getstarttime(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstartframe(void* address, Int32 value);
+        private extern static void setstarttime(void* address, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Int32 getstopframe(void* address);
+        private extern static float getstoptime(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstopframe(void* address, Int32 value);
+        private extern static void setstoptime(void* address, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static bool getactivated(void* address);

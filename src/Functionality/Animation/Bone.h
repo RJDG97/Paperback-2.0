@@ -60,14 +60,14 @@ private:
         return scaleFactor;
     }
 
-    glm::mat4 InterpolatePosition(float animationTime, int pause_at_frame, bool& paused, bool reversed)
+    glm::mat4 InterpolatePosition(float animationTime)
     {
         if (m_Positions.size() == 1)
         {
             return glm::translate( glm::mat4(1.0f), m_Positions[0].m_Position );
         }
 
-        int p0Index = GetPositionIndex(animationTime, pause_at_frame, paused, reversed);
+        int p0Index = GetPositionIndex(animationTime);
         int p1Index = p0Index + 1;
 
         float scaleFactor = GetScaleFactor(m_Positions[p0Index].m_TimeStamp,
@@ -79,7 +79,7 @@ private:
         return glm::translate(glm::mat4(1.0f), finalPosition);
     }
 
-    glm::mat4 InterpolateRotation(float animationTime, int pause_at_frame, bool& paused, bool reversed)
+    glm::mat4 InterpolateRotation(float animationTime)
     {
         if (m_Rotations.size() == 1)
         {
@@ -87,7 +87,7 @@ private:
             return glm::toMat4(rotation);
         }
 
-        int p0Index = GetRotationIndex(animationTime, pause_at_frame, paused, reversed);
+        int p0Index = GetRotationIndex(animationTime);
         int p1Index = p0Index + 1;
 
         float scaleFactor = GetScaleFactor(m_Rotations[p0Index].m_TimeStamp,
@@ -99,14 +99,14 @@ private:
         return glm::toMat4(glm::normalize(finalRotation));
     }
 
-    glm::mat4 InterpolateScaling(float animationTime, int pause_at_frame, bool& paused, bool reversed)
+    glm::mat4 InterpolateScaling(float animationTime)
     {
         if (m_Scales.size() == 1)
         {
             return glm::scale(glm::mat4(1.0f), m_Scales[0].m_Scale);
         }
 
-        int p0Index = GetScaleIndex(animationTime, pause_at_frame, paused, reversed);
+        int p0Index = GetScaleIndex(animationTime);
         int p1Index = p0Index + 1;
 
         float scaleFactor = GetScaleFactor(m_Scales[p0Index].m_TimeStamp,
@@ -128,92 +128,47 @@ public:
 
     }
 
-    glm::mat4 Update(float current_time, int pause_at_frame, bool& paused, bool reversed)
+    glm::mat4 Update(float current_time)
     {
-        glm::mat4 translation{ InterpolatePosition(current_time, pause_at_frame, paused, reversed) };
-        glm::mat4 rotation{ InterpolateRotation(current_time, pause_at_frame, paused, reversed) };
-        glm::mat4 scale{ InterpolateScaling(current_time, pause_at_frame, paused, reversed) };
+        glm::mat4 translation{ InterpolatePosition(current_time) };
+        glm::mat4 rotation{ InterpolateRotation(current_time) };
+        glm::mat4 scale{ InterpolateScaling(current_time) };
         return translation * rotation * scale;
     }
 
-    int GetPositionIndex(float animationTime, int pause_at_frame, bool& paused, bool reversed)
+    int GetPositionIndex(float animationTime)
     {
         for (int index = 0; index < m_Positions.size() - 1; ++index)
         {
             if (animationTime < m_Positions[index + 1].m_TimeStamp)
             {
-                if (pause_at_frame != -1 && index == pause_at_frame)
-                {
-                    paused = true;
-                    return pause_at_frame;
-                }
-
-                if (pause_at_frame != -1 && ((!reversed && index > pause_at_frame) || (reversed && index < pause_at_frame)))
-                {
-                    paused = true;
-                    return pause_at_frame;
-                }
-
-                else
-                {
-                    return index;
-                }
+                return index;
             }
         }
 
         return 0;
     }
 
-    int GetRotationIndex(float animationTime, int pause_at_frame, bool& paused, bool reversed)
+    int GetRotationIndex(float animationTime)
     {
         for (int index = 0; index < m_Rotations.size() - 1; ++index)
         {
             if (animationTime < m_Rotations[index + 1].m_TimeStamp)
             {
-                if (pause_at_frame != -1 && index == pause_at_frame)
-                {
-                    paused = true;
-                    return pause_at_frame;
-                }
-
-                if (pause_at_frame != -1 && ( (!reversed && index > pause_at_frame) || (reversed && index < pause_at_frame) ))
-                {
-                    paused = true;
-                    return pause_at_frame;
-                }
-
-                else
-                {
-                    return index;
-                }
+                return index;
             }
         }
 
         return 0;
     }
 
-    int GetScaleIndex(float animationTime, int pause_at_frame, bool& paused, bool reversed)
+    int GetScaleIndex(float animationTime)
     {
         for (int index = 0; index < m_Scales.size() - 1; ++index)
         {
             if (animationTime < m_Scales[index + 1].m_TimeStamp)
             {
-                if (pause_at_frame != -1 && index == pause_at_frame)
-                {
-                    paused = true;
-                    return pause_at_frame;
-                }
-
-                if (pause_at_frame != -1 && ((!reversed && index > pause_at_frame) || (reversed && index < pause_at_frame)))
-                {
-                    paused = true;
-                    return pause_at_frame;
-                }
-
-                else
-                {
-                    return index;
-                }
+                return index;
             }
         }
 

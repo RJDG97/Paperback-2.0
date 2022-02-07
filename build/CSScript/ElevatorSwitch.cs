@@ -44,7 +44,8 @@ namespace CSScript
                 m_PlatformOffset = new Offset((UInt32)m_PlatformID);
             }
 
-            m_ElevatorAnimator.m_PauseAtFrame = m_ElevatorElevator.m_StartFrame;
+            m_ElevatorAnimator.m_CurrentTime = m_ElevatorElevator.m_StartTime;
+            m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;
         }
 
         public void Update(float dt)
@@ -75,7 +76,7 @@ namespace CSScript
             {
                 m_ElevatorAnimator.m_PauseAnimation = false;
 
-                if (m_ElevatorElevator.m_StartFrame < m_ElevatorElevator.m_StopFrame)
+                if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
                 {
                     m_ElevatorAnimator.m_Reversed = false;
                 }
@@ -85,7 +86,7 @@ namespace CSScript
                     m_ElevatorAnimator.m_Reversed = true;
                 }
 
-                m_ElevatorAnimator.m_PauseAtFrame = m_ElevatorElevator.m_StopFrame;
+                m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StopTime;
             }
         }
         public void OnCollisionStay(UInt32 ID)
@@ -98,7 +99,7 @@ namespace CSScript
             {
                 m_ElevatorAnimator.m_PauseAnimation = false;
 
-                if (m_ElevatorElevator.m_StartFrame < m_ElevatorElevator.m_StopFrame)
+                if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
                 {
                     m_ElevatorAnimator.m_Reversed = true;
                 }
@@ -108,7 +109,7 @@ namespace CSScript
                     m_ElevatorAnimator.m_Reversed = false;
                 }
 
-                m_ElevatorAnimator.m_PauseAtFrame = m_ElevatorElevator.m_StartFrame;
+                m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;
             }
         }
     }

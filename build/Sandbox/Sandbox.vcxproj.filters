@@ -361,5 +361,8 @@
     <ClInclude Include="Systems\OnEvent_ResetAnimation.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Elevator.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

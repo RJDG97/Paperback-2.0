@@ -20,18 +20,18 @@ namespace MONO_ELEVATOR
 		return m_elevator;
 	}
 
-	MONO_EXPORT int32_t GetStartFrame(void* address)
+	MONO_EXPORT float GetStartTime(void* address)
 	{
 		if (address)
-			return reinterpret_cast<elevator*>(address)->m_StartFrame;
+			return reinterpret_cast<elevator*>(address)->m_StartTime;
 
 		return {};
 	}
 
-	MONO_EXPORT int32_t GetStopFrame(void* address)
+	MONO_EXPORT float GetStopTime(void* address)
 	{
 		if (address)
-			return reinterpret_cast<elevator*>(address)->m_StopFrame;
+			return reinterpret_cast<elevator*>(address)->m_StopTime;
 
 		return {};
 	}
@@ -44,16 +44,16 @@ namespace MONO_ELEVATOR
 		return {};
 	}
 
-	MONO_EXPORT void SetStartFrame(void* address, int32_t value)
+	MONO_EXPORT void SetStartTime(void* address, float value)
 	{
 		if (address)
-			reinterpret_cast<elevator*>(address)->m_StartFrame = value;
+			reinterpret_cast<elevator*>(address)->m_StartTime = value;
 	}
 
-	MONO_EXPORT void SetStopFrame(void* address, int32_t value)
+	MONO_EXPORT void SetStopTime(void* address, float value)
 	{
 		if (address)
-			reinterpret_cast<elevator*>(address)->m_StopFrame = value;
+			reinterpret_cast<elevator*>(address)->m_StopTime = value;
 	}
 
 	MONO_EXPORT void SetActivated(void* address, bool value)
@@ -65,11 +65,11 @@ namespace MONO_ELEVATOR
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Elevator::getaddress(uint)", &MONO_ELEVATOR::GetAddress);
-		mono_add_internal_call("CSScript.Elevator::getstartframe(void*)", &MONO_ELEVATOR::GetStartFrame);
-		mono_add_internal_call("CSScript.Elevator::getstopframe(void*)", &MONO_ELEVATOR::GetStopFrame);
+		mono_add_internal_call("CSScript.Elevator::getstarttime(void*)", &MONO_ELEVATOR::GetStartTime);
+		mono_add_internal_call("CSScript.Elevator::getstoptime(void*)", &MONO_ELEVATOR::GetStopTime);
 		mono_add_internal_call("CSScript.Elevator::getactivated(void*)", &MONO_ELEVATOR::GetActivated);
-		mono_add_internal_call("CSScript.Elevator::setstartframe(void*,int)", &MONO_ELEVATOR::SetStartFrame);
-		mono_add_internal_call("CSScript.Elevator::setstopframe(void*,int)", &MONO_ELEVATOR::SetStopFrame);
+		mono_add_internal_call("CSScript.Elevator::setstarttime(void*,single)", &MONO_ELEVATOR::SetStartTime);
+		mono_add_internal_call("CSScript.Elevator::setstoptime(void*,single)", &MONO_ELEVATOR::SetStopTime);
 		mono_add_internal_call("CSScript.Elevator::setactivated(void*,bool)", &MONO_ELEVATOR::SetActivated);
 	}
 }

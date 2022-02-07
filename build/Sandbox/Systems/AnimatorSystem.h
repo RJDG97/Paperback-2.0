@@ -59,6 +59,14 @@ struct animator_system : paperback::system::pausable_instance
 					Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
 				}
 
+				if (Ator.m_PauseAtTime >= 0.0f &&
+					(!Ator.m_Reversed && Ator.m_CurrentTime > Ator.m_PauseAtTime ||
+					Ator.m_Reversed && Ator.m_CurrentTime < Ator.m_PauseAtTime) )
+				{
+					Ator.m_CurrentTime = Ator.m_PauseAtTime;
+					Ator.m_PauseAnimation = true;
+				}
+
 				// if it is the end of the animation
 				if (!Ator.m_Reversed && Ator.m_CurrentTime >= current_anim.GetDuration())
 				{
@@ -101,7 +109,7 @@ struct animator_system : paperback::system::pausable_instance
 	
 		if (bone)
 		{
-			global_transformation = parent_transform * bone->Update(ator.m_CurrentTime, ator.m_PauseAtFrame, ator.m_PauseAnimation, ator.m_Reversed);
+			global_transformation = parent_transform * bone->Update(ator.m_CurrentTime);
 		}
 
 		auto bone_info_map = current_anim.FindBoneIDMap();

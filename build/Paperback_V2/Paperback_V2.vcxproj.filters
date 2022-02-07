@@ -594,6 +594,9 @@
     <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.h">
       <Filter>Source\Tools\Functionality\RenderResource</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Elevator.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

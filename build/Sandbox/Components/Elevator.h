@@ -7,8 +7,8 @@ struct elevator
 		.m_pName = "Elevator"
 	};
 
-	int m_StartFrame{ -1 };
-	int m_StopFrame{ -1 };
+	float m_StartTime{ -1 };
+	float m_StopTime{ -1 };
 	bool m_Activated;
 };
 
@@ -19,8 +19,8 @@ namespace RR_Elevator
 	{
 		rttr::registration::class_<elevator>(elevator::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
-			.property("Start Frame", &elevator::m_StartFrame)(rttr::policy::prop::as_reference_wrapper)
-			.property("Stop Frame", &elevator::m_StopFrame)(rttr::policy::prop::as_reference_wrapper)
+			.property("Start Time", &elevator::m_StartTime)(rttr::policy::prop::as_reference_wrapper)
+			.property("Stop Time", &elevator::m_StopTime)(rttr::policy::prop::as_reference_wrapper)
 			.property("Activated", &elevator::m_Activated);
 	}
 }
