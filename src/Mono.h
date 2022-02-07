@@ -189,7 +189,7 @@ public:
 		void* m_Arguments[] = { &args... };
 		// Run Function
 		MonoObject* fn = nullptr;
-		if (m_pFn)
+		if (m_pFn && m_pObj)
 		{
 			MonoObject* exception = nullptr;
 			if (m_Arguments)	// Get function w arguments
