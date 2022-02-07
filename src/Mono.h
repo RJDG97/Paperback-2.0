@@ -162,6 +162,7 @@ public:
 			const char* exCString = mono_string_to_utf8(exString);
 
 			// Print Error
+			CRITICAL_LOG(exCString);
 			CRITICAL_PRINT(exCString);
 			PPB_ASSERT(exCString);
 		}
