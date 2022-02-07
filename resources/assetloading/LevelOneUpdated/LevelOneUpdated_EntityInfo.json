@@ -3712,10 +3712,50 @@
                 }
             },
             "Entity Info": {
-                "Archetype Guid": 0,
+                "Archetype Guid": 7230904982752542372,
                 "PoolDetails": {
-                    "Pool Key": 4294967295,
-                    "Pool Index": 372
+                    "Pool Key": 0,
+                    "Pool Index": 13
+                },
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Entity Info": {
+                "Archetype Guid": 17107319703954063079,
+                "PoolDetails": {
+                    "Pool Key": 0,
+                    "Pool Index": 239
+                },
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Entity Info": {
+                "Archetype Guid": 17107319703954063079,
+                "PoolDetails": {
+                    "Pool Key": 0,
+                    "Pool Index": 240
+                },
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Entity Info": {
+                "Archetype Guid": 17107319703954063079,
+                "PoolDetails": {
+                    "Pool Key": 0,
+                    "Pool Index": 241
+                },
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Entity Info": {
+                "Archetype Guid": 17107319703954063079,
+                "PoolDetails": {
+                    "Pool Key": 0,
+                    "Pool Index": 242
                 },
                 "Validation": {
                     "Validation ID": 0
@@ -3724,47 +3764,7 @@
             "Entity Info": {
                 "Archetype Guid": 0,
                 "PoolDetails": {
-                    "Pool Key": 4294967295,
-                    "Pool Index": 373
-                },
-                "Validation": {
-                    "Validation ID": 0
-                }
-            },
-            "Entity Info": {
-                "Archetype Guid": 0,
-                "PoolDetails": {
-                    "Pool Key": 4294967295,
-                    "Pool Index": 374
-                },
-                "Validation": {
-                    "Validation ID": 0
-                }
-            },
-            "Entity Info": {
-                "Archetype Guid": 0,
-                "PoolDetails": {
-                    "Pool Key": 4294967295,
-                    "Pool Index": 375
-                },
-                "Validation": {
-                    "Validation ID": 0
-                }
-            },
-            "Entity Info": {
-                "Archetype Guid": 0,
-                "PoolDetails": {
-                    "Pool Key": 4294967295,
-                    "Pool Index": 376
-                },
-                "Validation": {
-                    "Validation ID": 0
-                }
-            },
-            "Entity Info": {
-                "Archetype Guid": 0,
-                "PoolDetails": {
-                    "Pool Key": 4294967295,
+                    "Pool Key": 0,
                     "Pool Index": 377
                 },
                 "Validation": {

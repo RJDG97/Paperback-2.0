@@ -198,6 +198,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("BookABC", "../../resources/models/nui/BookABC.nui");
 	m_Resources.Load3DMeshNUI("BookShape", "../../resources/models/nui/BookShape.nui");
 	m_Resources.Load3DMeshNUI("Shelf", "../../resources/models/nui/Shelf.nui");
+	m_Resources.Load3DMeshNUI("Shelf", "../../resources/models/nui/BagClosed.nui");
 
 	// Partition Props
 	m_Resources.Load3DMeshNUI("ChildSafetyGate", "../../resources/models/nui/ChildSafetyGate.nui");
