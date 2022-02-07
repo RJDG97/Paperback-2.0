@@ -198,7 +198,6 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("BookABC", "../../resources/models/nui/BookABC.nui");
 	m_Resources.Load3DMeshNUI("BookShape", "../../resources/models/nui/BookShape.nui");
 	m_Resources.Load3DMeshNUI("Shelf", "../../resources/models/nui/Shelf.nui");
-	m_Resources.Load3DMeshNUI("Shelf", "../../resources/models/nui/BagClosed.nui");
 
 	// Partition Props
 	m_Resources.Load3DMeshNUI("ChildSafetyGate", "../../resources/models/nui/ChildSafetyGate.nui");
@@ -243,7 +242,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("InstructionManualPage02", "../../resources/models/nui/InstructionManualPage02.nui");
 	m_Resources.Load3DMeshNUI("InstructionManualPage03", "../../resources/models/nui/InstructionManualPage03.nui");
 	m_Resources.Load3DMeshNUI("InstructionManualPage04", "../../resources/models/nui/InstructionManualPage04.nui");
-	//m_Resources.Load3DMeshNUI("CrayonBox", "../../resources/models/nui/RectangleBlock_Wood.nui");
+	m_Resources.Load3DMeshNUI("BagClosed", "../../resources/models/nui/BagClosed.nui");
+
 
 
 
