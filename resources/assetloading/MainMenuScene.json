@@ -1958,7 +1958,7 @@
                         }
                     },
                     "Sound": {
-                        "Path": "event:/MenuBGM",
+                        "Path": "event:/BGM_MainMenu",
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": false,
@@ -2023,7 +2023,7 @@
                         }
                     },
                     "Sound": {
-                        "Path": "event:/ButtonHover",
+                        "Path": "event:/SFX_Menu_BTN_Hover",
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": true,
@@ -2090,7 +2090,7 @@
                         }
                     },
                     "Sound": {
-                        "Path": "event:/ButtonClick",
+                        "Path": "event:/SFX_Menu_BTN_Clicked",
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": true,
@@ -2174,7 +2174,7 @@
                         }
                     },
                     "Sound": {
-                        "Path": "event:/MenuBGM",
+                        "Path": "event:/BGM_MainMenu",
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": true,

@@ -43,6 +43,11 @@
 #include "Quit_Button.h"
 #include "StartGame_Button.h"
 
+
+//win scene buttons
+#include "NextLevel_Level1.h"
+
+
 //standard scripts
 #include "MainMenu_Mode.h"
 #include "Game_Mode.h"
