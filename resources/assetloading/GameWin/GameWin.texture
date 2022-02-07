@@ -1,3 +1,4 @@
 {
-    "YouWonTitle": "../../resources/textures/UI/Menus/Backgrounds/YouWonTitle_Mirrored.dds 1"
+    "QuitToMainMenuButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds 0",
+    "YouWonTitle": "../../resources/textures/UI/Menus/Backgrounds/YouWonTitle_Mirrored.dds 0"
 }
