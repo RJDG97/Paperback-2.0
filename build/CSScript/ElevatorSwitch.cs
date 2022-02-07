@@ -19,7 +19,7 @@ namespace CSScript
         Offset m_PlatformOffset;
 
         float m_PlatformStartY;
-        float m_PlatformEndY;
+        float m_PlatformSpeed;
 
         public static ElevatorSwitch getInst()
         {
@@ -46,18 +46,20 @@ namespace CSScript
             {
                 m_PlatformOffset = new Offset((UInt32)m_PlatformID);
                 m_PlatformStartY = m_PlatformOffset.m_PosOffset.y;
-                m_PlatformEndY = m_PlatformStartY + 8.95f;
             }
 
             m_ElevatorAnimator.m_CurrentTime = m_ElevatorElevator.m_StartTime;
             m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;
+            m_PlatformSpeed = 1800.0f * m_ElevatorScale.m_Value.y;
         }
 
         public void Update(float dt)
         {
             if (!m_ElevatorAnimator.m_PauseAnimation) //Not paused, need to continue moving the bounding box
             {
-                m_PlatformOffset.m_PosOffset = new Tools.MathLib.Vector3(m_PlatformOffset.m_PosOffset.x , m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0001f * 9.0f, m_PlatformOffset.m_PosOffset.z);
+                m_PlatformOffset.m_PosOffset = new Tools.MathLib.Vector3(m_PlatformOffset.m_PosOffset.x ,
+                                                                         m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0001f * m_PlatformSpeed,
+                                                                         m_PlatformOffset.m_PosOffset.z);
             }
         }
 
