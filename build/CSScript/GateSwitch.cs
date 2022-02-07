@@ -38,13 +38,14 @@ namespace CSScript
             {
                 m_ChildBoundingBox = new BoundingBox((UInt32)m_ChildID);
                 m_ChildAnimator = new Animator((UInt32)m_ChildID);
-                m_ChildAnimator.m_PauseAnimation = true;
             }
 
             m_Sound.m_Trigger = false;
 
             m_InitialBoundingBoxMin = m_ChildBoundingBox.Min;
             m_InitialBoundingBoxMax = m_ChildBoundingBox.Max;
+
+            m_ChildAnimator.m_PauseAtTime = 0;
         }
 
         public void Update(float dt)
