@@ -12,5 +12,8 @@ namespace CSScript
     {
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern static void Quit();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static void ChangeScene(string scene_name);
     }
 }

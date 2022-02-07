@@ -10,15 +10,15 @@
 #include "Components/Mass.h"
 
 const float Gap = 0.001f;
-const float BOTH_STATIC = 0;
-const float BOTH_NONSTATIC = 1;
-const float OBJ1_NONSTATIC = 2;
-const float OBJ2_NONSTATIC = 3;
+const int BOTH_STATIC = 0;
+const int BOTH_NONSTATIC = 1;
+const int OBJ1_NONSTATIC = 2;
+const int OBJ2_NONSTATIC = 3;
 
-const float NORTH = 0;
-const float SOUTH = 1;
-const float EAST = 2;
-const float WEST = 3;
+const int NORTH = 0;
+const int SOUTH = 1;
+const int EAST = 2;
+const int WEST = 3;
 
 enum direction
 {

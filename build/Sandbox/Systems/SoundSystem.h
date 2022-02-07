@@ -328,7 +328,9 @@ public:
             //if no, then create new entry and add into record of currently playing sounds
             PlaySoundEvent( Sound.m_SoundID, Sound.m_IsTriggerable );
             Sound.m_SoundPlayTag = m_SoundCounter;
-            m_SoundFiles.back().m_Verified = true;
+
+            if (!m_SoundFiles.empty())
+                m_SoundFiles.back().m_Verified = true;
         }
         else if (Sound.m_IsTriggerable)
         {
