@@ -32,7 +32,8 @@ struct camera_system : paperback::system::instance
         // Populate map
         ForEach(Search(Query), [&](transform& Transform, camera& Camera) noexcept
         {
-            glm::vec3 position = glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z };
+            // temp offset on y axis
+            glm::vec3 position = glm::vec3{ Transform.m_Position.x, Transform.m_Position.y + 0.5f, Transform.m_Position.z };
 
             Camera.UpdateView(position);
         });
