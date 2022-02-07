@@ -18,4 +18,9 @@ struct mainmenu_mode_script : paperback::script::button_interface // Inherited T
     {
         PPB.ToggleCursor(true);
     }
+
+    void Run( void ) noexcept
+    {
+        PPB.ToggleCursor(true);
+    }
 };
