@@ -14,3 +14,6 @@ event:/SFX_Enviro_Elevator_Move
 event:/SFX_Enviro_Switch_Pressed
 event:/SFX_Menu_BTN_Clicked
 event:/SFX_Menu_BTN_Hover
+event:/BGM_Credit
+event:/BGM_MainMenu
+
