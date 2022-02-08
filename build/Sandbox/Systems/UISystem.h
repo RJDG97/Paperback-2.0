@@ -18,6 +18,7 @@ struct ui_system : paperback::system::pausable_instance
     >;
 
     tools::query m_ButtonQuery;
+    tools::query m_AudioQuery;
     std::string  m_CurrentButtonHovered{};
     bool         m_Picked = false;
 
@@ -28,6 +29,10 @@ struct ui_system : paperback::system::pausable_instance
         RegisterGlobalEventClass<paperback::input::manager::KeyClicked>( this );      // Released                 ( Passes True )
         RegisterGlobalEventClass<paperback::input::manager::MousePressed>( this );    // Held Down - Not Released ( Passes False )
         RegisterGlobalEventClass<paperback::input::manager::MouseClicked>( this );    // Released                 ( Passes True )
+
+        m_AudioQuery.m_Must.AddFromComponents < name >();
+        m_AudioQuery.m_OneOf.AddFromComponents < sound, entity >();
+        m_AudioQuery.m_NoneOf.AddFromComponents< prefab >();
 
         m_ButtonQuery.AddQueryFromTuple( xcore::types::null_tuple_v< query > );
     }
@@ -246,7 +251,7 @@ struct ui_system : paperback::system::pausable_instance
     void TriggerSoundEntity(const std::string& EntityName)
     {
 
-        ForEach(Search(m_ButtonQuery), [&](entity& Entity, name& Name, sound* Sound) noexcept
+        ForEach(Search(m_AudioQuery), [&](entity& Entity, name& Name, sound* Sound) noexcept
         {
 
             if (Name.m_Value == EntityName && Sound)

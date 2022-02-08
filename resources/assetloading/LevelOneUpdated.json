@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 331
+                "EntityHead": 386
             }
         },
         {
@@ -1071,6 +1071,42 @@
                     "Name": {
                         "Name": "BGMObj"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 331
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            333,
+                            332,
+                            383,
+                            384,
+                            385
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "SFXObj"
+                    }
                 }
             ]
         },
@@ -1114,6 +1150,171 @@
                     },
                     "Name": {
                         "Name": "BGMObj"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 333
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Blue_Jump",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 331
+                    },
+                    "Name": {
+                        "Name": "SFX_BlueJump"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 332
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Blue_WalkCombine",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 331
+                    },
+                    "Name": {
+                        "Name": "SFX_BlueWalk"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 383
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Red_Grab",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 331
+                    },
+                    "Name": {
+                        "Name": "SFX_RedGrab"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 384
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Red_Move",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 331
+                    },
+                    "Name": {
+                        "Name": "SFX_RedWalk"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 385
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Red_StopMove",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 331
+                    },
+                    "Name": {
+                        "Name": "SFX_RedStop"
                     }
                 }
             ]
@@ -30601,67 +30802,67 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            130,
-                            265,
-                            66,
                             18,
-                            281,
                             146,
+                            281,
+                            265,
+                            130,
+                            66,
                             123,
                             59,
-                            61,
                             125,
-                            62,
+                            61,
                             126,
-                            63,
+                            62,
                             127,
-                            64,
+                            63,
                             271,
                             128,
-                            65,
-                            314,
+                            64,
                             129,
-                            199,
-                            376,
-                            71,
-                            312,
+                            314,
+                            65,
                             135,
-                            200,
+                            312,
+                            71,
+                            376,
+                            199,
                             72,
-                            201,
+                            200,
                             73,
-                            202,
-                            74,
+                            201,
                             273,
                             138,
-                            284,
-                            155,
-                            27,
+                            74,
+                            202,
                             91,
-                            154,
-                            26,
+                            27,
+                            155,
+                            284,
                             90,
                             289,
-                            274,
-                            153,
-                            25,
+                            26,
+                            154,
                             89,
+                            25,
+                            153,
+                            274,
+                            24,
                             152,
                             359,
-                            24,
+                            92,
+                            28,
                             156,
                             283,
-                            28,
-                            92,
+                            22,
                             150,
                             285,
-                            22,
-                            21,
-                            270,
                             149,
-                            20,
+                            270,
+                            21,
                             275,
                             148,
+                            20,
                             93,
                             94,
                             293,
@@ -30688,19 +30889,19 @@
                             124,
                             131,
                             260,
-                            132,
                             259,
+                            132,
                             133,
-                            134,
                             269,
+                            134,
                             139,
                             268,
-                            140,
                             267,
+                            140,
                             141,
                             262,
-                            142,
                             277,
+                            142,
                             143,
                             256,
                             15,
@@ -30713,22 +30914,22 @@
                             158,
                             159,
                             272,
-                            303,
                             160,
+                            303,
                             161,
-                            297,
                             162,
-                            291,
+                            297,
                             164,
+                            291,
                             42,
-                            305,
                             170,
+                            305,
                             43,
                             171,
                             300,
                             44,
-                            299,
                             172,
+                            299,
                             45,
                             173,
                             294,
@@ -30778,27 +30979,27 @@
                             224,
                             225,
                             282,
-                            361,
                             226,
+                            361,
                             227,
                             228,
                             229,
                             286,
-                            365,
                             230,
+                            365,
                             231,
-                            375,
                             232,
+                            375,
                             233,
                             234,
                             235,
                             364,
-                            363,
                             236,
+                            363,
                             237,
                             358,
-                            373,
                             238,
+                            373,
                             239,
                             240,
                             241,
@@ -30825,8 +31026,8 @@
                             263,
                             266,
                             145,
-                            144,
                             287,
+                            144,
                             288,
                             290,
                             292,
@@ -33419,13 +33620,13 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            144,
-                            136,
                             343,
+                            136,
+                            144,
                             308,
-                            134,
-                            126,
                             325,
+                            126,
+                            134,
                             82,
                             322,
                             153,
@@ -37444,11 +37645,11 @@
                             187,
                             310,
                             137,
+                            330,
                             127,
                             112,
                             319,
-                            327,
-                            330
+                            327
                         ]
                     },
                     "Rigidbody": {
@@ -38497,8 +38698,8 @@
                             309,
                             382,
                             318,
-                            313,
                             326,
+                            313,
                             329
                         ]
                     },
@@ -41898,14 +42099,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            85,
                             77,
-                            308,
+                            85,
                             380,
+                            308,
                             136,
-                            134,
-                            126,
                             325,
+                            126,
+                            134,
                             314,
                             328
                         ]
