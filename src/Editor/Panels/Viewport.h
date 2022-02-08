@@ -5,6 +5,7 @@
 #include "paperback_camera.h"
 #include "Editor/EditorMath.h"
 #include "../../build/Sandbox/Systems/DebugSystem.h"
+#include "../../build/Sandbox/Systems/RendererSystem.h"
 
 struct EditorViewport : paperback::editor::instance
 {
