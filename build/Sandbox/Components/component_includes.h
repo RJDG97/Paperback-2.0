@@ -49,6 +49,14 @@
 #include "SpawnerDetails.h"
 #include "Icon.h"
 #include "Camera.h"
+#include "PlayerController.h"
+#include "Slope.h"
+#include "BoundingVolume.h"
+#include "PlayerInteraction.h"
+#include "Pushable.h"
+#include "Elevator.h"
+#include "Crosshair.h"
+
 
 // shapes
 #include "AABB.h"

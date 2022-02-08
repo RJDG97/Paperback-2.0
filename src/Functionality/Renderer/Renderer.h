@@ -2,11 +2,13 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+
 #include <string>
 #include <unordered_map>
 #include <array>
 #include <glm/inc/glm.hpp>
 #include "../RenderResource/RenderResourceManager.h"
+#include "../RenderResource/RenderResourceLoader.h"
 #include "../Camera/Camera.h"
 
 class Renderer
@@ -117,6 +119,7 @@ private:
 	int m_Height;
 
 	RenderResourceManager& m_Resources;
+	RenderResourceLoader& m_Loader;
 };
 
 #endif

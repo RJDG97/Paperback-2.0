@@ -100,6 +100,9 @@ namespace paperback::coordinator
 		void LoadPrefabs( const std::string& FilePath ) noexcept;
 
 		PPB_INLINE
+		void LoadTextures( const std::string& FilePath ) noexcept;
+
+		PPB_INLINE
 		bool VerifyState( const std::string& StateName ) noexcept;
 
 		PPB_INLINE
@@ -183,11 +186,21 @@ namespace paperback::coordinator
         void ForEach( const std::vector<archetype::instance*>& ArchetypeList
 					, T_FUNCTION&& Function ) noexcept;
 
+		template < concepts::Callable_Bool T_FUNCTION >
+        void ForEach( const std::vector<paperback::u32>& NeighbourList
+					, T_FUNCTION&& Function ) noexcept;
+
 		PPB_INLINE
 		void ToggleDebug( const bool& Status ) noexcept;
 
 		PPB_INLINE
 		void TogglePause( const bool& Status ) noexcept;
+
+		PPB_INLINE
+		void ToggleCursor( const bool& Status ) noexcept;
+
+		PPB_INLINE
+		void TogglePlayers(void) noexcept;
 
 
 		//-----------------------------------
@@ -238,6 +251,18 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		bool GetPauseBool() noexcept;
+
+		PPB_INLINE
+		GLFWwindow* GetWindowHandle( void ) noexcept;
+
+		PPB_INLINE
+		input::device::Keyboard_Controls* FindKeyboard( void ) noexcept;
+
+		PPB_INLINE
+		input::device::Mouse_Controls* FindMouse( void ) noexcept;
+
+		PPB_INLINE
+		input::device::Gamepad_Controls* FindGamepad( void ) noexcept;
 		
 
 		//-----------------------------------
@@ -296,6 +321,9 @@ namespace paperback::coordinator
 		               , const paperback::Vector3f&  CurrPosition               // Curr Entity Position
 		               , const paperback::Vector3f&  MinScale                   // Bounding Box Min
 		               , const paperback::Vector3f&  MaxScale ) noexcept;       // Bounding Box Max
+
+		PPB_INLINE
+        void ResetGrids( void ) noexcept;
 		
 		
 		//-----------------------------------
@@ -337,6 +365,29 @@ namespace paperback::coordinator
 		PPB_INLINE
 		void UpdateInputs() noexcept;
 
+		template < typename T_BINDING_CONSTRUCT >
+        paperback::u64 RegisterBinding( void ) noexcept;
+
+        PPB_INLINE
+        void AssignBindingToAction( const input::binding::type::guid&         BindingGuid
+                                  , const paperback::u32                      Key
+                                  , const input::device::type::id             Type
+                                  , const input::action::BroadcastStatus      Status = input::action::BroadcastStatus::CONTINUOUS
+                                  , const input::action::KeyPairing           Pairing = input::action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+
+		PPB_INLINE
+        void AssignBindingToAction( const paperback::u64&                     BindingGuidValue
+                                  , const paperback::u32                      Key
+                                  , const input::device::type::id             Type
+                                  , const input::action::BroadcastStatus      Status = input::action::BroadcastStatus::CONTINUOUS
+                                  , const input::action::KeyPairing           Pairing = input::action::KeyPairing::PPB_DEFAULT_KEY ) noexcept;
+
+        template < typename... T_ARGS >
+        void BroadcastAction( const paperback::u32                  Key
+                            , const input::device::type::id         Type
+                            , const input::action::BroadcastStatus  Status
+                            , T_ARGS&&...                           Args ) noexcept;
+
 		PPB_INLINE
 		void SetKey( int Key, int Action ) noexcept;
 
@@ -372,6 +423,9 @@ namespace paperback::coordinator
 
 		PPB_INLINE
 		glm::vec3 GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) noexcept;
+
+		PPB_INLINE
+		glm::vec3 GetViewportMousePosition() noexcept;
 
 		//-----------------------------------
         //         Event Broadcast
@@ -411,10 +465,11 @@ namespace paperback::coordinator
 		system::manager				        m_SystemMgr{ m_Clock };			// System Manager
 		script::manager				        m_ScriptMgr{ *this };			// CPP Scripts Manager
 		partition::spatial_hash_grid        m_HashGrid{ *this };			// Hash Grid
-		Input						        m_Input{ *this };				// Input
+		input::manager						m_Input{ *this };				// Input
 		bool						        m_GameActive = true;			// Game Status
 		std::string					        m_QueuedSceneName = "";			// Currently Queued Scene to change
-		bool								m_bPaused = true;
+		bool								m_bPaused = false;
+		bool								m_bCursorActive = false;	
 	};
 }
 

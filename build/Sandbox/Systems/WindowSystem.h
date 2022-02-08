@@ -56,8 +56,12 @@ struct window_system : paperback::system::instance
         
         glfwSetKeyCallback(m_pWindow, KeyboardCallback);
         glfwSetMouseButtonCallback(m_pWindow, MouseCallback);
+        glfwSetJoystickCallback(GamepadStatusCallback);
         glfwSetWindowCloseCallback(m_pWindow, GLFWWindowCloseCallback);
         glfwSetWindowMaximizeCallback(m_pWindow, GLFWWindowMaximizeCallback);
+
+        // Assign Active Controller ID
+        QueryActiveController();
 
         // Init glew
         GLenum Err = glewInit();
@@ -106,6 +110,12 @@ struct window_system : paperback::system::instance
         PPB.SetMouse(key, action);
     }
 
+    static void GamepadStatusCallback( int Device, int DeviceStatus )
+    {
+        auto GP = PPB.FindGamepad();
+        if ( GP ) GP->DeviceStatusCallback( Device, DeviceStatus );
+    }
+
     static void GLFWWindowCloseCallback(GLFWwindow* window)
     {
         PPB.QuitGame();
@@ -132,6 +142,13 @@ struct window_system : paperback::system::instance
         // Update Window Size
         glfwSetWindowSize(window, WindowDetails.m_Width, WindowDetails.m_Height);
         Renderer::GetInstanced().UpdateFramebufferSize(WindowDetails.m_Width, WindowDetails.m_Height);
+    }
+
+    PPB_INLINE
+    void QueryActiveController( void ) noexcept
+    {
+        auto GP = m_Coordinator.FindGamepad();
+        if ( GP ) GP->m_State.FindActiveController();
     }
 
     //void FullScreen()

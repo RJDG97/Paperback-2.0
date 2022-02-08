@@ -414,6 +414,27 @@ namespace paperback::deserialize
 
             if (obj.is_type<spawner_details>())
                 NewArchetype->GetComponent<spawner_details>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<spawner_details>();
+
+            if (obj.is_type<player_controller>())
+                NewArchetype->GetComponent<player_controller>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<player_controller>();
+
+            if (obj.is_type<camera>())
+                NewArchetype->GetComponent<camera>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<camera>();
+
+            if (obj.is_type<slope>())
+                NewArchetype->GetComponent<slope>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<slope>();
+
+            if (obj.is_type<elevator>())
+                NewArchetype->GetComponent<elevator>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<elevator>();
+
+            if (obj.is_type<player_interaction>())
+                NewArchetype->GetComponent<player_interaction>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<player_interaction>();
+
+            if (obj.is_type<pushable>())
+                NewArchetype->GetComponent<pushable>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<pushable>();
+
+            if (obj.is_type<crosshair>())
+                NewArchetype->GetComponent<crosshair>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<crosshair>();
         }
     }
 

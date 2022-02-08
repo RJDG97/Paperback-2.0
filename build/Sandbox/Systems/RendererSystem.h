@@ -29,10 +29,10 @@ struct render_system : paperback::system::instance
 	PPB_FORCEINLINE
 	void OnSystemCreated(void) noexcept
 	{
-		RegisterGlobalEventClass<Input::KeyPressed>(this);      // Held Down - Not Released ( Passes False )
-		RegisterGlobalEventClass<Input::KeyClicked>(this);      // Released                 ( Passes True )
-		RegisterGlobalEventClass<Input::MousePressed>(this);    // Held Down - Not Released ( Passes False )
-		RegisterGlobalEventClass<Input::MouseClicked>(this);
+		RegisterGlobalEventClass<paperback::input::manager::KeyPressed>(this);      // Held Down - Not Released ( Passes False )
+		RegisterGlobalEventClass<paperback::input::manager::KeyClicked>(this);      // Released                 ( Passes True )
+		RegisterGlobalEventClass<paperback::input::manager::MousePressed>(this);    // Held Down - Not Released ( Passes False )
+		RegisterGlobalEventClass<paperback::input::manager::MouseClicked>(this);
 
 		const auto& window = GetSystem<window_system>();
 		Renderer::GetInstanced().SetUpFramebuffer(window.E.m_Width, window.E.m_Height);
@@ -162,29 +162,32 @@ struct render_system : paperback::system::instance
 	// On Event Key / Mouse Pressed
 	void OnEvent(const size_t& Key, const bool& Clicked) noexcept
 	{
-		if (Key == GLFW_MOUSE_BUTTON_RIGHT && !Clicked)
+		if ( !IsGameActive() )
 		{
-			auto direction = GetMouseDirection();
+			if (Key == GLFW_MOUSE_BUTTON_RIGHT && !Clicked && !IsGameActive() )
+			{
+				auto direction = GetMouseDirection();
 
-			m_Camera3D.RotateWithMouse(direction);
-		}
+				m_Camera3D.RotateWithMouse(direction);
+			}
 
-		if (Key == GLFW_KEY_W)
-		{
-			m_Camera3D.MoveForward();
-		}
-		else if (Key == GLFW_KEY_S)
-		{
-			m_Camera3D.MoveBackward();
-		}
+			if (Key == GLFW_KEY_W)
+			{
+				m_Camera3D.MoveForward();
+			}
+			else if (Key == GLFW_KEY_S)
+			{
+				m_Camera3D.MoveBackward();
+			}
 
-		if (Key == GLFW_KEY_A)
-		{
-			m_Camera3D.MoveLeft();
-		}
-		else if (Key == GLFW_KEY_D)
-		{
-			m_Camera3D.MoveRight();
+			if (Key == GLFW_KEY_A)
+			{
+				m_Camera3D.MoveLeft();
+			}
+			else if (Key == GLFW_KEY_D)
+			{
+				m_Camera3D.MoveRight();
+			}
 		}
 	}
 

@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>0</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -45,16 +47,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tools\Application.cs" />
-    <Compile Include="Tools\Camera.cs" />
+    <Compile Include="Checkpoint.cs" />
+    <Compile Include="ElevatorSwitch.cs" />
+    <Compile Include="GateSwitch.cs" />
+    <Compile Include="Goal_Level1.cs" />
+    <Compile Include="Goal_Level2.cs" />
+    <Compile Include="MovingPlatform.cs" />
+    <Compile Include="MovingPlatformSwitch.cs" />
+    <Compile Include="Tools\Components\AABB.cs" />
+    <Compile Include="Tools\Components\Animator.cs" />
+    <Compile Include="Tools\Components\Application.cs" />
+    <Compile Include="Tools\Components\BoundingBox.cs" />
+    <Compile Include="Tools\CameraTools.cs" />
+    <Compile Include="Tools\Components\Camera.cs" />
+    <Compile Include="Tools\Components\Elevator.cs" />
+    <Compile Include="Tools\Components\Parent.cs" />
+    <Compile Include="Tools\Components\Child.cs" />
+    <Compile Include="Tools\Components\PlayerController.cs" />
+    <Compile Include="Tools\Tag.cs" />
+    <Compile Include="Tools\Player.cs" />
+    <Compile Include="Tools\Raycast.cs" />
+    <Compile Include="Tools\Timer.cs" />
     <Compile Include="Tools\Debug.cs" />
     <Compile Include="Tools\Inputs.cs" />
+    <Compile Include="Tools\Components\Mass.cs" />
+    <Compile Include="Tools\MathLib.cs" />
+    <Compile Include="Tools\Components\Mesh.cs" />
     <Compile Include="Tools\MonoBehaviour.cs" />
     <Compile Include="QuitScript.cs" />
     <Compile Include="main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CameraMovement.cs" />
+    <Compile Include="GameController.cs" />
+    <Compile Include="Tools\Components\Name.cs" />
+    <Compile Include="Tools\Components\Offset.cs" />
+    <Compile Include="Tools\Components\PathFollower.cs" />
+    <Compile Include="Tools\Components\CollisionLayer.cs" />
+    <Compile Include="Tools\Components\Rigidbody.cs" />
+    <Compile Include="Tools\Components\Rigidforce.cs" />
+    <Compile Include="Tools\Components\Scale.cs" />
+    <Compile Include="Tools\Components\Rotation.cs" />
+    <Compile Include="Tools\Components\Socketed.cs" />
+    <Compile Include="Tools\Components\Sound.cs" />
+    <Compile Include="Tools\Components\Sphere.cs" />
+    <Compile Include="Tools\Components\Text.cs" />
+    <Compile Include="Tools\Components\Transform.cs" />
     <Compile Include="Unit.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

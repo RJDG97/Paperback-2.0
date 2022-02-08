@@ -162,6 +162,7 @@ public:
 			const char* exCString = mono_string_to_utf8(exString);
 
 			// Print Error
+			CRITICAL_LOG(exCString);
 			CRITICAL_PRINT(exCString);
 			PPB_ASSERT(exCString);
 		}
@@ -188,7 +189,7 @@ public:
 		void* m_Arguments[] = { &args... };
 		// Run Function
 		MonoObject* fn = nullptr;
-		if (m_pFn)
+		if (m_pFn && m_pObj)
 		{
 			MonoObject* exception = nullptr;
 			if (m_Arguments)	// Get function w arguments
@@ -196,8 +197,11 @@ public:
 			else	// Get function without params
 				fn = mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
 
-			// Exception Handling
-			MonoException(exception);
+			if (exception)
+			{
+				// Exception Handling
+				MonoException(exception);
+			}
 		}
 		return fn;
 	}

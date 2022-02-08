@@ -20,8 +20,9 @@ struct rigidforce
     paperback::Vector3f m_Forces;						    // -- Sum of Forces of rigidbody
     paperback::Vector3f m_Momentum;                         // -- Momentum of rigidbody
     float m_Restitution;                                    // -- 0.f to 1.f -> 0 = no bounce, 1 = bounce                                           //NEW
-    //bool m_isStatic;
-
+    bool m_GravityActive;                                   // used to check if gravity has to be applied
+    bool m_GravityAffected = true;                          // used to define if an object should be affected by gravity
+    bool m_CollisionAffected = false;                       // used to define an object that is moveable but cannot be affected by collision response                                   
 };
 
 
@@ -38,6 +39,8 @@ namespace RR_RIGIDFORCE
            .property("Restitution", &rigidforce::m_Restitution)(rttr::policy::prop::as_reference_wrapper)
            .property("Force", &rigidforce::m_Forces)(rttr::policy::prop::as_reference_wrapper)
            .property("Moment", &rigidforce::m_Momentum)(rttr::policy::prop::as_reference_wrapper)
-           .property("Threshold", &rigidforce::m_threshold)(rttr::policy::prop::as_reference_wrapper);
+           .property("Threshold", &rigidforce::m_threshold)(rttr::policy::prop::as_reference_wrapper)
+           .property("Gravity Affected", &rigidforce::m_GravityAffected)(rttr::policy::prop::as_reference_wrapper)
+           .property("Collision Affected", &rigidforce::m_CollisionAffected)(rttr::policy::prop::as_reference_wrapper);
     }
 }

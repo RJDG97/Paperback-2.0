@@ -6,6 +6,7 @@
 #include "Components/component_includes.h"
 #include "Systems/system_includes.h"
 #include "Scripts/scripts_includes.h"
+#include "InputBindings/binding_includes.h"
 
 //-----------------------------------
 //      Forward Declarations
@@ -116,6 +117,13 @@ void InitializeGame()
         ,    icon             // Tag
         ,    ui
         ,    camera
+        ,    player_controller
+        ,    slope
+        ,    bounding_volume // Tag
+        ,    elevator
+        ,    player_interaction
+        ,    pushable        // Tag
+        ,    crosshair       // Tag
         >();
 
         // Register Components - Add to the end of the list
@@ -125,9 +133,9 @@ void InitializeGame()
     {
         PPB.RegisterSystems<
             physics_system
+        ,   scripting_system
         ,   collision_system
         ,   sound_system
-        ,   scripting_system
         ,   window_system
         ,   debug_system
         ,   ui_system
@@ -158,6 +166,8 @@ void InitializeGame()
         ,   onevent_PointCaptured_system
         ,   onevent_CapturePointDamaged_system
         ,   onevent_LowDeckCount_system
+        ,   onevent_ResetAnimation
+        ,   onevent_FallingAnimation
         >();
 
         PPB.RegisterScripts<
@@ -189,8 +199,63 @@ void InitializeGame()
             page5_how2play_next_button_mainmenu_script,
             page5_how2play_prev_button_mainmenu_script,
             page6_how2play_next_button_mainmenu_script,
-            page6_how2play_prev_button_mainmenu_script
+            page6_how2play_prev_button_mainmenu_script,
+            mainmenu_mode_script,
+            game_mode_script,
+            nextlevel_level1_button_script
         >();
+
+
+        /************************************************************************************/
+        //                 All Control Bindings Should Be Serialized w/ Guids
+        /************************************************************************************/
+        {
+            // Keyboard Registration
+            auto Keyboard_Movement_Forward   = PPB.RegisterBinding<paperback::input::binding::Keyboard_EntityMovement_Forward>();
+            auto Keyboard_Movement_Backwards = PPB.RegisterBinding<paperback::input::binding::Keyboard_EntityMovement_Backwards>();
+            auto Keyboard_Movement_Left      = PPB.RegisterBinding<paperback::input::binding::Keyboard_EntityMovement_Left>();
+            auto Keyboard_Movement_Right     = PPB.RegisterBinding<paperback::input::binding::Keyboard_EntityMovement_Right>();
+
+            // Mouse Registration
+            auto Mouse_Rotate                = PPB.RegisterBinding<paperback::input::binding::Mouse_Camera_Rotate>();
+
+            // Gamepad Registration
+            auto Gamepad_Movement            = PPB.RegisterBinding<paperback::input::binding::Gamepad_EntityMovement>();
+            auto Gamepad_Rotate              = PPB.RegisterBinding<paperback::input::binding::Gamepad_Camera_Rotate>();
+
+            // Generic Gameplay Registration
+            auto Jump_Action                 = PPB.RegisterBinding<paperback::input::binding::Jump_Action>();
+            auto ToggleLift_Action           = PPB.RegisterBinding<paperback::input::binding::Lift_Action>();
+            auto Release_Action              = PPB.RegisterBinding<paperback::input::binding::Release_Action>();
+            auto PushPull_Action             = PPB.RegisterBinding<paperback::input::binding::PushPull_Action>();
+            auto Toggle_FPSAction            = PPB.RegisterBinding<paperback::input::binding::Toggle_FPS_Action>();
+
+
+
+            // Keyboard Bindings
+            PPB.AssignBindingToAction( Keyboard_Movement_Forward,   GLFW_KEY_W,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Backwards, GLFW_KEY_S,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Left,      GLFW_KEY_A,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Keyboard_Movement_Right,     GLFW_KEY_D,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_W,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_S,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Release_Action,              GLFW_KEY_A,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Release_Action,              GLFW_KEY_D,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Toggle_FPSAction,            GLFW_KEY_E,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Jump_Action,                 GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( ToggleLift_Action,           GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
+
+
+            // Mouse Bindings
+            PPB.AssignBindingToAction( Mouse_Rotate, GLFW_MOUSE_BUTTON_3, input::device::type::id::MOUSE );
+
+
+            // Gamepad Bindings
+            PPB.AssignBindingToAction( Gamepad_Movement,  GLFW_GAMEPAD_BUTTON_LEFT_THUMB,  input::device::type::id::GAMEPAD );
+            PPB.AssignBindingToAction( Gamepad_Rotate,    GLFW_GAMEPAD_BUTTON_RIGHT_THUMB, input::device::type::id::GAMEPAD );
+            PPB.AssignBindingToAction( Jump_Action,       GLFW_GAMEPAD_BUTTON_A,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( ToggleLift_Action, GLFW_GAMEPAD_BUTTON_A,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+        }
     }
     // Set Window maximized initially
     auto& Window = PPB.GetSystem< window_system >();

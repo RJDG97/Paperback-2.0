@@ -86,8 +86,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Camera\Camera.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Font\Font.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -106,6 +106,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Renderer\Renderer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -199,10 +203,24 @@
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
     <ClInclude Include="..\..\src\Functionality\Nui\NUILoader.h" />
     <ClInclude Include="..\..\src\Functionality\Renderer\Renderer.h" />
+    <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.h" />
     <ClInclude Include="..\..\src\Functionality\RenderResource\RenderResourceManager.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Shader\ShaderProgram.h" />
     <ClInclude Include="..\..\src\Functionality\Texture\TextureLoader.h" />
+    <ClInclude Include="..\..\src\Input\Details\paperback_input_action_inline.h" />
+    <ClInclude Include="..\..\src\Input\Details\paperback_input_binding_inline.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_device_includes.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_gamepad.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_keyboard.h" />
+    <ClInclude Include="..\..\src\Input\Devices\paperback_mouse.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_action.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_binding.h" />
+    <ClInclude Include="..\..\src\Input\paperback_input_controller.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_gamepad_state.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_input_state_includes.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_keyboard_state.h" />
+    <ClInclude Include="..\..\src\Input\States\paperback_mouse_state.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize.h" />
     <ClInclude Include="..\..\src\Json\paperback_deserialize_inline.h" />
     <ClInclude Include="..\..\src\Json\paperback_json.h" />
@@ -250,13 +268,39 @@
     <ClInclude Include="..\..\src\Physics\ResolveCollision.h" />
     <ClInclude Include="..\..\src\Scripts\IScripts.h" />
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_AABB.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Animator.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Application.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_BoundingBox.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Camera.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_CameraTools.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Child.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_CollisionLayer.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Elevator.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Mass.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Mesh.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Name.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Offset.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Parent.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_PathFollower.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Player.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_PlayerController.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Raycast.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Rigidbody.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Rigidforce.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Rotation.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Scale.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Sound.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Sphere.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Tag.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Text.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Transform.h" />
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />
     <ClInclude Include="..\..\src\Settings\xcore_user_settings.h" />
     <ClInclude Include="..\..\src\Shapes\Shapes_includes.h" />
+    <ClInclude Include="..\Sandbox\InputBindings\binding_includes.h" />
     <ClInclude Include="paperback_pch.h" />
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@ namespace paperback::event
         using GlobalEvents   = std::vector< std::unique_ptr<paperback::event::event_interface> >;
         using GlobalEventMap = std::unordered_map< paperback::event::type::guid
                                                  , paperback::event::event_interface* >;
-
+        
         PPB_INLINE
         ~manager( void ) noexcept;
 

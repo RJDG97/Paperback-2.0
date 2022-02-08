@@ -20,8 +20,8 @@ struct player_spawner_system : paperback::system::pausable_instance
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
-        RegisterGlobalEventClass<Input::KeyPressed>( this );
-        RegisterGlobalEventClass<Input::MousePressed>( this );
+        RegisterGlobalEventClass<paperback::input::manager::KeyPressed>( this );
+        RegisterGlobalEventClass<paperback::input::manager::MousePressed>( this );
         
         // Query for player
         m_QueryPlayer.m_Must.AddFromComponents<reference_prefab, currency, player>();

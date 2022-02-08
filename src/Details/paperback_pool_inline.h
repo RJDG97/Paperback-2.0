@@ -671,6 +671,20 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< capture_point >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< spawner_details >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< spawner_details >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< player_controller >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< player_controller >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< camera >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< camera >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< slope >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< slope >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< player_interaction >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< player_interaction >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< pushable >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< pushable >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< elevator >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< elevator >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< crosshair >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< crosshair >(Index));
 		else
 			return rttr::instance();
 	}

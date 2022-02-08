@@ -17,6 +17,7 @@ private:
         size_t m_ID; // contains the id to match with entity that spawned the sound
         bool m_IsTriggerable; // clone of variable in component for deciding if entity is to be purged on sound play completion
         bool m_Verified; // used to verify if a soundfile being played has a corresponding active sound component
+        bool m_ForceStop = false;
     };
 
 public:
@@ -98,6 +99,15 @@ public:
 
             ERROR_LOG("Sound Event: '" + std::string(Path)  + "' does not exist in current Sound Bank");
         }
+    }
+
+    void StopTriggeredSoundEvent(size_t SoundTag)
+    {
+
+        auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [SoundTag](const SoundFile& soundfile) { return SoundTag == soundfile.m_ID; });
+
+        if (sound_check != m_SoundFiles.end())
+            sound_check->m_ForceStop = true;
     }
 
     //stop sound
@@ -328,7 +338,9 @@ public:
             //if no, then create new entry and add into record of currently playing sounds
             PlaySoundEvent( Sound.m_SoundID, Sound.m_IsTriggerable );
             Sound.m_SoundPlayTag = m_SoundCounter;
-            m_SoundFiles.back().m_Verified = true;
+
+            if (!m_SoundFiles.empty())
+                m_SoundFiles.back().m_Verified = true;
         }
         else if (Sound.m_IsTriggerable)
         {
@@ -342,12 +354,29 @@ public:
                 
 
             //if sound is stopped or yet to begin, check trigger status
-            if (be == 2 && Sound.m_Trigger)
+            if (be == FMOD_STUDIO_PLAYBACK_STOPPED && Sound.m_Trigger)
             {
 
                 //trigger is active, play the sound and reset trigger
                 Sound.m_Trigger = false;
                 sound_check->m_pSound->start();
+            }
+            if (Sound.m_ForceStop)
+            {
+                if (be == FMOD_STUDIO_PLAYBACK_STOPPED)
+                {
+
+                    //not triggered but force stop
+                    //reset
+                    Sound.m_ForceStop = false;
+                }
+                else //sound_check->m_ForceStop)
+                {
+
+                    //sound_check->m_ForceStop = false;
+                    Sound.m_ForceStop = false;
+                    sound_check->m_pSound->stop(FMOD_STUDIO_STOP_IMMEDIATE);
+                }
             }
         }
         else

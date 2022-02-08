@@ -7,7 +7,8 @@
 // 190, 245, 267, 292, 306, 342, 418
 
 Renderer::Renderer() :
-	m_Resources{ RenderResourceManager::GetInstanced() }
+	m_Resources{ RenderResourceManager::GetInstanced() },
+	m_Loader{ RenderResourceLoader::GetInstanced() }
 {
 	// Create a handle for vao
 	glCreateVertexArrays(1, &m_VAO);
@@ -53,12 +54,12 @@ Renderer::Renderer() :
 
 	glBindVertexArray(0);
 
-	std::vector<std::string> files = { "../../resources/textures/Skybox/right.dds",
-								   "../../resources/textures/Skybox/left.dds",
-								   "../../resources/textures/Skybox/top.dds",
+	std::vector<std::string> files = { "../../resources/textures/Skybox/SkyboxWallSegment01.dds",
+								   "../../resources/textures/Skybox/SkyboxWallSegment01.dds",
+								   "../../resources/textures/Skybox/SkyboxCeiling.dds",
 								   "../../resources/textures/Skybox/bottom.dds",
-								   "../../resources/textures/Skybox/front.dds",
-								   "../../resources/textures/Skybox/back.dds" };
+								   "../../resources/textures/Skybox/SkyboxWallSegment02.dds",
+								   "../../resources/textures/Skybox/SkyboxWallSegment02.dds" };
 
 	RenderResourceManager::GetInstanced().LoadSkyboxTexture(files);
 
@@ -130,117 +131,234 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("RedPaperIcon", "../../resources/models/nui/RedPaperIcon.nui");
 	m_Resources.Load3DMeshNUI("RedRockIcon", "../../resources/models/nui/RedRockIcon.nui");
 	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
+	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
+
+	// New Game
+
+	// Building Blocks
+
+	m_Resources.Load3DMeshNUI("RectangleBlock_Yellow", "../../resources/models/nui/RectangleBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("RectangleBlock_Red", "../../resources/models/nui/RectangleBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("RectangleBlock_Blue", "../../resources/models/nui/RectangleBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("RectangleBlock_Green", "../../resources/models/nui/RectangleBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("RectangleBlock_Wood", "../../resources/models/nui/RectangleBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Yellow", "../../resources/models/nui/FlatRectangleBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Red", "../../resources/models/nui/FlatRectangleBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Blue", "../../resources/models/nui/FlatRectangleBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Green", "../../resources/models/nui/FlatRectangleBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Wood", "../../resources/models/nui/FlatRectangleBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("SquareBlock_Yellow", "../../resources/models/nui/SquareBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("SquareBlock_Red", "../../resources/models/nui/SquareBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("SquareBlock_Blue", "../../resources/models/nui/SquareBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("SquareBlock_Green", "../../resources/models/nui/SquareBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("SquareBlock_Wood", "../../resources/models/nui/SquareBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("TriangleBlock_Yellow", "../../resources/models/nui/TriangleBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("TriangleBlock_Red", "../../resources/models/nui/TriangleBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("TriangleBlock_Blue", "../../resources/models/nui/TriangleBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("TriangleBlock_Green", "../../resources/models/nui/TriangleBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("TriangleBlock_Wood", "../../resources/models/nui/TriangleBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("BridgeBlock_Yellow", "../../resources/models/nui/BridgeBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("BridgeBlock_Red", "../../resources/models/nui/BridgeBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("BridgeBlock_Blue", "../../resources/models/nui/BridgeBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("BridgeBlock_Green", "../../resources/models/nui/BridgeBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("BridgeBlock_Wood", "../../resources/models/nui/BridgeBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("ConeBlock_Yellow", "../../resources/models/nui/ConeBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("ConeBlock_Red", "../../resources/models/nui/ConeBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("ConeBlock_Blue", "../../resources/models/nui/ConeBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("ConeBlock_Green", "../../resources/models/nui/ConeBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("ConeBlock_Wood", "../../resources/models/nui/ConeBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("CylinderBlock_Yellow", "../../resources/models/nui/CylinderBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("CylinderBlock_Red", "../../resources/models/nui/CylinderBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("CylinderBlock_Blue", "../../resources/models/nui/CylinderBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("CylinderBlock_Green", "../../resources/models/nui/CylinderBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("CylinderBlock_Wood", "../../resources/models/nui/CylinderBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Yellow", "../../resources/models/nui/SemiCircleBlock_Yellow.nui");
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Red", "../../resources/models/nui/SemiCircleBlock_Red.nui");
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Blue", "../../resources/models/nui/SemiCircleBlock_Blue.nui");
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Green", "../../resources/models/nui/SemiCircleBlock_Green.nui");
+	m_Resources.Load3DMeshNUI("SemiCircleBlock_Wood", "../../resources/models/nui/SemiCircleBlock_Wood.nui");
+
+	m_Resources.Load3DMeshNUI("InteractableBlock2x2", "../../resources/models/nui/InteractableBlock2x2.nui");
+	m_Resources.Load3DMeshNUI("InteractableBlock3x3", "../../resources/models/nui/InteractableBlock3x3.nui");
+
+	// Stationery Props
+
+	m_Resources.Load3DMeshNUI("Ruler", "../../resources/models/nui/Ruler.nui");
+	m_Resources.Load3DMeshNUI("ColourPencilBox", "../../resources/models/nui/ColourPencilBox.nui");
+	m_Resources.Load3DMeshNUI("GuardHouse", "../../resources/models/nui/GuardHouse.nui");
+	m_Resources.Load3DMeshNUI("Container", "../../resources/models/nui/Container.nui");
+	m_Resources.Load3DMeshNUI("ContainerLid", "../../resources/models/nui/ContainerLid.nui");
+	m_Resources.Load3DMeshNUI("BookABC", "../../resources/models/nui/BookABC.nui");
+	m_Resources.Load3DMeshNUI("BookShape", "../../resources/models/nui/BookShape.nui");
+	m_Resources.Load3DMeshNUI("Shelf", "../../resources/models/nui/Shelf.nui");
+
+	// Partition Props
+	m_Resources.Load3DMeshNUI("ChildSafetyGate", "../../resources/models/nui/ChildSafetyGate.nui");
+	m_Resources.Load3DMeshNUI("Billboard", "../../resources/models/nui/Billboard.nui");
+	m_Resources.Load3DMeshNUI("FrozenBillboard", "../../resources/models/nui/FrozenBillboard.nui");
+
+	//Gates
+	m_Resources.Load3DMeshNUI("TallGate", "../../resources/models/nui/TallGate.nui");
+	m_Resources.Load3DMeshNUI("TallGateFence", "../../resources/models/nui/TallGateFence.nui");
+	m_Resources.Load3DMeshNUI("ShortGate", "../../resources/models/nui/ShortGate.nui");
+	m_Resources.Load3DMeshNUI("ShortGateFence", "../../resources/models/nui/ShortGateFence.nui");
+
+	// Moving Platforms
+	m_Resources.Load3DMeshNUI("CraneElevator", "../../resources/models/nui/CraneElevator.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
+	m_Resources.Load3DMeshNUI("CashRegister", "../../resources/models/nui/CashRegister.nui");
+	m_Resources.Load3DMeshNUI("TrainTrack", "../../resources/models/nui/TrainTrack.nui");
+	m_Resources.Load3DMeshNUI("TrainSupport", "../../resources/models/nui/TrainSupport.nui");
+
+	// Characters
+	m_Resources.Load3DMeshNUI("StrongToy", "../../resources/models/nui/StrongToy.nui");
+	m_Resources.Load3DMeshNUI("JumpToy", "../../resources/models/nui/JumpToy.nui");
+
+	//Buttons
+	m_Resources.Load3DMeshNUI("ButtonONN", "../../resources/models/nui/ButtonON.nui");
+	m_Resources.Load3DMeshNUI("ButtonOFF", "../../resources/models/nui/ButtonOFF.nui");
+
+	//Wall&Floor
+	m_Resources.Load3DMeshNUI("Ceiling", "../../resources/models/nui/Ceiling.nui");
+	m_Resources.Load3DMeshNUI("WallSegment1", "../../resources/models/nui/WallSegment1.nui");
+	m_Resources.Load3DMeshNUI("WallSegment2", "../../resources/models/nui/WallSegment2.nui");
+	m_Resources.Load3DMeshNUI("FloorTile", "../../resources/models/nui/FloorTile.nui");
+
+	//Wire
+	m_Resources.Load3DMeshNUI("WireActivated", "../../resources/models/nui/WireActivated.nui");
+	m_Resources.Load3DMeshNUI("WireDeactivated", "../../resources/models/nui/WireDeactivated.nui");
+	m_Resources.Load3DMeshNUI("WireConnectorActivated", "../../resources/models/nui/WireConnectorActivated.nui");
+	m_Resources.Load3DMeshNUI("WireConnectorDeactivated", "../../resources/models/nui/WireConnectorDeactivated.nui");
+
+	//Instruction Manual
+	m_Resources.Load3DMeshNUI("InstructionManualPage01", "../../resources/models/nui/InstructionManualPage01.nui");
+	m_Resources.Load3DMeshNUI("InstructionManualPage02", "../../resources/models/nui/InstructionManualPage02.nui");
+	m_Resources.Load3DMeshNUI("InstructionManualPage03", "../../resources/models/nui/InstructionManualPage03.nui");
+	m_Resources.Load3DMeshNUI("InstructionManualPage04", "../../resources/models/nui/InstructionManualPage04.nui");
+	m_Resources.Load3DMeshNUI("BagClosed", "../../resources/models/nui/BagClosed.nui");
+
+
+
+
+
 
 	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
 
-	// Cards
-	m_Resources.LoadTextures("CardBack", "../../resources/textures/UI/Cards/CardBack.dds", true);
-	m_Resources.LoadTextures("PaperWeapon_PaperShield", "../../resources/textures/UI/Cards/PaperWeapon_PaperShield.dds", true);
-	m_Resources.LoadTextures("RockWeapon_RockShield", "../../resources/textures/UI/Cards/RockWeapon_RockShield.dds", true);
-	m_Resources.LoadTextures("ScissorsWeapon_ScissorsShield", "../../resources/textures/UI/Cards/ScissorsWeapon_ScissorsShield.dds", true);
+	//// Cards
+	//m_Resources.LoadTextures("CardBack", "../../resources/textures/UI/Cards/CardBack.dds", true);
+	//m_Resources.LoadTextures("PaperWeapon_PaperShield", "../../resources/textures/UI/Cards/PaperWeapon_PaperShield.dds", true);
+	//m_Resources.LoadTextures("RockWeapon_RockShield", "../../resources/textures/UI/Cards/RockWeapon_RockShield.dds", true);
+	//m_Resources.LoadTextures("ScissorsWeapon_ScissorsShield", "../../resources/textures/UI/Cards/ScissorsWeapon_ScissorsShield.dds", true);
 
-	// Health Bars
-		// Enemy
-	m_Resources.LoadTextures("EnemyHPBar", "../../resources/textures/UI/HealthBars/EnemyHPBar.dds", true);
-	m_Resources.LoadTextures("EnemyHPBar_Background", "../../resources/textures/UI/HealthBars/EnemyHPBar_Background.dds", true);
-	m_Resources.LoadTextures("EnemyHPBar_Fill", "../../resources/textures/UI/HealthBars/EnemyHPBar_Fill.dds", true);
-	
-		// Player
-	m_Resources.LoadTextures("PlayerHPBar", "../../resources/textures/UI/HealthBars/PlayerHPBar.dds", true);
-	m_Resources.LoadTextures("PlayerHPBar_Background", "../../resources/textures/UI/HealthBars/PlayerHPBar_Background.dds", true);
-	m_Resources.LoadTextures("PlayerHPBar_Fill", "../../resources/textures/UI/HealthBars/PlayerHPBar_Fill.dds", true);
+	//// Health Bars
+	//	// Enemy
+	//m_Resources.LoadTextures("EnemyHPBar", "../../resources/textures/UI/HealthBars/EnemyHPBar.dds", true);
+	//m_Resources.LoadTextures("EnemyHPBar_Background", "../../resources/textures/UI/HealthBars/EnemyHPBar_Background.dds", true);
+	//m_Resources.LoadTextures("EnemyHPBar_Fill", "../../resources/textures/UI/HealthBars/EnemyHPBar_Fill.dds", true);
+	//
+	//	// Player
+	//m_Resources.LoadTextures("PlayerHPBar", "../../resources/textures/UI/HealthBars/PlayerHPBar.dds", true);
+	//m_Resources.LoadTextures("PlayerHPBar_Background", "../../resources/textures/UI/HealthBars/PlayerHPBar_Background.dds", true);
+	//m_Resources.LoadTextures("PlayerHPBar_Fill", "../../resources/textures/UI/HealthBars/PlayerHPBar_Fill.dds", true);
 
-	// RPS Icons
-	m_Resources.LoadTextures("BluePaperRedRock", "../../resources/textures/UI/RPSStatusIcons/BluePaperRedRock.dds", true);
-	m_Resources.LoadTextures("BlueRockRedScissors", "../../resources/textures/UI/RPSStatusIcons/BlueRockRedScissors.dds", true);
-	m_Resources.LoadTextures("BlueScissorsRedPaper", "../../resources/textures/UI/RPSStatusIcons/BlueScissorsRedPaper.dds", true);
-	m_Resources.LoadTextures("NeutralPaper", "../../resources/textures/UI/RPSStatusIcons/NeutralPaper.dds", true);
-	m_Resources.LoadTextures("NeutralRock", "../../resources/textures/UI/RPSStatusIcons/NeutralRock.dds", true);
-	m_Resources.LoadTextures("NeutralScissors", "../../resources/textures/UI/RPSStatusIcons/NeutralScissors.dds", true);
-	m_Resources.LoadTextures("RedBannerPaperPaper", "../../resources/textures/UI/RPSStatusIcons/RedBannerPaperPaper.dds", true);
-	m_Resources.LoadTextures("RedBannerRockRock", "../../resources/textures/UI/RPSStatusIcons/RedBannerRockRock.dds", true);
-	m_Resources.LoadTextures("RedBannerScissorsScissors", "../../resources/textures/UI/RPSStatusIcons/RedBannerScissorsScissors.dds", true);
-	m_Resources.LoadTextures("RedPaperBlueRock", "../../resources/textures/UI/RPSStatusIcons/RedPaperBlueRock.dds", true);
-	m_Resources.LoadTextures("RedRockBlueScissors", "../../resources/textures/UI/RPSStatusIcons/RedRockBlueScissors.dds", true);
-	m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
-	m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
+	//// RPS Icons
+	//m_Resources.LoadTextures("BluePaperRedRock", "../../resources/textures/UI/RPSStatusIcons/BluePaperRedRock.dds", true);
+	//m_Resources.LoadTextures("BlueRockRedScissors", "../../resources/textures/UI/RPSStatusIcons/BlueRockRedScissors.dds", true);
+	//m_Resources.LoadTextures("BlueScissorsRedPaper", "../../resources/textures/UI/RPSStatusIcons/BlueScissorsRedPaper.dds", true);
+	//m_Resources.LoadTextures("NeutralPaper", "../../resources/textures/UI/RPSStatusIcons/NeutralPaper.dds", true);
+	//m_Resources.LoadTextures("NeutralRock", "../../resources/textures/UI/RPSStatusIcons/NeutralRock.dds", true);
+	//m_Resources.LoadTextures("NeutralScissors", "../../resources/textures/UI/RPSStatusIcons/NeutralScissors.dds", true);
+	//m_Resources.LoadTextures("RedBannerPaperPaper", "../../resources/textures/UI/RPSStatusIcons/RedBannerPaperPaper.dds", true);
+	//m_Resources.LoadTextures("RedBannerRockRock", "../../resources/textures/UI/RPSStatusIcons/RedBannerRockRock.dds", true);
+	//m_Resources.LoadTextures("RedBannerScissorsScissors", "../../resources/textures/UI/RPSStatusIcons/RedBannerScissorsScissors.dds", true);
+	//m_Resources.LoadTextures("RedPaperBlueRock", "../../resources/textures/UI/RPSStatusIcons/RedPaperBlueRock.dds", true);
+	//m_Resources.LoadTextures("RedRockBlueScissors", "../../resources/textures/UI/RPSStatusIcons/RedRockBlueScissors.dds", true);
+	//m_Resources.LoadTextures("RedScissorsBluePaper", "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds", true);
+	//m_Resources.LoadTextures("RockPaperScissorsIcon", "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds", true);
 
-	m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard_Mirrored.dds", true);
-	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard_Mirrored.dds", true);
-	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard_Mirrored.dds", true);
+	//m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard_Mirrored.dds", true);
+	//m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard_Mirrored.dds", true);
+	//m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard_Mirrored.dds", true);
 
-	m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard.dds", true);
-	m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard.dds", true);
-	m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard.dds", true);
-
-
-	// Menu Backgrounds
-	m_Resources.LoadTextures("MainMenuBackground", "../../resources/textures/UI/Menus/Backgrounds/MainMenuBackground_Mirrored.dds", true);
-	m_Resources.LoadTextures("PauseGamePanel", "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel_Mirrored.dds", true);
-	m_Resources.LoadTextures("QuitGameConfirmationPanel", "../../resources/textures/UI/Menus/Backgrounds/QuitGameConfirmationPanel_Mirrored.dds", true);
-	m_Resources.LoadTextures("ReturnToMainMenuPanel", "../../resources/textures/UI/Menus/Backgrounds/ReturnToMainMenuPanel_Mirrored.dds", true);
-	m_Resources.LoadTextures("YouLostTitle", "../../resources/textures/UI/Menus/Backgrounds/YouLostTitle_Mirrored.dds", true);
-	m_Resources.LoadTextures("YouWonTitle", "../../resources/textures/UI/Menus/Backgrounds/YouWonTitle_Mirrored.dds", true);
+	//m_Resources.LoadTextures("PaperCard", "../../resources/textures/Cards/PaperCard.dds", true);
+	//m_Resources.LoadTextures("ScissorsCard", "../../resources/textures/Cards/ScissorsCard.dds", true);
+	//m_Resources.LoadTextures("RockCard", "../../resources/textures/Cards/RockCard.dds", true);
 
 
-	// Buttons
-	m_Resources.LoadTextures("PauseButton_Unselected", "../../resources/textures/UI/Menus/Buttons/PauseButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("CreditsButton_Selected", "../../resources/textures/UI/Menus/Buttons/CreditsButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("CreditsButton_Unselected", "../../resources/textures/UI/Menus/Buttons/CreditsButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("HowToPlayButton_Selected", "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("HowToPlayButton_Unselected", "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("QuitGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("QuitGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("QuitToMainMenuButton_Selected", "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("QuitToMainMenuButton_Unselected", "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("RestartLevelButton_Selected", "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("RestartLevelButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("ResumeGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("ResumeGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("SelectLevelButton_Selected", "../../resources/textures/UI/Menus/Buttons/SelectLevelButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("SelectLevelButton_Unselected", "../../resources/textures/UI/Menus/Buttons/SelectLevelButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("SettingsButton_Selected", "../../resources/textures/UI/Menus/Buttons/SettingsButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("SettingsButton_Unselected", "../../resources/textures/UI/Menus/Buttons/SettingsButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("StartGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/StartGameButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("StartGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/StartGameButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("YesButton_Selected", "../../resources/textures/UI/Menus/Buttons/YesButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("YesButton_Unselected", "../../resources/textures/UI/Menus/Buttons/YesButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("NoButton_Selected", "../../resources/textures/UI/Menus/Buttons/NoButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("NoButton_Unselected", "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("LeftButton_Selected", "../../resources/textures/UI/Menus/Buttons/LeftButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("LeftButton_Unselected", "../../resources/textures/UI/Menus/Buttons/LeftButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("RightButton_Selected", "../../resources/textures/UI/Menus/Buttons/RightButton_Selected_Mirrored.dds", true);
-	m_Resources.LoadTextures("RightButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RightButton_Unselected_Mirrored.dds", true);
-	m_Resources.LoadTextures("CloseButton_Selected", "../../resources/textures/UI/Menus/Buttons/CloseButton_Selected.dds", true);
-	m_Resources.LoadTextures("CloseButton_Unselected", "../../resources/textures/UI/Menus/Buttons/CloseButton_Unselected.dds", true);
+	//// Menu Backgrounds
+	//m_Resources.LoadTextures("MainMenuBackground", "../../resources/textures/UI/Menus/Backgrounds/MainMenuBackground_Mirrored.dds", true);
+	//m_Resources.LoadTextures("PauseGamePanel", "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel_Mirrored.dds", true);
+	//m_Resources.LoadTextures("QuitGameConfirmationPanel", "../../resources/textures/UI/Menus/Backgrounds/QuitGameConfirmationPanel_Mirrored.dds", true);
+	//m_Resources.LoadTextures("ReturnToMainMenuPanel", "../../resources/textures/UI/Menus/Backgrounds/ReturnToMainMenuPanel_Mirrored.dds", true);
+	//m_Resources.LoadTextures("YouLostTitle", "../../resources/textures/UI/Menus/Backgrounds/YouLostTitle_Mirrored.dds", true);
+	//m_Resources.LoadTextures("YouWonTitle", "../../resources/textures/UI/Menus/Backgrounds/YouWonTitle_Mirrored.dds", true);
 
-	//How To Play assets
-	m_Resources.LoadTextures("CapturePoint_HowToPlay", "../../resources/textures/UI/Menus/How to Play/CapturePoint_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("Controls_HowToPlay", "../../resources/textures/UI/Menus/How to Play/Controls_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("DeckSize_HowToPlay", "../../resources/textures/UI/Menus/How to Play/DeckSize_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("Objective_HowToPlay", "../../resources/textures/UI/Menus/How to Play/Objective_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("RPS_HowToPlay", "../../resources/textures/UI/Menus/How to Play/RPS_HowToPlay_Mirrored.dds", true);
-	m_Resources.LoadTextures("SummonUnits_HowToPlay", "../../resources/textures/UI/Menus/How to Play/SummonUnits_HowToPlay_Mirrored.dds", true);
 
-	// Activity Log
-	m_Resources.LoadTextures("ActivityLog", "../../resources/textures/UI/ActivityFeedBackground.dds", true);
+	//// Buttons
+	//m_Resources.LoadTextures("PauseButton_Unselected", "../../resources/textures/UI/Menus/Buttons/PauseButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("CreditsButton_Selected", "../../resources/textures/UI/Menus/Buttons/CreditsButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("CreditsButton_Unselected", "../../resources/textures/UI/Menus/Buttons/CreditsButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("HowToPlayButton_Selected", "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("HowToPlayButton_Unselected", "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("QuitGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("QuitGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("QuitToMainMenuButton_Selected", "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("QuitToMainMenuButton_Unselected", "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("RestartLevelButton_Selected", "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("RestartLevelButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("ResumeGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("ResumeGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("SelectLevelButton_Selected", "../../resources/textures/UI/Menus/Buttons/SelectLevelButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("SelectLevelButton_Unselected", "../../resources/textures/UI/Menus/Buttons/SelectLevelButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("SettingsButton_Selected", "../../resources/textures/UI/Menus/Buttons/SettingsButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("SettingsButton_Unselected", "../../resources/textures/UI/Menus/Buttons/SettingsButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("StartGameButton_Selected", "../../resources/textures/UI/Menus/Buttons/StartGameButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("StartGameButton_Unselected", "../../resources/textures/UI/Menus/Buttons/StartGameButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("YesButton_Selected", "../../resources/textures/UI/Menus/Buttons/YesButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("YesButton_Unselected", "../../resources/textures/UI/Menus/Buttons/YesButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("NoButton_Selected", "../../resources/textures/UI/Menus/Buttons/NoButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("NoButton_Unselected", "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("LeftButton_Selected", "../../resources/textures/UI/Menus/Buttons/LeftButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("LeftButton_Unselected", "../../resources/textures/UI/Menus/Buttons/LeftButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("RightButton_Selected", "../../resources/textures/UI/Menus/Buttons/RightButton_Selected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("RightButton_Unselected", "../../resources/textures/UI/Menus/Buttons/RightButton_Unselected_Mirrored.dds", true);
+	//m_Resources.LoadTextures("CloseButton_Selected", "../../resources/textures/UI/Menus/Buttons/CloseButton_Selected.dds", true);
+	//m_Resources.LoadTextures("CloseButton_Unselected", "../../resources/textures/UI/Menus/Buttons/CloseButton_Unselected.dds", true);
 
-	// Capture Point
-	m_Resources.LoadTextures("CapturePointPole_BaseColour", "../../resources/textures/CapturePointPole_BaseColour.dds", true);
-	m_Resources.LoadTextures("Flag_Blue_BaseColour", "../../resources/textures/Flag_Blue_BaseColour.dds", true);
-	m_Resources.LoadTextures("Flag_Red_BaseColour", "../../resources/textures/Flag_Red_BaseColour.dds", true);
-	m_Resources.LoadTextures("Flag_Specular", "../../resources/textures/Flag_Specular.dds", true);
+	////How To Play assets
+	//m_Resources.LoadTextures("CapturePoint_HowToPlay", "../../resources/textures/UI/Menus/How to Play/CapturePoint_HowToPlay_Mirrored.dds", true);
+	//m_Resources.LoadTextures("Controls_HowToPlay", "../../resources/textures/UI/Menus/How to Play/Controls_HowToPlay_Mirrored.dds", true);
+	//m_Resources.LoadTextures("DeckSize_HowToPlay", "../../resources/textures/UI/Menus/How to Play/DeckSize_HowToPlay_Mirrored.dds", true);
+	//m_Resources.LoadTextures("Objective_HowToPlay", "../../resources/textures/UI/Menus/How to Play/Objective_HowToPlay_Mirrored.dds", true);
+	//m_Resources.LoadTextures("RPS_HowToPlay", "../../resources/textures/UI/Menus/How to Play/RPS_HowToPlay_Mirrored.dds", true);
+	//m_Resources.LoadTextures("SummonUnits_HowToPlay", "../../resources/textures/UI/Menus/How to Play/SummonUnits_HowToPlay_Mirrored.dds", true);
 
-	// Lane Selection
-	m_Resources.LoadTextures("SelectedLane_BaseColour", "../../resources/textures/SelectedLane_BaseColour.dds", true);
+	//// Activity Log
+	//m_Resources.LoadTextures("ActivityLog", "../../resources/textures/UI/ActivityFeedBackground.dds", true);
 
-	// RPS Unit Icons
-	m_Resources.LoadTextures("BluePaperCoin_BaseColour", "../../resources/textures/BluePaperCoin_BaseColour.dds", true);
-	m_Resources.LoadTextures("BlueRockCoin_BaseColour", "../../resources/textures/BlueRockCoin_BaseColour.dds", true);
-	m_Resources.LoadTextures("BlueScissorsCoin_BaseColour", "../../resources/textures/BlueScissorsCoin_BaseColour.dds", true);
-	m_Resources.LoadTextures("RedPaperCoin_BaseColour", "../../resources/textures/RedPaperCoin_BaseColour.dds", true);
-	m_Resources.LoadTextures("RedRockCoin_BaseColour", "../../resources/textures/RedRockCoin_BaseColour.dds", true);
-	m_Resources.LoadTextures("RedScissorsCoin_BaseColour", "../../resources/textures/RedScissorsCoin_BaseColour.dds", true);
+	//// Capture Point
+	//m_Resources.LoadTextures("CapturePointPole_BaseColour", "../../resources/textures/CapturePointPole_BaseColour.dds", true);
+	//m_Resources.LoadTextures("Flag_Blue_BaseColour", "../../resources/textures/Flag_Blue_BaseColour.dds", true);
+	//m_Resources.LoadTextures("Flag_Red_BaseColour", "../../resources/textures/Flag_Red_BaseColour.dds", true);
+	//m_Resources.LoadTextures("Flag_Specular", "../../resources/textures/Flag_Specular.dds", true);
+
+	//// Lane Selection
+	//m_Resources.LoadTextures("SelectedLane_BaseColour", "../../resources/textures/SelectedLane_BaseColour.dds", true);
+
+	//// RPS Unit Icons
+	//m_Resources.LoadTextures("BluePaperCoin_BaseColour", "../../resources/textures/BluePaperCoin_BaseColour.dds", true);
+	//m_Resources.LoadTextures("BlueRockCoin_BaseColour", "../../resources/textures/BlueRockCoin_BaseColour.dds", true);
+	//m_Resources.LoadTextures("BlueScissorsCoin_BaseColour", "../../resources/textures/BlueScissorsCoin_BaseColour.dds", true);
+	//m_Resources.LoadTextures("RedPaperCoin_BaseColour", "../../resources/textures/RedPaperCoin_BaseColour.dds", true);
+	//m_Resources.LoadTextures("RedRockCoin_BaseColour", "../../resources/textures/RedRockCoin_BaseColour.dds", true);
+	//m_Resources.LoadTextures("RedScissorsCoin_BaseColour", "../../resources/textures/RedScissorsCoin_BaseColour.dds", true);
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);

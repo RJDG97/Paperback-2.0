@@ -42,13 +42,13 @@ namespace paperback::script
         // Testing Script Register
         RegisterScripts<test_button_script>();
 
-        // Printing list of Guids & Script Names
-        auto& List = GetScriptsList();
-        for ( const auto& [info, script] : List )
-        {
-            std::cout << "Script Name: " << info->m_pName
-                      << " | Script Guid: " << info->m_Guid.m_Value << std::endl;
-        }
+        //// Printing list of Guids & Script Names
+        //auto& List = GetScriptsList();
+        //for ( const auto& [info, script] : List )
+        //{
+        //    std::cout << "Script Name: " << info->m_pName
+        //              << " | Script Guid: " << info->m_Guid.m_Value << std::endl;
+        //}
     }
 
 

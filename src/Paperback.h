@@ -83,6 +83,11 @@ namespace paperback
 #include "paperback_event_mgr.h"
 #include "paperback_settings.h"
 #include "paperback_clock.h"
+#include "paperback_bitset.h"
+#include "paperback_nbitset.h"
+#include "Input/paperback_input_binding.h"                  // New - Might Shift Directly Into Input
+#include "Input/paperback_input_action.h"                   // New - Might Shift Directly Into Input
+#include "Input/paperback_input_controller.h"               // New - Might Shift Directly Into Input
 #include "paperback_input.h"
 #include "paperback_event.h"
 #include "paperback_component.h"
@@ -92,8 +97,6 @@ namespace paperback
 #include "Json/paperback_deserialize.h"
 #include "Json/paperback_json.h"
 
-#include "paperback_bitset.h"
-#include "paperback_nbitset.h"
 #include "paperback_query.h"
 #include "paperback_hash_grid.h"
 #include "../../build/Sandbox/Components/Parent.h"
@@ -115,6 +118,9 @@ namespace paperback
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_event_mgr_inline.h"
 #include "Details/paperback_clock_inline.h"
+#include "Input/Details/paperback_input_action_inline.h"	// New - Might Shift Directly Into Input
+#include "Input/States/paperback_input_state_includes.h"	// New - Might Shift Directly Into Input
+#include "Input/Devices/paperback_device_includes.h"		// New - Might Shift Directly Into Input
 #include "Details/paperback_input_inline.h"
 #include "Details/paperback_component_inline.h"
 #include "Details/paperback_component_mgr_inline.h"

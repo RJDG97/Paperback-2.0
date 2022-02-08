@@ -22,7 +22,8 @@ namespace tools
     template < typename... T_COMPONENTS >
     void bits::AddFromComponents( void )
     {
-        ( (Set( paperback::component::info_v<T_COMPONENTS>.m_UID)), ... );
+        //( (Set( paperback::component::info_v<T_COMPONENTS>.m_UID)), ... );
+        ( (Set( PPB.FindComponentInfo( paperback::component::info_v<T_COMPONENTS>.m_Guid )->m_UID )), ... );
     }
 
     //-----------------------------------

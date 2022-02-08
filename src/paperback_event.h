@@ -11,7 +11,7 @@ namespace paperback::event
 	namespace type
 	{
 		using guid = xcore::guid::unit<64, struct event_tag>;
-
+		
 		enum class id : std::uint8_t
         {
             GLOBAL = 0		  // Global Event

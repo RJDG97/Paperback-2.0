@@ -15,10 +15,10 @@ struct camera_system : paperback::system::instance
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
-        RegisterGlobalEventClass<Input::KeyPressed>(this);      // Held Down - Not Released ( Passes False )
-        RegisterGlobalEventClass<Input::KeyClicked>(this);      // Released                 ( Passes True )
-        RegisterGlobalEventClass<Input::MousePressed>(this);    // Held Down - Not Released ( Passes False )
-        RegisterGlobalEventClass<Input::MouseClicked>(this);
+        RegisterGlobalEventClass<paperback::input::manager::KeyPressed>(this);      // Held Down - Not Released ( Passes False )
+        RegisterGlobalEventClass<paperback::input::manager::KeyClicked>(this);      // Released                 ( Passes True )
+        RegisterGlobalEventClass<paperback::input::manager::MousePressed>(this);    // Held Down - Not Released ( Passes False )
+        RegisterGlobalEventClass<paperback::input::manager::MouseClicked>(this);
 
         m_pCamera = &cam::GetInstanced();
 
@@ -32,7 +32,8 @@ struct camera_system : paperback::system::instance
         // Populate map
         ForEach(Search(Query), [&](transform& Transform, camera& Camera) noexcept
         {
-            glm::vec3 position = glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z };
+            // temp offset on y axis
+            glm::vec3 position = glm::vec3{ Transform.m_Position.x, Transform.m_Position.y + 0.5f, Transform.m_Position.z };
 
             Camera.UpdateView(position);
         });

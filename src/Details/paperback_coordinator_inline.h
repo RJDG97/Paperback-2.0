@@ -1,5 +1,6 @@
 #pragma once
-
+#include "../Functionality/RenderResource/RenderResourceLoader.h"
+	
 namespace paperback::coordinator
 {
 	//-----------------------------------
@@ -53,6 +54,7 @@ namespace paperback::coordinator
 		m_SystemMgr.Terminate();
 		m_ArchetypeMgr.Terminate();
 		m_CompMgr.Terminate();
+		m_Input.Terminate();
 	}
 
 	void instance::QuitApplication(void) noexcept
@@ -357,6 +359,12 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
+	void instance::LoadTextures( const std::string& FilePath ) noexcept
+	{
+		RenderResourceLoader::GetInstanced().ReadTextureJson(FilePath);
+	}
+
+	PPB_INLINE
 	void instance::OpenEditScene( const std::string& FilePath, const std::string& EntityInfoPath ) noexcept
 	{
 		m_SceneMgr.UpdateScene(FilePath, EntityInfoPath);
@@ -618,14 +626,102 @@ namespace paperback::coordinator
 		}
 	}
 
+	template < concepts::Callable_Bool T_FUNCTION>
+	void instance::ForEach( const std::vector<paperback::u32>& NeighbourList
+						  , T_FUNCTION&& Function ) noexcept
+	{
+		using func_traits = xcore::function::traits<T_FUNCTION>;
+
+		bool bBreak = false;
+
+		for ( const auto GID : NeighbourList )
+        {
+			tools::query FuncQuery;							  // Query For Archetype
+            const auto&  Info = GetEntityInfo( GID );		  // Get Entity Info
+
+			FuncQuery.AddQueryFromFunction<T_FUNCTION>();     // Assign Query
+
+            if ( Info.m_pArchetype && Info.m_pArchetype->GetComponentBits().Compare( FuncQuery.m_Must )
+				                   && Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) )
+            {
+				Info.m_pArchetype->AccessGuard( [&]
+				{
+					if ( [&]< typename... T_COMPONENTS >( std::tuple<T_COMPONENTS...>* ) constexpr noexcept
+					     {
+					     	  return Function( [&]<typename T_C>( std::tuple<T_C>* ) constexpr noexcept -> T_C
+					     	  		    {
+					     	  		 	     auto pComponent = Info.m_pArchetype->FindComponent( Info.m_PoolDetails, component::info_v<T_C>.m_Guid );
+					     	  		 	     if constexpr (std::is_pointer_v<T_C>)
+					     	  		 	     {
+					     	  		 	 	    if ( pComponent ) return reinterpret_cast<T_C>( pComponent );
+					     	  		 	 	    else return reinterpret_cast<T_C>( nullptr );
+					     	  		 	     }
+					     	  		 	     else return reinterpret_cast<T_C>( *pComponent );
+					     	  		    
+					     	  		    }( xcore::types::make_null_tuple_v<T_COMPONENTS> )
+					     	  ... );
+					     }( xcore::types::null_tuple_v< func_traits::args_tuple > ))
+					{
+						bBreak = true;
+					}
+				});
+			}
+			if ( bBreak ) break;
+		}
+	}
+
 	void instance::ToggleDebug( const bool& Status ) noexcept
 	{
 		m_SystemMgr.ToggleDebug( Status );
 	}
 
-	void instance::TogglePause( const bool& Status ) noexcept
+	void instance::TogglePause(const bool& Status) noexcept
 	{
-		m_SystemMgr.TogglePause( Status );
+
+		m_bPaused = Status;
+
+		ToggleCursor(Status);
+
+		m_SystemMgr.TogglePause(Status);
+	}
+
+	void instance::ToggleCursor(const bool& Status) noexcept
+	{
+
+		if (Status == m_bCursorActive)
+			return;
+
+		auto WindowsSystem = FindSystem<window_system>();
+		m_bCursorActive = Status;
+
+		if (WindowsSystem)
+		{
+
+			if (Status)
+			{
+
+				glfwSetInputMode(WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+			}
+			else
+			{
+
+				glfwSetInputMode(WindowsSystem->m_pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			}
+		}
+	}
+
+
+	void instance::TogglePlayers(void) noexcept
+	{
+		tools::query m_QueryPlayer;
+		m_QueryPlayer.m_Must.AddFromComponents<camera, player_controller>();
+		m_QueryPlayer.m_NoneOf.AddFromComponents<prefab>();
+
+		ForEach(Search(m_QueryPlayer), [&](camera& Camera, player_controller& Player_Controller) noexcept
+		{
+			Camera.m_Active = !Camera.m_Active;
+			Player_Controller.m_PlayerStatus = !Player_Controller.m_PlayerStatus;
+		});
 	}
 
 	void instance::QuitGame() noexcept
@@ -705,6 +801,33 @@ namespace paperback::coordinator
 	bool instance::GetPauseBool() noexcept
 	{
 		return m_bPaused;
+	}
+
+	
+	GLFWwindow* instance::GetWindowHandle( void ) noexcept
+	{
+		auto Win = FindSystem<window_system>();
+
+		if ( Win ) return Win->m_pWindow;
+		else       return nullptr;
+	}
+
+	PPB_INLINE
+	input::device::Keyboard_Controls* instance::FindKeyboard( void ) noexcept
+	{
+		return m_Input.FindKeyboard();
+	}
+
+	PPB_INLINE
+	input::device::Mouse_Controls* instance::FindMouse( void ) noexcept
+	{
+		return m_Input.FindMouse();
+	}
+
+	PPB_INLINE
+	input::device::Gamepad_Controls* instance::FindGamepad( void ) noexcept
+	{
+		return m_Input.FindGamepad();
 	}
 
 
@@ -791,6 +914,12 @@ namespace paperback::coordinator
 		m_HashGrid.UpdateUnit( GlobalIndex, PrevPosition, CurrPosition, MinScale, MaxScale );
 	}
 
+	PPB_INLINE
+    void instance::ResetGrids( void ) noexcept
+	{
+		m_HashGrid.Reset();
+	}
+
 
 	//-----------------------------------
 	//             Setters
@@ -849,7 +978,52 @@ namespace paperback::coordinator
 
 	void instance::UpdateInputs() noexcept
 	{
-		m_Input.UpateInputs();
+		m_Input.UpdateInputs();
+	}
+
+	template < typename T_BINDING_CONSTRUCT >
+    paperback::u64 instance::RegisterBinding( void ) noexcept
+	{
+		return m_Input.RegisterBinding<T_BINDING_CONSTRUCT>();
+	}
+
+    PPB_INLINE
+    void instance::AssignBindingToAction( const input::binding::type::guid&         BindingGuid
+                                        , const paperback::u32                      Key
+                                        , const input::device::type::id             DeviceTypeID
+                                        , const input::action::BroadcastStatus      Status
+                                        , const input::action::KeyPairing           Pairing ) noexcept
+	{
+		AssignBindingToAction( BindingGuid.m_Value
+							 , Key
+							 , DeviceTypeID
+							 , Status
+		                     , Pairing );
+	}
+
+	PPB_INLINE
+    void instance::AssignBindingToAction( const paperback::u64&                     BindingGuidValue
+                                        , const paperback::u32                      Key
+                                        , const input::device::type::id             DeviceTypeID
+                                        , const input::action::BroadcastStatus      Status
+                                        , const input::action::KeyPairing           Pairing ) noexcept
+	{
+		m_Input.AssignBindingToAction( BindingGuidValue
+									 , Key
+									 , DeviceTypeID
+									 , Status
+		                             , Pairing );
+	}
+
+    template < typename... T_ARGS >
+    void instance::BroadcastAction( const paperback::u32                  Key
+                                  , const input::device::type::id         Type
+                                  , const input::action::BroadcastStatus  Status
+                                  , T_ARGS&&...                           Args ) noexcept
+	{
+		m_Input.BroadcastAction( Key
+			                   , Type
+			                   , std::forward<T_ARGS&&>( Args )... );
 	}
 
 	void instance::SetKey( int Key, int Action ) noexcept
@@ -910,6 +1084,11 @@ namespace paperback::coordinator
 	glm::vec3 instance::GetViewportMousePosition(glm::vec2 viewport_min, glm::vec2 viewport_max) noexcept
 	{
 		return m_Input.GetViewportMousePosition(viewport_min, viewport_max);
+	}
+
+	glm::vec3 instance::GetViewportMousePosition() noexcept
+	{
+		return m_Input.GetViewportMousePosition();
 	}
 
 	//-----------------------------------
