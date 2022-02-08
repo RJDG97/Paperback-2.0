@@ -48,10 +48,10 @@ struct ui_system : paperback::system::pausable_instance
 
         glfwGetWindowSize(WindowsSystem->m_pWindow, &width, &height);
 
-        screen_tf.x = Transform.m_Position.x / (0.5 * width);
-        screen_tf.y = Transform.m_Position.y / (0.5 * height);
-        screen_scale.x = Scale.m_Value.x / (0.5 * width);
-        screen_scale.y = Scale.m_Value.y / (0.5 * height);
+        screen_tf.x = Transform.m_Position.x / (0.5f * width);
+        screen_tf.y = Transform.m_Position.y / (0.5f * height);
+        screen_scale.x = Scale.m_Value.x / (0.5f * width);
+        screen_scale.y = Scale.m_Value.y / (0.5f * height);
 
 
         /*float btm_left_x { Transform.m_Position.x - ( Scale.m_Value.x * 0.5f ) }
