@@ -58,15 +58,15 @@ namespace MONO_CAMERA_TOOLS
 
 	void AddInternals()
 	{
-		mono_add_internal_call("CSScript.CameraTools::MoveForward()", &MONO_CAMERA_TOOLS::MoveForward);
-		mono_add_internal_call("CSScript.CameraTools::MoveBackward()", &MONO_CAMERA_TOOLS::MoveBackward);
-		mono_add_internal_call("CSScript.CameraTools::MoveLeft()", &MONO_CAMERA_TOOLS::MoveLeft);
-		mono_add_internal_call("CSScript.CameraTools::MoveRight()", &MONO_CAMERA_TOOLS::MoveRight);
-		mono_add_internal_call("CSScript.CameraTools::MoveUp()", &MONO_CAMERA_TOOLS::MoveUp);
-		mono_add_internal_call("CSScript.CameraTools::MoveDown()", &MONO_CAMERA_TOOLS::MoveDown);
-		mono_add_internal_call("CSScript.CameraTools::RotateUp()", &MONO_CAMERA_TOOLS::RotateUp);
-		mono_add_internal_call("CSScript.CameraTools::RotateDown()", &MONO_CAMERA_TOOLS::RotateDown);
-		mono_add_internal_call("CSScript.CameraTools::RotateLeft()", &MONO_CAMERA_TOOLS::RotateLeft);
-		mono_add_internal_call("CSScript.CameraTools::RotateRight()", &MONO_CAMERA_TOOLS::RotateRight);
+		mono_add_internal_call("CSScript.Tools.CameraTools::MoveForward()", &MONO_CAMERA_TOOLS::MoveForward);
+		mono_add_internal_call("CSScript.Tools.CameraTools::MoveBackward()", &MONO_CAMERA_TOOLS::MoveBackward);
+		mono_add_internal_call("CSScript.Tools.CameraTools::MoveLeft()", &MONO_CAMERA_TOOLS::MoveLeft);
+		mono_add_internal_call("CSScript.Tools.CameraTools::MoveRight()", &MONO_CAMERA_TOOLS::MoveRight);
+		mono_add_internal_call("CSScript.Tools.CameraTools::MoveUp()", &MONO_CAMERA_TOOLS::MoveUp);
+		mono_add_internal_call("CSScript.Tools.CameraTools::MoveDown()", &MONO_CAMERA_TOOLS::MoveDown);
+		mono_add_internal_call("CSScript.Tools.CameraTools::RotateUp()", &MONO_CAMERA_TOOLS::RotateUp);
+		mono_add_internal_call("CSScript.Tools.CameraTools::RotateDown()", &MONO_CAMERA_TOOLS::RotateDown);
+		mono_add_internal_call("CSScript.Tools.CameraTools::RotateLeft()", &MONO_CAMERA_TOOLS::RotateLeft);
+		mono_add_internal_call("CSScript.Tools.CameraTools::RotateRight()", &MONO_CAMERA_TOOLS::RotateRight);
 	}
 }

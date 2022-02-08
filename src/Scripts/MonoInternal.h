@@ -29,6 +29,7 @@
 #include "Scripts/Scripts_Elevator.h"
 #include "Scripts/Scripts_Raycast.h"
 #include "Scripts/Scripts_PlayerController.h"
+#include "Scripts/Scripts_Tag.h"
 
 namespace MONO_INTERNALS
 {
@@ -38,6 +39,7 @@ namespace MONO_INTERNALS
 		MONO_INPUTS::AddInternals();
 		MONO_PLAYER::AddInternals();
 		MONO_RAYCAST::AddInternals();
+		MONO_TAG::AddInternals();
 		MONO_APPLICATION::AddInternals();
 		MONO_DEBUG::AddInternalCall();
 		MONO_AABB::AddInternalCall();

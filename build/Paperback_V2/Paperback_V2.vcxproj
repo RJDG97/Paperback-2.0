@@ -294,6 +294,7 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Scale.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Sound.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Sphere.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Tag.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Text.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Transform.h" />
     <ClInclude Include="..\..\src\Settings\PropertyConfig.h" />

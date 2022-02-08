@@ -74,6 +74,13 @@ namespace CSScript
                 m_PushUnitTransform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
                 m_PrevPlatformPos = m_ParentTransform.m_Position;
             }
+
+            else if (Tools.Tag.IsPushable(ID))
+            {
+                Transform box_transform = new Transform(ID);
+                box_transform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
+                m_PrevPlatformPos = m_ParentTransform.m_Position;
+            }
         }
 
         public void OnCollisionExit(UInt32 ID)
