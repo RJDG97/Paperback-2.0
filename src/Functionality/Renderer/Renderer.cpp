@@ -372,7 +372,7 @@ Renderer::Renderer() :
 
 	m_Light.m_Position = glm::vec3{ 1.f, 1.f, 1.f };
 	m_Light.m_Direction = glm::normalize(glm::vec3{ 0.f } - m_Light.m_Position);
-	m_Light.m_Projection = glm::ortho(-50.f, 50.f, -50.f, 50.f, -50.f, 50.f);
+	m_Light.m_Projection = glm::ortho(-100.f, 100.f, -50.f, 50.f, -100.f, 100.f);
 	m_Light.m_View = glm::lookAt(m_Light.m_Position, glm::vec3{ 0.f }, glm::vec3{ 0.f, 1.f, 0.f });
 	m_Light.m_Transform = m_Light.m_Projection * m_Light.m_View;
 }
@@ -1271,6 +1271,8 @@ void Renderer::CompositePass(const bool Gamma)
 	m_Resources.m_Shaders["Composite"].SetUniform("uBlur", 1);
 
 	m_Resources.m_Shaders["Composite"].SetUniform("uExposure", 1.f);
+	m_Resources.m_Shaders["Composite"].SetUniform("uGamma", Gamma ? 2.2f : 1.0f);
+
 
 	glDrawElements(screen.GetPrimitive(), screen.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 

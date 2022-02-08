@@ -7,6 +7,7 @@ layout (location=0) out vec4 fFragClr;
 uniform sampler2D uImage;
 uniform sampler2D uBlur;
 uniform float uExposure;
+uniform float uGamma;
 
 void main()
 {
@@ -20,6 +21,6 @@ void main()
 	vec3 Result = vec3(1.0) - exp(-HDRColor * uExposure);
 
 	// Gamma correction
-	Result = pow(Result, vec3(1.0 / 2.2));
+	Result = pow(Result, vec3(1.0 / uGamma));
 	fFragClr = vec4(Result, 1.0);
 }
