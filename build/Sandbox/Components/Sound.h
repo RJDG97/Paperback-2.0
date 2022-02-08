@@ -12,6 +12,7 @@ struct sound
     bool m_Is3DSound; //set to false if 2D, true if 3D
     bool m_IsTriggerable = false; //set to false by default, assumes that sound is able to be played again whenever required
     bool m_Trigger = false; // accomnpanying bool to IsTriggerable to indicate if sound is to be played
+    bool m_ForceStop = false;
 };
 
 namespace RR_Sound
