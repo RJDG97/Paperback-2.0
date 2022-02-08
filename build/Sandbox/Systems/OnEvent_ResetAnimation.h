@@ -35,7 +35,14 @@ struct onevent_ResetAnimation : paperback::system::instance
                     }
                 }
                 else
-                    Anim->m_CurrentAnimationName = "Armature|Idle";
+                {
+                    auto UI_Sys = FindSystem<ui_system>();
+                    if (UI_Sys)
+                    {
+                        UI_Sys->TriggerStopSoundEntity("SFX_BlueWalk");
+                        Anim->m_CurrentAnimationName = "Armature|Idle";
+                    }
+                }
 
                 Anim->m_PlayOnce = false;
             }
