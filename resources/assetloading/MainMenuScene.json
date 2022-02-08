@@ -631,7 +631,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "MainMenuBackground",
+                        "Texture": "MainMenuBackgroundWithTitle",
                         "Shadow Bias": 1,
                         "Active": true
                     },
