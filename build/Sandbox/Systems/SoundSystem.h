@@ -100,6 +100,15 @@ public:
         }
     }
 
+    void StopTriggeredSoundEvent(size_t SoundTag)
+    {
+
+        auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [SoundTag](const SoundFile& soundfile) { return SoundTag == soundfile.m_ID; });
+
+        if (sound_check != m_SoundFiles.end())
+            sound_check->m_pSound->stop(FMOD_STUDIO_STOP_ALLOWFADEOUT);
+    }
+
     //stop sound
     // helper function
     // stops sound from currently playing
