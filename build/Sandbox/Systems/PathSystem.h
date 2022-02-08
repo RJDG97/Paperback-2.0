@@ -144,7 +144,7 @@ struct path_system : paperback::system::instance
 
 		paperback::Vector3f destination{ spline.GetSplinePoint(normalized_offset).m_Point };
 		paperback::Vector3f direction{ (destination - Transform.m_Position) };
-		float speed_modifier = 1.5f + cosf(PathFollower.m_Distance / spline.m_TotalLength * 2 * M_PI + M_PI);
+		float speed_modifier = 1.7f + 0.8f * cosf(PathFollower.m_Distance / spline.m_TotalLength * 2 * M_PI + M_PI);
 
 		Offset.m_PosOffset += direction;
 
