@@ -266,13 +266,14 @@ struct ui_system : paperback::system::pausable_instance
     void TriggerStopSoundEntity(const std::string& EntityName)
     {
 
-        ForEach(Search(m_ButtonQuery), [&](entity& Entity, name& Name, sound* Sound) noexcept
+        ForEach(Search(m_AudioQuery), [&](entity& Entity, name& Name, sound* Sound) noexcept
             {
 
                 if (Name.m_Value == EntityName && Sound)
                 {
 
-                    PPB.GetSystem<sound_system>().StopTriggeredSoundEvent(Sound->m_SoundPlayTag);
+                    //PPB.GetSystem<sound_system>().StopTriggeredSoundEvent(Sound->m_SoundPlayTag);
+                    Sound->m_ForceStop = true;
                     return;
                 }
             });
