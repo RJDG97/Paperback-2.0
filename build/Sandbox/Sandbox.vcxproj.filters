@@ -364,5 +364,8 @@
     <ClInclude Include="Scripts\NextLevel_Level1.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Crosshair.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

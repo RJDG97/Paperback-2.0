@@ -53,7 +53,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -105,7 +105,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
                         DirectionalVector.y    = 0.0f;
@@ -157,7 +157,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -213,7 +213,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -276,7 +276,7 @@ namespace paperback::input::binding
                 {
                     m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                     {
-                        if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && Camera.m_Active )
+                        if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
                         {
                             auto Axes = GP->m_State.m_LeftAxis;
 
@@ -429,7 +429,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, rigidforce& RF, rigidbody& RB, camera& Camera, animator& Animator )
                 {
-                    if ( Controller.m_PlayerStatus && Controller.m_OnGround && Camera.m_Active && !m_Coordinator.GetPauseBool() )
+                    if ( Controller.m_PlayerStatus && Controller.m_OnGround && !Controller.m_FPSMode && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                     {
                         Controller.m_OnGround = false;
                         RF.m_Momentum.y = ( 2.0f * Controller.m_JumpForce ) / 0.3f;
@@ -460,8 +460,10 @@ namespace paperback::input::binding
             if ( !m_Coordinator.GetPauseBool() )
             {
                 // Find Player Entity - That Can Push / Pull
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, boundingbox& BB, mass& Mass, rigidforce& RF ) -> bool
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller, boundingbox& BB, mass& Mass, rigidforce& RF ) -> bool
                 {
+                    if ( Controller.m_FPSMode ) return false;
+
                     // Currently Pushing / Pulling a select Entity
                     if ( !Interaction.m_bPushOrPull && 
                          Interaction.m_InteractableGID == paperback::settings::invalid_index_v )
@@ -540,8 +542,10 @@ namespace paperback::input::binding
             if ( !m_Coordinator.GetPauseBool() )
             {
                 // Find Player Entity - That Can Push / Pull
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, boundingbox& BB, mass& Mass )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller, boundingbox& BB, mass& Mass ) -> bool
                 {
+                    if ( Controller.m_FPSMode ) return false;
+
                     // Currently Pushing / Pulling a select Entity
                     if ( Interaction.m_bPushOrPull && 
                          Interaction.m_InteractableGID != paperback::settings::invalid_index_v )
@@ -559,8 +563,12 @@ namespace paperback::input::binding
                             // Reset Player Status
                             Interaction.m_InteractableGID = paperback::settings::invalid_index_v;
                             Interaction.m_bPushOrPull     = false;
+
+                            return true;
                         }
                     }
+
+                    return false;
                 });
             }
 
@@ -580,8 +588,10 @@ namespace paperback::input::binding
             if ( !m_Coordinator.GetPauseBool() )
             {
                 // Find Player Entity - That Can Push / Pull
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, rigidforce& RF )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller, rigidforce& RF ) -> bool
                 {
+                    if ( Controller.m_FPSMode ) return false;
+
                     // Currently Pushing / Pulling a select Entity
                     if ( Interaction.m_bPushOrPull && 
                          Interaction.m_InteractableGID != paperback::settings::invalid_index_v )
@@ -594,6 +604,83 @@ namespace paperback::input::binding
                             // Reset Interactable Object Push Status
                             auto InterRF = Info.m_pArchetype->FindComponent<rigidforce>( Info.m_PoolDetails );
                             if ( InterRF ) InterRF->m_Momentum = RF.m_Momentum;
+
+                            return true;
+                        }
+                    }
+
+                    return false;
+                });
+            }
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
+
+    BEGIN_BINDING_CONSTRUCT( Toggle_FPS_Action )
+        BEGIN_INPUT_ACTION
+
+            // TODO - Update Query Initialization To Constructor Call
+            tools::query Query;
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
+		    Query.m_NoneOf.AddFromComponents< prefab >();
+
+            tools::query CrosshairQuery;
+            CrosshairQuery.m_Must.AddFromComponents< mesh, crosshair >();
+		    CrosshairQuery.m_NoneOf.AddFromComponents< prefab >();
+
+            if ( !m_Coordinator.GetPauseBool() )
+            {
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, rigidbody& RB/*, camera_height_offset& CamOffset*/ )
+                {
+                    if ( Controller.m_PlayerStatus && Controller.m_OnGround && Camera.m_Active && 
+                         !m_Coordinator.GetPauseBool() && RB.m_Velocity.MagnitudeSq() < 0.1f ) // Player Is Not Actually Moving - Condition May Not Be Necessary, Could Just Reset All Forces
+                    {
+                        if ( Controller.m_FPSMode )
+                        {
+                            // Toggle FPS Crosshair - Disable
+                            m_Coordinator.ForEach( m_Coordinator.Search( CrosshairQuery ), [&]( mesh& CrosshairMesh ) -> bool
+                            {
+                                if ( CrosshairMesh.m_Active )
+                                {
+                                    // Restore Camera Radius
+                                    Camera.m_Radius = Controller.m_CameraRadius;
+                                    Controller.m_CameraRadius = 0.0f;
+
+                                    // Disable Crosshair
+                                    CrosshairMesh.m_Active = false;
+
+                                    return true;
+                                }
+
+                                return false;
+                            });
+
+                            // Reset Camera Height Offset
+                            Controller.m_FPSMode = false;
+                        }
+                        else
+                        {
+                            // Toggle FPS Crosshair - Enable
+                            m_Coordinator.ForEach( m_Coordinator.Search( CrosshairQuery ), [&]( mesh& CrosshairMesh ) -> bool
+                            {
+                                if ( !CrosshairMesh.m_Active )
+                                {
+                                    // Backup Camera Radius | Update FPS Radius
+                                    Controller.m_CameraRadius = Camera.m_Radius;
+                                    Camera.m_Radius = 0.1f;
+
+                                    // Enable Crosshair
+                                    CrosshairMesh.m_Active = true;
+                                    
+                                    return true;
+                                }
+
+                                return false;
+                            });
+
+                            // Reset Camera Height Offset
+                            Controller.m_FPSMode = true;
                         }
                     }
                 });

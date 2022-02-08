@@ -55,6 +55,8 @@
 #include "PlayerInteraction.h"
 #include "Pushable.h"
 #include "Elevator.h"
+#include "Crosshair.h"
+
 
 // shapes
 #include "AABB.h"

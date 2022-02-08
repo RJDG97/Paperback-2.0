@@ -123,6 +123,7 @@ void InitializeGame()
         ,    elevator
         ,    player_interaction
         ,    pushable        // Tag
+        ,    crosshair       // Tag
         >();
 
         // Register Components - Add to the end of the list
@@ -227,6 +228,7 @@ void InitializeGame()
             auto ToggleLift_Action           = PPB.RegisterBinding<paperback::input::binding::Lift_Action>();
             auto Release_Action              = PPB.RegisterBinding<paperback::input::binding::Release_Action>();
             auto PushPull_Action             = PPB.RegisterBinding<paperback::input::binding::PushPull_Action>();
+            auto Toggle_FPSAction            = PPB.RegisterBinding<paperback::input::binding::Toggle_FPS_Action>();
 
 
 
@@ -239,6 +241,7 @@ void InitializeGame()
             PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_S,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( Release_Action,              GLFW_KEY_A,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( Release_Action,              GLFW_KEY_D,     input::device::type::id::KEYBOARD );
+            PPB.AssignBindingToAction( Toggle_FPSAction,            GLFW_KEY_E,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Jump_Action,                 GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( ToggleLift_Action,           GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
 
