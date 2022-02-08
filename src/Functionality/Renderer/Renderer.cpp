@@ -56,7 +56,7 @@ Renderer::Renderer() :
 
 	std::vector<std::string> files = { "../../resources/textures/Skybox/right.dds",
 								   "../../resources/textures/Skybox/left.dds",
-								   "../../resources/textures/Skybox/top.dds",
+								   "../../resources/textures/Skybox/SkyboxCeiling.dds",
 								   "../../resources/textures/Skybox/bottom.dds",
 								   "../../resources/textures/Skybox/front.dds",
 								   "../../resources/textures/Skybox/back.dds" };

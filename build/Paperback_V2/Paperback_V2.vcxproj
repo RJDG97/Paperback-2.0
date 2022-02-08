@@ -286,6 +286,7 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Parent.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_PathFollower.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Player.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_PlayerController.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Raycast.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Rigidbody.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Rigidforce.h" />
