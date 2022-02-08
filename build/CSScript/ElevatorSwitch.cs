@@ -8,6 +8,7 @@ namespace CSScript
     public class ElevatorSwitch : MonoBehaviour
     {
         UInt32 m_ID;
+        Sound m_Sound; //switch is parent
         Parent m_Parent; //switch is parent
 
         Int32 m_ElevatorID;
@@ -29,6 +30,7 @@ namespace CSScript
         public void Start(UInt32 ID)
         {
             m_ID = ID;
+            m_Sound = new Sound(m_ID);
             m_Parent = new Parent(m_ID);
 
             m_ElevatorID = m_Parent.GetChildIDofName("Elevator");
@@ -71,6 +73,7 @@ namespace CSScript
         {
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/)
             {
+                m_Sound.m_Trigger = true;
                 m_ElevatorAnimator.m_PauseAnimation = false;
 
                 if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
@@ -94,6 +97,7 @@ namespace CSScript
         {
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/)
             {
+                m_Sound.m_Trigger = true;
                 m_ElevatorAnimator.m_PauseAnimation = false;
 
                 if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
