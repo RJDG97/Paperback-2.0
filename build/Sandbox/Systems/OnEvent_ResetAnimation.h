@@ -25,7 +25,11 @@ struct onevent_ResetAnimation : paperback::system::instance
             {
                 // Strong Unit
                 if ( Interaction )
+                {
                     Anim->m_CurrentAnimationName = "StrongToy_Armature|Idle";
+                    //auto UI_Sys = FindSystem<ui_system>();
+                    //if ( UI_Sys ) UI_Sys->TriggerSoundEntity("SFX_RedStop");
+                }
                 else
                     Anim->m_CurrentAnimationName = "Armature|Idle";
 

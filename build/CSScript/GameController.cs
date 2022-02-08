@@ -10,6 +10,7 @@ namespace CSScript
         UInt32 m_ID;
         Camera m_JumpUnitCamera;
         Camera m_PushUnitCamera;
+        Sound  m_SFX;
 
         public static GameController getInst()
         {
@@ -20,6 +21,7 @@ namespace CSScript
             m_ID = ID;
             m_JumpUnitCamera = new Camera((UInt32)Player.GetJumpUnitID());
             m_PushUnitCamera = new Camera((UInt32)Player.GetPushUnitID());
+            m_SFX = new Sound(ID);
 
             m_JumpUnitCamera.m_Active = true;
             m_PushUnitCamera.m_Active = false;
@@ -28,6 +30,7 @@ namespace CSScript
         {
             if (Input.IsKeyPress(Input.PB_Q))
             {
+                m_SFX.m_Trigger = true;
                 Player.TogglePlayers();
             }
         }

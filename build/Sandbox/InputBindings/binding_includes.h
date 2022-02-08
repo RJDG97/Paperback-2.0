@@ -70,10 +70,17 @@ namespace paperback::input::binding
                             {
                                 if ( Interaction->m_bPushOrPull ) Animator.m_CurrentAnimationName = "StrongToy_Armature|PushWalk";
                                 else                              Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
+
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
                             }
                             // Jump Unit
                             else
+                            {
                                 Animator.m_CurrentAnimationName = "Armature|Walk";
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                            }
 
                             Animator.m_PlayOnce = false;
                         }
@@ -115,10 +122,18 @@ namespace paperback::input::binding
                             {
                                 if ( Interaction->m_bPushOrPull ) Animator.m_CurrentAnimationName = "StrongToy_Armature|PullWalk";
                                 else                              Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightBackward";
+
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
                             }
                             // Jump Unit
                             else
+                            {
                                 Animator.m_CurrentAnimationName = "Armature|Walk";
+
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                            }
 
                             Animator.m_PlayOnce = false;
                         }
@@ -161,10 +176,20 @@ namespace paperback::input::binding
                         {
                             // Strong Unit
                             if ( Interaction )
+                            {
                                 Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
+
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
+                            }
                             // Jump Unit
                             else
+                            {
                                 Animator.m_CurrentAnimationName = "Armature|Walk";
+
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                            }
 
                             Animator.m_PlayOnce = false;
                         }
@@ -207,10 +232,20 @@ namespace paperback::input::binding
                         {
                             // Strong Unit
                             if ( Interaction )
+                            {
                                 Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
+
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
+                            }
                             // Jump Unit
                             else
+                            {
                                 Animator.m_CurrentAnimationName = "Armature|Walk";
+
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                            }
 
                             Animator.m_PlayOnce = false;
                         }
@@ -402,6 +437,9 @@ namespace paperback::input::binding
                         Animator.m_CurrentAnimationName = "Armature|JumpStart";
                         Animator.m_CurrentTime = 8.07f;
                         Animator.m_PlayOnce = true;
+
+                        auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                        if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueJump");
                     }
                 });
             }
@@ -448,6 +486,9 @@ namespace paperback::input::binding
                                 // Reset Player Status
                                 Interaction.m_InteractableGID = InterEntity.m_GlobalIndex;
                                 Interaction.m_bPushOrPull     = true;
+
+                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedGrab");
 
                                 // Found Interactable Nearby - *Note: ForEach Return Type
                                 return true; // Return True - Terminates ForEach Loop Early
