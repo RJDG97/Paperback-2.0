@@ -11,12 +11,12 @@ namespace CSScript.Tools
 {
     public class Raycast
     {
-        public UInt32[] RayAABB()
+        public UInt32[] RayAABB(UInt32 ID)
         {
-            return rayaab();
+            return rayaab(ID);
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        public extern static UInt32[] rayaab();
+        public extern static UInt32[] rayaab(UInt32 id);
     }
 }

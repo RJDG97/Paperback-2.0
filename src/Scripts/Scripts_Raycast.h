@@ -6,25 +6,27 @@
 namespace MONO_RAYCAST
 {
 
-	MONO_EXPORT MonoArray* rayaab()
+	MONO_EXPORT MonoArray* rayaab(uint32_t cam_id)
 	{
 		std::vector<uint32_t> ids{};
 		tools::query Query;
-		Query.m_Must.AddFromComponents<boundingbox, paperback::component::entity>();
+		Query.m_Must.AddFromComponents<boundingbox, transform, paperback::component::entity>();
 		Query.m_NoneOf.AddFromComponents<prefab>();
 
-		glm::vec3 CamPos = cam::GetInstanced().GetPosition();
-		glm::vec3 RayDir = PPB.GetViewportMousePosition();
+		auto m_obj = PPB.GetEntityInfo(cam_id);
+		camera* m_cam = m_obj.m_pArchetype->FindComponent<camera>(m_obj.m_PoolDetails);
 
-		PPB.ForEach(PPB.Search(Query), [&](boundingbox& BoundingBox, paperback::component::entity& Entity) noexcept
+		glm::vec3 CamPos { m_cam->m_Position };
+		glm::vec3 RayDir = PPB.GetViewportMousePosition(m_cam->m_Projection, m_cam->m_View);
+
+		PPB.ForEach(PPB.Search(Query), [&](boundingbox& BoundingBox, transform& Transform, paperback::component::entity& Entity) noexcept
 		{
-			float temp = 0; //probs remove and replace the temp below with t, this temp thing makes it so that everything is returned.
-
+			float t = 0;
 			if (RayAabb(paperback::Vector3f{ CamPos.x, CamPos.y, CamPos.z },
 						paperback::Vector3f{ RayDir.x, RayDir.y, RayDir.z },
-						BoundingBox.Min,
-						BoundingBox.Max,
-						temp))
+						Transform.m_Position + BoundingBox.Min,
+						Transform.m_Position + BoundingBox.Max,
+						t))
 			{
 				ids.push_back(Entity.m_GlobalIndex);
 			}
@@ -42,6 +44,6 @@ namespace MONO_RAYCAST
 
 	void AddInternals()
 	{
-		mono_add_internal_call("CSScript.Raycast::rayaab()", &MONO_RAYCAST::rayaab);
+		mono_add_internal_call("CSScript.Tools.Raycast::rayaab(uint)", &MONO_RAYCAST::rayaab);
 	}
 }

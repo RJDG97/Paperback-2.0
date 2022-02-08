@@ -13,6 +13,7 @@ namespace CSScript
         Sound m_Sound; //switch is parent
         Parent m_Parent; //switch is parent
         BoundingBox m_BoundingBox; //switch is parent
+        Mesh m_Mesh;
 
         BoundingBox m_ChildBoundingBox; //gate is child
         Animator m_ChildAnimator;
@@ -31,6 +32,7 @@ namespace CSScript
             m_Sound = new Sound(m_ID);
             m_Parent = new Parent(m_ID);
             m_BoundingBox = new BoundingBox(m_ID);
+            m_Mesh = new Mesh(m_ID);
 
             m_ChildID = m_Parent.GetChildIDofName("Gate");
 
@@ -46,6 +48,7 @@ namespace CSScript
             m_InitialBoundingBoxMax = m_ChildBoundingBox.Max;
 
             m_ChildAnimator.m_PauseAtTime = 0;
+            m_Mesh.m_Model = "ButtonOFF";
         }
 
         public void Update(float dt)
@@ -67,6 +70,7 @@ namespace CSScript
                 m_ChildAnimator.m_Reversed = false;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 23;
+                m_Mesh.m_Model = "ButtonON";
             }
         }
         public void OnCollisionStay(UInt32 ID)
@@ -82,6 +86,7 @@ namespace CSScript
                 m_ChildAnimator.m_Reversed = true;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 0;
+                m_Mesh.m_Model = "ButtonOFF";
             }
         }
     }

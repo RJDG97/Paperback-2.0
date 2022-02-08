@@ -42,6 +42,8 @@ struct window_system : paperback::system::instance
 
         JFile.StartReader("../../resources/assetloading/config.json").LoadObjects(E).EndReader();
 
+        m_Width = E.m_Width;
+        m_Height = E.m_Height;
         m_pWindow = glfwCreateWindow( E.m_Width, E.m_Height, E.m_WinName.c_str(), NULL, NULL );
 
         if (!m_pWindow)
@@ -79,10 +81,10 @@ struct window_system : paperback::system::instance
     PPB_FORCEINLINE
     void Update( void ) noexcept
     {
-        //if (m_Coordinator.IsKeyPress(GLFW_KEY_F))
-        //{
-        //    FullScreen();
-        //}
+        if (m_Coordinator.IsKeyPress(GLFW_KEY_F))
+        {
+            FullScreen();
+        }
 
 
         m_Coordinator.UpdateInputs();
@@ -151,23 +153,23 @@ struct window_system : paperback::system::instance
         if ( GP ) GP->m_State.FindActiveController();
     }
 
-    //void FullScreen()
-    //{
-    //    if (!m_FullScreen)
-    //    {
-    //        //Temp values
-    //        m_Width = 1920;
-    //        m_Height = 1080;
-    //        glfwSetWindowMonitor(m_pWindow, glfwGetPrimaryMonitor(), 0, 0, m_Width, m_Height, GLFW_DONT_CARE);
-    //    }
-    //    else
-    //    {
-    //        m_Width = E.m_Width;
-    //        m_Height = E.m_Height;
-    //        glfwSetWindowMonitor(m_pWindow, NULL, 250, 250, E.m_Width, E.m_Height, GLFW_DONT_CARE);
-    //    }
+    void FullScreen()
+    {
+        if (!m_FullScreen)
+        {
+            //Temp values
+            m_Width = 1920;
+            m_Height = 1080;
+            glfwSetWindowMonitor(m_pWindow, glfwGetPrimaryMonitor(), 0, 0, m_Width, m_Height, GLFW_DONT_CARE);
+        }
+        else
+        {
+            m_Width = E.m_Width;
+            m_Height = E.m_Height;
+            glfwSetWindowMonitor(m_pWindow, NULL, 250, 250, E.m_Width, E.m_Height, GLFW_DONT_CARE);
+        }
 
-    //    m_FullScreen = !m_FullScreen;
-    //    m_UpdateResolution = true;
-    //}
+        m_FullScreen = !m_FullScreen;
+        m_UpdateResolution = true;
+    }
 };

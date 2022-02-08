@@ -6,7 +6,7 @@ namespace MONO_DEBUG
 {
 	MONO_EXPORT void Log(MonoString* string)
 	{
-		DEBUG_PRINT(mono_string_to_utf8(string));
+		ERROR_PRINT(mono_string_to_utf8(string));
 	}
 
 	//MONO_EXPORT void DrawLine()

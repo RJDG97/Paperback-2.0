@@ -411,15 +411,15 @@ namespace paperback::input
 		return WorldPoint;
 	}
 
-	glm::vec3 manager::GetViewportMousePosition() const noexcept
+	glm::vec3 manager::GetViewportMousePosition(glm::mat4 projection, glm::mat4 view) const noexcept
 	{
 		window_system* Window_System{ &PPB.GetSystem< window_system >() };
 		GLFWwindow* m_pWindow = Window_System->m_pWindow;
 		auto& WindowDetails = Window_System->E;
 
 		// Get x and y values
-		double X, Y;
-		glfwGetCursorPos(m_pWindow, &X, &Y);
+		double X{ static_cast<double>(Window_System->m_Width/2.0f) };
+		double Y{ static_cast<double>(Window_System->m_Height/2.0f) };
 		glm::vec2 viewport_min{ 0.0f, 0.0f };
 		glm::vec2 viewport_max{ Window_System->m_Width, Window_System->m_Height };
 
@@ -431,10 +431,10 @@ namespace paperback::input
 		// Find point in NDC
 		glm::vec4 NDCPoint = glm::vec4{ (2.f * (X - viewport_min.x)) / (viewport_max.x - viewport_min.x) - 1.f, 1.f - (2.f * (Y - viewport_min.y)) / (viewport_max.y - viewport_min.y), -1.f, 1.f };
 		// Find point in view
-		glm::vec4 ViewPoint = glm::inverse(cam::GetInstanced().GetProjection()) * NDCPoint;
+		glm::vec4 ViewPoint = glm::inverse(projection) * NDCPoint;
 		ViewPoint = glm::vec4{ ViewPoint.x, ViewPoint.y, -1.f, 0.f };
 		// Find point world
-		glm::vec3 WorldPoint = glm::inverse(cam::GetInstanced().GetView()) * ViewPoint;
+		glm::vec3 WorldPoint = glm::inverse(view) * ViewPoint;
 
 		return WorldPoint;
 	}

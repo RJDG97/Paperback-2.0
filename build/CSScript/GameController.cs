@@ -45,6 +45,19 @@ namespace CSScript
                 m_SFX.m_Trigger = true;
                 Player.TogglePlayers();
             }
+
+            //if (Input.IsKeyPress(Input.PB_G))
+            //{
+            //    if (m_JumpUnitPC.m_FPSMode)
+            //    {
+            //        CastRay(m_JumpID);
+            //    }
+
+            //    else if (m_PushUnitPC.m_FPSMode)
+            //    {
+            //        CastRay(m_PushID);
+            //    }
+            //}
         }
         public void Destroy()
         {
@@ -58,6 +71,17 @@ namespace CSScript
         }
         public void OnCollisionExit(UInt32 ID)
         {
+        }
+
+        private void CastRay(UInt32 id)
+        {
+            UInt32[] collided_ids = Tools.Raycast.rayaab(id);
+
+            foreach (UInt32 collided_id in collided_ids)
+            {
+                Name name = new Name(collided_id);
+                Debug.Log(name.m_Name);
+            }
         }
     }
 }

@@ -31,6 +31,18 @@ namespace CSScript
             }
         }
 
+        public Tools.MathLib.Vector3 m_Position
+        {
+            get
+            {
+                return getpos(m_Address);
+            }
+            set
+            {
+                setpos(m_Address, value.x, value.y, value.z);
+            }
+        }
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
@@ -39,5 +51,11 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void setactive(void* address, bool mass);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static Tools.MathLib.Vector3 getpos(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void setpos(void* address, float x, float y, float z);
     }
 }

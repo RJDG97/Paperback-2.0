@@ -207,7 +207,7 @@ namespace paperback::input
 	    glm::vec3 GetMousePosition() const noexcept;
 
 		PPB_INLINE
-		glm::vec3 GetViewportMousePosition() const noexcept;
+		glm::vec3 GetViewportMousePosition(glm::mat4 projection, glm::mat4 view) const noexcept;
 
 	    PPB_INLINE
 	    glm::vec3 GetViewportMousePosition( glm::vec2 viewport_min

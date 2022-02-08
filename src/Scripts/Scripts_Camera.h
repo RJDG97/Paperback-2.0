@@ -34,10 +34,29 @@ namespace MONO_CAMERA
 			reinterpret_cast<camera*>(address)->m_Active = value;
 	}
 
+	MONO_EXPORT paperback::Vector3f GetPos(void* address)
+	{
+		if (address)
+		{
+			glm::vec3 pos{ reinterpret_cast<camera*>(address)->m_Position };
+			return { pos.x, pos.y, pos.z };
+		}
+
+		return {};
+	}
+
+	MONO_EXPORT void SetPos(void* address, float x, float y, float z)
+	{
+		if (address)
+			reinterpret_cast<camera*>(address)->m_Position = {x, y, z};
+	}
+
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Camera::getaddress(uint)", &MONO_CAMERA::GetAddress);
 		mono_add_internal_call("CSScript.Camera::getactive(void*)", &MONO_CAMERA::GetActive);
 		mono_add_internal_call("CSScript.Camera::setactive(void*,bool)", &MONO_CAMERA::SetActive);
+		mono_add_internal_call("CSScript.Camera::getpos(void*)", &MONO_CAMERA::GetPos);
+		mono_add_internal_call("CSScript.Camera::setpos(void*,single,single,single)", &MONO_CAMERA::SetPos);
 	}
 }
