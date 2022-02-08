@@ -2,10 +2,13 @@
 #ifndef _PATHSYSTEM_H_
 #define _PATHSYSTEM_H_
 
+#define _USE_MATH_DEFINES
+
 #include "DebugSystem.h"
 #include "UISystem.h"
 #include "../Components/Path.h"
 #include "Math/Math_includes.h"
+#include <math.h>
 #include <algorithm>
 #include <map>
 
@@ -38,7 +41,7 @@ struct path_system : paperback::system::instance
 		Query_Paths.m_Must.AddFromComponents<path, transform>();
 		Query_Paths.m_NoneOf.AddFromComponents<prefab>();
 
-		Query_Units.m_Must.AddFromComponents<rigidforce, rigidbody, path_follower, transform, rotation>();
+		Query_Units.m_Must.AddFromComponents<path_follower, transform, offset>();
 		Query_Units.m_NoneOf.AddFromComponents<prefab>();
 	}
 
@@ -105,50 +108,29 @@ struct path_system : paperback::system::instance
 
 		if (m_MovePathFollowers)
 		{
-			ForEach(Search(Query_Units), [&](rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation) noexcept
+			ForEach(Search(Query_Units), [&](path_follower& PathFollower, transform& Transform, offset& Offset) noexcept
 			{
 				auto spline = splines.find(PathFollower.m_PathID);
 
 				if (spline != splines.end() && !PathFollower.m_PauseTravel)
 				{
-					if (PathFollower.m_TravelSpeed <= 0.0f)
-					{
-						Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
-					}
-
-					else if ((!PathFollower.m_Reversed && PathFollower.m_Distance >= spline->second.m_TotalLength ||
-							  PathFollower.m_Reversed && PathFollower.m_Distance <= 0.0f))
+					if ((!PathFollower.m_Reversed && PathFollower.m_Distance >= spline->second.m_TotalLength ||
+						 PathFollower.m_Reversed && PathFollower.m_Distance <= 0.0f))
 					{
 						PathFollower.m_FinishedTravelling = true;
 
 						if (PathFollower.m_BackAndForth)
 						{
 							PathFollower.m_Reversed = !PathFollower.m_Reversed;
-							Movement(spline->second, Rigidforce, Rigidbody, PathFollower, Transform, Rotation);
-						}
-
-						else if (Rigidforce.m_Momentum.Magnitude() < 0.1f)
-						{
-							Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
-						}
-
-						else
-						{
-							PathFollower.m_FinishedTravelling = false;
-							Movement(spline->second, Rigidforce, Rigidbody, PathFollower, Transform, Rotation);
+							Movement(spline->second, PathFollower, Transform, Offset);
 						}
 					}
 
 					else
 					{
 						PathFollower.m_FinishedTravelling = false;
-						Movement(spline->second, Rigidforce, Rigidbody, PathFollower, Transform, Rotation);
+						Movement(spline->second, PathFollower, Transform, Offset);
 					}
-				}
-
-				else if (PathFollower.m_PauseTravel)
-				{
-					Rigidforce.m_Momentum = { 0.0f, 0.0f, 0.0f };
 				}
 			});
 		}
@@ -156,19 +138,15 @@ struct path_system : paperback::system::instance
 		splines.clear();
 	}
 
-	void Movement(paperback::Spline& spline, rigidforce& Rigidforce, rigidbody& Rigidbody, path_follower& PathFollower, transform& Transform, rotation& Rotation)
+	void Movement(paperback::Spline& spline, path_follower& PathFollower, transform& Transform, offset& Offset)
 	{
 		float normalized_offset{ spline.GetNormalizedOffset(PathFollower.m_Distance) };
 
 		paperback::Vector3f destination{ spline.GetSplinePoint(normalized_offset).m_Point };
-		paperback::Vector3f gradient{ spline.GetSplineGradient(normalized_offset).Normalized() };
 		paperback::Vector3f direction{ (destination - Transform.m_Position) };
-		paperback::Vector3f norm_direction{ direction.Normalized() };
+		float speed_modifier = 1.5f + cosf(PathFollower.m_Distance / spline.m_TotalLength * 2 * M_PI + M_PI);
 
-		float temp{ direction.Magnitude() * direction.Magnitude()};
-		float speed_modifier{ std::min(1.0f, 1.0f / temp) };
-
-		Rigidforce.m_Momentum = direction * PathFollower.m_TravelSpeed;
+		Offset.m_PosOffset += direction;
 
 		if (PathFollower.m_Reversed)
 		{
@@ -176,7 +154,7 @@ struct path_system : paperback::system::instance
 
 			if (PathFollower.m_Distance < 0.0f)
 			{
-				PathFollower.m_Distance = 0.0f;
+				PathFollower.m_Distance = 0.001f;
 			}
 		}
 
@@ -187,7 +165,7 @@ struct path_system : paperback::system::instance
 
 			if (PathFollower.m_Distance > spline.m_TotalLength)
 			{
-				PathFollower.m_Distance = spline.m_TotalLength;
+				PathFollower.m_Distance = spline.m_TotalLength - 0.001f;
 			}
 		}
 
