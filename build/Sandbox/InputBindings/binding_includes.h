@@ -688,6 +688,20 @@ namespace paperback::input::binding
 
         END_INPUT_ACTION
     END_BINDING_CONSTRUCT
+
+
+    //-----------------------------------
+    //         Window Bindings
+    //-----------------------------------
+
+    BEGIN_BINDING_CONSTRUCT( Toggle_Fullscreen )
+        BEGIN_INPUT_ACTION
+
+            auto WinSystem = m_Coordinator.FindSystem<window_system>();
+            if ( WinSystem ) WinSystem->FullScreen();
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
 }
 
 #endif
