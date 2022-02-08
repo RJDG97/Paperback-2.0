@@ -222,8 +222,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("JumpToy", "../../resources/models/nui/JumpToy.nui");
 
 	//Buttons
-	m_Resources.Load3DMeshNUI("ButtonONN", "../../resources/models/nui/ButtonON.nui");
 	m_Resources.Load3DMeshNUI("ButtonOFF", "../../resources/models/nui/ButtonOFF.nui");
+	m_Resources.Load3DMeshNUI("ButtonONN", "../../resources/models/nui/ButtonON.nui");
 
 	//Wall&Floor
 	m_Resources.Load3DMeshNUI("Ceiling", "../../resources/models/nui/Ceiling.nui");
@@ -245,7 +245,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("BagClosed", "../../resources/models/nui/BagClosed.nui");
 
 
-
+	m_Resources.LoadTextures("ButtonOff", "../../resources/textures/ButtonOFF_BaseColour.dds", true);
 
 
 

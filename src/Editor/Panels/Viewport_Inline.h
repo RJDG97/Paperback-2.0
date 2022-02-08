@@ -98,6 +98,13 @@ void EditorViewport::ViewportMenuBar()
 
 	ImGui::SameLine();
 
+	std::reference_wrapper<bool> GammaBool = PPB.GetSystem< render_system >().m_bGamma;
+	ImGui::Checkbox(ICON_FA_LIGHTBULB, &GammaBool.get());
+
+	m_Imgui.ImGuiHelp("Toggle Gamma");
+
+	ImGui::SameLine();
+
 	ImGui::Text(" | ");
 
 	ImGui::SameLine();
@@ -115,7 +122,8 @@ void EditorViewport::ViewportMenuBar()
 			m_Imgui.m_Type = FileActivity::STOPBUTTON;
 	}
 
-	m_Imgui.ImGuiHelp("Play Current Scene");
+	m_Imgui.ImGuiHelp("Play/Stop Current Scene");
+
 	ImGui::End();
 }
 

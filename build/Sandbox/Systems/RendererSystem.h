@@ -21,6 +21,9 @@ struct render_system : paperback::system::instance
 	tools::query QueryText;
 	tools::query QueryCamera;
 
+	bool m_bGamma = true;
+
+
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
 		.m_pName = "render_system"
@@ -154,9 +157,8 @@ struct render_system : paperback::system::instance
 			});
 		}
 
-		bool gamma = true;
 
-		Renderer::GetInstanced().Render(objects, cam, gamma, uis, texts, m_Camera2D, &points);
+		Renderer::GetInstanced().Render(objects, cam, m_bGamma, uis, texts, m_Camera2D, &points);
 	}
 
 	// On Event Key / Mouse Pressed
