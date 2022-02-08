@@ -38,7 +38,8 @@ public:
 
 	// Render object
 	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, 
-				const Camera3D& Camera,
+				const Camera3D& SceneCamera,
+				const bool Gamma,
 				const std::map<float, std::vector<UIInfo>>& UIs,
 				const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts,
 				const Camera2D& UICamera,
@@ -89,7 +90,7 @@ private:
 	void ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera);
 	void BlurPass();
-	void CompositePass();
+	void CompositePass(const bool Gamma);
 	void MergePass();
 	void FinalPass();
 

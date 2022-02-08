@@ -154,7 +154,9 @@ struct render_system : paperback::system::instance
 			});
 		}
 
-		Renderer::GetInstanced().Render(objects, cam, uis, texts, m_Camera2D, &points);
+		bool gamma = true;
+
+		Renderer::GetInstanced().Render(objects, cam, gamma, uis, texts, m_Camera2D, &points);
 	}
 
 	// On Event Key / Mouse Pressed

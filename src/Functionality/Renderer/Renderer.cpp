@@ -558,7 +558,7 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const Camera3D& SceneCamera, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const Camera3D& SceneCamera, const bool Gamma, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
@@ -588,7 +588,7 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Ren
 	// Blur bright image
 	BlurPass();
 	// Merge blur and original image
-	CompositePass();
+	CompositePass(Gamma);
 
 	// Enable for UI and debug rendering
 	glEnable(GL_DEPTH_TEST);
@@ -1127,7 +1127,7 @@ void Renderer::BlurPass()
 	m_Resources.m_Shaders["Blur"].UnUse();
 }
 
-void Renderer::CompositePass()
+void Renderer::CompositePass(const bool Gamma)
 {
 	// Bind default frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_FinalBuffer.m_FrameBuffer[0]);
