@@ -33,7 +33,7 @@ struct camera_system : paperback::system::instance
         ForEach(Search(Query), [&](transform& Transform, camera& Camera) noexcept
         {
             // temp offset on y axis
-            glm::vec3 position = glm::vec3{ Transform.m_Position.x, Transform.m_Position.y + 0.5f, Transform.m_Position.z };
+            glm::vec3 position = glm::vec3{ Transform.m_Position.x + Camera.m_Offset.x, Transform.m_Position.y + Camera.m_Offset.y, Transform.m_Position.z + Camera.m_Offset.z };
 
             Camera.UpdateView(position);
         });

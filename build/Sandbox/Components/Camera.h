@@ -75,10 +75,11 @@ struct camera
 	glm::vec3 m_Up = glm::vec3{ 0.f, 1.f, 0.f };
 	glm::vec3 m_Front;
 
+	paperback::Vector3f m_Offset = { 0.f, 0.f, 0.f };
 	float m_Radius = 1.f;
 	float m_Theta = 90.f;
 	float m_Azimuth = 0.f;
-
+	
 	bool m_Active = true;
 };
 
@@ -89,6 +90,7 @@ namespace RR_Camera
 		rttr::registration::class_<camera>(camera::typedef_v.m_pName)
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("Active", &camera::m_Active)(rttr::policy::prop::as_reference_wrapper)
+			.property("Camera Offset", &camera::m_Offset)(rttr::policy::prop::as_reference_wrapper)
 			.property("Radius", &camera::m_Radius)(rttr::policy::prop::as_reference_wrapper)
 			.property("Theta", &camera::m_Theta)(rttr::policy::prop::as_reference_wrapper)
 			.property("Azimuth", &camera::m_Azimuth)(rttr::policy::prop::as_reference_wrapper);

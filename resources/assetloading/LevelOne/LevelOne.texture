@@ -1,6 +1,5 @@
 {
     "ToggleCardMode": "../../resources/textures/Cards/ToggleCardMode.dds 0",
-    "OwlClock": "../../resources/textures/UI/OwlClock.dds 0",
     "NoButton_Unselected": "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected_Mirrored.dds 0",
     "ResumeGameButton_Unselected": "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Unselected_Mirrored.dds 0",
     "QuitToMainMenuButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds 0",
