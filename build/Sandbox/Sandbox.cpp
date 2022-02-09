@@ -230,6 +230,7 @@ void InitializeGame()
             auto PushPull_Action             = PPB.RegisterBinding<paperback::input::binding::PushPull_Action>();
             auto Toggle_FPSAction            = PPB.RegisterBinding<paperback::input::binding::Toggle_FPS_Action>();
             auto Toggle_Fullscreen           = PPB.RegisterBinding<paperback::input::binding::Toggle_Fullscreen>();
+            auto Toggle_Players              = PPB.RegisterBinding<paperback::input::binding::Toggle_Players>();
 
 
 
@@ -255,8 +256,10 @@ void InitializeGame()
             // Gamepad Bindings
             PPB.AssignBindingToAction( Gamepad_Movement,  GLFW_GAMEPAD_BUTTON_LEFT_THUMB,  input::device::type::id::GAMEPAD );
             PPB.AssignBindingToAction( Gamepad_Rotate,    GLFW_GAMEPAD_BUTTON_RIGHT_THUMB, input::device::type::id::GAMEPAD );
-            PPB.AssignBindingToAction( Jump_Action,       GLFW_GAMEPAD_BUTTON_A,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( ToggleLift_Action, GLFW_GAMEPAD_BUTTON_A,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Jump_Action,       GLFW_GAMEPAD_BUTTON_B,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( ToggleLift_Action, GLFW_GAMEPAD_BUTTON_B,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Toggle_FPSAction,  GLFW_GAMEPAD_BUTTON_A,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Toggle_Players,    GLFW_GAMEPAD_BUTTON_Y,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
         }
     }
     // Set Window maximized initially
