@@ -2,18 +2,18 @@
 
 #include "Math/Vector3f.h"
 
-#define BEGIN_FOR_EVERY_CELL( Range, GridSize )                                                                                                                                    \
-    for ( int x = Range.m_Min.x; x < Range.m_Max.x || ( x > Range.m_Max.x && x - GridSize < Range.m_Max.x ); x += GridSize, x = x > Range.m_Max.x ? Range.m_Max.x : x )            \
-    {                                                                                                                                                                              \
-    	for ( int y = Range.m_Min.y; y < Range.m_Max.y || ( y > Range.m_Max.y && y - GridSize < Range.m_Max.y ); y += GridSize, y = y > Range.m_Max.y ? Range.m_Max.y : y )        \
-    	{                                                                                                                                                                          \
-    		for ( int z = Range.m_Min.z; z < Range.m_Max.z || ( z > Range.m_Max.z && z - GridSize < Range.m_Max.z ); z += GridSize, z = z > Range.m_Max.z ? Range.m_Max.z : z )    \
+#define BEGIN_FOR_EVERY_CELL( Range, GridSize )                                                                                                                                              \
+    for ( int x = Range.m_Min.x; x < Range.m_Max.x || ( x > Range.m_Max.x && x - (int)GridSize < Range.m_Max.x ); x += (int)GridSize, x = x > Range.m_Max.x ? Range.m_Max.x : x )            \
+    {                                                                                                                                                                                        \
+    	for ( int y = Range.m_Min.y; y < Range.m_Max.y || ( y > Range.m_Max.y && y - (int)GridSize < Range.m_Max.y ); y += (int)GridSize, y = y > Range.m_Max.y ? Range.m_Max.y : y )        \
+    	{                                                                                                                                                                                    \
+    		for ( int z = Range.m_Min.z; z < Range.m_Max.z || ( z > Range.m_Max.z && z - (int)GridSize < Range.m_Max.z ); z += (int)GridSize, z = z > Range.m_Max.z ? Range.m_Max.z : z )    \
     		{
                 // All Internal Code Goes Here
-                #define END_FOR_EVERY_CELL                                                                                                                                         \
-    		}                                                                                                                                                                      \
-    	}                                                                                                                                                                          \
-    }                                                                                                                                                                              \
+                #define END_FOR_EVERY_CELL                                                                                                                                                   \
+    		}                                                                                                                                                                                \
+    	}                                                                                                                                                                                    \
+    }
     
 
 PPB_INLINE

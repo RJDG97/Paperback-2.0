@@ -16,6 +16,23 @@ namespace CSScript
         PlayerController m_PushUnitPC;
         Sound  m_SFX;
 
+        enum Ability
+        {
+            STOP_MOVING_PLATFORM,
+            GROW,
+            SHRINK
+        };
+
+        Ability m_Current_Ability = Ability.STOP_MOVING_PLATFORM;
+        float m_ScaleFactor = 1.5f;
+
+        enum PushableState
+        {
+            SHRUNK = 0,
+            NORMAL,
+            GROWN
+        };
+
         public static GameController getInst()
         {
             return new GameController();
@@ -46,7 +63,7 @@ namespace CSScript
                 Player.TogglePlayers();
             }
 
-            if (Input.IsKeyPress(Input.PB_G))
+            if (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1))
             {
                 if (m_JumpUnitPC.m_FPSMode)
                 {
@@ -58,7 +75,16 @@ namespace CSScript
                     CastRay(m_PushID);
                 }
             }
+
+            if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
+            {
+                if (Input.IsKeyPress(Input.PB_TAB))
+                {
+                    m_Current_Ability = (Ability)(((uint)++m_Current_Ability) % 3);
+                }
+            }
         }
+
         public void Destroy()
         {
         }
@@ -79,22 +105,62 @@ namespace CSScript
 
             foreach (UInt32 collided_id in collided_ids)
             {
-                Name name = new Name(collided_id);
-                
-                if (name.m_Name == "Moving Platform")
+                switch (m_Current_Ability)
                 {
-                    PathFollower path_follower = new PathFollower(collided_id);
-                    path_follower.m_PauseTravel = true;
-                }
+                    case Ability.STOP_MOVING_PLATFORM:
+                    {
+                        Name name = new Name(collided_id);
 
-                if (Tools.Tag.IsPushable(collided_id))
-                {
-                    Scale scale = new Scale(collided_id);
-                    scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * 1.5f, scale.m_Value.y * 1.5f, scale.m_Value.z * 1.5f);
+                        if (name.m_Name == "Moving Platform")
+                        {
+                            PathFollower path_follower = new PathFollower(collided_id);
+                            path_follower.m_PauseTravel = true;
+                        }
 
-                    BoundingBox bounding_box = new BoundingBox(collided_id);
-                    bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x * 1.5f, bounding_box.Min.y * 1.5f, bounding_box.Min.z * 1.5f);
-                    bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x * 1.5f, bounding_box.Max.y * 1.5f, bounding_box.Max.z * 1.5f);
+                        break;
+                    }
+
+                    case Ability.GROW:
+                    {
+                        if (Tools.Tag.IsPushable(collided_id))
+                        {
+                            Pushable pushable = new Pushable(collided_id);
+
+                            if (pushable.m_State != ((uint)PushableState.GROWN))
+                            {
+                                Scale scale = new Scale(collided_id);
+                                scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_ScaleFactor, scale.m_Value.y * m_ScaleFactor, scale.m_Value.z * m_ScaleFactor);
+
+                                BoundingBox bounding_box = new BoundingBox(collided_id);
+                                bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x * m_ScaleFactor, bounding_box.Min.y * m_ScaleFactor, bounding_box.Min.z * m_ScaleFactor);
+                                bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x * m_ScaleFactor, bounding_box.Max.y * m_ScaleFactor, bounding_box.Max.z * m_ScaleFactor);
+                                pushable.m_State = ++pushable.m_State;
+                            }
+                        }
+
+                        break;
+                    }
+
+                    case Ability.SHRINK:
+                    {
+                        if (Tools.Tag.IsPushable(collided_id))
+                        {
+                            Pushable pushable = new Pushable(collided_id);
+
+                            if (pushable.m_State != ((uint)PushableState.SHRUNK))
+                            {
+                                Scale scale = new Scale(collided_id);
+                                scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);
+
+                                BoundingBox bounding_box = new BoundingBox(collided_id);
+                                bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x / m_ScaleFactor, bounding_box.Min.y / m_ScaleFactor, bounding_box.Min.z / m_ScaleFactor);
+                                bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x / m_ScaleFactor, bounding_box.Max.y / m_ScaleFactor, bounding_box.Max.z / m_ScaleFactor);
+                                pushable.m_State = --pushable.m_State;
+                            }
+                        }
+
+                        break;
+                    }
                 }
             }
         }

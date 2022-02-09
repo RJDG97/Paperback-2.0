@@ -3,6 +3,59 @@
 #ifndef PPB_INPUT_ACTION
 #define PPB_INPUT_ACTION
 
+
+#define BEGIN_QUERY_VALID_INPUT_BINDINGS( Input_Binding_List, Return_List )                      \
+    for ( size_t Pairing = 0, max = Input_Binding_List.size(); Pairing < max; ++Pairing )        \
+    {                                                                                            \
+        switch ( static_cast<paperback::input::action::KeyPairing>( Pairing ) )                  \
+        {                                                                                        \
+            case paperback::input::action::KeyPairing::PPB_DEFAULT_KEY:                          \
+            {                                                                                    \
+                for ( const auto& Bind : Input_Binding_List[Pairing] )                           \
+                    if ( Bind != settings::invalid_index_v )                                     \
+                        Return_List.push_back( Bind );                                           \
+                break;                                                                           \
+            }                                                                                    \
+            case paperback::input::action::KeyPairing::PPB_SHIFT_KEY:                            \
+            {                                                                                    \
+                if ( PPB.IsKeyPressDown( GLFW_KEY_LEFT_SHIFT ) )                                 \
+                {                                                                                \
+                    for ( const auto& Bind : Input_Binding_List[Pairing] )                       \
+                        if ( Bind != settings::invalid_index_v )                                 \
+                            Return_List.push_back( Bind );                                       \
+                }                                                                                \
+                break;                                                                           \
+            }                                                                                    \
+            case paperback::input::action::KeyPairing::PPB_CTRL_KEY:                             \
+            {                                                                                    \
+                if ( PPB.IsKeyPressDown( GLFW_KEY_LEFT_CONTROL ) )                               \
+                {                                                                                \
+                    for ( const auto& Bind : Input_Binding_List[Pairing] )                       \
+                        if ( Bind != settings::invalid_index_v )                                 \
+                            Return_List.push_back( Bind );                                       \
+                }                                                                                \
+                break;                                                                           \
+            }                                                                                    \
+            case paperback::input::action::KeyPairing::PPB_ALT_KEY:                              \
+            {                                                                                    \
+                if ( PPB.IsKeyPressDown( GLFW_KEY_LEFT_ALT ) )                                   \
+                {                                                                                \
+                    for ( const auto& Bind : Input_Binding_List[Pairing] )                       \
+                        if ( Bind != settings::invalid_index_v )                                 \
+                            Return_List.push_back( Bind );                                       \
+                }                                                                                \
+                break;                                                                           \
+            }                                                                                    \
+            case paperback::input::action::KeyPairing::PPB_CMD_KEY:                              \
+            {                                                                                    \
+                break;                                                                           \
+            }
+
+#define END_QUERY_VALID_INPUT_BINDINGS                                                           \
+        }                                                                                        \
+    }
+
+
 namespace paperback::input::action
 {
     namespace type

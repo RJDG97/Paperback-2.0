@@ -6,11 +6,7 @@
 namespace paperback::input::action
 {
     instance::instance( void ) noexcept
-    {
-        //m_PressedBindingGuids.fill( settings::invalid_index_v );
-        //m_ContinuousBindingGuids.fill( settings::invalid_index_v );
-        //m_ReleasedBindingGuids.fill( settings::invalid_index_v );
-    }
+    { }
 
 
     //-----------------------------------
@@ -26,26 +22,23 @@ namespace paperback::input::action
         {
             case action::BroadcastStatus::PRESSED:
             {
-                for ( const auto& Binds : m_PressedBindingGuids )
-                for ( const auto& Bind : Binds )
-                    if ( Bind != settings::invalid_index_v )
-                        List.push_back( Bind );
+                BEGIN_QUERY_VALID_INPUT_BINDINGS( m_PressedBindingGuids, List )
+                END_QUERY_VALID_INPUT_BINDINGS
+
                 break;
             }
             case action::BroadcastStatus::CONTINUOUS:
             {
-                for ( const auto& Binds : m_ContinuousBindingGuids )
-                for ( const auto& Bind : Binds )
-                    if ( Bind != settings::invalid_index_v )
-                        List.push_back( Bind );
+                BEGIN_QUERY_VALID_INPUT_BINDINGS( m_ContinuousBindingGuids, List )
+                END_QUERY_VALID_INPUT_BINDINGS
+
                 break;
             }
             case action::BroadcastStatus::RELEASED:
             {
-                for ( const auto& Binds : m_ReleasedBindingGuids )
-                for ( const auto& Bind : Binds )
-                    if ( Bind != settings::invalid_index_v )
-                        List.push_back( Bind );
+                BEGIN_QUERY_VALID_INPUT_BINDINGS( m_ReleasedBindingGuids, List )
+                END_QUERY_VALID_INPUT_BINDINGS
+
                 break;
             }
         }

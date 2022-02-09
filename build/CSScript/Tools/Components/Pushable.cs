@@ -9,20 +9,25 @@ using System.Runtime.CompilerServices;
 
 namespace CSScript
 {
-    public unsafe class AABB
+    public unsafe class Pushable
     {
         private void* m_Address;
+        private UInt32 m_ID;
 
-        public AABB(UInt32 id)
+        public Pushable(UInt32 id)
         {
             m_Address = getaddress(id);
         }
 
-        public int m_Collided
+        public UInt32 m_State
         {
             get
             {
-                return getcollided(m_Address);
+                return getstate(m_Address);
+            }
+            set
+            {
+                setstate(m_Address, value);
             }
         }
 
@@ -30,6 +35,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static int getcollided(void* address);
+        private extern static UInt32 getstate(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void setstate(void* address, UInt32 state);
     }
 }

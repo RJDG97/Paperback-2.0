@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Animator
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Animator(UInt32 id)
         {

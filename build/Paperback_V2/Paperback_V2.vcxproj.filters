@@ -603,6 +603,9 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Tag.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_Pushable.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

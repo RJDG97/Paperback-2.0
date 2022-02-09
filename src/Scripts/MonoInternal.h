@@ -19,6 +19,7 @@
 #include "Scripts/Scripts_Mass.h"
 #include "Scripts/Scripts_Rigidbody.h"
 #include "Scripts/Scripts_Rigidforce.h"
+#include "Scripts/Scripts_Pushable.h"
 #include "Scripts/Scripts_Sound.h"
 #include "Scripts/Scripts_Sphere.h"
 #include "Scripts/Scripts_Text.h"
@@ -63,6 +64,7 @@ namespace MONO_INTERNALS
 		MONO_PARENT::AddInternalCall();
 		MONO_ELEVATOR::AddInternalCall();
 		MONO_CAMERA::AddInternalCall();
+		MONO_PUSHABLE::AddInternalCall();
 		MONO_PLAYERCONTROLLER::AddInternalCall();
 	}
 }
