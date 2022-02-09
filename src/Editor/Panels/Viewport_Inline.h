@@ -90,9 +90,9 @@ void EditorViewport::ViewportMenuBar()
 
 	ImGui::SameLine();
 
-	std::reference_wrapper<bool> TempBool = PPB.GetSystem< debug_system >().m_IsDebug;
+	std::reference_wrapper<bool> DebugBool = PPB.GetSystem< debug_system >().m_IsDebug;
 
-	ImGui::Checkbox(ICON_FA_WRENCH, &TempBool.get());
+	ImGui::Checkbox(ICON_FA_WRENCH, &DebugBool.get());
 
 	m_Imgui.ImGuiHelp("Toggle Debug Lines");
 
@@ -102,6 +102,15 @@ void EditorViewport::ViewportMenuBar()
 	ImGui::Checkbox(ICON_FA_LIGHTBULB, &GammaBool.get());
 
 	m_Imgui.ImGuiHelp("Toggle Gamma");
+
+	ImGui::SameLine();
+
+	if (ImGui::Button(ICON_FA_RETWEET))
+	{
+		Mono::GetInstanced().UpdateDLL();
+	}
+
+	m_Imgui.ImGuiHelp("Toggle Hot Reloading");
 
 	ImGui::SameLine();
 
