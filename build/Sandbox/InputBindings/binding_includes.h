@@ -149,7 +149,7 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, animator, animator >();
+            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, animator >();
             Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
@@ -308,6 +308,43 @@ namespace paperback::input::binding
 
                                     RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
                                 }
+
+                                // Currently Pushing / Pulling a select Entity
+                                if ( Interaction && Interaction->m_bPushOrPull && 
+                                     Interaction->m_InteractableGID != paperback::settings::invalid_index_v )
+                                {
+                                    // Release Push / Pull Entity
+                                    if ( Axes.x > 0.4f || Axes.x < -0.4f )
+                                    {
+                                        // Find Entity That's Pushable Currently
+                                        const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
+
+                                        if ( Info.m_pArchetype )
+                                        {
+                                            // Reset Interactable Object Push Status
+                                            auto [ Mass, RF ] = Info.m_pArchetype->FindComponents<mass, rigidforce>( Info.m_PoolDetails );
+                                            if ( Mass ) Mass->m_Mass = 0.0f;
+                                            if ( RF ) RF->m_Momentum = paperback::Vector3f{};
+
+                                            // Reset Player Status
+                                            Interaction->m_InteractableGID = paperback::settings::invalid_index_v;
+                                            Interaction->m_bPushOrPull     = false;
+                                        }
+                                    }
+                                    // Update Push / Pull Entity
+                                    else
+                                    {
+                                        // Find Entity That's Pushable Currently
+                                        const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
+
+                                        if ( Info.m_pArchetype )
+                                        {
+                                            // Reset Interactable Object Push Status
+                                            auto InterRF = Info.m_pArchetype->FindComponent<rigidforce>( Info.m_PoolDetails );
+                                            if ( InterRF ) InterRF->m_Momentum = RF.m_Momentum;
+                                        }
+                                    }
+                                }
                             }
 
 
@@ -325,10 +362,36 @@ namespace paperback::input::binding
 
                                 RF.m_Momentum += Normalized2 * Controller.m_MovementForce * Dt;
                             }
+
+
+
+                            /****************************/
+                            //     Update Animations
+                            /****************************/
+                            if ( Controller.m_OnGround && ( Axes.x > paperback::settings::gamepad_axis_ignore_v || Axes.x < -paperback::settings::gamepad_axis_ignore_v || 
+                                                            Axes.y > paperback::settings::gamepad_axis_ignore_v || Axes.y < -paperback::settings::gamepad_axis_ignore_v ) )
+                            {
+                                // Strong Unit
+                                if ( Interaction )
+                                {
+                                    if ( Interaction->m_bPushOrPull ) Animator.m_CurrentAnimationName = "StrongToy_Armature|PushWalk";
+                                    else                              Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
+
+                                    auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                    if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
+                                }
+                                // Jump Unit
+                                else
+                                {
+                                    Animator.m_CurrentAnimationName = "Armature|Walk";
+
+                                    auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                                    if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                                }
+
+                                Animator.m_PlayOnce = false;
+                            }
                         }
-
-
-                        // Yet To Add/Test Animation For Gamepad
                     });
                 }
             }
@@ -684,6 +747,49 @@ namespace paperback::input::binding
                         }
                     }
                 });
+            }
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
+
+    BEGIN_BINDING_CONSTRUCT( Toggle_Players )
+        BEGIN_INPUT_ACTION
+
+            // TODO - Update Query Initialization To Constructor Call
+            tools::query Query;
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
+		    Query.m_NoneOf.AddFromComponents< prefab >();
+
+            bool ValidSwap = true;
+
+            if ( !m_Coordinator.GetPauseBool() )
+            {
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera ) -> bool
+                {
+                    // FPS Mode Is Active - Do Not Allow Player Swap
+                    if ( Controller.m_PlayerStatus && Controller.m_FPSMode && Camera.m_Active )
+                    {
+                        ValidSwap = false;
+                        return true;
+                    }
+                    return false;
+                });
+
+                if ( ValidSwap )
+                {
+                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
+                    {
+                        if ( Controller.m_PlayerStatus && Camera.m_Active )
+                        {
+                            Controller.m_PlayerStatus = Camera.m_Active = false;
+                        }
+                        else if ( !Controller.m_PlayerStatus && !Camera.m_Active )
+                        {
+                            Controller.m_PlayerStatus = Camera.m_Active = true;
+                        }
+                    });
+                }
             }
 
         END_INPUT_ACTION

@@ -15,8 +15,8 @@ namespace paperback::input
             PPB_INLINE
             bool Valid( void ) noexcept
             {
-                if ( x < 0.05f && x > -0.05f ) x = 0.0f;
-                if ( y < 0.05f && x > -0.05f ) y = 0.0f;
+                if ( x < paperback::settings::gamepad_axis_ignore_v && x > -paperback::settings::gamepad_axis_ignore_v ) x = 0.0f;
+                if ( y < paperback::settings::gamepad_axis_ignore_v && y > -paperback::settings::gamepad_axis_ignore_v ) y = 0.0f;
 
                 if ( x != 0.0f || y != 0.0f ) return true;
                 else                          return false;

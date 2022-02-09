@@ -14,5 +14,6 @@ namespace paperback::settings
 	constexpr auto              invalid_controller_v                = GLFW_JOYSTICK_LAST + 1;
 	constexpr auto              velocity_axis_cap_v                 = 2.6f;
 	constexpr auto              momentum_axis_cap_v                 = 25.0f;
+	constexpr auto              gamepad_axis_ignore_v               = 0.2f;
 	constexpr static u32        invalid_delete_index_v              = 0xffffffffu >> 1;
 }
