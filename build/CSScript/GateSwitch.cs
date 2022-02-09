@@ -63,7 +63,6 @@ namespace CSScript
         {
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             {
-                Debug.Log("WAOW");
                 m_Sound.m_Trigger = true;
                 m_ChildBoundingBox.Min = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                 m_ChildBoundingBox.Max = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
@@ -80,7 +79,6 @@ namespace CSScript
         {
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             {
-                Debug.Log("EW");
                 m_ChildBoundingBox.Min = m_InitialBoundingBoxMin;
                 m_ChildBoundingBox.Max = m_InitialBoundingBoxMax;
                 m_ChildAnimator.m_Reversed = true;
