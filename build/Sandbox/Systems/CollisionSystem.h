@@ -46,7 +46,8 @@ struct collision_system : paperback::system::pausable_instance
 	}
 
     PPB_FORCEINLINE
-    void PreUpdate(void) noexcept
+    //void PreUpdate(void) noexcept
+    void Update(void) noexcept
     {
         ForEach(Search(m_Query), [&](paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox, sphere* Sphere, mass* m1, slope* Slope1, bounding_volume* BV) noexcept
         {
@@ -250,9 +251,9 @@ struct collision_system : paperback::system::pausable_instance
     }
 
 
-    PPB_FORCEINLINE
+    /*PPB_FORCEINLINE
     void Update(void) noexcept
     {
 
-    }
+    }*/
 };
