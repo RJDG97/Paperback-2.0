@@ -28549,7 +28549,7 @@
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
                         "Sound Event ID": 0,
-                        "3D Sound": true,
+                        "3D Sound": false,
                         "Triggerable": true,
                         "Trigger": false
                     },
@@ -28667,7 +28667,7 @@
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
                         "Sound Event ID": 0,
-                        "3D Sound": true,
+                        "3D Sound": false,
                         "Triggerable": true,
                         "Trigger": false
                     },
@@ -28785,7 +28785,7 @@
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
                         "Sound Event ID": 0,
-                        "3D Sound": true,
+                        "3D Sound": false,
                         "Triggerable": true,
                         "Trigger": false
                     },
@@ -28866,6 +28866,7 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             17008353085049151909,
+                            14302600151082817442,
                             9604788041699812520,
                             5691439207370049121,
                             3617555656175080491,
