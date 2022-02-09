@@ -20,6 +20,8 @@ namespace CSScript
         Transform m_JumpUnitTransform;
         Transform m_PushUnitTransform;
 
+        int m_NumPassengers;
+
         public static MovingPlatform getInst()
         {
             return new MovingPlatform();
@@ -48,9 +50,17 @@ namespace CSScript
             {
                 m_PushUnitTransform = new Transform((UInt32)m_PushUnitID);
             }
+
+            m_NumPassengers = 0;
         }
+
         public void Update(float dt)
         {
+            if (m_NumPassengers > 0)
+            {
+                m_PrevPlatformPos = m_ParentTransform.m_Position;
+                m_NumPassengers = 0;
+            }
         }
         public void Destroy()
         {
@@ -58,28 +68,41 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            m_PrevPlatformPos = m_ParentTransform.m_Position;
+            if (ID == m_JumpUnitID)
+            {
+                ++m_NumPassengers;
+            }
+
+            else if (ID == m_PushUnitID)
+            {
+                ++m_NumPassengers;
+            }
+
+            else if (Tools.Tag.IsPushable(ID))
+            {
+                ++m_NumPassengers;
+            }
         }
 
         public void OnCollisionStay(UInt32 ID)
         {
             if (ID == m_JumpUnitID)
             {
-                m_JumpUnitTransform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
-                m_PrevPlatformPos = m_ParentTransform.m_Position;
+                m_JumpUnitTransform.m_Position += 0.5f * (m_ParentTransform.m_Position - m_PrevPlatformPos);
+                ++m_NumPassengers;
             }
 
             else if (ID == m_PushUnitID)
             {
-                m_PushUnitTransform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
-                m_PrevPlatformPos = m_ParentTransform.m_Position;
+                m_PushUnitTransform.m_Position += 0.5f * (m_ParentTransform.m_Position - m_PrevPlatformPos);
+                ++m_NumPassengers;
             }
 
             else if (Tools.Tag.IsPushable(ID))
             {
                 Transform box_transform = new Transform(ID);
-                box_transform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
-                m_PrevPlatformPos = m_ParentTransform.m_Position;
+                box_transform.m_Position += 0.5f * (m_ParentTransform.m_Position - m_PrevPlatformPos);
+                ++m_NumPassengers;
             }
         }
 

@@ -26,6 +26,8 @@ namespace CSScript.Tools
 
             public static Vector3 operator +(Vector3 a, Vector3 b)
             => new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
+            public static Vector3 operator *(float a, Vector3 b)
+            => new Vector3(a * b.x, a * b.y, a * b.z);
 
             public float SquaredDistance(Vector3 point_a, Vector3 point_b)
             {

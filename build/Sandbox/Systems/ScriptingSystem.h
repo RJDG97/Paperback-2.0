@@ -76,7 +76,7 @@ struct scripting_system : paperback::system::pausable_instance
 
 				for (auto& to_update : entry_found->second.m_Info)
 				{
-					to_update.second->Update(m_Coordinator.DeltaTime());
+					to_update.second->Update(m_Coordinator.DeltaTime()); 
 				}
 			}
 
