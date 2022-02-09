@@ -60,7 +60,7 @@ namespace CSScript
             if (!m_ElevatorAnimator.m_PauseAnimation) //Not paused, need to continue moving the bounding box
             {
                 m_PlatformOffset.m_PosOffset = new Tools.MathLib.Vector3(m_PlatformOffset.m_PosOffset.x ,
-                                                                         m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0001f * m_PlatformSpeed,
+                                                                         m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0f * m_PlatformSpeed,
                                                                          m_PlatformOffset.m_PosOffset.z);
             }
         }
