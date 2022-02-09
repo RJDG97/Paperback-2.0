@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 205
+                "EntityHead": 180
             }
         },
         {
@@ -2956,7 +2956,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 44.900001525878909,
+                            "x": 45.29999923706055,
                             "y": 3.5,
                             "z": -19.0
                         }
@@ -18172,7 +18172,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 44.400001525878909,
+                            "x": 44.5,
                             "y": 3.5,
                             "z": -19.0
                         }
@@ -18287,7 +18287,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 44.400001525878909,
+                            "x": 44.5,
                             "y": 3.5,
                             "z": -16.600000381469728
                         }
@@ -18402,7 +18402,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 44.900001525878909,
+                            "x": 45.29999923706055,
                             "y": 3.5,
                             "z": -16.600000381469728
                         }
@@ -18513,70 +18513,70 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            18,
-                            281,
-                            146,
                             130,
                             265,
                             66,
+                            18,
+                            281,
+                            146,
                             123,
                             59,
-                            125,
                             61,
-                            126,
+                            125,
                             62,
-                            127,
+                            126,
                             63,
-                            128,
-                            271,
+                            127,
                             64,
-                            314,
-                            129,
+                            271,
+                            128,
                             65,
-                            312,
-                            135,
-                            71,
-                            199,
+                            129,
+                            314,
                             376,
-                            72,
+                            199,
+                            71,
+                            135,
+                            312,
                             200,
-                            73,
+                            72,
                             201,
-                            138,
-                            273,
-                            74,
+                            73,
                             202,
-                            91,
-                            27,
-                            284,
+                            74,
+                            273,
+                            138,
                             155,
-                            289,
-                            90,
-                            26,
+                            284,
+                            27,
+                            91,
                             154,
-                            89,
-                            25,
-                            274,
+                            26,
+                            90,
+                            289,
                             153,
-                            24,
-                            359,
+                            274,
+                            25,
+                            89,
                             152,
-                            92,
-                            28,
-                            283,
+                            359,
+                            24,
                             156,
-                            22,
-                            285,
+                            283,
+                            28,
+                            92,
                             150,
-                            270,
-                            149,
+                            285,
+                            22,
                             21,
-                            148,
-                            275,
+                            149,
+                            270,
                             20,
+                            275,
+                            148,
                             93,
-                            293,
                             94,
+                            293,
                             95,
                             97,
                             98,
@@ -21715,13 +21715,13 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            343,
-                            136,
                             144,
+                            136,
+                            343,
                             308,
-                            325,
-                            126,
                             134,
+                            126,
+                            325,
                             82,
                             322,
                             153,
@@ -23272,14 +23272,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            198,
                             22,
+                            198,
                             279,
-                            28,
-                            20,
                             148,
-                            149,
+                            20,
+                            28,
                             21,
+                            149,
                             301,
                             302,
                             117,
@@ -23574,14 +23574,10 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            182,
                             341,
                             335,
-                            336,
                             368,
-                            338,
-                            339,
-                            342
+                            338
                         ]
                     },
                     "Rotation": {
@@ -23646,7 +23642,6 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            181,
                             367
                         ]
                     },
@@ -23721,11 +23716,7 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            180,
-                            334,
-                            366,
-                            337,
-                            340
+                            366
                         ]
                     },
                     "Rotation": {
@@ -23827,451 +23818,6 @@
                         17639936325783395793,
                         11993994361337810638
                     ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 180
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Checkpoint",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            181,
-                            182
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.5,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 10.699999809265137,
-                            "y": 1.3240000009536744,
-                            "z": 6.039000034332275
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Checkpoint"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.6000000238418579,
-                            "y": -0.5,
-                            "z": -1.2000000476837159
-                        },
-                        "Max Point": {
-                            "x": 0.6000000238418579,
-                            "y": 0.5,
-                            "z": 1.2000000476837159
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            14302600151082817442,
-                            3617555656175080491,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 177
-                    },
-                    "Name": {
-                        "Name": "Checkpoint1"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 334
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Checkpoint",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            335,
-                            336
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.5,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 1.600000023841858,
-                            "y": 0.8240000009536743,
-                            "z": 5.439000129699707
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Checkpoint"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.6000000238418579,
-                            "y": -0.5,
-                            "z": -1.2000000476837159
-                        },
-                        "Max Point": {
-                            "x": 0.6000000238418579,
-                            "y": 0.5,
-                            "z": 1.2000000476837159
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            14302600151082817442,
-                            3617555656175080491,
-                            16415915133639986106,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 177
-                    },
-                    "Name": {
-                        "Name": "Checkpoint2"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 337
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Checkpoint",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            338,
-                            339
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.5,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -12.699999809265137,
-                            "y": -0.5759999752044678,
-                            "z": -4.660999774932861
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Checkpoint"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.2000000476837159,
-                            "y": -0.5,
-                            "z": -0.6000000238418579
-                        },
-                        "Max Point": {
-                            "x": 1.2000000476837159,
-                            "y": 0.5,
-                            "z": 0.6000000238418579
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            14302600151082817442,
-                            3617555656175080491,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 177
-                    },
-                    "Name": {
-                        "Name": "Checkpoint3"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 340
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Checkpoint",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            341,
-                            342
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.5,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 16.899999618530275,
-                            "y": 10.699999809265137,
-                            "z": -10.5
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Checkpoint"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.2000000476837159,
-                            "y": -0.5,
-                            "z": -0.6000000238418579
-                        },
-                        "Max Point": {
-                            "x": 1.2000000476837159,
-                            "y": 0.5,
-                            "z": 0.6000000238418579
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            14302600151082817442,
-                            3617555656175080491,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 177
-                    },
-                    "Name": {
-                        "Name": "Checkpoint4"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
                 },
                 {
                     "Entity": {
@@ -24403,7 +23949,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 182
+                        "Global Index": 368
                     },
                     "Mesh": {
                         "Model": "SquareBlock_Blue",
@@ -24419,411 +23965,7 @@
                         }
                     },
                     "Child": {
-                        "Parent GID": 180
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.5
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 10.699999809265137,
-                            "y": 1.3240000009536744,
-                            "z": 5.539000034332275
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 178
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 181
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Red",
-                        "Texture": "CubeBlock_Red_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 180
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.8999999761581421
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 10.699999809265137,
-                            "y": 1.3240000009536744,
-                            "z": 6.939000129699707
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            9604788041699812520,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 179
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 335
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Red",
-                        "Texture": "CubeBlock_Red_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 334
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.6000000238418579
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 1.600000023841858,
-                            "y": 0.8240000009536743,
-                            "z": 4.839000225067139
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            9604788041699812520,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 179
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 336
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Blue",
-                        "Texture": "TriangleBlock_Blue_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 334
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.6000000238418579
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 1.600000023841858,
-                            "y": 0.8240000009536743,
-                            "z": 6.039000034332275
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 178
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 338
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Red",
-                        "Texture": "CubeBlock_Red_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 337
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.6000000238418579,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -13.300000190734864,
-                            "y": -0.5759999752044678,
-                            "z": -4.660999774932861
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            9604788041699812520,
-                            8376831551428810534,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 179
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 339
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Blue",
-                        "Texture": "TriangleBlock_Blue_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 337
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.6000000238418579,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -12.09999942779541,
-                            "y": -0.5759999752044678,
-                            "z": -4.660999774932861
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 178
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 341
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Red",
-                        "Texture": "CubeBlock_Red_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 340
+                        "Parent GID": 366
                     },
                     "Offset": {
                         "Postion Offset": {
@@ -24857,83 +23999,12 @@
                         },
                         "Position": {
                             "x": 16.299999237060548,
-                            "y": 10.699999809265137,
-                            "z": -10.5
+                            "y": 10.800000190734864,
+                            "z": -14.100000381469727
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            9604788041699812520,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 179
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 342
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Blue",
-                        "Texture": "TriangleBlock_Blue_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 340
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.6000000238418579,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 17.5,
-                            "y": 10.699999809265137,
-                            "z": -10.5
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            8376831551428810534
-                        ],
+                        "Modified Components": [],
                         "Prefab GID": 178
                     },
                     "Name": {
@@ -25003,70 +24074,6 @@
                     "Name": {
                         "Name": "Red Checkpoint"
                     }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 368
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Blue",
-                        "Texture": "TriangleBlock_Blue_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 366
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.6000000238418579,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.009999999776482582,
-                            "y": 0.0010000000474974514,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 16.299999237060548,
-                            "y": 10.800000190734864,
-                            "z": -14.100000381469727
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 178
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    }
                 }
             ]
         },
@@ -25095,9 +24102,9 @@
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": -1.0,
+                            "x": 1.2999999523162842,
                             "y": -4.875999927520752,
-                            "z": 2.9749999046325685
+                            "z": 0.550000011920929
                         },
                         "Rotation Offset": {
                             "x": 0.0,
@@ -25129,9 +24136,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 32.0,
+                            "x": 39.29999923706055,
                             "y": -1.8559999465942383,
-                            "z": -18.625
+                            "z": -21.450000762939454
                         }
                     },
                     "RigidForce": {
@@ -26019,7 +25026,7 @@
                         },
                         "Rotation Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 90.0,
                             "z": 0.0
                         },
                         "Scale Offset": {
@@ -26031,7 +25038,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 180.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
@@ -26039,8 +25046,8 @@
                         "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 25.799999237060548,
-                        "Pause At Time": 25.799999237060548,
+                        "Current Time": 9.0,
+                        "Pause At Time": 9.0,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -26062,9 +25069,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 32.0,
+                            "x": 37.0,
                             "y": 3.0199999809265138,
-                            "z": -21.0
+                            "z": -21.399999618530275
                         }
                     },
                     "BoundingBox": {
@@ -26085,7 +25092,8 @@
                             15204223096342135753,
                             16113566265477431037,
                             8376831551428810534,
-                            17008353085049151909
+                            17008353085049151909,
+                            14486341741652966143
                         ],
                         "Prefab GID": 185
                     },
@@ -26097,7 +25105,7 @@
                         "Inv Mass": 0.0
                     },
                     "Elevator": {
-                        "Start Time": 25.402000427246095,
+                        "Start Time": 9.0,
                         "Stop Time": 35.25,
                         "Activated": false
                     }
@@ -27226,7 +26234,7 @@
                     "Offset": {
                         "Postion Offset": {
                             "x": 3.200000047683716,
-                            "y": -0.4000000059604645,
+                            "y": -0.4099999964237213,
                             "z": -2.9000000953674318
                         },
                         "Rotation Offset": {
@@ -27267,7 +26275,7 @@
                         },
                         "Position": {
                             "x": 39.29999923706055,
-                            "y": 2.5999999046325685,
+                            "y": 2.5899999141693117,
                             "z": -18.100000381469728
                         }
                     },
@@ -27435,9 +26443,9 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            5509481706028819786,
-                            8376831551428810534,
                             9604788041699812520,
+                            8376831551428810534,
+                            5509481706028819786,
                             5691439207370049121,
                             17008353085049151909,
                             223102351977301267,
@@ -28072,7 +27080,7 @@
                         },
                         "Position": {
                             "x": 39.29999923706055,
-                            "y": 3.5,
+                            "y": 3.489999771118164,
                             "z": -18.100000381469728
                         }
                     },
@@ -30187,9 +29195,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 33.0,
+                            "x": 38.0,
                             "y": 3.0199999809265138,
-                            "z": -21.600000381469728
+                            "z": -22.0
                         }
                     },
                     "RigidForce": {
@@ -31143,14 +30151,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            77,
                             85,
-                            380,
+                            77,
                             308,
+                            380,
                             136,
-                            325,
-                            126,
                             134,
+                            126,
+                            325,
                             314,
                             328,
                             359,
