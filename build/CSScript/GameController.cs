@@ -114,7 +114,11 @@ namespace CSScript
                         if (name.m_Name == "Moving Platform")
                         {
                             PathFollower path_follower = new PathFollower(collided_id);
-                            path_follower.m_PauseTravel = true;
+
+                            if (path_follower.m_Distance > 0.0001f)
+                            {
+                                    path_follower.m_PauseTravel = !path_follower.m_PauseTravel;
+                            }
                         }
 
                         break;

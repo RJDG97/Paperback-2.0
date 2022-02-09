@@ -69,7 +69,7 @@ namespace CSScript
                 m_ChildAnimator.m_Reversed = false;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 23;
-                m_Mesh.m_Model = "ButtonON";
+                //m_Mesh.m_Model = "ButtonON";
             }
         }
         public void OnCollisionStay(UInt32 ID)
@@ -84,7 +84,7 @@ namespace CSScript
                 m_ChildAnimator.m_Reversed = true;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 0;
-                m_Mesh.m_Model = "ButtonOFF";
+                //m_Mesh.m_Model = "ButtonOFF";
             }
         }
     }
