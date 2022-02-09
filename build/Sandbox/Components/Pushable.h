@@ -10,6 +10,14 @@ struct pushable
     uint32_t m_State{1};
 };
 
+
+// Tag Component Creation Sample
+/*
+BEGIN_CREATE_TAG_COMPONENT( pushable )
+END_CREATE_TAG_COMPONENT
+*/
+
+
 namespace RR_PUSHABLE
 {
     RTTR_REGISTRATION

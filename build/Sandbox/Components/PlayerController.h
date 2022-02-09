@@ -17,6 +17,24 @@ struct player_controller
 	bool                              m_FPSMode = false;
 };
 
+
+// Data Component Creation Sample
+/*
+BEGIN_CREATE_DATA_COMPONENT( player_controller )
+
+	std::vector<paperback::u64>       m_ControllerGuid{ };
+	float                             m_MovementForce = 3.0f;
+	float                             m_JumpForce = 0.0f;
+	float                             m_CameraRotationSpeed = 0.0f;
+	float                             m_CameraRadius = 0.0f;
+	bool                              m_PlayerStatus = true;
+	bool                              m_OnGround = true;;
+	bool                              m_FPSMode = false;
+	
+END_CREATE_DATA_COMPONENT
+*/
+
+
 namespace RR_PlayerController
 {
     RTTR_REGISTRATION
