@@ -65,6 +65,8 @@ Renderer::Renderer() :
 
 	m_Resources.LoadShader("Shadow", "../../resources/shaders/Shadow.vert", "../../resources/shaders/Shadow.frag");
 	m_Resources.LoadShader("Light", "../../resources/shaders/Lighting.vert", "../../resources/shaders/Lighting.frag");
+	m_Resources.LoadShader("GPass", "../../resources/shaders/GPass.vert", "../../resources/shaders/GPass.frag");
+	m_Resources.LoadShader("LightPass", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/LightPass.frag");
 	m_Resources.LoadShader("Blur", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Blur.frag");
 	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
 	m_Resources.LoadShader("Final", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Final.frag");
@@ -382,6 +384,10 @@ Renderer::~Renderer()
 	glDeleteVertexArrays(1, &m_VAO);
 	glDeleteVertexArrays(1, &m_DebugVAO);
 	
+	glDeleteFramebuffers(m_GBuffer.m_FrameBuffer.size(), m_GBuffer.m_FrameBuffer.data());
+	glDeleteTextures(m_GBuffer.m_BufferTexture.size(), m_GBuffer.m_BufferTexture.data());
+	glDeleteRenderbuffers(1, &m_GBuffer.m_RenderBuffer);
+
 	glDeleteFramebuffers( static_cast<GLsizei>( m_ShadowBuffer.m_FrameBuffer.size() ), m_ShadowBuffer.m_FrameBuffer.data());
 	glDeleteTextures( static_cast<GLsizei>( m_ShadowBuffer.m_BufferTexture.size() ), m_ShadowBuffer.m_BufferTexture.data());
 
@@ -405,6 +411,43 @@ void Renderer::SetUpFramebuffer(int Width, int Height)
 {
 	m_Width = Width;
 	m_Height = Height;
+
+	// Create g pass framebuffer
+	GLuint gPassFBO;
+	glCreateFramebuffers(1, &gPassFBO);
+
+	// Create g pass textures
+	GLuint gPassTextures[4];
+	glCreateTextures(GL_TEXTURE_2D, 4, gPassTextures);
+
+	for (size_t i = 0; i < 4; ++i)
+	{
+		glTextureStorage2D(gPassTextures[i], 1, GL_RGBA16F, m_Width, m_Height);
+		glTextureParameteri(gPassTextures[i], GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(gPassTextures[i], GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTextureParameteri(gPassTextures[i], GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTextureParameteri(gPassTextures[i], GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		// Attach texture to framebuffer
+		glNamedFramebufferTexture(gPassFBO, static_cast<GLenum>(GL_COLOR_ATTACHMENT0 + i), gPassTextures[i], 0);
+
+		// Add texture to framebuffer object
+		m_GBuffer.m_BufferTexture.push_back(gPassTextures[i]);
+	}
+
+	// G pass render buffer
+	GLuint gPassRBO;
+	glCreateRenderbuffers(1, &gPassRBO);
+	glNamedRenderbufferStorage(gPassRBO, GL_DEPTH_COMPONENT32F, m_Width, m_Height);
+	glNamedFramebufferRenderbuffer(gPassFBO, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, gPassRBO);
+
+	GLenum gPassAttachments[4] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1, GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3 };
+	glNamedFramebufferDrawBuffers(gPassFBO, 4, gPassAttachments);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	// Add framebuffer and texture to framebuffer object
+	m_GBuffer.m_FrameBuffer.push_back(gPassFBO);
+	m_GBuffer.m_RenderBuffer = gPassRBO;
 
 	// Create shadow framebuffer
 	GLuint shadowFBO;
@@ -554,6 +597,40 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	m_Width = Width;
 	m_Height = Height;
 
+	// Delete old g buffer textures
+	glDeleteTextures(static_cast<GLsizei>(m_GBuffer.m_BufferTexture.size()), m_GBuffer.m_BufferTexture.data());
+	m_GBuffer.m_BufferTexture.clear();
+
+	// Delete old g buffer rbo
+	glDeleteRenderbuffers(1, &m_GBuffer.m_RenderBuffer);
+	m_GBuffer.m_RenderBuffer = 0;
+
+	// Create g pass textures
+	GLuint gPassTextures[4];
+	glCreateTextures(GL_TEXTURE_2D, 4, gPassTextures);
+
+	for (size_t i = 0; i < 4; ++i)
+	{
+		glTextureStorage2D(gPassTextures[i], 1, GL_RGBA16F, Width, Height);
+		glTextureParameteri(gPassTextures[i], GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(gPassTextures[i], GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTextureParameteri(gPassTextures[i], GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTextureParameteri(gPassTextures[i], GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		// Attach texture to framebuffer
+		glNamedFramebufferTexture(m_GBuffer.m_FrameBuffer[0], static_cast<GLenum>(GL_COLOR_ATTACHMENT0 + i), gPassTextures[i], 0);
+
+		// Add texture to framebuffer object
+		m_GBuffer.m_BufferTexture.push_back(gPassTextures[i]);
+	}
+
+	// G pass render buffer
+	GLuint gPassRBO;
+	glCreateRenderbuffers(1, &gPassRBO);
+	glNamedRenderbufferStorage(gPassRBO, GL_DEPTH_COMPONENT32F, Width, Height);
+	glNamedFramebufferRenderbuffer(m_GBuffer.m_FrameBuffer[0], GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, gPassRBO);
+	m_GBuffer.m_RenderBuffer = gPassRBO;
+
 	// Delete old light buffer textures
 	glDeleteTextures(static_cast<GLsizei>(m_LightingBuffer.m_BufferTexture.size()), m_LightingBuffer.m_BufferTexture.data());
 	m_LightingBuffer.m_BufferTexture.clear();
@@ -676,16 +753,20 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const Camera3D& SceneCamera, const bool Gamma, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::vector<PointLightInfo>& Lights, const Camera3D& SceneCamera, const bool Gamma, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
 
+	// Change depth function for UI
 	glDepthFunc(GL_LEQUAL);
 
+	// Render UI
 	UIPass(UIs, UICamera);
+	// Render Text
 	TextPass(Texts, UICamera);
 
+	// Change depth function for 3D
 	glDepthFunc(GL_LESS);
 
 	// Bind shadow frame buffer
@@ -693,10 +774,26 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Ren
 	// Render shadows
 	ShadowPass(Objects);
 
+	// Disable for deferred rendering
+	glDisable(GL_BLEND);
+
+	// GPass
+	glBindFramebuffer(GL_FRAMEBUFFER, m_GBuffer.m_FrameBuffer[0]);
+	GPass(Objects, SceneCamera);
+
+	// Enable for forward rendering
+	glEnable(GL_BLEND);
+
+	// Disable for GPass compilation/LightPass
+	glDisable(GL_DEPTH_TEST);
+
 	// Bind to lighting frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_LightingBuffer.m_FrameBuffer[0]);
-	// Render objects
-	RenderPass(Objects, SceneCamera);
+	LightPass(Lights, SceneCamera);
+
+	// Enable for normal rendering
+	glEnable(GL_DEPTH_TEST);
+
 	// Render skybox
 	SkyBoxRender(SceneCamera);
 
@@ -1202,6 +1299,212 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 
 	// Unbind shader
 	m_Resources.m_Shaders["Light"].UnUse();
+}
+
+void Renderer::GPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera)
+{
+	// Change to fit window size
+	glViewport(0, 0, m_Width, m_Height);
+
+	// Clear depth and color buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Bind shader
+	m_Resources.m_Shaders["GPass"].Use();
+
+	// Bind vao
+	glBindVertexArray(m_VAO);
+
+	glm::mat4 view = SceneCamera.GetView();
+	glm::mat4 projection = SceneCamera.GetProjection();
+
+	m_Resources.m_Shaders["GPass"].SetUniform("uView", const_cast<glm::mat4&>(view));
+	m_Resources.m_Shaders["GPass"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
+
+	for (const auto& model : Objects)
+	{
+		auto& SubMeshes = m_Resources.m_Models[std::string(model.first)].GetSubMeshes();
+
+		for (const auto& instance : model.second)
+		{
+			if (instance.m_ParentSocketTransform)
+			{
+				glm::mat4 transform = instance.m_Transform * (*instance.m_ParentSocketTransform);
+				m_Resources.m_Shaders["GPass"].SetUniform("uModel", const_cast<glm::mat4&>(transform));
+			}
+			else
+			{
+				m_Resources.m_Shaders["GPass"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
+			}
+
+			m_Resources.m_Shaders["GPass"].SetUniform("uShadowBias", static_cast<float>(instance.m_ShadowBias));
+
+			if (instance.m_BoneTransforms)
+			{
+				m_Resources.m_Shaders["GPass"].SetUniform("uHasBones", true);
+				m_Resources.m_Shaders["GPass"].SetUniform("uFinalBonesMatrices", *instance.m_BoneTransforms, 100);
+			}
+			else
+			{
+				m_Resources.m_Shaders["GPass"].SetUniform("uHasBones", false);
+			}
+
+			for (auto& submesh : SubMeshes)
+			{
+				Model::Material& material = m_Resources.m_Materials[submesh.m_Material];
+
+				// Send textures
+				if (!material.m_Diffuse.empty())
+				{
+					const auto& texture = m_Resources.m_Textures.find(material.m_Diffuse);
+
+					if (texture != m_Resources.m_Textures.end())
+					{
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedDiffuse", true);
+
+						glBindTextureUnit(0, texture->second);
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.Diffuse", 0);
+					}
+					else
+					{
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedDiffuse", false);
+					}
+				}
+				else
+				{
+					m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedDiffuse", false);
+				}
+
+				if (!material.m_Ambient.empty())
+				{
+					const auto& texture = m_Resources.m_Textures.find(material.m_Ambient);
+
+					if (texture != m_Resources.m_Textures.end())
+					{
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedAmbient", true);
+
+						glBindTextureUnit(1, texture->second);
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.Ambient", 1);
+					}
+					else
+					{
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedAmbient", false);
+					}
+				}
+				else
+				{
+					m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedAmbient", false);
+				}
+
+				if (!material.m_Specular.empty())
+				{
+					const auto& texture = m_Resources.m_Textures.find(material.m_Specular);
+
+					if (texture != m_Resources.m_Textures.end())
+					{
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedSpecular", true);
+
+						glBindTextureUnit(2, texture->second);
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.Specular", 2);
+					}
+					else
+					{
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedSpecular", false);
+					}
+				}
+				else
+				{
+					m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedSpecular", false);
+				}
+
+				if (!material.m_Normal.empty())
+				{
+					const auto& texture = m_Resources.m_Textures.find(material.m_Normal);
+
+					if (texture != m_Resources.m_Textures.end())
+					{
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedNormal", true);
+
+						glBindTextureUnit(3, texture->second);
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.Normal", 3);
+					}
+					else
+					{
+						m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedNormal", false);
+					}
+				}
+				else
+				{
+					m_Resources.m_Shaders["GPass"].SetUniform("uMat.TexturedNormal", false);
+				}
+
+				// Set model vbo handle to vao
+				glVertexArrayVertexBuffer(m_VAO, 0, submesh.m_VBO, 0, sizeof(Model::Vertex));
+				glVertexArrayElementBuffer(m_VAO, submesh.m_EBO);
+
+				// Draw object
+				glDrawElements(m_Resources.m_Models[std::string(model.first)].GetPrimitive(), submesh.m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+			}
+		}
+	}
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	// Unbind shader
+	m_Resources.m_Shaders["GPass"].UnUse();
+}
+
+void Renderer::LightPass(const std::vector<PointLightInfo>& Lights, const Camera3D& SceneCamera)
+{
+	// Bind shader
+	m_Resources.m_Shaders["LightPass"].Use();
+
+	// Bind vao
+	glBindVertexArray(m_VAO);
+
+	// Set screen model
+	const auto& screen = m_Resources.m_Models["Screen"];
+	glVertexArrayVertexBuffer(m_VAO, 0, screen.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
+	glVertexArrayElementBuffer(m_VAO, screen.GetSubMeshes()[0].m_EBO);
+
+	glBindTextureUnit(0, m_GBuffer.m_BufferTexture[0]);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uPositions", 0);
+	glBindTextureUnit(1, m_GBuffer.m_BufferTexture[1]);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uNormals", 1);
+	glBindTextureUnit(2, m_GBuffer.m_BufferTexture[2]);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uAmbients", 2);
+	glBindTextureUnit(3, m_GBuffer.m_BufferTexture[3]);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uDiffuses", 3);
+	glBindTextureUnit(4, m_ShadowBuffer.m_BufferTexture[0]);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uShadowMap", 4);
+
+	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Direction", m_Light.m_Direction);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Ambient", 0.2f, 0.2f, 0.2f);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Diffuse", 0.5f, 0.5f, 0.5f);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Specular", 1.0f, 1.0f, 1.0f);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Transform", const_cast<glm::mat4&>(m_Light.m_Transform));
+
+	m_Resources.m_Shaders["LightPass"].SetUniform("uNumLights", static_cast<int>(Lights.size()));
+
+	for (size_t i = 0; i < Lights.size(); ++i)
+	{
+
+	}
+
+	glm::vec3 position = SceneCamera.GetPosition();
+	m_Resources.m_Shaders["LightPass"].SetUniform("uCameraPosition", const_cast<glm::vec3&>(position));
+
+	glDrawElements(screen.GetPrimitive(), screen.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	// Unbind shader
+	m_Resources.m_Shaders["LightPass"].UnUse();
+
+	// Blit depth buffer from gpass buffer to lightpass framebuffer
+	glBlitNamedFramebuffer(m_GBuffer.m_FrameBuffer[0], m_LightingBuffer.m_FrameBuffer[0], 0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
 }
 
 void Renderer::BlurPass()

@@ -36,10 +36,20 @@ public:
 		std::string m_Text;
 	};
 
+	struct PointLightInfo
+	{
+		glm::vec3 m_Position;
+
+		glm::vec3 m_Ambient;
+		glm::vec3 m_Diffuse;
+		glm::vec3 m_Specular;
+	};
+
 	~Renderer();
 
 	// Render object
-	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, 
+	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects,
+				const std::vector<PointLightInfo>& Lights,
 				const Camera3D& SceneCamera,
 				const bool Gamma,
 				const std::map<float, std::vector<UIInfo>>& UIs,
@@ -72,7 +82,7 @@ private:
 	};
 
 	// Light
-	struct Light
+	struct DirectionalLight
 	{
 		glm::vec3 m_Position;
 		glm::vec3 m_Direction;
@@ -91,11 +101,15 @@ private:
 	void TextPass(const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera);
 	void ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera);
+	void GPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera);
+	void LightPass(const std::vector<PointLightInfo>& Lights, const Camera3D& SceneCamera);
 	void BlurPass();
 	void CompositePass(const bool Gamma);
 	void MergePass();
 	void FinalPass();
 
+	// Gpass buffer
+	FrameBuffer m_GBuffer;
 	// Shadow buffer
 	FrameBuffer m_ShadowBuffer;
 	// Lighting/BrightPass buffer
@@ -108,7 +122,7 @@ private:
 	FrameBuffer m_FinalBuffer;
 
 	// Light source
-	Light m_Light;
+	DirectionalLight m_Light;
 
 	// VAO for rendering
 	GLuint m_VAO;

@@ -18,6 +18,7 @@ struct render_system : paperback::system::instance
 	Camera3D m_Camera3D;
 
 	tools::query Query;
+	tools::query QueryLight;
 	tools::query QueryText;
 	tools::query QueryCamera;
 
@@ -46,6 +47,9 @@ struct render_system : paperback::system::instance
 		Query.m_OneOf.AddFromComponents<animator, socketed, mesh>();
 		Query.m_NoneOf.AddFromComponents<prefab>();
 
+		QueryLight.m_Must.AddFromComponents<transform, light>();
+		QueryLight.m_NoneOf.AddFromComponents<prefab>();
+
 		QueryText.m_Must.AddFromComponents<transform, text, scale, rotation>();
 		QueryText.m_NoneOf.AddFromComponents<prefab>();
 
@@ -70,6 +74,7 @@ struct render_system : paperback::system::instance
 	{
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
+		std::vector<Renderer::PointLightInfo> lights;
 		std::map<float, std::vector<Renderer::UIInfo>> uis;
 		std::unordered_map<std::string_view, std::vector<Renderer::TextInfo>> texts;
 
@@ -135,6 +140,12 @@ struct render_system : paperback::system::instance
 
 		auto points = GetSystem<debug_system>().GetPoints();
 
+		ForEach(Search(QueryLight), [&](transform& Transform, light& Light) noexcept
+		{
+			glm::vec3 position = glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z };
+			lights.push_back({ position, Light.m_Ambient, Light.m_Diffuse, Light.m_Specular });
+		});
+
 		Camera3D cam = m_Camera3D;
 
 		if (!PPB.GetPauseBool())
@@ -157,8 +168,7 @@ struct render_system : paperback::system::instance
 			});
 		}
 
-
-		Renderer::GetInstanced().Render(objects, cam, m_bGamma, uis, texts, m_Camera2D, &points);
+		Renderer::GetInstanced().Render(objects, lights, cam, m_bGamma, uis, texts, m_Camera2D, &points);
 	}
 
 	// On Event Key / Mouse Pressed

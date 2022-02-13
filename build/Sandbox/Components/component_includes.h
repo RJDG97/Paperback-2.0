@@ -56,6 +56,7 @@
 #include "Pushable.h"
 #include "Elevator.h"
 #include "Crosshair.h"
+#include "Light.h"
 
 
 // shapes
