@@ -124,6 +124,7 @@ void InitializeGame()
         ,    player_interaction
         ,    pushable        // Tag
         ,    crosshair       // Tag
+        ,    light
         >();
 
         // Register Components - Add to the end of the list
