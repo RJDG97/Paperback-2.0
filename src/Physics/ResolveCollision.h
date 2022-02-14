@@ -15,10 +15,10 @@ const int BOTH_NONSTATIC = 1;
 const int OBJ1_NONSTATIC = 2;
 const int OBJ2_NONSTATIC = 3;
 
-const int NORTH = 0;
-const int SOUTH = 1;
-const int EAST = 2;
-const int WEST = 3;
+const int NORTH = 1;
+const int SOUTH = 2;
+const int EAST = 3;
+const int WEST = 4;
 
 enum direction
 {

@@ -435,6 +435,10 @@ namespace paperback::deserialize
 
             if (obj.is_type<crosshair>())
                 NewArchetype->GetComponent<crosshair>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<crosshair>();
+
+            if (obj.is_type<light>())
+                NewArchetype->GetComponent<light>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<light>();
+
         }
     }
 

@@ -685,6 +685,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< elevator >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< crosshair >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< crosshair >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< light >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< light >(Index));
 		else
 			return rttr::instance();
 	}
