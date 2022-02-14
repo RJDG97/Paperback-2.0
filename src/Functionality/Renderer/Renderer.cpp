@@ -1489,7 +1489,12 @@ void Renderer::LightPass(const std::vector<PointLightInfo>& Lights, const Camera
 
 	for (size_t i = 0; i < Lights.size(); ++i)
 	{
+		std::string uniform = "uLights[" + std::to_string(i) + "]";
 
+		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Position").c_str(), const_cast<glm::vec3&>(Lights[i].m_Position));
+		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Ambient").c_str(), const_cast<glm::vec3&>(Lights[i].m_Ambient));
+		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Diffuse").c_str(), const_cast<glm::vec3&>(Lights[i].m_Diffuse));
+		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Specular").c_str(), const_cast<glm::vec3&>(Lights[i].m_Specular));
 	}
 
 	glm::vec3 position = SceneCamera.GetPosition();
