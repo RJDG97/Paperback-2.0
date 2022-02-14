@@ -143,7 +143,11 @@ struct render_system : paperback::system::instance
 		ForEach(Search(QueryLight), [&](transform& Transform, light& Light) noexcept
 		{
 			glm::vec3 position = glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z };
-			lights.push_back({ position, Light.m_Ambient, Light.m_Diffuse, Light.m_Specular });
+			glm::vec3 ambient = glm::vec3{ Light.m_Ambient.x, Light.m_Ambient.y, Light.m_Ambient.z };
+			glm::vec3 diffuse = glm::vec3{ Light.m_Diffuse.x, Light.m_Diffuse.y, Light.m_Diffuse.z };
+			glm::vec3 specular = glm::vec3{ Light.m_Specular.x, Light.m_Specular.y, Light.m_Specular.z };
+
+			lights.push_back({ position, ambient, diffuse, specular });
 		});
 
 		Camera3D cam = m_Camera3D;

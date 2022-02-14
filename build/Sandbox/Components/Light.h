@@ -7,9 +7,9 @@ struct light
 		.m_pName = "Light"
 	};
 
-	glm::vec3 m_Ambient;
-	glm::vec3 m_Diffuse;
-	glm::vec3 m_Specular;
+	paperback::Vector3f m_Ambient;
+	paperback::Vector3f m_Diffuse;
+	paperback::Vector3f m_Specular;
 };
 
 namespace RR_Light
