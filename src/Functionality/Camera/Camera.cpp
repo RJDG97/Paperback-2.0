@@ -120,7 +120,7 @@ void Camera3D::SetTarget(const glm::vec3& Target)
 
 void Camera3D::MoveForward()
 {
-	glm::vec3 translate = m_Front * 0.1f;
+	glm::vec3 translate = m_Front * m_Speed;
 	m_Target += translate;
 	m_Position += translate;
 
@@ -129,7 +129,7 @@ void Camera3D::MoveForward()
 
 void Camera3D::MoveBackward()
 {
-	glm::vec3 translate = m_Front * 0.1f;
+	glm::vec3 translate = m_Front * m_Speed;
 	m_Target -= translate;
 	m_Position -= translate;
 
@@ -138,7 +138,7 @@ void Camera3D::MoveBackward()
 
 void Camera3D::MoveRight()
 {
-	glm::vec3 translate = m_Right * 0.1f;
+	glm::vec3 translate = m_Right * m_Speed;
 	m_Target += translate;
 	m_Position += translate;
 
@@ -147,7 +147,7 @@ void Camera3D::MoveRight()
 
 void Camera3D::MoveLeft()
 {
-	glm::vec3 translate = m_Right * 0.1f;
+	glm::vec3 translate = m_Right * m_Speed;
 	m_Target -= translate;
 	m_Position -= translate;
 
@@ -156,7 +156,7 @@ void Camera3D::MoveLeft()
 
 void Camera3D::MoveUp()
 {
-	glm::vec3 translate = m_Up * 0.1f;
+	glm::vec3 translate = m_Up * m_Speed;
 	m_Target += translate;
 	m_Position += translate;
 
@@ -165,7 +165,7 @@ void Camera3D::MoveUp()
 
 void Camera3D::MoveDown()
 {
-	glm::vec3 translate = m_Up * 0.1f;
+	glm::vec3 translate = m_Up * m_Speed;
 	m_Target -= translate;
 	m_Position -= translate;
 

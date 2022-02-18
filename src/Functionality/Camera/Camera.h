@@ -54,6 +54,8 @@ public:
 
 	void RotateWithMouse(glm::vec2 Direction);
 
+	float m_Speed = 1.0f;
+
 private:
 	void UpdateView();
 	void UpdateVectors();
