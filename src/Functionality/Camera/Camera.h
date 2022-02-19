@@ -40,12 +40,12 @@ public:
 	void SetPosition(const glm::vec3& Position);
 	void SetTarget(const glm::vec3& Target);
 
-	void MoveForward();
-	void MoveBackward();
-	void MoveRight();
-	void MoveLeft();
-	void MoveUp();
-	void MoveDown();
+	void MoveForward(const float m_Speed = 0.1f);
+	void MoveBackward(const float m_Speed = 0.1f);
+	void MoveRight(const float m_Speed = 0.1f);
+	void MoveLeft(const float m_Speed = 0.1f);
+	void MoveUp(const float m_Speed = 0.1f);
+	void MoveDown(const float m_Speed = 0.1f);
 
 	void RotateRight(const float m_Speed = 0.1f);
 	void RotateLeft(const float m_Speed = 0.1f);
@@ -53,8 +53,6 @@ public:
 	void RotateDown(const float m_Speed = 0.1f);
 
 	void RotateWithMouse(glm::vec2 Direction);
-
-	float m_Speed = 1.0f;
 
 private:
 	void UpdateView();

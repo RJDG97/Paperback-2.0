@@ -23,6 +23,7 @@ struct render_system : paperback::system::instance
 	tools::query QueryCamera;
 
 	bool m_bGamma = true;
+	float m_Speed = 1.0f;
 
 
 	constexpr static auto typedef_v = paperback::system::type::update
@@ -192,20 +193,21 @@ struct render_system : paperback::system::instance
 
 			if (Key == GLFW_KEY_W)
 			{
-				m_Camera3D.MoveForward();
+				m_Camera3D.MoveForward(m_Speed);
 			}
 			else if (Key == GLFW_KEY_S)
 			{
-				m_Camera3D.MoveBackward();
+				m_Camera3D.MoveBackward(m_Speed);
 			}
 
 			if (Key == GLFW_KEY_A)
 			{
-				m_Camera3D.MoveLeft();
+				m_Camera3D.MoveLeft(m_Speed);
 			}
+
 			else if (Key == GLFW_KEY_D)
 			{
-				m_Camera3D.MoveRight();
+				m_Camera3D.MoveRight(m_Speed);
 			}
 		}
 	}

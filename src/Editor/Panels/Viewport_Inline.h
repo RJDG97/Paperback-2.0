@@ -133,6 +133,17 @@ void EditorViewport::ViewportMenuBar()
 
 	m_Imgui.ImGuiHelp("Play/Stop Current Scene");
 
+	ImGui::Text("Adjust Camera Speed: "); ImGui::SameLine();
+
+	ImGui::PushItemWidth(150.0f);
+
+	std::reference_wrapper<float> CamSpeed = PPB.GetSystem< render_system >().m_Speed;
+	ImGui::SliderFloat("##CameraSpeed", &(CamSpeed.get()), 0.1f, 10.0f);
+
+	ImGui::PopItemWidth();
+
+	m_Imgui.ImGuiHelp("Modify Camera Speed | Ctrl + Click to type");
+
 	ImGui::End();
 }
 
@@ -167,7 +178,7 @@ void EditorViewport::MouseSelection()
 								Max.x += ImGui::GetWindowPos().x;
 								Max.y += ImGui::GetWindowPos().y;
 
-								CamPos = cam::GetInstanced().GetPosition();
+								CamPos = PPB.GetSystem< render_system >().m_Camera3D.GetPosition();
 								RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y - 70.0f }, { Max.x, Max.y - 70.0f });
 
 								if (RayDir == glm::vec3{})
@@ -215,8 +226,8 @@ void EditorViewport::Gizmo()
 			glm::vec3 Trans, Rot, Scale;
 
 			//Camera
-			glm::mat4 CameraView = cam::GetInstanced().GetView();
-			glm::mat4 CameraProjection = cam::GetInstanced().GetProjection();
+			glm::mat4 CameraView = PPB.GetSystem< render_system >().m_Camera3D.GetView();
+			glm::mat4 CameraProjection = PPB.GetSystem< render_system >().m_Camera3D.GetProjection();
 
 			model = glm::translate(model, glm::vec3(Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).x, Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).y, Path->m_Points.at(m_Imgui.m_SelectedSplinePoint).z));
 
@@ -243,8 +254,8 @@ void EditorViewport::ComposeTransform()
 	glm::vec3 Trans, Rot, Scale;
 
 	//Camera
-	glm::mat4 CameraView = cam::GetInstanced().GetView();
-	glm::mat4 CameraProjection = cam::GetInstanced().GetProjection();
+	glm::mat4 CameraView = PPB.GetSystem< render_system >().m_Camera3D.GetView();
+	glm::mat4 CameraProjection = PPB.GetSystem< render_system >().m_Camera3D.GetProjection();
 
 	auto EntityDetails = paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second });
 

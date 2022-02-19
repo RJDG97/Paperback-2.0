@@ -30,6 +30,7 @@ Camera3D::Camera3D() :
 	m_Radius{ 1.f },
 	m_Azimuth{ 0.f },
 	m_Theta{ 90.f }
+
 {
 	m_Target = glm::vec3{ 0.f };
 	m_Position = glm::vec3{ 0.f, 0.f, 1.f };
@@ -118,7 +119,7 @@ void Camera3D::SetTarget(const glm::vec3& Target)
 	m_Azimuth = glm::degrees(glm::atan(offsetDirection.x, offsetDirection.z));
 }
 
-void Camera3D::MoveForward()
+void Camera3D::MoveForward(const float m_Speed)
 {
 	glm::vec3 translate = m_Front * m_Speed;
 	m_Target += translate;
@@ -127,7 +128,7 @@ void Camera3D::MoveForward()
 	UpdateView();
 }
 
-void Camera3D::MoveBackward()
+void Camera3D::MoveBackward(const float m_Speed)
 {
 	glm::vec3 translate = m_Front * m_Speed;
 	m_Target -= translate;
@@ -136,7 +137,7 @@ void Camera3D::MoveBackward()
 	UpdateView();
 }
 
-void Camera3D::MoveRight()
+void Camera3D::MoveRight(const float m_Speed)
 {
 	glm::vec3 translate = m_Right * m_Speed;
 	m_Target += translate;
@@ -145,7 +146,7 @@ void Camera3D::MoveRight()
 	UpdateView();
 }
 
-void Camera3D::MoveLeft()
+void Camera3D::MoveLeft(const float m_Speed)
 {
 	glm::vec3 translate = m_Right * m_Speed;
 	m_Target -= translate;
@@ -154,7 +155,7 @@ void Camera3D::MoveLeft()
 	UpdateView();
 }
 
-void Camera3D::MoveUp()
+void Camera3D::MoveUp(const float m_Speed)
 {
 	glm::vec3 translate = m_Up * m_Speed;
 	m_Target += translate;
@@ -163,7 +164,7 @@ void Camera3D::MoveUp()
 	UpdateView();
 }
 
-void Camera3D::MoveDown()
+void Camera3D::MoveDown(const float m_Speed)
 {
 	glm::vec3 translate = m_Up * m_Speed;
 	m_Target -= translate;

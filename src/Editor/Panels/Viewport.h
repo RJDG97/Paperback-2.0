@@ -2,15 +2,18 @@
 #include "Editor/EditorInclude.h"
 #include <dearImGui/ImGuizmo/ImGuizmo.h>
 #include "Functionality/Renderer/Renderer.h"
-#include "paperback_camera.h"
+#include "Functionality/Camera/Camera.h"
+//#include "paperback_camera.h"
 #include "Editor/EditorMath.h"
 #include "../../build/Sandbox/Systems/DebugSystem.h"
 #include "../../build/Sandbox/Systems/RendererSystem.h"
 #include "../../Mono.h"
 
+
 struct EditorViewport : paperback::editor::instance
 {
     int m_GizmoType = 7; //Set default as transform gizmo
+    Camera3D m_Camera;
 
     constexpr static auto typedef_v = paperback::editor::type::update
     {
@@ -39,5 +42,4 @@ struct EditorViewport : paperback::editor::instance
     void ViewportMenuBar();
 
     void ComposeTransform();
-
 };
