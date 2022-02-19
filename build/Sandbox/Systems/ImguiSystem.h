@@ -5,6 +5,7 @@
 #include <ostream>
 #include <filesystem>
 #include "SoundSystem.h"
+#include "RendererSystem.h"
 #include "../../../src/Functionality/RenderResource/RenderResourceLoader.h"
 
 //----------------------------------
@@ -100,6 +101,8 @@ struct imgui_system : paperback::system::instance
     bool m_bPaused;
 
     RenderResourceLoader& m_Loader{ RenderResourceLoader::GetInstanced() };
+    std::reference_wrapper<float> CamSpeed = PPB.GetSystem< render_system >().m_Speed;
+
 
     ////////////////////////////////////////////////////////////////////////////////
 
@@ -155,6 +158,7 @@ struct imgui_system : paperback::system::instance
         m_bImgui = m_bPaused = true;
         m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = m_bSaveIndiPrefab = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
+       
 
 
         //m_CameraOriginalPosition = Camera3D::GetInstanced().GetPosition();
@@ -804,6 +808,26 @@ struct imgui_system : paperback::system::instance
             }
         }
 
+        else if (PropertyType == rttr::type::get<int>() || PropertyType == rttr::type::get<std::reference_wrapper<int>>())
+        {
+            if (!PropertyType.is_wrapper())
+            {
+                ImGui::Text("%s: %d", PropertyName.c_str(), PropertyValue.get_value<int>());
+            }
+            else
+            {
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+                ImGui::PushItemWidth(150.0f);
+
+                if (PropertyName != "Shadow Bias")
+                    ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1);
+                else
+                    ImGui::SliderInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1, 10);
+
+                ImGui::PopItemWidth();
+            }
+        }
+
         else if (PropertyType == rttr::type::get<bool>() || PropertyType == rttr::type::get <std::reference_wrapper<bool>>())
         {
             if (!PropertyType.is_wrapper())
@@ -844,26 +868,6 @@ struct imgui_system : paperback::system::instance
                 ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
                 ImGui::PushItemWidth(150.0f);
                 ImGui::InputScalar(("##" + PropertyName).c_str(), ImGuiDataType_U64, &(PropertyValue.get_value<std::reference_wrapper<paperback::u64>>().get()));
-                ImGui::PopItemWidth();
-            }
-        }
-
-        else if (PropertyType == rttr::type::get<int>() || PropertyType == rttr::type::get<std::reference_wrapper<int>>())
-        {
-            if (!PropertyType.is_wrapper())
-            {
-                ImGui::Text("%s: %d", PropertyName.c_str(), PropertyValue.get_value<int>());
-            }
-            else
-            {
-                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
-                ImGui::PushItemWidth(150.0f);
-
-                if (PropertyName != "Shadow Bias")
-                    ImGui::InputInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1);
-                else
-                    ImGui::SliderInt(("##" + PropertyName).c_str(), &(PropertyValue.get_value<std::reference_wrapper<int>>().get()), 1, 10);
-
                 ImGui::PopItemWidth();
             }
         }
@@ -980,25 +984,38 @@ struct imgui_system : paperback::system::instance
 
     void EditorKeys()
     {
-        if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE) && PPB.VerifyState("Editor"))
+        if (PPB.VerifyState("Editor"))
         {
-            if (!m_bPaused)
+            if (PPB.IsKeyPressDown(GLFW_KEY_ESCAPE))
             {
-                if (!m_bImgui)
-                    m_bImgui = true;
+                if (!m_bPaused)
+                {
+                    if (!m_bImgui)
+                        m_bImgui = true;
 
-                m_Type = FileActivity::STOPBUTTON;
+                    m_Type = FileActivity::STOPBUTTON;
+                }
             }
-        }
 
-        if ((PPB.IsKeyPressUp(GLFW_KEY_F11) || PPB.IsKeyPressUp(GLFW_KEY_F)) && PPB.VerifyState("Editor"))
-        {
-            if (!m_bPaused)
+            if (PPB.IsKeyPressUp(GLFW_KEY_F11) || PPB.IsKeyPressUp(GLFW_KEY_F))
             {
-                if (m_bImgui)
-                    m_bImgui = false;
-                else
-                    m_bImgui = true;
+                if (!m_bPaused)
+                {
+                    if (m_bImgui)
+                        m_bImgui = false;
+                    else
+                        m_bImgui = true;
+                }
+            }
+
+            if (PPB.IsKeyPressUp(GLFW_KEY_PERIOD))
+            {
+                CamSpeed.get() += 0.5f;
+            }
+
+            if (PPB.IsKeyPressUp(GLFW_KEY_COMMA))
+            {
+                CamSpeed.get() -= 0.5f;
             }
         }
     }
