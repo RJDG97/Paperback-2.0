@@ -246,10 +246,12 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("InstructionManualPage04", "../../resources/models/nui/InstructionManualPage04.nui");
 	m_Resources.Load3DMeshNUI("BagClosed", "../../resources/models/nui/BagClosed.nui");
 
-
 	m_Resources.LoadTextures("ButtonOff", "../../resources/textures/ButtonOFF_BaseColour.dds", true);
 
-
+	// Furniture
+	m_Resources.Load3DMeshNUI("Table", "../../resources/models/nui/Table.nui");
+	m_Resources.Load3DMeshNUI("ChairBrown", "../../resources/models/nui/ChairBrown.nui");
+	m_Resources.Load3DMeshNUI("ChairGreen", "../../resources/models/nui/ChairGreen.nui");
 
 	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
 
