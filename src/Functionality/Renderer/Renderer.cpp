@@ -376,7 +376,7 @@ Renderer::Renderer() :
 
 	m_Light.m_Position = glm::vec3{ 1.f, 1.f, 1.f };
 	m_Light.m_Direction = glm::normalize(glm::vec3{ 0.f } - m_Light.m_Position);
-	m_Light.m_Projection = glm::ortho(-100.f, 100.f, -50.f, 50.f, -100.f, 100.f);
+	m_Light.m_Projection = glm::ortho(-200.f, 200.f, -100.f, 100.f, -200.f, 200.f);
 	m_Light.m_View = glm::lookAt(m_Light.m_Position, glm::vec3{ 0.f }, glm::vec3{ 0.f, 1.f, 0.f });
 	m_Light.m_Transform = m_Light.m_Projection * m_Light.m_View;
 }
