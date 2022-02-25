@@ -177,14 +177,10 @@ struct physics_system : paperback::system::pausable_instance
 
                     Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
-                    // Update Hash Grid - On Position Update
+                    // Update AABB Tree - On Position Update
                     if (Box)
                     {
-                        m_Coordinator.UpdateUnit(Entity.m_GlobalIndex
-                            , OldPosition
-                            , Offset->m_PosOffset
-                            , Box->Min
-                            , Box->Max);
+                        m_Coordinator.UpdateNode( *Box, Transform, Entity );
                     }
                 }
 
@@ -201,14 +197,10 @@ struct physics_system : paperback::system::pausable_instance
 
                     Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
 
-                    // Update Hash Grid - On Position Update
+                    // Update AABB Tree - On Position Update
                     if ( Box )
-                    {  
-                        m_Coordinator.UpdateUnit( Entity.m_GlobalIndex
-                                                , OldPosition
-                                                , Transform.m_Position
-                                                , Box->Min
-                                                , Box->Max );
+                    {
+                        m_Coordinator.UpdateNode( *Box, Transform, Entity );
                     }
                 }
                 

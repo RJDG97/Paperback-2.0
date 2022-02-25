@@ -534,12 +534,6 @@
     <ClInclude Include="..\..\src\paperback_nbitset.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\paperback_hash_grid.h">
-      <Filter>Source\Paperback Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\Details\paperback_hash_grid_inline.h">
-      <Filter>Source\Paperback Engine\Details</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\Input\paperback_input_controller.h">
       <Filter>Source\Tools\Input</Filter>
     </ClInclude>
@@ -605,6 +599,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\Scripts\Scripts_Pushable.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\paperback_physics_aabbtree.h">
+      <Filter>Source\Paperback Engine\BroadPhase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\paperback_physics_node.h">
+      <Filter>Source\Paperback Engine\BroadPhase</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Physics\paperback_physics_aabbtree_inline.h">
+      <Filter>Source\Paperback Engine\BroadPhase</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -718,6 +721,9 @@
     </Filter>
     <Filter Include="Source\Tools\Functionality\Camera">
       <UniqueIdentifier>{ce00b03a-58d0-4d06-94f2-51075916382c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Paperback Engine\BroadPhase">
+      <UniqueIdentifier>{45d29145-234f-4ff8-9d2f-6a2ad25d28de}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

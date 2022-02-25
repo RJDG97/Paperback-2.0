@@ -306,8 +306,8 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::OpenScene( const std::string& SceneName = "" ) noexcept
 	{
-		// Reset Hash Grid
-		ResetGrid();
+		// Reset AABB Tree
+		m_AABBTree.Reset();
 
 		if (SceneName == "")
 		{
@@ -324,8 +324,8 @@ namespace paperback::coordinator
 			}
 		}
 
-		// Initialize Hash Grid
-		InitializeGrid();
+		// Initialize AABB Tree
+		m_AABBTree.Initialize();
 	}
 
 	PPB_INLINE
@@ -861,87 +861,58 @@ namespace paperback::coordinator
 
 
 	//-----------------------------------
-	//       Default Hash Grid
-	//-----------------------------------
-
-	PPB_INLINE
-    void instance::InitializeGrid( void ) noexcept
-	{
-		m_HashGrid.Initialize();
-	}
-
-    PPB_INLINE
-    void instance::ResetGrid( void ) noexcept
-	{
-		m_HashGrid.Reset();
-	}
-
-
-	//-----------------------------------
-	//         Query Hash Grid
+	//         Query AABB Tree
 	//-----------------------------------
 	
 	PPB_INLINE
-	std::vector<paperback::u32> instance::SearchNeighbours( const paperback::Vector3f&  Position                              // Entity Position
-	                                                      , const paperback::Vector3f&  MinScale                              // Area To Query - Min Offset
-	                                                      , const paperback::Vector3f&  MaxScale                              // Area To Query - Max Offset
-	                                                      , const float                 Multiplier ) const noexcept           // Area Multiplier
+    physics::AABB_Tree::NeighbourList instance::QueryNeighbours( const boundingbox& AABB
+                                                               , const transform&   Transform ) noexcept
 	{
-		return m_HashGrid.SearchNeighbours( Position, MinScale, MaxScale, Multiplier );
+		return m_AABBTree.QueryNeighbours( AABB, Transform );
 	}
-	
+
 	
 	//-----------------------------------
-	//         Update Hash Grid
+	//         Update AABB Tree
 	//-----------------------------------
 	
 	PPB_INLINE
-	void instance::InsertUnit( const paperback::u32        GlobalIndex                // Entity Global Index
-	                         , const paperback::Vector3f&  Position                   // Entity Position
-	                         , const paperback::Vector3f&  MinScale                   // Bounding Box Min
-	                         , const paperback::Vector3f&  MaxScale ) noexcept        // Bounding Box Max
+    bool instance::UpdateNode( const boundingbox& AABB
+                             , const transform&   Transform
+                             , component::entity  Entity ) noexcept
 	{
-		m_HashGrid.InsertUnit( GlobalIndex, Position, MinScale, MaxScale );
+		return m_AABBTree.UpdateNode( AABB, Transform, Entity );
 	}
-	
-	PPB_INLINE
-	void instance::UpdateUnit( const paperback::u32        GlobalIndex                // Entity Global Index
-	                         , const paperback::Vector3f&  PrevPosition               // Prev Entity Position
-	                         , const paperback::Vector3f&  CurrPosition               // Curr Entity Position
-	                         , const paperback::Vector3f&  MinScale                   // Bounding Box Min
-	                         , const paperback::Vector3f&  MaxScale ) noexcept        // Bounding Box Max
-	{
-		m_HashGrid.UpdateUnit( GlobalIndex, PrevPosition, CurrPosition, MinScale, MaxScale );
-	}
-
-	PPB_INLINE
-    void instance::ResetGrids( void ) noexcept
-	{
-		m_HashGrid.Reset();
-	}
-
 
 	//-----------------------------------
 	//             Setters
 	//-----------------------------------
-	
-	PPB_INLINE
-    void instance::SetBoundaries( const paperback::Vector3f& Min
-                                , const paperback::Vector3f& Max ) noexcept
-	{
-		m_HashGrid.SetBoundaries( Min, Max );
-	}
-
-	PPB_FORCEINLINE
-	void instance::SetCellSize( const paperback::u32 CellSize ) noexcept
-	{
-		m_HashGrid.SetCellSize( CellSize );
-	}
 
 	void instance::SetPauseBool( bool Paused ) noexcept
 	{
 		m_bPaused = Paused;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	//-----------------------------------
 	//              Clock

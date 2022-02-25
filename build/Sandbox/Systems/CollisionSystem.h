@@ -49,7 +49,8 @@ struct collision_system : paperback::system::pausable_instance
     //void PreUpdate(void) noexcept
     void Update(void) noexcept
     {
-        ForEach(Search(m_Query), [&](paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox, sphere* Sphere, mass* m1, slope* Slope1, bounding_volume* BV) noexcept
+        ForEach( Search( m_Query ), [&]( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox
+                                       , sphere* Sphere, mass* m1, slope* Slope1, bounding_volume* BV ) noexcept
         {
             if (Entity.IsZombie()) return;
 
@@ -57,182 +58,90 @@ struct collision_system : paperback::system::pausable_instance
             {
                 Boundingbox->m_Collided = false;
 
-                auto NeighbourList = m_Coordinator.SearchNeighbours(Transform.m_Position + Transform.m_Offset, Boundingbox->Min, Boundingbox->Max);
+                auto NeighbourList = m_Coordinator.QueryNeighbours( *Boundingbox, Transform );
 
-                ForEach(Search(CollidableQuery), [&](entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV2)
+                ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV2 )
+                {
+                    if (Entity.IsZombie() || Dynamic_Entity.IsZombie()) return;
+
+                    // Do not check against self
+                    if (&Entity != &Dynamic_Entity)
                     {
-                        if (Entity.IsZombie() || Dynamic_Entity.IsZombie()) return;
+                        // Add to collision map
+                        auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
+                        if (map == Boundingbox->m_CollisionState.end()) {
+                            const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
+                        }
 
-                        // Do not check against self
-                        if (&Entity != &Dynamic_Entity)
+                        // Collision Detection
+                        if (Boundingbox && BB)
                         {
-                            // Add to collision map
-                            auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
-                            if (map == Boundingbox->m_CollisionState.end()) {
-                                const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
+                            // If Both Entities Are Colliding Already
+                            if (AabbAabb(Transform.m_Position + Transform.m_Offset + Boundingbox->Min, Transform.m_Position + Transform.m_Offset + Boundingbox->Max
+                                , Xform.m_Position + Xform.m_Offset + BB->Min, Xform.m_Position + Xform.m_Offset + BB->Max))
+                            {
+                                if (RF)
+                                {
+                                    // Current Entity is NOT Colliding with Other Entity
+                                    if (!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) {
+
+                                        for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+                                        {
+                                            to_update.second->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
+                                        }
+
+                                        for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                        {
+                                            to_update.second->OnCollisionEnter(Entity.m_GlobalIndex);
+                                        }
+
+                                        //BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, RigidForce, *RF, SkipUnit);
+                                    }
+                                    // Current Entity is ALREADY Colliding with Other Entity
+                                    else
+                                    {
+                                        for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+                                        {
+                                            to_update.second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
+                                        }
+
+                                        for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                        {
+                                            to_update.second->OnCollisionStay(Entity.m_GlobalIndex);
+                                        }
+                                    }
+                                    //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
+
+                                // Collision Response If Not Bounding Volume
+                                    if (!(BV || BV2))
+                                    {
+                                        AABBDynamic(Boundingbox, &RigidForce, Transform, m1, Slope1, BB, RF, Xform, m2, Slope2);
+                                    }
+
+                                    // Update Collision State of Current Entity to Other Entity
+                                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
+                                    Boundingbox->m_Collided = BB->m_Collided = true;
+                                }
                             }
 
-                            // Collision Detection
-                            if (Boundingbox && BB)
+                            //Current Entity is Colliding with Other Entity in the prev frame
+                            else if (Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
                             {
-                                // If Both Entities Are Colliding Already
-                                if (AabbAabb(Transform.m_Position + Transform.m_Offset + Boundingbox->Min, Transform.m_Position + Transform.m_Offset + Boundingbox->Max
-                                    , Xform.m_Position + Xform.m_Offset + BB->Min, Xform.m_Position + Xform.m_Offset + BB->Max))
+                                for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
                                 {
-                                    if (RF)
-                                    {
-                                        // Current Entity is NOT Colliding with Other Entity
-                                        if (!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) {
-
-                                            for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                                            {
-                                                to_update.second->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
-                                            }
-
-                                            for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
-                                            {
-                                                to_update.second->OnCollisionEnter(Entity.m_GlobalIndex);
-                                            }
-
-                                            //BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, RigidForce, *RF, SkipUnit);
-                                        }
-                                        // Current Entity is ALREADY Colliding with Other Entity
-                                        else
-                                        {
-                                            for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                                            {
-                                                to_update.second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
-                                            }
-
-                                            for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
-                                            {
-                                                to_update.second->OnCollisionStay(Entity.m_GlobalIndex);
-                                            }
-                                        }
-                                        //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
-
-                                    // Collision Response If Not Bounding Volume
-                                        if (!(BV || BV2))
-                                        {
-                                            AABBDynamic(Boundingbox, &RigidForce, Transform, m1, Slope1, BB, RF, Xform, m2, Slope2);
-                                        }
-
-                                        // Update Collision State of Current Entity to Other Entity
-                                        Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
-                                        Boundingbox->m_Collided = BB->m_Collided = true;
-                                    }
+                                    to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
                                 }
 
-                                //Current Entity is Colliding with Other Entity in the prev frame
-                                else if (Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
+                                for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
                                 {
-                                    for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                                    {
-                                        to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
-                                    }
-
-                                    for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
-                                    {
-                                        to_update.second->OnCollisionExit(Entity.m_GlobalIndex);
-                                    }
-
-                                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
+                                    to_update.second->OnCollisionExit(Entity.m_GlobalIndex);
                                 }
+
+                                Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
                             }
                         }
-                    });
-
-                //ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV2 )
-                //{
-                //    if ( Entity.IsZombie() || Dynamic_Entity.IsZombie() ) return;
-                //
-                //    // Do not check against self
-                //    if ( &Entity != &Dynamic_Entity )
-                //    {
-                //        // Add to collision map
-                //        auto map = Boundingbox->m_CollisionState.find(Dynamic_Entity.m_GlobalIndex);
-                //        if (map == Boundingbox->m_CollisionState.end()) {
-                //            const auto& [map, Valid] = Boundingbox->m_CollisionState.insert({ Dynamic_Entity.m_GlobalIndex, false });
-                //        }
-                //    
-                //        // Collision Detection
-                //        if ( Boundingbox && BB )
-                //        {
-                //            // If Both Entities Are Colliding Already
-                //            if ( AabbAabb( Transform.m_Position + Transform.m_Offset + Boundingbox->Min, Transform.m_Position + Transform.m_Offset + Boundingbox->Max
-                //                         , Xform.m_Position + Xform.m_Offset + BB->Min, Xform.m_Position + Xform.m_Offset + BB->Max ) )
-                //            {
-                //                if ( RF )
-                //                {
-                //                    // Current Entity is NOT Colliding with Other Entity
-                //                    if (!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) {
-                //                        
-                //                        for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                //                        {
-                //                            to_update.second->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
-                //                        }
-                //
-                //                        for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
-                //                        {
-                //                            to_update.second->OnCollisionEnter(Entity.m_GlobalIndex);
-                //                        }
-                //
-                //                        //BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, RigidForce, *RF, SkipUnit);
-                //                    }
-                //                    // Current Entity is ALREADY Colliding with Other Entity
-                //                    else
-                //                    {
-                //                        for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                //                        {
-                //                            to_update.second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
-                //                        }
-                //
-                //                        for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
-                //                        {
-                //                            to_update.second->OnCollisionStay(Entity.m_GlobalIndex);
-                //                        }
-                //                    }
-                //                        //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
-                //    
-                //                    // Collision Response If Not Bounding Volume
-                //                    if ( !(BV || BV2) )
-                //                    {
-                //                        AABBDynamic(Boundingbox, &RigidForce, Transform, m1, Slope1, BB, RF, Xform, m2, Slope2);
-                //                    }
-                //    
-                //                    // Update Collision State of Current Entity to Other Entity
-                //                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = true;
-                //                    Boundingbox->m_Collided = BB->m_Collided = true;
-                //                }
-                //            }
-                //
-                //            //Current Entity is Colliding with Other Entity in the prev frame
-                //            else if (Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
-                //            {
-                //                for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                //                {
-                //                    to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
-                //                }
-                //
-                //                for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
-                //                {
-                //                    to_update.second->OnCollisionExit(Entity.m_GlobalIndex);
-                //                }
-                //
-                //                Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
-                //            }
-                //        }
-                //    }
-                //});
-
-                //if ( NotCollided && Boundingbox )
-                //{
-                //    for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                //    {
-                //        to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
-                //    }
-                //    //BroadcastGlobalEvent<OnCollisionExit>(Entity, RigidForce, SkipUnit);
-                //}
+                    }
+                });
             }
 
             else if (Sphere)

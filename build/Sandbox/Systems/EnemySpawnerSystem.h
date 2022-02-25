@@ -89,13 +89,6 @@ struct enemy_spawner_system : paperback::system::pausable_instance
                                 Spawner.lane = rand() % 3;
                                 Transform->m_Position = Spawner.m_Position[Spawner.lane];
                                 Path->m_PathID = Spawner.lane;
-        
-        
-
-                                // Add Unit To Hash Grid - After Position Update
-                                auto [Entity, Xform, Box, Prefab] = m_obj.m_pArchetype->FindComponents<paperback::component::entity, transform, boundingbox, prefab>( m_obj.m_PoolDetails );
-                                if ( !Prefab && Entity && Xform && Box )
-                                    m_Coordinator.UpdateUnit( Entity->m_GlobalIndex, {0.0f,0.0f,0.0f}, Xform->m_Position, Box->Min, Box->Max );
                             }
         
                             break;

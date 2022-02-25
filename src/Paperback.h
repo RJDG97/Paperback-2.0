@@ -98,7 +98,8 @@ namespace paperback
 #include "Json/paperback_json.h"
 
 #include "paperback_query.h"
-#include "paperback_hash_grid.h"
+#include "Physics/paperback_physics_node.h"
+#include "Physics/paperback_physics_aabbtree.h"
 #include "../../build/Sandbox/Components/Parent.h"
 #include "../../build/Sandbox/Components/Child.h"
 #include "paperback_pool.h"
@@ -131,6 +132,7 @@ namespace paperback
 #include "Json/paperback_deserialize_inline.h"
 #include "Json/paperback_json_inline.h"
 
+#include "Physics/paperback_physics_aabbtree_inline.h"
 #include "Details/paperback_pool_inline.h"
 #include "Details/paperback_archetype_inline.h"
 #include "Details/paperback_archetype_mgr_inline.h"
@@ -138,7 +140,6 @@ namespace paperback
 #include "Details/paperback_query_inline.h"
 #include "Details/paperback_bitset_inline.h"
 #include "Details/paperback_nbitset_inline.h"
-#include "Details/paperback_hash_grid_inline.h"
 #include "Details/paperback_event_inline.h"
 #include "Details/paperback_coordinator_inline.h"
 #include "Details/paperback_statemgr_inline.h"
