@@ -61,7 +61,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
+            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 m_Sound.m_Trigger = true;
                 m_ChildBoundingBox.Min = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
@@ -77,7 +77,7 @@ namespace CSScript
         }
         public void OnCollisionExit(UInt32 ID)
         {
-            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
+            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 m_ChildBoundingBox.Min = m_InitialBoundingBoxMin;
                 m_ChildBoundingBox.Max = m_InitialBoundingBoxMax;

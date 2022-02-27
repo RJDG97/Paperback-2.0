@@ -71,7 +71,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/)
+            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
             {
                 m_Sound.m_Trigger = true;
                 m_ElevatorAnimator.m_PauseAnimation = false;
@@ -95,7 +95,7 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
-            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/)
+            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
             {
                 m_Sound.m_Trigger = true;
                 m_ElevatorAnimator.m_PauseAnimation = false;

@@ -41,7 +41,8 @@ struct path_system : paperback::system::instance
 		Query_Paths.m_Must.AddFromComponents<path, transform>();
 		Query_Paths.m_NoneOf.AddFromComponents<prefab>();
 
-		Query_Units.m_Must.AddFromComponents<path_follower, transform, offset>();
+		Query_Units.m_Must.AddFromComponents<path_follower, transform>();
+		Query_Units.m_OneOf.AddFromComponents<name, offset>();
 		Query_Units.m_NoneOf.AddFromComponents<prefab>();
 	}
 
@@ -108,7 +109,7 @@ struct path_system : paperback::system::instance
 
 		if (m_MovePathFollowers)
 		{
-			ForEach(Search(Query_Units), [&](path_follower& PathFollower, transform& Transform, offset& Offset) noexcept
+			ForEach(Search(Query_Units), [&](path_follower& PathFollower, transform& Transform, offset* Offset) noexcept
 			{
 				auto spline = splines.find(PathFollower.m_PathID);
 
@@ -138,7 +139,7 @@ struct path_system : paperback::system::instance
 		splines.clear();
 	}
 
-	void Movement(paperback::Spline& spline, path_follower& PathFollower, transform& Transform, offset& Offset)
+	void Movement(paperback::Spline& spline, path_follower& PathFollower, transform& Transform, offset* Offset)
 	{
 		float normalized_offset{ spline.GetNormalizedOffset(PathFollower.m_Distance) };
 
@@ -146,7 +147,15 @@ struct path_system : paperback::system::instance
 		paperback::Vector3f direction{ (destination - Transform.m_Position) };
 		float speed_modifier = 1.7f + 0.8f * cosf(PathFollower.m_Distance / spline.m_TotalLength * 2 * M_PI + M_PI);
 
-		Offset.m_PosOffset += direction;
+		if (Offset)
+		{
+			Offset->m_PosOffset += direction;
+		}
+
+		else
+		{
+			Transform.m_Position += direction;
+		}
 
 		if (PathFollower.m_Reversed)
 		{
@@ -154,7 +163,7 @@ struct path_system : paperback::system::instance
 
 			if (PathFollower.m_Distance < 0.0f)
 			{
-				PathFollower.m_Distance = 0.001f;
+				PathFollower.m_Distance = 0.00f;
 			}
 		}
 
@@ -165,7 +174,7 @@ struct path_system : paperback::system::instance
 
 			if (PathFollower.m_Distance > spline.m_TotalLength)
 			{
-				PathFollower.m_Distance = spline.m_TotalLength - 0.001f;
+				PathFollower.m_Distance = spline.m_TotalLength;
 			}
 		}
 
