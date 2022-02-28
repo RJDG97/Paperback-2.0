@@ -98,7 +98,7 @@ struct imgui_system : paperback::system::instance
 
     bool m_bDockspaceopen, m_bFullscreenpersistant, m_bFullscreen, m_bImgui, m_bDemoWindow;
     bool m_bFileOpen, m_bFileSaveAs, m_bSaveCheck, m_bLoadPrefab, m_bSavePrefab, m_bSaveIndiPrefab;
-    bool m_bPaused;
+    bool m_bPaused, m_bPausedPrev;
 
     RenderResourceLoader& m_Loader{ RenderResourceLoader::GetInstanced() };
     std::reference_wrapper<float> CamSpeed = PPB.GetSystem< render_system >().m_Speed;
@@ -155,7 +155,7 @@ struct imgui_system : paperback::system::instance
         m_Dockspaceflags = ImGuiDockNodeFlags_PassthruCentralNode;
         m_Windowflags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 
-        m_bImgui = m_bPaused = true;
+        m_bImgui = m_bPaused = m_bPausedPrev = true;
         m_bFileOpen = m_bFileSaveAs = m_bSaveCheck = m_bSavePrefab = m_bLoadPrefab = m_bSaveIndiPrefab = false;
         m_DisplayFilePath.push_front(std::make_pair("resources", "../../resources"));
        
@@ -678,7 +678,6 @@ struct imgui_system : paperback::system::instance
             //Serialize the scene into a temp location
             PPB.SaveScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
             m_bPaused = false;
-            PPB.TogglePause(m_bPaused);
 
             EDITOR_TRACE_PRINT("Playing Active Scene...");
 
@@ -691,7 +690,6 @@ struct imgui_system : paperback::system::instance
             ResetScene();
             PPB.OpenEditScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
             m_bPaused = true;
-            PPB.TogglePause(m_bPaused);
             PPB.GetSystem<sound_system>().EditorStopAllSounds();
 
             EDITOR_INFO_PRINT("Stopped Active Scene...");
@@ -1249,6 +1247,15 @@ struct imgui_system : paperback::system::instance
                 Unlink = false;
             }
         }
+    }
+
+    void PreStatusUpdate( void ) noexcept
+    {
+        if ( m_bPaused != m_bPausedPrev )
+        {
+            PPB.TogglePause( m_bPaused );
+        }
+        m_bPausedPrev = m_bPaused;
     }
 };
 

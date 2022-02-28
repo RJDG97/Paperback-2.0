@@ -1,5 +1,5 @@
 #pragma once
-
+struct imgui_system;
 namespace paperback::system
 {
 	manager::manager( tools::clock& Clock ) :
@@ -80,6 +80,7 @@ namespace paperback::system
 		// Track Frame Time
 		m_SystemClock.Tick();
 
+		m_Events.m_OnPreStatusUpdate.BroadcastEvent();
 		m_Events.m_OnFrameStart.BroadcastEvent();
 		m_Events.m_OnPreUpdate.BroadcastEvent();
 		m_Events.m_OnUpdate.BroadcastEvent();
@@ -134,6 +135,9 @@ namespace paperback::system
 	void manager::InitializeSystemUpdateEvents( T_SYSTEM* System ) noexcept
 	{
 		using system_t = system::details::completed<T_SYSTEM>;
+
+		if constexpr ( &T_SYSTEM::PreStatusUpdate != &system_interface::PreStatusUpdate )
+			m_Events.m_OnPreStatusUpdate.RegisterEvent< &system_t::System_OnPreStatusUpdate >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::OnFrameStart != &system_interface::OnFrameStart )
 			m_Events.m_OnFrameStart.RegisterEvent< &system_t::System_OnFrameStart >( static_cast<system_t*>( System ) );

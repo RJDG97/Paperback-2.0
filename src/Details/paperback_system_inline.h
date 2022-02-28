@@ -43,6 +43,14 @@ namespace paperback::system
 	{ }
 
 	template < typename USER_SYSTEM >
+	void details::completed<USER_SYSTEM>::System_OnPreStatusUpdate( void ) noexcept
+	{
+		if ( std::is_base_of_v< system::pausable_instance, USER_SYSTEM > && USER_SYSTEM::m_bPaused ) return;
+		XCORE_PERF_ZONE_SCOPED_N( USER_SYSTEM::typedef_v.m_pName )
+		USER_SYSTEM::PreStatusUpdate(  );
+	}
+
+	template < typename USER_SYSTEM >
 	void details::completed<USER_SYSTEM>::System_OnFrameStart( void ) noexcept
 	{
 		if ( std::is_base_of_v< system::pausable_instance, USER_SYSTEM > && USER_SYSTEM::m_bPaused ) return;

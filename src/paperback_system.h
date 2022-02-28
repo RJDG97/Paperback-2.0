@@ -215,6 +215,7 @@ namespace paperback::system
 
 		// Main System Loops
 		void OnSystemCreated    ( void )        noexcept {}				// Executed on RegisterSystem()
+		void PreStatusUpdate    ( void )        noexcept {}             // Executed on Pre Frame Start
         void OnFrameStart       ( void )        noexcept {}				// Executed on System Run - 1
         void PreUpdate          ( void )        noexcept {}				// Executed on System Run - 2
 		void Update		        ( void )        noexcept {}				// Executed on System Run - 3
@@ -365,6 +366,9 @@ namespace paperback::system
 		{
 			PPB_INLINE
 			completed( coordinator::instance& Coordinator ) noexcept;
+
+			PPB_INLINE
+			void System_OnPreStatusUpdate( void ) noexcept;
 
 			PPB_INLINE
 			void System_OnFrameStart( void ) noexcept;

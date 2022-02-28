@@ -14,6 +14,7 @@ namespace paperback::system
 
 		struct SystemEvents
 		{
+			paperback::event::instance<> m_OnPreStatusUpdate;
 			paperback::event::instance<> m_OnFrameStart;
 			paperback::event::instance<> m_OnPreUpdate;
 			paperback::event::instance<> m_OnUpdate;
