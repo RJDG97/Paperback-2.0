@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 101
+                "EntityHead": 103
             }
         },
         {
@@ -26,6 +26,7 @@
                         "Model": "Ceiling",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": false,
                         "Active": true
                     },
                     "Scale": {
@@ -91,6 +92,7 @@
                         "Model": "Plane",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -155,6 +157,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -330,6 +333,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -422,6 +426,7 @@
                         "Model": "Ceiling",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -514,6 +519,7 @@
                         "Model": "Shelf",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -606,6 +612,7 @@
                         "Model": "Table",
                         "Texture": "Table_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -699,6 +706,7 @@
                         "Model": "ChairGreen",
                         "Texture": "Chair_Green_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -791,6 +799,7 @@
                         "Model": "ChairBrown",
                         "Texture": "Chair_Brown_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -883,6 +892,7 @@
                         "Model": "WallSegment2",
                         "Texture": "WallSegment2_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -994,6 +1004,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1090,6 +1101,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1186,6 +1198,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1282,6 +1295,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1378,6 +1392,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1474,6 +1489,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1570,6 +1586,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1666,6 +1683,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1762,6 +1780,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1858,6 +1877,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1954,6 +1974,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2050,6 +2071,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2146,6 +2168,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2242,6 +2265,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2338,6 +2362,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2434,6 +2459,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2530,6 +2556,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2626,6 +2653,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2722,6 +2750,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2818,6 +2847,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2914,6 +2944,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3010,6 +3041,7 @@
                         "Model": "Ceiling",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": false,
                         "Active": true
                     },
                     "Scale": {
@@ -3087,7 +3119,8 @@
                             17008353085049151909,
                             5691439207370049121,
                             3617555656175080491,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 24
                     },
@@ -3107,6 +3140,7 @@
                         "Model": "Ceiling",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": false,
                         "Active": true
                     },
                     "Scale": {
@@ -3184,7 +3218,8 @@
                             17008353085049151909,
                             5691439207370049121,
                             3617555656175080491,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 24
                     },
@@ -3204,6 +3239,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3301,6 +3337,7 @@
                         "Model": "Shelf",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3394,6 +3431,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3490,6 +3528,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3586,6 +3625,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3682,6 +3722,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3778,6 +3819,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3874,6 +3916,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3970,6 +4013,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4066,6 +4110,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4162,6 +4207,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4258,6 +4304,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4354,6 +4401,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4450,6 +4498,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4546,6 +4595,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4642,6 +4692,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4738,6 +4789,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4834,6 +4886,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4930,6 +4983,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5026,6 +5080,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5122,6 +5177,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5218,6 +5274,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5314,6 +5371,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5410,6 +5468,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5506,6 +5565,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5602,6 +5662,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5698,6 +5759,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5794,6 +5856,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5890,6 +5953,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5986,6 +6050,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6082,6 +6147,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6178,6 +6244,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6274,6 +6341,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6370,6 +6438,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6466,6 +6535,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6562,6 +6632,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6658,6 +6729,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6754,6 +6826,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6850,6 +6923,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6946,6 +7020,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7042,6 +7117,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7138,6 +7214,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7234,6 +7311,7 @@
                         "Model": "FloorTile",
                         "Texture": "FloorTile_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7330,6 +7408,7 @@
                         "Model": "Table",
                         "Texture": "Table_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7425,6 +7504,7 @@
                         "Model": "Table",
                         "Texture": "Table_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7520,6 +7600,7 @@
                         "Model": "ChairGreen",
                         "Texture": "Chair_Green_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7617,6 +7698,7 @@
                         "Model": "ChairGreen",
                         "Texture": "Chair_Green_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7713,6 +7795,7 @@
                         "Model": "ChairGreen",
                         "Texture": "Chair_Green_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7809,6 +7892,7 @@
                         "Model": "ChairGreen",
                         "Texture": "Chair_Green_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7905,6 +7989,7 @@
                         "Model": "ChairGreen",
                         "Texture": "Chair_Green_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8001,6 +8086,7 @@
                         "Model": "ChairBrown",
                         "Texture": "Chair_Brown_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8097,6 +8183,7 @@
                         "Model": "ChairBrown",
                         "Texture": "Chair_Brown_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8193,6 +8280,7 @@
                         "Model": "ChairBrown",
                         "Texture": "Chair_Brown_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8289,6 +8377,7 @@
                         "Model": "ChairBrown",
                         "Texture": "Chair_Brown_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8385,6 +8474,7 @@
                         "Model": "ChairBrown",
                         "Texture": "Chair_Brown_BaseColour",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8481,6 +8571,7 @@
                         "Model": "Ceiling",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": false,
                         "Active": true
                     },
                     "Scale": {
@@ -8558,7 +8649,8 @@
                             17008353085049151909,
                             5691439207370049121,
                             3617555656175080491,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 24
                     },
@@ -8578,6 +8670,7 @@
                         "Model": "WallSegment2",
                         "Texture": "WallSegment2_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8613,7 +8706,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -76.5,
+                            "x": -66.40872955322266,
                             "y": 29.700000762939454,
                             "z": -146.5
                         }
@@ -8674,6 +8767,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8771,6 +8865,7 @@
                         "Model": "WallSegment2",
                         "Texture": "WallSegment2_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8867,6 +8962,7 @@
                         "Model": "WallSegment2",
                         "Texture": "WallSegment2_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": false,
                         "Active": true
                     },
                     "Scale": {
@@ -8944,7 +9040,8 @@
                             14486341741652966143,
                             5691439207370049121,
                             3617555656175080491,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 86
                     },
@@ -8964,6 +9061,7 @@
                         "Model": "WallSegment2",
                         "Texture": "WallSegment2_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9061,6 +9159,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9158,6 +9257,7 @@
                         "Model": "WallSegment2",
                         "Texture": "WallSegment2_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9255,6 +9355,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9352,6 +9453,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": false,
                         "Active": true
                     },
                     "Scale": {
@@ -9429,7 +9531,8 @@
                             5691439207370049121,
                             14486341741652966143,
                             3617555656175080491,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 2
                     },
@@ -9449,6 +9552,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": false,
                         "Active": true
                     },
                     "Scale": {
@@ -9526,7 +9630,8 @@
                             5691439207370049121,
                             14486341741652966143,
                             3617555656175080491,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 2
                     },
@@ -9546,6 +9651,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9643,6 +9749,7 @@
                         "Model": "WallSegment1",
                         "Texture": "WallSegment1_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9730,6 +9837,157 @@
                     "Mass": {
                         "Mass": 0.0,
                         "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17008353085049151909,
+                        12326225187096344837
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 101
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            102
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Ceiling Light 1"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Diffuse": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        12326225187096344837
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 102
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -140.60000610351563,
+                            "y": 37.79999923706055,
+                            "z": 75.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 101
+                    },
+                    "Name": {
+                        "Name": "Ceiling Light 1"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 153.0
+                        },
+                        "Diffuse": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 153.0
+                        },
+                        "Specular": {
+                            "x": 10.0,
+                            "y": 10.0,
+                            "z": 10.0
+                        }
                     }
                 }
             ]
