@@ -439,6 +439,9 @@ namespace paperback::deserialize
             if (obj.is_type<light>())
                 NewArchetype->GetComponent<light>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<light>();
 
+            if (obj.is_type<bulksound>())
+                NewArchetype->GetComponent<bulksound>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<bulksound>();
+
         }
     }
 

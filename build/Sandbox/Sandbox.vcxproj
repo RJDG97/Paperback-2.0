@@ -208,6 +208,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
     <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\Base.h" />
     <ClInclude Include="Components\BoundingBox.h" />
+    <ClInclude Include="Components\BulkSound.h" />
     <ClInclude Include="Components\Button.h" />
     <ClInclude Include="Components\Camera.h" />
     <ClInclude Include="Components\Card.h" />

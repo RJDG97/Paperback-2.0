@@ -687,6 +687,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< crosshair >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< light >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< light >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< bulksound >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< bulksound >(Index));
 		else
 			return rttr::instance();
 	}

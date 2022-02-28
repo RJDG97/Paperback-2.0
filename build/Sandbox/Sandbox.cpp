@@ -125,6 +125,7 @@ void InitializeGame()
         ,    pushable        // Tag
         ,    crosshair       // Tag
         ,    light
+        ,    bulksound
         >();
 
         // Register Components - Add to the end of the list

@@ -13,14 +13,32 @@ private:
     // used for storing in vector for keeping track of what song is curently playing
     struct SoundFile
     {
-        FMOD::Studio::EventInstance* m_pSound = nullptr; // contains pointer to playing sound
-        size_t m_ID; // contains the id to match with entity that spawned the sound
-        bool m_IsTriggerable; // clone of variable in component for deciding if entity is to be purged on sound play completion
-        bool m_Verified; // used to verify if a soundfile being played has a corresponding active sound component
-        bool m_ForceStop = false;
+        FMOD::Studio::EventInstance* m_pSound = nullptr;        // contains pointer to playing sound
+        size_t m_ID;                                            // contains the id to match with entity that spawned the sound
+        bool m_IsTriggerable;                                   // clone of variable in component for deciding if entity is to be purged on sound play completion
+        bool m_Trigger = false;                                 // clone of variable in sound component, used particularly with sounds not set by sound component 
+        bool m_Verified;                                        // used to verify if a soundfile being played has a corresponding active sound component
+        bool m_ForceStop = false;                               // used to force set a sound file to stop 
+        bool m_IsStandalone = false;                            // used to to tell if a sound file is paired to a sound component or is set by standalone 
+        std::string m_Tag;
     };
 
 public:
+    
+    using query = std::tuple
+    <
+        paperback::query::must<sound>
+    ,   paperback::query::one_of<transform, rigidbody, listener>
+    ,   paperback::query::none_of<prefab>
+    >;
+
+    using alt_query = std::tuple
+    <
+        paperback::query::must<bulksound>
+    ,   paperback::query::none_of<prefab>
+    >;
+
+    tools::query m_SoundQuery, m_BulkSoundQuery;
 
     FMOD::System* m_pFMODSystem = nullptr; // contains pointer to fmod system
     FMOD::Studio::System* m_pStudioSystem = nullptr;
@@ -299,12 +317,218 @@ public:
 
         m_ListenerPos = {};
         m_ListenerVel = {};
+
+        m_SoundQuery.AddQueryFromTuple(xcore::types::null_tuple_v< query >);
+        m_BulkSoundQuery.AddQueryFromTuple(xcore::types::null_tuple_v< alt_query >);
     }
+
+
+    void SoundComponentProcess()
+    {
+
+        ForEach(Search(m_SoundQuery), [&](entity& Entity, sound& Sound, transform* Transform, rigidbody* Rigidbody, listener* Listener) noexcept
+        {
+
+            if (Entity.IsZombie())
+                return;
+
+            //for updating current central listener
+            if (Sound.m_SoundID == "")
+            {
+
+                if (Listener)
+                {
+
+                    m_AudioFollowPosition = true;
+
+                    if (Transform)
+                        m_ListenerPos = Transform->m_Position;
+
+                    if (Rigidbody)
+                        m_ListenerVel = Rigidbody->m_Velocity;
+                    else
+                        m_ListenerVel.z = 1.0f;
+                }
+
+                return;
+            }
+
+            auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [Sound](const SoundFile& soundfile) { return Sound.m_SoundPlayTag == soundfile.m_ID; });
+            //check if id already exists 
+            if (sound_check == m_SoundFiles.end())
+            {
+
+                //if no, then create new entry and add into record of currently playing sounds
+                PlaySoundEvent(Sound.m_SoundID, Sound.m_IsTriggerable);
+                Sound.m_SoundPlayTag = m_SoundCounter;
+
+                if (!m_SoundFiles.empty())
+                    m_SoundFiles.back().m_Verified = true;
+            }
+            else if (Sound.m_IsTriggerable)
+            {
+
+                //sound exists and is triggerable
+                //check current playback status
+
+                sound_check->m_Verified = true;
+                FMOD_STUDIO_PLAYBACK_STATE be;
+                sound_check->m_pSound->getPlaybackState(&be);
+
+
+                //if sound is stopped or yet to begin, check trigger status
+                if (be == FMOD_STUDIO_PLAYBACK_STOPPED && Sound.m_Trigger)
+                {
+
+                    //trigger is active, play the sound and reset trigger
+                    Sound.m_Trigger = false;
+                    sound_check->m_pSound->start();
+                }
+                if (Sound.m_ForceStop)
+                {
+                    if (be == FMOD_STUDIO_PLAYBACK_STOPPED)
+                    {
+
+                        //not triggered but force stop
+                        //reset
+                        Sound.m_ForceStop = false;
+                    }
+                    else //sound_check->m_ForceStop)
+                    {
+
+                        //sound_check->m_ForceStop = false;
+                        Sound.m_ForceStop = false;
+                        sound_check->m_pSound->stop(FMOD_STUDIO_STOP_IMMEDIATE);
+                    }
+                }
+            }
+            else
+            {
+
+                //sound exists, ensure that id is not 0, else delete
+                FMOD_STUDIO_PLAYBACK_STATE be;
+                sound_check->m_pSound->getPlaybackState(&be);
+
+                //if sound has stopped, mark for removal
+                if (be == 2)
+                {
+                    sound_check->m_ID = 0;
+                    return;
+                }
+
+                sound_check->m_Verified = true;
+            }
+
+
+            //process sound based on position of listener
+            if (Sound.m_Is3DSound && Transform && Rigidbody)
+            {
+
+                //file should exist, no need to error check
+                auto soundfile = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [Sound](const SoundFile& soundfile) { return Sound.m_SoundPlayTag == soundfile.m_ID; });
+
+                UpdateEvent3DAttributes(soundfile->m_pSound, Transform, Rigidbody);
+            }
+        });
+    }
+
+    void ProcessPathsOrTags(std::vector<std::string>& paths, const std::string& unformat)
+    {
+
+        std::string path{};
+        std::stringstream format{ unformat };
+
+        while (std::getline(format, path, ','))
+        {
+
+            paths.push_back(path);
+        }
+    }
+
+    void BulkSoundProcess()
+    {
+
+        //process bulk sound components here
+
+        ForEach(Search(m_BulkSoundQuery), [&](entity& Entity, bulksound& Bulk) noexcept
+        {
+
+                if (Entity.IsZombie() || Bulk.m_Processed || Bulk.m_SoundPaths == "" || Bulk.m_SoundTags == "")
+                    return;
+
+                //assume there is the same number of paths and tags
+                std::vector<std::string> paths, tags;
+
+                //split from commas into separate pairs of paths and tags
+                ProcessPathsOrTags(paths, Bulk.m_SoundPaths);
+                ProcessPathsOrTags(tags, Bulk.m_SoundTags);
+
+                //create sound events for each that exist, assume that same number of tags and sounds
+
+                for (size_t i = 0; i < paths.size(); ++i)
+                {
+                    PlaySoundEvent(paths[i], Bulk.m_IsTriggerable);
+
+                    if (!m_SoundFiles.empty())
+                    {
+
+                        m_SoundFiles.back().m_Verified = true;
+                        m_SoundFiles.back().m_IsStandalone = true;
+                        m_SoundFiles.back().m_Tag = tags[i];
+                    }
+                }
+
+                Bulk.m_Processed = true;
+        });
+
+        //process indep sound components
+        for (SoundFile& sound : m_SoundFiles) {
+
+            sound.m_Verified = true;
+            FMOD_STUDIO_PLAYBACK_STATE be;
+            sound.m_pSound->getPlaybackState(&be);
+
+
+            //if sound is stopped or yet to begin, check trigger status
+            if (be == FMOD_STUDIO_PLAYBACK_STOPPED && sound.m_Trigger)
+            {
+
+                //trigger is active, play the sound and reset trigger
+                sound.m_Trigger = false;
+                sound.m_pSound->start();
+            }
+            if (sound.m_ForceStop)
+            {
+                if (be == FMOD_STUDIO_PLAYBACK_STOPPED)
+                {
+
+                    //not triggered but force stop
+                    //reset
+                    sound.m_ForceStop = false;
+                }
+                else //sound_check->m_ForceStop)
+                {
+
+                    //sound_check->m_ForceStop = false;
+                    sound.m_ForceStop = false;
+                    sound.m_pSound->stop(FMOD_STUDIO_STOP_IMMEDIATE);
+                }
+            }
+        }
+    }
+
 
     // entity that is processed by soundsystem will specifically have sound and timer components
     // entity must have either transform or rigidbody, can have both if is 3D
     PPB_FORCEINLINE
-    void operator()(paperback::component::entity& Entity, sound& Sound, transform* Transform, rigidbody* Rigidbody, listener* Listener) noexcept
+    void Update() noexcept
+    {
+
+        SoundComponentProcess();
+        BulkSoundProcess();
+    }
+
+    /*void operator()(paperback::component::entity& Entity, sound& Sound, transform* Transform, rigidbody* Rigidbody, listener* Listener) noexcept
     {
         if ( Entity.IsZombie() )
             return;
@@ -406,7 +630,7 @@ public:
             
             UpdateEvent3DAttributes(soundfile->m_pSound, Transform, Rigidbody);
         }
-    }
+    }*/
 
     PPB_FORCEINLINE
     void CleanUpSounds()
@@ -483,4 +707,47 @@ public:
         StopAllSounds();
         CleanUpSounds();
     };
+
+    //used to play a stand alone sound attached to a specific tag
+    void TriggerTaggedSound(const std::string& Tag)
+    {
+
+        auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [Tag](const SoundFile& soundfile) { return Tag == soundfile.m_Tag; });
+
+        if (sound_check != m_SoundFiles.end())
+        {
+
+            sound_check->m_pSound->start();
+        }
+    }
+
+    //used to play one of multiple sounds attached to a specific tag
+    //useful for multiple sounds for the same action
+    //e.g. footsteps
+    void TriggerOneOfGroupTaggedSounds(const std::string& Tag)
+    {
+
+        std::vector<size_t> indexes{};
+
+        for (size_t i = 0; i < m_SoundFiles.size(); ++i)
+        {
+
+            //only process sounds that are tagged and added through bulk sound component
+            if (!m_SoundFiles[i].m_IsStandalone && m_SoundFiles[i].m_Tag != Tag)
+                continue;
+
+            //check if sound file status is not playing, otherwise in progress, cut search and return
+            FMOD_STUDIO_PLAYBACK_STATE be;
+            m_SoundFiles[i].m_pSound->getPlaybackState(&be);
+
+            if (be == FMOD_STUDIO_PLAYBACK_PLAYING || be == FMOD_STUDIO_PLAYBACK_STARTING)
+                return;
+
+            indexes.push_back(i);
+        }        
+
+        //randomly select one of available indexes to 
+        if (!indexes.empty())
+            m_SoundFiles[indexes[rand() % indexes.size()]].m_pSound->start();
+    }
 };
