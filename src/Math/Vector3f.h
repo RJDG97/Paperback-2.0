@@ -65,8 +65,12 @@ namespace paperback
 		PPB_INLINE Vector3f operator-() const;							    //------ Negates all components
 		PPB_INLINE Vector3f& operator*=(float Scalar);					    //------ Vector3f *= Scalar
 		PPB_INLINE Vector3f operator*(float Scalar) const;				    //------ Vector3f * Scalar
+		PPB_INLINE Vector3f& operator*=(Vector3f Vec);					    //------ Vector3f *= Vector3f
+		PPB_INLINE Vector3f operator*(Vector3f Vec) const;				    //------ Vector3f * Vector3f
 		PPB_INLINE Vector3f& operator/=(float Scalar);					    //------ Vector3f /= Scalar
 		PPB_INLINE Vector3f operator/(float Scalar) const;				    //------ Vector3f / Scalar
+		PPB_INLINE Vector3f& operator/=(Vector3f Vec);					    //------ Vector3f /= Vector3f
+		PPB_INLINE Vector3f operator/(Vector3f Vec) const;				    //------ Vector3f / Vector3f
 		PPB_INLINE Vector3f& operator+=(const Vector3f& Other);			    //------ Vector3f += Vector3f
 		PPB_INLINE Vector3f operator+(const Vector3f& Other) const;		    //------ Vector3f + Vector3f
 		PPB_INLINE Vector3f& operator-=(const Vector3f& Other);			    //------ Vector3f -= Vector3f
@@ -115,6 +119,10 @@ namespace paperback
 
 	//------ Operator overload | operator/ | Scalar / Vector3f
 	PPB_INLINE Vector3f operator/(float lhs, const Vector3f& rhs);
+
+	PPB_INLINE Vector3f Min( Vector3f Vec_1, Vector3f Vec_2 ) noexcept;
+
+	PPB_INLINE Vector3f Max( Vector3f Vec_1, Vector3f Vec_2 ) noexcept;
 }
 
 #include "Vector3f.hpp"

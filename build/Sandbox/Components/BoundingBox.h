@@ -114,6 +114,24 @@ struct boundingbox
 			   || Min.y > rhs.Max.y || rhs.Min.y > Max.y
 			   || Min.z > rhs.Max.z || rhs.Min.z > Max.z );
 	}
+
+	std::tuple<bool, float> Intersecting( const paperback::Vector3f& StartRay
+					                    , const paperback::Vector3f& EndRay ) const noexcept
+	{
+		auto RayDirection = EndRay - StartRay;
+		RayDirection = paperback::Vector3f{ 1.0f, 1.0f, 1.0f } / RayDirection;
+
+		auto TMin = ( Min - StartRay ) * RayDirection;
+		auto TMax = ( Max - StartRay ) * RayDirection;
+
+		auto T0 = paperback::Min( TMin, TMax );
+		auto T1 = paperback::Max( TMin, TMax );
+
+		float TNear = std::max( std::max( T0.x, T0.y ), T0.z );
+		float TFar  = std::min( std::min( T1.x, T1.y ), T1.z );
+
+		return std::make_tuple( TFar > TNear, TNear );
+	}
 };
 
 

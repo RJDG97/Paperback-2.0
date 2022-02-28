@@ -290,6 +290,14 @@ namespace paperback::coordinator
 		PPB_INLINE
 		physics::AABB_Tree::NeighbourList QueryNeighbours( const boundingbox& AABB
                                                          , const transform&   Transform ) noexcept;
+
+		PPB_INLINE
+		physics::AABB_Tree::NeighbourList QueryRaycast( const paperback::Vector3f& StartRay
+													  , const paperback::Vector3f& EndRay ) noexcept;
+
+		PPB_INLINE
+		physics::AABB_Tree::EntityGID QueryRaycastClosest( const paperback::Vector3f& StartRay
+										                 , const paperback::Vector3f& EndRay ) noexcept;
 		
 		
 		//-----------------------------------

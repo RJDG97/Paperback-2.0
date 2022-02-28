@@ -171,6 +171,52 @@ namespace paperback::physics
         return List;
     }
 
+    PPB_INLINE
+    AABB_Tree::NeighbourList AABB_Tree::QueryRaycast( const paperback::Vector3f& RayStart
+                                                    , const paperback::Vector3f& RayEnd ) noexcept
+    {
+        NeighbourList List;
+
+        TraverseTree( [&]( AABBTree_Node& Node ) -> bool
+                      {
+                          auto [ Status, Distance ] = Node.m_AABB.Intersecting( RayStart
+                                                                              , RayEnd );
+                          return Status;
+                      }
+                    , [&]( AABBTree_Node& Node )
+                      {
+                          List.push_back( Node.m_Entity.m_GlobalIndex );
+                      });
+
+        return List;
+    }
+
+    PPB_INLINE
+    AABB_Tree::EntityGID AABB_Tree::QueryRaycastClosest( const paperback::Vector3f& RayStart
+                                                       , const paperback::Vector3f& RayEnd ) noexcept
+    {
+        std::pair<EntityGID, float> CurrentPair = std::make_pair( settings::invalid_index_v, 0.0f );
+        std::pair<EntityGID, float> ClosestPair = std::make_pair( settings::invalid_index_v, FLT_MAX );
+
+        TraverseTree( [&]( AABBTree_Node& Node ) -> bool
+                      {
+                          auto [ Status, Distance ] = Node.m_AABB.Intersecting( RayStart
+                                                                              , RayEnd );
+                          if ( Status ) CurrentPair = std::make_pair( Node.m_Entity.m_GlobalIndex, Distance );
+                          return Status;
+                      }
+                    , [&]( AABBTree_Node& Node )
+                      {
+                          if ( CurrentPair.second < ClosestPair.second )
+                          {
+                              ClosestPair.first = CurrentPair.first;
+                              ClosestPair.second = CurrentPair.second;
+                          }
+                      });
+
+        return ClosestPair.first;
+    }
+
 
     //-----------------------------------
     //              Debug

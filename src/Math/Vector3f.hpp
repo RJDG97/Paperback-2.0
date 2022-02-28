@@ -29,6 +29,25 @@ namespace paperback
 	}
 
 	//----- Operator overload  
+	//-----| operator*=  
+	//-----| Vector3f *= Vec
+	inline Vector3f& Vector3f::operator*=(Vector3f Vec) {
+		x *= Vec.x;
+		y *= Vec.y;
+		z *= Vec.z;
+		return *this;
+	}
+
+	//----- Operator overload  
+	//-----| operator*  
+	//-----| Vector3f * Vec
+	inline Vector3f Vector3f::operator*(Vector3f Vec) const {
+		Vector3f Temp = *this;
+		Temp *= Vec;
+		return Temp;
+	}
+
+	//----- Operator overload  
 	//-----| operator/=  
 	//-----| Vector3f /= scalar
 	inline Vector3f& Vector3f::operator/=(float Scalar) {
@@ -44,6 +63,25 @@ namespace paperback
 	inline Vector3f Vector3f::operator/(float Scalar) const {
 		Vector3f Temp = *this;
 		Temp /= Scalar;
+		return Temp;
+	}
+
+	//----- Operator overload  
+	//-----| operator/=  
+	//-----| Vector3f /= scalar
+	inline Vector3f& Vector3f::operator/=(Vector3f Vec) {
+		x /= Vec.x;
+		y /= Vec.y;
+		z /= Vec.z;
+		return *this;
+	}
+
+	// -- Operator overload  
+	// --| operator/  
+	// --| Vector3f / scalar
+	inline Vector3f Vector3f::operator/(Vector3f Vec) const {
+		Vector3f Temp = *this;
+		Temp /= Vec;
 		return Temp;
 	}
 
@@ -264,5 +302,23 @@ namespace paperback
 		if (abs(z) > EPSILON)
 			z -= (z > EPSILON) ? lock.x : -lock.x;
 		return *this;
+	}
+
+	PPB_INLINE Vector3f Min( Vector3f Vec_1, Vector3f Vec_2 ) noexcept
+	{
+		Vector3f MinVec;
+		MinVec.x = std::min( Vec_1.x, Vec_2.x );
+		MinVec.y = std::min( Vec_1.y, Vec_2.y );
+		MinVec.z = std::min( Vec_1.z, Vec_2.z );
+		return MinVec;
+	}
+
+	PPB_INLINE Vector3f Max( Vector3f Vec_1, Vector3f Vec_2 ) noexcept
+	{
+		Vector3f MaxVec;
+		MaxVec.x = std::max( Vec_1.x, Vec_2.x );
+		MaxVec.y = std::max( Vec_1.y, Vec_2.y );
+		MaxVec.z = std::max( Vec_1.z, Vec_2.z );
+		return MaxVec;
 	}
 }

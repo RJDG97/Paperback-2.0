@@ -57,6 +57,14 @@ namespace paperback::physics
         NeighbourList QueryNeighbours( const boundingbox& AABB
                                      , const transform&   Transform ) noexcept;
 
+        PPB_INLINE
+        NeighbourList QueryRaycast( const paperback::Vector3f& RayStart
+                                  , const paperback::Vector3f& RayEnd ) noexcept;
+            
+        PPB_INLINE
+        EntityGID QueryRaycastClosest( const paperback::Vector3f& RayStart
+                                     , const paperback::Vector3f& RayEnd ) noexcept;
+
 
         //-----------------------------------
         //              Debug
