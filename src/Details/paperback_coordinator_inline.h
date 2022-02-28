@@ -868,21 +868,26 @@ namespace paperback::coordinator
     physics::AABB_Tree::NeighbourList instance::QueryNeighbours( const boundingbox& AABB
                                                                , const transform&   Transform ) noexcept
 	{
-		return m_AABBTree.QueryNeighbours( AABB, Transform );
+		return m_AABBTree.QueryNeighbours( AABB
+										 , Transform );
 	}
 
 	PPB_INLINE
 	physics::AABB_Tree::NeighbourList instance::QueryRaycast( const paperback::Vector3f& StartRay
 												            , const paperback::Vector3f& EndRay ) noexcept
 	{
-		return m_AABBTree.QueryRaycast( StartRay, EndRay );
+		return m_AABBTree.QueryRaycast( StartRay
+									  , EndRay );
 	}
 
 	PPB_INLINE
-	physics::AABB_Tree::EntityGID instance::QueryRaycastClosest( const paperback::Vector3f& StartRay
-									                           , const paperback::Vector3f& EndRay ) noexcept
+	physics::AABB_Tree::EntityGID instance::QueryRaycastClosest( const paperback::Vector3f&               StartRay
+									                           , const paperback::Vector3f&               EndRay
+															   , std::span<physics::AABB_Tree::EntityGID> ExcludeList ) noexcept
 	{
-		return m_AABBTree.QueryRaycastClosest( StartRay, EndRay );
+		return m_AABBTree.QueryRaycastClosest( StartRay
+			                                 , EndRay
+			                                 , ExcludeList );
 	}
 
 	

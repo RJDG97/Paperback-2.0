@@ -193,7 +193,8 @@ namespace paperback::physics
 
     PPB_INLINE
     AABB_Tree::EntityGID AABB_Tree::QueryRaycastClosest( const paperback::Vector3f& RayStart
-                                                       , const paperback::Vector3f& RayEnd ) noexcept
+                                                       , const paperback::Vector3f& RayEnd
+                                                       , std::span<EntityGID>       ExcludeList ) noexcept
     {
         std::pair<EntityGID, float> CurrentPair = std::make_pair( settings::invalid_index_v, 0.0f );
         std::pair<EntityGID, float> ClosestPair = std::make_pair( settings::invalid_index_v, FLT_MAX );
@@ -209,8 +210,11 @@ namespace paperback::physics
                       {
                           if ( CurrentPair.second < ClosestPair.second )
                           {
-                              ClosestPair.first = CurrentPair.first;
-                              ClosestPair.second = CurrentPair.second;
+                              if ( std::find( ExcludeList.begin(), ExcludeList.end(), CurrentPair.first ) == ExcludeList.end() )
+                              {
+                                  ClosestPair.first = CurrentPair.first;
+                                  ClosestPair.second = CurrentPair.second;
+                              }
                           }
                       });
 
