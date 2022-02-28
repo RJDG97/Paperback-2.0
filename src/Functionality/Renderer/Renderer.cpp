@@ -75,65 +75,65 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("UI", "../../resources/shaders/UI.vert", "../../resources/shaders/UI.frag");
 	m_Resources.LoadShader("Text", "../../resources/shaders/Text.vert", "../../resources/shaders/Text.frag");
 
-	m_Resources.Load3DMeshNUI("RedUnitAnimated", "../../resources/models/nui/RedUnitAnimated.nui");
-	m_Resources.Load3DMeshNUI("BlueUnitAnimated", "../../resources/models/nui/BlueUnitAnimated.nui");
+	//m_Resources.Load3DMeshNUI("RedUnitAnimated", "../../resources/models/nui/RedUnitAnimated.nui");
+	//m_Resources.Load3DMeshNUI("BlueUnitAnimated", "../../resources/models/nui/BlueUnitAnimated.nui");
 
-	m_Resources.Load3DMeshNUI("BadmintonRacketAnimated_Blue", "../../resources/models/nui/BadmintonRacketAnimated_Blue.nui");
-	m_Resources.Load3DMeshNUI("BadmintonRacketAnimated_Red", "../../resources/models/nui/BadmintonRacketAnimated_Red.nui");
+	//m_Resources.Load3DMeshNUI("BadmintonRacketAnimated_Blue", "../../resources/models/nui/BadmintonRacketAnimated_Blue.nui");
+	//m_Resources.Load3DMeshNUI("BadmintonRacketAnimated_Red", "../../resources/models/nui/BadmintonRacketAnimated_Red.nui");
 
-	m_Resources.Load3DMeshNUI("TableTennisRacket_Red", "../../resources/models/nui/TableTennisRacket_Red.nui");
-	m_Resources.Load3DMeshNUI("TableTennisRacket_Blue", "../../resources/models/nui/TableTennisRacket_Blue.nui");
-	
-	m_Resources.Load3DMeshNUI("SwimmingBoardShield_Red", "../../resources/models/nui/SwimmingBoardShield_Red.nui");
-	m_Resources.Load3DMeshNUI("SwimmingBoardShield_Blue", "../../resources/models/nui/SwimmingBoardShield_Blue.nui");
-	
-	m_Resources.Load3DMeshNUI("HelmetShield_Red", "../../resources/models/nui/HelmetShield_Red.nui");
-	m_Resources.Load3DMeshNUI("HelmetShield_Blue", "../../resources/models/nui/HelmetShield_Blue.nui");
-	
-	m_Resources.Load3DMeshNUI("FrisbeeShield_Blue", "../../resources/models/nui/FrisbeeShield_Blue.nui");
-	m_Resources.Load3DMeshNUI("FrisbeeShield_Red", "../../resources/models/nui/FrisbeeShield_Red.nui");
-	
-	m_Resources.Load3DMeshNUI("FloorballStickAnimated_Red", "../../resources/models/nui/FloorballStickAnimated_Red.nui");
-	m_Resources.Load3DMeshNUI("FloorballStickAnimated_Blue", "../../resources/models/nui/FloorballStickAnimated_Blue.nui");
-	
-	m_Resources.Load3DMeshNUI("TopPathSlope", "../../resources/models/nui/TopPathSlope.nui");
-	m_Resources.Load3DMeshNUI("TopPath", "../../resources/models/nui/TopPath.nui");
+	//m_Resources.Load3DMeshNUI("TableTennisRacket_Red", "../../resources/models/nui/TableTennisRacket_Red.nui");
+	//m_Resources.Load3DMeshNUI("TableTennisRacket_Blue", "../../resources/models/nui/TableTennisRacket_Blue.nui");
+	//
+	//m_Resources.Load3DMeshNUI("SwimmingBoardShield_Red", "../../resources/models/nui/SwimmingBoardShield_Red.nui");
+	//m_Resources.Load3DMeshNUI("SwimmingBoardShield_Blue", "../../resources/models/nui/SwimmingBoardShield_Blue.nui");
+	//
+	//m_Resources.Load3DMeshNUI("HelmetShield_Red", "../../resources/models/nui/HelmetShield_Red.nui");
+	//m_Resources.Load3DMeshNUI("HelmetShield_Blue", "../../resources/models/nui/HelmetShield_Blue.nui");
+	//
+	//m_Resources.Load3DMeshNUI("FrisbeeShield_Blue", "../../resources/models/nui/FrisbeeShield_Blue.nui");
+	//m_Resources.Load3DMeshNUI("FrisbeeShield_Red", "../../resources/models/nui/FrisbeeShield_Red.nui");
+	//
+	//m_Resources.Load3DMeshNUI("FloorballStickAnimated_Red", "../../resources/models/nui/FloorballStickAnimated_Red.nui");
+	//m_Resources.Load3DMeshNUI("FloorballStickAnimated_Blue", "../../resources/models/nui/FloorballStickAnimated_Blue.nui");
+	//
+	//m_Resources.Load3DMeshNUI("TopPathSlope", "../../resources/models/nui/TopPathSlope.nui");
+	//m_Resources.Load3DMeshNUI("TopPath", "../../resources/models/nui/TopPath.nui");
 
-	m_Resources.Load3DMeshNUI("Sandpit", "../../resources/models/nui/Sandpit.nui");
-	m_Resources.Load3DMeshNUI("PlayerBaseMound", "../../resources/models/nui/PlayerBaseMound.nui");
+	//m_Resources.Load3DMeshNUI("Sandpit", "../../resources/models/nui/Sandpit.nui");
+	//m_Resources.Load3DMeshNUI("PlayerBaseMound", "../../resources/models/nui/PlayerBaseMound.nui");
 
-	m_Resources.Load3DMeshNUI("NationalStadium", "../../resources/models/nui/NationalStadium.nui");
-	m_Resources.Load3DMeshNUI("HDBBlock", "../../resources/models/nui/HDBBlock.nui");
+	//m_Resources.Load3DMeshNUI("NationalStadium", "../../resources/models/nui/NationalStadium.nui");
+	//m_Resources.Load3DMeshNUI("HDBBlock", "../../resources/models/nui/HDBBlock.nui");
 
-	m_Resources.Load3DMeshNUI("DragonTailRight", "../../resources/models/nui/DragonTailRight.nui");
-	m_Resources.Load3DMeshNUI("DragonTailLeft", "../../resources/models/nui/DragonTailLeft.nui");
+	//m_Resources.Load3DMeshNUI("DragonTailRight", "../../resources/models/nui/DragonTailRight.nui");
+	//m_Resources.Load3DMeshNUI("DragonTailLeft", "../../resources/models/nui/DragonTailLeft.nui");
 
-	m_Resources.Load3DMeshNUI("DragonSpineSupport", "../../resources/models/nui/DragonSpineSupport.nui");
-	m_Resources.Load3DMeshNUI("DragonSpine", "../../resources/models/nui/DragonSpine.nui");
+	//m_Resources.Load3DMeshNUI("DragonSpineSupport", "../../resources/models/nui/DragonSpineSupport.nui");
+	//m_Resources.Load3DMeshNUI("DragonSpine", "../../resources/models/nui/DragonSpine.nui");
 
-	m_Resources.Load3DMeshNUI("DragonSlideLeft", "../../resources/models/nui/DragonSlideLeft.nui");
-	m_Resources.Load3DMeshNUI("DragonSlideRight", "../../resources/models/nui/DragonSlideRight.nui");
+	//m_Resources.Load3DMeshNUI("DragonSlideLeft", "../../resources/models/nui/DragonSlideLeft.nui");
+	//m_Resources.Load3DMeshNUI("DragonSlideRight", "../../resources/models/nui/DragonSlideRight.nui");
 
-	m_Resources.Load3DMeshNUI("DragonHead", "../../resources/models/nui/DragonHead.nui");
-	m_Resources.Load3DMeshNUI("BottomPath", "../../resources/models/nui/BottomPath.nui");
+	//m_Resources.Load3DMeshNUI("DragonHead", "../../resources/models/nui/DragonHead.nui");
+	//m_Resources.Load3DMeshNUI("BottomPath", "../../resources/models/nui/BottomPath.nui");
 
-	m_Resources.Load3DMeshNUI("Railing", "../../resources/models/nui/Railing.nui");
+	//m_Resources.Load3DMeshNUI("Railing", "../../resources/models/nui/Railing.nui");
 
-	m_Resources.Load3DMeshNUI("Flag_Blue", "../../resources/models/nui/Flag_Blue.nui");
-	m_Resources.Load3DMeshNUI("Flag_Red", "../../resources/models/nui/Flag_Red.nui");
-	m_Resources.Load3DMeshNUI("CapturePointPole", "../../resources/models/nui/CapturePointPole.nui");
+	//m_Resources.Load3DMeshNUI("Flag_Blue", "../../resources/models/nui/Flag_Blue.nui");
+	//m_Resources.Load3DMeshNUI("Flag_Red", "../../resources/models/nui/Flag_Red.nui");
+	//m_Resources.Load3DMeshNUI("CapturePointPole", "../../resources/models/nui/CapturePointPole.nui");
 
-	m_Resources.Load3DMeshNUI("TopLaneSelected", "../../resources/models/nui/TopLaneSelected.nui");
-	m_Resources.Load3DMeshNUI("MiddleLaneSelected", "../../resources/models/nui/MiddleLaneSelected.nui");
-	m_Resources.Load3DMeshNUI("BottomLaneSelected", "../../resources/models/nui/BottomLaneSelected.nui");
+	//m_Resources.Load3DMeshNUI("TopLaneSelected", "../../resources/models/nui/TopLaneSelected.nui");
+	//m_Resources.Load3DMeshNUI("MiddleLaneSelected", "../../resources/models/nui/MiddleLaneSelected.nui");
+	//m_Resources.Load3DMeshNUI("BottomLaneSelected", "../../resources/models/nui/BottomLaneSelected.nui");
 
-	m_Resources.Load3DMeshNUI("BluePaperIcon", "../../resources/models/nui/BluePaperIcon.nui");
-	m_Resources.Load3DMeshNUI("BlueRockIcon", "../../resources/models/nui/BlueRockIcon.nui");
-	m_Resources.Load3DMeshNUI("BlueScissorsIcon", "../../resources/models/nui/BlueScissorsIcon.nui");
-	m_Resources.Load3DMeshNUI("RedPaperIcon", "../../resources/models/nui/RedPaperIcon.nui");
-	m_Resources.Load3DMeshNUI("RedRockIcon", "../../resources/models/nui/RedRockIcon.nui");
-	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
-	m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
+	//m_Resources.Load3DMeshNUI("BluePaperIcon", "../../resources/models/nui/BluePaperIcon.nui");
+	//m_Resources.Load3DMeshNUI("BlueRockIcon", "../../resources/models/nui/BlueRockIcon.nui");
+	//m_Resources.Load3DMeshNUI("BlueScissorsIcon", "../../resources/models/nui/BlueScissorsIcon.nui");
+	//m_Resources.Load3DMeshNUI("RedPaperIcon", "../../resources/models/nui/RedPaperIcon.nui");
+	//m_Resources.Load3DMeshNUI("RedRockIcon", "../../resources/models/nui/RedRockIcon.nui");
+	//m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
+	//m_Resources.Load3DMeshNUI("RedScissorsIcon", "../../resources/models/nui/RedScissorsIcon.nui");
 
 	// New Game
 
@@ -231,6 +231,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("Ceiling", "../../resources/models/nui/Ceiling.nui");
 	m_Resources.Load3DMeshNUI("WallSegment1", "../../resources/models/nui/WallSegment1.nui");
 	m_Resources.Load3DMeshNUI("WallSegment2", "../../resources/models/nui/WallSegment2.nui");
+	m_Resources.Load3DMeshNUI("WindowWallSegment", "../../resources/models/nui/WindowWallSegment.nui");
 	m_Resources.Load3DMeshNUI("FloorTile", "../../resources/models/nui/FloorTile.nui");
 	m_Resources.Load3DMeshNUI("CeilingFan", "../../resources/models/nui/CeilingFan.nui");
 
@@ -245,12 +246,24 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("InstructionManualPage02", "../../resources/models/nui/InstructionManualPage02.nui");
 	m_Resources.Load3DMeshNUI("InstructionManualPage03", "../../resources/models/nui/InstructionManualPage03.nui");
 	m_Resources.Load3DMeshNUI("InstructionManualPage04", "../../resources/models/nui/InstructionManualPage04.nui");
+
 	m_Resources.Load3DMeshNUI("BagClosed", "../../resources/models/nui/BagClosed.nui");
+	m_Resources.Load3DMeshNUI("BagClosedBlue", "../../resources/models/nui/BagClosedBlue.nui");
+	m_Resources.Load3DMeshNUI("BagClosedGreen", "../../resources/models/nui/BagClosedGreen.nui");
+	m_Resources.Load3DMeshNUI("BagClosedOrange", "../../resources/models/nui/BagClosedOrange.nui");
+	m_Resources.Load3DMeshNUI("BagClosedPurple", "../../resources/models/nui/BagClosedPurple.nui");
 
 	// Furniture
 	m_Resources.Load3DMeshNUI("Table", "../../resources/models/nui/Table.nui");
 	m_Resources.Load3DMeshNUI("ChairBrown", "../../resources/models/nui/ChairBrown.nui");
 	m_Resources.Load3DMeshNUI("ChairGreen", "../../resources/models/nui/ChairGreen.nui");
+
+	m_Resources.Load3DMeshNUI("CloudDeco01", "../../resources/models/nui/CloudDeco01.nui");
+	m_Resources.Load3DMeshNUI("CloudDeco02", "../../resources/models/nui/CloudDeco02.nui");
+	m_Resources.Load3DMeshNUI("ButterflyFlowerBanner01", "../../resources/models/nui/ButterflyFlowerBanner01.nui");
+	m_Resources.Load3DMeshNUI("ButterflyFlowerBanner02", "../../resources/models/nui/ButterflyFlowerBanner02.nui");
+
+
 
 	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
 
