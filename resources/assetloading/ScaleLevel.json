@@ -2,8 +2,133 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 99
+                "EntityHead": 101
             }
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 100
+                    },
+                    "Mesh": {
+                        "Model": "Ceiling",
+                        "Texture": "Ceiling_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.0020000000949949028,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 7.099999904632568,
+                            "y": 65.0,
+                            "z": -4.27400016784668
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            14486341741652966143,
+                            9604788041699812520,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 99
+                    },
+                    "Name": {
+                        "Name": "Ceiling"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 99
+                    },
+                    "Mesh": {
+                        "Model": "Plane",
+                        "Texture": "Ceiling_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            100
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "ceiling"
+                    }
+                }
+            ]
         },
         {
             "Unnamed Archetype": [
@@ -41,17 +166,17 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
+                            9,
                             1,
                             65,
-                            9,
                             3,
                             67,
                             4,
                             68,
-                            69,
                             5,
-                            70,
+                            69,
                             6,
+                            70,
                             7,
                             8,
                             10,

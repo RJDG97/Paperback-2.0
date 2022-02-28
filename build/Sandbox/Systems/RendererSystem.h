@@ -98,6 +98,7 @@ struct render_system : paperback::system::instance
 				Renderer::TransformInfo transform_info{ t };
 
 				transform_info.m_ShadowBias = Mesh.m_Bias;
+				transform_info.m_CastShadow = Mesh.m_CastShadow;
 
 				if (Socketed)
 					transform_info.m_ParentSocketTransform = &Socketed->m_BoneTransform;

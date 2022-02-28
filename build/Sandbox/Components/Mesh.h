@@ -10,6 +10,7 @@ struct mesh
 	std::string m_Model;
 	std::string m_Texture;
 	int m_Bias = 1;
+	bool m_CastShadow = true;
 	bool m_Active = true;
 };
 
@@ -23,6 +24,7 @@ namespace RR_Mesh
 			.property( "Model", &mesh::m_Model )
 			.property( "Texture", &mesh::m_Texture )
 			.property( "Shadow Bias", &mesh::m_Bias )(rttr::policy::prop::as_reference_wrapper)
+			.property( "Cast Shadow", &mesh::m_CastShadow)(rttr::policy::prop::as_reference_wrapper)
 			.property( "Active", &mesh::m_Active )(rttr::policy::prop::as_reference_wrapper);
 	}
 }

@@ -21,6 +21,7 @@ public:
 		glm::mat4* m_ParentSocketTransform;
 		std::vector<glm::mat4>* m_BoneTransforms;
 		int m_ShadowBias;
+		bool m_CastShadow;
 	};
 
 	struct UIInfo

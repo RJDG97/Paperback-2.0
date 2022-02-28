@@ -1095,6 +1095,11 @@ void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector
 		
 		for (const auto& instance : model.second)
 		{
+			if (!instance.m_CastShadow)
+			{
+				continue;
+			}
+
 			m_Resources.m_Shaders["Shadow"].SetUniform("uModel", const_cast<glm::mat4&>(instance.m_Transform));
 
 			if (instance.m_BoneTransforms)
