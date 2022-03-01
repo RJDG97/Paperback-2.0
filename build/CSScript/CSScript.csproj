@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Checkpoint.cs" />
     <Compile Include="ElevatorSwitch.cs" />
+    <Compile Include="Fan.cs" />
     <Compile Include="GateSwitch.cs" />
     <Compile Include="Goal_Level1.cs" />
     <Compile Include="Goal_Level2.cs" />
