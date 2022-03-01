@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 139
+                "EntityHead": 147
             }
         },
         {
@@ -258,6 +258,342 @@
                     "Name": {
                         "Name": "Cloud Deco 2"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 140
+                    },
+                    "Mesh": {
+                        "Model": "CeilingFanBase",
+                        "Texture": "CeilingFan_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -147.0,
+                            "y": 51.29999923706055,
+                            "z": 54.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "Fan Base 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 141
+                    },
+                    "Mesh": {
+                        "Model": "CeilingFanBase",
+                        "Texture": "CeilingFan_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -38.0,
+                            "y": 51.29999923706055,
+                            "z": 54.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "Fan Base 2-1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 142
+                    },
+                    "Mesh": {
+                        "Model": "CeilingFanBase",
+                        "Texture": "CeilingFan_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -38.0,
+                            "y": 51.29999923706055,
+                            "z": -9.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "Fan Base 2-2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 143
+                    },
+                    "Mesh": {
+                        "Model": "CeilingFanBase",
+                        "Texture": "CeilingFan_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -38.0,
+                            "y": 51.29999923706055,
+                            "z": -89.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "Fan Base 2-3"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 144
+                    },
+                    "Mesh": {
+                        "Model": "CeilingFanBase",
+                        "Texture": "CeilingFan_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -120.0,
+                            "y": 51.29999923706055,
+                            "z": -89.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "Fan Base 2-4"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 145
+                    },
+                    "Mesh": {
+                        "Model": "CeilingFanBase",
+                        "Texture": "CeilingFan_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 105.0,
+                            "y": 51.29999923706055,
+                            "z": 80.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "Fan Base 3-1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 146
+                    },
+                    "Mesh": {
+                        "Model": "CeilingFanBase",
+                        "Texture": "CeilingFan_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 105.0,
+                            "y": 51.29999923706055,
+                            "z": 20.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "Fan Base 3-2"
+                    }
                 }
             ]
         },
@@ -294,7 +630,13 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            100
+                            100,
+                            141,
+                            142,
+                            143,
+                            144,
+                            145,
+                            146
                         ]
                     },
                     "Rotation": {
@@ -502,6 +844,52 @@
                     },
                     "Name": {
                         "Name": "Cloud Deco 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 139
+                    },
+                    "Mesh": {
+                        "Model": "CeilingFanBase",
+                        "Texture": "CeilingFan_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            140
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Fan Base"
                     }
                 }
             ]
@@ -12322,7 +12710,7 @@
                         "Global Index": 124
                     },
                     "Mesh": {
-                        "Model": "CeilingFan",
+                        "Model": "CeilingFanBlade",
                         "Texture": "CeilingFan_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -12331,7 +12719,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.10000000149011612,
-                            "y": 0.05000000074505806,
+                            "y": 0.10000000149011612,
                             "z": 0.10000000149011612
                         }
                     },
@@ -12365,7 +12753,9 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520,
+                            14486341741652966143
                         ],
                         "Prefab GID": 123
                     },
@@ -12378,7 +12768,7 @@
                         "Global Index": 133
                     },
                     "Mesh": {
-                        "Model": "CeilingFan",
+                        "Model": "CeilingFanBlade",
                         "Texture": "CeilingFan_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -12387,7 +12777,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.10000000149011612,
-                            "y": 0.05000000074505806,
+                            "y": 0.10000000149011612,
                             "z": 0.10000000149011612
                         }
                     },
@@ -12421,7 +12811,8 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 123
                     },
@@ -12434,7 +12825,7 @@
                         "Global Index": 134
                     },
                     "Mesh": {
-                        "Model": "CeilingFan",
+                        "Model": "CeilingFanBlade",
                         "Texture": "CeilingFan_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -12443,7 +12834,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.10000000149011612,
-                            "y": 0.05000000074505806,
+                            "y": 0.10000000149011612,
                             "z": 0.10000000149011612
                         }
                     },
@@ -12477,7 +12868,8 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 123
                     },
@@ -12490,7 +12882,7 @@
                         "Global Index": 135
                     },
                     "Mesh": {
-                        "Model": "CeilingFan",
+                        "Model": "CeilingFanBlade",
                         "Texture": "CeilingFan_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": false,
@@ -12499,7 +12891,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.10000000149011612,
-                            "y": 0.05000000074505806,
+                            "y": 0.10000000149011612,
                             "z": 0.10000000149011612
                         }
                     },
@@ -12547,7 +12939,7 @@
                         "Global Index": 136
                     },
                     "Mesh": {
-                        "Model": "CeilingFan",
+                        "Model": "CeilingFanBlade",
                         "Texture": "CeilingFan_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": false,
@@ -12556,7 +12948,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.10000000149011612,
-                            "y": 0.05000000074505806,
+                            "y": 0.10000000149011612,
                             "z": 0.10000000149011612
                         }
                     },
@@ -12604,7 +12996,7 @@
                         "Global Index": 137
                     },
                     "Mesh": {
-                        "Model": "CeilingFan",
+                        "Model": "CeilingFanBlade",
                         "Texture": "CeilingFan_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -12613,7 +13005,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.10000000149011612,
-                            "y": 0.05000000074505806,
+                            "y": 0.10000000149011612,
                             "z": 0.10000000149011612
                         }
                     },
@@ -12647,7 +13039,8 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520
                         ],
                         "Prefab GID": 123
                     },
@@ -12660,7 +13053,7 @@
                         "Global Index": 138
                     },
                     "Mesh": {
-                        "Model": "CeilingFan",
+                        "Model": "CeilingFanBlade",
                         "Texture": "CeilingFan_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -12669,7 +13062,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.10000000149011612,
-                            "y": 0.05000000074505806,
+                            "y": 0.10000000149011612,
                             "z": 0.10000000149011612
                         }
                     },
@@ -12703,7 +13096,9 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            16415915133639986106
+                            16415915133639986106,
+                            9604788041699812520,
+                            14486341741652966143
                         ],
                         "Prefab GID": 123
                     },
@@ -12732,7 +13127,7 @@
                         "Global Index": 123
                     },
                     "Mesh": {
-                        "Model": "CeilingFan",
+                        "Model": "CeilingFanBlade",
                         "Texture": "CeilingFan_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,

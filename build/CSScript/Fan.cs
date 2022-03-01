@@ -26,7 +26,6 @@ namespace CSScript
         public void Update(float dt)
         {
             m_Rotation.m_Value += m_Speed;
-            Debug.Log(m_Rotation.m_Value.y.ToString());
             if (m_Rotation.m_Value.y >= 360) {
                 m_Rotation.m_Value = new Tools.MathLib.Vector3(0.0f, m_Rotation.m_Value.y - 360.0f, 0.0f);
             }
