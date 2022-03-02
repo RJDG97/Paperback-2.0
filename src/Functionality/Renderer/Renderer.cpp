@@ -290,6 +290,13 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("ButtonONN", "../../resources/models/nui/ButtonON.nui");
 	m_Resources.Load3DMeshNUI("ButtonOFF", "../../resources/models/nui/ButtonOFF.nui");
 
+	m_Resources.Load3DMeshNUI("Button_TrainOFF", "../../resources/models/nui/RemoteControl_TrainOff.nui");
+	m_Resources.Load3DMeshNUI("Button_TrainON", "../../resources/models/nui/RemoteControl_TrainOn.nui");
+	m_Resources.Load3DMeshNUI("Button_GateOFF", "../../resources/models/nui/RemoteControl_Gateff.nui");
+	m_Resources.Load3DMeshNUI("Button_GateON", "../../resources/models/nui/RemoteControl_GateOn.nui");
+	m_Resources.Load3DMeshNUI("Button_CraneLiftOFF", "../../resources/models/nui/RemoteControl_CraneOff.nui");
+	m_Resources.Load3DMeshNUI("Button_CraneLiftON", "../../resources/models/nui/RemoteControl_CraneOn.nui");
+
 
 
 	m_Resources.Load3DMeshNUI("CashRegister", "../../resources/models/nui/CashRegister.nui");
