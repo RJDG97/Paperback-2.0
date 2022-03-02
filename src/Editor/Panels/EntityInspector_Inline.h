@@ -2,7 +2,6 @@
 
 void EntityInspector::Panel()
 {
-    ImGui::Begin(EntityInspector::typedef_v.m_pName, &m_bEnabled, ImGuiWindowFlags_AlwaysHorizontalScrollbar);
 
     //if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
     //{
@@ -14,7 +13,6 @@ void EntityInspector::Panel()
 
     DisplayEntities();
 
-    ImGui::End();
 }
 
 void EntityInspector::DisplayEntities()
@@ -25,8 +23,13 @@ void EntityInspector::DisplayEntities()
     /*bool Link = false*/bool bOpen = false;
     std::string EntityName;
 
+    ImGui::Begin(EntityInspector::typedef_v.m_pName, &m_bEnabled);
+
     static ImGuiTextFilter Filter;
     Filter.Draw(ICON_FA_FILTER, 150.0f);
+    ImGui::End();
+
+    ImGui::Begin("##EntityInspectorDetails", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_AlwaysHorizontalScrollbar);
 
     if (!PPB.GetArchetypeList().empty())
     {
@@ -186,6 +189,7 @@ void EntityInspector::DisplayEntities()
 
         DeleteEntity(ICON_FA_TRASH " Delete?", m_Imgui.m_SelectedEntity.second);
     }
+    ImGui::End();
 
     //ImGui::Separator();
     //ImGui::Text("%d Entities", NumEntities);
