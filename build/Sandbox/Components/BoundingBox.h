@@ -130,7 +130,7 @@ struct boundingbox
 		float TNear = std::max( std::max( T0.x, T0.y ), T0.z );
 		float TFar  = std::min( std::min( T1.x, T1.y ), T1.z );
 
-		return std::make_tuple( TFar > TNear, TNear );
+		return std::make_tuple( TFar > TNear, TNear < 0 ? FLT_MAX : TNear );
 	}
 };
 

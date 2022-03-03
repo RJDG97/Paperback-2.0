@@ -72,7 +72,7 @@ namespace paperback::physics
         auto& Node  = m_Tree[ Index ];
 
         // Update Node
-        Node.m_AABB = AABB.Extend( Transform.m_Position, 0.5f );
+        Node.m_AABB = AABB.Extend( Transform.m_Position, 0.1f );
         Node.m_Position = Node.m_AABB.ComputeCentre( );
         Node.m_Height = 0;
 
@@ -192,9 +192,9 @@ namespace paperback::physics
     }
 
     PPB_INLINE
-    AABB_Tree::EntityGID AABB_Tree::QueryRaycastClosest( const paperback::Vector3f& RayStart
-                                                       , const paperback::Vector3f& RayEnd
-                                                       , std::span<EntityGID>       ExcludeList ) noexcept
+    std::tuple<AABB_Tree::EntityGID, float> AABB_Tree::QueryRaycastClosest( const paperback::Vector3f& RayStart
+                                                                          , const paperback::Vector3f& RayEnd
+                                                                          , std::span<EntityGID>       ExcludeList ) noexcept
     {
         std::pair<EntityGID, float> CurrentPair = std::make_pair( settings::invalid_index_v, 0.0f );
         std::pair<EntityGID, float> ClosestPair = std::make_pair( settings::invalid_index_v, FLT_MAX );
@@ -218,7 +218,7 @@ namespace paperback::physics
                           }
                       });
 
-        return ClosestPair.first;
+        return std::make_tuple( ClosestPair.first, ClosestPair.second );
     }
 
 
@@ -251,8 +251,6 @@ namespace paperback::physics
         {
             ++m_NodeCount;
 
-            std::cout << "RIP Appended" << std::endl;
-
             return settings::invalid_index_v;    // Return Next Available Index
         }
         // Some Previous Empty Indexes
@@ -266,8 +264,6 @@ namespace paperback::physics
 
             m_FreeIndex = Node.m_NextIndex;      // Reassign Free Index
             Node.Reset();                        // Reset Old Variables
-
-            std::cout << "Appended: " << ID << std::endl;
 
             return ID;                           // Return Free Index
         }

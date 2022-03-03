@@ -62,9 +62,9 @@ namespace paperback::physics
                                   , const paperback::Vector3f& RayEnd ) noexcept;
             
         PPB_INLINE
-        EntityGID QueryRaycastClosest( const paperback::Vector3f&   RayStart
-                                     , const paperback::Vector3f&   RayEnd
-                                     , std::span<EntityGID>         ExcludeList ) noexcept;
+        std::tuple<EntityGID, float> QueryRaycastClosest( const paperback::Vector3f&   RayStart
+                                                        , const paperback::Vector3f&   RayEnd
+                                                        , std::span<EntityGID>         ExcludeList ) noexcept;
 
 
         //-----------------------------------

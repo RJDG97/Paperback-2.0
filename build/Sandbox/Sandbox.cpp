@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     ShowWindow(GetConsoleWindow(), SW_SHOW);
 #else
-    ShowWindow(GetConsoleWindow(), SW_HIDE);
+    ShowWindow(GetConsoleWindow(), SW_SHOW);
 #endif
 
     /*
@@ -154,6 +154,7 @@ void InitializeGame()
         ,   imgui_system
         ,   camera_system
         ,   icon_system
+        ,   player_camera_system
         >();
 
         PPB.RegisterSystems <

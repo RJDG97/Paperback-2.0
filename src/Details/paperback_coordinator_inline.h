@@ -881,9 +881,9 @@ namespace paperback::coordinator
 	}
 
 	PPB_INLINE
-	physics::AABB_Tree::EntityGID instance::QueryRaycastClosest( const paperback::Vector3f&               StartRay
-									                           , const paperback::Vector3f&               EndRay
-															   , std::span<physics::AABB_Tree::EntityGID> ExcludeList ) noexcept
+	std::tuple<physics::AABB_Tree::EntityGID, float> instance::QueryRaycastClosest( const paperback::Vector3f&               StartRay
+									                                              , const paperback::Vector3f&               EndRay
+															                      , std::span<physics::AABB_Tree::EntityGID> ExcludeList ) noexcept
 	{
 		return m_AABBTree.QueryRaycastClosest( StartRay
 			                                 , EndRay

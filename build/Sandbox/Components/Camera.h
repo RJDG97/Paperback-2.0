@@ -77,8 +77,11 @@ struct camera
 
 	paperback::Vector3f m_Offset = { 0.f, 0.f, 0.f };
 	float m_Radius = 1.f;
+	float m_MaxRadius = 2.f;
+	float m_MinRadius = 2.f;
 	float m_Theta = 90.f;
 	float m_Azimuth = 0.f;
+	float m_ZoomRate  = 1.f;
 	
 	bool m_Active = true;
 };
@@ -92,6 +95,9 @@ namespace RR_Camera
 			.property("Active", &camera::m_Active)(rttr::policy::prop::as_reference_wrapper)
 			.property("Camera Offset", &camera::m_Offset)(rttr::policy::prop::as_reference_wrapper)
 			.property("Radius", &camera::m_Radius)(rttr::policy::prop::as_reference_wrapper)
+			.property("Max Radius", &camera::m_MaxRadius)(rttr::policy::prop::as_reference_wrapper)
+			.property("Min Radius", &camera::m_MinRadius)(rttr::policy::prop::as_reference_wrapper)
+			.property("Zoom Rate", &camera::m_ZoomRate)(rttr::policy::prop::as_reference_wrapper)
 			.property("Theta", &camera::m_Theta)(rttr::policy::prop::as_reference_wrapper)
 			.property("Azimuth", &camera::m_Azimuth)(rttr::policy::prop::as_reference_wrapper);
 	}
