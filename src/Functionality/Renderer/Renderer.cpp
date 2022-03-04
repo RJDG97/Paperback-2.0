@@ -103,7 +103,17 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("Button_TrainOFF", "../../resources/models/nui/RemoteControl_TrainOff.nui");
 	m_Resources.Load3DMeshNUI("Button_TrainON", "../../resources/models/nui/RemoteControl_TrainOn.nui");
-	m_Resources.Load3DMeshNUI("Button_GateOFF", "../../resources/models/nui/RemoteControl_Gateff.nui");
+
+	m_Resources.Load3DMeshNUI("Button_TrainBlackOFF", "../../resources/models/nui/RemoteControl_TrainBlackOff.nui");
+	m_Resources.Load3DMeshNUI("Button_TrainBlackON", "../../resources/models/nui/RemoteControl_TrainBlackOn.nui");
+	m_Resources.Load3DMeshNUI("Button_TrainCyanOFF", "../../resources/models/nui/RemoteControl_TrainCyanOff.nui");
+	m_Resources.Load3DMeshNUI("Button_TrainCyanON", "../../resources/models/nui/RemoteControl_TrainCyanOn.nui");
+	m_Resources.Load3DMeshNUI("Button_TrainGreenOFF", "../../resources/models/nui/RemoteControl_TrainGreenOff.nui");
+	m_Resources.Load3DMeshNUI("Button_TrainGreenON", "../../resources/models/nui/RemoteControl_TrainGreenOn.nui");
+	m_Resources.Load3DMeshNUI("Button_TrainPurpleOFF", "../../resources/models/nui/RemoteControl_TrainPurpleOff.nui");
+	m_Resources.Load3DMeshNUI("Button_TrainPurpleON", "../../resources/models/nui/RemoteControl_TrainPurpleOn.nui");
+
+	m_Resources.Load3DMeshNUI("Button_GateOFF", "../../resources/models/nui/RemoteControl_GateOff.nui");
 	m_Resources.Load3DMeshNUI("Button_GateON", "../../resources/models/nui/RemoteControl_GateOn.nui");
 	m_Resources.Load3DMeshNUI("Button_CraneLiftOFF", "../../resources/models/nui/RemoteControl_CraneOff.nui");
 	m_Resources.Load3DMeshNUI("Button_CraneLiftON", "../../resources/models/nui/RemoteControl_CraneOn.nui");
@@ -118,6 +128,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("Ceiling", "../../resources/models/nui/Ceiling.nui");
 	m_Resources.Load3DMeshNUI("CeilingFanBase", "../../resources/models/nui/CeilingFanSupport.nui");
 	m_Resources.Load3DMeshNUI("CeilingFanBlade", "../../resources/models/nui/CeilingFanBlade.nui");
+	m_Resources.Load3DMeshNUI("CeilingLight", "../../resources/models/nui/CeilingLight.nui");
 
 	m_Resources.Load3DMeshNUI("ChairBrown", "../../resources/models/nui/ChairBrown.nui");
 	m_Resources.Load3DMeshNUI("ChairGreen", "../../resources/models/nui/ChairGreen.nui");
@@ -146,6 +157,9 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("CylinderBlock_Wood", "../../resources/models/nui/CylinderBlock_Wood.nui");
 	m_Resources.Load3DMeshNUI("CylinderBlock_Yellow", "../../resources/models/nui/CylinderBlock_Yellow.nui");
 
+
+
+	m_Resources.Load3DMeshNUI("DoorStopper", "../../resources/models/nui/DoorStopper.nui");
 
 
 	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Blue", "../../resources/models/nui/FlatRectangleBlock_Blue.nui");
@@ -178,7 +192,12 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("LeafParticle", "../../resources/models/nui/LeafParticle.nui");
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRTBlack", "../../resources/models/nui/MovingPlatformMRT_Black.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRTCyan", "../../resources/models/nui/MovingPlatformMRT_Cyan.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRTGreen", "../../resources/models/nui/MovingPlatformMRT_Green.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRTPurple", "../../resources/models/nui/MovingPlatformMRT_Purple.nui");
 
+	m_Resources.Load3DMeshNUI("ProjectorCart", "../../resources/models/nui/ProjectorCart.nui");
 
 
 	m_Resources.Load3DMeshNUI("RectangleBlock_Blue", "../../resources/models/nui/RectangleBlock_Blue.nui");
