@@ -127,7 +127,7 @@ void ArchetypeInspector::PrefabPanel()
                             m_Imgui.ImGuiHelp("Spawns an instance of this prefab");
 
 
-                            if (!ParentPrefab || !ParentPrefab->m_ChildrenGlobalIndexes.size())
+                            if (!ParentPrefab)
                             {
                                 if (ImGui::MenuItem("Remove Prefab"))
                                 {
