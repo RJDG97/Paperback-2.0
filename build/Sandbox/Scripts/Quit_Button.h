@@ -24,7 +24,8 @@ struct quit_button_script : paperback::script::button_interface // Inherited Typ
         if (!PPB.GetSystem<ui_system>().SetButtonLock())
             return;
 
-        PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
+        //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
+        PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
         PPB.QuitGame();
     }
 };

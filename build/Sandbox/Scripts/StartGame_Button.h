@@ -25,7 +25,8 @@ struct startgame_button_script : paperback::script::button_interface // Inherite
             return;
 
         //PPB.ToggleCursor(false);
-        PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
+        //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
+        PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
         PPB.QueueScene("LevelOne");
     }
 };

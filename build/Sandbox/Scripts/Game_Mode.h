@@ -21,7 +21,8 @@ struct game_mode_script : paperback::script::button_interface // Inherited Type 
 
             if (!PPB.GetPauseBool())
             {
-                PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
+                //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
+                PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
                 PPB.TogglePause(true);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
@@ -29,7 +30,8 @@ struct game_mode_script : paperback::script::button_interface // Inherited Type 
             else
             {
 
-                PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
+                //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
+                PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
                 PPB.TogglePause(false);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), false);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), true);

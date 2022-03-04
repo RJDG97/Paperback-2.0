@@ -128,6 +128,21 @@ public:
             sound_check->m_ForceStop = true;
     }
 
+    //variation for targetting sound events that were added by bulk sound components
+    void StopTriggeredSoundEvent(const std::string& Tag)
+    {
+
+        for (size_t i = 0; i < m_SoundFiles.size(); ++i)
+        {
+
+            //only process sounds that are tagged and added through bulk sound component
+            if (!m_SoundFiles[i].m_IsStandalone && m_SoundFiles[i].m_Tag != Tag)
+                continue;
+
+            m_SoundFiles[i].m_ForceStop = true;
+        }
+    }
+
     //stop sound
     // helper function
     // stops sound from currently playing
