@@ -23,7 +23,7 @@ struct player_camera_system : paperback::system::pausable_instance
         // Populate map
         ForEach( Search( Query ), [&]( entity& PlayerEntity, transform& Transform, player_controller& Controller, camera& Camera ) noexcept
         {
-            if ( Controller.m_PlayerStatus && Camera.m_Active )
+            if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
             {
                 // Exclude Player From Query
                 std::vector<paperback::u32> ExcludeList;

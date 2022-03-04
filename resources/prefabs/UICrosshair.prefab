@@ -1,0 +1,65 @@
+{
+    "Prefabs": [
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        3905268403210211283
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 386
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "Recticle",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 100.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "UI Crosshair Prefab"
+                    },
+                    "Crosshair": {}
+                }
+            ]
+        }
+    ]
+}
