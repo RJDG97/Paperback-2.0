@@ -249,7 +249,9 @@ void InitializeGame()
             PPB.AssignBindingToAction( Toggle_FPSAction,            GLFW_KEY_E,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Jump_Action,                 GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( ToggleLift_Action,           GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Toggle_Fullscreen,           GLFW_KEY_F,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED, paperback::input::action::KeyPairing::PPB_CTRL_KEY );
+            PPB.AssignBindingToAction( Toggle_Players,              GLFW_KEY_Q,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Toggle_Fullscreen,           GLFW_KEY_F,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED
+                                                                                                                     , paperback::input::action::KeyPairing::PPB_CTRL_KEY );
 
 
             // Mouse Bindings
