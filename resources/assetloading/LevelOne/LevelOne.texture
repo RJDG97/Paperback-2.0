@@ -1,10 +1,10 @@
 {
-    "ToggleCardMode": "../../resources/textures/Cards/ToggleCardMode.dds 0",
-    "NoButton_Unselected": "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected_Mirrored.dds 0",
-    "ResumeGameButton_Unselected": "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Unselected_Mirrored.dds 0",
-    "QuitToMainMenuButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds 0",
-    "ReturnToMainMenuPanel": "../../resources/textures/UI/Menus/Backgrounds/ReturnToMainMenuPanel_Mirrored.dds 0",
-    "PauseGamePanel": "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel_Mirrored.dds 0",
-    "YesButton_Unselected": "../../resources/textures/UI/Menus/Buttons/YesButton_Unselected_Mirrored.dds 0",
-    "Recticle": "../../resources/textures/UI/Recticle.dds 0"
+    "ToggleCardMode": "../../resources/textures/Cards/ToggleCardMode.dds 1",
+    "NoButton_Unselected": "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected_Mirrored.dds 1",
+    "ResumeGameButton_Unselected": "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Unselected_Mirrored.dds 1",
+    "QuitToMainMenuButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds 1",
+    "ReturnToMainMenuPanel": "../../resources/textures/UI/Menus/Backgrounds/ReturnToMainMenuPanel_Mirrored.dds 1",
+    "PauseGamePanel": "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel_Mirrored.dds 1",
+    "YesButton_Unselected": "../../resources/textures/UI/Menus/Buttons/YesButton_Unselected_Mirrored.dds 1",
+    "Recticle": "../../resources/textures/UI/Recticle.dds 1"
 }

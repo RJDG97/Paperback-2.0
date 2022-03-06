@@ -174,6 +174,7 @@ Renderer::Renderer() :
 
 
 
+	m_Resources.Load3DMeshNUI("GrowCard", "../../resources/models/nui/GrowCard.nui");
 	m_Resources.Load3DMeshNUI("GuardHouse", "../../resources/models/nui/GuardHouse.nui");
 
 
@@ -220,6 +221,8 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("ShortGate", "../../resources/models/nui/ShortGate.nui");
 	m_Resources.Load3DMeshNUI("ShortGateFence", "../../resources/models/nui/ShortGateFence.nui");
+
+	m_Resources.Load3DMeshNUI("ShrinkCard", "../../resources/models/nui/ShrinkCard.nui");
 
 	m_Resources.Load3DMeshNUI("SquareBlock_Blue", "../../resources/models/nui/SquareBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("SquareBlock_Green", "../../resources/models/nui/SquareBlock_Green.nui");
