@@ -21,6 +21,8 @@
     "Chair_Normal": "../../resources/textures/Props/Chair/Chair_Normal.dds 1",
     "Chair_Specular": "../../resources/textures/Props/Chair/Chair_Specular.dds 1",
     "FreezeCard": "../../resources/textures/Cards/FreezeCard.dds 1",
+    "GrowCard": "../../resources/textures/Cards/GrowCard.dds 1",
+    "ShrinkCard": "../../resources/textures/Cards/ShrinkCard.dds 1",
     "PaperCard": "../../resources/textures/Cards/PaperCard_Mirrored.dds 1",
     "RockCard": "../../resources/textures/Cards/RockCard_Mirrored.dds 1",
     "ScissorsCard": "../../resources/textures/Cards/ScissorsCard_Mirrored.dds 1",
