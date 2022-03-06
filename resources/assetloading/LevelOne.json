@@ -1138,7 +1138,9 @@
                         "Min Radius": 2.0,
                         "Zoom Rate": 1.0,
                         "Theta": 90.0,
-                        "Azimuth": 0.07000000029802323
+                        "Azimuth": 0.07000000029802323,
+                        "Min Theta": 1.401298464324817e-45,
+                        "Max Theta": 6.712219644115874e-43
                     },
                     "Player Controller": {
                         "Device Guid": [],
@@ -19063,10 +19065,12 @@
                         },
                         "Radius": 2.0,
                         "Max Radius": 2.0,
-                        "Min Radius": 1.2000000476837159,
+                        "Min Radius": 1.2,
                         "Zoom Rate": 2.0,
                         "Theta": 90.0,
-                        "Azimuth": 0.0
+                        "Azimuth": 0.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
                     },
                     "Player Controller": {
                         "Device Guid": [],
@@ -28442,7 +28446,7 @@
                         "Inv Mass": 0.0
                     },
                     "Camera": {
-                        "Active": true,
+                        "Active": false,
                         "Camera Offset": {
                             "x": 0.0,
                             "y": 0.5,
@@ -28453,7 +28457,9 @@
                         "Min Radius": 1.2000000476837159,
                         "Zoom Rate": 2.0,
                         "Theta": 90.0,
-                        "Azimuth": 0.0
+                        "Azimuth": 0.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
                     },
                     "Player Controller": {
                         "Device Guid": [],

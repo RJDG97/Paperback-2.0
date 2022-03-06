@@ -27,16 +27,16 @@ struct camera
 	{
 		m_Theta += Speed;
 
-		if (m_Theta > 179.f)
-			m_Theta = 179.f;
+		if ( m_Theta > m_MaxTheta )  // Cap - 179
+			m_Theta = m_MaxTheta;
 	}
 
 	void RotateDown(const float Speed = 1.f)
 	{
 		m_Theta -= Speed;
 
-		if (m_Theta < 1.f)
-			m_Theta = 1.f;
+		if ( m_Theta < m_MinTheta ) // Cap - 1
+			m_Theta = m_MinTheta;
 	}
 
 	void UpdateView(const glm::vec3& Position)
@@ -82,6 +82,8 @@ struct camera
 	float m_Theta = 90.f;
 	float m_Azimuth = 0.f;
 	float m_ZoomRate  = 1.f;
+	float m_MinTheta = 55.f;
+	float m_MaxTheta = 95.f;
 	
 	bool m_Active = true;
 };
@@ -99,6 +101,8 @@ namespace RR_Camera
 			.property("Min Radius", &camera::m_MinRadius)(rttr::policy::prop::as_reference_wrapper)
 			.property("Zoom Rate", &camera::m_ZoomRate)(rttr::policy::prop::as_reference_wrapper)
 			.property("Theta", &camera::m_Theta)(rttr::policy::prop::as_reference_wrapper)
-			.property("Azimuth", &camera::m_Azimuth)(rttr::policy::prop::as_reference_wrapper);
+			.property("Azimuth", &camera::m_Azimuth)(rttr::policy::prop::as_reference_wrapper)
+			.property("Min Theta", &camera::m_MinTheta)(rttr::policy::prop::as_reference_wrapper)
+			.property("Max Theta", &camera::m_MaxTheta)(rttr::policy::prop::as_reference_wrapper);
 	}
 }
