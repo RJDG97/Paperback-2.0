@@ -412,5 +412,26 @@
     <ClInclude Include="Scripts\Page6How2Play_Prev_Button_MainMenu.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\StartLevel1_Button.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\StartCutscene_Last_Button.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\StartCutscene_Level3_Button.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\StartLevel2_Button.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\StartLevel3_Button.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\NextLevel_Level2.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\NextLevel_Level3.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

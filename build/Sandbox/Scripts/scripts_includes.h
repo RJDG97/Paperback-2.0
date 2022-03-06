@@ -46,6 +46,16 @@
 
 //win scene buttons
 #include "NextLevel_Level1.h"
+#include "NextLevel_Level2.h"
+#include "NextLevel_Level3.h"
+
+#include "StartLevel1_Button.h"
+#include "StartLevel2_Button.h"
+#include "StartLevel3_Button.h"
+
+#include "StartCutscene_Level3_Button.h"
+#include "StartCutscene_Last_Button.h"
+
 
 
 //standard scripts

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 10
+                "EntityHead": 11
             }
         },
         {
@@ -99,7 +99,8 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             6,
-                            3
+                            3,
+                            1
                         ]
                     },
                     "Rotation": {
@@ -185,7 +186,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -300.0,
+                            "y": -390.0,
                             "z": 1.0
                         }
                     },
@@ -211,7 +212,7 @@
                         ],
                         "Button State": 2,
                         "Layer Grouping": 0,
-                        "Script Guid": 7949271234343891547,
+                        "Script Guid": 7594871342180465470,
                         "Active Status": true
                     }
                 },
@@ -275,6 +276,69 @@
                         "Button State": 2,
                         "Layer Grouping": 0,
                         "Script Guid": 6991569882842922372,
+                        "Active Status": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 1
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "NextLevel_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 500.0,
+                            "y": 200.0,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.03644561767578125,
+                            "y": -200.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            14486341741652966143,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "NextLevelButton"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 2,
+                        "Layer Grouping": 0,
+                        "Script Guid": 15749047530650113623,
                         "Active Status": true
                     }
                 }
@@ -431,7 +495,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 9
+                        "Global Index": 10
                     },
                     "Sound": {
                         "Path": "event:/BGM_Credit",
@@ -454,7 +518,7 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [],
-                        "Prefab GID": 1
+                        "Prefab GID": 9
                     },
                     "Name": {
                         "Name": "BGMObj"
@@ -480,7 +544,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 1
+                        "Global Index": 9
                     },
                     "Sound": {
                         "Path": "event:/BGM_Credit",
@@ -491,7 +555,7 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            9
+                            10
                         ]
                     },
                     "Transform": {

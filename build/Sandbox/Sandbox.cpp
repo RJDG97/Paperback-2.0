@@ -205,7 +205,14 @@ void InitializeGame()
             page6_how2play_prev_button_mainmenu_script,
             mainmenu_mode_script,
             game_mode_script,
-            nextlevel_level1_button_script
+            nextlevel_level1_button_script,
+            startlevel1_button_script,
+            startlevel2_button_script,
+            startlevel3_button_script,
+            startcutscene_mid_button_script,
+            startcutscene_last_button_script,
+            nextlevel_level2_button_script,
+            nextlevel_level3_button_script
         >();
 
 
