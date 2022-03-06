@@ -2407,8 +2407,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            357,
                             6,
+                            357,
                             144,
                             352,
                             353,
@@ -20381,13 +20381,13 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            343,
-                            136,
                             144,
+                            136,
+                            343,
                             308,
-                            325,
-                            126,
                             134,
+                            126,
+                            325,
                             82,
                             322,
                             153,
@@ -21949,14 +21949,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            198,
                             22,
+                            198,
                             279,
-                            28,
-                            20,
                             148,
-                            149,
+                            20,
+                            28,
                             21,
+                            149,
                             301,
                             302,
                             117,
@@ -23765,907 +23765,6 @@
                 {
                     "Guid": [
                         0,
-                        1259829869932243375,
-                        8376831551428810534,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 187
-                    },
-                    "Child": {
-                        "Parent GID": 186
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.0,
-                            "y": -4.875999927520752,
-                            "z": 2.9749999046325685
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 15.700000762939454,
-                            "y": -3.555999755859375,
-                            "z": 9.674999237060547
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5299999713897705,
-                            "y": -0.15000000596046449,
-                            "z": -0.5299999713897705
-                        },
-                        "Max Point": {
-                            "x": 0.5299999713897705,
-                            "y": 0.15000000596046449,
-                            "z": 0.5299999713897705
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 137
-                    },
-                    "Child": {
-                        "Parent GID": 136
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.8999999761581421,
-                            "y": -4.230000019073486,
-                            "z": 2.7200000286102297
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.019999999552965165,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 7.099999904632568,
-                            "y": -1.1800000667572022,
-                            "z": 9.220000267028809
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.46000000834465029,
-                            "y": -0.20000000298023225,
-                            "z": -0.46000000834465029
-                        },
-                        "Max Point": {
-                            "x": 0.46000000834465029,
-                            "y": 0.20000000298023225,
-                            "z": 0.46000000834465029
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            8376831551428810534,
-                            5509481706028819786,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 310
-                    },
-                    "Child": {
-                        "Parent GID": 308
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.590000033378601,
-                            "y": 0.09000000357627869,
-                            "z": 0.4300000071525574
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.41999998688697817,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -5.197999954223633,
-                            "y": -0.5099999904632568,
-                            "z": 12.230000495910645
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.4449999928474426,
-                            "y": -0.20000000298023225,
-                            "z": -0.4449999928474426
-                        },
-                        "Max Point": {
-                            "x": 0.4449999928474426,
-                            "y": 0.20000000298023225,
-                            "z": 0.4449999928474426
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            5509481706028819786,
-                            8376831551428810534,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 128
-                    },
-                    "Child": {
-                        "Parent GID": 126
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.600000023841858,
-                            "y": -3.809999942779541,
-                            "z": 1.9600000381469727
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.41999998688697817,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -14.108000755310059,
-                            "y": -0.5099999904632568,
-                            "z": 6.059999942779541
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.20000000298023225,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.20000000298023225,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            8376831551428810534,
-                            5509481706028819786,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 313
-                    },
-                    "Child": {
-                        "Parent GID": 314
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.600000023841858,
-                            "y": 0.12999999523162843,
-                            "z": -0.14000000059604646
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.3199999928474426,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -12.008000373840332,
-                            "y": -0.4750000238418579,
-                            "z": -10.686883926391602
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.4399999976158142,
-                            "y": -0.20000000298023225,
-                            "z": -0.4399999976158142
-                        },
-                        "Max Point": {
-                            "x": 0.4399999976158142,
-                            "y": 0.20000000298023225,
-                            "z": 0.4399999976158142
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            8376831551428810534,
-                            5509481706028819786,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 326
-                    },
-                    "Child": {
-                        "Parent GID": 325
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.600000023841858,
-                            "y": -3.9100000858306886,
-                            "z": -4.059999942779541
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.3199999928474426,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 14.491998672485352,
-                            "y": -0.5099999904632568,
-                            "z": -23.260000228881837
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.20000000298023225,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.20000000298023225,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            5509481706028819786,
-                            8376831551428810534,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 360
-                    },
-                    "Child": {
-                        "Parent GID": 359
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.600000023841858,
-                            "y": -3.9700000286102297,
-                            "z": 1.4700000286102296
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.3199999928474426,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 14.491998672485352,
-                            "y": 3.4799997806549074,
-                            "z": -4.029999732971191
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.20000000298023225,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.20000000298023225,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            8376831551428810534,
-                            5509481706028819786,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 92
-                    },
-                    "Child": {
-                        "Parent GID": 94
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.5,
-                            "y": -0.7200000286102295,
-                            "z": 1.4700000286102296
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.3199999928474426,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 18.492000579833986,
-                            "y": 6.729999542236328,
-                            "z": -4.130000114440918
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.20000000298023225,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.20000000298023225,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            5509481706028819786,
-                            8376831551428810534,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        1259829869932243375,
-                        8376831551428810534,
-                        10055872472107209861,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 184
-                    },
-                    "Child": {
-                        "Parent GID": 183
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -2.799999952316284,
-                            "y": -2.549999952316284,
-                            "z": 3.2750000953674318
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            187,
-                            310,
-                            326,
-                            137,
-                            128,
-                            313,
-                            360,
-                            92
-                        ]
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.75,
-                            "y": -0.10000000149011612,
-                            "z": -0.75
-                        },
-                        "Max Point": {
-                            "x": 0.75,
-                            "y": 0.10000000149011612,
-                            "z": 0.75
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
                         9604788041699812520,
                         5691439207370049121,
                         1259829869932243375,
@@ -24790,7 +23889,7 @@
                     "Elevator": {
                         "Start Time": 25.402000427246095,
                         "Stop Time": 35.25,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 },
                 {
@@ -24903,7 +24002,7 @@
                     "Elevator": {
                         "Start Time": 9.0,
                         "Stop Time": 36.209999084472659,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 },
                 {
@@ -25016,7 +24115,7 @@
                     "Elevator": {
                         "Start Time": 1.2000000476837159,
                         "Stop Time": 38.0,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 },
                 {
@@ -25129,7 +24228,7 @@
                     "Elevator": {
                         "Start Time": 1.2000000476837159,
                         "Stop Time": 38.0,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 },
                 {
@@ -25242,7 +24341,7 @@
                     "Elevator": {
                         "Start Time": 0.0,
                         "Stop Time": 37.0,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 },
                 {
@@ -25355,7 +24454,7 @@
                     "Elevator": {
                         "Start Time": 6.400000095367432,
                         "Stop Time": 36.5,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 },
                 {
@@ -25468,7 +24567,7 @@
                     "Elevator": {
                         "Start Time": 0.0,
                         "Stop Time": 36.5,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 },
                 {
@@ -25581,7 +24680,7 @@
                     "Elevator": {
                         "Start Time": 7.099999904632568,
                         "Stop Time": 36.5,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 }
             ]
@@ -25718,7 +24817,7 @@
                     "Elevator": {
                         "Start Time": -1.0,
                         "Stop Time": -1.0,
-                        "Activated": false
+                        "Unit Under": false
                     }
                 }
             ]
@@ -26136,9 +25235,9 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            5509481706028819786,
-                            8376831551428810534,
                             9604788041699812520,
+                            8376831551428810534,
+                            5509481706028819786,
                             5691439207370049121,
                             17008353085049151909,
                             223102351977301267,
@@ -28133,9 +27232,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 17.0,
+                            "x": -1.1685494184494019,
                             "y": 3.799999952316284,
-                            "z": -16.399999618530275
+                            "z": -22.527145385742189
                         }
                     },
                     "RigidForce": {
@@ -28249,9 +27348,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 15.199999809265137,
-                            "y": 3.9000000953674318,
-                            "z": -15.0
+                            "x": 6.305814743041992,
+                            "y": 3.9310426712036135,
+                            "z": -22.13063621520996
                         }
                     },
                     "RigidForce": {
@@ -29872,14 +28971,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            77,
                             85,
-                            380,
+                            77,
                             308,
+                            380,
                             136,
-                            325,
-                            126,
                             134,
+                            126,
+                            325,
                             314,
                             328,
                             359,
@@ -30306,6 +29405,968 @@
                         "Name": "UI Crosshair Prefab"
                     },
                     "Crosshair": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        1259829869932243375,
+                        8376831551428810534,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 187
+                    },
+                    "Child": {
+                        "Parent GID": 186
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.0,
+                            "y": -4.875999927520752,
+                            "z": 2.9749999046325685
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 15.700000762939454,
+                            "y": -3.555999755859375,
+                            "z": 9.674999237060547
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5299999713897705,
+                            "y": -0.15000000596046449,
+                            "z": -0.5299999713897705
+                        },
+                        "Max Point": {
+                            "x": 0.5299999713897705,
+                            "y": 0.15000000596046449,
+                            "z": 0.5299999713897705
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 310
+                    },
+                    "Child": {
+                        "Parent GID": 308
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.590000033378601,
+                            "y": 0.09000000357627869,
+                            "z": 0.4300000071525574
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.41999998688697817,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -5.197999954223633,
+                            "y": -0.5099999904632568,
+                            "z": 12.230000495910645
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4449999928474426,
+                            "y": -0.20000000298023225,
+                            "z": -0.4449999928474426
+                        },
+                        "Max Point": {
+                            "x": 0.4449999928474426,
+                            "y": 0.20000000298023225,
+                            "z": 0.4449999928474426
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            5509481706028819786,
+                            8376831551428810534,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 326
+                    },
+                    "Child": {
+                        "Parent GID": 325
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.600000023841858,
+                            "y": -3.9100000858306886,
+                            "z": -4.059999942779541
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.3199999928474426,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 14.491998672485352,
+                            "y": -0.5099999904632568,
+                            "z": -23.260000228881837
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.20000000298023225,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.20000000298023225,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            5509481706028819786,
+                            8376831551428810534,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 137
+                    },
+                    "Child": {
+                        "Parent GID": 136
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.8999999761581421,
+                            "y": -4.230000019073486,
+                            "z": 2.7200000286102297
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.019999999552965165,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 7.099999904632568,
+                            "y": -1.1800000667572022,
+                            "z": 9.220000267028809
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.46000000834465029,
+                            "y": -0.20000000298023225,
+                            "z": -0.46000000834465029
+                        },
+                        "Max Point": {
+                            "x": 0.46000000834465029,
+                            "y": 0.20000000298023225,
+                            "z": 0.46000000834465029
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            8376831551428810534,
+                            5509481706028819786,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 128
+                    },
+                    "Child": {
+                        "Parent GID": 126
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.600000023841858,
+                            "y": -3.809999942779541,
+                            "z": 1.9600000381469727
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.41999998688697817,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -14.108000755310059,
+                            "y": -0.5099999904632568,
+                            "z": 6.059999942779541
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.20000000298023225,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.20000000298023225,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            8376831551428810534,
+                            5509481706028819786,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 313
+                    },
+                    "Child": {
+                        "Parent GID": 314
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.600000023841858,
+                            "y": 0.12999999523162843,
+                            "z": -0.14000000059604646
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.3199999928474426,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -12.008000373840332,
+                            "y": -0.4750000238418579,
+                            "z": -10.686883926391602
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4399999976158142,
+                            "y": -0.20000000298023225,
+                            "z": -0.4399999976158142
+                        },
+                        "Max Point": {
+                            "x": 0.4399999976158142,
+                            "y": 0.20000000298023225,
+                            "z": 0.4399999976158142
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            8376831551428810534,
+                            5509481706028819786,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 360
+                    },
+                    "Child": {
+                        "Parent GID": 359
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.600000023841858,
+                            "y": -3.9700000286102297,
+                            "z": 1.4700000286102296
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.3199999928474426,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 14.491998672485352,
+                            "y": 3.4799997806549074,
+                            "z": -4.029999732971191
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.20000000298023225,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.20000000298023225,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            8376831551428810534,
+                            5509481706028819786,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 92
+                    },
+                    "Child": {
+                        "Parent GID": 94
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.5,
+                            "y": -0.7200000286102295,
+                            "z": 1.4700000286102296
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.3199999928474426,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 18.492000579833986,
+                            "y": 6.729999542236328,
+                            "z": -4.130000114440918
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.20000000298023225,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.20000000298023225,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            5509481706028819786,
+                            8376831551428810534,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 184
+                    },
+                    "Child": {
+                        "Parent GID": 183
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -2.799999952316284,
+                            "y": -2.549999952316284,
+                            "z": 3.2750000953674318
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            187,
+                            310,
+                            326,
+                            137,
+                            128,
+                            313,
+                            360,
+                            92
+                        ]
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": []
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.75,
+                            "y": -0.10000000149011612,
+                            "z": -0.75
+                        },
+                        "Max Point": {
+                            "x": 0.75,
+                            "y": 0.10000000149011612,
+                            "z": 0.75
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         }

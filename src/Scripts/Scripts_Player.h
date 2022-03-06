@@ -49,7 +49,8 @@ namespace MONO_PLAYER
 
 	MONO_EXPORT void TogglePlayers()
 	{
-		PPB.TogglePlayers();
+		// no longer handled here
+		//PPB.TogglePlayers();
 	}
 
 	void AddInternals()

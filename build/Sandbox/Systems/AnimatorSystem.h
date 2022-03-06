@@ -5,7 +5,7 @@
 #include "../Components/Animator.h"
 #include "../Components/Mesh.h"
 
-struct animator_system : paperback::system::pausable_instance
+struct animator_system : paperback::system::instance
 {
 	RenderResourceManager* m_Resources;
 
@@ -21,6 +21,12 @@ struct animator_system : paperback::system::pausable_instance
 	}
 
 	PPB_FORCEINLINE
+	void OnPause(const bool& Status) noexcept	//function activates whenever play / pause is clicked
+	{
+		m_bPaused = Status;
+	}
+
+	PPB_FORCEINLINE
 	void PreUpdate(void) noexcept
 	{
 	}
@@ -33,10 +39,28 @@ struct animator_system : paperback::system::pausable_instance
 		Query.m_OneOf.AddFromComponents<parent, animator>();
 		Query.m_NoneOf.AddFromComponents<prefab>();
 
-		ForEach(Search(Query), [&](animator& Ator, mesh& Model, parent* Parent) noexcept
+		if (m_bPaused)
 		{
-			UpdateAnimator(Ator, Model, Parent);
-		});
+			ForEach(Search(Query), [&](animator& Ator, mesh& Model, parent* Parent) noexcept
+			{
+				auto& anims = m_Resources->m_Models[Model.m_Model].GetAnimations();
+
+				if (anims.find(Ator.m_CurrentAnimationName) != anims.end())
+				{
+					std::vector<std::tuple<socketed*, animator*, mesh*, parent*>> children_data;
+					auto& current_anim{ anims[Ator.m_CurrentAnimationName] };
+					CalculateBoneTransform(&current_anim.GetRootNode(), glm::mat4{ 1.0f }, current_anim, Ator, children_data);
+				}
+			});
+		}
+
+		else
+		{
+			ForEach(Search(Query), [&](animator& Ator, mesh& Model, parent* Parent) noexcept
+			{
+				UpdateAnimator(Ator, Model, Parent);
+			});
+		}
 	}
 
 	void UpdateAnimator(animator& Ator, mesh& Model, parent* Parent)

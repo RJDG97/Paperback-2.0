@@ -55,15 +55,27 @@ namespace CSScript
             m_PlatformSpeed = 1800.0f * m_ElevatorScale.m_Value.y;
         }
 
-        public void Update(float dt)
+        public void PreUpdate(float dt)
         {
-            if (!m_ElevatorAnimator.m_PauseAnimation) //Not paused, need to continue moving the bounding box
+            m_PlatformOffset.m_PosOffset = new Tools.MathLib.Vector3(m_PlatformOffset.m_PosOffset.x ,
+                                                                     m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0f * m_PlatformSpeed,
+                                                                     m_PlatformOffset.m_PosOffset.z);
+
+            if (m_ElevatorElevator.m_UnitUnder)
             {
-                m_PlatformOffset.m_PosOffset = new Tools.MathLib.Vector3(m_PlatformOffset.m_PosOffset.x ,
-                                                                         m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0f * m_PlatformSpeed,
-                                                                         m_PlatformOffset.m_PosOffset.z);
+                m_ElevatorAnimator.m_PauseAnimation = true;
+            }
+
+            else
+            {
+                m_ElevatorAnimator.m_PauseAnimation = false;
             }
         }
+
+        public void Update(float dt)
+        {
+        }
+
 
         public void Destroy()
         {

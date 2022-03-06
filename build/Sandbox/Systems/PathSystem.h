@@ -16,7 +16,6 @@ struct path_system : paperback::system::instance
 {
 	// System Ptrs
 	debug_system* debug_sys;
-	ui_system* ui_sys;
 
 	// Queries
 	tools::query Query_Paths;
@@ -36,7 +35,6 @@ struct path_system : paperback::system::instance
 	void OnSystemCreated(void) noexcept
 	{
 		debug_sys = &GetSystem<debug_system>();
-		ui_sys = &GetSystem<ui_system>();
 
 		Query_Paths.m_Must.AddFromComponents<path, transform>();
 		Query_Paths.m_NoneOf.AddFromComponents<prefab>();

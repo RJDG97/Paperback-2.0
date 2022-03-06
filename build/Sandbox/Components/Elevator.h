@@ -9,7 +9,7 @@ struct elevator
 
 	float m_StartTime{ -1 };
 	float m_StopTime{ -1 };
-	bool m_Activated;
+	bool m_UnitUnder;
 };
 
 
@@ -21,6 +21,6 @@ namespace RR_Elevator
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("Start Time", &elevator::m_StartTime)(rttr::policy::prop::as_reference_wrapper)
 			.property("Stop Time", &elevator::m_StopTime)(rttr::policy::prop::as_reference_wrapper)
-			.property("Activated", &elevator::m_Activated);
+			.property("Unit Under", &elevator::m_UnitUnder);
 	}
 }

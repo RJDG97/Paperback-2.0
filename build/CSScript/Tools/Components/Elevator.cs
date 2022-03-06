@@ -43,16 +43,16 @@ namespace CSScript
             }
         }
 
-        public bool m_Activated
+        public bool m_UnitUnder
         {
             get
             {
-                return getactivated(m_Address);
+                return getunitunder(m_Address);
             }
 
             set
             {
-                setactivated(m_Address, value);
+                setunitunder(m_Address, value);
             }
         }
 
@@ -72,9 +72,9 @@ namespace CSScript
         private extern static void setstoptime(void* address, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getactivated(void* address);
+        private extern static bool getunitunder(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setactivated(void* address, bool value);
+        private extern static void setunitunder(void* address, bool value);
     }
 }

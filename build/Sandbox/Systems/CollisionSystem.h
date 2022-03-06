@@ -90,9 +90,12 @@ struct collision_system : paperback::system::pausable_instance
                                             to_update.second->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
                                         }
 
-                                        for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                        if (!(BV || BV2))
                                         {
-                                            to_update.second->OnCollisionEnter(Entity.m_GlobalIndex);
+                                            for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                            {
+                                                to_update.second->OnCollisionEnter(Entity.m_GlobalIndex);
+                                            }
                                         }
 
                                         //BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, RigidForce, *RF, SkipUnit);
@@ -105,9 +108,12 @@ struct collision_system : paperback::system::pausable_instance
                                             to_update.second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
                                         }
 
-                                        for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                        if (!(BV || BV2))
                                         {
-                                            to_update.second->OnCollisionStay(Entity.m_GlobalIndex);
+                                            for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                            {
+                                                to_update.second->OnCollisionStay(Entity.m_GlobalIndex);
+                                            }
                                         }
                                     }
                                     //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
@@ -132,9 +138,12 @@ struct collision_system : paperback::system::pausable_instance
                                     to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
                                 }
 
-                                for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                if (!(BV || BV2))
                                 {
-                                    to_update.second->OnCollisionExit(Entity.m_GlobalIndex);
+                                    for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                    {
+                                        to_update.second->OnCollisionExit(Entity.m_GlobalIndex);
+                                    }
                                 }
 
                                 Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;

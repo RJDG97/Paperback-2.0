@@ -36,10 +36,10 @@ namespace MONO_ELEVATOR
 		return {};
 	}
 
-	MONO_EXPORT bool GetActivated(void* address)
+	MONO_EXPORT bool GetUnitUnder(void* address)
 	{
 		if (address)
-			return reinterpret_cast<elevator*>(address)->m_Activated;
+			return reinterpret_cast<elevator*>(address)->m_UnitUnder;
 
 		return {};
 	}
@@ -56,10 +56,10 @@ namespace MONO_ELEVATOR
 			reinterpret_cast<elevator*>(address)->m_StopTime = value;
 	}
 
-	MONO_EXPORT void SetActivated(void* address, bool value)
+	MONO_EXPORT void SetUnitUnder(void* address, bool value)
 	{
 		if (address)
-			reinterpret_cast<elevator*>(address)->m_Activated = value;
+			reinterpret_cast<elevator*>(address)->m_UnitUnder = value;
 	}
 
 	void AddInternalCall()
@@ -67,9 +67,9 @@ namespace MONO_ELEVATOR
 		mono_add_internal_call("CSScript.Elevator::getaddress(uint)", &MONO_ELEVATOR::GetAddress);
 		mono_add_internal_call("CSScript.Elevator::getstarttime(void*)", &MONO_ELEVATOR::GetStartTime);
 		mono_add_internal_call("CSScript.Elevator::getstoptime(void*)", &MONO_ELEVATOR::GetStopTime);
-		mono_add_internal_call("CSScript.Elevator::getactivated(void*)", &MONO_ELEVATOR::GetActivated);
+		mono_add_internal_call("CSScript.Elevator::getunitunder(void*)", &MONO_ELEVATOR::GetUnitUnder);
 		mono_add_internal_call("CSScript.Elevator::setstarttime(void*,single)", &MONO_ELEVATOR::SetStartTime);
 		mono_add_internal_call("CSScript.Elevator::setstoptime(void*,single)", &MONO_ELEVATOR::SetStopTime);
-		mono_add_internal_call("CSScript.Elevator::setactivated(void*,bool)", &MONO_ELEVATOR::SetActivated);
+		mono_add_internal_call("CSScript.Elevator::setunitunder(void*,bool)", &MONO_ELEVATOR::SetUnitUnder);
 	}
 }

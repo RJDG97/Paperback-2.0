@@ -134,17 +134,17 @@ void InitializeGame()
     // Register Systems
     {
         PPB.RegisterSystems<
-            physics_system
+            debug_system
+        ,   path_system
+        ,   physics_system
+        ,   parentchild_system
         ,   scripting_system
         ,   collision_system
         ,   sound_system
         ,   window_system
-        ,   debug_system
         ,   ui_system
-        ,   path_system
         ,   render_system
         ,   animator_system
-        ,   parentchild_system
         ,   player_spawner_system
         ,   enemy_spawner_system
         ,   timer_system

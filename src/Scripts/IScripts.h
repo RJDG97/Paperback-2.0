@@ -12,6 +12,7 @@ class Script
 	MonoObject* m_pMonoObj = nullptr;
 	// Mono Function Pointers
 	MonoMethod* m_pStart = nullptr;
+	MonoMethod* m_pPreUpdate = nullptr;
 	MonoMethod* m_pUpdate = nullptr;
 	MonoMethod* m_pDestroy = nullptr;
 
@@ -45,6 +46,9 @@ public:
 				str = "." + m_ScriptClass + ":Start(uint)";
 				m_pStart = Mono::GetInstanced().ImportFunction(m_pClass, m_pMonoObj, str.c_str());
 
+				str = "." + m_ScriptClass + ":PreUpdate(single)";
+				m_pPreUpdate = Mono::GetInstanced().ImportFunction(m_pClass, m_pMonoObj, str.c_str());
+
 				str = "." + m_ScriptClass + ":Update(single)";
 				m_pUpdate = Mono::GetInstanced().ImportFunction(m_pClass, m_pMonoObj, str.c_str());
 
@@ -67,6 +71,12 @@ public:
 	{
 		if (m_pStart)
 			Mono::GetInstanced().RunImportFn(m_pMonoObj, m_pStart, ID);
+	}
+
+	void PreUpdate(float dt)
+	{
+		if (m_pPreUpdate)
+			Mono::GetInstanced().RunImportFn(m_pMonoObj, m_pPreUpdate, dt);
 	}
 
 	void Update(float dt)
