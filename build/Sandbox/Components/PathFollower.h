@@ -7,15 +7,15 @@ struct path_follower
 		.m_pName = "Path Follower"
 	};
 
-	int m_PathID;
-	float m_Distance;
-	float m_TravelSpeed;
-	bool m_BackAndForth;
-	bool m_Reversed;
-	bool m_PauseTravel;
+	int m_PathID{};
+	float m_Distance{0.0f};
+	float m_TravelSpeed{};;
+	bool m_BackAndForth{};
+	bool m_Reversed{};
+	bool m_PauseTravel{};
 
-	paperback::Vector3f m_Direction;
-	bool m_FinishedTravelling;
+	paperback::Vector3f m_Direction{};
+	bool m_FinishedTravelling{};
 };
 
 

@@ -33,6 +33,9 @@ struct cinematic
     }
     
     std::vector<CinematicInfo> m_CinematicInfos;
+    bool m_OnHold{false};
+    int m_Index{0};
+    float m_Timer{0.0f};
 };
 
 namespace RR_Cinematic
@@ -41,6 +44,9 @@ namespace RR_Cinematic
     {
          rttr::registration::class_<cinematic>(cinematic::typedef_v.m_pName)
            .constructor()(rttr::policy::ctor::as_object)
-           .property("Cinematic Infos", &cinematic::m_CinematicInfos);
+           .property("Cinematic Infos", &cinematic::m_CinematicInfos)
+           .property("Index", &cinematic::m_Index)
+           .property("On Hold", &cinematic::m_OnHold)
+           .property("Timer", &cinematic::m_Timer);
     }
 }

@@ -19,7 +19,8 @@ struct path_system : paperback::system::instance
 
 	// Queries
 	tools::query Query_Paths;
-	tools::query Query_Units;
+	tools::query Query_PathFollowers;
+	tools::query Query_CinematicPathFollowers;
 
 	bool m_MovePathFollowers{};
 
@@ -39,9 +40,13 @@ struct path_system : paperback::system::instance
 		Query_Paths.m_Must.AddFromComponents<path, transform>();
 		Query_Paths.m_NoneOf.AddFromComponents<prefab>();
 
-		Query_Units.m_Must.AddFromComponents<path_follower, transform>();
-		Query_Units.m_OneOf.AddFromComponents<name, offset>();
-		Query_Units.m_NoneOf.AddFromComponents<prefab, cinematic>();
+		Query_PathFollowers.m_Must.AddFromComponents<path_follower, transform>();
+		Query_PathFollowers.m_OneOf.AddFromComponents<name, offset>();
+		Query_PathFollowers.m_NoneOf.AddFromComponents<prefab, cinematic>();
+
+		Query_CinematicPathFollowers.m_Must.AddFromComponents<path_follower, transform, cinematic>();
+		Query_CinematicPathFollowers.m_OneOf.AddFromComponents<name, offset>();
+		Query_CinematicPathFollowers.m_NoneOf.AddFromComponents<prefab>();
 	}
 
 	PPB_INLINE
@@ -107,7 +112,7 @@ struct path_system : paperback::system::instance
 
 		if (m_MovePathFollowers)
 		{
-			ForEach(Search(Query_Units), [&](path_follower& PathFollower, transform& Transform, offset* Offset) noexcept
+			ForEach(Search(Query_PathFollowers), [&](path_follower& PathFollower, transform& Transform, offset* Offset) noexcept
 			{
 				auto spline = splines.find(PathFollower.m_PathID);
 
@@ -129,6 +134,24 @@ struct path_system : paperback::system::instance
 					{
 						PathFollower.m_FinishedTravelling = false;
 						Movement(spline->second, PathFollower, Transform, Offset);
+					}
+				}
+			});
+
+			ForEach(Search(Query_CinematicPathFollowers), [&](path_follower& PathFollower, transform& Transform, cinematic& Cinematic, offset* Offset) noexcept
+			{
+				auto spline = splines.find(PathFollower.m_PathID);
+
+				if (spline != splines.end() && !PathFollower.m_PauseTravel)
+				{
+					if (!PathFollower.m_Reversed && PathFollower.m_Distance >= spline->second.m_TotalLength)
+					{
+						PathFollower.m_FinishedTravelling = true;
+					}
+
+					else
+					{
+						CinematicMovement(spline->second, PathFollower, Transform, Cinematic, Offset);
 					}
 				}
 			});
@@ -183,6 +206,61 @@ struct path_system : paperback::system::instance
 		if (debug_sys->m_IsDebug)
 		{
 			debug_sys->DrawDebugLines(vec, true);
+		}
+	}
+
+	void CinematicMovement(paperback::Spline& spline, path_follower& PathFollower, transform& Transform, cinematic& Cinematic, offset* Offset)
+	{
+		if (Cinematic.m_CinematicInfos.size() > Cinematic.m_Index)
+		{
+			cinematic::CinematicInfo& cinematic_info{ Cinematic.m_CinematicInfos[Cinematic.m_Index] };
+
+			if (Cinematic.m_OnHold)
+			{
+				Cinematic.m_Timer += m_Coordinator.DeltaTime();
+
+				if (Cinematic.m_Timer > cinematic_info.m_HoldTime)
+				{
+					Cinematic.m_OnHold = false;
+					Cinematic.m_Timer = 0.0f;
+					++Cinematic.m_Index;
+				}
+			}
+
+			else //moving
+			{
+				float normalized_offset{ spline.GetNormalizedOffset(PathFollower.m_Distance) };
+
+				if (normalized_offset > Cinematic.m_Index)
+				{
+					normalized_offset = Cinematic.m_Index;
+					Cinematic.m_OnHold = true;
+				}
+				
+				paperback::Vector3f destination{ spline.GetSplinePoint(normalized_offset).m_Point };
+				paperback::Vector3f direction{ (destination - Transform.m_Position) };
+
+				float prev_dist{ spline.CalculateSegmentLength(Cinematic.m_Index) };
+				float destination_dist{ spline.CalculateSegmentLength(Cinematic.m_Index + 1) };
+				float speed_modifier = cinematic_info.m_MoveSpeed + cinematic_info.m_MoveSpeed * cosf((PathFollower.m_Distance - prev_dist) / (destination_dist - prev_dist) * 2 * M_PI + M_PI);
+
+				if (Offset)
+				{
+					Offset->m_PosOffset += direction;
+				}
+
+				else
+				{
+					Transform.m_Position += direction;
+				}
+
+				PathFollower.m_Distance += speed_modifier * PathFollower.m_TravelSpeed * m_Coordinator.DeltaTime();
+
+				if (PathFollower.m_Distance > spline.m_TotalLength)
+				{
+					PathFollower.m_Distance = spline.m_TotalLength;
+				}
+			}
 		}
 	}
 
