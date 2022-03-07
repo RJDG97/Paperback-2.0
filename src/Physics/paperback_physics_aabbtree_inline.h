@@ -37,6 +37,7 @@ namespace paperback::physics
     {
         m_Tree.clear( );
         m_Tree.resize( TREE_CAPACITY );
+        m_EntityToIndexMap.clear();
 
         for ( size_t i = 0; i < TREE_CAPACITY - 1; ++i )
         {
