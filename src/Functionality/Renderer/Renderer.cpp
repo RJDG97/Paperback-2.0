@@ -1207,6 +1207,8 @@ void Renderer::RenderPass(const std::unordered_map<std::string_view, std::vector
 
 void Renderer::GPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera)
 {
+	glDisable(GL_CULL_FACE);
+
 	// Change to fit window size
 	glViewport(0, 0, m_Width, m_Height);
 
@@ -1357,6 +1359,8 @@ void Renderer::GPass(const std::unordered_map<std::string_view, std::vector<Tran
 
 	// Unbind shader
 	m_Resources.m_Shaders["GPass"].UnUse();
+
+	glEnable(GL_CULL_FACE);
 }
 
 void Renderer::LightPass(const std::vector<PointLightInfo>& Lights, const Camera3D& SceneCamera)
