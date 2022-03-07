@@ -119,6 +119,8 @@ void DetailsWindow::DisplayProperties()
                         ButtonComponent( EntityInfo, Prefab, ReferencePrefab, ComponentInstance.second );
                     if (ComponentInstance.second == paperback::component::info_v< entityscript >.m_Guid)
                         EntityScriptComponent();
+                    if (ComponentInstance.second == paperback::component::info_v< cinematic >.m_Guid)
+                        CinematicComponent();
 
 
 
@@ -780,6 +782,75 @@ void DetailsWindow::EntityScriptComponent()
                 }
 
                 ImGui::EndCombo();
+            }
+        }
+    }
+}
+
+void DetailsWindow::CinematicComponent()
+{
+    auto Cinematic = m_Imgui.m_SelectedEntity.first->FindComponent<cinematic>(paperback::vm::PoolDetails{ 0, m_Imgui.m_SelectedEntity.second });
+
+    if (Cinematic)
+    {
+        if (Cinematic->m_CinematicInfos.size())
+        {
+            for (size_t i = 0; i < Cinematic->m_CinematicInfos.size(); ++i)
+            {
+                std::reference_wrapper<cinematic::CinematicInfo> TempCinematicInfo = Cinematic->m_CinematicInfos.at(i);
+
+                if (ImGui::Button(("Point " + std::to_string(i)).c_str(), ImVec2{ 60.0f, 25.0f }))
+                    m_Imgui.m_SelectedSplinePoint = static_cast<int>(i);;
+
+                ImGui::Button("Move Speed", ImVec2{ 80.0f, 25.0f });
+                ImGui::SameLine();
+                ImGui::DragFloat(("##Move Speed" + std::to_string(i)).c_str(), (float*)&(TempCinematicInfo.get().m_MoveSpeed), 0.1f, 0.1f);
+
+                ImGui::Button("Hold Time", ImVec2{ 80.0f, 25.0f });
+                ImGui::SameLine();
+                ImGui::DragFloat(("##Hold Time" + std::to_string(i)).c_str(), (float*)&(TempCinematicInfo.get().m_HoldTime), 0.1f, 0.1f);
+
+                ImGui::Button("Position", ImVec2{ 80.0f, 25.0f });
+                ImGui::SameLine();
+                ImGui::DragFloat3(("##Position" + std::to_string(i)).c_str(), (float*)&(TempCinematicInfo.get().m_CamPosition), 0.1f, 0.1f);
+
+                ImGui::Separator();
+            }
+
+            ImGui::PushItemWidth(150.0f);
+
+            if (ImGui::BeginCombo("##CinematicPointCombo", "Add Point"))
+            {
+                for (size_t i = 0; i < Cinematic->m_CinematicInfos.size(); ++i)
+                {
+                    if (ImGui::Selectable(std::to_string(i).c_str()))
+                    {
+                        Cinematic->AddPoint(static_cast<int>(i));
+                    }
+                }
+                ImGui::EndCombo();
+            }
+
+            m_Imgui.ImGuiHelp("New Point is added after the selected Point");
+
+            ImGui::SameLine();
+
+            if (ImGui::BeginCombo("##CinematicPointComboRemove", "Remove Points"))
+            {
+                for (size_t i = 0; i < Cinematic->m_CinematicInfos.size(); ++i)
+                {
+                    if (ImGui::Selectable(std::to_string(i).c_str()))
+                        Cinematic->RemovePoint(static_cast<int>(i));
+                }
+                ImGui::EndCombo();
+            }
+        }
+
+        else
+        {
+            if (ImGui::Button("Add Starting Point"))
+            {
+                Cinematic->AddPoint(0);
             }
         }
     }

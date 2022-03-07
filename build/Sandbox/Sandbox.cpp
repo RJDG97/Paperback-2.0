@@ -126,6 +126,7 @@ void InitializeGame()
         ,    crosshair       // Tag
         ,    light
         ,    bulksound
+        ,    cinematic
         >();
 
         // Register Components - Add to the end of the list

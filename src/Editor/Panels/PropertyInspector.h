@@ -52,6 +52,8 @@ struct DetailsWindow : paperback::editor::instance
 
     void EntityScriptComponent();
 
+    void CinematicComponent();
+
 //-----------------------------------
 //        Component Combos
 //-----------------------------------

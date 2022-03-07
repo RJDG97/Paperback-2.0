@@ -58,6 +58,7 @@
 #include "Crosshair.h"
 #include "Light.h"
 #include "BulkSound.h"
+#include "Cinematic.h"
 
 
 // shapes

@@ -41,7 +41,7 @@ struct path_system : paperback::system::instance
 
 		Query_Units.m_Must.AddFromComponents<path_follower, transform>();
 		Query_Units.m_OneOf.AddFromComponents<name, offset>();
-		Query_Units.m_NoneOf.AddFromComponents<prefab>();
+		Query_Units.m_NoneOf.AddFromComponents<prefab, cinematic>();
 	}
 
 	PPB_INLINE

@@ -3,6 +3,7 @@
 #include "Math/Vector3f.h" 
 #include "../Sandbox/Components/Deck.h"
 #include "../Sandbox/Components/EntityScript.h"
+#include "../Sandbox/Components/Cinematic.h"
 
 namespace paperback
 {
@@ -17,6 +18,12 @@ namespace paperback
 		rttr::registration::class_<entityscript::ScriptID>("ScriptID")
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("ID", &entityscript::ScriptID::m_ID);
+
+		rttr::registration::class_<cinematic::CinematicInfo>("CinematicInfo")
+			.constructor()(rttr::policy::ctor::as_object)
+			.property("Position", &cinematic::CinematicInfo::m_CamPosition)
+			.property("Hold Time", &cinematic::CinematicInfo::m_HoldTime)
+			.property("Move Speed", &cinematic::CinematicInfo::m_MoveSpeed);
 
 		rttr::registration::class_<paperback::Vector3f>("Vector3f")
 			.constructor()(rttr::policy::ctor::as_object)
