@@ -150,6 +150,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("ContainerLid", "../../resources/models/nui/ContainerLid.nui");
 
 	m_Resources.Load3DMeshNUI("CraneElevator", "../../resources/models/nui/CraneElevator.nui");
+	m_Resources.Load3DMeshNUI("CraneElevatorAlt", "../../resources/models/nui/CraneElevatorAlt.nui");
 
 	m_Resources.Load3DMeshNUI("CylinderBlock_Blue", "../../resources/models/nui/CylinderBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("CylinderBlock_Green", "../../resources/models/nui/CylinderBlock_Green.nui");
@@ -185,6 +186,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("InstructionManualPage04", "../../resources/models/nui/InstructionManualPage04.nui");
 
 	m_Resources.Load3DMeshNUI("InteractableBlock2x2", "../../resources/models/nui/InteractableBlock2x2.nui");
+	m_Resources.Load3DMeshNUI("InteractableBlock3x1", "../../resources/models/nui/InteractableBlock3x1.nui");
 	m_Resources.Load3DMeshNUI("InteractableBlock3x3", "../../resources/models/nui/InteractableBlock3x3.nui");
 
 
@@ -238,6 +240,9 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("TallGate", "../../resources/models/nui/TallGate.nui");
 	m_Resources.Load3DMeshNUI("TallGateFence", "../../resources/models/nui/TallGateFence.nui");
 
+	m_Resources.Load3DMeshNUI("ThickBookend", "../../resources/models/nui/ThickBookend.nui");
+	m_Resources.Load3DMeshNUI("ThinBookend", "../../resources/models/nui/ThinBookend.nui");
+
 	m_Resources.Load3DMeshNUI("TrainTrack", "../../resources/models/nui/TrainTrack.nui");
 	m_Resources.Load3DMeshNUI("TrainSupport", "../../resources/models/nui/TrainSupport.nui");
 
@@ -247,6 +252,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("TriangleBlock_Wood", "../../resources/models/nui/TriangleBlock_Wood.nui");
 	m_Resources.Load3DMeshNUI("TriangleBlock_Yellow", "../../resources/models/nui/TriangleBlock_Yellow.nui");
 
+
+	m_Resources.Load3DMeshNUI("Watchtower", "../../resources/models/nui/Watchtower.nui");
 
 	m_Resources.Load3DMeshNUI("WallSegment1", "../../resources/models/nui/WallSegment1.nui");
 	m_Resources.Load3DMeshNUI("WallSegment2", "../../resources/models/nui/WallSegment2.nui");
