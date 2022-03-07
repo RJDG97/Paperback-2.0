@@ -15,6 +15,9 @@ struct player_controller
 	bool                              m_PlayerStatus = true;
 	bool                              m_OnGround = true;;
 	bool                              m_FPSMode = false;
+	bool                              m_GrowAvailable = false;
+	bool                              m_ShrinkAvailable = false;
+	bool                              m_FreezeAvailable = false;
 };
 
 
@@ -48,6 +51,9 @@ namespace RR_PlayerController
 		   .property( "Camera Radius", &player_controller::m_CameraRadius )
 		   .property( "Player Active Status", &player_controller::m_PlayerStatus )
 		   .property( "Player On Ground Status", &player_controller::m_OnGround)
-		   .property( "Player FPS Status", &player_controller::m_FPSMode);
+		   .property( "Player FPS Status", &player_controller::m_FPSMode)
+		   .property( "Player Grow Available", &player_controller::m_GrowAvailable)(rttr::policy::prop::as_reference_wrapper)
+		   .property( "Player Shrink Available", &player_controller::m_ShrinkAvailable)(rttr::policy::prop::as_reference_wrapper)
+		   .property( "Player Freeze Available", &player_controller::m_FreezeAvailable)(rttr::policy::prop::as_reference_wrapper);
     }
 }

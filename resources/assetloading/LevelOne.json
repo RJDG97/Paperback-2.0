@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 378
+                "EntityHead": 351
             }
         },
         {
@@ -1150,7 +1150,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": true,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     }
                 }
             ]
@@ -2409,8 +2412,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            357,
                             6,
+                            357,
                             144,
                             352,
                             353,
@@ -19080,7 +19083,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": true,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     }
                 }
             ]
@@ -20385,13 +20391,13 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            343,
-                            136,
                             144,
+                            136,
+                            343,
                             308,
-                            325,
-                            126,
                             134,
+                            126,
+                            325,
                             82,
                             322,
                             153,
@@ -21953,14 +21959,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            198,
                             22,
+                            198,
                             279,
-                            28,
-                            20,
                             148,
-                            149,
+                            20,
+                            28,
                             21,
+                            149,
                             301,
                             302,
                             117,
@@ -25239,9 +25245,9 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            5509481706028819786,
-                            8376831551428810534,
                             9604788041699812520,
+                            8376831551428810534,
+                            5509481706028819786,
                             5691439207370049121,
                             17008353085049151909,
                             223102351977301267,
@@ -27568,7 +27574,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": false,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
@@ -28977,14 +28986,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            77,
                             85,
-                            380,
+                            77,
                             308,
+                            380,
                             136,
-                            325,
-                            126,
                             134,
+                            126,
+                            325,
                             314,
                             328,
                             359,
@@ -30372,6 +30381,252 @@
                     "Mass": {
                         "Mass": 0.0,
                         "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        1362145481980459455
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 111
+                    },
+                    "Mesh": {
+                        "Model": "JumpToy",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 16.0,
+                            "y": 0.20000000298023225,
+                            "z": 15.701702117919922
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -0.15000000596046449,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 0.15000000596046449,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 378
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": true,
+                        "Enable Shrink Ability?": false,
+                        "Enable Freeze Ability?": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        1362145481980459455
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 378
+                    },
+                    "Mesh": {
+                        "Model": "JumpToy",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            111
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Armature|Idle",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -0.15000000596046449,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 0.15000000596046449,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": true,
+                        "Enable Shrink Ability?": false,
+                        "Enable Freeze Ability?": false
                     }
                 }
             ]

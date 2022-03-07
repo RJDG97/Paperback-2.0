@@ -270,6 +270,7 @@
     <ClInclude Include="..\..\src\Scripts\IScripts.h" />
     <ClInclude Include="..\..\src\Scripts\MonoInternal.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_AABB.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_AbilityCollectible.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Animator.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Application.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_BoundingBox.h" />

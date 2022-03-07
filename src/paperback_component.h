@@ -27,8 +27,8 @@ To Use:
         Inside of paperback_component.h, add the new component to the statements
 */
 
-#define BEGIN_CREATE_DATA_COMPONENT( component_name )                                       \
-    struct component_name                                                                   \
+#define BEGIN_CREATE_DATA_COMPONENT( struct_name, component_name )                          \
+    struct struct_name                                                                      \
     {                                                                                       \
 	    constexpr static auto typedef_v = paperback::component::type::data                  \
 	    {                                                                                   \
@@ -39,8 +39,8 @@ To Use:
     };
 
 
-#define BEGIN_CREATE_TAG_COMPONENT( component_name )                                        \
-    struct component_name                                                                   \
+#define BEGIN_CREATE_TAG_COMPONENT( struct_name, component_name )                           \
+    struct struct_name                                                                      \
     {                                                                                       \
 	    constexpr static auto typedef_v = paperback::component::type::tag                   \
 	    {                                                                                   \

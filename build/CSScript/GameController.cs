@@ -111,7 +111,7 @@ namespace CSScript
                     {
                         Name name = new Name(collided_id);
 
-                        if (name.m_Name == "Moving Platform")
+                        if ( name.m_Name == "Moving Platform" && (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable) )
                         {
                             PathFollower path_follower = new PathFollower(collided_id);
 
@@ -130,7 +130,7 @@ namespace CSScript
                         {
                             Pushable pushable = new Pushable(collided_id);
 
-                            if (pushable.m_State != ((uint)PushableState.GROWN))
+                            if ( pushable.m_State != ((uint)PushableState.GROWN) && (m_JumpUnitPC.m_GrowAvailable || m_PushUnitPC.m_GrowAvailable) )
                             {
                                 Scale scale = new Scale(collided_id);
                                 scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_ScaleFactor, scale.m_Value.y * m_ScaleFactor, scale.m_Value.z * m_ScaleFactor);
@@ -151,7 +151,7 @@ namespace CSScript
                         {
                             Pushable pushable = new Pushable(collided_id);
 
-                            if (pushable.m_State != ((uint)PushableState.SHRUNK))
+                            if (pushable.m_State != ((uint)PushableState.SHRUNK) && (m_JumpUnitPC.m_ShrinkAvailable || m_PushUnitPC.m_ShrinkAvailable) )
                             {
                                 Scale scale = new Scale(collided_id);
                                 scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);

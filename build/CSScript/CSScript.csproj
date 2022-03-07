@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Checkpoint.cs" />
+    <Compile Include="CollectedInteractable.cs" />
     <Compile Include="ElevatorPlatform.cs" />
     <Compile Include="ElevatorSwitch.cs" />
     <Compile Include="Fan.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="MovingPlatform.cs" />
     <Compile Include="MovingPlatformSwitch.cs" />
     <Compile Include="Tools\Components\AABB.cs" />
+    <Compile Include="Tools\Components\AbilityCollectible.cs" />
     <Compile Include="Tools\Components\Animator.cs" />
     <Compile Include="Tools\Components\Application.cs" />
     <Compile Include="Tools\Components\BoundingBox.cs" />

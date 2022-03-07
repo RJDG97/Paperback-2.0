@@ -691,6 +691,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< bulksound >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< cinematic >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< cinematic >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< ability_collectible >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< ability_collectible >(Index));
 		else
 			return rttr::instance();
 	}

@@ -445,6 +445,9 @@ namespace paperback::deserialize
             if (obj.is_type<cinematic>())
                 NewArchetype->GetComponent<cinematic>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<cinematic>();
 
+            if (obj.is_type<ability_collectible>())
+                NewArchetype->GetComponent<ability_collectible>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<ability_collectible>();
+
         }
     }
 

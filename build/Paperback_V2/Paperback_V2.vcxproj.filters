@@ -609,6 +609,9 @@
     <ClInclude Include="..\..\src\Physics\paperback_physics_aabbtree_inline.h">
       <Filter>Source\Paperback Engine\BroadPhase</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_AbilityCollectible.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

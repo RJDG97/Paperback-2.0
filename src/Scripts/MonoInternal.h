@@ -30,6 +30,7 @@
 #include "Scripts/Scripts_Elevator.h"
 #include "Scripts/Scripts_Raycast.h"
 #include "Scripts/Scripts_PlayerController.h"
+#include "Scripts/Scripts_AbilityCollectible.h"
 #include "Scripts/Scripts_Tag.h"
 
 namespace MONO_INTERNALS
@@ -66,5 +67,6 @@ namespace MONO_INTERNALS
 		MONO_CAMERA::AddInternalCall();
 		MONO_PUSHABLE::AddInternalCall();
 		MONO_PLAYERCONTROLLER::AddInternalCall();
+		MONO_ABILITYCOLLECTIBLE::AddInternalCall();
 	}
 }

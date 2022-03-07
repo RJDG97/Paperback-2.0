@@ -127,6 +127,7 @@ void InitializeGame()
         ,    light
         ,    bulksound
         ,    cinematic
+        ,    ability_collectible
         >();
 
         // Register Components - Add to the end of the list

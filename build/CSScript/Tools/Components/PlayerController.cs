@@ -31,6 +31,42 @@ namespace CSScript
             }
         }
 
+        public bool m_GrowAvailable
+        {
+            get
+            {
+                return GetGrowStatus(m_Address);
+            }
+            set 
+            {
+                SetGrowStatus(m_Address, value);
+            }
+        }
+
+        public bool m_ShrinkAvailable
+        {
+            get
+            {
+                return GetShrinkStatus(m_Address);
+            }
+            set 
+            {
+                SetShrinkStatus(m_Address, value);
+            }
+        }
+
+        public bool m_FreezeAvailable
+        {
+            get
+            {
+                return GetFreezeStatus(m_Address);
+            }
+            set 
+            {
+                SetFreezeStatus(m_Address, value);
+            }
+        }
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
@@ -39,5 +75,23 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void SetFPSMode(void* address, bool value);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static bool GetGrowStatus(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void SetGrowStatus(void* address, bool value);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static bool GetShrinkStatus(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void SetShrinkStatus(void* address, bool value);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static bool GetFreezeStatus(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void SetFreezeStatus(void* address, bool value);
     }
 }

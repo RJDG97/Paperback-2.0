@@ -205,6 +205,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\4.5\mscorlib.dll" "$(Soluti
   <ItemGroup>
     <ClInclude Include="CapturePoint.h" />
     <ClInclude Include="Components\AABB.h" />
+    <ClInclude Include="Components\AbilityCollectible.h" />
     <ClInclude Include="Components\Animator.h" />
     <ClInclude Include="Components\Base.h" />
     <ClInclude Include="Components\BoundingBox.h" />

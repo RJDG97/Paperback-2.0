@@ -59,6 +59,7 @@
 #include "Light.h"
 #include "BulkSound.h"
 #include "Cinematic.h"
+#include "AbilityCollectible.h"
 
 
 // shapes
