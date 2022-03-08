@@ -76,6 +76,7 @@ struct render_system : paperback::system::instance
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
 		std::vector<Renderer::PointLightInfo> lights;
+		std::unordered_map<std::string_view, std::vector<glm::mat4>> instances;
 		std::map<float, std::vector<Renderer::UIInfo>> uis;
 		std::unordered_map<std::string_view, std::vector<Renderer::TextInfo>> texts;
 
@@ -177,7 +178,7 @@ struct render_system : paperback::system::instance
 			});
 		}
 
-		Renderer::GetInstanced().Render(objects, lights, cam, m_bGamma, uis, texts, m_Camera2D, &points);
+		Renderer::GetInstanced().Render(objects, lights, instances, cam, m_bGamma, uis, texts, m_Camera2D, &points);
 	}
 
 	// On Event Key / Mouse Pressed

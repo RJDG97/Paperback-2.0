@@ -51,6 +51,7 @@ public:
 	// Render object
 	void Render(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects,
 				const std::vector<PointLightInfo>& Lights,
+				const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Instances,
 				const Camera3D& SceneCamera,
 				const bool Gamma,
 				const std::map<float, std::vector<UIInfo>>& UIs,
@@ -104,6 +105,7 @@ private:
 	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera);
 	void GPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera);
 	void LightPass(const std::vector<PointLightInfo>& Lights, const Camera3D& SceneCamera);
+	void InstancedPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Instances, const Camera3D& SceneCamera);
 	void BlurPass();
 	void CompositePass(const bool Gamma);
 	void MergePass();
@@ -127,6 +129,8 @@ private:
 
 	// VAO for rendering
 	GLuint m_VAO;
+	// VAO for instanced rendering
+	GLuint m_InstancedVAO;
 	// VAO for debug objects
 	GLuint m_DebugVAO;
 
