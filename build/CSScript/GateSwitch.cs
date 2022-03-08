@@ -48,7 +48,7 @@ namespace CSScript
             m_InitialBoundingBoxMax = m_ChildBoundingBox.Max;
 
             m_ChildAnimator.m_PauseAtTime = 0;
-            m_Mesh.m_Model = "ButtonOFF";
+            m_Mesh.m_Model = "Button_GateOFF";
         }
 
         public void Update(float dt)
@@ -61,6 +61,8 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            Debug.Log(Player.GetJumpUnitID().ToString());
+            Debug.Log(ID.ToString());
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 m_Sound.m_Trigger = true;
@@ -68,8 +70,8 @@ namespace CSScript
                 m_ChildBoundingBox.Max = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                 m_ChildAnimator.m_Reversed = false;
                 m_ChildAnimator.m_PauseAnimation = false;
-                m_ChildAnimator.m_PauseAtTime = 23;
-                //m_Mesh.m_Model = "ButtonON";
+                m_ChildAnimator.m_PauseAtTime = 74;
+                m_Mesh.m_Model = "Button_GateON";
             }
         }
         public void OnCollisionStay(UInt32 ID)
@@ -84,7 +86,7 @@ namespace CSScript
                 m_ChildAnimator.m_Reversed = true;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 0;
-                //m_Mesh.m_Model = "ButtonOFF";
+                m_Mesh.m_Model = "Button_GateOFF";
             }
         }
     }

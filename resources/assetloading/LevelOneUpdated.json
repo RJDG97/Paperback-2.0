@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 184
+                "EntityHead": 195
             }
         },
         {
@@ -895,6 +895,1133 @@
             ]
         },
         {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 188
+                    },
+                    "Mesh": {
+                        "Model": "ShortGate",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.005000000353902578,
+                            "y": 0.005000000353902578,
+                            "z": 0.005000000353902578
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 187
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 2.1500000953674318,
+                            "y": 0.30000001192092898,
+                            "z": -1.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 2.5,
+                            "y": 2.5,
+                            "z": 2.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -1.100000023841858,
+                            "y": -0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -58.849998474121097,
+                            "y": 1.2999999523162842,
+                            "z": 35.599998474121097
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.3499999940395355,
+                            "y": -0.20000000298023225,
+                            "z": -0.029999999329447748
+                        },
+                        "Max Point": {
+                            "x": 0.3499999940395355,
+                            "y": 0.20000000298023225,
+                            "z": 0.029999999329447748
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            17639936325783395793
+                        ],
+                        "Prefab GID": 186
+                    },
+                    "Name": {
+                        "Name": "Gate"
+                    },
+                    "Mass": {
+                        "Mass": 6.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 186
+                    },
+                    "Mesh": {
+                        "Model": "ShortGate",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 184
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 2.1500000953674318,
+                            "y": 0.30000001192092898,
+                            "z": -0.8999999761581421
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 2.5,
+                            "y": 2.5,
+                            "z": 2.5
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            188
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -1.100000023841858,
+                            "y": -0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.3499999940395355,
+                            "y": -0.20000000298023225,
+                            "z": -0.029999999329447748
+                        },
+                        "Max Point": {
+                            "x": 0.3499999940395355,
+                            "y": 0.20000000298023225,
+                            "z": 0.029999999329447748
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Gate"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 191
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 189
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            193
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 190
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 189
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            194
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        14302600151082817442,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 189
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            191,
+                            190
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            192
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Checkpoint"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Checkpoint"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        14302600151082817442,
+                        13107566195444653040,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 192
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            193,
+                            194
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -59.70000076293945,
+                            "y": 1.100000023841858,
+                            "z": 34.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Checkpoint"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -0.20000000298023225,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 0.20000000298023225,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            5691439207370049121,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 189
+                    },
+                    "Name": {
+                        "Name": "Checkpoint"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 193
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 192
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -60.25,
+                            "y": 0.9000000357627869,
+                            "z": 34.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 191
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 194
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 192
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -59.150001525878909,
+                            "y": 0.9000000357627869,
+                            "z": 34.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 190
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14302600151082817442,
+                        13107566195444653040,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 187
+                    },
+                    "Mesh": {
+                        "Model": "Button_GateOFF",
+                        "Texture": "YesButton_Selected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            188
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": -61.0,
+                            "y": 1.0,
+                            "z": 36.599998474121097
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GateSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.10000000149011612,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.10000000149011612,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            9604788041699812520,
+                            3617555656175080491,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Gate Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.10000000149011612,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14302600151082817442,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 184
+                    },
+                    "Mesh": {
+                        "Model": "Button_GateOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            186
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            187
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": -61.0,
+                            "y": 1.0,
+                            "z": 36.599998474121097
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GateSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.10000000149011612,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.10000000149011612,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Gate Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.10000000149011612,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
             "HDBbase": [
                 {
                     "Guid": [
@@ -1103,7 +2230,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1199,7 +2327,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1294,7 +2423,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1389,7 +2519,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1484,7 +2615,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1579,7 +2711,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1674,7 +2807,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1769,7 +2903,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1864,7 +2999,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1959,7 +3095,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2054,7 +3191,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2149,7 +3287,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2244,7 +3383,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2339,7 +3479,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2434,7 +3575,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2529,7 +3671,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2624,7 +3767,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2719,7 +3863,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2814,7 +3959,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2909,7 +4055,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3004,7 +4151,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3099,7 +4247,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3194,7 +4343,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3289,7 +4439,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3384,7 +4535,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3479,7 +4631,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3574,7 +4727,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3669,7 +4823,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3764,7 +4919,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3859,7 +5015,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3954,7 +5111,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4049,7 +5207,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4144,7 +5303,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4239,7 +5399,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4334,7 +5495,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4429,7 +5591,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4524,7 +5687,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4619,7 +5783,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4714,7 +5879,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4809,7 +5975,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4904,7 +6071,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4999,7 +6167,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5094,7 +6263,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5189,7 +6359,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5284,7 +6455,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5379,7 +6551,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5474,7 +6647,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5569,7 +6743,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5664,7 +6839,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5759,7 +6935,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5854,7 +7031,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5949,7 +7127,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6044,7 +7223,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6139,7 +7319,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6234,7 +7415,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6329,7 +7511,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6424,7 +7607,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6519,7 +7703,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6614,7 +7799,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6709,7 +7895,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6804,7 +7991,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6899,7 +8087,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6994,7 +8183,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7092,7 +8282,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7190,7 +8381,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7286,7 +8478,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7385,7 +8578,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7483,7 +8677,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7581,7 +8776,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7678,7 +8874,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7777,7 +8974,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7875,7 +9073,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7974,7 +9173,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8073,7 +9273,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8172,7 +9373,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8269,7 +9471,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8367,7 +9570,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8465,7 +9669,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8561,7 +9766,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8656,7 +9862,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8752,7 +9959,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8851,7 +10059,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8950,7 +10159,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9047,7 +10257,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9144,7 +10355,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9241,7 +10453,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9338,7 +10551,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9433,7 +10647,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9529,7 +10744,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9625,7 +10841,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9721,7 +10938,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9817,7 +11035,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9912,7 +11131,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10008,7 +11228,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10104,7 +11325,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10200,7 +11422,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10297,7 +11520,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10394,7 +11618,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10488,7 +11713,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10583,7 +11809,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10681,7 +11908,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10778,7 +12006,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10875,7 +12104,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10973,7 +12203,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11071,7 +12302,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11170,7 +12402,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11268,7 +12501,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11366,7 +12600,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11464,7 +12699,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11562,7 +12798,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11660,7 +12897,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11758,7 +12996,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11856,7 +13095,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11954,7 +13194,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12052,7 +13293,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12150,7 +13392,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12248,7 +13491,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12345,7 +13589,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12443,7 +13688,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12541,7 +13787,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12636,7 +13883,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12732,7 +13980,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12829,7 +14078,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12925,7 +14175,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13021,7 +14272,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13118,7 +14370,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13215,7 +14468,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13311,7 +14565,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13406,7 +14661,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13501,7 +14757,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13596,7 +14853,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13692,7 +14950,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13787,7 +15046,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13883,7 +15143,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13978,7 +15239,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14076,7 +15338,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14309,7 +15572,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14407,7 +15671,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14503,7 +15768,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14600,7 +15866,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14694,7 +15961,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14790,7 +16058,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14885,7 +16154,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14978,7 +16248,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": false,
-                        "Collision Affected": true
+                        "Collision Affected": true,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15071,7 +16342,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15166,7 +16438,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15257,7 +16530,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15348,7 +16622,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15441,7 +16716,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15534,7 +16810,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15627,7 +16904,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15720,7 +16998,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15813,7 +17092,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -16359,7 +17639,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": []
@@ -16408,7 +17689,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": false,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     }
                 }
             ]
@@ -16507,7 +17791,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": true
+                        "Collision Affected": true,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": []
@@ -16571,7 +17856,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": true,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     }
                 }
             ]
@@ -16671,7 +17959,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": true
+                        "Collision Affected": true,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": []
@@ -16702,7 +17991,7 @@
                         "Prefab GID": 128
                     },
                     "Name": {
-                        "Name": "Strong Unit"
+                        "Name": "Push Unit"
                     },
                     "Mass": {
                         "Mass": 6.0,
@@ -16732,7 +18021,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": false,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
@@ -16841,7 +18133,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": []
@@ -16860,7 +18153,7 @@
                         "Is Collide": false
                     },
                     "Name": {
-                        "Name": "Strong Unit"
+                        "Name": "Push Unit"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -16890,11 +18183,45 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": false,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
                         "Pushing Or Pulling?": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 185
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Unnamed Entity"
                     }
                 }
             ]

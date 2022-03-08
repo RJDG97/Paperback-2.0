@@ -11,6 +11,7 @@ namespace MONO_PLAYER
 		int32_t GID{ -1 };
 		tools::query Query;
 		Query.m_Must.AddFromComponents<player_controller, name, paperback::component::entity>();
+		Query.m_NoneOf.AddFromComponents<prefab>();
 
 		PPB.ForEach(PPB.Search(Query), [&](player_controller& PlayerController, name& Name, paperback::component::entity& Entity) noexcept -> bool
 		{
@@ -31,6 +32,7 @@ namespace MONO_PLAYER
 		int32_t GID{ -1 };
 		tools::query Query;
 		Query.m_Must.AddFromComponents<player_controller, name, paperback::component::entity>();
+		Query.m_NoneOf.AddFromComponents<prefab>();
 
 		PPB.ForEach(PPB.Search(Query), [&](player_controller& PlayerController, name& Name, paperback::component::entity& Entity) noexcept -> bool
 		{
