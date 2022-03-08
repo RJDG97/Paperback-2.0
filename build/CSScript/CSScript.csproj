@@ -51,6 +51,7 @@
     <Compile Include="CollectedInteractable.cs" />
     <Compile Include="ElevatorPlatform.cs" />
     <Compile Include="ElevatorSwitch.cs" />
+    <Compile Include="PushableBlock.cs" />
     <Compile Include="Fan.cs" />
     <Compile Include="GateSwitch.cs" />
     <Compile Include="Goal_Level1.cs" />

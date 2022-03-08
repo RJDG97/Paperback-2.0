@@ -111,7 +111,7 @@ namespace CSScript
                     {
                         Name name = new Name(collided_id);
 
-                        if ( name.m_Name == "Moving Platform" && (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable) )
+                        if ( name.m_Name == "Moving Platform" /*&& (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable)*/ )
                         {
                             PathFollower path_follower = new PathFollower(collided_id);
 
@@ -130,7 +130,7 @@ namespace CSScript
                         {
                             Pushable pushable = new Pushable(collided_id);
 
-                            if ( pushable.m_State != ((uint)PushableState.GROWN) && (m_JumpUnitPC.m_GrowAvailable || m_PushUnitPC.m_GrowAvailable) )
+                            if ( pushable.m_State != ((uint)PushableState.GROWN) /*&& (m_JumpUnitPC.m_GrowAvailable || m_PushUnitPC.m_GrowAvailable)*/ )
                             {
                                 Scale scale = new Scale(collided_id);
                                 scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_ScaleFactor, scale.m_Value.y * m_ScaleFactor, scale.m_Value.z * m_ScaleFactor);
@@ -138,6 +138,11 @@ namespace CSScript
                                 BoundingBox bounding_box = new BoundingBox(collided_id);
                                 bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x * m_ScaleFactor, bounding_box.Min.y * m_ScaleFactor, bounding_box.Min.z * m_ScaleFactor);
                                 bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x * m_ScaleFactor, bounding_box.Max.y * m_ScaleFactor, bounding_box.Max.z * m_ScaleFactor);
+
+                                Rigidforce rigid_force = new Rigidforce(collided_id);
+                                rigid_force.m_CollisionAffected = true;
+                                rigid_force.m_GravityAffected = true;
+
                                 pushable.m_State = ++pushable.m_State;
                             }
                         }
@@ -151,7 +156,7 @@ namespace CSScript
                         {
                             Pushable pushable = new Pushable(collided_id);
 
-                            if (pushable.m_State != ((uint)PushableState.SHRUNK) && (m_JumpUnitPC.m_ShrinkAvailable || m_PushUnitPC.m_ShrinkAvailable) )
+                            if (pushable.m_State != ((uint)PushableState.SHRUNK) /*&& (m_JumpUnitPC.m_ShrinkAvailable || m_PushUnitPC.m_ShrinkAvailable)*/ )
                             {
                                 Scale scale = new Scale(collided_id);
                                 scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);
@@ -159,6 +164,11 @@ namespace CSScript
                                 BoundingBox bounding_box = new BoundingBox(collided_id);
                                 bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x / m_ScaleFactor, bounding_box.Min.y / m_ScaleFactor, bounding_box.Min.z / m_ScaleFactor);
                                 bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x / m_ScaleFactor, bounding_box.Max.y / m_ScaleFactor, bounding_box.Max.z / m_ScaleFactor);
+
+                                Rigidforce rigid_force = new Rigidforce(collided_id);
+                                rigid_force.m_CollisionAffected = true;
+                                rigid_force.m_GravityAffected = true;
+
                                 pushable.m_State = --pushable.m_State;
                             }
                         }

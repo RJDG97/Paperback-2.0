@@ -90,6 +90,42 @@ namespace MONO_RIGIDFORCE
 			reinterpret_cast<rigidforce*>(address)->m_Restitution = value;
 	}
 
+	MONO_EXPORT bool GetGravityAffected(void* address)
+	{
+		if (address)
+			return reinterpret_cast<rigidforce*>(address)->m_GravityAffected;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetGravityAffected(void* address, bool value)
+	{
+		if (address)
+			reinterpret_cast<rigidforce*>(address)->m_GravityAffected = value;
+	}
+
+	MONO_EXPORT bool GetCollisionAffected(void* address)
+	{
+		if (address)
+			return reinterpret_cast<rigidforce*>(address)->m_CollisionAffected;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetCollisionAffected(void* address, bool value)
+	{
+		if (address)
+			reinterpret_cast<rigidforce*>(address)->m_CollisionAffected = value;
+	}
+
+	MONO_EXPORT bool GetGravityActive(void* address)
+	{
+		if (address)
+			return reinterpret_cast<rigidforce*>(address)->m_GravityActive;
+
+		return {};
+	}
+
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Rigidforce::getaddress(uint)", &MONO_RIGIDFORCE::GetAddress);
@@ -103,5 +139,10 @@ namespace MONO_RIGIDFORCE
 		mono_add_internal_call("CSScript.Rigidforce::setmomentum(void*,single,single,single)", &MONO_RIGIDFORCE::SetMomentum);
 		mono_add_internal_call("CSScript.Rigidforce::getrestitution(void*)", &MONO_RIGIDFORCE::GetRestitution);
 		mono_add_internal_call("CSScript.Rigidforce::setrestitution(void*,single)", &MONO_RIGIDFORCE::SetRestitution);
+		mono_add_internal_call("CSScript.Rigidforce::getgravityaffected(void*)", &MONO_RIGIDFORCE::GetGravityAffected);
+		mono_add_internal_call("CSScript.Rigidforce::setgravityaffected(void*,bool)", &MONO_RIGIDFORCE::SetGravityAffected);
+		mono_add_internal_call("CSScript.Rigidforce::getcollisionaffected(void*)", &MONO_RIGIDFORCE::GetCollisionAffected);
+		mono_add_internal_call("CSScript.Rigidforce::setcollisionaffected(void*,bool)", &MONO_RIGIDFORCE::SetCollisionAffected);
+		mono_add_internal_call("CSScript.Rigidforce::getgravityactive(void*)", &MONO_RIGIDFORCE::GetGravityActive);
 	}
 }

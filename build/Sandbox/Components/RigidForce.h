@@ -41,6 +41,7 @@ namespace RR_RIGIDFORCE
            .property("Moment", &rigidforce::m_Momentum)(rttr::policy::prop::as_reference_wrapper)
            .property("Threshold", &rigidforce::m_threshold)(rttr::policy::prop::as_reference_wrapper)
            .property("Gravity Affected", &rigidforce::m_GravityAffected)(rttr::policy::prop::as_reference_wrapper)
-           .property("Collision Affected", &rigidforce::m_CollisionAffected)(rttr::policy::prop::as_reference_wrapper);
+           .property("Collision Affected", &rigidforce::m_CollisionAffected)(rttr::policy::prop::as_reference_wrapper)
+           .property("Gravity Active", &rigidforce::m_GravityActive);
     }
 }

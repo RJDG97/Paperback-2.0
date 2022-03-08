@@ -79,6 +79,37 @@ namespace CSScript
             }
         }
 
+        public bool m_CollisionAffected
+        {
+            get
+            {
+                return getcollisionaffected(m_Address);
+            }
+            set
+            {
+                setcollisionaffected(m_Address, value);
+            }
+        }
+
+        public bool m_GravityAffected
+        {
+            get
+            {
+                return getgravityaffected(m_Address);
+            }
+            set
+            {
+                setgravityaffected(m_Address, value);
+            }
+        }
+        public bool m_GravityActive
+        {
+            get
+            {
+                return getgravityactive(m_Address);
+            }
+        }
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
@@ -111,5 +142,20 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void setrestitution(void* address, float value);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static bool getgravityaffected(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void setgravityaffected(void* address, bool value);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static bool getcollisionaffected(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void setcollisionaffected(void* address, bool value);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static bool getgravityactive(void* address);
     }
 }
