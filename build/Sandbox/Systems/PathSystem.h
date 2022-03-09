@@ -236,13 +236,19 @@ struct path_system : paperback::system::instance
 					normalized_offset = Cinematic.m_Index;
 					Cinematic.m_OnHold = true;
 				}
-				
+
 				paperback::Vector3f destination{ spline.GetSplinePoint(normalized_offset).m_Point };
 				paperback::Vector3f direction{ (destination - Transform.m_Position) };
+				
+				float prev_dist{0.0f};
 
-				float prev_dist{ spline.CalculateSegmentLength(Cinematic.m_Index) };
-				float destination_dist{ spline.CalculateSegmentLength(Cinematic.m_Index + 1) };
-				float speed_modifier = cinematic_info.m_MoveSpeed + cinematic_info.m_MoveSpeed * cosf((PathFollower.m_Distance - prev_dist) / (destination_dist - prev_dist) * 2 * M_PI + M_PI);
+				for (int i = 0; i < Cinematic.m_Index - 1; ++i)
+				{
+					prev_dist += spline.CalculateSegmentLength(i);
+				}
+
+				float destination_dist{ spline.CalculateSegmentLength(Cinematic.m_Index) };
+				float speed_modifier = 1.7f + 0.8f * cosf((PathFollower.m_Distance - prev_dist) / (destination_dist - prev_dist) * 2 * M_PI + M_PI);
 
 				if (Offset)
 				{
@@ -254,7 +260,7 @@ struct path_system : paperback::system::instance
 					Transform.m_Position += direction;
 				}
 
-				PathFollower.m_Distance += speed_modifier * PathFollower.m_TravelSpeed * m_Coordinator.DeltaTime();
+				PathFollower.m_Distance += speed_modifier * cinematic_info.m_MoveSpeed * m_Coordinator.DeltaTime();
 
 				if (PathFollower.m_Distance > spline.m_TotalLength)
 				{
