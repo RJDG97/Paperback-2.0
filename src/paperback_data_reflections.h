@@ -21,7 +21,6 @@ namespace paperback
 
 		rttr::registration::class_<cinematic::CinematicInfo>("CinematicInfo")
 			.constructor()(rttr::policy::ctor::as_object)
-			.property("Position", &cinematic::CinematicInfo::m_CamPosition)
 			.property("Hold Time", &cinematic::CinematicInfo::m_HoldTime)
 			.property("Move Speed", &cinematic::CinematicInfo::m_MoveSpeed);
 
