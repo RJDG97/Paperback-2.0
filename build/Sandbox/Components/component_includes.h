@@ -73,3 +73,6 @@
 #include "Ray.h"
 #include "Sphere.h"
 #include "Triangle.h"
+
+#include "ParticleEmitter.h"
+#include "Particle.h"

@@ -93,8 +93,6 @@ namespace paperback::physics
                               , const transform&   Transform
                               , component::entity  Entity ) noexcept
     {
-        // verify that aabb values not overwriten when u remove and insert
-
         auto NodeIT = m_EntityToIndexMap.find( Entity.m_GlobalIndex );
 
         PPB_ASSERT_MSG( NodeIT == m_EntityToIndexMap.end()

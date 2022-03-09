@@ -400,6 +400,19 @@ namespace paperback::coordinator
 		PPB_INLINE
 		glm::vec3 GetViewportMousePosition(glm::mat4 projection, glm::mat4 view) noexcept;
 
+
+		//-----------------------------------
+		//              Input
+		//-----------------------------------
+		
+		PPB_INLINE
+        particles::manager::ParticleList RequestParticles( const int            Quantity
+                                                         , const paperback::u32 EmitterGID ) noexcept;
+
+        PPB_INLINE
+        void ReturnDeadParticle( const paperback::u32 ParticleGID ) noexcept;
+		
+		
 		//-----------------------------------
         //         Event Broadcast
         //-----------------------------------
@@ -437,6 +450,7 @@ namespace paperback::coordinator
 		archetype::manager			        m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				        m_SystemMgr{ m_Clock };			// System Manager
 		script::manager				        m_ScriptMgr{ *this };			// CPP Scripts Manager
+		particles::manager					m_ParticleMgr{ *this };			// 
 		physics::AABB_Tree                  m_AABBTree{ *this };		    // Dynamic AABB Tree
 		input::manager						m_Input{ *this };				// Input
 		bool						        m_GameActive = true;			// Game Status

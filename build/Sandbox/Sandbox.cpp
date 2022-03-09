@@ -128,6 +128,8 @@ void InitializeGame()
         ,    bulksound
         ,    cinematic
         ,    ability_collectible
+        ,    particle_emitter
+        ,    particle
         >();
 
         // Register Components - Add to the end of the list
@@ -145,6 +147,7 @@ void InitializeGame()
         ,   sound_system
         ,   window_system
         ,   ui_system
+        ,   particle_system
         ,   render_system
         ,   animator_system
         ,   player_spawner_system

@@ -20,6 +20,7 @@
 #include "CameraSystem.h"
 #include "IconSystem.h"
 #include "PlayerCameraSystem.h"
+#include "ParticleSystem.h"
 
 // Event
 #include "OnEvent_CollisionSystem.h"
