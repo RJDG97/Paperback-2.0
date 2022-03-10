@@ -49,6 +49,7 @@ namespace paperback::physics
         m_Tree[ TREE_CAPACITY - 1 ].m_NextIndex = settings::invalid_index_v;
 
         m_FreeIndex = 0;
+        m_NodeCount = 0;
         m_RootIndex = settings::invalid_index_v;
     }
 
@@ -73,17 +74,18 @@ namespace paperback::physics
         auto& Node  = m_Tree[ Index ];
 
         // Update Node
-        Node.m_AABB = AABB.Extend( Transform.m_Position, 0.1f );
+        Node.m_AABB = AABB.Extend( Transform.m_Position + Transform.m_Offset, 0.5f );
         Node.m_Position = Node.m_AABB.ComputeCentre( );
+        Node.m_Entity = Entity;
         Node.m_Height = 0;
+
+        DEBUG_PRINT( ("Inserting Node: " + std::to_string(Node.m_Entity.m_GlobalIndex)).c_str() );
 
         // Insert Node As Leaf
         InsertLeaf( Index );
 
         // Append Mapping For Quick Access
         m_EntityToIndexMap.emplace( Entity.m_GlobalIndex, Index );
-
-        Node.m_Entity = Entity;
 
         return Index;
     }
@@ -95,8 +97,14 @@ namespace paperback::physics
     {
         auto NodeIT = m_EntityToIndexMap.find( Entity.m_GlobalIndex );
 
-        PPB_ASSERT_MSG( NodeIT == m_EntityToIndexMap.end()
-                      , "Update Node (ERROR): Node Does Not Exist" );
+        if ( NodeIT == m_EntityToIndexMap.end() )
+        {
+            ERROR_PRINT( ("Update Node (ERROR): Node Does Not Exist " + std::to_string(Entity.m_GlobalIndex)).c_str() );
+            return false;
+        }
+
+        //PPB_ASSERT_MSG( NodeIT == m_EntityToIndexMap.end()
+        //              , "Update Node (ERROR): Node Does Not Exist" );
 
         auto NodeIndex = NodeIT->second;
 
@@ -111,10 +119,10 @@ namespace paperback::physics
                       , "Update Node (ERROR): Entity GIDs Are Different" );
 
         // Entity Has Moved Out Of Bounds - Update Node
-        if ( !Node.m_AABB.Contains( Transform.m_Position, AABB ) )
+        if ( !Node.m_AABB.Contains( Transform.m_Position + Transform.m_Offset, AABB ) )
         {
             RemoveLeaf( NodeIndex );
-            Node.m_AABB = AABB.Extend( Transform.m_Position, 0.5f );
+            Node.m_AABB = AABB.Extend( Transform.m_Position + Transform.m_Offset, 0.5f );
             Node.m_Position = Node.m_AABB.ComputeCentre( );
             InsertLeaf( NodeIndex );
 
@@ -293,7 +301,8 @@ namespace paperback::physics
         else
         {
             auto& LeafNode      = m_Tree[ ID ];
-            auto  SiblingIndex  = FindBestSibling( LeafNode.m_AABB );
+            auto  LeafAABB      = LeafNode.m_AABB;
+            auto  SiblingIndex  = FindBestSibling( LeafAABB );
 
             // Create New Parent
             NodeID OldParentIndex = m_Tree[ SiblingIndex ].m_ParentIndex;
@@ -306,7 +315,7 @@ namespace paperback::physics
             // Update New Parent
             NewParentNode.m_ParentIndex = OldParentIndex;
             NewParentNode.m_Height      = SiblingNode.m_Height + 1;
-            NewParentNode.m_AABB.Merge( LeafNode.m_AABB, SiblingNode.m_AABB );
+            NewParentNode.m_AABB.Merge( LeafAABB, SiblingNode.m_AABB );
 
             // If Sibling Was Root Node
             if ( OldParentIndex == settings::invalid_index_v )
@@ -345,8 +354,10 @@ namespace paperback::physics
         // Removing Other Leaf Nodes
         else
         {
-            auto ParentIndex    = m_Tree[ ID ].m_ParentIndex;
-            auto GParentIndex   = m_Tree[ ParentIndex ].m_ParentIndex;
+            auto  ParentIndex   = m_Tree[ ID ].m_ParentIndex;
+            auto& ParentNode    = m_Tree[ ParentIndex ];
+            auto  GParentIndex  = m_Tree[ ParentIndex ].m_ParentIndex;
+            auto& GParentNode   = m_Tree[ GParentIndex ];
             NodeID SiblingIndex = m_Tree[ ParentIndex ].m_LeftIndex == ID ? m_Tree[ ParentIndex ].m_RightIndex
                                                                           : m_Tree[ ParentIndex ].m_LeftIndex;
 
@@ -360,28 +371,13 @@ namespace paperback::physics
             // Remove Parent Node & Connect Sibling To GrandParent
             else
             {
-                if ( m_Tree[ GParentIndex ].m_LeftIndex == ParentIndex )  m_Tree[ GParentIndex ].m_LeftIndex  = SiblingIndex;
-                else                                                      m_Tree[ GParentIndex ].m_RightIndex = SiblingIndex;
+                if ( GParentNode.m_LeftIndex == ParentIndex )  GParentNode.m_LeftIndex  = SiblingIndex;
+                else                                           GParentNode.m_RightIndex = SiblingIndex;
 
-                m_Tree[ SiblingIndex ].m_ParentIndex = GParentIndex;
+                m_Tree[ SiblingIndex ].m_ParentIndex = ParentNode.m_ParentIndex;
                 ReleaseNode( ParentIndex );
 
-                // Balance Ancestor - Continue Balancing Till Root
-                auto AncestorIndex = GParentIndex;
-
-                while ( AncestorIndex != settings::invalid_index_v )
-                {
-                    AncestorIndex        = BalanceNode( AncestorIndex );
-                    auto& AncestorNode   = m_Tree[ AncestorIndex ];
-
-                    auto& LeftChildNode  = m_Tree[ AncestorNode.m_LeftIndex ];
-                    auto& RightChildNode = m_Tree[ AncestorNode.m_RightIndex ];
-
-                    AncestorNode.m_AABB.Merge( LeftChildNode.m_AABB, RightChildNode.m_AABB );
-                    AncestorNode.m_Height = std::max( LeftChildNode.m_Height, RightChildNode.m_Height ) + 1;
-
-                    AncestorIndex = AncestorNode.m_ParentIndex;
-                }
+                BalanceTree( GParentIndex );
             }
         }
     }
@@ -449,8 +445,8 @@ namespace paperback::physics
                             R_ID >= m_Tree.size()
                           , "Invalid Left / Right Node Index - Too Big!" );
 
-            auto& LeftNode  = m_Tree[ L_ID ];                   // Left Child
-            auto& RightNode = m_Tree[ R_ID ];                   // Right Child
+            auto& LeftNode  = m_Tree[ L_ID ];                               // Left Child
+            auto& RightNode = m_Tree[ R_ID ];                               // Right Child
 
             int BalanceFactor = RightNode.m_Height - LeftNode.m_Height;     // Balance Factor
 
@@ -469,9 +465,9 @@ namespace paperback::physics
                               , "Invalid Right Left / Right Right Node Index - Too Big!" );
 
                 // Swap Original Node & Right Child
-                RightNode.m_LeftIndex = ID;
+                RightNode.m_LeftIndex   = ID;
                 RightNode.m_ParentIndex = Node.m_ParentIndex;
-                Node.m_ParentIndex = R_ID;
+                Node.m_ParentIndex      = R_ID;
 
                 // Swap Original Node's Parent (If Valid) To Point To Right Child
                 if ( RightNode.m_ParentIndex != settings::invalid_index_v )
@@ -579,8 +575,8 @@ namespace paperback::physics
                     LeftNode.m_RightIndex = LR_ID;
                     Node.m_LeftIndex      = LL_ID;
                     LL_Node.m_ParentIndex = ID;
-                    Node.m_AABB.Merge( RightNode.m_AABB, m_Tree[ LL_ID ].m_AABB );
-                    LeftNode.m_AABB.Merge( Node.m_AABB, m_Tree[ LR_ID ].m_AABB );
+                    Node.m_AABB.Merge( RightNode.m_AABB, LL_Node.m_AABB );
+                    LeftNode.m_AABB.Merge( Node.m_AABB, LR_Node.m_AABB );
 
                     Node.m_Height     = std::max( RightNode.m_Height, LL_Node.m_Height ) + 1;
                     LeftNode.m_Height = std::max( Node.m_Height, LR_Node.m_Height ) + 1;

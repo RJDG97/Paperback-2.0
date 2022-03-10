@@ -306,6 +306,12 @@ namespace paperback::coordinator
 		//-----------------------------------
 		
 		PPB_INLINE
+		void InitializeTree( void ) noexcept;
+
+		PPB_INLINE
+		void ResetTree( void ) noexcept;
+
+		PPB_INLINE
         bool UpdateNode( const boundingbox& AABB
                        , const transform&   Transform
                        , component::entity  Entity ) noexcept;
