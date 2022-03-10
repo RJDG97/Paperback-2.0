@@ -25,6 +25,12 @@ namespace CSScript
 
         Ability m_Current_Ability = Ability.STOP_MOVING_PLATFORM;
         float m_ScaleFactor = 1.5f;
+        float m_AbilityDuration = 3.0f;
+        float m_AbilityTimer = 0.0f;
+        bool m_AbilityActive = false;
+
+        UInt32 m_SelectedID;
+        Ability m_AbilityUsed;
 
         enum PushableState
         {
@@ -63,7 +69,7 @@ namespace CSScript
                 Player.TogglePlayers();
             }
 
-            if (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1))
+            if (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) && !m_AbilityActive)
             {
                 if (m_JumpUnitPC.m_FPSMode)
                 {
@@ -82,6 +88,66 @@ namespace CSScript
                 {
                     m_Current_Ability = (Ability)(((uint)++m_Current_Ability) % 3);
                 }
+            }
+
+            if (m_AbilityActive)
+            {
+                Debug.Log(m_AbilityTimer.ToString());
+
+                if (m_AbilityTimer > m_AbilityDuration)
+                {
+                    m_AbilityActive = false;
+                    m_AbilityTimer = 0.0f;
+
+                    switch (m_Current_Ability)
+                    {
+                        case Ability.STOP_MOVING_PLATFORM:
+                        {
+                            PathFollower path_follower = new PathFollower(m_SelectedID);
+                            path_follower.m_PauseTravel = false;
+                            break;
+                        }
+
+                        case Ability.GROW:
+                        {
+                            Pushable pushable = new Pushable(m_SelectedID);
+
+                            Scale scale = new Scale(m_SelectedID);
+                            scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);
+
+                            BoundingBox bounding_box = new BoundingBox(m_SelectedID);
+                            bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x / m_ScaleFactor, bounding_box.Min.y / m_ScaleFactor, bounding_box.Min.z / m_ScaleFactor);
+                            bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x / m_ScaleFactor, bounding_box.Max.y / m_ScaleFactor, bounding_box.Max.z / m_ScaleFactor);
+
+                            Rigidforce rigid_force = new Rigidforce(m_SelectedID);
+                            rigid_force.m_CollisionAffected = true;
+                            rigid_force.m_GravityAffected = true;
+
+                            pushable.m_State = --pushable.m_State;
+                            break;
+                        }
+
+                        case Ability.SHRINK:
+                        {
+                            Pushable pushable = new Pushable(m_SelectedID);
+                            Scale scale = new Scale(m_SelectedID);
+                            scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_ScaleFactor, scale.m_Value.y * m_ScaleFactor, scale.m_Value.z * m_ScaleFactor);
+
+                            BoundingBox bounding_box = new BoundingBox(m_SelectedID);
+                            bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x * m_ScaleFactor, bounding_box.Min.y * m_ScaleFactor, bounding_box.Min.z * m_ScaleFactor);
+                            bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x * m_ScaleFactor, bounding_box.Max.y * m_ScaleFactor, bounding_box.Max.z * m_ScaleFactor);
+
+                            Rigidforce rigid_force = new Rigidforce(m_SelectedID);
+                            rigid_force.m_CollisionAffected = true;
+                            rigid_force.m_GravityAffected = true;
+
+                            pushable.m_State = ++pushable.m_State;
+                            break;
+                        }
+                    }
+                }
+
+                m_AbilityTimer += dt;
             }
         }
 
@@ -117,7 +183,12 @@ namespace CSScript
 
                             if (path_follower.m_Distance > 0.0001f)
                             {
-                                    path_follower.m_PauseTravel = !path_follower.m_PauseTravel;
+                                path_follower.m_PauseTravel = !path_follower.m_PauseTravel;
+
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+                                return;
                             }
                         }
 
@@ -144,6 +215,11 @@ namespace CSScript
                                 rigid_force.m_GravityAffected = true;
 
                                 pushable.m_State = ++pushable.m_State;
+
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.GROW;
+                                return;
                             }
                         }
 
@@ -170,6 +246,11 @@ namespace CSScript
                                 rigid_force.m_GravityAffected = true;
 
                                 pushable.m_State = --pushable.m_State;
+
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.SHRINK;
+                                return;
                             }
                         }
 
