@@ -1083,6 +1083,26 @@ namespace paperback::coordinator
 		return m_Input.GetViewportMousePosition(projection, view);
 	}
 
+
+	//-----------------------------------
+	//              Input
+	//-----------------------------------
+	
+	PPB_INLINE
+    particles::manager::ParticleList instance::RequestParticles( const int            Quantity
+                                                               , const paperback::u32 EmitterGID ) noexcept
+	{
+		return m_ParticleMgr.RequestParticles( Quantity
+											 , EmitterGID );
+	}
+
+    PPB_INLINE
+    void instance::ReturnDeadParticle( const paperback::u32 ParticleGID ) noexcept
+	{
+		m_ParticleMgr.ReturnDeadParticle( ParticleGID );
+	}
+
+
 	//-----------------------------------
     //         Event Broadcast
     //-----------------------------------

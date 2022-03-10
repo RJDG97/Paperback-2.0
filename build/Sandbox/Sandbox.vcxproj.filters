@@ -442,5 +442,14 @@
     <ClInclude Include="Components\AbilityCollectible.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Particle.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\ParticleEmitter.h">
+      <Filter>Source Files\Components\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\ParticleSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
