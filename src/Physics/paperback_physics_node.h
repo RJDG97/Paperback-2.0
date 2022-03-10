@@ -45,7 +45,6 @@ namespace paperback::physics
         {
             struct
             {
-                
                 u32            m_LeftIndex;                                           // Left Child Index
                 u32            m_RightIndex;                                          // Right Child Index
             };                             

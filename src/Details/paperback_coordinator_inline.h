@@ -865,7 +865,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//         Query AABB Tree
 	//-----------------------------------
-	
+
 	PPB_INLINE
     physics::AABB_Tree::NeighbourList instance::QueryNeighbours( const boundingbox& AABB
                                                                , const transform&   Transform ) noexcept
@@ -897,6 +897,18 @@ namespace paperback::coordinator
 	//         Update AABB Tree
 	//-----------------------------------
 	
+	PPB_INLINE
+	void instance::InitializeTree( void ) noexcept
+	{
+		m_AABBTree.Initialize();
+	}
+
+	PPB_INLINE
+	void instance::ResetTree( void ) noexcept
+	{
+		m_AABBTree.Reset();
+	}
+
 	PPB_INLINE
     bool instance::UpdateNode( const boundingbox& AABB
                              , const transform&   Transform
