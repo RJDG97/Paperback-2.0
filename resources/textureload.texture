@@ -125,5 +125,16 @@
     "RedPaperBlueRock": "../../resources/textures/UI/RPSStatusIcons/RedPaperBlueRock.dds 1",
     "RedRockBlueScissors": "../../resources/textures/UI/RPSStatusIcons/RedRockBlueScissors.dds 1",
     "RedScissorsBluePaper": "../../resources/textures/UI/RPSStatusIcons/RedScissorsBluePaper.dds 1",
-    "RockPaperScissorsIcon": "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds 1"
+    "RockPaperScissorsIcon": "../../resources/textures/UI/RPSStatusIcons/RockPaperScissorsIcon.dds 1",
+	"JumpToy_DialogueBox": "../../resource/textures/UI/JumpToy_DialogueBox.dds 1",
+	"StrongToy_DialogueBox": "../../resource/textures/UI/StrongToy_DialogueBox.dds 1",
+	"SkillUIBase_Freeze": "../../resource/textures/UI/SkillBar/SkillUIBase_Freeze.dds 1",
+	"SkillUIBase_Grow": "../../resource/textures/UI/SkillBar/SkillUIBase_Grow.dds 1",
+	"SkillUIBase_Shrink": "../../resource/textures/UI/SkillBar/SkillUIBase_Shrink.dds 1",
+	"SkillUIBigBar_Freeze": "../../resource/textures/UI/SkillBar/SkillUIBigBar_Freeze.dds 1",
+	"SkillUIBigBar_Grow": "../../resource/textures/UI/SkillBar/SkillUIBigBar_Grow.dds 1",
+	"SkillUIBigBar_Shrink": "../../resource/textures/UI/SkillBar/SkillUIBigBar_Shrink.dds 1",
+	"SkillUISmallBar_Freeze": "../../resource/textures/UI/SkillBar/SkillUISmallBar_Freeze.dds 1",
+	"SkillUISmallBar_Grow": "../../resource/textures/UI/SkillBar/SkillUISmallBar_Grow.dds 1",
+	"SkillUISmallBar_Shrink": "../../resource/textures/UI/SkillBar/SkillUISmallBar_Shrink.dds 1"
 }
