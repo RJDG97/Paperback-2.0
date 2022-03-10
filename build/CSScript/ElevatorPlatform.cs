@@ -34,12 +34,9 @@ namespace CSScript
 
             if (m_Child.m_ParentID != -1)
             {
-                Parent parent = new Parent((UInt32)m_Child.m_ParentID);
-                int m_ElevatorID = parent.GetChildIDofName("Elevator");
-
-                if (m_ElevatorID != -1)
+                if (m_Child.m_ParentID != -1)
                 {
-                    m_Elevator = new Elevator((UInt32)m_ElevatorID);
+                    m_Elevator = new Elevator((UInt32)m_Child.m_ParentID);
                 }
             }
 

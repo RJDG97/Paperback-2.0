@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 349
+                "EntityHead": 55
             }
         },
         {
@@ -26,6 +26,7 @@
                         "Model": "Quad",
                         "Texture": "ToggleCardMode",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -91,6 +92,7 @@
                         "Model": "",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -134,6 +136,7 @@
                         "Model": "",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -195,6 +198,7 @@
                         "Model": "Quad",
                         "Texture": "NoButton_Unselected",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -273,6 +277,7 @@
                         "Model": "Quad",
                         "Texture": "NoButton_Unselected",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": false
                     },
                     "Scale": {
@@ -333,6 +338,7 @@
                         "Model": "Quad",
                         "Texture": "ResumeGameButton_Unselected",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": false
                     },
                     "Scale": {
@@ -394,6 +400,7 @@
                         "Model": "Quad",
                         "Texture": "QuitToMainMenuButton_Unselected",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": false
                     },
                     "Scale": {
@@ -455,6 +462,7 @@
                         "Model": "Quad",
                         "Texture": "ReturnToMainMenuPanel",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": false
                     },
                     "Scale": {
@@ -514,6 +522,7 @@
                         "Model": "Quad",
                         "Texture": "PauseGamePanel",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": false
                     },
                     "Scale": {
@@ -572,6 +581,7 @@
                         "Model": "Quad",
                         "Texture": "YesButton_Unselected",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": false
                     },
                     "Scale": {
@@ -632,6 +642,7 @@
                         "Model": "Quad",
                         "Texture": "NoButton_Unselected",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1005,6 +1016,7 @@
                         "Model": "JumpToy",
                         "Texture": "JumpToy_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -1089,7 +1101,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": []
@@ -1122,8 +1135,13 @@
                             "z": 0.0
                         },
                         "Radius": 6.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
                         "Theta": 90.0,
-                        "Azimuth": 0.07000000029802323
+                        "Azimuth": 0.07000000029802323,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
                     },
                     "Player Controller": {
                         "Device Guid": [],
@@ -1133,7 +1151,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": true,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     }
                 }
             ]
@@ -1222,7 +1243,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1321,7 +1343,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1420,7 +1443,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1519,7 +1543,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1618,7 +1643,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1717,7 +1743,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1844,7 +1871,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1940,7 +1968,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -1991,6 +2020,7 @@
                         "Model": "Container",
                         "Texture": "Container_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2064,7 +2094,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2106,6 +2137,7 @@
                         "Model": "GuardHouse",
                         "Texture": "GuardHouse_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2179,7 +2211,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2219,6 +2252,7 @@
                         "Model": "CylinderBlock_Red",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2292,7 +2326,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2333,6 +2368,7 @@
                         "Model": "ShortGateFence",
                         "Texture": "ShortGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2406,7 +2442,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2447,6 +2484,7 @@
                         "Model": "BagClosed",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2520,7 +2558,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2562,6 +2601,7 @@
                         "Model": "ContainerLid",
                         "Texture": "ContainerLid_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2635,7 +2675,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2675,6 +2716,7 @@
                         "Model": "Shelf",
                         "Texture": "Container_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2748,7 +2790,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2790,6 +2833,7 @@
                         "Model": "TrainTrack",
                         "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2863,7 +2907,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -2904,6 +2949,7 @@
                         "Model": "SquareBlock_Red",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -2977,7 +3023,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3018,6 +3065,7 @@
                         "Model": "SquareBlock_Green",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3091,7 +3139,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3132,6 +3181,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3205,7 +3255,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3247,6 +3298,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3320,7 +3372,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3362,6 +3415,7 @@
                         "Model": "CylinderBlock_Yellow",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3435,7 +3489,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3476,6 +3531,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3549,7 +3605,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3591,6 +3648,7 @@
                         "Model": "SquareBlock_Yellow",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3664,7 +3722,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3705,6 +3764,7 @@
                         "Model": "TallGateFence",
                         "Texture": "TallGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3778,7 +3838,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3819,6 +3880,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -3892,7 +3954,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -3934,6 +3997,7 @@
                         "Model": "TrainTrack",
                         "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4007,7 +4071,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4048,6 +4113,7 @@
                         "Model": "TrainTrack",
                         "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4121,7 +4187,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4162,6 +4229,7 @@
                         "Model": "TallGateFence",
                         "Texture": "TallGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4235,7 +4303,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4275,6 +4344,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4348,7 +4418,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4390,6 +4461,7 @@
                         "Model": "CylinderBlock_Green",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4463,7 +4535,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4504,6 +4577,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4577,7 +4651,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4619,6 +4694,7 @@
                         "Model": "ShortGateFence",
                         "Texture": "ShortGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4692,7 +4768,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4733,6 +4810,7 @@
                         "Model": "CylinderBlock_Blue",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4806,7 +4884,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4847,6 +4926,7 @@
                         "Model": "SquareBlock_Blue",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -4920,7 +5000,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -4961,6 +5042,7 @@
                         "Model": "ContainerLid",
                         "Texture": "ContainerLid_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5034,7 +5116,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5075,6 +5158,7 @@
                         "Model": "Shelf",
                         "Texture": "Container_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5148,7 +5232,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5190,6 +5275,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5263,7 +5349,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5305,6 +5392,7 @@
                         "Model": "FloorTile",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5378,7 +5466,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5418,6 +5507,7 @@
                         "Model": "Shelf",
                         "Texture": "Container_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5491,7 +5581,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5533,6 +5624,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5606,7 +5698,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5648,6 +5741,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5721,7 +5815,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5763,6 +5858,7 @@
                         "Model": "BookABC",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5836,7 +5932,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5876,6 +5973,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -5949,7 +6047,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -5991,6 +6090,7 @@
                         "Model": "BookABC",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6064,7 +6164,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6104,6 +6205,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6177,7 +6279,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6219,6 +6322,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6292,7 +6396,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6334,6 +6439,7 @@
                         "Model": "FloorTile",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6407,7 +6513,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6447,6 +6554,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6520,7 +6628,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6562,6 +6671,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6635,7 +6745,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6677,6 +6788,7 @@
                         "Model": "Container",
                         "Texture": "Container_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6750,7 +6862,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6793,6 +6906,7 @@
                         "Model": "TrainTrack",
                         "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6866,7 +6980,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -6907,6 +7022,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -6980,7 +7096,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7022,6 +7139,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7095,7 +7213,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7137,6 +7256,7 @@
                         "Model": "ContainerLid",
                         "Texture": "ContainerLid_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7210,7 +7330,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7251,6 +7372,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7324,7 +7446,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7366,6 +7489,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7439,7 +7563,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7481,6 +7606,7 @@
                         "Model": "WallSegment2",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7554,7 +7680,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7596,6 +7723,7 @@
                         "Model": "WallSegment1",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7669,7 +7797,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7711,6 +7840,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7784,7 +7914,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7826,6 +7957,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -7899,7 +8031,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -7941,6 +8074,7 @@
                         "Model": "TrainTrack",
                         "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8014,7 +8148,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8055,6 +8190,7 @@
                         "Model": "WallSegment1",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8128,7 +8264,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8170,6 +8307,7 @@
                         "Model": "Ceiling",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8243,7 +8381,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8284,6 +8423,7 @@
                         "Model": "CashRegister",
                         "Texture": "CashRegister_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8357,7 +8497,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8399,6 +8540,7 @@
                         "Model": "FloorTile",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8472,7 +8614,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8512,6 +8655,7 @@
                         "Model": "FloorTile",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8585,7 +8729,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8625,6 +8770,7 @@
                         "Model": "FlatRectangleBlock_Green",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8698,7 +8844,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8740,6 +8887,7 @@
                         "Model": "RectangleBlock_Blue",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8813,7 +8961,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8855,6 +9004,7 @@
                         "Model": "FlatRectangleBlock_Blue",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -8928,7 +9078,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -8970,6 +9121,7 @@
                         "Model": "FlatRectangleBlock_Yellow",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9043,7 +9195,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9085,6 +9238,7 @@
                         "Model": "TrainTrack",
                         "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9158,7 +9312,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9199,6 +9354,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9272,7 +9428,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9314,6 +9471,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9387,7 +9545,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9429,6 +9588,7 @@
                         "Model": "WallSegment2",
                         "Texture": "Ceiling_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9502,7 +9662,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9544,6 +9705,7 @@
                         "Model": "FlatRectangleBlock_Red",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9617,7 +9779,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9659,6 +9822,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9732,7 +9896,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9774,6 +9939,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9847,7 +10013,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -9889,6 +10056,7 @@
                         "Model": "ChildSafetyGate",
                         "Texture": "ChildSafetyGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -9962,7 +10130,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10004,6 +10173,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -10077,7 +10247,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10119,6 +10290,7 @@
                         "Model": "BookShape",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -10192,7 +10364,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10234,6 +10407,7 @@
                         "Model": "RectangleBlock_Green",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -10307,7 +10481,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10349,6 +10524,7 @@
                         "Model": "RectangleBlock_Yellow",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -10422,7 +10598,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10464,6 +10641,7 @@
                         "Model": "RectangleBlock_Red",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -10537,7 +10715,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10599,6 +10778,7 @@
                         "Model": "ContainerLid",
                         "Texture": "ContainerLid_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -10944,7 +11124,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -10975,6 +11156,7 @@
                         "Model": "Container",
                         "Texture": "Container_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11053,7 +11235,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11084,6 +11267,7 @@
                         "Model": "GuardHouse",
                         "Texture": "GuardHouse_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11162,7 +11346,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11193,6 +11378,7 @@
                         "Model": "CashRegister",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11269,7 +11455,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11300,6 +11487,7 @@
                         "Model": "ShortGateFence",
                         "Texture": "ShortGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11376,7 +11564,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11407,6 +11596,7 @@
                         "Model": "TallGateFence",
                         "Texture": "TallGateFence_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11486,7 +11676,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11517,6 +11708,7 @@
                         "Model": "SquareBlock_Green",
                         "Texture": "HalfCircleBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11593,7 +11785,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11624,6 +11817,7 @@
                         "Model": "CylinderBlock_Red",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11700,7 +11894,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11731,6 +11926,7 @@
                         "Model": "FlatRectangleBlock_Yellow",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11807,7 +12003,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11838,6 +12035,7 @@
                         "Model": "TrainTrack",
                         "Texture": "TrainTrack_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -11916,7 +12114,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -11947,6 +12146,7 @@
                         "Model": "FloorTile",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -12025,7 +12225,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12056,6 +12257,7 @@
                         "Model": "WallSegment1",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -12134,7 +12336,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12165,6 +12368,7 @@
                         "Model": "BookABC",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -12243,7 +12447,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12274,6 +12479,7 @@
                         "Model": "InstructionManualPage01",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -12350,7 +12556,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12403,6 +12610,7 @@
                         "Model": "JumpToy",
                         "Texture": "JumpToy_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -12484,7 +12692,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": true
+                        "Collision Affected": true,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12514,8 +12723,13 @@
                             "z": 0.0
                         },
                         "Radius": 2.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
                         "Theta": 90.0,
-                        "Azimuth": 0.0
+                        "Azimuth": 0.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
                     },
                     "Player Controller": {
                         "Device Guid": [],
@@ -12525,7 +12739,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": true,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     }
                 }
             ]
@@ -12557,6 +12774,7 @@
                         "Model": "ShortGate",
                         "Texture": "ShortGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -12641,7 +12859,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -12826,6 +13045,7 @@
                         "Model": "ButtonOFF",
                         "Texture": "CuboidBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -12887,7 +13107,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
@@ -12958,6 +13179,7 @@
                         "Model": "SquareBlock_Blue",
                         "Texture": "CuboidBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -13033,7 +13255,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
@@ -13094,6 +13317,7 @@
                         "Model": "ShortGate",
                         "Texture": "ShortGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -13178,7 +13402,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13219,6 +13444,7 @@
                         "Model": "TallGate",
                         "Texture": "ShortGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -13303,7 +13529,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13366,6 +13593,7 @@
                         "Model": "ShortGate",
                         "Texture": "ShortGate_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -13456,7 +13684,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13509,6 +13738,7 @@
                         "Model": "ColourPencilBox",
                         "Texture": "ColourPencilBox_Diffuse.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -13582,7 +13812,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13649,6 +13880,7 @@
                         "Model": "Ruler",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -13722,7 +13954,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13811,6 +14044,7 @@
                         "Model": "Ruler",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -13905,7 +14139,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -13960,6 +14195,7 @@
                         "Model": "ColourPencilBox",
                         "Texture": "ColourPencilBox_Diffuse.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -14038,7 +14274,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -14110,6 +14347,7 @@
                         "Model": "SquareBlock_Blue",
                         "Texture": "TriangleBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -14178,6 +14416,7 @@
                         "Model": "SquareBlock_Red",
                         "Texture": "CubeBlock_Red_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -14333,7 +14572,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
@@ -14457,7 +14697,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": false,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
@@ -14522,6 +14763,7 @@
                         "Model": "SquareBlock_Blue",
                         "Texture": "TriangleBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -14586,6 +14828,7 @@
                         "Model": "SquareBlock_Red",
                         "Texture": "CubeBlock_Red_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -14649,491 +14892,6 @@
                 {
                     "Guid": [
                         0,
-                        1259829869932243375,
-                        8376831551428810534,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 187
-                    },
-                    "Child": {
-                        "Parent GID": 186
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 1.2999999523162842,
-                            "y": -4.875999927520752,
-                            "z": 0.550000011920929
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 39.29999923706055,
-                            "y": -1.8559999465942383,
-                            "z": -21.450000762939454
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5299999713897705,
-                            "y": -0.15000000596046449,
-                            "z": -0.5299999713897705
-                        },
-                        "Max Point": {
-                            "x": 0.5299999713897705,
-                            "y": 0.15000000596046449,
-                            "z": 0.5299999713897705
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 184
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        1259829869932243375,
-                        8376831551428810534,
-                        10055872472107209861,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 184
-                    },
-                    "Child": {
-                        "Parent GID": 183
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -2.799999952316284,
-                            "y": -2.549999952316284,
-                            "z": 3.2750000953674318
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            187
-                        ]
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.75,
-                            "y": -0.10000000149011612,
-                            "z": -0.75
-                        },
-                        "Max Point": {
-                            "x": 0.75,
-                            "y": 0.10000000149011612,
-                            "z": 0.75
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        14486341741652966143,
-                        15204223096342135753,
-                        8536778051349317767,
-                        17008353085049151909,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793,
-                        16113566265477431037
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 188
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "CraneElevator_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0036000001709908249,
-                            "y": 0.0036000001709908249,
-                            "z": 0.0036000001709908249
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 186
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.0,
-                            "y": 0.0,
-                            "z": 0.6000000238418579
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.2000000476837159,
-                            "y": 1.2000000476837159,
-                            "z": 1.2000000476837159
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 9.0,
-                        "Pause At Time": 9.0,
-                        "Reversed": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 37.0,
-                            "y": 3.0199999809265138,
-                            "z": -21.399999618530275
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            15204223096342135753,
-                            16113566265477431037,
-                            8376831551428810534,
-                            17008353085049151909,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 185
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": 9.0,
-                        "Stop Time": 35.25,
-                        "Activated": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        15204223096342135753,
-                        8536778051349317767,
-                        17008353085049151909,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793,
-                        16113566265477431037
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 185
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "CraneElevator_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 183
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -2.799999952316284,
-                            "y": 4.099999904632568,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.5,
-                            "y": 0.5,
-                            "z": 0.5
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            188
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 0.0,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Activated": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
                         9604788041699812520,
                         5691439207370049121,
                         1259829869932243375,
@@ -15158,6 +14916,7 @@
                         "Model": "RectangleBlock_Red",
                         "Texture": "CuboidFlatBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -15244,7 +15003,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15306,6 +15066,7 @@
                         "Model": "MovingPlatformMRT",
                         "Texture": "CuboidFlatBlock_Green_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -15387,7 +15148,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": false,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15529,7 +15291,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": false,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
@@ -15673,7 +15436,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": []
@@ -15729,6 +15493,7 @@
                         "Model": "InteractableBlock2x2",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -15808,7 +15573,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": false,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15863,6 +15629,7 @@
                         "Model": "InteractableBlock2x2",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -15936,7 +15703,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": false,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -15978,6 +15746,7 @@
                         "Model": "InteractableBlock2x2",
                         "Texture": "",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -16051,7 +15820,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": false,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -16118,6 +15888,7 @@
                         "Model": "StrongToy",
                         "Texture": "StrongToy_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -16199,7 +15970,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": true
+                        "Collision Affected": true,
+                        "Gravity Active": false
                     },
                     "BoundingBox": {
                         "Min Point": {
@@ -16229,8 +16001,13 @@
                             "z": 0.0
                         },
                         "Radius": 2.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
                         "Theta": 90.0,
-                        "Azimuth": 0.0
+                        "Azimuth": 0.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
                     },
                     "Player Controller": {
                         "Device Guid": [],
@@ -16240,7 +16017,10 @@
                         "Camera Radius": 0.0,
                         "Player Active Status": false,
                         "Player On Ground Status": true,
-                        "Player FPS Status": false
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
@@ -16278,6 +16058,7 @@
                         "Model": "ButtonOFF",
                         "Texture": "ButtonON_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -16346,7 +16127,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
@@ -16396,6 +16178,7 @@
                         "Model": "ButtonOFF",
                         "Texture": "CuboidBlock_Yellow_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -16464,7 +16247,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
@@ -16508,32 +16292,32 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 186
+                        "Global Index": 57
                     },
                     "Mesh": {
-                        "Model": "ButtonOFF",
+                        "Model": "Button_CraneLiftOFF",
                         "Texture": "CuboidBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
                         }
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Elevator_Move",
                         "Sound Event ID": 0,
-                        "3D Sound": false,
+                        "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
                     },
                     "Parent": {
                         "Children GID": [
-                            187,
-                            188
+                            283
                         ]
                     },
                     "Rotation": {
@@ -16558,13 +16342,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "y": 0.05000000074505806,
+                            "z": 0.20000000298023225
                         },
                         "Position": {
-                            "x": 38.0,
-                            "y": 3.0199999809265138,
-                            "z": -22.0
+                            "x": 37.099998474121097,
+                            "y": 3.0999999046325685,
+                            "z": -21.700000762939454
                         }
                     },
                     "RigidForce": {
@@ -16583,41 +16367,31 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorSwitch"
-                            }
-                        ]
+                        "Script ID": []
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.30000001192092898,
-                            "y": -0.10000000149011612,
-                            "z": -0.30000001192092898
+                            "x": -0.25999999046325686,
+                            "y": -0.05000000074505806,
+                            "z": -0.44999998807907107
                         },
                         "Max Point": {
-                            "x": 0.30000001192092898,
-                            "y": 0.10000000149011612,
-                            "z": 0.30000001192092898
+                            "x": 0.25999999046325686,
+                            "y": 0.05000000074505806,
+                            "z": 0.44999998807907107
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            14302600151082817442,
-                            9604788041699812520,
-                            3617555656175080491,
-                            16415915133639986106,
-                            5691439207370049121
-                        ],
+                        "Modified Components": [],
                         "Prefab GID": 183
                     },
                     "Name": {
-                        "Name": "ElevatorSwitch11"
+                        "Name": "ElevatorSwitch"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -16656,6 +16430,7 @@
                         "Model": "SquareBlock_Yellow",
                         "Texture": "CuboidBlock_Yellow_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
@@ -16739,7 +16514,8 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
@@ -16775,16 +16551,17 @@
                         "Global Index": 183
                     },
                     "Mesh": {
-                        "Model": "SquareBlock_Blue",
+                        "Model": "Button_CraneLiftOFF",
                         "Texture": "CuboidBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
                         }
                     },
                     "Sound": {
@@ -16796,13 +16573,12 @@
                     },
                     "Parent": {
                         "Children GID": [
-                            184,
                             185
                         ]
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            186
+                            57
                         ]
                     },
                     "Rotation": {
@@ -16827,13 +16603,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "y": 0.05000000074505806,
+                            "z": 0.20000000298023225
                         },
                         "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 37.099998474121097,
+                            "y": 3.0999999046325685,
+                            "z": -21.700000762939454
                         }
                     },
                     "RigidForce": {
@@ -16852,21 +16628,22 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": false
+                        "Collision Affected": false,
+                        "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": []
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": -0.25999999046325686,
+                            "y": -0.05000000074505806,
+                            "z": -0.44999998807907107
                         },
                         "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 0.25999999046325686,
+                            "y": 0.05000000074505806,
+                            "z": 0.44999998807907107
                         },
                         "Is Collide": false
                     },
@@ -17008,6 +16785,7 @@
                         "Model": "Quad",
                         "Texture": "Recticle",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": false
                     },
                     "Scale": {
@@ -17070,6 +16848,7 @@
                         "Model": "Quad",
                         "Texture": "Recticle",
                         "Shadow Bias": 1,
+                        "Cast Shadow": true,
                         "Active": false
                     },
                     "Scale": {
@@ -17108,6 +16887,850 @@
                         "Name": "UI Crosshair Prefab"
                     },
                     "Crosshair": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        16113566265477431037
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 185
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "CraneElevator_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 183
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            184
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.800000011920929,
+                            "y": -0.10000000149011612,
+                            "z": -1.5
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            283
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        10055872472107209861,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 184
+                    },
+                    "Child": {
+                        "Parent GID": 185
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            349,
+                            187,
+                            348,
+                            188,
+                            186
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -2.799999952316284,
+                            "y": -2.549999952316284,
+                            "z": 3.2750000953674318
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            212
+                        ]
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.75,
+                            "y": -0.10000000149011612,
+                            "z": -0.75
+                        },
+                        "Max Point": {
+                            "x": 0.75,
+                            "y": 0.10000000149011612,
+                            "z": 0.75
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        1259829869932243375,
+                        10055872472107209861,
+                        16415915133639986106,
+                        17008353085049151909
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 349
+                    },
+                    "Child": {
+                        "Parent GID": 184
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            202
+                        ]
+                    },
+                    "Name": {
+                        "Name": "PlatformSlopeC"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 187
+                    },
+                    "Child": {
+                        "Parent GID": 184
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            119
+                        ]
+                    },
+                    "Name": {
+                        "Name": "PlatformSlopeB"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 348
+                    },
+                    "Child": {
+                        "Parent GID": 184
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            66
+                        ]
+                    },
+                    "Name": {
+                        "Name": "PlatformSlopeD"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 188
+                    },
+                    "Child": {
+                        "Parent GID": 184
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            59
+                        ]
+                    },
+                    "Name": {
+                        "Name": "PlatformSlopeA"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 186
+                    },
+                    "Child": {
+                        "Parent GID": 184
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            56
+                        ]
+                    },
+                    "Name": {
+                        "Name": "PlatformCollider"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        16113566265477431037
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 283
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "CraneElevator_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 57
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            212
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.800000011920929,
+                            "y": -0.10000000149011612,
+                            "z": -1.5
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 37.89999771118164,
+                            "y": 3.0,
+                            "z": -23.200000762939454
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 185
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 212
+                    },
+                    "Child": {
+                        "Parent GID": 283
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            202,
+                            66,
+                            119,
+                            59,
+                            56
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -2.799999952316284,
+                            "y": -2.549999952316284,
+                            "z": 3.2750000953674318
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 35.099998474121097,
+                            "y": 0.4500000476837158,
+                            "z": -19.92500114440918
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.75,
+                            "y": -0.10000000149011612,
+                            "z": -0.75
+                        },
+                        "Max Point": {
+                            "x": 0.75,
+                            "y": 0.10000000149011612,
+                            "z": 0.75
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 184
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        1259829869932243375,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 202
+                    },
+                    "Child": {
+                        "Parent GID": 212
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 349
+                    },
+                    "Name": {
+                        "Name": "PlatformSlopeC"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 66
+                    },
+                    "Child": {
+                        "Parent GID": 212
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 348
+                    },
+                    "Name": {
+                        "Name": "PlatformSlopeD"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 119
+                    },
+                    "Child": {
+                        "Parent GID": 212
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 187
+                    },
+                    "Name": {
+                        "Name": "PlatformSlopeB"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 59
+                    },
+                    "Child": {
+                        "Parent GID": 212
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 188
+                    },
+                    "Name": {
+                        "Name": "PlatformSlopeA"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 56
+                    },
+                    "Child": {
+                        "Parent GID": 212
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 186
+                    },
+                    "Name": {
+                        "Name": "PlatformCollider"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        16415915133639986106,
+                        17008353085049151909
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 290
+                    },
+                    "Name": {
+                        "Name": "PlatformCollider"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
                 }
             ]
         }

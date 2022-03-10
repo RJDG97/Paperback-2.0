@@ -92,14 +92,12 @@ namespace CSScript
 
             if (m_AbilityActive)
             {
-                Debug.Log(m_AbilityTimer.ToString());
-
                 if (m_AbilityTimer > m_AbilityDuration)
                 {
                     m_AbilityActive = false;
                     m_AbilityTimer = 0.0f;
 
-                    switch (m_Current_Ability)
+                    switch (m_AbilityUsed)
                     {
                         case Ability.STOP_MOVING_PLATFORM:
                         {
