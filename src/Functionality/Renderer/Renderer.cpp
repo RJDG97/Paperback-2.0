@@ -212,6 +212,7 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("DoorStopper", "../../resources/models/nui/DoorStopper.nui");
 
+	m_Resources.Load3DMeshNUI("EndOfGameCutscene", "../../resources/models/nui/EndOfGameCutscene.nui");
 
 	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Blue", "../../resources/models/nui/FlatRectangleBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("FlatRectangleBlock_Green", "../../resources/models/nui/FlatRectangleBlock_Green.nui");
@@ -246,6 +247,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("JumpToy", "../../resources/models/nui/JumpToy.nui");
 
 	m_Resources.Load3DMeshNUI("LeafParticle", "../../resources/models/nui/LeafParticle.nui");
+
+	m_Resources.Load3DMeshNUI("Level2To3Cutscene", "../../resources/models/nui/Level2To3Cutscene.nui");
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT_.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black", "../../resources/models/nui/MovingPlatformMRT_Black.nui");
@@ -290,6 +293,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("SquareBlock_Red", "../../resources/models/nui/SquareBlock_Red.nui");
 	m_Resources.Load3DMeshNUI("SquareBlock_Wood", "../../resources/models/nui/SquareBlock_Wood.nui");
 	m_Resources.Load3DMeshNUI("SquareBlock_Yellow", "../../resources/models/nui/SquareBlock_Yellow.nui");
+
+	m_Resources.Load3DMeshNUI("StartOfGameCutscene", "../../resources/models/nui/StartOfGameCutscene.nui");
 
 	m_Resources.Load3DMeshNUI("StrongToy", "../../resources/models/nui/StrongToy.nui");
 
