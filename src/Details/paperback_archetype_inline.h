@@ -86,7 +86,7 @@ namespace paperback::archetype
         if (Cloned_ReferencePrefab)
         {
             auto& PrefabInfo             = m_Coordinator.GetEntityInfo( Cloned_ReferencePrefab->m_PrefabGID );           // Prefab
-            auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( vm::PoolDetails{ 0,0 } );     // Prefab
+            auto& PrefabComponent        = PrefabInfo.m_pArchetype->GetComponent<prefab>( PrefabInfo.m_PoolDetails );     // Prefab
             PrefabComponent.AddPrefabInstance( ClonedEntity.m_GlobalIndex );                                            // Add Prefab Instance GID to Prefab - For future modifications
         }
         // For when separate component pools are implemented in the future
