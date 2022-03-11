@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 241
+                "EntityHead": 147
             }
         },
         {
@@ -594,6 +594,53 @@
                     "Name": {
                         "Name": "Shelf 1"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 251
+                    },
+                    "Mesh": {
+                        "Model": "BagClosed",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 12.5,
+                            "y": 9.300000190734864,
+                            "z": 33.20000076293945
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 0
+                    },
+                    "Name": {
+                        "Name": "Bag"
+                    }
                 }
             ]
         },
@@ -615,7 +662,7 @@
                         "Global Index": 0
                     },
                     "Mesh": {
-                        "Model": "Shelf",
+                        "Model": "BagClosed",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -623,21 +670,20 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.004000000189989805,
-                            "z": 0.004000000189989805
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            1,
-                            132
+                            251
                         ]
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 180.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
@@ -648,13 +694,13 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 11.300000190734864,
+                            "y": 14.600000381469727,
+                            "z": 41.900001525878909
                         }
                     },
                     "Name": {
-                        "Name": "Shelf"
+                        "Name": "Bag"
                     }
                 },
                 {
@@ -845,6 +891,50 @@
                     },
                     "Name": {
                         "Name": "Butterfly Banner 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 137
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Unnamed Entity"
                     }
                 }
             ]
@@ -8764,7 +8854,7 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004000000189989805,
+                            "x": 0.004999999888241291,
                             "y": 0.004000000189989805,
                             "z": 0.004000000189989805
                         }
@@ -8797,7 +8887,7 @@
                         "Position": {
                             "x": 16.799999237060548,
                             "y": 15.399999618530274,
-                            "z": 42.099998474121097
+                            "z": 38.29999923706055
                         }
                     },
                     "RigidForce": {
@@ -9346,27 +9436,27 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 85
+                        "Global Index": 249
                     },
                     "Mesh": {
-                        "Model": "WallSegment1",
+                        "Model": "BagShelf",
                         "Texture": "",
                         "Shadow Bias": 1,
-                        "Cast Shadow": false,
+                        "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
                         }
                     },
                     "Rotation": {
                         "Rotation": {
-                            "x": 90.0,
-                            "y": 0.0,
-                            "z": 270.0
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
                         }
                     },
                     "Rigidbody": {
@@ -9384,13 +9474,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -42.5,
-                            "y": 15.399999618530274,
-                            "z": 42.099998474121097
+                            "x": 12.600000381469727,
+                            "y": 6.5,
+                            "z": 39.900001525878909
                         }
                     },
                     "RigidForce": {
@@ -9414,30 +9504,25 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.6000000238418579,
-                            "y": -15.0,
-                            "z": -15.0
+                            "x": -2.5999999046325685,
+                            "y": -6.099999904632568,
+                            "z": -16.0
                         },
                         "Max Point": {
-                            "x": 0.6000000238418579,
-                            "y": 15.0,
-                            "z": 15.0
+                            "x": 2.5999999046325685,
+                            "y": 6.099999904632568,
+                            "z": 16.0
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            16415915133639986106,
-                            14486341741652966143,
-                            17008353085049151909,
-                            3617555656175080491,
-                            5691439207370049121,
-                            9604788041699812520
+                            5691439207370049121
                         ],
-                        "Prefab GID": 65
+                        "Prefab GID": 2
                     },
                     "Name": {
-                        "Name": "Wall Seg1 T1"
+                        "Name": "Bag Shelf"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -30087,6 +30172,586 @@
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 319
+                    },
+                    "Mesh": {
+                        "Model": "ContainerLid",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 264.20001220703127,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -53.099998474121097,
+                            "y": 7.800000190734863,
+                            "z": 0.800000011920929
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -7.400000095367432,
+                            "y": -7.599999904632568,
+                            "z": -0.8999999761581421
+                        },
+                        "Max Point": {
+                            "x": 7.400000095367432,
+                            "y": 7.599999904632568,
+                            "z": 0.8999999761581421
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 2
+                    },
+                    "Name": {
+                        "Name": "Container Lid"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 336
+                    },
+                    "Mesh": {
+                        "Model": "ChildSafetyGate",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.10000000149011612,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -44.0,
+                            "y": 6.199999809265137,
+                            "z": 5.900000095367432
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -5.800000190734863,
+                            "z": -7.0
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 5.800000190734863,
+                            "z": 7.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 2
+                    },
+                    "Name": {
+                        "Name": "Child Safety Gate 1"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 174
+                    },
+                    "Mesh": {
+                        "Model": "ChildSafetyGate",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.10000000149011612,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -44.0,
+                            "y": 6.199999809265137,
+                            "z": 19.299999237060548
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -5.800000190734863,
+                            "z": -7.0
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 5.800000190734863,
+                            "z": 7.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 2
+                    },
+                    "Name": {
+                        "Name": "Child Safety Gate 2"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 85
+                    },
+                    "Mesh": {
+                        "Model": "WindowWallSegment",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -42.5,
+                            "y": 15.399999618530274,
+                            "z": 38.29999923706055
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -15.0,
+                            "z": -15.0
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 15.0,
+                            "z": 15.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            14486341741652966143,
+                            9604788041699812520,
+                            3617555656175080491,
+                            5691439207370049121,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 70
+                    },
+                    "Name": {
+                        "Name": "Wall Window T5"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 252
+                    },
+                    "Mesh": {
+                        "Model": "ChildSafetyGate",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.10000000149011612,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 17.2810001373291,
+                            "y": 5.938000202178955,
+                            "z": 20.333999633789064
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -5.800000190734863,
+                            "z": -7.0
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 5.800000190734863,
+                            "z": 7.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 2
+                    },
+                    "Name": {
+                        "Name": "Child Safety Gate 3"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 138
+                    },
+                    "Mesh": {
+                        "Model": "ChildSafetyGate",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.10000000149011612,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 16.634000778198243,
+                            "y": 5.938000202178955,
+                            "z": 9.64799976348877
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -5.800000190734863,
+                            "z": -7.0
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 5.800000190734863,
+                            "z": 7.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 2
+                    },
+                    "Name": {
+                        "Name": "Child Safety Gate 4"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         },
@@ -30112,7 +30777,7 @@
                         "Global Index": 2
                     },
                     "Mesh": {
-                        "Model": "FloorTile",
+                        "Model": "BagShelf",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -30120,267 +30785,22 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.0020000000949949028,
+                            "x": 0.003000000026077032,
+                            "y": 0.004000000189989805,
                             "z": 0.004000000189989805
                         }
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            3,
-                            4,
-                            5,
-                            134,
-                            269,
-                            6,
-                            7,
-                            8,
-                            9,
-                            386,
-                            10,
-                            11,
-                            396,
-                            12,
-                            13,
-                            206,
-                            341,
-                            78,
-                            14,
-                            207,
-                            320,
-                            79,
-                            15,
-                            384,
-                            16,
-                            17,
-                            18,
-                            19,
-                            20,
-                            21,
-                            22,
-                            23,
-                            24,
-                            25,
-                            26,
-                            27,
-                            156,
-                            28,
-                            29,
-                            30,
-                            31,
-                            32,
-                            33,
-                            34,
-                            35,
-                            164,
-                            291,
-                            36,
-                            165,
-                            37,
-                            350,
-                            166,
-                            301,
-                            38,
-                            167,
-                            39,
-                            344,
-                            40,
-                            41,
-                            42,
-                            171,
-                            43,
-                            172,
-                            44,
-                            45,
-                            173,
-                            309,
-                            174,
-                            46,
-                            175,
-                            47,
-                            176,
-                            319,
-                            48,
-                            177,
-                            298,
-                            49,
-                            178,
-                            50,
-                            179,
-                            51,
-                            180,
-                            52,
-                            181,
-                            302,
-                            53,
-                            182,
-                            317,
-                            54,
-                            183,
-                            296,
-                            55,
-                            263,
-                            184,
-                            56,
-                            185,
-                            57,
-                            257,
-                            186,
-                            58,
-                            385,
-                            187,
-                            316,
-                            59,
-                            188,
-                            315,
-                            60,
-                            189,
-                            310,
-                            61,
-                            261,
-                            190,
-                            62,
-                            191,
-                            304,
-                            63,
-                            335,
-                            192,
-                            64,
-                            209,
-                            81,
-                            210,
-                            82,
-                            339,
-                            212,
-                            84,
-                            213,
-                            334,
-                            85,
-                            349,
-                            214,
-                            86,
-                            215,
-                            328,
-                            87,
-                            217,
-                            338,
-                            89,
-                            219,
-                            348,
-                            91,
-                            105,
-                            193,
-                            194,
-                            329,
-                            195,
-                            324,
-                            196,
-                            323,
-                            197,
-                            382,
-                            198,
-                            333,
-                            199,
-                            200,
-                            343,
-                            201,
-                            322,
-                            337,
-                            202,
-                            203,
-                            332,
-                            204,
-                            205,
-                            326,
-                            351,
-                            208,
-                            211,
-                            340,
-                            216,
-                            218,
-                            220,
-                            221,
-                            342,
-                            222,
-                            223,
-                            336,
-                            367,
-                            224,
-                            225,
-                            361,
-                            226,
-                            227,
-                            365,
-                            230,
-                            231,
-                            369,
-                            234,
-                            235,
-                            364,
-                            363,
-                            236,
-                            237,
-                            247,
-                            360,
                             249,
-                            370,
-                            250,
-                            321,
-                            253,
-                            254,
-                            325,
-                            255,
-                            368,
-                            256,
-                            258,
-                            259,
-                            260,
-                            262,
-                            264,
-                            265,
-                            266,
-                            267,
-                            268,
-                            270,
-                            271,
-                            272,
-                            273,
-                            274,
-                            275,
-                            276,
-                            277,
-                            278,
-                            279,
-                            285,
-                            286,
-                            290,
-                            170,
-                            305,
-                            244,
-                            133,
-                            318,
-                            292,
-                            295,
-                            297,
-                            303,
-                            314,
-                            327,
-                            352,
-                            353,
-                            354,
-                            355,
-                            359,
-                            362,
-                            366,
-                            380,
-                            381,
-                            383
+                            252,
+                            138
                         ]
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
@@ -30399,13 +30819,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 12.600000381469727,
+                            "y": 6.5,
+                            "z": 39.900001525878909
                         }
                     },
                     "RigidForce": {
@@ -30429,19 +30849,19 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -8.399999618530274,
-                            "y": -0.4000000059604645,
-                            "z": -8.399999618530274
+                            "x": -2.5999999046325685,
+                            "y": -6.099999904632568,
+                            "z": -16.0
                         },
                         "Max Point": {
-                            "x": 8.399999618530274,
-                            "y": 0.4000000059604645,
-                            "z": 8.399999618530274
+                            "x": 2.5999999046325685,
+                            "y": 6.099999904632568,
+                            "z": 16.0
                         },
                         "Is Collide": false
                     },
                     "Name": {
-                        "Name": "Floor"
+                        "Name": "Bag Shelf"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -30570,7 +30990,8 @@
                             71,
                             72,
                             73,
-                            78
+                            78,
+                            85
                         ]
                     },
                     "Rotation": {
@@ -31238,14 +31659,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            140,
                             299,
-                            287,
-                            232,
-                            168,
+                            140,
                             375,
-                            233,
+                            168,
+                            232,
+                            287,
                             169,
+                            233,
                             376,
                             371,
                             372,
@@ -31357,12 +31778,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            312,
-                            392,
                             384,
-                            313,
-                            377,
+                            392,
+                            312,
                             393,
+                            377,
+                            313,
                             378,
                             379,
                             394,
@@ -31435,6 +31856,282 @@
                     },
                     "Name": {
                         "Name": "RectangleBlock"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 259
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Unnamed Entity"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 142
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Unnamed Entity"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 315
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Unnamed Entity"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -32138,10 +32835,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            1871702054972469046,
                             5691439207370049121,
-                            5509481706028819786,
+                            1871702054972469046,
                             9604788041699812520,
+                            5509481706028819786,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -32684,13 +33381,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            362,
                             241,
-                            248,
+                            362,
                             160,
+                            248,
                             283,
-                            187,
                             284,
+                            187,
                             191,
                             158,
                             293,
@@ -36474,6 +37171,37 @@
                     },
                     "Name": {
                         "Name": "Gate"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 241
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Unnamed Entity"
                     }
                 }
             ]
