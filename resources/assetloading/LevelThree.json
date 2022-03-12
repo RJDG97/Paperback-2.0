@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 430
+                "EntityHead": 438
             }
         },
         {
@@ -2313,7 +2313,7 @@
                         },
                         "Position": {
                             "x": 43.01124954223633,
-                            "y": 5.217199325561523,
+                            "y": 0.5170000195503235,
                             "z": -3.9854490756988527
                         }
                     },
@@ -2357,7 +2357,9 @@
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
                         "Prefab GID": 148
                     },
                     "Name": {
@@ -17138,7 +17140,7 @@
                         },
                         "Position": {
                             "x": 42.51124954223633,
-                            "y": -0.8128008842468262,
+                            "y": -0.8130002021789551,
                             "z": -15.32544994354248
                         }
                     },
@@ -17592,6 +17594,60 @@
                     "Name": {
                         "Name": "Unnamed Entity"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 430
+                    },
+                    "Mesh": {
+                        "Model": "CardboardBoxWithFlaps",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.003000000026077032,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            176
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CardboardBoxWithFlaps_Armature|BoxWithFlapsOpen",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 10.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.428001403808597,
+                            "y": 2.7300000190734865,
+                            "z": -3.9189999103546144
+                        }
+                    },
+                    "Name": {
+                        "Name": "Box Prison"
+                    }
                 }
             ]
         },
@@ -17889,6 +17945,59 @@
                     },
                     "Name": {
                         "Name": "Tree 2 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 176
+                    },
+                    "Mesh": {
+                        "Model": "CardboardBoxWithFlaps",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.003000000026077032,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CardboardBoxWithFlaps_Armature|BoxWithFlapsOpen",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 10.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.428001403808597,
+                            "y": 2.7300000190734865,
+                            "z": -3.9189999103546144
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 430
+                    },
+                    "Name": {
+                        "Name": "Box Prison"
                     }
                 }
             ]
@@ -19792,10 +19901,10 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 176
+                        "Global Index": 418
                     },
                     "Mesh": {
-                        "Model": "CardboardBoxWithFlaps",
+                        "Model": "SquareBlock_Red",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -19803,9 +19912,9 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.003000000026077032,
-                            "z": 0.0020000000949949028
+                            "x": 0.009999999776482582,
+                            "y": 0.006000000052154064,
+                            "z": 0.019999999552965165
                         }
                     },
                     "Rotation": {
@@ -19834,9 +19943,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 42.4276008605957,
-                            "y": 2.72993803024292,
-                            "z": -3.919361114501953
+                            "x": 44.15140151977539,
+                            "y": 1.437654733657837,
+                            "z": -14.887785911560059
                         }
                     },
                     "RigidForce": {
@@ -19860,29 +19969,28 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.899999976158142,
-                            "y": -2.299999952316284,
-                            "z": -1.7000000476837159
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -1.0
                         },
                         "Max Point": {
-                            "x": 1.899999976158142,
-                            "y": 2.299999952316284,
-                            "z": 1.7000000476837159
+                            "x": 0.5,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
                             5691439207370049121,
-                            14486341741652966143,
-                            16415915133639986106,
                             9604788041699812520,
-                            3617555656175080491
+                            3617555656175080491,
+                            16415915133639986106
                         ],
-                        "Prefab GID": 155
+                        "Prefab GID": 146
                     },
                     "Name": {
-                        "Name": "Cardboard box 2"
+                        "Name": "RedBlock"
                     }
                 },
                 {
@@ -30419,100 +30527,6 @@
                     "Name": {
                         "Name": "GreenBlock"
                     }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 418
-                    },
-                    "Mesh": {
-                        "Model": "SquareBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.006000000052154064,
-                            "z": 0.019999999552965165
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 44.15140151977539,
-                            "y": 1.437654733657837,
-                            "z": -14.887785911560059
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5,
-                            "y": -0.30000001192092898,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 0.5,
-                            "y": 0.30000001192092898,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            9604788041699812520,
-                            3617555656175080491,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 146
-                    },
-                    "Name": {
-                        "Name": "RedBlock"
-                    }
                 }
             ]
         },
@@ -31391,7 +31405,7 @@
                     "Offset": {
                         "Postion Offset": {
                             "x": -0.5,
-                            "y": -2.0,
+                            "y": 2.700000047683716,
                             "z": -13.300000190734864
                         },
                         "Rotation Offset": {
@@ -31416,7 +31430,7 @@
                         "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 0.0,
+                        "Current Time": 0.7000000476837158,
                         "Pause At Time": -1.0,
                         "Reversed": false
                     },
@@ -31440,7 +31454,7 @@
                         },
                         "Position": {
                             "x": 42.51124954223633,
-                            "y": 3.2171993255615236,
+                            "y": 3.2170000076293947,
                             "z": -17.285449981689454
                         }
                     },
@@ -31479,7 +31493,8 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             17008353085049151909,
-                            8376831551428810534
+                            8376831551428810534,
+                            15204223096342135753
                         ],
                         "Prefab GID": 147
                     },
@@ -32082,8 +32097,8 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
+                            "x": -0.20000000298023225,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
@@ -32115,12 +32130,12 @@
                         "Min Point": {
                             "x": -1.649999976158142,
                             "y": -0.6000000238418579,
-                            "z": -0.23000000417232514
+                            "z": -0.30000001192092898
                         },
                         "Max Point": {
                             "x": 1.649999976158142,
                             "y": 0.6000000238418579,
-                            "z": 0.23000000417232514
+                            "z": 0.30000001192092898
                         },
                         "Is Collide": false
                     },
@@ -32189,8 +32204,8 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.05000000074505806,
-                            "z": 0.0
+                            "y": 0.10000000149011612,
+                            "z": 0.20000000298023225
                         },
                         "Position": {
                             "x": 48.15646743774414,
@@ -32219,14 +32234,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.30000001192092898,
+                            "x": -0.5,
                             "y": -0.5,
-                            "z": -3.0
+                            "z": -2.799999952316284
                         },
                         "Max Point": {
-                            "x": 0.30000001192092898,
+                            "x": 0.5,
                             "y": 0.5,
-                            "z": 3.0
+                            "z": 2.799999952316284
                         },
                         "Is Collide": false
                     },
@@ -35029,7 +35044,7 @@
                         },
                         "Position": {
                             "x": 42.51124954223633,
-                            "y": -0.8128008842468262,
+                            "y": -0.8130002021789551,
                             "z": -15.32544994354248
                         }
                     },
@@ -35610,7 +35625,7 @@
                         },
                         "Position": {
                             "x": 42.51124954223633,
-                            "y": -0.8128008842468262,
+                            "y": -0.8130002021789551,
                             "z": -15.32544994354248
                         }
                     },
@@ -35722,7 +35737,7 @@
                         },
                         "Position": {
                             "x": 42.51124954223633,
-                            "y": -0.8128008842468262,
+                            "y": -0.8130002021789551,
                             "z": -15.32544994354248
                         }
                     },
@@ -35834,7 +35849,7 @@
                         },
                         "Position": {
                             "x": 42.51124954223633,
-                            "y": -0.8128008842468262,
+                            "y": -0.8130002021789551,
                             "z": -15.32544994354248
                         }
                     },
@@ -36778,7 +36793,7 @@
                         },
                         "Position": {
                             "x": 42.51124954223633,
-                            "y": -0.8128008842468262,
+                            "y": -0.8130002021789551,
                             "z": -15.32544994354248
                         }
                     },
@@ -40559,7 +40574,7 @@
                         },
                         "Position": {
                             "x": 42.51124954223633,
-                            "y": -0.8128008842468262,
+                            "y": -0.8130002021789551,
                             "z": -15.32544994354248
                         }
                     },
@@ -40853,6 +40868,572 @@
                     },
                     "Name": {
                         "Name": "Ability Bar"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        8536778051349317767,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17008353085049151909,
+                        5509481706028819786,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 431
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            432,
+                            433,
+                            434,
+                            435,
+                            436,
+                            437
+                        ]
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Invisible wall"
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 432
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.20000000298023225,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.599998474121097,
+                            "y": 2.5999999046325685,
+                            "z": -2.25
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.7999999523162842,
+                            "y": -1.7999999523162842,
+                            "z": -0.05000000074505806
+                        },
+                        "Max Point": {
+                            "x": 1.7999999523162842,
+                            "y": 1.7999999523162842,
+                            "z": 0.05000000074505806
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 431
+                    },
+                    "Name": {
+                        "Name": "Invisible wall 1"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 433
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.20000000298023225,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 41.5,
+                            "y": 0.30000001192092898,
+                            "z": -2.25
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.800000011920929,
+                            "y": -0.5,
+                            "z": -0.05000000074505806
+                        },
+                        "Max Point": {
+                            "x": 0.800000011920929,
+                            "y": 0.5,
+                            "z": 0.05000000074505806
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 431
+                    },
+                    "Name": {
+                        "Name": "Invisible wall 2"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 434
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.20000000298023225,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 43.79999923706055,
+                            "y": 0.30000001192092898,
+                            "z": -2.25
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.800000011920929,
+                            "y": -0.5,
+                            "z": -0.05000000074505806
+                        },
+                        "Max Point": {
+                            "x": 0.800000011920929,
+                            "y": 0.5,
+                            "z": 0.05000000074505806
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 431
+                    },
+                    "Name": {
+                        "Name": "Invisible wall 3"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 435
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.20000000298023225,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.599998474121097,
+                            "y": 2.200000047683716,
+                            "z": -5.599999904632568
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.7999999523162842,
+                            "y": -2.4000000953674318,
+                            "z": -0.05000000074505806
+                        },
+                        "Max Point": {
+                            "x": 1.7999999523162842,
+                            "y": 2.4000000953674318,
+                            "z": 0.05000000074505806
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 431
+                    },
+                    "Name": {
+                        "Name": "Invisible wall 4"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 436
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.20000000298023225,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 40.900001525878909,
+                            "y": 2.200000047683716,
+                            "z": -3.9000000953674318
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.05000000074505806,
+                            "y": -2.4000000953674318,
+                            "z": -1.7999999523162842
+                        },
+                        "Max Point": {
+                            "x": 0.05000000074505806,
+                            "y": 2.4000000953674318,
+                            "z": 1.7999999523162842
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 431
+                    },
+                    "Name": {
+                        "Name": "Invisible wall 5"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 437
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.20000000298023225,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 44.29999923706055,
+                            "y": 2.200000047683716,
+                            "z": -3.9000000953674318
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.05000000074505806,
+                            "y": -2.4000000953674318,
+                            "z": -1.7999999523162842
+                        },
+                        "Max Point": {
+                            "x": 0.05000000074505806,
+                            "y": 2.4000000953674318,
+                            "z": 1.7999999523162842
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 431
+                    },
+                    "Name": {
+                        "Name": "Invisible wall 6"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
                     }
                 }
             ]
