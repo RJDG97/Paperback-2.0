@@ -96,12 +96,12 @@ Renderer::Renderer() :
 
 	glBindVertexArray(0);
 
-	std::vector<std::string> files = { "../../resources/textures/Skybox/SkyboxWallSegment01.dds",
-								   "../../resources/textures/Skybox/SkyboxWallSegment01.dds",
-								   "../../resources/textures/Skybox/SkyboxCeiling.dds",
+	std::vector<std::string> files = { "../../resources/textures/Skybox/right.dds", // right
+								   "../../resources/textures/Skybox/left.dds", // left
+								   "../../resources/textures/Skybox/top.dds",
 								   "../../resources/textures/Skybox/bottom.dds",
-								   "../../resources/textures/Skybox/SkyboxWallSegment02.dds",
-								   "../../resources/textures/Skybox/SkyboxWallSegment02.dds" };
+								   "../../resources/textures/Skybox/front.dds",
+								   "../../resources/textures/Skybox/back.dds" };
 
 	RenderResourceManager::GetInstanced().LoadSkyboxTexture(files);
 
