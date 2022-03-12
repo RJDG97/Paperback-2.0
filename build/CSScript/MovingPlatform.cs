@@ -120,7 +120,8 @@ namespace CSScript
 
 //namespace CSScript
 //{
-//    public class MovingPlatform : MonoBehaviour
+//    public class
+//    : MonoBehaviour
 //    {
 //        UInt32 m_ID;
 //        Child m_Child;
