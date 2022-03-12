@@ -505,6 +505,46 @@ struct debug_system : paperback::system::instance
         //    PPB.OpenScene("Combat");
         //    DEBUG_LOG("Debug access to Combat State");
         //}
+
+        if (PPB.IsKeyPressDown(GLFW_KEY_LEFT_SHIFT) || PPB.IsKeyPressDown(GLFW_KEY_RIGHT_SHIFT))
+        {
+
+            if (PPB.IsKeyPressDown(GLFW_KEY_R))
+            {
+
+                PPB.QueueScene("MainMenu");
+            }
+            else if (PPB.IsKeyPressDown(GLFW_KEY_T))
+            {
+
+                PPB.QueueScene("Cutscene_First");
+            }
+            else if (PPB.IsKeyPressDown(GLFW_KEY_Y))
+            {
+
+                PPB.QueueScene("LevelOne");
+            }
+            else if (PPB.IsKeyPressDown(GLFW_KEY_U))
+            {
+
+                PPB.QueueScene("LevelTwo");
+            }
+            else if (PPB.IsKeyPressDown(GLFW_KEY_I))
+            {
+
+                PPB.QueueScene("Cutscene_Second");
+            }
+            else if (PPB.IsKeyPressDown(GLFW_KEY_O))
+            {
+
+                PPB.QueueScene("LevelThree");
+            }
+            else if (PPB.IsKeyPressDown(GLFW_KEY_P))
+            {
+
+                PPB.QueueScene("Cutscene_Third");
+            }
+        }
     }
 
     const std::array<std::vector<glm::vec3>, 2>& GetPoints() const
