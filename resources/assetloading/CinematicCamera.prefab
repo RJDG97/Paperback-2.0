@@ -1,0 +1,175 @@
+{
+    "Prefabs": [
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        223102351977301267,
+                        17639936325783395793,
+                        1871702054972469046,
+                        15966406150673095094,
+                        12184509212156499773
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 11
+                    },
+                    "Mesh": {
+                        "Model": "BagClosedBlue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Jump Unit"
+                    },
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 3.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": false
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Camera": {
+                        "Active": true,
+                        "Camera Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Radius": 1.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
+                        "Theta": 90.0,
+                        "Azimuth": 0.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
+                    },
+                    "Player Controller": {
+                        "Device Guid": [],
+                        "Movement Force": 0.0,
+                        "Jump Force": 0.0,
+                        "Camera Rotation Speed": 0.0,
+                        "Camera Radius": 0.0,
+                        "Player Active Status": false,
+                        "Player On Ground Status": true,
+                        "Player FPS Status": false,
+                        "Player Grow Available": false,
+                        "Player Shrink Available": false,
+                        "Player Freeze Available": false
+                    },
+                    "Cinematic": {
+                        "Cinematic Infos": [
+                            {
+                                "Hold Time": 1.0,
+                                "Move Speed": 1.0
+                            },
+                            {
+                                "Hold Time": 1.0,
+                                "Move Speed": 1.0
+                            },
+                            {
+                                "Hold Time": 1.0,
+                                "Move Speed": 1.0
+                            }
+                        ],
+                        "Index": 0,
+                        "On Hold": false,
+                        "Timer": 0.0
+                    }
+                }
+            ]
+        }
+    ]
+}

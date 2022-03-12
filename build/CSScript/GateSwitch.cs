@@ -61,8 +61,6 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log(Player.GetJumpUnitID().ToString());
-            Debug.Log(ID.ToString());
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 m_Sound.m_Trigger = true;
