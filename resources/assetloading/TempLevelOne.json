@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 281
+                "EntityHead": 288
             }
         },
         {
@@ -74,7 +74,7 @@
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": false,
-                        "Active": false
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -616,7 +616,7 @@
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": false,
-                        "Active": false
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -26057,6 +26057,425 @@
                     "Mass": {
                         "Mass": 0.0,
                         "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 281
+                    },
+                    "Mesh": {
+                        "Model": "Tree01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree01_Armature|Tree01Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -43.29999923706055,
+                            "y": -3.299999952316284,
+                            "z": 77.19999694824219
+                        }
+                    },
+                    "Name": {
+                        "Name": "Tree 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 285
+                    },
+                    "Mesh": {
+                        "Model": "Tree02",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree02_Armature|Tree02Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Tree 2"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 282
+                    },
+                    "Mesh": {
+                        "Model": "Tree01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree01_Armature|Tree01Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -60.599998474121097,
+                            "y": -3.299999952316284,
+                            "z": 77.19999694824219
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 281
+                    },
+                    "Name": {
+                        "Name": "Tree 1 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 283
+                    },
+                    "Mesh": {
+                        "Model": "Tree01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 144.60000610351563,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree01_Armature|Tree01Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 13.100000381469727,
+                            "y": -3.299999952316284,
+                            "z": 86.0999984741211
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 281
+                    },
+                    "Name": {
+                        "Name": "Tree 1 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 284
+                    },
+                    "Mesh": {
+                        "Model": "Tree01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 144.60000610351563,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree01_Armature|Tree01Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 90.9000015258789,
+                            "y": -3.299999952316284,
+                            "z": 16.700000762939454
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 281
+                    },
+                    "Name": {
+                        "Name": "Tree 1 3"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 286
+                    },
+                    "Mesh": {
+                        "Model": "Tree02",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree02_Armature|Tree02Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -21.799999237060548,
+                            "y": -3.299999952316284,
+                            "z": 83.69999694824219
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 285
+                    },
+                    "Name": {
+                        "Name": "Tree 2 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 287
+                    },
+                    "Mesh": {
+                        "Model": "Tree02",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": -125.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree02_Armature|Tree02Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 54.20000076293945,
+                            "y": -3.299999952316284,
+                            "z": 83.69999694824219
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 285
+                    },
+                    "Name": {
+                        "Name": "Tree 2 2"
                     }
                 }
             ]

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 419
+                "EntityHead": 426
             }
         },
         {
@@ -14993,10 +14993,10 @@
                             11,
                             12,
                             13,
-                            14,
                             78,
-                            15,
+                            14,
                             79,
+                            15,
                             16,
                             17,
                             18,
@@ -16407,10 +16407,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            5691439207370049121,
                             1871702054972469046,
-                            9604788041699812520,
+                            5691439207370049121,
                             5509481706028819786,
+                            9604788041699812520,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -16790,39 +16790,80 @@
             ]
         },
         {
-            "HDBbase": [
+            "Unnamed Archetype": [
                 {
                     "Guid": [
                         0,
-                        9604788041699812520,
                         5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
                         14486341741652966143,
+                        8536778051349317767,
                         17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
                         3617555656175080491,
                         15172211932757996706,
-                        16415915133639986106
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
                     ]
                 },
                 {
                     "Entity": {
-                        "Global Index": 180
-                    },
-                    "Mesh": {
-                        "Model": "MovingPlatformMRT",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
+                        "Global Index": 366
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.0029999297112226488,
-                            "z": 0.003000000026077032
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 365
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            367,
+                            368,
+                            369,
+                            370,
+                            371
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": -4.03000020980835,
+                            "z": 1.9600000381469727
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
                     },
                     "Rotation": {
                         "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
@@ -16830,60 +16871,126 @@
                     },
                     "Transform": {
                         "Offset": {
+                            "x": 1.9500000476837159,
+                            "y": -0.019999999552965165,
+                            "z": -1.899999976158142
+                        },
+                        "Position": {
+                            "x": 39.89448165893555,
+                            "y": 0.12469720840454102,
+                            "z": 14.902684211730957
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
-                        "Position": {
-                            "x": 45.76263427734375,
-                            "y": 4.837364196777344,
-                            "z": -15.097663879394532
-                        }
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": -0.44999998807907107,
+                            "y": -0.11999999731779099,
+                            "z": -0.44999998807907107
                         },
                         "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 0.44999998807907107,
+                            "y": 0.11999999731779099,
+                            "z": 0.44999998807907107
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            16415915133639986106,
-                            14486341741652966143
+                            17008353085049151909,
+                            8536778051349317767
                         ],
-                        "Prefab GID": 179
+                        "Prefab GID": 201
                     },
                     "Name": {
-                        "Name": "MRT 3"
-                    }
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
                 },
                 {
                     "Entity": {
-                        "Global Index": 188
-                    },
-                    "Mesh": {
-                        "Model": "MovingPlatformMRT",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
+                        "Global Index": 405
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 404
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            406,
+                            407,
+                            408,
+                            409,
+                            410,
+                            411
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": -4.03000020980835,
+                            "z": 1.9600000381469727
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
                     },
                     "Rotation": {
                         "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
@@ -16892,53 +16999,263 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": -0.019999999552965165,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 36.258094787597659,
-                            "y": 4.652003765106201,
-                            "z": -15.10245418548584
+                            "x": 42.51124954223633,
+                            "y": -0.8128008842468262,
+                            "z": -15.32544994354248
                         }
                     },
-                    "BoundingBox": {
-                        "Min Point": {
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
-                        "Max Point": {
+                        "Moment": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.11999999731779099,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.11999999731779099,
+                            "z": 0.44999998807907107
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [],
-                        "Prefab GID": 179
+                        "Prefab GID": 201
                     },
                     "Name": {
-                        "Name": "MRT"
-                    }
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
                 },
                 {
                     "Entity": {
-                        "Global Index": 190
-                    },
-                    "Mesh": {
-                        "Model": "MovingPlatformMRT",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
+                        "Global Index": 209
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.0029999297112226488,
-                            "z": 0.003000000026077032
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
+                    },
+                    "Child": {
+                        "Parent GID": 208
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            214,
+                            213,
+                            212,
+                            211,
+                            210
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": -4.03000020980835,
+                            "z": 1.9600000381469727
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 1.9500000476837159,
+                            "y": -0.019999999552965165,
+                            "z": -1.899999976158142
+                        },
+                        "Position": {
+                            "x": 44.007747650146487,
+                            "y": -1.825488805770874,
+                            "z": 13.634675025939942
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.11999999731779099,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.11999999731779099,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            8536778051349317767
+                        ],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 201
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 147
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            202,
+                            203,
+                            206,
+                            205,
+                            204,
+                            403
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": -4.03000020980835,
+                            "z": 1.9600000381469727
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            405,
+                            366,
+                            209
+                        ]
                     },
                     "Rotation": {
                         "Rotation": {
@@ -16947,163 +17264,77 @@
                             "z": 0.0
                         }
                     },
-                    "Transform": {
-                        "Offset": {
+                    "Rigidbody": {
+                        "Acceleration": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
-                        "Position": {
-                            "x": 45.76263427734375,
-                            "y": 4.10285758972168,
-                            "z": -12.057013511657715
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
+                        "Velocity": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            16415915133639986106,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 179
-                    },
-                    "Name": {
-                        "Name": "MRT 2"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 195
-                    },
-                    "Mesh": {
-                        "Model": "ColourPencilBox",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.029999999329447748,
-                            "y": 0.029999997466802598,
-                            "z": 0.029999999329447748
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": -1.2000000476837159,
-                            "y": 5.199999809265137,
-                            "z": -16.700000762939454
                         }
                     },
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": -0.019999999552965165,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 28.10158920288086,
-                            "y": 3.173495292663574,
-                            "z": -21.032957077026368
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": -0.44999998807907107,
+                            "y": -0.11999999731779099,
+                            "z": -0.44999998807907107
                         },
                         "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 0.44999998807907107,
+                            "y": 0.11999999731779099,
+                            "z": 0.44999998807907107
                         },
                         "Is Collide": false
                     },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            14486341741652966143,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 194
-                    },
                     "Name": {
-                        "Name": "ColourPencil 2"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 196
+                        "Name": "Platform"
                     },
-                    "Mesh": {
-                        "Model": "ColourPencilBox",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
                     },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.029999999329447748,
-                            "y": 0.029999999329447748,
-                            "z": 0.029999999329447748
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -14.800000190734864
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 28.455556869506837,
-                            "y": 3.275611162185669,
-                            "z": -22.9595947265625
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            14486341741652966143,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 194
-                    },
-                    "Name": {
-                        "Name": "ColourPencil 1"
-                    }
+                    "": {}
                 }
             ]
         },
@@ -17116,141 +17347,17 @@
                         5691439207370049121,
                         10055872472107209861,
                         14486341741652966143,
+                        15204223096342135753,
                         17008353085049151909,
-                        3617555656175080491,
                         16415915133639986106
                     ]
                 },
                 {
                     "Entity": {
-                        "Global Index": 179
+                        "Global Index": 419
                     },
                     "Mesh": {
-                        "Model": "MovingPlatformMRT",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            180,
-                            188,
-                            196,
-                            190,
-                            166,
-                            161,
-                            167,
-                            168,
-                            169
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "MRT"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 159
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": []
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Block"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 194
-                    },
-                    "Mesh": {
-                        "Model": "ColourPencilBox",
+                        "Model": "Tree02",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -17265,7 +17372,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            195
+                            424,
+                            425
                         ]
                     },
                     "Rotation": {
@@ -17274,6 +17382,14 @@
                             "y": 0.0,
                             "z": 0.0
                         }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree02_Armature|Tree02Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
                     },
                     "Transform": {
                         "Offset": {
@@ -17287,21 +17403,358 @@
                             "z": 0.0
                         }
                     },
-                    "BoundingBox": {
-                        "Min Point": {
+                    "Name": {
+                        "Name": "Tree 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 423
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
-                        "Max Point": {
+                        "Position": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
-                        },
-                        "Is Collide": false
+                        }
                     },
                     "Name": {
-                        "Name": "ColourPencil"
+                        "Name": "Unnamed Entity"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 420
+                    },
+                    "Mesh": {
+                        "Model": "Tree01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree01_Armature|Tree01Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -60.599998474121097,
+                            "y": -3.299999952316284,
+                            "z": 77.19999694824219
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 419
+                    },
+                    "Name": {
+                        "Name": "Tree 1 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 421
+                    },
+                    "Mesh": {
+                        "Model": "Tree01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 144.60000610351563,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree01_Armature|Tree01Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 13.100000381469727,
+                            "y": -3.299999952316284,
+                            "z": 86.0999984741211
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14486341741652966143,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 419
+                    },
+                    "Name": {
+                        "Name": "Tree 1 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 422
+                    },
+                    "Mesh": {
+                        "Model": "Tree01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 144.60000610351563,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree01_Armature|Tree01Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 90.9000015258789,
+                            "y": -3.299999952316284,
+                            "z": 16.700000762939454
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14486341741652966143,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 419
+                    },
+                    "Name": {
+                        "Name": "Tree 1 3"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 424
+                    },
+                    "Mesh": {
+                        "Model": "Tree02",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree02_Armature|Tree02Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -21.799999237060548,
+                            "y": -3.299999952316284,
+                            "z": 83.69999694824219
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 419
+                    },
+                    "Name": {
+                        "Name": "Tree 2 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 425
+                    },
+                    "Mesh": {
+                        "Model": "Tree02",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree02_Armature|Tree02Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 54.20000076293945,
+                            "y": -3.299999952316284,
+                            "z": 83.69999694824219
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 419
+                    },
+                    "Name": {
+                        "Name": "Tree 2 2"
                     }
                 }
             ]
@@ -29965,8 +30418,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            144,
                             192,
+                            144,
                             145,
                             138,
                             141,
@@ -30067,9 +30520,9 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             153,
-                            172,
-                            164,
                             132,
+                            164,
+                            172,
                             158,
                             149,
                             170,
@@ -30271,11 +30724,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            255,
-                            296,
                             247,
-                            248,
+                            296,
+                            255,
                             263,
+                            248,
                             251,
                             252,
                             261,
@@ -30479,34 +30932,36 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            258,
-                            386,
                             346,
                             282,
+                            386,
+                            258,
                             269,
                             339,
                             275,
-                            342,
                             278,
+                            342,
                             279,
                             280,
-                            345,
                             281,
-                            341,
+                            345,
                             277,
+                            341,
                             413,
-                            349,
                             285,
-                            353,
+                            349,
+                            417,
                             289,
-                            354,
+                            353,
+                            418,
                             290,
+                            354,
                             299,
                             300,
                             301,
                             303,
-                            375,
                             311,
+                            375,
                             312,
                             316,
                             317,
@@ -30516,12 +30971,12 @@
                             330,
                             340,
                             347,
-                            412,
                             348,
-                            414,
+                            412,
                             350,
-                            415,
+                            414,
                             351,
+                            415,
                             355,
                             357,
                             358,
@@ -30539,13 +30994,11 @@
                             387,
                             388,
                             389,
-                            335,
                             399,
+                            335,
                             336,
                             334,
-                            416,
-                            417,
-                            418
+                            416
                         ]
                     },
                     "Rotation": {
@@ -30613,6 +31066,1897 @@
                     },
                     "Name": {
                         "Name": "RedBlock"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        14351128073332756358,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 199
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            200
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Game Controller"
+                            }
+                        ]
+                    },
+                    "Name": {
+                        "Name": "Game Controller"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 200
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GameController"
+                            }
+                        ]
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Game Controller"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        16113566265477431037
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 365
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 364
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            366
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 1.399999976158142,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 28.70003318786621,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 1.2999999523162842,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 39.89448165893555,
+                            "y": 4.154697418212891,
+                            "z": 12.942684173583985
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.15000000596046449,
+                            "y": -1.2000000476837159,
+                            "z": -0.15000000596046449
+                        },
+                        "Max Point": {
+                            "x": 0.15000000596046449,
+                            "y": 1.2000000476837159,
+                            "z": 0.15000000596046449
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            16113566265477431037,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 147
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": 28.899999618530275,
+                        "Stop Time": 47.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 404
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 402
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            405
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.5,
+                            "y": -2.0,
+                            "z": -13.300000190734864
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 1.399999976158142,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.51124954223633,
+                            "y": 3.2171993255615236,
+                            "z": -17.285449981689454
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.15000000596046449,
+                            "y": -1.2000000476837159,
+                            "z": -0.15000000596046449
+                        },
+                        "Max Point": {
+                            "x": 0.15000000596046449,
+                            "y": 1.2000000476837159,
+                            "z": 0.15000000596046449
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 147
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": 28.899999618530275,
+                        "Stop Time": 47.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 208
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 207
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            209
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 1.399999976158142,
+                            "y": -0.10000000149011612,
+                            "z": -0.20000000298023225
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 28.70003318786621,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 1.2999999523162842,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 44.007747650146487,
+                            "y": 2.2045114040374758,
+                            "z": 11.674674987792969
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.15000000596046449,
+                            "y": -1.2000000476837159,
+                            "z": -0.15000000596046449
+                        },
+                        "Max Point": {
+                            "x": 0.15000000596046449,
+                            "y": 1.2000000476837159,
+                            "z": 0.15000000596046449
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            16113566265477431037,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 147
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": 28.899999618530275,
+                        "Stop Time": 47.0,
+                        "Unit Under": false
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        16113566265477431037
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 147
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004000000189989805,
+                            "y": 0.006000000052154064,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 148
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            201
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.5,
+                            "y": 0.8999999761581421,
+                            "z": -3.299999952316284
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            404,
+                            365,
+                            208
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 1.2999999523162842,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.41999816894531,
+                            "y": 0.335999995470047,
+                            "z": -18.06999969482422
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.15000000596046449,
+                            "y": -1.2000000476837159,
+                            "z": -0.15000000596046449
+                        },
+                        "Max Point": {
+                            "x": 0.15000000596046449,
+                            "y": 1.2000000476837159,
+                            "z": 0.15000000596046449
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": 28.899999618530275,
+                        "Stop Time": 47.0,
+                        "Unit Under": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 202
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 201
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            406,
+                            367,
+                            214
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.029999999329447748,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.07000000029802323,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.07000000029802323,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "PlatformCollider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11057976693296903406
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 270
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999444261193277,
+                            "y": 0.004999999888241291,
+                            "z": 0.005999322049319744
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 90.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 44.70699691772461,
+                            "y": 4.3070068359375,
+                            "z": -10.59555435180664
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5199999809265137,
+                            "y": -0.020999999716877939,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.5199999809265137,
+                            "y": 0.020999999716877939,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            14486341741652966143,
+                            16415915133639986106,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 135
+                    },
+                    "Name": {
+                        "Name": "Ruler 5"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": false,
+                        "West": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 318
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.030000001192092897,
+                            "y": 0.019999997690320016,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 70.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 31.084064483642579,
+                            "y": 0.9277095198631287,
+                            "z": -4.261804580688477
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.649999976158142,
+                            "y": -0.6000000238418579,
+                            "z": -0.23000000417232514
+                        },
+                        "Max Point": {
+                            "x": 1.649999976158142,
+                            "y": 0.6000000238418579,
+                            "z": 0.23000000417232514
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            11057976693296903406,
+                            5691439207370049121,
+                            14486341741652966143,
+                            16415915133639986106,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 135
+                    },
+                    "Name": {
+                        "Name": "Ruler 6"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": true,
+                        "West": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 382
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999857768416406,
+                            "y": 0.029999157413840295,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 80.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.05000000074505806,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 48.15646743774414,
+                            "y": 0.8807766437530518,
+                            "z": 8.175868034362793
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.5,
+                            "z": -3.0
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.5,
+                            "z": 3.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            11057976693296903406,
+                            5691439207370049121,
+                            14486341741652966143,
+                            16415915133639986106,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 135
+                    },
+                    "Name": {
+                        "Name": "Ruler 7"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": true,
+                        "South": false,
+                        "East": false,
+                        "West": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 198
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999857768416406,
+                            "y": 0.019999997690320016,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 80.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.05000000074505806,
+                            "y": 0.05000000074505806,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 37.66941452026367,
+                            "y": 4.607028007507324,
+                            "z": 12.381359100341797
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            11057976693296903406,
+                            14486341741652966143,
+                            16415915133639986106,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 135
+                    },
+                    "Name": {
+                        "Name": "Ruler 10"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": false,
+                        "West": false
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11057976693296903406
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 135
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            270,
+                            318,
+                            382,
+                            198,
+                            352,
+                            361,
+                            393
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Ruler"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": false,
+                        "West": false
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 180
+                    },
+                    "Mesh": {
+                        "Model": "MovingPlatformMRT",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.0029999297112226488,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 45.76263427734375,
+                            "y": 4.837364196777344,
+                            "z": -15.097663879394532
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 179
+                    },
+                    "Name": {
+                        "Name": "MRT 3"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 188
+                    },
+                    "Mesh": {
+                        "Model": "MovingPlatformMRT",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 36.258094787597659,
+                            "y": 4.652003765106201,
+                            "z": -15.10245418548584
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 179
+                    },
+                    "Name": {
+                        "Name": "MRT"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 190
+                    },
+                    "Mesh": {
+                        "Model": "MovingPlatformMRT",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.0029999297112226488,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 45.76263427734375,
+                            "y": 4.10285758972168,
+                            "z": -12.057013511657715
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 179
+                    },
+                    "Name": {
+                        "Name": "MRT 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 195
+                    },
+                    "Mesh": {
+                        "Model": "ColourPencilBox",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999997466802598,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": -1.2000000476837159,
+                            "y": 5.199999809265137,
+                            "z": -16.700000762939454
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 28.10158920288086,
+                            "y": 3.173495292663574,
+                            "z": -21.032957077026368
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 194
+                    },
+                    "Name": {
+                        "Name": "ColourPencil 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 196
+                    },
+                    "Mesh": {
+                        "Model": "ColourPencilBox",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -14.800000190734864
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 28.455556869506837,
+                            "y": 3.275611162185669,
+                            "z": -22.9595947265625
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 194
+                    },
+                    "Name": {
+                        "Name": "ColourPencil 1"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        3617555656175080491,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 179
+                    },
+                    "Mesh": {
+                        "Model": "MovingPlatformMRT",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            196,
+                            188,
+                            180,
+                            166,
+                            190,
+                            161,
+                            167,
+                            168,
+                            169
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "MRT"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 159
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Block"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 194
+                    },
+                    "Mesh": {
+                        "Model": "ColourPencilBox",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            195
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "ColourPencil"
                     }
                 }
             ]
@@ -31697,12 +34041,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            293,
                             158,
-                            284,
+                            293,
                             243,
-                            283,
+                            284,
                             244,
+                            283,
                             250,
                             274,
                             338,
@@ -32460,683 +34804,6 @@
                 {
                     "Guid": [
                         0,
-                        10055872472107209861,
-                        17008353085049151909,
-                        14351128073332756358,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 199
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            200
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Game Controller"
-                            }
-                        ]
-                    },
-                    "Name": {
-                        "Name": "Game Controller"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        17008353085049151909,
-                        14351128073332756358,
-                        15172211932757996706,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 200
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "GameController"
-                            }
-                        ]
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Game Controller"
-                    }
-                }
-            ]
-        },
-        {
-            "HDBbase": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        13107566195444653040,
-                        8376831551428810534,
-                        14486341741652966143,
-                        15204223096342135753,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793,
-                        16113566265477431037
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 365
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 364
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            366
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 1.399999976158142,
-                            "y": -0.10000000149011612,
-                            "z": -0.20000000298023225
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 28.70003318786621,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 1.2999999523162842,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 39.89448165893555,
-                            "y": 4.154697418212891,
-                            "z": 12.942684173583985
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.15000000596046449,
-                            "y": -1.2000000476837159,
-                            "z": -0.15000000596046449
-                        },
-                        "Max Point": {
-                            "x": 0.15000000596046449,
-                            "y": 1.2000000476837159,
-                            "z": 0.15000000596046449
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            16113566265477431037,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 147
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": 28.899999618530275,
-                        "Stop Time": 47.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 404
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 402
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            405
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.5,
-                            "y": -2.0,
-                            "z": -13.300000190734864
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 0.0,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 1.399999976158142,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 42.51124954223633,
-                            "y": 3.2171993255615236,
-                            "z": -17.285449981689454
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.15000000596046449,
-                            "y": -1.2000000476837159,
-                            "z": -0.15000000596046449
-                        },
-                        "Max Point": {
-                            "x": 0.15000000596046449,
-                            "y": 1.2000000476837159,
-                            "z": 0.15000000596046449
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 147
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": 28.899999618530275,
-                        "Stop Time": 47.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 208
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 207
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            209
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 1.399999976158142,
-                            "y": -0.10000000149011612,
-                            "z": -0.20000000298023225
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 28.70003318786621,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 1.2999999523162842,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 44.007747650146487,
-                            "y": 2.2045114040374758,
-                            "z": 11.674674987792969
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.15000000596046449,
-                            "y": -1.2000000476837159,
-                            "z": -0.15000000596046449
-                        },
-                        "Max Point": {
-                            "x": 0.15000000596046449,
-                            "y": 1.2000000476837159,
-                            "z": 0.15000000596046449
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            16113566265477431037,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 147
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": 28.899999618530275,
-                        "Stop Time": 47.0,
-                        "Unit Under": false
-                    }
-                }
-            ]
-        },
-        {
-            "HDBbase": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        13107566195444653040,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        15204223096342135753,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793,
-                        16113566265477431037
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 147
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.004000000189989805,
-                            "y": 0.006000000052154064,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 148
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            201
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.5,
-                            "y": 0.8999999761581421,
-                            "z": -3.299999952316284
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            404,
-                            365,
-                            208
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 0.0,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 1.2999999523162842,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 42.41999816894531,
-                            "y": 0.335999995470047,
-                            "z": -18.06999969482422
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.15000000596046449,
-                            "y": -1.2000000476837159,
-                            "z": -0.15000000596046449
-                        },
-                        "Max Point": {
-                            "x": 0.15000000596046449,
-                            "y": 1.2000000476837159,
-                            "z": 0.15000000596046449
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": 28.899999618530275,
-                        "Stop Time": 47.0,
-                        "Unit Under": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
                         5691439207370049121,
                         1259829869932243375,
                         8376831551428810534,
@@ -33473,684 +35140,6 @@
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 202
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 201
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            406,
-                            367,
-                            214
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.029999999329447748,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.07000000029802323,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.07000000029802323,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "PlatformCollider"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        5691439207370049121,
-                        1259829869932243375,
-                        13107566195444653040,
-                        8376831551428810534,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        14351128073332756358,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793,
-                        11993994361337810638
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 366
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 365
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            367,
-                            368,
-                            369,
-                            370,
-                            371
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": -4.03000020980835,
-                            "z": 1.9600000381469727
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 1.9500000476837159,
-                            "y": -0.019999999552965165,
-                            "z": -1.899999976158142
-                        },
-                        "Position": {
-                            "x": 39.89448165893555,
-                            "y": 0.12469720840454102,
-                            "z": 14.902684211730957
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorPlatform"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.11999999731779099,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.11999999731779099,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            8536778051349317767
-                        ],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 405
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 404
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            406,
-                            407,
-                            408,
-                            409,
-                            410,
-                            411
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": -4.03000020980835,
-                            "z": 1.9600000381469727
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.019999999552965165,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 42.51124954223633,
-                            "y": -0.8128008842468262,
-                            "z": -15.32544994354248
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorPlatform"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.11999999731779099,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.11999999731779099,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 209
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 208
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            214,
-                            213,
-                            212,
-                            211,
-                            210
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": -4.03000020980835,
-                            "z": 1.9600000381469727
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 1.9500000476837159,
-                            "y": -0.019999999552965165,
-                            "z": -1.899999976158142
-                        },
-                        "Position": {
-                            "x": 44.007747650146487,
-                            "y": -1.825488805770874,
-                            "z": 13.634675025939942
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorPlatform"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.11999999731779099,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.11999999731779099,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            8536778051349317767
-                        ],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        5691439207370049121,
-                        1259829869932243375,
-                        13107566195444653040,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        14351128073332756358,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793,
-                        11993994361337810638
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 201
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 147
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            202,
-                            203,
-                            206,
-                            205,
-                            204,
-                            403
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": -4.03000020980835,
-                            "z": 1.9600000381469727
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            405,
-                            366,
-                            209
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.019999999552965165,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorPlatform"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.11999999731779099,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.11999999731779099,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Platform"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
                 }
             ]
         },
@@ -39572,574 +40561,6 @@
                     },
                     "Name": {
                         "Name": "Blocker"
-                    }
-                }
-            ]
-        },
-        {
-            "HDBbase": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793,
-                        11057976693296903406
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 270
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.029999444261193277,
-                            "y": 0.004999999888241291,
-                            "z": 0.005999322049319744
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 90.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 44.70699691772461,
-                            "y": 4.3070068359375,
-                            "z": -10.59555435180664
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5199999809265137,
-                            "y": -0.020999999716877939,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.5199999809265137,
-                            "y": 0.020999999716877939,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            14486341741652966143,
-                            16415915133639986106,
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 135
-                    },
-                    "Name": {
-                        "Name": "Ruler 5"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
-                        "South": false,
-                        "East": false,
-                        "West": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 318
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.030000001192092897,
-                            "y": 0.019999997690320016,
-                            "z": 0.014999999664723874
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 70.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 31.084064483642579,
-                            "y": 0.9277095198631287,
-                            "z": -4.261804580688477
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.649999976158142,
-                            "y": -0.6000000238418579,
-                            "z": -0.23000000417232514
-                        },
-                        "Max Point": {
-                            "x": 1.649999976158142,
-                            "y": 0.6000000238418579,
-                            "z": 0.23000000417232514
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            11057976693296903406,
-                            5691439207370049121,
-                            14486341741652966143,
-                            16415915133639986106,
-                            3617555656175080491,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 135
-                    },
-                    "Name": {
-                        "Name": "Ruler 6"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
-                        "South": false,
-                        "East": true,
-                        "West": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 382
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.029999857768416406,
-                            "y": 0.029999157413840295,
-                            "z": 0.019999999552965165
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 80.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.05000000074505806,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 48.15646743774414,
-                            "y": 0.8807766437530518,
-                            "z": 8.175868034362793
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.30000001192092898,
-                            "y": -0.5,
-                            "z": -3.0
-                        },
-                        "Max Point": {
-                            "x": 0.30000001192092898,
-                            "y": 0.5,
-                            "z": 3.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            11057976693296903406,
-                            5691439207370049121,
-                            14486341741652966143,
-                            16415915133639986106,
-                            3617555656175080491,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 135
-                    },
-                    "Name": {
-                        "Name": "Ruler 7"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": true,
-                        "South": false,
-                        "East": false,
-                        "West": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 198
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.029999857768416406,
-                            "y": 0.019999997690320016,
-                            "z": 0.019999999552965165
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 80.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": -0.05000000074505806,
-                            "y": 0.05000000074505806,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 37.66941452026367,
-                            "y": 4.607028007507324,
-                            "z": 12.381359100341797
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            11057976693296903406,
-                            14486341741652966143,
-                            16415915133639986106,
-                            3617555656175080491,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 135
-                    },
-                    "Name": {
-                        "Name": "Ruler 10"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
-                        "South": false,
-                        "East": false,
-                        "West": false
-                    }
-                }
-            ]
-        },
-        {
-            "HDBbase": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793,
-                        11057976693296903406
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 135
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            270,
-                            318,
-                            382,
-                            198,
-                            352,
-                            361,
-                            393
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Max Point": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Ruler"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
-                        "South": false,
-                        "East": false,
-                        "West": false
                     }
                 }
             ]

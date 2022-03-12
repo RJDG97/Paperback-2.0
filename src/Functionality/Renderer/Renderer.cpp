@@ -318,6 +318,9 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("TrainTrack", "../../resources/models/nui/TrainTrack.nui");
 	m_Resources.Load3DMeshNUI("TrainSupport", "../../resources/models/nui/TrainSupport.nui");
 
+	m_Resources.Load3DMeshNUI("Tree01", "../../resources/models/nui/Tree01.nui");
+	m_Resources.Load3DMeshNUI("Tree02", "../../resources/models/nui/Tree02.nui");
+
 	m_Resources.Load3DMeshNUI("TriangleBlock_Blue", "../../resources/models/nui/TriangleBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("TriangleBlock_Green", "../../resources/models/nui/TriangleBlock_Green.nui");
 	m_Resources.Load3DMeshNUI("TriangleBlock_Red", "../../resources/models/nui/TriangleBlock_Red.nui");
