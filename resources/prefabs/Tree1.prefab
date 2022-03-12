@@ -1,0 +1,72 @@
+{
+    "Prefabs": [
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 281
+                    },
+                    "Mesh": {
+                        "Model": "Tree01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "Tree01_Armature|Tree01Anim",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -43.29999923706055,
+                            "y": -3.299999952316284,
+                            "z": 77.19999694824219
+                        }
+                    },
+                    "Name": {
+                        "Name": "Tree 1"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -34,6 +34,9 @@ namespace CSScript
 
         Mesh m_AbilityBar;
         Mesh m_InnerBar;
+        Offset m_InnerBarOffset;
+        Tools.MathLib.Vector3 m_InnerBarInitialPos;
+        Tools.MathLib.Vector3 m_InnerBarInitialScale;
 
         enum PushableState
         {
@@ -65,12 +68,15 @@ namespace CSScript
                 m_AbilityBar = new Mesh((UInt32)m_ChildID);
                 m_AbilityBar.m_Active = false;
 
-                Parent m_AbilityBarParent = new Parent(m_ID);
+                Parent m_AbilityBarParent = new Parent((UInt32)m_ChildID);
                 Int32 m_InnerBarID = m_AbilityBarParent.GetChildIDofName("Inner Bar");
                 
                 if (m_InnerBarID != -1)
                 {
                     m_InnerBar = new Mesh((UInt32)m_InnerBarID);
+                    m_InnerBarOffset = new Offset((UInt32)m_InnerBarID);
+                    m_InnerBarInitialPos = m_InnerBarOffset.m_PosOffset;
+                    m_InnerBarInitialScale = m_InnerBarOffset.m_ScaleOffset;
                     m_InnerBar.m_Active = false;
                 }
             }
@@ -167,7 +173,17 @@ namespace CSScript
                     }
                 }
 
-                m_AbilityTimer += dt;
+                else
+                {
+                    m_AbilityTimer += dt;
+                    m_InnerBarOffset.m_ScaleOffset = new Tools.MathLib.Vector3(m_InnerBarInitialScale.x * (m_AbilityDuration - m_AbilityTimer) / m_AbilityDuration,
+                                                                               m_InnerBarOffset.m_ScaleOffset.y,
+                                                                               m_InnerBarOffset.m_ScaleOffset.z);
+
+                    m_InnerBarOffset.m_PosOffset = new Tools.MathLib.Vector3(m_InnerBarInitialPos.x - (m_InnerBarInitialScale.x * (m_AbilityTimer) / m_AbilityDuration) * 200.0f,
+                                                                             m_InnerBarInitialPos.y,
+                                                                             m_InnerBarInitialPos.z);
+                }
             }
         }
 
@@ -211,6 +227,11 @@ namespace CSScript
 
                                 m_AbilityBar.m_Texture = "SkillUIBase_Freeze";
                                 m_AbilityBar.m_Active = true;
+                                m_InnerBar.m_Texture = "SkillUIBigBar_Shrink";
+                                m_InnerBar.m_Active = true;
+
+                                m_InnerBarOffset.m_PosOffset = m_InnerBarInitialPos;
+                                m_InnerBarOffset.m_ScaleOffset = m_InnerBarInitialScale;
                                 return;
                             }
                         }
@@ -245,6 +266,11 @@ namespace CSScript
 
                                 m_AbilityBar.m_Texture = "SkillUIBase_Grow";
                                 m_AbilityBar.m_Active = true;
+                                m_InnerBar.m_Texture = "SkillUIBigBar_Grow";
+                                m_InnerBar.m_Active = true;
+                                    
+                                m_InnerBarOffset.m_PosOffset = m_InnerBarInitialPos;
+                                m_InnerBarOffset.m_ScaleOffset = m_InnerBarInitialScale;
                                 return;
                             }
                         }
@@ -279,6 +305,11 @@ namespace CSScript
 
                                 m_AbilityBar.m_Texture = "SkillUIBase_Shrink";
                                 m_AbilityBar.m_Active = true;
+                                m_InnerBar.m_Texture = "SkillUIBigBar_Shrink";
+                                m_InnerBar.m_Active = true;
+                                    
+                                m_InnerBarOffset.m_PosOffset = m_InnerBarInitialPos;
+                                m_InnerBarOffset.m_ScaleOffset = m_InnerBarInitialScale;
                                 return;
                             }
                         }
