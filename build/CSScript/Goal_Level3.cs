@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace CSScript
 {
-    public class Goal_Level2 : MonoBehaviour
+    public class Goal_Level3 : MonoBehaviour
     {
         UInt32 m_ID;
 
         BoundingBox m_BoundingBox;
-        public static Goal_Level2 getInst()
+        public static Goal_Level3 getInst()
         {
-            return new Goal_Level2();
+            return new Goal_Level3();
         }
 
         public void Start(UInt32 ID)
@@ -33,7 +33,7 @@ namespace CSScript
         {
             if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             {
-                Application.ChangeScene("GameWin_LevelTwo");
+                Application.ChangeScene("GameWin_LevelThree");
             }
         }
         public void OnCollisionStay(UInt32 ID)

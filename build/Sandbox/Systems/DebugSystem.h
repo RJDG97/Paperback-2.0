@@ -485,6 +485,9 @@ struct debug_system : paperback::system::instance
     void DebugInputTest()
     {
 
+        if (PPB.VerifyState("Editor"))
+            return;
+
         //if (PPB.IsKeyPressUp(GLFW_KEY_8))
         //{
 
