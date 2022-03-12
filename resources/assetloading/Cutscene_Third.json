@@ -2,8 +2,68 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 6
+                "EntityHead": 11
             }
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 3
+                    },
+                    "Mesh": {
+                        "Model": "EndOfGameCutscene",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 6
+                    },
+                    "Name": {
+                        "Name": "Panel"
+                    }
+                }
+            ]
         },
         {
             "HDBbase": [
@@ -61,6 +121,52 @@
                     "Name": {
                         "Name": "Stadium?"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 6
+                    },
+                    "Mesh": {
+                        "Model": "EndOfGameCutscene",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.10000000149011612,
+                            "y": 0.10000000149011612,
+                            "z": 0.10000000149011612
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            3
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Panel"
+                    }
                 }
             ]
         },
@@ -98,7 +204,6 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            3,
                             1
                         ]
                     },
@@ -212,69 +317,6 @@
                         "Button State": 2,
                         "Layer Grouping": 0,
                         "Script Guid": 7594871342180465470,
-                        "Active Status": true
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 3
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "YouWonTitle",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1920.0,
-                            "y": 1080.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            2550044418833058707,
-                            9604788041699812520,
-                            5691439207370049121,
-                            17008353085049151909,
-                            16415915133639986106,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 4
-                    },
-                    "Name": {
-                        "Name": "Background"
-                    },
-                    "Button": {
-                        "Button Textures": [
-                            "",
-                            "",
-                            ""
-                        ],
-                        "Button State": 2,
-                        "Layer Grouping": 0,
-                        "Script Guid": 6991569882842922372,
                         "Active Status": true
                     }
                 }
@@ -461,7 +503,8 @@
                     },
                     "Bulk Sound": {
                         "Path": "event:/SFX_Menu_BTN_Clicked,event:/SFX_Menu_BTN_Hover",
-                        "Tags": "ButtonClickSFX,ButtonHoverSFX"
+                        "Tags": "ButtonClickSFX,ButtonHoverSFX",
+                        "Is 3D events": false
                     }
                 }
             ]
@@ -511,7 +554,8 @@
                     },
                     "Bulk Sound": {
                         "Path": "",
-                        "Tags": ""
+                        "Tags": "",
+                        "Is 3D events": false
                     }
                 }
             ]
