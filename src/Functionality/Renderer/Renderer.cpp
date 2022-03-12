@@ -250,9 +250,9 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("Level2To3Cutscene", "../../resources/models/nui/Level2To3Cutscene.nui");
 
-	m_Resources.Load3DMeshNUI("Level1WinScreen", "../../resources/models/nui/LevelWinScreen.nui");
-	m_Resources.Load3DMeshNUI("Level2WinScreen", "../../resources/models/nui/Leve2WinScreen.nui");
-	m_Resources.Load3DMeshNUI("Level3WinScreen", "../../resources/models/nui/Leve3WinScreen.nui");
+	m_Resources.Load3DMeshNUI("Level1WinScreen", "../../resources/models/nui/Level1WinScreen.nui");
+	m_Resources.Load3DMeshNUI("Level2WinScreen", "../../resources/models/nui/Level2WinScreen.nui");
+	m_Resources.Load3DMeshNUI("Level3WinScreen", "../../resources/models/nui/Level3WinScreen.nui");
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT_.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black", "../../resources/models/nui/MovingPlatformMRT_Black.nui");
