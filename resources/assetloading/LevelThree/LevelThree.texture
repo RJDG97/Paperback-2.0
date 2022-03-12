@@ -1,3 +1,7 @@
 {
-    "Recticle": "../../resources/textures/UI/Recticle.dds 0"
+    "SkillUIBigBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBigBar_Freeze.dds 0",
+    "SkillUIBigBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBigBar_Freeze.dds 0",
+    "Recticle": "../../resources/textures/UI/Recticle.dds 0",
+    "SkillUIBase_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBase_Freeze.dds 0",
+    "SkillUIBase_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBase_Freeze.dds 0"
 }

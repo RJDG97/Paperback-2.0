@@ -32,6 +32,9 @@ namespace CSScript
         UInt32 m_SelectedID;
         Ability m_AbilityUsed;
 
+        Mesh m_AbilityBar;
+        Mesh m_InnerBar;
+
         enum PushableState
         {
             SHRUNK = 0,
@@ -45,7 +48,6 @@ namespace CSScript
         }
         public void Start(UInt32 ID)
         {
-            
             m_ID = ID;
             m_JumpID = (UInt32)Player.GetJumpUnitID();
             m_PushID = (UInt32)Player.GetPushUnitID();
@@ -55,6 +57,23 @@ namespace CSScript
             m_JumpUnitPC = new PlayerController(m_JumpID);
             m_PushUnitPC = new PlayerController(m_PushID);
 
+            Parent m_Parent = new Parent(m_ID);
+            Int32 m_ChildID = m_Parent.GetChildIDofName("Ability Bar");
+
+            if (m_ChildID != -1)
+            {
+                m_AbilityBar = new Mesh((UInt32)m_ChildID);
+                m_AbilityBar.m_Active = false;
+
+                Parent m_AbilityBarParent = new Parent(m_ID);
+                Int32 m_InnerBarID = m_AbilityBarParent.GetChildIDofName("Inner Bar");
+                
+                if (m_InnerBarID != -1)
+                {
+                    m_InnerBar = new Mesh((UInt32)m_InnerBarID);
+                    m_InnerBar.m_Active = false;
+                }
+            }
 
             m_SFX = new Sound(ID);
 
@@ -96,6 +115,9 @@ namespace CSScript
                 {
                     m_AbilityActive = false;
                     m_AbilityTimer = 0.0f;
+
+                    m_AbilityBar.m_Active = false;
+                    m_InnerBar.m_Active = false;
 
                     switch (m_AbilityUsed)
                     {
@@ -186,6 +208,9 @@ namespace CSScript
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+                                m_AbilityBar.m_Texture = "SkillUIBase_Freeze";
+                                m_AbilityBar.m_Active = true;
                                 return;
                             }
                         }
@@ -217,6 +242,9 @@ namespace CSScript
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.GROW;
+
+                                m_AbilityBar.m_Texture = "SkillUIBase_Grow";
+                                m_AbilityBar.m_Active = true;
                                 return;
                             }
                         }
@@ -248,6 +276,9 @@ namespace CSScript
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.SHRINK;
+
+                                m_AbilityBar.m_Texture = "SkillUIBase_Shrink";
+                                m_AbilityBar.m_Active = true;
                                 return;
                             }
                         }

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 419
+                "EntityHead": 423
             }
         },
         {
@@ -3831,6 +3831,72 @@
                     "Name": {
                         "Name": "Red Checkpoint"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 420
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 419
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            422
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Inner Bar"
+                    }
                 }
             ]
         },
@@ -3977,6 +4043,75 @@
                     },
                     "Name": {
                         "Name": "Red Checkpoint"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 422
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUIBigBar_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 421
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.5,
+                            "y": 17.899999618530275,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 718.5,
+                            "y": -402.1000061035156,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            8376831551428810534,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 420
+                    },
+                    "Name": {
+                        "Name": "Inner Bar"
                     }
                 }
             ]
@@ -14993,10 +15128,10 @@
                             11,
                             12,
                             13,
-                            14,
                             78,
-                            15,
+                            14,
                             79,
+                            15,
                             16,
                             17,
                             18,
@@ -16407,10 +16542,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            5691439207370049121,
                             1871702054972469046,
-                            9604788041699812520,
+                            5691439207370049121,
                             5509481706028819786,
+                            9604788041699812520,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -17141,11 +17276,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            180,
-                            188,
                             196,
-                            190,
+                            188,
+                            180,
                             166,
+                            190,
                             161,
                             167,
                             168,
@@ -29965,8 +30100,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            144,
                             192,
+                            144,
                             145,
                             138,
                             141,
@@ -30067,9 +30202,9 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             153,
-                            172,
-                            164,
                             132,
+                            164,
+                            172,
                             158,
                             149,
                             170,
@@ -30271,11 +30406,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            255,
-                            296,
                             247,
-                            248,
+                            296,
+                            255,
                             263,
+                            248,
                             251,
                             252,
                             261,
@@ -30479,34 +30614,36 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            258,
-                            386,
                             346,
                             282,
+                            386,
+                            258,
                             269,
                             339,
                             275,
-                            342,
                             278,
+                            342,
                             279,
                             280,
-                            345,
                             281,
-                            341,
+                            345,
                             277,
+                            341,
                             413,
-                            349,
                             285,
-                            353,
+                            349,
+                            417,
                             289,
-                            354,
+                            353,
+                            418,
                             290,
+                            354,
                             299,
                             300,
                             301,
                             303,
-                            375,
                             311,
+                            375,
                             312,
                             316,
                             317,
@@ -30516,12 +30653,12 @@
                             330,
                             340,
                             347,
-                            412,
                             348,
-                            414,
+                            412,
                             350,
-                            415,
+                            414,
                             351,
+                            415,
                             355,
                             357,
                             358,
@@ -30539,13 +30676,11 @@
                             387,
                             388,
                             389,
-                            335,
                             399,
+                            335,
                             336,
                             334,
-                            416,
-                            417,
-                            418
+                            416
                         ]
                     },
                     "Rotation": {
@@ -31697,12 +31832,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            293,
                             158,
-                            284,
+                            293,
                             243,
-                            283,
+                            284,
                             244,
+                            283,
                             250,
                             274,
                             338,
@@ -32451,95 +32586,6 @@
                     },
                     "Pushable": {
                         "State": 1
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        10055872472107209861,
-                        17008353085049151909,
-                        14351128073332756358,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 199
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            200
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Game Controller"
-                            }
-                        ]
-                    },
-                    "Name": {
-                        "Name": "Game Controller"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        17008353085049151909,
-                        14351128073332756358,
-                        15172211932757996706,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 200
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "GameController"
-                            }
-                        ]
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Game Controller"
                     }
                 }
             ]
@@ -40140,6 +40186,251 @@
                         "South": false,
                         "East": false,
                         "West": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        13107566195444653040,
+                        10055872472107209861,
+                        17008353085049151909,
+                        14351128073332756358,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 199
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            419
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            200
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Game Controller"
+                            }
+                        ]
+                    },
+                    "Name": {
+                        "Name": "Game Controller"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 419
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUIBase_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 400.0,
+                            "z": 400.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 199
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            420
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            421
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Ability Bar"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        13107566195444653040,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 200
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            421
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Game Controller"
+                            }
+                        ]
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Game Controller"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 421
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUIBase_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 200.0,
+                            "z": 400.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 200
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            422
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 720.0,
+                            "y": -420.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 419
+                    },
+                    "Name": {
+                        "Name": "Ability Bar"
                     }
                 }
             ]
