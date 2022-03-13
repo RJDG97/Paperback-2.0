@@ -1,0 +1,127 @@
+{
+    "Prefabs": [
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        16993282838665458309
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 161
+                    },
+                    "Mesh": {
+                        "Model": "InteractableBlock2x2",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": true,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "PushableBlock"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.3799999952316284,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.3799999952316284,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "PushableBlock"
+                    },
+                    "Mass": {
+                        "Mass": 6.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Pushable": {
+                        "State": 1
+                    }
+                }
+            ]
+        }
+    ]
+}
