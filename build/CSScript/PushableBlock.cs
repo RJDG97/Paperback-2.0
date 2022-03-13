@@ -10,6 +10,7 @@ namespace CSScript
     {
         UInt32 m_ID;
         Rigidforce m_Rigidforce;
+        Mass m_Mass;
         bool m_PrevGravActive;
 
         public static PushableBlock getInst()
@@ -22,6 +23,8 @@ namespace CSScript
             m_ID = ID;
             m_Rigidforce = new Rigidforce(ID);
             m_PrevGravActive = m_Rigidforce.m_GravityActive;
+
+            m_Mass = new Mass(ID);
         }
 
         public void Update(float dt)
@@ -30,6 +33,7 @@ namespace CSScript
             {
                 m_Rigidforce.m_CollisionAffected = false;
                 m_Rigidforce.m_GravityAffected = false;
+                m_Mass.m_Mass = 0.0f;
             }
 
             m_PrevGravActive = m_Rigidforce.m_GravityActive;
