@@ -256,11 +256,23 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black", "../../resources/models/nui/MovingPlatformMRT_Black.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_BlackFreeze", "../../resources/models/nui/MovingPlatformMRT_BlackFreeze.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_BlackGrow", "../../resources/models/nui/MovingPlatformMRT_BlackGrow.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_BlackShrink", "../../resources/models/nui/MovingPlatformMRT_BlackShrink.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan", "../../resources/models/nui/MovingPlatformMRT_Cyan.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_CyanFreeze", "../../resources/models/nui/MovingPlatformMRT_CyanFreeze.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_CyanGrow", "../../resources/models/nui/MovingPlatformMRT_CyanGrow.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_CyanShrink", "../../resources/models/nui/MovingPlatformMRT_CyanShrink.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Green", "../../resources/models/nui/MovingPlatformMRT_Green.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_GreenFreeze", "../../resources/models/nui/MovingPlatformMRT_GreenFreeze.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_GreenGrow", "../../resources/models/nui/MovingPlatformMRT_GreenGrow.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_GreenShrink", "../../resources/models/nui/MovingPlatformMRT_GreenShrink.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Grow", "../../resources/models/nui/MovingPlatformMRT_Grow.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Freeze", "../../resources/models/nui/MovingPlatformMRT_Freeze.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple", "../../resources/models/nui/MovingPlatformMRT_Purple.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_PurpleFreeze", "../../resources/models/nui/MovingPlatformMRT_PurpleFreeze.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_PurpleGrow", "../../resources/models/nui/MovingPlatformMRT_PurpleGrow.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_PurpleShrink", "../../resources/models/nui/MovingPlatformMRT_PurpleShrink.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Shrink", "../../resources/models/nui/MovingPlatformMRT_Shrink.nui");
 
 	m_Resources.Load3DMeshNUI("ProjectorCart", "../../resources/models/nui/ProjectorCart.nui");
