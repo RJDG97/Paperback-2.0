@@ -65,16 +65,19 @@ namespace CSScript
                     {
                         m_JumpUnitController.m_GrowAvailable = true;
                         m_PushUnitController.m_GrowAvailable = true;
+                        m_InteractableAbility.m_Grow = false;
                     }
                     else if ( m_InteractableAbility.m_Shrink )
                     {
                         m_JumpUnitController.m_ShrinkAvailable = true;
                         m_PushUnitController.m_ShrinkAvailable = true;
+                        m_InteractableAbility.m_Shrink = false;
                     }
                     else if ( m_InteractableAbility.m_Freeze )
                     {
                         m_JumpUnitController.m_FreezeAvailable = true;
                         m_PushUnitController.m_FreezeAvailable = true;
+                        m_InteractableAbility.m_Freeze = false;
                     }
 
                     m_Activated = true;

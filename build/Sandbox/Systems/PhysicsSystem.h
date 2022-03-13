@@ -118,7 +118,11 @@ struct physics_system : paperback::system::pausable_instance
                 else
                 {
                     RigidForce.m_GravityActive = true;
-                    if ( Controller ) Controller->m_OnGround = true;
+                    if ( Controller )
+                    {
+                        if ( !Controller->m_OnGround ) GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueLand" );
+                        Controller->m_OnGround = true;
+                    }
                 }
             }
 

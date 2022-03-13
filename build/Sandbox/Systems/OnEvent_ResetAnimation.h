@@ -21,27 +21,22 @@ struct onevent_ResetAnimation : paperback::system::instance
         {
             auto [ Anim, Controller, Interaction ] = Info.m_pArchetype->FindComponents<animator, player_controller, player_interaction>( Info.m_PoolDetails );
 
-            if ( Controller && Anim )
+            if ( Controller && Controller->m_PlayerStatus && Anim )
             {
                 // Strong Unit
                 if ( Interaction )
                 {
                     Anim->m_CurrentAnimationName = "StrongToy_Armature|Idle";
-                    auto UI_Sys = FindSystem<ui_system>();
-                    if (UI_Sys)
-                    {
-                        UI_Sys->TriggerStopSoundEntity("SFX_RedWalk");
-                        //UI_Sys->TriggerSoundEntity("SFX_RedStop");
-                    }
+
+                    // Stop Walk Sound
+                    GetSystem<sound_system>().StopTriggeredSoundEvent( "SFX_RedWalk" );
                 }
                 else
                 {
-                    auto UI_Sys = FindSystem<ui_system>();
-                    if (UI_Sys)
-                    {
-                        UI_Sys->TriggerStopSoundEntity("SFX_BlueWalk");
-                        Anim->m_CurrentAnimationName = "Armature|Idle";
-                    }
+                    Anim->m_CurrentAnimationName = "Armature|Idle";
+
+                    // Stop Walk Sound
+                    GetSystem<sound_system>().StopTriggeredSoundEvent( "SFX_BlueWalk" );
                 }
 
                 Anim->m_PlayOnce = false;
