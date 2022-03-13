@@ -129,11 +129,34 @@ namespace CSScript
                     {
                         case Ability.STOP_MOVING_PLATFORM:
                         {
-                            PathFollower path_follower = new PathFollower(m_SelectedID);
-                            path_follower.m_PauseTravel = false;
+                            Name name = new Name(m_SelectedID);
+
+                            if (name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard")
+                            {
+                                PathFollower path_follower = new PathFollower(m_SelectedID);
+                                path_follower.m_PauseTravel = false;
                             
-                            Mesh collided_mesh = new Mesh(m_SelectedID);
-                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                Mesh collided_mesh = new Mesh(m_SelectedID);
+                                collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                            }
+
+                            else if (name.m_Name == "Platform")
+                            {
+                                Child child = new Child(m_SelectedID);
+                                Animator parent_animator = new Animator((UInt32)child.m_ParentID);
+                                Mesh parent_mesh = new Mesh((UInt32)child.m_ParentID);
+                                parent_mesh.m_Model = parent_mesh.m_Model.Substring(0, parent_mesh.m_Model.Length - 7);
+                                parent_animator.m_PauseAnimation = false;
+                            }
+
+                            else if (name.m_Name == "Elevator")
+                            {
+                                Animator animator = new Animator(m_SelectedID);
+                                Mesh collided_mesh = new Mesh(m_SelectedID);
+                                collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                animator.m_PauseAnimation = true;
+                            }
+
                             break;
                         }
 
@@ -230,16 +253,37 @@ namespace CSScript
 
                                 Mesh collided_mesh = new Mesh(collided_id);
                                 collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
-
-                                m_AbilityBar.m_Texture = "SkillUIBase_Freeze";
-                                m_AbilityBar.m_Active = true;
-                                m_InnerBar.m_Texture = "SkillUIBigBar_Shrink";
-                                m_InnerBar.m_Active = true;
-
-                                m_InnerBarOffset.m_PosOffset = m_InnerBarInitialPos;
-                                m_InnerBarOffset.m_ScaleOffset = m_InnerBarInitialScale;
+                                    
+                                ChangeBar();
                                 return;
                             }
+                        }
+
+                        else if (name.m_Name == "Platform")
+                        {
+                            m_AbilityActive = true;
+                            m_SelectedID = collided_id;
+                            m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+                            Child child  = new Child(collided_id);
+                            Animator parent_animator = new Animator((UInt32)child.m_ParentID);
+                            Mesh parent_mesh = new Mesh((UInt32)child.m_ParentID);
+                            parent_mesh.m_Model = parent_mesh.m_Model + "_Freeze";
+                            parent_animator.m_PauseAnimation = true;
+                            ChangeBar();
+                        }
+
+                        else if (name.m_Name == "Elevator")
+                        {
+                            m_AbilityActive = true;
+                            m_SelectedID = collided_id;
+                            m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+                            Animator animator = new Animator(collided_id);
+                            Mesh collided_mesh = new Mesh(collided_id);
+                            collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+                            animator.m_PauseAnimation = true;
+                            ChangeBar();
                         }
 
                         break;
@@ -269,14 +313,7 @@ namespace CSScript
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.GROW;
-
-                                m_AbilityBar.m_Texture = "SkillUIBase_Grow";
-                                m_AbilityBar.m_Active = true;
-                                m_InnerBar.m_Texture = "SkillUIBigBar_Grow";
-                                m_InnerBar.m_Active = true;
-                                    
-                                m_InnerBarOffset.m_PosOffset = m_InnerBarInitialPos;
-                                m_InnerBarOffset.m_ScaleOffset = m_InnerBarInitialScale;
+                                ChangeBar();
                                 return;
                             }
                         }
@@ -308,14 +345,7 @@ namespace CSScript
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.SHRINK;
-
-                                m_AbilityBar.m_Texture = "SkillUIBase_Shrink";
-                                m_AbilityBar.m_Active = true;
-                                m_InnerBar.m_Texture = "SkillUIBigBar_Shrink";
-                                m_InnerBar.m_Active = true;
-                                    
-                                m_InnerBarOffset.m_PosOffset = m_InnerBarInitialPos;
-                                m_InnerBarOffset.m_ScaleOffset = m_InnerBarInitialScale;
+                                ChangeBar();
                                 return;
                             }
                         }
@@ -325,5 +355,39 @@ namespace CSScript
                 }
             }
         }
+
+        private void ChangeBar()
+        {
+            m_AbilityBar.m_Active = true;
+            m_InnerBar.m_Active = true;
+
+            m_InnerBarOffset.m_PosOffset = m_InnerBarInitialPos;
+            m_InnerBarOffset.m_ScaleOffset = m_InnerBarInitialScale;
+
+            switch (m_AbilityUsed)
+            {
+                case Ability.STOP_MOVING_PLATFORM:
+                {
+                    m_AbilityBar.m_Texture = "SkillUIBase_Freeze";
+                    m_InnerBar.m_Texture = "SkillUIBigBar_Freeze";
+                    break;
+                }
+
+                case Ability.GROW:
+                {
+                    m_AbilityBar.m_Texture = "SkillUIBase_Grow";
+                    m_InnerBar.m_Texture = "SkillUIBigBar_Grow";
+                    break;
+                }
+
+                case Ability.SHRINK:
+                {
+                    m_AbilityBar.m_Texture = "SkillUIBase_Shrink";
+                    m_InnerBar.m_Texture = "SkillUIBigBar_Shrink";
+                    break;
+                }
+            }
+        }
     }
+
 }
