@@ -133,7 +133,7 @@ namespace CSScript
                             path_follower.m_PauseTravel = false;
                             
                             Mesh collided_mesh = new Mesh(m_SelectedID);
-                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7 - 1);
+                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                             break;
                         }
 
@@ -216,7 +216,7 @@ namespace CSScript
                     {
                         Name name = new Name(collided_id);
 
-                        if ( name.m_Name == "Moving Platform" /*&& (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable)*/ )
+                        if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard" /*&& (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable)*/ )
                         {
                             PathFollower path_follower = new PathFollower(collided_id);
 

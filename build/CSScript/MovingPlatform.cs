@@ -68,7 +68,6 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log("a");
             if (ID == m_JumpUnitID)
             {
                 ++m_NumPassengers;
@@ -81,6 +80,7 @@ namespace CSScript
 
             else if (Tools.Tag.IsPushable(ID))
             {
+                Debug.Log("a");
                 ++m_NumPassengers;
             }
         }
