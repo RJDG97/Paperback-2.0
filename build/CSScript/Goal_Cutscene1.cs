@@ -31,10 +31,10 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
-            {
+            //if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
+            //{
                 Application.ChangeScene("LevelOne");
-            }
+            //}
         }
         public void OnCollisionStay(UInt32 ID)
         {
