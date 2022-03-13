@@ -74,6 +74,9 @@ struct window_system : paperback::system::instance
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glViewport(0, 0, E.m_Width, E.m_Height);
+
+        m_Width = E.m_Width;
+        m_Height = E.m_Height;
 	}
 
     PPB_FORCEINLINE
