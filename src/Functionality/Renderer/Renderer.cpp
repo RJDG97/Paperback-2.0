@@ -285,10 +285,10 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("Shelf", "../../resources/models/nui/Shelf.nui");
 
 	m_Resources.Load3DMeshNUI("ShortGate", "../../resources/models/nui/ShortGate.nui");
-	m_Resources.Load3DMeshNUI("ShortGateGrow", "../../resources/models/nui/ShortGateGrow.nui");
+	m_Resources.Load3DMeshNUI("ShortGateGrow", "../../resources/models/nui/ShortGate_Grow.nui");
 	m_Resources.Load3DMeshNUI("ShortGateFence", "../../resources/models/nui/ShortGateFence.nui");
-	m_Resources.Load3DMeshNUI("ShortGate_Freeze", "../../resources/models/nui/ShortGateFreeze.nui");
-	m_Resources.Load3DMeshNUI("ShortGateShrink", "../../resources/models/nui/ShortGateShrink.nui");
+	m_Resources.Load3DMeshNUI("ShortGate_Freeze", "../../resources/models/nui/ShortGate_Freeze.nui");
+	m_Resources.Load3DMeshNUI("ShortGateShrink", "../../resources/models/nui/ShortGate_Shrink.nui");
 
 	m_Resources.Load3DMeshNUI("ShrinkCard", "../../resources/models/nui/ShrinkCard.nui");
 
