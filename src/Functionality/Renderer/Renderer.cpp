@@ -222,6 +222,7 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("FloorTile", "../../resources/models/nui/FloorTile.nui");
 
+	m_Resources.Load3DMeshNUI("FreezeCard", "../../resources/models/nui/FreezeCard.nui");
 
 	m_Resources.Load3DMeshNUI("GrowCard", "../../resources/models/nui/GrowCard.nui");
 	m_Resources.Load3DMeshNUI("GuardHouse", "../../resources/models/nui/GuardHouse.nui");

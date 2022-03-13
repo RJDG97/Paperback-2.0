@@ -10,6 +10,7 @@ namespace CSScript
         UInt32 m_InteractableID;                    // Interactable Entity ID
         Sound  m_InteractableSound;                 // Interactable Sound Component
         AbilityCollectible m_InteractableAbility;   // Interactable Ability Component
+        Mesh m_InteractableMesh;
 
         Int32 m_JumpID;                             // Jump Unit ID
         Int32 m_PushID;                             // Push Unit ID
@@ -32,6 +33,7 @@ namespace CSScript
             m_InteractableID      = InteractableID;
             m_InteractableSound   = new Sound( m_InteractableID );
             m_InteractableAbility = new AbilityCollectible( m_InteractableID );
+            m_InteractableMesh = new Mesh(m_InteractableID);
 
             m_JumpID = Player.GetJumpUnitID();
             m_PushID = Player.GetPushUnitID();
@@ -81,6 +83,7 @@ namespace CSScript
                     }
 
                     m_Activated = true;
+                    m_InteractableMesh.m_Active = false;
                 }
             }
         }

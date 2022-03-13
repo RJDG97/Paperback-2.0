@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 446
+                "EntityHead": 447
             }
         },
         {
@@ -32253,14 +32253,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            299,
                             140,
-                            375,
-                            168,
-                            232,
+                            299,
                             287,
-                            169,
+                            232,
+                            168,
+                            375,
                             233,
+                            169,
                             376,
                             371,
                             372,
@@ -32372,12 +32372,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            384,
-                            392,
                             312,
-                            393,
-                            377,
+                            392,
+                            384,
                             313,
+                            377,
+                            393,
                             378,
                             379,
                             394,
@@ -33337,10 +33337,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            5691439207370049121,
                             1871702054972469046,
-                            9604788041699812520,
+                            5691439207370049121,
                             5509481706028819786,
+                            9604788041699812520,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -37056,13 +37056,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            241,
                             362,
-                            160,
+                            241,
                             248,
+                            160,
                             283,
-                            284,
                             187,
+                            284,
                             191,
                             158,
                             293,
@@ -38106,9 +38106,9 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            409,
-                            337,
                             242,
+                            337,
+                            409,
                             205,
                             300,
                             408,
@@ -39443,7 +39443,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            445
+                            445,
+                            446
                         ]
                     },
                     "Rotation": {
@@ -39879,7 +39880,7 @@
                         "Global Index": 445
                     },
                     "Mesh": {
-                        "Model": "JumpToy",
+                        "Model": "GrowCard",
                         "Texture": "JumpToy_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -39887,9 +39888,9 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0010000000474974514,
-                            "y": 0.0010000000474974514,
-                            "z": 0.0010000000474974514
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
                         }
                     },
                     "Rotation": {
@@ -39919,8 +39920,8 @@
                         },
                         "Position": {
                             "x": -30.815265655517579,
-                            "y": 8.95820140838623,
-                            "z": -14.785881042480469
+                            "y": 7.754157543182373,
+                            "z": -16.494184494018556
                         }
                     },
                     "RigidForce": {
@@ -39946,24 +39947,32 @@
                         "Script ID": [
                             {
                                 "ID": "CollectedInteractable"
+                            },
+                            {
+                                "ID": "Fan"
                             }
                         ]
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.5,
+                            "x": -0.15000000596046449,
                             "y": -0.20000000298023225,
-                            "z": -0.5
+                            "z": -0.15000000596046449
                         },
                         "Max Point": {
-                            "x": 0.5,
+                            "x": 0.15000000596046449,
                             "y": 0.20000000298023225,
-                            "z": 0.5
+                            "z": 0.15000000596046449
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            3617555656175080491,
+                            9604788041699812520,
+                            5691439207370049121,
+                            1362145481980459455
+                        ],
                         "Prefab GID": 229
                     },
                     "Name": {
@@ -39976,6 +39985,120 @@
                     "": {},
                     "Ability Collectible": {
                         "Enable Grow Ability?": true,
+                        "Enable Shrink Ability?": false,
+                        "Enable Freeze Ability?": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 446
+                    },
+                    "Mesh": {
+                        "Model": "ShrinkCard",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -31.032115936279298,
+                            "y": 7.808685779571533,
+                            "z": -17.473060607910158
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            },
+                            {
+                                "ID": "Fan"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.15000000596046449,
+                            "y": -0.20000000298023225,
+                            "z": -0.15000000596046449
+                        },
+                        "Max Point": {
+                            "x": 0.15000000596046449,
+                            "y": 0.20000000298023225,
+                            "z": 0.15000000596046449
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            5691439207370049121,
+                            9604788041699812520,
+                            1362145481980459455
+                        ],
+                        "Prefab GID": 229
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": false,
                         "Enable Shrink Ability?": true,
                         "Enable Freeze Ability?": false
                     }
