@@ -1,3 +1,4 @@
 {
-    "NextLevel_Unselected": "../../resources/textures/UI/Menus/Buttons/NextLevel_Unselected.dds 0"
+    "SkipCutsceneButton_Unselected": "../../resources/textures/UI/SkipCutsceneButton_Unselected_Mirrored.dds 0",
+    "YesButton_Selected": "../../resources/textures/UI/Menus/Buttons/YesButton_Selected_Mirrored.dds 0"
 }

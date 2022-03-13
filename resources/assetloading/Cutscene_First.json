@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 15
+                "EntityHead": 18
             }
         },
         {
@@ -206,7 +206,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            1
+                            1,
+                            15
                         ]
                     },
                     "Rotation": {
@@ -265,7 +266,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "NextLevel_Unselected",
+                        "Texture": "SkipCutsceneButton_Unselected",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
@@ -316,9 +317,69 @@
                             "",
                             ""
                         ],
-                        "Button State": 0,
+                        "Button State": 2,
                         "Layer Grouping": 0,
                         "Script Guid": 12449309447629956693,
+                        "Active Status": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 15
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "Sandpit_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -0.03644561767578125,
+                            "y": -5.570000171661377,
+                            "z": -5.985112190246582
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "CutsceneMode_Script"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 0,
+                        "Script Guid": 6991569882842922372,
                         "Active Status": true
                     }
                 }
@@ -1170,6 +1231,198 @@
                         "Index": 0,
                         "On Hold": false,
                         "Timer": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 16
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            17
+                        ]
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": []
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Win Collider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 17
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.699999988079071,
+                            "y": -26.5,
+                            "z": 6.099999904632568
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": true,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Goal_Cutscene1"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            5509481706028819786
+                        ],
+                        "Prefab GID": 16
+                    },
+                    "Name": {
+                        "Name": "Win Collider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
                     }
                 }
             ]
