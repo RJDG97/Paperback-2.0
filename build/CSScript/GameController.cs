@@ -362,6 +362,9 @@ namespace CSScript
         {
             Pushable pushable = new Pushable(ID);
             Scale scale = new Scale(ID);
+            Mass mass = new Mass(ID);
+
+            mass.m_Mass = 6.0f;
             scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_ScaleFactor, scale.m_Value.y * m_ScaleFactor, scale.m_Value.z * m_ScaleFactor);
 
             BoundingBox bounding_box = new BoundingBox(ID);
@@ -379,6 +382,9 @@ namespace CSScript
         {
             Pushable pushable = new Pushable(ID);
             Scale scale = new Scale(ID);
+            Mass mass = new Mass(ID);
+
+            mass.m_Mass = 6.0f;
             scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);
 
             BoundingBox bounding_box = new BoundingBox(ID);

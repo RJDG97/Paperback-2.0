@@ -48,6 +48,15 @@ namespace MONO_RIGIDBODY
 			reinterpret_cast<rigidbody*>(address)->m_Velocity = { x, y, z };
 	}
 
+	MONO_EXPORT float VelocityMagnitudeSquared(void* address)
+	{
+
+		if (address)
+			return reinterpret_cast<rigidbody*>(address)->m_Velocity.x;//.MagnitudeSq();
+		else
+			return 0.0f;
+	}
+
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Rigidbody::getaddress(uint)", &MONO_RIGIDBODY::GetAddress);
@@ -55,5 +64,6 @@ namespace MONO_RIGIDBODY
 		mono_add_internal_call("CSScript.Rigidbody::getvelocity(void*)", &MONO_RIGIDBODY::GetVelocity);
 		mono_add_internal_call("CSScript.Rigidbody::setaccel(void*,single,single,single)", &MONO_RIGIDBODY::SetAccel);
 		mono_add_internal_call("CSScript.Rigidbody::setvelocity(void*,single,single,single)", &MONO_RIGIDBODY::SetVelocity);
+		mono_add_internal_call("CSScript.Rigidbody::VelocityMagnitudeSquared(void*)", &MONO_RIGIDBODY::VelocityMagnitudeSquared);
 	}
 }
