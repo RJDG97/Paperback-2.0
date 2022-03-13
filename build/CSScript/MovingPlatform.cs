@@ -68,6 +68,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            Debug.Log("a");
             if (ID == m_JumpUnitID)
             {
                 ++m_NumPassengers;

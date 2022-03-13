@@ -131,6 +131,9 @@ namespace CSScript
                         {
                             PathFollower path_follower = new PathFollower(m_SelectedID);
                             path_follower.m_PauseTravel = false;
+                            
+                            Mesh collided_mesh = new Mesh(m_SelectedID);
+                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7 - 1);
                             break;
                         }
 
@@ -224,6 +227,9 @@ namespace CSScript
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+                                Mesh collided_mesh = new Mesh(collided_id);
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
 
                                 m_AbilityBar.m_Texture = "SkillUIBase_Freeze";
                                 m_AbilityBar.m_Active = true;
