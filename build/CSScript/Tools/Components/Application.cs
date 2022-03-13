@@ -27,5 +27,8 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern static void StopTaggedSound(string sound_tag);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static void StopTaggedSoundComp(UInt32 sound_tag);
     }
 }

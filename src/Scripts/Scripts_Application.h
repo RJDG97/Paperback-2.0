@@ -40,6 +40,12 @@ namespace MONO_APPLICATION
 		PPB.GetSystem<sound_system>().StopTriggeredSoundEvent(mono_string_to_utf8(sound_tag));
 	}
 
+	MONO_EXPORT void StopTaggedSoundComp(int sound_tag)
+	{
+
+		PPB.GetSystem<sound_system>().StopTriggeredSoundEvent(static_cast<size_t>(sound_tag));
+	}
+
 	void AddInternals()
 	{
 		mono_add_internal_call("CSScript.Application::Quit()", &MONO_APPLICATION::Quit);
@@ -48,6 +54,7 @@ namespace MONO_APPLICATION
 		mono_add_internal_call("CSScript.Application::TriggerGroupTaggedSound(string)", &MONO_APPLICATION::TriggerGroupTaggedSound);
 		mono_add_internal_call("CSScript.Application::Trigger3DTaggedSound(string,single,single,single,single,single,single,uint)", &MONO_APPLICATION::Trigger3DTaggedSound);
 		mono_add_internal_call("CSScript.Application::StopTaggedSound(string)", &MONO_APPLICATION::StopTaggedSound);
+		mono_add_internal_call("CSScript.Application::StopTaggedSoundComp(uint)", &MONO_APPLICATION::StopTaggedSoundComp);
 	}
 
 }
