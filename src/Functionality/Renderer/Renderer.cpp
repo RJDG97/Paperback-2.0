@@ -129,7 +129,7 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("Billboard", "../../resources/models/nui/Billboard.nui");	
 	m_Resources.Load3DMeshNUI("BillboardGrow", "../../resources/models/nui/BillboardGrow.nui");
-	m_Resources.Load3DMeshNUI("BillboardFreeze", "../../resources/models/nui/FrozenBillboard.nui");
+	m_Resources.Load3DMeshNUI("BillboardFreeze", "../../resources/models/nui/BillboardFreeze.nui");
 	m_Resources.Load3DMeshNUI("BillboardShrink", "../../resources/models/nui/BillboardShrink.nui");
 
 
@@ -254,7 +254,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("Level2WinScreen", "../../resources/models/nui/Level2WinScreen.nui");
 	m_Resources.Load3DMeshNUI("Level3WinScreen", "../../resources/models/nui/Level3WinScreen.nui");
 
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT_.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black", "../../resources/models/nui/MovingPlatformMRT_Black.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan", "../../resources/models/nui/MovingPlatformMRT_Cyan.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Green", "../../resources/models/nui/MovingPlatformMRT_Green.nui");
