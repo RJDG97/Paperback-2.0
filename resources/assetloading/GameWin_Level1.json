@@ -221,16 +221,16 @@
                         "Global Index": 3
                     },
                     "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "YouWonTitle",
+                        "Model": "Level1WinScreen",
+                        "Texture": "FirstLevelWinScreen.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 1920.0,
-                            "y": 1080.0,
+                            "x": 0.03999999910593033,
+                            "y": 0.03999999910593033,
                             "z": 0.0
                         }
                     },
@@ -238,7 +238,7 @@
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 180.0
+                            "z": 0.0
                         }
                     },
                     "Transform": {
@@ -525,7 +525,8 @@
                     },
                     "Bulk Sound": {
                         "Path": "event:/SFX_Menu_BTN_Clicked,event:/SFX_Menu_BTN_Hover",
-                        "Tags": "ButtonClickSFX,ButtonHoverSFX"
+                        "Tags": "ButtonClickSFX,ButtonHoverSFX",
+                        "Is 3D events": false
                     }
                 }
             ]
@@ -575,7 +576,8 @@
                     },
                     "Bulk Sound": {
                         "Path": "",
-                        "Tags": ""
+                        "Tags": "",
+                        "Is 3D events": false
                     }
                 }
             ]

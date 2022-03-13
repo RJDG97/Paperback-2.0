@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 454
+                "EntityHead": 461
             }
         },
         {
@@ -1732,6 +1732,272 @@
                 {
                     "Guid": [
                         0,
+                        14302600151082817442,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 454
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            455,
+                            456,
+                            457,
+                            458,
+                            459,
+                            460
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "AudioObj"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        14302600151082817442,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 455
+                    },
+                    "Sound": {
+                        "Path": "event:/BGM_Level1",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 454
+                    },
+                    "Name": {
+                        "Name": "BGMObj"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 456
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Red_StopMove",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 454
+                    },
+                    "Name": {
+                        "Name": "SFX_RedStop"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 457
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Blue_Jump",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 454
+                    },
+                    "Name": {
+                        "Name": "SFX_BlueJump"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 458
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Blue_WalkCombine",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 454
+                    },
+                    "Name": {
+                        "Name": "SFX_BlueWalk"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 459
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Red_Grab",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 454
+                    },
+                    "Name": {
+                        "Name": "SFX_RedGrab"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 460
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Char_Red_Move",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 454
+                    },
+                    "Name": {
+                        "Name": "SFX_RedWalk"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
                         10055872472107209861,
                         17008353085049151909,
                         16415915133639986106,
@@ -2287,333 +2553,6 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 364
-                    },
-                    "Mesh": {
-                        "Model": "Button_CraneLiftOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            365
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 38.49448013305664,
-                            "y": 4.254697322845459,
-                            "z": 13.142683982849121
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 148
-                    },
-                    "Name": {
-                        "Name": "Elevator Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 220
-                    },
-                    "Mesh": {
-                        "Model": "Button_TrainCyanOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            221
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 37.042076110839847,
-                            "y": 0.47262901067733767,
-                            "z": 3.992771625518799
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "MovingPlatformSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            14486341741652966143,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 219
-                    },
-                    "Name": {
-                        "Name": "Moving Platform Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 322
-                    },
-                    "Mesh": {
-                        "Model": "Button_GateOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            323
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.20000000298023225,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 34.81800079345703,
-                            "y": 0.5,
-                            "z": 2.2199885845184328
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "GateSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.44999998807907107,
-                            "y": -0.10000000149011612,
-                            "z": -0.27000001072883608
-                        },
-                        "Max Point": {
-                            "x": 0.44999998807907107,
-                            "y": 0.10000000149011612,
-                            "z": 0.27000001072883608
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            14486341741652966143,
-                            3617555656175080491,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 226
-                    },
-                    "Name": {
-                        "Name": "GateSwitch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
                         "Global Index": 233
                     },
                     "Mesh": {
@@ -2720,761 +2659,6 @@
                         "Inv Mass": 0.0
                     },
                     "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 286
-                    },
-                    "Mesh": {
-                        "Model": "Button_TrainCyanOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            287
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 41.98014450073242,
-                            "y": 2.337798595428467,
-                            "z": 9.769835472106934
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "MovingPlatformSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            14486341741652966143,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 219
-                    },
-                    "Name": {
-                        "Name": "Moving Platform Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 313
-                    },
-                    "Mesh": {
-                        "Model": "Button_GateOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            314
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 41.638458251953128,
-                            "y": 0.5,
-                            "z": 3.8971853256225588
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "GateSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.27000001072883608,
-                            "y": -0.10000000149011612,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.27000001072883608,
-                            "y": 0.10000000149011612,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 226
-                    },
-                    "Name": {
-                        "Name": "GateSwitch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 228
-                    },
-                    "Mesh": {
-                        "Model": "Button_GateOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            229
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 28.83027458190918,
-                            "y": 0.5,
-                            "z": 0.9556174874305725
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "GateSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.27000001072883608,
-                            "y": -0.10000000149011612,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.27000001072883608,
-                            "y": 0.10000000149011612,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 226
-                    },
-                    "Name": {
-                        "Name": "GateSwitch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 402
-                    },
-                    "Mesh": {
-                        "Model": "Button_CraneLiftOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            404
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 43.01124954223633,
-                            "y": 0.5170000195503235,
-                            "z": -3.9854490756988527
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 148
-                    },
-                    "Name": {
-                        "Name": "Elevator Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 207
-                    },
-                    "Mesh": {
-                        "Model": "Button_CraneLiftOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            208
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 42.60774612426758,
-                            "y": 2.304511308670044,
-                            "z": 11.874674797058106
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 148
-                    },
-                    "Name": {
-                        "Name": "Elevator Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 376
-                    },
-                    "Mesh": {
-                        "Model": "Button_TrainCyanOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            377
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 29.610050201416017,
-                            "y": 0.44921040534973147,
-                            "z": -2.9273006916046144
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "MovingPlatformSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            14486341741652966143,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 219
-                    },
-                    "Name": {
-                        "Name": "Moving Platform Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 302
-                    },
-                    "Mesh": {
-                        "Model": "Button_TrainCyanOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            394
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 35.63138961791992,
-                            "y": 0.47262901067733767,
-                            "z": 3.992771625518799
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "MovingPlatformSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            14486341741652966143,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 219
-                    },
-                    "Name": {
-                        "Name": "Moving Platform Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
                 }
             ]
         },
@@ -3497,326 +2681,6 @@
                         17639936325783395793,
                         11993994361337810638
                     ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 148
-                    },
-                    "Mesh": {
-                        "Model": "Button_CraneLiftOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            147
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            364,
-                            207,
-                            402
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 43.91999816894531,
-                            "y": 2.265000104904175,
-                            "z": -14.069999694824219
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "ElevatorSwitch"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Elevator Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 219
-                    },
-                    "Mesh": {
-                        "Model": "Button_TrainCyanOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            215
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            220,
-                            286,
-                            302,
-                            376
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.20000000298023225
-                        },
-                        "Position": {
-                            "x": 30.100000381469728,
-                            "y": 0.5,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": []
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.25,
-                            "y": -0.029999999329447748,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.25,
-                            "y": 0.029999999329447748,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Moving Platform Switch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                },
-                {
-                    "Entity": {
-                        "Global Index": 226
-                    },
-                    "Mesh": {
-                        "Model": "Button_GateOFF",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            227
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            313,
-                            322,
-                            228
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": []
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.27000001072883608,
-                            "y": -0.10000000149011612,
-                            "z": -0.44999998807907107
-                        },
-                        "Max Point": {
-                            "x": 0.27000001072883608,
-                            "y": 0.10000000149011612,
-                            "z": 0.44999998807907107
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "GateSwitch"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
                 },
                 {
                     "Entity": {
@@ -6213,6 +5077,1557 @@
                     },
                     "Name": {
                         "Name": "Moving Platform Detector"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14302600151082817442,
+                        13107566195444653040,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 364
+                    },
+                    "Mesh": {
+                        "Model": "Button_CraneLiftOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            365
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 38.49448013305664,
+                            "y": 4.254697322845459,
+                            "z": 13.142683982849121
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 148
+                    },
+                    "Name": {
+                        "Name": "Elevator Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 207
+                    },
+                    "Mesh": {
+                        "Model": "Button_CraneLiftOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            208
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 42.60774612426758,
+                            "y": 2.304511308670044,
+                            "z": 11.874674797058106
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 148
+                    },
+                    "Name": {
+                        "Name": "Elevator Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 402
+                    },
+                    "Mesh": {
+                        "Model": "Button_CraneLiftOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            404
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 43.01124954223633,
+                            "y": 0.5170000195503235,
+                            "z": -3.9854490756988527
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 148
+                    },
+                    "Name": {
+                        "Name": "Elevator Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 220
+                    },
+                    "Mesh": {
+                        "Model": "Button_TrainCyanOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Train_Loop",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            221
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 37.042076110839847,
+                            "y": 0.47262901067733767,
+                            "z": 3.992771625518799
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "MovingPlatformSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 219
+                    },
+                    "Name": {
+                        "Name": "Moving Platform Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 286
+                    },
+                    "Mesh": {
+                        "Model": "Button_TrainCyanOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Train_Loop",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            287
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 41.98014450073242,
+                            "y": 2.337798595428467,
+                            "z": 9.769835472106934
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "MovingPlatformSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 219
+                    },
+                    "Name": {
+                        "Name": "Moving Platform Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 302
+                    },
+                    "Mesh": {
+                        "Model": "Button_TrainCyanOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            394
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 35.63138961791992,
+                            "y": 0.47262901067733767,
+                            "z": 3.992771625518799
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "MovingPlatformSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 219
+                    },
+                    "Name": {
+                        "Name": "Moving Platform Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 376
+                    },
+                    "Mesh": {
+                        "Model": "Button_TrainCyanOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Train_Loop",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            377
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 29.610050201416017,
+                            "y": 0.44921040534973147,
+                            "z": -2.9273006916046144
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "MovingPlatformSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            17008353085049151909,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 219
+                    },
+                    "Name": {
+                        "Name": "Moving Platform Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 313
+                    },
+                    "Mesh": {
+                        "Model": "Button_GateOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Switch_Pressed",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            314
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 41.638458251953128,
+                            "y": 0.5,
+                            "z": 3.8971853256225588
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GateSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.27000001072883608,
+                            "y": -0.10000000149011612,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.27000001072883608,
+                            "y": 0.10000000149011612,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 226
+                    },
+                    "Name": {
+                        "Name": "GateSwitch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 322
+                    },
+                    "Mesh": {
+                        "Model": "Button_GateOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            323
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.20000000298023225,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 34.81800079345703,
+                            "y": 0.5,
+                            "z": 2.2199885845184328
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GateSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.10000000149011612,
+                            "z": -0.27000001072883608
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.10000000149011612,
+                            "z": 0.27000001072883608
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            3617555656175080491,
+                            17008353085049151909,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 226
+                    },
+                    "Name": {
+                        "Name": "GateSwitch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 228
+                    },
+                    "Mesh": {
+                        "Model": "Button_GateOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Switch_Pressed",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            229
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 28.83027458190918,
+                            "y": 0.5,
+                            "z": 0.9556174874305725
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GateSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.27000001072883608,
+                            "y": -0.10000000149011612,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.27000001072883608,
+                            "y": 0.10000000149011612,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 226
+                    },
+                    "Name": {
+                        "Name": "GateSwitch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14302600151082817442,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 148
+                    },
+                    "Mesh": {
+                        "Model": "Button_CraneLiftOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            147
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            364,
+                            207,
+                            402
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 43.91999816894531,
+                            "y": 2.265000104904175,
+                            "z": -14.069999694824219
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Elevator Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 219
+                    },
+                    "Mesh": {
+                        "Model": "Button_TrainCyanOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Train_Loop",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            215
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            220,
+                            286,
+                            302,
+                            376
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 30.100000381469728,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": []
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Moving Platform Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 226
+                    },
+                    "Mesh": {
+                        "Model": "Button_GateOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Switch_Pressed",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            227
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            313,
+                            322,
+                            228
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": []
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.27000001072883608,
+                            "y": -0.10000000149011612,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.27000001072883608,
+                            "y": 0.10000000149011612,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "GateSwitch"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -15908,10 +16323,10 @@
                             11,
                             12,
                             13,
-                            78,
                             14,
-                            79,
+                            78,
                             15,
+                            79,
                             16,
                             17,
                             18,
@@ -17322,10 +17737,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            1871702054972469046,
                             5691439207370049121,
-                            5509481706028819786,
+                            1871702054972469046,
                             9604788041699812520,
+                            5509481706028819786,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -17449,7 +17864,7 @@
                         "Position": {
                             "x": 40.69697952270508,
                             "y": 2.545503616333008,
-                            "z": -14.97162914276123
+                            "z": -15.32509708404541
                         }
                     },
                     "RigidForce": {
@@ -31441,8 +31856,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            192,
                             144,
+                            192,
                             145,
                             138,
                             141,
@@ -31543,9 +31958,9 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             153,
-                            132,
-                            164,
                             172,
+                            164,
+                            132,
                             158,
                             149,
                             170,
@@ -31747,11 +32162,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            247,
-                            296,
                             255,
-                            263,
+                            296,
+                            247,
                             248,
+                            263,
                             251,
                             252,
                             261,
@@ -31955,36 +32370,36 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
+                            258,
+                            386,
                             346,
                             282,
-                            386,
-                            258,
                             269,
                             339,
                             275,
-                            278,
                             342,
+                            278,
                             279,
                             280,
-                            281,
                             345,
-                            277,
+                            281,
                             341,
+                            277,
+                            349,
                             413,
                             285,
-                            349,
+                            353,
                             417,
                             289,
-                            353,
+                            354,
                             418,
                             290,
-                            354,
                             299,
                             300,
                             301,
                             303,
-                            311,
                             375,
+                            311,
                             312,
                             316,
                             317,
@@ -31994,12 +32409,12 @@
                             330,
                             340,
                             347,
-                            348,
                             412,
-                            350,
+                            348,
                             414,
-                            351,
+                            350,
                             415,
+                            351,
                             355,
                             357,
                             358,
@@ -32017,8 +32432,8 @@
                             387,
                             388,
                             389,
-                            399,
                             335,
+                            399,
                             336,
                             334,
                             416
@@ -33689,11 +34104,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            196,
-                            188,
                             180,
-                            166,
+                            188,
+                            196,
                             190,
+                            166,
                             161,
                             167,
                             168,
@@ -34935,12 +35350,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            158,
                             293,
-                            243,
+                            158,
                             284,
-                            244,
+                            243,
                             283,
+                            244,
                             250,
                             274,
                             338,

@@ -1,0 +1,124 @@
+{
+    "Prefabs": [
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        3617555656175080491,
+                        16415915133639986106,
+                        223102351977301267,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 223
+                    },
+                    "Mesh": {
+                        "Model": "Billboard",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 35.900001525878909,
+                            "y": 2.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -0.8999999761581421,
+                            "z": -1.2000000476837159
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 0.8999999761581421,
+                            "z": 1.2000000476837159
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Moving Billboard"
+                    },
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 1.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": false
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        }
+    ]
+}
