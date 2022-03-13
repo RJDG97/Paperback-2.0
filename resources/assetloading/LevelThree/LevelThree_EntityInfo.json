@@ -4624,7 +4624,7 @@
             "Entity Info": {
                 "Archetype Guid": 0,
                 "PoolDetails": {
-                    "Pool Key": 4294967295,
+                    "Pool Key": 0,
                     "Pool Index": 463
                 },
                 "Validation": {
