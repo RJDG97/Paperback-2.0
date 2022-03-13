@@ -803,6 +803,7 @@ bool SlopeValid(slope& Slope, int& result)
 		return true;
 	}
 
+	result = 0;
 	return false;
 }
 
@@ -811,7 +812,7 @@ bool SlopeaabbDynamic(boundingbox* Bbox1, rigidforce* rf1, transform& t1, mass* 
 {
 	
 	bool slope1_valid, slope2_valid;
-	int slope1_dir, slope2_dir;
+	int slope1_dir{}, slope2_dir{};
 	slope1_valid = (Slope1) ? SlopeValid(*Slope1, slope1_dir) : false;
 	slope2_valid = (Slope2) ? SlopeValid(*Slope2, slope2_dir) : false;
 
