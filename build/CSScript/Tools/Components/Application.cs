@@ -15,5 +15,17 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern static void ChangeScene(string scene_name);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static void TriggerTaggedSound(string sound_tag);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static void TriggerGroupTaggedSound(string sound_tag);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static void Trigger3DTaggedSound(string sound_tag, float pos_x, float pos_y, float pos_z, float vel_x, float vel_y, float vel_z, UInt32 entity_id);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static void StopTaggedSound(string sound_tag);
     }
 }
