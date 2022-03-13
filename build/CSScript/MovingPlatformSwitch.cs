@@ -52,7 +52,7 @@ namespace CSScript
                 m_ChildPathFollower.m_PauseTravel = false;
                 m_ChildPathFollower.m_Reversed = false;
                 m_Sound.m_Trigger = true;
-                m_PlatformSound.m_Trigger = true;
+                //m_PlatformSound.m_Trigger = true;
             }
         }
         public void OnCollisionStay(UInt32 ID)
