@@ -26,7 +26,7 @@ namespace CSScript
             SHRINK
         };
 
-        List<Ability> m_Abilities;
+        List<Ability> m_Abilities = new List<Ability>();
 
         public static CardDisplay getInst()
         {
@@ -41,7 +41,7 @@ namespace CSScript
             m_JumpUnitPC = new PlayerController(m_JumpID);
             m_PushUnitPC = new PlayerController(m_PushID);
 
-            Mesh m_E = new Mesh(m_ID);
+            m_E = new Mesh(m_ID);
             Parent m_Parent = new Parent(m_ID);
 
             Int32 m_ChildID1 = m_Parent.GetChildIDofName("Card 1");
@@ -51,24 +51,38 @@ namespace CSScript
             if (m_ChildID1 != -1 && m_ChildID2 != -1 && m_ChildID3 != -1)
             {
                 m_CardOne = new Mesh((UInt32)m_ChildID1);
-                m_CardOne = new Mesh((UInt32)m_ChildID2);
-                m_CardOne = new Mesh((UInt32)m_ChildID3);
+                m_CardTwo = new Mesh((UInt32)m_ChildID2);
+                m_CardThree = new Mesh((UInt32)m_ChildID3);
+                m_CardOne.m_Active = false;
+                m_CardTwo.m_Active = false;
+                m_CardThree.m_Active = false;
             }
 
             m_E.m_Active = true;
-            m_CardOne.m_Active = false;
-            m_CardTwo.m_Active = false;
-            m_CardThree.m_Active = false;
         }
+
         public void Update(float dt)
         {
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
             {
                 m_E.m_Active = false;
-                m_CardOne.m_Active = true;
-                m_CardTwo.m_Active = true;
-                m_CardThree.m_Active = true;
 
+                if (m_Abilities.Count > 0)
+                {
+                    m_CardOne.m_Active = true;
+                }
+
+                if (m_Abilities.Count > 1)
+                {
+                    m_CardTwo.m_Active = true;
+                }
+
+                if (m_Abilities.Count > 2)
+                {
+                    m_CardThree.m_Active = true;
+                }
+
+                Debug.Log(m_Abilities.Count.ToString());
                 if (Input.IsKeyPress(Input.PB_TAB) && m_Abilities.Count > 1)
                 {
                     Ability first = m_Abilities[0];
@@ -76,7 +90,7 @@ namespace CSScript
                     m_Abilities.Add(first);
                 }
             }
-            
+
             else
             {
                 m_E.m_Active = true;
@@ -112,9 +126,20 @@ namespace CSScript
                 }
             }
 
-            UpdateCardMesh(m_CardOne);
-            UpdateCardMesh(m_CardTwo);
-            UpdateCardMesh(m_CardThree);
+            if (m_Abilities.Count > 0)
+            {
+                UpdateCardMesh(m_CardOne, 0);
+            }
+
+            if (m_Abilities.Count > 1)
+            {
+                UpdateCardMesh(m_CardTwo, 1);
+            }
+
+            if (m_Abilities.Count > 2)
+            {
+                UpdateCardMesh(m_CardThree, 2);
+            }
         }
 
         public void Destroy()
@@ -131,9 +156,9 @@ namespace CSScript
         {
         }
 
-        private void UpdateCardMesh(Mesh card)
+        private void UpdateCardMesh(Mesh card, int i)
         {
-            switch (m_Abilities[0])
+            switch (m_Abilities[i])
             {
                 case Ability.STOP_MOVING_PLATFORM:
                 {
