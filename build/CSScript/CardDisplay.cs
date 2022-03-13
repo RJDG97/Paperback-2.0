@@ -69,7 +69,7 @@ namespace CSScript
                 m_CardTwo.m_Active = true;
                 m_CardThree.m_Active = true;
 
-                if (Input.IsKeyPress(Input.PB_TAB))
+                if (Input.IsKeyPress(Input.PB_TAB) && m_Abilities.Count > 1)
                 {
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
