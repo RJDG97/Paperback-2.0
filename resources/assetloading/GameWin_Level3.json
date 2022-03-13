@@ -221,17 +221,17 @@
                         "Global Index": 3
                     },
                     "Mesh": {
-                        "Model": "Level1WinScreen",
-                        "Texture": "FirstLevelWinScreen.dds",
+                        "Model": "Level3WinScreen",
+                        "Texture": "YouWonTitle",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.03999999910593033,
-                            "y": 0.03999999910593033,
-                            "z": 0.0
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
                         }
                     },
                     "Rotation": {
@@ -250,7 +250,7 @@
                         "Position": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": -10.399999618530274
+                            "z": -0.10000000149011612
                         }
                     },
                     "ReferencePrefab": {
@@ -336,9 +336,9 @@
                             "",
                             ""
                         ],
-                        "Button State": 0,
+                        "Button State": 2,
                         "Layer Grouping": 0,
-                        "Script Guid": 3221504161959520552,
+                        "Script Guid": 15749047530650113623,
                         "Active Status": true
                     }
                 }
@@ -624,19 +624,19 @@
                             "z": 0.0
                         },
                         "Ambient": {
-                            "x": 255.0,
-                            "y": 255.0,
-                            "z": 255.0
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         },
                         "Diffuse": {
-                            "x": 255.0,
-                            "y": 255.0,
-                            "z": 255.0
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         },
                         "Specular": {
-                            "x": 255.0,
-                            "y": 255.0,
-                            "z": 255.0
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
                     }
                 }
@@ -666,12 +666,13 @@
                         "Position": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": -16.200000762939454
                         }
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            12326225187096344837
+                            12326225187096344837,
+                            17008353085049151909
                         ],
                         "Prefab GID": 11
                     },
