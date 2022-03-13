@@ -149,12 +149,12 @@ namespace CSScript
                                 parent_animator.m_PauseAnimation = false;
                             }
 
-                            else if (name.m_Name == "Elevator")
+                            else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                             {
                                 Animator animator = new Animator(m_SelectedID);
                                 Mesh collided_mesh = new Mesh(m_SelectedID);
                                 collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
-                                animator.m_PauseAnimation = true;
+                                animator.m_PauseAnimation = false;
                             }
 
                             break;
@@ -176,6 +176,9 @@ namespace CSScript
                             rigid_force.m_GravityAffected = true;
 
                             pushable.m_State = --pushable.m_State;
+
+                            Mesh collided_mesh = new Mesh(m_SelectedID);
+                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
                             break;
                         }
 
@@ -194,6 +197,9 @@ namespace CSScript
                             rigid_force.m_GravityAffected = true;
 
                             pushable.m_State = ++pushable.m_State;
+
+                            Mesh collided_mesh = new Mesh(m_SelectedID);
+                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                             break;
                         }
                     }
@@ -273,7 +279,7 @@ namespace CSScript
                             ChangeBar();
                         }
 
-                        else if (name.m_Name == "Elevator")
+                        else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                         {
                             m_AbilityActive = true;
                             m_SelectedID = collided_id;
@@ -310,6 +316,9 @@ namespace CSScript
 
                                 pushable.m_State = ++pushable.m_State;
 
+                                Mesh collided_mesh = new Mesh(collided_id);
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
+
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.GROW;
@@ -341,6 +350,9 @@ namespace CSScript
                                 rigid_force.m_GravityAffected = true;
 
                                 pushable.m_State = --pushable.m_State;
+
+                                Mesh collided_mesh = new Mesh(collided_id);
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
 
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;

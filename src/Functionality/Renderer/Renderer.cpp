@@ -128,9 +128,9 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("BagShelf", "../../resources/models/nui/BagShelf.nui");
 
 	m_Resources.Load3DMeshNUI("Billboard", "../../resources/models/nui/Billboard.nui");	
-	m_Resources.Load3DMeshNUI("BillboardGrow", "../../resources/models/nui/BillboardGrow.nui");
+	//m_Resources.Load3DMeshNUI("BillboardGrow", "../../resources/models/nui/BillboardGrow.nui");
 	m_Resources.Load3DMeshNUI("Billboard_Freeze", "../../resources/models/nui/BillboardFreeze.nui");
-	m_Resources.Load3DMeshNUI("BillboardShrink", "../../resources/models/nui/BillboardShrink.nui");
+	//m_Resources.Load3DMeshNUI("BillboardShrink", "../../resources/models/nui/BillboardShrink.nui");
 
 
 	m_Resources.Load3DMeshNUI("BookABC", "../../resources/models/nui/BookABC.nui");
@@ -198,9 +198,9 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("CraneElevator", "../../resources/models/nui/CraneElevator.nui");
 	m_Resources.Load3DMeshNUI("CraneElevatorAlt", "../../resources/models/nui/CraneElevatorAlt.nui");
-	m_Resources.Load3DMeshNUI("CraneElevatorGrow", "../../resources/models/nui/CraneElevatorGrow.nui");
+	//m_Resources.Load3DMeshNUI("CraneElevatorGrow", "../../resources/models/nui/CraneElevatorGrow.nui");
 	m_Resources.Load3DMeshNUI("CraneElevator_Freeze", "../../resources/models/nui/CraneElevatorFreeze.nui");
-	m_Resources.Load3DMeshNUI("CraneElevatorShrink", "../../resources/models/nui/CraneElevatorShrink.nui");
+	//m_Resources.Load3DMeshNUI("CraneElevatorShrink", "../../resources/models/nui/CraneElevatorShrink.nui");
 
 	m_Resources.Load3DMeshNUI("CylinderBlock_Blue", "../../resources/models/nui/CylinderBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("CylinderBlock_Green", "../../resources/models/nui/CylinderBlock_Green.nui");
@@ -234,13 +234,13 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("InstructionManualPage04", "../../resources/models/nui/InstructionManualPage04.nui");
 
 	m_Resources.Load3DMeshNUI("InteractableBlock2x2", "../../resources/models/nui/InteractableBlock2x2.nui");
-	m_Resources.Load3DMeshNUI("Interactable2x2_Grow", "../../resources/models/nui/InteractableBlock2x2Grow.nui");
-	m_Resources.Load3DMeshNUI("Interactable2x2_Freeze", "../../resources/models/nui/InteractableBlock2x2Freeze.nui");
-	m_Resources.Load3DMeshNUI("Interactable2x2_Shrink", "../../resources/models/nui/InteractableBlock2x2Shrink.nui");
+	m_Resources.Load3DMeshNUI("InteractableBlock2x2_Grow", "../../resources/models/nui/InteractableBlock2x2Grow.nui");
+	//m_Resources.Load3DMeshNUI("Interactable2x2_Freeze", "../../resources/models/nui/InteractableBlock2x2Freeze.nui");
+	m_Resources.Load3DMeshNUI("InteractableBlock2x2_Shrink", "../../resources/models/nui/InteractableBlock2x2Shrink.nui");
 	m_Resources.Load3DMeshNUI("InteractableBlock3x1", "../../resources/models/nui/InteractableBlock3x1.nui");
 	m_Resources.Load3DMeshNUI("InteractableBlock3x3", "../../resources/models/nui/InteractableBlock3x3.nui");
-	m_Resources.Load3DMeshNUI("Interactable3x3_Grow", "../../resources/models/nui/InteractableBlock3x3Grow.nui");
-	m_Resources.Load3DMeshNUI("Interactable3x3_Freeze", "../../resources/models/nui/InteractableBlock3x3Freeze.nui");
+	m_Resources.Load3DMeshNUI("InteractableBlock3x3_Grow", "../../resources/models/nui/InteractableBlock3x3Grow.nui");
+	//m_Resources.Load3DMeshNUI("Interactable3x3_Freeze", "../../resources/models/nui/InteractableBlock3x3Freeze.nui");
 	m_Resources.Load3DMeshNUI("Interactable3x3_Shrink", "../../resources/models/nui/InteractableBlock3x3Shrink.nui");
 
 
@@ -256,24 +256,24 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black", "../../resources/models/nui/MovingPlatformMRT_Black.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_BlackFreeze", "../../resources/models/nui/MovingPlatformMRT_BlackFreeze.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_BlackGrow", "../../resources/models/nui/MovingPlatformMRT_BlackGrow.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_BlackShrink", "../../resources/models/nui/MovingPlatformMRT_BlackShrink.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black_Freeze", "../../resources/models/nui/MovingPlatformMRT_BlackFreeze.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_BlackGrow", "../../resources/models/nui/MovingPlatformMRT_BlackGrow.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_BlackShrink", "../../resources/models/nui/MovingPlatformMRT_BlackShrink.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan", "../../resources/models/nui/MovingPlatformMRT_Cyan.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_CyanFreeze", "../../resources/models/nui/MovingPlatformMRT_CyanFreeze.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_CyanGrow", "../../resources/models/nui/MovingPlatformMRT_CyanGrow.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_CyanShrink", "../../resources/models/nui/MovingPlatformMRT_CyanShrink.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan_Freeze", "../../resources/models/nui/MovingPlatformMRT_CyanFreeze.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_CyanGrow", "../../resources/models/nui/MovingPlatformMRT_CyanGrow.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_CyanShrink", "../../resources/models/nui/MovingPlatformMRT_CyanShrink.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Green", "../../resources/models/nui/MovingPlatformMRT_Green.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_GreenFreeze", "../../resources/models/nui/MovingPlatformMRT_GreenFreeze.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_GreenGrow", "../../resources/models/nui/MovingPlatformMRT_GreenGrow.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_GreenShrink", "../../resources/models/nui/MovingPlatformMRT_GreenShrink.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Grow", "../../resources/models/nui/MovingPlatformMRT_Grow.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Green_Freeze", "../../resources/models/nui/MovingPlatformMRT_GreenFreeze.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_GreenGrow", "../../resources/models/nui/MovingPlatformMRT_GreenGrow.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_GreenShrink", "../../resources/models/nui/MovingPlatformMRT_GreenShrink.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_Grow", "../../resources/models/nui/MovingPlatformMRT_Grow.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Freeze", "../../resources/models/nui/MovingPlatformMRT_Freeze.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple", "../../resources/models/nui/MovingPlatformMRT_Purple.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_PurpleFreeze", "../../resources/models/nui/MovingPlatformMRT_PurpleFreeze.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_PurpleGrow", "../../resources/models/nui/MovingPlatformMRT_PurpleGrow.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_PurpleShrink", "../../resources/models/nui/MovingPlatformMRT_PurpleShrink.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Shrink", "../../resources/models/nui/MovingPlatformMRT_Shrink.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple_Freeze", "../../resources/models/nui/MovingPlatformMRT_PurpleFreeze.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_PurpleGrow", "../../resources/models/nui/MovingPlatformMRT_PurpleGrow.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_PurpleShrink", "../../resources/models/nui/MovingPlatformMRT_PurpleShrink.nui");
+	//m_Resources.Load3DMeshNUI("MovingPlatformMRT_Shrink", "../../resources/models/nui/MovingPlatformMRT_Shrink.nui");
 
 	m_Resources.Load3DMeshNUI("ProjectorCart", "../../resources/models/nui/ProjectorCart.nui");
 
@@ -297,10 +297,10 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("Shelf", "../../resources/models/nui/Shelf.nui");
 
 	m_Resources.Load3DMeshNUI("ShortGate", "../../resources/models/nui/ShortGate.nui");
-	m_Resources.Load3DMeshNUI("ShortGateGrow", "../../resources/models/nui/ShortGate_Grow.nui");
+	//m_Resources.Load3DMeshNUI("ShortGateGrow", "../../resources/models/nui/ShortGate_Grow.nui");
 	m_Resources.Load3DMeshNUI("ShortGateFence", "../../resources/models/nui/ShortGateFence.nui");
 	m_Resources.Load3DMeshNUI("ShortGate_Freeze", "../../resources/models/nui/ShortGate_Freeze.nui");
-	m_Resources.Load3DMeshNUI("ShortGateShrink", "../../resources/models/nui/ShortGate_Shrink.nui");
+	//m_Resources.Load3DMeshNUI("ShortGateShrink", "../../resources/models/nui/ShortGate_Shrink.nui");
 
 	m_Resources.Load3DMeshNUI("ShrinkCard", "../../resources/models/nui/ShrinkCard.nui");
 
@@ -318,10 +318,10 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("Table", "../../resources/models/nui/Table.nui");
 
 	m_Resources.Load3DMeshNUI("TallGate", "../../resources/models/nui/TallGate.nui");
-	m_Resources.Load3DMeshNUI("TallGateGrow", "../../resources/models/nui/TallGateGrow.nui");
+	//m_Resources.Load3DMeshNUI("TallGateGrow", "../../resources/models/nui/TallGateGrow.nui");
 	m_Resources.Load3DMeshNUI("TallGateFence", "../../resources/models/nui/TallGateFence.nui");
 	m_Resources.Load3DMeshNUI("TallGate_Freeze", "../../resources/models/nui/TallGateFreeze.nui");
-	m_Resources.Load3DMeshNUI("TallGateShrink", "../../resources/models/nui/TallGateShrink.nui");
+	//m_Resources.Load3DMeshNUI("TallGateShrink", "../../resources/models/nui/TallGateShrink.nui");
 
 
 	m_Resources.Load3DMeshNUI("ThickBookend", "../../resources/models/nui/ThickBookend.nui");

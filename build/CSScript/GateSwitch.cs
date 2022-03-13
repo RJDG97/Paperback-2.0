@@ -17,9 +17,11 @@ namespace CSScript
 
         BoundingBox m_ChildBoundingBox; //gate is child
         Animator m_ChildAnimator;
+        Transform m_ChildTransform;
 
         Tools.MathLib.Vector3 m_InitialBoundingBoxMin;
         Tools.MathLib.Vector3 m_InitialBoundingBoxMax;
+        Tools.MathLib.Vector3 m_InitialBBOffset;
 
         public static GateSwitch getInst()
         {
@@ -40,19 +42,26 @@ namespace CSScript
             {
                 m_ChildBoundingBox = new BoundingBox((UInt32)m_ChildID);
                 m_ChildAnimator = new Animator((UInt32)m_ChildID);
+                m_ChildTransform = new Transform((UInt32)m_ChildID);
+
+                m_ChildAnimator.m_PauseAtTime = 0;
+                m_InitialBoundingBoxMin = m_ChildBoundingBox.Min;
+                m_InitialBoundingBoxMax = m_ChildBoundingBox.Max;
+                m_InitialBBOffset = m_ChildTransform.m_Offset;
             }
 
             m_Sound.m_Trigger = false;
-
-            m_InitialBoundingBoxMin = m_ChildBoundingBox.Min;
-            m_InitialBoundingBoxMax = m_ChildBoundingBox.Max;
-
-            m_ChildAnimator.m_PauseAtTime = 0;
             m_Mesh.m_Model = "Button_GateOFF";
         }
 
+        public void PreUpdate(float dt)
+        {
+            m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
+                                                                  m_InitialBBOffset.y, m_InitialBBOffset.z);
+        }
         public void Update(float dt)
         {
+
         }
 
         public void Destroy()
@@ -64,11 +73,9 @@ namespace CSScript
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 m_Sound.m_Trigger = true;
-                m_ChildBoundingBox.Min = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
-                m_ChildBoundingBox.Max = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                 m_ChildAnimator.m_Reversed = false;
                 m_ChildAnimator.m_PauseAnimation = false;
-                m_ChildAnimator.m_PauseAtTime = 74;
+                m_ChildAnimator.m_PauseAtTime = 48;
                 m_Mesh.m_Model = "Button_GateON";
             }
         }
@@ -79,8 +86,6 @@ namespace CSScript
         {
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
-                m_ChildBoundingBox.Min = m_InitialBoundingBoxMin;
-                m_ChildBoundingBox.Max = m_InitialBoundingBoxMax;
                 m_ChildAnimator.m_Reversed = true;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 0;
