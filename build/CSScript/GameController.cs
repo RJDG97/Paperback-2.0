@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace CSScript
 {
@@ -23,7 +24,6 @@ namespace CSScript
             SHRINK
         };
 
-        Ability m_Current_Ability = Ability.STOP_MOVING_PLATFORM;
         float m_ScaleFactor = 1.5f;
         float m_AbilityDuration = 3.0f;
         float m_AbilityTimer = 0.0f;
@@ -37,6 +37,8 @@ namespace CSScript
         Offset m_InnerBarOffset;
         Tools.MathLib.Vector3 m_InnerBarInitialPos;
         Tools.MathLib.Vector3 m_InnerBarInitialScale;
+
+        List<Ability> m_Abilities = new List<Ability>();
 
         enum PushableState
         {
@@ -86,6 +88,7 @@ namespace CSScript
             m_JumpUnitCamera.m_Active = true;
             m_PushUnitCamera.m_Active = false;
         }
+
         public void Update(float dt)
         {
             if (Input.IsKeyPress(Input.PB_Q) && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
@@ -107,11 +110,15 @@ namespace CSScript
                 }
             }
 
+            CheckAbilitiesUnlocked();
+
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
             {
                 if (Input.IsKeyPress(Input.PB_TAB))
                 {
-                    m_Current_Ability = (Ability)(((uint)++m_Current_Ability) % 3);
+                    Ability first = m_Abilities[0];
+                    m_Abilities.RemoveAt(0);
+                    m_Abilities.Add(first);
                 }
             }
 
@@ -162,21 +169,7 @@ namespace CSScript
 
                         case Ability.GROW:
                         {
-                            Pushable pushable = new Pushable(m_SelectedID);
-
-                            Scale scale = new Scale(m_SelectedID);
-                            scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);
-
-                            BoundingBox bounding_box = new BoundingBox(m_SelectedID);
-                            bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x / m_ScaleFactor, bounding_box.Min.y / m_ScaleFactor, bounding_box.Min.z / m_ScaleFactor);
-                            bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x / m_ScaleFactor, bounding_box.Max.y / m_ScaleFactor, bounding_box.Max.z / m_ScaleFactor);
-
-                            Rigidforce rigid_force = new Rigidforce(m_SelectedID);
-                            rigid_force.m_CollisionAffected = true;
-                            rigid_force.m_GravityAffected = true;
-
-                            pushable.m_State = --pushable.m_State;
-
+                            Shrink(m_SelectedID);
                             Mesh collided_mesh = new Mesh(m_SelectedID);
                             collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
                             break;
@@ -184,20 +177,7 @@ namespace CSScript
 
                         case Ability.SHRINK:
                         {
-                            Pushable pushable = new Pushable(m_SelectedID);
-                            Scale scale = new Scale(m_SelectedID);
-                            scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_ScaleFactor, scale.m_Value.y * m_ScaleFactor, scale.m_Value.z * m_ScaleFactor);
-
-                            BoundingBox bounding_box = new BoundingBox(m_SelectedID);
-                            bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x * m_ScaleFactor, bounding_box.Min.y * m_ScaleFactor, bounding_box.Min.z * m_ScaleFactor);
-                            bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x * m_ScaleFactor, bounding_box.Max.y * m_ScaleFactor, bounding_box.Max.z * m_ScaleFactor);
-
-                            Rigidforce rigid_force = new Rigidforce(m_SelectedID);
-                            rigid_force.m_CollisionAffected = true;
-                            rigid_force.m_GravityAffected = true;
-
-                            pushable.m_State = ++pushable.m_State;
-
+                            Grow(m_SelectedID);
                             Mesh collided_mesh = new Mesh(m_SelectedID);
                             collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                             break;
@@ -233,139 +213,183 @@ namespace CSScript
         {
         }
 
+        private void CheckAbilitiesUnlocked()
+        {
+            if (m_Abilities.Count < 3) //keep checking if not all abilities are picked up
+            {
+                if (m_JumpUnitPC.m_FreezeAvailable)
+                {
+                    if (!m_Abilities.Any(x => x == Ability.STOP_MOVING_PLATFORM))
+                    {
+                        m_Abilities.Add(Ability.STOP_MOVING_PLATFORM);
+                    }
+                }
+
+                if (m_JumpUnitPC.m_GrowAvailable)
+                {
+                    if (!m_Abilities.Any(x => x == Ability.GROW))
+                    {
+                        m_Abilities.Add(Ability.GROW);
+                    }
+                }
+
+                if (m_JumpUnitPC.m_ShrinkAvailable)
+                {
+                    if (!m_Abilities.Any(x => x == Ability.SHRINK))
+                    {
+                        m_Abilities.Add(Ability.SHRINK);
+                    }
+                }
+            }
+        }
+
         private void CastRay(UInt32 id)
         {
             UInt32[] collided_ids = Tools.Raycast.rayaab(id);
 
-            foreach (UInt32 collided_id in collided_ids)
-            {
-                switch (m_Current_Ability)
+            if (m_Abilities.Count > 0)
+            { 
+                foreach (UInt32 collided_id in collided_ids)
                 {
-                    case Ability.STOP_MOVING_PLATFORM:
+                    switch (m_Abilities[0])
                     {
-                        Name name = new Name(collided_id);
-
-                        if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard" /*&& (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable)*/ )
+                        case Ability.STOP_MOVING_PLATFORM:
                         {
-                            PathFollower path_follower = new PathFollower(collided_id);
+                            Name name = new Name(collided_id);
 
-                            if (path_follower.m_Distance > 0.0001f)
+                            if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard" /*&& (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable)*/ )
                             {
-                                path_follower.m_PauseTravel = !path_follower.m_PauseTravel;
+                                PathFollower path_follower = new PathFollower(collided_id);
 
+                                if (path_follower.m_Distance > 0.0001f)
+                                {
+                                    path_follower.m_PauseTravel = !path_follower.m_PauseTravel;
+
+                                    m_AbilityActive = true;
+                                    m_SelectedID = collided_id;
+                                    m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+                                    Mesh collided_mesh = new Mesh(collided_id);
+                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+                                    
+                                    ChangeBar();
+                                    return;
+                                }
+                            }
+
+                            else if (name.m_Name == "Platform")
+                            {
                                 m_AbilityActive = true;
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
 
+                                Child child  = new Child(collided_id);
+                                Animator parent_animator = new Animator((UInt32)child.m_ParentID);
+                                Mesh parent_mesh = new Mesh((UInt32)child.m_ParentID);
+                                parent_mesh.m_Model = parent_mesh.m_Model + "_Freeze";
+                                parent_animator.m_PauseAnimation = true;
+                                ChangeBar();
+                            }
+
+                            else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
+                            {
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+                                Animator animator = new Animator(collided_id);
                                 Mesh collided_mesh = new Mesh(collided_id);
                                 collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
-                                    
+                                animator.m_PauseAnimation = true;
                                 ChangeBar();
-                                return;
                             }
+
+                            break;
                         }
 
-                        else if (name.m_Name == "Platform")
+                        case Ability.GROW:
                         {
-                            m_AbilityActive = true;
-                            m_SelectedID = collided_id;
-                            m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
-
-                            Child child  = new Child(collided_id);
-                            Animator parent_animator = new Animator((UInt32)child.m_ParentID);
-                            Mesh parent_mesh = new Mesh((UInt32)child.m_ParentID);
-                            parent_mesh.m_Model = parent_mesh.m_Model + "_Freeze";
-                            parent_animator.m_PauseAnimation = true;
-                            ChangeBar();
-                        }
-
-                        else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
-                        {
-                            m_AbilityActive = true;
-                            m_SelectedID = collided_id;
-                            m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
-
-                            Animator animator = new Animator(collided_id);
-                            Mesh collided_mesh = new Mesh(collided_id);
-                            collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
-                            animator.m_PauseAnimation = true;
-                            ChangeBar();
-                        }
-
-                        break;
-                    }
-
-                    case Ability.GROW:
-                    {
-                        if (Tools.Tag.IsPushable(collided_id))
-                        {
-                            Pushable pushable = new Pushable(collided_id);
-
-                            if ( pushable.m_State != ((uint)PushableState.GROWN) /*&& (m_JumpUnitPC.m_GrowAvailable || m_PushUnitPC.m_GrowAvailable)*/ )
+                            if (Tools.Tag.IsPushable(collided_id))
                             {
-                                Scale scale = new Scale(collided_id);
-                                scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_ScaleFactor, scale.m_Value.y * m_ScaleFactor, scale.m_Value.z * m_ScaleFactor);
+                                Pushable pushable = new Pushable(collided_id);
 
-                                BoundingBox bounding_box = new BoundingBox(collided_id);
-                                bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x * m_ScaleFactor, bounding_box.Min.y * m_ScaleFactor, bounding_box.Min.z * m_ScaleFactor);
-                                bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x * m_ScaleFactor, bounding_box.Max.y * m_ScaleFactor, bounding_box.Max.z * m_ScaleFactor);
+                                if ( pushable.m_State != ((uint)PushableState.GROWN) /*&& (m_JumpUnitPC.m_GrowAvailable || m_PushUnitPC.m_GrowAvailable)*/ )
+                                {
+                                    Grow(collided_id);
 
-                                Rigidforce rigid_force = new Rigidforce(collided_id);
-                                rigid_force.m_CollisionAffected = true;
-                                rigid_force.m_GravityAffected = true;
+                                    Mesh collided_mesh = new Mesh(collided_id);
+                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
 
-                                pushable.m_State = ++pushable.m_State;
-
-                                Mesh collided_mesh = new Mesh(collided_id);
-                                collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
-
-                                m_AbilityActive = true;
-                                m_SelectedID = collided_id;
-                                m_AbilityUsed = Ability.GROW;
-                                ChangeBar();
-                                return;
+                                    m_AbilityActive = true;
+                                    m_SelectedID = collided_id;
+                                    m_AbilityUsed = Ability.GROW;
+                                    ChangeBar();
+                                    return;
+                                }
                             }
+
+                            break;
                         }
 
-                        break;
-                    }
-
-                    case Ability.SHRINK:
-                    {
-                        if (Tools.Tag.IsPushable(collided_id))
+                        case Ability.SHRINK:
                         {
-                            Pushable pushable = new Pushable(collided_id);
-
-                            if (pushable.m_State != ((uint)PushableState.SHRUNK) /*&& (m_JumpUnitPC.m_ShrinkAvailable || m_PushUnitPC.m_ShrinkAvailable)*/ )
+                            if (Tools.Tag.IsPushable(collided_id))
                             {
-                                Scale scale = new Scale(collided_id);
-                                scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);
+                                Pushable pushable = new Pushable(collided_id);
 
-                                BoundingBox bounding_box = new BoundingBox(collided_id);
-                                bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x / m_ScaleFactor, bounding_box.Min.y / m_ScaleFactor, bounding_box.Min.z / m_ScaleFactor);
-                                bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x / m_ScaleFactor, bounding_box.Max.y / m_ScaleFactor, bounding_box.Max.z / m_ScaleFactor);
+                                if (pushable.m_State != ((uint)PushableState.SHRUNK) /*&& (m_JumpUnitPC.m_ShrinkAvailable || m_PushUnitPC.m_ShrinkAvailable)*/ )
+                                {
+                                    Shrink(collided_id);
+                                    Mesh collided_mesh = new Mesh(collided_id);
+                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
 
-                                Rigidforce rigid_force = new Rigidforce(collided_id);
-                                rigid_force.m_CollisionAffected = true;
-                                rigid_force.m_GravityAffected = true;
-
-                                pushable.m_State = --pushable.m_State;
-
-                                Mesh collided_mesh = new Mesh(collided_id);
-                                collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
-
-                                m_AbilityActive = true;
-                                m_SelectedID = collided_id;
-                                m_AbilityUsed = Ability.SHRINK;
-                                ChangeBar();
-                                return;
+                                    m_AbilityActive = true;
+                                    m_SelectedID = collided_id;
+                                    m_AbilityUsed = Ability.SHRINK;
+                                    ChangeBar();
+                                    return;
+                                }
                             }
-                        }
 
-                        break;
+                            break;
+                        }
                     }
                 }
             }
+        }
+
+        private void Grow(UInt32 ID)
+        {
+            Pushable pushable = new Pushable(ID);
+            Scale scale = new Scale(ID);
+            scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_ScaleFactor, scale.m_Value.y * m_ScaleFactor, scale.m_Value.z * m_ScaleFactor);
+
+            BoundingBox bounding_box = new BoundingBox(ID);
+            bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x * m_ScaleFactor, bounding_box.Min.y * m_ScaleFactor, bounding_box.Min.z * m_ScaleFactor);
+            bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x * m_ScaleFactor, bounding_box.Max.y * m_ScaleFactor, bounding_box.Max.z * m_ScaleFactor);
+
+            Rigidforce rigid_force = new Rigidforce(ID);
+            rigid_force.m_CollisionAffected = true;
+            rigid_force.m_GravityAffected = true;
+
+            pushable.m_State = ++pushable.m_State;
+        }
+
+        private void Shrink(UInt32 ID)
+        {
+            Pushable pushable = new Pushable(ID);
+            Scale scale = new Scale(ID);
+            scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);
+
+            BoundingBox bounding_box = new BoundingBox(ID);
+            bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x / m_ScaleFactor, bounding_box.Min.y / m_ScaleFactor, bounding_box.Min.z / m_ScaleFactor);
+            bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x / m_ScaleFactor, bounding_box.Max.y / m_ScaleFactor, bounding_box.Max.z / m_ScaleFactor);
+
+            Rigidforce rigid_force = new Rigidforce(ID);
+            rigid_force.m_CollisionAffected = true;
+            rigid_force.m_GravityAffected = true;
+
+            pushable.m_State = --pushable.m_State;
         }
 
         private void ChangeBar()
