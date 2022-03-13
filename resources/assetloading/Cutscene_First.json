@@ -266,7 +266,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "NextLevel_Unselected",
+                        "Texture": "SkipCutsceneButton_Unselected",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
