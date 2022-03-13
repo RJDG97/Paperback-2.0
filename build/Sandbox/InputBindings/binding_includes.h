@@ -629,8 +629,12 @@ namespace paperback::input::binding
                             // Reset Interactable Object Push Status
                             auto [ Mass, RF ] = Info.m_pArchetype->FindComponents<mass, rigidforce>( Info.m_PoolDetails );
                             if ( Mass ) Mass->m_Mass = 0.0f;
-                            if ( RF ) RF->m_Momentum = paperback::Vector3f{};
-
+                            if (RF)
+                            {
+                                RF->m_Momentum = paperback::Vector3f{};
+                                RF->m_CollisionAffected = false;
+                                RF->m_GravityAffected = false;
+                            }
                             // Reset Player Status
                             Interaction.m_InteractableGID = paperback::settings::invalid_index_v;
                             Interaction.m_bPushOrPull     = false;
