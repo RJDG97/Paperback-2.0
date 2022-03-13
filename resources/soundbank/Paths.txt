@@ -1,5 +1,7 @@
 event:/SFX_Char_Ability_Enter
 event:/SFX_Char_Ability_Freeze
+event:/SFX_Char_Ability_Grow
+event:/SFX_Char_Ability_Shrink
 event:/SFX_Char_Ability_Shoot
 event:/SFX_Char_Ability_SwitchCard
 event:/SFX_Char_Blue_Jump
