@@ -36683,7 +36683,7 @@
                         "Position": {
                             "x": -32.82352828979492,
                             "y": 8.186299324035645,
-                            "z": -14.725000381469727
+                            "z": -14.625
                         }
                     },
                     "RigidForce": {
@@ -37324,7 +37324,7 @@
                         "Global Index": 281
                     },
                     "Mesh": {
-                        "Model": "Interactable2x2_Grow",
+                        "Model": "InteractableBlock2x2",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -37432,7 +37432,7 @@
                         "Global Index": 442
                     },
                     "Mesh": {
-                        "Model": "Interactable2x2_Grow",
+                        "Model": "InteractableBlock2x2",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -37540,7 +37540,7 @@
                         "Global Index": 443
                     },
                     "Mesh": {
-                        "Model": "Interactable2x2_Grow",
+                        "Model": "InteractableBlock2x2",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
