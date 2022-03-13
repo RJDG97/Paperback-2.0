@@ -14,6 +14,7 @@ namespace CSScript
         Parent m_Parent; //switch is parent
         BoundingBox m_BoundingBox; //switch is parent
         Mesh m_Mesh;
+        Rotation m_Rotation;
 
         BoundingBox m_ChildBoundingBox; //gate is child
         Animator m_ChildAnimator;
@@ -35,6 +36,7 @@ namespace CSScript
             m_Parent = new Parent(m_ID);
             m_BoundingBox = new BoundingBox(m_ID);
             m_Mesh = new Mesh(m_ID);
+            m_Rotation = new Rotation(m_ID);
 
             m_ChildID = m_Parent.GetChildIDofName("Gate");
 
@@ -56,9 +58,20 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
+            if ((m_Rotation.m_Value.y % 180.0f) < 1.0f && (m_Rotation.m_Value.y % 180.0f) > -1.0f)
+            {
+                m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
                                                                   m_InitialBBOffset.y, m_InitialBBOffset.z);
+            }
+
+            else if ((m_Rotation.m_Value.y % 180.0f) < 91.0f && (m_Rotation.m_Value.y % 180.0f) > 89.0f)
+            {
+                m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x,
+                                                                      m_InitialBBOffset.y,
+                                                                      m_InitialBBOffset.z + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
+            }
         }
+
         public void Update(float dt)
         {
 
