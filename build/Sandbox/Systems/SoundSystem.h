@@ -562,7 +562,7 @@ public:
                 if (Entity.IsZombie() || !Camera.m_Active)
                     return;
 
-                UpdatePlayer3DAttributes(Transform.m_Position, {});
+                UpdatePlayer3DAttributes(Transform.m_Position, { std::cosf(Camera.m_Theta), 0.0f, std::sinf(Camera.m_Theta) });
             });
     }
 
