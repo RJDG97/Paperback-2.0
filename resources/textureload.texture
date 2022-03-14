@@ -53,6 +53,8 @@
     "ScissorsWeapon_PaperShield": "../../resources/textures/UI/Cards/ScissorsWeapon_PaperShield.dds 1",
     "ScissorsWeapon_RockShield": "../../resources/textures/UI/Cards/ScissorsWeapon_RockShield.dds 1",
     "ScissorsWeapon_ScissorsShield": "../../resources/textures/UI/Cards/ScissorsWeapon_ScissorsShield.dds 1",
+    "ContinueButton_Selected": "../../resources/textures/UI/ContinueButton_Selected_Mirrored.dds 1",
+    "ContinueButton_Unselected": "../../resources/textures/UI/ContinueButton_Unselected_Mirrored.dds 1",
     "EnemyHPBar": "../../resources/textures/UI/HealthBars/EnemyHPBar.dds 1",
     "EnemyHPBar_Background": "../../resources/textures/UI/HealthBars/EnemyHPBar_Background.dds 1",
     "EnemyHPBar_Fill": "../../resources/textures/UI/HealthBars/EnemyHPBar_Fill.dds 1",
