@@ -21,6 +21,10 @@ namespace CSScript
             m_BoundingBox = new BoundingBox(m_ID);
         }
 
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update(float dt)
         {
         }

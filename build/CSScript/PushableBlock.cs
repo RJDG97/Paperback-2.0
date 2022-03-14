@@ -27,6 +27,10 @@ namespace CSScript
             m_Mass = new Mass(ID);
         }
 
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update(float dt)
         {
             if (m_PrevGravActive && !m_Rigidforce.m_GravityActive)

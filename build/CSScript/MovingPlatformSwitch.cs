@@ -37,6 +37,11 @@ namespace CSScript
 
             m_ChildPathFollower.m_PauseTravel = true;
         }
+
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update(float dt)
         {
             

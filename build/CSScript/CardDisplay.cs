@@ -61,6 +61,10 @@ namespace CSScript
             m_E.m_Active = true;
         }
 
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update(float dt)
         {
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
@@ -82,7 +86,6 @@ namespace CSScript
                     m_CardThree.m_Active = true;
                 }
 
-                Debug.Log(m_Abilities.Count.ToString());
                 if (Input.IsKeyPress(Input.PB_TAB) && m_Abilities.Count > 1)
                 {
                     Ability first = m_Abilities[0];

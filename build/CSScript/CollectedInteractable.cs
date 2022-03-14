@@ -47,6 +47,10 @@ namespace CSScript
             m_Activated = false;
         }
 
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update( float dt )
         {
             

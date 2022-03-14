@@ -16,10 +16,13 @@ namespace CSScript
         {
             m_ID = ID;
         }
+
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update(float dt)
         {
-            if (Input.IsKeyPress(Input.PB_ENTER))
-                Debug.Log("Test");
             if (Input.IsKeyPress(Input.PB_ESCAPE))
                 Application.Quit();
         }

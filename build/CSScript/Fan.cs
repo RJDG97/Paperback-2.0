@@ -23,6 +23,11 @@ namespace CSScript
             m_Rotation = new Rotation(m_ID);
             m_Speed = new Tools.MathLib.Vector3(0.0f, 10.0f, 0.0f);
         }
+
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update(float dt)
         {
             m_Rotation.m_Value += m_Speed;

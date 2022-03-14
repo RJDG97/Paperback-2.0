@@ -59,6 +59,10 @@ namespace CSScript
             m_Sound.m_Trigger = false;
             m_Activated = false;
         }
+
+        public void PreUpdate(float dt)
+        {
+        }
         public void Update(float dt)
         {
             if (Input.IsKeyPress(Input.PB_1))

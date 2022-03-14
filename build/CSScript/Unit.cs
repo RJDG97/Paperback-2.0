@@ -16,6 +16,10 @@ namespace CSScript
         {
             m_ID = ID;
         }
+
+        public void PreUpdate(float dt)
+        {
+        }
         public void Update(float dt)
         {
         }

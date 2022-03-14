@@ -89,6 +89,10 @@ namespace CSScript
             m_PushUnitCamera.m_Active = false;
         }
 
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update(float dt)
         {
             if (Input.IsKeyPress(Input.PB_Q) && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
