@@ -156,12 +156,6 @@
     <ClInclude Include="Systems\TimerSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\PlayerSpawnerSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\EnemySpawnerSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
-    </ClInclude>
     <ClInclude Include="Components\Name.h">
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
@@ -179,9 +173,6 @@
     </ClInclude>
     <ClInclude Include="Components\Base.h">
       <Filter>Source Files\Components\Details\Tags</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\HealthSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
     <ClInclude Include="Components\Unit.h">
       <Filter>Source Files\Components\Details\Tags</Filter>
@@ -218,9 +209,6 @@
     </ClInclude>
     <ClInclude Include="Components\Deck.h">
       <Filter>Source Files\Components\Details</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\DeckSystem.h">
-      <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
     <ClInclude Include="Scripts\scripts_includes.h">
       <Filter>Source Files\Scripts</Filter>

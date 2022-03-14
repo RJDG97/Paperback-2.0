@@ -315,9 +315,6 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Systems\CameraSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
-    <ClInclude Include="Systems\DeckSystem.h" />
-    <ClInclude Include="Systems\EnemySpawnerSystem.h" />
-    <ClInclude Include="Systems\HealthSystem.h" />
     <ClInclude Include="Systems\IconSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
@@ -332,7 +329,6 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Systems\PathSystem.h" />
     <ClInclude Include="Systems\PhysicsSystem.h" />
     <ClInclude Include="Systems\PlayerCameraSystem.h" />
-    <ClInclude Include="Systems\PlayerSpawnerSystem.h" />
     <ClInclude Include="Systems\RendererSystem.h" />
     <ClInclude Include="Systems\ScriptingSystem.h" />
     <ClInclude Include="Systems\SoundSystem.h" />
