@@ -1,3 +1,15 @@
 {
-    "Recticle": "../../resources/textures/UI/Recticle.dds 0"
+    "YesButton_Unselected": "../../resources/textures/UI/Menus/Buttons/YesButton_Unselected_Mirrored.dds 0",
+    "NoButton_Unselected": "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected_Mirrored.dds 0",
+    "ResumeGameButton_Unselected": "../../resources/textures/UI/Menus/Buttons/ResumeGameButton_Unselected_Mirrored.dds 0",
+    "QuitToMainMenuButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds 0",
+    "ReturnToMainMenuPanel": "../../resources/textures/UI/Menus/Backgrounds/ReturnToMainMenuPanel_Mirrored.dds 0",
+    "PauseGamePanel": "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel_Mirrored.dds 0",
+    "QuitGameButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Unselected_Mirrored.dds 0",
+    "QuitGameConfirmationPanel": "../../resources/textures/UI/Menus/Backgrounds/QuitGameConfirmationPanel_Mirrored.dds 0",
+    "SkillUIBigBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBigBar_Freeze.dds 0",
+    "GrowCard": "../../resources/textures/Cards/GrowCard.dds 0",
+    "Recticle": "../../resources/textures/UI/Recticle.dds 0",
+    "SkillUIBase_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBase_Freeze.dds 0",
+    "ToggleCardMode": "../../resources/textures/Cards/ToggleCardMode.dds 0"
 }
