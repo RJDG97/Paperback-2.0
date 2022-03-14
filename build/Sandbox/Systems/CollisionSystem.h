@@ -52,9 +52,10 @@ struct collision_system : paperback::system::pausable_instance
         ForEach( Search( m_Query ), [&]( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox
                                        , sphere* Sphere, mass* m1, slope* Slope1, bounding_volume* BV ) noexcept
         {
-            if (Entity.IsZombie()) return;
+            // Exclude Deleted Entities & Static Objects that are NOT Bounding Volumes
+            if ( Entity.IsZombie() || ( !BV && m1 && m1->m_Mass == 0.0f ) ) return;
 
-            if (Boundingbox)
+            if ( Boundingbox)
             {
                 Boundingbox->m_Collided = false;
 
