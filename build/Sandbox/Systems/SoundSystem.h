@@ -751,6 +751,13 @@ public:
     }
 
     PPB_FORCEINLINE
+    void OnPause(const bool& Status) noexcept
+    {
+        
+        PauseCurrentSounds(Status);
+    }
+
+    PPB_FORCEINLINE
     void EditorStopAllSounds()
     {
 
