@@ -74,11 +74,14 @@ namespace CSScript
                 if (m_Abilities.Count > 0)
                 {
                     m_CardOne.m_Active = true;
+                    m_CardTwo.m_Active = false;
+                    m_CardThree.m_Active = false;
                 }
 
                 if (m_Abilities.Count > 1)
                 {
                     m_CardTwo.m_Active = true;
+                    m_CardThree.m_Active = false;
                 }
 
                 if (m_Abilities.Count > 2)
@@ -166,6 +169,7 @@ namespace CSScript
                 case Ability.STOP_MOVING_PLATFORM:
                 {
                     card.m_Texture = "FreezeCard";
+                    Debug.Log(card.m_Texture);
                     break;
                 }
 
@@ -178,7 +182,8 @@ namespace CSScript
                 case Ability.SHRINK:
                 {
                     card.m_Texture = "ShrinkCard";
-                    break;
+                        Debug.Log(card.m_Texture);
+                        break;
                 }
             }
         }
