@@ -9,7 +9,9 @@ namespace paperback::coordinator
 
 	instance::instance( void ) noexcept
 	{
+		#ifndef PAPERBACK_INSTALLER_BUILD
 		paperback::logger::Init();
+		#endif
 
 		m_CompMgr.RegisterComponent<paperback::component::entity>();
 	}

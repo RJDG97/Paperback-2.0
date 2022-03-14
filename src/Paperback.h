@@ -13,6 +13,9 @@
 #define PPB_FORCEINLINE __inline
 #endif
 
+// Define This To Enable/Disable Installer Build
+//#define PAPERBACK_INSTALLER_BUILD
+
 //----------------------------------
 // STL
 //----------------------------------
