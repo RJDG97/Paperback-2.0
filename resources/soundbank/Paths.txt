@@ -4,6 +4,7 @@ event:/SFX_Char_Ability_Grow
 event:/SFX_Char_Ability_Shrink
 event:/SFX_Char_Ability_Shoot
 event:/SFX_Char_Ability_SwitchCard
+event:/SFX_Char_Ability_Obtain
 event:/SFX_Char_Blue_Jump
 event:/SFX_Char_Blue_Landing
 event:/SFX_Char_Blue_WalkCombine
