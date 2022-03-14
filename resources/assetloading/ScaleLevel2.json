@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 455
+                "EntityHead": 190
             }
         },
         {
@@ -31754,6 +31754,104 @@
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 456
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.014999999664723874,
+                            "y": 0.017999999225139619,
+                            "z": 0.02500000037252903
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 90.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -24.371000289916993,
+                            "y": 10.5649995803833,
+                            "z": -13.199999809265137
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.7999999523162842,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 1.7999999523162842,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            14486341741652966143,
+                            17008353085049151909,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 455
+                    },
+                    "Name": {
+                        "Name": "Ruler N"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         },
@@ -32657,14 +32755,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            140,
                             299,
-                            287,
-                            232,
-                            168,
+                            140,
                             375,
-                            233,
+                            168,
+                            232,
+                            287,
                             169,
+                            233,
                             376,
                             371,
                             372,
@@ -32776,12 +32874,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            312,
-                            392,
                             384,
-                            313,
-                            377,
+                            392,
+                            312,
                             393,
+                            377,
+                            313,
                             378,
                             379,
                             394,
@@ -33038,6 +33136,100 @@
                     },
                     "Name": {
                         "Name": "Unnamed Entity"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 455
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            456
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Ruler N"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -33741,10 +33933,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            1871702054972469046,
                             5691439207370049121,
-                            5509481706028819786,
+                            1871702054972469046,
                             9604788041699812520,
+                            5509481706028819786,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -35441,10 +35633,10 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 190
+                        "Global Index": 358
                     },
                     "Mesh": {
-                        "Model": "Ruler",
+                        "Model": "ColourPencilBox",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -35452,16 +35644,16 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.014999999664723874,
-                            "y": 0.017999999225139619,
+                            "x": 0.019999999552965165,
+                            "y": 0.02500000037252903,
                             "z": 0.02500000037252903
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 0.0,
-                            "z": 90.0
+                            "y": 180.0,
+                            "z": 0.0
                         }
                     },
                     "Rigidbody": {
@@ -35479,13 +35671,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": -0.019999999552965165,
+                            "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -24.370807647705079,
-                            "y": 10.565251350402832,
-                            "z": -13.200368881225586
+                            "x": -21.539705276489259,
+                            "y": 9.571106910705567,
+                            "z": -13.4744873046875
                         }
                     },
                     "RigidForce": {
@@ -35509,29 +35701,28 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.7999999523162842,
-                            "y": -0.029999999329447748,
-                            "z": -0.4000000059604645
+                            "x": -0.10000000149011612,
+                            "y": -2.0999999046325685,
+                            "z": -1.0
                         },
                         "Max Point": {
-                            "x": 1.7999999523162842,
-                            "y": 0.029999999329447748,
-                            "z": 0.4000000059604645
+                            "x": 0.10000000149011612,
+                            "y": 2.0999999046325685,
+                            "z": 1.0
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            5691439207370049121,
-                            11057976693296903406,
                             3617555656175080491,
                             14486341741652966143,
-                            17008353085049151909
+                            16415915133639986106,
+                            5691439207370049121
                         ],
-                        "Prefab GID": 159
+                        "Prefab GID": 157
                     },
                     "Name": {
-                        "Name": "Ruler"
+                        "Name": "ColourPencilBox_S2"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -37314,110 +37505,6 @@
                         "East": false,
                         "West": false
                     }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 358
-                    },
-                    "Mesh": {
-                        "Model": "ColourPencilBox",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.019999999552965165,
-                            "y": 0.02500000037252903,
-                            "z": 0.02500000037252903
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -21.539705276489259,
-                            "y": 9.571106910705567,
-                            "z": -13.4744873046875
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -2.0999999046325685,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 2.0999999046325685,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            14486341741652966143,
-                            16415915133639986106,
-                            5691439207370049121
-                        ],
-                        "Prefab GID": 157
-                    },
-                    "Name": {
-                        "Name": "ColourPencilBox_S2"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
-                        "South": false,
-                        "East": false,
-                        "West": false
-                    }
                 }
             ]
         },
@@ -37460,13 +37547,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            362,
                             241,
-                            248,
+                            362,
                             160,
+                            248,
                             283,
-                            187,
                             284,
+                            187,
                             191,
                             158,
                             293,
@@ -38510,9 +38597,9 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            242,
-                            337,
                             409,
+                            337,
+                            242,
                             205,
                             300,
                             408,
@@ -40323,9 +40410,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -30.815265655517579,
+                            "x": -33.01499938964844,
                             "y": 7.754157543182373,
-                            "z": -16.494184494018556
+                            "z": -16.694000244140626
                         }
                     },
                     "RigidForce": {
@@ -40375,7 +40462,8 @@
                             3617555656175080491,
                             9604788041699812520,
                             5691439207370049121,
-                            1362145481980459455
+                            1362145481980459455,
+                            17008353085049151909
                         ],
                         "Prefab GID": 229
                     },
@@ -40437,9 +40525,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -31.032115936279298,
+                            "x": -29.031999588012697,
                             "y": 7.808685779571533,
-                            "z": -17.473060607910158
+                            "z": -10.572999954223633
                         }
                     },
                     "RigidForce": {
@@ -40489,7 +40577,8 @@
                             3617555656175080491,
                             5691439207370049121,
                             9604788041699812520,
-                            1362145481980459455
+                            1362145481980459455,
+                            17008353085049151909
                         ],
                         "Prefab GID": 229
                     },
