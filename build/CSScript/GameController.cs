@@ -25,7 +25,9 @@ namespace CSScript
         };
 
         float m_ScaleFactor = 1.5f;
+        float m_InverseScaleFactor = 1.0f / 1.5f;
         float m_AbilityDuration = 3.0f;
+        float m_InverseAbilityDuration = 1.0f / 3.0f;
         float m_AbilityTimer = 0.0f;
         bool m_AbilityActive = false;
 
@@ -192,11 +194,11 @@ namespace CSScript
                 else
                 {
                     m_AbilityTimer += dt;
-                    m_InnerBarOffset.m_ScaleOffset = new Tools.MathLib.Vector3(m_InnerBarInitialScale.x * (m_AbilityDuration - m_AbilityTimer) / m_AbilityDuration,
+                    m_InnerBarOffset.m_ScaleOffset = new Tools.MathLib.Vector3(m_InnerBarInitialScale.x * (m_AbilityDuration - m_AbilityTimer) * m_InverseAbilityDuration,
                                                                                m_InnerBarOffset.m_ScaleOffset.y,
                                                                                m_InnerBarOffset.m_ScaleOffset.z);
 
-                    m_InnerBarOffset.m_PosOffset = new Tools.MathLib.Vector3(m_InnerBarInitialPos.x - (m_InnerBarInitialScale.x * (m_AbilityTimer) / m_AbilityDuration) * 200.0f,
+                    m_InnerBarOffset.m_PosOffset = new Tools.MathLib.Vector3(m_InnerBarInitialPos.x - (m_InnerBarInitialScale.x * (m_AbilityTimer) * m_InverseAbilityDuration) * 200.0f,
                                                                              m_InnerBarInitialPos.y,
                                                                              m_InnerBarInitialPos.z);
                 }
@@ -389,11 +391,11 @@ namespace CSScript
             Mass mass = new Mass(ID);
 
             mass.m_Mass = 6.0f;
-            scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x / m_ScaleFactor, scale.m_Value.y / m_ScaleFactor, scale.m_Value.z / m_ScaleFactor);
+            scale.m_Value = new Tools.MathLib.Vector3(scale.m_Value.x * m_InverseScaleFactor, scale.m_Value.y * m_InverseScaleFactor, scale.m_Value.z * m_InverseScaleFactor);
 
             BoundingBox bounding_box = new BoundingBox(ID);
-            bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x / m_ScaleFactor, bounding_box.Min.y / m_ScaleFactor, bounding_box.Min.z / m_ScaleFactor);
-            bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x / m_ScaleFactor, bounding_box.Max.y / m_ScaleFactor, bounding_box.Max.z / m_ScaleFactor);
+            bounding_box.Min = new Tools.MathLib.Vector3(bounding_box.Min.x * m_InverseScaleFactor, bounding_box.Min.y * m_InverseScaleFactor, bounding_box.Min.z * m_InverseScaleFactor);
+            bounding_box.Max = new Tools.MathLib.Vector3(bounding_box.Max.x * m_InverseScaleFactor, bounding_box.Max.y * m_InverseScaleFactor, bounding_box.Max.z * m_InverseScaleFactor);
 
             Rigidforce rigid_force = new Rigidforce(ID);
             rigid_force.m_CollisionAffected = true;
