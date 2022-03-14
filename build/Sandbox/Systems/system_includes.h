@@ -8,14 +8,8 @@
 #include "RendererSystem.h"
 #include "AnimatorSystem.h"
 #include "ParentChildSystem.h"
-
 #include "TimerSystem.h"
-#include "EnemySpawnerSystem.h"
-#include "PlayerSpawnerSystem.h"
-#include "WaypointSystem.h"
-#include "HealthSystem.h"
 #include "UISystem.h"
-#include "DeckSystem.h"
 #include "PathSystem.h"
 #include "CameraSystem.h"
 #include "IconSystem.h"
@@ -25,8 +19,6 @@
 // Event
 #include "OnEvent_CollisionSystem.h"
 #include "OnEvent_ParentOrChildDeleted.h"
-#include "OnEvent_HealthSystem.h"
 #include "OnEvent_ReferencePrefabDeleted.h"
 #include "OnEvent_PointCaptured.h"
-#include "OnEvent_LowDeckCount.h"
 #include "OnEvent_ResetAnimation.h"

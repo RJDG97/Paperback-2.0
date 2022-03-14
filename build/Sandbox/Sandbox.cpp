@@ -150,12 +150,7 @@ void InitializeGame()
         ,   particle_system
         ,   render_system
         ,   animator_system
-        ,   player_spawner_system
-        ,   enemy_spawner_system
         ,   timer_system
-        ,   waypoint_system
-        ,   health_system
-        ,   deck_system
         ,   imgui_system
         ,   camera_system
         ,   icon_system
@@ -166,14 +161,11 @@ void InitializeGame()
             onevent_UnitTrigger_system
         ,   onevent_UnitTriggerStay_system
         ,   onevent_UnitTriggerExit_system
-        ,   onevent_NoHealth_system
-        ,   onevent_UpdateHealth_system
         ,   onevent_ParentDeleted_system
         ,   onevent_ChildDeleted_system
         ,   onevent_ReferencePrefabDeleted_system
         ,   onevent_PointCaptured_system
         ,   onevent_CapturePointDamaged_system
-        ,   onevent_LowDeckCount_system
         ,   onevent_ResetAnimation
         ,   onevent_FallingAnimation
         >();
