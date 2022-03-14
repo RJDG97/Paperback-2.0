@@ -10,6 +10,7 @@ namespace CSScript
     {
         UInt32 m_ID;
         Rotation m_Rotation;
+        Sound m_Sound;
         Tools.MathLib.Vector3 m_Speed;
 
         public static AbilitySpin getInst()
@@ -21,6 +22,7 @@ namespace CSScript
         {
             m_ID = ID;
             m_Rotation = new Rotation(m_ID);
+            m_Sound = new Sound(m_ID);
             m_Speed = new Tools.MathLib.Vector3(0.0f, 2.0f, 0.0f);
         }
         public void Update(float dt)
@@ -37,7 +39,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-
+            m_Sound.m_Trigger = true;
         }
         public void OnCollisionStay(UInt32 ID)
         {

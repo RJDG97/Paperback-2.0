@@ -285,7 +285,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "NextLevel_Unselected",
+                        "Texture": "ContinueButton_Unselected",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true

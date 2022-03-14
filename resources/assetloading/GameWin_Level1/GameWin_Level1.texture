@@ -1,4 +1,4 @@
 {
     "QuitToMainMenuButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds 0",
-    "NextLevel_Unselected": "../../resources/textures/UI/Menus/Buttons/NextLevel_Unselected.dds 0"
+    "ContinueButton_Unselected": "../../resources/textures/UI/ContinueButton_Unselected_Mirrored.dds 0"
 }
