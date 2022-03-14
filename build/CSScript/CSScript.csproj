@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbilitySpin.cs" />
     <Compile Include="Checkpoint.cs" />
     <Compile Include="CollectedInteractable.cs" />
     <Compile Include="ElevatorPlatform.cs" />
