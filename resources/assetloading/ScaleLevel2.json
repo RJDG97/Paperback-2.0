@@ -32813,14 +32813,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            140,
                             299,
-                            287,
-                            232,
-                            168,
+                            140,
                             375,
-                            233,
+                            168,
+                            232,
+                            287,
                             169,
+                            233,
                             376,
                             371,
                             372,
@@ -32932,12 +32932,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            312,
-                            392,
                             384,
-                            313,
-                            377,
+                            392,
+                            312,
                             393,
+                            377,
+                            313,
                             378,
                             379,
                             394,
@@ -33991,10 +33991,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            1871702054972469046,
                             5691439207370049121,
-                            5509481706028819786,
+                            1871702054972469046,
                             9604788041699812520,
+                            5509481706028819786,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -37605,13 +37605,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            362,
                             241,
-                            248,
+                            362,
                             160,
+                            248,
                             283,
-                            187,
                             284,
+                            187,
                             191,
                             158,
                             293,
@@ -38656,9 +38656,9 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            242,
-                            337,
                             409,
+                            337,
+                            242,
                             205,
                             300,
                             408,
@@ -42137,7 +42137,7 @@
                         }
                     },
                     "Sound": {
-                        "Path": "event:/SFX_Enviro_Checkpoint",
+                        "Path": "event:/SFX_Char_Ability_Obtain",
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": true,
@@ -42259,7 +42259,7 @@
                         }
                     },
                     "Sound": {
-                        "Path": "event:/SFX_Enviro_Checkpoint",
+                        "Path": "event:/SFX_Char_Ability_Obtain",
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": true,
@@ -42293,7 +42293,7 @@
                         "Position": {
                             "x": -29.031999588012697,
                             "y": 8.208999633789063,
-                            "z": -10.572999954223633
+                            "z": -9.972999572753907
                         }
                     },
                     "RigidForce": {
@@ -42405,7 +42405,7 @@
                         }
                     },
                     "Sound": {
-                        "Path": "event:/SFX_Enviro_Checkpoint",
+                        "Path": "event:/SFX_Char_Ability_Obtain",
                         "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": true,
