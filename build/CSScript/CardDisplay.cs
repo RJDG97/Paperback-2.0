@@ -169,7 +169,6 @@ namespace CSScript
                 case Ability.STOP_MOVING_PLATFORM:
                 {
                     card.m_Texture = "FreezeCard";
-                    Debug.Log(card.m_Texture);
                     break;
                 }
 
@@ -182,8 +181,7 @@ namespace CSScript
                 case Ability.SHRINK:
                 {
                     card.m_Texture = "ShrinkCard";
-                        Debug.Log(card.m_Texture);
-                        break;
+                    break;
                 }
             }
         }
