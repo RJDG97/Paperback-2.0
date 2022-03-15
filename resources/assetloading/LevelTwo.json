@@ -1733,11 +1733,12 @@
                             314,
                             460,
                             180,
-                            221,
                             181,
-                            206,
+                            221,
                             182,
-                            175
+                            206,
+                            175,
+                            331
                         ]
                     },
                     "Transform": {
@@ -2008,17 +2009,17 @@
                                 "z": 0.0
                             },
                             {
-                                "x": -2.5,
+                                "x": -4.5,
                                 "y": 0.0,
                                 "z": 0.0
                             },
                             {
-                                "x": -2.5,
+                                "x": -4.5,
                                 "y": 0.0,
                                 "z": 0.0
                             },
                             {
-                                "x": -2.5,
+                                "x": -4.5,
                                 "y": 0.0,
                                 "z": 0.0
                             }
@@ -2253,6 +2254,63 @@
                         ],
                         "Path ID": 6
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 331
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -41.962860107421878,
+                            "y": 8.155409812927246,
+                            "z": -45.10100173950195
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12511840695917210930
+                        ],
+                        "Prefab GID": 143
+                    },
+                    "Name": {
+                        "Name": "MovingPlatformPath"
+                    },
+                    "Path": {
+                        "Points": [
+                            {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 7.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 7.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 7.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        ],
+                        "Path ID": 8
+                    }
                 }
             ]
         },
@@ -2289,7 +2347,7 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.006000000052154064,
+                            "x": 0.004350000061094761,
                             "y": 0.006149174179881811,
                             "z": 0.0045900000259280209
                         }
@@ -2305,11 +2363,11 @@
                         },
                         "Rotation Offset": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 180.0,
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 2.0,
+                            "x": 1.4500000476837159,
                             "y": 2.049999952316284,
                             "z": 1.5299999713897706
                         }
@@ -2317,12 +2375,12 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 180.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
                     "Animator": {
-                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Current Animation": "TallGateArmature|TallGateArmatureAction.001",
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
@@ -2391,7 +2449,9 @@
                             9604788041699812520,
                             3617555656175080491,
                             17008353085049151909,
-                            5691439207370049121
+                            5691439207370049121,
+                            15204223096342135753,
+                            14486341741652966143
                         ],
                         "Prefab GID": 136
                     },
@@ -2432,7 +2492,7 @@
                         },
                         "Rotation Offset": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 180.0,
                             "z": 0.0
                         },
                         "Scale Offset": {
@@ -2444,12 +2504,12 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 270.0,
+                            "y": 360.0,
                             "z": 0.0
                         }
                     },
                     "Animator": {
-                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Current Animation": "TallGateArmature|TallGateArmatureAction.001",
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
@@ -2471,7 +2531,7 @@
                     "Transform": {
                         "Offset": {
                             "x": -0.699999988079071,
-                            "y": 0.20000000298023225,
+                            "y": -0.30000001192092898,
                             "z": 0.0
                         },
                         "Position": {
@@ -2518,7 +2578,8 @@
                             8376831551428810534,
                             3617555656175080491,
                             17008353085049151909,
-                            5691439207370049121
+                            5691439207370049121,
+                            15204223096342135753
                         ],
                         "Prefab GID": 136
                     },
@@ -2543,8 +2604,8 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.006000000052154064,
-                            "y": 0.009148236364126206,
+                            "x": 0.0044999998062849049,
+                            "y": 0.008548351936042309,
                             "z": 0.004800000227987766
                         }
                     },
@@ -2555,28 +2616,28 @@
                         "Postion Offset": {
                             "x": 5.5,
                             "y": -0.800000011920929,
-                            "z": -0.2800000011920929
+                            "z": 1.2200000286102296
                         },
                         "Rotation Offset": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 2.0,
-                            "y": 3.049999952316284,
+                            "x": 1.5,
+                            "y": 2.8499999046325685,
                             "z": 1.600000023841858
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 360.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
                     "Animator": {
-                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Current Animation": "TallGateArmature|TallGateArmatureAction.001",
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
@@ -2599,12 +2660,12 @@
                         "Offset": {
                             "x": 0.0,
                             "y": 0.4000000059604645,
-                            "z": 0.699999988079071
+                            "z": -0.800000011920929
                         },
                         "Position": {
                             "x": -46.876922607421878,
                             "y": 8.4259614944458,
-                            "z": -42.8335075378418
+                            "z": -41.3335075378418
                         }
                     },
                     "RigidForce": {
@@ -2646,7 +2707,8 @@
                             8376831551428810534,
                             3617555656175080491,
                             17008353085049151909,
-                            5691439207370049121
+                            5691439207370049121,
+                            15204223096342135753
                         ],
                         "Prefab GID": 136
                     },
@@ -2681,13 +2743,13 @@
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": -1.899999976158142,
+                            "x": -0.20000000298023225,
                             "y": 0.6000000238418579,
                             "z": -1.7999999523162842
                         },
                         "Rotation Offset": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         },
                         "Scale Offset": {
@@ -2699,12 +2761,12 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
                     "Animator": {
-                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Current Animation": "TallGateArmature|TallGateArmatureAction.001",
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
@@ -2725,12 +2787,12 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.699999988079071,
+                            "x": 0.0,
                             "y": 0.20000000298023225,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -33.829673767089847,
+                            "x": -32.12967300415039,
                             "y": 8.179121017456055,
                             "z": -30.98275375366211
                         }
@@ -2773,7 +2835,8 @@
                             9604788041699812520,
                             3617555656175080491,
                             17008353085049151909,
-                            5691439207370049121
+                            5691439207370049121,
+                            15204223096342135753
                         ],
                         "Prefab GID": 136
                     },
@@ -2927,7 +2990,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.006000000052154064,
-                            "y": 0.004949509631842375,
+                            "y": 0.004499554634094238,
                             "z": 0.0044999998062849049
                         }
                     },
@@ -2942,24 +3005,24 @@
                         },
                         "Rotation Offset": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 180.0,
                             "z": 0.0
                         },
                         "Scale Offset": {
                             "x": 2.0,
-                            "y": 1.649999976158142,
+                            "y": 1.5,
                             "z": 1.5
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 270.0,
+                            "y": 360.0,
                             "z": 0.0
                         }
                     },
                     "Animator": {
-                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Current Animation": "TallGateArmature|TallGateArmatureAction.001",
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
@@ -2981,7 +3044,7 @@
                     "Transform": {
                         "Offset": {
                             "x": -0.699999988079071,
-                            "y": 0.20000000298023225,
+                            "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
@@ -3012,12 +3075,12 @@
                     "BoundingBox": {
                         "Min Point": {
                             "x": -0.6499999761581421,
-                            "y": -0.699999988079071,
+                            "y": -0.6000000238418579,
                             "z": -0.05999999865889549
                         },
                         "Max Point": {
                             "x": 0.6499999761581421,
-                            "y": 0.699999988079071,
+                            "y": 0.6000000238418579,
                             "z": 0.05999999865889549
                         },
                         "Is Collide": false
@@ -3028,7 +3091,8 @@
                             9604788041699812520,
                             3617555656175080491,
                             17008353085049151909,
-                            5691439207370049121
+                            5691439207370049121,
+                            15204223096342135753
                         ],
                         "Prefab GID": 136
                     },
@@ -3053,8 +3117,8 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.006000000052154064,
-                            "y": 0.009148627519607544,
+                            "x": 0.0044999998062849049,
+                            "y": 0.008248763158917427,
                             "z": 0.004800000227987766
                         }
                     },
@@ -3064,29 +3128,29 @@
                     "Offset": {
                         "Postion Offset": {
                             "x": -0.5,
-                            "y": -0.800000011920929,
+                            "y": -0.6000000238418579,
                             "z": -0.6000000238418579
                         },
                         "Rotation Offset": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 180.0,
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 2.0,
-                            "y": 3.049999952316284,
+                            "x": 1.5,
+                            "y": 2.75,
                             "z": 1.600000023841858
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 180.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
                     "Animator": {
-                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Current Animation": "TallGateArmature|TallGateArmatureAction.001",
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
@@ -3108,12 +3172,12 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.4000000059604645,
+                            "y": 0.30000001192092898,
                             "z": -0.800000011920929
                         },
                         "Position": {
                             "x": -46.83856201171875,
-                            "y": 8.4259614944458,
+                            "y": 8.625961303710938,
                             "z": -33.74085235595703
                         }
                     },
@@ -3156,7 +3220,8 @@
                             8376831551428810534,
                             3617555656175080491,
                             17008353085049151909,
-                            5691439207370049121
+                            5691439207370049121,
+                            15204223096342135753
                         ],
                         "Prefab GID": 136
                     },
@@ -3790,204 +3855,6 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 423
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 421
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.5
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.00800000037997961,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            426
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 422
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 421
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.5
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.00800000037997961,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            425
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 450
-                    },
-                    "Mesh": {
-                        "Model": "",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 447
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            452
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Card 1"
-                    }
-                },
-                {
-                    "Entity": {
                         "Global Index": 449
                     },
                     "Mesh": {
@@ -4117,6 +3984,581 @@
                     "Name": {
                         "Name": "Card 3"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 450
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 447
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            452
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Card 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 424
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 425
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            422,
+                            284
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 426
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 425
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            423,
+                            484
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        14302600151082817442,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 425
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            424,
+                            426
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            421,
+                            283
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Checkpoint"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Max Point": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Checkpoint"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        14302600151082817442,
+                        13107566195444653040,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 421
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            422,
+                            423
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.30000001192092898,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -35.5,
+                            "y": 7.699999809265137,
+                            "z": -16.5
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Checkpoint"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -0.5,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 0.5,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            17008353085049151909,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 425
+                    },
+                    "Name": {
+                        "Name": "Checkpoint"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 283
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            284,
+                            484
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.30000001192092898,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -29.200000762939454,
+                            "y": 7.699999809265137,
+                            "z": -11.199999809265137
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Checkpoint"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -0.5,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 0.5,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            17008353085049151909,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 425
+                    },
+                    "Name": {
+                        "Name": "Checkpoint"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
                 }
             ]
         },
@@ -4205,30 +4647,30 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 425
+                        "Global Index": 454
                     },
                     "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
+                        "Model": "Quad",
+                        "Texture": "GrowCard",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.00800000037997961,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
+                            "x": 120.0,
+                            "y": 160.0,
+                            "z": 0.0
                         }
                     },
                     "Child": {
-                        "Parent GID": 424
+                        "Parent GID": 451
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": 0.0,
+                            "x": 120.0,
                             "y": 0.0,
-                            "z": 0.5
+                            "z": -1.0
                         },
                         "Rotation Offset": {
                             "x": 0.0,
@@ -4236,16 +4678,16 @@
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 0.00800000037997961,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
+                            "x": 0.800000011920929,
+                            "y": 0.800000011920929,
+                            "z": 0.0
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 180.0
                         }
                     },
                     "Transform": {
@@ -4255,45 +4697,48 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -28.99344825744629,
-                            "y": 7.710365295410156,
-                            "z": -8.377572059631348
+                            "x": -700.0,
+                            "y": -400.0,
+                            "z": -1.0
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 422
+                        "Modified Components": [
+                            9604788041699812520,
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 448
                     },
                     "Name": {
-                        "Name": "Red Checkpoint"
+                        "Name": "Card 3"
                     }
                 },
                 {
                     "Entity": {
-                        "Global Index": 426
+                        "Global Index": 453
                     },
                     "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
+                        "Model": "Quad",
+                        "Texture": "GrowCard",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.00800000037997961,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
+                            "x": 120.0,
+                            "y": 160.0,
+                            "z": 160.0
                         }
                     },
                     "Child": {
-                        "Parent GID": 424
+                        "Parent GID": 451
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": 0.0,
+                            "x": -30.0,
                             "y": 0.0,
-                            "z": -0.5
+                            "z": -1.0
                         },
                         "Rotation Offset": {
                             "x": 0.0,
@@ -4301,16 +4746,16 @@
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 0.00800000037997961,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
+                            "x": 0.800000011920929,
+                            "y": 0.800000011920929,
+                            "z": 0.800000011920929
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 180.0
                         }
                     },
                     "Transform": {
@@ -4320,17 +4765,20 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -28.99344825744629,
-                            "y": 7.710365295410156,
-                            "z": -9.377572059631348
+                            "x": -850.0,
+                            "y": -400.0,
+                            "z": -1.0
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 423
+                        "Modified Components": [
+                            9604788041699812520,
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 449
                     },
                     "Name": {
-                        "Name": "Blue Checkpoint"
+                        "Name": "Card 2"
                     }
                 },
                 {
@@ -4405,30 +4853,30 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 453
+                        "Global Index": 422
                     },
                     "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "GrowCard",
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": false
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 120.0,
-                            "y": 160.0,
-                            "z": 160.0
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Child": {
-                        "Parent GID": 451
+                        "Parent GID": 421
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": -30.0,
-                            "y": 0.0,
-                            "z": -1.0
+                            "x": 0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
                         },
                         "Rotation Offset": {
                             "x": 0.0,
@@ -4436,16 +4884,16 @@
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 0.800000011920929,
-                            "y": 0.800000011920929,
-                            "z": 0.800000011920929
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 180.0
+                            "z": 0.0
                         }
                     },
                     "Transform": {
@@ -4455,48 +4903,45 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -850.0,
-                            "y": -400.0,
-                            "z": -1.0
+                            "x": -34.95000076293945,
+                            "y": 7.5,
+                            "z": -16.5
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [
-                            9604788041699812520,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 449
+                        "Modified Components": [],
+                        "Prefab GID": 424
                     },
                     "Name": {
-                        "Name": "Card 2"
+                        "Name": "Red Checkpoint"
                     }
                 },
                 {
                     "Entity": {
-                        "Global Index": 454
+                        "Global Index": 423
                     },
                     "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "GrowCard",
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": false
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 120.0,
-                            "y": 160.0,
-                            "z": 0.0
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Child": {
-                        "Parent GID": 451
+                        "Parent GID": 421
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": 120.0,
-                            "y": 0.0,
-                            "z": -1.0
+                            "x": -0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
                         },
                         "Rotation Offset": {
                             "x": 0.0,
@@ -4504,16 +4949,16 @@
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 0.800000011920929,
-                            "y": 0.800000011920929,
-                            "z": 0.0
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 180.0
+                            "z": 0.0
                         }
                     },
                     "Transform": {
@@ -4523,20 +4968,147 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -700.0,
-                            "y": -400.0,
-                            "z": -1.0
+                            "x": -36.04999923706055,
+                            "y": 7.5,
+                            "z": -16.5
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [
-                            9604788041699812520,
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 448
+                        "Modified Components": [],
+                        "Prefab GID": 426
                     },
                     "Name": {
-                        "Name": "Card 3"
+                        "Name": "Blue Checkpoint"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 284
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 283
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -28.650001525878908,
+                            "y": 7.5,
+                            "z": -11.199999809265137
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 424
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 484
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 283
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -29.75,
+                            "y": 7.5,
+                            "z": -11.199999809265137
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 426
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
                     }
                 }
             ]
@@ -5684,7 +6256,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 262,
+                        "Sound Event ID": 2663,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5799,7 +6371,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 263,
+                        "Sound Event ID": 2664,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5914,7 +6486,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 264,
+                        "Sound Event ID": 2665,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6031,7 +6603,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 265,
+                        "Sound Event ID": 2666,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6148,7 +6720,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 266,
+                        "Sound Event ID": 2667,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6265,7 +6837,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 267,
+                        "Sound Event ID": 2668,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6383,7 +6955,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 268,
+                        "Sound Event ID": 2669,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6500,7 +7072,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 269,
+                        "Sound Event ID": 2670,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6617,7 +7189,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 270,
+                        "Sound Event ID": 2671,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6735,7 +7307,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 271,
+                        "Sound Event ID": 2672,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6853,7 +7425,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 272,
+                        "Sound Event ID": 2673,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6970,7 +7542,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 273,
+                        "Sound Event ID": 2674,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -7087,7 +7659,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 274,
+                        "Sound Event ID": 2675,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -7204,7 +7776,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 275,
+                        "Sound Event ID": 2676,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -7321,7 +7893,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 276,
+                        "Sound Event ID": 2677,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -7438,7 +8010,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 277,
+                        "Sound Event ID": 2678,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -7555,7 +8127,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 278,
+                        "Sound Event ID": 2679,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -7672,7 +8244,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 279,
+                        "Sound Event ID": 2680,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -7789,7 +8361,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 280,
+                        "Sound Event ID": 2681,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -7906,7 +8478,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 281,
+                        "Sound Event ID": 2682,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -36785,9 +37357,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -39.05988311767578,
+                            "x": -50.0,
                             "y": 7.892939567565918,
-                            "z": -30.022878646850587
+                            "z": -26.0
                         }
                     },
                     "RigidForce": {
@@ -36953,9 +37525,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -39.68926239013672,
+                            "x": -48.0,
                             "y": 7.927880764007568,
-                            "z": -30.854970932006837
+                            "z": -26.0
                         }
                     },
                     "RigidForce": {
@@ -38658,7 +39230,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.05000000074505806,
                             "z": 0.0
                         },
                         "Position": {
@@ -38706,7 +39278,8 @@
                             3617555656175080491,
                             14486341741652966143,
                             9604788041699812520,
-                            16415915133639986106
+                            16415915133639986106,
+                            17008353085049151909
                         ],
                         "Prefab GID": 159
                     },
@@ -38726,14 +39299,14 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 284
+                        "Global Index": 481
                     },
                     "Mesh": {
                         "Model": "Ruler",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
@@ -38745,7 +39318,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 180.0,
+                            "y": 0.0,
                             "z": -58.0
                         }
                     },
@@ -38764,13 +39337,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.05000000074505806,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -44.95648193359375,
-                            "y": 8.419882774353028,
-                            "z": -40.985504150390628
+                            "x": -36.83866882324219,
+                            "y": 12.4010009765625,
+                            "z": -26.06411361694336
                         }
                     },
                     "RigidForce": {
@@ -38794,14 +39367,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.399999976158142,
-                            "y": -0.9700000286102295,
-                            "z": -0.23999999463558198
+                            "x": -0.3499999940395355,
+                            "y": -0.4699999988079071,
+                            "z": -0.800000011920929
                         },
                         "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.9700000286102295,
-                            "z": 0.23999999463558198
+                            "x": 0.3499999940395355,
+                            "y": 0.4699999988079071,
+                            "z": 0.800000011920929
                         },
                         "Is Collide": false
                     },
@@ -38810,47 +39383,50 @@
                             11057976693296903406,
                             5691439207370049121,
                             3617555656175080491,
-                            14486341741652966143
+                            14486341741652966143,
+                            9604788041699812520,
+                            16415915133639986106,
+                            17008353085049151909
                         ],
                         "Prefab GID": 159
                     },
                     "Name": {
-                        "Name": "Ruler"
+                        "Name": "watchtowerSlope"
                     },
                     "Mass": {
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     },
                     "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
+                        "TOGGLE ONE ONLY: North": true,
                         "South": false,
-                        "East": true,
+                        "East": false,
                         "West": false
                     }
                 },
                 {
                     "Entity": {
-                        "Global Index": 283
+                        "Global Index": 480
                     },
                     "Mesh": {
                         "Model": "Ruler",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.014999999664723874,
-                            "y": 0.014000000432133675,
+                            "x": 0.015000000596046448,
+                            "y": 0.01600000075995922,
                             "z": 0.014999999664723874
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
-                            "z": -68.0
+                            "y": 0.0,
+                            "z": -58.0
                         }
                     },
                     "Rigidbody": {
@@ -38868,13 +39444,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.05000000074505806,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -31.74698829650879,
-                            "y": 8.159676551818848,
-                            "z": -36.029598236083987
+                            "x": -38.38288116455078,
+                            "y": 13.142487525939942,
+                            "z": -24.94921875
                         }
                     },
                     "RigidForce": {
@@ -38898,14 +39474,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.20000000298023225,
-                            "y": -0.5699999928474426,
-                            "z": -1.340000033378601
+                            "x": -0.800000011920929,
+                            "y": -0.4699999988079071,
+                            "z": -0.3499999940395355
                         },
                         "Max Point": {
-                            "x": 0.20000000298023225,
-                            "y": 0.5699999928474426,
-                            "z": 1.6399999856948853
+                            "x": 0.800000011920929,
+                            "y": 0.4699999988079071,
+                            "z": 0.3499999940395355
                         },
                         "Is Collide": false
                     },
@@ -38914,12 +39490,15 @@
                             11057976693296903406,
                             5691439207370049121,
                             3617555656175080491,
-                            14486341741652966143
+                            14486341741652966143,
+                            9604788041699812520,
+                            16415915133639986106,
+                            17008353085049151909
                         ],
                         "Prefab GID": 159
                     },
                     "Name": {
-                        "Name": "Ruler"
+                        "Name": "watchtowerSlope"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -38927,8 +39506,8 @@
                     },
                     "Slope": {
                         "TOGGLE ONE ONLY: North": false,
-                        "South": true,
-                        "East": false,
+                        "South": false,
+                        "East": true,
                         "West": false
                     }
                 },
@@ -38972,7 +39551,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.05000000074505806,
                             "z": 0.0
                         },
                         "Position": {
@@ -39018,7 +39597,8 @@
                             11057976693296903406,
                             5691439207370049121,
                             3617555656175080491,
-                            14486341741652966143
+                            14486341741652966143,
+                            17008353085049151909
                         ],
                         "Prefab GID": 159
                     },
@@ -39571,7 +40151,7 @@
                         "Scale": {
                             "x": 0.015000000596046448,
                             "y": 0.01600000075995922,
-                            "z": 0.014999999664723874
+                            "z": 0.029999999329447748
                         }
                     },
                     "Rotation": {
@@ -39602,7 +40182,7 @@
                         "Position": {
                             "x": -44.95648193359375,
                             "y": 8.419882774353028,
-                            "z": -40.54301834106445
+                            "z": -40.74300003051758
                         }
                     },
                     "RigidForce": {
@@ -39628,12 +40208,12 @@
                         "Min Point": {
                             "x": -1.399999976158142,
                             "y": -0.9700000286102295,
-                            "z": -0.23999999463558198
+                            "z": -0.4399999976158142
                         },
                         "Max Point": {
                             "x": 1.399999976158142,
                             "y": 0.9700000286102295,
-                            "z": 0.23999999463558198
+                            "z": 0.4399999976158142
                         },
                         "Is Collide": false
                     },
@@ -39642,7 +40222,8 @@
                             5691439207370049121,
                             11057976693296903406,
                             3617555656175080491,
-                            14486341741652966143
+                            14486341741652966143,
+                            17008353085049151909
                         ],
                         "Prefab GID": 159
                     },
@@ -39675,7 +40256,7 @@
                         "Scale": {
                             "x": 0.014999999664723874,
                             "y": 0.014000000432133675,
-                            "z": 0.014999999664723874
+                            "z": 0.029999999329447748
                         }
                     },
                     "Rotation": {
@@ -39730,14 +40311,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.20000000298023225,
+                            "x": -0.5,
                             "y": -0.5699999928474426,
                             "z": -1.340000033378601
                         },
                         "Max Point": {
-                            "x": 0.20000000298023225,
+                            "x": 0.5,
                             "y": 0.5699999928474426,
-                            "z": 1.6399999856948853
+                            "z": 1.340000033378601
                         },
                         "Is Collide": false
                     },
@@ -39870,14 +40451,14 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 331
+                        "Global Index": 479
                     },
                     "Mesh": {
                         "Model": "Ruler",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
@@ -39890,7 +40471,7 @@
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": -67.5
+                            "z": -58.0
                         }
                     },
                     "Rigidbody": {
@@ -39908,13 +40489,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.05000000074505806,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -25.56375503540039,
-                            "y": 8.182524681091309,
-                            "z": 1.686636209487915
+                            "x": -37.854984283447269,
+                            "y": 11.645062446594239,
+                            "z": -27.727031707763673
                         }
                     },
                     "RigidForce": {
@@ -39938,29 +40519,31 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.399999976158142,
-                            "y": -0.6700000166893005,
-                            "z": -0.23999999463558198
+                            "x": -0.800000011920929,
+                            "y": -0.4699999988079071,
+                            "z": -0.3499999940395355
                         },
                         "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.6700000166893005,
-                            "z": 0.23999999463558198
+                            "x": 0.800000011920929,
+                            "y": 0.4699999988079071,
+                            "z": 0.3499999940395355
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            5691439207370049121,
                             11057976693296903406,
+                            5691439207370049121,
                             3617555656175080491,
                             14486341741652966143,
-                            16415915133639986106
+                            9604788041699812520,
+                            16415915133639986106,
+                            17008353085049151909
                         ],
                         "Prefab GID": 159
                     },
                     "Name": {
-                        "Name": "Ruler_s2"
+                        "Name": "watchtowerSlope"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -40092,7 +40675,7 @@
                         "Scale": {
                             "x": 0.015000000596046448,
                             "y": 0.01600000075995922,
-                            "z": 0.014999999664723874
+                            "z": 0.029999999329447748
                         }
                     },
                     "Rotation": {
@@ -40123,7 +40706,7 @@
                         "Position": {
                             "x": -48.925960540771487,
                             "y": 8.35914134979248,
-                            "z": -33.372859954833987
+                            "z": -33.17300033569336
                         }
                     },
                     "RigidForce": {
@@ -40149,116 +40732,12 @@
                         "Min Point": {
                             "x": -1.399999976158142,
                             "y": -0.9700000286102295,
-                            "z": -0.23999999463558198
+                            "z": -0.4399999976158142
                         },
                         "Max Point": {
                             "x": 1.399999976158142,
                             "y": 0.9700000286102295,
-                            "z": 0.23999999463558198
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            11057976693296903406,
-                            5691439207370049121,
-                            3617555656175080491,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 159
-                    },
-                    "Name": {
-                        "Name": "Ruler"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
-                        "South": false,
-                        "East": false,
-                        "West": true
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 479
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": false
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.015000000596046448,
-                            "y": 0.01600000075995922,
-                            "z": 0.014999999664723874
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -58.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -37.854984283447269,
-                            "y": 11.645062446594239,
-                            "z": -27.727031707763673
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.800000011920929,
-                            "y": -0.4699999988079071,
-                            "z": -0.3499999940395355
-                        },
-                        "Max Point": {
-                            "x": 0.800000011920929,
-                            "y": 0.4699999988079071,
-                            "z": 0.3499999940395355
+                            "z": 0.4399999976158142
                         },
                         "Is Collide": false
                     },
@@ -40268,324 +40747,7 @@
                             5691439207370049121,
                             3617555656175080491,
                             14486341741652966143,
-                            9604788041699812520,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 159
-                    },
-                    "Name": {
-                        "Name": "watchtowerSlope"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
-                        "South": false,
-                        "East": false,
-                        "West": true
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 480
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": false
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.015000000596046448,
-                            "y": 0.01600000075995922,
-                            "z": 0.014999999664723874
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -58.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -38.38288116455078,
-                            "y": 13.142487525939942,
-                            "z": -24.94921875
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.800000011920929,
-                            "y": -0.4699999988079071,
-                            "z": -0.3499999940395355
-                        },
-                        "Max Point": {
-                            "x": 0.800000011920929,
-                            "y": 0.4699999988079071,
-                            "z": 0.3499999940395355
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            11057976693296903406,
-                            5691439207370049121,
-                            3617555656175080491,
-                            14486341741652966143,
-                            9604788041699812520,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 159
-                    },
-                    "Name": {
-                        "Name": "watchtowerSlope"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": false,
-                        "South": false,
-                        "East": true,
-                        "West": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 481
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": false
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.015000000596046448,
-                            "y": 0.01600000075995922,
-                            "z": 0.014999999664723874
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -58.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -36.83866882324219,
-                            "y": 12.4010009765625,
-                            "z": -26.06411361694336
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.3499999940395355,
-                            "y": -0.4699999988079071,
-                            "z": -0.800000011920929
-                        },
-                        "Max Point": {
-                            "x": 0.3499999940395355,
-                            "y": 0.4699999988079071,
-                            "z": 0.800000011920929
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            11057976693296903406,
-                            5691439207370049121,
-                            3617555656175080491,
-                            14486341741652966143,
-                            9604788041699812520,
-                            16415915133639986106
-                        ],
-                        "Prefab GID": 159
-                    },
-                    "Name": {
-                        "Name": "watchtowerSlope"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Slope": {
-                        "TOGGLE ONE ONLY: North": true,
-                        "South": false,
-                        "East": false,
-                        "West": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 484
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.015000000596046448,
-                            "y": 0.01600000075995922,
-                            "z": 0.014999999664723874
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": -58.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -48.925960540771487,
-                            "y": 8.35914134979248,
-                            "z": -32.928157806396487
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.399999976158142,
-                            "y": -0.9700000286102295,
-                            "z": -0.23999999463558198
-                        },
-                        "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.9700000286102295,
-                            "z": 0.23999999463558198
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            11057976693296903406,
-                            3617555656175080491,
-                            14486341741652966143
+                            17008353085049151909
                         ],
                         "Prefab GID": 159
                     },
@@ -40768,8 +40930,7 @@
                             479,
                             478,
                             480,
-                            481,
-                            484
+                            481
                         ]
                     },
                     "Rotation": {
@@ -41992,7 +42153,7 @@
                         "Name": "MovingBillboard"
                     },
                     "Path Follower": {
-                        "Path ID": 0,
+                        "Path ID": 8,
                         "Distance": 0.0,
                         "Travel Speed": 2.0,
                         "Back and Forth": true,
@@ -44525,7 +44686,7 @@
                     },
                     "Sound": {
                         "Path": "event:/BGM_Level1",
-                        "Sound Event ID": 282,
+                        "Sound Event ID": 2707,
                         "3D Sound": false,
                         "Triggerable": false,
                         "Trigger": false
@@ -44805,7 +44966,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 283,
+                        "Sound Event ID": 2684,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -44945,7 +45106,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 284,
+                        "Sound Event ID": 2685,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -45085,7 +45246,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 285,
+                        "Sound Event ID": 2686,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -45225,7 +45386,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 286,
+                        "Sound Event ID": 2687,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -45365,7 +45526,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 287,
+                        "Sound Event ID": 2688,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -45505,7 +45666,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 288,
+                        "Sound Event ID": 2689,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -45645,7 +45806,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 289,
+                        "Sound Event ID": 2690,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -45785,7 +45946,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 290,
+                        "Sound Event ID": 2691,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -46106,8 +46267,8 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Rotation": {
@@ -46137,7 +46298,7 @@
                         },
                         "Position": {
                             "x": -33.01499938964844,
-                            "y": 7.754157543182373,
+                            "y": 8.053999900817871,
                             "z": -16.694000244140626
                         }
                     },
@@ -46166,20 +46327,20 @@
                                 "ID": "CollectedInteractable"
                             },
                             {
-                                "ID": "Fan"
+                                "ID": "AbilitySpin"
                             }
                         ]
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.15000000596046449,
-                            "y": -0.20000000298023225,
-                            "z": -0.15000000596046449
+                            "x": -0.20000000298023225,
+                            "y": -0.30000001192092898,
+                            "z": -0.20000000298023225
                         },
                         "Max Point": {
-                            "x": 0.15000000596046449,
-                            "y": 0.20000000298023225,
-                            "z": 0.15000000596046449
+                            "x": 0.20000000298023225,
+                            "y": 0.30000001192092898,
+                            "z": 0.20000000298023225
                         },
                         "Is Collide": false
                     },
@@ -46221,8 +46382,8 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.003000000026077032,
-                            "y": 0.003000000026077032,
-                            "z": 0.003000000026077032
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Rotation": {
@@ -46251,9 +46412,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -29.031999588012697,
-                            "y": 7.808685779571533,
-                            "z": -10.572999954223633
+                            "x": -26.832000732421876,
+                            "y": 8.208999633789063,
+                            "z": -6.9730000495910648
                         }
                     },
                     "RigidForce": {
@@ -46281,20 +46442,20 @@
                                 "ID": "CollectedInteractable"
                             },
                             {
-                                "ID": "Fan"
+                                "ID": "AbilitySpin"
                             }
                         ]
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.15000000596046449,
-                            "y": -0.20000000298023225,
-                            "z": -0.15000000596046449
+                            "x": -0.20000000298023225,
+                            "y": -0.30000001192092898,
+                            "z": -0.20000000298023225
                         },
                         "Max Point": {
-                            "x": 0.15000000596046449,
-                            "y": 0.20000000298023225,
-                            "z": 0.15000000596046449
+                            "x": 0.20000000298023225,
+                            "y": 0.30000001192092898,
+                            "z": 0.20000000298023225
                         },
                         "Is Collide": false
                     },
@@ -46455,9 +46616,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -29.0,
+                            "x": -20.600000381469728,
                             "y": 8.600000381469727,
-                            "z": -11.399999618530274
+                            "z": -6.599999904632568
                         }
                     },
                     "RigidForce": {
@@ -46488,12 +46649,12 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.5,
+                            "x": -2.5,
                             "y": -1.0,
                             "z": -1.0
                         },
                         "Max Point": {
-                            "x": 1.5,
+                            "x": 2.5,
                             "y": 1.0,
                             "z": 1.0
                         },
@@ -46559,7 +46720,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 291,
+                        "Sound Event ID": 2692,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -46701,7 +46862,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 292,
+                        "Sound Event ID": 2693,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -46742,8 +46903,8 @@
                         "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 20.0,
-                        "Pause At Time": 20.0,
+                        "Current Time": 21.0,
+                        "Pause At Time": 21.0,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -46806,7 +46967,8 @@
                         "Modified Components": [
                             16113566265477431037,
                             8376831551428810534,
-                            14302600151082817442
+                            14302600151082817442,
+                            15204223096342135753
                         ],
                         "Prefab GID": 152
                     },
@@ -46818,8 +46980,8 @@
                         "Inv Mass": 0.0
                     },
                     "Elevator": {
-                        "Start Time": 20.0,
-                        "Stop Time": 40.0,
+                        "Start Time": 21.0,
+                        "Stop Time": 36.400001525878909,
                         "Unit Under": false
                     }
                 }
@@ -47727,8 +47889,8 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
-                            "z": -0.30000001192092898
+                            "y": 2.0999999046325685,
+                            "z": -0.4000000059604645
                         },
                         "Position": {
                             "x": -49.0,
@@ -47759,12 +47921,12 @@
                         "Min Point": {
                             "x": -2.5,
                             "y": -2.700000047683716,
-                            "z": -4.0
+                            "z": -4.199999809265137
                         },
                         "Max Point": {
                             "x": 2.5999999046325685,
                             "y": 2.700000047683716,
-                            "z": 4.0
+                            "z": 4.199999809265137
                         },
                         "Is Collide": false
                     },
@@ -48268,7 +48430,7 @@
                         "Scale": {
                             "x": 0.015000000596046448,
                             "y": 0.01600000075995922,
-                            "z": 0.014999999664723874
+                            "z": 0.029999999329447748
                         }
                     },
                     "Sound": {
@@ -48306,7 +48468,7 @@
                         "Position": {
                             "x": -25.56375503540039,
                             "y": 8.182524681091309,
-                            "z": 1.2415457963943482
+                            "z": 1.4420000314712525
                         }
                     },
                     "RigidForce": {
@@ -48332,12 +48494,12 @@
                         "Min Point": {
                             "x": -1.399999976158142,
                             "y": -0.6700000166893005,
-                            "z": -0.23999999463558198
+                            "z": -0.4399999976158142
                         },
                         "Max Point": {
                             "x": 1.399999976158142,
                             "y": 0.6700000166893005,
-                            "z": 0.23999999463558198
+                            "z": 0.4399999976158142
                         },
                         "Is Collide": false
                     },
@@ -48347,7 +48509,8 @@
                             5691439207370049121,
                             3617555656175080491,
                             14486341741652966143,
-                            16415915133639986106
+                            16415915133639986106,
+                            17008353085049151909
                         ],
                         "Prefab GID": 159
                     },
@@ -48364,228 +48527,6 @@
                         "East": false,
                         "West": true
                     }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        5691439207370049121,
-                        14302600151082817442,
-                        13107566195444653040,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        14351128073332756358,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793,
-                        11993994361337810638
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 424
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Checkpoint",
-                        "Sound Event ID": 293,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            425,
-                            426
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.4000000059604645,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -28.99344825744629,
-                            "y": 7.710365295410156,
-                            "z": -8.877572059631348
-                        }
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Checkpoint"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.4000000059604645,
-                            "y": -0.4000000059604645,
-                            "z": -0.8999999761581421
-                        },
-                        "Max Point": {
-                            "x": 0.4000000059604645,
-                            "y": 0.4000000059604645,
-                            "z": 0.8999999761581421
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 421
-                    },
-                    "Name": {
-                        "Name": "Checkpoint"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        5691439207370049121,
-                        14302600151082817442,
-                        13107566195444653040,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        14351128073332756358,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793,
-                        11993994361337810638
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 421
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Sound": {
-                        "Path": "",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": false,
-                        "Trigger": false
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            422,
-                            423
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            424
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.4000000059604645,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -37.900001525878909,
-                            "y": 8.399999618530274,
-                            "z": -39.70000076293945
-                        }
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Checkpoint"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.4000000059604645,
-                            "y": -0.4000000059604645,
-                            "z": -0.8999999761581421
-                        },
-                        "Max Point": {
-                            "x": 0.4000000059604645,
-                            "y": 0.4000000059604645,
-                            "z": 0.8999999761581421
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Checkpoint"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {}
                 }
             ]
         },
