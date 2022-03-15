@@ -448,6 +448,11 @@ namespace paperback::deserialize
             if (obj.is_type<ability_collectible>())
                 NewArchetype->GetComponent<ability_collectible>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<ability_collectible>();
 
+            if (obj.is_type<particle>())
+                NewArchetype->GetComponent<particle>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<particle>();
+
+            if (obj.is_type<particle_emitter>())
+                NewArchetype->GetComponent<particle_emitter>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<particle_emitter>();
         }
     }
 

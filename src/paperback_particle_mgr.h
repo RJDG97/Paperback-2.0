@@ -40,9 +40,11 @@ namespace paperback::particles
 
     private:
         
-        FreeList                m_FreeList;
-        EmitterMap              m_EmitterMap;
-        coordinator::instance&  m_Coordinator;
+        paperback::u32                      m_ParticleCount = 0;
+        paperback::archetype::instance*     m_ParticleArchetype = nullptr;
+        FreeList                            m_FreeList;
+        EmitterMap                          m_EmitterMap;
+        coordinator::instance&              m_Coordinator;
     };
 }
 

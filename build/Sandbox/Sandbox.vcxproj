@@ -318,8 +318,6 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Systems\IconSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />
-    <ClInclude Include="Systems\OnEvent_HealthSystem.h" />
-    <ClInclude Include="Systems\OnEvent_LowDeckCount.h" />
     <ClInclude Include="Systems\OnEvent_ParentOrChildDeleted.h" />
     <ClInclude Include="Systems\OnEvent_PointCaptured.h" />
     <ClInclude Include="Systems\OnEvent_ReferencePrefabDeleted.h" />

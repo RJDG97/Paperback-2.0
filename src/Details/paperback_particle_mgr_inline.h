@@ -6,7 +6,8 @@ namespace paperback::particles
 {
     PPB_INLINE
     manager::manager( coordinator::instance& Instance ) noexcept :
-        m_Coordinator{ Instance }
+        m_ParticleCount{ 0 }
+    ,   m_Coordinator{ Instance }
     {
         Reset();
     }
@@ -14,30 +15,16 @@ namespace paperback::particles
     PPB_INLINE
     void manager::Initialize( void ) noexcept
     {
-        // Create Particle Archetype
-        auto ParticleArchetype = &m_Coordinator.GetOrCreateArchetype< component::entity, transform, scale, rotation
-                                                                    , offset, mesh, rigidforce, rigidbody, particle>();
-
-        // Clone If Valid
-        if ( ParticleArchetype )
-        {
-            for ( paperback::u32 i = 0; i < manager::max_particles_v; ++i )
-            {
-                m_FreeList.push_back( ParticleArchetype->CreatePrefab().m_GlobalIndex );
-            }
-        }
-
-        // Reverse IDs - Because we use pop_back
-        for ( size_t i = 0, max = m_FreeList.size(), mid = max / 2; i < mid; ++i )
-        {
-            std::swap( m_FreeList[ i ], m_FreeList[ max - i - 1 ] );
-        }
+        // Gotta Call This After RegisterComponents
+        m_ParticleArchetype = &m_Coordinator.GetOrCreateArchetype< component::entity, transform, scale, rotation
+                                                                 , offset, mesh, rigidforce, rigidbody, particle>();
     }
 
     PPB_INLINE
     void manager::Reset( void ) noexcept
     {
         // Free IDs
+        m_ParticleCount = 0;
         m_FreeList.clear();
         m_EmitterMap.clear();
     }
@@ -46,21 +33,47 @@ namespace paperback::particles
     manager::ParticleList manager::RequestParticles( const int            Quantity
                                                    , const paperback::u32 EmitterGID ) noexcept
     {
+        if ( !m_ParticleArchetype )
+        {
+            ERROR_PRINT( "Particle Archetype Does Not Exist - Cannot Generate Particles" );
+            return {};
+        }
+
         ParticleList List{ };
 
-        if ( m_FreeList.size() == 0 ) return List;
-
-        for ( int i = 0; i < Quantity; ++i )
+        // Insufficient Particles To Allocate
+        if ( m_FreeList.size() < Quantity )
         {
-            if ( m_FreeList.size() )
-            {
-                auto ID = m_FreeList.back();
-                m_FreeList.pop_back();
+            int Count = m_FreeList.size() == 0 ? Quantity
+                                               : static_cast<int>( Quantity - m_FreeList.size() );
 
+            while ( m_ParticleCount < manager::max_particles_v &&
+                    --Count >= 0 )
+            {
+                auto ID = m_ParticleArchetype->CreatePrefab().m_GlobalIndex;
                 List.push_back( ID );
-                m_EmitterMap.emplace( ID, EmitterGID );
+                m_EmitterMap.insert_or_assign( ID, EmitterGID );
+                ++m_ParticleCount;
             }
         }
+        else
+        {
+            if ( m_FreeList.size() < Quantity ) 
+            {
+                ERROR_PRINT( "Invalid Particle Quantity" );
+                return {};
+            }
+
+            for ( int i = 0; i < Quantity; ++i )
+            {
+                List.push_back( m_FreeList.back() );
+                m_FreeList.pop_back();
+                m_EmitterMap.insert_or_assign( List.back(), EmitterGID );
+                ++m_ParticleCount;
+            }
+        }
+
+        return List;
     }
 
     PPB_INLINE
@@ -78,6 +91,9 @@ namespace paperback::particles
             auto Emitter = EmitterInfo.m_pArchetype->FindComponent<particle_emitter>( EmitterInfo.m_PoolDetails );
             if ( Emitter ) Emitter->ReleaseParticle( ParticleGID );
         }
+
+        --m_ParticleCount;
+        m_FreeList.push_back( ParticleGID );
     }
 }
 
