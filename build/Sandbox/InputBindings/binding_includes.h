@@ -53,7 +53,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -106,7 +106,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
                         DirectionalVector.y    = 0.0f;
@@ -158,7 +158,8 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
+                    if ( Interaction && Interaction->m_bPushOrPull ) return;
+                    if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -214,7 +215,8 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
+                    if ( Interaction && Interaction->m_bPushOrPull ) return;
+                    if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -549,7 +551,7 @@ namespace paperback::input::binding
                                 // Update Interactable's Mass & Friction To Player's
                                 InterMass.m_Mass = Mass.m_Mass;
                                 InterRF.m_dynamicFriction = RF.m_dynamicFriction;
-                                InterRF.m_CollisionAffected = true;                             // NEW SHIT
+                                InterRF.m_CollisionAffected = true;
                                 InterRF.m_GravityAffected = true;
 
                                 // Reset Player Status
@@ -685,6 +687,7 @@ namespace paperback::input::binding
                                 InterRF->m_GravityAffected = true;
 
                                 InterMass->m_Mass = Mass.m_Mass;
+                                //std::cout << "Walking" << std::endl;
                             }
 
                             return true;

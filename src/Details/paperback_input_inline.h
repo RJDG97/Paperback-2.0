@@ -38,15 +38,17 @@ namespace paperback::input
         m_PlayerDeviceMap.emplace( device::info_v<T_DEVICE>.m_Guid.m_Value
                                  , m_PlayerDeviceList.size() - 1 );
 
+		#ifndef PAPERBACK_INSTALLER_BUILD
 		std::cout << "Device ( "
 			      << device::info_v<T_DEVICE>.m_pName
 			      << " ): Registered Successfully"
 			      << std::endl;
 
-	    std::cout << device::info_v<T_DEVICE>.m_pName
-		          << " Guid: "
-		          << device::info_v<T_DEVICE>.m_Guid.m_Value
-		          << std::endl;
+	    //std::cout << device::info_v<T_DEVICE>.m_pName
+		   //       << " Guid: "
+		   //       << device::info_v<T_DEVICE>.m_Guid.m_Value
+		   //       << std::endl;
+		#endif
 
 		return std::bit_cast<T_DEVICE*>( m_PlayerDeviceList.back().second.get() );
     }
