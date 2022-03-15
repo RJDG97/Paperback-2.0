@@ -49,42 +49,36 @@ namespace paperback
 			.property("z", &xcore::math::vector3::m_Z)
 			.property("w", &xcore::math::vector3::m_W);
 
-		rttr::registration::class_< Generate_Lifetime >( "Generate Lifetime" )
-			.constructor()( rttr::policy::ctor::as_object )
-			.property( "Min Lifetime", &Generate_Lifetime::m_Min )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Max Lifetime", &Generate_Lifetime::m_Max )( rttr::policy::prop::as_reference_wrapper );
+		rttr::registration::class_< Generate_Lifetime >("Generate Lifetime")
+			.constructor()(rttr::policy::ctor::as_object)
+			.property("Min Lifetime", &Generate_Lifetime::m_Min)
+			.property("Max Lifetime", &Generate_Lifetime::m_Max);
 		
 		rttr::registration::class_< Generate_Velocity >( "Generate Velocity" )
 			.constructor()( rttr::policy::ctor::as_object )
-			.property( "Min Velocity", &Generate_Velocity::m_Min )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Max Velocity", &Generate_Velocity::m_Max )( rttr::policy::prop::as_reference_wrapper );
+			.property( "Min Velocity", &Generate_Velocity::m_Min )
+			.property( "Max Velocity", &Generate_Velocity::m_Max );
 
 		rttr::registration::class_< Generate_Rotation >( "Generate Rotation" )
 			.constructor()( rttr::policy::ctor::as_object )
-			.property( "Min Rotation", &Generate_Velocity::m_Min )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Max Rotation", &Generate_Velocity::m_Max )( rttr::policy::prop::as_reference_wrapper );
+			.property( "Min Rotation", &Generate_Velocity::m_Min )
+			.property( "Max Rotation", &Generate_Velocity::m_Max );
 
 		rttr::registration::class_< Generate_Opacity >( "Generate Opacity" )
 			.constructor()( rttr::policy::ctor::as_object )
-			.property( "Min Opacity", &Generate_Opacity::m_Min )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Max Opacity", &Generate_Opacity::m_Max )( rttr::policy::prop::as_reference_wrapper );
+			.property( "Min Opacity", &Generate_Opacity::m_Min )
+			.property( "Max Opacity", &Generate_Opacity::m_Max );
 
 		rttr::registration::class_< Update_Velocity >( "Update Velocity" )
 			.constructor()( rttr::policy::ctor::as_object )
-			.property( "Destination", &Update_Velocity::m_Destination )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Min Velocity", &Update_Velocity::m_Min )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Max Velocity", &Update_Velocity::m_Max )( rttr::policy::prop::as_reference_wrapper );
+			.property( "Destination", &Update_Velocity::m_Destination )
+			.property( "Min Velocity", &Update_Velocity::m_Min )
+			.property( "Max Velocity", &Update_Velocity::m_Max );
 
 		rttr::registration::class_< Generate_Scale >( "Generate Scale" )
 			.constructor()( rttr::policy::ctor::as_object )
-			.property( "Min Scale", &Generate_Scale::m_Min )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Max Scale", &Generate_Scale::m_Max )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Enable Uniform Scaling?", &Generate_Scale::m_bUniformScale )(rttr::policy::prop::as_reference_wrapper);
-
-		//rttr::registration::class_<glm::vec3>("glm_Vector3")
-		//	.constructor()(rttr::policy::ctor::as_object)
-		//	.property("x", &glm::vec3::x)
-		//	.property("y", &glm::vec3::y)
-		//	.property("z", &glm::vec3::z);
+			.property( "Min Scale", &Generate_Scale::m_Min )
+			.property( "Max Scale", &Generate_Scale::m_Max )
+			.property( "Enable Uniform Scaling?", &Generate_Scale::m_bUniformScale );
 	}
 }
