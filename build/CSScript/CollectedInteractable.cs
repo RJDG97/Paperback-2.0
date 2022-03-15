@@ -87,6 +87,7 @@ namespace CSScript
                     }
 
                     m_Activated = true;
+                    m_InteractableSound.m_Trigger = true;
                     m_InteractableMesh.m_Active = false;
                 }
             }

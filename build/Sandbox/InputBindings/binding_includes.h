@@ -584,7 +584,8 @@ namespace paperback::input::binding
                         if ( Info.m_pArchetype )
                         {
                             // Reset Interactable Object Push Status
-                            auto [ Mass, RF ] = Info.m_pArchetype->FindComponents<mass, rigidforce>( Info.m_PoolDetails );
+                            auto [ Mass, RF, InterRB ] = Info.m_pArchetype->FindComponents<mass, rigidforce, rigidbody>( Info.m_PoolDetails );
+                            if ( InterRB && InterRB->m_Velocity.y <= -0.1f ) return false;
                             if ( Mass ) Mass->m_Mass = 0.0f;
                             if (RF)
                             {
