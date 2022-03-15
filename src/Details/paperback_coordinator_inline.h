@@ -642,6 +642,7 @@ namespace paperback::coordinator
             const auto&  Info = GetEntityInfo( GID );		  // Get Entity Info
 
 			FuncQuery.AddQueryFromFunction<T_FUNCTION>();     // Assign Query
+			FuncQuery.m_NoneOf.AddFromComponents<prefab>( );  // Exclude Prefab Entities
 
             if ( Info.m_pArchetype && Info.m_pArchetype->GetComponentBits().Compare( FuncQuery.m_Must )
 				                   && Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) )

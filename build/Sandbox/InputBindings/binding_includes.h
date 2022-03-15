@@ -527,7 +527,7 @@ namespace paperback::input::binding
             {
                 // Find Player Entity - That Can Push / Pull
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller
-                                                                         , boundingbox& BB, mass& Mass, rigidforce& RF ) -> bool
+                                                                         , boundingbox& BB, mass& Mass, rigidforce& RF, rigidbody& RB ) -> bool
                 {
                     if ( !Controller.m_PlayerStatus || Controller.m_FPSMode ) return false;
 
@@ -539,8 +539,10 @@ namespace paperback::input::binding
                         PQuery.m_Must.AddFromComponents< pushable, transform, mass, boundingbox, rigidforce >();
 		                PQuery.m_NoneOf.AddFromComponents< prefab >();
 
-                        m_Coordinator.ForEach( m_Coordinator.Search( PQuery ), [&]( paperback::component::entity& InterEntity, transform& InterTransform
-                                                                                  , mass& InterMass, boundingbox& InterBB, rigidforce& InterRF ) -> bool
+                        //auto NeighbourList = m_Coordinator.QueryNeighbours( BB, Transform );
+
+                        m_Coordinator.ForEach( m_Coordinator.Search(PQuery), [&]( paperback::component::entity& InterEntity, transform& InterTransform
+                                                                                , mass& InterMass, boundingbox& InterBB, rigidforce& InterRF ) -> bool
                         {
                             auto AllowableDist = ( InterBB.Max + BB.Max ).MagnitudeSq() * 1.1f;
                             auto Dist          = Transform.m_Position - InterTransform.m_Position;
@@ -574,6 +576,8 @@ namespace paperback::input::binding
                     }
                     else
                     {
+                        if ( RB.m_Velocity.y <= -0.1f ) return false;
+
                         // Find Entity That's Pushable Currently
                         const auto& Info = m_Coordinator.GetEntityInfo( Interaction.m_InteractableGID );
 
@@ -658,14 +662,14 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, transform, player_interaction >();
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, transform, player_interaction, boundingbox >();
 		    Query.m_NoneOf.AddFromComponents< prefab >();
 
             // Game Is Not Paused
             if ( !m_Coordinator.GetPauseBool() )
             {
                 // Find Player Entity - That Can Push / Pull
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller, rigidforce& RF, mass& Mass ) -> bool
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller, rigidforce& RF, mass& Mass, boundingbox& BB ) -> bool
                 {
                     if ( !Controller.m_PlayerStatus || Controller.m_FPSMode ) return false;
 
@@ -679,15 +683,26 @@ namespace paperback::input::binding
                         if ( Info.m_pArchetype )
                         {
                             // Reset Interactable Object Push Status
-                            auto [ InterRF, InterMass ] = Info.m_pArchetype->FindComponents<rigidforce, mass>( Info.m_PoolDetails );
-                            if ( InterRF && InterMass )
+                            auto [ InterRF, InterMass, InterBB, InterTransform ] = Info.m_pArchetype->FindComponents<rigidforce, mass, boundingbox, transform>( Info.m_PoolDetails );
+                            if ( InterRF && InterMass && InterBB && InterTransform )
                             {
-                                InterRF->m_Momentum = RF.m_Momentum;
-                                InterRF->m_CollisionAffected = true;
-                                InterRF->m_GravityAffected = true;
+                                auto AllowableDist = ( InterBB->Max + BB.Max ).MagnitudeSq() * 1.5f;
+                                auto Dist          = Transform.m_Position - InterTransform->m_Position;
 
-                                InterMass->m_Mass = Mass.m_Mass;
-                                //std::cout << "Walking" << std::endl;
+                                // If Within Some Set Distance Range
+                                if ( Dist.MagnitudeSq() >= AllowableDist )
+                                {
+                                    // Reset Player Status
+                                    Interaction.m_InteractableGID = settings::invalid_index_v;
+                                    Interaction.m_bPushOrPull     = false;
+                                }
+                                else
+                                {
+                                    InterRF->m_Momentum = RF.m_Momentum;
+                                    InterRF->m_CollisionAffected = true;
+                                    InterRF->m_GravityAffected = true;
+                                    InterMass->m_Mass = Mass.m_Mass;
+                                }
                             }
 
                             return true;
@@ -791,12 +806,13 @@ namespace paperback::input::binding
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, rigidforce& RF, mass& Mass, player_interaction* Interaction ) -> bool
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, rigidforce& RF, rigidbody& RB, mass& Mass, player_interaction* Interaction ) -> bool
                 {
                     // FPS Mode Is Active - Do Not Allow Player Swap
                     if ( Controller.m_PlayerStatus && Camera.m_Active )
                     {
-                        if ( Controller.m_FPSMode )
+                        // In FPS Mode / Strong Unit Falling While Pushing - Invalid Toggle
+                        if ( Controller.m_FPSMode || (Interaction && Interaction->m_bPushOrPull && RB.m_Velocity.y <= -0.1f) )
                         {
                             ValidSwap = false;
                             return true;
