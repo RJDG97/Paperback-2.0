@@ -448,6 +448,12 @@ namespace paperback::deserialize
             if (obj.is_type<ability_collectible>())
                 NewArchetype->GetComponent<ability_collectible>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<ability_collectible>();
 
+            if (obj.is_type<dialogue_text>())
+                NewArchetype->GetComponent<dialogue_text>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<dialogue_text>();
+
+            if (obj.is_type<dialogue_collider>())
+                NewArchetype->GetComponent<dialogue_collider>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<dialogue_collider>();
+
         }
     }
 

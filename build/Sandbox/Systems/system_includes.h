@@ -15,6 +15,7 @@
 #include "IconSystem.h"
 #include "PlayerCameraSystem.h"
 #include "ParticleSystem.h"
+#include "DialogueSystem.h"
 
 // Event
 #include "OnEvent_CollisionSystem.h"

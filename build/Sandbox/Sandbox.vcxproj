@@ -226,6 +226,8 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Components\Currency.h" />
     <ClInclude Include="Components\Damage.h" />
     <ClInclude Include="Components\Deck.h" />
+    <ClInclude Include="Components\DialogueCollider.h" />
+    <ClInclude Include="Components\DialogueText.h" />
     <ClInclude Include="Components\Elevator.h" />
     <ClInclude Include="Components\Enemy.h" />
     <ClInclude Include="Components\EnemySpawner.h" />
@@ -315,6 +317,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Systems\CameraSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
     <ClInclude Include="Systems\DebugSystem.h" />
+    <ClInclude Include="Systems\DialogueSystem.h" />
     <ClInclude Include="Systems\IconSystem.h" />
     <ClInclude Include="Systems\ImguiSystem.h" />
     <ClInclude Include="Systems\OnEvent_CollisionSystem.h" />

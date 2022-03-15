@@ -91,6 +91,9 @@
     <ClCompile Include="..\..\src\Functionality\RenderResource\RenderResourceLoader.cpp">
       <Filter>Source\Tools\Functionality\RenderResource</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Dialogue\DialogueManager.cpp">
+      <Filter>Source\Tools\Functionality\Dialogue</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\paperback_bitset.h">
@@ -618,6 +621,15 @@
     <ClInclude Include="..\..\src\paperback_particle_mgr.h">
       <Filter>Source\Paperback Engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Functionality\Dialogue\DialogueManager.h">
+      <Filter>Source\Tools\Functionality\Dialogue</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_DialogueCollider.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_DialogueText.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">
@@ -733,6 +745,9 @@
     </Filter>
     <Filter Include="Source\Paperback Engine\BroadPhase">
       <UniqueIdentifier>{45d29145-234f-4ff8-9d2f-6a2ad25d28de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Tools\Functionality\Dialogue">
+      <UniqueIdentifier>{522337cf-7090-4ed4-a09d-82b07bb22995}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

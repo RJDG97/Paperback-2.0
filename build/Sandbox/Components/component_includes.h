@@ -60,6 +60,8 @@
 #include "BulkSound.h"
 #include "Cinematic.h"
 #include "AbilityCollectible.h"
+#include "DialogueText.h"
+#include "DialogueCollider.h"
 
 
 // shapes

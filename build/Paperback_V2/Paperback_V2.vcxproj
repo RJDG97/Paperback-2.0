@@ -89,6 +89,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Dialogue\DialogueManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Font\Font.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -198,6 +202,7 @@
     <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Camera\Camera.h" />
+    <ClInclude Include="..\..\src\Functionality\Dialogue\DialogueManager.h" />
     <ClInclude Include="..\..\src\Functionality\Font\Font.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
@@ -281,6 +286,8 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Child.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_CollisionLayer.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_DialogueCollider.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_DialogueText.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Elevator.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Mass.h" />

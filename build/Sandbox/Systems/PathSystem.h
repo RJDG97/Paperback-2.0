@@ -233,7 +233,7 @@ struct path_system : paperback::system::instance
 
 				if (normalized_offset > Cinematic.m_Index)
 				{
-					normalized_offset = Cinematic.m_Index;
+					normalized_offset = static_cast<float>(Cinematic.m_Index);
 					Cinematic.m_OnHold = true;
 				}
 

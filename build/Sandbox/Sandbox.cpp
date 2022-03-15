@@ -130,6 +130,8 @@ void InitializeGame()
         ,    ability_collectible
         ,    particle_emitter
         ,    particle
+        ,    dialogue_text
+        ,    dialogue_collider
         >();
 
         // Register Components - Add to the end of the list
@@ -155,6 +157,7 @@ void InitializeGame()
         ,   camera_system
         ,   icon_system
         ,   player_camera_system
+        ,   dialogue_system
         >();
 
         PPB.RegisterSystems <
