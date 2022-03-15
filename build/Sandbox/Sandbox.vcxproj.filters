@@ -177,9 +177,6 @@
     <ClInclude Include="Components\Unit.h">
       <Filter>Source Files\Components\Details\Tags</Filter>
     </ClInclude>
-    <ClInclude Include="Systems\OnEvent_HealthSystem.h">
-      <Filter>Source Files\Systems\Details\Event</Filter>
-    </ClInclude>
     <ClInclude Include="Systems\AnimatorSystem.h">
       <Filter>Source Files\Systems\Details\Update</Filter>
     </ClInclude>
@@ -278,9 +275,6 @@
       <Filter>Source Files\Components\Details</Filter>
     </ClInclude>
     <ClInclude Include="Systems\OnEvent_PointCaptured.h">
-      <Filter>Source Files\Systems\Details\Event</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems\OnEvent_LowDeckCount.h">
       <Filter>Source Files\Systems\Details\Event</Filter>
     </ClInclude>
     <ClInclude Include="Components\SpawnerDetails.h">

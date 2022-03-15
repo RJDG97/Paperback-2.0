@@ -1,15 +1,17 @@
 #pragma once
 
+#include "glm/inc/gtc/random.hpp"
+
 struct Generate_Lifetime
 {
 	PPB_INLINE
 	float Rand( void ) const noexcept
 	{
-		return {}; // Update This
+		return glm::linearRand( m_Min, m_Max );
 	}
 
-	float m_Min = 0.0f;
-	float m_Max = 1.0f;
+	float m_Min = 1.0f;
+	float m_Max = 5.0f;
 };
 
 struct Generate_Position
@@ -18,7 +20,11 @@ struct Generate_Position
 	paperback::Vector3f Rand( const transform&   EmitterTransform
 						    , const boundingbox& EmitterBB ) const noexcept
 	{
-		return {}; // Update This
+		boundingbox Boundaries = EmitterBB.Extend( EmitterTransform.m_Position + EmitterTransform.m_Offset );
+
+		return paperback::Vector3f{ glm::linearRand( Boundaries.Min.x, Boundaries.Max.x )
+								  , glm::linearRand( Boundaries.Min.y, Boundaries.Max.y )
+								  , glm::linearRand( Boundaries.Min.z, Boundaries.Max.z ) };
 	}
 };
 
@@ -27,11 +33,13 @@ struct Generate_Velocity
 	PPB_INLINE
 	paperback::Vector3f Rand( void ) const noexcept
 	{
-		return {}; // Update This
+		return paperback::Vector3f{ glm::linearRand( m_Min.x, m_Max.x )
+								  , glm::linearRand( m_Min.y, m_Max.y )
+								  , glm::linearRand( m_Min.z, m_Max.z ) };
 	}
 
-	paperback::Vector3f m_Min{ 1.0f, 1.0f, 1.0f };
-	paperback::Vector3f m_Max{ 2.0f, 2.0f, 2.0f };
+	paperback::Vector3f m_Min{ 0.0f, 1.0f, 0.0f };
+	paperback::Vector3f m_Max{ 0.0f, 2.0f, 0.0f };
 };
 
 struct Generate_Rotation
@@ -39,35 +47,40 @@ struct Generate_Rotation
 	PPB_INLINE
 	paperback::Vector3f Rand( void ) const noexcept
 	{
-		return {}; // Update This
+		return paperback::Vector3f{ glm::linearRand( m_Min.x, m_Max.x )
+								  , glm::linearRand( m_Min.y, m_Max.y )
+								  , glm::linearRand( m_Min.z, m_Max.z ) };
 	}
 
-	paperback::Vector3f m_Min{ -2.0f, -2.0f, -2.0f };
-	paperback::Vector3f m_Max{  2.0f,  2.0f,  2.0f };
+	paperback::Vector3f m_Min{ 0.0f, 0.0f, 0.0f };
+	paperback::Vector3f m_Max{ 0.0f, 0.0f, 0.0f };
 };
 
 struct Generate_Opacity
 {
 	PPB_INLINE
-	int Rand( void ) const noexcept
+	float Rand( void ) const noexcept
 	{
-		return {}; // Update This
+		return glm::linearRand( m_Min, m_Max );
 	}
 
-	float m_Min = 0.0f;
+	float m_Min = 0.5f;
 	float m_Max = 1.0f;
 };
 
 struct Update_Velocity
 {
 	PPB_INLINE
-	paperback::Vector3f Rand( const transform&  ParticleTransform
-		                    , const rigidforce& ParticleRF ) const noexcept
+	paperback::Vector3f Rand( const transform& ParticleTransform ) const noexcept
 	{
-		return {}; // Update This
+		auto NormalizedDir = ( m_Destination - ParticleTransform.m_Position ).Normalized( );
+
+		return ( NormalizedDir * glm::linearRand( m_Min, m_Max ) );
 	}
 
 	paperback::Vector3f m_Destination{ 2.0f, 2.0f, 2.0f };
+	float               m_Min = 1.0f;
+	float               m_Max = 5.0f;
 };
 
 struct Generate_Scale
@@ -75,11 +88,23 @@ struct Generate_Scale
 	PPB_INLINE
 	paperback::Vector3f Rand( void ) const noexcept
 	{
-		return {}; // Update This
+		if ( m_bUniformScale )
+		{
+			float Scale = glm::linearRand( m_Min.x, m_Max.x );
+
+			return paperback::Vector3f{ Scale, Scale, Scale };
+		}
+		else
+		{
+			return paperback::Vector3f{ glm::linearRand( m_Min.x, m_Max.x )
+								      , glm::linearRand( m_Min.y, m_Max.y )
+								      , glm::linearRand( m_Min.z, m_Max.z ) };
+		}
 	}
 
-	paperback::Vector3f m_Min{ 0.05f, 0.05f, 0.05f };
-	paperback::Vector3f m_Max{ 0.10f, 0.10f, 0.10f };
+	paperback::Vector3f m_Min{ 0.001f, 0.001f, 0.001f };
+	paperback::Vector3f m_Max{ 0.003f, 0.003f, 0.003f };
+	bool                m_bUniformScale = true;
 };
 
 
@@ -97,16 +122,13 @@ BEGIN_CREATE_DATA_COMPONENT( particle_emitter, Particle Emitter )
 	using ParticleList = std::vector<paperback::u32>;
 
 	PPB_INLINE
-	void InitializeParticles( std::span<paperback::u32> List ) noexcept
+	void UpdateParticleList( std::span<paperback::u32> List ) noexcept
 	{
-		// Check m_bPrewarm & m_bHasDestination
-
-		//PPB.ForEach( List, [&]( /* Relevant Components */ )
-		//{
-		//	// Rand Everything & Initialize
-		//});
-
 		// Merge List w/ m_ActiveParticles List
+		for ( const auto ID : List )
+		{
+			m_ActiveParticles.push_back( ID );
+		}
 	}
 
 	PPB_INLINE
@@ -117,6 +139,7 @@ BEGIN_CREATE_DATA_COMPONENT( particle_emitter, Particle Emitter )
 
 		if ( m_CurrentTime <= 0.0f && m_Lifetime > 0.0f )
 		{
+			m_CurrentTime = m_EmissionInterval;
 			int QuantityAvailable = m_EmissionCap - static_cast<int>( m_ActiveParticles.size() );
 
 			PPB_ASSERT( QuantityAvailable < 0 );
@@ -176,25 +199,24 @@ END_CREATE_DATA_COMPONENT
 
 namespace RR_ParticleEmitter
 {
-	//RTTR_REGISTRATION
-	//{
-	//	rttr::registration::class_< particle_emitter >( particle_emitter::typedef_v.m_pName )
-	//		.constructor()(rttr::policy::ctor::as_object)
-	//		.property( "Emitter Lifetime",           &particle_emitter::m_Lifetime         )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Emitter Timer",              &particle_emitter::m_CurrentTime      )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Emission Interval",          &particle_emitter::m_EmissionInterval )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Emission Rate",              &particle_emitter::m_EmissionRate     )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Emission Cap",               &particle_emitter::m_EmissionCap      )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Active Particle List",       &particle_emitter::m_ActiveParticles  )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Particle Texture Name",      &particle_emitter::m_TextureName      )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Generate Particle Lifetime", &particle_emitter::m_GenerateLifetime )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Generate Particle Position", &particle_emitter::m_GeneratePosition )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Generate Particle Velocity", &particle_emitter::m_GenerateVelocity )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Generate Particle Rotation", &particle_emitter::m_GenerateRotation )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Generate Particle Opacity",  &particle_emitter::m_GenerateOpacity  )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Update Particle Velocity",   &particle_emitter::m_UpdateVelocity   )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Generate Particle Scale",    &particle_emitter::m_GenerateScale    )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Particle Has Destination?",  &particle_emitter::m_bHasDestination  )( rttr::policy::prop::as_reference_wrapper )
-	//		.property( "Enable Emitter Prewarm?",    &particle_emitter::m_bPrewarm         )( rttr::policy::prop::as_reference_wrapper );
-	//}
+	RTTR_REGISTRATION
+	{
+		rttr::registration::class_< particle_emitter >( particle_emitter::typedef_v.m_pName )
+			.constructor()(rttr::policy::ctor::as_object)
+			.property( "Emitter Lifetime",           &particle_emitter::m_Lifetime         )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Emitter Timer",              &particle_emitter::m_CurrentTime      )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Emission Interval",          &particle_emitter::m_EmissionInterval )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Emission Rate",              &particle_emitter::m_EmissionRate     )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Emission Cap",               &particle_emitter::m_EmissionCap      )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Particle Texture Name",      &particle_emitter::m_TextureName      )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Lifetime", &particle_emitter::m_GenerateLifetime )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Position", &particle_emitter::m_GeneratePosition )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Velocity", &particle_emitter::m_GenerateVelocity )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Rotation", &particle_emitter::m_GenerateRotation )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Opacity",  &particle_emitter::m_GenerateOpacity  )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Update Particle Velocity",   &particle_emitter::m_UpdateVelocity   )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Scale",    &particle_emitter::m_GenerateScale    )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Particle Has Destination?",  &particle_emitter::m_bHasDestination  )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Enable Emitter Prewarm?",    &particle_emitter::m_bPrewarm         )( rttr::policy::prop::as_reference_wrapper );
+	}
 }

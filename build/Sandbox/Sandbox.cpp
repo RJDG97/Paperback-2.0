@@ -251,8 +251,6 @@ void InitializeGame()
             PPB.AssignBindingToAction( Keyboard_Movement_Right,     GLFW_KEY_D,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_W,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_S,     input::device::type::id::KEYBOARD );
-            PPB.AssignBindingToAction( Release_Action,              GLFW_KEY_A,     input::device::type::id::KEYBOARD );
-            PPB.AssignBindingToAction( Release_Action,              GLFW_KEY_D,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( Toggle_FPSAction,            GLFW_KEY_E,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Jump_Action,                 GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( ToggleLift_Action,           GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );

@@ -87,6 +87,28 @@ namespace tools
         return false;
     }
 
+    bool bits::NoneOf( const bits& Query ) const noexcept
+    {
+		for ( size_t i = 0, size = m_bits.size(); i < size; ++i )
+        {
+            if ( (m_bits[i] & Query.m_bits[i]) > 0 )
+                return false;
+        }
+
+        return true;
+    }
+
+    bool bits::Empty( void ) const noexcept
+    {
+        for ( size_t i = 0, size = m_bits.size(); i < size; ++i )
+        {
+            if ( (m_bits[i] > 0 ) )
+                return false;
+        }
+
+        return true;
+    }
+
     const paperback::u64 bits::GenerateGUID( void ) const noexcept
     {
         std::hash<std::uint64_t> Hasher;

@@ -41,6 +41,12 @@ namespace tools
         PPB_INLINE
         bool OneOf( const bits& Query ) const noexcept;
 
+        PPB_INLINE
+        bool NoneOf( const bits& Query ) const noexcept;
+
+        PPB_INLINE
+        bool Empty( void ) const noexcept;
+
         //-----------------------------------
         //            Generate
         //-----------------------------------

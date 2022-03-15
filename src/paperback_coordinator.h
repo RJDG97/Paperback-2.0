@@ -408,12 +408,23 @@ namespace paperback::coordinator
 
 
 		//-----------------------------------
-		//              Input
+		//             Particles
 		//-----------------------------------
 		
 		PPB_INLINE
+        void InitializeParticleMgr( void ) noexcept;
+
+        PPB_INLINE
+        void ResetParticleMgr( void ) noexcept;
+
+		PPB_INLINE
         particles::manager::ParticleList RequestParticles( const int            Quantity
                                                          , const paperback::u32 EmitterGID ) noexcept;
+
+		PPB_INLINE
+        void InitializeParticles( component::entity&                 EmitterEntity
+                                , particle_emitter&                  Emitter
+                                , particles::manager::ParticleList   ParticleIDList ) noexcept;
 
         PPB_INLINE
         void ReturnDeadParticle( const paperback::u32 ParticleGID ) noexcept;

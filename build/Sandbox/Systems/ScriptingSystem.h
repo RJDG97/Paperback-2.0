@@ -31,29 +31,28 @@ struct scripting_system : paperback::system::pausable_instance
 
 		m_QueryEntityScripts.m_Must.AddFromComponents<paperback::component::entity, entityscript>();
 		m_QueryEntityScripts.m_NoneOf.AddFromComponents<prefab>();
+	} 
+
+	PPB_INLINE
+	void OnStateChange( void ) noexcept
+	{
+		scriptlist.clear();
 	}
 
-	PPB_FORCEINLINE
-	void OnPause(const bool& Status) noexcept	//function activates whenever play / pause is clicked
+	PPB_INLINE
+	void OnStateLoad( void ) noexcept
 	{
-		pausable_instance::m_bPaused = Status;
-
-		if (!Status) //is paused, play is clicked
+		// Run each entity with the entity script component
+		ForEach( Search( m_QueryEntityScripts ), [&]( paperback::component::entity& Dynamic_Entity, entityscript& script ) noexcept
 		{
-			scriptlist.clear();
+			// check for an instance of this entity's script
+			auto entry_found = scriptlist.find( Dynamic_Entity.m_GlobalIndex );
 
-			// Run each entity with the entity script component
-			ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+			if ( entry_found == scriptlist.end() )
 			{
-				// check for an instance of this entity's script
-				auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
-
-				if (entry_found == scriptlist.end()) {
-
-					AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
-				}
-			});
-		}
+				AddScript( Dynamic_Entity.m_GlobalIndex, script.m_ScriptID );
+			}
+		});
 	}
 
 

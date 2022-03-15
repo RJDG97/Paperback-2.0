@@ -1,0 +1,135 @@
+{
+    "Prefabs": [
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 201
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": -4.03000020980835,
+                            "z": 1.9600000381469727
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.019999999552965165,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "ElevatorPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.44999998807907107,
+                            "y": -0.11999999731779099,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.44999998807907107,
+                            "y": 0.11999999731779099,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Platform"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                }
+            ]
+        }
+    ]
+}

@@ -35,14 +35,21 @@ namespace paperback::particles
                                      , const paperback::u32 EmitterGID ) noexcept;
 
         PPB_INLINE
+        void InitializeParticles( component::entity&    EmitterEntity
+                                , particle_emitter&     Emitter
+                                , ParticleList          ParticleIDList ) noexcept;
+
+        PPB_INLINE
         void ReturnDeadParticle( const paperback::u32 ParticleGID ) noexcept;
 
 
     private:
         
-        FreeList                m_FreeList;
-        EmitterMap              m_EmitterMap;
-        coordinator::instance&  m_Coordinator;
+        paperback::u32                      m_ParticleCount = 0;
+        paperback::archetype::instance*     m_ParticleArchetype = nullptr;
+        FreeList                            m_FreeList;
+        EmitterMap                          m_EmitterMap;
+        coordinator::instance&              m_Coordinator;
     };
 }
 

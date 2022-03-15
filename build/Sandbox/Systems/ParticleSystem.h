@@ -18,9 +18,24 @@ struct particle_system : paperback::system::pausable_instance
         QueryEmitter.m_Must.AddFromComponents<entity, particle_emitter>();
 		QueryEmitter.m_NoneOf.AddFromComponents<prefab>();
 
-        QueryParticle.m_Must.AddFromComponents<entity, particle>();
+        QueryParticle.m_Must.AddFromComponents<entity, particle, mesh>();
 		QueryParticle.m_NoneOf.AddFromComponents<prefab>();
     }
+
+
+    PPB_INLINE
+	void OnStateChange( void ) noexcept
+	{
+        m_Coordinator.ResetParticleMgr( );
+	}
+
+
+	PPB_INLINE
+	void OnStateLoad( void ) noexcept
+	{
+        m_Coordinator.InitializeParticleMgr();
+	}
+
 
     PPB_INLINE
     void Update( void ) noexcept
@@ -28,18 +43,19 @@ struct particle_system : paperback::system::pausable_instance
         auto Dt = DeltaTime();
 
         // Update Particles - Remove If Dead
-        ForEach( Search(QueryParticle), [&]( entity& Entity, particle& Particle ) noexcept
+        ForEach( Search(QueryParticle), [&]( entity& Entity, particle& Particle, mesh& Mesh ) noexcept
         {
             Particle.UpdateParticle( Dt );
 
             if ( !Particle.IsAlive() )
             {
+                Mesh.m_Active = false;
                 m_Coordinator.ReturnDeadParticle( Entity.m_GlobalIndex );
             }
         });
 
         // Update Emitters - Spawn If Reset
-        ForEach( Search(QueryEmitter), [&]( entity& Entity, particle_emitter& Emitter ) noexcept
+        ForEach( Search(QueryEmitter), [&]( entity& EmitterEntity, particle_emitter& Emitter ) noexcept
         {
             if ( !Emitter.IsAlive() ) return;
 
@@ -48,8 +64,11 @@ struct particle_system : paperback::system::pausable_instance
             if ( RequestCount && Emitter.IsAlive() )
             {
                 auto List = m_Coordinator.RequestParticles( RequestCount
-                                                          , Entity.m_GlobalIndex );
-                Emitter.InitializeParticles( List );
+                                                          , EmitterEntity.m_GlobalIndex );
+                m_Coordinator.InitializeParticles( EmitterEntity
+                                                 , Emitter
+                                                 , List );
+                Emitter.UpdateParticleList( List );
             }
         });
     }

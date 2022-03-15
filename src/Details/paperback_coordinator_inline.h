@@ -553,9 +553,11 @@ namespace paperback::coordinator
             const auto&  Info = GetEntityInfo( GID );		  // Get Entity Info
 
 			FuncQuery.AddQueryFromFunction<T_FUNCTION>();     // Assign Query
+			FuncQuery.m_NoneOf.AddFromComponents<prefab>( );  // Exclude Prefab Entities
 
             if ( Info.m_pArchetype && Info.m_pArchetype->GetComponentBits().Compare( FuncQuery.m_Must )
-				                   && Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) )
+				                   && ( Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) || FuncQuery.m_OneOf.Empty() )
+				                   && Info.m_pArchetype->GetComponentBits().NoneOf( FuncQuery.m_NoneOf ) )
             {
 				Info.m_pArchetype->AccessGuard( [&]
 				{
@@ -642,9 +644,11 @@ namespace paperback::coordinator
             const auto&  Info = GetEntityInfo( GID );		  // Get Entity Info
 
 			FuncQuery.AddQueryFromFunction<T_FUNCTION>();     // Assign Query
+			FuncQuery.m_NoneOf.AddFromComponents<prefab>( );  // Exclude Prefab Entities
 
             if ( Info.m_pArchetype && Info.m_pArchetype->GetComponentBits().Compare( FuncQuery.m_Must )
-				                   && Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) )
+				                   && ( Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) || FuncQuery.m_OneOf.Empty() )
+				                   && Info.m_pArchetype->GetComponentBits().NoneOf( FuncQuery.m_NoneOf ) )
             {
 				Info.m_pArchetype->AccessGuard( [&]
 				{
@@ -1103,11 +1107,33 @@ namespace paperback::coordinator
 	//-----------------------------------
 	
 	PPB_INLINE
+    void instance::InitializeParticleMgr( void ) noexcept
+	{
+		m_ParticleMgr.Initialize( );
+	}
+
+    PPB_INLINE
+    void instance::ResetParticleMgr( void ) noexcept
+	{
+		m_ParticleMgr.Reset( );
+	}
+
+	PPB_INLINE
     particles::manager::ParticleList instance::RequestParticles( const int            Quantity
                                                                , const paperback::u32 EmitterGID ) noexcept
 	{
 		return m_ParticleMgr.RequestParticles( Quantity
 											 , EmitterGID );
+	}
+
+	PPB_INLINE
+    void instance::InitializeParticles( component::entity&                 EmitterEntity
+                                      , particle_emitter&                  Emitter
+                                      , particles::manager::ParticleList   ParticleIDList ) noexcept
+	{
+		m_ParticleMgr.InitializeParticles( EmitterEntity
+										 , Emitter
+										 , ParticleIDList );
 	}
 
     PPB_INLINE

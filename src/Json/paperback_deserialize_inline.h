@@ -454,6 +454,11 @@ namespace paperback::deserialize
             if (obj.is_type<dialogue_collider>())
                 NewArchetype->GetComponent<dialogue_collider>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<dialogue_collider>();
 
+            if (obj.is_type<particle>())
+                NewArchetype->GetComponent<particle>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<particle>();
+
+            if (obj.is_type<particle_emitter>())
+                NewArchetype->GetComponent<particle_emitter>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<particle_emitter>();
         }
     }
 

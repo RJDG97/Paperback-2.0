@@ -7,6 +7,7 @@
 #include "SoundSystem.h"
 #include "RendererSystem.h"
 #include "../../../src/Functionality/RenderResource/RenderResourceLoader.h"
+#include "../Components/ParticleEmitter.h"
 
 //----------------------------------
 // ImGui Headers
@@ -765,11 +766,100 @@ struct imgui_system : paperback::system::instance
             }
         }
 
-        if (PropertyType == rttr::type::get<paperback::component::entity::Validation>())
-        {
+       if (PropertyType == rttr::type::get<paperback::component::entity::Validation>())
+       {
             ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
             ImGui::Text("%d", PropertyValue.get_value<paperback::component::entity::Validation>());
-        }
+       }
+
+       if (PropertyType == rttr::type::get< std::reference_wrapper<Generate_Lifetime>>())
+       {
+           ImGui::Text(PropertyName.c_str());
+           ImGui::Separator();
+
+           ImGui::PushItemWidth(150.0f);
+           ImGui::Text("Min Lifetime "); ImGui::SameLine();
+           ImGui::InputFloat("##LifetimeMin", &(PropertyValue.get_value<std::reference_wrapper<Generate_Lifetime>>().get().m_Min), 0.1f);
+
+           ImGui::Text("Max Lifetime "); ImGui::SameLine();
+           ImGui::InputFloat("##LifetimeMax", &(PropertyValue.get_value<std::reference_wrapper<Generate_Lifetime>>().get().m_Max), 0.1f);
+           ImGui::PopItemWidth();;
+       }
+
+       if (PropertyType == rttr::type::get< std::reference_wrapper<Generate_Velocity>>())
+       {
+           ImGui::Text(PropertyName.c_str());
+           ImGui::Separator();
+
+           ImGui::PushItemWidth(150.0f);
+           ImGui::Text("Min Velocity "); ImGui::SameLine();
+           ImGui::DragFloat3("##VelocityMin", (float*)&(PropertyValue.get_value<std::reference_wrapper<Generate_Velocity>>().get().m_Min), 0.1f, 0.1f);
+
+           ImGui::Text("Max Velocity "); ImGui::SameLine();
+           ImGui::DragFloat3("##VelocityMax", (float*)&(PropertyValue.get_value<std::reference_wrapper<Generate_Velocity>>().get().m_Max), 0.1f, 0.1f);
+           ImGui::PopItemWidth();
+       }
+
+       if (PropertyType == rttr::type::get< std::reference_wrapper<Generate_Rotation>>())
+       {
+           ImGui::Text(PropertyName.c_str());
+           ImGui::Separator();
+
+           ImGui::PushItemWidth(150.0f);
+           ImGui::Text("Min Rotation "); ImGui::SameLine();
+           ImGui::DragFloat3("##RotationMin", (float*)&(PropertyValue.get_value<std::reference_wrapper<Generate_Rotation>>().get().m_Min), 0.1f, 0.1f);
+
+           ImGui::Text("Max Rotation "); ImGui::SameLine();
+           ImGui::DragFloat3("##RotationMax", (float*)&(PropertyValue.get_value<std::reference_wrapper<Generate_Rotation>>().get().m_Max), 0.1f, 0.1f);
+           ImGui::PopItemWidth();
+       }
+
+       if (PropertyType == rttr::type::get< std::reference_wrapper<Generate_Opacity>>())
+       {
+           ImGui::Text(PropertyName.c_str());
+           ImGui::Separator();
+
+           ImGui::PushItemWidth(150.0f);
+           ImGui::Text("Min Opacity "); ImGui::SameLine();
+           ImGui::InputFloat("##OpacityMin", &(PropertyValue.get_value<std::reference_wrapper<Generate_Opacity>>().get().m_Min), 0.1f);
+
+           ImGui::Text("Max Opacity "); ImGui::SameLine();
+           ImGui::InputFloat("##OpacityMax", &(PropertyValue.get_value<std::reference_wrapper<Generate_Opacity>>().get().m_Max), 0.1f);
+           ImGui::PopItemWidth();
+       }
+
+       if (PropertyType == rttr::type::get< std::reference_wrapper<Update_Velocity>>())
+       {
+           ImGui::Text(PropertyName.c_str());
+           ImGui::Separator();
+
+           ImGui::PushItemWidth(150.0f);
+           ImGui::Text("Destination "); ImGui::SameLine();
+           ImGui::DragFloat3("##UpdateVelocityDestination", (float*)&(PropertyValue.get_value<std::reference_wrapper<Update_Velocity>>().get().m_Destination), 0.1f, 0.1f);
+
+           ImGui::Text("Min Velocity "); ImGui::SameLine();
+           ImGui::InputFloat("##UpdateVelocityMin", &(PropertyValue.get_value<std::reference_wrapper<Update_Velocity>>().get().m_Min), 0.1f);
+
+           ImGui::Text("Max Velocity "); ImGui::SameLine();
+           ImGui::InputFloat("##UpdateVelocityMax", &(PropertyValue.get_value<std::reference_wrapper<Update_Velocity>>().get().m_Max), 0.1f);
+           ImGui::PopItemWidth();
+       }
+
+       if (PropertyType == rttr::type::get< std::reference_wrapper<Generate_Scale>>())
+       {
+           ImGui::Text(PropertyName.c_str());
+           ImGui::Separator();
+
+           ImGui::PushItemWidth(150.0f);
+           ImGui::Text("Min Scale "); ImGui::SameLine();
+           ImGui::DragFloat3("##ScaleMin", (float*)&(PropertyValue.get_value<std::reference_wrapper<Generate_Scale>>().get().m_Min), 0.1f, 0.1f);
+
+           ImGui::Text("Max Scale "); ImGui::SameLine();
+           ImGui::DragFloat3("##ScaleMax", (float*)&(PropertyValue.get_value<std::reference_wrapper<Generate_Scale>>().get().m_Max), 0.1f, 0.1f);
+
+           ImGui::Checkbox("Enable Uniform Scaling?", &(PropertyValue.get_value<std::reference_wrapper<Generate_Scale>>().get().m_bUniformScale));
+           ImGui::PopItemWidth();
+       }
     }
 
     void DisplayStringType(const std::string& PropertyName, rttr::type& PropertyType, rttr::variant& PropertyValue)
@@ -787,8 +877,13 @@ struct imgui_system : paperback::system::instance
                 char Buffer[256]{};
 
                 std::copy(Str.begin(), Str.end(), Buffer);
+
+                ImGui::Text(PropertyName.c_str()); ImGui::SameLine();
+
+                ImGui::PushItemWidth(150.0f);
                 if (ImGui::InputText(("##" + PropertyName).c_str(), Buffer, sizeof(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
                     Str = std::string(Buffer);
+                ImGui::PopItemWidth();
             }
         }
     }
