@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 478
+                "EntityHead": 200
             }
         },
         {
@@ -2392,12 +2392,13 @@
                             8536778051349317767,
                             3617555656175080491,
                             17008353085049151909,
-                            5691439207370049121
+                            5691439207370049121,
+                            16415915133639986106
                         ],
                         "Prefab GID": 136
                     },
                     "Name": {
-                        "Name": "Gate"
+                        "Name": "TallestGate"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -2427,7 +2428,7 @@
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": 0.800000011920929,
+                            "x": -1.899999976158142,
                             "y": 0.6000000238418579,
                             "z": -1.7999999523162842
                         },
@@ -2471,14 +2472,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.800000011920929,
+                            "x": 0.699999988079071,
                             "y": 0.20000000298023225,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -40.9486083984375,
+                            "x": -33.829673767089847,
                             "y": 8.179121017456055,
-                            "z": -32.39854049682617
+                            "z": -30.98275375366211
                         }
                     },
                     "RigidForce": {
@@ -2658,6 +2659,261 @@
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 483
+                    },
+                    "Mesh": {
+                        "Model": "TallGate",
+                        "Texture": "TallGate_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.006000000052154064,
+                            "y": 0.006149174179881811,
+                            "z": 0.0045900000259280209
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 482
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.5,
+                            "y": 0.6000000238418579,
+                            "z": 0.7799999713897705
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 2.0,
+                            "y": 2.049999952316284,
+                            "z": 1.5299999713897706
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": 49.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.20000000298023225,
+                            "z": -0.699999988079071
+                        },
+                        "Position": {
+                            "x": -45.48161697387695,
+                            "y": 8.179121017456055,
+                            "z": -25.790178298950197
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.05999999865889549,
+                            "y": -0.800000011920929,
+                            "z": -0.6600000262260437
+                        },
+                        "Max Point": {
+                            "x": 0.05999999865889549,
+                            "y": 0.800000011920929,
+                            "z": 0.6600000262260437
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            9604788041699812520,
+                            3617555656175080491,
+                            17008353085049151909,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 136
+                    },
+                    "Name": {
+                        "Name": "Gate"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 492
+                    },
+                    "Mesh": {
+                        "Model": "TallGate",
+                        "Texture": "TallGate_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.006000000052154064,
+                            "y": 0.004949509631842375,
+                            "z": 0.004800000227987766
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 491
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.699999988079071,
+                            "y": 0.4000000059604645,
+                            "z": 1.2000000476837159
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 2.0,
+                            "y": 1.649999976158142,
+                            "z": 1.600000023841858
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "ShortGateArmature.001|ShortGateOpen",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.0,
+                        "Pause At Time": 49.0,
+                        "Reversed": false
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.699999988079071,
+                            "y": 0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -39.47623825073242,
+                            "y": 7.979121208190918,
+                            "z": -32.36201095581055
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.7300000190734863,
+                            "y": -0.699999988079071,
+                            "z": -0.05999999865889549
+                        },
+                        "Max Point": {
+                            "x": 0.7300000190734863,
+                            "y": 0.699999988079071,
+                            "z": 0.05999999865889549
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            8376831551428810534,
+                            3617555656175080491,
+                            17008353085049151909,
+                            5691439207370049121,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 136
+                    },
+                    "Name": {
+                        "Name": "ShortGate"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         },
@@ -2723,7 +2979,9 @@
                         "Prefab Instances GID": [
                             189,
                             281,
-                            184
+                            184,
+                            483,
+                            492
                         ]
                     },
                     "Rotation": {
@@ -4784,7 +5042,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 586,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4899,7 +5157,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 587,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5016,7 +5274,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 588,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5133,7 +5391,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 589,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5250,7 +5508,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 590,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5367,7 +5625,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 591,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5485,7 +5743,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 592,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5602,7 +5860,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 593,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5719,7 +5977,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 594,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5837,7 +6095,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 595,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5955,7 +6213,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 596,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5991,9 +6249,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -41.74860763549805,
+                            "x": -31.929672241210939,
                             "y": 7.579121112823486,
-                            "z": -30.598539352416993
+                            "z": -29.182754516601564
                         }
                     },
                     "RigidForce": {
@@ -6072,7 +6330,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 597,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6111,6 +6369,240 @@
                             "x": -46.33856201171875,
                             "y": 9.225961685180664,
                             "z": -33.14085388183594
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GateSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25999999046325686,
+                            "y": -0.03999999910593033,
+                            "z": -0.25999999046325686
+                        },
+                        "Max Point": {
+                            "x": 0.25999999046325686,
+                            "y": 0.03999999910593033,
+                            "z": 0.25999999046325686
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            14302600151082817442,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 135
+                    },
+                    "Name": {
+                        "Name": "GateSwitch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 482
+                    },
+                    "Mesh": {
+                        "Model": "Button_GateOFF",
+                        "Texture": "ButtonON_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.002999597229063511,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Switch_Pressed",
+                        "Sound Event ID": 598,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            483
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -43.98161697387695,
+                            "y": 7.579121112823486,
+                            "z": -26.570178985595704
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GateSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25999999046325686,
+                            "y": -0.03999999910593033,
+                            "z": -0.25999999046325686
+                        },
+                        "Max Point": {
+                            "x": 0.25999999046325686,
+                            "y": 0.03999999910593033,
+                            "z": 0.25999999046325686
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            14302600151082817442,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 135
+                    },
+                    "Name": {
+                        "Name": "GateSwitch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 491
+                    },
+                    "Mesh": {
+                        "Model": "Button_GateOFF",
+                        "Texture": "ButtonON_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.0029997029341757299,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Switch_Pressed",
+                        "Sound Event ID": 599,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            492
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -40.176239013671878,
+                            "y": 7.579121112823486,
+                            "z": -33.56201171875
                         }
                     },
                     "RigidForce": {
@@ -6341,7 +6833,9 @@
                             311,
                             295,
                             185,
-                            197
+                            482,
+                            197,
+                            491
                         ]
                     },
                     "Rotation": {
@@ -16179,26 +16673,26 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 237
+                        "Global Index": 488
                     },
                     "Mesh": {
-                        "Model": "TallGateFence",
-                        "Texture": "TallGateFence_BaseColour.dds",
+                        "Model": "RectangleBlock_Blue",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.00800000037997961,
-                            "y": 0.009999413043260575,
-                            "z": 0.00800000037997961
+                            "x": 0.005993176251649857,
+                            "y": 0.006000000052154064,
+                            "z": 0.007000000216066837
                         }
                     },
                     "Rotation": {
                         "Rotation": {
-                            "x": 0.0,
-                            "y": -90.0,
+                            "x": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -16216,14 +16710,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": -0.699999988079071,
-                            "y": 0.4000000059604645,
+                            "x": 0.0,
+                            "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -30.421022415161134,
-                            "y": 8.743000030517579,
-                            "z": -32.37836456298828
+                            "x": -37.455108642578128,
+                            "y": 9.886594772338868,
+                            "z": -25.57811164855957
                         }
                     },
                     "RigidForce": {
@@ -16247,29 +16741,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.8500000238418579,
-                            "y": -1.600000023841858,
-                            "z": -0.20000000298023225
+                            "x": -0.30000001192092898,
+                            "y": -0.699999988079071,
+                            "z": -0.30000001192092898
                         },
                         "Max Point": {
-                            "x": 0.8500000238418579,
-                            "y": 1.600000023841858,
-                            "z": 0.20000000298023225
+                            "x": 0.30000001192092898,
+                            "y": 0.699999988079071,
+                            "z": 0.30000001192092898
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            17008353085049151909,
+                            9604788041699812520,
                             16415915133639986106,
-                            14486341741652966143,
                             3617555656175080491,
+                            14486341741652966143,
                             5691439207370049121
                         ],
-                        "Prefab GID": 139
+                        "Prefab GID": 141
                     },
                     "Name": {
-                        "Name": "TallGateFenceL_1_LeftSide"
+                        "Name": "RectangleBlock_B_Upright"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -16683,7 +17177,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.00800000037997961,
-                            "y": 0.00999927707016468,
+                            "y": 0.009997621178627015,
                             "z": 0.00800000037997961
                         }
                     },
@@ -16713,7 +17207,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -36.11479187011719,
+                            "x": -35.95173263549805,
                             "y": 8.743000030517579,
                             "z": -28.535409927368165
                         }
@@ -16770,7 +17264,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 236
+                        "Global Index": 489
                     },
                     "Mesh": {
                         "Model": "TallGateFence",
@@ -16782,14 +17276,14 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.00800000037997961,
-                            "y": 0.009999508038163185,
+                            "y": 0.009999999776482582,
                             "z": 0.00800000037997961
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 180.0,
                             "z": 0.0
                         }
                     },
@@ -16807,14 +17301,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.699999988079071,
-                            "y": 0.10000000149011612,
-                            "z": 0.0
+                            "x": 0.0,
+                            "y": 0.4000000059604645,
+                            "z": -0.699999988079071
                         },
                         "Position": {
-                            "x": -33.40950012207031,
-                            "y": 8.743000030517579,
-                            "z": -32.37617492675781
+                            "x": -33.95107650756836,
+                            "y": 8.743069648742676,
+                            "z": -30.98284912109375
                         }
                     },
                     "RigidForce": {
@@ -16838,29 +17332,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.8500000238418579,
+                            "x": -0.20000000298023225,
                             "y": -1.600000023841858,
-                            "z": -0.20000000298023225
+                            "z": -0.8500000238418579
                         },
                         "Max Point": {
-                            "x": 0.8500000238418579,
+                            "x": 0.20000000298023225,
                             "y": 1.600000023841858,
-                            "z": 0.20000000298023225
+                            "z": 0.8500000238418579
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
                             17008353085049151909,
-                            16415915133639986106,
                             14486341741652966143,
+                            5691439207370049121,
                             3617555656175080491,
-                            5691439207370049121
+                            16415915133639986106
                         ],
                         "Prefab GID": 139
                     },
                     "Name": {
-                        "Name": "TallGateFenceR_1_LeftSide"
+                        "Name": "TallGateFence_s1_end"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -16972,7 +17466,7 @@
                         "Global Index": 172
                     },
                     "Mesh": {
-                        "Model": "RectangleBlock_Blue",
+                        "Model": "RectangleBlock_Green",
                         "Texture": "CylinderBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -16981,14 +17475,14 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.006000000052154064,
-                            "y": 0.006000000052154064,
+                            "y": 0.005998763255774975,
                             "z": 0.006000000052154064
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 90.0,
                             "z": 0.0
                         }
                     },
@@ -17011,9 +17505,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -45.374732971191409,
-                            "y": 7.85385799407959,
-                            "z": -25.178607940673829
+                            "x": -35.540748596191409,
+                            "y": 8.455863952636719,
+                            "z": 4.146335124969482
                         }
                     },
                     "RigidForce": {
@@ -17037,20 +17531,22 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.30000001192092898,
+                            "x": -0.6000000238418579,
                             "y": -0.30000001192092898,
-                            "z": -0.6000000238418579
+                            "z": -0.30000001192092898
                         },
                         "Max Point": {
-                            "x": 0.30000001192092898,
+                            "x": 0.6000000238418579,
                             "y": 0.30000001192092898,
-                            "z": 0.6000000238418579
+                            "z": 0.30000001192092898
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            3617555656175080491
+                            3617555656175080491,
+                            14486341741652966143,
+                            9604788041699812520
                         ],
                         "Prefab GID": 141
                     },
@@ -17662,7 +18158,7 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.005993916653096676,
+                            "x": 0.005992979742586613,
                             "y": 0.006000000052154064,
                             "z": 0.007000000216066837
                         }
@@ -17693,9 +18189,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -47.23725128173828,
-                            "y": 8.22389030456543,
-                            "z": -33.4453010559082
+                            "x": -38.8812141418457,
+                            "y": 9.886594772338868,
+                            "z": -25.57811164855957
                         }
                     },
                     "RigidForce": {
@@ -20909,7 +21405,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 266
+                        "Global Index": 237
                     },
                     "Mesh": {
                         "Model": "TallGateFence",
@@ -21905,7 +22401,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.00800000037997961,
-                            "y": 0.00999951921403408,
+                            "y": 0.009996851906180382,
                             "z": 0.00800000037997961
                         }
                     },
@@ -21935,9 +22431,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -39.122222900390628,
+                            "x": -32.21352767944336,
                             "y": 8.743000030517579,
-                            "z": -28.533031463623048
+                            "z": -30.98102378845215
                         }
                     },
                     "RigidForce": {
@@ -22598,7 +23094,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.00800000037997961,
-                            "y": 0.009999066591262818,
+                            "y": 0.009996479377150536,
                             "z": 0.00800000037997961
                         }
                     },
@@ -22628,7 +23124,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -33.410926818847659,
+                            "x": -33.953365325927737,
                             "y": 8.743000030517579,
                             "z": -32.37836456298828
                         }
@@ -24107,9 +24603,9 @@
                             "z": 0.699999988079071
                         },
                         "Position": {
-                            "x": -33.94955825805664,
+                            "x": -33.9555549621582,
                             "y": 8.736424446105957,
-                            "z": -37.01084518432617
+                            "z": -30.96405792236328
                         }
                     },
                     "RigidForce": {
@@ -24148,12 +24644,13 @@
                         "Modified Components": [
                             17008353085049151909,
                             3617555656175080491,
-                            5691439207370049121
+                            5691439207370049121,
+                            16415915133639986106
                         ],
                         "Prefab GID": 139
                     },
                     "Name": {
-                        "Name": "TallGateFence"
+                        "Name": "TallGateFence_S1_end"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -25598,7 +26095,7 @@
                         "Position": {
                             "x": -33.95107650756836,
                             "y": 8.743069648742676,
-                            "z": -33.987667083740237
+                            "z": -28.537694931030275
                         }
                     },
                     "RigidForce": {
@@ -25638,12 +26135,13 @@
                             17008353085049151909,
                             14486341741652966143,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            16415915133639986106
                         ],
                         "Prefab GID": 139
                     },
                     "Name": {
-                        "Name": "TallGateFence"
+                        "Name": "TallGateFence_s1_end"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -26241,26 +26739,26 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 302
+                        "Global Index": 487
                     },
                     "Mesh": {
-                        "Model": "TallGateFence",
-                        "Texture": "TallGateFence_BaseColour.dds",
+                        "Model": "RectangleBlock_Blue",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.00800000037997961,
-                            "y": 0.009997976943850518,
-                            "z": 0.00800000037997961
+                            "x": 0.005993283353745937,
+                            "y": 0.006000000052154064,
+                            "z": 0.007000000216066837
                         }
                     },
                     "Rotation": {
                         "Rotation": {
-                            "x": 0.0,
-                            "y": -90.0,
+                            "x": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -26278,14 +26776,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": -0.699999988079071,
-                            "y": 0.10000000149011612,
+                            "x": 0.0,
+                            "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -30.308481216430665,
-                            "y": 8.743000030517579,
-                            "z": -28.535409927368165
+                            "x": -37.455108642578128,
+                            "y": 9.886594772338868,
+                            "z": -26.96019172668457
                         }
                     },
                     "RigidForce": {
@@ -26309,29 +26807,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.8500000238418579,
-                            "y": -1.600000023841858,
-                            "z": -0.20000000298023225
+                            "x": -0.30000001192092898,
+                            "y": -0.699999988079071,
+                            "z": -0.30000001192092898
                         },
                         "Max Point": {
-                            "x": 0.8500000238418579,
-                            "y": 1.600000023841858,
-                            "z": 0.20000000298023225
+                            "x": 0.30000001192092898,
+                            "y": 0.699999988079071,
+                            "z": 0.30000001192092898
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            17008353085049151909,
+                            9604788041699812520,
                             16415915133639986106,
-                            14486341741652966143,
                             3617555656175080491,
+                            14486341741652966143,
                             5691439207370049121
                         ],
-                        "Prefab GID": 139
+                        "Prefab GID": 141
                     },
                     "Name": {
-                        "Name": "TallGateFenceL_1"
+                        "Name": "RectangleBlock_B_Upright"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -26352,7 +26850,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.00800000037997961,
-                            "y": 0.00999874621629715,
+                            "y": 0.009997911751270295,
                             "z": 0.00800000037997961
                         }
                     },
@@ -26382,7 +26880,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -34.76654815673828,
+                            "x": -34.26340103149414,
                             "y": 8.743000030517579,
                             "z": -28.535409927368165
                         }
@@ -26439,26 +26937,26 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 305
+                        "Global Index": 486
                     },
                     "Mesh": {
-                        "Model": "TallGateFence",
-                        "Texture": "TallGateFence_BaseColour.dds",
+                        "Model": "RectangleBlock_Blue",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.00800000037997961,
-                            "y": 0.009999461472034455,
-                            "z": 0.00800000037997961
+                            "x": 0.005993424914777279,
+                            "y": 0.006000000052154064,
+                            "z": 0.007000000216066837
                         }
                     },
                     "Rotation": {
                         "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
+                            "x": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -26476,14 +26974,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.699999988079071,
-                            "y": 0.10000000149011612,
+                            "x": 0.0,
+                            "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -33.179264068603519,
-                            "y": 8.743000030517579,
-                            "z": -28.5313777923584
+                            "x": -38.87990951538086,
+                            "y": 9.886594772338868,
+                            "z": -26.96019172668457
                         }
                     },
                     "RigidForce": {
@@ -26507,29 +27005,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.8500000238418579,
-                            "y": -1.600000023841858,
-                            "z": -0.20000000298023225
+                            "x": -0.30000001192092898,
+                            "y": -0.699999988079071,
+                            "z": -0.30000001192092898
                         },
                         "Max Point": {
-                            "x": 0.8500000238418579,
-                            "y": 1.600000023841858,
-                            "z": 0.20000000298023225
+                            "x": 0.30000001192092898,
+                            "y": 0.699999988079071,
+                            "z": 0.30000001192092898
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            17008353085049151909,
+                            9604788041699812520,
                             16415915133639986106,
-                            14486341741652966143,
                             3617555656175080491,
+                            14486341741652966143,
                             5691439207370049121
                         ],
-                        "Prefab GID": 139
+                        "Prefab GID": 141
                     },
                     "Name": {
-                        "Name": "TallGateFenceR_1"
+                        "Name": "RectangleBlock_B_Upright"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -26550,7 +27048,7 @@
                     "Scale": {
                         "Scale": {
                             "x": 0.00800000037997961,
-                            "y": 0.009999388828873635,
+                            "y": 0.00999816320836544,
                             "z": 0.00800000037997961
                         }
                     },
@@ -26580,7 +27078,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -39.12578582763672,
+                            "x": -39.12094497680664,
                             "y": 8.743000030517579,
                             "z": -28.535409927368165
                         }
@@ -31609,6 +32107,884 @@
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 485
+                    },
+                    "Mesh": {
+                        "Model": "RectangleBlock_Blue",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.005993916653096676,
+                            "y": 0.006000000052154064,
+                            "z": 0.007000000216066837
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 90.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -47.23725128173828,
+                            "y": 8.22389030456543,
+                            "z": -33.4453010559082
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.699999988079071,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.699999988079071,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            16415915133639986106,
+                            3617555656175080491,
+                            14486341741652966143,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "RectangleBlock_B_Upright"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 305
+                    },
+                    "Mesh": {
+                        "Model": "TallGateFence",
+                        "Texture": "TallGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.00800000037997961,
+                            "y": 0.009999999776482582,
+                            "z": 0.00800000037997961
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.4000000059604645,
+                            "z": 0.699999988079071
+                        },
+                        "Position": {
+                            "x": -33.94955825805664,
+                            "y": 8.736424446105957,
+                            "z": -37.01084518432617
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -1.600000023841858,
+                            "z": -0.8500000238418579
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 1.600000023841858,
+                            "z": 0.8500000238418579
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "TallGateFence"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 302
+                    },
+                    "Mesh": {
+                        "Model": "TallGateFence",
+                        "Texture": "TallGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.00800000037997961,
+                            "y": 0.009999999776482582,
+                            "z": 0.00800000037997961
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.4000000059604645,
+                            "z": -0.699999988079071
+                        },
+                        "Position": {
+                            "x": -33.95107650756836,
+                            "y": 8.743069648742676,
+                            "z": -33.987667083740237
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -1.600000023841858,
+                            "z": -0.8500000238418579
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 1.600000023841858,
+                            "z": 0.8500000238418579
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            14486341741652966143,
+                            5691439207370049121,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "TallGateFence"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 266
+                    },
+                    "Mesh": {
+                        "Model": "TallGateFence",
+                        "Texture": "TallGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.00800000037997961,
+                            "y": 0.009999999776482582,
+                            "z": 0.00800000037997961
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.4000000059604645,
+                            "z": 0.699999988079071
+                        },
+                        "Position": {
+                            "x": -33.9555549621582,
+                            "y": 8.736424446105957,
+                            "z": -33.9815559387207
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -1.600000023841858,
+                            "z": -0.8500000238418579
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 1.600000023841858,
+                            "z": 0.8500000238418579
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            5691439207370049121,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "TallGateFence_S1_end"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 236
+                    },
+                    "Mesh": {
+                        "Model": "TallGateFence",
+                        "Texture": "TallGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.00800000037997961,
+                            "y": 0.009997297078371048,
+                            "z": 0.00800000037997961
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": -90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.699999988079071,
+                            "y": 0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -30.340425491333009,
+                            "y": 8.743000030517579,
+                            "z": -30.980552673339845
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.8500000238418579,
+                            "y": -1.600000023841858,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.8500000238418579,
+                            "y": 1.600000023841858,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106,
+                            14486341741652966143,
+                            3617555656175080491,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "TallGateFenceL_1_lastgate"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 490
+                    },
+                    "Mesh": {
+                        "Model": "TallGateFence",
+                        "Texture": "TallGateFence_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.00800000037997961,
+                            "y": 0.009998470544815064,
+                            "z": 0.00800000037997961
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.699999988079071,
+                            "y": 0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -38.80613708496094,
+                            "y": 8.743000030517579,
+                            "z": -28.533031463623048
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.8500000238418579,
+                            "y": -1.600000023841858,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.8500000238418579,
+                            "y": 1.600000023841858,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106,
+                            14486341741652966143,
+                            3617555656175080491,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 139
+                    },
+                    "Name": {
+                        "Name": "TallGateFenceR_1_RightSide"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 444
+                    },
+                    "Mesh": {
+                        "Model": "RectangleBlock_Blue",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.006000000052154064,
+                            "y": 0.006000000052154064,
+                            "z": 0.006000000052154064
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -45.374732971191409,
+                            "y": 7.85385799407959,
+                            "z": -25.178607940673829
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.30000001192092898,
+                            "z": -0.6000000238418579
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.30000001192092898,
+                            "z": 0.6000000238418579
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "RectangleBlock"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 493
+                    },
+                    "Mesh": {
+                        "Model": "RectangleBlock_Yellow",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.006000000052154064,
+                            "y": 0.005999450571835041,
+                            "z": 0.006000000052154064
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -35.540748596191409,
+                            "y": 7.85385799407959,
+                            "z": 4.750367641448975
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -0.30000001192092898,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 0.30000001192092898,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            14486341741652966143,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "RectangleBlock"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 494
+                    },
+                    "Mesh": {
+                        "Model": "RectangleBlock_Blue",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.006000000052154064,
+                            "y": 0.005999762564897537,
+                            "z": 0.006000000052154064
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -35.540748596191409,
+                            "y": 7.85385799407959,
+                            "z": 4.146335124969482
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -0.30000001192092898,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 0.30000001192092898,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "RectangleBlock"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         },
@@ -32512,14 +33888,15 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            140,
                             299,
-                            287,
-                            232,
-                            168,
+                            236,
+                            140,
                             375,
-                            233,
+                            168,
+                            232,
+                            287,
                             169,
+                            233,
                             376,
                             371,
                             372,
@@ -32537,7 +33914,13 @@
                             404,
                             405,
                             406,
-                            407
+                            407,
+                            237,
+                            305,
+                            302,
+                            266,
+                            489,
+                            490
                         ]
                     },
                     "Rotation": {
@@ -32631,19 +34014,26 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            312,
-                            392,
                             384,
-                            313,
-                            377,
+                            392,
+                            312,
                             393,
+                            377,
+                            313,
                             378,
                             379,
                             394,
                             395,
                             397,
                             219,
-                            218
+                            218,
+                            485,
+                            486,
+                            487,
+                            488,
+                            444,
+                            493,
+                            494
                         ]
                     },
                     "Rotation": {
@@ -33649,9 +35039,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -32.687232971191409,
-                            "y": 8.136907577514649,
-                            "z": -4.379415512084961
+                            "x": -35.71567153930664,
+                            "y": 7.892939567565918,
+                            "z": 6.521107196807861
                         }
                     },
                     "RigidForce": {
@@ -33692,10 +35082,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            1871702054972469046,
                             5691439207370049121,
-                            5509481706028819786,
+                            1871702054972469046,
                             9604788041699812520,
+                            5509481706028819786,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -33817,9 +35207,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -29.025312423706056,
-                            "y": 8.32465934753418,
-                            "z": 0.6891807913780212
+                            "x": -43.394290924072269,
+                            "y": 7.927880764007568,
+                            "z": -30.854970932006837
                         }
                     },
                     "RigidForce": {
@@ -35610,7 +37000,7 @@
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
@@ -35645,9 +37035,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -48.925960540771487,
-                            "y": 8.35914134979248,
-                            "z": -33.372859954833987
+                            "x": -39.42631149291992,
+                            "y": 13.92737865447998,
+                            "z": -26.702171325683595
                         }
                     },
                     "RigidForce": {
@@ -35671,14 +37061,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.399999976158142,
-                            "y": -0.9700000286102295,
-                            "z": -0.23999999463558198
+                            "x": -0.3499999940395355,
+                            "y": -0.3700000047683716,
+                            "z": -0.800000011920929
                         },
                         "Max Point": {
-                            "x": 1.399999976158142,
-                            "y": 0.9700000286102295,
-                            "z": 0.23999999463558198
+                            "x": 0.3499999940395355,
+                            "y": 0.3700000047683716,
+                            "z": 0.800000011920929
                         },
                         "Is Collide": false
                     },
@@ -35687,12 +37077,14 @@
                             5691439207370049121,
                             11057976693296903406,
                             3617555656175080491,
-                            14486341741652966143
+                            14486341741652966143,
+                            9604788041699812520,
+                            16415915133639986106
                         ],
                         "Prefab GID": 159
                     },
                     "Name": {
-                        "Name": "Ruler"
+                        "Name": "watchtowerSlope"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -35700,9 +37092,9 @@
                     },
                     "Slope": {
                         "TOGGLE ONE ONLY: North": false,
-                        "South": false,
+                        "South": true,
                         "East": false,
-                        "West": true
+                        "West": false
                     }
                 },
                 {
@@ -35928,7 +37320,7 @@
                         "Scale": {
                             "x": 0.015000000596046448,
                             "y": 0.01600000075995922,
-                            "z": 0.014999999664723874
+                            "z": 0.029999999329447748
                         }
                     },
                     "Rotation": {
@@ -35957,9 +37349,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -48.925960540771487,
-                            "y": 8.35914134979248,
-                            "z": -32.928157806396487
+                            "x": -41.30862045288086,
+                            "y": 8.328476905822754,
+                            "z": -26.171987533569337
                         }
                     },
                     "RigidForce": {
@@ -35985,12 +37377,12 @@
                         "Min Point": {
                             "x": -1.399999976158142,
                             "y": -0.9700000286102295,
-                            "z": -0.23999999463558198
+                            "z": -0.4399999976158142
                         },
                         "Max Point": {
                             "x": 1.399999976158142,
                             "y": 0.9700000286102295,
-                            "z": 0.23999999463558198
+                            "z": 0.4399999976158142
                         },
                         "Is Collide": false
                     },
@@ -37057,6 +38449,532 @@
                         "East": false,
                         "West": false
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 478
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.015000000596046448,
+                            "y": 0.01600000075995922,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -58.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.925960540771487,
+                            "y": 8.35914134979248,
+                            "z": -33.372859954833987
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.399999976158142,
+                            "y": -0.9700000286102295,
+                            "z": -0.23999999463558198
+                        },
+                        "Max Point": {
+                            "x": 1.399999976158142,
+                            "y": 0.9700000286102295,
+                            "z": 0.23999999463558198
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            11057976693296903406,
+                            5691439207370049121,
+                            3617555656175080491,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 159
+                    },
+                    "Name": {
+                        "Name": "Ruler"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": false,
+                        "West": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 479
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.015000000596046448,
+                            "y": 0.01600000075995922,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -58.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -37.854984283447269,
+                            "y": 11.645062446594239,
+                            "z": -27.727031707763673
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.800000011920929,
+                            "y": -0.4699999988079071,
+                            "z": -0.3499999940395355
+                        },
+                        "Max Point": {
+                            "x": 0.800000011920929,
+                            "y": 0.4699999988079071,
+                            "z": 0.3499999940395355
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            11057976693296903406,
+                            5691439207370049121,
+                            3617555656175080491,
+                            14486341741652966143,
+                            9604788041699812520,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 159
+                    },
+                    "Name": {
+                        "Name": "watchtowerSlope"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": false,
+                        "West": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 480
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.015000000596046448,
+                            "y": 0.01600000075995922,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -58.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -38.38288116455078,
+                            "y": 13.142487525939942,
+                            "z": -24.94921875
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.800000011920929,
+                            "y": -0.4699999988079071,
+                            "z": -0.3499999940395355
+                        },
+                        "Max Point": {
+                            "x": 0.800000011920929,
+                            "y": 0.4699999988079071,
+                            "z": 0.3499999940395355
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            11057976693296903406,
+                            5691439207370049121,
+                            3617555656175080491,
+                            14486341741652966143,
+                            9604788041699812520,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 159
+                    },
+                    "Name": {
+                        "Name": "watchtowerSlope"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": true,
+                        "West": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 481
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.015000000596046448,
+                            "y": 0.01600000075995922,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -58.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -36.83866882324219,
+                            "y": 12.4010009765625,
+                            "z": -26.06411361694336
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.3499999940395355,
+                            "y": -0.4699999988079071,
+                            "z": -0.800000011920929
+                        },
+                        "Max Point": {
+                            "x": 0.3499999940395355,
+                            "y": 0.4699999988079071,
+                            "z": 0.800000011920929
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            11057976693296903406,
+                            5691439207370049121,
+                            3617555656175080491,
+                            14486341741652966143,
+                            9604788041699812520,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 159
+                    },
+                    "Name": {
+                        "Name": "watchtowerSlope"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": true,
+                        "South": false,
+                        "East": false,
+                        "West": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 484
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.015000000596046448,
+                            "y": 0.01600000075995922,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -58.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.925960540771487,
+                            "y": 8.35914134979248,
+                            "z": -32.928157806396487
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.399999976158142,
+                            "y": -0.9700000286102295,
+                            "z": -0.23999999463558198
+                        },
+                        "Max Point": {
+                            "x": 1.399999976158142,
+                            "y": 0.9700000286102295,
+                            "z": 0.23999999463558198
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            11057976693296903406,
+                            3617555656175080491,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 159
+                    },
+                    "Name": {
+                        "Name": "Ruler"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": false,
+                        "West": true
+                    }
                 }
             ]
         },
@@ -37099,13 +39017,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            362,
                             241,
-                            248,
+                            362,
                             160,
+                            248,
                             283,
-                            187,
                             284,
+                            187,
                             191,
                             158,
                             293,
@@ -37219,7 +39137,12 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             282,
-                            311
+                            311,
+                            479,
+                            478,
+                            480,
+                            481,
+                            484
                         ]
                     },
                     "Rotation": {
@@ -37322,7 +39245,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 200
+                        "Global Index": 495
                     },
                     "Mesh": {
                         "Model": "InteractableBlock2x2",
@@ -37412,8 +39335,8 @@
                         "Modified Components": [
                             17639936325783395793,
                             17008353085049151909,
-                            5509481706028819786,
-                            9604788041699812520
+                            9604788041699812520,
+                            5509481706028819786
                         ],
                         "Prefab GID": 131
                     },
@@ -37646,7 +39569,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 444
+                        "Global Index": 211
                     },
                     "Mesh": {
                         "Model": "InteractableBlock2x2",
@@ -37688,9 +39611,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -42.63399887084961,
-                            "y": 7.9632792472839359,
-                            "z": -26.441999435424806
+                            "x": -24.204008102416993,
+                            "y": 7.97068977355957,
+                            "z": 3.185818672180176
                         }
                     },
                     "RigidForce": {
@@ -38075,114 +39998,6 @@
                     "Pushable": {
                         "State": 1
                     }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 211
-                    },
-                    "Mesh": {
-                        "Model": "InteractableBlock2x2",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -24.204008102416993,
-                            "y": 7.97068977355957,
-                            "z": 3.185818672180176
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": true,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "PushableBlock"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.30000001192092898,
-                            "y": -0.4000000059604645,
-                            "z": -0.30000001192092898
-                        },
-                        "Max Point": {
-                            "x": 0.30000001192092898,
-                            "y": 0.4000000059604645,
-                            "z": 0.30000001192092898
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17639936325783395793,
-                            17008353085049151909,
-                            5509481706028819786,
-                            9604788041699812520
-                        ],
-                        "Prefab GID": 131
-                    },
-                    "Name": {
-                        "Name": "PushableCube2x2"
-                    },
-                    "Mass": {
-                        "Mass": 6.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Pushable": {
-                        "State": 1
-                    }
                 }
             ]
         },
@@ -38228,11 +40043,10 @@
                             442,
                             443,
                             211,
-                            444,
                             190,
                             215,
                             213,
-                            200
+                            495
                         ]
                     },
                     "Rotation": {
@@ -38585,11 +40399,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            242,
-                            337,
-                            465,
-                            409,
                             473,
+                            409,
+                            465,
+                            337,
+                            242,
                             205,
                             300,
                             408,
@@ -39862,7 +41676,7 @@
                         },
                         "Position": {
                             "x": -38.16330337524414,
-                            "y": 14.186925888061524,
+                            "y": 14.089102745056153,
                             "z": -28.5424861907959
                         }
                     },
@@ -39888,12 +41702,12 @@
                     "BoundingBox": {
                         "Min Point": {
                             "x": -2.450000047683716,
-                            "y": -0.05000000074505806,
+                            "y": -0.15000000596046449,
                             "z": -0.44999998807907107
                         },
                         "Max Point": {
                             "x": 2.450000047683716,
-                            "y": 0.05000000074505806,
+                            "y": 0.15000000596046449,
                             "z": 0.44999998807907107
                         },
                         "Is Collide": false
@@ -40090,7 +41904,7 @@
                         },
                         "Position": {
                             "x": -36.101375579833987,
-                            "y": 14.189135551452637,
+                            "y": 14.086020469665528,
                             "z": -26.339590072631837
                         }
                     },
@@ -40116,12 +41930,12 @@
                     "BoundingBox": {
                         "Min Point": {
                             "x": -0.4000000059604645,
-                            "y": -0.05000000074505806,
+                            "y": -0.15000000596046449,
                             "z": -1.75
                         },
                         "Max Point": {
                             "x": 0.4000000059604645,
-                            "y": 0.05000000074505806,
+                            "y": 0.15000000596046449,
                             "z": 1.75
                         },
                         "Is Collide": false
@@ -40318,7 +42132,7 @@
                         },
                         "Position": {
                             "x": -40.21205520629883,
-                            "y": 14.189135551452637,
+                            "y": 14.085427284240723,
                             "z": -26.339590072631837
                         }
                     },
@@ -40344,12 +42158,12 @@
                     "BoundingBox": {
                         "Min Point": {
                             "x": -0.4000000059604645,
-                            "y": -0.05000000074505806,
+                            "y": -0.15000000596046449,
                             "z": -1.75
                         },
                         "Max Point": {
                             "x": 0.4000000059604645,
-                            "y": 0.05000000074505806,
+                            "y": 0.15000000596046449,
                             "z": 1.75
                         },
                         "Is Collide": false
@@ -40394,7 +42208,7 @@
                         },
                         "Position": {
                             "x": -38.16330337524414,
-                            "y": 14.186925888061524,
+                            "y": 14.086601257324219,
                             "z": -24.1419620513916
                         }
                     },
@@ -40420,12 +42234,12 @@
                     "BoundingBox": {
                         "Min Point": {
                             "x": -2.450000047683716,
-                            "y": -0.05000000074505806,
+                            "y": -0.15000000596046449,
                             "z": -0.44999998807907107
                         },
                         "Max Point": {
                             "x": 2.450000047683716,
-                            "y": 0.05000000074505806,
+                            "y": 0.15000000596046449,
                             "z": 0.44999998807907107
                         },
                         "Is Collide": false
@@ -41084,7 +42898,7 @@
                     },
                     "Sound": {
                         "Path": "event:/BGM_Level1",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 717,
                         "3D Sound": false,
                         "Triggerable": false,
                         "Trigger": false
@@ -41364,7 +43178,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 601,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -41504,7 +43318,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 602,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -41644,7 +43458,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 603,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -41784,7 +43598,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 604,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -41924,7 +43738,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 605,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -42064,7 +43878,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 606,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -42204,7 +44018,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 607,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -42344,7 +44158,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 608,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -42879,6 +44693,198 @@
                         "Enable Grow Ability?": false,
                         "Enable Shrink Ability?": true,
                         "Enable Freeze Ability?": false
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 330
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            310
+                        ]
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": []
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Win Collider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 310
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -29.0,
+                            "y": 8.600000381469727,
+                            "z": -11.399999618530274
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Goal_Level2"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.5,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.5,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 330
+                    },
+                    "Name": {
+                        "Name": "Win Collider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
                     }
                 }
             ]
@@ -43674,198 +45680,6 @@
             ]
         },
         {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        10055872472107209861,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        14351128073332756358,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 330
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            310
-                        ]
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": []
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Win Collider"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                }
-            ]
-        },
-        {
-            "Camera": [
-                {
-                    "Guid": [
-                        0,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        14351128073332756358,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 310
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -29.0,
-                            "y": 8.600000381469727,
-                            "z": -11.399999618530274
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "Goal_Level2"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.5,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.5,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 330
-                    },
-                    "Name": {
-                        "Name": "Win Collider"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                }
-            ]
-        },
-        {
             "Unnamed Archetype": [
                 {
                     "Guid": [
@@ -43908,7 +45722,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 609,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -44361,7 +46175,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Checkpoint",
-                        "Sound Event ID": 0,
+                        "Sound Event ID": 610,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
