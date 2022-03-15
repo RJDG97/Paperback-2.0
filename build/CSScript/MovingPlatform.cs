@@ -83,14 +83,14 @@ namespace CSScript
                 {
 
                     //Application.Trigger3DTaggedSound("SFX_Train_Loop", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, 0.0f, 0.0f, 0.0f, m_ID);
-                    m_ParentSound.m_Trigger = true;
+                    // m_ParentSound.m_Trigger = true;
                 }
 
                 if (m_Starting == false)
                 {
                     //Application.Trigger3DTaggedSound("SFX_Train_Start", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, m_ParentRigidbody.m_Velocity.x, m_ParentRigidbody.m_Velocity.y, m_ParentRigidbody.m_Velocity.z, m_ID);
-                    m_Starting = true;
-                    m_ParentSound.m_Trigger = true;
+                    //m_Starting = true;
+                    //m_ParentSound.m_Trigger = true;
                 }
             }
 
