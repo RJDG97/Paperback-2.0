@@ -17,7 +17,7 @@ namespace paperback::particles
     {
         // Gotta Call This After RegisterComponents
         m_ParticleArchetype = &m_Coordinator.GetOrCreateArchetype< component::entity, transform, scale, rotation
-                                                                 , offset, mesh, rigidforce, rigidbody, particle>();
+                                                                 , mesh, rigidforce, rigidbody, particle, mass>();
     }
 
     PPB_INLINE
@@ -76,6 +76,53 @@ namespace paperback::particles
         return List;
     }
 
+
+    PPB_INLINE
+    void manager::InitializeParticles( component::entity&    EmitterEntity
+                                     , particle_emitter&     Emitter
+                                     , ParticleList          ParticleIDList ) noexcept
+    {
+        // Check m_bPrewarm & m_bHasDestination - TODO
+
+		auto& EmitterInfo = m_Coordinator.GetEntityInfo( EmitterEntity.m_GlobalIndex );
+
+        if ( !EmitterInfo.m_pArchetype ) return;
+
+        auto [ EmitterTransform, EmitterBB ] = EmitterInfo.m_pArchetype->FindComponents<transform, boundingbox>( EmitterInfo.m_PoolDetails );
+
+		if ( !EmitterTransform || !EmitterBB )
+		{
+			ERROR_PRINT( "Invalid Emitter Components During Particle Initialization" );
+			return;
+		}
+
+		m_Coordinator.ForEach( ParticleIDList, [&]( particle& Particle, transform& Transform, rigidforce& RF, scale& Scale, mesh& Mesh, mass& Mass ) noexcept
+		{
+			// Update Particle Details
+			Particle.m_ConstantRotation = Emitter.m_GenerateRotation.Rand( );
+			Particle.m_Lifetime         = Emitter.m_GenerateLifetime.Rand( );
+			Particle.m_Opacity          = Emitter.m_GenerateOpacity.Rand( );
+			Particle.m_bHasDestination  = Emitter.m_bHasDestination;
+
+			// Update Particle Spawn Position - Based On Emitter Position & Bounding Box Area
+			Transform.m_Position        = Emitter.m_GeneratePosition.Rand( *EmitterTransform, *EmitterBB );
+			
+			// Update Particle Velocity
+			RF.m_Momentum               = Emitter.m_GenerateVelocity.Rand( );
+			
+			// Update Particle Scale
+			Scale.m_Value               = Emitter.m_GenerateScale.Rand( );
+
+            // Update Particle Mesh - I Think This Isn't Needed?
+            Mesh.m_Model                = "JumpToy";
+            Mesh.m_Active               = true;
+
+            // For Phy Sys - Confirm If Required
+            Mass.m_Mass                 = 1.0f;
+		});
+    }
+
+
     PPB_INLINE
     void manager::ReturnDeadParticle( const paperback::u32 ParticleGID ) noexcept
     {
@@ -84,6 +131,8 @@ namespace paperback::particles
         PPB_ASSERT( it == m_EmitterMap.end() );
 
         auto EmitterGID = it->second;
+        if ( EmitterGID == settings::invalid_index_v ) return;
+        it->second = settings::invalid_index_v;
         auto EmitterInfo = m_Coordinator.GetEntityInfo( EmitterGID );
 
         if ( EmitterInfo.m_pArchetype )

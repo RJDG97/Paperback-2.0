@@ -14,9 +14,10 @@ BEGIN_CREATE_DATA_COMPONENT( particle, Particle )
 		return m_Lifetime > 0.0f;
 	}
 
-	float m_Lifetime        = 0.0f;
-	float m_Opacity         = 1.0f;
-	bool  m_bHasDestination = false;
+	paperback::Vector3f  m_ConstantRotation;
+	float                m_Lifetime        = 0.0f;
+	float                m_Opacity         = 1.0f;
+	bool                 m_bHasDestination = false;
 
 END_CREATE_DATA_COMPONENT
 
@@ -27,6 +28,7 @@ namespace RR_Particle
 	{
 		rttr::registration::class_< particle >( particle::typedef_v.m_pName )
 			.constructor()(rttr::policy::ctor::as_object)
+			.property( "Particle Rotation", &particle::m_ConstantRotation )
 			.property( "Particle Lifetime", &particle::m_Lifetime )
 			.property( "Particle Opacity",  &particle::m_Opacity  )
 			.property( "Particle Has Dest",  &particle::m_bHasDestination );

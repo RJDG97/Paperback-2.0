@@ -35,6 +35,11 @@ namespace paperback::particles
                                      , const paperback::u32 EmitterGID ) noexcept;
 
         PPB_INLINE
+        void InitializeParticles( component::entity&    EmitterEntity
+                                , particle_emitter&     Emitter
+                                , ParticleList          ParticleIDList ) noexcept;
+
+        PPB_INLINE
         void ReturnDeadParticle( const paperback::u32 ParticleGID ) noexcept;
 
 

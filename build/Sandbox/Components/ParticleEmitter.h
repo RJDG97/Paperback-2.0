@@ -122,16 +122,13 @@ BEGIN_CREATE_DATA_COMPONENT( particle_emitter, Particle Emitter )
 	using ParticleList = std::vector<paperback::u32>;
 
 	PPB_INLINE
-	void InitializeParticles( std::span<paperback::u32> List ) noexcept
+	void UpdateParticleList( std::span<paperback::u32> List ) noexcept
 	{
-		// Check m_bPrewarm & m_bHasDestination
-
-		//PPB.ForEach( List, [&]( /* Relevant Components */ )
-		//{
-		//	// Rand Everything & Initialize
-		//});
-
 		// Merge List w/ m_ActiveParticles List
+		for ( const auto ID : List )
+		{
+			m_ActiveParticles.push_back( ID );
+		}
 	}
 
 	PPB_INLINE
@@ -142,6 +139,7 @@ BEGIN_CREATE_DATA_COMPONENT( particle_emitter, Particle Emitter )
 
 		if ( m_CurrentTime <= 0.0f && m_Lifetime > 0.0f )
 		{
+			m_CurrentTime = m_EmissionInterval;
 			int QuantityAvailable = m_EmissionCap - static_cast<int>( m_ActiveParticles.size() );
 
 			PPB_ASSERT( QuantityAvailable < 0 );
