@@ -20,7 +20,6 @@ namespace CSScript
         Transform m_JumpUnitTransform;
         Transform m_PushUnitTransform;
 
-        bool m_Moving;
         bool m_Starting;
         Rigidbody m_ParentRigidbody;
 
@@ -69,42 +68,41 @@ namespace CSScript
         {
             if (m_NumPassengers > 0)
             {
-                m_PrevPlatformPos = m_ParentTransform.m_Position;
                 m_NumPassengers = 0;
             }
 
-            if ((m_PrevPlatformPos.x <= m_ParentTransform.m_Position.x || m_PrevPlatformPos.x >= m_ParentTransform.m_Position.x) ||
-                (m_PrevPlatformPos.z <= m_ParentTransform.m_Position.z || m_PrevPlatformPos.z >= m_ParentTransform.m_Position.z))
+            if ((m_PrevPlatformPos.x < m_ParentTransform.m_Position.x || m_PrevPlatformPos.x > m_ParentTransform.m_Position.x) ||
+                (m_PrevPlatformPos.z < m_ParentTransform.m_Position.z || m_PrevPlatformPos.z > m_ParentTransform.m_Position.z))
             {
 
-                m_Moving = true;
 
                 if (m_Starting)
                 {
 
                     //Application.Trigger3DTaggedSound("SFX_Train_Loop", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, 0.0f, 0.0f, 0.0f, m_ID);
-                    // m_ParentSound.m_Trigger = true;
+                    m_ParentSound.m_Trigger = true;
                 }
 
                 if (m_Starting == false)
                 {
                     //Application.Trigger3DTaggedSound("SFX_Train_Start", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, m_ParentRigidbody.m_Velocity.x, m_ParentRigidbody.m_Velocity.y, m_ParentRigidbody.m_Velocity.z, m_ID);
-                    //m_Starting = true;
+                    m_Starting = true;
                     //m_ParentSound.m_Trigger = true;
                 }
             }
 
             if ((m_PrevPlatformPos.x >= m_ParentTransform.m_Position.x - 0.01f && m_PrevPlatformPos.x <= m_ParentTransform.m_Position.x + 0.01f) &&
-                (m_PrevPlatformPos.z >= m_ParentTransform.m_Position.z - 0.01f && m_PrevPlatformPos.z <= m_ParentTransform.m_Position.z + 0.01f) && 
-                m_Moving)
+                (m_PrevPlatformPos.z >= m_ParentTransform.m_Position.z - 0.01f && m_PrevPlatformPos.z <= m_ParentTransform.m_Position.z + 0.01f))
             {
 
-                m_Moving = false;
                 m_Starting = false;
 
                 Application.StopTaggedSoundComp(m_ParentSound.m_SoundPlayTag);
                 //Application.Trigger3DTaggedSound("SFX_Train_Stop", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, m_ParentRigidbody.m_Velocity.x, m_ParentRigidbody.m_Velocity.y, m_ParentRigidbody.m_Velocity.z, m_ID);
             }
+
+
+            m_PrevPlatformPos = m_ParentTransform.m_Position;
         }
         public void Destroy()
         {
