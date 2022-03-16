@@ -29,3 +29,4 @@ event:/BGM_Level1
 event:/BGM_WinScreen
 event:/CS_01
 event:/CS_02
+event:/CS_03
