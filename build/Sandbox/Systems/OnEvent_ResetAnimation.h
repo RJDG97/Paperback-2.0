@@ -21,7 +21,7 @@ struct onevent_ResetAnimation : paperback::system::instance
         {
             auto [ Anim, Controller, Interaction ] = Info.m_pArchetype->FindComponents<animator, player_controller, player_interaction>( Info.m_PoolDetails );
 
-            if ( Controller && Controller->m_PlayerStatus && Anim )
+            if ( Controller && Anim )
             {
                 // Strong Unit
                 if ( Interaction )
