@@ -1,29 +1,29 @@
 {
-  "AudioFile": "DVO_L1S1_01",
+  "AudioFile": "../../resources/WAOW",
   "JT": "Ugh, my head… 5TR-0, are you ok?",
   
-  "AudioFile": "DVO_L1S1_02",
+  "AudioFile": "../../resources/WAOW",
   "ST": "Yeah, oof- my wheels just feel a little funny.",
   
-  "AudioFile": "DVO_L1S1_03",
+  "AudioFile": "../../resources/WAOW",
   "ST": "That was scary! I thought we’d met our end",
   
   "AudioFile": "../../resources/WAOW",
   "ST": "... with that kid.",
 
-  "AudioFile": "DVO_L1S1_04",
+  "AudioFile": "../../resources/WAOW",
   "JT": "Yeah…I can’t imagine what would’ve happened",  
 
   "AudioFile": "../../resources/WAOW",
   "JT": "... if he didn’t put us down", 
   
-  "AudioFile": "DVO_L1S1_05",
+  "AudioFile": "../../resources/WAOW",
   "JT": "That troublemaker. He even lost our",
   
   "AudioFile": "../../resources/WAOW",
   "JT": "... cards and manual!",  
   
-  "AudioFile": DVO_L1S1_06",
+  "AudioFile": "../../resources/WAOW",
   "JT": "Anyhow, we’d better get back to our kid’s bag",
   
   "AudioFile": "../../resources/WAOW",
