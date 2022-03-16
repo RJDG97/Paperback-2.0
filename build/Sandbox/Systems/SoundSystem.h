@@ -573,6 +573,9 @@ public:
     void Update() noexcept
     {
 
+        if (PPB.GetPauseBool() && PPB.VerifyState("Editor"))
+            return;
+
         UpdateCameraListener();
         SoundComponentProcess();
         BulkSoundProcess();
