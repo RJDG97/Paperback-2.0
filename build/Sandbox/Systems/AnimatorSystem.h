@@ -69,18 +69,21 @@ struct animator_system : paperback::system::instance
 
 		if (anims.find(Ator.m_CurrentAnimationName) != anims.end())
 		{
-			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating) && !Ator.m_PauseAnimation)
+			if (!(Ator.m_PlayOnce && Ator.m_FinishedAnimating))
 			{
 				auto& current_anim{ anims[Ator.m_CurrentAnimationName] };
 
-				if (Ator.m_Reversed)
+				if (!Ator.m_PauseAnimation)
 				{
-					Ator.m_CurrentTime -= current_anim.GetTicksPerSecond() * DeltaTime();
-				}
+					if (Ator.m_Reversed)
+					{
+						Ator.m_CurrentTime -= current_anim.GetTicksPerSecond() * DeltaTime();
+					}
 
-				else
-				{
-					Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
+					else
+					{
+						Ator.m_CurrentTime += current_anim.GetTicksPerSecond() * DeltaTime();
+					}
 				}
 
 				if (Ator.m_PauseAtTime >= 0.0f &&

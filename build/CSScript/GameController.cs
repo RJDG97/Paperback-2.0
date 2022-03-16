@@ -26,8 +26,8 @@ namespace CSScript
 
         float m_ScaleFactor = 1.5f;
         float m_InverseScaleFactor = 1.0f / 1.5f;
-        float m_AbilityDuration = 3.0f;
-        float m_InverseAbilityDuration = 1.0f / 3.0f;
+        float m_AbilityDuration = 5.0f;
+        float m_InverseAbilityDuration = 1.0f / 5.0f;
         float m_AbilityTimer = 0.0f;
         bool m_AbilityActive = false;
 
