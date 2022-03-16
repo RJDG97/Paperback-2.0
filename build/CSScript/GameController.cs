@@ -103,7 +103,7 @@ namespace CSScript
                 Player.TogglePlayers();
             }
 
-            if (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) && !m_AbilityActive)
+            if ((Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPress(Input.PB_GAMEPAD_BUTTON_X)) && !m_AbilityActive)
             {
                 if (m_JumpUnitPC.m_FPSMode)
                 {
@@ -120,7 +120,7 @@ namespace CSScript
 
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
             {
-                if (Input.IsKeyPress(Input.PB_TAB) && m_Abilities.Count > 1)
+                if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPress(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)) && m_Abilities.Count > 1)
                 {
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);

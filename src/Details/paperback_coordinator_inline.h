@@ -1061,6 +1061,21 @@ namespace paperback::coordinator
 		return m_Input.IsKeyPressUp( Key );
 	}
 
+	bool instance::IsGamepadButtonPress( int Key ) noexcept
+	{
+		return m_Input.IsGamepadButtonPress( Key );
+	}
+
+	bool instance::IsGamepadButtonPressDown( int Key ) noexcept
+	{
+		return m_Input.IsGamepadButtonPressDown( Key );
+	}
+
+	bool instance::IsGamepadButtonPressUp( int Key ) noexcept
+	{
+		return m_Input.IsGamepadButtonPressUp( Key );
+	}
+
 	bool instance::IsMousePress( int Key ) noexcept
 	{
 		return m_Input.IsMousePress( Key );

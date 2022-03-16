@@ -383,6 +383,15 @@ namespace paperback::coordinator
 		bool IsKeyPressUp( int Key ) noexcept;
 
 		PPB_INLINE
+		bool IsGamepadButtonPress( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsGamepadButtonPressDown( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsGamepadButtonPressUp( int Key ) noexcept;
+
+		PPB_INLINE
 		bool IsMousePress( int Key ) noexcept;
 
 		PPB_INLINE
