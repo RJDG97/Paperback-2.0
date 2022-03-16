@@ -30,3 +30,9 @@ event:/BGM_WinScreen
 event:/CS_01
 event:/CS_02
 event:/CS_03
+event:/DVO_L1S1_01
+event:/DVO_L1S1_02
+event:/DVO_L1S1_03
+event:/DVO_L1S1_04
+event:/DVO_L1S1_05
+event:/DVO_L1S1_06
