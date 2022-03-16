@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 406
+                "EntityHead": 331
             }
         },
         {
@@ -3898,6 +3898,124 @@
                         "Inv Mass": 0.0
                     },
                     "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 222
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 221
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.8999999761581421,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.279998779296878,
+                            "y": 5.817999839782715,
+                            "z": 11.869999885559082
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "MovingPlatform"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -0.5,
+                            "z": -0.3499999940395355
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 0.5,
+                            "z": 0.3499999940395355
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            8376831551428810534,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 218
+                    },
+                    "Name": {
+                        "Name": "Moving Platform Detector"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
                 }
             ]
         },
@@ -3956,7 +4074,8 @@
                         "Prefab Instances GID": [
                             288,
                             378,
-                            180
+                            180,
+                            222
                         ]
                     },
                     "Rotation": {
@@ -4077,7 +4196,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 318,
+                        "Sound Event ID": 126,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4192,7 +4311,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 319,
+                        "Sound Event ID": 127,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4310,7 +4429,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 320,
+                        "Sound Event ID": 128,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4425,7 +4544,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 321,
+                        "Sound Event ID": 129,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4542,7 +4661,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 322,
+                        "Sound Event ID": 130,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4659,7 +4778,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Checkpoint",
-                        "Sound Event ID": 323,
+                        "Sound Event ID": 131,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4775,7 +4894,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 324,
+                        "Sound Event ID": 132,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4892,7 +5011,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 325,
+                        "Sound Event ID": 133,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5009,7 +5128,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 326,
+                        "Sound Event ID": 134,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5127,7 +5246,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 327,
+                        "Sound Event ID": 135,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5218,6 +5337,123 @@
                     },
                     "Name": {
                         "Name": "Elevator Switch"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 220
+                    },
+                    "Mesh": {
+                        "Model": "Button_TrainCyanOFF",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Switch_Pressed",
+                        "Sound Event ID": 136,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            221
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.20000000298023225
+                        },
+                        "Position": {
+                            "x": 34.18000030517578,
+                            "y": 7.8379998207092289,
+                            "z": 8.369999885559082
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "MovingPlatformSwitch"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.25,
+                            "y": -0.029999999329447748,
+                            "z": -0.44999998807907107
+                        },
+                        "Max Point": {
+                            "x": 0.25,
+                            "y": 0.029999999329447748,
+                            "z": 0.44999998807907107
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            14486341741652966143,
+                            14302600151082817442,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 219
+                    },
+                    "Name": {
+                        "Name": "Moving Platform Switch"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -5392,6 +5628,7 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             188,
+                            220,
                             286,
                             376
                         ]
@@ -15389,10 +15626,10 @@
                             11,
                             12,
                             13,
-                            14,
                             78,
-                            15,
+                            14,
                             79,
+                            15,
                             16,
                             17,
                             18,
@@ -16803,10 +17040,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            5691439207370049121,
                             1871702054972469046,
-                            9604788041699812520,
+                            5691439207370049121,
                             5509481706028819786,
+                            9604788041699812520,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -19419,6 +19656,113 @@
                     "Pushable": {
                         "State": 1
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 406
+                    },
+                    "Mesh": {
+                        "Model": "InteractableBlock2x2",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 34.0989990234375,
+                            "y": 8.20300006866455,
+                            "z": 8.557999610900879
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": true,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "PushableBlock"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.3799999952316284,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.3799999952316284,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 161
+                    },
+                    "Name": {
+                        "Name": "PushableBlock"
+                    },
+                    "Mass": {
+                        "Mass": 6.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Pushable": {
+                        "State": 1
+                    }
                 }
             ]
         },
@@ -19466,7 +19810,8 @@
                             363,
                             343,
                             407,
-                            398
+                            398,
+                            406
                         ]
                     },
                     "Rotation": {
@@ -19591,8 +19936,7 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             225,
-                            390,
-                            331
+                            390
                         ]
                     },
                     "Rotation": {
@@ -19696,7 +20040,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 331
+                        "Global Index": 390
                     },
                     "Mesh": {
                         "Model": "Billboard",
@@ -19707,15 +20051,15 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.004999727942049503,
-                            "y": 0.004999999888241291,
-                            "z": 0.004999516531825066
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009998250752687455
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 90.0
                         }
                     },
@@ -19733,14 +20077,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": 0.20000000298023225,
                             "y": 0.0,
-                            "z": -0.10000000149011612
+                            "z": 0.0
                         },
                         "Position": {
-                            "x": 42.351226806640628,
-                            "y": 4.966291427612305,
-                            "z": 11.921147346496582
+                            "x": 45.97378921508789,
+                            "y": 3.9626636505126955,
+                            "z": -15.140823364257813
                         }
                     },
                     "RigidForce": {
@@ -19764,14 +20108,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.5,
+                            "x": -0.8999999761581421,
                             "y": -0.10000000149011612,
-                            "z": -0.44999998807907107
+                            "z": -1.149999976158142
                         },
                         "Max Point": {
-                            "x": 0.5,
+                            "x": 0.8999999761581421,
                             "y": 0.10000000149011612,
-                            "z": 0.44999998807907107
+                            "z": 1.149999976158142
                         },
                         "Is Collide": false
                     },
@@ -19781,8 +20125,7 @@
                             14486341741652966143,
                             223102351977301267,
                             16415915133639986106,
-                            17008353085049151909,
-                            5691439207370049121
+                            17008353085049151909
                         ],
                         "Prefab GID": 223
                     },
@@ -19790,7 +20133,7 @@
                         "Name": "Moving Billboard"
                     },
                     "Path Follower": {
-                        "Path ID": 5,
+                        "Path ID": 2,
                         "Distance": 0.0,
                         "Travel Speed": 1.0,
                         "Back and Forth": true,
@@ -19898,113 +20241,6 @@
                     },
                     "Path Follower": {
                         "Path ID": 1,
-                        "Distance": 0.0,
-                        "Travel Speed": 1.0,
-                        "Back and Forth": true,
-                        "Reversed": false,
-                        "Pause Travel": false
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 390
-                    },
-                    "Mesh": {
-                        "Model": "Billboard",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009998250752687455
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 90.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.20000000298023225,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 45.97378921508789,
-                            "y": 3.9626636505126955,
-                            "z": -15.140823364257813
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.8999999761581421,
-                            "y": -0.10000000149011612,
-                            "z": -1.149999976158142
-                        },
-                        "Max Point": {
-                            "x": 0.8999999761581421,
-                            "y": 0.10000000149011612,
-                            "z": 1.149999976158142
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            14486341741652966143,
-                            223102351977301267,
-                            16415915133639986106,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 223
-                    },
-                    "Name": {
-                        "Name": "Moving Billboard"
-                    },
-                    "Path Follower": {
-                        "Path ID": 2,
                         "Distance": 0.0,
                         "Travel Speed": 1.0,
                         "Back and Forth": true,
@@ -20688,7 +20924,7 @@
                     },
                     "Sound": {
                         "Path": "event:/BGM_Level1",
-                        "Sound Event ID": 328,
+                        "Sound Event ID": 137,
                         "3D Sound": false,
                         "Triggerable": false,
                         "Trigger": false
@@ -20966,7 +21202,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 329,
+                        "Sound Event ID": 138,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -21107,7 +21343,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 330,
+                        "Sound Event ID": 139,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -21247,7 +21483,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 331,
+                        "Sound Event ID": 140,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -21366,6 +21602,146 @@
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 221
+                    },
+                    "Mesh": {
+                        "Model": "MovingPlatformMRT",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Train_Loop",
+                        "Sound Event ID": 141,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 220
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            222
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 8.100000381469727,
+                            "y": -2.9200000762939455,
+                            "z": 3.5
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.279998779296878,
+                            "y": 4.917999744415283,
+                            "z": 11.869999885559082
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.6000000238418579,
+                            "y": -0.30000001192092898,
+                            "z": -0.3499999940395355
+                        },
+                        "Max Point": {
+                            "x": 0.6000000238418579,
+                            "y": 0.30000001192092898,
+                            "z": 0.3499999940395355
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            223102351977301267,
+                            9604788041699812520,
+                            8376831551428810534,
+                            5691439207370049121,
+                            3617555656175080491,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 215
+                    },
+                    "Name": {
+                        "Name": "Moving Platform"
+                    },
+                    "Path Follower": {
+                        "Path ID": 5,
+                        "Distance": 0.0,
+                        "Travel Speed": 1.0,
+                        "Back and Forth": true,
+                        "Reversed": false,
+                        "Pause Travel": true
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         },
@@ -21445,7 +21821,8 @@
                         "Prefab Instances GID": [
                             287,
                             377,
-                            190
+                            190,
+                            221
                         ]
                     },
                     "Rotation": {
@@ -21764,7 +22141,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 332,
+                        "Sound Event ID": 142,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -21906,7 +22283,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 333,
+                        "Sound Event ID": 143,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -22049,7 +22426,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 334,
+                        "Sound Event ID": 144,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -24736,7 +25113,7 @@
                     },
                     "Sound": {
                         "Path": "event:/BGM_Level1",
-                        "Sound Event ID": 335,
+                        "Sound Event ID": 145,
                         "3D Sound": false,
                         "Triggerable": false,
                         "Trigger": false
@@ -24769,7 +25146,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Char_Red_StopMove",
-                        "Sound Event ID": 336,
+                        "Sound Event ID": 146,
                         "3D Sound": false,
                         "Triggerable": true,
                         "Trigger": false
@@ -24803,7 +25180,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Char_Blue_Jump",
-                        "Sound Event ID": 337,
+                        "Sound Event ID": 147,
                         "3D Sound": false,
                         "Triggerable": true,
                         "Trigger": false
@@ -24837,7 +25214,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Char_Blue_WalkCombine",
-                        "Sound Event ID": 338,
+                        "Sound Event ID": 148,
                         "3D Sound": false,
                         "Triggerable": true,
                         "Trigger": false
@@ -24871,7 +25248,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Char_Red_Grab",
-                        "Sound Event ID": 339,
+                        "Sound Event ID": 149,
                         "3D Sound": false,
                         "Triggerable": true,
                         "Trigger": false
@@ -24905,7 +25282,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Char_Red_Move",
-                        "Sound Event ID": 340,
+                        "Sound Event ID": 150,
                         "3D Sound": false,
                         "Triggerable": true,
                         "Trigger": false
@@ -37792,8 +38169,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            144,
                             192,
+                            144,
                             145,
                             138,
                             141,
@@ -37894,9 +38271,9 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             153,
-                            172,
-                            164,
                             132,
+                            164,
+                            172,
                             158,
                             149,
                             170,
@@ -38098,11 +38475,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            255,
-                            296,
                             247,
-                            248,
+                            296,
+                            255,
                             263,
+                            248,
                             251,
                             252,
                             261,
@@ -38306,37 +38683,37 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            258,
-                            386,
                             346,
                             282,
-                            269,
+                            386,
+                            258,
                             397,
+                            269,
                             339,
                             275,
-                            342,
                             278,
+                            342,
                             279,
                             280,
-                            345,
                             281,
-                            341,
+                            345,
                             277,
-                            349,
+                            341,
                             413,
                             285,
-                            353,
+                            349,
                             417,
                             289,
-                            354,
+                            353,
                             418,
                             290,
+                            354,
                             299,
                             300,
                             301,
                             303,
-                            375,
                             311,
+                            375,
                             312,
                             316,
                             317,
@@ -38346,12 +38723,12 @@
                             330,
                             340,
                             347,
-                            412,
                             348,
-                            414,
+                            412,
                             350,
-                            415,
+                            414,
                             351,
+                            415,
                             355,
                             357,
                             358,
@@ -40323,13 +40700,13 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            293,
                             158,
-                            284,
+                            293,
                             243,
-                            283,
-                            475,
+                            284,
                             244,
+                            475,
+                            283,
                             250,
                             274,
                             338,
