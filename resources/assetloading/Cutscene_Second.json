@@ -595,9 +595,9 @@
                     "Sound": {
                         "Path": "event:/CS_02",
                         "Sound Event ID": 60,
-                        "3D Sound": false,
-                        "Triggerable": false,
-                        "Trigger": false
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": true
                     },
                     "Transform": {
                         "Offset": {

@@ -588,9 +588,9 @@
                     "Sound": {
                         "Path": "event:/CS_03",
                         "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": false,
-                        "Trigger": false
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": true
                     },
                     "Transform": {
                         "Offset": {
