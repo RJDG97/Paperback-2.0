@@ -16,6 +16,15 @@ DialogueManager::DialogueManager()
 	LoadDialogueJson("../../resources/dialogue/Level1-D.dialogue", "Level1-D");
 	LoadDialogueJson("../../resources/dialogue/Level1-E.dialogue", "Level1-E");
 
+	LoadDialogueJson("../../resources/dialogue/Level2-A.dialogue", "Level2-A");
+	LoadDialogueJson("../../resources/dialogue/Level2-B.dialogue", "Level2-B");
+	LoadDialogueJson("../../resources/dialogue/Level2-C.dialogue", "Level2-C");
+	LoadDialogueJson("../../resources/dialogue/Level2-D.dialogue", "Level2-D");
+
+	LoadDialogueJson("../../resources/dialogue/Level3-A.dialogue", "Level3-A");
+	LoadDialogueJson("../../resources/dialogue/Level3-B.dialogue", "Level3-B");
+	LoadDialogueJson("../../resources/dialogue/Level3-C.dialogue", "Level3-C");
+
 }
 
 void DialogueManager::LoadDialogueJson(std::string file, std::string dialogue_name)
