@@ -1,0 +1,99 @@
+{
+    "Prefabs": [
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        3030050882574831430,
+                        9183335835101332207
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 426
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 150.0,
+                            "y": 150.0,
+                            "z": 150.0
+                        }
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Dialogue Text"
+                    },
+                    "Text": {
+                        "Font": "",
+                        "Text": "",
+                        "Color": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "FontSize": 1.0
+                    },
+                    "DialogueText": {
+                        "Text Speed": 0.0,
+                        "Elapsed Time": 0.0,
+                        "Hold Time": 0.0,
+                        "On Hold": false,
+                        "Dialogue Name": "test",
+                        "Initial Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Current Index": 0,
+                        "State": 1
+                    }
+                }
+            ]
+        }
+    ]
+}
