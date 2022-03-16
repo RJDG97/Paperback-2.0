@@ -7,7 +7,13 @@
     "PauseGamePanel": "../../resources/textures/UI/Menus/Backgrounds/PauseGamePanel_Mirrored.dds 0",
     "QuitGameButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Unselected_Mirrored.dds 0",
     "QuitGameConfirmationPanel": "../../resources/textures/UI/Menus/Backgrounds/QuitGameConfirmationPanel_Mirrored.dds 0",
+    "SkillUIBigBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBigBar_Freeze.dds 0",
+    "GrowCard": "../../resources/textures/Cards/GrowCard.dds 0",
+    "ShrinkCard": "../../resources/textures/Cards/ShrinkCard.dds 0",
+    "FreezeCard": "../../resources/textures/Cards/FreezeCard.dds 0",
     "YesButton_Selected": "../../resources/textures/UI/Menus/Buttons/YesButton_Selected_Mirrored.dds 0",
     "Recticle": "../../resources/textures/UI/Recticle.dds 0",
-    "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 0"
+    "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 0",
+    "ToggleCardMode": "../../resources/textures/Cards/ToggleCardMode.dds 0",
+    "SkillUIBase_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBase_Freeze.dds 0"
 }

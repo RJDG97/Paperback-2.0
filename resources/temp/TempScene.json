@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 441
+                "EntityHead": 465
             }
         },
         {
@@ -545,6 +545,209 @@
                     "Name": {
                         "Name": "Butterfly Banner 1 -2"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 447
+                    },
+                    "Mesh": {
+                        "Model": "InstructionManualPage01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 90.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -56.70000076293945,
+                            "y": 0.8999999761581421,
+                            "z": 8.399999618530274
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 446
+                    },
+                    "Name": {
+                        "Name": "InstructionManual 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 448
+                    },
+                    "Mesh": {
+                        "Model": "InstructionManualPage02",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -59.79999923706055,
+                            "y": 2.0999999046325685,
+                            "z": 10.5
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            16415915133639986106,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 446
+                    },
+                    "Name": {
+                        "Name": "InstructionManual 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 449
+                    },
+                    "Mesh": {
+                        "Model": "InstructionManualPage03",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -54.599998474121097,
+                            "y": 3.5,
+                            "z": 7.900000095367432
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            16415915133639986106,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 446
+                    },
+                    "Name": {
+                        "Name": "InstructionManual 3"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 450
+                    },
+                    "Mesh": {
+                        "Model": "InstructionManualPage04",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -58.599998474121097,
+                            "y": 2.799999952316284,
+                            "z": 18.600000381469728
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            16415915133639986106,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 446
+                    },
+                    "Name": {
+                        "Name": "InstructionManual 4"
+                    }
                 }
             ]
         },
@@ -793,6 +996,55 @@
                     },
                     "Name": {
                         "Name": "Butterfly Banner 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 446
+                    },
+                    "Mesh": {
+                        "Model": "InstructionManualPage01",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            447,
+                            448,
+                            449,
+                            450
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "InstructionManual"
                     }
                 }
             ]
@@ -2947,6 +3199,270 @@
                     "Name": {
                         "Name": "Red Checkpoint"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 452
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 451
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            456
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Card 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 454
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 451
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            457
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Card 3"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 453
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 451
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            458
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Card 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 461
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUIBigBar_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 460
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            464
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Inner Bar"
+                    }
                 }
             ]
         },
@@ -3858,6 +4374,277 @@
                     },
                     "Name": {
                         "Name": "Red Checkpoint"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 456
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "GrowCard",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 150.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 455
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 50.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -770.0,
+                            "y": -400.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 452
+                    },
+                    "Name": {
+                        "Name": "Card 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 457
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ShrinkCard",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 120.0,
+                            "y": 160.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 455
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 120.0,
+                            "y": 0.0,
+                            "z": -1.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.800000011920929,
+                            "y": 0.800000011920929,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -700.0,
+                            "y": -400.0,
+                            "z": -1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 454
+                    },
+                    "Name": {
+                        "Name": "Card 3"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 458
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "FreezeCard",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 120.0,
+                            "y": 160.0,
+                            "z": 0.800000011920929
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 455
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -20.0,
+                            "y": 0.0,
+                            "z": -1.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.800000011920929,
+                            "y": 0.800000011920929,
+                            "z": 0.800000011920929
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -840.0,
+                            "y": -400.0,
+                            "z": -1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 453
+                    },
+                    "Name": {
+                        "Name": "Card 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 464
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUIBigBar_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 320.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 463
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 38.0,
+                            "y": 16.700000762939454,
+                            "z": -1.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.800000011920929,
+                            "y": 0.5,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 768.0,
+                            "y": -413.29998779296877,
+                            "z": -1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 461
+                    },
+                    "Name": {
+                        "Name": "Inner Bar"
                     }
                 }
             ]
@@ -26833,12 +27620,12 @@
                             12,
                             140,
                             13,
-                            78,
                             14,
                             142,
-                            79,
+                            78,
                             15,
                             143,
+                            79,
                             16,
                             144,
                             17,
@@ -26883,37 +27670,37 @@
                             164,
                             37,
                             38,
-                            167,
                             39,
-                            168,
+                            167,
                             40,
-                            169,
+                            168,
                             41,
-                            170,
+                            169,
                             42,
-                            171,
+                            170,
                             43,
-                            172,
+                            171,
                             44,
-                            173,
+                            172,
                             45,
-                            174,
+                            173,
                             46,
-                            175,
+                            174,
                             47,
-                            48,
+                            175,
                             176,
+                            48,
                             49,
                             50,
                             51,
-                            52,
                             180,
-                            181,
+                            52,
                             53,
-                            182,
+                            181,
                             54,
-                            55,
+                            182,
                             183,
+                            55,
                             56,
                             57,
                             58,
@@ -27893,10 +28680,10 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            160,
                             232,
-                            140,
+                            160,
                             228,
+                            140,
                             229,
                             230,
                             231,
@@ -28002,8 +28789,8 @@
                             223,
                             224,
                             225,
-                            226,
                             162,
+                            226,
                             227,
                             236,
                             237,
@@ -28479,8 +29266,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            268,
                             179,
+                            268,
                             266,
                             267,
                             269,
@@ -28775,14 +29562,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            252,
                             244,
-                            253,
+                            252,
                             245,
+                            253,
                             250,
                             251,
-                            261,
                             254,
+                            261,
                             418
                         ]
                     },
@@ -28878,10 +29665,10 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             248,
-                            258,
                             249,
-                            256,
+                            258,
                             255,
+                            256,
                             257,
                             259,
                             260,
@@ -29714,9 +30501,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -57.0,
-                            "y": 1.5,
-                            "z": 5.5
+                            "x": -72.36829376220703,
+                            "y": 1.4217145442962647,
+                            "z": 25.5554256439209
                         }
                     },
                     "RigidForce": {
@@ -29757,10 +30544,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            1871702054972469046,
                             5691439207370049121,
-                            5509481706028819786,
+                            1871702054972469046,
                             9604788041699812520,
+                            5509481706028819786,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -33312,12 +34099,12 @@
                         "Prefab Instances GID": [
                             215,
                             216,
-                            274,
                             217,
+                            274,
                             218,
                             219,
-                            275,
                             220,
+                            275,
                             276,
                             277,
                             278,
@@ -43150,6 +43937,619 @@
                 {
                     "Guid": [
                         0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        3617555656175080491,
+                        16415915133639986106,
+                        12326225187096344837
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 439
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            440,
+                            441,
+                            442,
+                            443,
+                            444,
+                            445
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.70000076293945,
+                            "y": 6.599999904632568,
+                            "z": 8.100000381469727
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 10.0,
+                            "y": 10.0,
+                            "z": 10.0
+                        },
+                        "Diffuse": {
+                            "x": 10.0,
+                            "y": 10.0,
+                            "z": 10.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        12326225187096344837
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 440
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -47.31683349609375,
+                            "y": 7.733254432678223,
+                            "z": 22.71746826171875
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 439
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 3.5,
+                            "y": 3.5,
+                            "z": 3.5
+                        },
+                        "Diffuse": {
+                            "x": 5.0,
+                            "y": 5.0,
+                            "z": 5.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 441
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -71.05889892578125,
+                            "y": 3.361618995666504,
+                            "z": -4.569617748260498
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 439
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 2.5,
+                            "y": 2.0,
+                            "z": 2.5
+                        },
+                        "Diffuse": {
+                            "x": 2.5,
+                            "y": 2.5,
+                            "z": 2.5
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 442
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -56.21624755859375,
+                            "y": 5.267437934875488,
+                            "z": 15.704139709472657
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 439
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Diffuse": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 443
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -72.61507415771485,
+                            "y": 4.314672946929932,
+                            "z": 22.391361236572267
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 439
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Diffuse": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 444
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -64.39376068115235,
+                            "y": 13.709151268005371,
+                            "z": -4.057028293609619
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 439
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 5.0,
+                            "y": 5.0,
+                            "z": 5.0
+                        },
+                        "Diffuse": {
+                            "x": 5.0,
+                            "y": 5.0,
+                            "z": 5.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 445
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.52845001220703,
+                            "y": 12.069451332092286,
+                            "z": -4.057028293609619
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 439
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Diffuse": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        13107566195444653040,
+                        14486341741652966143,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 455
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ToggleCardMode",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 150.0,
+                            "y": 200.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            456,
+                            457,
+                            458
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -820.0,
+                            "y": -400.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CardDisplay"
+                            }
+                        ]
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            5691439207370049121,
+                            14486341741652966143,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 451
+                    },
+                    "Name": {
+                        "Name": "Card Display"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        14351128073332756358,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 451
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            452,
+                            454,
+                            453
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            455
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": []
+                    },
+                    "Name": {
+                        "Name": "Card Display"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
                         9604788041699812520,
                         5691439207370049121,
                         14486341741652966143,
@@ -43179,9 +44579,9 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.000029999999242136256,
-                            "y": 0.00004999999873689376,
-                            "z": 0.00004999999873689376
+                            "x": 0.004999999888241291,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
                         }
                     },
                     "Rotation": {
@@ -43550,21 +44950,66 @@
                 {
                     "Guid": [
                         0,
-                        10055872472107209861,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        14486341741652966143,
                         17008353085049151909,
-                        3617555656175080491,
-                        16415915133639986106,
-                        12326225187096344837
+                        15172211932757996706,
+                        16415915133639986106
                     ]
                 },
                 {
                     "Entity": {
-                        "Global Index": 439
+                        "Global Index": 463
                     },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            440
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUIBase_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 200.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 462
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            464
                         ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 730.0,
+                            "y": -430.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
                     },
                     "Transform": {
                         "Offset": {
@@ -43573,48 +45018,21 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -57.70000076293945,
-                            "y": 6.599999904632568,
-                            "z": 8.100000381469727
+                            "x": 730.0,
+                            "y": -430.0,
+                            "z": 0.0
                         }
                     },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9604788041699812520,
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 460
                     },
                     "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 10.0,
-                            "y": 10.0,
-                            "z": 10.0
-                        },
-                        "Diffuse": {
-                            "x": 10.0,
-                            "y": 10.0,
-                            "z": 10.0
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
+                        "Name": "Ability Bar"
                     }
                 }
             ]
@@ -43624,16 +45042,71 @@
                 {
                     "Guid": [
                         0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
                         17008353085049151909,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        12326225187096344837
+                        16415915133639986106
                     ]
                 },
                 {
                     "Entity": {
-                        "Global Index": 440
+                        "Global Index": 460
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 459
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            461
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            463
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Transform": {
                         "Offset": {
@@ -43642,52 +45115,146 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -57.70000076293945,
-                            "y": 6.599999904632568,
-                            "z": 8.100000381469727
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
                     },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
+                    "Name": {
+                        "Name": "Ability Bar"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        13107566195444653040,
+                        14486341741652966143,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 462
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 200.0,
                             "z": 1.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            463
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         },
-                        "Is Collide": false
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GameController"
+                            }
+                        ]
                     },
                     "ReferencePrefab": {
                         "Modified Components": [],
-                        "Prefab GID": 439
+                        "Prefab GID": 459
                     },
                     "Name": {
-                        "Name": "Point Light"
+                        "Name": "GameController"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        5691439207370049121,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        14351128073332756358,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 459
                     },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 10.0,
-                            "y": 10.0,
-                            "z": 10.0
-                        },
-                        "Diffuse": {
-                            "x": 10.0,
-                            "y": 10.0,
-                            "z": 10.0
-                        },
-                        "Specular": {
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 200.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            460
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            462
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "GameController"
+                            }
+                        ]
+                    },
+                    "Name": {
+                        "Name": "GameController"
                     }
                 }
             ]
