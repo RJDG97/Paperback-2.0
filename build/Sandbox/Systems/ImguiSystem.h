@@ -682,6 +682,16 @@ struct imgui_system : paperback::system::instance
         {
             //Serialize the scene into a temp location
             PPB.SaveScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
+
+            if (m_SelectedEntity.first)
+            {
+                m_SelectedEntity.first = nullptr;
+                m_SelectedEntity.second = paperback::u32_max;
+            }
+
+            if (!m_Components.empty())
+                m_Components.clear();
+
             m_bPaused = false;
 
             EDITOR_TRACE_PRINT("Playing Active Scene...");
