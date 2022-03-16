@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Rotation
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Rotation(UInt32 id)
         {

@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Pushable
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Pushable(UInt32 id)
         {

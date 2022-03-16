@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Elevator
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Elevator(UInt32 id)
         {

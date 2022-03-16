@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Name
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Name(UInt32 id)
         {

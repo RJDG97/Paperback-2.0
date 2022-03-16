@@ -166,7 +166,7 @@ struct path_system : paperback::system::instance
 
 		paperback::Vector3f destination{ spline.GetSplinePoint(normalized_offset).m_Point };
 		paperback::Vector3f direction{ (destination - Transform.m_Position) };
-		float speed_modifier = 1.7f + 0.8f * cosf(PathFollower.m_Distance / spline.m_TotalLength * 2 * M_PI + M_PI);
+		float speed_modifier = 1.7f + 0.8f * cosf(PathFollower.m_Distance / spline.m_TotalLength * 2 * static_cast<float>(M_PI) + static_cast<float>(M_PI));
 
 		if (Offset)
 		{
@@ -248,7 +248,7 @@ struct path_system : paperback::system::instance
 				}
 
 				float destination_dist{ spline.CalculateSegmentLength(Cinematic.m_Index) };
-				float speed_modifier = 1.7f + 0.8f * cosf((PathFollower.m_Distance - prev_dist) / (destination_dist - prev_dist) * 2 * M_PI + M_PI);
+				float speed_modifier = static_cast<float>(1.7f + 0.8f * cosf((PathFollower.m_Distance - prev_dist) / (destination_dist - prev_dist) * 2 * static_cast<float>(M_PI) + static_cast<float>(M_PI)));
 
 				if (Offset)
 				{

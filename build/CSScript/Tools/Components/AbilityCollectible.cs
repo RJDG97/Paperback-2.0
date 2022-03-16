@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class AbilityCollectible
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public AbilityCollectible(UInt32 id)
         {

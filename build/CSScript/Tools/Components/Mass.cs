@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Mass
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Mass(UInt32 id)
         {

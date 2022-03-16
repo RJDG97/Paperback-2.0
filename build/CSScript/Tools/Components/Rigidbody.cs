@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Rigidbody
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Rigidbody(UInt32 id)
         {

@@ -91,7 +91,7 @@ struct dialogue_system : paperback::system::pausable_instance
 
 					float ratio_xy = DialogueText.m_InitialScale.y / DialogueText.m_InitialScale.x;
 					float ratio_xz = DialogueText.m_InitialScale.z / DialogueText.m_InitialScale.x;
-					float add_value = 90.0f * (1.0f + cosf(DialogueText.m_ElapsedTime / 2.0f * 2 * M_PI + M_PI));
+					float add_value = static_cast<float>(90.0f * (1.0f + cosf(DialogueText.m_ElapsedTime / 2.0f * 2 * static_cast<float>(M_PI) + static_cast<float>(M_PI))));
 					
 					CScale->m_Value += paperback::Vector3f{add_value, add_value * ratio_xy, add_value * ratio_xz};
 
@@ -162,7 +162,7 @@ struct dialogue_system : paperback::system::pausable_instance
 
 					float ratio_xy = DialogueText.m_InitialScale.x / DialogueText.m_InitialScale.y;
 					float ratio_xz = DialogueText.m_InitialScale.x / DialogueText.m_InitialScale.z;
-					float add_value = 70.0f * (1.0f + sinf(DialogueText.m_ElapsedTime / 2.0f * 2 * M_PI + M_PI));
+					float add_value = static_cast<float>(70.0f * (1.0f + sinf(DialogueText.m_ElapsedTime / 2.0f * 2 * static_cast<float>(M_PI) + static_cast<float>(M_PI))));
 
 					CScale->m_Value -= paperback::Vector3f{ add_value, add_value * ratio_xy, add_value * ratio_xz };
 

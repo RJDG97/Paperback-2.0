@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Parent
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Parent(UInt32 id)
         {

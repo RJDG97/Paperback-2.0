@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Text
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Text(UInt32 id)
         {

@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Scale
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Scale(UInt32 id)
         {

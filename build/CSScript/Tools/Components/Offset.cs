@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Offset
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Offset(UInt32 id)
         {

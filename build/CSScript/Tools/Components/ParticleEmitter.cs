@@ -12,7 +12,6 @@ namespace CSScript
   public unsafe class ParticleEmitter
   {
     private void* m_Address;
-    private UInt32 m_ID;
 
     public ParticleEmitter(UInt32 id)
     {
