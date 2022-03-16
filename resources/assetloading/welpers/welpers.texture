@@ -8,5 +8,6 @@
     "QuitGameButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitGameButton_Unselected_Mirrored.dds 0",
     "QuitGameConfirmationPanel": "../../resources/textures/UI/Menus/Backgrounds/QuitGameConfirmationPanel_Mirrored.dds 0",
     "YesButton_Selected": "../../resources/textures/UI/Menus/Buttons/YesButton_Selected_Mirrored.dds 0",
-    "Recticle": "../../resources/textures/UI/Recticle.dds 0"
+    "Recticle": "../../resources/textures/UI/Recticle.dds 0",
+    "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 0"
 }

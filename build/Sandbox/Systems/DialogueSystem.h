@@ -65,6 +65,15 @@ struct dialogue_system : paperback::system::pausable_instance
 					auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
 					auto [CScale, CMesh] = ParentInfo.m_pArchetype->FindComponents<scale, mesh>(ParentInfo.m_PoolDetails);
 
+					if (CScale->m_Value.x > DialogueText.m_InitialScale.x)
+					{
+						CScale->m_Value = DialogueText.m_InitialScale;
+						DialogueText.m_State = dialogue_text::PLAYING;
+						DialogueText.m_ElapsedTime = 0.0f;
+						sound_sys->TriggerTaggedSound("SFX_RedWalk");
+						break;
+					}
+
 					if (!dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.empty())
 					{
 						if (dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[0].m_Speaker == Line::RED)
@@ -80,19 +89,11 @@ struct dialogue_system : paperback::system::pausable_instance
 
 					DialogueText.m_ElapsedTime += DeltaTime();
 
-					float ratio_xy = DialogueText.m_InitialScale.x / DialogueText.m_InitialScale.y;
-					float ratio_xz = DialogueText.m_InitialScale.x / DialogueText.m_InitialScale.z;
+					float ratio_xy = DialogueText.m_InitialScale.y / DialogueText.m_InitialScale.x;
+					float ratio_xz = DialogueText.m_InitialScale.z / DialogueText.m_InitialScale.x;
 					float add_value = 90.0f * (1.0f + cosf(DialogueText.m_ElapsedTime / 2.0f * 2 * M_PI + M_PI));
 					
 					CScale->m_Value += paperback::Vector3f{add_value, add_value * ratio_xy, add_value * ratio_xz};
-
-					if (CScale->m_Value.x > DialogueText.m_InitialScale.x)
-					{
-						CScale->m_Value = DialogueText.m_InitialScale;
-						DialogueText.m_State = dialogue_text::PLAYING;
-						DialogueText.m_ElapsedTime = 0.0f;
-						sound_sys->TriggerTaggedSound("ButtonClickSFX");
-					}
 
 					break;
 				}
@@ -101,6 +102,19 @@ struct dialogue_system : paperback::system::pausable_instance
 				{
 					DialogueText.m_ElapsedTime += DeltaTime();
 					std::string current_line_text = dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Content;
+
+					auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
+					auto [CMesh] = ParentInfo.m_pArchetype->FindComponents<mesh>(ParentInfo.m_PoolDetails);
+
+					if (dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Speaker == Line::RED)
+					{
+						CMesh->m_Texture = "StrongToy_DialogueBox";
+					}
+
+					else
+					{
+						CMesh->m_Texture = "JumpToy_DialogueBox";
+					}
 
 					if (!DialogueText.m_OnHold && DialogueText.m_ElapsedTime * DialogueText.m_TextSpeed < current_line_text.size() - 1)
 						Text.m_Text = current_line_text.substr(0, static_cast<size_t>(DialogueText.m_ElapsedTime * DialogueText.m_TextSpeed));
@@ -128,19 +142,7 @@ struct dialogue_system : paperback::system::pausable_instance
 
 						else
 						{
-							auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
-							auto [CMesh] = ParentInfo.m_pArchetype->FindComponents<mesh>(ParentInfo.m_PoolDetails);
-							sound_sys->TriggerTaggedSound("ButtonClickSFX");
-
-							if (dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Speaker == Line::RED)
-							{
-								CMesh->m_Texture = "StrongToy_DialogueBox";
-							}
-
-							else
-							{
-								CMesh->m_Texture = "JumpToy_DialogueBox";
-							}
+							sound_sys->TriggerTaggedSound("SFX_RedWalk");
 						}
 
 						DialogueText.m_ElapsedTime = 0.0f;

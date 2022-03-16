@@ -51,7 +51,7 @@ namespace MONO_DIALOGUETEXT
 	MONO_EXPORT uint32_t GetState(void* address)
 	{
 		if (address)
-			return reinterpret_cast<dialogue_text*>(address)->m_ElapsedTime;
+			return reinterpret_cast<dialogue_text*>(address)->m_State;
 
 		return {};
 	}
@@ -59,7 +59,7 @@ namespace MONO_DIALOGUETEXT
 	MONO_EXPORT void SetState(void* address, uint32_t value)
 	{
 		if (address)
-			reinterpret_cast<dialogue_text*>(address)->m_ElapsedTime = value;
+			reinterpret_cast<dialogue_text*>(address)->m_State = value;
 	}
 
 	MONO_EXPORT paperback::Vector3f GetInitialScale(void* address)
