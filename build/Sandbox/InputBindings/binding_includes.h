@@ -266,7 +266,7 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
+            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, boundingbox >();
             Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
@@ -277,7 +277,7 @@ namespace paperback::input::binding
 
                 if ( GP && DebugSys )
                 {
-                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
+                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, mass& Mass, boundingbox& BB, player_interaction* Interaction )
                     {
                         if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
                         {
@@ -292,7 +292,7 @@ namespace paperback::input::binding
                                 auto Normalized        = DirectionalVector.Normalized();
 
                                 // Moving Left
-                                if ( Axes.x > 0.0f )
+                                if ( Axes.x > 0.0f && Interaction && !Interaction->m_bPushOrPull )
                                 {
                                     float x      = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
                                     float z      = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
@@ -302,7 +302,7 @@ namespace paperback::input::binding
                                     RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
                                 }
                                 // Moving Right
-                                else if ( Axes.x < 0.0f )
+                                else if ( Axes.x < 0.0f && Interaction && !Interaction->m_bPushOrPull )
                                 {
                                     float x      = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
                                     float z      = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
@@ -316,35 +316,32 @@ namespace paperback::input::binding
                                 if ( Interaction && Interaction->m_bPushOrPull && 
                                      Interaction->m_InteractableGID != paperback::settings::invalid_index_v )
                                 {
-                                    // Release Push / Pull Entity
-                                    if ( Axes.x > 0.4f || Axes.x < -0.4f )
+                                    // Find Entity That's Pushable Currently
+                                    const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
+
+                                    if ( Info.m_pArchetype )
                                     {
-                                        // Find Entity That's Pushable Currently
-                                        const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
-
-                                        if ( Info.m_pArchetype )
+                                        // Reset Interactable Object Push Status
+                                        auto [ InterRF, InterMass, InterBB, InterTransform ] = Info.m_pArchetype->FindComponents<rigidforce, mass, boundingbox, transform>( Info.m_PoolDetails );
+                                        if ( InterRF && InterMass && InterBB && InterTransform )
                                         {
-                                            // Reset Interactable Object Push Status
-                                            auto [ Mass, RF ] = Info.m_pArchetype->FindComponents<mass, rigidforce>( Info.m_PoolDetails );
-                                            if ( Mass ) Mass->m_Mass = 0.0f;
-                                            if ( RF ) RF->m_Momentum = paperback::Vector3f{};
+                                            auto AllowableDist = ( InterBB->Max + BB.Max ).MagnitudeSq() * 1.5f;
+                                            auto Dist          = Transform.m_Position - InterTransform->m_Position;
 
-                                            // Reset Player Status
-                                            Interaction->m_InteractableGID = paperback::settings::invalid_index_v;
-                                            Interaction->m_bPushOrPull     = false;
-                                        }
-                                    }
-                                    // Update Push / Pull Entity
-                                    else
-                                    {
-                                        // Find Entity That's Pushable Currently
-                                        const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
-
-                                        if ( Info.m_pArchetype )
-                                        {
-                                            // Reset Interactable Object Push Status
-                                            auto InterRF = Info.m_pArchetype->FindComponent<rigidforce>( Info.m_PoolDetails );
-                                            if ( InterRF ) InterRF->m_Momentum = RF.m_Momentum;
+                                            // If Within Some Set Distance Range
+                                            if ( Dist.MagnitudeSq() >= AllowableDist )
+                                            {
+                                                // Reset Player Status
+                                                Interaction->m_InteractableGID = settings::invalid_index_v;
+                                                Interaction->m_bPushOrPull     = false;
+                                            }
+                                            else
+                                            {
+                                                InterRF->m_Momentum = RF.m_Momentum;
+                                                InterRF->m_CollisionAffected = true;
+                                                InterRF->m_GravityAffected = true;
+                                                InterMass->m_Mass = Mass.m_Mass;
+                                            }
                                         }
                                     }
                                 }
