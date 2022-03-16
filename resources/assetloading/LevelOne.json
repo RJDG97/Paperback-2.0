@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 435
+                "EntityHead": 439
             }
         },
         {
@@ -26833,12 +26833,12 @@
                             12,
                             140,
                             13,
+                            78,
                             14,
                             142,
-                            78,
+                            79,
                             15,
                             143,
-                            79,
                             16,
                             144,
                             17,
@@ -26883,37 +26883,37 @@
                             164,
                             37,
                             38,
-                            39,
                             167,
-                            40,
+                            39,
                             168,
-                            41,
+                            40,
                             169,
-                            42,
+                            41,
                             170,
-                            43,
+                            42,
                             171,
-                            44,
+                            43,
                             172,
-                            45,
+                            44,
                             173,
-                            46,
+                            45,
                             174,
-                            47,
+                            46,
                             175,
-                            176,
+                            47,
                             48,
+                            176,
                             49,
                             50,
                             51,
-                            180,
                             52,
-                            53,
+                            180,
                             181,
-                            54,
+                            53,
                             182,
-                            183,
+                            54,
                             55,
+                            183,
                             56,
                             57,
                             58,
@@ -27893,10 +27893,10 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            232,
                             160,
-                            228,
+                            232,
                             140,
+                            228,
                             229,
                             230,
                             231,
@@ -28002,8 +28002,8 @@
                             223,
                             224,
                             225,
-                            162,
                             226,
+                            162,
                             227,
                             236,
                             237,
@@ -28479,8 +28479,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            179,
                             268,
+                            179,
                             266,
                             267,
                             269,
@@ -28775,14 +28775,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            244,
                             252,
-                            245,
+                            244,
                             253,
+                            245,
                             250,
                             251,
-                            254,
                             261,
+                            254,
                             418
                         ]
                     },
@@ -28878,10 +28878,10 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             248,
-                            249,
                             258,
-                            255,
+                            249,
                             256,
+                            255,
                             257,
                             259,
                             260,
@@ -29757,10 +29757,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            5691439207370049121,
                             1871702054972469046,
-                            9604788041699812520,
+                            5691439207370049121,
                             5509481706028819786,
+                            9604788041699812520,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -33312,12 +33312,12 @@
                         "Prefab Instances GID": [
                             215,
                             216,
-                            217,
                             274,
+                            217,
                             218,
                             219,
-                            220,
                             275,
+                            220,
                             276,
                             277,
                             278,
@@ -42200,7 +42200,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 400.0,
                             "z": 0.0
                         }
                     },
@@ -42208,7 +42208,8 @@
                         "Modified Components": [
                             9604788041699812520,
                             5691439207370049121,
-                            14486341741652966143
+                            14486341741652966143,
+                            17008353085049151909
                         ],
                         "Prefab GID": 145
                     },
@@ -42317,7 +42318,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            434
+                            434,
+                            435,
+                            436,
+                            437,
+                            438
                         ]
                     },
                     "Rotation": {
@@ -42460,9 +42465,111 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -58.33722686767578,
+                            "x": -57.73699951171875,
                             "y": 1.628791332244873,
-                            "z": 3.893016815185547
+                            "z": 4.993000030517578
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "DialogueTrigger"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -2.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 2.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9876869069201391077,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 349
+                    },
+                    "Name": {
+                        "Name": "Dialogue Collider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "DialogueCollider": {
+                        "Dialogue Name": "Level1-A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 435
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -55.4370002746582,
+                            "y": 1.628791332244873,
+                            "z": 9.493000030517579
                         }
                     },
                     "RigidForce": {
@@ -42507,7 +42614,9 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             5691439207370049121,
-                            9876869069201391077
+                            9876869069201391077,
+                            3617555656175080491,
+                            17008353085049151909
                         ],
                         "Prefab GID": 349
                     },
@@ -42520,7 +42629,313 @@
                     },
                     "": {},
                     "DialogueCollider": {
-                        "Dialogue Name": "Level1-A"
+                        "Dialogue Name": "Level1-B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 436
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.4370002746582,
+                            "y": 1.628791332244873,
+                            "z": 14.192999839782715
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "DialogueTrigger"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -2.0,
+                            "y": -1.0,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 2.0,
+                            "y": 1.0,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9876869069201391077,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 349
+                    },
+                    "Name": {
+                        "Name": "Dialogue Collider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "DialogueCollider": {
+                        "Dialogue Name": "Level1-C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 437
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -69.93699645996094,
+                            "y": 1.628791332244873,
+                            "z": 25.292999267578126
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "DialogueTrigger"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9876869069201391077,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 349
+                    },
+                    "Name": {
+                        "Name": "Dialogue Collider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "DialogueCollider": {
+                        "Dialogue Name": "Level1-D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 438
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -52.33700180053711,
+                            "y": 12.428999900817871,
+                            "z": -4.206999778747559
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "DialogueTrigger"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -4.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 4.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9876869069201391077,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 349
+                    },
+                    "Name": {
+                        "Name": "Dialogue Collider"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "DialogueCollider": {
+                        "Dialogue Name": "Level1-E"
                     }
                 }
             ]
@@ -42557,8 +42972,8 @@
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
+                            "x": -121.0,
+                            "y": 12.0,
                             "z": 0.0
                         },
                         "Rotation Offset": {
@@ -42586,8 +43001,8 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
+                            "x": -121.0,
+                            "y": 412.0,
                             "z": 0.0
                         }
                     },
@@ -42771,7 +43186,7 @@
                     },
                     "Rotation": {
                         "Rotation": {
-                            "x": 90.0,
+                            "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         }
