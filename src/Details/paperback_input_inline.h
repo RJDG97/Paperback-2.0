@@ -293,6 +293,44 @@ namespace paperback::input
 
 
 	//-----------------------------------
+	//            Gamepad
+	//-----------------------------------
+
+	bool manager::IsGamepadButtonPress(int Key) const noexcept
+	{
+		if ( m_Gamepad )
+		{
+			auto GamepadCode = m_Gamepad->m_State;
+			return GamepadCode.m_Current[Key] == GLFW_PRESS &&
+				   GamepadCode.m_Previous[Key] != GLFW_PRESS;
+		}
+		return false;
+	}
+
+	bool manager::IsGamepadButtonPressDown(int Key) const noexcept
+	{
+		if ( m_Gamepad )
+		{
+			auto GamepadCode = m_Gamepad->m_State;
+			return ( GamepadCode.m_Current[Key] == GLFW_PRESS && 
+				     GamepadCode.m_Previous[Key] == GLFW_PRESS );
+		}
+		return false;
+	}
+
+	bool manager::IsGamepadButtonPressUp(int Key) const noexcept
+	{
+		if ( m_Gamepad )
+		{
+			auto GamepadCode = m_Keyboard->m_State;
+			return GamepadCode.m_Current[Key] == GLFW_RELEASE && 
+				   GamepadCode.m_Previous[Key] != GamepadCode.m_Current[Key];
+		}
+		return false;
+	}
+
+
+	//-----------------------------------
 	//              Mouse
 	//-----------------------------------
 
