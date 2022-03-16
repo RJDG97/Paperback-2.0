@@ -97,7 +97,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (Input.IsKeyPress(Input.PB_Q) && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
+            if ((Input.IsKeyPress(Input.PB_Q) || Input.IsKeyPress(Input.PB_MOUSE_BUTTON_4))  && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
             {
                 m_SFX.m_Trigger = true;
                 Player.TogglePlayers();
