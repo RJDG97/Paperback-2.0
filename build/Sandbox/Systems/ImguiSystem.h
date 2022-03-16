@@ -982,8 +982,6 @@ struct imgui_system : paperback::system::instance
 
     void ResetScene()
     {
-        //Camera3D::GetInstanced().SetPosition(m_CameraOriginalPosition);
-
         if (m_SelectedEntity.first)
         {
             m_SelectedEntity.first = nullptr;
