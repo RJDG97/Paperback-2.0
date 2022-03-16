@@ -3,7 +3,10 @@
   "JT": "Whoa! Another of our cards!",  
   
   "AudioFile": "../../resources/WAOW",
-  "ST": "The “grow” card, eh? This could help us get around!",
+  "ST": "The “grow” card, eh?",
+  
+  "AudioFile": "../../resources/WAOW",
+  "ST": "... could help us get around!",
   
   "AudioFile": "../../resources/WAOW",
   "ST": "Let’s try using it on something"

@@ -3,5 +3,8 @@
   "ST": "It’s the last card in our collection!",  
   
   "AudioFile": "../../resources/WAOW",
-  "JT": "Excellent! With this, we have all we need to get us home!"
+  "JT": "Excellent!"
+  
+  "AudioFile": "../../resources/WAOW",
+  "JT": "With this, we have all we need to get us home!"
 }
