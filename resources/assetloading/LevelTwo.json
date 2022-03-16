@@ -1731,10 +1731,10 @@
                             314,
                             460,
                             180,
-                            181,
                             221,
-                            182,
+                            181,
                             206,
+                            182,
                             175,
                             331
                         ]
@@ -3682,11 +3682,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            281,
                             497,
+                            281,
                             184,
-                            483,
                             499,
+                            483,
                             189,
                             508,
                             506,
@@ -8750,11 +8750,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            311,
                             295,
-                            498,
-                            185,
+                            311,
                             482,
+                            185,
+                            498,
                             197,
                             496,
                             507,
@@ -36207,14 +36207,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            140,
-                            236,
                             299,
-                            287,
-                            232,
-                            168,
-                            375,
+                            236,
+                            140,
                             503,
+                            375,
+                            168,
+                            232,
+                            287,
                             169,
                             233,
                             376,
@@ -36337,12 +36337,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            312,
-                            392,
                             384,
-                            313,
-                            377,
+                            392,
+                            312,
                             393,
+                            377,
+                            313,
                             378,
                             379,
                             394,
@@ -37362,8 +37362,8 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -49.79999923706055,
-                            "y": 9.0,
+                            "x": -47.0,
+                            "y": 8.0,
                             "z": -27.0
                         }
                     },
@@ -37405,10 +37405,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            1871702054972469046,
                             5691439207370049121,
-                            5509481706028819786,
+                            1871702054972469046,
                             9604788041699812520,
+                            5509481706028819786,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -37530,8 +37530,8 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -47.79999923706055,
-                            "y": 9.0,
+                            "x": -49.0,
+                            "y": 8.0,
                             "z": -27.0
                         }
                     },
@@ -37987,8 +37987,8 @@
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": -1.2999999523162842,
-                            "y": -2.200000047683716,
+                            "x": -2.0,
+                            "y": -3.549999952316284,
                             "z": -0.8999999761581421
                         },
                         "Rotation Offset": {
@@ -38028,8 +38028,8 @@
                             "z": 0.8600000143051148
                         },
                         "Position": {
-                            "x": -34.084285736083987,
-                            "y": 6.3810319900512699,
+                            "x": -34.184288024902347,
+                            "y": 5.031031608581543,
                             "z": -41.02735137939453
                         }
                     },
@@ -38061,21 +38061,22 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.30000001192092898,
+                            "x": -0.44999998807907107,
                             "y": -0.10000000149011612,
-                            "z": -0.30000001192092898
+                            "z": -0.44999998807907107
                         },
                         "Max Point": {
-                            "x": 0.30000001192092898,
+                            "x": 0.44999998807907107,
                             "y": 0.10000000149011612,
-                            "z": 0.30000001192092898
+                            "z": 0.44999998807907107
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
                             17008353085049151909,
-                            8376831551428810534
+                            8376831551428810534,
+                            3617555656175080491
                         ],
                         "Prefab GID": 151
                     },
@@ -40811,13 +40812,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            362,
                             241,
-                            248,
+                            362,
                             160,
+                            248,
                             283,
-                            187,
                             284,
+                            187,
                             191,
                             158,
                             293,
@@ -42192,11 +42193,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            242,
-                            337,
-                            465,
-                            409,
                             473,
+                            409,
+                            465,
+                            337,
+                            242,
                             205,
                             300,
                             408,
@@ -46478,9 +46479,9 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0020000000949949028,
-                            "y": 0.0020000000949949028,
-                            "z": 0.0020000000949949028
+                            "x": 0.003000000026077032,
+                            "y": 0.003000000026077032,
+                            "z": 0.003000000026077032
                         }
                     },
                     "Sound": {
@@ -46500,7 +46501,7 @@
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": 4.699999809265137,
+                            "x": 5.300000190734863,
                             "y": -0.6499999761581421,
                             "z": 1.5
                         },
@@ -46510,9 +46511,9 @@
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
                         }
                     },
                     "Rotation": {
@@ -46526,8 +46527,8 @@
                         "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 21.0,
-                        "Pause At Time": 21.0,
+                        "Current Time": 25.799999237060548,
+                        "Pause At Time": 25.799999237060548,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -46549,7 +46550,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -32.78428649902344,
+                            "x": -32.184288024902347,
                             "y": 8.581031799316407,
                             "z": -40.127349853515628
                         }
@@ -46591,7 +46592,8 @@
                             16113566265477431037,
                             8376831551428810534,
                             14302600151082817442,
-                            15204223096342135753
+                            15204223096342135753,
+                            5691439207370049121
                         ],
                         "Prefab GID": 152
                     },
@@ -46603,8 +46605,8 @@
                         "Inv Mass": 0.0
                     },
                     "Elevator": {
-                        "Start Time": 21.0,
-                        "Stop Time": 36.400001525878909,
+                        "Start Time": 25.799999237060548,
+                        "Stop Time": 35.600013732910159,
                         "Unit Under": false
                     }
                 }
@@ -47674,589 +47676,6 @@
                 {
                     "Guid": [
                         0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        14351128073332756358,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793,
-                        11993994361337810638,
-                        1362145481980459455,
-                        10372931727815950946
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 445
-                    },
-                    "Mesh": {
-                        "Model": "GrowCard",
-                        "Texture": "JumpToy_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.004999999888241291,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -33.01499938964844,
-                            "y": 8.053999900817871,
-                            "z": -16.694000244140626
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "CollectedInteractable"
-                            },
-                            {
-                                "ID": "AbilitySpin"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.20000000298023225,
-                            "y": -0.30000001192092898,
-                            "z": -0.20000000298023225
-                        },
-                        "Max Point": {
-                            "x": 0.20000000298023225,
-                            "y": 0.30000001192092898,
-                            "z": 0.20000000298023225
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            10372931727815950946,
-                            9604788041699812520,
-                            5691439207370049121,
-                            1362145481980459455,
-                            17008353085049151909,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 229
-                    },
-                    "Name": {
-                        "Name": "Ability Collectible"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {},
-                    "Ability Collectible": {
-                        "Enable Grow Ability?": true,
-                        "Enable Shrink Ability?": false,
-                        "Enable Freeze Ability?": false
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 1000000.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 1,
-                        "Emission Cap": 100,
-                        "Particle Texture Name": "GrowCard",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 3.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.800000011920929,
-                                "y": -0.800000011920929,
-                                "z": -0.800000011920929
-                            },
-                            "Max Velocity": {
-                                "x": 0.800000011920929,
-                                "y": 0.800000011920929,
-                                "z": 0.800000011920929
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 180.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 180.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 2.0,
-                                "y": 2.0,
-                                "z": 2.0
-                            },
-                            "Min Velocity": 1.0,
-                            "Max Velocity": 5.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.0006000000284984708,
-                                "y": 0.0010000000474974514,
-                                "z": 0.0010000000474974514
-                            },
-                            "Max Scale": {
-                                "x": 0.0010000000474974514,
-                                "y": 0.003000000026077032,
-                                "z": 0.003000000026077032
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 446
-                    },
-                    "Mesh": {
-                        "Model": "ShrinkCard",
-                        "Texture": "JumpToy_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.003000000026077032,
-                            "y": 0.004999999888241291,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -26.832000732421876,
-                            "y": 8.208999633789063,
-                            "z": -6.9730000495910648
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "CollectedInteractable"
-                            },
-                            {
-                                "ID": "AbilitySpin"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.20000000298023225,
-                            "y": -0.30000001192092898,
-                            "z": -0.20000000298023225
-                        },
-                        "Max Point": {
-                            "x": 0.20000000298023225,
-                            "y": 0.30000001192092898,
-                            "z": 0.20000000298023225
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            10372931727815950946,
-                            5691439207370049121,
-                            9604788041699812520,
-                            1362145481980459455,
-                            17008353085049151909,
-                            14486341741652966143
-                        ],
-                        "Prefab GID": 229
-                    },
-                    "Name": {
-                        "Name": "Ability Collectible"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {},
-                    "Ability Collectible": {
-                        "Enable Grow Ability?": false,
-                        "Enable Shrink Ability?": true,
-                        "Enable Freeze Ability?": false
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 1000000.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 1,
-                        "Emission Cap": 100,
-                        "Particle Texture Name": "ShrinkCard",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 3.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.800000011920929,
-                                "y": -0.800000011920929,
-                                "z": -0.800000011920929
-                            },
-                            "Max Velocity": {
-                                "x": 0.800000011920929,
-                                "y": 0.800000011920929,
-                                "z": 0.800000011920929
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 90.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 90.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 1.0,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 1.0,
-                            "Max Velocity": 5.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.0006000000284984708,
-                                "y": 0.0010000000474974514,
-                                "z": 0.0010000000474974514
-                            },
-                            "Max Scale": {
-                                "x": 0.0010000000474974514,
-                                "y": 0.003000000026077032,
-                                "z": 0.003000000026077032
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        14351128073332756358,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793,
-                        11993994361337810638,
-                        1362145481980459455,
-                        10372931727815950946
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 229
-                    },
-                    "Mesh": {
-                        "Model": "JumpToy",
-                        "Texture": "JumpToy_BaseColour.dds",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0010000000474974514,
-                            "y": 0.0010000000474974514,
-                            "z": 0.0010000000474974514
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            445,
-                            446
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "CollectedInteractable"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.5,
-                            "y": -0.20000000298023225,
-                            "z": -0.5
-                        },
-                        "Max Point": {
-                            "x": 0.5,
-                            "y": 0.20000000298023225,
-                            "z": 0.5
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Ability Collectible"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {},
-                    "Ability Collectible": {
-                        "Enable Grow Ability?": true,
-                        "Enable Shrink Ability?": true,
-                        "Enable Freeze Ability?": false
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 1000000.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 1,
-                        "Emission Cap": 100,
-                        "Particle Texture Name": "",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 3.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.800000011920929,
-                                "y": -0.800000011920929,
-                                "z": -0.800000011920929
-                            },
-                            "Max Velocity": {
-                                "x": 0.800000011920929,
-                                "y": 0.800000011920929,
-                                "z": 0.800000011920929
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 180.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 180.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 1.0,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 1.0,
-                            "Max Velocity": 5.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.0006000000284984708,
-                                "y": 0.0010000000474974514,
-                                "z": 0.0010000000474974514
-                            },
-                            "Max Scale": {
-                                "x": 0.00009999999747378752,
-                                "y": 0.003000000026077032,
-                                "z": 0.003000000026077032
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
                         10055872472107209861,
                         17008353085049151909,
                         3617555656175080491,
@@ -48844,6 +48263,743 @@
             ]
         },
         {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        13107566195444653040,
+                        14486341741652966143,
+                        17008353085049151909,
+                        14351128073332756358,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 451
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ToggleCardMode",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 150.0,
+                            "y": 200.0,
+                            "z": 200.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            452,
+                            453,
+                            454
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -820.0,
+                            "y": -400.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CardDisplay"
+                            }
+                        ]
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            5691439207370049121,
+                            14486341741652966143,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 447
+                    },
+                    "Name": {
+                        "Name": "Card Display"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        13107566195444653040,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        14351128073332756358,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 447
+                    },
+                    "Mesh": {
+                        "Model": "",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            450,
+                            449,
+                            448
+                        ]
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            451
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "EntityScript": {
+                        "Script ID": []
+                    },
+                    "Name": {
+                        "Name": "Card Display"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638,
+                        1362145481980459455,
+                        10372931727815950946
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 445
+                    },
+                    "Mesh": {
+                        "Model": "GrowCard",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -33.01499938964844,
+                            "y": 8.053999900817871,
+                            "z": -16.694000244140626
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            },
+                            {
+                                "ID": "AbilitySpin"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.30000001192092898,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.30000001192092898,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            10372931727815950946,
+                            9604788041699812520,
+                            5691439207370049121,
+                            1362145481980459455,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 229
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": true,
+                        "Enable Shrink Ability?": false,
+                        "Enable Freeze Ability?": false
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 1000000.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 1,
+                        "Emission Cap": 100,
+                        "Particle Texture Name": "GrowCard",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 3.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.800000011920929,
+                                "y": -0.800000011920929,
+                                "z": -0.800000011920929
+                            },
+                            "Max Velocity": {
+                                "x": 0.800000011920929,
+                                "y": 0.800000011920929,
+                                "z": 0.800000011920929
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 2.0,
+                                "y": 2.0,
+                                "z": 2.0
+                            },
+                            "Min Velocity": 1.0,
+                            "Max Velocity": 5.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.0006000000284984708,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.0010000000474974514,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 446
+                    },
+                    "Mesh": {
+                        "Model": "ShrinkCard",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.003000000026077032,
+                            "y": 0.004999999888241291,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -26.832000732421876,
+                            "y": 8.208999633789063,
+                            "z": -6.9730000495910648
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            },
+                            {
+                                "ID": "AbilitySpin"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.20000000298023225,
+                            "y": -0.30000001192092898,
+                            "z": -0.20000000298023225
+                        },
+                        "Max Point": {
+                            "x": 0.20000000298023225,
+                            "y": 0.30000001192092898,
+                            "z": 0.20000000298023225
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            10372931727815950946,
+                            5691439207370049121,
+                            9604788041699812520,
+                            1362145481980459455,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 229
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": false,
+                        "Enable Shrink Ability?": true,
+                        "Enable Freeze Ability?": false
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 1000000.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 1,
+                        "Emission Cap": 100,
+                        "Particle Texture Name": "ShrinkCard",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 3.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.800000011920929,
+                                "y": -0.800000011920929,
+                                "z": -0.800000011920929
+                            },
+                            "Max Velocity": {
+                                "x": 0.800000011920929,
+                                "y": 0.800000011920929,
+                                "z": 0.800000011920929
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 90.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 1.0,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 1.0,
+                            "Max Velocity": 5.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.0006000000284984708,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.0010000000474974514,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638,
+                        1362145481980459455,
+                        10372931727815950946
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 229
+                    },
+                    "Mesh": {
+                        "Model": "JumpToy",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            445,
+                            446
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.20000000298023225,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.20000000298023225,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": true,
+                        "Enable Shrink Ability?": true,
+                        "Enable Freeze Ability?": false
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 1000000.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 1,
+                        "Emission Cap": 100,
+                        "Particle Texture Name": "",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 3.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.800000011920929,
+                                "y": -0.800000011920929,
+                                "z": -0.800000011920929
+                            },
+                            "Max Velocity": {
+                                "x": 0.800000011920929,
+                                "y": 0.800000011920929,
+                                "z": 0.800000011920929
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 180.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 1.0,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 1.0,
+                            "Max Velocity": 5.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.0006000000284984708,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.00009999999747378752,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false
+                    }
+                }
+            ]
+        },
+        {
             "HDBbase": [
                 {
                     "Guid": [
@@ -49411,160 +49567,6 @@
                 {
                     "Guid": [
                         0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        13107566195444653040,
-                        14486341741652966143,
-                        17008353085049151909,
-                        14351128073332756358,
-                        15172211932757996706,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 451
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "ToggleCardMode",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 150.0,
-                            "y": 200.0,
-                            "z": 200.0
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            452,
-                            453,
-                            454
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -820.0,
-                            "y": -400.0,
-                            "z": 0.0
-                        }
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "CardDisplay"
-                            }
-                        ]
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            9604788041699812520,
-                            5691439207370049121,
-                            14486341741652966143,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 447
-                    },
-                    "Name": {
-                        "Name": "Card Display"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        13107566195444653040,
-                        10055872472107209861,
-                        14486341741652966143,
-                        17008353085049151909,
-                        14351128073332756358,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 447
-                    },
-                    "Mesh": {
-                        "Model": "",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            450,
-                            449,
-                            448
-                        ]
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            451
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "EntityScript": {
-                        "Script ID": []
-                    },
-                    "Name": {
-                        "Name": "Card Display"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
                         1259829869932243375,
                         10055872472107209861,
                         17008353085049151909,
@@ -49822,8 +49824,8 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -34.084285736083987,
-                            "y": 6.3810319900512699,
+                            "x": -34.184288024902347,
+                            "y": 5.031031608581543,
                             "z": -41.02735137939453
                         }
                     },
@@ -49849,8 +49851,8 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -34.084285736083987,
-                            "y": 6.3810319900512699,
+                            "x": -34.184288024902347,
+                            "y": 5.031031608581543,
                             "z": -41.02735137939453
                         }
                     },
@@ -49876,8 +49878,8 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -34.084285736083987,
-                            "y": 6.3810319900512699,
+                            "x": -34.184288024902347,
+                            "y": 5.031031608581543,
                             "z": -41.02735137939453
                         }
                     },
@@ -49903,8 +49905,8 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -34.084285736083987,
-                            "y": 6.3810319900512699,
+                            "x": -34.184288024902347,
+                            "y": 5.031031608581543,
                             "z": -41.02735137939453
                         }
                     },
@@ -50079,8 +50081,8 @@
                             "z": 0.8600000143051148
                         },
                         "Position": {
-                            "x": -34.084285736083987,
-                            "y": 6.3810319900512699,
+                            "x": -34.184288024902347,
+                            "y": 5.031031608581543,
                             "z": -41.02735137939453
                         }
                     },
