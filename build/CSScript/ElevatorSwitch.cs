@@ -89,7 +89,7 @@ namespace CSScript
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
             {
                 m_Sound.m_Trigger = true;
-                m_ElevatorSound.m_Trigger = true;
+                //m_ElevatorSound.m_Trigger = true;
                 m_ElevatorAnimator.m_PauseAnimation = false;
 
                 if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)

@@ -12,8 +12,13 @@ namespace CSScript
         int m_JumpUnitID;
         int m_PushUnitID;
 
+        Child m_Child;
+
         Transform m_Transform;
         Elevator m_Elevator;
+
+        Sound m_Sound;
+        Tools.MathLib.Vector3 m_PrevTransform;
 
         Transform JumpUnitTransform;
         Transform PushUnitTransform;
@@ -30,13 +35,14 @@ namespace CSScript
         {
             m_ID = ID;
             m_Transform = new Transform(m_ID);
-            Child m_Child = new Child(m_ID);
+             m_Child = new Child(m_ID);
 
             if (m_Child.m_ParentID != -1)
             {
                 if (m_Child.m_ParentID != -1)
                 {
                     m_Elevator = new Elevator((UInt32)m_Child.m_ParentID);
+                    m_Sound = new Sound((UInt32)m_Child.m_ParentID);
                 }
             }
 
@@ -69,6 +75,19 @@ namespace CSScript
 
         public void Update(float dt)
         {
+
+            if (m_Transform.m_Position.y < m_PrevTransform.y || m_Transform.m_Position.y > m_PrevTransform.y)
+            {
+
+                m_Sound.m_Trigger = true;
+            }
+            else
+            {
+
+                Application.StopTaggedSoundComp(m_Sound.m_SoundPlayTag);
+            }
+
+            m_PrevTransform = m_Transform.m_Position;
         }
 
         public void Destroy()
