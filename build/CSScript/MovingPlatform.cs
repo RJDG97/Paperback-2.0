@@ -58,7 +58,6 @@ namespace CSScript
                 m_PushUnitTransform = new Transform((UInt32)m_PushUnitID);
             }
 
-            m_Moving = false;
             m_Starting = false;
 
             m_NumPassengers = 0;
