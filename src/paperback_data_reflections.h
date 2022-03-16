@@ -61,8 +61,8 @@ namespace paperback
 
 		rttr::registration::class_< Generate_Rotation >( "Generate Rotation" )
 			.constructor()( rttr::policy::ctor::as_object )
-			.property( "Min Rotation", &Generate_Velocity::m_Min )
-			.property( "Max Rotation", &Generate_Velocity::m_Max );
+			.property( "Min Rotation", &Generate_Rotation::m_Min )
+			.property( "Max Rotation", &Generate_Rotation::m_Max );
 
 		rttr::registration::class_< Generate_Opacity >( "Generate Opacity" )
 			.constructor()( rttr::policy::ctor::as_object )

@@ -96,7 +96,7 @@ namespace paperback::particles
 			return;
 		}
 
-		m_Coordinator.ForEach( ParticleIDList, [&]( particle& Particle, transform& Transform, rigidforce& RF, scale& Scale, mesh& Mesh, mass& Mass ) noexcept
+		m_Coordinator.ForEach( ParticleIDList, [&]( particle& Particle, transform& Transform, rigidforce& RF, scale& Scale, mesh& Mesh, mass& Mass, rotation& Rotation ) noexcept
 		{
 			// Update Particle Details
 			Particle.m_ConstantRotation = Emitter.m_GenerateRotation.Rand( );
@@ -109,16 +109,21 @@ namespace paperback::particles
 			
 			// Update Particle Velocity
 			RF.m_Momentum               = Emitter.m_GenerateVelocity.Rand( );
+            RF.m_dynamicFriction        = 0.001f;
+            RF.m_GravityAffected        = false;
 			
 			// Update Particle Scale
 			Scale.m_Value               = Emitter.m_GenerateScale.Rand( );
 
             // Update Particle Mesh - I Think This Isn't Needed?
-            Mesh.m_Model                = "JumpToy";
+            Mesh.m_Model                = Emitter.m_TextureName;
             Mesh.m_Active               = true;
 
-            // For Phy Sys - Confirm If Required
-            Mass.m_Mass                 = 1.0f;
+            // Need to add local & constant rotation rand - Temporary
+            Rotation.m_Value            = Emitter.m_GenerateRotation.Rand( );
+
+            // For Phy Sys - Convert this to data member to modify particle speed
+            Mass.m_Mass                 = 5.0f;
 		});
     }
 

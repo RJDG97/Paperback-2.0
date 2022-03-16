@@ -630,6 +630,9 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_DialogueText.h">
       <Filter>Source\Gameplay Code\Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\Scripts\Scripts_ParticleEmitter.h">
+      <Filter>Source\Gameplay Code\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source">

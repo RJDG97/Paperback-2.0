@@ -33,11 +33,31 @@ struct Generate_Velocity
 	PPB_INLINE
 	paperback::Vector3f Rand( void ) const noexcept
 	{
-		return paperback::Vector3f{ glm::linearRand( m_Min.x, m_Max.x )
-								  , glm::linearRand( m_Min.y, m_Max.y )
-								  , glm::linearRand( m_Min.z, m_Max.z ) };
+		auto x = glm::linearRand( m_Min.x, m_Max.x );
+		auto y = glm::linearRand( m_Min.y, m_Max.y );
+		auto z = glm::linearRand( m_Min.z, m_Max.z );
+
+		if ( x < 0.0f && x > -min_force_v )
+            x = -min_force_v;
+        else if ( x > 0.0f && x < min_force_v )
+            x = min_force_v;
+
+        if ( y < 0.0f && y > -min_force_v )
+            y = -min_force_v;
+        else if ( y > 0.0f && y < min_force_v )
+            y = min_force_v;
+
+        if ( z < 0.0f && z > -min_force_v )
+            z = -min_force_v;
+        else if ( z > 0.0f && z < min_force_v )
+            z = min_force_v;
+
+		return paperback::Vector3f{ x
+								  , y
+								  , z };
 	}
 
+	static constexpr auto min_force_v = 0.52f;
 	paperback::Vector3f m_Min{ 0.0f, 1.0f, 0.0f };
 	paperback::Vector3f m_Max{ 0.0f, 2.0f, 0.0f };
 };
