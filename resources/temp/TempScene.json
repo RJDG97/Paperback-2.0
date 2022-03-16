@@ -1591,12 +1591,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            359,
-                            367,
                             375,
-                            363,
-                            371,
+                            367,
+                            359,
                             403,
+                            371,
+                            363,
                             401,
                             405,
                             407
@@ -2245,7 +2245,7 @@
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
-                        "Pause At Time": -1.0,
+                        "Pause At Time": 0.0,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -2371,7 +2371,7 @@
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
-                        "Pause At Time": -1.0,
+                        "Pause At Time": 0.0,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -2500,7 +2500,7 @@
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
-                        "Pause At Time": -1.0,
+                        "Pause At Time": 0.0,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -2629,7 +2629,7 @@
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
-                        "Pause At Time": -1.0,
+                        "Pause At Time": 0.0,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -3169,7 +3169,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Checkpoint",
-                        "Sound Event ID": 139,
+                        "Sound Event ID": 140,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4211,7 +4211,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 140,
+                        "Sound Event ID": 141,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4329,7 +4329,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 141,
+                        "Sound Event ID": 142,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4440,7 +4440,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 142,
+                        "Sound Event ID": 143,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4559,7 +4559,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 143,
+                        "Sound Event ID": 144,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4671,7 +4671,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 144,
+                        "Sound Event ID": 145,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4783,7 +4783,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 145,
+                        "Sound Event ID": 146,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -4897,7 +4897,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 146,
+                        "Sound Event ID": 147,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5010,7 +5010,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 147,
+                        "Sound Event ID": 148,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5123,7 +5123,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 148,
+                        "Sound Event ID": 149,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5237,7 +5237,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 149,
+                        "Sound Event ID": 150,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5351,7 +5351,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 150,
+                        "Sound Event ID": 151,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5471,7 +5471,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 151,
+                        "Sound Event ID": 152,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5591,7 +5591,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 152,
+                        "Sound Event ID": 153,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5709,7 +5709,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 153,
+                        "Sound Event ID": 154,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5827,7 +5827,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 154,
+                        "Sound Event ID": 155,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -5944,7 +5944,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 155,
+                        "Sound Event ID": 156,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -6062,7 +6062,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Switch_Pressed",
-                        "Sound Event ID": 156,
+                        "Sound Event ID": 157,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -26449,12 +26449,12 @@
                             12,
                             140,
                             13,
-                            78,
                             14,
                             142,
-                            79,
+                            78,
                             15,
                             143,
+                            79,
                             16,
                             144,
                             17,
@@ -26499,37 +26499,37 @@
                             164,
                             37,
                             38,
-                            167,
                             39,
-                            168,
+                            167,
                             40,
-                            169,
+                            168,
                             41,
-                            170,
+                            169,
                             42,
-                            171,
+                            170,
                             43,
-                            172,
+                            171,
                             44,
-                            173,
+                            172,
                             45,
-                            174,
+                            173,
                             46,
-                            175,
+                            174,
                             47,
-                            48,
+                            175,
                             176,
+                            48,
                             49,
                             50,
                             51,
-                            52,
                             180,
-                            181,
+                            52,
                             53,
-                            182,
+                            181,
                             54,
-                            55,
+                            182,
                             183,
+                            55,
                             56,
                             57,
                             58,
@@ -27509,10 +27509,10 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            160,
                             232,
-                            140,
+                            160,
                             228,
+                            140,
                             229,
                             230,
                             231,
@@ -27618,8 +27618,8 @@
                             223,
                             224,
                             225,
-                            226,
                             162,
+                            226,
                             227,
                             236,
                             237,
@@ -28096,8 +28096,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            268,
                             179,
+                            268,
                             266,
                             267,
                             269,
@@ -28392,14 +28392,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            252,
                             244,
-                            253,
+                            252,
                             245,
+                            253,
                             250,
                             251,
-                            261,
                             254,
+                            261,
                             417,
                             418
                         ]
@@ -28496,10 +28496,10 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             248,
-                            258,
                             249,
-                            256,
+                            258,
                             255,
+                            256,
                             257,
                             259,
                             260,
@@ -29281,10 +29281,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            1871702054972469046,
                             5691439207370049121,
-                            5509481706028819786,
+                            1871702054972469046,
                             9604788041699812520,
+                            5509481706028819786,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -29360,1287 +29360,6 @@
                     },
                     "Name": {
                         "Name": "Unnamed Entity"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        1259829869932243375,
-                        10055872472107209861,
-                        17008353085049151909,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 199
-                    },
-                    "Child": {
-                        "Parent GID": 197
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            205,
-                            297,
-                            305,
-                            313,
-                            321,
-                            332,
-                            340,
-                            348
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 198
-                    },
-                    "Child": {
-                        "Parent GID": 197
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            206,
-                            293,
-                            301,
-                            309,
-                            317,
-                            328,
-                            336,
-                            344
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 201
-                    },
-                    "Child": {
-                        "Parent GID": 197
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            207,
-                            294,
-                            302,
-                            310,
-                            318,
-                            329,
-                            337,
-                            345
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 202
-                    },
-                    "Child": {
-                        "Parent GID": 197
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            208,
-                            295,
-                            303,
-                            311,
-                            319,
-                            330,
-                            338,
-                            346
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 200
-                    },
-                    "Child": {
-                        "Parent GID": 197
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            209,
-                            296,
-                            304,
-                            312,
-                            320,
-                            331,
-                            339,
-                            347
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        1259829869932243375,
-                        17008353085049151909,
-                        15172211932757996706,
-                        16415915133639986106
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 206
-                    },
-                    "Child": {
-                        "Parent GID": 204
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -57.39999771118164,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 198
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 207
-                    },
-                    "Child": {
-                        "Parent GID": 204
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -57.39999771118164,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 208
-                    },
-                    "Child": {
-                        "Parent GID": 204
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -57.39999771118164,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 202
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 209
-                    },
-                    "Child": {
-                        "Parent GID": 204
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -57.39999771118164,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 200
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 205
-                    },
-                    "Child": {
-                        "Parent GID": 204
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -57.39999771118164,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 293
-                    },
-                    "Child": {
-                        "Parent GID": 292
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -49.599998474121097,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 198
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 294
-                    },
-                    "Child": {
-                        "Parent GID": 292
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -49.599998474121097,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 295
-                    },
-                    "Child": {
-                        "Parent GID": 292
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -49.599998474121097,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 202
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 296
-                    },
-                    "Child": {
-                        "Parent GID": 292
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -49.599998474121097,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 200
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 297
-                    },
-                    "Child": {
-                        "Parent GID": 292
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -49.599998474121097,
-                            "y": -0.06999993324279785,
-                            "z": 14.329999923706055
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 301
-                    },
-                    "Child": {
-                        "Parent GID": 300
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -48.5,
-                            "y": -0.5850000381469727,
-                            "z": 28.6299991607666
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 198
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 302
-                    },
-                    "Child": {
-                        "Parent GID": 300
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -48.5,
-                            "y": -0.5850000381469727,
-                            "z": 28.6299991607666
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 303
-                    },
-                    "Child": {
-                        "Parent GID": 300
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -48.5,
-                            "y": -0.5850000381469727,
-                            "z": 28.6299991607666
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 202
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 304
-                    },
-                    "Child": {
-                        "Parent GID": 300
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -48.5,
-                            "y": -0.5850000381469727,
-                            "z": 28.6299991607666
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 200
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 305
-                    },
-                    "Child": {
-                        "Parent GID": 300
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -48.5,
-                            "y": -0.5850000381469727,
-                            "z": 28.6299991607666
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 309
-                    },
-                    "Child": {
-                        "Parent GID": 308
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -64.0,
-                            "y": -0.5799999237060547,
-                            "z": 32.20000076293945
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 198
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 310
-                    },
-                    "Child": {
-                        "Parent GID": 308
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -64.0,
-                            "y": -0.5799999237060547,
-                            "z": 32.20000076293945
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 311
-                    },
-                    "Child": {
-                        "Parent GID": 308
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -64.0,
-                            "y": -0.5799999237060547,
-                            "z": 32.20000076293945
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 202
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 312
-                    },
-                    "Child": {
-                        "Parent GID": 308
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -64.0,
-                            "y": -0.5799999237060547,
-                            "z": 32.20000076293945
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 200
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 313
-                    },
-                    "Child": {
-                        "Parent GID": 308
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -64.0,
-                            "y": -0.5799999237060547,
-                            "z": 32.20000076293945
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 317
-                    },
-                    "Child": {
-                        "Parent GID": 316
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -63.89999771118164,
-                            "y": 0.46000003814697268,
-                            "z": 15.300000190734864
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 198
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 318
-                    },
-                    "Child": {
-                        "Parent GID": 316
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -63.89999771118164,
-                            "y": 0.46000003814697268,
-                            "z": 15.300000190734864
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 319
-                    },
-                    "Child": {
-                        "Parent GID": 316
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -63.89999771118164,
-                            "y": 0.46000003814697268,
-                            "z": 15.300000190734864
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 202
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 320
-                    },
-                    "Child": {
-                        "Parent GID": 316
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -63.89999771118164,
-                            "y": 0.46000003814697268,
-                            "z": 15.300000190734864
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 200
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 321
-                    },
-                    "Child": {
-                        "Parent GID": 316
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -63.89999771118164,
-                            "y": 0.46000003814697268,
-                            "z": 15.300000190734864
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 328
-                    },
-                    "Child": {
-                        "Parent GID": 327
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -69.79999542236328,
-                            "y": 0.2950000762939453,
-                            "z": -2.1999998092651369
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 198
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 329
-                    },
-                    "Child": {
-                        "Parent GID": 327
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -69.79999542236328,
-                            "y": 0.2950000762939453,
-                            "z": -2.1999998092651369
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 330
-                    },
-                    "Child": {
-                        "Parent GID": 327
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -69.79999542236328,
-                            "y": 0.2950000762939453,
-                            "z": -2.1999998092651369
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 202
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 331
-                    },
-                    "Child": {
-                        "Parent GID": 327
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -69.79999542236328,
-                            "y": 0.2950000762939453,
-                            "z": -2.1999998092651369
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 200
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 332
-                    },
-                    "Child": {
-                        "Parent GID": 327
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -69.79999542236328,
-                            "y": 0.2950000762939453,
-                            "z": -2.1999998092651369
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 336
-                    },
-                    "Child": {
-                        "Parent GID": 335
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.5,
-                            "y": 4.094999313354492,
-                            "z": -1.6999999284744263
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 198
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 337
-                    },
-                    "Child": {
-                        "Parent GID": 335
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.5,
-                            "y": 4.094999313354492,
-                            "z": -1.6999999284744263
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 338
-                    },
-                    "Child": {
-                        "Parent GID": 335
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.5,
-                            "y": 4.094999313354492,
-                            "z": -1.6999999284744263
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 202
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 339
-                    },
-                    "Child": {
-                        "Parent GID": 335
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.5,
-                            "y": 4.094999313354492,
-                            "z": -1.6999999284744263
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 200
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 340
-                    },
-                    "Child": {
-                        "Parent GID": 335
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.5,
-                            "y": 4.094999313354492,
-                            "z": -1.6999999284744263
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 344
-                    },
-                    "Child": {
-                        "Parent GID": 343
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.79999923706055,
-                            "y": 7.3949995040893559,
-                            "z": -4.800000190734863
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 198
-                    },
-                    "Name": {
-                        "Name": "Platform Solid"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 345
-                    },
-                    "Child": {
-                        "Parent GID": 343
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.79999923706055,
-                            "y": 7.3949995040893559,
-                            "z": -4.800000190734863
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 201
-                    },
-                    "Name": {
-                        "Name": "Platform Slope C"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 346
-                    },
-                    "Child": {
-                        "Parent GID": 343
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.79999923706055,
-                            "y": 7.3949995040893559,
-                            "z": -4.800000190734863
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 202
-                    },
-                    "Name": {
-                        "Name": "Platform Slope D"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 347
-                    },
-                    "Child": {
-                        "Parent GID": 343
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.79999923706055,
-                            "y": 7.3949995040893559,
-                            "z": -4.800000190734863
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 200
-                    },
-                    "Name": {
-                        "Name": "Platform Slope B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 348
-                    },
-                    "Child": {
-                        "Parent GID": 343
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -50.79999923706055,
-                            "y": 7.3949995040893559,
-                            "z": -4.800000190734863
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 199
-                    },
-                    "Name": {
-                        "Name": "Platform Slope A"
                     }
                 }
             ]
@@ -33837,12 +32556,12 @@
                         "Prefab Instances GID": [
                             215,
                             216,
-                            274,
                             217,
+                            274,
                             218,
                             219,
-                            275,
                             220,
+                            275,
                             276,
                             277,
                             278,
@@ -35024,7 +33743,7 @@
                     },
                     "Sound": {
                         "Path": "event:/BGM_Level1",
-                        "Sound Event ID": 157,
+                        "Sound Event ID": 158,
                         "3D Sound": false,
                         "Triggerable": false,
                         "Trigger": false
@@ -35273,1063 +33992,6 @@
                         13107566195444653040,
                         8376831551428810534,
                         14486341741652966143,
-                        15204223096342135753,
-                        17008353085049151909,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        17639936325783395793,
-                        16113566265477431037
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 210
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0022499999031424524,
-                            "y": 0.0022499999031424524,
-                            "z": 0.0022499999031424524
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 158,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 203
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            204
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 1.2000000476837159,
-                            "y": -0.05000000074505806,
-                            "z": 0.30000001192092898
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 24.100053787231447,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -57.39999771118164,
-                            "y": 1.850000023841858,
-                            "z": 15.800000190734864
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            14486341741652966143,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 196
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 291
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0022499999031424524,
-                            "y": 0.0022499999031424524,
-                            "z": 0.0022499999031424524
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 159,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 290
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            292
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 1.2000000476837159,
-                            "y": -0.05000000074505806,
-                            "z": 0.30000001192092898
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 0.39999812841415408,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -49.599998474121097,
-                            "y": 3.8500001430511476,
-                            "z": 15.800000190734864
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            14486341741652966143,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 196
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 299
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0022499999031424524,
-                            "y": 0.0022499999031424524,
-                            "z": 0.0022499999031424524
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 160,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 298
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            300
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 1.2000000476837159,
-                            "y": 1.850000023841858,
-                            "z": 1.2999999523162842
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 12.300008773803711,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -48.5,
-                            "y": 2.3499999046325685,
-                            "z": 30.099998474121095
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            14486341741652966143,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 196
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 307
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0022499999031424524,
-                            "y": 0.0022499999031424524,
-                            "z": 0.0022499999031424524
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 161,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 306
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            308
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.10000000149011612,
-                            "y": -0.05000000074505806,
-                            "z": 1.100000023841858
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 12.300008773803711,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -62.5,
-                            "y": 2.3500001430511476,
-                            "z": 32.20000076293945
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            14486341741652966143,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 196
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 315
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0022499999031424524,
-                            "y": 0.0022499999031424524,
-                            "z": 0.0022499999031424524
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 162,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 314
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            316
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 1.2000000476837159,
-                            "y": 2.6500000953674318,
-                            "z": -2.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 3.2999989986419679,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -63.89999771118164,
-                            "y": 4.150000095367432,
-                            "z": 13.800000190734864
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            14486341741652966143,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 196
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 326
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0022499999031424524,
-                            "y": 0.0022499999031424524,
-                            "z": 0.0022499999031424524
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 163,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 325
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            327
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.6000000238418579,
-                            "y": -0.05000000074505806,
-                            "z": -0.8999999761581421
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": -1.341104507446289e-7,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -68.29999542236328,
-                            "y": 4.25,
-                            "z": -2.1999998092651369
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            14486341741652966143,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 196
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 334
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0022499999031424524,
-                            "y": 0.0022499999031424524,
-                            "z": 0.0022499999031424524
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 164,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 333
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            335
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.10000000149011612,
-                            "y": -0.3499999940395355,
-                            "z": -0.4000000059604645
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": -1.341104507446289e-7,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -52.0,
-                            "y": 8.049999237060547,
-                            "z": -1.6999999284744263
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            14486341741652966143,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 196
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 342
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0022499999031424524,
-                            "y": 0.0022499999031424524,
-                            "z": 0.0022499999031424524
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 165,
-                        "3D Sound": true,
-                        "Triggerable": true,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 341
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            343
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.20000000298023225,
-                            "y": 2.950000047683716,
-                            "z": 1.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 270.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": -1.341104507446289e-7,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -52.29999923706055,
-                            "y": 11.34999942779541,
-                            "z": -4.800000190734863
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            15204223096342135753,
-                            14486341741652966143,
-                            14302600151082817442
-                        ],
-                        "Prefab GID": 196
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        14302600151082817442,
-                        1259829869932243375,
-                        13107566195444653040,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        15204223096342135753,
-                        17008353085049151909,
-                        3617555656175080491,
-                        16415915133639986106,
-                        17639936325783395793,
-                        16113566265477431037
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 196
-                    },
-                    "Mesh": {
-                        "Model": "CraneElevator",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Sound": {
-                        "Path": "event:/SFX_Enviro_Elevator_Move",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": false,
-                        "Trigger": false
-                    },
-                    "Child": {
-                        "Parent GID": 195
-                    },
-                    "Parent": {
-                        "Children GID": [
-                            197
-                        ]
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -1.100000023841858,
-                            "y": -0.05000000074505806,
-                            "z": 0.10000000149011612
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 180.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.5,
-                            "y": 1.5,
-                            "z": 1.5
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            210,
-                            291,
-                            299,
-                            307,
-                            315,
-                            326,
-                            334,
-                            342
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Animator": {
-                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
-                        "Play Once": false,
-                        "Pause Animation": false,
-                        "Current Time": 24.100053787231447,
-                        "Pause At Time": -1.0,
-                        "Reversed": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -1.0,
-                            "z": -0.10000000149011612
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 1.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Elevator"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Elevator": {
-                        "Start Time": -1.0,
-                        "Stop Time": -1.0,
-                        "Unit Under": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        14302600151082817442,
-                        1259829869932243375,
-                        13107566195444653040,
-                        8376831551428810534,
-                        14486341741652966143,
                         8536778051349317767,
                         17008353085049151909,
                         5509481706028819786,
@@ -36360,7 +34022,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 166,
+                        "Sound Event ID": 159,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -36472,7 +34134,7 @@
                         "Travel Speed": 3.0,
                         "Back and Forth": false,
                         "Reversed": false,
-                        "Pause Travel": false
+                        "Pause Travel": true
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -36499,7 +34161,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 167,
+                        "Sound Event ID": 160,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -36612,7 +34274,7 @@
                         "Travel Speed": 3.0,
                         "Back and Forth": false,
                         "Reversed": false,
-                        "Pause Travel": false
+                        "Pause Travel": true
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -36639,7 +34301,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 168,
+                        "Sound Event ID": 161,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -36753,7 +34415,7 @@
                         "Travel Speed": 3.0,
                         "Back and Forth": false,
                         "Reversed": false,
-                        "Pause Travel": false
+                        "Pause Travel": true
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -36780,7 +34442,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 169,
+                        "Sound Event ID": 162,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -36893,7 +34555,7 @@
                         "Travel Speed": 3.0,
                         "Back and Forth": false,
                         "Reversed": false,
-                        "Pause Travel": false
+                        "Pause Travel": true
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -36920,7 +34582,7 @@
                     },
                     "Sound": {
                         "Path": "event:/SFX_Enviro_Train_Loop",
-                        "Sound Event ID": 170,
+                        "Sound Event ID": 163,
                         "3D Sound": true,
                         "Triggerable": true,
                         "Trigger": false
@@ -37034,7 +34696,7 @@
                         "Travel Speed": 3.0,
                         "Back and Forth": false,
                         "Reversed": false,
-                        "Pause Travel": false
+                        "Pause Travel": true
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -37539,6 +35201,2344 @@
                 {
                     "Guid": [
                         0,
+                        1259829869932243375,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 199
+                    },
+                    "Child": {
+                        "Parent GID": 197
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            205,
+                            297,
+                            305,
+                            313,
+                            321,
+                            332,
+                            340,
+                            348
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 198
+                    },
+                    "Child": {
+                        "Parent GID": 197
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            206,
+                            293,
+                            301,
+                            309,
+                            317,
+                            328,
+                            336,
+                            344
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 201
+                    },
+                    "Child": {
+                        "Parent GID": 197
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            207,
+                            294,
+                            302,
+                            310,
+                            318,
+                            329,
+                            337,
+                            345
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 202
+                    },
+                    "Child": {
+                        "Parent GID": 197
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            208,
+                            295,
+                            303,
+                            311,
+                            319,
+                            330,
+                            338,
+                            346
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 200
+                    },
+                    "Child": {
+                        "Parent GID": 197
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            209,
+                            296,
+                            304,
+                            312,
+                            320,
+                            331,
+                            339,
+                            347
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        1259829869932243375,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 206
+                    },
+                    "Child": {
+                        "Parent GID": 204
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.39999771118164,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 198
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 207
+                    },
+                    "Child": {
+                        "Parent GID": 204
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.39999771118164,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 208
+                    },
+                    "Child": {
+                        "Parent GID": 204
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.39999771118164,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 202
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 209
+                    },
+                    "Child": {
+                        "Parent GID": 204
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.39999771118164,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 200
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 205
+                    },
+                    "Child": {
+                        "Parent GID": 204
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.39999771118164,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 293
+                    },
+                    "Child": {
+                        "Parent GID": 292
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -49.599998474121097,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 198
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 294
+                    },
+                    "Child": {
+                        "Parent GID": 292
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -49.599998474121097,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 295
+                    },
+                    "Child": {
+                        "Parent GID": 292
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -49.599998474121097,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 202
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 296
+                    },
+                    "Child": {
+                        "Parent GID": 292
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -49.599998474121097,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 200
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 297
+                    },
+                    "Child": {
+                        "Parent GID": 292
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -49.599998474121097,
+                            "y": -0.06999993324279785,
+                            "z": 14.329999923706055
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 301
+                    },
+                    "Child": {
+                        "Parent GID": 300
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.5,
+                            "y": -0.5850000381469727,
+                            "z": 28.6299991607666
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 198
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 302
+                    },
+                    "Child": {
+                        "Parent GID": 300
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.5,
+                            "y": -0.5850000381469727,
+                            "z": 28.6299991607666
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 303
+                    },
+                    "Child": {
+                        "Parent GID": 300
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.5,
+                            "y": -0.5850000381469727,
+                            "z": 28.6299991607666
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 202
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 304
+                    },
+                    "Child": {
+                        "Parent GID": 300
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.5,
+                            "y": -0.5850000381469727,
+                            "z": 28.6299991607666
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 200
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 305
+                    },
+                    "Child": {
+                        "Parent GID": 300
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.5,
+                            "y": -0.5850000381469727,
+                            "z": 28.6299991607666
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 309
+                    },
+                    "Child": {
+                        "Parent GID": 308
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -64.0,
+                            "y": -0.5799999237060547,
+                            "z": 32.20000076293945
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 198
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 310
+                    },
+                    "Child": {
+                        "Parent GID": 308
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -64.0,
+                            "y": -0.5799999237060547,
+                            "z": 32.20000076293945
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 311
+                    },
+                    "Child": {
+                        "Parent GID": 308
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -64.0,
+                            "y": -0.5799999237060547,
+                            "z": 32.20000076293945
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 202
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 312
+                    },
+                    "Child": {
+                        "Parent GID": 308
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -64.0,
+                            "y": -0.5799999237060547,
+                            "z": 32.20000076293945
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 200
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 313
+                    },
+                    "Child": {
+                        "Parent GID": 308
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -64.0,
+                            "y": -0.5799999237060547,
+                            "z": 32.20000076293945
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 317
+                    },
+                    "Child": {
+                        "Parent GID": 316
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -63.89999771118164,
+                            "y": 0.46000003814697268,
+                            "z": 15.300000190734864
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 198
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 318
+                    },
+                    "Child": {
+                        "Parent GID": 316
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -63.89999771118164,
+                            "y": 0.46000003814697268,
+                            "z": 15.300000190734864
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 319
+                    },
+                    "Child": {
+                        "Parent GID": 316
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -63.89999771118164,
+                            "y": 0.46000003814697268,
+                            "z": 15.300000190734864
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 202
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 320
+                    },
+                    "Child": {
+                        "Parent GID": 316
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -63.89999771118164,
+                            "y": 0.46000003814697268,
+                            "z": 15.300000190734864
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 200
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 321
+                    },
+                    "Child": {
+                        "Parent GID": 316
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -63.89999771118164,
+                            "y": 0.46000003814697268,
+                            "z": 15.300000190734864
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 328
+                    },
+                    "Child": {
+                        "Parent GID": 327
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -69.79999542236328,
+                            "y": 0.2950000762939453,
+                            "z": -2.1999998092651369
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 198
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 329
+                    },
+                    "Child": {
+                        "Parent GID": 327
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -69.79999542236328,
+                            "y": 0.2950000762939453,
+                            "z": -2.1999998092651369
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 330
+                    },
+                    "Child": {
+                        "Parent GID": 327
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -69.79999542236328,
+                            "y": 0.2950000762939453,
+                            "z": -2.1999998092651369
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 202
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 331
+                    },
+                    "Child": {
+                        "Parent GID": 327
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -69.79999542236328,
+                            "y": 0.2950000762939453,
+                            "z": -2.1999998092651369
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 200
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 332
+                    },
+                    "Child": {
+                        "Parent GID": 327
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -69.79999542236328,
+                            "y": 0.2950000762939453,
+                            "z": -2.1999998092651369
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 336
+                    },
+                    "Child": {
+                        "Parent GID": 335
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.5,
+                            "y": 4.094999313354492,
+                            "z": -1.6999999284744263
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 198
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 337
+                    },
+                    "Child": {
+                        "Parent GID": 335
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.5,
+                            "y": 4.094999313354492,
+                            "z": -1.6999999284744263
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 338
+                    },
+                    "Child": {
+                        "Parent GID": 335
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.5,
+                            "y": 4.094999313354492,
+                            "z": -1.6999999284744263
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 202
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 339
+                    },
+                    "Child": {
+                        "Parent GID": 335
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.5,
+                            "y": 4.094999313354492,
+                            "z": -1.6999999284744263
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 200
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 340
+                    },
+                    "Child": {
+                        "Parent GID": 335
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.5,
+                            "y": 4.094999313354492,
+                            "z": -1.6999999284744263
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 344
+                    },
+                    "Child": {
+                        "Parent GID": 343
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.79999923706055,
+                            "y": 7.3949995040893559,
+                            "z": -4.800000190734863
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 198
+                    },
+                    "Name": {
+                        "Name": "Platform Solid"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 345
+                    },
+                    "Child": {
+                        "Parent GID": 343
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.79999923706055,
+                            "y": 7.3949995040893559,
+                            "z": -4.800000190734863
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 201
+                    },
+                    "Name": {
+                        "Name": "Platform Slope C"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 346
+                    },
+                    "Child": {
+                        "Parent GID": 343
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.79999923706055,
+                            "y": 7.3949995040893559,
+                            "z": -4.800000190734863
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 202
+                    },
+                    "Name": {
+                        "Name": "Platform Slope D"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 347
+                    },
+                    "Child": {
+                        "Parent GID": 343
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.79999923706055,
+                            "y": 7.3949995040893559,
+                            "z": -4.800000190734863
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 200
+                    },
+                    "Name": {
+                        "Name": "Platform Slope B"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 348
+                    },
+                    "Child": {
+                        "Parent GID": 343
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -50.79999923706055,
+                            "y": 7.3949995040893559,
+                            "z": -4.800000190734863
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 199
+                    },
+                    "Name": {
+                        "Name": "Platform Slope A"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14302600151082817442,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        16113566265477431037
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 210
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0022499999031424524,
+                            "y": 0.0022499999031424524,
+                            "z": 0.0022499999031424524
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 164,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 203
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            204
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 1.2000000476837159,
+                            "y": -0.05000000074505806,
+                            "z": 0.30000001192092898
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 24.100053787231447,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.39999771118164,
+                            "y": 1.850000023841858,
+                            "z": 15.800000190734864
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            14486341741652966143,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 196
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 291
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0022499999031424524,
+                            "y": 0.0022499999031424524,
+                            "z": 0.0022499999031424524
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 165,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 290
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            292
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 1.2000000476837159,
+                            "y": -0.05000000074505806,
+                            "z": 0.30000001192092898
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 0.39999812841415408,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -49.599998474121097,
+                            "y": 3.8500001430511476,
+                            "z": 15.800000190734864
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            14486341741652966143,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 196
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 299
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0022499999031424524,
+                            "y": 0.0022499999031424524,
+                            "z": 0.0022499999031424524
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 166,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 298
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            300
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 1.2000000476837159,
+                            "y": 1.850000023841858,
+                            "z": 1.2999999523162842
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 12.300008773803711,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.5,
+                            "y": 2.3499999046325685,
+                            "z": 30.099998474121095
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            14486341741652966143,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 196
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 307
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0022499999031424524,
+                            "y": 0.0022499999031424524,
+                            "z": 0.0022499999031424524
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 167,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 306
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            308
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.10000000149011612,
+                            "y": -0.05000000074505806,
+                            "z": 1.100000023841858
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 12.300008773803711,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -62.5,
+                            "y": 2.3500001430511476,
+                            "z": 32.20000076293945
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            14486341741652966143,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 196
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 315
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0022499999031424524,
+                            "y": 0.0022499999031424524,
+                            "z": 0.0022499999031424524
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 168,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 314
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            316
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 1.2000000476837159,
+                            "y": 2.6500000953674318,
+                            "z": -2.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 3.2999989986419679,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -63.89999771118164,
+                            "y": 4.150000095367432,
+                            "z": 13.800000190734864
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            14486341741652966143,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 196
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 326
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0022499999031424524,
+                            "y": 0.0022499999031424524,
+                            "z": 0.0022499999031424524
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 169,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 325
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            327
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.6000000238418579,
+                            "y": -0.05000000074505806,
+                            "z": -0.8999999761581421
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": -1.341104507446289e-7,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -68.29999542236328,
+                            "y": 4.25,
+                            "z": -2.1999998092651369
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            14486341741652966143,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 196
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 334
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0022499999031424524,
+                            "y": 0.0022499999031424524,
+                            "z": 0.0022499999031424524
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 170,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 333
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            335
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.10000000149011612,
+                            "y": -0.3499999940395355,
+                            "z": -0.4000000059604645
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": -1.341104507446289e-7,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -52.0,
+                            "y": 8.049999237060547,
+                            "z": -1.6999999284744263
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            14486341741652966143,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 196
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 342
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0022499999031424524,
+                            "y": 0.0022499999031424524,
+                            "z": 0.0022499999031424524
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 171,
+                        "3D Sound": true,
+                        "Triggerable": true,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 341
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            343
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.20000000298023225,
+                            "y": 2.950000047683716,
+                            "z": 1.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": -1.341104507446289e-7,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -52.29999923706055,
+                            "y": 11.34999942779541,
+                            "z": -4.800000190734863
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            15204223096342135753,
+                            14486341741652966143,
+                            14302600151082817442
+                        ],
+                        "Prefab GID": 196
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14302600151082817442,
+                        1259829869932243375,
+                        13107566195444653040,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        15204223096342135753,
+                        17008353085049151909,
+                        3617555656175080491,
+                        16415915133639986106,
+                        17639936325783395793,
+                        16113566265477431037
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 196
+                    },
+                    "Mesh": {
+                        "Model": "CraneElevator",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Sound": {
+                        "Path": "event:/SFX_Enviro_Elevator_Move",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Child": {
+                        "Parent GID": 195
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            197
+                        ]
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -1.100000023841858,
+                            "y": -0.05000000074505806,
+                            "z": 0.10000000149011612
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.5,
+                            "y": 1.5,
+                            "z": 1.5
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            210,
+                            291,
+                            299,
+                            307,
+                            315,
+                            326,
+                            334,
+                            342
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Animator": {
+                        "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
+                        "Play Once": false,
+                        "Pause Animation": false,
+                        "Current Time": 24.100053787231447,
+                        "Pause At Time": -1.0,
+                        "Reversed": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -1.0,
+                            "z": -0.10000000149011612
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 1.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Elevator"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Elevator": {
+                        "Start Time": -1.0,
+                        "Stop Time": -1.0,
+                        "Unit Under": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
                         9604788041699812520,
                         5691439207370049121,
                         13107566195444653040,
@@ -37770,10 +37770,10 @@
                         "Elapsed Time": 0.0,
                         "Hold Time": 1.0,
                         "On Hold": false,
-                        "Dialogue Name": "test",
+                        "Dialogue Name": "Level1-A",
                         "Initial Scale": {
                             "x": 400.0,
-                            "y": 200.0,
+                            "y": 400.0,
                             "z": 1.0
                         },
                         "Current Index": 0,
@@ -38010,10 +38010,10 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            15966406150673095094,
                             17008353085049151909,
-                            15204223096342135753,
+                            15966406150673095094,
                             9876869069201391077,
+                            15204223096342135753,
                             3617555656175080491,
                             17639936325783395793,
                             1871702054972469046,
@@ -38063,7 +38063,7 @@
                         "Pushing Or Pulling?": false
                     },
                     "DialogueCollider": {
-                        "Dialogue Name": "well"
+                        "Dialogue Name": "Level1-B"
                     }
                 }
             ]

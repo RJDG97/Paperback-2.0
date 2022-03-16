@@ -11,7 +11,7 @@ struct dialogue_system : paperback::system::pausable_instance
 	sound_system* sound_sys;
 
 	// Manager Ptrs
-	DialogueManager* dialogue_Manager;
+	DialogueManager* dialogue_manager;
 
 	// Queries
 	tools::query Query_DialogueText;
@@ -30,7 +30,7 @@ struct dialogue_system : paperback::system::pausable_instance
 		Query_DialogueText.m_Must.AddFromComponents<dialogue_text, text, child>();
 		Query_DialogueText.m_NoneOf.AddFromComponents<prefab>();
 
-		dialogue_Manager = &DialogueManager::GetInstanced();
+		dialogue_manager = &DialogueManager::GetInstanced();
 	}
 
 	PPB_INLINE
@@ -65,9 +65,9 @@ struct dialogue_system : paperback::system::pausable_instance
 					auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
 					auto [CScale, CMesh] = ParentInfo.m_pArchetype->FindComponents<scale, mesh>(ParentInfo.m_PoolDetails);
 
-					if (!dialogue_Manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.empty())
+					if (!dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.empty())
 					{
-						if (dialogue_Manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[0].m_Speaker == Line::RED)
+						if (dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[0].m_Speaker == Line::RED)
 						{
 							CMesh->m_Texture = "StrongToy_DialogueBox";
 						}
@@ -100,7 +100,7 @@ struct dialogue_system : paperback::system::pausable_instance
 				case dialogue_text::PLAYING:
 				{
 					DialogueText.m_ElapsedTime += DeltaTime();
-					std::string current_line_text = dialogue_Manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Content;
+					std::string current_line_text = dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Content;
 
 					if (!DialogueText.m_OnHold && DialogueText.m_ElapsedTime * DialogueText.m_TextSpeed < current_line_text.size() - 1)
 						Text.m_Text = current_line_text.substr(0, static_cast<size_t>(DialogueText.m_ElapsedTime * DialogueText.m_TextSpeed));
@@ -121,7 +121,7 @@ struct dialogue_system : paperback::system::pausable_instance
 					{
 						++DialogueText.m_CurrentIndex;
 
-						if (DialogueText.m_CurrentIndex == dialogue_Manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.size())
+						if (DialogueText.m_CurrentIndex == dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.size())
 						{
 							DialogueText.m_State = dialogue_text::CLOSING;
 						}
@@ -132,7 +132,7 @@ struct dialogue_system : paperback::system::pausable_instance
 							auto [CMesh] = ParentInfo.m_pArchetype->FindComponents<mesh>(ParentInfo.m_PoolDetails);
 							sound_sys->TriggerTaggedSound("ButtonClickSFX");
 
-							if (dialogue_Manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Speaker == Line::RED)
+							if (dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Speaker == Line::RED)
 							{
 								CMesh->m_Texture = "StrongToy_DialogueBox";
 							}

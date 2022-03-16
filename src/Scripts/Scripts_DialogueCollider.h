@@ -37,7 +37,7 @@ namespace MONO_DIALOGUECOLLIDER
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.DialogueCollider::getaddress(uint)", &MONO_DIALOGUECOLLIDER::GetAddress);
-		mono_add_internal_call("CSScript.DialogueCollider::getdialoguecollider(void*)", &MONO_DIALOGUECOLLIDER::GetDialogueName);
-		mono_add_internal_call("CSScript.DialogueCollider::setdialoguecollider(void*,string)", &MONO_DIALOGUECOLLIDER::SetDialogueName);
+		mono_add_internal_call("CSScript.DialogueCollider::getdialoguename(void*)", &MONO_DIALOGUECOLLIDER::GetDialogueName);
+		mono_add_internal_call("CSScript.DialogueCollider::setdialoguename(void*,string)", &MONO_DIALOGUECOLLIDER::SetDialogueName);
 	}
 }

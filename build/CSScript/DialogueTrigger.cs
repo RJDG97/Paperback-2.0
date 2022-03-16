@@ -48,8 +48,8 @@ namespace CSScript
                 DialogueText dialogue_text = new DialogueText((UInt32)Player.GetDialogueTextID());
                 dialogue_text.m_DialogueName = m_DialogueCollider.m_DialogueName;
                 dialogue_text.m_ElapsedTime = 0.0f;
-                dialogue_text.m_State = 0;
-                dialogue_text.m_InitialScale = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                dialogue_text.m_State = 1;
+                dialogue_text.m_Index = 0;
                 m_Activated = true;
             }
         }

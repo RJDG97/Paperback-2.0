@@ -76,16 +76,32 @@ namespace MONO_DIALOGUETEXT
 			reinterpret_cast<dialogue_text*>(address)->m_InitialScale = { x, y, z };
 	}
 
+	MONO_EXPORT uint32_t GetIndex(void* address)
+	{
+		if (address)
+			return reinterpret_cast<dialogue_text*>(address)->m_CurrentIndex;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetIndex(void* address, uint32_t value)
+	{
+		if (address)
+			reinterpret_cast<dialogue_text*>(address)->m_CurrentIndex = value;
+	}
+
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.DialogueText::getaddress(uint)", &MONO_DIALOGUETEXT::GetAddress);
-		mono_add_internal_call("CSScript.DialogueText::getdialoguetext(void*)", &MONO_DIALOGUETEXT::GetDialogueName);
-		mono_add_internal_call("CSScript.DialogueText::setdialoguetext(void*,string)", &MONO_DIALOGUETEXT::SetDialogueName);
+		mono_add_internal_call("CSScript.DialogueText::getdialoguename(void*)", &MONO_DIALOGUETEXT::GetDialogueName);
+		mono_add_internal_call("CSScript.DialogueText::setdialoguename(void*,string)", &MONO_DIALOGUETEXT::SetDialogueName);
 		mono_add_internal_call("CSScript.DialogueText::getelapsedtime(void*)", &MONO_DIALOGUETEXT::GetElapsedTime);
 		mono_add_internal_call("CSScript.DialogueText::setelapsedtime(void*,single)", &MONO_DIALOGUETEXT::SetElapsedTime);
 		mono_add_internal_call("CSScript.DialogueText::getstate(void*)", &MONO_DIALOGUETEXT::GetState);
 		mono_add_internal_call("CSScript.DialogueText::setstate(void*,uint)", &MONO_DIALOGUETEXT::SetState);
 		mono_add_internal_call("CSScript.DialogueText::getinitialscale(void*)", &MONO_DIALOGUETEXT::GetInitialScale);
 		mono_add_internal_call("CSScript.DialogueText::setinitialscale(void*,single,single,single)", &MONO_DIALOGUETEXT::SetInitialScale);
+		mono_add_internal_call("CSScript.DialogueText::getindex(void*)", &MONO_DIALOGUETEXT::GetIndex);
+		mono_add_internal_call("CSScript.DialogueText::setindex(void*,uint)", &MONO_DIALOGUETEXT::SetIndex);
 	}
 }

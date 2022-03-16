@@ -10,6 +10,12 @@ DialogueManager::DialogueManager()
 	//load every single dialogue
 	LoadDialogueJson("../../resources/dialogue/test.dialogue", "test");
 
+	LoadDialogueJson("../../resources/dialogue/Level1-A.dialogue", "Level1-A");
+	LoadDialogueJson("../../resources/dialogue/Level1-B.dialogue", "Level1-B");
+	LoadDialogueJson("../../resources/dialogue/Level1-C.dialogue", "Level1-C");
+	LoadDialogueJson("../../resources/dialogue/Level1-D.dialogue", "Level1-D");
+	LoadDialogueJson("../../resources/dialogue/Level1-E.dialogue", "Level1-E");
+
 }
 
 void DialogueManager::LoadDialogueJson(std::string file, std::string dialogue_name)

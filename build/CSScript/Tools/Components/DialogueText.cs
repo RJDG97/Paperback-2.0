@@ -54,6 +54,7 @@ namespace CSScript
                 setstate(m_Address, value);
             }
         }
+
         public Tools.MathLib.Vector3 m_InitialScale
         {
             get
@@ -63,6 +64,18 @@ namespace CSScript
             set
             {
                 setinitialscale(m_Address, value.x, value.y, value.z);
+            }
+        }
+
+        public UInt32 m_Index
+        {
+            get
+            {
+                return getindex(m_Address);
+            }
+            set
+            {
+                setindex(m_Address, value);
             }
         }
 
@@ -92,5 +105,11 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void setinitialscale(void* address, float x, float y, float z);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static UInt32 getindex(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void setindex(void* address, UInt32 value);
     }
 }
