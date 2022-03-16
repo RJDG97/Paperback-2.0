@@ -292,7 +292,7 @@ namespace paperback::input::binding
                                 auto Normalized        = DirectionalVector.Normalized();
 
                                 // Moving Left
-                                if ( Axes.x > 0.0f && Interaction && !Interaction->m_bPushOrPull )
+                                if ( Axes.x > 0.0f && (!Interaction || Interaction && !Interaction->m_bPushOrPull) )
                                 {
                                     float x      = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
                                     float z      = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
@@ -302,7 +302,7 @@ namespace paperback::input::binding
                                     RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
                                 }
                                 // Moving Right
-                                else if ( Axes.x < 0.0f && Interaction && !Interaction->m_bPushOrPull )
+                                else if ( Axes.x < 0.0f && (!Interaction || Interaction && !Interaction->m_bPushOrPull) )
                                 {
                                     float x      = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
                                     float z      = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
