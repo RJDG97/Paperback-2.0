@@ -627,6 +627,7 @@ namespace paperback::input
 					// Gamepad Initial Press
 					if ( GamepadState.m_Current[i] == GLFW_PRESS && GamepadState.m_Previous[i] == GLFW_RELEASE )
 					{
+						std::cout << "Gamepad Button: " << i << " Pressed & Released" << std::endl;
 						// Action Binding Callback
 						BroadcastAction( static_cast<const paperback::u32>( i )
 									   , device::type::id::GAMEPAD

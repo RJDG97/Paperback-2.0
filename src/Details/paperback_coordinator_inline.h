@@ -1063,17 +1063,23 @@ namespace paperback::coordinator
 
 	bool instance::IsGamepadButtonPress( int Key ) noexcept
 	{
-		return m_Input.IsGamepadButtonPress( Key );
+		auto s = m_Input.IsGamepadButtonPress( Key );
+		if ( s ) std::cout << "Gamepad Pressed: " << Key << std::endl;
+		return s;
 	}
 
 	bool instance::IsGamepadButtonPressDown( int Key ) noexcept
 	{
-		return m_Input.IsGamepadButtonPressDown( Key );
+		auto s = m_Input.IsGamepadButtonPressDown( Key );
+		if ( s ) std::cout << "Gamepad Pressed Down: " << Key << std::endl;
+		return s;
 	}
 
 	bool instance::IsGamepadButtonPressUp( int Key ) noexcept
 	{
-		return m_Input.IsGamepadButtonPressUp( Key );
+		auto s = m_Input.IsGamepadButtonPressUp( Key );
+		if ( s ) std::cout << "Gamepad Pressed Up: " << Key << std::endl;
+		return s;
 	}
 
 	bool instance::IsMousePress( int Key ) noexcept
