@@ -7,10 +7,20 @@ struct onevent_ResetAnimation : paperback::system::instance
         .m_pName = "onevent_ResetAnimation"
     };
 
+    bool m_PushMove, m_JumpMove;
+
+
     PPB_FORCEINLINE
     void OnSystemCreated(void) noexcept
     {
         RegisterGlobalEventClass<physics_system::Event_OnStatic>(this);
+    }
+
+    PPB_FORCEINLINE
+    void OnStateLoad() noexcept
+    {
+
+        m_PushMove = m_JumpMove = false;
     }
 
     void OnEvent( entity& Entity ) noexcept
@@ -21,22 +31,24 @@ struct onevent_ResetAnimation : paperback::system::instance
         {
             auto [ Anim, Controller, Interaction ] = Info.m_pArchetype->FindComponents<animator, player_controller, player_interaction>( Info.m_PoolDetails );
 
-            if ( Controller && Anim )
+            if (Controller && Anim)
             {
                 // Strong Unit
-                if ( Interaction )
+                if ( Interaction && m_PushMove )
                 {
                     Anim->m_CurrentAnimationName = "StrongToy_Armature|Idle";
 
                     // Stop Walk Sound
                     GetSystem<sound_system>().StopTriggeredSoundEvent( "SFX_RedWalk" );
+                    m_PushMove = false;
                 }
-                else
+                else if ( !Interaction && m_JumpMove )
                 {
                     Anim->m_CurrentAnimationName = "Armature|Idle";
 
                     // Stop Walk Sound
                     GetSystem<sound_system>().StopTriggeredSoundEvent( "SFX_BlueWalk" );
+                    m_JumpMove = false;
                 }
 
                 Anim->m_PlayOnce = false;

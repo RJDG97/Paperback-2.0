@@ -73,6 +73,7 @@ namespace paperback::input::binding
 
                                 // Play Red Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                             }
                             // Jump Unit
                             else
@@ -81,6 +82,7 @@ namespace paperback::input::binding
                                 
                                 // Play Blue Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
                             Animator.m_PlayOnce = false;
@@ -126,6 +128,7 @@ namespace paperback::input::binding
 
                                 // Play Red Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                             }
                             // Jump Unit
                             else
@@ -134,6 +137,7 @@ namespace paperback::input::binding
 
                                 // Play Blue Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
                             Animator.m_PlayOnce = false;
@@ -183,6 +187,7 @@ namespace paperback::input::binding
 
                                 // Play Red Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                             }
                             // Jump Unit
                             else
@@ -191,6 +196,7 @@ namespace paperback::input::binding
 
                                 // Play Blue Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
                             Animator.m_PlayOnce = false;
@@ -238,8 +244,9 @@ namespace paperback::input::binding
                             {
                                 Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
 
-                                // Play Blue Player Walk Sound
+                                // Play Red Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                             }
                             // Jump Unit
                             else
@@ -248,6 +255,7 @@ namespace paperback::input::binding
 
                                 // Play Blue Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
                             Animator.m_PlayOnce = false;
@@ -379,6 +387,7 @@ namespace paperback::input::binding
 
                                     // Play Red Player Walk Sound
                                     m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                    m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                                 }
                                 // Jump Unit
                                 else
@@ -387,6 +396,7 @@ namespace paperback::input::binding
 
                                     // Play Blue Player Walk Sound
                                     m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                    m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                                 }
 
                                 Animator.m_PlayOnce = false;
@@ -503,6 +513,7 @@ namespace paperback::input::binding
 
                         // Play Player Jump Sound
                         m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueJump" );
+                        m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                     }
                 });
             }

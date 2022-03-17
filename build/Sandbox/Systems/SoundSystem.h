@@ -417,7 +417,7 @@ public:
                 }
                 if (Sound.m_ForceStop)
                 {
-                    if (be == FMOD_STUDIO_PLAYBACK_STOPPED)
+                    if (be == FMOD_STUDIO_PLAYBACK_STOPPED || be == FMOD_STUDIO_PLAYBACK_STOPPING)
                     {
 
                         //not triggered but force stop
@@ -531,7 +531,7 @@ public:
             }
             if (sound.m_ForceStop)
             {
-                if (be == FMOD_STUDIO_PLAYBACK_STOPPED)
+                if (be == FMOD_STUDIO_PLAYBACK_STOPPED || be == FMOD_STUDIO_PLAYBACK_STOPPING)
                 {
 
                     //not triggered but force stop
