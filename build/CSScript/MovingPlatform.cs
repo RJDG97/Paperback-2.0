@@ -21,7 +21,6 @@ namespace CSScript
         Transform m_PushUnitTransform;
 
         bool m_Starting;
-        Rigidbody m_ParentRigidbody;
 
         Sound m_ParentSound;
 
@@ -40,7 +39,6 @@ namespace CSScript
             if (m_Child.m_ParentID != -1)
             {
                 m_ParentTransform = new Transform((UInt32)m_Child.m_ParentID);
-                m_ParentRigidbody = new Rigidbody((UInt32)m_Child.m_ParentID);
                 m_ParentSound = new Sound((UInt32)m_Child.m_ParentID);
             }
 
@@ -121,7 +119,6 @@ namespace CSScript
 
             else if (Tools.Tag.IsPushable(ID))
             {
-                Debug.Log("a");
                 ++m_NumPassengers;
             }
         }

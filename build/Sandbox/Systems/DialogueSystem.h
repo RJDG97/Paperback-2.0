@@ -70,7 +70,17 @@ struct dialogue_system : paperback::system::pausable_instance
 						CScale->m_Value = DialogueText.m_InitialScale;
 						DialogueText.m_State = dialogue_text::PLAYING;
 						DialogueText.m_ElapsedTime = 0.0f;
-						sound_sys->TriggerTaggedSound("SFX_RedWalk");
+						
+						if (!dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.empty())
+						{
+							std::string audio_file{ dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[0].m_AudioFile };
+
+							if (audio_file != "")
+							{
+								sound_sys->TriggerTaggedSound(audio_file);
+							}
+						}
+
 						break;
 					}
 
@@ -142,7 +152,12 @@ struct dialogue_system : paperback::system::pausable_instance
 
 						else
 						{
-							sound_sys->TriggerTaggedSound("SFX_RedWalk");
+							std::string audio_file{ dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_AudioFile };
+
+							if (audio_file != "")
+							{
+								sound_sys->TriggerTaggedSound(audio_file);
+							}
 						}
 
 						DialogueText.m_ElapsedTime = 0.0f;

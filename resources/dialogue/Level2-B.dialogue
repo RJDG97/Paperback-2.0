@@ -1,13 +1,13 @@
 {
-  "AudioFile": "../../resources/WAOW",
+  "AudioFile": "",
   "JT": "Whoa! Another of our cards!",  
   
-  "AudioFile": "../../resources/WAOW",
+  "AudioFile": "",
   "ST": "The “grow” card, eh?",
   
-  "AudioFile": "../../resources/WAOW",
+  "AudioFile": "",
   "ST": "... could help us get around!",
   
-  "AudioFile": "../../resources/WAOW",
+  "AudioFile": "",
   "ST": "Let’s try using it on something"
 }
