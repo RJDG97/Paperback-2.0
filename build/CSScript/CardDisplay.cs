@@ -14,6 +14,8 @@ namespace CSScript
         PlayerController m_JumpUnitPC;
         PlayerController m_PushUnitPC;
 
+        float m_CooldownTimer;
+
         Mesh m_E;
         Mesh m_CardOne;
         Mesh m_CardTwo;
@@ -59,6 +61,7 @@ namespace CSScript
             }
 
             m_E.m_Active = true;
+            m_CooldownTimer = -1.0f;
         }
 
         public void PreUpdate(float dt)
@@ -67,6 +70,12 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            if (m_CooldownTimer > 0.0f)
+            {
+
+                m_CooldownTimer -= dt;
+            }
+
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
             {
                 m_E.m_Active = false;
@@ -89,11 +98,12 @@ namespace CSScript
                     m_CardThree.m_Active = true;
                 }
 
-                if (Input.IsKeyPress(Input.PB_TAB) && m_Abilities.Count > 1)
+                if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)) && m_Abilities.Count > 1 && m_CooldownTimer < 0.0f)
                 {
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);
+                    m_CooldownTimer = 0.2f;
                 }
             }
 

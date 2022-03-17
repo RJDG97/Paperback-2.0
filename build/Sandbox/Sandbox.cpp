@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     ShowWindow(GetConsoleWindow(), SW_SHOW);
 #else
-    ShowWindow(GetConsoleWindow(), SW_SHOW);
+    ShowWindow(GetConsoleWindow(), SW_HIDE);
 #endif
 
     /*
@@ -144,10 +144,10 @@ void InitializeGame()
         ,   path_system
         ,   physics_system
         ,   parentchild_system
+        ,   window_system
         ,   scripting_system
         ,   collision_system
         ,   sound_system
-        ,   window_system
         ,   ui_system
         ,   particle_system
         ,   render_system

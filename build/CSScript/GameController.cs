@@ -24,6 +24,8 @@ namespace CSScript
             SHRINK
         };
 
+        float m_AbilitySwapCoolDownTimer = -1.0f;
+        float m_RayCastTimer = -1.0f;
         float m_ScaleFactor = 1.5f;
         float m_InverseScaleFactor = 1.0f / 1.5f;
         float m_AbilityDuration = 5.0f;
@@ -97,22 +99,37 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            if (m_AbilitySwapCoolDownTimer > 0.0f)
+            {
+
+                m_AbilitySwapCoolDownTimer -= dt;
+            }
+
+            if (m_RayCastTimer > 0.0f)
+            {
+
+                m_RayCastTimer -= dt;
+            }
+
+
             if ((Input.IsKeyPress(Input.PB_Q) || Input.IsKeyPress(Input.PB_MOUSE_BUTTON_4))  && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
             {
                 m_SFX.m_Trigger = true;
                 Player.TogglePlayers();
             }
 
-            if ((Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPress(Input.PB_GAMEPAD_BUTTON_X)) && !m_AbilityActive)
+            if (!m_AbilityActive && m_RayCastTimer < 0.0f && (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)))
             {
                 if (m_JumpUnitPC.m_FPSMode)
                 {
                     CastRay(m_JumpID);
+                    m_RayCastTimer = 0.3f;
                 }
 
                 else if (m_PushUnitPC.m_FPSMode)
                 {
                     CastRay(m_PushID);
+                    m_RayCastTimer = 0.3f;
                 }
             }
 
@@ -120,8 +137,9 @@ namespace CSScript
 
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
             {
-                if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPress(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)) && m_Abilities.Count > 1)
+                if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)))
                 {
+                    m_AbilitySwapCoolDownTimer = 0.2f;
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);
