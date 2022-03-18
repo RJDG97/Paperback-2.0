@@ -212,7 +212,9 @@ void InitializeGame()
             startcutscene_mid_button_script,
             startcutscene_last_button_script,
             nextlevel_level2_button_script,
-            nextlevel_level3_button_script
+            nextlevel_level3_button_script,
+            page7_how2play_next_button_mainmenu_script,
+            page7_how2play_prev_button_mainmenu_script
         >();
 
 

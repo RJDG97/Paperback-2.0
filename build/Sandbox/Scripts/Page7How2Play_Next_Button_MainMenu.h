@@ -1,14 +1,14 @@
 #pragma once
 
-struct page4_how2play_next_button_mainmenu_script : paperback::script::button_interface // Inherited Type (1)
+struct page7_how2play_next_button_mainmenu_script : paperback::script::button_interface // Inherited Type (1)
 {
     static constexpr auto typedef_v = paperback::script::type::button
     {
-        .m_pName = "Page 4 How To Play Next Button MainMenu Script"
+        .m_pName = "Page 7 How To Play Next Button MainMenu Script"
     };
 
     // You have to define this constructor - For internal registration
-    page4_how2play_next_button_mainmenu_script(paperback::coordinator::instance& Instance) noexcept :
+    page7_how2play_next_button_mainmenu_script(paperback::coordinator::instance& Instance) noexcept :
         // Override paperback::script::button_interface with the Inherited Type (1)
         paperback::script::button_interface{ Instance }
     { }
@@ -26,7 +26,7 @@ struct page4_how2play_next_button_mainmenu_script : paperback::script::button_in
 
         //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
-        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY4), false);
-        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY5), true);
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY7), false);
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY1), true);
     }
 };
