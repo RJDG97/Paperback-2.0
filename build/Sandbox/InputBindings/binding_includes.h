@@ -511,6 +511,8 @@ namespace paperback::input::binding
                         Animator.m_CurrentTime = 8.07f;
                         Animator.m_PlayOnce = true;
 
+                        m_Coordinator.GetSystem<sound_system>().StopTriggeredSoundEvent("SFX_BlueWalk");
+
                         // Play Player Jump Sound
                         m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueJump" );
                         m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
