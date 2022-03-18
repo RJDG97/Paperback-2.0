@@ -21,6 +21,7 @@ struct render_system : paperback::system::instance
 	tools::query QueryLight;
 	tools::query QueryText;
 	tools::query QueryCamera;
+	tools::query QueryParticles;
 
 	bool m_bGamma = true;
 	float m_Speed = 1.0f;
@@ -56,6 +57,9 @@ struct render_system : paperback::system::instance
 
 		QueryCamera.m_Must.AddFromComponents<transform, camera>();
 		QueryCamera.m_NoneOf.AddFromComponents<prefab>();
+
+		QueryParticles.m_Must.AddFromComponents<transform, particle_emitter>();
+		QueryParticles.m_NoneOf.AddFromComponents<prefab>();
 	}
 
 	PPB_FORCEINLINE
@@ -177,6 +181,26 @@ struct render_system : paperback::system::instance
 				found = true;
 			});
 		}
+
+		ForEach(Search(QueryParticles), [&](transform& Transform, particle_emitter& Emitter) noexcept
+		{
+			std::vector<glm::mat4> instanceList;
+
+			m_Coordinator.ForEach(Emitter.m_ActiveParticles, [&](transform& Transform, scale& Scale, rotation& Rotation) noexcept
+			{
+				glm::mat4 transform{ 1.0f };
+
+				transform = glm::translate(transform, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z });
+				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
+				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
+				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
+				transform = glm::scale(transform, glm::vec3{ Rotation.m_Value.x, Rotation.m_Value.y, Rotation.m_Value.z });
+
+				instanceList.push_back(transform);
+			});
+
+			instances[Emitter.m_TextureName] = instanceList;
+		});
 
 		Renderer::GetInstanced().Render(objects, lights, instances, cam, m_bGamma, uis, texts, m_Camera2D, &points);
 	}

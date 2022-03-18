@@ -5,7 +5,9 @@ layout (location=1) in vec3 vVertexNormal;
 layout (location=2) in vec2 vVertexUV;
 layout (location=3) in vec3 vVertexTangent;
 layout (location=4) in vec3 vVertextBiTangent;
-layout (location=5) in mat4 iTransform;
+layout (location=5) in ivec4 vVertexBoneIDs; 
+layout (location=6) in vec4 vVertexWeights;
+layout (location=7) in mat4 iTransform;
 
 layout (location=0) out vec2 vUV;
 
