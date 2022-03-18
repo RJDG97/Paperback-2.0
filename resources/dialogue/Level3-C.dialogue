@@ -1,12 +1,15 @@
 {
   "AudioFile": "",
-  "ST": "This is it, the moment we’ve been waiting for.",  
+  "ST": "This is it!",
+  
+  "AudioFile": "",
+  "ST": "The moment we've been waiting for!",
   
   "AudioFile": "",
   "JT": "We made it! We did it, 5TR-0!",
   
   "AudioFile": "",
-  "ST": "Couldn’t have done it without you, L3-AP.",
+  "ST": "Couldn't have done it without you, L3-AP.",
   
   "AudioFile": "",
   "JT": "You too! Now, shall we go home?"
