@@ -16,6 +16,7 @@ namespace CSScript
         PlayerController m_JumpUnitPC;
         PlayerController m_PushUnitPC;
         Sound  m_SFX;
+        float m_CooldownTimer;
 
         enum Ability
         {
@@ -99,12 +100,6 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (m_AbilitySwapCoolDownTimer > 0.0f)
-            {
-
-                m_AbilitySwapCoolDownTimer -= dt;
-            }
-
             if (m_RayCastTimer > 0.0f)
             {
 
@@ -137,9 +132,14 @@ namespace CSScript
 
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
             {
+                if (m_AbilitySwapCoolDownTimer > 0.0f)
+                {
+                    m_AbilitySwapCoolDownTimer -= dt;
+                }
+
                 if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)))
                 {
-                    m_AbilitySwapCoolDownTimer = 0.2f;
+                    m_AbilitySwapCoolDownTimer = 0.1f;
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);
