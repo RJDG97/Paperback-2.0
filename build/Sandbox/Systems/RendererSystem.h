@@ -194,7 +194,7 @@ struct render_system : paperback::system::instance
 				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
 				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
 				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
-				transform = glm::scale(transform, glm::vec3{ Rotation.m_Value.x, Rotation.m_Value.y, Rotation.m_Value.z });
+				transform = glm::scale(transform, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
 
 				instanceList.push_back(transform);
 			});
