@@ -121,7 +121,8 @@ namespace paperback::physics
         // Entity Has Moved Out Of Bounds - Update Node
         if ( !Node.m_AABB.Contains( Transform.m_Position + Transform.m_Offset, AABB ) )
         {
-            RemoveLeaf( NodeIndex );
+            auto s = RemoveLeaf( NodeIndex );
+            if ( !s ) return false;
             Node.m_AABB = AABB.Extend( Transform.m_Position + Transform.m_Offset, 0.5f );
             Node.m_Position = Node.m_AABB.ComputeCentre( );
             InsertLeaf( NodeIndex );
@@ -343,20 +344,22 @@ namespace paperback::physics
     }
 
     PPB_INLINE
-    void AABB_Tree::RemoveLeaf( NodeID ID ) noexcept
+    bool AABB_Tree::RemoveLeaf( NodeID ID ) noexcept
     {
         // Attempting To Remove Root Node
         if ( m_RootIndex == ID )
         {
             m_RootIndex = settings::invalid_index_v;
-            return;
+            return false;
         }
         // Removing Other Leaf Nodes
         else
         {
             auto  ParentIndex   = m_Tree[ ID ].m_ParentIndex;
+            if ( ParentIndex >= m_Tree.size() ) return false;
             auto& ParentNode    = m_Tree[ ParentIndex ];
             auto  GParentIndex  = m_Tree[ ParentIndex ].m_ParentIndex;
+            if ( GParentIndex >= m_Tree.size() ) return false;
             auto& GParentNode   = m_Tree[ GParentIndex ];
             NodeID SiblingIndex = m_Tree[ ParentIndex ].m_LeftIndex == ID ? m_Tree[ ParentIndex ].m_RightIndex
                                                                           : m_Tree[ ParentIndex ].m_LeftIndex;
@@ -380,6 +383,7 @@ namespace paperback::physics
                 BalanceTree( GParentIndex );
             }
         }
+        return true;
     }
 
     PPB_INLINE
