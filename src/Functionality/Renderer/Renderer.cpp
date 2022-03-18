@@ -69,24 +69,32 @@ Renderer::Renderer() :
 	glVertexArrayAttribFormat(m_InstancedVAO, 4, 3, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_BiTangent));
 	glVertexArrayAttribBinding(m_InstancedVAO, 4, 0);
 
+	glEnableVertexArrayAttrib(m_InstancedVAO, 5);
+	glVertexArrayAttribIFormat(m_InstancedVAO, 5, 4, GL_INT, offsetof(Model::Vertex, m_BoneIDs));
+	glVertexArrayAttribBinding(m_InstancedVAO, 5, 0);
+
+	glEnableVertexArrayAttrib(m_InstancedVAO, 6);
+	glVertexArrayAttribFormat(m_InstancedVAO, 6, 4, GL_FLOAT, GL_FALSE, offsetof(Model::Vertex, m_Weights));
+	glVertexArrayAttribBinding(m_InstancedVAO, 6, 0);
+
 	// Mat4 transform bindings
 	size_t vec4Size = sizeof(glm::vec4);
 
-	glEnableVertexArrayAttrib(m_InstancedVAO, 5);
-	glVertexArrayAttribFormat(m_InstancedVAO, 5, 4, GL_FLOAT, GL_FALSE, 0);
-	glVertexArrayAttribBinding(m_InstancedVAO, 5, 1);
-
-	glEnableVertexArrayAttrib(m_InstancedVAO, 6);
-	glVertexArrayAttribFormat(m_InstancedVAO, 6, 4, GL_FLOAT, GL_FALSE, 1 * vec4Size);
-	glVertexArrayAttribBinding(m_InstancedVAO, 6, 1);
-
 	glEnableVertexArrayAttrib(m_InstancedVAO, 7);
-	glVertexArrayAttribFormat(m_InstancedVAO, 7, 4, GL_FLOAT, GL_FALSE, 2 * vec4Size);
+	glVertexArrayAttribFormat(m_InstancedVAO, 7, 4, GL_FLOAT, GL_FALSE, 0);
 	glVertexArrayAttribBinding(m_InstancedVAO, 7, 1);
 
 	glEnableVertexArrayAttrib(m_InstancedVAO, 8);
-	glVertexArrayAttribFormat(m_InstancedVAO, 8, 4, GL_FLOAT, GL_FALSE, 3 * vec4Size);
+	glVertexArrayAttribFormat(m_InstancedVAO, 8, 4, GL_FLOAT, GL_FALSE, 1 * vec4Size);
 	glVertexArrayAttribBinding(m_InstancedVAO, 8, 1);
+
+	glEnableVertexArrayAttrib(m_InstancedVAO, 9);
+	glVertexArrayAttribFormat(m_InstancedVAO, 9, 4, GL_FLOAT, GL_FALSE, 2 * vec4Size);
+	glVertexArrayAttribBinding(m_InstancedVAO, 9, 1);
+
+	glEnableVertexArrayAttrib(m_InstancedVAO, 10);
+	glVertexArrayAttribFormat(m_InstancedVAO, 10, 4, GL_FLOAT, GL_FALSE, 3 * vec4Size);
+	glVertexArrayAttribBinding(m_InstancedVAO, 10, 1);
 
 	glCreateVertexArrays(1, &m_DebugVAO);
 
@@ -1485,18 +1493,21 @@ void Renderer::InstancedPass(const std::unordered_map<std::string_view, std::vec
 	glVertexArrayVertexBuffer(m_InstancedVAO, 0, model.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
 	glVertexArrayElementBuffer(m_InstancedVAO, model.GetSubMeshes()[0].m_EBO);
 
+	// Set camera view and projection
 	glm::mat4 view = SceneCamera.GetView();
 	glm::mat4 projection = SceneCamera.GetProjection();
 
 	m_Resources.m_Shaders["Instanced"].SetUniform("uView", const_cast<glm::mat4&>(view));
 	m_Resources.m_Shaders["Instanced"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
 
+	// Create instancing buffer
 	GLuint buffer;
 	glCreateBuffers(1, &buffer);
 	glVertexArrayVertexBuffer(m_InstancedVAO, 1, buffer, 0, sizeof(glm::mat4));
 
 	for (const auto& instances : Instances)
 	{
+		// Bind texture
 		std::string name = std::string{ instances.first };
 		const auto& texture = m_Resources.m_Textures.find(name);
 
@@ -1512,9 +1523,15 @@ void Renderer::InstancedPass(const std::unordered_map<std::string_view, std::vec
 			m_Resources.m_Shaders["Instanced"].SetUniform("uTexturedDiffuse", false);
 		}
 
+		// Set instancing buffer
 		glNamedBufferStorage(buffer, sizeof(glm::mat4) * instances.second.size(), instances.second.data(), GL_DYNAMIC_STORAGE_BIT);
+
+		// Instanced rendering
 		glDrawElementsInstanced(model.GetPrimitive(), model.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL, instances.second.size());
 	}
+
+	// Delete instancing buffer
+	glDeleteBuffers(1, &buffer);
 
 	// Unbind vao
 	glBindVertexArray(0);
