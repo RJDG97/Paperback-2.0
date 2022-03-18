@@ -105,12 +105,6 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (m_CooldownTimer > 0.0f)
-            {
-
-                m_CooldownTimer -= dt;
-            }
-
             if (m_RotateTimes > 0)
             {
                 switch (m_Abilities.Count)
@@ -143,22 +137,44 @@ namespace CSScript
             {
                 m_E.m_Active = false;
 
-                if (m_Abilities.Count > 0)
+                switch (m_Abilities.Count)
                 {
-                    m_CardOne.m_Active = true;
-                    m_CardTwo.m_Active = false;
-                    m_CardThree.m_Active = false;
+                    case 0:
+                    {
+                        m_CardOne.m_Active = false;
+                        m_CardTwo.m_Active = false;
+                        m_CardThree.m_Active = false;
+                        break;
+                    }
+
+                    case 1:
+                    {
+                        m_CardOne.m_Active = true;
+                        m_CardTwo.m_Active = false;
+                        m_CardThree.m_Active = false;
+                        break;
+                    }
+                        
+                    case 2:
+                    {
+                        m_CardOne.m_Active = true;
+                        m_CardTwo.m_Active = true;
+                        m_CardThree.m_Active = false;
+                        break;
+                    }
+                        
+                    case 3:
+                    {
+                        m_CardOne.m_Active = true;
+                        m_CardTwo.m_Active = true;
+                        m_CardThree.m_Active = true;
+                        break;
+                    }
                 }
 
-                if (m_Abilities.Count > 1)
+                if (m_CooldownTimer > 0.0f)
                 {
-                    m_CardTwo.m_Active = true;
-                    m_CardThree.m_Active = false;
-                }
-
-                if (m_Abilities.Count > 2)
-                {
-                    m_CardThree.m_Active = true;
+                    m_CooldownTimer -= dt;
                 }
 
                 if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)) && m_Abilities.Count > 1 && m_CooldownTimer < 0.0f)
@@ -166,6 +182,7 @@ namespace CSScript
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);
+                    Debug.Log(m_Abilities[0].ToString());
                     m_CooldownTimer = 0.1f;
 
                     ++m_RotateTimes;
