@@ -11,6 +11,7 @@
     "GrowCard": "../../resources/textures/Cards/GrowCard.dds 0",
     "Recticle": "../../resources/textures/UI/Recticle.dds 0",
     "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 0",
+    "JumpToy_DialogueBox": "../../resources/textures/UI/JumpToy_DialogueBox.dds 0",
     "ToggleCardMode": "../../resources/textures/Cards/ToggleCardMode.dds 0",
     "SkillUIBase_Freeze": "../../resources/textures/UI/SkillBar/SkillUIBase_Freeze.dds 0"
 }
