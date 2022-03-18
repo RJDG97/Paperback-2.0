@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Transform
     {
         private void* m_Address;
-        private UInt32 m_ID;
         public Transform(UInt32 id)
         {
             m_Address = getaddress(id);

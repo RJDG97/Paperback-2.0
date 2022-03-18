@@ -693,6 +693,14 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< cinematic >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< ability_collectible >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< ability_collectible >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< dialogue_text >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< dialogue_text >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< dialogue_collider >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< dialogue_collider >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< particle >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< particle >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< particle_emitter >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< particle_emitter >(Index));
 		else
 			return rttr::instance();
 	}

@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class AbilityCollectible
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public AbilityCollectible(UInt32 id)
         {
@@ -25,6 +24,10 @@ namespace CSScript
             {
                 return GetGrowStatus( m_Address );
             }
+            set
+            {
+                SetGrowStatus( m_Address, value );
+            }
         }
 
         public bool m_Shrink
@@ -33,6 +36,10 @@ namespace CSScript
             {
                 return GetShrinkStatus( m_Address );
             }
+            set
+            {
+                SetShrinkStatus( m_Address, value );
+            }
         }
 
         public bool m_Freeze
@@ -40,6 +47,10 @@ namespace CSScript
             get
             {
                 return GetFreezeStatus( m_Address );
+            }
+            set
+            {
+                SetFreezeStatus( m_Address, value );
             }
         }
 
@@ -54,5 +65,14 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static bool GetFreezeStatus(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void SetGrowStatus(void* address, bool status);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void SetShrinkStatus(void* address, bool status);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void SetFreezeStatus(void* address, bool status);
     }
 }

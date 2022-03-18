@@ -47,10 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbilitySpin.cs" />
     <Compile Include="Checkpoint.cs" />
     <Compile Include="CollectedInteractable.cs" />
     <Compile Include="ElevatorPlatform.cs" />
     <Compile Include="ElevatorSwitch.cs" />
+    <Compile Include="CardDisplay.cs" />
+    <Compile Include="DialogueTrigger.cs" />
+    <Compile Include="Goal_Cutscene1.cs" />
+    <Compile Include="Goal_Cutscene2.cs" />
+    <Compile Include="Goal_Cutscene3.cs" />
+    <Compile Include="Goal_Level3.cs" />
     <Compile Include="PushableBlock.cs" />
     <Compile Include="Fan.cs" />
     <Compile Include="GateSwitch.cs" />
@@ -64,6 +71,9 @@
     <Compile Include="Tools\Components\Application.cs" />
     <Compile Include="Tools\Components\BoundingBox.cs" />
     <Compile Include="Tools\CameraTools.cs" />
+    <Compile Include="Tools\Components\DialogueText.cs" />
+    <Compile Include="Tools\Components\DialogueCollider.cs" />
+    <Compile Include="Tools\Components\ParticleEmitter.cs" />
     <Compile Include="Tools\Components\Pushable.cs" />
     <Compile Include="Tools\Components\Camera.cs" />
     <Compile Include="Tools\Components\Elevator.cs" />

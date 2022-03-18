@@ -810,10 +810,6 @@ void DetailsWindow::CinematicComponent()
                 ImGui::SameLine();
                 ImGui::DragFloat(("##Hold Time" + std::to_string(i)).c_str(), (float*)&(TempCinematicInfo.get().m_HoldTime), 0.1f, 0.1f);
 
-                ImGui::Button("Position", ImVec2{ 80.0f, 25.0f });
-                ImGui::SameLine();
-                ImGui::DragFloat3(("##Position" + std::to_string(i)).c_str(), (float*)&(TempCinematicInfo.get().m_CamPosition), 0.1f, 0.1f);
-
                 ImGui::Separator();
             }
 

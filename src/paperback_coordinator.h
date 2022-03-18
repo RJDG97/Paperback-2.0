@@ -306,6 +306,12 @@ namespace paperback::coordinator
 		//-----------------------------------
 		
 		PPB_INLINE
+		void InitializeTree( void ) noexcept;
+
+		PPB_INLINE
+		void ResetTree( void ) noexcept;
+
+		PPB_INLINE
         bool UpdateNode( const boundingbox& AABB
                        , const transform&   Transform
                        , component::entity  Entity ) noexcept;
@@ -377,6 +383,15 @@ namespace paperback::coordinator
 		bool IsKeyPressUp( int Key ) noexcept;
 
 		PPB_INLINE
+		bool IsGamepadButtonPress( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsGamepadButtonPressDown( int Key ) noexcept;
+
+		PPB_INLINE
+		bool IsGamepadButtonPressUp( int Key ) noexcept;
+
+		PPB_INLINE
 		bool IsMousePress( int Key ) noexcept;
 
 		PPB_INLINE
@@ -400,6 +415,30 @@ namespace paperback::coordinator
 		PPB_INLINE
 		glm::vec3 GetViewportMousePosition(glm::mat4 projection, glm::mat4 view) noexcept;
 
+
+		//-----------------------------------
+		//             Particles
+		//-----------------------------------
+		
+		PPB_INLINE
+        void InitializeParticleMgr( void ) noexcept;
+
+        PPB_INLINE
+        void ResetParticleMgr( void ) noexcept;
+
+		PPB_INLINE
+        particles::manager::ParticleList RequestParticles( const int            Quantity
+                                                         , const paperback::u32 EmitterGID ) noexcept;
+
+		PPB_INLINE
+        void InitializeParticles( component::entity&                 EmitterEntity
+                                , particle_emitter&                  Emitter
+                                , particles::manager::ParticleList   ParticleIDList ) noexcept;
+
+        PPB_INLINE
+        void ReturnDeadParticle( const paperback::u32 ParticleGID ) noexcept;
+		
+		
 		//-----------------------------------
         //         Event Broadcast
         //-----------------------------------
@@ -437,6 +476,7 @@ namespace paperback::coordinator
 		archetype::manager			        m_ArchetypeMgr{ *this };		// Archetype Manager
 		system::manager				        m_SystemMgr{ m_Clock };			// System Manager
 		script::manager				        m_ScriptMgr{ *this };			// CPP Scripts Manager
+		particles::manager					m_ParticleMgr{ *this };			// 
 		physics::AABB_Tree                  m_AABBTree{ *this };		    // Dynamic AABB Tree
 		input::manager						m_Input{ *this };				// Input
 		bool						        m_GameActive = true;			// Game Status

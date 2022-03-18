@@ -173,6 +173,20 @@ namespace paperback::input
 	    bool IsKeyPressUp( int Key ) const noexcept;
 
 
+		//-----------------------------------
+	    //            Gamepad
+	    //-----------------------------------
+	
+	    PPB_INLINE
+	    bool IsGamepadButtonPress( int Key ) const noexcept;
+
+	    PPB_INLINE
+	    bool IsGamepadButtonPressDown( int Key ) const noexcept;
+
+	    PPB_INLINE
+	    bool IsGamepadButtonPressUp( int Key ) const noexcept;
+
+
 	    //-----------------------------------
 	    //              Mouse
 	    //-----------------------------------

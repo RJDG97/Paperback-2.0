@@ -59,6 +59,10 @@ namespace CSScript
             m_Sound.m_Trigger = false;
             m_Activated = false;
         }
+
+        public void PreUpdate(float dt)
+        {
+        }
         public void Update(float dt)
         {
             if (Input.IsKeyPress(Input.PB_1))
@@ -127,7 +131,7 @@ namespace CSScript
                     m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
                     m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
                     m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
-                    m_PushUnitRigidforce.m_Momentum =new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                    m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                     m_Activated = true;
                 }
             }

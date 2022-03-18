@@ -1,0 +1,53 @@
+{
+    "Prefabs": [
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        14302600151082817442,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106,
+                        9886554869999165490
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 439
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Bulk Character SFX"
+                    },
+                    "Bulk Sound": {
+                        "Path": "event:/SFX_Char_Red_Move,event:/SFX_Char_Red_StopMove,event:/SFX_Char_Red_Grab,event:/SFX_Char_Blue_WalkCombine,event:/SFX_Char_Blue_Jump,event:/SFX_Char_Blue_Landing,event:/SFX_Char_Switching,event:/SFX_Char_Ability_Enter,event:/SFX_Char_Ability_Shoot,event:/SFX_Char_Ability_SwitchCard,event:/SFX_Char_Ability_Freeze",
+                        "Tags": "SFX_RedWalk,SFX_RedStop,SFX_RedGrab,SFX_BlueWalk,SFX_BlueJump,SFX_BlueLand,SFX_TogglePlayer,SFX_ToggleFPSMode,SFX_Shoot,SFX_SwitchCard,SFX_GenericAbility",
+                        "Is 3D events": false
+                    }
+                }
+            ]
+        }
+    ]
+}

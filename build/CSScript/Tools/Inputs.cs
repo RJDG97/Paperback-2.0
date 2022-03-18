@@ -21,6 +21,15 @@ namespace CSScript
         public extern static bool IsKeyPressUp(int Key);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static bool IsGamepadButtonPress(int Key);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static bool IsGamepadButtonPressDown(int Key);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static bool IsGamepadButtonPressUp(int Key);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern static bool IsMousePress(int Key);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
@@ -162,5 +171,22 @@ namespace CSScript
         public const int PB_MOUSE_BUTTON_6 = 5;
         public const int PB_MOUSE_BUTTON_7 = 6;
         public const int PB_MOUSE_BUTTON_8 = 7;
+
+        /* Gamepad Keys */
+        public const int PB_GAMEPAD_BUTTON_A            =  0;
+        public const int PB_GAMEPAD_BUTTON_B            =  1;
+        public const int PB_GAMEPAD_BUTTON_X            =  2;
+        public const int PB_GAMEPAD_BUTTON_Y            =  3;
+        public const int PB_GAMEPAD_BUTTON_LEFT_BUMPER  =  4;
+        public const int PB_GAMEPAD_BUTTON_RIGHT_BUMPER =  5;
+        public const int PB_GAMEPAD_BUTTON_BACK         =  6;
+        public const int PB_GAMEPAD_BUTTON_START        =  7;
+        public const int PB_GAMEPAD_BUTTON_GUIDE        =  8;
+        public const int PB_GAMEPAD_BUTTON_LEFT_THUMB   =  9;
+        public const int PB_GAMEPAD_BUTTON_RIGHT_THUMB  = 10;
+        public const int PB_GAMEPAD_BUTTON_DPAD_UP      = 11;
+        public const int PB_GAMEPAD_BUTTON_DPAD_RIGHT   = 12;
+        public const int PB_GAMEPAD_BUTTON_DPAD_DOWN    = 13;
+        public const int PB_GAMEPAD_BUTTON_DPAD_LEFT    = 14;
     }
 }

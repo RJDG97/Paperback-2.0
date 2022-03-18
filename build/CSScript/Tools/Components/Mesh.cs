@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Mesh
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Mesh(UInt32 id)
         {

@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class BoundingBox
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public BoundingBox(UInt32 id)
         {

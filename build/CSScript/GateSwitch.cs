@@ -14,12 +14,15 @@ namespace CSScript
         Parent m_Parent; //switch is parent
         BoundingBox m_BoundingBox; //switch is parent
         Mesh m_Mesh;
+        Rotation m_Rotation;
 
         BoundingBox m_ChildBoundingBox; //gate is child
         Animator m_ChildAnimator;
+        Transform m_ChildTransform;
 
         Tools.MathLib.Vector3 m_InitialBoundingBoxMin;
         Tools.MathLib.Vector3 m_InitialBoundingBoxMax;
+        Tools.MathLib.Vector3 m_InitialBBOffset;
 
         public static GateSwitch getInst()
         {
@@ -33,6 +36,7 @@ namespace CSScript
             m_Parent = new Parent(m_ID);
             m_BoundingBox = new BoundingBox(m_ID);
             m_Mesh = new Mesh(m_ID);
+            m_Rotation = new Rotation(m_ID);
 
             m_ChildID = m_Parent.GetChildIDofName("Gate");
 
@@ -40,19 +44,37 @@ namespace CSScript
             {
                 m_ChildBoundingBox = new BoundingBox((UInt32)m_ChildID);
                 m_ChildAnimator = new Animator((UInt32)m_ChildID);
+                m_ChildTransform = new Transform((UInt32)m_ChildID);
+
+                m_ChildAnimator.m_PauseAtTime = 0;
+                m_InitialBoundingBoxMin = m_ChildBoundingBox.Min;
+                m_InitialBoundingBoxMax = m_ChildBoundingBox.Max;
+                m_InitialBBOffset = m_ChildTransform.m_Offset;
             }
 
             m_Sound.m_Trigger = false;
+            m_Mesh.m_Model = "Button_GateOFF";
+        }
 
-            m_InitialBoundingBoxMin = m_ChildBoundingBox.Min;
-            m_InitialBoundingBoxMax = m_ChildBoundingBox.Max;
+        public void PreUpdate(float dt)
+        {
+            if ((m_Rotation.m_Value.y % 180.0f) < 1.0f && (m_Rotation.m_Value.y % 180.0f) > -1.0f)
+            {
+                m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
+                                                                  m_InitialBBOffset.y, m_InitialBBOffset.z);
+            }
 
-            m_ChildAnimator.m_PauseAtTime = 0;
-            m_Mesh.m_Model = "ButtonOFF";
+            else if ((m_Rotation.m_Value.y % 180.0f) < 91.0f && (m_Rotation.m_Value.y % 180.0f) > 89.0f)
+            {
+                m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x,
+                                                                      m_InitialBBOffset.y,
+                                                                      m_InitialBBOffset.z + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
+            }
         }
 
         public void Update(float dt)
         {
+
         }
 
         public void Destroy()
@@ -64,12 +86,10 @@ namespace CSScript
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 m_Sound.m_Trigger = true;
-                m_ChildBoundingBox.Min = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
-                m_ChildBoundingBox.Max = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                 m_ChildAnimator.m_Reversed = false;
                 m_ChildAnimator.m_PauseAnimation = false;
-                m_ChildAnimator.m_PauseAtTime = 23;
-                //m_Mesh.m_Model = "ButtonON";
+                m_ChildAnimator.m_PauseAtTime = 48;
+                m_Mesh.m_Model = "Button_GateON";
             }
         }
         public void OnCollisionStay(UInt32 ID)
@@ -79,12 +99,10 @@ namespace CSScript
         {
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
-                m_ChildBoundingBox.Min = m_InitialBoundingBoxMin;
-                m_ChildBoundingBox.Max = m_InitialBoundingBoxMax;
                 m_ChildAnimator.m_Reversed = true;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 0;
-                //m_Mesh.m_Model = "ButtonOFF";
+                m_Mesh.m_Model = "Button_GateOFF";
             }
         }
     }

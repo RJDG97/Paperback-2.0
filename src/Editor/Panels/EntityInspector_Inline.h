@@ -70,7 +70,7 @@ void EntityInspector::DisplayEntities()
 
                             bOpen = ImGui::TreeNodeEx((char*)("##" + Archetype->GetName() + " [" + std::to_string(i) + std::to_string(Index) + "]").c_str(), NodeFlags, EntityName.c_str());
 
-                            if (ImGui::IsItemClicked())
+                            if (ImGui::IsItemClicked() && m_Imgui.m_bPaused)
                             {
                                 m_Imgui.m_SelectedEntity.first = Archetype;
                                 m_Imgui.m_SelectedEntity.second = i;
@@ -79,7 +79,7 @@ void EntityInspector::DisplayEntities()
 
                             bool Deleted = false;
 
-                            if (ImGui::BeginPopupContextItem())
+                            if (ImGui::BeginPopupContextItem() && m_Imgui.m_bPaused )
                             {
                                 if (!Archetype->GetComponentBits().Has(paperback::component::info_v<reference_prefab>.m_UID))
                                 {
@@ -141,35 +141,6 @@ void EntityInspector::DisplayEntities()
 
                                 ImGui::EndPopup();
                             }
-
-                            //if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID | ImGuiDragDropFlags_SourceNoDisableHover))
-                            //{
-                            //    DragDropEntityGID = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i }).m_GlobalIndex;
-
-                            //    ImGui::SetDragDropPayload("Potential Child", &DragDropEntityGID, sizeof(paperback::u32));
-                            //    if (Name)
-                            //        ImGui::Text(Name->m_Value.c_str());
-                            //    ImGui::EndDragDropSource();
-                            //}
-
-                            //if (ImGui::BeginDragDropTarget())
-                            //{
-                            //    //Entity being dropped onto
-                            //    auto& SelectedEntity = Archetype->GetComponent<paperback::component::entity>(paperback::vm::PoolDetails{ 0, i });
-                            //    
-                            //    if (Parent)
-                            //    {
-                            //        //if have parent component
-                            //        if (DragDropEntityGID == SelectedEntity.m_GlobalIndex) //If dropping onto itself
-                            //            Link = false;
-                            //    }
-                            //    else
-                            //    {
-                            //        //no parent component -> Can just link
-                            //        std::array<const paperback::component::info*, 1 > ComponentAdd = &paperback::component::info_v<parent>;
-                            //    }
-                            //    ImGui::EndDragDropTarget();
-                            //}
 
                             if (bOpen)
                             {

@@ -83,6 +83,27 @@ struct boundingbox
 			                                   , Position.z + ( Max.z + std::abs( SkinThickness.z ) ) } };
 	}
 
+	boundingbox Extend( paperback::Vector3f Position
+					  , const boundingbox&  Box  ) const noexcept
+	{
+		return boundingbox{ paperback::Vector3f{ Position.x + Box.Min.x
+					                           , Position.y + Box.Min.y
+			                                   , Position.z + Box.Min.z }
+			       	      , paperback::Vector3f{ Position.x + Box.Max.x
+			                                   , Position.y + Box.Max.y
+			                                   , Position.z + Box.Max.z } };
+	}
+
+	boundingbox Extend( paperback::Vector3f Position ) const noexcept
+	{
+		return boundingbox{ paperback::Vector3f{ Position.x + Min.x
+					                           , Position.y + Min.y
+			                                   , Position.z + Min.z }
+			       	      , paperback::Vector3f{ Position.x + Max.x
+			                                   , Position.y + Max.y
+			                                   , Position.z + Max.z } };
+	}
+
 	// Ensure RHS's Values Are Global Coordinates, Not Local Scaling Factor
 	bool Contains( const boundingbox& rhs ) const noexcept
 	{

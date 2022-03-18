@@ -3,6 +3,40 @@
 #include "Json/paperback_json.h"
 #include "../Functionality/Renderer/Renderer.h"
 
+namespace
+{
+
+    bool m_LastPause{};
+
+    void WindowOnFocusCallBack(GLFWwindow* Window, int IsFocus)
+    {
+
+        if (IsFocus)
+        {
+
+            if (!m_LastPause)
+                PPB.TogglePause(false);
+        }
+        else
+        {
+
+
+            if (!PPB.GetPauseBool())
+            {
+
+                m_LastPause = false;
+
+                PPB.TogglePause(true);
+            }
+            else
+            {
+
+                m_LastPause = true;
+            }
+        }
+    }
+}
+
 struct window_system : paperback::system::instance
 {
     bool m_FullScreen;
@@ -18,6 +52,7 @@ struct window_system : paperback::system::instance
 	{
 		.m_pName = "window_system"
 	};
+
 
 	PPB_FORCEINLINE
 	void OnSystemCreated(void) noexcept
@@ -74,6 +109,11 @@ struct window_system : paperback::system::instance
 
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         glViewport(0, 0, E.m_Width, E.m_Height);
+
+        m_Width = E.m_Width;
+        m_Height = E.m_Height;
+
+        glfwSetWindowFocusCallback(m_pWindow, WindowOnFocusCallBack);
 	}
 
     PPB_FORCEINLINE

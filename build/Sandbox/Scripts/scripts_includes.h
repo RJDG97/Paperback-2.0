@@ -28,6 +28,8 @@
 #include "Page5How2Play_Prev_Button_MainMenu.h"
 #include "Page6How2Play_Next_Button_MainMenu.h"
 #include "Page6How2Play_Prev_Button_MainMenu.h"
+#include "Page7How2Play_Next_Button_MainMenu.h"
+#include "Page7How2Play_Prev_Button_MainMenu.h"
 
 //gameplay buttons
 #include "PauseEnable_Button_Game.h"

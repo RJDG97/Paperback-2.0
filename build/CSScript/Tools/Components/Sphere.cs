@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Sphere
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Sphere(UInt32 id)
         {

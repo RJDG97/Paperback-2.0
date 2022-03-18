@@ -14,6 +14,7 @@ namespace CSScript
         Int32 m_ElevatorID;
         Animator m_ElevatorAnimator;
         Elevator m_ElevatorElevator;
+        Sound m_ElevatorSound;
         Scale m_ElevatorScale;
 
         Int32 m_PlatformID;
@@ -40,14 +41,16 @@ namespace CSScript
                 m_ElevatorAnimator = new Animator((UInt32)m_ElevatorID);
                 m_ElevatorElevator = new Elevator((UInt32)m_ElevatorID);
                 m_ElevatorScale = new Scale((UInt32)m_ElevatorID);
-            }
+                m_ElevatorSound = new Sound((UInt32)m_ElevatorID);
 
-            m_PlatformID = m_Parent.GetChildIDofName("Platform");
+                Parent ElevatorParent = new Parent((UInt32)m_ElevatorID);
+                m_PlatformID = ElevatorParent.GetChildIDofName("Platform");
 
-            if (m_PlatformID != -1)
-            {
-                m_PlatformOffset = new Offset((UInt32)m_PlatformID);
-                m_PlatformStartY = m_PlatformOffset.m_PosOffset.y;
+                if (m_PlatformID != -1)
+                {
+                    m_PlatformOffset = new Offset((UInt32)m_PlatformID);
+                    m_PlatformStartY = m_PlatformOffset.m_PosOffset.y;
+                }
             }
 
             m_ElevatorAnimator.m_CurrentTime = m_ElevatorElevator.m_StartTime;
@@ -86,6 +89,7 @@ namespace CSScript
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
             {
                 m_Sound.m_Trigger = true;
+                //m_ElevatorSound.m_Trigger = true;
                 m_ElevatorAnimator.m_PauseAnimation = false;
 
                 if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)

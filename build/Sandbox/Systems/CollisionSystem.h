@@ -24,8 +24,29 @@ struct collision_system : paperback::system::pausable_instance
 
     tools::query SphereColliderQuery;
     tools::query CollidableQuery;
+    tools::query m_InteractableQuery;
     tools::query m_Query;
     scripting_system* scripting_sys;
+
+
+    //test
+    paperback::u32 m_PushID;
+
+    PPB_INLINE
+	void OnStateChange( void ) noexcept
+	{
+        m_PushID = paperback::settings::invalid_index_v;
+	}
+
+
+	PPB_INLINE
+	void OnStateLoad( void ) noexcept
+	{
+        ForEach( Search( m_InteractableQuery ), [&]( entity& PushEntity )
+        {
+            m_PushID = PushEntity.m_GlobalIndex;
+        });
+	}
 
 
     PPB_FORCEINLINE
@@ -43,6 +64,10 @@ struct collision_system : paperback::system::pausable_instance
         m_Query.m_Must.AddFromComponents<paperback::component::entity, transform, rigidforce>();
         m_Query.m_OneOf.AddFromComponents< name, boundingbox, sphere, mass, slope, bounding_volume >();
         m_Query.m_NoneOf.AddFromComponents<prefab>();
+
+        m_InteractableQuery.m_Must.AddFromComponents<paperback::component::entity, transform, rigidforce, player_interaction>();
+        m_InteractableQuery.m_OneOf.AddFromComponents< name, boundingbox, sphere, mass, slope, bounding_volume >();
+        m_InteractableQuery.m_NoneOf.AddFromComponents<prefab>();
 	}
 
     PPB_FORCEINLINE
@@ -52,15 +77,16 @@ struct collision_system : paperback::system::pausable_instance
         ForEach( Search( m_Query ), [&]( paperback::component::entity& Entity, transform& Transform, rigidforce& RigidForce, boundingbox* Boundingbox
                                        , sphere* Sphere, mass* m1, slope* Slope1, bounding_volume* BV ) noexcept
         {
-            if (Entity.IsZombie()) return;
+            // Exclude Deleted Entities & Static Objects that are NOT Bounding Volumes
+            if ( Entity.IsZombie() || ( !BV && m1 && m1->m_Mass == 0.0f ) ) return;
 
-            if (Boundingbox)
+            if ( Boundingbox)
             {
                 Boundingbox->m_Collided = false;
 
                 auto NeighbourList = m_Coordinator.QueryNeighbours( *Boundingbox, Transform );
 
-                ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV2 )
+                ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV2, pushable* Pushable )
                 {
                     if (Entity.IsZombie() || Dynamic_Entity.IsZombie()) return;
 
@@ -98,7 +124,6 @@ struct collision_system : paperback::system::pausable_instance
                                             }
                                         }
 
-                                        //BroadcastGlobalEvent<OnCollisionEnter>(Entity, Dynamic_Entity, RigidForce, *RF, SkipUnit);
                                     }
                                     // Current Entity is ALREADY Colliding with Other Entity
                                     else
@@ -116,12 +141,22 @@ struct collision_system : paperback::system::pausable_instance
                                             }
                                         }
                                     }
-                                    //BroadcastGlobalEvent<OnCollisionStay>( Entity, Dynamic_Entity, RigidForce, *RF, *Boundingbox, *BB, SkipUnit );
 
-                                // Collision Response If Not Bounding Volume
+                                    // Collision Response If Not Bounding Volume
                                     if (!(BV || BV2))
                                     {
-                                        AABBDynamic(Boundingbox, &RigidForce, Transform, m1, Slope1, BB, RF, Xform, m2, Slope2);
+                                        if ( Entity.m_GlobalIndex == m_PushID && Pushable )
+                                        {
+                                            rigidforce static_rf{};
+                                            mass       static_mass{};
+                                            AABBDynamic( Boundingbox, &RigidForce, Transform, m1, Slope1
+                                                       , BB, &static_rf, Xform, &static_mass, Slope2 );
+                                        }
+                                        else
+                                        {
+                                            AABBDynamic( Boundingbox, &RigidForce, Transform, m1, Slope1
+                                                       , BB, RF, Xform, m2, Slope2 );
+                                        }
                                     }
 
                                     // Update Collision State of Current Entity to Other Entity

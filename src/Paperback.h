@@ -13,6 +13,9 @@
 #define PPB_FORCEINLINE __inline
 #endif
 
+// Define This To Enable/Disable Installer Build
+//#define PAPERBACK_INSTALLER_BUILD
+
 //----------------------------------
 // STL
 //----------------------------------
@@ -22,6 +25,7 @@
 #include <vector>
 #include <array>
 #include <queue>
+#include <set>
 #include <functional>
 #include <typeindex>
 
@@ -106,6 +110,7 @@ namespace paperback
 #include "paperback_archetype.h"
 #include "paperback_archetype_mgr.h"
 #include "paperback_cppscript_mgr.h"
+#include "paperback_particle_mgr.h"
 #include "paperback_system.h"
 #include "paperback_system_mgr.h"
 #include "paperback_statemgr.h"
@@ -137,6 +142,7 @@ namespace paperback
 #include "Details/paperback_archetype_inline.h"
 #include "Details/paperback_archetype_mgr_inline.h"
 #include "Details/paperback_cppscript_mgr_inline.h"
+#include "Details/paperback_particle_mgr_inline.h"
 #include "Details/paperback_query_inline.h"
 #include "Details/paperback_bitset_inline.h"
 #include "Details/paperback_nbitset_inline.h"

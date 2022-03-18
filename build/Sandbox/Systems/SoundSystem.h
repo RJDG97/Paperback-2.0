@@ -20,7 +20,9 @@ private:
         bool m_Verified;                                        // used to verify if a soundfile being played has a corresponding active sound component
         bool m_ForceStop = false;                               // used to force set a sound file to stop 
         bool m_IsStandalone = false;                            // used to to tell if a sound file is paired to a sound component or is set by standalone 
-        std::string m_Tag;
+        bool m_Is3D = false;                                    // mirrors what is used for sound component to identify a 3d sound
+        std::string m_Tag;                                      // identification for non sound component linked sound events
+        size_t m_TriggerEntity;                                 // identification for current entity triggering the 3D sound event
     };
 
 public:
@@ -38,7 +40,13 @@ public:
     ,   paperback::query::none_of<prefab>
     >;
 
-    tools::query m_SoundQuery, m_BulkSoundQuery;
+    using cam_query = std::tuple
+    <
+        paperback::query::must<camera, transform>
+        , paperback::query::none_of<prefab>
+    >;
+
+    tools::query m_SoundQuery, m_BulkSoundQuery, m_CamQuery;
 
     FMOD::System* m_pFMODSystem = nullptr; // contains pointer to fmod system
     FMOD::Studio::System* m_pStudioSystem = nullptr;
@@ -136,10 +144,11 @@ public:
         {
 
             //only process sounds that are tagged and added through bulk sound component
-            if (!m_SoundFiles[i].m_IsStandalone && m_SoundFiles[i].m_Tag != Tag)
-                continue;
+            if (m_SoundFiles[i].m_IsStandalone && m_SoundFiles[i].m_Tag == Tag)
+            {
 
-            m_SoundFiles[i].m_ForceStop = true;
+                m_SoundFiles[i].m_ForceStop = true;
+            }
         }
     }
 
@@ -234,16 +243,23 @@ public:
         m_pStudioSystem->setListenerAttributes(0, &attribute);
     }
 
+
+    void UpdateEvent3DAttributes(FMOD::Studio::EventInstance* Instance, const paperback::Vector3f& Pos, const paperback::Vector3f& Vel)
+    {
+
+        FMOD_3D_ATTRIBUTES attribute{};
+        ConvertSystemToFMOD3D(attribute, Pos, Vel);
+
+        Instance->set3DAttributes(&attribute);
+    }
+
     //set 3D attributes
     // helper function
     // sets a sound instance's 3d attributes
     void UpdateEvent3DAttributes(FMOD::Studio::EventInstance* Instance, const transform* Transform, const rigidbody* Rigidbody)
     {
 
-        FMOD_3D_ATTRIBUTES attribute{};
-        ConvertSystemToFMOD3D(attribute, Transform->m_Position, Rigidbody->m_Velocity);
-
-        Instance->set3DAttributes(&attribute);
+        UpdateEvent3DAttributes(Instance, Transform->m_Position, Rigidbody->m_Velocity);
     }
 
     //pause/unpause all sounds
@@ -335,6 +351,7 @@ public:
 
         m_SoundQuery.AddQueryFromTuple(xcore::types::null_tuple_v< query >);
         m_BulkSoundQuery.AddQueryFromTuple(xcore::types::null_tuple_v< alt_query >);
+        m_CamQuery.AddQueryFromTuple(xcore::types::null_tuple_v< cam_query >);
     }
 
 
@@ -392,21 +409,30 @@ public:
 
 
                 //if sound is stopped or yet to begin, check trigger status
-                if (be == FMOD_STUDIO_PLAYBACK_STOPPED && Sound.m_Trigger)
+                if (be == FMOD_STUDIO_PLAYBACK_STOPPED && Sound.m_Trigger && !Sound.m_ForceStop)
                 {
 
                     //trigger is active, play the sound and reset trigger
                     Sound.m_Trigger = false;
                     sound_check->m_pSound->start();
                 }
-                if (Sound.m_ForceStop)
+                else if (Sound.m_ForceStop)
                 {
-                    if (be == FMOD_STUDIO_PLAYBACK_STOPPED)
+
+                    if (Sound.m_Trigger)
+                        Sound.m_Trigger = false;
+
+                    if (be == FMOD_STUDIO_PLAYBACK_STOPPED || be == FMOD_STUDIO_PLAYBACK_STOPPING)
                     {
 
                         //not triggered but force stop
                         //reset
                         Sound.m_ForceStop = false;
+                    }
+                    else if (be == FMOD_STUDIO_PLAYBACK_STARTING)
+                    {
+
+                        Sound.m_ForceStop = true;
                     }
                     else //sound_check->m_ForceStop)
                     {
@@ -490,6 +516,7 @@ public:
                         m_SoundFiles.back().m_Verified = true;
                         m_SoundFiles.back().m_IsStandalone = true;
                         m_SoundFiles.back().m_Tag = tags[i];
+                        m_SoundFiles.back().m_Is3D = Bulk.m_Is3D;
                     }
                 }
 
@@ -505,21 +532,34 @@ public:
 
 
             //if sound is stopped or yet to begin, check trigger status
-            if (be == FMOD_STUDIO_PLAYBACK_STOPPED && sound.m_Trigger)
+            if (be == FMOD_STUDIO_PLAYBACK_STOPPED && sound.m_Trigger && !sound.m_ForceStop)
             {
 
                 //trigger is active, play the sound and reset trigger
                 sound.m_Trigger = false;
                 sound.m_pSound->start();
             }
-            if (sound.m_ForceStop)
+            else if (sound.m_ForceStop)
             {
-                if (be == FMOD_STUDIO_PLAYBACK_STOPPED)
+
+                if (sound.m_Trigger)
+                    sound.m_Trigger = false;
+
+                if (be == FMOD_STUDIO_PLAYBACK_STOPPED || be == FMOD_STUDIO_PLAYBACK_STOPPING)
                 {
 
                     //not triggered but force stop
                     //reset
                     sound.m_ForceStop = false;
+                    
+
+                    if (sound.m_Is3D)
+                        UpdateEvent3DAttributes(sound.m_pSound, paperback::Vector3f{}, paperback::Vector3f{});
+                }
+                else if (be == FMOD_STUDIO_PLAYBACK_STARTING)
+                {
+
+                    sound.m_ForceStop = true;
                 }
                 else //sound_check->m_ForceStop)
                 {
@@ -532,6 +572,20 @@ public:
         }
     }
 
+    //used to update the listener position to the current active camera
+    void UpdateCameraListener()
+    {
+
+        ForEach(Search(m_CamQuery), [&](entity& Entity, camera& Camera, transform& Transform) noexcept
+            {
+
+                if (Entity.IsZombie() || !Camera.m_Active)
+                    return;
+
+                UpdatePlayer3DAttributes(Transform.m_Position, { std::cosf(Camera.m_Theta), 0.0f, std::sinf(Camera.m_Theta) });
+            });
+    }
+
 
     // entity that is processed by soundsystem will specifically have sound and timer components
     // entity must have either transform or rigidbody, can have both if is 3D
@@ -539,6 +593,10 @@ public:
     void Update() noexcept
     {
 
+        if (PPB.GetPauseBool() && PPB.VerifyState("Editor"))
+            return;
+
+        UpdateCameraListener();
         SoundComponentProcess();
         BulkSoundProcess();
     }
@@ -716,6 +774,13 @@ public:
     }
 
     PPB_FORCEINLINE
+    void OnPause(const bool& Status) noexcept
+    {
+        
+        PauseCurrentSounds(Status);
+    }
+
+    PPB_FORCEINLINE
     void EditorStopAllSounds()
     {
 
@@ -732,7 +797,8 @@ public:
         if (sound_check != m_SoundFiles.end())
         {
 
-            sound_check->m_pSound->start();
+            sound_check->m_Trigger = true;
+            //sound_check->m_pSound->start();
         }
     }
 
@@ -763,6 +829,35 @@ public:
 
         //randomly select one of available indexes to 
         if (!indexes.empty())
-            m_SoundFiles[indexes[rand() % indexes.size()]].m_pSound->start();
+        {
+
+            //m_SoundFiles[indexes[rand() % indexes.size()]].m_pSound->start();
+            m_SoundFiles[indexes[rand() % indexes.size()]].m_Trigger = true;
+        }
+    }
+
+    void Trigger3DTaggedSound(const std::string& Tag, const paperback::Vector3f& Position, const paperback::Vector3f& Velocity, const size_t& EntityID)
+    {
+
+        auto sound_check = std::find_if(std::begin(m_SoundFiles), std::end(m_SoundFiles), [Tag](const SoundFile& soundfile) { return Tag == soundfile.m_Tag; });
+
+        if (sound_check != m_SoundFiles.end() && sound_check->m_Is3D)
+        {
+
+            FMOD_STUDIO_PLAYBACK_STATE be;
+            sound_check->m_pSound->getPlaybackState(&be);
+
+            if (be != FMOD_STUDIO_PLAYBACK_PLAYING && be != FMOD_STUDIO_PLAYBACK_STARTING)
+            {
+
+                sound_check->m_Trigger = true;
+                sound_check->m_TriggerEntity = EntityID;
+            }
+            else if (be == FMOD_STUDIO_PLAYBACK_PLAYING)
+            {
+
+                UpdateEvent3DAttributes(sound_check->m_pSound, Position, Velocity);
+            }
+        }
     }
 };

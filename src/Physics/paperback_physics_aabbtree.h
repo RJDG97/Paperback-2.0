@@ -92,7 +92,7 @@ namespace paperback::physics
         void InsertLeaf( NodeID ID ) noexcept;                              // Inserts A New Leaf Node ( Performs Balancing Upwards From Node To Root )
 
         PPB_INLINE
-        void RemoveLeaf( NodeID ID ) noexcept;                              // Releases An Existing Leaf Node ( Performs Balancing Upwards From Node To Root )
+        bool RemoveLeaf( NodeID ID ) noexcept;                              // Releases An Existing Leaf Node ( Performs Balancing Upwards From Node To Root )
 
         PPB_INLINE
         void BalanceTree( NodeID ID ) noexcept;                             // Balances Tree From Node To Root

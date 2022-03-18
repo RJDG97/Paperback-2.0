@@ -182,11 +182,10 @@ void EditorViewport::MouseSelection()
 								RayDir = PPB.GetViewportMousePosition({ Min.x, Min.y - 70.0f }, { Max.x, Max.y - 70.0f });
 
 								if (RayDir == glm::vec3{})
-								{
 									continue;
-								}
 
-								if (RayAabb({ CamPos.x, CamPos.y, CamPos.z }, { RayDir.x, RayDir.y, RayDir.z }, EntityPos->m_Position + EntityBB->Min, EntityPos->m_Position + EntityBB->Max, t))
+
+								if (RayAabb({ CamPos.x, CamPos.y, CamPos.z }, { RayDir.x, RayDir.y, RayDir.z }, EntityPos->m_Position + EntityBB->Min, EntityPos->m_Position + EntityBB->Max, t) && m_Imgui.m_bPaused)
 								{
 									auto& EntityInfo = PPB.GetEntityInfo(Entity->m_GlobalIndex);
 
@@ -293,15 +292,6 @@ void EditorViewport::ComposeTransform()
 
 		if (bTrans)
 			Editor::Math::GlmtoVec3(bTrans->m_Position, Trans);
-
-		//if (bRot)
-		//{
-		//	glm::vec3 TempRot = Rot - glm::vec3(glm::radians(bRot->m_Value.x), glm::radians(bRot->m_Value.y), glm::radians(bRot->m_Value.z));
-
-		//	bRot->m_Value.x += TempRot.x;
-		//	bRot->m_Value.y += TempRot.y;
-		//	bRot->m_Value.z += TempRot.z;
-		//}
 
 		if (bScale)
 			Editor::Math::GlmtoVec3(bScale->m_Value, Scale);

@@ -60,6 +60,8 @@
 #include "BulkSound.h"
 #include "Cinematic.h"
 #include "AbilityCollectible.h"
+#include "DialogueText.h"
+#include "DialogueCollider.h"
 
 
 // shapes
@@ -73,3 +75,6 @@
 #include "Ray.h"
 #include "Sphere.h"
 #include "Triangle.h"
+
+#include "ParticleEmitter.h"
+#include "Particle.h"

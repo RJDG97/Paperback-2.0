@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Socketed
     {
         private void* m_Address;
-        private UInt32 m_ID;
         public Socketed(UInt32 id)
         {
             m_Address = getaddress(id);

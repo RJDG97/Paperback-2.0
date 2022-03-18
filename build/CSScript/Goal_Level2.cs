@@ -21,6 +21,10 @@ namespace CSScript
             m_BoundingBox = new BoundingBox(m_ID);
         }
 
+        public void PreUpdate(float dt)
+        {
+        }
+
         public void Update(float dt)
         {
         }
@@ -33,7 +37,7 @@ namespace CSScript
         {
             if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             {
-                Application.ChangeScene("GameWinFinal");
+                Application.ChangeScene("GameWin_LevelTwo");
             }
         }
         public void OnCollisionStay(UInt32 ID)

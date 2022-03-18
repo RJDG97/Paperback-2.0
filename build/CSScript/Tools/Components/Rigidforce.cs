@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Rigidforce
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Rigidforce(UInt32 id)
         {

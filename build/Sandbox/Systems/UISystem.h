@@ -79,8 +79,12 @@ struct ui_system : paperback::system::pausable_instance
         {
             if ( Button && Button->m_bActive )
             {
+                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
+                if ( UI_Sys && Button->IsButtonState( ButtonState::DEFAULT ) ) UI_Sys->TriggerSoundEntity("ButtonHoverSFX");
+
                 Button->SetButtonState( ButtonState::HOVERED );
                 // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
+
 
                 // Run OnHover Script If Valid
                 auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );

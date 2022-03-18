@@ -12,5 +12,8 @@
     "InstructionManualPage02Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage02Flipped.dds 0",
     "InstructionManualPage03Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage03Flipped.dds 0",
     "InstructionManualPage04Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage04Flipped.dds 0",
-    "CloseButton_Unselected": "../../resources/textures/UI/Menus/Buttons/CloseButton_Unselected.dds 0"
+    "CloseButton_Unselected": "../../resources/textures/UI/Menus/Buttons/CloseButton_Unselected.dds 0",
+    "InstructionManualPage05Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage05Flipped.dds 0",
+    "InstructionManualPage06Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage06Flipped.dds 0",
+    "InstructionManualPage07Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage07Flipped.dds 0"
 }

@@ -11,15 +11,13 @@ struct cinematic
     {
         CinematicInfo()
             : m_MoveSpeed{},
-              m_HoldTime{},
-              m_CamPosition{}
+              m_HoldTime{}
         {
 
         }
 
         float m_MoveSpeed;
         float m_HoldTime;
-        glm::vec3 m_CamPosition;
     };
 
     void AddPoint(int Index) noexcept

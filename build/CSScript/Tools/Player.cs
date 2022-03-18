@@ -18,6 +18,9 @@ namespace CSScript
         public extern static Int32 GetPushUnitID();
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static Int32 GetDialogueTextID();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern static void TogglePlayers();
     }
 }

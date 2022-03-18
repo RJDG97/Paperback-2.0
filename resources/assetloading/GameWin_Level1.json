@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 11
+                "EntityHead": 13
             }
         },
         {
@@ -166,8 +166,8 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 500.0,
-                            "y": 200.0,
+                            "x": 300.0,
+                            "y": 100.0,
                             "z": 0.0
                         }
                     },
@@ -186,7 +186,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -390.0,
+                            "y": -450.0,
                             "z": 1.0
                         }
                     },
@@ -221,24 +221,24 @@
                         "Global Index": 3
                     },
                     "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "YouWonTitle",
+                        "Model": "Level1WinScreen",
+                        "Texture": "FirstLevelWinScreen.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 1920.0,
-                            "y": 1080.0,
-                            "z": 0.0
+                            "x": 0.004000000189989805,
+                            "y": 0.004000000189989805,
+                            "z": 0.004000000189989805
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 180.0
+                            "z": 0.0
                         }
                     },
                     "Transform": {
@@ -250,7 +250,7 @@
                         "Position": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": -0.10000000149011612
                         }
                     },
                     "ReferencePrefab": {
@@ -285,15 +285,15 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "NextLevel_Unselected",
+                        "Texture": "ContinueButton_Unselected",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 500.0,
-                            "y": 200.0,
+                            "x": 300.0,
+                            "y": 100.0,
                             "z": 0.0020000000949949028
                         }
                     },
@@ -312,7 +312,7 @@
                         },
                         "Position": {
                             "x": -0.03644561767578125,
-                            "y": -200.0,
+                            "y": -370.0,
                             "z": 1.0
                         }
                     },
@@ -340,6 +340,107 @@
                         "Layer Grouping": 0,
                         "Script Guid": 3221504161959520552,
                         "Active Status": true
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        14302600151082817442,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106,
+                        9886554869999165490
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 9
+                    },
+                    "Sound": {
+                        "Path": "event:/BGM_Credit",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            10
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "BGMObj"
+                    },
+                    "Bulk Sound": {
+                        "Path": "",
+                        "Tags": "",
+                        "Is 3D events": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        14302600151082817442,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        9886554869999165490
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 10
+                    },
+                    "Sound": {
+                        "Path": "event:/BGM_Credit",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 9
+                    },
+                    "Name": {
+                        "Name": "BGMObj"
+                    },
+                    "Bulk Sound": {
+                        "Path": "event:/SFX_Menu_BTN_Clicked,event:/SFX_Menu_BTN_Hover",
+                        "Tags": "ButtonClickSFX,ButtonHoverSFX",
+                        "Is 3D events": false
                     }
                 }
             ]
@@ -482,80 +583,23 @@
             ]
         },
         {
-            "Unnamed Archetype": [
+            "Camera": [
                 {
                     "Guid": [
                         0,
-                        14302600151082817442,
-                        17008353085049151909,
-                        15172211932757996706,
-                        16415915133639986106,
-                        9886554869999165490
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 10
-                    },
-                    "Sound": {
-                        "Path": "event:/BGM_Credit",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": false,
-                        "Trigger": false
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 9
-                    },
-                    "Name": {
-                        "Name": "BGMObj"
-                    },
-                    "Bulk Sound": {
-                        "Path": "event:/SFX_Menu_BTN_Clicked,event:/SFX_Menu_BTN_Hover",
-                        "Tags": "ButtonClickSFX,ButtonHoverSFX"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        14302600151082817442,
                         10055872472107209861,
                         17008353085049151909,
                         16415915133639986106,
-                        9886554869999165490
+                        12326225187096344837
                     ]
                 },
                 {
                     "Entity": {
-                        "Global Index": 9
-                    },
-                    "Sound": {
-                        "Path": "event:/BGM_Credit",
-                        "Sound Event ID": 0,
-                        "3D Sound": false,
-                        "Triggerable": false,
-                        "Trigger": false
+                        "Global Index": 11
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            10
+                            12
                         ]
                     },
                     "Transform": {
@@ -571,11 +615,91 @@
                         }
                     },
                     "Name": {
-                        "Name": "BGMObj"
+                        "Name": "Light"
                     },
-                    "Bulk Sound": {
-                        "Path": "",
-                        "Tags": ""
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
+                        },
+                        "Diffuse": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
+                        },
+                        "Specular": {
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Camera": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        12326225187096344837
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 12
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": -15.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            12326225187096344837,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 11
+                    },
+                    "Name": {
+                        "Name": "Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 100.0
+                        },
+                        "Diffuse": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 100.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     }
                 }
             ]

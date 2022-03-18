@@ -128,6 +128,10 @@ void InitializeGame()
         ,    bulksound
         ,    cinematic
         ,    ability_collectible
+        ,    particle_emitter
+        ,    particle
+        ,    dialogue_text
+        ,    dialogue_collider
         >();
 
         // Register Components - Add to the end of the list
@@ -140,37 +144,31 @@ void InitializeGame()
         ,   path_system
         ,   physics_system
         ,   parentchild_system
+        ,   window_system
         ,   scripting_system
         ,   collision_system
         ,   sound_system
-        ,   window_system
         ,   ui_system
+        ,   particle_system
         ,   render_system
         ,   animator_system
-        ,   player_spawner_system
-        ,   enemy_spawner_system
         ,   timer_system
-        ,   waypoint_system
-        ,   health_system
-        ,   deck_system
         ,   imgui_system
         ,   camera_system
         ,   icon_system
         ,   player_camera_system
+        ,   dialogue_system
         >();
 
         PPB.RegisterSystems <
             onevent_UnitTrigger_system
         ,   onevent_UnitTriggerStay_system
         ,   onevent_UnitTriggerExit_system
-        ,   onevent_NoHealth_system
-        ,   onevent_UpdateHealth_system
         ,   onevent_ParentDeleted_system
         ,   onevent_ChildDeleted_system
         ,   onevent_ReferencePrefabDeleted_system
         ,   onevent_PointCaptured_system
         ,   onevent_CapturePointDamaged_system
-        ,   onevent_LowDeckCount_system
         ,   onevent_ResetAnimation
         ,   onevent_FallingAnimation
         >();
@@ -214,7 +212,9 @@ void InitializeGame()
             startcutscene_mid_button_script,
             startcutscene_last_button_script,
             nextlevel_level2_button_script,
-            nextlevel_level3_button_script
+            nextlevel_level3_button_script,
+            page7_how2play_next_button_mainmenu_script,
+            page7_how2play_prev_button_mainmenu_script
         >();
 
 
@@ -253,8 +253,6 @@ void InitializeGame()
             PPB.AssignBindingToAction( Keyboard_Movement_Right,     GLFW_KEY_D,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_W,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_S,     input::device::type::id::KEYBOARD );
-            PPB.AssignBindingToAction( Release_Action,              GLFW_KEY_A,     input::device::type::id::KEYBOARD );
-            PPB.AssignBindingToAction( Release_Action,              GLFW_KEY_D,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( Toggle_FPSAction,            GLFW_KEY_E,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Jump_Action,                 GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( ToggleLift_Action,           GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );

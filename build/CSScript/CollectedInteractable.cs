@@ -10,6 +10,8 @@ namespace CSScript
         UInt32 m_InteractableID;                    // Interactable Entity ID
         Sound  m_InteractableSound;                 // Interactable Sound Component
         AbilityCollectible m_InteractableAbility;   // Interactable Ability Component
+        Mesh m_InteractableMesh;                    // Interactable Mesh Component
+        ParticleEmitter m_InteractableEmitter;      // Interactable Particle Emitter Component
 
         Int32 m_JumpID;                             // Jump Unit ID
         Int32 m_PushID;                             // Push Unit ID
@@ -32,6 +34,8 @@ namespace CSScript
             m_InteractableID      = InteractableID;
             m_InteractableSound   = new Sound( m_InteractableID );
             m_InteractableAbility = new AbilityCollectible( m_InteractableID );
+            m_InteractableMesh    = new Mesh(m_InteractableID);
+            m_InteractableEmitter = new ParticleEmitter(m_InteractableID);
 
             m_JumpID = Player.GetJumpUnitID();
             m_PushID = Player.GetPushUnitID();
@@ -43,6 +47,10 @@ namespace CSScript
 
             m_InteractableSound.m_Trigger = false;
             m_Activated = false;
+        }
+
+        public void PreUpdate(float dt)
+        {
         }
 
         public void Update( float dt )
@@ -65,19 +73,25 @@ namespace CSScript
                     {
                         m_JumpUnitController.m_GrowAvailable = true;
                         m_PushUnitController.m_GrowAvailable = true;
+                        m_InteractableAbility.m_Grow = false;
                     }
                     else if ( m_InteractableAbility.m_Shrink )
                     {
                         m_JumpUnitController.m_ShrinkAvailable = true;
                         m_PushUnitController.m_ShrinkAvailable = true;
+                        m_InteractableAbility.m_Shrink = false;
                     }
                     else if ( m_InteractableAbility.m_Freeze )
                     {
                         m_JumpUnitController.m_FreezeAvailable = true;
                         m_PushUnitController.m_FreezeAvailable = true;
+                        m_InteractableAbility.m_Freeze = false;
                     }
 
                     m_Activated = true;
+                    m_InteractableSound.m_Trigger = true;
+                    m_InteractableMesh.m_Active = false;
+                    m_InteractableEmitter.m_Lifetime = 0.0f;
                 }
             }
         }

@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Sound
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Sound(UInt32 id)
         {

@@ -89,6 +89,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\src\Functionality\Dialogue\DialogueManager.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="..\..\src\Functionality\Font\Font.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -169,6 +173,7 @@
     <ClInclude Include="..\..\src\Details\paperback_input_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_logger_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_nbitset_inline.h" />
+    <ClInclude Include="..\..\src\Details\paperback_particle_mgr_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_pool_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_query_inline.h" />
     <ClInclude Include="..\..\src\Details\paperback_statemgr_inline.h" />
@@ -197,6 +202,7 @@
     <ClInclude Include="..\..\src\Functionality\Animation\Animation.h" />
     <ClInclude Include="..\..\src\Functionality\Animation\Bone.h" />
     <ClInclude Include="..\..\src\Functionality\Camera\Camera.h" />
+    <ClInclude Include="..\..\src\Functionality\Dialogue\DialogueManager.h" />
     <ClInclude Include="..\..\src\Functionality\Font\Font.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\MeshBuilder.h" />
     <ClInclude Include="..\..\src\Functionality\Mesh\Model.h" />
@@ -253,6 +259,7 @@
     <ClInclude Include="..\..\src\paperback_input.h" />
     <ClInclude Include="..\..\src\paperback_logger.h" />
     <ClInclude Include="..\..\src\paperback_nbitset.h" />
+    <ClInclude Include="..\..\src\paperback_particle_mgr.h" />
     <ClInclude Include="..\..\src\paperback_pool.h" />
     <ClInclude Include="..\..\src\paperback_query.h" />
     <ClInclude Include="..\..\src\paperback_settings.h" />
@@ -279,6 +286,8 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Child.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_CollisionLayer.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Debug.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_DialogueCollider.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_DialogueText.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Elevator.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Mass.h" />
@@ -286,6 +295,7 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_Name.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Offset.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Parent.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_ParticleEmitter.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_PathFollower.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Player.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_PlayerController.h" />

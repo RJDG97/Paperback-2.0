@@ -103,7 +103,7 @@ void ArchetypeInspector::PrefabPanel()
 
                         DisplayPrefabComponents(Archetype, i, Prefab);
 
-                        if (ImGui::IsItemClicked())
+                        if (ImGui::IsItemClicked() && m_Imgui.m_bPaused )
                         {
                             m_Imgui.m_SelectedEntity.first = Archetype;
                             m_Imgui.m_SelectedEntity.second = i;
@@ -112,7 +112,7 @@ void ArchetypeInspector::PrefabPanel()
                             EDITOR_TRACE_PRINT("Editing Prefab: " + ArchetypeName);
                         }
 
-                        if (ImGui::BeginPopupContextItem())
+                        if (ImGui::BeginPopupContextItem() && m_Imgui.m_bPaused )
                         {
                             //m_Imgui.m_pArchetype = Archetype;
 

@@ -53,7 +53,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -71,15 +71,18 @@ namespace paperback::input::binding
                                 if ( Interaction->m_bPushOrPull ) Animator.m_CurrentAnimationName = "StrongToy_Armature|PushWalk";
                                 else                              Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
 
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
+                                // Play Red Player Walk Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                             }
                             // Jump Unit
                             else
                             {
                                 Animator.m_CurrentAnimationName = "Armature|Walk";
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                                
+                                // Play Blue Player Walk Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
                             Animator.m_PlayOnce = false;
@@ -105,7 +108,7 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = ConvertGLMVec3( Camera.m_Position ) - Transform.m_Position;
                         DirectionalVector.y    = 0.0f;
@@ -123,16 +126,18 @@ namespace paperback::input::binding
                                 if ( Interaction->m_bPushOrPull ) Animator.m_CurrentAnimationName = "StrongToy_Armature|PullWalk";
                                 else                              Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightBackward";
 
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
+                                // Play Red Player Walk Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                             }
                             // Jump Unit
                             else
                             {
                                 Animator.m_CurrentAnimationName = "Armature|Walk";
 
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                                // Play Blue Player Walk Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
                             Animator.m_PlayOnce = false;
@@ -157,7 +162,8 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
+                    if ( Interaction && Interaction->m_bPushOrPull ) return;
+                    if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -179,16 +185,18 @@ namespace paperback::input::binding
                             {
                                 Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
 
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
+                                // Play Red Player Walk Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                             }
                             // Jump Unit
                             else
                             {
                                 Animator.m_CurrentAnimationName = "Armature|Walk";
 
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                                // Play Blue Player Walk Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
                             Animator.m_PlayOnce = false;
@@ -213,7 +221,8 @@ namespace paperback::input::binding
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
                 {
-                    if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
+                    if ( Interaction && Interaction->m_bPushOrPull ) return;
+                    if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
                         auto DirectionalVector = Transform.m_Position - ConvertGLMVec3( Camera.m_Position );
                         DirectionalVector.y    = 0.0f;
@@ -235,16 +244,18 @@ namespace paperback::input::binding
                             {
                                 Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
 
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
+                                // Play Red Player Walk Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                             }
                             // Jump Unit
                             else
                             {
                                 Animator.m_CurrentAnimationName = "Armature|Walk";
 
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                                // Play Blue Player Walk Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
                             Animator.m_PlayOnce = false;
@@ -263,7 +274,7 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera >();
+            Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, boundingbox >();
             Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
@@ -274,7 +285,7 @@ namespace paperback::input::binding
 
                 if ( GP && DebugSys )
                 {
-                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
+                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, mass& Mass, boundingbox& BB, player_interaction* Interaction )
                     {
                         if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
                         {
@@ -289,7 +300,7 @@ namespace paperback::input::binding
                                 auto Normalized        = DirectionalVector.Normalized();
 
                                 // Moving Left
-                                if ( Axes.x > 0.0f )
+                                if ( Axes.x > 0.0f && (!Interaction || Interaction && !Interaction->m_bPushOrPull) )
                                 {
                                     float x      = Normalized.x *  cosf(-90.0f) + Normalized.z * sinf(-90.0f);
                                     float z      = Normalized.x * -sinf(-90.0f) + Normalized.z * cosf(-90.0f);
@@ -299,7 +310,7 @@ namespace paperback::input::binding
                                     RF.m_Momentum += Normalized * Controller.m_MovementForce * Dt;
                                 }
                                 // Moving Right
-                                else if ( Axes.x < 0.0f )
+                                else if ( Axes.x < 0.0f && (!Interaction || Interaction && !Interaction->m_bPushOrPull) )
                                 {
                                     float x      = Normalized.x *  cosf(90.0f) + Normalized.z * sinf(90.0f);
                                     float z      = Normalized.x * -sinf(90.0f) + Normalized.z * cosf(90.0f);
@@ -313,35 +324,32 @@ namespace paperback::input::binding
                                 if ( Interaction && Interaction->m_bPushOrPull && 
                                      Interaction->m_InteractableGID != paperback::settings::invalid_index_v )
                                 {
-                                    // Release Push / Pull Entity
-                                    if ( Axes.x > 0.4f || Axes.x < -0.4f )
+                                    // Find Entity That's Pushable Currently
+                                    const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
+
+                                    if ( Info.m_pArchetype )
                                     {
-                                        // Find Entity That's Pushable Currently
-                                        const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
-
-                                        if ( Info.m_pArchetype )
+                                        // Reset Interactable Object Push Status
+                                        auto [ InterRF, InterMass, InterBB, InterTransform ] = Info.m_pArchetype->FindComponents<rigidforce, mass, boundingbox, transform>( Info.m_PoolDetails );
+                                        if ( InterRF && InterMass && InterBB && InterTransform )
                                         {
-                                            // Reset Interactable Object Push Status
-                                            auto [ Mass, RF ] = Info.m_pArchetype->FindComponents<mass, rigidforce>( Info.m_PoolDetails );
-                                            if ( Mass ) Mass->m_Mass = 0.0f;
-                                            if ( RF ) RF->m_Momentum = paperback::Vector3f{};
+                                            auto AllowableDist = ( InterBB->Max + BB.Max ).MagnitudeSq() * 1.5f;
+                                            auto Dist          = Transform.m_Position - InterTransform->m_Position;
 
-                                            // Reset Player Status
-                                            Interaction->m_InteractableGID = paperback::settings::invalid_index_v;
-                                            Interaction->m_bPushOrPull     = false;
-                                        }
-                                    }
-                                    // Update Push / Pull Entity
-                                    else
-                                    {
-                                        // Find Entity That's Pushable Currently
-                                        const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
-
-                                        if ( Info.m_pArchetype )
-                                        {
-                                            // Reset Interactable Object Push Status
-                                            auto InterRF = Info.m_pArchetype->FindComponent<rigidforce>( Info.m_PoolDetails );
-                                            if ( InterRF ) InterRF->m_Momentum = RF.m_Momentum;
+                                            // If Within Some Set Distance Range
+                                            if ( Dist.MagnitudeSq() >= AllowableDist )
+                                            {
+                                                // Reset Player Status
+                                                Interaction->m_InteractableGID = settings::invalid_index_v;
+                                                Interaction->m_bPushOrPull     = false;
+                                            }
+                                            else
+                                            {
+                                                InterRF->m_Momentum = RF.m_Momentum;
+                                                InterRF->m_CollisionAffected = true;
+                                                InterRF->m_GravityAffected = true;
+                                                InterMass->m_Mass = Mass.m_Mass;
+                                            }
                                         }
                                     }
                                 }
@@ -377,16 +385,18 @@ namespace paperback::input::binding
                                     if ( Interaction->m_bPushOrPull ) Animator.m_CurrentAnimationName = "StrongToy_Armature|PushWalk";
                                     else                              Animator.m_CurrentAnimationName = "StrongToy_Armature|WalkStraightForward";
 
-                                    auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                    if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedWalk");
+                                    // Play Red Player Walk Sound
+                                    m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
+                                    m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
                                 }
                                 // Jump Unit
                                 else
                                 {
                                     Animator.m_CurrentAnimationName = "Armature|Walk";
 
-                                    auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                    if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueWalk");
+                                    // Play Blue Player Walk Sound
+                                    m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueWalk" );
+                                    m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                                 }
 
                                 Animator.m_PlayOnce = false;
@@ -501,8 +511,11 @@ namespace paperback::input::binding
                         Animator.m_CurrentTime = 8.07f;
                         Animator.m_PlayOnce = true;
 
-                        auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                        if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_BlueJump");
+                        m_Coordinator.GetSystem<sound_system>().StopTriggeredSoundEvent("SFX_BlueWalk");
+
+                        // Play Player Jump Sound
+                        m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueJump" );
+                        m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                     }
                 });
             }
@@ -523,9 +536,10 @@ namespace paperback::input::binding
             if ( !m_Coordinator.GetPauseBool() )
             {
                 // Find Player Entity - That Can Push / Pull
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller, boundingbox& BB, mass& Mass, rigidforce& RF ) -> bool
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller
+                                                                         , boundingbox& BB, mass& Mass, rigidforce& RF, rigidbody& RB ) -> bool
                 {
-                    if ( Controller.m_FPSMode ) return false;
+                    if ( !Controller.m_PlayerStatus || Controller.m_FPSMode ) return false;
 
                     // Currently Pushing / Pulling a select Entity
                     if ( !Interaction.m_bPushOrPull && 
@@ -535,9 +549,11 @@ namespace paperback::input::binding
                         PQuery.m_Must.AddFromComponents< pushable, transform, mass, boundingbox, rigidforce >();
 		                PQuery.m_NoneOf.AddFromComponents< prefab >();
 
-                        m_Coordinator.ForEach( m_Coordinator.Search( PQuery ), [&]( paperback::component::entity& InterEntity, transform& InterTransform, mass& InterMass, boundingbox& InterBB, rigidforce& InterRF ) -> bool
+                        //auto NeighbourList = m_Coordinator.QueryNeighbours( BB, Transform );
+
+                        m_Coordinator.ForEach( m_Coordinator.Search(PQuery), [&]( paperback::component::entity& InterEntity, transform& InterTransform
+                                                                                , mass& InterMass, boundingbox& InterBB, rigidforce& InterRF ) -> bool
                         {
-                            //std::cout << "Trying To Pick..." << std::endl;
                             auto AllowableDist = ( InterBB.Max + BB.Max ).MagnitudeSq() * 1.1f;
                             auto Dist          = Transform.m_Position - InterTransform.m_Position;
 
@@ -547,13 +563,15 @@ namespace paperback::input::binding
                                 // Update Interactable's Mass & Friction To Player's
                                 InterMass.m_Mass = Mass.m_Mass;
                                 InterRF.m_dynamicFriction = RF.m_dynamicFriction;
+                                InterRF.m_CollisionAffected = true;
+                                InterRF.m_GravityAffected = true;
 
                                 // Reset Player Status
                                 Interaction.m_InteractableGID = InterEntity.m_GlobalIndex;
                                 Interaction.m_bPushOrPull     = true;
 
-                                auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
-                                if (UI_Sys) UI_Sys->TriggerSoundEntity("SFX_RedGrab");
+                                // Play Player Grab Interactable Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedGrab" );
 
                                 // Found Interactable Nearby - *Note: ForEach Return Type
                                 return true; // Return True - Terminates ForEach Loop Early
@@ -568,16 +586,23 @@ namespace paperback::input::binding
                     }
                     else
                     {
+                        if ( RB.m_Velocity.y <= -0.1f ) return false;
+
                         // Find Entity That's Pushable Currently
                         const auto& Info = m_Coordinator.GetEntityInfo( Interaction.m_InteractableGID );
 
                         if ( Info.m_pArchetype )
                         {
                             // Reset Interactable Object Push Status
-                            auto [ Mass, RF ] = Info.m_pArchetype->FindComponents<mass, rigidforce>( Info.m_PoolDetails );
+                            auto [ Mass, RF, InterRB ] = Info.m_pArchetype->FindComponents<mass, rigidforce, rigidbody>( Info.m_PoolDetails );
+                            if ( InterRB && InterRB->m_Velocity.y <= -0.1f ) return false;
                             if ( Mass ) Mass->m_Mass = 0.0f;
-                            if ( RF ) RF->m_Momentum = paperback::Vector3f{};
-
+                            if (RF)
+                            {
+                                RF->m_Momentum = paperback::Vector3f{};
+                                RF->m_CollisionAffected = false;
+                                RF->m_GravityAffected = false;
+                            }
                             // Reset Player Status
                             Interaction.m_InteractableGID = paperback::settings::invalid_index_v;
                             Interaction.m_bPushOrPull     = false;
@@ -621,8 +646,12 @@ namespace paperback::input::binding
                             // Reset Interactable Object Push Status
                             auto [ Mass, RF ] = Info.m_pArchetype->FindComponents<mass, rigidforce>( Info.m_PoolDetails );
                             if ( Mass ) Mass->m_Mass = 0.0f;
-                            if ( RF ) RF->m_Momentum = paperback::Vector3f{};
-
+                            if (RF)
+                            {
+                                RF->m_Momentum = paperback::Vector3f{};
+                                RF->m_CollisionAffected = false;
+                                RF->m_GravityAffected = false;
+                            }
                             // Reset Player Status
                             Interaction.m_InteractableGID = paperback::settings::invalid_index_v;
                             Interaction.m_bPushOrPull     = false;
@@ -644,16 +673,16 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, transform, player_interaction >();
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, transform, player_interaction, boundingbox >();
 		    Query.m_NoneOf.AddFromComponents< prefab >();
 
             // Game Is Not Paused
             if ( !m_Coordinator.GetPauseBool() )
             {
                 // Find Player Entity - That Can Push / Pull
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller, rigidforce& RF ) -> bool
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, player_interaction& Interaction, player_controller& Controller, rigidforce& RF, mass& Mass, boundingbox& BB ) -> bool
                 {
-                    if ( Controller.m_FPSMode ) return false;
+                    if ( !Controller.m_PlayerStatus || Controller.m_FPSMode ) return false;
 
                     // Currently Pushing / Pulling a select Entity
                     if ( Interaction.m_bPushOrPull && 
@@ -665,8 +694,27 @@ namespace paperback::input::binding
                         if ( Info.m_pArchetype )
                         {
                             // Reset Interactable Object Push Status
-                            auto InterRF = Info.m_pArchetype->FindComponent<rigidforce>( Info.m_PoolDetails );
-                            if ( InterRF ) InterRF->m_Momentum = RF.m_Momentum;
+                            auto [ InterRF, InterMass, InterBB, InterTransform ] = Info.m_pArchetype->FindComponents<rigidforce, mass, boundingbox, transform>( Info.m_PoolDetails );
+                            if ( InterRF && InterMass && InterBB && InterTransform )
+                            {
+                                auto AllowableDist = ( InterBB->Max + BB.Max ).MagnitudeSq() * 1.5f;
+                                auto Dist          = Transform.m_Position - InterTransform->m_Position;
+
+                                // If Within Some Set Distance Range
+                                if ( Dist.MagnitudeSq() >= AllowableDist )
+                                {
+                                    // Reset Player Status
+                                    Interaction.m_InteractableGID = settings::invalid_index_v;
+                                    Interaction.m_bPushOrPull     = false;
+                                }
+                                else
+                                {
+                                    InterRF->m_Momentum = RF.m_Momentum;
+                                    InterRF->m_CollisionAffected = true;
+                                    InterRF->m_GravityAffected = true;
+                                    InterMass->m_Mass = Mass.m_Mass;
+                                }
+                            }
 
                             return true;
                         }
@@ -747,6 +795,9 @@ namespace paperback::input::binding
                         }
                     }
                 });
+
+                // Play FPS Mode Sound
+                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_ToggleFPSMode" );
             }
 
         END_INPUT_ACTION
@@ -759,20 +810,46 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
+		    Query.m_OneOf.AddFromComponents< player_interaction, paperback::component::entity >();
 		    Query.m_NoneOf.AddFromComponents< prefab >();
 
             bool ValidSwap = true;
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera ) -> bool
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, rigidforce& RF, rigidbody& RB, mass& Mass, player_interaction* Interaction ) -> bool
                 {
                     // FPS Mode Is Active - Do Not Allow Player Swap
-                    if ( Controller.m_PlayerStatus && Controller.m_FPSMode && Camera.m_Active )
+                    if ( Controller.m_PlayerStatus && Camera.m_Active )
                     {
-                        ValidSwap = false;
-                        return true;
+                        // In FPS Mode / Strong Unit Falling While Pushing - Invalid Toggle
+                        if ( Controller.m_FPSMode || (Interaction && Interaction->m_bPushOrPull && RB.m_Velocity.y <= -0.1f) )
+                        {
+                            ValidSwap = false;
+                            return true;
+                        }
+                        if ( Interaction && Interaction->m_bPushOrPull )
+                        {
+                            // Find Entity That's Pushable Currently
+                            const auto& Info = m_Coordinator.GetEntityInfo( Interaction->m_InteractableGID );
+
+                            if ( Info.m_pArchetype )
+                            {
+                                // Reset Interactable Object Push Status
+                                auto [ InterMass, InterRF ] = Info.m_pArchetype->FindComponents<mass, rigidforce>( Info.m_PoolDetails );
+
+                                if ( InterMass && InterRF )
+                                {
+                                    InterRF->m_Momentum = paperback::Vector3f{};
+
+                                    // Reset Player Push/Pull Status
+                                    Interaction->m_bPushOrPull = false;
+                                    Interaction->m_InteractableGID = settings::invalid_index_v;
+                                }
+                            }
+                        }
                     }
+
                     return false;
                 });
 
@@ -790,6 +867,9 @@ namespace paperback::input::binding
                         }
                     });
                 }
+
+                // Play Toggle Player Sound
+                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_TogglePlayer" );
             }
 
         END_INPUT_ACTION

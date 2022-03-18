@@ -32,6 +32,9 @@
 #include "Scripts/Scripts_PlayerController.h"
 #include "Scripts/Scripts_AbilityCollectible.h"
 #include "Scripts/Scripts_Tag.h"
+#include "Scripts/Scripts_DialogueCollider.h"
+#include "Scripts/Scripts_DialogueText.h"
+#include "Scripts/Scripts_ParticleEmitter.h"
 
 namespace MONO_INTERNALS
 {
@@ -68,5 +71,8 @@ namespace MONO_INTERNALS
 		MONO_PUSHABLE::AddInternalCall();
 		MONO_PLAYERCONTROLLER::AddInternalCall();
 		MONO_ABILITYCOLLECTIBLE::AddInternalCall();
+		MONO_DIALOGUECOLLIDER::AddInternalCall();
+		MONO_DIALOGUETEXT::AddInternalCall();
+		MONO_PARTICLEEMITTER::AddInternalCall();
 	}
 }

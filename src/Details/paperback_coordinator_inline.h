@@ -9,7 +9,9 @@ namespace paperback::coordinator
 
 	instance::instance( void ) noexcept
 	{
+		#ifndef PAPERBACK_INSTALLER_BUILD
 		paperback::logger::Init();
+		#endif
 
 		m_CompMgr.RegisterComponent<paperback::component::entity>();
 	}
@@ -551,9 +553,11 @@ namespace paperback::coordinator
             const auto&  Info = GetEntityInfo( GID );		  // Get Entity Info
 
 			FuncQuery.AddQueryFromFunction<T_FUNCTION>();     // Assign Query
+			FuncQuery.m_NoneOf.AddFromComponents<prefab>( );  // Exclude Prefab Entities
 
             if ( Info.m_pArchetype && Info.m_pArchetype->GetComponentBits().Compare( FuncQuery.m_Must )
-				                   && Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) )
+				                   && ( Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) || FuncQuery.m_OneOf.Empty() )
+				                   && Info.m_pArchetype->GetComponentBits().NoneOf( FuncQuery.m_NoneOf ) )
             {
 				Info.m_pArchetype->AccessGuard( [&]
 				{
@@ -640,9 +644,11 @@ namespace paperback::coordinator
             const auto&  Info = GetEntityInfo( GID );		  // Get Entity Info
 
 			FuncQuery.AddQueryFromFunction<T_FUNCTION>();     // Assign Query
+			FuncQuery.m_NoneOf.AddFromComponents<prefab>( );  // Exclude Prefab Entities
 
             if ( Info.m_pArchetype && Info.m_pArchetype->GetComponentBits().Compare( FuncQuery.m_Must )
-				                   && Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) )
+				                   && ( Info.m_pArchetype->GetComponentBits().OneOf( FuncQuery.m_OneOf ) || FuncQuery.m_OneOf.Empty() )
+				                   && Info.m_pArchetype->GetComponentBits().NoneOf( FuncQuery.m_NoneOf ) )
             {
 				Info.m_pArchetype->AccessGuard( [&]
 				{
@@ -865,7 +871,7 @@ namespace paperback::coordinator
 	//-----------------------------------
 	//         Query AABB Tree
 	//-----------------------------------
-	
+
 	PPB_INLINE
     physics::AABB_Tree::NeighbourList instance::QueryNeighbours( const boundingbox& AABB
                                                                , const transform&   Transform ) noexcept
@@ -897,6 +903,18 @@ namespace paperback::coordinator
 	//         Update AABB Tree
 	//-----------------------------------
 	
+	PPB_INLINE
+	void instance::InitializeTree( void ) noexcept
+	{
+		m_AABBTree.Initialize();
+	}
+
+	PPB_INLINE
+	void instance::ResetTree( void ) noexcept
+	{
+		m_AABBTree.Reset();
+	}
+
 	PPB_INLINE
     bool instance::UpdateNode( const boundingbox& AABB
                              , const transform&   Transform
@@ -1043,6 +1061,21 @@ namespace paperback::coordinator
 		return m_Input.IsKeyPressUp( Key );
 	}
 
+	bool instance::IsGamepadButtonPress( int Key ) noexcept
+	{
+		return m_Input.IsGamepadButtonPress( Key );
+	}
+
+	bool instance::IsGamepadButtonPressDown( int Key ) noexcept
+	{
+		return m_Input.IsGamepadButtonPressDown( Key );
+	}
+
+	bool instance::IsGamepadButtonPressUp( int Key ) noexcept
+	{
+		return m_Input.IsGamepadButtonPressUp( Key );
+	}
+
 	bool instance::IsMousePress( int Key ) noexcept
 	{
 		return m_Input.IsMousePress( Key );
@@ -1082,6 +1115,48 @@ namespace paperback::coordinator
 	{
 		return m_Input.GetViewportMousePosition(projection, view);
 	}
+
+
+	//-----------------------------------
+	//              Input
+	//-----------------------------------
+	
+	PPB_INLINE
+    void instance::InitializeParticleMgr( void ) noexcept
+	{
+		m_ParticleMgr.Initialize( );
+	}
+
+    PPB_INLINE
+    void instance::ResetParticleMgr( void ) noexcept
+	{
+		m_ParticleMgr.Reset( );
+	}
+
+	PPB_INLINE
+    particles::manager::ParticleList instance::RequestParticles( const int            Quantity
+                                                               , const paperback::u32 EmitterGID ) noexcept
+	{
+		return m_ParticleMgr.RequestParticles( Quantity
+											 , EmitterGID );
+	}
+
+	PPB_INLINE
+    void instance::InitializeParticles( component::entity&                 EmitterEntity
+                                      , particle_emitter&                  Emitter
+                                      , particles::manager::ParticleList   ParticleIDList ) noexcept
+	{
+		m_ParticleMgr.InitializeParticles( EmitterEntity
+										 , Emitter
+										 , ParticleIDList );
+	}
+
+    PPB_INLINE
+    void instance::ReturnDeadParticle( const paperback::u32 ParticleGID ) noexcept
+	{
+		m_ParticleMgr.ReturnDeadParticle( ParticleGID );
+	}
+
 
 	//-----------------------------------
     //         Event Broadcast

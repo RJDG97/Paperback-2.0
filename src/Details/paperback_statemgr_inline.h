@@ -30,9 +30,9 @@ namespace paperback::coordinator
 		Jfile.LoadEntities("Entities");
 		Jfile.EndReader();
 
-		PPB.ReloadSystems();
-
 		PPB.LoadEntityInfo(m_InfoPath);
+
+		PPB.ReloadSystems();
 
 		if (!PPB.VerifyState("Editor"))
 			PPB.LoadTextures(m_TexPath);

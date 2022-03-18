@@ -44,11 +44,32 @@ namespace MONO_ABILITYCOLLECTIBLE
 		return false;
 	}
 
+	MONO_EXPORT void SetGrowStatus( void* address, bool status )
+	{
+		if (address)
+			reinterpret_cast<ability_collectible*>(address)->m_Grow = status;
+	}
+
+	MONO_EXPORT void SetShrinkStatus( void* address, bool status )
+	{
+		if (address)
+			reinterpret_cast<ability_collectible*>(address)->m_Shrink = status;
+	}
+
+	MONO_EXPORT void SetFreezeStatus( void* address, bool status )
+	{
+		if (address)
+			reinterpret_cast<ability_collectible*>(address)->m_Freeze = status;
+	}
+
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.AbilityCollectible::getaddress(uint)",       &MONO_ABILITYCOLLECTIBLE::GetAddress);
 		mono_add_internal_call("CSScript.AbilityCollectible::GetGrowStatus(void*)",   &MONO_ABILITYCOLLECTIBLE::GetGrowStatus);
 		mono_add_internal_call("CSScript.AbilityCollectible::GetShrinkStatus(void*)", &MONO_ABILITYCOLLECTIBLE::GetShrinkStatus);
 		mono_add_internal_call("CSScript.AbilityCollectible::GetFreezeStatus(void*)", &MONO_ABILITYCOLLECTIBLE::GetFreezeStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::SetGrowStatus(void*,bool)", &MONO_ABILITYCOLLECTIBLE::SetGrowStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::SetShrinkStatus(void*,bool)", &MONO_ABILITYCOLLECTIBLE::SetShrinkStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::SetFreezeStatus(void*,bool)", &MONO_ABILITYCOLLECTIBLE::SetFreezeStatus);
 	}
 }

@@ -15,14 +15,14 @@ struct rigidforce
     paperback::Vector3f m_minthreshold = paperback::Vector3f(0.5f, 0.5f, 0.5f);
     float m_threshold = .25f;
 
-    float m_staticFriction;							        // -- Friction when static
-    float m_dynamicFriction;                                // -- Friction when moving
-    paperback::Vector3f m_Forces;						    // -- Sum of Forces of rigidbody
-    paperback::Vector3f m_Momentum;                         // -- Momentum of rigidbody
-    float m_Restitution;                                    // -- 0.f to 1.f -> 0 = no bounce, 1 = bounce                                           //NEW
-    bool m_GravityActive;                                   // used to check if gravity has to be applied
-    bool m_GravityAffected = true;                          // used to define if an object should be affected by gravity
-    bool m_CollisionAffected = false;                       // used to define an object that is moveable but cannot be affected by collision response                                   
+    float m_staticFriction = 0.0f;						         // -- Friction when static
+    float m_dynamicFriction = 0.0f;                              // -- Friction when moving
+    paperback::Vector3f m_Forces = paperback::Vector3f{};	     // -- Sum of Forces of rigidbody
+    paperback::Vector3f m_Momentum = paperback::Vector3f{};      // -- Momentum of rigidbody
+    float m_Restitution = 0.0f;                                  // -- 0.f to 1.f -> 0 = no bounce, 1 = bounce
+    bool m_GravityActive;                                        // used to check if gravity has to be applied
+    bool m_GravityAffected = true;                               // used to define if an object should be affected by gravity
+    bool m_CollisionAffected = false;                            // used to define an object that is moveable but cannot be affected by collision response                                   
 };
 
 

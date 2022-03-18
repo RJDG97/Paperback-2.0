@@ -12,7 +12,6 @@ namespace CSScript
     public unsafe class Rigidbody
     {
         private void* m_Address;
-        private UInt32 m_ID;
 
         public Rigidbody(UInt32 id)
         {
@@ -43,6 +42,12 @@ namespace CSScript
             }
         }
 
+        public float VelocityMagSq()
+        {
+
+            return VelocityMagnitudeSquared(m_Address);
+        }
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
@@ -57,5 +62,8 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void setvelocity(void* address, float x, float y, float z);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static float VelocityMagnitudeSquared(void* address);
     }
 }

@@ -38,6 +38,7 @@ namespace paperback::input
         m_PlayerDeviceMap.emplace( device::info_v<T_DEVICE>.m_Guid.m_Value
                                  , m_PlayerDeviceList.size() - 1 );
 
+		#ifdef PAPERBACK_DEBUG
 		std::cout << "Device ( "
 			      << device::info_v<T_DEVICE>.m_pName
 			      << " ): Registered Successfully"
@@ -47,6 +48,7 @@ namespace paperback::input
 		          << " Guid: "
 		          << device::info_v<T_DEVICE>.m_Guid.m_Value
 		          << std::endl;
+		#endif
 
 		return std::bit_cast<T_DEVICE*>( m_PlayerDeviceList.back().second.get() );
     }
@@ -285,6 +287,44 @@ namespace paperback::input
 			auto KeyCode = m_Keyboard->m_State;
 			return KeyCode.m_Current[Key] == GLFW_RELEASE && 
 				   KeyCode.m_Previous[Key] != KeyCode.m_Current[Key];
+		}
+		return false;
+	}
+
+
+	//-----------------------------------
+	//            Gamepad
+	//-----------------------------------
+
+	bool manager::IsGamepadButtonPress(int Key) const noexcept
+	{
+		if ( m_Gamepad )
+		{
+			auto GamepadCode = m_Gamepad->m_State;
+			return GamepadCode.m_Current[Key] == GLFW_PRESS &&
+				   GamepadCode.m_Previous[Key] != GLFW_PRESS;
+		}
+		return false;
+	}
+
+	bool manager::IsGamepadButtonPressDown(int Key) const noexcept
+	{
+		if ( m_Gamepad )
+		{
+			auto GamepadCode = m_Gamepad->m_State;
+			return ( GamepadCode.m_Current[Key] == GLFW_PRESS && 
+				     GamepadCode.m_Previous[Key] == GLFW_PRESS );
+		}
+		return false;
+	}
+
+	bool manager::IsGamepadButtonPressUp(int Key) const noexcept
+	{
+		if ( m_Gamepad )
+		{
+			auto GamepadCode = m_Keyboard->m_State;
+			return GamepadCode.m_Current[Key] == GLFW_RELEASE && 
+				   GamepadCode.m_Previous[Key] != GamepadCode.m_Current[Key];
 		}
 		return false;
 	}
