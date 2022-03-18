@@ -233,6 +233,9 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("InstructionManualPage02", "../../resources/models/nui/InstructionManualPage02.nui");
 	m_Resources.Load3DMeshNUI("InstructionManualPage03", "../../resources/models/nui/InstructionManualPage03.nui");
 	m_Resources.Load3DMeshNUI("InstructionManualPage04", "../../resources/models/nui/InstructionManualPage04.nui");
+	m_Resources.Load3DMeshNUI("InstructionManualPage05", "../../resources/models/nui/InstructionManualPage05.nui");
+	m_Resources.Load3DMeshNUI("InstructionManualPage06", "../../resources/models/nui/InstructionManualPage06.nui");
+	m_Resources.Load3DMeshNUI("InstructionManualPage07", "../../resources/models/nui/InstructionManualPage07.nui");
 
 	m_Resources.Load3DMeshNUI("InteractableBlock2x2", "../../resources/models/nui/InteractableBlock2x2.nui");
 	m_Resources.Load3DMeshNUI("InteractableBlock2x2_Grow", "../../resources/models/nui/InteractableBlock2x2Grow.nui");
