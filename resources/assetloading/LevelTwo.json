@@ -46881,7 +46881,7 @@
                         "Current Animation": "CraneElevator_Armature|CraneElevatorRaise",
                         "Play Once": false,
                         "Pause Animation": false,
-                        "Current Time": 20.0,
+                        "Current Time": 14.999980926513672,
                         "Pause At Time": 20.0,
                         "Reversed": false
                     },
@@ -46945,7 +46945,8 @@
                         "Modified Components": [
                             16113566265477431037,
                             8376831551428810534,
-                            14302600151082817442
+                            14302600151082817442,
+                            15204223096342135753
                         ],
                         "Prefab GID": 152
                     },
@@ -46957,7 +46958,7 @@
                         "Inv Mass": 0.0
                     },
                     "Elevator": {
-                        "Start Time": 20.0,
+                        "Start Time": 15.0,
                         "Stop Time": 40.0,
                         "Unit Under": false
                     }
