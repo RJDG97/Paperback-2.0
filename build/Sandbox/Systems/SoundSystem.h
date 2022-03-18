@@ -144,10 +144,11 @@ public:
         {
 
             //only process sounds that are tagged and added through bulk sound component
-            if (!m_SoundFiles[i].m_IsStandalone && m_SoundFiles[i].m_Tag != Tag)
-                continue;
+            if (m_SoundFiles[i].m_IsStandalone && m_SoundFiles[i].m_Tag == Tag)
+            {
 
-            m_SoundFiles[i].m_ForceStop = true;
+                m_SoundFiles[i].m_ForceStop = true;
+            }
         }
     }
 
@@ -408,21 +409,30 @@ public:
 
 
                 //if sound is stopped or yet to begin, check trigger status
-                if (be == FMOD_STUDIO_PLAYBACK_STOPPED && Sound.m_Trigger)
+                if (be == FMOD_STUDIO_PLAYBACK_STOPPED && Sound.m_Trigger && !Sound.m_ForceStop)
                 {
 
                     //trigger is active, play the sound and reset trigger
                     Sound.m_Trigger = false;
                     sound_check->m_pSound->start();
                 }
-                if (Sound.m_ForceStop)
+                else if (Sound.m_ForceStop)
                 {
+
+                    if (Sound.m_Trigger)
+                        Sound.m_Trigger = false;
+
                     if (be == FMOD_STUDIO_PLAYBACK_STOPPED || be == FMOD_STUDIO_PLAYBACK_STOPPING)
                     {
 
                         //not triggered but force stop
                         //reset
                         Sound.m_ForceStop = false;
+                    }
+                    else if (be == FMOD_STUDIO_PLAYBACK_STARTING)
+                    {
+
+                        Sound.m_ForceStop = true;
                     }
                     else //sound_check->m_ForceStop)
                     {
@@ -522,24 +532,34 @@ public:
 
 
             //if sound is stopped or yet to begin, check trigger status
-            if (be == FMOD_STUDIO_PLAYBACK_STOPPED && sound.m_Trigger)
+            if (be == FMOD_STUDIO_PLAYBACK_STOPPED && sound.m_Trigger && !sound.m_ForceStop)
             {
 
                 //trigger is active, play the sound and reset trigger
                 sound.m_Trigger = false;
                 sound.m_pSound->start();
             }
-            if (sound.m_ForceStop)
+            else if (sound.m_ForceStop)
             {
+
+                if (sound.m_Trigger)
+                    sound.m_Trigger = false;
+
                 if (be == FMOD_STUDIO_PLAYBACK_STOPPED || be == FMOD_STUDIO_PLAYBACK_STOPPING)
                 {
 
                     //not triggered but force stop
                     //reset
                     sound.m_ForceStop = false;
+                    
 
                     if (sound.m_Is3D)
                         UpdateEvent3DAttributes(sound.m_pSound, paperback::Vector3f{}, paperback::Vector3f{});
+                }
+                else if (be == FMOD_STUDIO_PLAYBACK_STARTING)
+                {
+
+                    sound.m_ForceStop = true;
                 }
                 else //sound_check->m_ForceStop)
                 {
