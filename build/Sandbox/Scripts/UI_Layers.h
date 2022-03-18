@@ -14,5 +14,6 @@ enum UI_LAYER
 	HOWTOPLAY3,		//for page 3 of how to play
 	HOWTOPLAY4,		//for page 4 of how to play
 	HOWTOPLAY5,		//for page 5 of how to play
-	HOWTOPLAY6		//for page 6 of how to play
+	HOWTOPLAY6,		//for page 6 of how to play
+	HOWTOPLAY7		//for page 7 of how to play
 };

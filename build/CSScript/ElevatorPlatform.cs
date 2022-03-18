@@ -96,6 +96,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            Debug.Log(ID.ToString() + " " + m_JumpUnitID.ToString() + " " + m_PushUnitID.ToString());
             if (ID == m_JumpUnitID)
             {
                 Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
