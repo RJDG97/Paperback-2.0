@@ -196,10 +196,8 @@ struct render_system : paperback::system::instance
 				//transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
 				transform = glm::scale(transform, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
 
-				instanceList.push_back(transform);
+				instances[Emitter.m_TextureName].push_back(transform);
 			});
-
-			instances[Emitter.m_TextureName] = instanceList;
 		});
 
 		Renderer::GetInstanced().Render(objects, lights, instances, cam, m_bGamma, uis, texts, m_Camera2D, &points);
