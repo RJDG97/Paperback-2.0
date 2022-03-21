@@ -694,6 +694,9 @@ struct imgui_system : paperback::system::instance
 
             m_bPaused = false;
 
+            ResetScene();
+            PPB.OpenEditScene("../../resources/temp/TempScene.json", "../../resources/temp/TempEntityInfo.json");
+
             EDITOR_TRACE_PRINT("Playing Active Scene...");
 
             m_Type = FileActivity::NONE;
