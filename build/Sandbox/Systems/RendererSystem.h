@@ -47,7 +47,7 @@ struct render_system : paperback::system::instance
 
 		Query.m_Must.AddFromComponents<transform, mesh, scale, rotation>();
 		Query.m_OneOf.AddFromComponents<animator, socketed, mesh>();
-		Query.m_NoneOf.AddFromComponents<prefab>();
+		Query.m_NoneOf.AddFromComponents<prefab, particle>();
 
 		QueryLight.m_Must.AddFromComponents<transform, light>();
 		QueryLight.m_NoneOf.AddFromComponents<prefab>();
@@ -191,9 +191,9 @@ struct render_system : paperback::system::instance
 				glm::mat4 transform{ 1.0f };
 
 				transform = glm::translate(transform, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z });
-				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
-				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
-				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
+				//transform = glm::rotate(transform, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
+				//transform = glm::rotate(transform, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
+				//transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
 				transform = glm::scale(transform, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
 
 				instanceList.push_back(transform);
