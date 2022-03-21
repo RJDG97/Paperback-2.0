@@ -114,7 +114,7 @@ namespace CSScript
                 Player.TogglePlayers();
             }
 
-            if (!m_AbilityActive && m_RayCastTimer < 0.0f && (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)))
+            if (!m_AbilityActive && m_RayCastTimer < 0.0f && (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)))
             {
                 if (m_JumpUnitPC.m_FPSMode)
                 {
@@ -138,7 +138,7 @@ namespace CSScript
                     m_AbilitySwapCoolDownTimer -= dt;
                 }
 
-                if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)))
+                if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)))
                 {
                     m_AbilitySwapCoolDownTimer = 0.1f;
                     Ability first = m_Abilities[0];
