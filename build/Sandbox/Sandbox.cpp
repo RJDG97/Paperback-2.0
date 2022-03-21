@@ -253,7 +253,6 @@ void InitializeGame()
             PPB.AssignBindingToAction( Keyboard_Movement_Right,     GLFW_KEY_D,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_W,     input::device::type::id::KEYBOARD );
             PPB.AssignBindingToAction( PushPull_Action,             GLFW_KEY_S,     input::device::type::id::KEYBOARD );
-            PPB.AssignBindingToAction( Toggle_FPSAction,            GLFW_KEY_E,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Jump_Action,                 GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( ToggleLift_Action,           GLFW_KEY_SPACE, input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Toggle_Players,              GLFW_KEY_Q,     input::device::type::id::KEYBOARD, paperback::input::action::BroadcastStatus::PRESSED );
@@ -262,7 +261,9 @@ void InitializeGame()
 
 
             // Mouse Bindings
-            PPB.AssignBindingToAction( Mouse_Rotate, GLFW_MOUSE_BUTTON_3, input::device::type::id::MOUSE );
+            PPB.AssignBindingToAction( Mouse_Rotate,      GLFW_MOUSE_BUTTON_3,  input::device::type::id::MOUSE );
+            PPB.AssignBindingToAction( Toggle_FPSAction,  GLFW_MOUSE_BUTTON_2,  input::device::type::id::MOUSE, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Toggle_FPSAction,  GLFW_MOUSE_BUTTON_2,  input::device::type::id::MOUSE, paperback::input::action::BroadcastStatus::RELEASED );
 
 
             // Gamepad Bindings
@@ -270,7 +271,8 @@ void InitializeGame()
             PPB.AssignBindingToAction( Gamepad_Rotate,    GLFW_GAMEPAD_BUTTON_RIGHT_THUMB, input::device::type::id::GAMEPAD );
             PPB.AssignBindingToAction( Jump_Action,       GLFW_GAMEPAD_BUTTON_B,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( ToggleLift_Action, GLFW_GAMEPAD_BUTTON_B,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Toggle_FPSAction,  GLFW_GAMEPAD_BUTTON_A,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Toggle_FPSAction,  GLFW_GAMEPAD_BUTTON_LEFT_BUMPER, input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Toggle_FPSAction,  GLFW_GAMEPAD_BUTTON_LEFT_BUMPER, input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::RELEASED );
             PPB.AssignBindingToAction( Toggle_Players,    GLFW_GAMEPAD_BUTTON_Y,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
         }
     }

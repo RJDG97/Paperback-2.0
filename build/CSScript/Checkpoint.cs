@@ -125,13 +125,19 @@ namespace CSScript
         {
             if (!m_Activated && m_RedCPID != -1 && m_BlueCPID != -1)
             {
-                if (ID == m_JumpID || ID == m_PushID)
+                if (ID == m_JumpID)
                 {
                     m_Sound.m_Trigger = true;
                     m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                    m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                    m_Activated = true;
+                }
+
+                else if (ID == m_PushID)
+                {
+                    m_Sound.m_Trigger = true;
                     m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
                     m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
-                    m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
                     m_Activated = true;
                 }
             }

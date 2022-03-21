@@ -114,7 +114,7 @@ namespace CSScript
                 Player.TogglePlayers();
             }
 
-            if (!m_AbilityActive && m_RayCastTimer < 0.0f && (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)))
+            if (!m_AbilityActive && m_RayCastTimer < 0.0f && (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)))
             {
                 if (m_JumpUnitPC.m_FPSMode)
                 {
@@ -138,7 +138,7 @@ namespace CSScript
                     m_AbilitySwapCoolDownTimer -= dt;
                 }
 
-                if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)))
+                if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)))
                 {
                     m_AbilitySwapCoolDownTimer = 0.1f;
                     Ability first = m_Abilities[0];
@@ -390,7 +390,7 @@ namespace CSScript
                         {
                             Name name = new Name(collided_id);
 
-                            if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard" /*&& (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable)*/ )
+                            if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard")
                             {
                                 PathFollower path_follower = new PathFollower(collided_id);
 
@@ -446,7 +446,7 @@ namespace CSScript
                             {
                                 Pushable pushable = new Pushable(collided_id);
 
-                                if ( pushable.m_State != ((uint)PushableState.GROWN) /*&& (m_JumpUnitPC.m_GrowAvailable || m_PushUnitPC.m_GrowAvailable)*/ )
+                                if ( pushable.m_State != ((uint)PushableState.GROWN))
                                 {
                                     Grow(collided_id);
 
@@ -470,7 +470,7 @@ namespace CSScript
                             {
                                 Pushable pushable = new Pushable(collided_id);
 
-                                if (pushable.m_State != ((uint)PushableState.SHRUNK) /*&& (m_JumpUnitPC.m_ShrinkAvailable || m_PushUnitPC.m_ShrinkAvailable)*/ )
+                                if (pushable.m_State != ((uint)PushableState.SHRUNK))
                                 {
                                     Shrink(collided_id);
                                     Mesh collided_mesh = new Mesh(collided_id);
