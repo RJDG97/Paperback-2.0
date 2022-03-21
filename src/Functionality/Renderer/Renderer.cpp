@@ -1553,10 +1553,6 @@ void Renderer::InstancedPass(const std::unordered_map<std::string_view, std::vec
 	m_Resources.m_Shaders["Instanced"].SetUniform("uView", const_cast<glm::mat4&>(view));
 	m_Resources.m_Shaders["Instanced"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
 
-	// Create instancing buffer
-	GLuint buffer;
-	glCreateBuffers(1, &buffer);
-	glVertexArrayVertexBuffer(m_InstancedVAO, 1, buffer, 0, sizeof(glm::mat4));
 
 	for (const auto& instances : Instances)
 	{
@@ -1576,15 +1572,21 @@ void Renderer::InstancedPass(const std::unordered_map<std::string_view, std::vec
 			m_Resources.m_Shaders["Instanced"].SetUniform("uTexturedDiffuse", false);
 		}
 
+
+		// Create instancing buffer
+		GLuint buffer;
+		glCreateBuffers(1, &buffer);
+		glVertexArrayVertexBuffer(m_InstancedVAO, 1, buffer, 0, sizeof(glm::mat4));
+
 		// Set instancing buffer
 		glNamedBufferStorage(buffer, sizeof(glm::mat4) * instances.second.size(), instances.second.data(), GL_DYNAMIC_STORAGE_BIT);
 
 		// Instanced rendering
 		glDrawElementsInstanced(model.GetPrimitive(), model.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL, instances.second.size());
-	}
 
-	// Delete instancing buffer
-	glDeleteBuffers(1, &buffer);
+		// Delete instancing buffer
+		glDeleteBuffers(1, &buffer);
+	}
 
 	// Unbind vao
 	glBindVertexArray(0);
