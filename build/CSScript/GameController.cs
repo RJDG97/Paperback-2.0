@@ -16,7 +16,8 @@ namespace CSScript
         PlayerController m_JumpUnitPC;
         PlayerController m_PushUnitPC;
         Sound  m_SFX;
-        float m_CooldownTimer;
+        float m_FlickerCooldownDuration = 0.1f;
+        float m_FlickerCooldownTimer;
 
         enum Ability
         {
@@ -168,23 +169,36 @@ namespace CSScript
                                 path_follower.m_PauseTravel = false;
                             
                                 Mesh collided_mesh = new Mesh(m_SelectedID);
-                                collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, collided_mesh.m_Model.Length) == "_Freeze")
+                                {
+                                    collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                }
                             }
 
                             else if (name.m_Name == "Platform")
                             {
                                 Child child = new Child(m_SelectedID);
                                 Animator parent_animator = new Animator((UInt32)child.m_ParentID);
+
                                 Mesh parent_mesh = new Mesh((UInt32)child.m_ParentID);
-                                parent_mesh.m_Model = parent_mesh.m_Model.Substring(0, parent_mesh.m_Model.Length - 7);
+                                if (parent_mesh.m_Model.Substring(parent_mesh.m_Model.Length - 7, parent_mesh.m_Model.Length) == "_Freeze")
+                                {
+                                    parent_mesh.m_Model = parent_mesh.m_Model.Substring(0, parent_mesh.m_Model.Length - 7);
+                                }
+
                                 parent_animator.m_PauseAnimation = false;
                             }
 
                             else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                             {
                                 Animator animator = new Animator(m_SelectedID);
+
                                 Mesh collided_mesh = new Mesh(m_SelectedID);
-                                collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Freeze")
+                                {
+                                    collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                }
+
                                 animator.m_PauseAnimation = false;
                             }
 
@@ -195,7 +209,11 @@ namespace CSScript
                         {
                             Shrink(m_SelectedID);
                             Mesh collided_mesh = new Mesh(m_SelectedID);
-                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
+                            if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 5, 5) == "_Grow")
+                            {
+                                collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
+                            }
+
                             break;
                         }
 
@@ -203,7 +221,10 @@ namespace CSScript
                         {
                             Grow(m_SelectedID);
                             Mesh collided_mesh = new Mesh(m_SelectedID);
-                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                            if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Shrink")
+                            {
+                                collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                            }
                             break;
                         }
                     }
@@ -211,6 +232,94 @@ namespace CSScript
 
                 else
                 {
+                    if (m_AbilityTimer > m_AbilityDuration - 1.0f)
+                    {
+                        m_FlickerCooldownTimer += dt;
+
+                        if (m_FlickerCooldownTimer > m_FlickerCooldownDuration)
+                        {
+                            m_FlickerCooldownTimer = 0.0f;
+
+                            switch (m_AbilityUsed)
+                            {
+                                case Ability.STOP_MOVING_PLATFORM:
+                                {
+                                    Mesh collided_mesh = new Mesh(m_SelectedID);
+
+                                    if (collided_mesh.m_Model.Length <= 7)
+                                    {
+                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+                                    }
+
+                                    else
+                                    {
+                                        if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Freeze")
+                                        {
+                                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                        }
+
+                                        else
+                                        {
+                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+                                        }
+                                    }
+
+                                    break;
+                                }
+
+                                case Ability.GROW:
+                                {
+                                    Mesh collided_mesh = new Mesh(m_SelectedID);
+
+                                    if (collided_mesh.m_Model.Length <= 5)
+                                    {
+                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
+                                    }
+
+                                    else
+                                    {
+                                        if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 5, 5) == "_Grow")
+                                        {
+                                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
+                                        }
+
+                                        else
+                                        {
+                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
+                                        }
+                                    }
+
+                                    break;
+                                }
+
+                                case Ability.SHRINK:
+                                {
+                                    Mesh collided_mesh = new Mesh(m_SelectedID);
+
+                                    if (collided_mesh.m_Model.Length <= 7)
+                                    {
+                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
+                                    }
+
+                                    else
+                                    {
+                                        if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Shrink")
+                                        {
+                                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                        }
+
+                                        else
+                                        {
+                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
+                                        }
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
                     m_AbilityTimer += dt;
                     m_InnerBarOffset.m_ScaleOffset = new Tools.MathLib.Vector3(m_InnerBarInitialScale.x * (m_AbilityDuration - m_AbilityTimer) * m_InverseAbilityDuration,
                                                                                m_InnerBarOffset.m_ScaleOffset.y,

@@ -61,6 +61,11 @@ namespace CSScript
             m_NumPassengers = 0;
         }
 
+        public void PreUpdate(float dt)
+        {
+
+        }
+
         public void Update(float dt)
         {
             if (m_NumPassengers > 0)
