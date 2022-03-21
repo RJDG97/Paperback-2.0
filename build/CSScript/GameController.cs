@@ -390,7 +390,7 @@ namespace CSScript
                         {
                             Name name = new Name(collided_id);
 
-                            if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard" /*&& (m_JumpUnitPC.m_FreezeAvailable || m_PushUnitPC.m_FreezeAvailable)*/ )
+                            if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard")
                             {
                                 PathFollower path_follower = new PathFollower(collided_id);
 
@@ -446,7 +446,7 @@ namespace CSScript
                             {
                                 Pushable pushable = new Pushable(collided_id);
 
-                                if ( pushable.m_State != ((uint)PushableState.GROWN) /*&& (m_JumpUnitPC.m_GrowAvailable || m_PushUnitPC.m_GrowAvailable)*/ )
+                                if ( pushable.m_State != ((uint)PushableState.GROWN))
                                 {
                                     Grow(collided_id);
 
@@ -470,7 +470,7 @@ namespace CSScript
                             {
                                 Pushable pushable = new Pushable(collided_id);
 
-                                if (pushable.m_State != ((uint)PushableState.SHRUNK) /*&& (m_JumpUnitPC.m_ShrinkAvailable || m_PushUnitPC.m_ShrinkAvailable)*/ )
+                                if (pushable.m_State != ((uint)PushableState.SHRUNK))
                                 {
                                     Shrink(collided_id);
                                     Mesh collided_mesh = new Mesh(collided_id);
