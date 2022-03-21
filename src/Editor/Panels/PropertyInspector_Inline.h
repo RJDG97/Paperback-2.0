@@ -479,7 +479,13 @@ void DetailsWindow::MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefa
     {
         if (!Manager.m_Models.empty())
         {
-            for ( auto& [MeshName, Mesh] : Manager.m_Models )
+            std::map<std::string, char> sorted_models;
+            for (auto& [MeshName, Mesh] : Manager.m_Models)
+            {
+                sorted_models[MeshName] = {};   //second not being used anyway
+            }
+
+            for ( auto& [MeshName, Mesh] : sorted_models)
             {
                 if (MeshName != EntityMesh.m_Model) //Dont include the current texture if there is any
                 {
@@ -514,7 +520,13 @@ void DetailsWindow::MeshCombo(paperback::entity::info& EntityInfo, prefab* Prefa
     {
         if (!Manager.m_Textures.empty())
         {
+            std::map<std::string, char> sorted_texture;
             for (auto& [TextureName, Texture] : Manager.m_Textures)
+            {
+                sorted_texture[TextureName] = {}; //second not being used anyway
+            }
+
+            for (auto& [TextureName, Texture] : sorted_texture)
             {
                 if (TextureName != EntityMesh.m_Model) //Dont include the current texture if there is any
                 {
