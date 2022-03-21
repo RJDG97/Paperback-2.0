@@ -191,7 +191,16 @@ namespace CSScript
 
             else
             {
-                m_E.m_Active = true;
+                if (m_Abilities.Count == 0)
+                {
+                    m_E.m_Active = false;
+                }
+
+                else
+                {
+                    m_E.m_Active = true;
+                }
+
                 m_CardOne.m_Active = false;
                 m_CardTwo.m_Active = false;
                 m_CardThree.m_Active = false;
