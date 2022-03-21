@@ -96,6 +96,11 @@ Renderer::Renderer() :
 	glVertexArrayAttribFormat(m_InstancedVAO, 10, 4, GL_FLOAT, GL_FALSE, 3 * vec4Size);
 	glVertexArrayAttribBinding(m_InstancedVAO, 10, 1);
 
+	// Set divisor for binding point 1 per instance
+	glVertexArrayBindingDivisor(m_InstancedVAO, 1, 1);
+
+	glBindVertexArray(0);
+
 	glCreateVertexArrays(1, &m_DebugVAO);
 
 	glEnableVertexArrayAttrib(m_DebugVAO, 0);
