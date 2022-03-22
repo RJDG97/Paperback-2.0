@@ -281,12 +281,19 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT", "../../resources/models/nui/MovingPlatformMRT.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black", "../../resources/models/nui/MovingPlatformMRT_Black.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black_Freeze", "../../resources/models/nui/MovingPlatformMRT_BlackFreeze.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black_Freeze_Hovered", "../../resources/models/nui/MovingPlatformMRT_BlackFreeze_Hovered.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Black_Freeze_Unhovered", "../../resources/models/nui/MovingPlatformMRT_BlackFreeze_Unhovered.nui");
+
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan", "../../resources/models/nui/MovingPlatformMRT_Cyan.nui");
-	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan_Freeze", "../../resources/models/nui/MovingPlatformMRT_CyanFreeze.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan_Freeze", "../../resources/models/nui/MovingPlatformMRT_CyanFreeze.nui");	
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan_Freeze_Hovered", "../../resources/models/nui/MovingPlatformMRT_CyanFreeze_Hovered.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Cyan_Freeze_Unhovered", "../../resources/models/nui/MovingPlatformMRT_CyanFreeze_Unhovered.nui");
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Green", "../../resources/models/nui/MovingPlatformMRT_Green.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Green_Freeze", "../../resources/models/nui/MovingPlatformMRT_GreenFreeze.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Green_Freeze_Hovered", "../../resources/models/nui/MovingPlatformMRT_GreenFreeze_Hovered.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Green_Freeze_Unhovered", "../../resources/models/nui/MovingPlatformMRT_GreenFreeze_Unhovered.nui");
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Freeze", "../../resources/models/nui/MovingPlatformMRT_Freeze.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Freeze_Hovered", "../../resources/models/nui/MovingPlatformMRT_FreezeHovered.nui");
@@ -294,6 +301,8 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple", "../../resources/models/nui/MovingPlatformMRT_Purple.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple_Freeze", "../../resources/models/nui/MovingPlatformMRT_PurpleFreeze.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple_Freeze_Hovered", "../../resources/models/nui/MovingPlatformMRT_PurpleFreeze_Hovered.nui");
+	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple_Freeze_Unhovered", "../../resources/models/nui/MovingPlatformMRT_PurpleFreeze_Unhovered.nui");
 
 
 	m_Resources.Load3DMeshNUI("ProjectorCart", "../../resources/models/nui/ProjectorCart.nui");
