@@ -81,20 +81,25 @@ Renderer::Renderer() :
 	size_t vec4Size = sizeof(glm::vec4);
 
 	glEnableVertexArrayAttrib(m_InstancedVAO, 7);
-	glVertexArrayAttribFormat(m_InstancedVAO, 7, 4, GL_FLOAT, GL_FALSE, 0);
+	glVertexArrayAttribFormat(m_InstancedVAO, 7, 4, GL_FLOAT, GL_FALSE, offsetof(InstancedInfo, m_Transform));
 	glVertexArrayAttribBinding(m_InstancedVAO, 7, 1);
 
 	glEnableVertexArrayAttrib(m_InstancedVAO, 8);
-	glVertexArrayAttribFormat(m_InstancedVAO, 8, 4, GL_FLOAT, GL_FALSE, 1 * vec4Size);
+	glVertexArrayAttribFormat(m_InstancedVAO, 8, 4, GL_FLOAT, GL_FALSE, offsetof(InstancedInfo, m_Transform) + 1 * vec4Size);
 	glVertexArrayAttribBinding(m_InstancedVAO, 8, 1);
 
 	glEnableVertexArrayAttrib(m_InstancedVAO, 9);
-	glVertexArrayAttribFormat(m_InstancedVAO, 9, 4, GL_FLOAT, GL_FALSE, 2 * vec4Size);
+	glVertexArrayAttribFormat(m_InstancedVAO, 9, 4, GL_FLOAT, GL_FALSE, offsetof(InstancedInfo, m_Transform) + 2 * vec4Size);
 	glVertexArrayAttribBinding(m_InstancedVAO, 9, 1);
 
 	glEnableVertexArrayAttrib(m_InstancedVAO, 10);
-	glVertexArrayAttribFormat(m_InstancedVAO, 10, 4, GL_FLOAT, GL_FALSE, 3 * vec4Size);
+	glVertexArrayAttribFormat(m_InstancedVAO, 10, 4, GL_FLOAT, GL_FALSE, offsetof(InstancedInfo, m_Transform) + 3 * vec4Size);
 	glVertexArrayAttribBinding(m_InstancedVAO, 10, 1);
+
+	glEnableVertexArrayAttrib(m_InstancedVAO, 11);
+	glVertexArrayAttribFormat(m_InstancedVAO, 11, 1, GL_FLOAT, GL_FALSE, offsetof(InstancedInfo, m_Opacity));
+	glVertexArrayAttribBinding(m_InstancedVAO, 11, 1);
+
 
 	// Set divisor for binding point 1 per instance
 	glVertexArrayBindingDivisor(m_InstancedVAO, 1, 1);
@@ -776,7 +781,7 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::vector<PointLightInfo>& Lights, const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Instances, const Camera3D& SceneCamera, const bool Gamma, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera, const std::array<std::vector<glm::vec3>, 2>* Points)
+void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>>& Objects, const std::vector<PointLightInfo>& Lights, const std::unordered_map<std::string_view, std::vector<InstancedInfo>>& Instances, const Camera3D& SceneCamera, const bool Gamma, const std::map<float, std::vector<UIInfo>>& UIs, const std::unordered_map<std::string_view, std::vector<TextInfo>>& Texts, const Camera2D& UICamera, const std::array<std::vector<glm::vec3>, 2>* Points)
 {
 	// Bind to ui frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, m_UIBuffer.m_FrameBuffer[0]);
@@ -1546,7 +1551,7 @@ void Renderer::LightPass(const std::vector<PointLightInfo>& Lights, const Camera
 	glBlitNamedFramebuffer(m_GBuffer.m_FrameBuffer[0], m_LightingBuffer.m_FrameBuffer[0], 0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
 }
 
-void Renderer::InstancedPass(const std::unordered_map<std::string_view, std::vector<glm::mat4>>& Instances, const Camera3D& SceneCamera)
+void Renderer::InstancedPass(const std::unordered_map<std::string_view, std::vector<InstancedInfo>>& Instances, const Camera3D& SceneCamera)
 {
 	//Bind shader
 	m_Resources.m_Shaders["Instanced"].Use();
@@ -1589,10 +1594,10 @@ void Renderer::InstancedPass(const std::unordered_map<std::string_view, std::vec
 		// Create instancing buffer
 		GLuint buffer;
 		glCreateBuffers(1, &buffer);
-		glVertexArrayVertexBuffer(m_InstancedVAO, 1, buffer, 0, sizeof(glm::mat4));
+		glVertexArrayVertexBuffer(m_InstancedVAO, 1, buffer, 0, sizeof(InstancedInfo));
 
 		// Set instancing buffer
-		glNamedBufferStorage(buffer, sizeof(glm::mat4) * instances.second.size(), instances.second.data(), GL_DYNAMIC_STORAGE_BIT);
+		glNamedBufferStorage(buffer, sizeof(InstancedInfo) * instances.second.size(), instances.second.data(), GL_DYNAMIC_STORAGE_BIT);
 
 		// Instanced rendering
 		glDrawElementsInstanced(model.GetPrimitive(), model.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL, instances.second.size());
