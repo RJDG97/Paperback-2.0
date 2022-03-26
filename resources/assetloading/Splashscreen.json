@@ -422,7 +422,7 @@
                             },
                             {
                                 "x": 0.5,
-                                "y": -12.600000381469727,
+                                "y": -13.899999618530274,
                                 "z": 0.0
                             },
                             {
@@ -1205,15 +1205,15 @@
                                 "Move Speed": 1.0
                             },
                             {
-                                "Hold Time": 1.0,
+                                "Hold Time": 2.5,
                                 "Move Speed": 6.0
                             },
                             {
-                                "Hold Time": 1.0,
+                                "Hold Time": 2.5,
                                 "Move Speed": 4.0
                             },
                             {
-                                "Hold Time": 1.0,
+                                "Hold Time": 2.5,
                                 "Move Speed": 4.0
                             },
                             {
