@@ -20,7 +20,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 6
+                        "Global Index": 3
                     },
                     "Mesh": {
                         "Model": "Splashscreen",
@@ -32,7 +32,7 @@
                     "Scale": {
                         "Scale": {
                             "x": -0.10000000149011612,
-                            "y": 0.10000000149011612,
+                            "y": 0.18000000715255738,
                             "z": 0.10000000149011612
                         }
                     },
@@ -60,7 +60,7 @@
                             9604788041699812520,
                             5691439207370049121
                         ],
-                        "Prefab GID": 3
+                        "Prefab GID": 6
                     },
                     "Name": {
                         "Name": "Panel"
@@ -127,7 +127,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 3
+                        "Global Index": 6
                     },
                     "Mesh": {
                         "Model": "EndOfGameCutscene",
@@ -145,7 +145,7 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            6
+                            3
                         ]
                     },
                     "Rotation": {
@@ -266,7 +266,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "Sandpit_BaseColour.dds",
+                        "Texture": "YesButton_Selected",
                         "Shadow Bias": 1,
                         "Cast Shadow": false,
                         "Active": false
@@ -358,28 +358,7 @@
                         "Name": "Path"
                     },
                     "Path": {
-                        "Points": [
-                            {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        ],
+                        "Points": [],
                         "Path ID": 0
                     }
                 }
@@ -407,9 +386,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -10.451798439025879,
-                            "y": 26.269515991210939,
-                            "z": 4.252079010009766
+                            "x": 0.0,
+                            "y": 5.159526494935562e-7,
+                            "z": 11.803634643554688
                         }
                     },
                     "ReferencePrefab": {
@@ -422,39 +401,44 @@
                     "Path": {
                         "Points": [
                             {
-                                "x": 9.899999618530274,
-                                "y": -7.400000095367432,
+                                "x": 0.5,
+                                "y": 25.0,
                                 "z": 0.0
                             },
                             {
-                                "x": 9.899999618530274,
-                                "y": -7.599999904632568,
+                                "x": 0.5,
+                                "y": 25.0,
                                 "z": 0.0
                             },
                             {
-                                "x": 9.899999618530274,
-                                "y": -15.199999809265137,
-                                "z": 7.0
-                            },
-                            {
-                                "x": 9.899999618530274,
-                                "y": -26.299999237060548,
+                                "x": 0.5,
+                                "y": 14.199999809265137,
                                 "z": 0.0
                             },
                             {
-                                "x": 9.899999618530274,
-                                "y": -38.400001525878909,
+                                "x": 0.5,
+                                "y": -0.10000000149011612,
                                 "z": 0.0
                             },
                             {
-                                "x": 9.899999618530274,
-                                "y": -43.400001525878909,
+                                "x": 0.5,
+                                "y": -12.600000381469727,
                                 "z": 0.0
                             },
                             {
-                                "x": 9.899999618530274,
-                                "y": -43.79999923706055,
-                                "z": 2.0
+                                "x": 0.5,
+                                "y": -27.0,
+                                "z": 1.0
+                            },
+                            {
+                                "x": 0.5,
+                                "y": -27.0,
+                                "z": 1.0
+                            },
+                            {
+                                "x": 0.5,
+                                "y": -27.0,
+                                "z": 1.0
                             }
                         ],
                         "Path ID": 0
@@ -531,7 +515,7 @@
                     },
                     "Sound": {
                         "Path": "event:/BGM_Cutscene",
-                        "Sound Event ID": 48,
+                        "Sound Event ID": 0,
                         "3D Sound": false,
                         "Triggerable": false,
                         "Trigger": false
@@ -544,14 +528,12 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": 1.2999999523162842,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909
-                        ],
+                        "Modified Components": [],
                         "Prefab GID": 9
                     },
                     "Name": {
@@ -696,9 +678,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -0.22201204299926759,
-                            "y": -16.552825927734376,
-                            "z": 6.099999904632568
+                            "x": 0.5,
+                            "y": -27.0,
+                            "z": 14.5
                         }
                     },
                     "RigidForce": {
@@ -717,13 +699,13 @@
                         },
                         "Threshold": 0.25,
                         "Gravity Affected": true,
-                        "Collision Affected": true,
+                        "Collision Affected": false,
                         "Gravity Active": false
                     },
                     "EntityScript": {
                         "Script ID": [
                             {
-                                "ID": "Goal_Cutscene1"
+                                "ID": "Goal_Cutscene3"
                             }
                         ]
                     },
@@ -742,8 +724,7 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            17008353085049151909,
-                            5509481706028819786
+                            17008353085049151909
                         ],
                         "Prefab GID": 16
                     },
@@ -1097,19 +1078,19 @@
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": false
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0010000000474974514,
-                            "y": 0.0010000000474974514,
-                            "z": 0.0010000000474974514
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -1133,7 +1114,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": 23.776174545288087,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -1170,11 +1151,7 @@
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            9604788041699812520,
-                            14486341741652966143
-                        ],
+                        "Modified Components": [],
                         "Prefab GID": 11
                     },
                     "Name": {
@@ -1225,47 +1202,7 @@
                         "Cinematic Infos": [
                             {
                                 "Hold Time": 1.0,
-                                "Move Speed": 2.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 2.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 2.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 4.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 2.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 2.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 6.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 3.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 6.0
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 2.5
-                            },
-                            {
-                                "Hold Time": 1.0,
-                                "Move Speed": 2.0
+                                "Move Speed": 1.0
                             },
                             {
                                 "Hold Time": 1.0,
@@ -1277,19 +1214,19 @@
                             },
                             {
                                 "Hold Time": 1.0,
-                                "Move Speed": 2.5
+                                "Move Speed": 4.0
                             },
                             {
                                 "Hold Time": 1.0,
-                                "Move Speed": 2.0
+                                "Move Speed": 4.0
                             },
                             {
                                 "Hold Time": 1.0,
-                                "Move Speed": 2.0
+                                "Move Speed": 6.0
                             },
                             {
                                 "Hold Time": 1.0,
-                                "Move Speed": 2.0
+                                "Move Speed": 6.0
                             }
                         ],
                         "Index": 0,
