@@ -4,6 +4,7 @@
 struct player_camera_system : paperback::system::pausable_instance
 {
     tools::query Query;
+    tools::query CollidableQuery;
 
     constexpr static auto typedef_v = paperback::system::type::update
     {
@@ -15,6 +16,9 @@ struct player_camera_system : paperback::system::pausable_instance
     {
         Query.m_Must.AddFromComponents<entity, transform, player_controller, camera>();
         Query.m_NoneOf.AddFromComponents<prefab>();
+
+        CollidableQuery.m_Must.AddFromComponents<entity, transform, boundingbox, rigidforce>();
+        CollidableQuery.m_NoneOf.AddFromComponents<prefab, bounding_volume>();
     }
 
     PPB_FORCEINLINE

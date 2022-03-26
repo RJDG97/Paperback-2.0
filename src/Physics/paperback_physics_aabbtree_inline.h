@@ -209,8 +209,8 @@ namespace paperback::physics
 
         TraverseTree( [&]( AABBTree_Node& Node ) -> bool
                       {
-                          auto [ Status, Distance ] = Node.m_AABB.Intersecting( RayStart
-                                                                              , RayEnd );
+                          auto [ Status, Distance ] = Node.m_AABB.ScaleByValue( -0.5f ).Intersecting( RayStart
+                                                                                                    , RayEnd );
                           if ( Status ) CurrentPair = std::make_pair( Node.m_Entity.m_GlobalIndex, Distance );
                           return Status;
                       }
