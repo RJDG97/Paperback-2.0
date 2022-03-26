@@ -158,14 +158,14 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "QuitToMainMenuButton_Unselected",
+                        "Texture": "LeftButton_Unselected",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 300.0,
+                            "x": 100.0,
                             "y": 100.0,
                             "z": 0.0
                         }
@@ -184,7 +184,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 670.0,
+                            "x": -700.0,
                             "y": -450.0,
                             "z": 1.0
                         }
@@ -249,7 +249,7 @@
                         "Position": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": -0.135
+                            "z": -0.13500000536441804
                         }
                     },
                     "ReferencePrefab": {
