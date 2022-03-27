@@ -31,6 +31,7 @@
 #include "Page7How2Play_Next_Button_MainMenu.h"
 #include "Page7How2Play_Prev_Button_MainMenu.h"
 
+
 //gameplay buttons
 #include "PauseEnable_Button_Game.h"
 #include "PauseCancel_Button_Game.h"
@@ -38,6 +39,11 @@
 #include "QuitCancel_Button_Game.h"
 #include "ReturnMainMenuCancel_Button_Game.h"
 #include "ReturnMainMenuWindow_Button_Game.h"
+#include "How2Play_Button_Game.h"
+#include "How2Play_Cancel_Button_Game.h"
+#include "RestartLevelCancel_Button_Game.h"
+#include "RestartLevelWindow_Button_Game.h"
+#include "RestartLevel_Button.h"
 
 
 //General common button

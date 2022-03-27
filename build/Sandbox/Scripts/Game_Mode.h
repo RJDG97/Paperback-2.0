@@ -16,7 +16,7 @@ struct game_mode_script : paperback::script::button_interface // Inherited Type 
 
     void Run( void ) noexcept
     {
-        if (PPB.IsKeyPress(GLFW_KEY_ESCAPE))
+        if (PPB.IsKeyPress(GLFW_KEY_ESCAPE) || PPB.IsGamepadButtonPressDown(7)) // start button
         {
 
             if (!PPB.GetPauseBool())
