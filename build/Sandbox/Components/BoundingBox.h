@@ -104,6 +104,16 @@ struct boundingbox
 			                                   , Position.z + Max.z } };
 	}
 
+	boundingbox ScaleByValue( float Value ) const noexcept
+	{
+		return boundingbox{ paperback::Vector3f{ Min.x - Value
+					                           , Min.y - Value
+			                                   , Min.z - Value }
+			       	      , paperback::Vector3f{ Max.x + Value
+			                                   , Max.y + Value
+			                                   , Max.z + Value } };
+	}
+
 	// Ensure RHS's Values Are Global Coordinates, Not Local Scaling Factor
 	bool Contains( const boundingbox& rhs ) const noexcept
 	{

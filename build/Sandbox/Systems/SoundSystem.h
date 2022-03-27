@@ -54,7 +54,7 @@ public:
     size_t m_SoundCounter;
     paperback::Vector3f m_ListenerPos, m_ListenerVel;
     bool m_AudioFollowPosition;
-
+    float m_Volume = 0.1f;
 
     //helper functions
 
@@ -115,7 +115,7 @@ public:
                 FMOD_STUDIO_PLAYBACK_STATE be;
                 m_SoundFiles.back().m_pSound->getPlaybackState(&be);
 
-                m_SoundFiles.back().m_pSound->setVolume(0.1f);
+                m_SoundFiles.back().m_pSound->setVolume(m_Volume);
 
                 if (be != 0)
                     ERROR_LOG("Play Sound Event Playback State: " + be);
@@ -404,6 +404,7 @@ public:
                 //check current playback status
 
                 sound_check->m_Verified = true;
+                sound_check->m_pSound->setVolume(m_Volume);
                 FMOD_STUDIO_PLAYBACK_STATE be;
                 sound_check->m_pSound->getPlaybackState(&be);
 
@@ -449,6 +450,7 @@ public:
                 //sound exists, ensure that id is not 0, else delete
                 FMOD_STUDIO_PLAYBACK_STATE be;
                 sound_check->m_pSound->getPlaybackState(&be);
+                sound_check->m_pSound->setVolume(m_Volume);
 
                 //if sound has stopped, mark for removal
                 if (be == 2)
@@ -527,6 +529,7 @@ public:
         for (SoundFile& sound : m_SoundFiles) {
 
             sound.m_Verified = true;
+            sound.m_pSound->setVolume(m_Volume);
             FMOD_STUDIO_PLAYBACK_STATE be;
             sound.m_pSound->getPlaybackState(&be);
 
@@ -859,5 +862,33 @@ public:
                 UpdateEvent3DAttributes(sound_check->m_pSound, Position, Velocity);
             }
         }
+    }
+
+
+    const float m_VolumeChange = 0.02f;
+    const float m_VolumeMax = 0.1f;
+
+    void IncreaseVolume()
+    {
+        m_Volume += m_VolumeChange;
+
+        if (m_Volume > m_VolumeMax)
+            m_Volume = m_VolumeMax;
+    }
+
+    void DecreaseVolume()
+    {
+
+        m_Volume -= m_VolumeChange;
+
+        if (m_Volume < 0.0f)
+            m_Volume = 0.0f;
+    }
+
+
+    float GetVolumePercentage()
+    {
+
+        return m_Volume / m_VolumeMax;
     }
 };

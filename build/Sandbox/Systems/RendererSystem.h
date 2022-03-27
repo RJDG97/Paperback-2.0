@@ -80,7 +80,7 @@ struct render_system : paperback::system::instance
 		// Populate map to render objects
 		std::unordered_map<std::string_view, std::vector<Renderer::TransformInfo>> objects;
 		std::vector<Renderer::PointLightInfo> lights;
-		std::unordered_map<std::string_view, std::vector<glm::mat4>> instances;
+		std::unordered_map<std::string_view, std::vector<Renderer::InstancedInfo>> instances;
 		std::map<float, std::vector<Renderer::UIInfo>> uis;
 		std::unordered_map<std::string_view, std::vector<Renderer::TextInfo>> texts;
 
@@ -184,9 +184,7 @@ struct render_system : paperback::system::instance
 
 		ForEach(Search(QueryParticles), [&](transform& Transform, particle_emitter& Emitter) noexcept
 		{
-			std::vector<glm::mat4> instanceList;
-
-			m_Coordinator.ForEach(Emitter.m_ActiveParticles, [&](transform& Transform, scale& Scale, rotation& Rotation) noexcept
+			m_Coordinator.ForEach(Emitter.m_ActiveParticles, [&](transform& Transform, scale& Scale, rotation& Rotation, particle& Particle) noexcept
 			{
 				glm::mat4 transform{ 1.0f };
 
@@ -196,7 +194,7 @@ struct render_system : paperback::system::instance
 				//transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
 				transform = glm::scale(transform, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
 
-				instances[Emitter.m_TextureName].push_back(transform);
+				instances[Emitter.m_TextureName].push_back(Renderer::InstancedInfo{ transform, Particle.m_Opacity });
 			});
 		});
 
