@@ -63,8 +63,6 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-
-            Debug.Log(PushUnitUnder.ToString());
             if (JumpUnitUnder || PushUnitUnder || BlockUnder)
             {
                 m_Elevator.m_UnitUnder = true;

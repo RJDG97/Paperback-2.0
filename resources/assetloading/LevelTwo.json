@@ -6326,12 +6326,13 @@
                         "Modified Components": [
                             3617555656175080491,
                             8376831551428810534,
-                            17008353085049151909
+                            17008353085049151909,
+                            16415915133639986106
                         ],
                         "Prefab GID": 216
                     },
                     "Name": {
-                        "Name": "Platform Slope D"
+                        "Name": "PlatformSlopeA"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -6443,12 +6444,13 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             17008353085049151909,
-                            3617555656175080491
+                            3617555656175080491,
+                            16415915133639986106
                         ],
                         "Prefab GID": 216
                     },
                     "Name": {
-                        "Name": "Platform Slope D"
+                        "Name": "PlatformSlopeA"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -46884,7 +46886,7 @@
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 20.0,
-                        "Pause At Time": 15.0,
+                        "Pause At Time": 20.0,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -50215,11 +50217,13 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
                         "Prefab GID": 155
                     },
                     "Name": {
-                        "Name": "Platform Slope A"
+                        "Name": "Platform Slope D"
                     }
                 },
                 {
@@ -50242,11 +50246,13 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
                         "Prefab GID": 155
                     },
                     "Name": {
-                        "Name": "Platform Slope A"
+                        "Name": "Platform Slope D"
                     }
                 },
                 {
