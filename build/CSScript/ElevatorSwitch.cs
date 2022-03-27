@@ -23,6 +23,8 @@ namespace CSScript
         float m_PlatformStartY;
         float m_PlatformSpeed;
 
+        bool m_GoingUpwards;
+
         public static ElevatorSwitch getInst()
         {
             return new ElevatorSwitch();
@@ -56,6 +58,7 @@ namespace CSScript
             m_ElevatorAnimator.m_CurrentTime = m_ElevatorElevator.m_StartTime;
             m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;
             m_PlatformSpeed = 1800.0f * m_ElevatorScale.m_Value.y;
+            m_GoingUpwards = false;
         }
 
         public void PreUpdate(float dt)
@@ -64,7 +67,7 @@ namespace CSScript
                                                                      m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0f * m_PlatformSpeed,
                                                                      m_PlatformOffset.m_PosOffset.z);
 
-            if (m_ElevatorElevator.m_UnitUnder)
+            if (m_ElevatorElevator.m_UnitUnder && !m_GoingUpwards)
             {
                 m_ElevatorAnimator.m_PauseAnimation = true;
             }
@@ -95,11 +98,13 @@ namespace CSScript
                 if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
                 {
                     m_ElevatorAnimator.m_Reversed = false;
+                    m_GoingUpwards = true;
                 }
 
                 else
                 {
                     m_ElevatorAnimator.m_Reversed = true;
+                    m_GoingUpwards = false;
                 }
 
                 m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StopTime;
@@ -119,11 +124,13 @@ namespace CSScript
                 if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
                 {
                     m_ElevatorAnimator.m_Reversed = true;
+                    m_GoingUpwards = false;
                 }
 
                 else
                 {
                     m_ElevatorAnimator.m_Reversed = false;
+                    m_GoingUpwards = true;
                 }
 
                 m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;

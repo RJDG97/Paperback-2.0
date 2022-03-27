@@ -25,6 +25,7 @@ namespace CSScript
 
         bool JumpUnitUnder;
         bool PushUnitUnder;
+        bool BlockUnder;
 
         public static ElevatorPlatform getInst()
         {
@@ -62,7 +63,9 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            if (JumpUnitUnder || PushUnitUnder)
+
+            Debug.Log(PushUnitUnder.ToString());
+            if (JumpUnitUnder || PushUnitUnder || BlockUnder)
             {
                 m_Elevator.m_UnitUnder = true;
             }
@@ -96,7 +99,6 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log(ID.ToString() + " " + m_JumpUnitID.ToString() + " " + m_PushUnitID.ToString());
             if (ID == m_JumpUnitID)
             {
                 Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
@@ -122,6 +124,20 @@ namespace CSScript
                     PushUnitUnder = true;
                 }
             }
+
+            else if (Tools.Tag.IsPushable(ID))
+            {
+                Transform BlockTransform = new Transform((UInt32)ID);
+                Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
+                Tools.MathLib.Vector3 dir_vec = BlockTransform.m_Position - m_Transform.m_Position;
+
+                float dot_prod = dir_vec.y * down_vec.y;
+
+                if (dot_prod > 0.0f)
+                {
+                    BlockUnder = true;
+                }
+            }
         }
         public void OnCollisionStay(UInt32 ID)
         {
@@ -137,6 +153,20 @@ namespace CSScript
             else if (ID == m_PushUnitID)
             {
                 PushUnitUnder = false;
+            }
+
+            else if (Tools.Tag.IsPushable(ID))
+            {
+                Transform BlockTransform = new Transform((UInt32)ID);
+                Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
+                Tools.MathLib.Vector3 dir_vec = BlockTransform.m_Position - m_Transform.m_Position;
+
+                float dot_prod = dir_vec.y * down_vec.y;
+
+                if (dot_prod > 0.0f)
+                {
+                    BlockUnder = false;
+                }
             }
         }
     }
