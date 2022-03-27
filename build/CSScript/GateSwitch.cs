@@ -105,5 +105,8 @@ namespace CSScript
                 m_Mesh.m_Model = "Button_GateOFF";
             }
         }
+        public void Reset()
+        {
+        }
     }
 }

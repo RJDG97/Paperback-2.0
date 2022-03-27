@@ -331,6 +331,13 @@ namespace CSScript
         public void OnCollisionExit(UInt32 ID)
         {
         }
+        public void Reset()
+        {
+            if (m_AbilityActive)
+            {
+                m_AbilityTimer = m_AbilityDuration + 1.0f;
+            }
+        }
 
         private void CheckAbilitiesUnlocked()
         {

@@ -264,6 +264,9 @@ namespace CSScript
         public void OnCollisionExit(UInt32 ID)
         {
         }
+        public void Reset()
+        {
+        }
 
         private void AddCard(Ability ability)
         {

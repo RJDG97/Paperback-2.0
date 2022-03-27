@@ -81,6 +81,21 @@ namespace MONO_PLAYERCONTROLLER
 			reinterpret_cast<player_controller*>(address)->m_FreezeAvailable = value;
 	}
 
+	// Player Freeze
+	MONO_EXPORT bool GetCheckpointID(void* address)
+	{
+		if (address)
+			return reinterpret_cast<player_controller*>(address)->m_FreezeAvailable;
+
+		return false;
+	}
+
+	MONO_EXPORT void SetCheckpointID(void* address, bool value)
+	{
+		if (address)
+			reinterpret_cast<player_controller*>(address)->m_FreezeAvailable = value;
+	}
+
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.PlayerController::getaddress(uint)", &MONO_PLAYERCONTROLLER::GetAddress);
@@ -98,5 +113,8 @@ namespace MONO_PLAYERCONTROLLER
 		// Player Freeze
 		mono_add_internal_call("CSScript.PlayerController::GetFreezeStatus(void*)", &MONO_PLAYERCONTROLLER::GetFreezeStatus);
 		mono_add_internal_call("CSScript.PlayerController::SetFreezeStatus(void*,bool)", &MONO_PLAYERCONTROLLER::SetFreezeStatus);
+
+		mono_add_internal_call("CSScript.PlayerController::GetCheckpointID(void*)", &MONO_PLAYERCONTROLLER::GetCheckpointID);
+		mono_add_internal_call("CSScript.PlayerController::SetCheckpointID(void*,int)", &MONO_PLAYERCONTROLLER::SetCheckpointID);
 	}
 }

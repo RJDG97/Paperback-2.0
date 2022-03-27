@@ -70,5 +70,8 @@ namespace CSScript
                 m_ChildPathFollower.m_Reversed = true;
             }
         }
+        public void Reset()
+        {
+        }
     }
 }

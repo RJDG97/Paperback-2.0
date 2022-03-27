@@ -19,6 +19,9 @@ class Script
 	MonoMethod* m_pOnCollisionEnter = nullptr;
 	MonoMethod* m_pOnCollisionStay = nullptr;
 	MonoMethod* m_pOnCollisionExit = nullptr;
+
+	MonoMethod* m_pReset = nullptr;
+
 	// Class Name
 	std::string m_ScriptClass;
 
@@ -63,6 +66,9 @@ public:
 
 				str = "." + m_ScriptClass + ":OnCollisionExit(uint)";
 				m_pOnCollisionExit = Mono::GetInstanced().ImportFunction(m_pClass, m_pMonoObj, str.c_str());
+
+				str = "." + m_ScriptClass + ":Reset()";
+				m_pReset = Mono::GetInstanced().ImportFunction(m_pClass, m_pMonoObj, str.c_str());
 			}
 		}
 	}
@@ -107,5 +113,11 @@ public:
 	{
 		if (m_pOnCollisionExit)
 			Mono::GetInstanced().RunImportFn(m_pMonoObj, m_pOnCollisionExit, ID);
+	}
+
+	void Reset()
+	{
+		if (m_pReset)
+			Mono::GetInstanced().RunImportFn(m_pMonoObj, m_pReset);
 	}
 };

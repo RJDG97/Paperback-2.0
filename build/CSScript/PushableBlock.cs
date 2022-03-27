@@ -58,5 +58,8 @@ namespace CSScript
         public void OnCollisionExit(UInt32 ID)
         {
         }
+        public void Reset()
+        {
+        }
     }
 }

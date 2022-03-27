@@ -136,5 +136,8 @@ namespace CSScript
                 m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;
             }
         }
+        public void Reset()
+        {
+        }
     }
 }
