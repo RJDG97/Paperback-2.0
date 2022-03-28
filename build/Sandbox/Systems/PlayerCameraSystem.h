@@ -33,9 +33,22 @@ struct player_camera_system : paperback::system::pausable_instance
                 auto NormDir   = Direction.Normalized( );
                 auto MaxCamPos = Transform.m_Position + NormDir * Camera.m_MaxRadius;
 
-                auto [Hit_ID, HitDist] = m_Coordinator.QueryRaycastClosest( Transform.m_Position         // Start Ray
-                                                                          , MaxCamPos                    // End Ray
-                                                                          , ExcludeList );               // Excluded Entities
+                auto Point1 = RotateAboutAxis( MaxCamPos - Transform.m_Position, 5.f, 1 ) + Transform.m_Position;
+                auto Point2 = RotateAboutAxis( MaxCamPos - Transform.m_Position, -5.f, 1 ) + Transform.m_Position;
+
+                auto [Hit_ID, HitDist] = m_Coordinator.QueryRaycastClosest( Transform.m_Position      // Start Ray
+                                                                          , Point1                    // End Ray
+                                                                          , ExcludeList );            // Excluded Entities
+
+                auto [Hit_ID2, HitDist2] = m_Coordinator.QueryRaycastClosest( Transform.m_Position    // Start Ray
+                                                                            , Point2                  // End Ray
+                                                                            , ExcludeList );          // Excluded Entities
+
+                if ( HitDist > HitDist2 )
+                {
+                    HitDist = HitDist2;
+                    Hit_ID = Hit_ID2;
+                }
 
                 // There Exists Closest Entity In Camera Range - Limit Camera Radius
                 if ( Hit_ID != paperback::settings::invalid_index_v )

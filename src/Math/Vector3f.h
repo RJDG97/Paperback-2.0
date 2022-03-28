@@ -123,6 +123,8 @@ namespace paperback
 	PPB_INLINE Vector3f Min( Vector3f Vec_1, Vector3f Vec_2 ) noexcept;
 
 	PPB_INLINE Vector3f Max( Vector3f Vec_1, Vector3f Vec_2 ) noexcept;
+
+	PPB_INLINE Vector3f RotateAboutAxis( const Vector3f& DirVec, float Angle, int Axis ) noexcept;
 }
 
 #include "Vector3f.hpp"

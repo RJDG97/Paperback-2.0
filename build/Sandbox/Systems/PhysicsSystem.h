@@ -210,7 +210,7 @@ struct physics_system : paperback::system::pausable_instance
                 
             }
             // Update Rotation
-            if ( !Particle && RigidBody && Rot && RigidBody->m_Velocity.MagnitudeSq() > 0.01f )
+            if ( Controller && RigidBody && Rot && RigidBody->m_Velocity.MagnitudeSq() > 0.01f )
             {
                 auto Debug = m_Coordinator.FindSystem<debug_system>();
 
