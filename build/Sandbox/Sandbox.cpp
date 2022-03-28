@@ -214,7 +214,13 @@ void InitializeGame()
             nextlevel_level2_button_script,
             nextlevel_level3_button_script,
             page7_how2play_next_button_mainmenu_script,
-            page7_how2play_prev_button_mainmenu_script
+            page7_how2play_prev_button_mainmenu_script,
+            restartcheckpoint_button_script,
+            restartcheckpoint_cancel_button_game_script,
+            restartcheckpoint_window_button_game_script,
+            restartlevel_button_script,
+            restartlevel_cancel_button_game_script,
+            restartlevel_window_button_game_script
         >();
 
 

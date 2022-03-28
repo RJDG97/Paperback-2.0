@@ -7,7 +7,8 @@ namespace paperback::coordinator
 	//            Default
 	//-----------------------------------
 
-	instance::instance( void ) noexcept
+	instance::instance( void ) noexcept :
+		m_MouseSensitivityRatio{ 1.0f }
 	{
 		#ifndef PAPERBACK_INSTALLER_BUILD
 		paperback::logger::Init();
@@ -343,10 +344,20 @@ namespace paperback::coordinator
 		if (m_QueuedSceneName != "")
 		{
 
-			std::string temp = m_QueuedSceneName;
-			m_QueuedSceneName = "";
+			if (m_QueuedSceneName == "Reload")
+			{
 
-			OpenScene(temp);
+				m_QueuedSceneName = "";
+				m_SceneMgr.ReloadScene();
+			}
+			else
+			{
+
+				std::string temp = m_QueuedSceneName;
+				m_QueuedSceneName = "";
+
+				OpenScene(temp);
+			}
 		}
 	}
 
@@ -873,11 +884,13 @@ namespace paperback::coordinator
 	//-----------------------------------
 
 	PPB_INLINE
-    physics::AABB_Tree::NeighbourList instance::QueryNeighbours( const boundingbox& AABB
-                                                               , const transform&   Transform ) noexcept
+    physics::AABB_Tree::NeighbourList instance::QueryNeighbours( const boundingbox&   AABB
+                                                               , const transform&     Transform
+                                                               , const paperback::u32 Thickness ) noexcept
 	{
 		return m_AABBTree.QueryNeighbours( AABB
-										 , Transform );
+										 , Transform
+										 , Thickness );
 	}
 
 	PPB_INLINE
@@ -1114,6 +1127,16 @@ namespace paperback::coordinator
 	glm::vec3 instance::GetViewportMousePosition(glm::mat4 projection, glm::mat4 view) noexcept
 	{
 		return m_Input.GetViewportMousePosition(projection, view);
+	}
+
+	float instance::SetMouseSensitivityRatio( const float Value ) noexcept
+	{
+		m_MouseSensitivityRatio = Value;
+	}
+
+	float instance::GetMouseSensitivityRatio( void ) noexcept
+	{
+		return m_MouseSensitivityRatio;
 	}
 
 

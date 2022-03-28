@@ -81,19 +81,18 @@ namespace MONO_PLAYERCONTROLLER
 			reinterpret_cast<player_controller*>(address)->m_FreezeAvailable = value;
 	}
 
-	// Player Freeze
-	MONO_EXPORT bool GetCheckpointID(void* address)
+	MONO_EXPORT int GetCheckpointID(void* address)
 	{
 		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_FreezeAvailable;
+			return reinterpret_cast<player_controller*>(address)->m_CheckpointID;
 
 		return false;
 	}
 
-	MONO_EXPORT void SetCheckpointID(void* address, bool value)
+	MONO_EXPORT void SetCheckpointID(void* address, int value)
 	{
 		if (address)
-			reinterpret_cast<player_controller*>(address)->m_FreezeAvailable = value;
+			reinterpret_cast<player_controller*>(address)->m_CheckpointID = value;
 	}
 
 	void AddInternalCall()

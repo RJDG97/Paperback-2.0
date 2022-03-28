@@ -44,6 +44,9 @@
 #include "RestartLevelCancel_Button_Game.h"
 #include "RestartLevelWindow_Button_Game.h"
 #include "RestartLevel_Button.h"
+#include "RestartCheckpointCancel_Button_Game.h"
+#include "RestartCheckpointWindow_Button_Game.h"
+#include "RestartCheckpoint_Button.h"
 
 
 //General common button
