@@ -430,7 +430,7 @@ namespace paperback::input::binding
                     {
                         auto Direction = m_Coordinator.GetMouseDirection();
 
-                        Direction = glm::normalize(Direction) * Controller.m_CameraRotationSpeed * 0.01f;
+                        Direction = glm::normalize(Direction) * Controller.m_CameraRotationSpeed * m_Coordinator.GetMouseSensitivityRatio() * 0.01f;
 
 	                    if ( Direction.x < 0 )
 	                    {
@@ -475,8 +475,8 @@ namespace paperback::input::binding
                     {
                         if ( Controller.m_PlayerStatus && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                         {
-                            Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed * 0.01f );
-                            Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed * 0.01f );
+                            Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed * m_Coordinator.GetMouseSensitivityRatio() * 0.01f );
+                            Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f );
                         }
                     });
                 }
@@ -866,10 +866,10 @@ namespace paperback::input::binding
                             Controller.m_PlayerStatus = Camera.m_Active = true;
                         }
                     });
-                }
 
-                // Play Toggle Player Sound
-                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_TogglePlayer" );
+                    // Play Toggle Player Sound
+                    m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_TogglePlayer" );
+                }
             }
 
         END_INPUT_ACTION

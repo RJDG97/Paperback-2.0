@@ -52,7 +52,7 @@ public:
 	void RotateUp(const float m_Speed = 0.1f);
 	void RotateDown(const float m_Speed = 0.1f);
 
-	void RotateWithMouse(glm::vec2 Direction);
+	void RotateWithMouse( glm::vec2 Direction, const float SensitivityRatio = 1.0f );
 
 private:
 	void UpdateView();

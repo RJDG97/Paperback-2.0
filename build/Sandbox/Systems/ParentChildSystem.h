@@ -22,7 +22,7 @@ struct parentchild_system : paperback::system::instance
 				for (const auto& ChildGlobalIndex : Parent.m_ChildrenGlobalIndexes)
 				{
 					auto& ChildInfo = GetEntityInfo(ChildGlobalIndex);
-					auto [CTransform, CRotation, CScale, COffset] = ChildInfo.m_pArchetype->FindComponents<transform, rotation, scale, offset>(ChildInfo.m_PoolDetails);
+					auto [CEntity, CTransform, CRotation, CScale, COffset, CBox] = ChildInfo.m_pArchetype->FindComponents<entity, transform, rotation, scale, offset, boundingbox>(ChildInfo.m_PoolDetails);
 
 					if (COffset)
 					{
@@ -40,6 +40,11 @@ struct parentchild_system : paperback::system::instance
 						if (CTransform) { CTransform->m_Position = Transform.m_Position; }
 						if (CRotation) { CRotation->m_Value = Rotation.m_Value; }
 						if (CScale) { CScale->m_Value = Scale.m_Value; }
+					}
+
+					if ( CBox && CTransform && CEntity )
+					{
+						m_Coordinator.UpdateNode( *CBox, *CTransform, *CEntity );
 					}
 				}
 			}

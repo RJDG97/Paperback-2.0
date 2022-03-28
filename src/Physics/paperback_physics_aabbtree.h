@@ -54,8 +54,9 @@ namespace paperback::physics
         //-----------------------------------
 
         PPB_INLINE
-        NeighbourList QueryNeighbours( const boundingbox& AABB
-                                     , const transform&   Transform ) noexcept;
+        NeighbourList QueryNeighbours( const boundingbox&   AABB
+                                     , const transform&     Transform
+                                     , const paperback::u32 Thickness ) noexcept;
 
         PPB_INLINE
         NeighbourList QueryRaycast( const paperback::Vector3f& RayStart
