@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 538
+                "EntityHead": 540
             }
         },
         {
@@ -1130,7 +1130,9 @@
                             438,
                             439,
                             440,
-                            441
+                            441,
+                            538,
+                            539
                         ]
                     },
                     "Rotation": {
@@ -1339,7 +1341,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -80.0,
+                            "y": -290.0,
                             "z": 1.0
                         }
                     },
@@ -1585,7 +1587,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -185.0,
+                            "y": -395.0,
                             "z": 1.0
                         }
                     },
@@ -1839,12 +1841,13 @@
                             9604788041699812520,
                             2550044418833058707,
                             5691439207370049121,
-                            17008353085049151909
+                            17008353085049151909,
+                            16415915133639986106
                         ],
                         "Prefab GID": 430
                     },
                     "Name": {
-                        "Name": "UIButton_Sample"
+                        "Name": "QuitGameWindow_Pause"
                     },
                     "Button": {
                         "Button Textures": [
@@ -1855,6 +1858,130 @@
                         "Button State": 0,
                         "Layer Grouping": 5,
                         "Script Guid": 0,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 538
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ToLastCheckpointButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -80.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 430
+                    },
+                    "Name": {
+                        "Name": "RestartCheckpointButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 7207962730480403526,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 539
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RestartLevelButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -185.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 430
+                    },
+                    "Name": {
+                        "Name": "RestartLevelButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 11551997379440525767,
                         "Active Status": false
                     }
                 }
@@ -1880,10 +2007,10 @@
                             314,
                             460,
                             180,
-                            221,
                             181,
-                            206,
+                            221,
                             182,
+                            206,
                             175,
                             331
                         ]
@@ -3831,11 +3958,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            497,
                             281,
+                            497,
                             184,
-                            499,
                             483,
+                            499,
                             189,
                             508,
                             506,
@@ -9250,11 +9377,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            295,
                             311,
-                            482,
-                            185,
+                            295,
                             498,
+                            185,
+                            482,
                             197,
                             496,
                             507,
@@ -36707,14 +36834,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            299,
-                            236,
                             140,
-                            503,
-                            375,
-                            168,
-                            232,
+                            236,
+                            299,
                             287,
+                            232,
+                            168,
+                            375,
+                            503,
                             169,
                             233,
                             376,
@@ -36837,12 +36964,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            384,
-                            392,
                             312,
-                            393,
-                            377,
+                            392,
+                            384,
                             313,
+                            377,
+                            393,
                             378,
                             379,
                             394,
@@ -37784,7 +37911,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": false
+                        "Player Freeze Available": false,
+                        "Checkpoint ID": -1
                     }
                 }
             ]
@@ -37905,10 +38033,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            5691439207370049121,
                             1871702054972469046,
-                            9604788041699812520,
+                            5691439207370049121,
                             5509481706028819786,
+                            9604788041699812520,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -37951,7 +38079,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": true
+                        "Player Freeze Available": true,
+                        "Checkpoint ID": -1
                     }
                 }
             ]
@@ -38116,7 +38245,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": true
+                        "Player Freeze Available": true,
+                        "Checkpoint ID": -1
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
@@ -38278,7 +38408,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": false
+                        "Player Freeze Available": false,
+                        "Checkpoint ID": -1
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
@@ -41312,13 +41443,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            241,
                             362,
-                            160,
+                            241,
                             248,
+                            160,
                             283,
-                            284,
                             187,
+                            284,
                             191,
                             158,
                             293,
@@ -42693,11 +42824,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            473,
-                            409,
-                            465,
-                            337,
                             242,
+                            337,
+                            465,
+                            409,
+                            473,
                             205,
                             300,
                             408,
