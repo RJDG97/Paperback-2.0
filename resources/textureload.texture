@@ -83,6 +83,7 @@
     "HowToPlayButton_Unselected": "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Unselected_Mirrored.dds 1",
     "LeftButton_Selected": "../../resources/textures/UI/Menus/Buttons/LeftButton_Selected_Mirrored.dds 1",
     "LeftButton_Unselected": "../../resources/textures/UI/Menus/Buttons/LeftButton_Unselected_Mirrored.dds 1",
+    "NextLevel_Selected": "../../resources/textures/UI/Menus/Buttons/NextLevel_Selected_Mirrored.dds 1",
     "NextLevel_Unselected": "../../resources/textures/UI/Menus/Buttons/NextLevel_Unselected.dds 1",
     "NoButton_Selected": "../../resources/textures/UI/Menus/Buttons/NoButton_Selected_Mirrored.dds 1",
     "NoButton_Unselected": "../../resources/textures/UI/Menus/Buttons/NoButton_Unselected_Mirrored.dds 1",
