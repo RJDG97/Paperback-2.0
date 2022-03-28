@@ -343,10 +343,20 @@ namespace paperback::coordinator
 		if (m_QueuedSceneName != "")
 		{
 
-			std::string temp = m_QueuedSceneName;
-			m_QueuedSceneName = "";
+			if (m_QueuedSceneName == "Reload")
+			{
 
-			OpenScene(temp);
+				m_QueuedSceneName = "";
+				m_SceneMgr.ReloadScene();
+			}
+			else
+			{
+
+				std::string temp = m_QueuedSceneName;
+				m_QueuedSceneName = "";
+
+				OpenScene(temp);
+			}
 		}
 	}
 

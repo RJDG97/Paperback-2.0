@@ -103,6 +103,8 @@
     "SettingsButton_Unselected": "../../resources/textures/UI/Menus/Buttons/SettingsButton_Unselected_Mirrored.dds 1",
     "StartGameButton_Selected": "../../resources/textures/UI/Menus/Buttons/StartGameButton_Selected_Mirrored.dds 1",
     "StartGameButton_Unselected": "../../resources/textures/UI/Menus/Buttons/StartGameButton_Unselected_Mirrored.dds 1",
+    "ToLastCheckpointButton_Selected": "../../resources/textures/UI/Menus/Buttons/ToLastCheckpointButton_Selected_Mirrored.dds 1",
+    "ToLastCheckpointButton_Unselected": "../../resources/textures/UI/Menus/Buttons/ToLastCheckpointButton_Unselected_Mirrored.dds 1",
     "YesButton_Selected": "../../resources/textures/UI/Menus/Buttons/YesButton_Selected_Mirrored.dds 1",
     "YesButton_Unselected": "../../resources/textures/UI/Menus/Buttons/YesButton_Unselected_Mirrored.dds 1",
     "CapturePoint_HowToPlay": "../../resources/textures/UI/Menus/HowtoPlay/CapturePoint_HowToPlay_Mirrored.dds 1",

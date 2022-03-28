@@ -26,7 +26,8 @@ struct restartlevel_button_script : paperback::script::button_interface // Inher
 
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
         PPB.TogglePause(false);
-        
-        PPB.QueueScene("");
+
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), false);
+        PPB.QueueScene("Reload");
     }
 };
