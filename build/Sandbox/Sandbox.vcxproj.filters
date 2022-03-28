@@ -466,5 +466,14 @@
     <ClInclude Include="Scripts\RestartLevelWindow_Button_Game.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\RestartCheckpoint_Button.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\RestartCheckpointCancel_Button_Game.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\RestartCheckpointWindow_Button_Game.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

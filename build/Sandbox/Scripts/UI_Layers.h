@@ -16,5 +16,5 @@ enum UI_LAYER
 	HOWTOPLAY5,			//for page 5 of how to play
 	HOWTOPLAY6,			//for page 6 of how to play
 	HOWTOPLAY7,			//for page 7 of how to play
-	RESTART_CHEKPOINT	//for buttons toggable only during restart from last checkpoint confirm
+	RESTART_CHECKPOINT	//for buttons toggable only during restart from last checkpoint confirm
 };
