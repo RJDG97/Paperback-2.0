@@ -33,8 +33,8 @@ struct player_camera_system : paperback::system::pausable_instance
                 auto NormDir   = Direction.Normalized( );
                 auto MaxCamPos = Transform.m_Position + NormDir * Camera.m_MaxRadius;
 
-                auto Point1 = RotateAboutAxis( MaxCamPos - Transform.m_Position, 5.f, 1 ) + Transform.m_Position;
-                auto Point2 = RotateAboutAxis( MaxCamPos - Transform.m_Position, -5.f, 1 ) + Transform.m_Position;
+                auto Point1 = RotateAboutAxis( MaxCamPos - Transform.m_Position, 6.f, 1 ) + Transform.m_Position;
+                auto Point2 = RotateAboutAxis( MaxCamPos - Transform.m_Position, -6.f, 1 ) + Transform.m_Position;
 
                 auto [Hit_ID, HitDist] = m_Coordinator.QueryRaycastClosest( Transform.m_Position      // Start Ray
                                                                           , Point1                    // End Ray
@@ -61,13 +61,13 @@ struct player_camera_system : paperback::system::pausable_instance
                     // Zoom Out
                     if ( NewRadius > Camera.m_Radius &&
                         (Camera.m_Radius + Rate) < Camera.m_MaxRadius &&
-                        (NewRadius - Camera.m_Radius) > 0.05f )
+                        (NewRadius - Camera.m_Radius) > 0.02f )
                         Camera.m_Radius += Rate;
 
                     // Zoom In
                     else if ( NewRadius < Camera.m_Radius &&
                              (Camera.m_Radius - Rate) > Camera.m_MinRadius &&
-                             (Camera.m_Radius-NewRadius) > 0.05f )
+                             (Camera.m_Radius - NewRadius) > 0.02f )
                         Camera.m_Radius -= Rate;
                 }
             }
