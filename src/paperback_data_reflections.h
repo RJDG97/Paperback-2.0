@@ -20,6 +20,10 @@ namespace paperback
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("ID", &entityscript::ScriptID::m_ID);
 
+		rttr::registration::class_<button::ButtonTexture>("ButtonTextures")
+			.constructor()(rttr::policy::ctor::as_object)
+			.property("ID", &button::ButtonTexture::m_TextureName);
+
 		rttr::registration::class_<cinematic::CinematicInfo>("CinematicInfo")
 			.constructor()(rttr::policy::ctor::as_object)
 			.property("Hold Time", &cinematic::CinematicInfo::m_HoldTime)

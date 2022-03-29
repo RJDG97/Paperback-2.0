@@ -2,6 +2,8 @@
 #include "paperback_camera.h"
 #include <glm/inc/gtx/transform.hpp>
 
+#include <random>
+
 // Converted to std::string_view from std::string on these lines:
 // std::string( model.first ) - Performs an implicit conversion from std::string_view to std::string - Basic String Constructor (10)
 // 190, 245, 267, 292, 306, 342, 418
@@ -131,6 +133,8 @@ Renderer::Renderer() :
 	m_Resources.LoadShader("Blur", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Blur.frag");
 	m_Resources.LoadShader("Composite", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Composite.frag");
 	m_Resources.LoadShader("Final", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/Final.frag");
+	m_Resources.LoadShader("SSAO", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/SSAO.frag");
+	m_Resources.LoadShader("SSAOBlur", "../../resources/shaders/SimplePassthrough.vert", "../../resources/shaders/SSAOBlur.frag");
 	m_Resources.LoadShader("Skybox", "../../resources/shaders/Skybox.vert", "../../resources/shaders/Skybox.frag");
 	m_Resources.LoadShader("Debug", "../../resources/shaders/Debug.vert", "../../resources/shaders/Debug.frag");
 	m_Resources.LoadShader("UI", "../../resources/shaders/UI.vert", "../../resources/shaders/UI.frag");
@@ -404,6 +408,39 @@ Renderer::Renderer() :
 	// Enable face cullling
 	glEnable(GL_CULL_FACE);
 
+	std::uniform_real_distribution<GLfloat> randomFloats(0.0, 1.0);
+	std::default_random_engine generator;
+
+	// Initialize SSAO kernel
+	for (size_t i = 0; i < 64; ++i)
+	{
+		glm::vec3 sample(randomFloats(generator) * 2.0 - 1.0, randomFloats(generator) * 2.0 - 1.0, randomFloats(generator));
+		sample = glm::normalize(sample);
+		sample *= randomFloats(generator);
+		float scale = static_cast<float>(i) / 64.f;
+
+		scale = Lerp(0.1f, 1.f, scale * scale);
+		sample *= scale;
+		m_SSAOKernel.push_back(sample);
+	}
+
+	std::vector<glm::vec3> ssaoNoise;
+
+	// Initialize SSAO noise texture
+	for (size_t i = 0; i < 16; ++i)
+	{
+		glm::vec3 noise(randomFloats(generator) * 2.0 - 1.0, randomFloats(generator) * 2.0 - 1.0, 0.f);
+		ssaoNoise.push_back(noise);
+	}
+
+	glCreateTextures(GL_TEXTURE_2D, 1, &m_SSAONoise);
+	glTextureStorage2D(m_SSAONoise, 1, GL_RGBA32F, 4, 4);
+	glTextureParameteri(m_SSAONoise, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTextureParameteri(m_SSAONoise, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTextureParameteri(m_SSAONoise, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTextureParameteri(m_SSAONoise, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTextureSubImage2D(m_SSAONoise, 0, 0, 0, 4, 4, GL_RGB, GL_FLOAT, &ssaoNoise[0]);
+
 	m_Light.m_Position = glm::vec3{ 1.f, 1.f, 1.f };
 	m_Light.m_Direction = glm::normalize(glm::vec3{ 0.f } - m_Light.m_Position);
 	m_Light.m_Projection = glm::ortho(-80.f, 80.f, -40.f, 40.f, -80.f, 80.f);
@@ -422,6 +459,12 @@ Renderer::~Renderer()
 
 	glDeleteFramebuffers( static_cast<GLsizei>( m_ShadowBuffer.m_FrameBuffer.size() ), m_ShadowBuffer.m_FrameBuffer.data());
 	glDeleteTextures( static_cast<GLsizei>( m_ShadowBuffer.m_BufferTexture.size() ), m_ShadowBuffer.m_BufferTexture.data());
+
+	glDeleteFramebuffers(static_cast<GLsizei>(m_SSAOBuffer.m_FrameBuffer.size()), m_SSAOBuffer.m_FrameBuffer.data());
+	glDeleteTextures(static_cast<GLsizei>(m_SSAOBuffer.m_BufferTexture.size()), m_SSAOBuffer.m_BufferTexture.data());
+
+	glDeleteFramebuffers(static_cast<GLsizei>(m_SSAOBlurBuffer.m_FrameBuffer.size()), m_SSAOBlurBuffer.m_FrameBuffer.data());
+	glDeleteTextures(static_cast<GLsizei>(m_SSAOBlurBuffer.m_BufferTexture.size()), m_SSAOBlurBuffer.m_BufferTexture.data());
 
 	glDeleteFramebuffers( static_cast<GLsizei>( m_LightingBuffer.m_FrameBuffer.size() ), m_LightingBuffer.m_FrameBuffer.data());
 	glDeleteTextures( static_cast<GLsizei>( m_LightingBuffer.m_BufferTexture.size() ), m_LightingBuffer.m_BufferTexture.data());
@@ -505,6 +548,32 @@ void Renderer::SetUpFramebuffer(int Width, int Height)
 	// Add framebuffer and texture to framebuffer object
 	m_ShadowBuffer.m_FrameBuffer.push_back(shadowFBO);
 	m_ShadowBuffer.m_BufferTexture.push_back(shadowDepth);
+
+	GLuint SSAOFbo;
+	glCreateFramebuffers(1, &SSAOFbo);
+
+	GLuint SSAOTexture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &SSAOTexture);
+	glTextureStorage2D(SSAOTexture, 1, GL_RGBA16F, m_Width, m_Height);
+	glTextureParameteri(SSAOTexture, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTextureParameteri(SSAOTexture, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glNamedFramebufferTexture(SSAOFbo, GL_COLOR_ATTACHMENT0, SSAOTexture, 0);
+
+	m_SSAOBuffer.m_BufferTexture.push_back(SSAOTexture);
+	m_SSAOBuffer.m_FrameBuffer.push_back(SSAOFbo);
+
+	GLuint SSAOBlurFbo;
+	glCreateFramebuffers(1, &SSAOBlurFbo);
+
+	GLuint SSAOBlurTexture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &SSAOBlurTexture);
+	glTextureStorage2D(SSAOBlurTexture, 1, GL_RGBA16F, m_Width, m_Height);
+	glTextureParameteri(SSAOBlurTexture, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTextureParameteri(SSAOBlurTexture, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glNamedFramebufferTexture(SSAOBlurFbo, GL_COLOR_ATTACHMENT0, SSAOBlurTexture, 0);
+
+	m_SSAOBlurBuffer.m_BufferTexture.push_back(SSAOBlurTexture);
+	m_SSAOBlurBuffer.m_FrameBuffer.push_back(SSAOBlurFbo);
 
 	// Create light framebuffer
 	GLuint lightFbo;
@@ -663,6 +732,36 @@ void Renderer::UpdateFramebufferSize(int Width, int Height)
 	glNamedFramebufferRenderbuffer(m_GBuffer.m_FrameBuffer[0], GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, gPassRBO);
 	m_GBuffer.m_RenderBuffer = gPassRBO;
 
+	// Delete old SSAO buffer textures
+	glDeleteTextures(static_cast<GLsizei>(m_SSAOBuffer.m_BufferTexture.size()), m_SSAOBuffer.m_BufferTexture.data());
+	m_SSAOBuffer.m_BufferTexture.clear();
+
+	// Create SSAO textures
+	GLuint SSAOTexture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &SSAOTexture);
+	glTextureStorage2D(SSAOTexture, 1, GL_RGBA16F, Width, Height);
+	glTextureParameteri(SSAOTexture, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTextureParameteri(SSAOTexture, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glNamedFramebufferTexture(m_SSAOBuffer.m_FrameBuffer[0], GL_COLOR_ATTACHMENT0, SSAOTexture, 0);
+
+	// Add texture to framebuffer object
+	m_SSAOBuffer.m_BufferTexture.push_back(SSAOTexture);
+
+	// Delete old SSAOBlur buffer textures
+	glDeleteTextures(static_cast<GLsizei>(m_SSAOBlurBuffer.m_BufferTexture.size()), m_SSAOBlurBuffer.m_BufferTexture.data());
+	m_SSAOBlurBuffer.m_BufferTexture.clear();
+
+	// Create SSAOBlur textures
+	GLuint SSAOBlurTexture;
+	glCreateTextures(GL_TEXTURE_2D, 1, &SSAOBlurTexture);
+	glTextureStorage2D(SSAOBlurTexture, 1, GL_RGBA16F, Width, Height);
+	glTextureParameteri(SSAOBlurTexture, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTextureParameteri(SSAOBlurTexture, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glNamedFramebufferTexture(m_SSAOBlurBuffer.m_FrameBuffer[0], GL_COLOR_ATTACHMENT0, SSAOBlurTexture, 0);
+
+	// Add texture to framebuffer object
+	m_SSAOBlurBuffer.m_BufferTexture.push_back(SSAOBlurTexture);
+
 	// Delete old light buffer textures
 	glDeleteTextures(static_cast<GLsizei>(m_LightingBuffer.m_BufferTexture.size()), m_LightingBuffer.m_BufferTexture.data());
 	m_LightingBuffer.m_BufferTexture.clear();
@@ -815,6 +914,8 @@ void Renderer::Render(const std::unordered_map<std::string_view, std::vector<Ren
 
 	// Enable for forward rendering
 	glEnable(GL_BLEND);
+
+	SSAOPass(SceneCamera);
 
 	// Disable for GPass compilation/LightPass
 	glDisable(GL_DEPTH_TEST);
@@ -1498,6 +1599,67 @@ void Renderer::GPass(const std::unordered_map<std::string_view, std::vector<Tran
 	glEnable(GL_CULL_FACE);
 }
 
+void Renderer::SSAOPass(const Camera3D& SceneCamera)
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, m_SSAOBuffer.m_FrameBuffer[0]);
+
+	m_Resources.m_Shaders["SSAO"].Use();
+
+	glBindVertexArray(m_VAO);
+
+	// Set screen model
+	const auto& screen = m_Resources.m_Models["Screen"];
+	glVertexArrayVertexBuffer(m_VAO, 0, screen.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
+	glVertexArrayElementBuffer(m_VAO, screen.GetSubMeshes()[0].m_EBO);
+
+	glBindTextureUnit(0, m_GBuffer.m_BufferTexture[0]);
+	m_Resources.m_Shaders["SSAO"].SetUniform("uPositions", 0);
+	glBindTextureUnit(1, m_GBuffer.m_BufferTexture[1]);
+	m_Resources.m_Shaders["SSAO"].SetUniform("uNormals", 1);
+	glBindTextureUnit(2, m_SSAONoise);
+	m_Resources.m_Shaders["SSAO"].SetUniform("uTexNoise", 2);
+
+	glm::mat4 projection = SceneCamera.GetProjection();
+
+	m_Resources.m_Shaders["SSAO"].SetUniform("uProjection", const_cast<glm::mat4&>(projection));
+
+	m_Resources.m_Shaders["SSAO"].SetUniform("uWidth", static_cast<float>(m_Width));
+	m_Resources.m_Shaders["SSAO"].SetUniform("uHeight", static_cast<float>(m_Height));
+
+	for (size_t i = 0; i < 64; ++i)
+	{
+		std::string uniform = "uSamples[" + std::to_string(i) + "]";
+		m_Resources.m_Shaders["SSAO"].SetUniform(uniform.c_str(), const_cast<glm::vec3&>(m_SSAOKernel[i]));
+	}
+
+	glDrawElements(screen.GetPrimitive(), screen.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	m_Resources.m_Shaders["SSAO"].UnUse();
+
+	glBindFramebuffer(GL_FRAMEBUFFER, m_SSAOBlurBuffer.m_FrameBuffer[0]);
+
+	m_Resources.m_Shaders["SSAOBlur"].Use();
+
+	glBindVertexArray(m_VAO);
+
+	// Set screen model
+	glVertexArrayVertexBuffer(m_VAO, 0, screen.GetSubMeshes()[0].m_VBO, 0, sizeof(Model::Vertex));
+	glVertexArrayElementBuffer(m_VAO, screen.GetSubMeshes()[0].m_EBO);
+
+	glBindTextureUnit(0, m_SSAOBuffer.m_BufferTexture[0]);
+	m_Resources.m_Shaders["SSAOBlur"].SetUniform("uSSAOInput", 0);
+
+	glDrawElements(screen.GetPrimitive(), screen.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
+
+	// Unbind vao
+	glBindVertexArray(0);
+
+	m_Resources.m_Shaders["SSAOBlur"].UnUse();
+}
+
 void Renderer::LightPass(const std::vector<PointLightInfo>& Lights, const Camera3D& SceneCamera)
 {
 	// Bind shader
@@ -1521,27 +1683,35 @@ void Renderer::LightPass(const std::vector<PointLightInfo>& Lights, const Camera
 	m_Resources.m_Shaders["LightPass"].SetUniform("uDiffuses", 3);
 	glBindTextureUnit(4, m_ShadowBuffer.m_BufferTexture[0]);
 	m_Resources.m_Shaders["LightPass"].SetUniform("uShadowMap", 4);
+	glBindTextureUnit(5, m_SSAOBlurBuffer.m_BufferTexture[0]);
+	m_Resources.m_Shaders["LightPass"].SetUniform("uSSAO", 5);
 
-	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Direction", m_Light.m_Direction);
+	glm::mat4 view = SceneCamera.GetView();
+
+	glm::vec4 lightDir = view * glm::vec4(m_Light.m_Direction, 1.0);
+	glm::mat4 lightTranform = m_Light.m_Transform * glm::inverse(view);
+
+	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Direction", lightDir.x, lightDir.y, lightDir.z);
 	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Ambient", 0.2f, 0.2f, 0.2f);
 	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Diffuse", 0.5f, 0.5f, 0.5f);
 	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Specular", 1.0f, 1.0f, 1.0f);
-	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Transform", const_cast<glm::mat4&>(m_Light.m_Transform));
+	m_Resources.m_Shaders["LightPass"].SetUniform("uDirectionalLight.Transform", lightTranform);
 
 	m_Resources.m_Shaders["LightPass"].SetUniform("uNumLights", static_cast<int>(Lights.size()));
 
 	for (size_t i = 0; i < Lights.size(); ++i)
 	{
 		std::string uniform = "uLights[" + std::to_string(i) + "]";
+		glm::vec4 lightPos = view * glm::vec4(Lights[i].m_Position, 1.0);
 
-		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Position").c_str(), const_cast<glm::vec3&>(Lights[i].m_Position));
+		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Position").c_str(), lightPos.x, lightPos.y, lightPos.z);
 		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Ambient").c_str(), const_cast<glm::vec3&>(Lights[i].m_Ambient));
 		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Diffuse").c_str(), const_cast<glm::vec3&>(Lights[i].m_Diffuse));
 		m_Resources.m_Shaders["LightPass"].SetUniform((uniform + ".Specular").c_str(), const_cast<glm::vec3&>(Lights[i].m_Specular));
 	}
 
-	glm::vec3 position = SceneCamera.GetPosition();
-	m_Resources.m_Shaders["LightPass"].SetUniform("uCameraPosition", const_cast<glm::vec3&>(position));
+	//glm::vec3 position = SceneCamera.GetPosition();
+	//m_Resources.m_Shaders["LightPass"].SetUniform("uCameraPosition", const_cast<glm::vec3&>(position));
 
 	glDrawElements(screen.GetPrimitive(), screen.GetSubMeshes()[0].m_DrawCount, GL_UNSIGNED_SHORT, NULL);
 
@@ -1760,6 +1930,11 @@ GLuint Renderer::GetUIOverlay()
 GLuint Renderer::GetFinalImage()
 {
 	return m_FinalBuffer.m_BufferTexture[0];
+}
+
+float Renderer::Lerp(float A, float B, float F)
+{
+	return A + F * (B - A);
 }
 
 Renderer& Renderer::GetInstanced()
