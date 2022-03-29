@@ -12,7 +12,7 @@ namespace MONO_FREEZABLE
 #ifdef PAPERBACK_DEBUG
 		if (!m_freezable)
 		{
-			name* Name = m_obj.m_pArchetype->FindComponent<freezable>(m_obj.m_PoolDetails);
+			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
 			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Freezable component." << std::endl;
 		}
 #endif
