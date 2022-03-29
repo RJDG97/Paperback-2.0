@@ -475,5 +475,8 @@
     <ClInclude Include="Scripts\RestartCheckpointWindow_Button_Game.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Freezable.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

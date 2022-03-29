@@ -35,6 +35,7 @@
 #include "Scripts/Scripts_DialogueCollider.h"
 #include "Scripts/Scripts_DialogueText.h"
 #include "Scripts/Scripts_ParticleEmitter.h"
+#include "Scripts/Scripts_Freezable.h"
 
 namespace MONO_INTERNALS
 {
@@ -74,5 +75,6 @@ namespace MONO_INTERNALS
 		MONO_DIALOGUECOLLIDER::AddInternalCall();
 		MONO_DIALOGUETEXT::AddInternalCall();
 		MONO_PARTICLEEMITTER::AddInternalCall();
+		MONO_FREEZABLE::AddInternalCall();
 	}
 }

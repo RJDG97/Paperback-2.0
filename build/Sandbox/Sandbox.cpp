@@ -132,6 +132,7 @@ void InitializeGame()
         ,    particle
         ,    dialogue_text
         ,    dialogue_collider
+        ,    freezable       // Tag
         >();
 
         // Register Components - Add to the end of the list

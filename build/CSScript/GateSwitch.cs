@@ -16,6 +16,7 @@ namespace CSScript
         Mesh m_Mesh;
         Rotation m_Rotation;
 
+        Freezable m_ChildFreezable;
         BoundingBox m_ChildBoundingBox; //gate is child
         Animator m_ChildAnimator;
         Transform m_ChildTransform;
@@ -23,6 +24,9 @@ namespace CSScript
         Tools.MathLib.Vector3 m_InitialBoundingBoxMin;
         Tools.MathLib.Vector3 m_InitialBoundingBoxMax;
         Tools.MathLib.Vector3 m_InitialBBOffset;
+
+        int m_NumTop = 0;
+        bool m_Activated = false;
 
         public static GateSwitch getInst()
         {
@@ -42,6 +46,7 @@ namespace CSScript
 
             if (m_ChildID != -1)
             {
+                m_ChildFreezable = new Freezable((UInt32)m_ChildID);
                 m_ChildBoundingBox = new BoundingBox((UInt32)m_ChildID);
                 m_ChildAnimator = new Animator((UInt32)m_ChildID);
                 m_ChildTransform = new Transform((UInt32)m_ChildID);
@@ -70,6 +75,13 @@ namespace CSScript
                                                                       m_InitialBBOffset.y,
                                                                       m_InitialBBOffset.z + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
             }
+
+            if (m_NumTop == 0 && !m_Activated && !m_ChildFreezable.m_Frozen)
+            {
+                m_ChildAnimator.m_Reversed = true;
+                m_ChildAnimator.m_PauseAnimation = false;
+                m_ChildAnimator.m_PauseAtTime = 0;
+            }
         }
 
         public void Update(float dt)
@@ -85,26 +97,49 @@ namespace CSScript
         {
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
+                if (!m_ChildFreezable.m_Frozen)
+                {
+                    m_ChildAnimator.m_Reversed = false;
+                    m_ChildAnimator.m_PauseAnimation = false;
+                    m_ChildAnimator.m_PauseAtTime = 48;
+                    ++m_NumTop;
+                    m_Activated = true;
+                }
+
                 m_Sound.m_Trigger = true;
-                m_ChildAnimator.m_Reversed = false;
-                m_ChildAnimator.m_PauseAnimation = false;
-                m_ChildAnimator.m_PauseAtTime = 48;
                 m_Mesh.m_Model = "Button_GateON";
             }
         }
+
         public void OnCollisionStay(UInt32 ID)
         {
+            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
+            {
+                if (!m_ChildFreezable.m_Frozen && !m_Activated)
+                {
+                    m_ChildAnimator.m_Reversed = false;
+                    m_ChildAnimator.m_PauseAnimation = false;
+                    m_ChildAnimator.m_PauseAtTime = 48;
+                    ++m_NumTop;
+                    m_Activated = true;
+                }
+
+                m_Sound.m_Trigger = true;
+                m_Mesh.m_Model = "Button_GateON";
+            }
         }
+
         public void OnCollisionExit(UInt32 ID)
         {
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
-                m_ChildAnimator.m_Reversed = true;
-                m_ChildAnimator.m_PauseAnimation = false;
-                m_ChildAnimator.m_PauseAtTime = 0;
+                --m_NumTop;
+                m_Activated = false;
+                m_Sound.m_Trigger = true;
                 m_Mesh.m_Model = "Button_GateOFF";
             }
         }
+
         public void Reset()
         {
         }

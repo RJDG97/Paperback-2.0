@@ -12,6 +12,8 @@ namespace CSScript
         Parent m_Parent; //switch is parent
 
         Int32 m_ElevatorID;
+        Mesh m_Mesh;
+        Freezable m_ElevatorFreezable;
         Animator m_ElevatorAnimator;
         Elevator m_ElevatorElevator;
         Sound m_ElevatorSound;
@@ -24,6 +26,9 @@ namespace CSScript
         float m_PlatformSpeed;
 
         bool m_GoingUpwards;
+        int m_NumTop = 0;
+
+        bool m_Activated = false;
 
         public static ElevatorSwitch getInst()
         {
@@ -35,11 +40,13 @@ namespace CSScript
             m_ID = ID;
             m_Sound = new Sound(m_ID);
             m_Parent = new Parent(m_ID);
+            m_Mesh = new Mesh((UInt32)m_ID);
 
             m_ElevatorID = m_Parent.GetChildIDofName("Elevator");
 
             if (m_ElevatorID != -1)
             {
+                m_ElevatorFreezable = new Freezable((UInt32)m_ElevatorID);
                 m_ElevatorAnimator = new Animator((UInt32)m_ElevatorID);
                 m_ElevatorElevator = new Elevator((UInt32)m_ElevatorID);
                 m_ElevatorScale = new Scale((UInt32)m_ElevatorID);
@@ -76,6 +83,29 @@ namespace CSScript
             {
                 m_ElevatorAnimator.m_PauseAnimation = false;
             }
+
+            if (!m_ElevatorFreezable.m_Frozen)
+            {
+                if (m_NumTop == 0)
+                {
+                    m_ElevatorAnimator.m_PauseAnimation = false;
+
+                    if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
+                    {
+                        m_ElevatorAnimator.m_Reversed = true;
+                        m_GoingUpwards = false;
+                    }
+
+                    else
+                    {
+                        m_ElevatorAnimator.m_Reversed = false;
+                        m_GoingUpwards = true;
+                    }
+
+                    m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;
+                    m_Activated = false;
+                }
+            }
         }
 
         public void Update(float dt)
@@ -89,53 +119,90 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
-            {
-                m_Sound.m_Trigger = true;
-                //m_ElevatorSound.m_Trigger = true;
-                m_ElevatorAnimator.m_PauseAnimation = false;
-
-                if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
+                if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
                 {
-                    m_ElevatorAnimator.m_Reversed = false;
-                    m_GoingUpwards = true;
-                }
+                    if (!m_ElevatorFreezable.m_Frozen)
+                    {
+                        //m_ElevatorSound.m_Trigger = true;
+                        m_ElevatorAnimator.m_PauseAnimation = false;
 
-                else
-                {
-                    m_ElevatorAnimator.m_Reversed = true;
-                    m_GoingUpwards = false;
-                }
+                        if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
+                        {
+                            m_ElevatorAnimator.m_Reversed = false;
+                            m_GoingUpwards = true;
+                        }
 
-                m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StopTime;
-            }
+                        else
+                        {
+                            m_ElevatorAnimator.m_Reversed = true;
+                            m_GoingUpwards = false;
+                        }
+
+                        m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StopTime;
+                        ++m_NumTop;
+
+                        m_Activated = true;
+                    }
+                    
+                    m_Sound.m_Trigger = true;
+
+                    if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 3, 3) == "OFF")
+                    {
+                        m_Mesh.m_Model = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 3) + "ON";
+                    }
+                }
         }
+
         public void OnCollisionStay(UInt32 ID)
         {
+            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
+            {
+                if (!m_ElevatorFreezable.m_Frozen && !m_Activated)
+                {
+                    //m_ElevatorSound.m_Trigger = true;
+                    m_ElevatorAnimator.m_PauseAnimation = false;
+
+                    if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
+                    {
+                        m_ElevatorAnimator.m_Reversed = false;
+                        m_GoingUpwards = true;
+                    }
+
+                    else
+                    {
+                        m_ElevatorAnimator.m_Reversed = true;
+                        m_GoingUpwards = false;
+                    }
+
+                    m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StopTime;
+                    ++m_NumTop;
+
+                    m_Activated = true;
+                }
+
+                m_Sound.m_Trigger = true;
+
+                if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 3, 3) == "OFF")
+                {
+                    m_Mesh.m_Model = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 3) + "ON";
+                }
+            }
         }
 
         public void OnCollisionExit(UInt32 ID)
         {
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
             {
+                if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 2, 2) == "ON")
+                {
+                    m_Mesh.m_Model = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 2) + "OFF";
+                }
+
+                --m_NumTop;
                 m_Sound.m_Trigger = true;
-                m_ElevatorAnimator.m_PauseAnimation = false;
-
-                if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
-                {
-                    m_ElevatorAnimator.m_Reversed = true;
-                    m_GoingUpwards = false;
-                }
-
-                else
-                {
-                    m_ElevatorAnimator.m_Reversed = false;
-                    m_GoingUpwards = true;
-                }
-
-                m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;
             }
         }
+
         public void Reset()
         {
         }
