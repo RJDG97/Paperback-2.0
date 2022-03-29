@@ -1,7 +1,7 @@
 #pragma once
 #include "../Scripts/UI_Layers.h"
 
-struct ui_system : paperback::system::pausable_instance
+struct ui_system : paperback::system::instance
 {
 
     bool m_FrameButtonLock{}; //used to ensure that only 1 onclick event can be processed per frame to prevent multi chain spam in a single frame
@@ -199,7 +199,7 @@ struct ui_system : paperback::system::pausable_instance
         }
     }
 
-    PPB_INLINE
+    PPB_FORCEINLINE
     void OnFrameEnd() noexcept
     {
 
