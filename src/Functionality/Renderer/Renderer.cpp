@@ -224,6 +224,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("CraneElevator_Freeze_Hovered", "../../resources/models/nui/CraneElevatorFreeze_Hovered.nui");
 	m_Resources.Load3DMeshNUI("CraneElevator_Freeze_Unhovered", "../../resources/models/nui/CraneElevatorFreeze_Unhovered.nui");
 
+	m_Resources.Load3DMeshNUI("Credits", "../../resources/models/nui/Credits.nui");
+
 	m_Resources.Load3DMeshNUI("CylinderBlock_Blue", "../../resources/models/nui/CylinderBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("CylinderBlock_Green", "../../resources/models/nui/CylinderBlock_Green.nui");
 	m_Resources.Load3DMeshNUI("CylinderBlock_Red", "../../resources/models/nui/CylinderBlock_Red.nui");
@@ -342,6 +344,8 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("ShortGate_Freeze_Unhovered", "../../resources/models/nui/ShortGate_FreezeUnhovered.nui");
 
 	m_Resources.Load3DMeshNUI("ShrinkCard", "../../resources/models/nui/ShrinkCard.nui");
+
+	m_Resources.Load3DMeshNUI("Splashscreen", "../../resources/models/nui/Splashscreen.nui");
 
 	m_Resources.Load3DMeshNUI("SquareBlock_Blue", "../../resources/models/nui/SquareBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("SquareBlock_Green", "../../resources/models/nui/SquareBlock_Green.nui");

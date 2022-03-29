@@ -210,24 +210,24 @@ struct render_system : paperback::system::instance
 			{
 				auto direction = GetMouseDirection();
 
-				m_Camera3D.RotateWithMouse(direction);
+				m_Camera3D.RotateWithMouse( direction, m_Coordinator.GetMouseSensitivityRatio() );
 			}
 
-			if (Key == GLFW_KEY_W)
+			if ( Key == GLFW_KEY_W && m_Coordinator.IsMouseDown( GLFW_MOUSE_BUTTON_2 ) )
 			{
 				m_Camera3D.MoveForward(m_Speed);
 			}
-			else if (Key == GLFW_KEY_S)
+			else if ( Key == GLFW_KEY_S && m_Coordinator.IsMouseDown(GLFW_MOUSE_BUTTON_2) )
 			{
 				m_Camera3D.MoveBackward(m_Speed);
 			}
 
-			if (Key == GLFW_KEY_A)
+			if ( Key == GLFW_KEY_A && m_Coordinator.IsMouseDown(GLFW_MOUSE_BUTTON_2) )
 			{
 				m_Camera3D.MoveLeft(m_Speed);
 			}
 
-			else if (Key == GLFW_KEY_D)
+			else if ( Key == GLFW_KEY_D && m_Coordinator.IsMouseDown(GLFW_MOUSE_BUTTON_2) )
 			{
 				m_Camera3D.MoveRight(m_Speed);
 			}

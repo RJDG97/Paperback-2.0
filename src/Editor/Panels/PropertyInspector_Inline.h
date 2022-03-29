@@ -284,6 +284,8 @@ void DetailsWindow::ButtonComponent( paperback::entity::info& EntityInfo, prefab
 {
     auto Button = m_Imgui.m_SelectedEntity.first->FindComponent<button>(paperback::vm::PoolDetails({ 0, m_Imgui.m_SelectedEntity.second }));
 
+    std::string Texture_Name{};
+
     if (Button)
     {
         if (PPB.GetScriptsList().size())
@@ -311,6 +313,41 @@ void DetailsWindow::ButtonComponent( paperback::entity::info& EntityInfo, prefab
                             if (ReferencePrefab)
                                 ReferencePrefab->AddModifiedComponentGuid(CompGuid.m_Value);
                         }
+                    }
+                }
+
+                ImGui::EndCombo();
+            }
+        }
+
+        char Buffer[256]{};
+
+        std::copy(Texture_Name.begin(), Texture_Name.end(), Buffer);
+
+        ImGui::Text("Enter a Name to Add a Texture: ");
+        ImGui::SetNextItemWidth(150.0f);
+        if (ImGui::InputText("##Enter Texture Name", Buffer, sizeof(Buffer), ImGuiInputTextFlags_EnterReturnsTrue))
+        {
+            button::ButtonTexture Temp;
+            Temp.m_TextureName = std::string(Buffer);
+            Button->m_ButtonStateTextures.push_back(Temp);
+            EDITOR_INFO_PRINT("Added: " + std::string(Buffer) + " Button Texture");
+        }
+
+
+        ImGui::Text("Remove Texture: ");
+
+        if (Button->m_ButtonStateTextures.size())
+        {
+
+            if (ImGui::BeginCombo("##AvaliableTextures", "Select the Texture to remove"))
+            {
+                for (auto i = 0; i < Button->m_ButtonStateTextures.size(); ++i)
+                {
+                    if (ImGui::Selectable(Button->m_ButtonStateTextures[i].m_TextureName.c_str()))
+                    {
+                        EDITOR_INFO_PRINT("Remove: " + Button->m_ButtonStateTextures[i].m_TextureName + " Button Texture");
+                        Button->m_ButtonStateTextures.erase(Button->m_ButtonStateTextures.begin() + i);
                     }
                 }
 

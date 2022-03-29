@@ -160,12 +160,13 @@ namespace paperback::physics
     //-----------------------------------
 
     PPB_INLINE
-    AABB_Tree::NeighbourList AABB_Tree::QueryNeighbours( const boundingbox& AABB
-                                                       , const transform&   Transform ) noexcept
+    AABB_Tree::NeighbourList AABB_Tree::QueryNeighbours( const boundingbox&   AABB
+                                                       , const transform&     Transform
+                                                       , const paperback::u32 Thickness = 0.0f ) noexcept
     {
         NeighbourList List;
         boundingbox   Box = AABB.Extend( Transform.m_Position
-                                       , 0.0f );
+                                       , Thickness );
 
         TraverseTree( [&]( AABBTree_Node& Node ) -> bool
                       {
@@ -209,8 +210,8 @@ namespace paperback::physics
 
         TraverseTree( [&]( AABBTree_Node& Node ) -> bool
                       {
-                          auto [ Status, Distance ] = Node.m_AABB.Intersecting( RayStart
-                                                                              , RayEnd );
+                          auto [ Status, Distance ] = Node.m_AABB.ScaleByValue( -0.5f ).Intersecting( RayStart
+                                                                                                    , RayEnd );
                           if ( Status ) CurrentPair = std::make_pair( Node.m_Entity.m_GlobalIndex, Distance );
                           return Status;
                       }

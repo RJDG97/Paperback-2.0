@@ -154,6 +154,9 @@ namespace CSScript
         {
 
         }
+        public void Reset()
+        {
+        }
     }
 }
 

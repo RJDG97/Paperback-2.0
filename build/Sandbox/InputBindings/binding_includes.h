@@ -430,7 +430,7 @@ namespace paperback::input::binding
                     {
                         auto Direction = m_Coordinator.GetMouseDirection();
 
-                        Direction = glm::normalize(Direction) * Controller.m_CameraRotationSpeed * 0.01f;
+                        Direction = glm::normalize(Direction) * Controller.m_CameraRotationSpeed * m_Coordinator.GetMouseSensitivityRatio() * 0.01f;
 
 	                    if ( Direction.x < 0 )
 	                    {
@@ -475,8 +475,8 @@ namespace paperback::input::binding
                     {
                         if ( Controller.m_PlayerStatus && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                         {
-                            Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed * 0.01f );
-                            Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed * 0.01f );
+                            Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed * m_Coordinator.GetMouseSensitivityRatio() * 0.01f );
+                            Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f );
                         }
                     });
                 }
@@ -728,7 +728,7 @@ namespace paperback::input::binding
     END_BINDING_CONSTRUCT
 
 
-    BEGIN_BINDING_CONSTRUCT( Toggle_FPS_Action )
+    BEGIN_BINDING_CONSTRUCT( Enable_FPS_Action )
         BEGIN_INPUT_ACTION
 
             // TODO - Update Query Initialization To Constructor Call
@@ -742,10 +742,61 @@ namespace paperback::input::binding
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, rigidbody& RB/*, camera_height_offset& CamOffset*/ )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, rigidbody& RB )
                 {
-                    if ( Controller.m_PlayerStatus && Controller.m_OnGround && Camera.m_Active && 
-                         !m_Coordinator.GetPauseBool() && RB.m_Velocity.MagnitudeSq() < 0.1f ) // Player Is Not Actually Moving - Condition May Not Be Necessary, Could Just Reset All Forces
+                    if ( Controller.m_PlayerStatus && Controller.m_OnGround && Camera.m_Active && RB.m_Velocity.MagnitudeSq() < 0.1f )
+                    {
+                        if ( !Controller.m_FPSMode )
+                        {
+                            // Toggle FPS Crosshair - Enable
+                            m_Coordinator.ForEach( m_Coordinator.Search( CrosshairQuery ), [&]( mesh& CrosshairMesh ) -> bool
+                            {
+                                if ( !CrosshairMesh.m_Active )
+                                {
+                                    // Backup Camera Radius | Update FPS Radius
+                                    Controller.m_CameraRadius = Camera.m_Radius;
+                                    Camera.m_Radius = 0.1f;
+
+                                    // Enable Crosshair
+                                    CrosshairMesh.m_Active = true;
+                                    
+                                    return true;
+                                }
+
+                                return false;
+                            });
+
+                            // Reset Camera Height Offset
+                            Controller.m_FPSMode = true;
+
+                            // Play FPS Mode Sound
+                            m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_ToggleFPSMode" );
+                        }
+                    }
+                });
+            }
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
+
+    BEGIN_BINDING_CONSTRUCT( Disable_FPS_Action )
+        BEGIN_INPUT_ACTION
+
+            // TODO - Update Query Initialization To Constructor Call
+            tools::query Query;
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
+		    Query.m_NoneOf.AddFromComponents< prefab >();
+
+            tools::query CrosshairQuery;
+            CrosshairQuery.m_Must.AddFromComponents< mesh, crosshair >();
+		    CrosshairQuery.m_NoneOf.AddFromComponents< prefab >();
+
+            if ( !m_Coordinator.GetPauseBool() )
+            {
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, rigidbody& RB )
+                {
+                    if ( Controller.m_PlayerStatus && Controller.m_OnGround && Camera.m_Active && RB.m_Velocity.MagnitudeSq() < 0.1f )
                     {
                         if ( Controller.m_FPSMode )
                         {
@@ -769,35 +820,12 @@ namespace paperback::input::binding
 
                             // Reset Camera Height Offset
                             Controller.m_FPSMode = false;
-                        }
-                        else
-                        {
-                            // Toggle FPS Crosshair - Enable
-                            m_Coordinator.ForEach( m_Coordinator.Search( CrosshairQuery ), [&]( mesh& CrosshairMesh ) -> bool
-                            {
-                                if ( !CrosshairMesh.m_Active )
-                                {
-                                    // Backup Camera Radius | Update FPS Radius
-                                    Controller.m_CameraRadius = Camera.m_Radius;
-                                    Camera.m_Radius = 0.1f;
 
-                                    // Enable Crosshair
-                                    CrosshairMesh.m_Active = true;
-                                    
-                                    return true;
-                                }
-
-                                return false;
-                            });
-
-                            // Reset Camera Height Offset
-                            Controller.m_FPSMode = true;
+                            // Play FPS Mode Sound
+                            m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_ToggleFPSMode" );
                         }
                     }
                 });
-
-                // Play FPS Mode Sound
-                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_ToggleFPSMode" );
             }
 
         END_INPUT_ACTION
@@ -866,10 +894,10 @@ namespace paperback::input::binding
                             Controller.m_PlayerStatus = Camera.m_Active = true;
                         }
                     });
-                }
 
-                // Play Toggle Player Sound
-                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_TogglePlayer" );
+                    // Play Toggle Player Sound
+                    m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_TogglePlayer" );
+                }
             }
 
         END_INPUT_ACTION

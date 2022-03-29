@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 490
+                "EntityHead": 493
             }
         },
         {
@@ -983,7 +983,10 @@
                             450,
                             451,
                             452,
-                            453
+                            453,
+                            490,
+                            491,
+                            492
                         ]
                     },
                     "Rotation": {
@@ -1131,7 +1134,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": 25.0,
+                            "y": 200.0,
                             "z": 1.0
                         }
                     },
@@ -1193,7 +1196,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -80.0,
+                            "y": -220.0,
                             "z": 1.0
                         }
                     },
@@ -1439,7 +1442,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -185.0,
+                            "y": -325.0,
                             "z": 1.0
                         }
                     },
@@ -1712,6 +1715,192 @@
                         ],
                         "Button State": 0,
                         "Layer Grouping": 5,
+                        "Script Guid": 0,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 490
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ToLastCheckpointButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -10.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            17008353085049151909,
+                            5691439207370049121,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "RestartCheckpointButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 7207962730480403526,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 491
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RestartLevelButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -115.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            17008353085049151909,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "RestartLevelButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 11551997379440525767,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 492
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "HowToPlayButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 95.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9604788041699812520,
+                            2550044418833058707,
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlayButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
                         "Script Guid": 0,
                         "Active Status": false
                     }
@@ -16911,7 +17100,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": false
+                        "Player Freeze Available": false,
+                        "Checkpoint ID": -1
                     }
                 }
             ]
@@ -17078,7 +17268,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": true,
                         "Player Shrink Available": true,
-                        "Player Freeze Available": true
+                        "Player Freeze Available": true,
+                        "Checkpoint ID": -1
                     }
                 }
             ]
@@ -17243,7 +17434,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": true,
                         "Player Shrink Available": true,
-                        "Player Freeze Available": true
+                        "Player Freeze Available": true,
+                        "Checkpoint ID": -1
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
@@ -17405,7 +17597,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": false
+                        "Player Freeze Available": false,
+                        "Checkpoint ID": -1
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,

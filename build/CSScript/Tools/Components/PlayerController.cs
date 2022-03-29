@@ -66,6 +66,18 @@ namespace CSScript
             }
         }
 
+        public int m_CheckpointID
+        {
+            get
+            {
+                return GetCheckpointID(m_Address);
+            }
+            set
+            {
+                SetCheckpointID(m_Address, value);
+            }
+        }
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
@@ -92,5 +104,11 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void SetFreezeStatus(void* address, bool value);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static int GetCheckpointID(void* address);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        private extern static void SetCheckpointID(void* address, int value);
     }
 }

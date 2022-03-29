@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 538
+                "EntityHead": 541
             }
         },
         {
@@ -1130,7 +1130,10 @@
                             438,
                             439,
                             440,
-                            441
+                            441,
+                            538,
+                            539,
+                            540
                         ]
                     },
                     "Rotation": {
@@ -1277,7 +1280,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": 25.0,
+                            "y": 200.0,
                             "z": 1.0
                         }
                     },
@@ -1339,7 +1342,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -80.0,
+                            "y": -220.0,
                             "z": 1.0
                         }
                     },
@@ -1478,7 +1481,7 @@
                         "Prefab GID": 430
                     },
                     "Name": {
-                        "Name": "Background_Paue"
+                        "Name": "Background_Pause"
                     },
                     "Button": {
                         "Button Textures": [
@@ -1486,7 +1489,7 @@
                             "",
                             ""
                         ],
-                        "Button State": 0,
+                        "Button State": 2,
                         "Layer Grouping": 2,
                         "Script Guid": 0,
                         "Active Status": false
@@ -1585,7 +1588,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -185.0,
+                            "y": -325.0,
                             "z": 1.0
                         }
                     },
@@ -1839,12 +1842,13 @@
                             9604788041699812520,
                             2550044418833058707,
                             5691439207370049121,
-                            17008353085049151909
+                            17008353085049151909,
+                            16415915133639986106
                         ],
                         "Prefab GID": 430
                     },
                     "Name": {
-                        "Name": "UIButton_Sample"
+                        "Name": "QuitGameWindow_Pause"
                     },
                     "Button": {
                         "Button Textures": [
@@ -1854,6 +1858,192 @@
                         ],
                         "Button State": 0,
                         "Layer Grouping": 5,
+                        "Script Guid": 0,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 538
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ToLastCheckpointButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -10.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 430
+                    },
+                    "Name": {
+                        "Name": "RestartCheckpointButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 7207962730480403526,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 539
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RestartLevelButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -115.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 430
+                    },
+                    "Name": {
+                        "Name": "RestartLevelButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 11551997379440525767,
+                        "Active Status": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 540
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "HowToPlayButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 95.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9604788041699812520,
+                            2550044418833058707,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 430
+                    },
+                    "Name": {
+                        "Name": "HowToPlayButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            "",
+                            "",
+                            ""
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
                         "Script Guid": 0,
                         "Active Status": false
                     }
@@ -6326,12 +6516,13 @@
                         "Modified Components": [
                             3617555656175080491,
                             8376831551428810534,
-                            17008353085049151909
+                            17008353085049151909,
+                            16415915133639986106
                         ],
                         "Prefab GID": 216
                     },
                     "Name": {
-                        "Name": "Platform Slope D"
+                        "Name": "PlatformSlopeA"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -6443,12 +6634,13 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             17008353085049151909,
-                            3617555656175080491
+                            3617555656175080491,
+                            16415915133639986106
                         ],
                         "Prefab GID": 216
                     },
                     "Name": {
-                        "Name": "Platform Slope D"
+                        "Name": "PlatformSlopeA"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -37782,7 +37974,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": false
+                        "Player Freeze Available": false,
+                        "Checkpoint ID": -1
                     }
                 }
             ]
@@ -37949,7 +38142,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": true
+                        "Player Freeze Available": true,
+                        "Checkpoint ID": -1
                     }
                 }
             ]
@@ -38114,7 +38308,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": true
+                        "Player Freeze Available": true,
+                        "Checkpoint ID": -1
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
@@ -38276,7 +38471,8 @@
                         "Player FPS Status": false,
                         "Player Grow Available": false,
                         "Player Shrink Available": false,
-                        "Player Freeze Available": false
+                        "Player Freeze Available": false,
+                        "Checkpoint ID": -1
                     },
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
@@ -46884,7 +47080,7 @@
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 20.0,
-                        "Pause At Time": 15.0,
+                        "Pause At Time": 20.0,
                         "Reversed": false
                     },
                     "Rigidbody": {
@@ -50215,11 +50411,13 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
                         "Prefab GID": 155
                     },
                     "Name": {
-                        "Name": "Platform Slope A"
+                        "Name": "Platform Slope D"
                     }
                 },
                 {
@@ -50242,11 +50440,13 @@
                         }
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
+                        "Modified Components": [
+                            16415915133639986106
+                        ],
                         "Prefab GID": 155
                     },
                     "Name": {
-                        "Name": "Platform Slope A"
+                        "Name": "Platform Slope D"
                     }
                 },
                 {

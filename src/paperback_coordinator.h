@@ -288,8 +288,9 @@ namespace paperback::coordinator
 		
 		// Returns Vector of GID
 		PPB_INLINE
-		physics::AABB_Tree::NeighbourList QueryNeighbours( const boundingbox& AABB
-                                                         , const transform&   Transform ) noexcept;
+		physics::AABB_Tree::NeighbourList QueryNeighbours( const boundingbox&   AABB
+                                                         , const transform&     Transform
+                                                         , const paperback::u32 Thickness = 0.0f ) noexcept;
 
 		PPB_INLINE
 		physics::AABB_Tree::NeighbourList QueryRaycast( const paperback::Vector3f& StartRay
@@ -415,6 +416,12 @@ namespace paperback::coordinator
 		PPB_INLINE
 		glm::vec3 GetViewportMousePosition(glm::mat4 projection, glm::mat4 view) noexcept;
 
+		PPB_INLINE
+		float SetMouseSensitivityRatio( const float Value ) noexcept;
+
+		PPB_INLINE
+		float GetMouseSensitivityRatio( void ) noexcept;
+
 
 		//-----------------------------------
 		//             Particles
@@ -482,7 +489,8 @@ namespace paperback::coordinator
 		bool						        m_GameActive = true;			// Game Status
 		std::string					        m_QueuedSceneName = "";			// Currently Queued Scene to change
 		bool								m_bPaused = false;
-		bool								m_bCursorActive = false;	
+		bool								m_bCursorActive = false;
+		float                               m_MouseSensitivityRatio = 1.0f;
 	};
 }
 

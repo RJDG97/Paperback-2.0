@@ -82,7 +82,7 @@ struct physics_system : paperback::system::pausable_instance
     void ApplyMomentumCap( paperback::Vector3f& Momentum ) noexcept
     {
         ApplyAxisCap( Momentum.x, paperback::settings::momentum_axis_cap_v );
-        ApplyAxisCap( Momentum.y, paperback::settings::momentum_axis_cap_v );
+        ApplyAxisCap( Momentum.y, paperback::settings::momentum_y_axis_cap_v);
         ApplyAxisCap( Momentum.z, paperback::settings::momentum_axis_cap_v );
     }
 
@@ -210,7 +210,7 @@ struct physics_system : paperback::system::pausable_instance
                 
             }
             // Update Rotation
-            if ( !Particle && RigidBody && Rot && RigidBody->m_Velocity.MagnitudeSq() > 0.01f )
+            if ( Controller && RigidBody && Rot && RigidBody->m_Velocity.MagnitudeSq() > 0.01f )
             {
                 auto Debug = m_Coordinator.FindSystem<debug_system>();
 

@@ -321,4 +321,17 @@ namespace paperback
 		MaxVec.z = std::max( Vec_1.z, Vec_2.z );
 		return MaxVec;
 	}
+
+	PPB_INLINE Vector3f RotateAboutAxis( const Vector3f& DirVec, float Angle, int Axis ) noexcept
+	{
+		Vector3f Temp{DirVec};
+		// Y-Axis
+		if ( Axis == 1 )
+		{
+			Temp.x = DirVec.x *  cosf(Angle) + DirVec.z * sinf(Angle);
+			Temp.z = DirVec.x * -sinf(Angle) + DirVec.z * cosf(Angle);
+		}
+
+		return Temp;
+	}
 }

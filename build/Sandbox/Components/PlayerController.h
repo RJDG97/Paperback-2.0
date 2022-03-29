@@ -18,6 +18,7 @@ struct player_controller
 	bool                              m_GrowAvailable = false;
 	bool                              m_ShrinkAvailable = false;
 	bool                              m_FreezeAvailable = false;
+	int                               m_CheckpointID = -1;
 };
 
 
@@ -54,6 +55,7 @@ namespace RR_PlayerController
 		   .property( "Player FPS Status", &player_controller::m_FPSMode)
 		   .property( "Player Grow Available", &player_controller::m_GrowAvailable)(rttr::policy::prop::as_reference_wrapper)
 		   .property( "Player Shrink Available", &player_controller::m_ShrinkAvailable)(rttr::policy::prop::as_reference_wrapper)
-		   .property( "Player Freeze Available", &player_controller::m_FreezeAvailable)(rttr::policy::prop::as_reference_wrapper);
+		   .property( "Player Freeze Available", &player_controller::m_FreezeAvailable)(rttr::policy::prop::as_reference_wrapper)
+		   .property( "Checkpoint ID", &player_controller::m_CheckpointID);
     }
 }

@@ -80,11 +80,11 @@ struct collision_system : paperback::system::pausable_instance
             // Exclude Deleted Entities & Static Objects that are NOT Bounding Volumes
             if ( Entity.IsZombie() || ( !BV && m1 && m1->m_Mass == 0.0f ) ) return;
 
-            if ( Boundingbox)
+            if ( Boundingbox )
             {
                 Boundingbox->m_Collided = false;
 
-                auto NeighbourList = m_Coordinator.QueryNeighbours( *Boundingbox, Transform );
+                auto NeighbourList = m_Coordinator.QueryNeighbours( *Boundingbox, Transform, BV ? 3.0f : 0.0f );
 
                 ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV2, pushable* Pushable )
                 {

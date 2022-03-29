@@ -221,10 +221,10 @@ void Camera3D::RotateDown(const float m_Speed)
 	UpdateView();
 }
 
-void Camera3D::RotateWithMouse(glm::vec2 Direction)
+void Camera3D::RotateWithMouse( glm::vec2 Direction, const float SensitivityRatio )
 {
 	// TO REPLACE W GLOBAL SENS
-	auto MouseSensitivity = 100.0f;
+	auto MouseSensitivity = 200.0f;
 
 	glm::vec2 direction = Direction;
 

@@ -11,6 +11,8 @@ namespace CSScript
         UInt32 m_ID;
         Rigidforce m_Rigidforce;
         Mass m_Mass;
+        Transform m_Transform;
+        Tools.MathLib.Vector3 m_InitialPos;
         bool m_PrevGravActive;
 
         public static PushableBlock getInst()
@@ -25,6 +27,8 @@ namespace CSScript
             m_PrevGravActive = m_Rigidforce.m_GravityActive;
 
             m_Mass = new Mass(ID);
+            m_Transform = new Transform(ID);
+            m_InitialPos = m_Transform.m_Position;
         }
 
         public void PreUpdate(float dt)
@@ -57,6 +61,10 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
+        }
+        public void Reset()
+        {
+            m_Transform.m_Position = m_InitialPos;
         }
     }
 }

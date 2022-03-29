@@ -8,9 +8,6 @@
   "Settings": "../../resources/assetloading/GameplayScene.json",
   "Settings": "../../resources/assetloading/GameplayScene/GameplayScene_EntityInfo.json",
   "Settings": "../../resources/assetloading/GameplayScene/GameplayScene.texture",
-  "Credits": "../../resources/assetloading/GameplayScene.json",
-  "Credits": "../../resources/assetloading/GameplayScene/GameplayScene_EntityInfo.json",
-  "Credits": "../../resources/assetloading/GameplayScene/GameplayScene.texture",
   "LevelSelect": "../../resources/assetloading/LevelBlockoutScene.json",
   "LevelSelect": "../../resources/assetloading/LevelBlockoutScene/LevelBlockoutScene_EntityInfo.json",
   "LevelSelect": "../../resources/assetloading/LevelBlockoutScene/LevelBlockoutScene.texture",
@@ -46,5 +43,11 @@
   "Cutscene_Third": "../../resources/assetloading/Cutscene_Third/Cutscene_Third.texture",
   "GameLoss": "../../resources/assetloading/GameLose/GameLose.json",
   "GameLoss": "../../resources/assetloading/GameLose/GameLose_EntityInfo.json",
-  "GameLoss": "../../resources/assetloading/GameLose/GameLose.texture"
+  "GameLoss": "../../resources/assetloading/GameLose/GameLose.texture",
+  "Credits": "../../resources/assetloading/Credits.json",
+  "Credits": "../../resources/assetloading/Credits/Credits_EntityInfo.json",
+  "Credits": "../../resources/assetloading/Credits/Credits.texture",
+  "Splashscreen": "../../resources/assetloading/Splashscreen.json",
+  "Splashscreen": "../../resources/assetloading/Splashscreen/Splashscreen_EntityInfo.json",
+  "Splashscreen": "../../resources/assetloading/Splashscreen/Splashscreen.texture"
 }

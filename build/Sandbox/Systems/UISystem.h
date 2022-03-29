@@ -83,7 +83,9 @@ struct ui_system : paperback::system::pausable_instance
                 if ( UI_Sys && Button->IsButtonState( ButtonState::DEFAULT ) ) UI_Sys->TriggerSoundEntity("ButtonHoverSFX");
 
                 Button->SetButtonState( ButtonState::HOVERED );
-                // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
+
+                if (Button->m_ButtonStateTextures[Button->m_ButtonState].m_TextureName != "")
+                    Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ].m_TextureName;
 
 
                 // Run OnHover Script If Valid
@@ -106,7 +108,9 @@ struct ui_system : paperback::system::pausable_instance
             if ( Button && Button->m_bActive )
             {
                 Button->SetButtonState( ButtonState::DEFAULT );
-                // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
+
+                if (Button->m_ButtonStateTextures[Button->m_ButtonState].m_TextureName != "")
+                    Mesh.m_Texture = Button->m_ButtonStateTextures[Button->m_ButtonState].m_TextureName;
 
                 //// Run Default Script If Valid
                 auto Script = FindScript<paperback::script::button_interface>( Button->m_ReferencedScript );

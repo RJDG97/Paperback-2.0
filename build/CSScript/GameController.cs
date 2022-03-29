@@ -169,27 +169,13 @@ namespace CSScript
                                 path_follower.m_PauseTravel = false;
                             
                                 Mesh collided_mesh = new Mesh(m_SelectedID);
-                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, collided_mesh.m_Model.Length) == "_Freeze")
+                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Freeze")
                                 {
                                     collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                                 }
                             }
 
-                            else if (name.m_Name == "Platform")
-                            {
-                                Child child = new Child(m_SelectedID);
-                                Animator parent_animator = new Animator((UInt32)child.m_ParentID);
-
-                                Mesh parent_mesh = new Mesh((UInt32)child.m_ParentID);
-                                if (parent_mesh.m_Model.Substring(parent_mesh.m_Model.Length - 7, parent_mesh.m_Model.Length) == "_Freeze")
-                                {
-                                    parent_mesh.m_Model = parent_mesh.m_Model.Substring(0, parent_mesh.m_Model.Length - 7);
-                                }
-
-                                parent_animator.m_PauseAnimation = false;
-                            }
-
-                            else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
+                            else if (name.m_Name == "Elevator" || name.m_Name == "Gate" || name.m_Name == "Elevator" || name.m_Name == "PlatformSlopeA")
                             {
                                 Animator animator = new Animator(m_SelectedID);
 
@@ -345,6 +331,13 @@ namespace CSScript
         public void OnCollisionExit(UInt32 ID)
         {
         }
+        public void Reset()
+        {
+            if (m_AbilityActive)
+            {
+                m_AbilityTimer = m_AbilityDuration + 1.0f;
+            }
+        }
 
         private void CheckAbilitiesUnlocked()
         {
@@ -396,7 +389,7 @@ namespace CSScript
 
                                 if (path_follower.m_Distance > 0.0001f)
                                 {
-                                    path_follower.m_PauseTravel = !path_follower.m_PauseTravel;
+                                    path_follower.m_PauseTravel = true;
 
                                     m_AbilityActive = true;
                                     m_SelectedID = collided_id;
@@ -412,29 +405,20 @@ namespace CSScript
 
                             else if (name.m_Name == "Platform")
                             {
-                                m_AbilityActive = true;
-                                m_SelectedID = collided_id;
-                                m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
-
                                 Child child  = new Child(collided_id);
-                                Animator parent_animator = new Animator((UInt32)child.m_ParentID);
-                                Mesh parent_mesh = new Mesh((UInt32)child.m_ParentID);
-                                parent_mesh.m_Model = parent_mesh.m_Model + "_Freeze";
-                                parent_animator.m_PauseAnimation = true;
-                                ChangeBar();
+                                FreezeAnim((UInt32)child.m_ParentID);
+                            }
+
+                            else if (name.m_Name == "PlatformSlopeA")
+                            {
+                                Child child  = new Child(collided_id);
+                                Child nextchild  = new Child((UInt32)child.m_ParentID);
+                                FreezeAnim((UInt32)nextchild.m_ParentID);
                             }
 
                             else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                             {
-                                m_AbilityActive = true;
-                                m_SelectedID = collided_id;
-                                m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
-
-                                Animator animator = new Animator(collided_id);
-                                Mesh collided_mesh = new Mesh(collided_id);
-                                collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
-                                animator.m_PauseAnimation = true;
-                                ChangeBar();
+                                FreezeAnim(collided_id);
                             }
 
                             break;
@@ -489,6 +473,19 @@ namespace CSScript
                     }
                 }
             }
+        }
+
+        private void FreezeAnim(UInt32 ID)
+        {
+            m_AbilityActive = true;
+            m_SelectedID = ID;
+            m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+            Animator animator = new Animator(ID);
+            Mesh collided_mesh = new Mesh(ID);
+            collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+            animator.m_PauseAnimation = true;
+            ChangeBar();
         }
 
         private void Grow(UInt32 ID)

@@ -1,4 +1,4 @@
 {
-    "SkipCutsceneButton_Unselected": "../../resources/textures/UI/SkipCutsceneButton_Unselected_Mirrored.dds 0",
-    "YesButton_Selected": "../../resources/textures/UI/Menus/Buttons/YesButton_Selected_Mirrored.dds 0"
+    "SkipCutsceneButton_Unselected": "../../resources/textures/UI/Menus/Buttons/SkipCutsceneButton_Unselected_Mirrored.dds 0",
+    "SkipCutsceneButton_Selected": "../../resources/textures/UI/Menus/Buttons/SkipCutsceneButton_Selected_Mirrored.dds 0"
 }

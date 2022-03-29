@@ -448,5 +448,32 @@
     <ClInclude Include="Scripts\Page7How2Play_Prev_Button_MainMenu.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\How2Play_Cancel_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\How2Play_Button_Game.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\How2Play_Cancel_Button_Game.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\RestartLevel_Button.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\RestartLevelCancel_Button_Game.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\RestartLevelWindow_Button_Game.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\RestartCheckpoint_Button.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\RestartCheckpointCancel_Button_Game.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\RestartCheckpointWindow_Button_Game.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
