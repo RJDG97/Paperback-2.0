@@ -31,8 +31,8 @@ uniform sampler2D uNormals;
 uniform sampler2D uAmbients;
 uniform sampler2D uDiffuses;
 uniform sampler2D uShadowMap;
+uniform sampler2D uSSAO;
 uniform DirectionalLight uDirectionalLight;
-uniform vec3 uCameraPosition;
 uniform int uNumLights;
 
 float ShadowValue(vec4 LightFragPosition, vec3 Normal, vec3 LightDir, float ShadowBias)
@@ -68,15 +68,16 @@ float ShadowValue(vec4 LightFragPosition, vec3 Normal, vec3 LightDir, float Shad
 
 void main()
 {
+	float AO = texture(uSSAO, vUV).r;
 	vec3 Position = texture(uPositions, vUV).rgb;
 	vec3 Normal = normalize(texture(uNormals, vUV).rgb);
-	vec3 Ambient = texture(uAmbients, vUV).rgb;
+	vec3 Ambient = texture(uAmbients, vUV).rgb * AO;
 	vec3 Diffuse = texture(uDiffuses, vUV).rgb;
 	float Specular = texture(uDiffuses, vUV).a;
 	float ShadowBias = texture(uAmbients, vUV).a * 10.0;
 
 	vec3 LightDir = normalize(-uDirectionalLight.Direction);
-	vec3 ViewDir = normalize(uCameraPosition - Position);
+	vec3 ViewDir = normalize(-Position);
 
 	// Ambient
 	vec3 DirectionalAmbient = uDirectionalLight.Ambient * Ambient;
