@@ -332,9 +332,15 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "",
-                            "",
-                            ""
+                            {
+                                "ID": "ContinueButton_Unselected"
+                            },
+                            {
+                                "ID": "ContinueButton_Selected"
+                            },
+                            {
+                                "ID": "ContinueButton_Unselected"
+                            }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 0,

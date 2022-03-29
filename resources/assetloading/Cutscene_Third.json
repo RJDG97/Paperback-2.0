@@ -311,9 +311,15 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "",
-                            "",
-                            ""
+                            {
+                                "ID": "SkipCutsceneButton_Unselected"
+                            },
+                            {
+                                "ID": "SkipCutsceneButton_Selected"
+                            },
+                            {
+                                "ID": "SkipCutsceneButton_Unselected"
+                            }
                         ],
                         "Button State": 2,
                         "Layer Grouping": 0,

@@ -1,4 +1,7 @@
 {
+    "YouWonTitle": "../../resources/textures/UI/Menus/Backgrounds/YouWonTitle_Mirrored.dds 0",
     "QuitToMainMenuButton_Unselected": "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Unselected_Mirrored.dds 0",
-    "ContinueButton_Unselected": "../../resources/textures/UI/ContinueButton_Unselected_Mirrored.dds 0"
+    "ContinueButton_Unselected": "../../resources/textures/UI/Menus/Buttons/ContinueButton_Unselected_Mirrored.dds 0",
+    "QuitToMainMenuButton_Selected": "../../resources/textures/UI/Menus/Buttons/QuitToMainMenuButton_Selected_Mirrored.dds 0",
+    "ContinueButton_Selected": "../../resources/textures/UI/Menus/Buttons/ContinueButton_Selected_Mirrored.dds 0"
 }
