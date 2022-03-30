@@ -4,7 +4,7 @@
   "JT": "Ugh, my head... 5TR-0, are you ok?",
 
   "AudioFile": "DVO_L1S1_02",
-  "Camera Name": "Dialogue1",
+  "Camera Name": "",
   "ST": "Yeah, oof- my wheels just feel a little funny.",
 
   "AudioFile": "DVO_L1S1_03",
@@ -28,7 +28,7 @@
   "JT": "That troublemaker. He even lost...",
 
   "AudioFile": "",
-  "Camera Name": "Cinematic2",
+  "Camera Name": "",
   "JT": "...our cards and manual!",
 
   "AudioFile": "DVO_L1S1_06",
