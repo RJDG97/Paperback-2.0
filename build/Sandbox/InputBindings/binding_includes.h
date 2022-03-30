@@ -507,15 +507,15 @@ namespace paperback::input::binding
                         std::vector<paperback::u32> List;
                         List.push_back( Entity.m_GlobalIndex );
 
-                        auto Start_1 = Transform.m_Position; Start_1.x += BB.Min.x * 1.8f;
-                        auto Start_2 = Transform.m_Position; Start_2.x -= BB.Min.x * 1.8f;
-                        auto Start_3 = Transform.m_Position; Start_3.x += BB.Min.z * 1.8f;
-                        auto Start_4 = Transform.m_Position; Start_4.x -= BB.Min.z * 1.8f;
+                        auto Start_1 = Transform.m_Position; Start_1.x += BB.Min.x;
+                        auto Start_2 = Transform.m_Position; Start_2.x -= BB.Min.x;
+                        auto Start_3 = Transform.m_Position; Start_3.z += BB.Min.z;
+                        auto Start_4 = Transform.m_Position; Start_4.z -= BB.Min.z;
 
-                        auto RayEnd_1 = Transform.m_Position + ( paperback::Vector3f{ BB.Min.x, BB.Min.y, 0.0f  } * 1.8f );
-                        auto RayEnd_2 = Transform.m_Position + ( paperback::Vector3f{ -BB.Min.x, BB.Min.y, 0.0f } * 1.8f );
-                        auto RayEnd_3 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, BB.Min.z  } * 1.8f );
-                        auto RayEnd_4 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, -BB.Min.z } * 1.8f );
+                        auto RayEnd_1 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ BB.Min.x, 0.0f, 0.0f   };
+                        auto RayEnd_2 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ -BB.Min.x, 0.0f, 0.0f  };
+                        auto RayEnd_3 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ 0.0f, 0.0f, BB.Min.z  };
+                        auto RayEnd_4 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ 0.0f, 0.0f, -BB.Min.z };
 
                         auto [ ID_1, Dist_1 ] = m_Coordinator.QueryRaycastClosest( Start_1, RayEnd_1, List );
                         auto [ ID_2, Dist_2 ] = m_Coordinator.QueryRaycastClosest( Start_2, RayEnd_2, List );
