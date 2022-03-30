@@ -210,17 +210,20 @@ struct physics_system : paperback::system::pausable_instance
                 
             }
             // Update Rotation
-            if ( Controller && RigidBody && Rot && RigidBody->m_Velocity.MagnitudeSq() > 0.01f )
+            if ( Controller && RigidBody && Rot && (std::fabs(RigidBody->m_Velocity.x) > 0.5f || std::fabs(RigidBody->m_Velocity.y) > 0.04f || std::fabs(RigidBody->m_Velocity.z) > 0.5f) )
             {
                 auto Debug = m_Coordinator.FindSystem<debug_system>();
 
-                // TODO - Replace This
-                if ( Debug && Inter && !Inter->m_bPushOrPull )
-                    Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
-                else if ( Debug && !Inter )
-                    Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
+                // If Not Resetting Falling Anim - Update Rota
+                if ( !( std::fabs(RigidBody->m_Velocity.y) > 0.04f ) )
+                {
+                    if ( Debug && Inter && !Inter->m_bPushOrPull )
+                        Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
+                    else if ( Debug && !Inter )
+                        Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
+                }
 
-                if ( RigidBody->m_Velocity.y < -1.0f )
+                if ( RigidBody->m_Velocity.y < -0.01f )
                     BroadcastGlobalEvent<Event_OnFalling>( Entity );
             }
             else
