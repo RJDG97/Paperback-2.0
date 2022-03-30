@@ -32,6 +32,7 @@
     "PaperCard": "../../resources/textures/Cards/PaperCard_Mirrored.dds 1",
     "RockCard": "../../resources/textures/Cards/RockCard_Mirrored.dds 1",
     "ScissorsCard": "../../resources/textures/Cards/ScissorsCard_Mirrored.dds 1",
+    "ScrollCardIcon": "../../resources/textures/Cards/ScrollCardIcon.dds 1",
     "ShrinkCard": "../../resources/textures/Cards/ShrinkCard.dds 1",
     "ShrinkCard_Unselected": "../../resources/textures/Cards/ShrinkCard_Unselected.dds 1",
     "ToggleCardMode": "../../resources/textures/Cards/ToggleCardMode.dds 1",
