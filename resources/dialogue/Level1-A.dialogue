@@ -1,31 +1,41 @@
 {
   "AudioFile": "DVO_L1S1_01",
+  "Camera Name": "",
   "JT": "Ugh, my head... 5TR-0, are you ok?",
-  
+
   "AudioFile": "DVO_L1S1_02",
+  "Camera Name": "Dialogue1",
   "ST": "Yeah, oof- my wheels just feel a little funny.",
-  
+
   "AudioFile": "DVO_L1S1_03",
+  "Camera Name": "",
   "ST": "That was scary! I thought we'd...",
-  
+
   "AudioFile": "",
+  "Camera Name": "",
   "ST": "...met our end with that kid.",
 
   "AudioFile": "DVO_L1S1_04",
-  "JT": "Yeah... I can't imagine what would've...",  
+  "Camera Name": "",
+  "JT": "Yeah... I can't imagine what would've...",
 
   "AudioFile": "",
-  "JT": "...happened if he didn't put us down.", 
-  
+  "Camera Name": "",
+  "JT": "...happened if he didn't put us down.",
+
   "AudioFile": "DVO_L1S1_05",
+  "Camera Name": "",
   "JT": "That troublemaker. He even lost...",
-  
+
   "AudioFile": "",
-  "JT": "...our cards and manual!",  
-  
+  "Camera Name": "Cinematic2",
+  "JT": "...our cards and manual!",
+
   "AudioFile": "DVO_L1S1_06",
+  "Camera Name": "",
   "JT": "Anyhow, we'd better get back to our kid’s...",
-  
+
   "AudioFile": "",
+  "Camera Name": "",
   "JT": "...bag, before any of this happens again!"
 }

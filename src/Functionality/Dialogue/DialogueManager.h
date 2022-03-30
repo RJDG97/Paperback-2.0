@@ -16,6 +16,7 @@ struct Line
 	Speaker m_Speaker;
 	std::string m_AudioFile;
 	std::string m_Content;
+	std::string m_CameraName;
 };
 
 struct Dialogue

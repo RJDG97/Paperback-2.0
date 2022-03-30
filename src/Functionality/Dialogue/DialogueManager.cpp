@@ -49,6 +49,10 @@ void DialogueManager::LoadDialogueJson(std::string file, std::string dialogue_na
 			
 			line.m_AudioFile = it->value.GetString();		//"Audio File": "path here"
 			++it;
+
+			line.m_CameraName = it->value.GetString();		//"Camera Name": "name here"
+			++it;
+
 			std::string speaker = it->name.GetString();		//"ST/JT": "speech here"
 
 			if (speaker == "ST")
