@@ -7,15 +7,8 @@ struct pushable
         .m_pName = "Pushable"
     };
 
-    uint32_t m_State{1};
+    uint32_t m_State{1};    //no longer being used
 };
-
-
-// Tag Component Creation Sample
-/*
-BEGIN_CREATE_TAG_COMPONENT( pushable )
-END_CREATE_TAG_COMPONENT
-*/
 
 
 namespace RR_PUSHABLE

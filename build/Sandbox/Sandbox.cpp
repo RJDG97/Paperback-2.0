@@ -132,6 +132,7 @@ void InitializeGame()
         ,    particle
         ,    dialogue_text
         ,    dialogue_collider
+        ,    freezable       // Tag
         >();
 
         // Register Components - Add to the end of the list
@@ -220,7 +221,9 @@ void InitializeGame()
             restartcheckpoint_window_button_game_script,
             restartlevel_button_script,
             restartlevel_cancel_button_game_script,
-            restartlevel_window_button_game_script
+            restartlevel_window_button_game_script,
+            how2play_button_game_script,
+            how2play_cancel_button_game_script
         >();
 
 

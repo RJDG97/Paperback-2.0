@@ -46,13 +46,6 @@ namespace CSScript
 
         List<Ability> m_Abilities = new List<Ability>();
 
-        enum PushableState
-        {
-            SHRUNK = 0,
-            NORMAL,
-            GROWN
-        };
-
         public static GameController getInst()
         {
             return new GameController();
@@ -162,6 +155,8 @@ namespace CSScript
                         case Ability.STOP_MOVING_PLATFORM:
                         {
                             Name name = new Name(m_SelectedID);
+                            Freezable freezable = new Freezable((UInt32)m_SelectedID);
+                            freezable.m_Frozen = false;
 
                             if (name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard")
                             {
@@ -175,7 +170,7 @@ namespace CSScript
                                 }
                             }
 
-                            else if (name.m_Name == "Elevator" || name.m_Name == "Gate" || name.m_Name == "Elevator" || name.m_Name == "PlatformSlopeA")
+                            else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                             {
                                 Animator animator = new Animator(m_SelectedID);
 
@@ -386,27 +381,20 @@ namespace CSScript
                             if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard")
                             {
                                 PathFollower path_follower = new PathFollower(collided_id);
+                                Freezable freezable = new Freezable(collided_id);
 
-                                if (path_follower.m_Distance > 0.0001f)
-                                {
-                                    path_follower.m_PauseTravel = true;
+                                freezable.m_Frozen = true;
+                                path_follower.m_PauseTravel = true;
 
-                                    m_AbilityActive = true;
-                                    m_SelectedID = collided_id;
-                                    m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
 
-                                    Mesh collided_mesh = new Mesh(collided_id);
-                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
-                                    
-                                    ChangeBar();
-                                    return;
-                                }
-                            }
+                                Mesh collided_mesh = new Mesh(collided_id);
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
 
-                            else if (name.m_Name == "Platform")
-                            {
-                                Child child  = new Child(collided_id);
-                                FreezeAnim((UInt32)child.m_ParentID);
+                                ChangeBar();
+                                return;
                             }
 
                             else if (name.m_Name == "PlatformSlopeA")
@@ -414,11 +402,13 @@ namespace CSScript
                                 Child child  = new Child(collided_id);
                                 Child nextchild  = new Child((UInt32)child.m_ParentID);
                                 FreezeAnim((UInt32)nextchild.m_ParentID);
+                                return;
                             }
 
                             else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                             {
                                 FreezeAnim(collided_id);
+                                return;
                             }
 
                             break;
@@ -429,20 +419,16 @@ namespace CSScript
                             if (Tools.Tag.IsPushable(collided_id))
                             {
                                 Pushable pushable = new Pushable(collided_id);
+                                Grow(collided_id);
 
-                                if ( pushable.m_State != ((uint)PushableState.GROWN))
-                                {
-                                    Grow(collided_id);
+                                Mesh collided_mesh = new Mesh(collided_id);
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
 
-                                    Mesh collided_mesh = new Mesh(collided_id);
-                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
-
-                                    m_AbilityActive = true;
-                                    m_SelectedID = collided_id;
-                                    m_AbilityUsed = Ability.GROW;
-                                    ChangeBar();
-                                    return;
-                                }
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.GROW;
+                                ChangeBar();
+                                return;
                             }
 
                             break;
@@ -454,18 +440,15 @@ namespace CSScript
                             {
                                 Pushable pushable = new Pushable(collided_id);
 
-                                if (pushable.m_State != ((uint)PushableState.SHRUNK))
-                                {
-                                    Shrink(collided_id);
-                                    Mesh collided_mesh = new Mesh(collided_id);
-                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
+                                Shrink(collided_id);
+                                Mesh collided_mesh = new Mesh(collided_id);
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
 
-                                    m_AbilityActive = true;
-                                    m_SelectedID = collided_id;
-                                    m_AbilityUsed = Ability.SHRINK;
-                                    ChangeBar();
-                                    return;
-                                }
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.SHRINK;
+                                ChangeBar();
+                                return;
                             }
 
                             break;
@@ -477,6 +460,9 @@ namespace CSScript
 
         private void FreezeAnim(UInt32 ID)
         {
+            Freezable freezable = new Freezable(ID);
+            freezable.m_Frozen = true;
+
             m_AbilityActive = true;
             m_SelectedID = ID;
             m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
@@ -504,8 +490,6 @@ namespace CSScript
             Rigidforce rigid_force = new Rigidforce(ID);
             rigid_force.m_CollisionAffected = true;
             rigid_force.m_GravityAffected = true;
-
-            pushable.m_State = ++pushable.m_State;
         }
 
         private void Shrink(UInt32 ID)
@@ -524,8 +508,6 @@ namespace CSScript
             Rigidforce rigid_force = new Rigidforce(ID);
             rigid_force.m_CollisionAffected = true;
             rigid_force.m_GravityAffected = true;
-
-            pushable.m_State = --pushable.m_State;
         }
 
         private void ChangeBar()

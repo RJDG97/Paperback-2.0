@@ -681,6 +681,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< player_interaction >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< pushable >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< pushable >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< freezable >.m_Guid.m_Value)
+		return rttr::instance(GetComponent< freezable >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< elevator >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< elevator >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< crosshair >.m_Guid.m_Value)

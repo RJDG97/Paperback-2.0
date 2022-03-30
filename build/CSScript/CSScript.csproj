@@ -74,6 +74,7 @@
     <Compile Include="Tools\Components\DialogueText.cs" />
     <Compile Include="Tools\Components\DialogueCollider.cs" />
     <Compile Include="Tools\Components\ParticleEmitter.cs" />
+    <Compile Include="Tools\Components\Freezable.cs" />
     <Compile Include="Tools\Components\Pushable.cs" />
     <Compile Include="Tools\Components\Camera.cs" />
     <Compile Include="Tools\Components\Elevator.cs" />

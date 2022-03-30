@@ -495,15 +495,40 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator, boundingbox, transform, paperback::component::entity >();
 		    Query.m_NoneOf.AddFromComponents< prefab, player_interaction >();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, rigidforce& RF, rigidbody& RB, camera& Camera, animator& Animator )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, rigidforce& RF, rigidbody& RB, camera& Camera, animator& Animator, transform& Transform, boundingbox& BB, paperback::component::entity& Entity )
                 {
                     if ( Controller.m_PlayerStatus && Controller.m_OnGround && !Controller.m_FPSMode && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                     {
+                        std::vector<paperback::u32> List;
+                        List.push_back( Entity.m_GlobalIndex );
+
+                        auto Start_1 = Transform.m_Position; Start_1.x += BB.Min.x;
+                        auto Start_2 = Transform.m_Position; Start_2.x -= BB.Min.x;
+                        auto Start_3 = Transform.m_Position; Start_3.z += BB.Min.z;
+                        auto Start_4 = Transform.m_Position; Start_4.z -= BB.Min.z;
+
+                        auto RayEnd_1 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ BB.Min.x, 0.0f, 0.0f   };
+                        auto RayEnd_2 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ -BB.Min.x, 0.0f, 0.0f  };
+                        auto RayEnd_3 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ 0.0f, 0.0f, BB.Min.z  };
+                        auto RayEnd_4 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ 0.0f, 0.0f, -BB.Min.z };
+
+                        auto [ ID_1, Dist_1 ] = m_Coordinator.QueryRaycastClosest( Start_1, RayEnd_1, List );
+                        auto [ ID_2, Dist_2 ] = m_Coordinator.QueryRaycastClosest( Start_2, RayEnd_2, List );
+                        auto [ ID_3, Dist_3 ] = m_Coordinator.QueryRaycastClosest( Start_3, RayEnd_3, List );
+                        auto [ ID_4, Dist_4 ] = m_Coordinator.QueryRaycastClosest( Start_4, RayEnd_4, List );
+
+                        // Nothing within Acceptable Bounds
+                        if ( Dist_1 > Start_1.y - RayEnd_1.y && Dist_2 > Start_2.y - RayEnd_2.y &&
+                             Dist_3 > Start_3.y - RayEnd_3.y && Dist_4 > Start_4.y - RayEnd_4.y )
+                        {
+                            return;
+                        }
+
                         Controller.m_OnGround = false;
                         RF.m_Momentum.y = ( 2.0f * Controller.m_JumpForce ) / 0.3f;
 

@@ -44,7 +44,7 @@ void main()
 		CombinedTransform *= BoneTransform;
 	}
 	
-	mat4 FinalTransform = uModel * CombinedTransform;
+	mat4 FinalTransform = uView * uModel * CombinedTransform;
 
 	TransformedPosition = FinalTransform * vec4(vVertexPosition, 1.0f);
 
@@ -63,5 +63,5 @@ void main()
 	vBiTangent = B;
 	vNormal = N;
 
-	gl_Position = uProjection * uView * TransformedPosition;
+	gl_Position = uProjection * TransformedPosition;
 }

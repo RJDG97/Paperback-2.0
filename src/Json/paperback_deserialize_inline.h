@@ -433,6 +433,9 @@ namespace paperback::deserialize
             if (obj.is_type<pushable>())
                 NewArchetype->GetComponent<pushable>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<pushable>();
 
+            if (obj.is_type<freezable>())
+                NewArchetype->GetComponent<freezable>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<freezable>();
+
             if (obj.is_type<crosshair>())
                 NewArchetype->GetComponent<crosshair>(paperback::vm::PoolDetails{ 0, EntityCounter }) = obj.get_value<crosshair>();
 

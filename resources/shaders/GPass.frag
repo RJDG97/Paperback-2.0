@@ -29,7 +29,7 @@ uniform float uShadowBias;
 
 void main()
 {
-	mat3 TangentToWorld = mat3(normalize(vTangent), normalize(vBiTangent), normalize(vNormal));
+	mat3 TangentToView = mat3(normalize(vTangent), normalize(vBiTangent), normalize(vNormal));
 	float Bias = uShadowBias / 10.0;
 
 	// Write to gpass textures
@@ -45,7 +45,7 @@ void main()
 		{
 			Normal = texture(uMat.Normal, vUV).rgb;
 			Normal = normalize(Normal * 2.0 - 1.0);
-			Normal = TangentToWorld * Normal;
+			Normal = TangentToView * Normal;
 		}
 		else
 		{

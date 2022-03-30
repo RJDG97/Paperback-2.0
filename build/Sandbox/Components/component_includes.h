@@ -54,6 +54,7 @@
 #include "BoundingVolume.h"
 #include "PlayerInteraction.h"
 #include "Pushable.h"
+#include "Freezable.h"
 #include "Elevator.h"
 #include "Crosshair.h"
 #include "Light.h"

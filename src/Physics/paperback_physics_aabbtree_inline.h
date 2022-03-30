@@ -221,8 +221,17 @@ namespace paperback::physics
                           {
                               if ( std::find( ExcludeList.begin(), ExcludeList.end(), CurrentPair.first ) == ExcludeList.end() )
                               {
-                                  ClosestPair.first = CurrentPair.first;
-                                  ClosestPair.second = CurrentPair.second;
+                                  const auto& Info = m_Coordinator.GetEntityInfo( CurrentPair.first );
+                                  if ( Info.m_pArchetype )
+                                  {
+                                      const auto& Bits = Info.m_pArchetype->GetComponentBits();
+
+                                      if ( !Bits.Has<bounding_volume>() )
+                                      {
+                                          ClosestPair.first = CurrentPair.first;
+                                          ClosestPair.second = CurrentPair.second;
+                                      }
+                                  }
                               }
                           }
                       });

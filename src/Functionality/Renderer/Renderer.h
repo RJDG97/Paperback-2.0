@@ -110,6 +110,7 @@ private:
 	void ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects);
 	void RenderPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera);
 	void GPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects, const Camera3D& SceneCamera);
+	void SSAOPass(const Camera3D& SceneCamera);
 	void LightPass(const std::vector<PointLightInfo>& Lights, const Camera3D& SceneCamera);
 	void InstancedPass(const std::unordered_map<std::string_view, std::vector<InstancedInfo>>& Instances, const Camera3D& SceneCamera);
 	void BlurPass();
@@ -117,10 +118,16 @@ private:
 	void MergePass();
 	void FinalPass();
 
+	float Lerp(float a, float b, float f);
+
 	// Gpass buffer
 	FrameBuffer m_GBuffer;
 	// Shadow buffer
-	FrameBuffer m_ShadowBuffer;
+	FrameBuffer m_ShadowBuffer;	
+	// SSAO buffer
+	FrameBuffer m_SSAOBuffer;
+	// SSAO Blur buffer
+	FrameBuffer m_SSAOBlurBuffer;
 	// Lighting/BrightPass buffer
 	FrameBuffer m_LightingBuffer;
 	// Blur buffer
@@ -140,6 +147,12 @@ private:
 	// VAO for debug objects
 	GLuint m_DebugVAO;
 
+	// Noise texture
+	GLuint m_SSAONoise;
+
+	// SSAO kernel
+	std::vector<glm::vec3> m_SSAOKernel;
+	
 	int m_Width;
 	int m_Height;
 
