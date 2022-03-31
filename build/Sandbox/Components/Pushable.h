@@ -7,7 +7,7 @@ struct pushable
         .m_pName = "Pushable"
     };
 
-    uint32_t m_State{1};    //no longer being used
+    uint32_t m_State{0};    //-1 is shrink, 0 is default, 1 is grow
 };
 
 

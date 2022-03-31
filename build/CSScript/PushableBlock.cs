@@ -12,6 +12,7 @@ namespace CSScript
         Rigidforce m_Rigidforce;
         Mass m_Mass;
         Transform m_Transform;
+        Pushable m_Pushable;
         Tools.MathLib.Vector3 m_InitialPos;
         bool m_PrevGravActive;
 
@@ -25,6 +26,8 @@ namespace CSScript
             m_ID = ID;
             m_Rigidforce = new Rigidforce(ID);
             m_PrevGravActive = m_Rigidforce.m_GravityActive;
+            m_Pushable = new Pushable(ID);
+            m_Pushable.m_State = 0;
 
             m_Mass = new Mass(ID);
             m_Transform = new Transform(ID);

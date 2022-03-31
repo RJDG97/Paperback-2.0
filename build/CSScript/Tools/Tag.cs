@@ -13,5 +13,8 @@ namespace CSScript.Tools
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern static bool IsPushable(UInt32 ID);
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static bool IsFreezable(UInt32 ID);
     }
 }

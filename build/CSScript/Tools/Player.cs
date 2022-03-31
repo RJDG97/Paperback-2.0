@@ -22,5 +22,11 @@ namespace CSScript
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         public extern static void TogglePlayers();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static UInt32[] GetAllFreezeable();
+
+        [MethodImplAttribute(MethodImplOptions.InternalCall)]
+        public extern static UInt32[] GetAllPushable();
     }
 }

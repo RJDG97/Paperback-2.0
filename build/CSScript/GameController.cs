@@ -23,7 +23,8 @@ namespace CSScript
         {
             STOP_MOVING_PLATFORM,
             GROW,
-            SHRINK
+            SHRINK,
+            NONE
         };
 
         float m_AbilitySwapCoolDownTimer = -1.0f;
@@ -35,6 +36,10 @@ namespace CSScript
         float m_AbilityTimer = 0.0f;
         bool m_AbilityActive = false;
 
+        UInt32 m_HoveredID;
+        Ability m_AbilityHovered;
+        float m_HoverRayCastTimer = -1.0f;
+
         UInt32 m_SelectedID;
         Ability m_AbilityUsed;
 
@@ -43,6 +48,9 @@ namespace CSScript
         Offset m_InnerBarOffset;
         Tools.MathLib.Vector3 m_InnerBarInitialPos;
         Tools.MathLib.Vector3 m_InnerBarInitialScale;
+
+        bool m_JustEnteredFPS = false;
+        bool m_JustLeftFPS = true;
 
         List<Ability> m_Abilities = new List<Ability>();
 
@@ -95,10 +103,10 @@ namespace CSScript
         public void Update(float dt)
         {
             if (m_RayCastTimer > 0.0f)
-            {
-
                 m_RayCastTimer -= dt;
-            }
+
+            if (m_HoverRayCastTimer > 0.0f)
+                m_HoverRayCastTimer -= dt;
 
 
             if ((Input.IsKeyPress(Input.PB_Q) || Input.IsKeyPress(Input.PB_MOUSE_BUTTON_4))  && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
@@ -112,31 +120,61 @@ namespace CSScript
                 if (m_JumpUnitPC.m_FPSMode)
                 {
                     CastRay(m_JumpID);
-                    m_RayCastTimer = 0.3f;
+                    m_RayCastTimer = 0.1f;
                 }
 
                 else if (m_PushUnitPC.m_FPSMode)
                 {
                     CastRay(m_PushID);
-                    m_RayCastTimer = 0.3f;
+                    m_RayCastTimer = 0.1f;
                 }
             }
 
             CheckAbilitiesUnlocked();
 
-            if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
+            if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
             {
-                if (m_AbilitySwapCoolDownTimer > 0.0f)
+                m_JustLeftFPS = false;
+
+                if (!m_JustEnteredFPS)
                 {
-                    m_AbilitySwapCoolDownTimer -= dt;
+                    m_JustEnteredFPS = true;
+                    ChangeToUnhovered();
                 }
+
+                if (m_HoverRayCastTimer > 0.0f)
+                    m_HoverRayCastTimer -= dt;
+
+                if (m_HoverRayCastTimer <= 0.0f)
+                    CastHoveredRay();
+
+                if (m_AbilitySwapCoolDownTimer > 0.0f)
+                    m_AbilitySwapCoolDownTimer -= dt;
 
                 if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)))
                 {
+                    RevertHovered(true);
+                    m_HoveredID = 0;
+                    RevertUnhovered();
+
                     m_AbilitySwapCoolDownTimer = 0.1f;
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);
+
+                    ChangeToUnhovered();
+                }
+            }
+
+            else
+            {
+                m_JustEnteredFPS = false;
+
+                if (!m_JustLeftFPS)
+                {
+                    m_JustLeftFPS = true;
+                    RevertHovered(false);
+                    RevertUnhovered();
                 }
             }
 
@@ -168,6 +206,10 @@ namespace CSScript
                                 {
                                     collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                                 }
+
+                                if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                                    if (m_AbilityUsed == m_Abilities[0])
+                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze_Unhovered";
                             }
 
                             else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
@@ -179,6 +221,10 @@ namespace CSScript
                                 {
                                     collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                                 }
+
+                                if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                                    if (m_AbilityUsed == m_Abilities[0])
+                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze_Unhovered";
 
                                 animator.m_PauseAnimation = false;
                             }
@@ -195,6 +241,15 @@ namespace CSScript
                                 collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
                             }
 
+                            if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                            {
+                                if (m_Abilities[0] == Ability.GROW)
+                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Grow_Unhovered";
+
+                                else if (m_Abilities[0] == Ability.SHRINK)
+                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink_Unhovered";
+                            }
+
                             break;
                         }
 
@@ -206,6 +261,16 @@ namespace CSScript
                             {
                                 collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                             }
+                                    
+                            if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                            {
+                                if (m_Abilities[0] == Ability.GROW)
+                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Grow_Unhovered";
+
+                                else if (m_Abilities[0] == Ability.SHRINK)
+                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink_Unhovered";
+                            }
+
                             break;
                         }
                     }
@@ -364,6 +429,289 @@ namespace CSScript
             }
         }
 
+        private void ChangeToUnhovered()
+        {
+            if (m_Abilities.Count > 0)
+            {
+                switch (m_Abilities[0])
+                {
+                    case Ability.STOP_MOVING_PLATFORM: ChangeToUnhoveredFreezable(); break;
+                    case Ability.GROW: ChangeToUnhoveredGrowable(); break;
+                    case Ability.SHRINK: ChangeToUnhoveredShrinkable(); break;
+                }
+            }
+        }
+        private void RevertUnhovered()
+        {
+            if (m_Abilities.Count > 0)
+            {
+                switch (m_Abilities[0])
+                {
+                    case Ability.STOP_MOVING_PLATFORM: RevertUnhoveredFreezable(); break;
+                    case Ability.GROW: RevertUnhoveredGrowable(); break;
+                    case Ability.SHRINK: RevertUnhoveredShrinkable(); break;
+                }
+            }
+        }
+        private void ChangeToUnhoveredFreezable()
+        {
+            UInt32[] collided_ids = Player.GetAllFreezeable();
+
+            foreach (UInt32 collided_id in collided_ids)
+            {
+                Freezable freezable = new Freezable(collided_id);
+                
+                if (!freezable.m_Frozen && collided_id != m_HoveredID)
+                {
+                    Mesh mesh = new Mesh(collided_id);
+                    mesh.m_Model = mesh.m_Model + "_Freeze_Unhovered";
+                }
+            }
+        }
+        private void RevertUnhoveredFreezable()
+        {
+            UInt32[] collided_ids = Player.GetAllFreezeable();
+
+            foreach (UInt32 collided_id in collided_ids)
+            {
+                Freezable freezable = new Freezable(collided_id);
+
+                if (!freezable.m_Frozen && collided_id != m_HoveredID)
+                {
+                    Mesh mesh = new Mesh(collided_id);
+                    
+                    if (mesh.m_Model.Length > 17)
+                        mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 17);
+                }
+            }
+        }
+        private void ChangeToUnhoveredGrowable()
+        {
+            UInt32[] collided_ids = Player.GetAllPushable();
+
+            foreach (UInt32 collided_id in collided_ids)
+            {
+                Pushable pushable = new Pushable(collided_id);
+
+                if (pushable.m_State == 0 && collided_id != m_HoveredID)
+                {
+                    Mesh mesh = new Mesh(collided_id);
+                    mesh.m_Model = mesh.m_Model + "_Grow_Unhovered";
+                }
+            }
+        }
+        private void RevertUnhoveredGrowable()
+        {
+            UInt32[] collided_ids = Player.GetAllPushable();
+
+            foreach (UInt32 collided_id in collided_ids)
+            {
+                Pushable pushable = new Pushable(collided_id);
+
+                if (pushable.m_State == 0 && collided_id != m_HoveredID)
+                {
+                    Mesh mesh = new Mesh(collided_id);
+
+                    if (mesh.m_Model.Length > 15)
+                        mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 15);
+                }
+            }
+        }
+        private void ChangeToUnhoveredShrinkable()
+        {
+            UInt32[] collided_ids = Player.GetAllPushable();
+
+            foreach (UInt32 collided_id in collided_ids)
+            {
+                Pushable pushable = new Pushable(collided_id);
+
+                if (pushable.m_State == 0 && collided_id != m_HoveredID)
+                {
+                    Mesh mesh = new Mesh(collided_id);
+                    mesh.m_Model = mesh.m_Model + "_Shrink_Unhovered";
+                }
+            }
+        }
+        private void RevertUnhoveredShrinkable()
+        {
+            UInt32[] collided_ids = Player.GetAllPushable();
+
+            foreach (UInt32 collided_id in collided_ids)
+            {
+                Pushable pushable = new Pushable(collided_id);
+
+                if (pushable.m_State == 0 && collided_id != m_HoveredID)
+                {
+                    Mesh mesh = new Mesh(collided_id);
+
+                    if (mesh.m_Model.Length > 17)
+                        mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 17);
+                }
+            }
+        }
+
+        private void RevertHovered(bool in_fps)
+        {
+            if (m_Abilities.Count > 0 && m_HoveredID > 0)
+            {
+                Mesh mesh = new Mesh(m_HoveredID);
+                switch (m_AbilityHovered)
+                {
+                    case Ability.STOP_MOVING_PLATFORM:
+                    {
+                        if (mesh.m_Model.Length > 15)
+                            if (mesh.m_Model.Substring(mesh.m_Model.Length - 15, 15) == "_Freeze_Hovered")
+                                mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 15);
+
+                        if (in_fps && m_Abilities[0] == m_AbilityHovered)
+                            mesh.m_Model = mesh.m_Model + "_Freeze_Unhovered";
+
+                        break;
+                    }
+
+                    case Ability.GROW:
+                    {
+                        if (mesh.m_Model.Length > 13)
+                            if (mesh.m_Model.Substring(mesh.m_Model.Length - 13, 13) == "_Grow_Hovered")
+                                mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 13);
+                        
+                        if (in_fps && m_Abilities[0] == m_AbilityHovered)
+                            mesh.m_Model = mesh.m_Model + "_Grow_Unhovered";
+                        
+                        break;
+                    }
+
+                    case Ability.SHRINK:
+                    {
+                        if (mesh.m_Model.Length > 15)
+                            if (mesh.m_Model.Substring(mesh.m_Model.Length - 15, 15) == "_Shrink_Hovered")
+                                mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 15);
+
+                        if (in_fps && m_Abilities[0] == m_AbilityHovered)
+                            mesh.m_Model = mesh.m_Model + "_Shrink_Unhovered";
+                        
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void CastHoveredRay()
+        {
+            UInt32 cam_id = 0;
+
+            if (m_JumpUnitPC.m_FPSMode)
+            {
+                cam_id = m_JumpID;
+            }
+
+            else if (m_PushUnitPC.m_FPSMode)
+            {
+                cam_id = m_PushID;
+            }
+
+            UInt32[] collided_ids = Tools.Raycast.rayaab(cam_id);
+
+            if (m_Abilities.Count > 0)
+            {
+                foreach (UInt32 collided_id in collided_ids)
+                {
+                    switch (m_Abilities[0])
+                    {
+                        case Ability.STOP_MOVING_PLATFORM:
+                        {
+                            UInt32 temp_id = collided_id;
+                            Name name = new Name(collided_id);
+
+                            if (name.m_Name == "PlatformSlopeA")
+                            {
+                                Child child = new Child(collided_id);
+                                Child nextchild = new Child((UInt32)child.m_ParentID);
+                                temp_id = (UInt32)nextchild.m_ParentID;
+                            }
+                                
+                            if (Tools.Tag.IsFreezable(temp_id))
+                            {   
+                                Freezable freezable = new Freezable(temp_id);
+                                    
+
+                                if (!freezable.m_Frozen)
+                                {
+                                    RevertHovered(true);
+                                    m_HoveredID = temp_id;
+                                    m_AbilityHovered = Ability.STOP_MOVING_PLATFORM;
+                                    Mesh mesh = new Mesh(temp_id);
+                                    
+                                    if (mesh.m_Model.Length > 17)
+                                        if (mesh.m_Model.Substring(mesh.m_Model.Length - 17, 17) == "_Freeze_Unhovered")
+                                            mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 17);
+
+                                    mesh.m_Model = mesh.m_Model + "_Freeze_Hovered";
+                                    return;
+                                }
+                            }
+
+                            break;
+                        }
+
+                        case Ability.GROW:
+                        {
+                            if (Tools.Tag.IsPushable(collided_id))
+                            {
+                                Pushable pushable = new Pushable(collided_id);
+
+                                if (pushable.m_State == 0)
+                                {
+                                    RevertHovered(true);
+                                    m_HoveredID = collided_id;
+                                    m_AbilityHovered = Ability.GROW;
+                                    Mesh mesh = new Mesh(collided_id);
+                                    
+                                    if (mesh.m_Model.Length > 15)
+                                        if (mesh.m_Model.Substring(mesh.m_Model.Length - 15, 15) == "_Grow_Unhovered")
+                                            mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 15);
+
+                                    mesh.m_Model = mesh.m_Model + "_Grow_Hovered";
+                                    return;
+                                }
+                            }
+
+                            break;
+                        }
+
+                        case Ability.SHRINK:
+                        {
+                            if (Tools.Tag.IsPushable(collided_id))
+                            {
+                                Pushable pushable = new Pushable(collided_id);
+
+                                if (pushable.m_State == 0)
+                                {
+                                    RevertHovered(true);
+                                    m_HoveredID = collided_id;
+                                    m_AbilityHovered = Ability.SHRINK;
+                                    Mesh mesh = new Mesh(collided_id);
+                                    
+                                    if (mesh.m_Model.Length > 17)
+                                        if (mesh.m_Model.Substring(mesh.m_Model.Length - 17, 17) == "_Shrink_Unhovered")
+                                            mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 17);
+
+                                    mesh.m_Model = mesh.m_Model + "_Shrink_Hovered";
+                                    return;
+                                }
+                            }
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //doesn't find anything that is hovered over
+            RevertHovered(true);
+            m_HoveredID = 0;
+        }
+
         private void CastRay(UInt32 id)
         {
             UInt32[] collided_ids = Tools.Raycast.rayaab(id);
@@ -390,6 +738,8 @@ namespace CSScript
                                 m_SelectedID = collided_id;
                                 m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
 
+                                RevertHovered(false);
+                                m_HoveredID = 0;
                                 Mesh collided_mesh = new Mesh(collided_id);
                                 collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
 
@@ -399,6 +749,8 @@ namespace CSScript
 
                             else if (name.m_Name == "PlatformSlopeA")
                             {
+                                RevertHovered(false);
+                                m_HoveredID = 0;
                                 Child child  = new Child(collided_id);
                                 Child nextchild  = new Child((UInt32)child.m_ParentID);
                                 FreezeAnim((UInt32)nextchild.m_ParentID);
@@ -407,6 +759,8 @@ namespace CSScript
 
                             else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                             {
+                                RevertHovered(false);
+                                m_HoveredID = 0;
                                 FreezeAnim(collided_id);
                                 return;
                             }
@@ -420,7 +774,9 @@ namespace CSScript
                             {
                                 Pushable pushable = new Pushable(collided_id);
                                 Grow(collided_id);
-
+                                    
+                                RevertHovered(false);
+                                m_HoveredID = 0;
                                 Mesh collided_mesh = new Mesh(collided_id);
                                 collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
 
@@ -439,8 +795,10 @@ namespace CSScript
                             if (Tools.Tag.IsPushable(collided_id))
                             {
                                 Pushable pushable = new Pushable(collided_id);
-
                                 Shrink(collided_id);
+                                    
+                                RevertHovered(false);
+                                m_HoveredID = 0;
                                 Mesh collided_mesh = new Mesh(collided_id);
                                 collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
 
@@ -477,6 +835,8 @@ namespace CSScript
         private void Grow(UInt32 ID)
         {
             Pushable pushable = new Pushable(ID);
+            pushable.m_State += 1;
+
             Scale scale = new Scale(ID);
             Mass mass = new Mass(ID);
 
@@ -495,6 +855,8 @@ namespace CSScript
         private void Shrink(UInt32 ID)
         {
             Pushable pushable = new Pushable(ID);
+            pushable.m_State -= 1;
+
             Scale scale = new Scale(ID);
             Mass mass = new Mass(ID);
 
