@@ -420,14 +420,17 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< rigidforce, rotation, mass, player_controller, camera >();
+		    Query.m_OneOf.AddFromComponents<paperback::component::entity, player_interaction>();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, player_interaction* Interaction )
                 {
                     if ( Controller.m_PlayerStatus && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                     {
+                        if ( Interaction && Interaction->m_bPushOrPull ) return;
+
                         auto Direction = m_Coordinator.GetMouseDirection();
 
                         Direction = glm::normalize(Direction) * Controller.m_CameraRotationSpeed * m_Coordinator.GetMouseSensitivityRatio() * 0.01f;
@@ -463,6 +466,7 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< rigidforce, rotation, mass, player_controller, camera >();
+		    Query.m_OneOf.AddFromComponents<paperback::component::entity, player_interaction>();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
@@ -471,12 +475,17 @@ namespace paperback::input::binding
 
                 if ( GP )
                 {
-                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
+                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, player_interaction* Interaction )
                     {
                         if ( Controller.m_PlayerStatus && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                         {
+                            if ( Interaction && Interaction->m_bPushOrPull ) return;
                             Camera.RotateRight( GP->m_State.m_RightAxis.x * Controller.m_CameraRotationSpeed * m_Coordinator.GetMouseSensitivityRatio() * 0.01f );
-                            Camera.RotateDown( GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f );
+
+                            if ( GP->m_State.m_RightAxis.y > 0.0f )
+                                Camera.RotateDown( std::fabs(GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f) );
+                            else if ( GP->m_State.m_RightAxis.y < 0.0f )
+                                Camera.RotateUp( std::fabs(GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f) );
                         }
                     });
                 }
@@ -504,28 +513,36 @@ namespace paperback::input::binding
                 {
                     if ( Controller.m_PlayerStatus && Controller.m_OnGround && !Controller.m_FPSMode && Camera.m_Active && !m_Coordinator.GetPauseBool() )
                     {
-                        std::vector<paperback::u32> List;
-                        List.push_back( Entity.m_GlobalIndex );
+                        std::vector<std::pair<paperback::Vector3f, paperback::Vector3f>> RayList;
+                        std::vector<paperback::u32>                                      ExcludeList;
 
-                        auto Start_1 = Transform.m_Position; Start_1.x += BB.Min.x;
-                        auto Start_2 = Transform.m_Position; Start_2.x -= BB.Min.x;
-                        auto Start_3 = Transform.m_Position; Start_3.z += BB.Min.z;
-                        auto Start_4 = Transform.m_Position; Start_4.z -= BB.Min.z;
+                        auto Start_1 = Transform.m_Position; Start_1.x += BB.Min.x; Start_1.z += BB.Min.z;
+                        auto Start_2 = Transform.m_Position; Start_2.x += BB.Min.x; Start_2.z -= BB.Min.z;
+                        auto Start_3 = Transform.m_Position; Start_3.x -= BB.Min.x; Start_3.z += BB.Min.z;
+                        auto Start_4 = Transform.m_Position; Start_4.x -= BB.Min.x; Start_4.z -= BB.Min.z;
 
-                        auto RayEnd_1 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ BB.Min.x, 0.0f, 0.0f   };
-                        auto RayEnd_2 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ -BB.Min.x, 0.0f, 0.0f  };
-                        auto RayEnd_3 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ 0.0f, 0.0f, BB.Min.z  };
-                        auto RayEnd_4 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ 0.0f, 0.0f, -BB.Min.z };
+                        auto RayEnd_1 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{  BB.Min.x, 0.0f,  BB.Min.z };
+                        auto RayEnd_2 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{  BB.Min.x, 0.0f, -BB.Min.z };
+                        auto RayEnd_3 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ -BB.Min.x, 0.0f,  BB.Min.z };
+                        auto RayEnd_4 = Transform.m_Position + ( paperback::Vector3f{ 0.0f, BB.Min.y, 0.0f } * 1.8f ) + paperback::Vector3f{ -BB.Min.x, 0.0f, -BB.Min.z };
 
-                        auto [ ID_1, Dist_1 ] = m_Coordinator.QueryRaycastClosest( Start_1, RayEnd_1, List );
-                        auto [ ID_2, Dist_2 ] = m_Coordinator.QueryRaycastClosest( Start_2, RayEnd_2, List );
-                        auto [ ID_3, Dist_3 ] = m_Coordinator.QueryRaycastClosest( Start_3, RayEnd_3, List );
-                        auto [ ID_4, Dist_4 ] = m_Coordinator.QueryRaycastClosest( Start_4, RayEnd_4, List );
+                        RayList.push_back({ Start_1, RayEnd_1 });
+                        RayList.push_back({ Start_2, RayEnd_2 });
+                        RayList.push_back({ Start_3, RayEnd_3 });
+                        RayList.push_back({ Start_4, RayEnd_4 });
+
+                        ExcludeList.push_back( Entity.m_GlobalIndex );
+
+                        auto [ Closest_GID, Distance ] = m_Coordinator.QueryMultipleRaycastClosest( RayList
+                                                                                                  , Entity
+                                                                                                  , Transform
+                                                                                                  , std::fabs(BB.Min.y) * 1.2f
+                                                                                                  , ExcludeList );
 
                         // Nothing within Acceptable Bounds
-                        if ( Dist_1 > Start_1.y - RayEnd_1.y && Dist_2 > Start_2.y - RayEnd_2.y &&
-                             Dist_3 > Start_3.y - RayEnd_3.y && Dist_4 > Start_4.y - RayEnd_4.y )
+                        if ( Distance > Start_1.y - RayEnd_1.y )
                         {
+                            //std::cout << "Closest Dist: " << Distance << "  |  Calculated Dist: " << Start_1.y - RayEnd_1.y << std::endl;
                             return;
                         }
 
@@ -734,7 +751,7 @@ namespace paperback::input::binding
                                 }
                                 else
                                 {
-                                    InterRF->m_Momentum = RF.m_Momentum;
+                                    InterRF->m_Momentum = RF.m_Momentum * 1.4f;
                                     InterRF->m_CollisionAffected = true;
                                     InterRF->m_GravityAffected = true;
                                     InterMass->m_Mass = Mass.m_Mass;

@@ -177,13 +177,13 @@ namespace CSScript
                     m_CooldownTimer -= dt;
                 }
 
-                if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)) && m_Abilities.Count > 1 && m_CooldownTimer < 0.0f)
+                if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)) && m_Abilities.Count > 1 && m_CooldownTimer < 0.0f)
                 {
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);
                     Debug.Log(m_Abilities[0].ToString());
-                    m_CooldownTimer = 0.1f;
+                    m_CooldownTimer = 0.3f;
 
                     ++m_RotateTimes;
                 }

@@ -162,7 +162,7 @@ namespace paperback::physics
     PPB_INLINE
     AABB_Tree::NeighbourList AABB_Tree::QueryNeighbours( const boundingbox&   AABB
                                                        , const transform&     Transform
-                                                       , const paperback::u32 Thickness = 0.0f ) noexcept
+                                                       , const float          Thickness = 0.0f ) noexcept
     {
         NeighbourList List;
         boundingbox   Box = AABB.Extend( Transform.m_Position
@@ -237,6 +237,69 @@ namespace paperback::physics
                       });
 
         return std::make_tuple( ClosestPair.first, ClosestPair.second );
+    }
+
+    PPB_INLINE
+    std::tuple<AABB_Tree::EntityGID, float> AABB_Tree::QueryMultipleRaycastClosest( std::span<std::pair<paperback::Vector3f, paperback::Vector3f>>  StartEndPairs                   // First = Ray Start  |  Second = Ray End
+                                                                                  , const paperback::component::entity&                             Entity                          // Relevant Entity
+                                                                                  , const transform&                                                Transform                       // Position That You Are Querying From
+                                                                                  , const float&                                                    QueryRadius                     // Radius To Query
+                                                                                  , std::span<EntityGID>                                            ExcludeList                     // Exclude List
+                                                                                  , bool                                                            ExcludeBV ) noexcept            // Exclude Bounding Volume?
+    {
+        std::pair<paperback::u32, float> CurrentPair = std::make_pair( settings::invalid_index_v, 0.0f );
+        std::pair<paperback::u32, float> ClosestPair = std::make_pair( settings::invalid_index_v, FLT_MAX );
+
+        auto Info = m_Coordinator.GetEntityInfo( Entity.m_GlobalIndex );
+
+        if ( Info.m_pArchetype )
+        {
+            std::vector<paperback::u32> NeighbourList;
+            auto Box = Info.m_pArchetype->FindComponent<boundingbox>( Info.m_PoolDetails );
+            NeighbourList = Box ? m_Coordinator.QueryNeighbours( *Box, Transform, QueryRadius )                                  // Queried Entity Has BoundingBox
+                                : m_Coordinator.QueryNeighbours( boundingbox{}, Transform, QueryRadius );                        // No Bounding Box - Use Point + Radius Instead
+
+            m_Coordinator.ForEach( NeighbourList, [&]( paperback::component::entity& QEntity, transform& QTransform, boundingbox& QBox )
+            {
+                auto BB = QBox.Extend( QTransform.m_Position + QTransform.m_Offset );
+
+                for ( const auto& [ Start, End ] : StartEndPairs )
+                {
+                    auto [ RayIntersected, Distance ] = BB.Intersecting( Start, End );
+
+                    if ( RayIntersected )
+                    {
+                        CurrentPair = std::make_pair( QEntity.m_GlobalIndex, Distance );
+
+                        if ( CurrentPair.second < ClosestPair.second &&                                                          // Distance Is Smaller
+                             std::find( ExcludeList.begin(), ExcludeList.end(), CurrentPair.first ) == ExcludeList.end() )       // Entity Hit By Ray Not In Exclude List
+                        {
+                            if ( ExcludeBV )
+                            {
+                                const auto& Info = m_Coordinator.GetEntityInfo( CurrentPair.first );
+                                if ( Info.m_pArchetype )
+                                {
+                                    const auto& Bits = Info.m_pArchetype->GetComponentBits();
+
+                                    if ( !Bits.Has<bounding_volume>() )
+                                    {
+                                        ClosestPair.first = CurrentPair.first;
+                                        ClosestPair.second = CurrentPair.second;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ClosestPair.first = CurrentPair.first;
+                                ClosestPair.second = CurrentPair.second;
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        return ClosestPair;
     }
 
 
@@ -369,8 +432,6 @@ namespace paperback::physics
             if ( ParentIndex >= m_Tree.size() ) return false;
             auto& ParentNode    = m_Tree[ ParentIndex ];
             auto  GParentIndex  = m_Tree[ ParentIndex ].m_ParentIndex;
-            if ( GParentIndex >= m_Tree.size() ) return false;
-            auto& GParentNode   = m_Tree[ GParentIndex ];
             NodeID SiblingIndex = m_Tree[ ParentIndex ].m_LeftIndex == ID ? m_Tree[ ParentIndex ].m_RightIndex
                                                                           : m_Tree[ ParentIndex ].m_LeftIndex;
 
@@ -384,6 +445,9 @@ namespace paperback::physics
             // Remove Parent Node & Connect Sibling To GrandParent
             else
             {
+                if ( GParentIndex >= m_Tree.size() ) return false;
+                auto& GParentNode   = m_Tree[ GParentIndex ];
+
                 if ( GParentNode.m_LeftIndex == ParentIndex )  GParentNode.m_LeftIndex  = SiblingIndex;
                 else                                           GParentNode.m_RightIndex = SiblingIndex;
 

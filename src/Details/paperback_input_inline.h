@@ -53,35 +53,6 @@ namespace paperback::input
 		return std::bit_cast<T_DEVICE*>( m_PlayerDeviceList.back().second.get() );
     }
 
-	//// To Be Used In External Intercept System
- //   PPB_INLINE
- //   manager::PlayerControlBindings manager::GetActiveDevice( const paperback::u64 ControllerGuid ) noexcept
- //   {
- //       // Search For Controller
- //       auto it = m_PlayerDeviceMap.find( ControllerGuid );
-
- //       // Controller Exists
- //       if ( it != m_PlayerDeviceMap.end() )
- //       {
- //           auto ControllerIndex = it->second;
-
-	//		PPB_ASSERT_MSG( ControllerIndex >= m_PlayerDeviceList.size(), "Invalid Controller Index!" );
-
- //           auto& [ControllerInfo, Controller] = m_PlayerDeviceList[ ControllerIndex ];
-
- //           return std::tuple{ ControllerInfo->m_TypeID                          // Keyboard  |  Mouse  |  Gamepad  |  GamepadAxis  |  Invalid Controls
- //                            , Controller->FindBindings()                        // Movement Binding Guids
- //                            };
- //       }
-
- //       WARN_PRINT( "Active Player Controller Does Not Exist In Current Scene!!" );
-
- //       // Controller Does Not Exist
- //       return std::tuple{ device::type::id::INVALID_CONTROLS                    // Keyboard  |  Mouse  |  Gamepad  |  GamepadAxis  |  Invalid Controls
- //                        , nullptr                                               // Movement Binding Guids
- //                        };
- //   }
-
 	PPB_INLINE
 	input::device::Keyboard_Controls* manager::FindKeyboard( void ) const noexcept
 	{
