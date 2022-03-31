@@ -12,6 +12,70 @@
                         0,
                         9604788041699812520,
                         5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 13
+                    },
+                    "Mesh": {
+                        "Model": "WallSegment1",
+                        "Texture": "NationalStadium_Normal.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000007934868337,
+                            "y": 0.0020000007934868337,
+                            "z": 0.0020000007934868337
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 90.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -3.760828733444214,
+                            "y": -6.2400007247924809,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            9604788041699812520,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 0
+                    },
+                    "Name": {
+                        "Name": "Stadium?"
+                    }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
                         10055872472107209861,
                         14486341741652966143,
                         17008353085049151909,
@@ -37,7 +101,9 @@
                         }
                     },
                     "Prefab": {
-                        "Prefab Instances GID": []
+                        "Prefab Instances GID": [
+                            13
+                        ]
                     },
                     "Rotation": {
                         "Rotation": {
@@ -126,14 +192,21 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "",
-                            "",
-                            ""
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 0,
-                        "Active Status": false
+                        "Active Status": false,
+                        "Button Index": 0
                     }
                 }
             ]
@@ -158,14 +231,14 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "LeftButton_Unselected",
+                        "Texture": "QuitToMainMenuButton_Unselected",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 100.0,
+                            "x": 300.0,
                             "y": 100.0,
                             "z": 0.0
                         }
@@ -185,7 +258,7 @@
                         },
                         "Position": {
                             "x": -700.0,
-                            "y": -450.0,
+                            "y": -480.0,
                             "z": 1.0
                         }
                     },
@@ -206,19 +279,20 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": "LeftButton_Unselected"
+                                "ID": "QuitToMainMenuButton_Unselected"
                             },
                             {
-                                "ID": "LeftButton_Selected"
+                                "ID": "QuitToMainMenuButton_Selected"
                             },
                             {
-                                "ID": "LeftButton_Unselected"
+                                "ID": "QuitToMainMenuButton_Unselected"
                             }
                         ],
-                        "Button State": 2,
+                        "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 7594871342180465470,
-                        "Active Status": true
+                        "Active Status": true,
+                        "Button Index": 0
                     }
                 },
                 {
@@ -227,7 +301,7 @@
                     },
                     "Mesh": {
                         "Model": "Credits",
-                        "Texture": "YouWonTitle",
+                        "Texture": "FirstLevelWinScreen.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
@@ -255,7 +329,7 @@
                         "Position": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": -0.13500000536441804
+                            "z": -0.10000000149011612
                         }
                     },
                     "ReferencePrefab": {
@@ -274,14 +348,21 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "",
-                            "",
-                            ""
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
                         ],
-                        "Button State": 2,
+                        "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 6991569882842922372,
-                        "Active Status": true
+                        "Active Status": true,
+                        "Button Index": 0
                     }
                 }
             ]
@@ -566,19 +647,19 @@
                             "z": 0.0
                         },
                         "Ambient": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
                         },
                         "Diffuse": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
                         },
                         "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 255.0,
+                            "y": 255.0,
+                            "z": 255.0
                         }
                     }
                 }
@@ -608,7 +689,7 @@
                         "Position": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": -16.200000762939454
+                            "z": -15.0
                         }
                     },
                     "ReferencePrefab": {

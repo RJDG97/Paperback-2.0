@@ -23,5 +23,9 @@
     "CloseButton_Selected": "../../resources/textures/UI/Menus/Buttons/CloseButton_Selected.dds 0",
     "InstructionManualPage05Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage05Flipped.dds 0",
     "InstructionManualPage06Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage06Flipped.dds 0",
-    "InstructionManualPage07Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage07Flipped.dds 0"
+    "InstructionManualPage07Flipped": "../../resources/textures/UI/Menus/HowtoPlay/InstructionManualPage07Flipped.dds 0",
+    "CreditsButton_Unselected": "../../resources/textures/UI/Menus/Buttons/CreditsButton_Unselected_Mirrored.dds 0",
+    "SettingsButton_Unselected": "../../resources/textures/UI/Menus/Buttons/SettingsButton_Unselected_Mirrored.dds 0",
+    "CreditsButton_Selected": "../../resources/textures/UI/Menus/Buttons/CreditsButton_Selected_Mirrored.dds 0",
+    "SettingsButton_Selected": "../../resources/textures/UI/Menus/Buttons/SettingsButton_Selected_Mirrored.dds 0"
 }
