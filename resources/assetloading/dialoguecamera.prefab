@@ -1,0 +1,65 @@
+{
+    "Prefabs": [
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106,
+                        223102351977301267,
+                        1871702054972469046
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 492
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Dialogue Camera"
+                    },
+                    "Path Follower": {
+                        "Path ID": 20,
+                        "Distance": 0.0,
+                        "Travel Speed": 1.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": true
+                    },
+                    "Camera": {
+                        "Active": false,
+                        "Camera Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Radius": 1.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
+                        "Theta": 90.0,
+                        "Azimuth": 0.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
+                    }
+                }
+            ]
+        }
+    ]
+}
