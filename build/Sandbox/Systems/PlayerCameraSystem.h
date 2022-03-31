@@ -50,6 +50,24 @@ struct player_camera_system : paperback::system::pausable_instance
                     Hit_ID = Hit_ID2;
                 }
 
+                /*
+                // Testing New
+                std::vector<std::pair<paperback::Vector3f, paperback::Vector3f>> RayList;
+                std::vector<paperback::u32>                                      ExcludeList;
+
+                RayList.push_back({ Transform.m_Position, Point1 });
+                RayList.push_back({ Transform.m_Position, Point2 });
+
+                ExcludeList.push_back( PlayerEntity.m_GlobalIndex );
+
+                auto [ Hit_ID, HitDist ] = m_Coordinator.QueryMultipleRaycastClosest( RayList
+                                                                                    , PlayerEntity
+                                                                                    , Transform
+                                                                                    , Camera.m_MaxRadius * 1.2f
+                                                                                    , ExcludeList
+                                                                                    , true );
+                */
+
                 // There Exists Closest Entity In Camera Range - Limit Camera Radius
                 if ( Hit_ID != paperback::settings::invalid_index_v )
                 {

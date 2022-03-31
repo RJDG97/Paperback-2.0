@@ -84,7 +84,7 @@ struct collision_system : paperback::system::pausable_instance
             {
                 Boundingbox->m_Collided = false;
 
-                auto NeighbourList = m_Coordinator.QueryNeighbours( *Boundingbox, Transform, BV ? 3.0f : 0.0f );
+                auto NeighbourList = m_Coordinator.QueryNeighbours( *Boundingbox, Transform, BV ? 2.0f : 0.0f );
 
                 ForEach( NeighbourList, [&]( entity& Dynamic_Entity, transform& Xform, rigidforce* RF, boundingbox* BB, mass* m2, slope* Slope2, bounding_volume* BV2, pushable* Pushable )
                 {

@@ -109,7 +109,7 @@ namespace CSScript
                 m_HoverRayCastTimer -= dt;
 
 
-            if ((Input.IsKeyPress(Input.PB_Q) || Input.IsKeyPress(Input.PB_MOUSE_BUTTON_4))  && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
+            if ((Input.IsKeyPress(Input.PB_Q) || Input.IsKeyPress(Input.PB_GAMEPAD_BUTTON_Y))  && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
             {
                 m_SFX.m_Trigger = true;
                 Player.TogglePlayers();
@@ -157,7 +157,7 @@ namespace CSScript
                     m_HoveredID = 0;
                     RevertUnhovered();
 
-                    m_AbilitySwapCoolDownTimer = 0.1f;
+                    m_AbilitySwapCoolDownTimer = 0.3f;
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);

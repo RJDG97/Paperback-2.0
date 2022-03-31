@@ -56,17 +56,24 @@ namespace paperback::physics
         PPB_INLINE
         NeighbourList QueryNeighbours( const boundingbox&   AABB
                                      , const transform&     Transform
-                                     , const paperback::u32 Thickness ) noexcept;
+                                     , const float          Thickness ) noexcept;
 
         PPB_INLINE
         NeighbourList QueryRaycast( const paperback::Vector3f& RayStart
                                   , const paperback::Vector3f& RayEnd ) noexcept;
             
-        PPB_INLINE
+        PPB_INLINE // broken fuck
         std::tuple<EntityGID, float> QueryRaycastClosest( const paperback::Vector3f&   RayStart
                                                         , const paperback::Vector3f&   RayEnd
                                                         , std::span<EntityGID>         ExcludeList ) noexcept;
 
+        PPB_INLINE
+        std::tuple<AABB_Tree::EntityGID, float> QueryMultipleRaycastClosest( std::span<std::pair<paperback::Vector3f, paperback::Vector3f>>  StartEndPairs                 // First = Ray Start  |  Second = Ray End
+                                                                           , const paperback::component::entity&                             Entity                        // Relevant Entity
+                                                                           , const transform&                                                Transform                     // Position That You Are Querying From
+                                                                           , const float&                                                    QueryRadius                   // Radius To Query
+                                                                           , std::span<EntityGID>                                            ExcludeList                   // Exclude List
+                                                                           , bool                                                            ExcludeBV ) noexcept;         // Exclude List
 
         //-----------------------------------
         //              Debug

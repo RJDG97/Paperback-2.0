@@ -290,7 +290,7 @@ namespace paperback::coordinator
 		PPB_INLINE
 		physics::AABB_Tree::NeighbourList QueryNeighbours( const boundingbox&   AABB
                                                          , const transform&     Transform
-                                                         , const paperback::u32 Thickness = 0.0f ) noexcept;
+                                                         , const float          Thickness = 0.0f ) noexcept;
 
 		PPB_INLINE
 		physics::AABB_Tree::NeighbourList QueryRaycast( const paperback::Vector3f& StartRay
@@ -300,7 +300,14 @@ namespace paperback::coordinator
 		std::tuple<physics::AABB_Tree::EntityGID, float> QueryRaycastClosest( const paperback::Vector3f&               StartRay
 										                                    , const paperback::Vector3f&               EndRay
 														                    , std::span<physics::AABB_Tree::EntityGID> ExcludeList = {} ) noexcept;
-		
+
+		PPB_INLINE
+		std::tuple<physics::AABB_Tree::EntityGID, float> QueryMultipleRaycastClosest( std::span<std::pair<paperback::Vector3f, paperback::Vector3f>>  StartEndPairs         
+		                                                                   , const paperback::component::entity&                                      Entity                
+		                                                                   , const transform&                                                         Transform             
+		                                                                   , const float&                                                             QueryRadius           
+		                                                                   , std::span<physics::AABB_Tree::EntityGID>                                 ExcludeList
+                                                                           , bool                                                                     ExcludeBV = false ) noexcept;
 		
 		//-----------------------------------
 		//         Update Hash Grid
