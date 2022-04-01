@@ -163,5 +163,6 @@
     "SkillUISmallBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Freeze.dds 1",
     "SkillUISmallBar_Grow": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Grow.dds 1",
     "SkillUISmallBar_Shrink": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Shrink.dds 1",
-    "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 1"
+    "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 1",
+    "LoadingBarBase": "../../resources/textures/UI/LoadingBarBase.dds 1"
 }
