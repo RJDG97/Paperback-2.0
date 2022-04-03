@@ -223,7 +223,7 @@ struct ui_system : paperback::system::instance
 
         m_FrameButtonLock = false;
         m_CurrentButtonHovered = "";
-        PPB.GetSystem<ui_system>().UpdateMaximumIndex();
+        m_MaximumButtonIndex = 0;
     }
 
     //given a layer, disable/enable all buttons with spe
@@ -332,7 +332,7 @@ struct ui_system : paperback::system::instance
         else
         {
 
-            if (m_CurrentButtonIndex != 1)
+            if (m_CurrentButtonIndex > 1)
             {
 
                 m_CurrentButtonIndex--;
