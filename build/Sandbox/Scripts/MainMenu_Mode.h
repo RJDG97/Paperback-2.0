@@ -17,10 +17,15 @@ struct mainmenu_mode_script : paperback::script::button_interface // Inherited T
     void OnHover( void ) noexcept
     {
         PPB.ToggleCursor(true);
+        PPB.GetSystem<ui_system>().EnableControllerUIMode();
     }
 
     void Run( void ) noexcept
     {
         PPB.ToggleCursor(true);
+        PPB.GetSystem<ui_system>().EnableControllerUIMode();
+
+        if (PPB.GetSystem<ui_system>().m_MaximumButtonIndex == 0)
+            PPB.GetSystem<ui_system>().UpdateMaximumIndex();
     }
 };

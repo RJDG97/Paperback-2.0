@@ -20,7 +20,10 @@ struct ui_system : paperback::system::instance
     tools::query m_ButtonQuery;
     tools::query m_AudioQuery;
     std::string  m_CurrentButtonHovered{};
+    size_t       m_CurrentButtonIndex{}; //for use with controller UI navigation
+    size_t       m_MaximumButtonIndex{};
     bool         m_Picked = false;
+    bool         m_ControllerUIMode = false;
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
@@ -29,6 +32,8 @@ struct ui_system : paperback::system::instance
         RegisterGlobalEventClass<paperback::input::manager::KeyClicked>( this );      // Released                 ( Passes True )
         RegisterGlobalEventClass<paperback::input::manager::MousePressed>( this );    // Held Down - Not Released ( Passes False )
         RegisterGlobalEventClass<paperback::input::manager::MouseClicked>( this );    // Released                 ( Passes True )
+        RegisterGlobalEventClass<paperback::input::manager::GamepadPressed>(this);    // Held Down - Not Released ( Passes False )
+        RegisterGlobalEventClass<paperback::input::manager::GamepadClicked>( this );    // Released                 ( Passes True )
 
         m_AudioQuery.m_Must.AddFromComponents < name >();
         m_AudioQuery.m_OneOf.AddFromComponents < sound, entity >();
@@ -75,7 +80,7 @@ struct ui_system : paperback::system::instance
         // Grab Mouse Coords
         auto pos = GetMousePositionInUI();
 
-        if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, 0.0f } ) )
+        if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, 0.0f } ) || (m_CurrentButtonIndex != 0 && Button && Button->m_ButtonIndex == m_CurrentButtonIndex)  )
         {
             if ( Button && Button->m_bActive )
             {
@@ -131,6 +136,7 @@ struct ui_system : paperback::system::instance
     // On Event Key / Mouse Pressed
     void OnEvent( const size_t& Key, const bool& Clicked ) noexcept
     {
+
         if ( Key == GLFW_KEY_ESCAPE )
         {
             
@@ -206,6 +212,9 @@ struct ui_system : paperback::system::instance
         PPB.OpenQueuedScene();
 
         m_FrameButtonLock = false; //resets the lock
+
+        if (m_MaximumButtonIndex == 0)
+            UpdateMaximumIndex();
     }
 
     PPB_INLINE
@@ -214,6 +223,7 @@ struct ui_system : paperback::system::instance
 
         m_FrameButtonLock = false;
         m_CurrentButtonHovered = "";
+        PPB.GetSystem<ui_system>().UpdateMaximumIndex();
     }
 
     //given a layer, disable/enable all buttons with spe
@@ -285,5 +295,109 @@ struct ui_system : paperback::system::instance
                     return;
                 }
             });
+    }
+
+    void NextButtonIndex()
+    {
+
+        if (!m_ControllerUIMode)
+            return;
+
+        if (m_MaximumButtonIndex == 0)
+        {
+
+            m_CurrentButtonIndex = 0;
+        }
+        else
+        {
+
+            m_CurrentButtonIndex++;
+
+            if (m_CurrentButtonIndex > m_MaximumButtonIndex)
+                m_CurrentButtonIndex = 1;
+        }
+    }
+
+    void PrevButtonIndex()
+    {
+
+        if (!m_ControllerUIMode)
+            return;
+
+        if (m_MaximumButtonIndex == 0)
+        {
+
+            m_CurrentButtonIndex = 0;
+        }
+        else
+        {
+
+            if (m_CurrentButtonIndex != 1)
+            {
+
+                m_CurrentButtonIndex--;
+            }
+            else
+            {
+
+                m_CurrentButtonIndex = m_MaximumButtonIndex;
+            }
+        }
+    }
+
+    void UpdateMaximumIndex()
+    {
+
+        m_CurrentButtonIndex = 0;
+        m_MaximumButtonIndex = 0;
+
+        ForEach(Search(m_ButtonQuery), [&](entity& Entity, transform& Transform, scale& Scale, button* Button, card* Card, selected* Selected) noexcept
+        {
+
+
+                if (Button && Button->m_bActive)
+                {
+
+                    if (Button->m_ButtonIndex > m_MaximumButtonIndex)
+                    {
+
+                        m_MaximumButtonIndex = Button->m_ButtonIndex;
+                    }
+                }
+        });
+
+        std::cout << m_MaximumButtonIndex << std::endl;
+    }
+
+    //called continuously 
+    void EnableControllerUIMode(const bool& SetVal = true)
+    {
+
+        m_ControllerUIMode = SetVal;
+    }
+
+    void SelectUIButton()
+    {
+
+        if (!m_ControllerUIMode || m_CurrentButtonIndex == 0)
+            return;
+
+        ForEach(Search(m_ButtonQuery), [&](entity& Entity, transform& Transform, scale& Scale, button* Button, card* Card, selected* Selected) noexcept
+        {
+            if (Button && m_CurrentButtonIndex == Button->m_ButtonIndex)
+            {
+                // Button Is On The Active Layer
+                if (Button && Button->m_bActive)
+                {
+                    // Update Button State
+                    Button->SetButtonState(ButtonState::CLICKED);
+                    // Mesh.m_Texture = Button->m_ButtonStateTextures[ Button->m_ButtonState ];
+
+                    // Run OnClick Script If Valid
+                    auto Script = FindScript<paperback::script::button_interface>(Button->m_ReferencedScript);
+                    if (Script) Script->OnClick();
+                }
+            }
+        });    
     }
 };
