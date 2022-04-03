@@ -365,8 +365,6 @@ struct ui_system : paperback::system::instance
                     }
                 }
         });
-
-        std::cout << m_MaximumButtonIndex << std::endl;
     }
 
     //called continuously 

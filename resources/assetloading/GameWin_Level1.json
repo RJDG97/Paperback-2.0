@@ -206,14 +206,15 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "",
-                            "",
-                            ""
+                            "QuitToMainMenuButton_Unselected",
+                            "QuitToMainMenuButton_Selected",
+                            "QuitToMainMenuButton_Unselected"
                         ],
                         "Button State": 2,
                         "Layer Grouping": 0,
                         "Script Guid": 7594871342180465470,
-                        "Active Status": true
+                        "Active Status": true,
+                        "Button Index": 2
                     }
                 },
                 {
@@ -345,7 +346,8 @@
                         "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 3221504161959520552,
-                        "Active Status": true
+                        "Active Status": true,
+                        "Button Index": 1
                     }
                 }
             ]

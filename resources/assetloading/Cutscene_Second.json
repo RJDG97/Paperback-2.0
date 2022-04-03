@@ -326,7 +326,8 @@
                         "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 17158921418367548710,
-                        "Active Status": true
+                        "Active Status": true,
+                        "Button Index": 1
                     }
                 },
                 {
