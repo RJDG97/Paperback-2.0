@@ -164,5 +164,10 @@
     "SkillUISmallBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Freeze.dds 1",
     "SkillUISmallBar_Grow": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Grow.dds 1",
     "SkillUISmallBar_Shrink": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Shrink.dds 1",
+    "BeResponsible": "../../resources/textures/UI/Stickers/BeResponsible.dds 1",
+    "CubbyHoleThisWay": "../../resources/textures/UI/Stickers/CubbyHoleThisWay.dds 1",
+    "LearningArea": "../../resources/textures/UI/Stickers/LearningArea.dds 1",
+    "LearningAreaThisWay": "../../resources/textures/UI/Stickers/LearningAreaThisWay.dds 1",
+    "PlayArea": "../../resources/textures/UI/Stickers/PlayArea.dds 1",
     "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 1"
 }
