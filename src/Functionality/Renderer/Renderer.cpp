@@ -247,8 +247,10 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("FloorTile", "../../resources/models/nui/FloorTile.nui");
 
 	m_Resources.Load3DMeshNUI("FreezeCard", "../../resources/models/nui/FreezeCard.nui");
+	m_Resources.Load3DMeshNUI("FreezeParticle", "../../resources/models/nui/FreezeParticle.nui");
 
 	m_Resources.Load3DMeshNUI("GrowCard", "../../resources/models/nui/GrowCard.nui");
+	m_Resources.Load3DMeshNUI("GrowParticle", "../../resources/models/nui/GrowParticle.nui");
 	m_Resources.Load3DMeshNUI("GuardHouse", "../../resources/models/nui/GuardHouse.nui");
 
 
@@ -344,6 +346,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("ShortGate_Freeze_Unhovered", "../../resources/models/nui/ShortGate_FreezeUnhovered.nui");
 
 	m_Resources.Load3DMeshNUI("ShrinkCard", "../../resources/models/nui/ShrinkCard.nui");
+	m_Resources.Load3DMeshNUI("ShrinkParticle", "../../resources/models/nui/ShrinkParticle.nui");
 
 	m_Resources.Load3DMeshNUI("Splashscreen", "../../resources/models/nui/Splashscreen.nui");
 
