@@ -46,7 +46,7 @@ struct dialogue_system : paperback::system::pausable_instance
 		Query_PlayerCamera.m_NoneOf.AddFromComponents<prefab>();
 
 		Query_Camera.m_Must.AddFromComponents<camera, name, path_follower>();
-		Query_Camera.m_NoneOf.AddFromComponents<prefab>();
+		Query_Camera.m_NoneOf.AddFromComponents<prefab, cinematic>();
 
 		dialogue_manager = &DialogueManager::GetInstanced();
 	}
