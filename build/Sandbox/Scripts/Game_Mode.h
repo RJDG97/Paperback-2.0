@@ -26,6 +26,7 @@ struct game_mode_script : paperback::script::button_interface // Inherited Type 
                 PPB.TogglePause(true);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
+                PPB.GetSystem<ui_system>().UpdateMaximumIndex();
             }
             else
             {
@@ -46,7 +47,17 @@ struct game_mode_script : paperback::script::button_interface // Inherited Type 
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY6), false);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY7), false);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), true);
+                PPB.GetSystem<ui_system>().UpdateMaximumIndex();
             }
+        }
+
+        if (PPB.GetPauseBool())
+        {
+            PPB.GetSystem<ui_system>().EnableControllerUIMode();
+        }
+        else
+        {
+            PPB.GetSystem<ui_system>().EnableControllerUIMode(false);
         }
     }
 };

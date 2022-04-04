@@ -26,5 +26,6 @@ struct quitwindow_button_game_script : paperback::script::button_interface // In
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::QUIT), true);
+        PPB.GetSystem<ui_system>().UpdateMaximumIndex();
     }
 };

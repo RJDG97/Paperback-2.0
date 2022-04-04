@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 492
+                "EntityHead": 493
             }
         },
         {
@@ -1296,7 +1296,7 @@
                         "Layer Grouping": 4,
                         "Script Guid": 9376503613259406693,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -1365,7 +1365,7 @@
                         "Layer Grouping": 2,
                         "Script Guid": 11808865971164719594,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -1434,7 +1434,7 @@
                         "Layer Grouping": 2,
                         "Script Guid": 363949741224754573,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 5
                     }
                 },
                 {
@@ -1708,7 +1708,7 @@
                         "Layer Grouping": 2,
                         "Script Guid": 10500334517573842749,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 6
                     }
                 },
                 {
@@ -1776,7 +1776,7 @@
                         "Layer Grouping": 5,
                         "Script Guid": 12620379784612268846,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -1844,7 +1844,7 @@
                         "Layer Grouping": 4,
                         "Script Guid": 7594871342180465470,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -1912,7 +1912,7 @@
                         "Layer Grouping": 5,
                         "Script Guid": 1627387828951799765,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -2050,7 +2050,7 @@
                         "Layer Grouping": 2,
                         "Script Guid": 11551997379440525767,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 4
                     }
                 },
                 {
@@ -2119,7 +2119,7 @@
                         "Layer Grouping": 2,
                         "Script Guid": 7207962730480403526,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 3
                     }
                 },
                 {
@@ -2188,7 +2188,7 @@
                         "Layer Grouping": 2,
                         "Script Guid": 7038881612550230713,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -2326,7 +2326,7 @@
                         "Layer Grouping": 7,
                         "Script Guid": 2787588279114269777,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -2395,7 +2395,7 @@
                         "Layer Grouping": 7,
                         "Script Guid": 2474754720924523436,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -2533,7 +2533,7 @@
                         "Layer Grouping": 8,
                         "Script Guid": 3232239141129413275,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -2602,7 +2602,7 @@
                         "Layer Grouping": 8,
                         "Script Guid": 2894865494604168550,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -2740,7 +2740,7 @@
                         "Layer Grouping": 9,
                         "Script Guid": 14717677926704336388,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -2809,7 +2809,7 @@
                         "Layer Grouping": 9,
                         "Script Guid": 14467860613937402361,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -2947,7 +2947,7 @@
                         "Layer Grouping": 10,
                         "Script Guid": 4049379736675036943,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -3016,7 +3016,7 @@
                         "Layer Grouping": 10,
                         "Script Guid": 4379136980062400754,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -3154,7 +3154,7 @@
                         "Layer Grouping": 11,
                         "Script Guid": 15624890555565998992,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -3223,7 +3223,7 @@
                         "Layer Grouping": 11,
                         "Script Guid": 15862060134731963501,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -3361,7 +3361,7 @@
                         "Layer Grouping": 12,
                         "Script Guid": 15177829724301419866,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -3430,7 +3430,7 @@
                         "Layer Grouping": 12,
                         "Script Guid": 15444500344781060775,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -3568,7 +3568,7 @@
                         "Layer Grouping": 13,
                         "Script Guid": 3622848965871520197,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -3637,7 +3637,7 @@
                         "Layer Grouping": 13,
                         "Script Guid": 3941047127536473656,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -3706,7 +3706,7 @@
                         "Layer Grouping": 6,
                         "Script Guid": 11675726734796814778,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 3
                     }
                 }
             ]
@@ -18881,7 +18881,7 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": -0.30000001192092898,
+                            "x": -0.6000000238418579,
                             "y": -5.300000190734863,
                             "z": 0.0
                         },
@@ -18913,12 +18913,12 @@
                     "BoundingBox": {
                         "Min Point": {
                             "x": -13.800000190734864,
-                            "y": -0.4000000059604645,
+                            "y": -0.5,
                             "z": -3.799999952316284
                         },
                         "Max Point": {
                             "x": 13.800000190734864,
-                            "y": 0.4000000059604645,
+                            "y": 0.5,
                             "z": 3.799999952316284
                         },
                         "Is Collide": false
@@ -22325,7 +22325,7 @@
                         "Position": {
                             "x": -62.400001525878909,
                             "y": 3.9000000953674318,
-                            "z": 5.099999904632568
+                            "z": 8.983020782470704
                         }
                     },
                     "RigidForce": {
@@ -28773,6 +28773,105 @@
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 492
+                    },
+                    "Mesh": {
+                        "Model": "BookABC",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.019999999552965165,
+                            "y": 0.019999999552965165,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 180.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.10000000149011612
+                        },
+                        "Position": {
+                            "x": -62.400001525878909,
+                            "y": 3.9000000953674318,
+                            "z": 5.099999904632568
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -2.4000000953674318,
+                            "z": -1.850000023841858
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 2.4000000953674318,
+                            "z": 1.850000023841858
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909,
+                            3617555656175080491,
+                            14486341741652966143,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "ABC Book 1-5"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         },
@@ -29896,6 +29995,7 @@
                             233,
                             234,
                             235,
+                            492,
                             322
                         ]
                     },
@@ -31708,9 +31808,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -56.89630889892578,
+                            "x": -58.15382385253906,
                             "y": 1.1018036603927613,
-                            "z": 5.2642035484313969
+                            "z": 5.070657253265381
                         }
                     },
                     "RigidForce": {
@@ -31878,9 +31978,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -58.45487594604492,
+                            "x": -56.14546585083008,
                             "y": 1.2010350227355958,
-                            "z": 5.319602012634277
+                            "z": 4.8355278968811039
                         }
                     },
                     "RigidForce": {
@@ -33849,8 +33949,8 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.15000000596046449,
-                            "z": 0.0
+                            "y": 0.20000000298023225,
+                            "z": 0.5
                         },
                         "Position": {
                             "x": -70.80000305175781,
@@ -33880,13 +33980,13 @@
                     "BoundingBox": {
                         "Min Point": {
                             "x": -2.049999952316284,
-                            "y": -0.4000000059604645,
-                            "z": -0.5
+                            "y": -0.5,
+                            "z": -0.6000000238418579
                         },
                         "Max Point": {
                             "x": 2.049999952316284,
-                            "y": 0.4000000059604645,
-                            "z": 0.5
+                            "y": 0.5,
+                            "z": 0.6000000238418579
                         },
                         "Is Collide": false
                     },
@@ -34527,9 +34627,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -66.69999694824219,
-                            "y": 4.699999809265137,
-                            "z": 5.300000190734863
+                            "x": -66.28662872314453,
+                            "y": 4.785424709320068,
+                            "z": 13.138522148132325
                         }
                     },
                     "RigidForce": {
@@ -34634,9 +34734,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -60.5,
-                            "y": 5.099999904632568,
-                            "z": -3.299999952316284
+                            "x": -66.05643463134766,
+                            "y": 5.074670314788818,
+                            "z": 5.287598133087158
                         }
                     },
                     "RigidForce": {
@@ -35314,10 +35414,10 @@
                             274,
                             217,
                             218,
+                            276,
                             219,
                             275,
                             220,
-                            276,
                             277,
                             278,
                             279,
@@ -35558,7 +35658,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 217
+                        "Global Index": 280
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -35575,13 +35675,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": -0.05000000074505806,
+                            "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -55.599998474121097,
-                            "y": 5.949999809265137,
-                            "z": 19.5
+                            "x": -60.29999923706055,
+                            "y": 6.059999942779541,
+                            "z": -7.199999809265137
                         }
                     },
                     "RigidForce": {
@@ -35605,14 +35705,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.0,
-                            "y": -2.0,
-                            "z": -1.0
+                            "x": -13.699999809265137,
+                            "y": -5.0,
+                            "z": -0.30000001192092898
                         },
                         "Max Point": {
-                            "x": 1.0,
-                            "y": 2.0,
-                            "z": 1.0
+                            "x": 13.699999809265137,
+                            "y": 5.0,
+                            "z": 0.30000001192092898
                         },
                         "Is Collide": false
                     },
@@ -35625,7 +35725,7 @@
                         "Prefab GID": 214
                     },
                     "Name": {
-                        "Name": "Invisible Wall 3"
+                        "Name": "Invisible Wall 13"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -35731,9 +35831,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -61.25,
-                            "y": 2.8499999046325685,
-                            "z": 11.399999618530274
+                            "x": -61.150001525878909,
+                            "y": 3.296081781387329,
+                            "z": 11.600000381469727
                         }
                     },
                     "RigidForce": {
@@ -35758,13 +35858,13 @@
                     "BoundingBox": {
                         "Min Point": {
                             "x": -0.6000000238418579,
-                            "y": -2.0,
-                            "z": -8.100000381469727
+                            "y": -2.9000000953674318,
+                            "z": -8.699999809265137
                         },
                         "Max Point": {
                             "x": 0.6000000238418579,
-                            "y": 2.0,
-                            "z": 8.100000381469727
+                            "y": 2.9000000953674318,
+                            "z": 8.699999809265137
                         },
                         "Is Collide": false
                     },
@@ -36318,7 +36418,7 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 280
+                        "Global Index": 217
                     },
                     "Rigidbody": {
                         "Acceleration": {
@@ -36334,14 +36434,14 @@
                     },
                     "Transform": {
                         "Offset": {
-                            "x": 0.0,
+                            "x": -0.10000000149011612,
                             "y": 0.0,
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -60.29999923706055,
-                            "y": 6.059999942779541,
-                            "z": -7.199999809265137
+                            "x": -56.49220657348633,
+                            "y": 5.94932222366333,
+                            "z": 19.487533569335939
                         }
                     },
                     "RigidForce": {
@@ -36365,14 +36465,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -13.699999809265137,
-                            "y": -5.0,
-                            "z": -0.30000001192092898
+                            "x": -2.200000047683716,
+                            "y": -2.0,
+                            "z": -1.0
                         },
                         "Max Point": {
-                            "x": 13.699999809265137,
-                            "y": 5.0,
-                            "z": 0.30000001192092898
+                            "x": 2.200000047683716,
+                            "y": 2.0,
+                            "z": 1.0
                         },
                         "Is Collide": false
                     },
@@ -36385,7 +36485,7 @@
                         "Prefab GID": 214
                     },
                     "Name": {
-                        "Name": "Invisible Wall 13"
+                        "Name": "Invisible Wall 3"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -46682,7 +46782,7 @@
                     "Path Follower": {
                         "Path ID": 2,
                         "Distance": 0.0,
-                        "Travel Speed": 3.0,
+                        "Travel Speed": 1.5,
                         "Back and Forth": false,
                         "Reversed": false,
                         "Pause Travel": true

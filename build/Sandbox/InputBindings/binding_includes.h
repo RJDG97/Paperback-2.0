@@ -945,7 +945,29 @@ namespace paperback::input::binding
         END_INPUT_ACTION
     END_BINDING_CONSTRUCT
 
+    BEGIN_BINDING_CONSTRUCT(SelectUIButton)
+        BEGIN_INPUT_ACTION
 
+            m_Coordinator.GetSystem<ui_system>().SelectUIButton();
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
+    BEGIN_BINDING_CONSTRUCT(PrevButton)
+        BEGIN_INPUT_ACTION
+
+            m_Coordinator.GetSystem<ui_system>().PrevButtonIndex();
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
+    BEGIN_BINDING_CONSTRUCT(NextButton)
+        BEGIN_INPUT_ACTION
+
+            m_Coordinator.GetSystem<ui_system>().NextButtonIndex();
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
     //-----------------------------------
     //         Window Bindings
     //-----------------------------------

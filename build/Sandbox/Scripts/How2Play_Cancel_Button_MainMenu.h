@@ -34,5 +34,6 @@ struct how2play_cancel_button_mainmenu_script : paperback::script::button_interf
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY6), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY7), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), true);
+        PPB.GetSystem<ui_system>().UpdateMaximumIndex();
     }
 };

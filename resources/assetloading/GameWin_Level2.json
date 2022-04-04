@@ -162,7 +162,8 @@
                         "Texture": "QuitToMainMenuButton_Unselected",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": true,
+                        "Button Index": 2
                     },
                     "Scale": {
                         "Scale": {
@@ -206,14 +207,15 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "",
-                            "",
-                            ""
+                            "QuitToMainMenuButton_Unselected",
+                            "QuitToMainMenuButton_Selected",
+                            "QuitToMainMenuButton_Unselected"
                         ],
                         "Button State": 2,
                         "Layer Grouping": 0,
                         "Script Guid": 7594871342180465470,
-                        "Active Status": true
+                        "Active Status": true,
+                        "Button Index": 2
                     }
                 },
                 {
@@ -345,7 +347,8 @@
                         "Button State": 2,
                         "Layer Grouping": 0,
                         "Script Guid": 15749047530650113623,
-                        "Active Status": true
+                        "Active Status": true,
+                        "Button Index": 1
                     }
                 }
             ]

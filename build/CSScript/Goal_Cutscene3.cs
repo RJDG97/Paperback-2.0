@@ -37,7 +37,7 @@ namespace CSScript
         {
             if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             {
-                Application.ChangeScene("MainMenu");
+                Application.ChangeScene("Credits");
             }
         }
         public void OnCollisionStay(UInt32 ID)
