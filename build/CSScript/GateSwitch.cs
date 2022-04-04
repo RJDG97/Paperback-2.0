@@ -124,7 +124,7 @@ namespace CSScript
                     m_Activated = true;
                 }
 
-                m_Sound.m_Trigger = true;
+                // m_Sound.m_Trigger = true;
                 m_Mesh.m_Model = "Button_GateON";
             }
         }

@@ -180,7 +180,7 @@ namespace CSScript
                     m_Activated = true;
                 }
 
-                m_Sound.m_Trigger = true;
+                // m_Sound.m_Trigger = true;
 
                 if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 3, 3) == "OFF")
                 {
