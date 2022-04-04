@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 533
+                "EntityHead": 558
             }
         },
         {
@@ -976,6 +976,7 @@
                             443,
                             444,
                             445,
+                            556,
                             446,
                             447,
                             448,
@@ -983,7 +984,31 @@
                             450,
                             451,
                             452,
-                            453
+                            533,
+                            453,
+                            534,
+                            535,
+                            536,
+                            537,
+                            538,
+                            539,
+                            540,
+                            541,
+                            542,
+                            543,
+                            544,
+                            545,
+                            546,
+                            547,
+                            548,
+                            549,
+                            550,
+                            551,
+                            552,
+                            553,
+                            554,
+                            555,
+                            557
                         ]
                     },
                     "Rotation": {
@@ -1096,20 +1121,20 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "NoButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "NoButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "NoButton_Unselected"
                             }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 4,
                         "Script Guid": 9376503613259406693,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -1145,7 +1170,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": 25.0,
+                            "y": 200.0,
                             "z": 1.0
                         }
                     },
@@ -1165,20 +1190,20 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "ResumeGameButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "ResumeGameButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "ResumeGameButton_Unselected"
                             }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 2,
                         "Script Guid": 11808865971164719594,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -1214,7 +1239,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -80.0,
+                            "y": -220.0,
                             "z": 1.0
                         }
                     },
@@ -1234,20 +1259,20 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "QuitToMainMenuButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "QuitToMainMenuButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "QuitToMainMenuButton_Unselected"
                             }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 2,
                         "Script Guid": 363949741224754573,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 5
                     }
                 },
                 {
@@ -1488,7 +1513,7 @@
                         },
                         "Position": {
                             "x": 0.0,
-                            "y": -185.0,
+                            "y": -325.0,
                             "z": 1.0
                         }
                     },
@@ -1508,20 +1533,20 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "QuitGameButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "QuitGameButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "QuitGameButton_Unselected"
                             }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 2,
                         "Script Guid": 10500334517573842749,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 6
                     }
                 },
                 {
@@ -1577,20 +1602,20 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "YesButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "YesButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "YesButton_Unselected"
                             }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 5,
                         "Script Guid": 12620379784612268846,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -1646,20 +1671,20 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "YesButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "YesButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "YesButton_Unselected"
                             }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 4,
                         "Script Guid": 7594871342180465470,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -1715,20 +1740,20 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "NoButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "NoButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "NoButton_Unselected"
                             }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 5,
                         "Script Guid": 1627387828951799765,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 1
                     }
                 },
                 {
@@ -1798,6 +1823,1731 @@
                         "Script Guid": 0,
                         "Active Status": false,
                         "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 533
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "HowToPlayButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 95.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlayButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "HowToPlayButton_Unselected"
+                            },
+                            {
+                                "ID": "HowToPlayButton_Selected"
+                            },
+                            {
+                                "ID": "HowToPlayButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 7038881612550230713,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 534
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "ToLastCheckpointButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -10.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "RestartCheckpointButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "ToLastCheckpointButton_Unselected"
+                            },
+                            {
+                                "ID": "ToLastCheckpointButton_Selected"
+                            },
+                            {
+                                "ID": "ToLastCheckpointButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 7207962730480403526,
+                        "Active Status": false,
+                        "Button Index": 3
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 535
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RestartLevelButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 140.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": -115.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            17008353085049151909,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "RestartLevelButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "RestartLevelButton_Unselected"
+                            },
+                            {
+                                "ID": "RestartLevelButton_Selected"
+                            },
+                            {
+                                "ID": "RestartLevelButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 2,
+                        "Script Guid": 11551997379440525767,
+                        "Active Status": false,
+                        "Button Index": 4
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 536
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "InstructionManualPage01Flipped",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9604788041699812520,
+                            2550044418833058707,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_01_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 7,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 537
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RightButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            9604788041699812520,
+                            2550044418833058707,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_01_Next_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "RightButton_Unselected"
+                            },
+                            {
+                                "ID": "RightButton_Selected"
+                            },
+                            {
+                                "ID": "RightButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 7,
+                        "Script Guid": 2787588279114269777,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 538
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "LeftButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_01_Prev_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "LeftButton_Unselected"
+                            },
+                            {
+                                "ID": "LeftButton_Selected"
+                            },
+                            {
+                                "ID": "LeftButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 7,
+                        "Script Guid": 2474754720924523436,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 539
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "InstructionManualPage02Flipped",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9604788041699812520,
+                            2550044418833058707,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_02_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 8,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 540
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RightButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9604788041699812520,
+                            2550044418833058707,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_02_Next_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "RightButton_Unselected"
+                            },
+                            {
+                                "ID": "RightButton_Selected"
+                            },
+                            {
+                                "ID": "RightButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 8,
+                        "Script Guid": 3232239141129413275,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 541
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "LeftButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_02_Prev_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "LeftButton_Unselected"
+                            },
+                            {
+                                "ID": "LeftButton_Selected"
+                            },
+                            {
+                                "ID": "LeftButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 8,
+                        "Script Guid": 2894865494604168550,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 542
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "InstructionManualPage03Flipped",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_03_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 9,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 543
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RightButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_03_Next_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "RightButton_Unselected"
+                            },
+                            {
+                                "ID": "RightButton_Selected"
+                            },
+                            {
+                                "ID": "RightButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 9,
+                        "Script Guid": 14717677926704336388,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 544
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "LeftButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_03_Prev_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "LeftButton_Unselected"
+                            },
+                            {
+                                "ID": "LeftButton_Selected"
+                            },
+                            {
+                                "ID": "LeftButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 9,
+                        "Script Guid": 14467860613937402361,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 545
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "InstructionManualPage04Flipped",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_04_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 10,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 546
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RightButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9604788041699812520,
+                            2550044418833058707,
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_04_Next_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "RightButton_Unselected"
+                            },
+                            {
+                                "ID": "RightButton_Selected"
+                            },
+                            {
+                                "ID": "RightButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 10,
+                        "Script Guid": 4049379736675036943,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 547
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "LeftButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_04_Prev_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "LeftButton_Unselected"
+                            },
+                            {
+                                "ID": "LeftButton_Selected"
+                            },
+                            {
+                                "ID": "LeftButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 10,
+                        "Script Guid": 4379136980062400754,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 548
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "InstructionManualPage05Flipped",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_05_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 11,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 549
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RightButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_05_Next_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "RightButton_Unselected"
+                            },
+                            {
+                                "ID": "RightButton_Selected"
+                            },
+                            {
+                                "ID": "RightButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 11,
+                        "Script Guid": 15624890555565998992,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 550
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "LeftButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_05_Prev_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "LeftButton_Unselected"
+                            },
+                            {
+                                "ID": "LeftButton_Selected"
+                            },
+                            {
+                                "ID": "LeftButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 11,
+                        "Script Guid": 15862060134731963501,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 551
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "InstructionManualPage06Flipped",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_06_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 12,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 552
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RightButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_06_Next_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "RightButton_Unselected"
+                            },
+                            {
+                                "ID": "RightButton_Selected"
+                            },
+                            {
+                                "ID": "RightButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 12,
+                        "Script Guid": 15177829724301419866,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 553
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "LeftButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_06_Prev_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "LeftButton_Unselected"
+                            },
+                            {
+                                "ID": "LeftButton_Selected"
+                            },
+                            {
+                                "ID": "LeftButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 12,
+                        "Script Guid": 15444500344781060775,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 554
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "InstructionManualPage07Flipped",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_07_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 13,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 555
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "RightButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_07_Next_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "RightButton_Unselected"
+                            },
+                            {
+                                "ID": "RightButton_Selected"
+                            },
+                            {
+                                "ID": "RightButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 13,
+                        "Script Guid": 3622848965871520197,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 556
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "LeftButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -600.0,
+                            "y": 0.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            9604788041699812520,
+                            2550044418833058707,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_07_Prev_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "LeftButton_Unselected"
+                            },
+                            {
+                                "ID": "LeftButton_Selected"
+                            },
+                            {
+                                "ID": "LeftButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 13,
+                        "Script Guid": 3941047127536473656,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 557
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "CloseButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 200.0,
+                            "y": 200.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 600.0,
+                            "y": 400.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 442
+                    },
+                    "Name": {
+                        "Name": "HowToPlay_Close_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "CloseButton_Unselected"
+                            },
+                            {
+                                "ID": "CloseButton_Selected"
+                            },
+                            {
+                                "ID": "CloseButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 6,
+                        "Script Guid": 11675726734796814778,
+                        "Active Status": false,
+                        "Button Index": 3
                     }
                 }
             ]
