@@ -19,9 +19,9 @@ namespace CSScript
         float m_LoadingTime = 0.0f;
         Random m_rnd;
 
-        public static LoadingBar1 getInst()
+        public static LoadingBar2 getInst()
         {
-            return new LoadingBar1();
+            return new LoadingBar2();
         }
 
         public void Start(UInt32 ID)
