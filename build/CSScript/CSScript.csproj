@@ -58,6 +58,9 @@
     <Compile Include="Goal_Cutscene2.cs" />
     <Compile Include="Goal_Cutscene3.cs" />
     <Compile Include="Goal_Level3.cs" />
+    <Compile Include="LoadingBar1.cs" />
+    <Compile Include="LoadingBar2.cs" />
+    <Compile Include="LoadingBar3.cs" />
     <Compile Include="PushableBlock.cs" />
     <Compile Include="Fan.cs" />
     <Compile Include="GateSwitch.cs" />
