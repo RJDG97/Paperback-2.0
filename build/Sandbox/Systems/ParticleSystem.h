@@ -9,17 +9,24 @@ struct particle_system : paperback::system::pausable_instance
         .m_pName = "Particle System"
     };
 
+    tools::query QueryPlayer;
     tools::query QueryEmitter;
     tools::query QueryParticle;
+    debug_system* Debug = nullptr;
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
+        QueryPlayer.m_Must.AddFromComponents<player_controller, camera>();
+		QueryPlayer.m_NoneOf.AddFromComponents<prefab>();
+
         QueryEmitter.m_Must.AddFromComponents<entity, particle_emitter>();
 		QueryEmitter.m_NoneOf.AddFromComponents<prefab>();
 
-        QueryParticle.m_Must.AddFromComponents<entity, particle, mesh>();
+        QueryParticle.m_Must.AddFromComponents<entity, particle, rotation, transform>();
 		QueryParticle.m_NoneOf.AddFromComponents<prefab>();
+
+        Debug = m_Coordinator.FindSystem<debug_system>();
     }
 
 
@@ -41,15 +48,24 @@ struct particle_system : paperback::system::pausable_instance
     void Update( void ) noexcept
     {
         auto Dt = DeltaTime();
+        glm::vec3 ActiveCameraPosition;
+
+        // Get Player Camera
+        ForEach( Search(QueryPlayer), [&]( player_controller& Controller, camera& Camera ) noexcept
+        {
+            if ( Controller.m_PlayerStatus && Camera.m_Active )
+            {
+                ActiveCameraPosition = Camera.m_Position;
+            }
+        });
 
         // Update Particles - Remove If Dead
-        ForEach( Search(QueryParticle), [&]( entity& Entity, particle& Particle, mesh& Mesh ) noexcept
+        ForEach( Search(QueryParticle), [&]( entity& Entity, particle& Particle, rotation& Rotation, transform& Transform ) noexcept
         {
             Particle.UpdateParticle( Dt );
 
             if ( !Particle.IsAlive() )
             {
-                Mesh.m_Active = false;
                 m_Coordinator.ReturnDeadParticle( Entity.m_GlobalIndex );
             }
         });
@@ -59,7 +75,9 @@ struct particle_system : paperback::system::pausable_instance
         {
             if ( !Emitter.IsAlive() ) return;
 
-            auto RequestCount = Emitter.UpdateEmitter( Dt );
+            bool  ComputedAngle = false;
+            float Angle{};
+            auto  RequestCount  = Emitter.UpdateEmitter( Dt );
 
             if ( RequestCount && Emitter.IsAlive() )
             {
@@ -69,6 +87,27 @@ struct particle_system : paperback::system::pausable_instance
                                                  , Emitter
                                                  , List );
                 Emitter.UpdateParticleList( List );
+            }
+
+            // Set Particle Rotation Angles
+            if ( Emitter.IsAlive() )
+            {
+                ForEach( Emitter.m_ActiveParticles, [&]( entity& Entity, particle& Particle, rotation& Rotation, transform& Transform ) noexcept
+                {
+                    if ( Particle.IsAlive() )
+                    {
+                        if ( !ComputedAngle && Debug )
+                        {
+                            Angle = Debug->DirtyRotationAnglesFromDirectionalVec( Transform.m_Position - paperback::Vector3f(ActiveCameraPosition.x, ActiveCameraPosition.y, ActiveCameraPosition.z) ).y;
+                            ComputedAngle = true;
+                        }
+                        
+                        if ( ComputedAngle )
+                        {
+                            Rotation.m_Value.y = Angle;
+                        }
+                    }
+                });
             }
         });
     }

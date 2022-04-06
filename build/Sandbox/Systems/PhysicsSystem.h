@@ -179,13 +179,7 @@ struct physics_system : paperback::system::pausable_instance
                     // Apply Velocity Cap
                     ApplyVelocityCap( RigidBody->m_Velocity );
 
-                    Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
-
-                    // Update AABB Tree - On Position Update
-                    if (Box)
-                    {
-                        m_Coordinator.UpdateNode( *Box, Transform, Entity );
-                    }
+                    Offset->m_PosOffset += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
                 }
 
                 else
@@ -199,33 +193,33 @@ struct physics_system : paperback::system::pausable_instance
                     // Apply Velocity Cap
                     ApplyVelocityCap( RigidBody->m_Velocity );
 
-                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();// +0.5f * (RigidBody->m_Accel * m_Coordinator.DeltaTime() * m_Coordinator.DeltaTime());
-
-                    // Update AABB Tree - On Position Update
-                    if ( Box )
-                    {
-                        m_Coordinator.UpdateNode( *Box, Transform, Entity );
-                    }
+                    Transform.m_Position += RigidBody->m_Velocity * m_Coordinator.DeltaTime();
                 }
                 
             }
             // Update Rotation
-            if ( Controller && RigidBody && Rot && RigidBody->m_Velocity.MagnitudeSq() > 0.01f )
+            if ( Controller && RigidBody && Rot && (std::fabs(RigidBody->m_Velocity.x) > 0.3f || std::fabs(RigidBody->m_Velocity.y) > 0.04f || std::fabs(RigidBody->m_Velocity.z) > 0.3f) )
             {
                 auto Debug = m_Coordinator.FindSystem<debug_system>();
 
-                // TODO - Replace This
+
                 if ( Debug && Inter && !Inter->m_bPushOrPull )
                     Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
                 else if ( Debug && !Inter )
                     Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
+                
 
-                if ( RigidBody->m_Velocity.y < -1.0f )
+                if ( RigidBody->m_Velocity.y < -0.01f )
                     BroadcastGlobalEvent<Event_OnFalling>( Entity );
             }
             else
             {
                 BroadcastGlobalEvent<Event_OnStatic>( Entity );
+            }
+
+            if (Box)
+            {
+                m_Coordinator.UpdateNode( *Box, Transform, Entity );
             }
         });
 	}

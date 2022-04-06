@@ -15,6 +15,18 @@ struct dialogue_system : paperback::system::pausable_instance
 
 	// Queries
 	tools::query Query_DialogueText;
+	tools::query Query_PlayerCamera;
+	tools::query Query_Camera;
+
+	bool m_CameraDone = false;
+
+	enum Unit
+	{
+		JUMP,
+		PUSH
+	};
+
+	Unit m_CurrentUnit = JUMP;
 
 	constexpr static auto typedef_v = paperback::system::type::update
 	{
@@ -30,6 +42,12 @@ struct dialogue_system : paperback::system::pausable_instance
 		Query_DialogueText.m_Must.AddFromComponents<dialogue_text, text, child>();
 		Query_DialogueText.m_NoneOf.AddFromComponents<prefab>();
 
+		Query_PlayerCamera.m_Must.AddFromComponents<player_controller, camera, name>();
+		Query_PlayerCamera.m_NoneOf.AddFromComponents<prefab>();
+
+		Query_Camera.m_Must.AddFromComponents<camera, name, path_follower>();
+		Query_Camera.m_NoneOf.AddFromComponents<prefab, cinematic>();
+
 		dialogue_manager = &DialogueManager::GetInstanced();
 	}
 
@@ -42,6 +60,10 @@ struct dialogue_system : paperback::system::pausable_instance
 	PPB_INLINE
 	void OnStateLoad( void ) noexcept
 	{
+		ForEach(Search(Query_Camera), [&](camera& Camera, name& Name, path_follower& PathFollower) noexcept
+		{
+			Camera.m_Active = false;
+		});
 	}
 
 	PPB_FORCEINLINE
@@ -49,44 +71,87 @@ struct dialogue_system : paperback::system::pausable_instance
 	{
 		ForEach(Search(Query_DialogueText), [&](dialogue_text& DialogueText, text& Text, child& Child) noexcept
 		{
-			switch (DialogueText.m_State)
+			auto dialogue_it {dialogue_manager->m_Dialogues.find(DialogueText.m_DialogueName)};
+
+			if (dialogue_it != dialogue_manager->m_Dialogues.end())
 			{
-				case dialogue_text::INACTIVE:
+				Dialogue dialogue{ dialogue_it->second };
+
+				switch (DialogueText.m_State)
 				{
-					auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
-					auto [CScale] = ParentInfo.m_pArchetype->FindComponents<scale>(ParentInfo.m_PoolDetails);
-					CScale->m_Value = {};
-
-					break;
-				}
-
-				case dialogue_text::OPENING:
-				{
-					auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
-					auto [CScale, CMesh] = ParentInfo.m_pArchetype->FindComponents<scale, mesh>(ParentInfo.m_PoolDetails);
-
-					if (CScale->m_Value.x > DialogueText.m_InitialScale.x)
+					case dialogue_text::INACTIVE:
 					{
-						CScale->m_Value = DialogueText.m_InitialScale;
-						DialogueText.m_State = dialogue_text::PLAYING;
-						DialogueText.m_ElapsedTime = 0.0f;
-						
-						if (!dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.empty())
-						{
-							std::string audio_file{ dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[0].m_AudioFile };
-
-							if (audio_file != "")
-							{
-								sound_sys->TriggerTaggedSound(audio_file);
-							}
-						}
+						auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
+						auto [CScale] = ParentInfo.m_pArchetype->FindComponents<scale>(ParentInfo.m_PoolDetails);
+						CScale->m_Value = {};
 
 						break;
 					}
 
-					if (!dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.empty())
+					case dialogue_text::OPENING:
 					{
-						if (dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[0].m_Speaker == Line::RED)
+						auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
+						auto [CScale, CMesh] = ParentInfo.m_pArchetype->FindComponents<scale, mesh>(ParentInfo.m_PoolDetails);
+
+						if (CScale->m_Value.x > DialogueText.m_InitialScale.x)
+						{
+							CScale->m_Value = DialogueText.m_InitialScale;
+							DialogueText.m_State = dialogue_text::PLAYING;
+							DialogueText.m_ElapsedTime = 0.0f;
+
+							if (!dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.empty())
+							{
+								std::string audio_file{ dialogue.m_Lines[0].m_AudioFile };
+
+								if (audio_file != "")
+								{
+									sound_sys->TriggerTaggedSound(audio_file);
+									ActivateCamera(dialogue.m_Lines[0].m_CameraName);
+									m_CameraDone = false;
+								}
+							}
+
+							break;
+						}
+
+						if (!dialogue.m_Lines.empty())
+						{
+							if (dialogue.m_Lines[0].m_Speaker == Line::RED)
+							{
+								CMesh->m_Texture = "StrongToy_DialogueBox";
+							}
+
+							else
+							{
+								CMesh->m_Texture = "JumpToy_DialogueBox";
+							}
+						}
+
+						DialogueText.m_ElapsedTime += DeltaTime();
+
+						float ratio_xy = DialogueText.m_InitialScale.y / DialogueText.m_InitialScale.x;
+						float ratio_xz = DialogueText.m_InitialScale.z / DialogueText.m_InitialScale.x;
+						float add_value = static_cast<float>(90.0f * (1.0f + cosf(DialogueText.m_ElapsedTime / 2.0f * 2 * static_cast<float>(M_PI) + static_cast<float>(M_PI))));
+
+						CScale->m_Value += paperback::Vector3f{ add_value, add_value * ratio_xy, add_value * ratio_xz };
+
+						break;
+					}
+
+					case dialogue_text::PLAYING:
+					{
+						DialogueText.m_ElapsedTime += DeltaTime();
+						std::string current_line_text = dialogue.m_Lines[DialogueText.m_CurrentIndex].m_Content;
+
+						auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
+						auto [CMesh] = ParentInfo.m_pArchetype->FindComponents<mesh>(ParentInfo.m_PoolDetails);
+
+						if (!m_CameraDone)
+						{
+							CheckCameraDone(dialogue.m_Lines[DialogueText.m_CurrentIndex].m_CameraName);
+						}
+
+						if (dialogue.m_Lines[DialogueText.m_CurrentIndex].m_Speaker == Line::RED)
 						{
 							CMesh->m_Texture = "StrongToy_DialogueBox";
 						}
@@ -95,104 +160,140 @@ struct dialogue_system : paperback::system::pausable_instance
 						{
 							CMesh->m_Texture = "JumpToy_DialogueBox";
 						}
+
+						if (!DialogueText.m_OnHold && DialogueText.m_ElapsedTime * DialogueText.m_TextSpeed < current_line_text.size() - 1)
+							Text.m_Text = current_line_text.substr(0, static_cast<size_t>(DialogueText.m_ElapsedTime * DialogueText.m_TextSpeed));
+
+						else if (!DialogueText.m_OnHold)
+						{
+							Text.m_Text = current_line_text;
+							DialogueText.m_ElapsedTime = 0.0f;
+							DialogueText.m_OnHold = true;
+						}
+
+						else if (DialogueText.m_ElapsedTime >= DialogueText.m_HoldTime && m_CameraDone)
+						{
+							++DialogueText.m_CurrentIndex;
+
+							if (DialogueText.m_CurrentIndex == dialogue.m_Lines.size())
+							{
+								DialogueText.m_State = dialogue_text::CLOSING;
+								m_CameraDone = false;
+							}
+
+							else
+							{
+								std::string audio_file{ dialogue.m_Lines[DialogueText.m_CurrentIndex].m_AudioFile };
+
+								if (audio_file != "")
+								{
+									sound_sys->TriggerTaggedSound(audio_file);
+									ActivateCamera(dialogue.m_Lines[DialogueText.m_CurrentIndex].m_CameraName);
+									m_CameraDone = false;
+								}
+							}
+
+							DialogueText.m_ElapsedTime = 0.0f;
+							DialogueText.m_OnHold = false;
+						}
+
+						break;
 					}
 
-					DialogueText.m_ElapsedTime += DeltaTime();
 
-					float ratio_xy = DialogueText.m_InitialScale.y / DialogueText.m_InitialScale.x;
-					float ratio_xz = DialogueText.m_InitialScale.z / DialogueText.m_InitialScale.x;
-					float add_value = static_cast<float>(90.0f * (1.0f + cosf(DialogueText.m_ElapsedTime / 2.0f * 2 * static_cast<float>(M_PI) + static_cast<float>(M_PI))));
-					
-					CScale->m_Value += paperback::Vector3f{add_value, add_value * ratio_xy, add_value * ratio_xz};
-
-					break;
-				}
-
-				case dialogue_text::PLAYING:
-				{
-					DialogueText.m_ElapsedTime += DeltaTime();
-					std::string current_line_text = dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Content;
-
-					auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
-					auto [CMesh] = ParentInfo.m_pArchetype->FindComponents<mesh>(ParentInfo.m_PoolDetails);
-
-					if (dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_Speaker == Line::RED)
+					case dialogue_text::CLOSING:
 					{
-						CMesh->m_Texture = "StrongToy_DialogueBox";
+						auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
+						auto [CScale] = ParentInfo.m_pArchetype->FindComponents<scale>(ParentInfo.m_PoolDetails);
+
+						DialogueText.m_ElapsedTime += DeltaTime();
+
+						float ratio_xy = DialogueText.m_InitialScale.x / DialogueText.m_InitialScale.y;
+						float ratio_xz = DialogueText.m_InitialScale.x / DialogueText.m_InitialScale.z;
+						float add_value = static_cast<float>(70.0f * (1.0f + sinf(DialogueText.m_ElapsedTime / 2.0f * 2 * static_cast<float>(M_PI) + static_cast<float>(M_PI))));
+
+						CScale->m_Value -= paperback::Vector3f{ add_value, add_value * ratio_xy, add_value * ratio_xz };
+
+						if (CScale->m_Value.x < 0.0f)
+						{
+							CScale->m_Value = {};
+							DialogueText.m_State = dialogue_text::INACTIVE;
+							DialogueText.m_ElapsedTime = 0.0f;
+							Text.m_Text = "";
+						}
+
+						break;
+					}
+				}
+			}
+		});
+	}
+
+	void ActivateCamera(std::string cam_name)
+	{
+		if (cam_name != "")
+		{
+			ForEach(Search(Query_PlayerCamera), [&](player_controller& PC, camera& Camera, name& Name) noexcept
+			{
+				if (Camera.m_Active)
+				{
+					if (Name.m_Value == "Push Unit")
+					{
+						m_CurrentUnit = PUSH;
 					}
 
 					else
 					{
-						CMesh->m_Texture = "JumpToy_DialogueBox";
+						m_CurrentUnit = JUMP;
 					}
-
-					if (!DialogueText.m_OnHold && DialogueText.m_ElapsedTime * DialogueText.m_TextSpeed < current_line_text.size() - 1)
-						Text.m_Text = current_line_text.substr(0, static_cast<size_t>(DialogueText.m_ElapsedTime * DialogueText.m_TextSpeed));
-
-					else if (!DialogueText.m_OnHold)
-					{
-						Text.m_Text = current_line_text;
-						DialogueText.m_ElapsedTime = 0.0f;
-						DialogueText.m_OnHold = true;
-					}
-
-					else if (DialogueText.m_ElapsedTime < DialogueText.m_HoldTime)
-					{
-						//just hold
-					}
-
-					else // move to next line
-					{
-						++DialogueText.m_CurrentIndex;
-
-						if (DialogueText.m_CurrentIndex == dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines.size())
-						{
-							DialogueText.m_State = dialogue_text::CLOSING;
-						}
-
-						else
-						{
-							std::string audio_file{ dialogue_manager->m_Dialogues[DialogueText.m_DialogueName].m_Lines[DialogueText.m_CurrentIndex].m_AudioFile };
-
-							if (audio_file != "")
-							{
-								sound_sys->TriggerTaggedSound(audio_file);
-							}
-						}
-
-						DialogueText.m_ElapsedTime = 0.0f;
-						DialogueText.m_OnHold = false;
-					}
-
-					break;
 				}
 
+				Camera.m_Active = false;
+			});
 
-				case dialogue_text::CLOSING:
+			ForEach(Search(Query_Camera), [&](camera& Camera, name& Name, path_follower& PathFollower) noexcept
+			{
+				if (Name.m_Value == cam_name)
 				{
-					auto& ParentInfo = GetEntityInfo(Child.m_ParentGlobalIndex);
-					auto [CScale] = ParentInfo.m_pArchetype->FindComponents<scale>(ParentInfo.m_PoolDetails);
-
-					DialogueText.m_ElapsedTime += DeltaTime();
-
-					float ratio_xy = DialogueText.m_InitialScale.x / DialogueText.m_InitialScale.y;
-					float ratio_xz = DialogueText.m_InitialScale.x / DialogueText.m_InitialScale.z;
-					float add_value = static_cast<float>(70.0f * (1.0f + sinf(DialogueText.m_ElapsedTime / 2.0f * 2 * static_cast<float>(M_PI) + static_cast<float>(M_PI))));
-
-					CScale->m_Value -= paperback::Vector3f{ add_value, add_value * ratio_xy, add_value * ratio_xz };
-
-					if (CScale->m_Value.x < 0.0f)
-					{
-						CScale->m_Value = {};
-						DialogueText.m_State = dialogue_text::INACTIVE;
-						DialogueText.m_ElapsedTime = 0.0f;
-						Text.m_Text = "";
-					}
-
-					break;
+					Camera.m_Active = true;
+					PathFollower.m_PauseTravel = false;
 				}
-			}
-		});
+			});
+		}
+	}
+
+	void CheckCameraDone(std::string cam_name)
+	{
+		if (cam_name != "")
+		{
+			ForEach(Search(Query_Camera), [&](camera& Camera, name& Name, path_follower& PathFollower) noexcept
+			{
+				if (Name.m_Value == cam_name && PathFollower.m_FinishedTravelling)
+				{
+					Camera.m_Active = false;
+
+					ForEach(Search(Query_PlayerCamera), [&](player_controller& PC, camera& Camera, name& Name) noexcept
+					{
+						if (m_CurrentUnit == PUSH && Name.m_Value == "Push Unit")
+						{
+							Camera.m_Active = true;
+						}
+
+						if (m_CurrentUnit == JUMP && Name.m_Value == "Jump Unit")
+						{
+							Camera.m_Active = true;
+						}
+					});
+					
+					m_CameraDone = true;
+				}
+			});
+		}
+
+		else
+		{
+			m_CameraDone = true;
+		}
 	}
 };
 

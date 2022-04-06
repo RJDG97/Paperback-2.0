@@ -21,13 +21,11 @@ struct how2play_button_game_script : paperback::script::button_interface // Inhe
     void OnClick() noexcept override
     {
 
-        if (!PPB.GetSystem<ui_system>().SetButtonLock())
-            return;
-
         //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY1), true);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY), true);
+        PPB.GetSystem<ui_system>().UpdateMaximumIndex();
     }
 };

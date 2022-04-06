@@ -886,7 +886,7 @@ namespace paperback::coordinator
 	PPB_INLINE
     physics::AABB_Tree::NeighbourList instance::QueryNeighbours( const boundingbox&   AABB
                                                                , const transform&     Transform
-                                                               , const paperback::u32 Thickness ) noexcept
+                                                               , const float          Thickness ) noexcept
 	{
 		return m_AABBTree.QueryNeighbours( AABB
 										 , Transform
@@ -909,6 +909,22 @@ namespace paperback::coordinator
 		return m_AABBTree.QueryRaycastClosest( StartRay
 			                                 , EndRay
 			                                 , ExcludeList );
+	}
+
+	PPB_INLINE
+	std::tuple<physics::AABB_Tree::EntityGID, float> instance::QueryMultipleRaycastClosest( std::span<std::pair<paperback::Vector3f, paperback::Vector3f>>  StartEndPairs
+	                                                                                      , const paperback::component::entity&                                     Entity                
+	                                                                                      , const transform&                                                        Transform             
+	                                                                                      , const float&                                                            QueryRadius           
+	                                                                                      , std::span<physics::AABB_Tree::EntityGID>                                ExcludeList
+                                                                                          , bool                                                                    ExcludeBV ) noexcept
+	{
+		return m_AABBTree.QueryMultipleRaycastClosest( StartEndPairs
+													 , Entity
+			                                         , Transform
+			                                         , QueryRadius
+	 										         , ExcludeList
+	 										         , ExcludeBV );
 	}
 
 	

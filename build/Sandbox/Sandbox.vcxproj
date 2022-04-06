@@ -232,6 +232,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Components\Enemy.h" />
     <ClInclude Include="Components\EnemySpawner.h" />
     <ClInclude Include="Components\EntityScript.h" />
+    <ClInclude Include="Components\Freezable.h" />
     <ClInclude Include="Components\Friendly.h" />
     <ClInclude Include="Components\FriendlySpawner.h" />
     <ClInclude Include="Components\Health.h" />

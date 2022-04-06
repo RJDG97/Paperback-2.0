@@ -29,5 +29,6 @@ struct how2play_button_mainmenu_script : paperback::script::button_interface // 
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY1), true);
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::HOWTOPLAY), true);
+        PPB.GetSystem<ui_system>().UpdateMaximumIndex();
     }
 };

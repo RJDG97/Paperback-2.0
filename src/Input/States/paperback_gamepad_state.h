@@ -34,7 +34,7 @@ namespace paperback::input
         {
             if ( ButtonValues )
             {
-                for ( int i = 0; i < GLFW_GAMEPAD_BUTTON_LAST; ++i )
+                for ( int i = 0; i < GLFW_GAMEPAD_BUTTON_LAST + 1; ++i )
                 {
                     m_Current[ i ] = std::bit_cast<bool>( ButtonValues[ i ] );
                 }

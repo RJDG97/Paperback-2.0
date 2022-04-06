@@ -24,9 +24,9 @@ namespace CSScript
 
         bool m_Activated;
 
-        public static Checkpoint getInst()
+        public static CollectedInteractable getInst()
         {
-            return new Checkpoint();
+            return new CollectedInteractable();
         }
 
         public void Start( UInt32 InteractableID )
