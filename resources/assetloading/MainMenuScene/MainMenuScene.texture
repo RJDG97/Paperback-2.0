@@ -27,5 +27,6 @@
     "CreditsButton_Unselected": "../../resources/textures/UI/Menus/Buttons/CreditsButton_Unselected_Mirrored.dds 0",
     "CreditsButton_Selected": "../../resources/textures/UI/Menus/Buttons/CreditsButton_Selected_Mirrored.dds 0",
     "SettingsButton_Unselected": "../../resources/textures/UI/Menus/Buttons/SettingsButton_Unselected_Mirrored.dds 0",
-    "SettingsButton_Selected": "../../resources/textures/UI/Menus/Buttons/SettingsButton_Selected_Mirrored.dds 0"
+    "SettingsButton_Selected": "../../resources/textures/UI/Menus/Buttons/SettingsButton_Selected_Mirrored.dds 0",
+    "WayBagHomeLogo_Mirrored": "../../resources/textures/UI/WayBagHomeLogo_Mirrored.dds 0"
 }
