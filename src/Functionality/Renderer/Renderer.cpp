@@ -400,6 +400,7 @@ Renderer::Renderer() :
 
 
 	m_Resources.LoadFonts("arial", "../../resources/fonts/arial");
+	m_Resources.LoadFonts("FredokaOne", "../../resources/fonts/FredokaOne");
 
 	// Enable alpha blending
 	glEnable(GL_BLEND);
