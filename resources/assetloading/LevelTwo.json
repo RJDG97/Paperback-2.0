@@ -51799,14 +51799,14 @@
                         "Name": "Dialogue Text"
                     },
                     "Text": {
-                        "Font": "arial",
-                        "Text": "hsrhth",
+                        "Font": "FredokaOne",
+                        "Text": "",
                         "Color": {
                             "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
-                        "FontSize": 2.9000000953674318
+                        "FontSize": 2.4
                     },
                     "DialogueText": {
                         "Text Speed": 20.0,
