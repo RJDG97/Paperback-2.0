@@ -68,6 +68,7 @@
     <Compile Include="Goal_Level2.cs" />
     <Compile Include="MovingPlatform.cs" />
     <Compile Include="MovingPlatformSwitch.cs" />
+    <Compile Include="SplashScreenCollider.cs" />
     <Compile Include="Tools\Components\AABB.cs" />
     <Compile Include="Tools\Components\AbilityCollectible.cs" />
     <Compile Include="Tools\Components\Animator.cs" />

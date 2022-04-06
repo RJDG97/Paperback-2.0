@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 13
+                "EntityHead": 14
             }
         },
         {
@@ -127,14 +127,21 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "",
-                            "",
-                            ""
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
                         ],
                         "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 0,
-                        "Active Status": false
+                        "Active Status": false,
+                        "Button Index": 0
                     }
                 }
             ]
@@ -206,11 +213,17 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "QuitToMainMenuButton_Unselected",
-                            "QuitToMainMenuButton_Selected",
-                            "QuitToMainMenuButton_Unselected"
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
                         ],
-                        "Button State": 2,
+                        "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 7594871342180465470,
                         "Active Status": true,
@@ -270,14 +283,21 @@
                     },
                     "Button": {
                         "Button Textures": [
-                            "",
-                            "",
-                            ""
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
                         ],
-                        "Button State": 2,
+                        "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 6991569882842922372,
-                        "Active Status": true
+                        "Active Status": true,
+                        "Button Index": 0
                     }
                 },
                 {
@@ -343,7 +363,7 @@
                                 "ID": "ContinueButton_Unselected"
                             }
                         ],
-                        "Button State": 2,
+                        "Button State": 0,
                         "Layer Grouping": 0,
                         "Script Guid": 7949271234343891547,
                         "Active Status": true,
@@ -607,7 +627,8 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            12
+                            12,
+                            13
                         ]
                     },
                     "Transform": {
@@ -675,6 +696,55 @@
                             "x": 0.0,
                             "y": 0.0,
                             "z": -16.200000762939454
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            12326225187096344837,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 11
+                    },
+                    "Name": {
+                        "Name": "Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 100.0
+                        },
+                        "Diffuse": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 100.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 13
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 10.300000190734864
                         }
                     },
                     "ReferencePrefab": {
