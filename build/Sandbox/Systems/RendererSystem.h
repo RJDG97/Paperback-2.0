@@ -189,9 +189,9 @@ struct render_system : paperback::system::instance
 				glm::mat4 transform{ 1.0f };
 
 				transform = glm::translate(transform, glm::vec3{ Transform.m_Position.x, Transform.m_Position.y, Transform.m_Position.z });
-				//transform = glm::rotate(transform, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
-				//transform = glm::rotate(transform, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
-				//transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
+				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.x), glm::vec3{ 1.f, 0.f, 0.f });
+				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.y), glm::vec3{ 0.f, 1.f, 0.f });
+				transform = glm::rotate(transform, glm::radians(Rotation.m_Value.z), glm::vec3{ 0.f, 0.f, 1.f });
 				transform = glm::scale(transform, glm::vec3{ Scale.m_Value.x, Scale.m_Value.y, Scale.m_Value.z });
 
 				instances[Emitter.m_TextureName].push_back(Renderer::InstancedInfo{ transform, Particle.m_Opacity });

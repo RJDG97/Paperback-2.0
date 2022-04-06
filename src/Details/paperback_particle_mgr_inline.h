@@ -17,7 +17,7 @@ namespace paperback::particles
     {
         // Gotta Call This After RegisterComponents
         m_ParticleArchetype = &m_Coordinator.GetOrCreateArchetype< component::entity, transform, scale, rotation
-                                                                 , mesh, rigidforce, rigidbody, particle, mass>();
+                                                                 , rigidforce, rigidbody, particle, mass>();
     }
 
     PPB_INLINE
@@ -90,13 +90,13 @@ namespace paperback::particles
 
         auto [ EmitterTransform, EmitterBB ] = EmitterInfo.m_pArchetype->FindComponents<transform, boundingbox>( EmitterInfo.m_PoolDetails );
 
-		if ( !EmitterTransform || !EmitterBB )
+		if ( !EmitterTransform )
 		{
 			ERROR_PRINT( "Invalid Emitter Components During Particle Initialization" );
 			return;
 		}
 
-		m_Coordinator.ForEach( ParticleIDList, [&]( particle& Particle, transform& Transform, rigidforce& RF, scale& Scale, mesh& Mesh, mass& Mass, rotation& Rotation ) noexcept
+		m_Coordinator.ForEach( ParticleIDList, [&]( particle& Particle, transform& Transform, rigidforce& RF, scale& Scale, mass& Mass, rotation& Rotation ) noexcept
 		{
 			// Update Particle Details
 			Particle.m_ConstantRotation = Emitter.m_GenerateRotation.Rand( );
@@ -105,7 +105,8 @@ namespace paperback::particles
 			Particle.m_bHasDestination  = Emitter.m_bHasDestination;
 
 			// Update Particle Spawn Position - Based On Emitter Position & Bounding Box Area
-			Transform.m_Position        = Emitter.m_GeneratePosition.Rand( *EmitterTransform, *EmitterBB );
+			Transform.m_Position        = EmitterBB ? Emitter.m_GeneratePosition.Rand( *EmitterTransform, *EmitterBB )
+                                                    : EmitterTransform->m_Position + EmitterTransform->m_Offset;
 			
 			// Update Particle Velocity
 			RF.m_Momentum               = Emitter.m_GenerateVelocity.Rand( );
@@ -114,10 +115,6 @@ namespace paperback::particles
 			
 			// Update Particle Scale
 			Scale.m_Value               = Emitter.m_GenerateScale.Rand( );
-
-            // Update Particle Mesh - I Think This Isn't Needed?
-            Mesh.m_Model                = Emitter.m_TextureName;
-            Mesh.m_Active               = true;
 
             // Need to add local & constant rotation rand - Temporary
             Rotation.m_Value            = Emitter.m_GenerateRotation.Rand( );

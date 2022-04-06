@@ -16,6 +16,8 @@ namespace CSScript
         Int32 m_BlueCPID;
         Transform m_RedCPTransform;
         Transform m_BlueCPTransform;
+        ParticleEmitter m_RedCPEmitter;
+        ParticleEmitter m_BlueCPEmitter;
 
         Int32 m_JumpID;
         Int32 m_PushID;
@@ -49,6 +51,8 @@ namespace CSScript
             {
                 m_RedCPTransform = new Transform((UInt32)m_RedCPID);
                 m_BlueCPTransform = new Transform((UInt32)m_BlueCPID);
+                m_RedCPEmitter = new ParticleEmitter((UInt32)m_RedCPID);
+                m_BlueCPEmitter = new ParticleEmitter((UInt32)m_BlueCPID);
 
                 m_JumpID = Player.GetJumpUnitID();
                 m_PushID = Player.GetPushUnitID();
@@ -101,6 +105,10 @@ namespace CSScript
                     m_JumpUnitController.m_CheckpointID = (int)m_ID;
                     m_PushUnitController.m_CheckpointID = (int)m_ID;
                 }
+
+                // Set Emitter Lifetime
+                m_RedCPEmitter.m_Lifetime = 5.0f;
+                m_BlueCPEmitter.m_Lifetime = 5.0f;
             }
         }
         public void OnCollisionStay(UInt32 ID)
