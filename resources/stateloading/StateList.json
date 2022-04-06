@@ -1,4 +1,7 @@
 {
+  "Editor": "../../resources/assetloading/LevelOne.json",
+  "Editor": "../../resources/assetloading/LevelOne/LevelOne_EntityInfo.json",
+  "Editor": "../../resources/assetloading/LevelOne/LevelOne.texture",
   "MainMenu": "../../resources/assetloading/MainMenuScene.json",
   "MainMenu": "../../resources/assetloading/MainMenuScene/MainMenuScene_EntityInfo.json",
   "MainMenu": "../../resources/assetloading/MainMenuScene/MainMenuScene.texture",
