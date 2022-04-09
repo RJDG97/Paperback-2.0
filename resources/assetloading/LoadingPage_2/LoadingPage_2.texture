@@ -1,5 +1,5 @@
 {
     "LoadingBarBase": "../../resources/textures/UI/LoadingBarBase.dds 0",
-    "EndLevel2ProgressMap_Mirrorred": "../../resources/textures/UI/EndLevel2ProgressMap_Mirrorred.dds 0",
+    "EndLevel1ProgressMap": "../../resources/textures/UI/EndLevel1ProgressMap_Mirrored.dds 0",
     "SkillUIBigBar_Grow": "../../resources/textures/UI/SkillBar/SkillUIBigBar_Grow.dds 0"
 }

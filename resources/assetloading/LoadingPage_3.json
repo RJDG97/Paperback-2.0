@@ -274,7 +274,7 @@
                     },
                     "Mesh": {
                         "Model": "Quad",
-                        "Texture": "EndLevel3ProgressMap",
+                        "Texture": "EndLevel2ProgressMap_Mirrorred",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
                         "Active": true
