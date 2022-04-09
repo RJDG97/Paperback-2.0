@@ -228,7 +228,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("Credits", "../../resources/models/nui/Credits.nui");
         m_Resources.Load3DMeshNUI("CubbyHoleSignDown", "../../resources/models/nui/CubbyHoleSignDown.nui"); 
         m_Resources.Load3DMeshNUI("CubbyHoleThisWay_Left", "../../resources/models/nui/CubbyHoleThisWay_Left.nui");
-        m_Resources.Load3DMeshNUI("CubbyHoleThisWay_Right", "../../resources/models/nui/CubbyHoleThisWay_Right.nui")
+		m_Resources.Load3DMeshNUI("CubbyHoleThisWay_Right", "../../resources/models/nui/CubbyHoleThisWay_Right.nui");
 
 	m_Resources.Load3DMeshNUI("CylinderBlock_Blue", "../../resources/models/nui/CylinderBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("CylinderBlock_Green", "../../resources/models/nui/CylinderBlock_Green.nui");
@@ -324,7 +324,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple_Freeze_Hovered", "../../resources/models/nui/MovingPlatformMRT_PurpleFreeze_Hovered.nui");
 	m_Resources.Load3DMeshNUI("MovingPlatformMRT_Purple_Freeze_Unhovered", "../../resources/models/nui/MovingPlatformMRT_PurpleFreeze_Unhovered.nui");
 
-        m_Resources.Load3DMeshNUI("PlayArea", "../../resources/models/nui/PlayArea.nui")
+	m_Resources.Load3DMeshNUI("PlayArea", "../../resources/models/nui/PlayArea.nui");
 	m_Resources.Load3DMeshNUI("ProjectorCart", "../../resources/models/nui/ProjectorCart.nui");
 
 
