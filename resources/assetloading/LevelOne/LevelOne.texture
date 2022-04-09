@@ -47,5 +47,7 @@
     "ToLastCheckpointButton_Selected": "../../resources/textures/UI/Menus/Buttons/ToLastCheckpointButton_Selected_Mirrored.dds 0",
     "WalkParticle": "../../resources/textures/UI/Particles/WalkParticle.dds 0",
     "CheckpointParticle": "../../resources/textures/UI/Particles/CheckpointParticle.dds 0",
-    "FreezeParticle": "../../resources/textures/UI/Particles/FreezeParticle.dds 0"
+    "FreezeParticle": "../../resources/textures/UI/Particles/FreezeParticle.dds 0",
+    "GrowParticle": "../../resources/textures/UI/Particles/GrowParticle.dds 0",
+    "ShrinkParticle": "../../resources/textures/UI/Particles/ShrinkParticle.dds 0"
 }
