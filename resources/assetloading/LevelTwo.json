@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 580
+                "EntityHead": 583
             }
         },
         {
@@ -1120,11 +1120,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            554,
                             431,
+                            554,
                             432,
-                            544,
                             433,
+                            544,
                             434,
                             435,
                             436,
@@ -3715,10 +3715,10 @@
                             314,
                             460,
                             180,
-                            221,
                             181,
-                            206,
+                            221,
                             182,
+                            206,
                             175,
                             331
                         ]
@@ -4021,7 +4021,7 @@
                         },
                         "Position": {
                             "x": -22.32284164428711,
-                            "y": 8.11400032043457,
+                            "y": 8.0,
                             "z": 1.7253096103668213
                         }
                     },
@@ -4624,6 +4624,7 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             421,
+                            580,
                             283
                         ]
                     },
@@ -4779,7 +4780,7 @@
                         },
                         "Position": {
                             "x": -34.7406120300293,
-                            "y": 7.764438152313232,
+                            "y": 7.699999809265137,
                             "z": -16.591527938842775
                         }
                     },
@@ -4891,7 +4892,7 @@
                         },
                         "Position": {
                             "x": -29.200000762939454,
-                            "y": 7.7640380859375,
+                            "y": 7.699999809265137,
                             "z": -11.199999809265137
                         }
                     },
@@ -4939,6 +4940,118 @@
                             3617555656175080491,
                             17008353085049151909,
                             5691439207370049121
+                        ],
+                        "Prefab GID": 425
+                    },
+                    "Name": {
+                        "Name": "Checkpoint"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 580
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.999999463558197,
+                            "y": 1.0,
+                            "z": 0.999999463558197
+                        }
+                    },
+                    "Sound": {
+                        "Path": "",
+                        "Sound Event ID": 0,
+                        "3D Sound": false,
+                        "Triggerable": false,
+                        "Trigger": false
+                    },
+                    "Parent": {
+                        "Children GID": [
+                            581,
+                            582
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.30000001192092898,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.54100036621094,
+                            "y": 7.75,
+                            "z": -26.892000198364259
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "Checkpoint"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -0.5,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 0.5,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            17008353085049151909,
+                            5691439207370049121,
+                            14486341741652966143
                         ],
                         "Prefab GID": 425
                     },
@@ -5556,7 +5669,7 @@
                         },
                         "Position": {
                             "x": -22.324527740478517,
-                            "y": 9.414020538330079,
+                            "y": 9.324020385742188,
                             "z": 1.5255165100097657
                         }
                     },
@@ -5866,7 +5979,7 @@
                     "Offset": {
                         "Postion Offset": {
                             "x": 0.0,
-                            "y": 1.2999999523162842,
+                            "y": 1.5,
                             "z": 0.0
                         },
                         "Rotation Offset": {
@@ -5907,7 +6020,7 @@
                         },
                         "Position": {
                             "x": -40.624847412109378,
-                            "y": 9.315017700195313,
+                            "y": 9.51501750946045,
                             "z": -34.8764762878418
                         }
                     },
@@ -9707,11 +9820,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            295,
                             311,
-                            482,
-                            185,
+                            295,
                             498,
+                            185,
+                            482,
                             197,
                             496,
                             507,
@@ -37166,14 +37279,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            299,
-                            236,
                             140,
-                            503,
-                            375,
-                            168,
-                            232,
+                            236,
+                            299,
                             287,
+                            232,
+                            168,
+                            375,
+                            503,
                             169,
                             233,
                             376,
@@ -37296,12 +37409,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            384,
-                            392,
                             312,
-                            393,
-                            377,
+                            392,
+                            384,
                             313,
+                            377,
+                            393,
                             378,
                             379,
                             394,
@@ -41368,13 +41481,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            241,
                             362,
-                            160,
+                            241,
                             248,
+                            160,
                             283,
-                            284,
                             187,
+                            284,
                             191,
                             158,
                             293,
@@ -42749,11 +42862,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            473,
-                            409,
-                            465,
-                            337,
                             242,
+                            337,
+                            465,
+                            409,
+                            473,
                             205,
                             300,
                             408,
@@ -49210,11 +49323,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            497,
                             281,
+                            497,
                             184,
-                            499,
                             483,
+                            499,
                             189,
                             508,
                             506,
@@ -50187,7 +50300,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
@@ -50294,7 +50407,7 @@
                     "Offset": {
                         "Postion Offset": {
                             "x": 12.75,
-                            "y": -0.6899999976158142,
+                            "y": -0.7799999713897705,
                             "z": 14.899999618530274
                         },
                         "Rotation Offset": {
@@ -50330,12 +50443,12 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
                             "x": -22.324527740478517,
-                            "y": 8.114020347595215,
+                            "y": 8.024020195007325,
                             "z": 1.5255165100097657
                         }
                     },
@@ -50473,7 +50586,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
@@ -50616,7 +50729,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
@@ -50759,7 +50872,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
@@ -50902,7 +51015,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
@@ -51045,7 +51158,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
@@ -51188,7 +51301,7 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": 0.0,
+                            "y": 0.10000000149011612,
                             "z": 0.0
                         },
                         "Position": {
@@ -51560,7 +51673,7 @@
                         },
                         "Position": {
                             "x": -34.19061279296875,
-                            "y": 7.564438343048096,
+                            "y": 7.5,
                             "z": -16.591527938842775
                         }
                     },
@@ -51691,7 +51804,7 @@
                         },
                         "Position": {
                             "x": -28.650001525878908,
-                            "y": 7.564038276672363,
+                            "y": 7.5,
                             "z": -11.199999809265137
                         }
                     },
@@ -51822,7 +51935,7 @@
                         },
                         "Position": {
                             "x": -35.290611267089847,
-                            "y": 7.564438343048096,
+                            "y": 7.5,
                             "z": -16.591527938842775
                         }
                     },
@@ -51953,12 +52066,278 @@
                         },
                         "Position": {
                             "x": -29.75,
-                            "y": 7.564038276672363,
+                            "y": 7.5,
                             "z": -11.199999809265137
                         }
                     },
                     "ReferencePrefab": {
                         "Modified Components": [],
+                        "Prefab GID": 426
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 2,
+                        "Emission Cap": 50,
+                        "Particle Texture Name": "ShrinkCard",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 4.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.6000000238418579,
+                                "y": 1.0,
+                                "z": -0.6000000238418579
+                            },
+                            "Max Velocity": {
+                                "x": 0.6000000238418579,
+                                "y": 2.0,
+                                "z": 0.6000000238418579
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0,
+                                "z": 1.0
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 3.0,
+                                "z": 3.0
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 581
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999994955956936,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999997094273567
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 580
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.8500000238418579,
+                            "y": -0.22499999403953553,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -49.39099884033203,
+                            "y": 7.525000095367432,
+                            "z": -26.892000198364259
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 424
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 2,
+                        "Emission Cap": 50,
+                        "Particle Texture Name": "ShrinkCard",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 4.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.6000000238418579,
+                                "y": 1.0,
+                                "z": -0.6000000238418579
+                            },
+                            "Max Velocity": {
+                                "x": 0.6000000238418579,
+                                "y": 2.0,
+                                "z": 0.6000000238418579
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0,
+                                "z": 1.0
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 3.0,
+                                "z": 3.0
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 582
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999994955956936,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999997094273567
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 580
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 1.0499999523162842,
+                            "y": -0.25,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -47.49100112915039,
+                            "y": 7.5,
+                            "z": -26.892000198364259
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534
+                        ],
                         "Prefab GID": 426
                     },
                     "Name": {
@@ -52090,7 +52469,8 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             422,
-                            284
+                            284,
+                            581
                         ]
                     },
                     "Rotation": {
@@ -52223,7 +52603,8 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             423,
-                            484
+                            484,
+                            582
                         ]
                     },
                     "Rotation": {
@@ -52336,6 +52717,7 @@
                         17639936325783395793,
                         1871702054972469046,
                         15966406150673095094,
+                        12326225187096344837,
                         10372931727815950946
                     ]
                 },
@@ -52434,15 +52816,16 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            5691439207370049121,
                             1871702054972469046,
-                            9604788041699812520,
+                            5691439207370049121,
                             5509481706028819786,
+                            9604788041699812520,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
                             17008353085049151909,
-                            3617555656175080491
+                            3617555656175080491,
+                            12326225187096344837
                         ],
                         "Prefab GID": 125
                     },
@@ -52482,6 +52865,28 @@
                         "Player Shrink Available": false,
                         "Player Freeze Available": true,
                         "Checkpoint ID": -1
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 0.05000000074505806,
+                            "y": 0.02500000037252903,
+                            "z": 0.02500000037252903
+                        },
+                        "Diffuse": {
+                            "x": 0.05000000074505806,
+                            "y": 0.02500000037252903,
+                            "z": 0.02500000037252903
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.5,
@@ -52571,6 +52976,7 @@
                         17639936325783395793,
                         1871702054972469046,
                         15966406150673095094,
+                        12326225187096344837,
                         10372931727815950946
                     ]
                 },
@@ -52708,6 +53114,28 @@
                         "Player Freeze Available": false,
                         "Checkpoint ID": -1
                     },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Diffuse": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
@@ -52797,6 +53225,7 @@
                         1871702054972469046,
                         15966406150673095094,
                         6556775953303706852,
+                        12326225187096344837,
                         10372931727815950946
                     ]
                 },
@@ -52900,7 +53329,8 @@
                             3617555656175080491,
                             17639936325783395793,
                             1871702054972469046,
-                            5509481706028819786
+                            5509481706028819786,
+                            12326225187096344837
                         ],
                         "Prefab GID": 128
                     },
@@ -52944,6 +53374,28 @@
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
                         "Pushing Or Pulling?": false
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 0.05000000074505806,
+                            "y": 0.02500000037252903,
+                            "z": 0.02500000037252903
+                        },
+                        "Diffuse": {
+                            "x": 0.05000000074505806,
+                            "y": 0.02500000037252903,
+                            "z": 0.02500000037252903
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.5,
@@ -53034,6 +53486,7 @@
                         1871702054972469046,
                         15966406150673095094,
                         6556775953303706852,
+                        12326225187096344837,
                         10372931727815950946
                     ]
                 },
@@ -53174,6 +53627,28 @@
                     "Player Interaction": {
                         "Interactable ID": 4294967295,
                         "Pushing Or Pulling?": false
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Diffuse": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
                     },
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
