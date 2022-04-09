@@ -889,7 +889,7 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator, mesh >();
 		    Query.m_OneOf.AddFromComponents< player_interaction, paperback::component::entity >();
 		    Query.m_NoneOf.AddFromComponents< prefab >();
 
@@ -935,11 +935,12 @@ namespace paperback::input::binding
 
                 if ( ValidSwap )
                 {
-                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
+                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, mesh& Mesh )
                     {
                         if ( Controller.m_PlayerStatus && Camera.m_Active )
                         {
                             Controller.m_PlayerStatus = Camera.m_Active = false;
+                            Mesh.m_Active = true;
                         }
                         else if ( !Controller.m_PlayerStatus && !Camera.m_Active )
                         {

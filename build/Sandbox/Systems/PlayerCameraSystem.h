@@ -13,7 +13,7 @@ struct player_camera_system : paperback::system::pausable_instance
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
     {
-        Query.m_Must.AddFromComponents<entity, transform, player_controller, camera>();
+        Query.m_Must.AddFromComponents<entity, transform, player_controller, camera, mesh>();
         Query.m_NoneOf.AddFromComponents<prefab>();
     }
 
@@ -21,7 +21,7 @@ struct player_camera_system : paperback::system::pausable_instance
     void Update( void ) noexcept
     {
         // Populate map
-        ForEach( Search( Query ), [&]( entity& PlayerEntity, transform& Transform, player_controller& Controller, camera& Camera ) noexcept
+        ForEach( Search( Query ), [&]( entity& PlayerEntity, transform& Transform, player_controller& Controller, camera& Camera, mesh& Mesh ) noexcept
         {
             if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
             {
@@ -50,30 +50,13 @@ struct player_camera_system : paperback::system::pausable_instance
                     Hit_ID = Hit_ID2;
                 }
 
-                /*
-                // Testing New
-                std::vector<std::pair<paperback::Vector3f, paperback::Vector3f>> RayList;
-                std::vector<paperback::u32>                                      ExcludeList;
-
-                RayList.push_back({ Transform.m_Position, Point1 });
-                RayList.push_back({ Transform.m_Position, Point2 });
-
-                ExcludeList.push_back( PlayerEntity.m_GlobalIndex );
-
-                auto [ Hit_ID, HitDist ] = m_Coordinator.QueryMultipleRaycastClosest( RayList
-                                                                                    , PlayerEntity
-                                                                                    , Transform
-                                                                                    , Camera.m_MaxRadius * 1.2f
-                                                                                    , ExcludeList
-                                                                                    , true );
-                */
-
                 // There Exists Closest Entity In Camera Range - Limit Camera Radius
                 if ( Hit_ID != paperback::settings::invalid_index_v )
                 {
                     auto Rate      = Camera.m_ZoomRate * DeltaTime();
                     auto NewRadius = Camera.m_MaxRadius * HitDist;
                     NewRadius = NewRadius > Camera.m_MaxRadius ? Camera.m_MaxRadius : NewRadius;
+                    Mesh.m_Active = NewRadius < 0.9f ? false : true;
                     NewRadius = NewRadius < Camera.m_MinRadius ? Camera.m_MinRadius : NewRadius;
 
                     // Zoom Out

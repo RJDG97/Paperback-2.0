@@ -269,7 +269,7 @@ namespace paperback::archetype
             , end = Prefab.m_ReferencePrefabGIDs.end(); begin != end; ++begin )
         {
             // Grab Prefab Instance Info
-            const auto& InstanceInfo = m_Coordinator.GetEntityInfo( *( Prefab.m_ReferencePrefabGIDs.begin() ) );
+            const auto& InstanceInfo = m_Coordinator.GetEntityInfo( *( begin ) );
             auto& RefPrefab    = PIArchetype.GetComponent<reference_prefab>( InstanceInfo.m_PoolDetails );
 
             // If Reference Prefab Did Not Override T_COMPONENT
