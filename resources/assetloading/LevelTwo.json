@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 580
+                "EntityHead": 584
             }
         },
         {
@@ -21432,7 +21432,7 @@
                         "Global Index": 286
                     },
                     "Mesh": {
-                        "Model": "RectangleBlock_Red",
+                        "Model": "CubbyHoleThisWay_Left",
                         "Texture": "CylinderBlock_Blue_BaseColour.dds",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -21440,15 +21440,15 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.005989674478769302,
-                            "y": 0.006000000052154064,
-                            "z": 0.007000000216066837
+                            "x": 0.0059894658625125889,
+                            "y": 0.014996145851910115,
+                            "z": 0.014999999664723874
                         }
                     },
                     "Rotation": {
                         "Rotation": {
-                            "x": 90.0,
-                            "y": 0.0,
+                            "x": 0.0,
+                            "y": 90.0,
                             "z": 0.0
                         }
                     },
@@ -21471,9 +21471,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -51.876792907714847,
-                            "y": 8.22389030456543,
-                            "z": -42.27519607543945
+                            "x": -14.123340606689454,
+                            "y": 16.505178451538087,
+                            "z": 56.94733428955078
                         }
                     },
                     "RigidForce": {
@@ -21519,7 +21519,7 @@
                         "Prefab GID": 141
                     },
                     "Name": {
-                        "Name": "RectangleBlock_R_Upright"
+                        "Name": "CubbyAreaSign"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -36263,6 +36263,402 @@
                         "Mass": 0.0,
                         "Inv Mass": 0.0
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 580
+                    },
+                    "Mesh": {
+                        "Model": "RectangleBlock_Red",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.005989674478769302,
+                            "y": 0.006000000052154064,
+                            "z": 0.007000000216066837
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 90.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -51.876792907714847,
+                            "y": 8.22389030456543,
+                            "z": -42.27519607543945
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.699999988079071,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.699999988079071,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            16415915133639986106,
+                            3617555656175080491,
+                            14486341741652966143,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "RectangleBlock_R_Upright"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 581
+                    },
+                    "Mesh": {
+                        "Model": "LearningArea",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0059894658625125889,
+                            "y": 0.014999999664723874,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -40.417362213134769,
+                            "y": 14.395469665527344,
+                            "z": -57.55937194824219
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.699999988079071,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.699999988079071,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            16415915133639986106,
+                            3617555656175080491,
+                            14486341741652966143,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "LearnAreaSign"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 582
+                    },
+                    "Mesh": {
+                        "Model": "LearningArea",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0059894658625125889,
+                            "y": 0.014999999664723874,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -41.810447692871097,
+                            "y": 14.395469665527344,
+                            "z": -6.756975173950195
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.699999988079071,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.699999988079071,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            16415915133639986106,
+                            3617555656175080491,
+                            14486341741652966143,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "LearnAreaSign"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 583
+                    },
+                    "Mesh": {
+                        "Model": "CubbyHoleThisWay_Right",
+                        "Texture": "CylinderBlock_Blue_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0059894658625125889,
+                            "y": 0.017999999225139619,
+                            "z": 0.017999999225139619
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 16.004730224609376,
+                            "y": 15.009469985961914,
+                            "z": -31.194787979125978
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.699999988079071,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.699999988079071,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            16415915133639986106,
+                            3617555656175080491,
+                            14486341741652966143,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 141
+                    },
+                    "Name": {
+                        "Name": "CubbyAreaSign"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
                 }
             ]
         },
@@ -37304,6 +37700,7 @@
                             313,
                             378,
                             379,
+                            582,
                             394,
                             395,
                             397,
@@ -37315,7 +37712,10 @@
                             488,
                             444,
                             493,
-                            494
+                            494,
+                            580,
+                            581,
+                            583
                         ]
                     },
                     "Rotation": {
