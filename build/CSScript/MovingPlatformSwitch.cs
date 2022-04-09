@@ -96,10 +96,10 @@ namespace CSScript
                     m_Activated = true;
                 }
 
-                if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 3, 3) == "OFF")
-                {
-                    m_Mesh.m_Model = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 3) + "ON";
-                }
+                //if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 3, 3) == "OFF")
+                //{
+                //    m_Mesh.m_Model = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 3) + "ON";
+                //}
             }
         }
 
