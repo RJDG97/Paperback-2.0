@@ -1,13 +1,13 @@
 {
+  "Splashscreen": "../../resources/assetloading/Splashscreen.json",
+  "Splashscreen": "../../resources/assetloading/Splashscreen/Splashscreen_EntityInfo.json",
+  "Splashscreen": "../../resources/assetloading/Splashscreen/Splashscreen.texture",
   "Editor": "../../resources/assetloading/LevelOne.json",
   "Editor": "../../resources/assetloading/LevelOne/LevelOne_EntityInfo.json",
   "Editor": "../../resources/assetloading/LevelOne/LevelOne.texture",
   "MainMenu": "../../resources/assetloading/MainMenuScene.json",
   "MainMenu": "../../resources/assetloading/MainMenuScene/MainMenuScene_EntityInfo.json",
   "MainMenu": "../../resources/assetloading/MainMenuScene/MainMenuScene.texture",
-  "Settings": "../../resources/assetloading/GameplayScene.json",
-  "Settings": "../../resources/assetloading/GameplayScene/GameplayScene_EntityInfo.json",
-  "Settings": "../../resources/assetloading/GameplayScene/GameplayScene.texture",
   "LevelSelect": "../../resources/assetloading/LevelBlockoutScene.json",
   "LevelSelect": "../../resources/assetloading/LevelBlockoutScene/LevelBlockoutScene_EntityInfo.json",
   "LevelSelect": "../../resources/assetloading/LevelBlockoutScene/LevelBlockoutScene.texture",
@@ -46,8 +46,5 @@
   "GameLoss": "../../resources/assetloading/GameLose/GameLose.texture",
   "Credits": "../../resources/assetloading/Credits.json",
   "Credits": "../../resources/assetloading/Credits/Credits_EntityInfo.json",
-  "Credits": "../../resources/assetloading/Credits/Credits.texture",
-  "Splashscreen": "../../resources/assetloading/Splashscreen.json",
-  "Splashscreen": "../../resources/assetloading/Splashscreen/Splashscreen_EntityInfo.json",
-  "Splashscreen": "../../resources/assetloading/Splashscreen/Splashscreen.texture"
+  "Credits": "../../resources/assetloading/Credits/Credits.texture"
 }

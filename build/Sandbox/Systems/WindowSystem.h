@@ -204,4 +204,10 @@ struct window_system : paperback::system::instance
         m_FullScreen = !m_FullScreen;
         m_UpdateResolution = true;
     }
+
+    bool GetFullScreen()
+    {
+
+        return m_FullScreen;
+    }
 };

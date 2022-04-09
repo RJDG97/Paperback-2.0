@@ -24,6 +24,7 @@ struct ui_system : paperback::system::instance
     size_t       m_MaximumButtonIndex{};
     bool         m_Picked = false;
     bool         m_ControllerUIMode = false;
+    bool         m_EditorMode = false;
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
@@ -77,6 +78,9 @@ struct ui_system : paperback::system::instance
 
     void operator()( transform& Transform, scale& Scale, mesh& Mesh, button* Button, card* Card ) noexcept
     {
+        if (m_EditorMode)
+            return;
+
         // Grab Mouse Coords
         auto pos = GetMousePositionInUI();
 
@@ -136,6 +140,9 @@ struct ui_system : paperback::system::instance
     // On Event Key / Mouse Pressed
     void OnEvent( const size_t& Key, const bool& Clicked ) noexcept
     {
+
+        if (m_EditorMode)
+            return;
 
         if ( Key == GLFW_KEY_ESCAPE )
         {
@@ -224,6 +231,8 @@ struct ui_system : paperback::system::instance
         m_FrameButtonLock = false;
         m_CurrentButtonHovered = "";
         m_MaximumButtonIndex = 0;
+
+        m_EditorMode = (PPB.VerifyState("Editor")) ? true : false;
     }
 
     //given a layer, disable/enable all buttons with spe
@@ -377,7 +386,7 @@ struct ui_system : paperback::system::instance
     void SelectUIButton()
     {
 
-        if (!m_ControllerUIMode || m_CurrentButtonIndex == 0)
+        if (!m_ControllerUIMode || m_CurrentButtonIndex == 0 || m_EditorMode)
             return;
 
         ForEach(Search(m_ButtonQuery), [&](entity& Entity, transform& Transform, scale& Scale, button* Button, card* Card, selected* Selected) noexcept

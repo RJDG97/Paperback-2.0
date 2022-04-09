@@ -240,6 +240,18 @@ struct render_system : paperback::system::instance
 		// Swap buffer
 		glfwSwapBuffers(m_pWindow);
 	}
+
+	void SetGamma(const bool& Value = true)
+	{
+
+		m_bGamma = Value;
+	}
+
+	bool GetGamma()
+	{
+
+		return m_bGamma;
+	}
 };
 
 #endif
