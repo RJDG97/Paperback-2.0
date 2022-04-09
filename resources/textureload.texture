@@ -61,6 +61,9 @@
     "ScissorsWeapon_PaperShield": "../../resources/textures/UI/Cards/ScissorsWeapon_PaperShield.dds 1",
     "ScissorsWeapon_RockShield": "../../resources/textures/UI/Cards/ScissorsWeapon_RockShield.dds 1",
     "ScissorsWeapon_ScissorsShield": "../../resources/textures/UI/Cards/ScissorsWeapon_ScissorsShield.dds 1",
+    "EndLevel1ProgressMap": "../../resources/textures/UI/EndLevel1ProgressMap_Mirrored.dds 1",
+    "EndLevel2ProgressMap_Mirrorred": "../../resources/textures/UI/EndLevel2ProgressMap_Mirrorred.dds 1",
+    "EndLevel3ProgressMap": "../../resources/textures/UI/EndLevel3ProgressMap_Mirrored.dds 1",
     "EnemyHPBar": "../../resources/textures/UI/HealthBars/EnemyHPBar.dds 1",
     "EnemyHPBar_Background": "../../resources/textures/UI/HealthBars/EnemyHPBar_Background.dds 1",
     "EnemyHPBar_Fill": "../../resources/textures/UI/HealthBars/EnemyHPBar_Fill.dds 1",
@@ -135,6 +138,11 @@
     "Settings_UIBar_Outline": "../../resources/textures/UI/Menus/Settings_UIBar_Outline.dds 1",
     "TickIcon": "../../resources/textures/UI/Menus/TickIcon_Mirrored.dds 1",
     "OwlClock": "../../resources/textures/UI/OwlClock.dds 1",
+    "CheckpointParticle": "../../resources/textures/UI/Particles/CheckpointParticle.dds 1",
+    "FreezeParticle": "../../resources/textures/UI/Particles/FreezeParticle.dds 1",
+    "GrowParticle": "../../resources/textures/UI/Particles/GrowParticle.dds 1",
+    "ShrinkParticle": "../../resources/textures/UI/Particles/ShrinkParticle.dds 1",
+    "WalkParticle": "../../resources/textures/UI/Particles/WalkParticle.dds 1",
     "Recticle": "../../resources/textures/UI/Recticle.dds 1",
     "BluePaperRedRock": "../../resources/textures/UI/RPSStatusIcons/BluePaperRedRock.dds 1",
     "BlueRockRedScissors": "../../resources/textures/UI/RPSStatusIcons/BlueRockRedScissors.dds 1",
@@ -164,5 +172,7 @@
     "SkillUISmallBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Freeze.dds 1",
     "SkillUISmallBar_Grow": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Grow.dds 1",
     "SkillUISmallBar_Shrink": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Shrink.dds 1",
-    "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 1"
+    "StartLevel1ProgressMap": "../../resources/textures/UI/StartLevel1ProgressMap_Mirrored.dds 1",
+    "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 1",
+    "WayBagHomeLogo": "../../resources/textures/UI/WayBagHomeLogo_Mirrored.dds 1"
 }

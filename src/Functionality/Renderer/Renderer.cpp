@@ -226,9 +226,9 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("CraneElevator_Freeze_Unhovered", "../../resources/models/nui/CraneElevatorFreeze_Unhovered.nui");
 
 	m_Resources.Load3DMeshNUI("Credits", "../../resources/models/nui/Credits.nui");
-        m_Resources.Load3DMeshNUI("CubbyHoleSignDown", "../../resources/models/nui/CubbyHoleSignDown.nui"); 
-        m_Resources.Load3DMeshNUI("CubbyHoleThisWay_Left", "../../resources/models/nui/CubbyHoleThisWay_Left.nui");
-		m_Resources.Load3DMeshNUI("CubbyHoleThisWay_Right", "../../resources/models/nui/CubbyHoleThisWay_Right.nui");
+    m_Resources.Load3DMeshNUI("CubbyHoleSignDown", "../../resources/models/nui/CubbyBoardSignDown.nui"); 
+    m_Resources.Load3DMeshNUI("CubbyHoleThisWay_Left", "../../resources/models/nui/CubbyHoleThisWay_Left.nui");
+	m_Resources.Load3DMeshNUI("CubbyHoleThisWay_Right", "../../resources/models/nui/CubbyHoleThisWay_Right.nui");
 
 	m_Resources.Load3DMeshNUI("CylinderBlock_Blue", "../../resources/models/nui/CylinderBlock_Blue.nui");
 	m_Resources.Load3DMeshNUI("CylinderBlock_Green", "../../resources/models/nui/CylinderBlock_Green.nui");
@@ -289,9 +289,9 @@ Renderer::Renderer() :
 
 	m_Resources.Load3DMeshNUI("LeafParticle", "../../resources/models/nui/LeafParticle.nui");
 
-        m_Resources.Load3DMeshNUI("LearningArea", "../../resources/models/nui/LearningArea.nui");
-        m_Resources.Load3DMeshNUI("LearningAreaThisWay_Left", "../../resources/models/nui/LearningAreaThisWay_Left.nui");
-        m_Resources.Load3DMeshNUI("LearningAreaThisWay_Right", "../../resources/models/nui/LearningAreaThisWay_Right.nui");
+    m_Resources.Load3DMeshNUI("LearningArea", "../../resources/models/nui/LearningAreaThisWay.nui");
+    m_Resources.Load3DMeshNUI("LearningAreaThisWay_Left", "../../resources/models/nui/LearningAreaThisWay_Left.nui");
+    m_Resources.Load3DMeshNUI("LearningAreaThisWay_Right", "../../resources/models/nui/LearningAreaThisWay_Right.nui");
 	m_Resources.Load3DMeshNUI("Level2To3Cutscene", "../../resources/models/nui/Level2To3Cutscene.nui");
 
 	m_Resources.Load3DMeshNUI("Level1WinScreen", "../../resources/models/nui/Level1WinScreen.nui");
