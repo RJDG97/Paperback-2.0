@@ -1,4 +1,7 @@
 {
+  "Editor": "../../resources/assetloading/LevelOne.json",
+  "Editor": "../../resources/assetloading/LevelOne/LevelOne_EntityInfo.json",
+  "Editor": "../../resources/assetloading/LevelOne/LevelOne.texture",
   "Splashscreen": "../../resources/assetloading/Splashscreen.json",
   "Splashscreen": "../../resources/assetloading/Splashscreen/Splashscreen_EntityInfo.json",
   "Splashscreen": "../../resources/assetloading/Splashscreen/Splashscreen.texture",
