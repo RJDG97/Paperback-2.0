@@ -45463,7 +45463,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 1,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 3.0
@@ -48853,7 +48853,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 2,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "CheckpointParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 4.0
@@ -48973,7 +48973,8 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            8376831551428810534
+                            8376831551428810534,
+                            10372931727815950946
                         ],
                         "Prefab GID": 191
                     },
@@ -48986,7 +48987,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 2,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "CheckpointParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 4.0
@@ -49106,7 +49107,8 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            8376831551428810534
+                            8376831551428810534,
+                            10372931727815950946
                         ],
                         "Prefab GID": 191
                     },
@@ -49119,7 +49121,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 2,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "CheckpointParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 4.0
@@ -49239,7 +49241,8 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            8376831551428810534
+                            8376831551428810534,
+                            10372931727815950946
                         ],
                         "Prefab GID": 190
                     },
@@ -49252,7 +49255,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 2,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "CheckpointParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 4.0
@@ -49372,7 +49375,8 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            8376831551428810534
+                            8376831551428810534,
+                            10372931727815950946
                         ],
                         "Prefab GID": 190
                     },
@@ -49385,7 +49389,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 2,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "CheckpointParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 4.0
@@ -49505,7 +49509,8 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            8376831551428810534
+                            8376831551428810534,
+                            10372931727815950946
                         ],
                         "Prefab GID": 190
                     },
@@ -49518,7 +49523,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 2,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "CheckpointParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 4.0
@@ -49638,7 +49643,8 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            8376831551428810534
+                            8376831551428810534,
+                            10372931727815950946
                         ],
                         "Prefab GID": 191
                     },
@@ -49651,7 +49657,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 2,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "CheckpointParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 4.0
@@ -49771,7 +49777,8 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            8376831551428810534
+                            8376831551428810534,
+                            10372931727815950946
                         ],
                         "Prefab GID": 190
                     },
@@ -49784,7 +49791,7 @@
                         "Emission Interval": 0.30000001192092898,
                         "Emission Rate": 2,
                         "Emission Cap": 50,
-                        "Particle Texture Name": "FreezeCard",
+                        "Particle Texture Name": "CheckpointParticle",
                         "Generate Particle Lifetime": {
                             "Min Lifetime": 2.0,
                             "Max Lifetime": 4.0

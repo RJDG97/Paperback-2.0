@@ -45,5 +45,7 @@
     "RestartLevelButton_Selected": "../../resources/textures/UI/Menus/Buttons/RestartLevelButton_Selected_Mirrored.dds 0",
     "HowToPlayButton_Selected": "../../resources/textures/UI/Menus/Buttons/HowToPlayButton_Selected_Mirrored.dds 1",
     "ToLastCheckpointButton_Selected": "../../resources/textures/UI/Menus/Buttons/ToLastCheckpointButton_Selected_Mirrored.dds 0",
-    "WalkParticle": "../../resources/textures/UI/Particles/WalkParticle.dds 1"
+    "WalkParticle": "../../resources/textures/UI/Particles/WalkParticle.dds 0",
+    "CheckpointParticle": "../../resources/textures/UI/Particles/CheckpointParticle.dds 0",
+    "FreezeParticle": "../../resources/textures/UI/Particles/FreezeParticle.dds 0"
 }
