@@ -90,25 +90,22 @@ struct particle_system : paperback::system::pausable_instance
             }
 
             // Set Particle Rotation Angles
-            if ( Emitter.IsAlive() )
+            ForEach( Emitter.m_ActiveParticles, [&]( entity& Entity, particle& Particle, rotation& Rotation, transform& Transform ) noexcept
             {
-                ForEach( Emitter.m_ActiveParticles, [&]( entity& Entity, particle& Particle, rotation& Rotation, transform& Transform ) noexcept
+                if ( Particle.IsAlive() )
                 {
-                    if ( Particle.IsAlive() )
+                    if ( !ComputedAngle && Debug )
                     {
-                        if ( !ComputedAngle && Debug )
-                        {
-                            Angle = Debug->DirtyRotationAnglesFromDirectionalVec( Transform.m_Position - paperback::Vector3f(ActiveCameraPosition.x, ActiveCameraPosition.y, ActiveCameraPosition.z) ).y;
-                            ComputedAngle = true;
-                        }
-                        
-                        if ( ComputedAngle )
-                        {
-                            Rotation.m_Value.y = Angle;
-                        }
+                        Angle = Debug->DirtyRotationAnglesFromDirectionalVec( Transform.m_Position - paperback::Vector3f(ActiveCameraPosition.x, ActiveCameraPosition.y, ActiveCameraPosition.z) ).y;
+                        ComputedAngle = true;
                     }
-                });
-            }
+                    
+                    if ( ComputedAngle )
+                    {
+                        Rotation.m_Value.y = Angle;
+                    }
+                }
+            });
         });
     }
 };

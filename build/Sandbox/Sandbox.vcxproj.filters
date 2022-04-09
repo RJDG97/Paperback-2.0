@@ -478,5 +478,8 @@
     <ClInclude Include="Components\Freezable.h">
       <Filter>Source Files\Components\Details\Tags</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\TreeSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -159,6 +159,7 @@ void InitializeGame()
         ,   icon_system
         ,   player_camera_system
         ,   dialogue_system
+        ,   tree_system
         >();
 
         PPB.RegisterSystems <

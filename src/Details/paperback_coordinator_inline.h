@@ -309,9 +309,6 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::OpenScene( const std::string& SceneName = "" ) noexcept
 	{
-		// Reset AABB Tree
-		m_AABBTree.Reset();
-
 		if (SceneName == "")
 		{
 			//if no arg given then "launching" so just reload scene manager
@@ -326,9 +323,6 @@ namespace paperback::coordinator
 				m_SceneMgr.ChangeScene();
 			}
 		}
-
-		// Initialize AABB Tree
-		m_AABBTree.Initialize();
 	}
 
 	PPB_INLINE
