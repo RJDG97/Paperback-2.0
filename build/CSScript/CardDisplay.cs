@@ -328,12 +328,12 @@ namespace CSScript
                     dest_pos = m_InitialCardOnePos;
                     dest_scale = m_InitialCardOneScale;
 
-                    //if (mesh.m_Texture.Length > 11 && mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) == "_Unselected")
-                    //{
-                    //    mesh.m_Texture = mesh.m_Texture.Substring(0, mesh.m_Texture.Length - 11);
-                    //}
+                        if (mesh.m_Texture.Length > 11 && mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) == "_Unselected")
+                        {
+                            // mesh.m_Texture = mesh.m_Texture.Substring(0, mesh.m_Texture.Length - 11); // Crash
+                        }
 
-                    break;
+                        break;
                 }
 
                 case 2:
@@ -341,17 +341,17 @@ namespace CSScript
                     dest_pos = m_InitialCardTwoPos;
                     dest_scale = m_InitialCardTwoScale;
 
-                    //if (mesh.m_Texture.Length <= 11)
-                    //{
-                    //    mesh.m_Texture = mesh.m_Texture + "_Unselected";
-                    //}
+                        if (mesh.m_Texture.Length <= 11)
+                        {
+                            //    mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                        }
 
-                    //else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
-                    //{
-                    //    mesh.m_Texture = mesh.m_Texture + "_Unselected";
-                    //}
+                        else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
+                        {
+                            //    mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                        }
 
-                    break;
+                         break;
                 }
 
                 case 3:
@@ -359,17 +359,17 @@ namespace CSScript
                     dest_pos = m_InitialCardThreePos;
                     dest_scale = m_InitialCardThreeScale;
 
-                    //if (mesh.m_Texture.Length <= 11)
-                    //{
-                    //    mesh.m_Texture = mesh.m_Texture + "_Unselected";
-                    //}
+                        if (mesh.m_Texture.Length <= 11)
+                        {
+                            //    mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                        }
 
-                    //else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
-                    //{
-                    //    mesh.m_Texture = mesh.m_Texture + "_Unselected";
-                    //}
+                        else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
+                        {
+                            //    mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                        }
 
-                    break;
+                        break;
                 }
             }
 
