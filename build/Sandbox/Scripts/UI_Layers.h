@@ -17,11 +17,11 @@ enum UI_LAYER
 	HOWTOPLAY6,			//for page 6 of how to play
 	HOWTOPLAY7,			//for page 7 of how to play
 	RESTART_CHECKPOINT, //for buttons toggable only during restart from last checkpoint confirm
-	SETTINGS,
-	GAMMA_ON,
-	GAMMA_OFF,
-	FULLSCREEN_ON,
-	FULLSCREEN_OFF,
+	SETTINGS,			//for settings backpanel
+	GAMMA_ON,			//for button to change gamma in settings
+	GAMMA_OFF,			//for button to change gamma in settings
+	FULLSCREEN_ON,		//for button to toggle fullscreen in settings
+	FULLSCREEN_OFF,		//for button to toggle fullscreen in settings
 	VOLUME1,
 	VOLUME2,
 	VOLUME3,
