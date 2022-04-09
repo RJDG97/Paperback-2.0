@@ -24,12 +24,25 @@ struct mousesens_increase_button_mainmenu_script : paperback::script::button_int
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
 
         float sens = PPB.GetMouseSensitivityRatio();
-
         if (sens < 1.0f)
         {
 
             sens += 0.2f;
             PPB.SetMouseSensitivityRatio(sens);
+        }
+
+        for (size_t layer = UI_LAYER::MOUSESENS1; layer <= UI_LAYER::MOUSESENS5; ++layer)
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(layer), false);
+        }
+
+        size_t layer = UI_LAYER::MOUSESENS1;
+
+        for (float mousesens = 0.0f; mousesens < sens; mousesens += 0.2f)
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(layer++), true);
         }
     }
 };

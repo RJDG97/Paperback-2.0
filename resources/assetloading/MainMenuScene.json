@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 83
+                "EntityHead": 88
             }
         },
         {
@@ -1103,10 +1103,10 @@
                             41,
                             42,
                             43,
-                            52,
                             44,
-                            53,
+                            52,
                             45,
+                            53,
                             46,
                             54,
                             55,
@@ -1226,14 +1226,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            70,
                             6,
-                            11,
-                            75,
+                            70,
                             3,
-                            73,
-                            9,
+                            75,
+                            11,
                             1,
+                            9,
+                            73,
                             10,
                             74,
                             15,
@@ -1245,10 +1245,15 @@
                             18,
                             82,
                             19,
+                            83,
                             20,
+                            84,
                             21,
+                            85,
                             22,
+                            86,
                             23,
+                            87,
                             24,
                             25,
                             26,
@@ -3617,13 +3622,13 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "BackButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "BackButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "BackButton_Unselected"
                             }
                         ],
                         "Button State": 0,
@@ -4077,7 +4082,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 1.0,
+                            "x": -2.0,
                             "y": 69.0,
                             "z": 1.0
                         }
@@ -4146,7 +4151,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 70.0,
+                            "x": 66.0,
                             "y": 69.0,
                             "z": 1.0
                         }
@@ -4215,7 +4220,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 139.0,
+                            "x": 134.0,
                             "y": 69.0,
                             "z": 1.0
                         }
@@ -4284,7 +4289,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 208.0,
+                            "x": 202.0,
                             "y": 69.0,
                             "z": 1.0
                         }
@@ -4353,7 +4358,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 277.0,
+                            "x": 270.0,
                             "y": 69.0,
                             "z": 1.0
                         }
@@ -4385,6 +4390,351 @@
                         ],
                         "Button State": 0,
                         "Layer Grouping": 29,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 83
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUISmallBar_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2.0,
+                            "y": -33.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Volume_1_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 20,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 84
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUISmallBar_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 66.0,
+                            "y": -33.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            2550044418833058707,
+                            9604788041699812520,
+                            16415915133639986106,
+                            17008353085049151909,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Volume_2_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 21,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 85
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUISmallBar_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 134.0,
+                            "y": -33.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            2550044418833058707,
+                            9604788041699812520,
+                            16415915133639986106,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Volume_3_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 22,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 86
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUISmallBar_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 202.0,
+                            "y": -33.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Volume_4_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 23,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 87
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "SkillUISmallBar_Freeze",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 270.0,
+                            "y": -33.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Volume_5_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 24,
                         "Script Guid": 0,
                         "Active Status": false,
                         "Button Index": 0

@@ -24,5 +24,20 @@ struct volume_decrease_button_mainmenu_script : paperback::script::button_interf
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
 
         PPB.GetSystem<sound_system>().DecreaseVolume();
+
+        for (size_t layer = UI_LAYER::VOLUME1; layer <= UI_LAYER::VOLUME5; ++layer)
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(layer), false);
+        }
+
+        size_t layer = UI_LAYER::VOLUME1;
+        float volume = PPB.GetSystem<sound_system>().GetVolumePercentage();
+
+        for (float vol = 0.0f; vol < volume; vol += 0.2f)
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(layer++), true);
+        }
     }
 };
