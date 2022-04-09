@@ -33,7 +33,6 @@ struct settings_button_mainmenu_script : paperback::script::button_interface // 
         {
 
             PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(layer++), true);
-            layer++;
         }
         
         float mousesens = PPB.GetMouseSensitivityRatio();
@@ -48,13 +47,23 @@ struct settings_button_mainmenu_script : paperback::script::button_interface // 
         if (PPB.GetSystem<window_system>().GetFullScreen())
         {
 
-            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::FULLSCREEN), true);
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::FULLSCREEN_ON), true);
+        }
+        else
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::FULLSCREEN_OFF), true);
         }
 
         if (PPB.GetSystem<render_system>().GetGamma())
         {
 
-            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::GAMMA), true);
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::GAMMA_ON), true);
+        }
+        else
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::GAMMA_OFF), true);
         }
         
         PPB.GetSystem<ui_system>().UpdateMaximumIndex();

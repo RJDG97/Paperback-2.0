@@ -18,8 +18,10 @@ enum UI_LAYER
 	HOWTOPLAY7,			//for page 7 of how to play
 	RESTART_CHECKPOINT, //for buttons toggable only during restart from last checkpoint confirm
 	SETTINGS,
-	GAMMA,
-	FULLSCREEN,
+	GAMMA_ON,
+	GAMMA_OFF,
+	FULLSCREEN_ON,
+	FULLSCREEN_OFF,
 	VOLUME1,
 	VOLUME2,
 	VOLUME3,
@@ -29,6 +31,6 @@ enum UI_LAYER
 	MOUSESENS2,
 	MOUSESENS3,
 	MOUSESENS4,
-	MOUSESENS5,
+	MOUSESENS5
 
 };

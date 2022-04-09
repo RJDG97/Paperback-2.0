@@ -1139,7 +1139,7 @@ namespace paperback::coordinator
 		return m_Input.GetViewportMousePosition(projection, view);
 	}
 
-	float instance::SetMouseSensitivityRatio( const float Value ) noexcept
+	void instance::SetMouseSensitivityRatio( const float Value ) noexcept
 	{
 		m_MouseSensitivityRatio = Value;
 	}

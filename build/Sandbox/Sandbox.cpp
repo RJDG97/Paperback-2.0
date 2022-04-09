@@ -224,7 +224,12 @@ void InitializeGame()
             restartlevel_cancel_button_game_script,
             restartlevel_window_button_game_script,
             how2play_button_game_script,
-            how2play_cancel_button_game_script
+            how2play_cancel_button_game_script,
+            settings_close_button_mainmenu_script,
+            volume_decrease_button_mainmenu_script,
+            volume_increase_button_mainmenu_script,
+            mousesens_decrease_button_mainmenu_script,
+            mousesens_increase_button_mainmenu_script
         >();
 
 

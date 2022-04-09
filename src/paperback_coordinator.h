@@ -424,7 +424,7 @@ namespace paperback::coordinator
 		glm::vec3 GetViewportMousePosition(glm::mat4 projection, glm::mat4 view) noexcept;
 
 		PPB_INLINE
-		float SetMouseSensitivityRatio( const float Value ) noexcept;
+		void SetMouseSensitivityRatio( const float Value ) noexcept;
 
 		PPB_INLINE
 		float GetMouseSensitivityRatio( void ) noexcept;
