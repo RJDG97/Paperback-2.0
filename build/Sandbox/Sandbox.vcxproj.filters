@@ -496,5 +496,17 @@
     <ClInclude Include="Scripts\Settings_Close_Button_MainMenu.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\Gamma_Enable_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gamma_Disable_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Fullscreen_Disable_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Fullscreen_Enable_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

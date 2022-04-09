@@ -229,7 +229,11 @@ void InitializeGame()
             volume_decrease_button_mainmenu_script,
             volume_increase_button_mainmenu_script,
             mousesens_decrease_button_mainmenu_script,
-            mousesens_increase_button_mainmenu_script
+            mousesens_increase_button_mainmenu_script,
+            gamma_disable_button_mainmenu_script,
+            gamma_enable_button_mainmenu_script,
+            fullscreen_disable_button_mainmenu_script,
+            fullscreen_enable_button_mainmenu_script
         >();
 
 

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 88
+                "EntityHead": 92
             }
         },
         {
@@ -1255,8 +1255,11 @@
                             23,
                             87,
                             24,
+                            88,
                             25,
+                            89,
                             26,
+                            90,
                             33,
                             29,
                             30,
@@ -1264,6 +1267,7 @@
                             32,
                             28,
                             27,
+                            91,
                             36,
                             37,
                             38,
@@ -3840,7 +3844,7 @@
                         "Layer Grouping": 15,
                         "Script Guid": 13552095588321878376,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 2
                     }
                 },
                 {
@@ -3909,7 +3913,7 @@
                         "Layer Grouping": 15,
                         "Script Guid": 10286436442102424329,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 3
                     }
                 },
                 {
@@ -3978,7 +3982,7 @@
                         "Layer Grouping": 15,
                         "Script Guid": 13486083644175103299,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 4
                     }
                 },
                 {
@@ -4047,7 +4051,7 @@
                         "Layer Grouping": 15,
                         "Script Guid": 9942335870763185954,
                         "Active Status": false,
-                        "Button Index": 0
+                        "Button Index": 5
                     }
                 },
                 {
@@ -4738,6 +4742,282 @@
                         "Script Guid": 0,
                         "Active Status": false,
                         "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 88
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "TickIcon",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 50.0,
+                            "y": 50.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -85.0,
+                            "y": 170.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            9604788041699812520,
+                            2550044418833058707,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Gamma_Disable_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 16,
+                        "Script Guid": 4382456264627877668,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 89
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "CloseButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -85.0,
+                            "y": 170.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            2550044418833058707,
+                            9604788041699812520,
+                            16415915133639986106,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Gamma_Enable_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "CloseButton_Unselected"
+                            },
+                            {
+                                "ID": "CloseButton_Selected"
+                            },
+                            {
+                                "ID": "CloseButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 17,
+                        "Script Guid": 2003630853157772196,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 90
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "TickIcon",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 50.0,
+                            "y": 50.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -85.0,
+                            "y": -140.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Fullscreen_Disable_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 18,
+                        "Script Guid": 17975241954590589837,
+                        "Active Status": false,
+                        "Button Index": 6
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 91
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "CloseButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 100.0,
+                            "y": 100.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -85.0,
+                            "y": -140.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 4
+                    },
+                    "Name": {
+                        "Name": "Fullscreen_Enable_Settings"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 19,
+                        "Script Guid": 29570113555440487,
+                        "Active Status": false,
+                        "Button Index": 6
                     }
                 }
             ]

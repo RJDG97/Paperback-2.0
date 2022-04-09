@@ -33,5 +33,6 @@
     "BackButton_Unselected": "../../resources/textures/UI/Menus/Buttons/BackButton_Unselected_Mirrored.dds 0",
     "BackButton_Selected": "../../resources/textures/UI/Menus/Buttons/BackButton_Selected_Mirrored.dds 0",
     "Settings_UIBar_Outline": "../../resources/textures/UI/Menus/Settings_UIBar_Outline.dds 0",
-    "SkillUISmallBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Freeze.dds 0"
+    "SkillUISmallBar_Freeze": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Freeze.dds 0",
+    "TickIcon": "../../resources/textures/UI/Menus/TickIcon_Mirrored.dds 0"
 }
