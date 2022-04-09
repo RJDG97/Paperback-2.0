@@ -61,3 +61,17 @@ event:/DVO_L2S3_02
 event:/DVO_L2S3_03
 event:/DVO_L2S4_01
 event:/DVO_L2S4_02
+event:/DVO_L3S1_01
+event:/DVO_L3S1_02
+event:/DVO_L3S1_03
+event:/DVO_L3S1_04
+event:/DVO_L3S1_05
+event:/DVO_L3S2_01
+event:/DVO_L3S2_02
+event:/DVO_L3S2_03
+event:/DVO_L3S2_04
+event:/DVO_L3S3_01
+event:/DVO_L3S3_02
+event:/DVO_L3S3_03
+event:/DVO_L3S3_04
+event:/DVO_L3S3_05
