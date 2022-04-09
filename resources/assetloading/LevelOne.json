@@ -44445,10 +44445,10 @@
                         "FontSize": 2.4000000953674318
                     },
                     "Bulk Sound": {
-                        "Path": "event:/DVO_L1S1_01,event:/DVO_L1S1_02,event:/DVO_L1S1_03,event:/DVO_L1S1_04,event:/DVO_L1S1_05,event:/DVO_L1S1_06",
-                        "Tags": "DVO_L1S1_01,DVO_L1S1_02,DVO_L1S1_03,DVO_L1S1_04,DVO_L1S1_05,DVO_L1S1_06",
+                        "Path": "event:/DVO_L1S1_01,event:/DVO_L1S1_02,event:/DVO_L1S1_03,event:/DVO_L1S1_04,event:/DVO_L1S1_05,event:/DVO_L1S1_06,event:/DVO_L1S2_01,event:/DVO_L1S2_02,event:/DVO_L1S3_01,event:/DVO_L1S3_02,event:/DVO_L1S3_03,event:/DVO_L1S3_04,event:/DVO_L1S3_05,event:/DVO_L1S4_01,event:/DVO_L1S4_02,event:/DVO_L1S4_03,event:/DVO_L1S4_04,event:/DVO_L1S5_01,event:/DVO_L1S5_02,event:/DVO_L1S5_03",
+                        "Tags": "DVO_L1S1_01,DVO_L1S1_02,DVO_L1S1_03,DVO_L1S1_04,DVO_L1S1_05,DVO_L1S1_06,DVO_L1S2_01,DVO_L1S2_02,DVO_L1S3_01,DVO_L1S3_02,DVO_L1S3_03,DVO_L1S3_04,DVO_L1S3_05,DVO_L1S4_01,DVO_L1S4_02,DVO_L1S4_03,DVO_L1S4_04,event:/DVO_L1S5_01,event:/DVO_L1S5_02,event:/DVO_L1S5_03",
                         "Is 3D events": false
-                    },
+                    },         
                     "DialogueText": {
                         "Text Speed": 30.0,
                         "Elapsed Time": 0.0,
