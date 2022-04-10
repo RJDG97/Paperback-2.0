@@ -20,6 +20,9 @@ namespace CSScript
         int m_NumTop = 0;
         bool m_Activated = false;
 
+        String m_OnModel;
+        String m_OffModel;
+
         public static MovingPlatformSwitch getInst()
         {
             return new MovingPlatformSwitch();
@@ -42,6 +45,8 @@ namespace CSScript
             }
 
             m_ChildPathFollower.m_PauseTravel = true;
+            m_OffModel = m_Mesh.m_Model;
+            m_OnModel = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 3) + "ON"; ;
         }
 
         public void PreUpdate(float dt)
@@ -75,9 +80,9 @@ namespace CSScript
                     m_Activated = true;
                 }
 
-                if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 3, 3) == "OFF")
+                if (m_Mesh.m_Model == m_OffModel)
                 {
-                    m_Mesh.m_Model = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 3) + "ON";
+                    m_Mesh.m_Model = m_OnModel;
                 }
             }
         }
@@ -96,20 +101,20 @@ namespace CSScript
                     m_Activated = true;
                 }
 
-                if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 3, 3) == "OFF")
+                if (m_Mesh.m_Model == m_OffModel)
                 {
-                    //    m_Mesh.m_Model = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 3) + "ON"; // Crash
+                    m_Mesh.m_Model = m_OnModel;
                 }
-        }
+            }
         }
 
         public void OnCollisionExit(UInt32 ID)
         {
             if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
             {
-                if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 2, 2) == "ON")
+                if (m_Mesh.m_Model == m_OnModel)
                 {
-                    m_Mesh.m_Model = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 2) + "OFF";
+                    m_Mesh.m_Model = m_OffModel;
                 }
 
                 m_Sound.m_Trigger = true;
