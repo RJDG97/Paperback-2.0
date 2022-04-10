@@ -634,7 +634,6 @@ namespace CSScript
                             {   
                                 Freezable freezable = new Freezable(temp_id);
                                     
-
                                 if (!freezable.m_Frozen)
                                 {
                                     RevertHovered(true);
