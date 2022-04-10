@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 567
+                "EntityHead": 569
             }
         },
         {
@@ -5220,7 +5220,7 @@
                         },
                         "Position": {
                             "x": 36.11000061035156,
-                            "y": 5.692447662353516,
+                            "y": 5.692000389099121,
                             "z": -15.22700023651123
                         }
                     },
@@ -6319,7 +6319,7 @@
                         },
                         "Position": {
                             "x": 40.11000061035156,
-                            "y": 2.292447328567505,
+                            "y": 8.392000198364258,
                             "z": -13.927000045776368
                         }
                     },
@@ -20830,7 +20830,8 @@
                             530,
                             433,
                             531,
-                            532
+                            532,
+                            568
                         ]
                     },
                     "Rigidbody": {
@@ -21667,6 +21668,82 @@
                     },
                     "Name": {
                         "Name": "Invisible wall 5"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 568
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": -0.20000000298023225,
+                            "y": 0.6000000238418579,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 40.5,
+                            "y": 7.619999885559082,
+                            "z": -13.75
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -0.10000000149011612,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 0.10000000149011612,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            3617555656175080491,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 431
+                    },
+                    "Name": {
+                        "Name": "Invisible wall 1"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -28708,6 +28785,179 @@
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 567
+                    },
+                    "Mesh": {
+                        "Model": "InteractableBlock2x2",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0020000000949949028,
+                            "y": 0.0020000000949949028,
+                            "z": 0.0020000000949949028
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 40.10499954223633,
+                            "y": 9.343999862670899,
+                            "z": -13.50100040435791
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": true,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "PushableBlock"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.3799999952316284,
+                            "z": -0.30000001192092898
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.3799999952316284,
+                            "z": 0.30000001192092898
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            3617555656175080491,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 161
+                    },
+                    "Name": {
+                        "Name": "PushableBlock"
+                    },
+                    "Mass": {
+                        "Mass": 6.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Pushable": {
+                        "State": 0
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.0,
+                        "Emission Interval": 0.20000000298023225,
+                        "Emission Rate": 1,
+                        "Emission Cap": 20,
+                        "Particle Texture Name": "FreezeParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 1.0,
+                            "Max Lifetime": 3.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": 0.0,
+                                "y": 1.0,
+                                "z": 0.0
+                            },
+                            "Max Velocity": {
+                                "x": 0.0,
+                                "y": 2.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.30000001192092898,
+                            "Max Opacity": 0.6999999284744263
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 1
+                    }
                 }
             ]
         },
@@ -28752,6 +29002,7 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             249,
+                            567,
                             363,
                             495,
                             398,
@@ -32193,9 +32444,9 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0010000000474974514,
+                            "x": 0.0012000000569969416,
                             "y": 0.003000000026077032,
-                            "z": 0.0010000000474974514
+                            "z": 0.0012000000569969416
                         }
                     },
                     "Rotation": {
@@ -32224,9 +32475,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 35.88899612426758,
+                            "x": 35.68899917602539,
                             "y": 1.872522234916687,
-                            "z": -15.202643394470215
+                            "z": -15.803000450134278
                         }
                     },
                     "RigidForce": {
@@ -32250,14 +32501,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.0,
+                            "x": -1.100000023841858,
                             "y": -1.899999976158142,
-                            "z": -0.8999999761581421
+                            "z": -1.0
                         },
                         "Max Point": {
-                            "x": 1.0,
+                            "x": 1.100000023841858,
                             "y": 1.899999976158142,
-                            "z": 0.8999999761581421
+                            "z": 1.0
                         },
                         "Is Collide": false
                     },
@@ -32563,102 +32814,6 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 182
-                    },
-                    "Mesh": {
-                        "Model": "CardboardBoxWithFlaps",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0010000000474974514,
-                            "y": 0.003000000026077032,
-                            "z": 0.0010000000474974514
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.5,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 35.88899612426758,
-                            "y": 1.872522234916687,
-                            "z": -13.03382682800293
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.899999976158142,
-                            "z": -0.8999999761581421
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.899999976158142,
-                            "z": 0.8999999761581421
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            5691439207370049121,
-                            14486341741652966143,
-                            16415915133639986106,
-                            9604788041699812520,
-                            3617555656175080491,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 155
-                    },
-                    "Name": {
-                        "Name": "Cardboard box 7"
-                    }
-                },
-                {
-                    "Entity": {
                         "Global Index": 183
                     },
                     "Mesh": {
@@ -32670,9 +32825,9 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0010000000474974514,
+                            "x": 0.0012000000569969416,
                             "y": 0.003000000026077032,
-                            "z": 0.0010000000474974514
+                            "z": 0.001500000013038516
                         }
                     },
                     "Rotation": {
@@ -32701,9 +32856,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 33.46231460571289,
-                            "y": 0.3592425584793091,
-                            "z": -19.362701416015626
+                            "x": 35.68899917602539,
+                            "y": 1.872522234916687,
+                            "z": -13.402999877929688
                         }
                     },
                     "RigidForce": {
@@ -32727,14 +32882,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.0,
-                            "y": -1.9299999475479127,
-                            "z": -0.8999999761581421
+                            "x": -1.100000023841858,
+                            "y": -1.899999976158142,
+                            "z": -1.2999999523162842
                         },
                         "Max Point": {
-                            "x": 1.0,
-                            "y": 1.9299999475479127,
-                            "z": 0.8999999761581421
+                            "x": 1.100000023841858,
+                            "y": 1.899999976158142,
+                            "z": 1.2999999523162842
                         },
                         "Is Collide": false
                     },
@@ -32750,7 +32905,102 @@
                         "Prefab GID": 155
                     },
                     "Name": {
-                        "Name": "Cardboard box 8"
+                        "Name": "Cardboard box 5"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 560
+                    },
+                    "Mesh": {
+                        "Model": "CubbyHoleThisWay_Right",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 51.37278747558594,
+                            "y": 5.82071590423584,
+                            "z": 6.901096343994141
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.30000001192092898,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.30000001192092898,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            5691439207370049121,
+                            9604788041699812520,
+                            3617555656175080491,
+                            16415915133639986106,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 146
+                    },
+                    "Name": {
+                        "Name": "CubbyAreaSign"
                     }
                 },
                 {
@@ -33242,7 +33492,7 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.0010000000474974514,
+                            "x": 0.001500000013038516,
                             "y": 0.003000000026077032,
                             "z": 0.0010000000474974514
                         }
@@ -33273,7 +33523,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 45.55365753173828,
+                            "x": 45.970001220703128,
                             "y": 1.872522234916687,
                             "z": -10.575855255126954
                         }
@@ -33299,12 +33549,12 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.8999999761581421,
+                            "x": -1.2999999523162842,
                             "y": -1.9299999475479127,
                             "z": -0.8999999761581421
                         },
                         "Max Point": {
-                            "x": 0.8999999761581421,
+                            "x": 1.2999999523162842,
                             "y": 1.9299999475479127,
                             "z": 0.8999999761581421
                         },
@@ -45661,10 +45911,10 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 560
+                        "Global Index": 182
                     },
                     "Mesh": {
-                        "Model": "CubbyHoleThisWay_Right",
+                        "Model": "CardboardBoxWithFlaps",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -45672,15 +45922,15 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
+                            "x": 0.0011500000255182386,
+                            "y": 0.0012000000569969416,
+                            "z": 0.003000000026077032
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 180.0,
+                            "y": 0.0,
                             "z": 0.0
                         }
                     },
@@ -45703,9 +45953,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 51.37278747558594,
-                            "y": 5.82071590423584,
-                            "z": 6.901096343994141
+                            "x": 46.31700134277344,
+                            "y": 1.3730000257492066,
+                            "z": -14.076000213623047
                         }
                     },
                     "RigidForce": {
@@ -45729,29 +45979,30 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.5,
-                            "y": -0.30000001192092898,
-                            "z": -1.0
+                            "x": -1.0,
+                            "y": -0.9399999976158142,
+                            "z": -2.5
                         },
                         "Max Point": {
-                            "x": 0.5,
-                            "y": 0.30000001192092898,
-                            "z": 1.0
+                            "x": 1.0,
+                            "y": 0.9399999976158142,
+                            "z": 2.5
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
                             5691439207370049121,
+                            14486341741652966143,
+                            16415915133639986106,
                             9604788041699812520,
                             3617555656175080491,
-                            16415915133639986106,
-                            14486341741652966143
+                            17008353085049151909
                         ],
-                        "Prefab GID": 146
+                        "Prefab GID": 155
                     },
                     "Name": {
-                        "Name": "CubbyAreaSign"
+                        "Name": "Cardboard box 9"
                     }
                 }
             ]
@@ -46008,7 +46259,9 @@
                             165,
                             166,
                             333,
-                            337
+                            182,
+                            337,
+                            183
                         ]
                     },
                     "Rotation": {
@@ -49979,7 +50232,7 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.003000000026077032,
+                            "x": 0.004399999976158142,
                             "y": 0.02500000037252903,
                             "z": 0.004000000189989805
                         }
@@ -49998,9 +50251,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 32.64933776855469,
+                            "x": 32.0,
                             "y": 0.40222740173339846,
-                            "z": -15.017398834228516
+                            "z": -16.91699981689453
                         }
                     },
                     "RigidForce": {
@@ -50024,12 +50277,12 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.7000000476837159,
+                            "x": -2.5999999046325685,
                             "y": -3.200000047683716,
                             "z": -3.299999952316284
                         },
                         "Max Point": {
-                            "x": 1.7000000476837159,
+                            "x": 2.5999999046325685,
                             "y": 3.200000047683716,
                             "z": 3.299999952316284
                         },
@@ -53408,7 +53661,7 @@
                     "Offset": {
                         "Postion Offset": {
                             "x": -4.0,
-                            "y": 2.4000000953674318,
+                            "y": -3.700000047683716,
                             "z": -1.2999999523162842
                         },
                         "Rotation Offset": {
@@ -53449,7 +53702,7 @@
                         },
                         "Position": {
                             "x": 36.11000061035156,
-                            "y": 4.692447662353516,
+                            "y": 4.692000389099121,
                             "z": -15.22700023651123
                         }
                     },

@@ -123,7 +123,7 @@ namespace CSScript
                 {
                     if (!m_ElevatorFreezable.m_Frozen)
                     {
-                        //m_ElevatorSound.m_Trigger = true;
+                        m_ElevatorSound.m_Trigger = true;
                         m_ElevatorAnimator.m_PauseAnimation = false;
 
                         if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
@@ -159,7 +159,7 @@ namespace CSScript
             {
                 if (!m_ElevatorFreezable.m_Frozen && !m_Activated)
                 {
-                    //m_ElevatorSound.m_Trigger = true;
+                    m_ElevatorSound.m_Trigger = true;
                     m_ElevatorAnimator.m_PauseAnimation = false;
 
                     if (m_ElevatorElevator.m_StartTime < m_ElevatorElevator.m_StopTime)
