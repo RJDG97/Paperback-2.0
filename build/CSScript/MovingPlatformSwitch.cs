@@ -14,6 +14,7 @@ namespace CSScript
 
         Freezable m_ChildFreezable;
         PathFollower m_ChildPathFollower; //moving platform is child
+        ParticleEmitter m_ChildEmitter;
 
         Int32 m_ChildID;
         Sound m_PlatformSound;
@@ -42,6 +43,7 @@ namespace CSScript
                 m_ChildFreezable = new Freezable((UInt32)m_ChildID);
                 m_ChildPathFollower = new PathFollower((UInt32)m_ChildID);
                 m_PlatformSound = new Sound((UInt32)m_ChildID);
+                m_ChildEmitter = new ParticleEmitter((UInt32)m_ChildID);
 
                 m_ChildPathFollower.m_PauseTravel = true;
             }
@@ -58,6 +60,16 @@ namespace CSScript
                 m_ChildPathFollower.m_Reversed = true;
                 m_ChildPathFollower.m_PauseTravel = false;
                 m_Activated = false;
+            }
+
+            if (m_ChildFreezable.m_Frozen)
+            {
+                m_ChildEmitter.m_Lifetime = 0.5f;
+            }
+
+            else
+            {
+                m_ChildEmitter.m_Lifetime = 0.0f;
             }
         }
 

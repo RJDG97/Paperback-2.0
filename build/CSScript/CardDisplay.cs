@@ -132,19 +132,21 @@ namespace CSScript
                     }
                 }
 
-                if (m_Abilities.Count > 0)
+                switch (m_Abilities.Count)
                 {
-                    ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
-                }
+                    case 0: break;
+                    case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;
 
-                if (m_Abilities.Count > 1)
-                {
-                    ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
-                }
+                    case 2:
+                        ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                        ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                        break;
 
-                if (m_Abilities.Count > 2)
-                {
-                    ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+                    case 3:
+                        ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                        ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                        ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+                        break;
                 }
             }
 
@@ -331,20 +333,21 @@ namespace CSScript
                 }
             }
 
-
-            if (m_Abilities.Count > 0)
+            switch(m_Abilities.Count)
             {
-                ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
-            }
+                case 0: break;
+                case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;
 
-            if (m_Abilities.Count > 1)
-            {
-                ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
-            }
+                case 2:
+                    ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                    ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                    break;
 
-            if (m_Abilities.Count > 2)
-            {
-                ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+                case 3:
+                    ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                    ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                    ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+                    break;
             }
         }
 

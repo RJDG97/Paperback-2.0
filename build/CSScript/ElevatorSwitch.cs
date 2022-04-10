@@ -19,6 +19,8 @@ namespace CSScript
         Sound m_ElevatorSound;
         Scale m_ElevatorScale;
 
+        ParticleEmitter m_PlatformSlopeAEmitter;
+
         Int32 m_PlatformID;
         Offset m_PlatformOffset;
 
@@ -59,6 +61,10 @@ namespace CSScript
                 {
                     m_PlatformOffset = new Offset((UInt32)m_PlatformID);
                     m_PlatformStartY = m_PlatformOffset.m_PosOffset.y;
+
+                    Parent PlatformParent = new Parent((UInt32)m_PlatformID);
+                    Int32 platform_slope_a_id = PlatformParent.GetChildIDofName("PlatformSlopeA");
+                    m_PlatformSlopeAEmitter = new ParticleEmitter((UInt32)platform_slope_a_id);
                 }
             }
 
@@ -105,6 +111,13 @@ namespace CSScript
                     m_ElevatorAnimator.m_PauseAtTime = m_ElevatorElevator.m_StartTime;
                     m_Activated = false;
                 }
+
+                m_PlatformSlopeAEmitter.m_Lifetime = 0.0f;
+            }
+
+            else
+            {
+                m_PlatformSlopeAEmitter.m_Lifetime = 0.5f;
             }
         }
 
