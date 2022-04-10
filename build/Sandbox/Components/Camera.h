@@ -67,7 +67,7 @@ struct camera
 	}
 
 	glm::mat4 m_View;
-	glm::mat4 m_Projection = glm::perspective(glm::radians(59.f), 1920.f / 1080.f, 0.7f, 200.f);
+	glm::mat4 m_Projection = glm::perspective(glm::radians(59.f), 1920.f / 1080.f, 0.2f, 200.f);
 	glm::vec3 m_Target = glm::vec3{ 0.f, 0.f, 0.f };
 	glm::vec3 m_Position;
 
