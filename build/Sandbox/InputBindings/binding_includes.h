@@ -956,6 +956,28 @@ namespace paperback::input::binding
         END_INPUT_ACTION
     END_BINDING_CONSTRUCT
 
+    BEGIN_BINDING_CONSTRUCT( Play_AbilitySFX )
+        BEGIN_INPUT_ACTION
+
+            // TODO - Update Query Initialization To Constructor Call
+            tools::query Query;
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator, mesh >();
+		    Query.m_OneOf.AddFromComponents< player_interaction, paperback::component::entity >();
+		    Query.m_NoneOf.AddFromComponents< prefab >();
+
+            if ( !m_Coordinator.GetPauseBool() )
+            {
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
+                {
+                    // FPS Mode Is Active - Do Not Allow Player Swap
+                    if ( Controller.m_PlayerStatus && Camera.m_Active )
+                        if ( Controller.m_FPSMode ) m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_Shoot" );
+                });
+            }
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
     BEGIN_BINDING_CONSTRUCT(SelectUIButton)
         BEGIN_INPUT_ACTION
 

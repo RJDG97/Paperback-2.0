@@ -87,6 +87,7 @@
     <Compile Include="Tools\Components\Parent.cs" />
     <Compile Include="Tools\Components\Child.cs" />
     <Compile Include="Tools\Components\PlayerController.cs" />
+    <Compile Include="Tools\PlaySounds.cs" />
     <Compile Include="Tools\Tag.cs" />
     <Compile Include="Tools\Player.cs" />
     <Compile Include="Tools\Raycast.cs" />
