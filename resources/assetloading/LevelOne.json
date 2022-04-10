@@ -47616,7 +47616,8 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            10372931727815950946
                         ],
                         "Prefab GID": 379
                     },
@@ -47633,24 +47634,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
-                        "Emission Rate": 1,
+                        "Emission Interval": 0.10000000149011612,
+                        "Emission Rate": 2,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.5
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 3.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 4.0,
                                 "z": 0.0
                             }
                         },
@@ -47667,8 +47668,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.800000011920929,
+                            "Max Opacity": 1.0
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -47681,12 +47682,12 @@
                         },
                         "Generate Particle Scale": {
                             "Min Scale": {
-                                "x": 0.05000000074505806,
+                                "x": 0.10000000149011612,
                                 "y": 0.0010000000474974514,
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.20000000298023225,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -47789,7 +47790,8 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            10372931727815950946
                         ],
                         "Prefab GID": 379
                     },
@@ -47806,24 +47808,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
-                        "Emission Rate": 1,
+                        "Emission Interval": 0.10000000149011612,
+                        "Emission Rate": 2,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.5
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 3.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 4.0,
                                 "z": 0.0
                             }
                         },
@@ -47840,8 +47842,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.800000011920929,
+                            "Max Opacity": 1.0
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -47854,12 +47856,12 @@
                         },
                         "Generate Particle Scale": {
                             "Min Scale": {
-                                "x": 0.05000000074505806,
+                                "x": 0.10000000149011612,
                                 "y": 0.0010000000474974514,
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.20000000298023225,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -47962,7 +47964,8 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            10372931727815950946
                         ],
                         "Prefab GID": 379
                     },
@@ -47979,24 +47982,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
-                        "Emission Rate": 1,
+                        "Emission Interval": 0.10000000149011612,
+                        "Emission Rate": 2,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.5
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 3.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 4.0,
                                 "z": 0.0
                             }
                         },
@@ -48013,8 +48016,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.800000011920929,
+                            "Max Opacity": 1.0
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -48027,12 +48030,12 @@
                         },
                         "Generate Particle Scale": {
                             "Min Scale": {
-                                "x": 0.05000000074505806,
+                                "x": 0.10000000149011612,
                                 "y": 0.0010000000474974514,
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.20000000298023225,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -48135,7 +48138,8 @@
                         "Modified Components": [
                             17008353085049151909,
                             5691439207370049121,
-                            3617555656175080491
+                            3617555656175080491,
+                            10372931727815950946
                         ],
                         "Prefab GID": 379
                     },
@@ -48152,24 +48156,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
-                        "Emission Rate": 1,
+                        "Emission Interval": 0.10000000149011612,
+                        "Emission Rate": 2,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.5
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 3.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 4.0,
                                 "z": 0.0
                             }
                         },
@@ -48186,8 +48190,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.800000011920929,
+                            "Max Opacity": 1.0
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -48200,12 +48204,12 @@
                         },
                         "Generate Particle Scale": {
                             "Min Scale": {
-                                "x": 0.05000000074505806,
+                                "x": 0.10000000149011612,
                                 "y": 0.0010000000474974514,
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.20000000298023225,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -48309,6 +48313,7 @@
                             17008353085049151909,
                             5691439207370049121,
                             3617555656175080491,
+                            10372931727815950946,
                             9604788041699812520
                         ],
                         "Prefab GID": 379
@@ -48326,24 +48331,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
-                        "Emission Rate": 1,
+                        "Emission Interval": 0.10000000149011612,
+                        "Emission Rate": 2,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.5
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 3.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 4.0,
                                 "z": 0.0
                             }
                         },
@@ -48360,8 +48365,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.800000011920929,
+                            "Max Opacity": 1.0
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -48374,12 +48379,12 @@
                         },
                         "Generate Particle Scale": {
                             "Min Scale": {
-                                "x": 0.05000000074505806,
+                                "x": 0.10000000149011612,
                                 "y": 0.0010000000474974514,
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.20000000298023225,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -48754,24 +48759,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -48788,8 +48793,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -48807,7 +48812,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -48963,24 +48968,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -48997,8 +49002,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -49016,7 +49021,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -49173,24 +49178,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -49207,8 +49212,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -49226,7 +49231,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -49382,24 +49387,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -49416,8 +49421,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -49435,7 +49440,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -49592,24 +49597,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -49626,8 +49631,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -49645,7 +49650,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -49825,24 +49830,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -49859,8 +49864,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.699999988079071
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -49878,7 +49883,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -50030,7 +50035,8 @@
                             8376831551428810534,
                             17639936325783395793,
                             15204223096342135753,
-                            17008353085049151909
+                            17008353085049151909,
+                            10372931727815950946
                         ],
                         "Prefab GID": 186
                     },
@@ -50044,24 +50050,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -50078,8 +50084,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -50097,7 +50103,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -50242,24 +50248,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -50276,8 +50282,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -50295,7 +50301,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -50440,24 +50446,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -50474,8 +50480,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -50493,7 +50499,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -50638,24 +50644,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -50672,8 +50678,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -50856,24 +50862,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -50890,8 +50896,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -50909,7 +50915,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -51043,6 +51049,7 @@
                         "Modified Components": [
                             17008353085049151909,
                             3617555656175080491,
+                            10372931727815950946,
                             8376831551428810534
                         ],
                         "Prefab GID": 198
@@ -51058,24 +51065,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -51092,8 +51099,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -51111,7 +51118,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -51219,6 +51226,7 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             3617555656175080491,
+                            10372931727815950946,
                             8376831551428810534,
                             17008353085049151909
                         ],
@@ -51235,24 +51243,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -51269,8 +51277,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -51288,7 +51296,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -51396,6 +51404,7 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             3617555656175080491,
+                            10372931727815950946,
                             17008353085049151909
                         ],
                         "Prefab GID": 198
@@ -51411,24 +51420,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -51445,8 +51454,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -51464,7 +51473,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -51573,7 +51582,8 @@
                         "Modified Components": [
                             8376831551428810534,
                             17008353085049151909,
-                            3617555656175080491
+                            3617555656175080491,
+                            10372931727815950946
                         ],
                         "Prefab GID": 198
                     },
@@ -51588,24 +51598,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -51622,8 +51632,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -51641,7 +51651,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -51750,7 +51760,8 @@
                         "Modified Components": [
                             8376831551428810534,
                             17008353085049151909,
-                            3617555656175080491
+                            3617555656175080491,
+                            10372931727815950946
                         ],
                         "Prefab GID": 198
                     },
@@ -51765,24 +51776,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -51799,8 +51810,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -51818,7 +51829,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -51926,6 +51937,7 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             3617555656175080491,
+                            10372931727815950946,
                             17008353085049151909,
                             8376831551428810534
                         ],
@@ -51942,24 +51954,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -51976,8 +51988,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -51995,7 +52007,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -52103,6 +52115,7 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             3617555656175080491,
+                            10372931727815950946,
                             8376831551428810534,
                             17008353085049151909
                         ],
@@ -52119,24 +52132,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -52153,8 +52166,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -52172,7 +52185,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -52281,7 +52294,8 @@
                         "Modified Components": [
                             8376831551428810534,
                             17008353085049151909,
-                            3617555656175080491
+                            3617555656175080491,
+                            10372931727815950946
                         ],
                         "Prefab GID": 198
                     },
@@ -52296,24 +52310,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -52330,8 +52344,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -52349,7 +52363,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -52695,24 +52709,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -52729,8 +52743,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -52748,7 +52762,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -52877,24 +52891,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -52911,8 +52925,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -52930,7 +52944,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -53059,24 +53073,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -53093,8 +53107,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -53112,7 +53126,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -53258,24 +53272,24 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.0,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
+                        "Emission Interval": 0.05000000074505806,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "FreezeParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 0.800000011920929,
+                            "Max Lifetime": 1.2999999523162842
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
                             "Min Velocity": {
                                 "x": 0.0,
-                                "y": 1.0,
+                                "y": 2.0,
                                 "z": 0.0
                             },
                             "Max Velocity": {
                                 "x": 0.0,
-                                "y": 2.0,
+                                "y": 3.0,
                                 "z": 0.0
                             }
                         },
@@ -53292,8 +53306,8 @@
                             }
                         },
                         "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
+                            "Min Opacity": 0.699999988079071,
+                            "Max Opacity": 0.8999999761581421
                         },
                         "Update Particle Velocity": {
                             "Destination": {
@@ -53311,7 +53325,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
