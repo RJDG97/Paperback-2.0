@@ -245,10 +245,6 @@ namespace paperback::archetype
     //             Prefab
     //-----------------------------------
 
-    // std::byte* b = PrefabArchetype->FindComponent( Details, CGuid.m_Value )
-    // const auto& ComponentInfo = *PPB.FindComponentInfo( CGuid )
-    // ComponentInfo.m_UpdateInstances( b, PoolDetails_Prefab, PrefabArchetype )
-
     template < typename T_COMPONENT >
     void instance::UpdatePrefabInstanceComponent( const vm::PoolDetails& Details, T_COMPONENT& PrefabComponent ) noexcept
     {

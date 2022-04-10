@@ -460,7 +460,7 @@ namespace paperback::input::binding
 	                    }
 	                    else if (Direction.y < 0)
 	                    {
-                            Camera.RotateUp( Direction.y * -1.f );
+                            Camera.RotateUp( Direction.y * -1.f, Controller.m_FPSMode );
 	                    }
                     }
                 });
@@ -495,7 +495,7 @@ namespace paperback::input::binding
                             if ( GP->m_State.m_RightAxis.y > 0.0f )
                                 Camera.RotateDown( std::fabs(GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f) );
                             else if ( GP->m_State.m_RightAxis.y < 0.0f )
-                                Camera.RotateUp( std::fabs(GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f) );
+                                Camera.RotateUp( std::fabs(GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f), Controller.m_FPSMode );
                         }
                     });
                 }
