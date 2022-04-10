@@ -268,6 +268,7 @@ void InitializeGame()
             auto Disable_FPSAction           = PPB.RegisterBinding<paperback::input::binding::Disable_FPS_Action>();
             auto Toggle_Fullscreen           = PPB.RegisterBinding<paperback::input::binding::Toggle_Fullscreen>();
             auto Toggle_Players              = PPB.RegisterBinding<paperback::input::binding::Toggle_Players>();
+            auto Ability_SFX                 = PPB.RegisterBinding<paperback::input::binding::Play_AbilitySFX>();
 
 
 
@@ -286,6 +287,7 @@ void InitializeGame()
 
 
             // Mouse Bindings
+            PPB.AssignBindingToAction( Ability_SFX,       GLFW_MOUSE_BUTTON_1,  input::device::type::id::MOUSE, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Mouse_Rotate,      GLFW_MOUSE_BUTTON_3,  input::device::type::id::MOUSE );
             PPB.AssignBindingToAction( Enable_FPSAction,  GLFW_MOUSE_BUTTON_2,  input::device::type::id::MOUSE, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Disable_FPSAction, GLFW_MOUSE_BUTTON_2,  input::device::type::id::MOUSE, paperback::input::action::BroadcastStatus::RELEASED );
