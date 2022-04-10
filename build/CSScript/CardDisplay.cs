@@ -357,10 +357,11 @@ namespace CSScript
             {
                 case 1:
                 { 
-                    if (mesh.m_Texture.Length > 11 && mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) == "_Unselected")
-                    {
-                        mesh.m_Texture = mesh.m_Texture.Substring(0, mesh.m_Texture.Length - 11); // Crash
-                    }
+                    if (mesh.m_Texture.Length > 11)
+                        if(mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) == "_Unselected")
+                        {
+                            mesh.m_Texture = mesh.m_Texture.Substring(0, mesh.m_Texture.Length - 11); // Crash
+                        }
 
                     break;
                 }
@@ -372,7 +373,7 @@ namespace CSScript
                         mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
                     }
 
-                    if (mesh.m_Texture.Length > 11 && mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
+                    else if (mesh.m_Texture.Length > 11 && mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
                     {
                         mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
                     }
