@@ -20,7 +20,7 @@ namespace MONO_PUSHABLE
 		return m_pushable;
 	}
 
-	MONO_EXPORT uint32_t GetState(void* address)
+	MONO_EXPORT int32_t GetState(void* address)
 	{
 		if (address)
 			return reinterpret_cast<pushable*>(address)->m_State;
@@ -28,7 +28,7 @@ namespace MONO_PUSHABLE
 		return {};
 	}
 
-	MONO_EXPORT void SetState(void* address, uint32_t state)
+	MONO_EXPORT void SetState(void* address, int32_t state)
 	{
 		if (address)
 			reinterpret_cast<pushable*>(address)->m_State = state;
@@ -38,6 +38,6 @@ namespace MONO_PUSHABLE
 	{
 		mono_add_internal_call("CSScript.Pushable::getaddress(uint)", &MONO_PUSHABLE::GetAddress);
 		mono_add_internal_call("CSScript.Pushable::getstate(void*)", &MONO_PUSHABLE::GetState);
-		mono_add_internal_call("CSScript.Pushable::setstate(void*,uint)", &MONO_PUSHABLE::SetState);
+		mono_add_internal_call("CSScript.Pushable::setstate(void*,int)", &MONO_PUSHABLE::SetState);
 	}
 }

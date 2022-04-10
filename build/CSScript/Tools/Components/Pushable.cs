@@ -18,7 +18,7 @@ namespace CSScript
             m_Address = getaddress(id);
         }
 
-        public UInt32 m_State
+        public Int32 m_State
         {
             get
             {
@@ -34,9 +34,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static UInt32 getstate(void* address);
+        private extern static Int32 getstate(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstate(void* address, UInt32 state);
+        private extern static void setstate(void* address, Int32 state);
     }
 }
