@@ -24,6 +24,6 @@ struct nextlevel_level1_button_script : paperback::script::button_interface // I
 
         //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
-        PPB.QueueScene("LevelTwo");
+        PPB.QueueScene("LoadingTwo");
     }
 };

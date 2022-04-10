@@ -27,6 +27,6 @@ struct startlevel3_button_script : paperback::script::button_interface // Inheri
         //PPB.ToggleCursor(false);
         //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
-        PPB.QueueScene("LevelThree");
+        PPB.QueueScene("LoadingThree");
     }
 };
