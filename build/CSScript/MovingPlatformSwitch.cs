@@ -57,6 +57,7 @@ namespace CSScript
             {
                 m_ChildPathFollower.m_Reversed = true;
                 m_ChildPathFollower.m_PauseTravel = false;
+                m_Activated = false;
             }
         }
 
@@ -121,7 +122,6 @@ namespace CSScript
 
                 m_Sound.m_Trigger = true;
                 --m_NumTop;
-                m_Activated = false;
             }
         }
         public void Reset()

@@ -76,11 +76,12 @@ namespace CSScript
                                                                       m_InitialBBOffset.z + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
             }
 
-            if (m_NumTop == 0 && !m_Activated && !m_ChildFreezable.m_Frozen)
+            if (m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
             {
                 m_ChildAnimator.m_Reversed = true;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 0;
+                m_Activated = false;
             }
         }
 
@@ -134,7 +135,6 @@ namespace CSScript
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 --m_NumTop;
-                m_Activated = false;
                 m_Sound.m_Trigger = true;
                 m_Mesh.m_Model = "Button_GateOFF";
             }
