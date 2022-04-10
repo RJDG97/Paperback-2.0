@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 445
+                "EntityHead": 524
             }
         },
         {
@@ -44039,7 +44039,6 @@
                         "Prefab Instances GID": [
                             522,
                             523,
-                            524,
                             525
                         ]
                     },
@@ -44348,108 +44347,6 @@
                     "": {},
                     "DialogueCollider": {
                         "Dialogue Name": "Level2-B"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 524
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -26.666000366210939,
-                            "y": 7.3562116622924809,
-                            "z": -6.958000183105469
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "DialogueTrigger"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            5691439207370049121,
-                            9876869069201391077,
-                            3617555656175080491
-                        ],
-                        "Prefab GID": 518
-                    },
-                    "Name": {
-                        "Name": "Dialogue Collider"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "": {},
-                    "DialogueCollider": {
-                        "Dialogue Name": "Level2-D"
                     }
                 },
                 {
