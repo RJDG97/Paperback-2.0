@@ -23,12 +23,12 @@ struct camera
 			m_Azimuth -= 360.f;
 	}
 
-	void RotateUp(const float Speed = 1.f)
+	void RotateUp(const float Speed = 1.f, bool FPS=false)
 	{
 		m_Theta += Speed;
 
-		if ( m_Theta > m_MaxTheta )  // Cap - 179
-			m_Theta = m_MaxTheta;
+		if ( m_Theta > (FPS ? 179 : m_MaxTheta) )  // Cap - 179
+			m_Theta = (FPS ? 179 : m_MaxTheta);
 	}
 
 	void RotateDown(const float Speed = 1.f)

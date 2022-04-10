@@ -42,16 +42,18 @@ namespace CSScript
                 m_ChildFreezable = new Freezable((UInt32)m_ChildID);
                 m_ChildPathFollower = new PathFollower((UInt32)m_ChildID);
                 m_PlatformSound = new Sound((UInt32)m_ChildID);
+
+                m_ChildPathFollower.m_PauseTravel = true;
             }
 
-            m_ChildPathFollower.m_PauseTravel = true;
+            
             m_OffModel = m_Mesh.m_Model;
             m_OnModel = m_Mesh.m_Model.Substring(0, m_Mesh.m_Model.Length - 3) + "ON"; ;
         }
 
         public void PreUpdate(float dt)
         {
-            if (m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
+            if (m_ChildID != -1 && m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
             {
                 m_ChildPathFollower.m_Reversed = true;
                 m_ChildPathFollower.m_PauseTravel = false;
