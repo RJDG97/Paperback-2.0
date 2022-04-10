@@ -64,10 +64,10 @@ struct ui_system : paperback::system::instance
             , btm_left_y { Transform.m_Position.y - ( Scale.m_Value.y * 0.5f ) }
             , top_right_x{ Transform.m_Position.x + ( Scale.m_Value.x * 0.5f ) }
             , top_right_y{ Transform.m_Position.y + ( Scale.m_Value.y * 0.5f ) };*/
-        float btm_left_x { screen_tf.x - ( screen_scale.x * 0.5f ) }
-            , btm_left_y { screen_tf.y - ( screen_scale.y * 0.5f ) }
-            , top_right_x{ screen_tf.x + ( screen_scale.x * 0.5f ) }
-            , top_right_y{ screen_tf.y + ( screen_scale.y * 0.5f ) };
+        float btm_left_x { screen_tf.x - ( screen_scale.x * 0.35f ) }
+            , btm_left_y { screen_tf.y - ( screen_scale.y * 0.35f ) }
+            , top_right_x{ screen_tf.x + ( screen_scale.x * 0.35f ) }
+            , top_right_y{ screen_tf.y + ( screen_scale.y * 0.35f ) };
 
         // Verify if within button
 	    if ( btm_left_x  <= MousePos.x && btm_left_y  <= MousePos.y &&
