@@ -374,7 +374,7 @@ Renderer::Renderer() :
 	m_Resources.Load3DMeshNUI("TallGateFence", "../../resources/models/nui/TallGateFence.nui");
 	m_Resources.Load3DMeshNUI("TallGate_Freeze", "../../resources/models/nui/TallGateFreeze.nui");
 	m_Resources.Load3DMeshNUI("TallGate_Freeze_Hovered", "../../resources/models/nui/TallGateFreezeHovered.nui");
-	m_Resources.Load3DMeshNUI("TallGate_Freeze_Unhovered", "../../resources/models/nui/TallGateFreeze_Unhovered.nui");
+	m_Resources.Load3DMeshNUI("TallGate_Freeze_Unhovered", "../../resources/models/nui/TallGateFreezeUnhovered.nui");
 
 
 	m_Resources.Load3DMeshNUI("ThickBookend", "../../resources/models/nui/ThickBookend.nui");
