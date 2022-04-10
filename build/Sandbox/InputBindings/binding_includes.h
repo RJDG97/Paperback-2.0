@@ -940,7 +940,7 @@ namespace paperback::input::binding
                         if ( Controller.m_PlayerStatus && Camera.m_Active )
                         {
                             Controller.m_PlayerStatus = Camera.m_Active = false;
-                            Mesh.m_Active = true;
+                            //Mesh.m_Active = true;
                         }
                         else if ( !Controller.m_PlayerStatus && !Camera.m_Active )
                         {
