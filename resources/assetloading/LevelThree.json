@@ -27632,9 +27632,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 43.7913818359375,
+                            "x": 42.29100036621094,
                             "y": 0.7909647822380066,
-                            "z": -6.9227190017700199
+                            "z": 5.876999855041504
                         }
                     },
                     "RigidForce": {
@@ -33027,6 +33027,593 @@
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        223102351977301267,
+                        17639936325783395793,
+                        10372931727815950946,
+                        16449369381659923816
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 225
+                    },
+                    "Mesh": {
+                        "Model": "Billboard",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999128058552742
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 90.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 45.97378921508789,
+                            "y": 3.271806001663208,
+                            "z": -12.826228141784668
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "MovingBillboard"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.8999999761581421,
+                            "y": -0.15000000596046449,
+                            "z": -1.149999976158142
+                        },
+                        "Max Point": {
+                            "x": 0.8999999761581421,
+                            "y": 0.15000000596046449,
+                            "z": 1.149999976158142
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            14486341741652966143,
+                            223102351977301267,
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 223
+                    },
+                    "Name": {
+                        "Name": "Moving Billboard"
+                    },
+                    "Path Follower": {
+                        "Path ID": 1,
+                        "Distance": 0.0,
+                        "Travel Speed": 0.800000011920929,
+                        "Back and Forth": true,
+                        "Reversed": false,
+                        "Pause Travel": false
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.0,
+                        "Emission Interval": 0.20000000298023225,
+                        "Emission Rate": 1,
+                        "Emission Cap": 20,
+                        "Particle Texture Name": "FreezeParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 1.0,
+                            "Max Lifetime": 3.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": 0.0,
+                                "y": 1.0,
+                                "z": 0.0
+                            },
+                            "Max Velocity": {
+                                "x": 0.0,
+                                "y": 2.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.30000001192092898,
+                            "Max Opacity": 0.6999999284744263
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    },
+                    "Freezable": {
+                        "Frozen": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 390
+                    },
+                    "Mesh": {
+                        "Model": "Billboard",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009998250752687455
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 90.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.20000000298023225,
+                            "y": -0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 45.97378921508789,
+                            "y": 3.9626636505126955,
+                            "z": -15.140823364257813
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "MovingBillboard"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.8999999761581421,
+                            "y": -0.15000000596046449,
+                            "z": -1.149999976158142
+                        },
+                        "Max Point": {
+                            "x": 0.8999999761581421,
+                            "y": 0.15000000596046449,
+                            "z": 1.149999976158142
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            3617555656175080491,
+                            14486341741652966143,
+                            223102351977301267,
+                            16415915133639986106,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 223
+                    },
+                    "Name": {
+                        "Name": "Moving Billboard"
+                    },
+                    "Path Follower": {
+                        "Path ID": 2,
+                        "Distance": 4.0,
+                        "Travel Speed": 0.800000011920929,
+                        "Back and Forth": true,
+                        "Reversed": false,
+                        "Pause Travel": false
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.0,
+                        "Emission Interval": 0.20000000298023225,
+                        "Emission Rate": 1,
+                        "Emission Cap": 20,
+                        "Particle Texture Name": "FreezeParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 1.0,
+                            "Max Lifetime": 3.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": 0.0,
+                                "y": 1.0,
+                                "z": 0.0
+                            },
+                            "Max Velocity": {
+                                "x": 0.0,
+                                "y": 2.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.30000001192092898,
+                            "Max Opacity": 0.6999999284744263
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    },
+                    "Freezable": {
+                        "Frozen": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        16415915133639986106,
+                        223102351977301267,
+                        17639936325783395793,
+                        10372931727815950946,
+                        16449369381659923816
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 223
+                    },
+                    "Mesh": {
+                        "Model": "Billboard",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            225,
+                            390
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 35.900001525878909,
+                            "y": 2.0,
+                            "z": 0.0
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": []
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.10000000149011612,
+                            "y": -0.8999999761581421,
+                            "z": -1.2000000476837159
+                        },
+                        "Max Point": {
+                            "x": 0.10000000149011612,
+                            "y": 0.8999999761581421,
+                            "z": 1.2000000476837159
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Moving Billboard"
+                    },
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 1.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": false
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.0,
+                        "Emission Interval": 0.20000000298023225,
+                        "Emission Rate": 1,
+                        "Emission Cap": 20,
+                        "Particle Texture Name": "FreezeParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 1.0,
+                            "Max Lifetime": 3.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": 0.0,
+                                "y": 1.0,
+                                "z": 0.0
+                            },
+                            "Max Velocity": {
+                                "x": 0.0,
+                                "y": 2.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.30000001192092898,
+                            "Max Opacity": 0.6999999284744263
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    },
+                    "Freezable": {
+                        "Frozen": false
                     }
                 }
             ]
@@ -49180,593 +49767,6 @@
                     },
                     "Name": {
                         "Name": "Ability Bar"
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        14351128073332756358,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        223102351977301267,
-                        17639936325783395793,
-                        10372931727815950946,
-                        16449369381659923816
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 225
-                    },
-                    "Mesh": {
-                        "Model": "Billboard",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999128058552742
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 90.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.20000000298023225,
-                            "y": -0.10000000149011612,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 45.97378921508789,
-                            "y": 3.271806001663208,
-                            "z": -12.826228141784668
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "MovingBillboard"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.8999999761581421,
-                            "y": -0.15000000596046449,
-                            "z": -1.149999976158142
-                        },
-                        "Max Point": {
-                            "x": 0.8999999761581421,
-                            "y": 0.15000000596046449,
-                            "z": 1.149999976158142
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            14486341741652966143,
-                            223102351977301267,
-                            16415915133639986106,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 223
-                    },
-                    "Name": {
-                        "Name": "Moving Billboard"
-                    },
-                    "Path Follower": {
-                        "Path ID": 1,
-                        "Distance": 0.0,
-                        "Travel Speed": 0.800000011920929,
-                        "Back and Forth": true,
-                        "Reversed": false,
-                        "Pause Travel": false
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
-                        "Emission Rate": 1,
-                        "Emission Cap": 20,
-                        "Particle Texture Name": "FreezeParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": 0.0,
-                                "y": 1.0,
-                                "z": 0.0
-                            },
-                            "Max Velocity": {
-                                "x": 0.0,
-                                "y": 2.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0010000000474974514,
-                                "z": 0.0010000000474974514
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 0.003000000026077032,
-                                "z": 0.003000000026077032
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    },
-                    "Freezable": {
-                        "Frozen": false
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 390
-                    },
-                    "Mesh": {
-                        "Model": "Billboard",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009998250752687455
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 90.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.20000000298023225,
-                            "y": -0.10000000149011612,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 45.97378921508789,
-                            "y": 3.9626636505126955,
-                            "z": -15.140823364257813
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": [
-                            {
-                                "ID": "MovingBillboard"
-                            }
-                        ]
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.8999999761581421,
-                            "y": -0.15000000596046449,
-                            "z": -1.149999976158142
-                        },
-                        "Max Point": {
-                            "x": 0.8999999761581421,
-                            "y": 0.15000000596046449,
-                            "z": 1.149999976158142
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            3617555656175080491,
-                            14486341741652966143,
-                            223102351977301267,
-                            16415915133639986106,
-                            17008353085049151909
-                        ],
-                        "Prefab GID": 223
-                    },
-                    "Name": {
-                        "Name": "Moving Billboard"
-                    },
-                    "Path Follower": {
-                        "Path ID": 2,
-                        "Distance": 4.0,
-                        "Travel Speed": 0.800000011920929,
-                        "Back and Forth": true,
-                        "Reversed": false,
-                        "Pause Travel": false
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
-                        "Emission Rate": 1,
-                        "Emission Cap": 20,
-                        "Particle Texture Name": "FreezeParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": 0.0,
-                                "y": 1.0,
-                                "z": 0.0
-                            },
-                            "Max Velocity": {
-                                "x": 0.0,
-                                "y": 2.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0010000000474974514,
-                                "z": 0.0010000000474974514
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 0.003000000026077032,
-                                "z": 0.003000000026077032
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    },
-                    "Freezable": {
-                        "Frozen": false
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        10055872472107209861,
-                        14486341741652966143,
-                        8536778051349317767,
-                        17008353085049151909,
-                        5509481706028819786,
-                        14351128073332756358,
-                        3617555656175080491,
-                        16415915133639986106,
-                        223102351977301267,
-                        17639936325783395793,
-                        10372931727815950946,
-                        16449369381659923816
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 223
-                    },
-                    "Mesh": {
-                        "Model": "Billboard",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.009999999776482582,
-                            "z": 0.009999999776482582
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            225,
-                            390
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.20000000298023225,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 35.900001525878909,
-                            "y": 2.0,
-                            "z": 0.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": false,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "EntityScript": {
-                        "Script ID": []
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.10000000149011612,
-                            "y": -0.8999999761581421,
-                            "z": -1.2000000476837159
-                        },
-                        "Max Point": {
-                            "x": 0.10000000149011612,
-                            "y": 0.8999999761581421,
-                            "z": 1.2000000476837159
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Moving Billboard"
-                    },
-                    "Path Follower": {
-                        "Path ID": 0,
-                        "Distance": 0.0,
-                        "Travel Speed": 1.0,
-                        "Back and Forth": false,
-                        "Reversed": false,
-                        "Pause Travel": false
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.0,
-                        "Emission Interval": 0.20000000298023225,
-                        "Emission Rate": 1,
-                        "Emission Cap": 20,
-                        "Particle Texture Name": "FreezeParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 3.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": 0.0,
-                                "y": 1.0,
-                                "z": 0.0
-                            },
-                            "Max Velocity": {
-                                "x": 0.0,
-                                "y": 2.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.30000001192092898,
-                            "Max Opacity": 0.6999999284744263
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0010000000474974514,
-                                "z": 0.0010000000474974514
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 0.003000000026077032,
-                                "z": 0.003000000026077032
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    },
-                    "Freezable": {
-                        "Frozen": false
                     }
                 }
             ]
