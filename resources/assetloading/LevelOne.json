@@ -28265,10 +28265,10 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 405
+                        "Global Index": 515
                     },
                     "Mesh": {
-                        "Model": "Ruler",
+                        "Model": "BookABC",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -28276,16 +28276,16 @@
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.02500000037252903,
+                            "x": 0.019999999552965165,
+                            "y": 0.019999999552965165,
                             "z": 0.019999999552965165
                         }
                     },
                     "Rotation": {
                         "Rotation": {
-                            "x": 90.0,
-                            "y": 90.0,
-                            "z": 0.0
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 90.0
                         }
                     },
                     "Rigidbody": {
@@ -28303,13 +28303,13 @@
                     "Transform": {
                         "Offset": {
                             "x": 0.0,
-                            "y": -0.10000000149011612,
-                            "z": 0.0
+                            "y": 0.0,
+                            "z": 0.10000000149011612
                         },
                         "Position": {
-                            "x": -63.70000076293945,
-                            "y": 4.199999809265137,
-                            "z": 9.100000381469727
+                            "x": -64.69999694824219,
+                            "y": 1.0,
+                            "z": 9.0
                         }
                     },
                     "RigidForce": {
@@ -28333,23 +28333,29 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -0.30000001192092898,
-                            "y": -0.10000000149011612,
-                            "z": -2.5999999046325685
+                            "x": -2.4000000953674318,
+                            "y": -0.5,
+                            "z": -1.850000023841858
                         },
                         "Max Point": {
-                            "x": 0.30000001192092898,
-                            "y": 0.10000000149011612,
-                            "z": 2.5999999046325685
+                            "x": 2.4000000953674318,
+                            "y": 0.5,
+                            "z": 1.850000023841858
                         },
                         "Is Collide": false
                     },
                     "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 406
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909,
+                            3617555656175080491,
+                            14486341741652966143,
+                            5691439207370049121
+                        ],
+                        "Prefab GID": 141
                     },
                     "Name": {
-                        "Name": "Ruler"
+                        "Name": "ABC Book 1-1"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -30414,105 +30420,6 @@
                     },
                     "Name": {
                         "Name": "LearningAreaSign"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 515
-                    },
-                    "Mesh": {
-                        "Model": "BookABC",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.019999999552965165,
-                            "y": 0.019999999552965165,
-                            "z": 0.019999999552965165
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 90.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.10000000149011612
-                        },
-                        "Position": {
-                            "x": -64.69999694824219,
-                            "y": 1.0,
-                            "z": 9.0
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -2.4000000953674318,
-                            "y": -0.5,
-                            "z": -1.850000023841858
-                        },
-                        "Max Point": {
-                            "x": 2.4000000953674318,
-                            "y": 0.5,
-                            "z": 1.850000023841858
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            16415915133639986106,
-                            17008353085049151909,
-                            3617555656175080491,
-                            14486341741652966143,
-                            5691439207370049121
-                        ],
-                        "Prefab GID": 141
-                    },
-                    "Name": {
-                        "Name": "ABC Book 1-1"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -32720,100 +32627,6 @@
                     },
                     "Name": {
                         "Name": "Cylinder"
-                    },
-                    "Mass": {
-                        "Mass": 0.0,
-                        "Inv Mass": 0.0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 406
-                    },
-                    "Mesh": {
-                        "Model": "Ruler",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.009999999776482582,
-                            "y": 0.02500000037252903,
-                            "z": 0.019999999552965165
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            405
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 90.0,
-                            "y": 90.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Rigidbody": {
-                        "Acceleration": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Velocity": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": -0.10000000149011612,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -63.70000076293945,
-                            "y": 4.199999809265137,
-                            "z": 9.100000381469727
-                        }
-                    },
-                    "RigidForce": {
-                        "Static Friction": 0.0,
-                        "Dynamic Friction": 0.0,
-                        "Restitution": 0.0,
-                        "Force": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Moment": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Threshold": 0.25,
-                        "Gravity Affected": true,
-                        "Collision Affected": false,
-                        "Gravity Active": false
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -0.30000001192092898,
-                            "y": -0.10000000149011612,
-                            "z": -2.5999999046325685
-                        },
-                        "Max Point": {
-                            "x": 0.30000001192092898,
-                            "y": 0.10000000149011612,
-                            "z": 2.5999999046325685
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Ruler"
                     },
                     "Mass": {
                         "Mass": 0.0,
@@ -35231,6 +35044,109 @@
                         "East": false,
                         "West": false
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 405
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.02500000037252903,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 90.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.05000000074505806,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -63.70000076293945,
+                            "y": 4.199999809265137,
+                            "z": 9.100000381469727
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.05000000074505806,
+                            "z": -2.5999999046325685
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.05000000074505806,
+                            "z": 2.5999999046325685
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            11057976693296903406,
+                            17008353085049151909,
+                            3617555656175080491
+                        ],
+                        "Prefab GID": 406
+                    },
+                    "Name": {
+                        "Name": "Ruler"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": true,
+                        "East": false,
+                        "West": false
+                    }
                 }
             ]
         },
@@ -35352,6 +35268,106 @@
                         "South": false,
                         "East": false,
                         "West": true
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 406
+                    },
+                    "Mesh": {
+                        "Model": "Ruler",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.02500000037252903,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            405
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 90.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": -0.10000000149011612,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -63.70000076293945,
+                            "y": 4.199999809265137,
+                            "z": 9.100000381469727
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": true,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.30000001192092898,
+                            "y": -0.10000000149011612,
+                            "z": -2.5999999046325685
+                        },
+                        "Max Point": {
+                            "x": 0.30000001192092898,
+                            "y": 0.10000000149011612,
+                            "z": 2.5999999046325685
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Ruler"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "Slope": {
+                        "TOGGLE ONE ONLY: North": false,
+                        "South": false,
+                        "East": false,
+                        "West": false
                     }
                 }
             ]
