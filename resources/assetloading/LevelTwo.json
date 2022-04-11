@@ -1120,11 +1120,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            554,
                             431,
+                            554,
                             432,
-                            544,
                             433,
+                            544,
                             434,
                             435,
                             436,
@@ -3715,10 +3715,10 @@
                             314,
                             460,
                             180,
-                            221,
                             181,
-                            206,
+                            221,
                             182,
+                            206,
                             175,
                             331
                         ]
@@ -9233,11 +9233,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            295,
                             311,
-                            482,
-                            185,
+                            295,
                             498,
+                            185,
+                            482,
                             197,
                             496,
                             507,
@@ -36692,14 +36692,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            299,
-                            236,
                             140,
-                            503,
-                            375,
-                            168,
-                            232,
+                            236,
+                            299,
                             287,
+                            232,
+                            168,
+                            375,
+                            503,
                             169,
                             233,
                             376,
@@ -36822,12 +36822,12 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            384,
-                            392,
                             312,
-                            393,
-                            377,
+                            392,
+                            384,
                             313,
+                            377,
+                            393,
                             378,
                             379,
                             394,
@@ -40894,13 +40894,13 @@
                     "Prefab": {
                         "Prefab Instances GID": [
                             142,
-                            241,
                             362,
-                            160,
+                            241,
                             248,
+                            160,
                             283,
-                            284,
                             187,
+                            284,
                             191,
                             158,
                             293,
@@ -45217,10 +45217,10 @@
                     "ReferencePrefab": {
                         "Modified Components": [
                             16415915133639986106,
-                            5691439207370049121,
                             1871702054972469046,
-                            9604788041699812520,
+                            5691439207370049121,
                             5509481706028819786,
+                            9604788041699812520,
                             15204223096342135753,
                             17639936325783395793,
                             15966406150673095094,
@@ -45725,14 +45725,14 @@
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
-                            17008353085049151909,
                             15966406150673095094,
+                            17008353085049151909,
                             15204223096342135753,
                             3617555656175080491,
                             17639936325783395793,
                             1871702054972469046,
-                            5509481706028819786,
                             12326225187096344837,
+                            5509481706028819786,
                             10372931727815950946
                         ],
                         "Prefab GID": 128
@@ -51558,11 +51558,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            497,
                             281,
+                            497,
                             184,
-                            499,
                             483,
+                            499,
                             189,
                             508,
                             506,
@@ -52118,6 +52118,1226 @@
                     },
                     "Freezable": {
                         "Frozen": false
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        14486341741652966143,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        11993994361337810638,
+                        10372931727815950946
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 422
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999994955956936,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999997094273567
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 421
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -34.19061279296875,
+                            "y": 7.5,
+                            "z": -16.591527938842775
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10372931727815950946
+                        ],
+                        "Prefab GID": 424
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "": {},
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 2,
+                        "Emission Cap": 50,
+                        "Particle Texture Name": "CheckpointParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 4.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.6000000238418579,
+                                "y": 1.0,
+                                "z": -0.6000000238418579
+                            },
+                            "Max Velocity": {
+                                "x": 0.6000000238418579,
+                                "y": 2.0,
+                                "z": 0.6000000238418579
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0,
+                                "z": 1.0
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 3.0,
+                                "z": 3.0
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 284
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 283
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -28.650001525878908,
+                            "y": 7.5,
+                            "z": -11.199999809265137
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10372931727815950946
+                        ],
+                        "Prefab GID": 424
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "": {},
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 2,
+                        "Emission Cap": 50,
+                        "Particle Texture Name": "CheckpointParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 4.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.6000000238418579,
+                                "y": 1.0,
+                                "z": -0.6000000238418579
+                            },
+                            "Max Velocity": {
+                                "x": 0.6000000238418579,
+                                "y": 2.0,
+                                "z": 0.6000000238418579
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0,
+                                "z": 1.0
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 3.0,
+                                "z": 3.0
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 581
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999994955956936,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999997094273567
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 580
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.8500000238418579,
+                            "y": -0.22499999403953553,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -49.39099884033203,
+                            "y": 7.525000095367432,
+                            "z": -26.892000198364259
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            10372931727815950946
+                        ],
+                        "Prefab GID": 424
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "": {},
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 2,
+                        "Emission Cap": 50,
+                        "Particle Texture Name": "CheckpointParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 4.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.6000000238418579,
+                                "y": 1.0,
+                                "z": -0.6000000238418579
+                            },
+                            "Max Velocity": {
+                                "x": 0.6000000238418579,
+                                "y": 2.0,
+                                "z": 0.6000000238418579
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0,
+                                "z": 1.0
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 3.0,
+                                "z": 3.0
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 423
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999994955956936,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999997094273567
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 421
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -35.290611267089847,
+                            "y": 7.5,
+                            "z": -16.591527938842775
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10372931727815950946
+                        ],
+                        "Prefab GID": 426
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "": {},
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 2,
+                        "Emission Cap": 50,
+                        "Particle Texture Name": "CheckpointParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 4.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.6000000238418579,
+                                "y": 1.0,
+                                "z": -0.6000000238418579
+                            },
+                            "Max Velocity": {
+                                "x": 0.6000000238418579,
+                                "y": 2.0,
+                                "z": 0.6000000238418579
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0,
+                                "z": 1.0
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 3.0,
+                                "z": 3.0
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 484
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 283
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -29.75,
+                            "y": 7.5,
+                            "z": -11.199999809265137
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            10372931727815950946
+                        ],
+                        "Prefab GID": 426
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "": {},
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 2,
+                        "Emission Cap": 50,
+                        "Particle Texture Name": "CheckpointParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 4.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.6000000238418579,
+                                "y": 1.0,
+                                "z": -0.6000000238418579
+                            },
+                            "Max Velocity": {
+                                "x": 0.6000000238418579,
+                                "y": 2.0,
+                                "z": 0.6000000238418579
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0,
+                                "z": 1.0
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 3.0,
+                                "z": 3.0
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 582
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999994955956936,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999997094273567
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 580
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 1.0499999523162842,
+                            "y": -0.25,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -47.49100112915039,
+                            "y": 7.5,
+                            "z": -26.892000198364259
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            10372931727815950946
+                        ],
+                        "Prefab GID": 426
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "": {},
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.30000001192092898,
+                        "Emission Interval": 0.30000001192092898,
+                        "Emission Rate": 2,
+                        "Emission Cap": 50,
+                        "Particle Texture Name": "CheckpointParticle",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 2.0,
+                            "Max Lifetime": 4.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": -0.6000000238418579,
+                                "y": 1.0,
+                                "z": -0.6000000238418579
+                            },
+                            "Max Velocity": {
+                                "x": 0.6000000238418579,
+                                "y": 2.0,
+                                "z": 0.6000000238418579
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Min Velocity": 0.0,
+                            "Max Velocity": 0.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.05000000074505806,
+                                "y": 0.0,
+                                "z": 1.0
+                            },
+                            "Max Scale": {
+                                "x": 0.15000000596046449,
+                                "y": 3.0,
+                                "z": 3.0
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        3617555656175080491,
+                        16415915133639986106,
+                        11993994361337810638,
+                        10372931727815950946
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 424
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 425
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.001500000013038516,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            422,
+                            284,
+                            581
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "": {},
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.0,
+                        "Emission Interval": 1.0,
+                        "Emission Rate": 1,
+                        "Emission Cap": 100,
+                        "Particle Texture Name": "",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 1.0,
+                            "Max Lifetime": 5.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": 0.0,
+                                "y": 1.0,
+                                "z": 0.0
+                            },
+                            "Max Velocity": {
+                                "x": 0.0,
+                                "y": 2.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 2.0,
+                                "y": 2.0,
+                                "z": 2.0
+                            },
+                            "Min Velocity": 1.0,
+                            "Max Velocity": 5.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.0010000000474974514,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.003000000026077032,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 426
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 425
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.550000011920929,
+                            "y": -0.20000000298023225,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0020000000949949028,
+                            "z": 0.004999999888241291
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            423,
+                            484,
+                            582
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "": {},
+                    "Particle Emitter": {
+                        "Emitter Lifetime": 0.0,
+                        "Emitter Timer": 0.0,
+                        "Emission Interval": 1.0,
+                        "Emission Rate": 1,
+                        "Emission Cap": 100,
+                        "Particle Texture Name": "",
+                        "Generate Particle Lifetime": {
+                            "Min Lifetime": 1.0,
+                            "Max Lifetime": 5.0
+                        },
+                        "Generate Particle Position": "",
+                        "Generate Particle Velocity": {
+                            "Min Velocity": {
+                                "x": 0.0,
+                                "y": 1.0,
+                                "z": 0.0
+                            },
+                            "Max Velocity": {
+                                "x": 0.0,
+                                "y": 2.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Rotation": {
+                            "Min Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            "Max Rotation": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            }
+                        },
+                        "Generate Particle Opacity": {
+                            "Min Opacity": 0.5,
+                            "Max Opacity": 1.0
+                        },
+                        "Update Particle Velocity": {
+                            "Destination": {
+                                "x": 2.0,
+                                "y": 2.0,
+                                "z": 2.0
+                            },
+                            "Min Velocity": 1.0,
+                            "Max Velocity": 5.0
+                        },
+                        "Generate Particle Scale": {
+                            "Min Scale": {
+                                "x": 0.0010000000474974514,
+                                "y": 0.0010000000474974514,
+                                "z": 0.0010000000474974514
+                            },
+                            "Max Scale": {
+                                "x": 0.003000000026077032,
+                                "y": 0.003000000026077032,
+                                "z": 0.003000000026077032
+                            },
+                            "Enable Uniform Scaling?": true
+                        },
+                        "Particle Has Destination?": false,
+                        "Enable Emitter Prewarm?": false,
+                        "Particle Spawn Location": 0
                     }
                 }
             ]
@@ -54086,11 +55306,11 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            409,
-                            473,
-                            337,
-                            465,
                             242,
+                            465,
+                            337,
+                            473,
+                            409,
                             205,
                             300,
                             408,
@@ -54266,7 +55486,7 @@
                         "Texture": "Transition",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
@@ -54289,9 +55509,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -3000.0,
+                            "x": -2730.2578125,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 3.0
                         }
                     },
                     "ReferencePrefab": {
@@ -54304,1110 +55524,6 @@
                         "Name": "Transition"
                     },
                     "": {}
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        14486341741652966143,
-                        17008353085049151909,
-                        15172211932757996706,
-                        16415915133639986106,
-                        10372931727815950946
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 422
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999994955956936,
-                            "y": 0.001500000013038516,
-                            "z": 0.004999997094273567
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 421
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.550000011920929,
-                            "y": -0.20000000298023225,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.001500000013038516,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -34.19061279296875,
-                            "y": 7.5,
-                            "z": -16.591527938842775
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            10372931727815950946
-                        ],
-                        "Prefab GID": 424
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 2,
-                        "Emission Cap": 50,
-                        "Particle Texture Name": "CheckpointParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 4.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.6000000238418579,
-                                "y": 1.0,
-                                "z": -0.6000000238418579
-                            },
-                            "Max Velocity": {
-                                "x": 0.6000000238418579,
-                                "y": 2.0,
-                                "z": 0.6000000238418579
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0,
-                                "z": 1.0
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 3.0,
-                                "z": 3.0
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 284
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999999612569809,
-                            "y": 0.001500000013038516,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 283
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.550000011920929,
-                            "y": -0.20000000298023225,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.001500000013038516,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -28.650001525878908,
-                            "y": 7.5,
-                            "z": -11.199999809265137
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            10372931727815950946
-                        ],
-                        "Prefab GID": 424
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 2,
-                        "Emission Cap": 50,
-                        "Particle Texture Name": "CheckpointParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 4.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.6000000238418579,
-                                "y": 1.0,
-                                "z": -0.6000000238418579
-                            },
-                            "Max Velocity": {
-                                "x": 0.6000000238418579,
-                                "y": 2.0,
-                                "z": 0.6000000238418579
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0,
-                                "z": 1.0
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 3.0,
-                                "z": 3.0
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 423
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999994955956936,
-                            "y": 0.0020000000949949028,
-                            "z": 0.004999997094273567
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 421
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.550000011920929,
-                            "y": -0.20000000298023225,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0020000000949949028,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -35.290611267089847,
-                            "y": 7.5,
-                            "z": -16.591527938842775
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            10372931727815950946
-                        ],
-                        "Prefab GID": 426
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 2,
-                        "Emission Cap": 50,
-                        "Particle Texture Name": "CheckpointParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 4.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.6000000238418579,
-                                "y": 1.0,
-                                "z": -0.6000000238418579
-                            },
-                            "Max Velocity": {
-                                "x": 0.6000000238418579,
-                                "y": 2.0,
-                                "z": 0.6000000238418579
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0,
-                                "z": 1.0
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 3.0,
-                                "z": 3.0
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 484
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0020000000949949028,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 283
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.550000011920929,
-                            "y": -0.20000000298023225,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0020000000949949028,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -29.75,
-                            "y": 7.5,
-                            "z": -11.199999809265137
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            10372931727815950946
-                        ],
-                        "Prefab GID": 426
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 2,
-                        "Emission Cap": 50,
-                        "Particle Texture Name": "CheckpointParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 4.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.6000000238418579,
-                                "y": 1.0,
-                                "z": -0.6000000238418579
-                            },
-                            "Max Velocity": {
-                                "x": 0.6000000238418579,
-                                "y": 2.0,
-                                "z": 0.6000000238418579
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0,
-                                "z": 1.0
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 3.0,
-                                "z": 3.0
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 581
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999994955956936,
-                            "y": 0.001500000013038516,
-                            "z": 0.004999997094273567
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 580
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.8500000238418579,
-                            "y": -0.22499999403953553,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.001500000013038516,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -49.39099884033203,
-                            "y": 7.525000095367432,
-                            "z": -26.892000198364259
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            10372931727815950946
-                        ],
-                        "Prefab GID": 424
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 2,
-                        "Emission Cap": 50,
-                        "Particle Texture Name": "CheckpointParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 4.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.6000000238418579,
-                                "y": 1.0,
-                                "z": -0.6000000238418579
-                            },
-                            "Max Velocity": {
-                                "x": 0.6000000238418579,
-                                "y": 2.0,
-                                "z": 0.6000000238418579
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0,
-                                "z": 1.0
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 3.0,
-                                "z": 3.0
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 582
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999994955956936,
-                            "y": 0.0020000000949949028,
-                            "z": 0.004999997094273567
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 580
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 1.0499999523162842,
-                            "y": -0.25,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0020000000949949028,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -47.49100112915039,
-                            "y": 7.5,
-                            "z": -26.892000198364259
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            10372931727815950946
-                        ],
-                        "Prefab GID": 426
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
-                        "Emission Rate": 2,
-                        "Emission Cap": 50,
-                        "Particle Texture Name": "CheckpointParticle",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 4.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": -0.6000000238418579,
-                                "y": 1.0,
-                                "z": -0.6000000238418579
-                            },
-                            "Max Velocity": {
-                                "x": 0.6000000238418579,
-                                "y": 2.0,
-                                "z": 0.6000000238418579
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Min Velocity": 0.0,
-                            "Max Velocity": 0.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.05000000074505806,
-                                "y": 0.0,
-                                "z": 1.0
-                            },
-                            "Max Scale": {
-                                "x": 0.15000000596046449,
-                                "y": 3.0,
-                                "z": 3.0
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        9604788041699812520,
-                        5691439207370049121,
-                        1259829869932243375,
-                        8376831551428810534,
-                        10055872472107209861,
-                        14486341741652966143,
-                        17008353085049151909,
-                        16415915133639986106,
-                        10372931727815950946
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 424
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 425
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.550000011920929,
-                            "y": -0.20000000298023225,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.001500000013038516,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            422,
-                            284,
-                            581
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.0,
-                        "Emission Interval": 1.0,
-                        "Emission Rate": 1,
-                        "Emission Cap": 100,
-                        "Particle Texture Name": "",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 5.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": 0.0,
-                                "y": 1.0,
-                                "z": 0.0
-                            },
-                            "Max Velocity": {
-                                "x": 0.0,
-                                "y": 2.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 2.0,
-                                "y": 2.0,
-                                "z": 2.0
-                            },
-                            "Min Velocity": 1.0,
-                            "Max Velocity": 5.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.0010000000474974514,
-                                "y": 0.0010000000474974514,
-                                "z": 0.0010000000474974514
-                            },
-                            "Max Scale": {
-                                "x": 0.003000000026077032,
-                                "y": 0.003000000026077032,
-                                "z": 0.003000000026077032
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 426
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 425
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.550000011920929,
-                            "y": -0.20000000298023225,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0020000000949949028,
-                            "z": 0.004999999888241291
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            423,
-                            484,
-                            582
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    },
-                    "Particle Emitter": {
-                        "Emitter Lifetime": 0.0,
-                        "Emitter Timer": 0.0,
-                        "Emission Interval": 1.0,
-                        "Emission Rate": 1,
-                        "Emission Cap": 100,
-                        "Particle Texture Name": "",
-                        "Generate Particle Lifetime": {
-                            "Min Lifetime": 1.0,
-                            "Max Lifetime": 5.0
-                        },
-                        "Generate Particle Position": "",
-                        "Generate Particle Velocity": {
-                            "Min Velocity": {
-                                "x": 0.0,
-                                "y": 1.0,
-                                "z": 0.0
-                            },
-                            "Max Velocity": {
-                                "x": 0.0,
-                                "y": 2.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Rotation": {
-                            "Min Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            },
-                            "Max Rotation": {
-                                "x": 0.0,
-                                "y": 0.0,
-                                "z": 0.0
-                            }
-                        },
-                        "Generate Particle Opacity": {
-                            "Min Opacity": 0.5,
-                            "Max Opacity": 1.0
-                        },
-                        "Update Particle Velocity": {
-                            "Destination": {
-                                "x": 2.0,
-                                "y": 2.0,
-                                "z": 2.0
-                            },
-                            "Min Velocity": 1.0,
-                            "Max Velocity": 5.0
-                        },
-                        "Generate Particle Scale": {
-                            "Min Scale": {
-                                "x": 0.0010000000474974514,
-                                "y": 0.0010000000474974514,
-                                "z": 0.0010000000474974514
-                            },
-                            "Max Scale": {
-                                "x": 0.003000000026077032,
-                                "y": 0.003000000026077032,
-                                "z": 0.003000000026077032
-                            },
-                            "Enable Uniform Scaling?": true
-                        },
-                        "Particle Has Destination?": false,
-                        "Enable Emitter Prewarm?": false,
-                        "Particle Spawn Location": 0
-                    }
                 }
             ]
         },
