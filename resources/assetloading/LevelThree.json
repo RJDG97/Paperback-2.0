@@ -4148,10 +4148,10 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 232
+                        "Global Index": 467
                     },
                     "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
+                        "Model": "",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -4165,11 +4165,11 @@
                         }
                     },
                     "Child": {
-                        "Parent GID": 230
+                        "Parent GID": 465
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": 0.5,
+                            "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
@@ -4179,16 +4179,14 @@
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            234,
-                            562,
-                            565
+                            473
                         ]
                     },
                     "Rotation": {
@@ -4211,15 +4209,15 @@
                         }
                     },
                     "Name": {
-                        "Name": "Blue Checkpoint"
+                        "Name": "Card 2"
                     }
                 },
                 {
                     "Entity": {
-                        "Global Index": 231
+                        "Global Index": 469
                     },
                     "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
+                        "Model": "",
                         "Texture": "",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
@@ -4233,11 +4231,11 @@
                         }
                     },
                     "Child": {
-                        "Parent GID": 230
+                        "Parent GID": 465
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": -0.5,
+                            "x": 0.0,
                             "y": 0.0,
                             "z": 0.0
                         },
@@ -4247,16 +4245,14 @@
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
                         }
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            235,
-                            563,
-                            566
+                            472
                         ]
                     },
                     "Rotation": {
@@ -4279,7 +4275,7 @@
                         }
                     },
                     "Name": {
-                        "Name": "Red Checkpoint"
+                        "Name": "Card 3"
                     }
                 },
                 {
@@ -4413,138 +4409,6 @@
                     "Name": {
                         "Name": "Card 1"
                     }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 469
-                    },
-                    "Mesh": {
-                        "Model": "",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 465
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            472
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Card 3"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 467
-                    },
-                    "Mesh": {
-                        "Model": "",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 465
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            473
-                        ]
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Name": {
-                        "Name": "Card 2"
-                    }
                 }
             ]
         },
@@ -4562,272 +4426,6 @@
                         15172211932757996706,
                         16415915133639986106
                     ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 234
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 233
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.5,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 42.345672607421878,
-                            "y": 0.4000000059604645,
-                            "z": 6.009981155395508
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 232
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 235
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 233
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -0.5,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 41.345672607421878,
-                            "y": 0.4000000059604645,
-                            "z": 6.009981155395508
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [],
-                        "Prefab GID": 231
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 429
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "SkillUIBigBar_Freeze",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": false
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 320.0,
-                            "y": 100.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 428
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 38.0,
-                            "y": 16.700000762939454,
-                            "z": -1.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.800000011920929,
-                            "y": 0.5,
-                            "z": 0.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 768.0,
-                            "y": -413.29998779296877,
-                            "z": -1.0
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            9604788041699812520
-                        ],
-                        "Prefab GID": 427
-                    },
-                    "Name": {
-                        "Name": "Inner Bar"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 471
-                    },
-                    "Mesh": {
-                        "Model": "Quad",
-                        "Texture": "GrowCard",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": false
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 150.0,
-                            "y": 200.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 470
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 50.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 180.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -770.0,
-                            "y": -400.0,
-                            "z": 0.0
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534,
-                            9604788041699812520
-                        ],
-                        "Prefab GID": 466
-                    },
-                    "Name": {
-                        "Name": "Card 1"
-                    }
                 },
                 {
                     "Entity": {
@@ -4967,30 +4565,30 @@
                 },
                 {
                     "Entity": {
-                        "Global Index": 562
+                        "Global Index": 429
                     },
                     "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
+                        "Model": "Quad",
+                        "Texture": "SkillUIBigBar_Freeze",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
+                            "x": 320.0,
+                            "y": 100.0,
+                            "z": 0.0
                         }
                     },
                     "Child": {
-                        "Parent GID": 561
+                        "Parent GID": 428
                     },
                     "Offset": {
                         "Postion Offset": {
-                            "x": 0.699999988079071,
-                            "y": 0.0,
-                            "z": 0.0
+                            "x": 38.0,
+                            "y": 16.700000762939454,
+                            "z": -1.0
                         },
                         "Rotation Offset": {
                             "x": 0.0,
@@ -4998,16 +4596,16 @@
                             "z": 0.0
                         },
                         "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
+                            "x": 0.800000011920929,
+                            "y": 0.5,
+                            "z": 0.0
                         }
                     },
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
                             "y": 0.0,
-                            "z": 0.0
+                            "z": 180.0
                         }
                     },
                     "Transform": {
@@ -5017,221 +4615,88 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 43.746002197265628,
-                            "y": 0.4000000059604645,
-                            "z": -6.889999866485596
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 232
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 563
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 561
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -2.700000047683716,
-                            "y": 1.850000023841858,
-                            "z": -8.5
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 40.34600067138672,
-                            "y": 2.25,
-                            "z": -15.389999389648438
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 231
-                    },
-                    "Name": {
-                        "Name": "Red Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 565
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Blue",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 564
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": 0.699999988079071,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 43.04600143432617,
-                            "y": 0.44999998807907107,
-                            "z": -3.7899999618530275
-                        }
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            8376831551428810534
-                        ],
-                        "Prefab GID": 232
-                    },
-                    "Name": {
-                        "Name": "Blue Checkpoint"
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 566
-                    },
-                    "Mesh": {
-                        "Model": "FlatRectangleBlock_Red",
-                        "Texture": "",
-                        "Shadow Bias": 1,
-                        "Cast Shadow": true,
-                        "Active": true
-                    },
-                    "Scale": {
-                        "Scale": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Child": {
-                        "Parent GID": 564
-                    },
-                    "Offset": {
-                        "Postion Offset": {
-                            "x": -2.0,
-                            "y": 1.7999999523162842,
-                            "z": -11.600000381469727
-                        },
-                        "Rotation Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Scale Offset": {
-                            "x": 0.008999999612569809,
-                            "y": 0.0010000000474974514,
-                            "z": 0.004000000189989805
-                        }
-                    },
-                    "Rotation": {
-                        "Rotation": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": 40.34600067138672,
-                            "y": 2.25,
-                            "z": -15.390000343322754
+                            "x": 768.0,
+                            "y": -413.29998779296877,
+                            "z": -1.0
                         }
                     },
                     "ReferencePrefab": {
                         "Modified Components": [
                             8376831551428810534,
-                            17008353085049151909
+                            9604788041699812520
                         ],
-                        "Prefab GID": 231
+                        "Prefab GID": 427
                     },
                     "Name": {
-                        "Name": "Red Checkpoint"
+                        "Name": "Inner Bar"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 471
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "GrowCard",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 150.0,
+                            "y": 200.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 470
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 50.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -770.0,
+                            "y": -400.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 466
+                    },
+                    "Name": {
+                        "Name": "Card 1"
                     }
                 }
             ]
@@ -54728,6 +54193,691 @@
                     "Name": {
                         "Name": "Bag"
                     }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        14486341741652966143,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 234
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 233
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.5,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.345672607421878,
+                            "y": 0.4000000059604645,
+                            "z": 6.009981155395508
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 232
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 562
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 561
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.699999988079071,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 43.746002197265628,
+                            "y": 0.4000000059604645,
+                            "z": -6.889999866485596
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 232
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 565
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 564
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.699999988079071,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 43.04600143432617,
+                            "y": 0.44999998807907107,
+                            "z": -3.7899999618530275
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 232
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 235
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 233
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.5,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 41.345672607421878,
+                            "y": 0.4000000059604645,
+                            "z": 6.009981155395508
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 231
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 563
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 561
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -2.700000047683716,
+                            "y": 1.850000023841858,
+                            "z": -8.5
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 40.34600067138672,
+                            "y": 2.25,
+                            "z": -15.389999389648438
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534
+                        ],
+                        "Prefab GID": 231
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 566
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 564
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -2.0,
+                            "y": 1.7999999523162842,
+                            "z": -11.600000381469727
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 40.34600067138672,
+                            "y": 2.25,
+                            "z": -15.390000343322754
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            8376831551428810534,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 231
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        1259829869932243375,
+                        8376831551428810534,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        3617555656175080491,
+                        16415915133639986106,
+                        11993994361337810638
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 232
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Blue",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 230
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": 0.5,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            234,
+                            562,
+                            565
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Blue Checkpoint"
+                    },
+                    "": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 231
+                    },
+                    "Mesh": {
+                        "Model": "FlatRectangleBlock_Red",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Child": {
+                        "Parent GID": 230
+                    },
+                    "Offset": {
+                        "Postion Offset": {
+                            "x": -0.5,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Rotation Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Scale Offset": {
+                            "x": 0.008999999612569809,
+                            "y": 0.0010000000474974514,
+                            "z": 0.004000000189989805
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            235,
+                            563,
+                            566
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.4000000059604645,
+                            "y": -0.10000000149011612,
+                            "z": -0.4000000059604645
+                        },
+                        "Max Point": {
+                            "x": 0.4000000059604645,
+                            "y": 0.10000000149011612,
+                            "z": 0.4000000059604645
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Red Checkpoint"
+                    },
+                    "": {}
                 }
             ]
         }
