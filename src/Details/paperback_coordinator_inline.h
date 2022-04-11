@@ -333,6 +333,9 @@ namespace paperback::coordinator
 		{
 			m_QueuedSceneName = SceneName;
 			m_SceneTransitionDelay = settings::scene_transition_delay_v;
+
+			// Broadcasts SystemMgr.m_OnStateQueued Event
+			PrepareSystemsReset();
 		}
 	}
 
@@ -386,6 +389,12 @@ namespace paperback::coordinator
 	bool instance::VerifyState( const std::string& StateName ) noexcept
 	{
 		return m_SceneMgr.VerifyScene( StateName );
+	}
+
+	PPB_INLINE
+	void instance::PrepareSystemsReset( void ) noexcept
+	{
+		m_SystemMgr.PrepareSystemsReset();
 	}
 
 	PPB_INLINE

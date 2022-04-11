@@ -224,6 +224,7 @@ namespace paperback::system
 		void OnSystemTerminated ( void )        noexcept {}				// Executed on Program Termination
 		void OnStateChange		( void )        noexcept {}				// Executed on Scene Change - Pre-LoadScene
 		void OnStateLoad		( void )        noexcept {}				// Executed on Scene Change - Post LoadScene
+		void OnStateQueued		( void )        noexcept {}				// Executed on Scene Queued - Once QueueScene is called
 
 		// Event						        
 		void OnEvent            ( ... )         noexcept {}				// System Event - Override with required parameters

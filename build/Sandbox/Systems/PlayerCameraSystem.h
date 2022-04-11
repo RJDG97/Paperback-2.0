@@ -56,7 +56,6 @@ struct player_camera_system : paperback::system::pausable_instance
                     auto Rate      = Camera.m_ZoomRate * DeltaTime();
                     auto NewRadius = Camera.m_MaxRadius * HitDist;
                     NewRadius = NewRadius > Camera.m_MaxRadius ? Camera.m_MaxRadius : NewRadius;
-                    //Mesh.m_Active = NewRadius < 0.9f ? false : true;
                     NewRadius = NewRadius < Camera.m_MinRadius ? Camera.m_MinRadius : NewRadius;
 
                     // Zoom Out
