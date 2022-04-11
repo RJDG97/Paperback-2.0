@@ -54,11 +54,16 @@ struct ui_system : paperback::system::instance
 
         glfwGetWindowSize(WindowsSystem->m_pWindow, &width, &height);
 
+        screen_tf.x = (Transform.m_Position.x * 0.0010416f);
+        screen_tf.y = (Transform.m_Position.y * 0.00185185f);
+        screen_scale.x = (Scale.m_Value.x * 0.0010416f);
+        screen_scale.y = (Scale.m_Value.y * 0.00185184f);
+        
+        /*
         screen_tf.x = Transform.m_Position.x / (0.5f * width);
         screen_tf.y = Transform.m_Position.y / (0.5f * height);
         screen_scale.x = Scale.m_Value.x / (0.5f * width);
-        screen_scale.y = Scale.m_Value.y / (0.5f * height);
-
+        screen_scale.y = Scale.m_Value.y / (0.5f * height);*/
 
         /*float btm_left_x { Transform.m_Position.x - ( Scale.m_Value.x * 0.5f ) }
             , btm_left_y { Transform.m_Position.y - ( Scale.m_Value.y * 0.5f ) }
@@ -86,7 +91,7 @@ struct ui_system : paperback::system::instance
 
         if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, 0.0f } ) || (m_CurrentButtonIndex != 0 && Button && Button->m_ButtonIndex == m_CurrentButtonIndex)  )
         {
-            if ( Button && Button->m_bActive )
+            if ( Button && Button->m_bActive && Button->m_Group >= 0 && Button->m_Group <= 128 )
             {
                 auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
                 if ( UI_Sys && Button->IsButtonState( ButtonState::DEFAULT ) ) UI_Sys->TriggerSoundEntity("ButtonHoverSFX");
@@ -114,7 +119,7 @@ struct ui_system : paperback::system::instance
         }
         else
         {
-            if ( Button && Button->m_bActive )
+            if ( Button && Button->m_bActive && Button->m_Group >= 0 && Button->m_Group <= 128 )
             {
                 Button->SetButtonState( ButtonState::DEFAULT );
 
@@ -160,7 +165,7 @@ struct ui_system : paperback::system::instance
                     if ( Clicked )
                     {
                         // Button Is On The Active Layer
-                        if ( Button && Button->m_bActive )
+                        if ( Button && Button->m_bActive && Button->m_Group >= 0 && Button->m_Group <= 128 )
                         {
                             // Update Button State
                             Button->SetButtonState( ButtonState::CLICKED );
@@ -364,7 +369,7 @@ struct ui_system : paperback::system::instance
         {
 
 
-                if (Button && Button->m_bActive)
+                if (Button && Button->m_bActive && Button->m_Group >= 0 && Button->m_Group <= 128 )
                 {
 
                     if (Button->m_ButtonIndex > m_MaximumButtonIndex)
