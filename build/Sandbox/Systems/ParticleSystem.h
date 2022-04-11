@@ -55,7 +55,7 @@ struct particle_system : paperback::system::pausable_instance
         {
             if ( Controller.m_PlayerStatus && Camera.m_Active )
             {
-                ActiveCameraPosition = Camera.m_Position;
+                ActiveCameraPosition = glm::cross(Camera.m_Up, Camera.m_Right);
             }
         });
 
@@ -76,7 +76,7 @@ struct particle_system : paperback::system::pausable_instance
             if ( !Emitter.IsAlive() ) return;
 
             bool  ComputedAngle = false;
-            float Angle{};
+            paperback::Vector3f Angle{};
             auto  RequestCount  = Emitter.UpdateEmitter( Dt );
 
             if ( RequestCount && Emitter.IsAlive() )
@@ -96,13 +96,13 @@ struct particle_system : paperback::system::pausable_instance
                 {
                     if ( !ComputedAngle && Debug )
                     {
-                        Angle = Debug->DirtyRotationAnglesFromDirectionalVec( Transform.m_Position - paperback::Vector3f(ActiveCameraPosition.x, ActiveCameraPosition.y, ActiveCameraPosition.z) ).y;
+                        Angle = Debug->DirtyRotationAnglesFromDirectionalVec( paperback::Vector3f(ActiveCameraPosition.x, ActiveCameraPosition.y, ActiveCameraPosition.z) );
                         ComputedAngle = true;
                     }
                     
                     if ( ComputedAngle )
                     {
-                        Rotation.m_Value.y = Angle;
+                        Rotation.m_Value = Angle;
                     }
                 }
             });
