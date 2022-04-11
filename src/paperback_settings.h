@@ -16,5 +16,6 @@ namespace paperback::settings
 	constexpr auto              momentum_axis_cap_v                 = 10.0f;
 	constexpr auto              momentum_y_axis_cap_v				= 25.0f;
 	constexpr auto              gamepad_axis_ignore_v               = 0.2f;
+	constexpr auto              scene_transition_delay_v            = 2.0f;
 	constexpr static u32        invalid_delete_index_v              = 0xffffffffu >> 1;
 }

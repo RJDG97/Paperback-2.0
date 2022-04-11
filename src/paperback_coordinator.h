@@ -498,6 +498,7 @@ namespace paperback::coordinator
 		bool								m_bPaused = false;
 		bool								m_bCursorActive = false;
 		float                               m_MouseSensitivityRatio = 1.0f;
+		float                               m_SceneTransitionDelay = settings::scene_transition_delay_v;
 	};
 }
 

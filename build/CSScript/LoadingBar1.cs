@@ -47,10 +47,10 @@ namespace CSScript
         {
             m_Timer += dt;
 
-            m_Scale.m_Value = new Tools.MathLib.Vector3((m_MaxBarScale * (m_Timer / m_LoadingTime)), 
+            m_Scale.m_Value = new Tools.MathLib.Vector3((m_MaxBarScale * (m_Timer / (m_LoadingTime + 2.0f))), 
                 m_Scale.m_Value.y, m_Scale.m_Value.z);
 
-            m_pos.m_Position = new Tools.MathLib.Vector3((m_InitPos - (230.0f)) + ((230.0f) * (m_Timer / m_LoadingTime)),
+            m_pos.m_Position = new Tools.MathLib.Vector3((m_InitPos - (230.0f)) + ((230.0f) * (m_Timer / (m_LoadingTime + 2.0f))),
                 m_pos.m_Position.y, m_pos.m_Position.z);
 
             if (m_Timer >= m_LoadingTime)

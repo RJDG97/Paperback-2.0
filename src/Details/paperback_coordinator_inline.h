@@ -44,6 +44,7 @@ namespace paperback::coordinator
 			XCORE_PERF_FRAME_MARK_START( "paperback::frame" )
 
 			m_SystemMgr.Run();
+			m_SceneTransitionDelay -= DeltaTime();
 
 			/*if (IsKeyPressDown(GLFW_KEY_ESCAPE))
 				m_GameActive = false;*/
@@ -329,13 +330,16 @@ namespace paperback::coordinator
 	void instance::QueueScene(const std::string& SceneName) noexcept 
 	{
 		if (m_QueuedSceneName == "")
+		{
 			m_QueuedSceneName = SceneName;
+			m_SceneTransitionDelay = settings::scene_transition_delay_v;
+		}
 	}
 
 	PPB_INLINE
 	void instance::OpenQueuedScene() noexcept
 	{
-		if (m_QueuedSceneName != "")
+		if ( m_QueuedSceneName != "" && m_SceneTransitionDelay < 0.0f )
 		{
 
 			if (m_QueuedSceneName == "Reload")
