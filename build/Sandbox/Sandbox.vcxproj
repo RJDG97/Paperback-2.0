@@ -253,6 +253,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Components\PlayerController.h" />
     <ClInclude Include="Components\PlayerInteraction.h" />
     <ClInclude Include="Components\Prefab.h" />
+    <ClInclude Include="Components\PureCollider.h" />
     <ClInclude Include="Components\Pushable.h" />
     <ClInclude Include="Components\ReferencePrefab.h" />
     <ClInclude Include="Components\Rigidbody.h" />

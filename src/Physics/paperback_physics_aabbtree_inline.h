@@ -224,9 +224,9 @@ namespace paperback::physics
                                   const auto& Info = m_Coordinator.GetEntityInfo( CurrentPair.first );
                                   if ( Info.m_pArchetype )
                                   {
-                                      auto BV = Info.m_pArchetype->FindComponent<bounding_volume>( Info.m_PoolDetails );
+                                      auto [BV, PureCollider] = Info.m_pArchetype->FindComponents<bounding_volume, pure_collider_tag>( Info.m_PoolDetails );
 
-                                      if ( !BV )
+                                      if ( !BV && !PureCollider )
                                       {
                                           ClosestPair.first = CurrentPair.first;
                                           ClosestPair.second = CurrentPair.second;
