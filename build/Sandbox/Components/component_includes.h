@@ -63,6 +63,7 @@
 #include "AbilityCollectible.h"
 #include "DialogueText.h"
 #include "DialogueCollider.h"
+#include "Transition.h"
 
 
 // shapes

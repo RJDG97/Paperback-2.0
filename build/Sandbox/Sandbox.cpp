@@ -133,6 +133,7 @@ void InitializeGame()
         ,    dialogue_text
         ,    dialogue_collider
         ,    freezable       // Tag
+        ,    transition
         >();
 
         // Register Components - Add to the end of the list

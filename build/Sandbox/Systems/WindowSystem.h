@@ -203,8 +203,8 @@ struct window_system : paperback::system::instance
             //Temp values
             m_Width = 1920;
             m_Height = 1080;
-            GLFWWindowMaximizeCallback(m_pWindow, 1);
-            glfwSetWindowMonitor(m_pWindow, glfwGetPrimaryMonitor(), 0, 0, m_Width, m_Height, GLFW_DONT_CARE);
+            /*GLFWWindowMaximizeCallback(m_pWindow, 1);
+            glfwSetWindowMonitor(m_pWindow, glfwGetPrimaryMonitor(), 0, 0, m_Width, m_Height, GLFW_DONT_CARE);*/
         }
         else
         {

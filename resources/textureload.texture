@@ -20,6 +20,7 @@
     "Chair_Green_BaseColour": "../../resources/textures/Props/Chair/Chair_Green_BaseColour.dds 1",
     "Chair_Normal": "../../resources/textures/Props/Chair/Chair_Normal.dds 1",
     "Chair_Specular": "../../resources/textures/Props/Chair/Chair_Specular.dds 1",
+    "Transition": "../../resources/textures/UI/transition.dds 1",
     "JumpToy_DialogueBox": "../../resources/textures/UI/JumpToy_DialogueBox.dds 1",
     "ContinueButton_Selected": "../../resources/textures/UI/Menus/Buttons/ContinueButton_Selected_Mirrored.dds 1",
     "ContinueButton_Unselected": "../../resources/textures/UI/Menus/Buttons/ContinueButton_Unselected_Mirrored.dds 1",
@@ -174,5 +175,6 @@
     "SkillUISmallBar_Shrink": "../../resources/textures/UI/SkillBar/SkillUISmallBar_Shrink.dds 1",
     "StartLevel1ProgressMap": "../../resources/textures/UI/StartLevel1ProgressMap_Mirrored.dds 1",
     "StrongToy_DialogueBox": "../../resources/textures/UI/StrongToy_DialogueBox.dds 1",
+    "transition": "../../resources/textures/UI/transition.dds 1",
     "WayBagHomeLogo": "../../resources/textures/UI/WayBagHomeLogo_Mirrored.dds 1"
 }
