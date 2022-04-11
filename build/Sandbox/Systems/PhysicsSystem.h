@@ -51,6 +51,15 @@ struct physics_system : paperback::system::pausable_instance
         Momentum = paperback::Vector3f{};
     }
 
+    bool MovementEnabled( void ) noexcept
+    {
+        return ( m_Coordinator.IsKeyPressDown( GLFW_KEY_W ) ||
+                 m_Coordinator.IsKeyPressDown( GLFW_KEY_A ) ||
+                 m_Coordinator.IsKeyPressDown( GLFW_KEY_S ) ||
+                 m_Coordinator.IsKeyPressDown( GLFW_KEY_D ) ||
+                 m_Coordinator.IsGamepadButtonPressDown( GLFW_GAMEPAD_BUTTON_LEFT_THUMB ) );
+    }
+
     paperback::Vector3f ConvertToAccel(const float Mass, const paperback::Vector3f& Forces)
     {
         return (Mass > 0) ? Forces / Mass : paperback::Vector3f{ 0.0f, 0.0f, 0.0f };
@@ -197,16 +206,48 @@ struct physics_system : paperback::system::pausable_instance
                 }
                 
             }
-            // Update Rotation
-            if ( Controller && RigidBody && Rot && (std::fabs(RigidBody->m_Velocity.x) > 0.3f || std::fabs(RigidBody->m_Velocity.y) > 0.04f || std::fabs(RigidBody->m_Velocity.z) > 0.3f) )
+            // Update Rotation Only For Active Player
+            if ( Controller && Controller->m_PlayerStatus && RigidBody && Rot && (std::fabs(RigidBody->m_Velocity.x) > 0.1f || std::fabs(RigidBody->m_Velocity.y) > 0.04f || std::fabs(RigidBody->m_Velocity.z) > 0.1f) )
             {
                 auto Debug = m_Coordinator.FindSystem<debug_system>();
 
+                // If Any Movement Key Is Pressed & Player Is Not Jumping ( Jumping resets the velocity on collision )
+                if ( MovementEnabled() )
+                {
+                    if ( Debug && ((Inter && !Inter->m_bPushOrPull) || !Inter) )
+                    {
+                        // Variables
+                        auto RotationSpeed = 360.0f;
 
-                if ( Debug && Inter && !Inter->m_bPushOrPull )
-                    Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
-                else if ( Debug && !Inter )
-                    Rot->m_Value.y = Debug->DirtyRotationAnglesFromDirectionalVec( RigidBody->m_Velocity ).y;
+                        // Assign Temp Variables
+                        auto& Curr = Rot->m_Value.y;
+                        float Goal = Debug->DirtyRotationAnglesFromDirectionalVec(RigidBody->m_Velocity).y;
+                        // Rotate Angle to be between 0 - 360
+                        Goal = Goal < 0.0f ? Goal + 360.0f : Goal;
+                        // Compute Max Angle Between Curr & Goal
+                        float MaxAngle = std::max(Goal, Curr) - std::min(Goal, Curr);
+                        // Compute Abs Max Angle Between Curr & Goal
+                        float NewMaxAngle = 360.0f - MaxAngle > MaxAngle ? 360.0f - MaxAngle : MaxAngle;
+                        float CCW = 360.0f - Curr + Goal;
+
+                        // Angle To Rotate In Frame > 5.0f
+                        if ( MaxAngle > 5.0f )
+                        {
+                            // Rotate CCW
+                            if ( Curr > Goal && CCW < NewMaxAngle )
+                                Curr += RotationSpeed * DeltaTime();
+                            else if ( Curr < Goal && ((Goal - Curr) < NewMaxAngle) )
+                                Curr += RotationSpeed * DeltaTime();
+                            // Rotate CW
+                            else
+                                Curr -= RotationSpeed * DeltaTime();
+                        }
+
+                        // Clamp Angles
+                        Rot->m_Value.y = Rot->m_Value.y > 360.0f ? Rot->m_Value.y - 360.0f : Rot->m_Value.y;
+                        Rot->m_Value.y = Rot->m_Value.y < 0.0f ? Rot->m_Value.y + 360.0f : Rot->m_Value.y;
+                    }
+                }
                 
 
                 if ( RigidBody->m_Velocity.y < -0.01f )
