@@ -508,5 +508,8 @@
     <ClInclude Include="Scripts\Fullscreen_Enable_Button_MainMenu.h">
       <Filter>Source Files\Scripts\Details</Filter>
     </ClInclude>
+    <ClInclude Include="Components\PureCollider.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

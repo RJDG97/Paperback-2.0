@@ -105,9 +105,15 @@ namespace paperback::coordinator
 		PPB_INLINE
 		bool VerifyState( const std::string& StateName ) noexcept;
 
+		// OnQueueState - Queuing Change
+		PPB_INLINE
+		void PrepareSystemsReset( void ) noexcept;
+
+		// OnStateChange - Actual Change
 		PPB_INLINE
 		void ResetSystems() noexcept;
 
+		// OnStateLoad
 		PPB_INLINE
 		void ReloadSystems() noexcept;
 

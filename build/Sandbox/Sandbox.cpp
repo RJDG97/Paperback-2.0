@@ -133,6 +133,7 @@ void InitializeGame()
         ,    dialogue_text
         ,    dialogue_collider
         ,    freezable       // Tag
+        ,    pure_collider_tag // Tag
         ,    transition
         >();
 
