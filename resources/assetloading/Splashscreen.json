@@ -1093,28 +1093,28 @@
                                 "Move Speed": 1.0
                             },
                             {
-                                "Hold Time": 2.5,
+                                "Hold Time": 3.0,
                                 "Move Speed": 7.5
                             },
                             {
-                                "Hold Time": 2.5,
+                                "Hold Time": 3.0,
                                 "Move Speed": 7.0
                             },
                             {
-                                "Hold Time": 2.5,
-                                "Move Speed": 7.0
-                            },
-                            {
-                                "Hold Time": 1.0,
+                                "Hold Time": 3.0,
                                 "Move Speed": 7.0
                             },
                             {
                                 "Hold Time": 0.009999999776482582,
-                                "Move Speed": 7.0
+                                "Move Speed": 10.0
                             },
                             {
                                 "Hold Time": 0.009999999776482582,
-                                "Move Speed": 6.0
+                                "Move Speed": 10.0
+                            },
+                            {
+                                "Hold Time": 0.009999999776482582,
+                                "Move Speed": 10.0
                             }
                         ],
                         "Index": 0,
