@@ -1,5 +1,6 @@
 {
-    "LoadingBarBase": "../../resources/textures/UI/LoadingBarBase.dds 0",
-    "StartLevel1ProgressMap": "../../resources/textures/UI/StartLevel1ProgressMap_Mirrored.dds 0",
-    "SkillUIBigBar_Grow": "../../resources/textures/UI/SkillBar/SkillUIBigBar_Grow.dds 0"
+  "LoadingBarBase": "../../resources/textures/UI/LoadingBarBase.dds 0",
+  "StartLevel1ProgressMap": "../../resources/textures/UI/StartLevel1ProgressMap_Mirrored.dds 0",
+  "SkillUIBigBar_Grow": "../../resources/textures/UI/SkillBar/SkillUIBigBar_Grow.dds 0",
+  "Transition": "../../resources/textures/UI/transition.dds 0"
 }

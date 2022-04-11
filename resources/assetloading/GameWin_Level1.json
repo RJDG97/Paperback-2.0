@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 14
+                "EntityHead": 16
             }
         },
         {
@@ -470,6 +470,131 @@
                         "Tags": "ButtonClickSFX,ButtonHoverSFX",
                         "Is 3D events": false
                     }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        8170829523914824834
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 14
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "Transition",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2700.0,
+                            "y": 2000.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            15
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Transition"
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        8170829523914824834
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 15
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "Transition",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2700.0,
+                            "y": 2000.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -2751.439453125,
+                            "y": 0.0,
+                            "z": 3.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 14
+                    },
+                    "Name": {
+                        "Name": "Transition"
+                    },
+                    "": {}
                 }
             ]
         },

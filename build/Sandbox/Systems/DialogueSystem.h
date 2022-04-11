@@ -47,28 +47,51 @@ struct dialogue_system : paperback::system::pausable_instance
 		Query_Camera.m_Must.AddFromComponents<camera, name, path_follower>();
 		Query_Camera.m_NoneOf.AddFromComponents<prefab, cinematic>();
 
-		Query_Transition.m_Must.AddFromComponents<transition, transform, scale>();
+		Query_Transition.m_Must.AddFromComponents<transition, transform, scale, mesh>();
 		Query_Transition.m_NoneOf.AddFromComponents<prefab>();
 
 		dialogue_manager = &DialogueManager::GetInstanced();
 	}
 
 	PPB_INLINE
-	void OnStateChange( void ) noexcept
+	void OnStateQueued( void ) noexcept
 	{
-		ForEach(Search(Query_Transition), [&](transition& Transition, transform& Transform, scale& Scale) noexcept
+		ForEach(Search(Query_Transition), [&](transition& Transition, transform& Transform, scale& Scale, mesh& Mesh) noexcept
 		{
+			Mesh.m_Active = true;
 			Transform.m_Position.x = Scale.m_Value.x; // set to center
 			Transition.m_State = transition::EXITING_LEVEL;
 		});
 	}
 
 	PPB_INLINE
+	void OnStateChanged(void) noexcept
+	{
+		ForEach(Search(Query_Transition), [&](transition& Transition, transform& Transform, scale& Scale, mesh& Mesh) noexcept
+		{
+			Mesh.m_Active = false;
+		});
+	}
+
+	PPB_FORCEINLINE
+		void OnPause(const bool& Status) noexcept	//function activates whenever play / pause is clicked
+	{
+		if (Status) //is paused, play is clicked
+		{
+			ForEach(Search(Query_Transition), [&](transition& Transition, transform& Transform, scale& Scale, mesh& Mesh) noexcept
+			{
+				Mesh.m_Active = false;
+			});
+		}
+	}
+
+	PPB_INLINE
 	void OnStateLoad( void ) noexcept
 	{
-		ForEach(Search(Query_Transition), [&](transition& Transition, transform& Transform, scale& Scale) noexcept
+		ForEach(Search(Query_Transition), [&](transition& Transition, transform& Transform, scale& Scale, mesh& Mesh) noexcept
 		{
-			Transform.m_Position = {}; // set to center
+			Mesh.m_Active = true;
+			Transform.m_Position = {0.0f, 0.0f, 3.0f}; // set to center
 			Transition.m_State = transition::ENTERING_LEVEL;
 		});
 
@@ -96,7 +119,7 @@ struct dialogue_system : paperback::system::pausable_instance
 
 					if (distance < 0.0f)
 					{
-						Transform.m_Position.x -= distance * distance * 0.001f * DeltaTime();
+						Transform.m_Position.x += distance * 2.2f * DeltaTime();
 					}
 
 					break;
@@ -110,11 +133,11 @@ struct dialogue_system : paperback::system::pausable_instance
 						Transition.m_State = transition::INACTIVE;
 					}
 
-					float distance{ 0.3f * -Scale.m_Value.x - Transform.m_Position.x };
+					float distance{ 0.8f * -Scale.m_Value.x - Transform.m_Position.x };
 
 					if (distance < 0.0f)
 					{
-						Transform.m_Position.x -= distance * distance * 0.001f * DeltaTime();
+						Transform.m_Position.x += distance * 2.2f * DeltaTime();
 					}
 
 					break;

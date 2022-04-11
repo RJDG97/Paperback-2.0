@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 92
+                "EntityHead": 94
             }
         },
         {
@@ -1103,10 +1103,10 @@
                             41,
                             42,
                             43,
-                            52,
                             44,
-                            53,
+                            52,
                             45,
+                            53,
                             46,
                             54,
                             55,
@@ -1226,14 +1226,14 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            70,
                             6,
-                            11,
-                            75,
+                            70,
                             3,
-                            73,
-                            9,
+                            75,
+                            11,
                             1,
+                            9,
+                            73,
                             10,
                             74,
                             15,
@@ -5453,6 +5453,133 @@
                     "Name": {
                         "Name": "Jump Toy"
                     }
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        10055872472107209861,
+                        14486341741652966143,
+                        17008353085049151909,
+                        16415915133639986106,
+                        8170829523914824834
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 92
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "Transition",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2700.0,
+                            "y": 2000.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            93
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Transition"
+                    },
+                    "": {}
+                }
+            ]
+        },
+        {
+            "HDBbase": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        8170829523914824834
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 93
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "Transition",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 2700.0,
+                            "y": 2000.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -4000.0,
+                            "y": 0.0,
+                            "z": 3.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 92
+                    },
+                    "Name": {
+                        "Name": "Transition"
+                    },
+                    "": {}
                 }
             ]
         },
