@@ -609,7 +609,7 @@ namespace paperback::input::binding
                         paperback::Vector3f RayEnd = paperback::Vector3f{ RayDir.x, RayDir.y, RayDir.z };
                         RayEnd.Normalized();
                         paperback::Vector3f CameraPos = paperback::Vector3f{ Cam.m_Position.x, Cam.m_Position.y, Cam.m_Position.z };
-                        RayEnd = CameraPos + RayEnd * Cam.m_Radius * 2.0f;
+                        RayEnd = CameraPos + RayEnd * Cam.m_MaxRadius * 2.0f;
 
                         auto [Hit_ID, HitDist] = m_Coordinator.QueryRaycastClosest( CameraPos      // Start Ray
                                                                                   , RayEnd         // End Ray
