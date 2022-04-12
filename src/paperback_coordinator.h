@@ -259,6 +259,12 @@ namespace paperback::coordinator
 		bool GetPauseBool() noexcept;
 
 		PPB_INLINE
+		void SetTabPaused( bool Paused ) noexcept;
+
+		PPB_INLINE
+		bool GetTabPaused() noexcept;
+
+		PPB_INLINE
 		GLFWwindow* GetWindowHandle( void ) noexcept;
 
 		PPB_INLINE
@@ -503,6 +509,7 @@ namespace paperback::coordinator
 		std::string					        m_QueuedSceneName = "";			// Currently Queued Scene to change
 		bool								m_bPaused = false;
 		bool								m_bCursorActive = false;
+		bool								m_bGamePaused = false;
 		float                               m_MouseSensitivityRatio = 1.0f;
 		float                               m_SceneTransitionDelay = settings::scene_transition_delay_v;
 	};

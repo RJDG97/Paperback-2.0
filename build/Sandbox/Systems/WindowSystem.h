@@ -14,24 +14,32 @@ namespace
         if (IsFocus)
         {
 
-            if (!m_LastPause)
+            if (!m_LastPause && !(PPB.VerifyState("LevelOne") || PPB.VerifyState("LevelTwo") || PPB.VerifyState("LevelThree")))
                 PPB.TogglePause(false);
         }
         else
         {
 
-
-            if (!PPB.GetPauseBool())
+            if (PPB.VerifyState("LevelOne") || PPB.VerifyState("LevelTwo") || PPB.VerifyState("LevelThree"))
             {
 
-                m_LastPause = false;
-
-                PPB.TogglePause(true);
+                PPB.SetTabPaused(true);
             }
             else
             {
 
-                m_LastPause = true;
+                if (!PPB.GetPauseBool())
+                {
+
+                    m_LastPause = false;
+
+                    PPB.TogglePause(true);
+                }
+                else
+                {
+
+                    m_LastPause = true;
+                }
             }
         }
     }
@@ -89,6 +97,7 @@ struct window_system : paperback::system::instance
         }
 
         glfwMakeContextCurrent(m_pWindow);
+        glfwSwapInterval(0);
         glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         
         glfwSetKeyCallback(m_pWindow, KeyboardCallback);

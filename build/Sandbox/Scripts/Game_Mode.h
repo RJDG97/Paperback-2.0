@@ -16,10 +16,10 @@ struct game_mode_script : paperback::script::button_interface // Inherited Type 
 
     void Run( void ) noexcept
     {
-        if (PPB.IsKeyPress(GLFW_KEY_ESCAPE) || PPB.IsGamepadButtonPressDown(7)) // start button
+        if (PPB.IsKeyPress(GLFW_KEY_ESCAPE) || PPB.IsGamepadButtonPressDown(7) || PPB.GetTabPaused()) // start button
         {
 
-            if (!PPB.GetPauseBool())
+            if (!PPB.GetPauseBool() || PPB.GetTabPaused())
             {
                 //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
                 PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
@@ -27,6 +27,7 @@ struct game_mode_script : paperback::script::button_interface // Inherited Type 
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
                 PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), true);
                 PPB.GetSystem<ui_system>().UpdateMaximumIndex();
+                PPB.SetTabPaused(false);
             }
             else
             {

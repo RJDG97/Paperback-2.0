@@ -829,6 +829,10 @@ namespace paperback::coordinator
 		return m_bPaused;
 	}
 
+	bool instance::GetTabPaused() noexcept
+	{
+		return m_bGamePaused;
+	}
 	
 	GLFWwindow* instance::GetWindowHandle( void ) noexcept
 	{
@@ -968,9 +972,10 @@ namespace paperback::coordinator
 		m_bPaused = Paused;
 	}
 
-
-
-
+	void instance::SetTabPaused( bool Paused ) noexcept
+	{
+		m_bGamePaused = Paused;
+	}
 
 
 
