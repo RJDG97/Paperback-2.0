@@ -24,6 +24,7 @@ struct ui_system : paperback::system::instance
     size_t       m_MaximumButtonIndex{};
     bool         m_Picked = false;
     bool         m_ControllerUIMode = false;
+    bool         m_EditorMode = false;
 
     PPB_FORCEINLINE
     void OnSystemCreated( void ) noexcept
@@ -53,20 +54,25 @@ struct ui_system : paperback::system::instance
 
         glfwGetWindowSize(WindowsSystem->m_pWindow, &width, &height);
 
+        screen_tf.x = (Transform.m_Position.x * 0.0010416f);
+        screen_tf.y = (Transform.m_Position.y * 0.00185185f);
+        screen_scale.x = (Scale.m_Value.x * 0.0010416f);
+        screen_scale.y = (Scale.m_Value.y * 0.00185184f);
+        
+        /*
         screen_tf.x = Transform.m_Position.x / (0.5f * width);
         screen_tf.y = Transform.m_Position.y / (0.5f * height);
         screen_scale.x = Scale.m_Value.x / (0.5f * width);
-        screen_scale.y = Scale.m_Value.y / (0.5f * height);
-
+        screen_scale.y = Scale.m_Value.y / (0.5f * height);*/
 
         /*float btm_left_x { Transform.m_Position.x - ( Scale.m_Value.x * 0.5f ) }
             , btm_left_y { Transform.m_Position.y - ( Scale.m_Value.y * 0.5f ) }
             , top_right_x{ Transform.m_Position.x + ( Scale.m_Value.x * 0.5f ) }
             , top_right_y{ Transform.m_Position.y + ( Scale.m_Value.y * 0.5f ) };*/
-        float btm_left_x { screen_tf.x - ( screen_scale.x * 0.5f ) }
-            , btm_left_y { screen_tf.y - ( screen_scale.y * 0.5f ) }
-            , top_right_x{ screen_tf.x + ( screen_scale.x * 0.5f ) }
-            , top_right_y{ screen_tf.y + ( screen_scale.y * 0.5f ) };
+        float btm_left_x { screen_tf.x - ( screen_scale.x * 0.35f ) }
+            , btm_left_y { screen_tf.y - ( screen_scale.y * 0.35f ) }
+            , top_right_x{ screen_tf.x + ( screen_scale.x * 0.35f ) }
+            , top_right_y{ screen_tf.y + ( screen_scale.y * 0.35f ) };
 
         // Verify if within button
 	    if ( btm_left_x  <= MousePos.x && btm_left_y  <= MousePos.y &&
@@ -77,12 +83,15 @@ struct ui_system : paperback::system::instance
 
     void operator()( transform& Transform, scale& Scale, mesh& Mesh, button* Button, card* Card ) noexcept
     {
+        if (m_EditorMode)
+            return;
+
         // Grab Mouse Coords
         auto pos = GetMousePositionInUI();
 
         if ( UICollided( Transform, Scale, paperback::Vector3f{ pos.x, pos.y, 0.0f } ) || (m_CurrentButtonIndex != 0 && Button && Button->m_ButtonIndex == m_CurrentButtonIndex)  )
         {
-            if ( Button && Button->m_bActive )
+            if ( Button && Button->m_bActive && Button->m_Group >= 0 && Button->m_Group <= 128 )
             {
                 auto UI_Sys = m_Coordinator.FindSystem<ui_system>();
                 if ( UI_Sys && Button->IsButtonState( ButtonState::DEFAULT ) ) UI_Sys->TriggerSoundEntity("ButtonHoverSFX");
@@ -110,7 +119,7 @@ struct ui_system : paperback::system::instance
         }
         else
         {
-            if ( Button && Button->m_bActive )
+            if ( Button && Button->m_bActive && Button->m_Group >= 0 && Button->m_Group <= 128 )
             {
                 Button->SetButtonState( ButtonState::DEFAULT );
 
@@ -137,6 +146,9 @@ struct ui_system : paperback::system::instance
     void OnEvent( const size_t& Key, const bool& Clicked ) noexcept
     {
 
+        if (m_EditorMode)
+            return;
+
         if ( Key == GLFW_KEY_ESCAPE )
         {
             
@@ -153,7 +165,7 @@ struct ui_system : paperback::system::instance
                     if ( Clicked )
                     {
                         // Button Is On The Active Layer
-                        if ( Button && Button->m_bActive )
+                        if ( Button && Button->m_bActive && Button->m_Group >= 0 && Button->m_Group <= 128 )
                         {
                             // Update Button State
                             Button->SetButtonState( ButtonState::CLICKED );
@@ -224,6 +236,8 @@ struct ui_system : paperback::system::instance
         m_FrameButtonLock = false;
         m_CurrentButtonHovered = "";
         m_MaximumButtonIndex = 0;
+
+        m_EditorMode = (PPB.VerifyState("Editor")) ? true : false;
     }
 
     //given a layer, disable/enable all buttons with spe
@@ -355,7 +369,7 @@ struct ui_system : paperback::system::instance
         {
 
 
-                if (Button && Button->m_bActive)
+                if (Button && Button->m_bActive && Button->m_Group >= 0 && Button->m_Group <= 128 )
                 {
 
                     if (Button->m_ButtonIndex > m_MaximumButtonIndex)
@@ -377,7 +391,7 @@ struct ui_system : paperback::system::instance
     void SelectUIButton()
     {
 
-        if (!m_ControllerUIMode || m_CurrentButtonIndex == 0)
+        if (!m_ControllerUIMode || m_CurrentButtonIndex == 0 || m_EditorMode)
             return;
 
         ForEach(Search(m_ButtonQuery), [&](entity& Entity, transform& Transform, scale& Scale, button* Button, card* Card, selected* Selected) noexcept

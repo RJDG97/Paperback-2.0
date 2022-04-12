@@ -133,6 +133,8 @@ void InitializeGame()
         ,    dialogue_text
         ,    dialogue_collider
         ,    freezable       // Tag
+        ,    pure_collider_tag // Tag
+        ,    transition
         >();
 
         // Register Components - Add to the end of the list
@@ -159,6 +161,7 @@ void InitializeGame()
         ,   icon_system
         ,   player_camera_system
         ,   dialogue_system
+        ,   tree_system
         >();
 
         PPB.RegisterSystems <
@@ -223,7 +226,16 @@ void InitializeGame()
             restartlevel_cancel_button_game_script,
             restartlevel_window_button_game_script,
             how2play_button_game_script,
-            how2play_cancel_button_game_script
+            how2play_cancel_button_game_script,
+            settings_close_button_mainmenu_script,
+            volume_decrease_button_mainmenu_script,
+            volume_increase_button_mainmenu_script,
+            mousesens_decrease_button_mainmenu_script,
+            mousesens_increase_button_mainmenu_script,
+            gamma_disable_button_mainmenu_script,
+            gamma_enable_button_mainmenu_script,
+            fullscreen_disable_button_mainmenu_script,
+            fullscreen_enable_button_mainmenu_script
         >();
 
 
@@ -258,6 +270,7 @@ void InitializeGame()
             auto Disable_FPSAction           = PPB.RegisterBinding<paperback::input::binding::Disable_FPS_Action>();
             auto Toggle_Fullscreen           = PPB.RegisterBinding<paperback::input::binding::Toggle_Fullscreen>();
             auto Toggle_Players              = PPB.RegisterBinding<paperback::input::binding::Toggle_Players>();
+            auto Ability_SFX                 = PPB.RegisterBinding<paperback::input::binding::Play_AbilitySFX>();
 
 
 
@@ -276,24 +289,26 @@ void InitializeGame()
 
 
             // Mouse Bindings
+            PPB.AssignBindingToAction( Ability_SFX,       GLFW_MOUSE_BUTTON_1,  input::device::type::id::MOUSE, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Mouse_Rotate,      GLFW_MOUSE_BUTTON_3,  input::device::type::id::MOUSE );
             PPB.AssignBindingToAction( Enable_FPSAction,  GLFW_MOUSE_BUTTON_2,  input::device::type::id::MOUSE, paperback::input::action::BroadcastStatus::PRESSED );
             PPB.AssignBindingToAction( Disable_FPSAction, GLFW_MOUSE_BUTTON_2,  input::device::type::id::MOUSE, paperback::input::action::BroadcastStatus::RELEASED );
 
 
             // Gamepad Bindings
-            PPB.AssignBindingToAction( Gamepad_Movement,  GLFW_GAMEPAD_BUTTON_LEFT_THUMB,  input::device::type::id::GAMEPAD );
-            PPB.AssignBindingToAction( Gamepad_Rotate,    GLFW_GAMEPAD_BUTTON_RIGHT_THUMB, input::device::type::id::GAMEPAD );
-            PPB.AssignBindingToAction( Jump_Action,       GLFW_GAMEPAD_BUTTON_B,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( ToggleLift_Action, GLFW_GAMEPAD_BUTTON_B,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Enable_FPSAction,  GLFW_GAMEPAD_BUTTON_LEFT_BUMPER, input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Disable_FPSAction, GLFW_GAMEPAD_BUTTON_LEFT_BUMPER, input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::RELEASED );
-            PPB.AssignBindingToAction( Toggle_Players,    GLFW_GAMEPAD_BUTTON_Y,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Gamepad_SelectBttn,GLFW_GAMEPAD_BUTTON_A,           input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Gamepad_PrevButton,GLFW_GAMEPAD_BUTTON_DPAD_LEFT,   input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Gamepad_PrevButton,GLFW_GAMEPAD_BUTTON_DPAD_UP,     input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Gamepad_NextButton,GLFW_GAMEPAD_BUTTON_DPAD_RIGHT,  input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
-            PPB.AssignBindingToAction( Gamepad_NextButton,GLFW_GAMEPAD_BUTTON_DPAD_DOWN,   input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Gamepad_Movement,  GLFW_GAMEPAD_BUTTON_LEFT_THUMB,   input::device::type::id::GAMEPAD );
+            PPB.AssignBindingToAction( Gamepad_Rotate,    GLFW_GAMEPAD_BUTTON_RIGHT_THUMB,  input::device::type::id::GAMEPAD );
+            PPB.AssignBindingToAction( Jump_Action,       GLFW_GAMEPAD_BUTTON_B,            input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( ToggleLift_Action, GLFW_GAMEPAD_BUTTON_B,            input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Enable_FPSAction,  GLFW_GAMEPAD_BUTTON_LEFT_BUMPER,  input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Disable_FPSAction, GLFW_GAMEPAD_BUTTON_LEFT_BUMPER,  input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::RELEASED );
+            PPB.AssignBindingToAction( Toggle_Players,    GLFW_GAMEPAD_BUTTON_Y,            input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Ability_SFX,       GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER, input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Gamepad_SelectBttn,GLFW_GAMEPAD_BUTTON_A,            input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Gamepad_PrevButton,GLFW_GAMEPAD_BUTTON_DPAD_LEFT,    input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Gamepad_PrevButton,GLFW_GAMEPAD_BUTTON_DPAD_UP,      input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Gamepad_NextButton,GLFW_GAMEPAD_BUTTON_DPAD_RIGHT,   input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
+            PPB.AssignBindingToAction( Gamepad_NextButton,GLFW_GAMEPAD_BUTTON_DPAD_DOWN,    input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );
         }
     }
     // Set Window maximized initially

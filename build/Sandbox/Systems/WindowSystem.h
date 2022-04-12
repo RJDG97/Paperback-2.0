@@ -43,6 +43,7 @@ struct window_system : paperback::system::instance
     bool m_UpdateResolution;
     int m_Width;
     int m_Height;
+    bool m_Init;
 
     GLFWwindow* m_pWindow;
     paperback::JsonFile JFile;
@@ -59,6 +60,7 @@ struct window_system : paperback::system::instance
 	{
         m_FullScreen = false;
         m_UpdateResolution = false;
+        m_Init = false;
 
 		if (!glfwInit())
 		{
@@ -121,6 +123,13 @@ struct window_system : paperback::system::instance
     {
         m_Coordinator.UpdateInputs();
         glfwPollEvents();
+
+        if (!m_Init)
+        {
+
+            m_Init = true;
+            FullScreen();
+        }
     }
 
     PPB_FORCEINLINE
@@ -166,7 +175,7 @@ struct window_system : paperback::system::instance
             const GLFWvidmode* mode = glfwGetVideoMode(monitor);
             // Set window size to monitor size
             WindowDetails.m_Width = mode->width;
-            WindowDetails.m_Height = mode->height - offset;
+            WindowDetails.m_Height = (PPB.GetSystem<window_system>().GetFullScreen()) ? mode->height : mode->height - offset;
         }
         else {
             // Restore window size
@@ -189,19 +198,30 @@ struct window_system : paperback::system::instance
     {
         if (!m_FullScreen)
         {
+
+            m_FullScreen = !m_FullScreen;
             //Temp values
             m_Width = 1920;
             m_Height = 1080;
+            GLFWWindowMaximizeCallback(m_pWindow, 1);
             glfwSetWindowMonitor(m_pWindow, glfwGetPrimaryMonitor(), 0, 0, m_Width, m_Height, GLFW_DONT_CARE);
         }
         else
         {
+
+            m_FullScreen = !m_FullScreen;
             m_Width = E.m_Width;
             m_Height = E.m_Height;
             glfwSetWindowMonitor(m_pWindow, NULL, 250, 250, E.m_Width, E.m_Height, GLFW_DONT_CARE);
+            GLFWWindowMaximizeCallback(m_pWindow, 1);
         }
 
-        m_FullScreen = !m_FullScreen;
         m_UpdateResolution = true;
+    }
+
+    bool GetFullScreen()
+    {
+
+        return m_FullScreen;
     }
 };

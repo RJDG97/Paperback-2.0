@@ -13,6 +13,7 @@ namespace CSScript
         Mass m_Mass;
         Transform m_Transform;
         Pushable m_Pushable;
+        ParticleEmitter m_ParticleEmitter;
         Tools.MathLib.Vector3 m_InitialPos;
         bool m_PrevGravActive;
 
@@ -27,6 +28,7 @@ namespace CSScript
             m_Rigidforce = new Rigidforce(ID);
             m_PrevGravActive = m_Rigidforce.m_GravityActive;
             m_Pushable = new Pushable(ID);
+            m_ParticleEmitter = new ParticleEmitter(ID);
             m_Pushable.m_State = 0;
 
             m_Mass = new Mass(ID);
@@ -48,6 +50,13 @@ namespace CSScript
             }
 
             m_PrevGravActive = m_Rigidforce.m_GravityActive;
+
+            switch (m_Pushable.m_State)
+            {
+                case 1:  m_ParticleEmitter.m_Lifetime = 1.0f; m_ParticleEmitter.m_ParticleTexture = "GrowParticle";   break;
+                case -1: m_ParticleEmitter.m_Lifetime = 1.0f; m_ParticleEmitter.m_ParticleTexture = "ShrinkParticle"; break;
+                case 0:  m_ParticleEmitter.m_Lifetime = 0.0f; break;
+            }
         }
 
         public void Destroy()

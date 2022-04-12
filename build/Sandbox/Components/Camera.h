@@ -23,12 +23,12 @@ struct camera
 			m_Azimuth -= 360.f;
 	}
 
-	void RotateUp(const float Speed = 1.f)
+	void RotateUp(const float Speed = 1.f, bool FPS=false)
 	{
 		m_Theta += Speed;
 
-		if ( m_Theta > m_MaxTheta )  // Cap - 179
-			m_Theta = m_MaxTheta;
+		if ( m_Theta > (FPS ? 179 : m_MaxTheta) )  // Cap - 179
+			m_Theta = (FPS ? 179 : m_MaxTheta);
 	}
 
 	void RotateDown(const float Speed = 1.f)
@@ -67,7 +67,7 @@ struct camera
 	}
 
 	glm::mat4 m_View;
-	glm::mat4 m_Projection = glm::perspective(glm::radians(59.f), 1920.f / 1080.f, 1.f, 200.f);
+	glm::mat4 m_Projection = glm::perspective(glm::radians(59.f), 1920.f / 1080.f, 0.2f, 200.f);
 	glm::vec3 m_Target = glm::vec3{ 0.f, 0.f, 0.f };
 	glm::vec3 m_Position;
 

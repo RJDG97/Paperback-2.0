@@ -525,12 +525,12 @@ struct debug_system : paperback::system::instance
             else if (PPB.IsKeyPressDown(GLFW_KEY_Y))
             {
 
-                PPB.QueueScene("LevelOne");
+                PPB.QueueScene("LoadingOne");
             }
             else if (PPB.IsKeyPressDown(GLFW_KEY_U))
             {
 
-                PPB.QueueScene("LevelTwo");
+                PPB.QueueScene("LoadingTwo");
             }
             else if (PPB.IsKeyPressDown(GLFW_KEY_I))
             {
@@ -540,7 +540,7 @@ struct debug_system : paperback::system::instance
             else if (PPB.IsKeyPressDown(GLFW_KEY_O))
             {
 
-                PPB.QueueScene("LevelThree");
+                PPB.QueueScene("LoadingThree");
             }
             else if (PPB.IsKeyPressDown(GLFW_KEY_P))
             {

@@ -63,6 +63,7 @@
 #include "AbilityCollectible.h"
 #include "DialogueText.h"
 #include "DialogueCollider.h"
+#include "Transition.h"
 
 
 // shapes
@@ -79,3 +80,4 @@
 
 #include "ParticleEmitter.h"
 #include "Particle.h"
+#include "PureCollider.h"

@@ -2,6 +2,13 @@
 
 #include "glm/inc/gtc/random.hpp"
 
+enum class ParticleSpawnPosition : int
+{
+	DEFAULT = 0				// Spawn In Center of BB
+,	TOP						// Spawn at BB.Max.y
+,	BOTTOM					// Spawn at BB.Min.y
+};
+
 struct Generate_Lifetime
 {
 	PPB_INLINE
@@ -17,14 +24,24 @@ struct Generate_Lifetime
 struct Generate_Position
 {
 	PPB_INLINE
-	paperback::Vector3f Rand( const transform&   EmitterTransform
-						    , const boundingbox& EmitterBB ) const noexcept
+	paperback::Vector3f Rand( const transform&             EmitterTransform
+						    , const boundingbox&           EmitterBB
+							, const ParticleSpawnPosition& Status ) const noexcept
 	{
 		boundingbox Boundaries = EmitterBB.Extend( EmitterTransform.m_Position + EmitterTransform.m_Offset );
 
-		return paperback::Vector3f{ glm::linearRand( Boundaries.Min.x, Boundaries.Max.x )
-								  , glm::linearRand( Boundaries.Min.y, Boundaries.Max.y )
-								  , glm::linearRand( Boundaries.Min.z, Boundaries.Max.z ) };
+		if ( Status == ParticleSpawnPosition::DEFAULT )
+			return paperback::Vector3f{ glm::linearRand( Boundaries.Min.x, Boundaries.Max.x )
+									  , glm::linearRand( Boundaries.Min.y, Boundaries.Max.y )
+									  , glm::linearRand( Boundaries.Min.z, Boundaries.Max.z ) };
+		if ( Status == ParticleSpawnPosition::TOP )
+			return paperback::Vector3f{ glm::linearRand( Boundaries.Min.x, Boundaries.Max.x )
+									  , Boundaries.Max.y
+									  , glm::linearRand( Boundaries.Min.z, Boundaries.Max.z ) };
+		if ( Status == ParticleSpawnPosition::BOTTOM )
+			return paperback::Vector3f{ glm::linearRand( Boundaries.Min.x, Boundaries.Max.x )
+									  , Boundaries.Min.y
+									  , glm::linearRand( Boundaries.Min.z, Boundaries.Max.z ) };
 	}
 };
 
@@ -210,6 +227,7 @@ BEGIN_CREATE_DATA_COMPONENT( particle_emitter, Particle Emitter )
 	//-----------------------------------
 	bool               m_bHasDestination = false;               // If True - Compute Normalized Direction & Multiply By Randomized Velocity Magnitude
 	bool               m_bPrewarm = false;						// If True - Simulate Particles Being Already Emitted for ___ Emission Interval Loops
+	int                m_SpawnLocation = 0;						// Default Spawn Location - In Center of BB
 
 END_CREATE_DATA_COMPONENT
 
@@ -237,6 +255,7 @@ namespace RR_ParticleEmitter
 			.property( "Update Particle Velocity",   &particle_emitter::m_UpdateVelocity   )( rttr::policy::prop::as_reference_wrapper )
 			.property( "Generate Particle Scale",    &particle_emitter::m_GenerateScale    )( rttr::policy::prop::as_reference_wrapper )
 			.property( "Particle Has Destination?",  &particle_emitter::m_bHasDestination  )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Enable Emitter Prewarm?",    &particle_emitter::m_bPrewarm         )( rttr::policy::prop::as_reference_wrapper );
+			.property( "Enable Emitter Prewarm?",    &particle_emitter::m_bPrewarm         )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Particle Spawn Location",    &particle_emitter::m_SpawnLocation    )( rttr::policy::prop::as_reference_wrapper );
 	}
 }

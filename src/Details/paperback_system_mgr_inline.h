@@ -98,6 +98,11 @@ namespace paperback::system
 		m_Events.m_OnPause.BroadcastEvent( Status );
 	}
 
+	void manager::PrepareSystemsReset( void ) noexcept
+	{
+		m_Events.m_OnStateQueued.BroadcastEvent();
+	}
+
 	void manager::ResetSystems( void ) noexcept
 	{
 		m_Events.m_OnStateChange.BroadcastEvent();
@@ -161,6 +166,9 @@ namespace paperback::system
 
 		if constexpr ( &T_SYSTEM::OnStateLoad != &system_interface::OnStateLoad )
 			m_Events.m_OnStateLoad.RegisterEvent< &T_SYSTEM::OnStateLoad >( static_cast<system_t*>( System ) );
+
+		if constexpr ( &T_SYSTEM::OnStateQueued != &system_interface::OnStateQueued )
+			m_Events.m_OnStateQueued.RegisterEvent< &T_SYSTEM::OnStateQueued >( static_cast<system_t*>( System ) );
 
 		if constexpr ( &T_SYSTEM::OnPause != &system_interface::OnPause )
 			m_Events.m_OnPause.RegisterEvent< &T_SYSTEM::OnPause >( static_cast<system_t*>( System ) );

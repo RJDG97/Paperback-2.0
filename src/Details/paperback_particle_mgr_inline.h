@@ -105,7 +105,7 @@ namespace paperback::particles
 			Particle.m_bHasDestination  = Emitter.m_bHasDestination;
 
 			// Update Particle Spawn Position - Based On Emitter Position & Bounding Box Area
-			Transform.m_Position        = EmitterBB ? Emitter.m_GeneratePosition.Rand( *EmitterTransform, *EmitterBB )
+			Transform.m_Position        = EmitterBB ? Emitter.m_GeneratePosition.Rand( *EmitterTransform, *EmitterBB, static_cast<ParticleSpawnPosition>(Emitter.m_SpawnLocation) )
                                                     : EmitterTransform->m_Position + EmitterTransform->m_Offset;
 			
 			// Update Particle Velocity

@@ -703,6 +703,8 @@ namespace paperback::vm
 			return rttr::instance(GetComponent< particle >(Index));
 		else if (Comp_Guid.m_Value == component::info_v< particle_emitter >.m_Guid.m_Value)
 			return rttr::instance(GetComponent< particle_emitter >(Index));
+		else if (Comp_Guid.m_Value == component::info_v< pure_collider_tag >.m_Guid.m_Value)
+			return rttr::instance(GetComponent< pure_collider_tag >(Index));
 		else
 			return rttr::instance();
 	}

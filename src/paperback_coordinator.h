@@ -105,9 +105,15 @@ namespace paperback::coordinator
 		PPB_INLINE
 		bool VerifyState( const std::string& StateName ) noexcept;
 
+		// OnQueueState - Queuing Change
+		PPB_INLINE
+		void PrepareSystemsReset( void ) noexcept;
+
+		// OnStateChange - Actual Change
 		PPB_INLINE
 		void ResetSystems() noexcept;
 
+		// OnStateLoad
 		PPB_INLINE
 		void ReloadSystems() noexcept;
 
@@ -424,7 +430,7 @@ namespace paperback::coordinator
 		glm::vec3 GetViewportMousePosition(glm::mat4 projection, glm::mat4 view) noexcept;
 
 		PPB_INLINE
-		float SetMouseSensitivityRatio( const float Value ) noexcept;
+		void SetMouseSensitivityRatio( const float Value ) noexcept;
 
 		PPB_INLINE
 		float GetMouseSensitivityRatio( void ) noexcept;
@@ -498,6 +504,7 @@ namespace paperback::coordinator
 		bool								m_bPaused = false;
 		bool								m_bCursorActive = false;
 		float                               m_MouseSensitivityRatio = 1.0f;
+		float                               m_SceneTransitionDelay = settings::scene_transition_delay_v;
 	};
 }
 

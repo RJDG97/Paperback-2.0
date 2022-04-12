@@ -20,6 +20,7 @@ namespace CSScript
         BoundingBox m_ChildBoundingBox; //gate is child
         Animator m_ChildAnimator;
         Transform m_ChildTransform;
+        ParticleEmitter m_ChildEmitter;
 
         Tools.MathLib.Vector3 m_InitialBoundingBoxMin;
         Tools.MathLib.Vector3 m_InitialBoundingBoxMax;
@@ -50,6 +51,7 @@ namespace CSScript
                 m_ChildBoundingBox = new BoundingBox((UInt32)m_ChildID);
                 m_ChildAnimator = new Animator((UInt32)m_ChildID);
                 m_ChildTransform = new Transform((UInt32)m_ChildID);
+                m_ChildEmitter = new ParticleEmitter((UInt32)m_ChildID);
 
                 m_ChildAnimator.m_PauseAtTime = 0;
                 m_InitialBoundingBoxMin = m_ChildBoundingBox.Min;
@@ -76,11 +78,22 @@ namespace CSScript
                                                                       m_InitialBBOffset.z + (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
             }
 
-            if (m_NumTop == 0 && !m_Activated && !m_ChildFreezable.m_Frozen)
+            if (m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
             {
                 m_ChildAnimator.m_Reversed = true;
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 0;
+                m_Activated = false;
+            }
+
+            if (m_ChildFreezable.m_Frozen)
+            {
+                m_ChildEmitter.m_Lifetime = 0.5f;
+            }
+
+            else
+            {
+                m_ChildEmitter.m_Lifetime = 0.0f;
             }
         }
 
@@ -134,7 +147,6 @@ namespace CSScript
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 --m_NumTop;
-                m_Activated = false;
                 m_Sound.m_Trigger = true;
                 m_Mesh.m_Model = "Button_GateOFF";
             }

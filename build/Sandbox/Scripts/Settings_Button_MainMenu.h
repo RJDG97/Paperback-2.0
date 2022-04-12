@@ -21,8 +21,51 @@ struct settings_button_mainmenu_script : paperback::script::button_interface // 
     void OnClick() noexcept override
     {
 
-        //PPB.GetSystem<ui_system>().TriggerSoundEntity("ButtonClickSFX");
         PPB.GetSystem<sound_system>().TriggerTaggedSound("ButtonClickSFX");
-        PPB.QueueScene("Settings");
+
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PLAYUI), false);
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::SETTINGS), true);
+
+        float volume = PPB.GetSystem<sound_system>().GetVolumePercentage();
+        size_t layer = UI_LAYER::VOLUME1;
+
+        for (float vol = 0.0f; vol < volume; vol += 0.2f)
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(layer++), true);
+        }
+        
+        float mousesens = PPB.GetMouseSensitivityRatio();
+        layer = UI_LAYER::MOUSESENS1;
+
+        for (float sens = 0.0f; sens < mousesens; sens += 0.2f)
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(layer++), true);
+        }
+
+        if (PPB.GetSystem<window_system>().GetFullScreen())
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::FULLSCREEN_ON), true);
+        }
+        else
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::FULLSCREEN_OFF), true);
+        }
+
+        if (PPB.GetSystem<render_system>().GetGamma())
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::GAMMA_ON), true);
+        }
+        else
+        {
+
+            PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::GAMMA_OFF), true);
+        }
+        
+        PPB.GetSystem<ui_system>().UpdateMaximumIndex();
     }
 };

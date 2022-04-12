@@ -478,5 +478,38 @@
     <ClInclude Include="Components\Freezable.h">
       <Filter>Source Files\Components\Details\Tags</Filter>
     </ClInclude>
+    <ClInclude Include="Systems\TreeSystem.h">
+      <Filter>Source Files\Systems\Details\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Volume_Increase_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Volume_Decrease_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\MouseSens_Decrease_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\MouseSens_Increase_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Settings_Close_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gamma_Enable_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Gamma_Disable_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Fullscreen_Disable_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripts\Fullscreen_Enable_Button_MainMenu.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PureCollider.h">
+      <Filter>Source Files\Components\Details\Tags</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

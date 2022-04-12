@@ -131,6 +131,23 @@ namespace CSScript
                         break;
                     }
                 }
+
+                switch (m_Abilities.Count)
+                {
+                    case 0: break;
+                    case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;
+
+                    case 2:
+                        ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                        ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                        break;
+
+                    case 3:
+                        ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                        ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                        ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+                        break;
+                }
             }
 
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
@@ -183,7 +200,7 @@ namespace CSScript
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);
                     Debug.Log(m_Abilities[0].ToString());
-                    m_CooldownTimer = 0.3f;
+                    m_CooldownTimer = 0.15f;
 
                     ++m_RotateTimes;
                 }
@@ -235,17 +252,17 @@ namespace CSScript
 
             if (m_Abilities.Count > 0)
             {
-                RotateCard(m_CardOne, m_CardOneOffset, m_CurrentOrderOne, dt);
+                RotateCard(m_CardOneOffset, m_CurrentOrderOne, dt);
             }
 
             if (m_Abilities.Count > 1)
             {
-                RotateCard(m_CardTwo, m_CardTwoOffset, m_CurrentOrderTwo, dt);
+                RotateCard(m_CardTwoOffset, m_CurrentOrderTwo, dt);
             }
 
             if (m_Abilities.Count > 2)
             {
-                RotateCard(m_CardThree, m_CardThreeOffset, m_CurrentOrderThree, dt);
+                RotateCard(m_CardThreeOffset, m_CurrentOrderThree, dt);
             }
         }
 
@@ -315,9 +332,73 @@ namespace CSScript
                     break;
                 }
             }
+
+            switch(m_Abilities.Count)
+            {
+                case 0: break;
+                case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;
+
+                case 2:
+                    ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                    ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                    break;
+
+                case 3:
+                    ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                    ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                    ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+                    break;
+            }
         }
 
-        private void RotateCard(Mesh mesh, Offset offset, int destination, float dt)
+        private void ChangeCardTexture(Mesh mesh, int destination)
+        {
+            switch (destination)
+            {
+                case 1:
+                { 
+                    if (mesh.m_Texture.Length > 11)
+                        if(mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) == "_Unselected")
+                        {
+                            mesh.m_Texture = mesh.m_Texture.Substring(0, mesh.m_Texture.Length - 11); // Crash
+                        }
+
+                    break;
+                }
+
+                case 2:
+                {
+                    if (mesh.m_Texture.Length <= 11)
+                    {
+                        mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                    }
+
+                    else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
+                    {
+                        mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                    }
+
+                    break;
+                }
+
+                case 3:
+                {
+                    if (mesh.m_Texture.Length <= 11)
+                    {
+                        mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                    }
+
+                    else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
+                    {
+                        mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        private void RotateCard(Offset offset, int destination, float dt)
         {
             Tools.MathLib.Vector3 dest_pos = new Tools.MathLib.Vector3();
             Tools.MathLib.Vector3 dest_scale = new Tools.MathLib.Vector3();
@@ -327,12 +408,6 @@ namespace CSScript
                 {
                     dest_pos = m_InitialCardOnePos;
                     dest_scale = m_InitialCardOneScale;
-
-                    if (mesh.m_Texture.Length > 11 && mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) == "_Unselected")
-                    {
-                        mesh.m_Texture = mesh.m_Texture.Substring(0, mesh.m_Texture.Length - 11);
-                    }
-
                     break;
                 }
 
@@ -340,17 +415,6 @@ namespace CSScript
                 {
                     dest_pos = m_InitialCardTwoPos;
                     dest_scale = m_InitialCardTwoScale;
-
-                    if (mesh.m_Texture.Length <= 11)
-                    {
-                        mesh.m_Texture = mesh.m_Texture + "_Unselected";
-                    }
-
-                    else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
-                    {
-                        mesh.m_Texture = mesh.m_Texture + "_Unselected";
-                    }
-
                     break;
                 }
 
@@ -358,17 +422,6 @@ namespace CSScript
                 {
                     dest_pos = m_InitialCardThreePos;
                     dest_scale = m_InitialCardThreeScale;
-
-                    if (mesh.m_Texture.Length <= 11)
-                    {
-                        mesh.m_Texture = mesh.m_Texture + "_Unselected";
-                    }
-
-                    else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
-                    {
-                        mesh.m_Texture = mesh.m_Texture + "_Unselected";
-                    }
-
                     break;
                 }
             }

@@ -253,6 +253,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Components\PlayerController.h" />
     <ClInclude Include="Components\PlayerInteraction.h" />
     <ClInclude Include="Components\Prefab.h" />
+    <ClInclude Include="Components\PureCollider.h" />
     <ClInclude Include="Components\Pushable.h" />
     <ClInclude Include="Components\ReferencePrefab.h" />
     <ClInclude Include="Components\Rigidbody.h" />
@@ -276,7 +277,11 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="PCH\sandbox_pch.h" />
     <ClInclude Include="Scripts\CardScript.h" />
     <ClInclude Include="Scripts\Credits_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\Fullscreen_Disable_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\Fullscreen_Enable_Button_MainMenu.h" />
     <ClInclude Include="Scripts\Game_Mode.h" />
+    <ClInclude Include="Scripts\Gamma_Disable_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\Gamma_Enable_Button_MainMenu.h" />
     <ClInclude Include="Scripts\How2Play_Button_Game.h" />
     <ClInclude Include="Scripts\How2Play_Button_MainMenu.h" />
     <ClInclude Include="Scripts\How2Play_Cancel_Button_Game.h" />
@@ -284,6 +289,8 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Scripts\LevelSelect_Button_MainMenu.h" />
     <ClInclude Include="Scripts\MainMenu_Button.h" />
     <ClInclude Include="Scripts\MainMenu_Mode.h" />
+    <ClInclude Include="Scripts\MouseSens_Decrease_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\MouseSens_Increase_Button_MainMenu.h" />
     <ClInclude Include="Scripts\NextLevel_Level1.h" />
     <ClInclude Include="Scripts\NextLevel_Level2.h" />
     <ClInclude Include="Scripts\NextLevel_Level3.h" />
@@ -318,6 +325,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Scripts\ReturnMainMenuWindow_Button_Game.h" />
     <ClInclude Include="Scripts\scripts_includes.h" />
     <ClInclude Include="Scripts\Settings_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\Settings_Close_Button_MainMenu.h" />
     <ClInclude Include="Scripts\StartCutscene_Last_Button.h" />
     <ClInclude Include="Scripts\StartCutscene_Level3_Button.h" />
     <ClInclude Include="Scripts\StartGame_Button.h" />
@@ -325,6 +333,8 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Scripts\StartLevel2_Button.h" />
     <ClInclude Include="Scripts\StartLevel3_Button.h" />
     <ClInclude Include="Scripts\UI_Layers.h" />
+    <ClInclude Include="Scripts\Volume_Decrease_Button_MainMenu.h" />
+    <ClInclude Include="Scripts\Volume_Increase_Button_MainMenu.h" />
     <ClInclude Include="Systems\AnimatorSystem.h" />
     <ClInclude Include="Systems\CameraSystem.h" />
     <ClInclude Include="Systems\CollisionSystem.h" />
@@ -347,6 +357,7 @@ xcopy /y /i "$(ProjectDir)Dependencies\mono\lib\mono\gac\System.Core\4.0.0.0__b7
     <ClInclude Include="Systems\SoundSystem.h" />
     <ClInclude Include="Systems\system_includes.h" />
     <ClInclude Include="Systems\TimerSystem.h" />
+    <ClInclude Include="Systems\TreeSystem.h" />
     <ClInclude Include="Systems\UISystem.h" />
     <ClInclude Include="Systems\WindowSystem.h" />
   </ItemGroup>

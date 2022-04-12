@@ -157,7 +157,7 @@ namespace CSScript
                     m_HoveredID = 0;
                     RevertUnhovered();
 
-                    m_AbilitySwapCoolDownTimer = 0.3f;
+                    m_AbilitySwapCoolDownTimer = 0.15f;
                     Ability first = m_Abilities[0];
                     m_Abilities.RemoveAt(0);
                     m_Abilities.Add(first);
@@ -634,7 +634,6 @@ namespace CSScript
                             {   
                                 Freezable freezable = new Freezable(temp_id);
                                     
-
                                 if (!freezable.m_Frozen)
                                 {
                                     RevertHovered(true);

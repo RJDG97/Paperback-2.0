@@ -46,12 +46,13 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< transform, rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
-		    Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
+		    Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction, particle_emitter >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera
+                                                                         , animator& Animator, player_interaction* Interaction, particle_emitter* Emitter )
                 {
                     if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
@@ -85,6 +86,7 @@ namespace paperback::input::binding
                                 m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
+                            if (Emitter) Emitter->m_Lifetime = 0.5f;
                             Animator.m_PlayOnce = false;
                         }
                     }
@@ -101,12 +103,13 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, animator >();
-            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
+            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction, particle_emitter >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera
+                                                                         , animator& Animator, player_interaction* Interaction, particle_emitter* Emitter )
                 {
                     if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
                     {
@@ -140,6 +143,7 @@ namespace paperback::input::binding
                                 m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
+                            if (Emitter) Emitter->m_Lifetime = 0.5f;
                             Animator.m_PlayOnce = false;
                         }
                     }
@@ -155,12 +159,13 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, animator >();
-            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
+            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction, particle_emitter >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera
+                                                                         , animator& Animator, player_interaction* Interaction, particle_emitter* Emitter )
                 {
                     if ( Interaction && Interaction->m_bPushOrPull ) return;
                     if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
@@ -199,6 +204,7 @@ namespace paperback::input::binding
                                 m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
+                            if (Emitter) Emitter->m_Lifetime = 0.5f;
                             Animator.m_PlayOnce = false;
                         }
                     }
@@ -214,12 +220,13 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, animator >();
-            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
+            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction, particle_emitter >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
             {
-                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, player_interaction* Interaction )
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera
+                                                                         , animator& Animator, player_interaction* Interaction, particle_emitter* Emitter )
                 {
                     if ( Interaction && Interaction->m_bPushOrPull ) return;
                     if ( Controller.m_PlayerStatus && !Controller.m_FPSMode && Camera.m_Active )
@@ -258,6 +265,7 @@ namespace paperback::input::binding
                                 m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                             }
 
+                            if (Emitter) Emitter->m_Lifetime = 0.5f;
                             Animator.m_PlayOnce = false;
                         }
                     }
@@ -275,7 +283,7 @@ namespace paperback::input::binding
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
             Query.m_Must.AddFromComponents< transform, rigidforce, rotation, mass, player_controller, camera, boundingbox >();
-            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction >();
+            Query.m_OneOf.AddFromComponents< paperback::component::entity, player_interaction, particle_emitter >();
 		    Query.m_NoneOf.AddFromComponents<prefab>();
 
             if ( !m_Coordinator.GetPauseBool() )
@@ -285,7 +293,8 @@ namespace paperback::input::binding
 
                 if ( GP && DebugSys )
                 {
-                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera, animator& Animator, mass& Mass, boundingbox& BB, player_interaction* Interaction )
+                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( transform& Transform, rigidforce& RF, player_controller& Controller, camera& Camera
+                                                                             , animator& Animator, mass& Mass, boundingbox& BB, player_interaction* Interaction, particle_emitter* Emitter )
                     {
                         if ( Controller.m_PlayerStatus /*&& Controller.m_OnGround*/ && !Controller.m_FPSMode && Camera.m_Active )
                         {
@@ -399,6 +408,7 @@ namespace paperback::input::binding
                                     m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
                                 }
 
+                                if (Emitter) Emitter->m_Lifetime = 0.5f;
                                 Animator.m_PlayOnce = false;
                             }
                         }
@@ -450,7 +460,7 @@ namespace paperback::input::binding
 	                    }
 	                    else if (Direction.y < 0)
 	                    {
-                            Camera.RotateUp( Direction.y * -1.f );
+                            Camera.RotateUp( Direction.y * -1.f, Controller.m_FPSMode );
 	                    }
                     }
                 });
@@ -485,7 +495,7 @@ namespace paperback::input::binding
                             if ( GP->m_State.m_RightAxis.y > 0.0f )
                                 Camera.RotateDown( std::fabs(GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f) );
                             else if ( GP->m_State.m_RightAxis.y < 0.0f )
-                                Camera.RotateUp( std::fabs(GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f) );
+                                Camera.RotateUp( std::fabs(GP->m_State.m_RightAxis.y * Controller.m_CameraRotationSpeed  * m_Coordinator.GetMouseSensitivityRatio() * 0.01f), Controller.m_FPSMode );
                         }
                     });
                 }
@@ -879,7 +889,7 @@ namespace paperback::input::binding
 
             // TODO - Update Query Initialization To Constructor Call
             tools::query Query;
-            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator >();
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator, mesh >();
 		    Query.m_OneOf.AddFromComponents< player_interaction, paperback::component::entity >();
 		    Query.m_NoneOf.AddFromComponents< prefab >();
 
@@ -925,11 +935,12 @@ namespace paperback::input::binding
 
                 if ( ValidSwap )
                 {
-                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
+                    m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, mesh& Mesh )
                     {
                         if ( Controller.m_PlayerStatus && Camera.m_Active )
                         {
                             Controller.m_PlayerStatus = Camera.m_Active = false;
+                            //Mesh.m_Active = true;
                         }
                         else if ( !Controller.m_PlayerStatus && !Camera.m_Active )
                         {
@@ -940,6 +951,28 @@ namespace paperback::input::binding
                     // Play Toggle Player Sound
                     m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_TogglePlayer" );
                 }
+            }
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
+    BEGIN_BINDING_CONSTRUCT( Play_AbilitySFX )
+        BEGIN_INPUT_ACTION
+
+            // TODO - Update Query Initialization To Constructor Call
+            tools::query Query;
+            Query.m_Must.AddFromComponents< rigidforce, rigidbody, rotation, mass, player_controller, camera, animator, mesh >();
+		    Query.m_OneOf.AddFromComponents< player_interaction, paperback::component::entity >();
+		    Query.m_NoneOf.AddFromComponents< prefab >();
+
+            if ( !m_Coordinator.GetPauseBool() )
+            {
+                m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera )
+                {
+                    // FPS Mode Is Active - Do Not Allow Player Swap
+                    if ( Controller.m_PlayerStatus && Camera.m_Active )
+                        if ( Controller.m_FPSMode ) m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_Shoot" );
+                });
             }
 
         END_INPUT_ACTION

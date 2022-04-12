@@ -289,6 +289,7 @@
     <ClInclude Include="..\..\src\Scripts\Scripts_DialogueCollider.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_DialogueText.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Elevator.h" />
+    <ClInclude Include="..\..\src\Scripts\Scripts_Freezable.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Inputs.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Mass.h" />
     <ClInclude Include="..\..\src\Scripts\Scripts_Mesh.h" />

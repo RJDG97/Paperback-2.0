@@ -44,6 +44,7 @@ namespace paperback::coordinator
 			XCORE_PERF_FRAME_MARK_START( "paperback::frame" )
 
 			m_SystemMgr.Run();
+			m_SceneTransitionDelay -= DeltaTime();
 
 			/*if (IsKeyPressDown(GLFW_KEY_ESCAPE))
 				m_GameActive = false;*/
@@ -309,9 +310,6 @@ namespace paperback::coordinator
 	PPB_INLINE
 	void instance::OpenScene( const std::string& SceneName = "" ) noexcept
 	{
-		// Reset AABB Tree
-		m_AABBTree.Reset();
-
 		if (SceneName == "")
 		{
 			//if no arg given then "launching" so just reload scene manager
@@ -326,22 +324,25 @@ namespace paperback::coordinator
 				m_SceneMgr.ChangeScene();
 			}
 		}
-
-		// Initialize AABB Tree
-		m_AABBTree.Initialize();
 	}
 
 	PPB_INLINE
 	void instance::QueueScene(const std::string& SceneName) noexcept 
 	{
 		if (m_QueuedSceneName == "")
+		{
 			m_QueuedSceneName = SceneName;
+			m_SceneTransitionDelay = settings::scene_transition_delay_v;
+
+			// Broadcasts SystemMgr.m_OnStateQueued Event
+			PrepareSystemsReset();
+		}
 	}
 
 	PPB_INLINE
 	void instance::OpenQueuedScene() noexcept
 	{
-		if (m_QueuedSceneName != "")
+		if ( m_QueuedSceneName != "" && m_SceneTransitionDelay < 0.0f )
 		{
 
 			if (m_QueuedSceneName == "Reload")
@@ -388,6 +389,12 @@ namespace paperback::coordinator
 	bool instance::VerifyState( const std::string& StateName ) noexcept
 	{
 		return m_SceneMgr.VerifyScene( StateName );
+	}
+
+	PPB_INLINE
+	void instance::PrepareSystemsReset( void ) noexcept
+	{
+		m_SystemMgr.PrepareSystemsReset();
 	}
 
 	PPB_INLINE
@@ -1145,7 +1152,7 @@ namespace paperback::coordinator
 		return m_Input.GetViewportMousePosition(projection, view);
 	}
 
-	float instance::SetMouseSensitivityRatio( const float Value ) noexcept
+	void instance::SetMouseSensitivityRatio( const float Value ) noexcept
 	{
 		m_MouseSensitivityRatio = Value;
 	}

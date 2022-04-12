@@ -30,6 +30,15 @@
 #include "Page6How2Play_Prev_Button_MainMenu.h"
 #include "Page7How2Play_Next_Button_MainMenu.h"
 #include "Page7How2Play_Prev_Button_MainMenu.h"
+#include "Settings_Close_Button_MainMenu.h"
+#include "Volume_Decrease_Button_MainMenu.h"
+#include "Volume_Increase_Button_MainMenu.h"
+#include "MouseSens_Decrease_Button_MainMenu.h"
+#include "MouseSens_Increase_Button_MainMenu.h"
+#include "Gamma_Disable_Button_MainMenu.h"
+#include "Gamma_Enable_Button_MainMenu.h"
+#include "Fullscreen_Disable_Button_MainMenu.h"
+#include "Fullscreen_Enable_Button_MainMenu.h"
 
 
 //gameplay buttons
