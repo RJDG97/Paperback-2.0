@@ -14,24 +14,32 @@ namespace
         if (IsFocus)
         {
 
-            if (!m_LastPause)
+            if (!m_LastPause && !(PPB.VerifyState("LevelOne") || PPB.VerifyState("LevelTwo") || PPB.VerifyState("LevelThree")))
                 PPB.TogglePause(false);
         }
         else
         {
 
-
-            if (!PPB.GetPauseBool())
+            if (PPB.VerifyState("LevelOne") || PPB.VerifyState("LevelTwo") || PPB.VerifyState("LevelThree"))
             {
 
-                m_LastPause = false;
-
-                PPB.TogglePause(true);
+                PPB.SetTabPaused(true);
             }
             else
             {
 
-                m_LastPause = true;
+                if (!PPB.GetPauseBool())
+                {
+
+                    m_LastPause = false;
+
+                    PPB.TogglePause(true);
+                }
+                else
+                {
+
+                    m_LastPause = true;
+                }
             }
         }
     }
