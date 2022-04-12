@@ -535,7 +535,7 @@ void Renderer::SetUpFramebuffer(int Width, int Height)
 	// Create shadow depth texture
 	GLuint shadowDepth;
 	glCreateTextures(GL_TEXTURE_2D, 1, &shadowDepth);
-	glTextureStorage2D(shadowDepth, 1, GL_DEPTH_COMPONENT32F, 1024, 1024);
+	glTextureStorage2D(shadowDepth, 1, GL_DEPTH_COMPONENT32F, 2048, 2048);
 	glTextureParameteri(shadowDepth, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTextureParameteri(shadowDepth, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTextureParameteri(shadowDepth, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
@@ -1212,7 +1212,7 @@ void Renderer::TextPass(const std::unordered_map<std::string_view, std::vector<T
 void Renderer::ShadowPass(const std::unordered_map<std::string_view, std::vector<TransformInfo>>& Objects)
 {
 	// Change to fit shadow texture size
-	glViewport(0, 0, 1024, 1024);
+	glViewport(0, 0, 2048, 2048);
 
 	// Clear shadow depth buffer
 	glClear(GL_DEPTH_BUFFER_BIT);
