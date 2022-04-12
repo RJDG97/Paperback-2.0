@@ -101,7 +101,7 @@ struct physics_system : paperback::system::pausable_instance
 	{
 		Query.m_Must.AddFromComponents<transform, entity, rigidforce>();
 		Query.m_OneOf.AddFromComponents<boundingbox, mass, rigidbody, rotation, player_controller, player_interaction>();
-        Query.m_OneOf.AddFromComponents<name, child, offset, particle>();
+        Query.m_OneOf.AddFromComponents<name, child, offset, particle, particle_emitter>();
 		Query.m_NoneOf.AddFromComponents<prefab>();
 	}
 
@@ -114,7 +114,7 @@ struct physics_system : paperback::system::pausable_instance
 	void Update( void ) noexcept
 	{
 		ForEach( Search( Query ), [&]( entity& Entity, transform& Transform, rigidforce& RigidForce, rigidbody* RigidBody, rotation* Rot
-                                     , mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset, player_controller* Controller, player_interaction* Inter, particle* Particle ) noexcept
+                                     , mass* Mass, boundingbox* Box, name* Name, child* Child, offset* Offset, player_controller* Controller, player_interaction* Inter, particle* Particle, particle_emitter* Emitter ) noexcept
 		{
             //// Apply Gravity If Non-Static
             if (Mass && Mass->m_Mass && RigidForce.m_GravityAffected)
@@ -129,7 +129,14 @@ struct physics_system : paperback::system::pausable_instance
                     RigidForce.m_GravityActive = true;
                     if ( Controller )
                     {
-                        if ( !Controller->m_OnGround ) GetSystem<sound_system>().TriggerTaggedSound( "SFX_BlueLand" );
+                        if (!Controller->m_OnGround)
+                        {
+                            GetSystem<sound_system>().TriggerTaggedSound("SFX_BlueLand");
+
+                            if (Emitter)
+                                Emitter->m_Lifetime = 0.5f;
+                        }
+
                         Controller->m_OnGround = true;
                     }
                 }
