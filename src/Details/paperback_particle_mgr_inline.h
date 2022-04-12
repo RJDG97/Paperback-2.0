@@ -111,7 +111,7 @@ namespace paperback::particles
 			// Update Particle Velocity
 			RF.m_Momentum               = Emitter.m_GenerateVelocity.Rand( );
             RF.m_dynamicFriction        = 0.001f;
-            RF.m_GravityAffected        = false;
+            RF.m_GravityAffected        = Emitter.m_AffectedByGravity;
 			
 			// Update Particle Scale
 			Scale.m_Value               = Emitter.m_GenerateScale.Rand( );
@@ -120,7 +120,7 @@ namespace paperback::particles
             Rotation.m_Value            = Emitter.m_GenerateRotation.Rand( );
 
             // For Phy Sys - Convert this to data member to modify particle speed
-            Mass.m_Mass                 = 5.0f;
+            Mass.m_Mass                 = 3.0f;
 		});
     }
 

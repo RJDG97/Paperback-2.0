@@ -23,7 +23,7 @@ struct particle_system : paperback::system::pausable_instance
         QueryEmitter.m_Must.AddFromComponents<entity, particle_emitter>();
 		QueryEmitter.m_NoneOf.AddFromComponents<prefab>();
 
-        QueryParticle.m_Must.AddFromComponents<entity, particle, rotation, transform>();
+        QueryParticle.m_Must.AddFromComponents<entity, particle, rotation, transform, scale, rigidforce>();
 		QueryParticle.m_NoneOf.AddFromComponents<prefab>();
 
         Debug = m_Coordinator.FindSystem<debug_system>();
@@ -60,12 +60,16 @@ struct particle_system : paperback::system::pausable_instance
         });
 
         // Update Particles - Remove If Dead
-        ForEach( Search(QueryParticle), [&]( entity& Entity, particle& Particle, rotation& Rotation, transform& Transform ) noexcept
+        ForEach( Search(QueryParticle), [&]( entity& Entity, particle& Particle, rotation& Rotation, transform& Transform, scale& Scale, rigidforce& RF ) noexcept
         {
             Particle.UpdateParticle( Dt );
+            Scale.m_Value *= 0.99f;
 
             if ( !Particle.IsAlive() )
             {
+                RF.m_Momentum = {};
+                RF.m_GravityAffected = false;
+                RF.m_Forces = {};
                 m_Coordinator.ReturnDeadParticle( Entity.m_GlobalIndex );
             }
         });

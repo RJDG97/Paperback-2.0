@@ -210,6 +210,7 @@ BEGIN_CREATE_DATA_COMPONENT( particle_emitter, Particle Emitter )
 	int                m_EmissionCap      = 100;				// Max Particles Owned By Emitter
 	ParticleList       m_ActiveParticles;						// List Of Active Particles
 	std::string        m_TextureName;							// Texture Name
+	bool			   m_AffectedByGravity = false;				// Affected by Gravity
 
 	//-----------------------------------
 	//       Particle Generation
@@ -241,21 +242,22 @@ namespace RR_ParticleEmitter
 	{
 		rttr::registration::class_< particle_emitter >( particle_emitter::typedef_v.m_pName )
 			.constructor()(rttr::policy::ctor::as_object)
-			.property( "Emitter Lifetime",           &particle_emitter::m_Lifetime         )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Emitter Timer",              &particle_emitter::m_CurrentTime      )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Emission Interval",          &particle_emitter::m_EmissionInterval )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Emission Rate",              &particle_emitter::m_EmissionRate     )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Emission Cap",               &particle_emitter::m_EmissionCap      )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Particle Texture Name",      &particle_emitter::m_TextureName      )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Generate Particle Lifetime", &particle_emitter::m_GenerateLifetime )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Generate Particle Position", &particle_emitter::m_GeneratePosition )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Generate Particle Velocity", &particle_emitter::m_GenerateVelocity )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Generate Particle Rotation", &particle_emitter::m_GenerateRotation )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Generate Particle Opacity",  &particle_emitter::m_GenerateOpacity  )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Update Particle Velocity",   &particle_emitter::m_UpdateVelocity   )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Generate Particle Scale",    &particle_emitter::m_GenerateScale    )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Particle Has Destination?",  &particle_emitter::m_bHasDestination  )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Enable Emitter Prewarm?",    &particle_emitter::m_bPrewarm         )( rttr::policy::prop::as_reference_wrapper )
-			.property( "Particle Spawn Location",    &particle_emitter::m_SpawnLocation    )( rttr::policy::prop::as_reference_wrapper );
+			.property( "Emitter Lifetime",				 &particle_emitter::m_Lifetime         )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Emitter Timer",					 &particle_emitter::m_CurrentTime      )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Emission Interval",				 &particle_emitter::m_EmissionInterval )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Emission Rate",					 &particle_emitter::m_EmissionRate     )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Emission Cap",					 &particle_emitter::m_EmissionCap      )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Particle Texture Name",			 &particle_emitter::m_TextureName      )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Lifetime",	 &particle_emitter::m_GenerateLifetime )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Position",	 &particle_emitter::m_GeneratePosition )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Velocity",	 &particle_emitter::m_GenerateVelocity )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Rotation",	 &particle_emitter::m_GenerateRotation )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Opacity",		 &particle_emitter::m_GenerateOpacity  )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Update Particle Velocity",		 &particle_emitter::m_UpdateVelocity   )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Generate Particle Scale",		 &particle_emitter::m_GenerateScale    )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Particle Affected by Gravity?",	 &particle_emitter::m_AffectedByGravity)( rttr::policy::prop::as_reference_wrapper )
+			.property( "Particle Has Destination?",		 &particle_emitter::m_bHasDestination  )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Enable Emitter Prewarm?",		 &particle_emitter::m_bPrewarm         )( rttr::policy::prop::as_reference_wrapper )
+			.property( "Particle Spawn Location",		 &particle_emitter::m_SpawnLocation    )( rttr::policy::prop::as_reference_wrapper );
 	}
 }

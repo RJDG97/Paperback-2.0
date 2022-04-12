@@ -40,6 +40,20 @@ namespace MONO_PARTICLEEMITTER
 			reinterpret_cast<particle_emitter*>(address)->m_TextureName = mono_string_to_utf8(texture);
 	}
 
+	MONO_EXPORT int GetEmissionRate(void* address)
+	{
+		if (address)
+			return reinterpret_cast<particle_emitter*>(address)->m_EmissionRate;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetEmissionRate(void* address, int value)
+	{
+		if (address)
+			reinterpret_cast<particle_emitter*>(address)->m_EmissionRate = value;
+	}
+
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.ParticleEmitter::getaddress(uint)", &MONO_PARTICLEEMITTER::GetAddress);
@@ -47,5 +61,7 @@ namespace MONO_PARTICLEEMITTER
 		mono_add_internal_call("CSScript.ParticleEmitter::SetEmitterLifetime(void*,single)", &MONO_PARTICLEEMITTER::SetEmitterLifetime);
 		mono_add_internal_call("CSScript.ParticleEmitter::GetParticleTexture(void*)", &MONO_PARTICLEEMITTER::GetParticleTexture);
 		mono_add_internal_call("CSScript.ParticleEmitter::SetParticleTexture(void*,string)", &MONO_PARTICLEEMITTER::SetParticleTexture);
+		mono_add_internal_call("CSScript.ParticleEmitter::GetEmissionRate(void*)", &MONO_PARTICLEEMITTER::GetEmissionRate);
+		mono_add_internal_call("CSScript.ParticleEmitter::SetEmissionRate(void*,int)", &MONO_PARTICLEEMITTER::SetEmissionRate);
 	}
 }

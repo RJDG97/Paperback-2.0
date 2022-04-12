@@ -42,6 +42,18 @@ namespace CSScript
         }
     }
 
+    public int m_EmissionRate
+        {
+        get
+        {
+            return GetEmissionRate(m_Address);
+        }
+        set
+        {
+            SetEmissionRate(m_Address, value);
+        }
+    }
+
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     private extern static void* getaddress( UInt32 ID );
 
@@ -56,6 +68,12 @@ namespace CSScript
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
     private extern static void SetParticleTexture(void* address, String texture);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    private extern static int GetEmissionRate(void* address);
+
+    [MethodImplAttribute(MethodImplOptions.InternalCall)]
+    private extern static void SetEmissionRate(void* address, int value);
 
     }
 }
