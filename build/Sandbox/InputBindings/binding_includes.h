@@ -75,6 +75,7 @@ namespace paperback::input::binding
                                 // Play Red Player Walk Sound
                                 m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedWalk" );
                                 m_Coordinator.GetSystem<onevent_ResetAnimation>().m_PushMove = true;
+
                             }
                             // Jump Unit
                             else
@@ -597,88 +598,42 @@ namespace paperback::input::binding
                     if ( !Interaction.m_bPushOrPull && 
                          Interaction.m_InteractableGID == paperback::settings::invalid_index_v )
                     {
-                        // tools::query PQuery;
-                        // PQuery.m_Must.AddFromComponents< pushable, transform, mass, boundingbox, rigidforce >();
-		                // PQuery.m_NoneOf.AddFromComponents< prefab >();
+                         tools::query PQuery;
+                         PQuery.m_Must.AddFromComponents< pushable, transform, mass, boundingbox, rigidforce >();
+		                 PQuery.m_NoneOf.AddFromComponents< prefab >();
 
-                        std::vector<paperback::u32> ExcludeList{};
-                        ExcludeList.push_back( Entity.m_GlobalIndex );
-
-                        glm::vec3 CamPos{ Cam.m_Position };
-                        glm::vec3 RayDir = PPB.GetViewportMousePosition( Cam.m_Projection, Cam.m_View );
-                        paperback::Vector3f RayEnd = paperback::Vector3f{ RayDir.x, RayDir.y, RayDir.z };
-                        RayEnd.Normalized();
-                        paperback::Vector3f CameraPos = paperback::Vector3f{ Cam.m_Position.x, Cam.m_Position.y, Cam.m_Position.z };
-                        RayEnd = CameraPos + RayEnd * Cam.m_MaxRadius * 2.0f;
-
-                        auto [Hit_ID, HitDist] = m_Coordinator.QueryRaycastClosest( CameraPos      // Start Ray
-                                                                                  , RayEnd         // End Ray
-                                                                                  , ExcludeList);  // Excluded Entities
-
-                        if ( Hit_ID != paperback::settings::invalid_index_v )
+                        m_Coordinator.ForEach( m_Coordinator.Search(PQuery), [&]( paperback::component::entity& InterEntity, transform& InterTransform
+                                                                                , mass& InterMass, boundingbox& InterBB, rigidforce& InterRF ) -> bool
                         {
-                            auto Info = m_Coordinator.GetEntityInfo( Hit_ID );
+                            auto AllowableDist = ( InterBB.Max + BB.Max ).MagnitudeSq() * 1.1f;
+                            auto Dist          = Transform.m_Position - InterTransform.m_Position;
 
-                            if ( Info.m_pArchetype )
+                            // If Within Some Set Distance Range
+                            if ( Dist.MagnitudeSq() < AllowableDist )
                             {
-                                auto [ InterMass, InterRF, InterPushable, InterBB, InterEntity, InterTransform ] = Info.m_pArchetype->FindComponents<mass, rigidforce, pushable, boundingbox, paperback::component::entity, transform>( Info.m_PoolDetails );
+                                // Update Interactable's Mass & Friction To Player's
+                                InterMass.m_Mass = Mass.m_Mass;
+                                InterRF.m_dynamicFriction = RF.m_dynamicFriction;
+                                InterRF.m_CollisionAffected = true;
+                                InterRF.m_GravityAffected = true;
 
-                                if ( InterMass && InterRF && InterPushable && InterBB && InterEntity && InterTransform )
-                                {
-                                    auto Dist = Transform.m_Position - InterTransform->m_Position;
-                                    auto AllowableDist = (InterBB->Max).MagnitudeSq() * 1.2f;
+                                // Reset Player Status
+                                Interaction.m_InteractableGID = InterEntity.m_GlobalIndex;
+                                Interaction.m_bPushOrPull     = true;
 
-                                    if ( Dist.MagnitudeSq() > AllowableDist ) return true;
+                                // Play Player Grab Interactable Sound
+                                m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedGrab" );
 
-                                    // Update Interactable's Mass & Friction To Player's
-                                    InterMass->m_Mass = Mass.m_Mass;
-                                    InterRF->m_dynamicFriction = RF.m_dynamicFriction;
-                                    InterRF->m_CollisionAffected = true;
-                                    InterRF->m_GravityAffected = true;
-
-                                    // Reset Player Status
-                                    Interaction.m_InteractableGID = InterEntity->m_GlobalIndex;
-                                    Interaction.m_bPushOrPull = true;
-
-                                    // Play Player Grab Interactable Sound
-                                    m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound("SFX_RedGrab");
-                                }
+                                // Found Interactable Nearby - *Note: ForEach Return Type
+                                return true; // Return True - Terminates ForEach Loop Early
                             }
-                        }
+
+                            // Did Not Find Interactable Nearby - *Note: ForEach Return Type
+                            return false; // Return False - Continue
+                        });
 
                         // Found Player That Can Interact - *Note: ForEach Return Type
                         return true;
-
-
-                        //m_Coordinator.ForEach( m_Coordinator.Search(PQuery), [&]( paperback::component::entity& InterEntity, transform& InterTransform
-                        //                                                        , mass& InterMass, boundingbox& InterBB, rigidforce& InterRF ) -> bool
-                        //{
-                        //    auto AllowableDist = ( InterBB.Max + BB.Max ).MagnitudeSq() * 1.1f;
-                        //    auto Dist          = Transform.m_Position - InterTransform.m_Position;
-
-                        //    // If Within Some Set Distance Range
-                        //    if ( Dist.MagnitudeSq() < AllowableDist )
-                        //    {
-                        //        // Update Interactable's Mass & Friction To Player's
-                        //        InterMass.m_Mass = Mass.m_Mass;
-                        //        InterRF.m_dynamicFriction = RF.m_dynamicFriction;
-                        //        InterRF.m_CollisionAffected = true;
-                        //        InterRF.m_GravityAffected = true;
-
-                        //        // Reset Player Status
-                        //        Interaction.m_InteractableGID = InterEntity.m_GlobalIndex;
-                        //        Interaction.m_bPushOrPull     = true;
-
-                        //        // Play Player Grab Interactable Sound
-                        //        m_Coordinator.GetSystem<sound_system>().TriggerTaggedSound( "SFX_RedGrab" );
-
-                        //        // Found Interactable Nearby - *Note: ForEach Return Type
-                        //        return true; // Return True - Terminates ForEach Loop Early
-                        //    }
-
-                        //    // Did Not Find Interactable Nearby - *Note: ForEach Return Type
-                        //    return false; // Return False - Continue
-                        //});
                     }
                     else
                     {

@@ -95,11 +95,12 @@ struct onevent_FallingAnimation : paperback::system::instance
                 }
 
                 // Strong Unit
-                if ( !Interaction )
+                if (!Interaction)
+                {
                     Anim->m_CurrentAnimationName = "Armature|JumpEnd";
-
-                Anim->m_CurrentTime = 0.0f;
-                Anim->m_PlayOnce = false;
+                    Anim->m_CurrentTime = 0.0f;
+                    Anim->m_PlayOnce = false;
+                }
                 m_Coordinator.GetSystem<onevent_ResetAnimation>().m_JumpMove = true;
             }
         }
