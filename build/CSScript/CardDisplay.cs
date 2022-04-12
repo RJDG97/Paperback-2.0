@@ -356,26 +356,24 @@ namespace CSScript
             switch (destination)
             {
                 case 1:
-                { 
-                    if (mesh.m_Texture.Length > 11)
-                        if(mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) == "_Unselected")
-                        {
-                            mesh.m_Texture = mesh.m_Texture.Substring(0, mesh.m_Texture.Length - 11); // Crash
-                        }
+                {
+                    switch (m_Abilities[0])
+                    {
+                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard"; break;
+                        case Ability.GROW: mesh.m_Texture = "GrowCard"; break;
+                        case Ability.SHRINK: mesh.m_Texture = "ShrinkCard"; break;
+                    }
 
                     break;
                 }
 
                 case 2:
                 {
-                    if (mesh.m_Texture.Length <= 11)
+                    switch (m_Abilities[1])
                     {
-                        mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
-                    }
-
-                    else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
-                    {
-                        mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard_Unselected"; break;
+                        case Ability.GROW: mesh.m_Texture = "GrowCard_Unselected"; break;
+                        case Ability.SHRINK: mesh.m_Texture = "ShrinkCard_Unselected"; break;
                     }
 
                     break;
@@ -383,19 +381,18 @@ namespace CSScript
 
                 case 3:
                 {
-                    if (mesh.m_Texture.Length <= 11)
+                    switch (m_Abilities[2])
                     {
-                        mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
-                    }
-
-                    else if (mesh.m_Texture.Substring(mesh.m_Texture.Length - 11, 11) != "_Unselected")
-                    {
-                        mesh.m_Texture = mesh.m_Texture + "_Unselected"; // Crash
+                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard"; break;
+                        case Ability.GROW: mesh.m_Texture = "GrowCard_Unselected"; break;
+                        case Ability.SHRINK: mesh.m_Texture = "ShrinkCard_Unselected"; break;
                     }
 
                     break;
                 }
             }
+
+            Debug.Log(mesh.m_Texture);
         }
 
         private void RotateCard(Offset offset, int destination, float dt)
