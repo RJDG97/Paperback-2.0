@@ -623,7 +623,7 @@ namespace paperback::input::binding
                             {
                                 auto [ InterMass, InterRF, InterPushable, InterBB, InterEntity, InterTransform ] = Info.m_pArchetype->FindComponents<mass, rigidforce, pushable, boundingbox, paperback::component::entity, transform>( Info.m_PoolDetails );
 
-                                if ( InterMass && InterRF && InterPushable && InterBB && InterEntity, InterTransform )
+                                if ( InterMass && InterRF && InterPushable && InterBB && InterEntity && InterTransform )
                                 {
                                     auto Dist = Transform.m_Position - InterTransform->m_Position;
                                     auto AllowableDist = (InterBB->Max).MagnitudeSq() * 1.2f;

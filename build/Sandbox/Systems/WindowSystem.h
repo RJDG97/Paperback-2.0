@@ -89,6 +89,7 @@ struct window_system : paperback::system::instance
         }
 
         glfwMakeContextCurrent(m_pWindow);
+        glfwSwapInterval(0);
         glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         
         glfwSetKeyCallback(m_pWindow, KeyboardCallback);
