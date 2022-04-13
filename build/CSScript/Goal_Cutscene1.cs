@@ -2,7 +2,7 @@
 *\file         Goal_Cutscene1.cs
 *\brief        Goal_Cutscene1.cs Script
 *
-*\author	     Bryan Low, 100% Code Contribution
+*\author	     Renzo Garcia, 100% Code Contribution
 *
 *\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
 			         or disclosure of this file or its contents without the prior

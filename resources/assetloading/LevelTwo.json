@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 591
+                "EntityHead": 593
             }
         },
         {
@@ -3971,7 +3971,8 @@
                             182,
                             206,
                             175,
-                            331
+                            331,
+                            591
                         ]
                     },
                     "Transform": {
@@ -4543,6 +4544,103 @@
                             }
                         ],
                         "Path ID": 8
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 591
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.60300064086914,
+                            "y": 8.12600040435791,
+                            "z": -25.60300064086914
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12511840695917210930
+                        ],
+                        "Prefab GID": 143
+                    },
+                    "Name": {
+                        "Name": "MovingPlatformPath"
+                    },
+                    "Path": {
+                        "Points": [
+                            {
+                                "x": 0.0,
+                                "y": 0.5,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 0.0,
+                                "y": 0.5,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 0.0,
+                                "y": 0.5,
+                                "z": -5.0
+                            },
+                            {
+                                "x": 0.0,
+                                "y": 3.9000000953674318,
+                                "z": -5.0
+                            },
+                            {
+                                "x": -2.0999999046325685,
+                                "y": 3.9000000953674318,
+                                "z": -5.0
+                            },
+                            {
+                                "x": -2.5999999046325685,
+                                "y": 3.9000000953674318,
+                                "z": -16.0
+                            },
+                            {
+                                "x": 14.0,
+                                "y": 3.9000000953674318,
+                                "z": -13.600000381469727
+                            },
+                            {
+                                "x": 14.0,
+                                "y": 3.9000000953674318,
+                                "z": 30.0
+                            },
+                            {
+                                "x": 14.0,
+                                "y": 3.9000000953674318,
+                                "z": 30.0
+                            },
+                            {
+                                "x": 27.899999618530275,
+                                "y": 3.9000000953674318,
+                                "z": 30.0
+                            },
+                            {
+                                "x": 29.0,
+                                "y": 0.5,
+                                "z": 17.299999237060548
+                            },
+                            {
+                                "x": 29.0,
+                                "y": 0.5,
+                                "z": 17.299999237060548
+                            },
+                            {
+                                "x": 29.0,
+                                "y": 0.5,
+                                "z": 17.299999237060548
+                            }
+                        ],
+                        "Path ID": 21
                     }
                 }
             ]
@@ -44725,7 +44823,9 @@
                         "Global Index": 563
                     },
                     "Prefab": {
-                        "Prefab Instances GID": []
+                        "Prefab Instances GID": [
+                            592
+                        ]
                     },
                     "Transform": {
                         "Offset": {
@@ -44745,7 +44845,7 @@
                     "Path Follower": {
                         "Path ID": 20,
                         "Distance": 0.0,
-                        "Travel Speed": 1.0,
+                        "Travel Speed": 3.0,
                         "Back and Forth": false,
                         "Reversed": false,
                         "Pause Travel": true
@@ -55198,7 +55298,7 @@
                         "Texture": "Transition",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
@@ -55221,7 +55321,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -2721.107666015625,
+                            "x": -2734.779541015625,
                             "y": 0.0,
                             "z": 3.0
                         }
@@ -55838,6 +55938,72 @@
                         }
                     },
                     "Is Jus An Invis Collider Fren": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        223102351977301267,
+                        1871702054972469046
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 592
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            223102351977301267,
+                            1871702054972469046,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 563
+                    },
+                    "Name": {
+                        "Name": "DC3"
+                    },
+                    "Path Follower": {
+                        "Path ID": 21,
+                        "Distance": 0.0,
+                        "Travel Speed": 3.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": true
+                    },
+                    "Camera": {
+                        "Active": false,
+                        "Camera Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Radius": 1.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
+                        "Theta": 90.0,
+                        "Azimuth": 270.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
+                    }
                 }
             ]
         },
