@@ -55,6 +55,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Debug.Log("PreUpdate MovingPlatformSwitch: " + m_ID.ToString());
             if (m_ChildID != -1 && m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
             {
                 m_ChildPathFollower.m_Reversed = true;
@@ -83,6 +84,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            Debug.Log("OnCollisionEnter MovingPlatformSwitch: " + m_ID.ToString());
             if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
             {
                 if (!m_ChildFreezable.m_Frozen)
@@ -104,6 +106,7 @@ namespace CSScript
 
         public void OnCollisionStay(UInt32 ID)
         {
+            Debug.Log("OnCollisionStay MovingPlatformSwitch: " + m_ID.ToString());
             if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
             {
                 if (!m_ChildFreezable.m_Frozen && !m_Activated)
@@ -125,6 +128,7 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
+            Debug.Log("OnCollisionExit MovingPlatformSwitch: " + m_ID.ToString());
             if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
             {
                 if (m_Mesh.m_Model == m_OnModel)

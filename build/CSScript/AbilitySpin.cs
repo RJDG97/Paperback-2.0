@@ -31,6 +31,8 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update AbilitySpin: " + m_ID.ToString());
+
             m_Rotation.m_Value += m_Speed;
             if (m_Rotation.m_Value.y >= 360)
             {

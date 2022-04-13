@@ -102,6 +102,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update GameController: " + m_ID.ToString());
             if (m_RayCastTimer > 0.0f)
                 m_RayCastTimer -= dt;
 
@@ -145,8 +146,11 @@ namespace CSScript
                 if (m_HoverRayCastTimer > 0.0f)
                     m_HoverRayCastTimer -= dt;
 
-                if (m_HoverRayCastTimer <= 0.0f)
+                else
+                {
+                    m_HoverRayCastTimer = 0.15f;
                     CastHoveredRay();
+                }
 
                 if (m_AbilitySwapCoolDownTimer > 0.0f)
                     m_AbilitySwapCoolDownTimer -= dt;

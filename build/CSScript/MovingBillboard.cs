@@ -30,6 +30,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update MovingBillboard: " + m_ID.ToString());
             if (m_Freezable.m_Frozen)
             {
                 m_ParticleEmitter.m_Lifetime = 0.5f;

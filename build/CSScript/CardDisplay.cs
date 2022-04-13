@@ -105,6 +105,8 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update CardDisplay: " + m_ID.ToString());
+
             if (m_RotateTimes > 0)
             {
                 switch (m_Abilities.Count)

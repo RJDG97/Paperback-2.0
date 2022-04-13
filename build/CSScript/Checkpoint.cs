@@ -84,6 +84,8 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            Debug.Log("OnCollisionEnter Checkpoint: " + m_ID.ToString());
+
             if (!m_Activated && m_RedCPID != -1 && m_BlueCPID != -1)
             {
                 if (ID == m_JumpID)

@@ -64,6 +64,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Debug.Log("PreUpdate GateSwitch2: " + m_ID.ToString());
             if ((m_Rotation.m_Value.y % 180.0f) < 1.0f && (m_Rotation.m_Value.y % 180.0f) > -1.0f)
             {
                 m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
@@ -96,6 +97,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            Debug.Log("OnCollisionEnter GateSwitch2: " + m_ID.ToString());
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 if (!m_ChildFreezable.m_Frozen)
@@ -114,6 +116,7 @@ namespace CSScript
 
         public void OnCollisionStay(UInt32 ID)
         {
+            Debug.Log("OnCollisionStay GateSwitch2: " + m_ID.ToString());
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 if (!m_ChildFreezable.m_Frozen && !m_Activated)
@@ -132,6 +135,7 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
+            Debug.Log("OnCollisionExit GateSwitch2: " + m_ID.ToString());
             if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
             {
                 --m_NumTop;

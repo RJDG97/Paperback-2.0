@@ -65,6 +65,8 @@ namespace CSScript
 
         public void OnCollisionEnter( UInt32 ID )
         {
+            Debug.Log("OnCollisionEnter CollectedInteractable: " + m_InteractableID.ToString());
+
             if ( !m_Activated && m_JumpID != -1 && m_PushID != -1 )
             {
                 if ( ID == m_JumpID || ID == m_PushID )
