@@ -146,7 +146,10 @@ namespace CSScript
                     m_HoverRayCastTimer -= dt;
 
                 if (m_HoverRayCastTimer <= 0.0f)
+                {
+                    m_HoverRayCastTimer = 0.15f;
                     CastHoveredRay();
+                }
 
                 if (m_AbilitySwapCoolDownTimer > 0.0f)
                     m_AbilitySwapCoolDownTimer -= dt;
