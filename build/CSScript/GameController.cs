@@ -121,7 +121,6 @@ namespace CSScript
                 else
                 {
                     m_HoverRayCastTimer = 0.15f;
-                    Debug.Log("a");
                     CastHoveredRay();
                 }
 

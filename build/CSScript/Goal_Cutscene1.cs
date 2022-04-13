@@ -9,7 +9,6 @@ namespace CSScript
     {
         UInt32 m_ID;
 
-        BoundingBox m_BoundingBox;
         public static Goal_Cutscene1 getInst()
         {
             return new Goal_Cutscene1();
@@ -18,7 +17,6 @@ namespace CSScript
         public void Start(UInt32 ID)
         {
             m_ID = ID;
-            m_BoundingBox = new BoundingBox(m_ID);
         }
 
         public void PreUpdate(float dt)

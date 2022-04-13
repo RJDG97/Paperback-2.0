@@ -8,8 +8,6 @@ namespace CSScript
     public class Goal_Cutscene3 : MonoBehaviour
     {
         UInt32 m_ID;
-
-        BoundingBox m_BoundingBox;
         public static Goal_Cutscene3 getInst()
         {
             return new Goal_Cutscene3();
@@ -18,7 +16,6 @@ namespace CSScript
         public void Start(UInt32 ID)
         {
             m_ID = ID;
-            m_BoundingBox = new BoundingBox(m_ID);
         }
 
         public void PreUpdate(float dt)

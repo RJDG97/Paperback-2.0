@@ -9,8 +9,6 @@ namespace CSScript
     class SplashScreenCollider : MonoBehaviour
     {
         UInt32 m_ID;
-
-        BoundingBox m_BoundingBox;
         public static SplashScreenCollider getInst()
         {
             return new SplashScreenCollider();
@@ -19,7 +17,6 @@ namespace CSScript
         public void Start(UInt32 ID)
         {
             m_ID = ID;
-            m_BoundingBox = new BoundingBox(m_ID);
         }
 
         public void PreUpdate(float dt)

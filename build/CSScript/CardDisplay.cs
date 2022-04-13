@@ -92,125 +92,125 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            //if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
-            //{
-            //    m_JustLeftFPS = false;
+            if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
+            {
+                m_JustLeftFPS = false;
 
-            //    if (!m_JustEnteredFPS)
-            //    {
-            //        m_JustEnteredFPS = true;
+                if (!m_JustEnteredFPS)
+                {
+                    m_JustEnteredFPS = true;
 
-            //        switch (m_JumpUnitPC.m_Abilities.Length)
-            //        {
-            //            case 0: m_CardOne.m_Active = false; m_CardTwo.m_Active = false; m_CardThree.m_Active = false; break;
-            //            case 1: m_CardOne.m_Active = true; m_CardTwo.m_Active = false; m_CardThree.m_Active = false; break;
-            //            case 2: m_CardOne.m_Active = true; m_CardTwo.m_Active = true; m_CardThree.m_Active = false; break;
-            //            case 3: m_CardOne.m_Active = true; m_CardTwo.m_Active = true; m_CardThree.m_Active = true; break;
-            //        }
+                    switch (m_JumpUnitPC.m_Abilities.Length)
+                    {
+                        case 0: m_CardOne.m_Active = false; m_CardTwo.m_Active = false; m_CardThree.m_Active = false; break;
+                        case 1: m_CardOne.m_Active = true; m_CardTwo.m_Active = false; m_CardThree.m_Active = false; break;
+                        case 2: m_CardOne.m_Active = true; m_CardTwo.m_Active = true; m_CardThree.m_Active = false; break;
+                        case 3: m_CardOne.m_Active = true; m_CardTwo.m_Active = true; m_CardThree.m_Active = true; break;
+                    }
 
-            //        int i = 1;
+                    int i = 1;
 
-            //        foreach (Int32 ability in m_JumpUnitPC.m_Abilities)
-            //        {
-            //            String texture = "";
+                    foreach (Int32 ability in m_JumpUnitPC.m_Abilities)
+                    {
+                        String texture = "";
 
-            //            switch ((PlayerController.Ability)ability)
-            //            {
-            //                case PlayerController.Ability.FREEZE: texture = "FreezeCard"; break;
-            //                case PlayerController.Ability.GROW: texture = "GrowCard"; break;
-            //                case PlayerController.Ability.SHRINK: texture = "ShrinkCard"; break;
-            //            }
+                        switch ((PlayerController.Ability)ability)
+                        {
+                            case PlayerController.Ability.FREEZE: texture = "FreezeCard"; break;
+                            case PlayerController.Ability.GROW: texture = "GrowCard"; break;
+                            case PlayerController.Ability.SHRINK: texture = "ShrinkCard"; break;
+                        }
 
-            //            switch (i)
-            //            {
-            //                case 1: m_CardOne.m_Texture = texture; break;
-            //                case 2: m_CardTwo.m_Texture = texture + "_Unselected"; break;
-            //                case 3: m_CardThree.m_Texture = texture + "_Unselected"; break;
-            //            }
+                        switch (i)
+                        {
+                            case 1: m_CardOne.m_Texture = texture; break;
+                            case 2: m_CardTwo.m_Texture = texture + "_Unselected"; break;
+                            case 3: m_CardThree.m_Texture = texture + "_Unselected"; break;
+                        }
 
-            //            Debug.Log(texture);
-            //            ++i;
-            //        }
-            //    }
+                        Debug.Log(texture);
+                        ++i;
+                    }
+                }
 
-            //    m_E.m_Active = false;
+                m_E.m_Active = false;
 
 
-            //    if (m_CooldownTimer > 0.0f)
-            //    {
-            //        m_CooldownTimer -= dt;
-            //    }
+                if (m_CooldownTimer > 0.0f)
+                {
+                    m_CooldownTimer -= dt;
+                }
 
-            //    if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)) && m_JumpUnitPC.m_Abilities.Length > 1 && m_CooldownTimer < 0.0f)
-            //    {
-            //        m_CooldownTimer = 0.15f;
+                if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)) && m_JumpUnitPC.m_Abilities.Length > 1 && m_CooldownTimer < 0.0f)
+                {
+                    m_CooldownTimer = 0.15f;
 
-            //        switch (m_JumpUnitPC.m_Abilities.Length)
-            //        {
-            //            case 2:
-            //            {
-            //                int temp = m_CurrentOrderOne;
-            //                m_CurrentOrderOne = m_CurrentOrderTwo;
-            //                m_CurrentOrderTwo = temp;
-            //                ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
-            //                ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
-            //                break;
-            //            }
+                    switch (m_JumpUnitPC.m_Abilities.Length)
+                    {
+                        case 2:
+                            {
+                                int temp = m_CurrentOrderOne;
+                                m_CurrentOrderOne = m_CurrentOrderTwo;
+                                m_CurrentOrderTwo = temp;
+                                ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                                ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                                break;
+                            }
 
-            //            case 3:
-            //            {
-            //                int temp = m_CurrentOrderTwo;
-            //                m_CurrentOrderTwo = m_CurrentOrderOne;
-            //                m_CurrentOrderOne = m_CurrentOrderThree;
-            //                m_CurrentOrderThree = temp;
+                        case 3:
+                            {
+                                int temp = m_CurrentOrderTwo;
+                                m_CurrentOrderTwo = m_CurrentOrderOne;
+                                m_CurrentOrderOne = m_CurrentOrderThree;
+                                m_CurrentOrderThree = temp;
 
-            //                ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
-            //                ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
-            //                ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
-            //                break;
-            //            }
-            //        }
-            //    }
-            //}
+                                ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                                ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                                ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+                                break;
+                            }
+                    }
+                }
+            }
 
-            //else
-            //{
-            //    m_JustEnteredFPS = false;
+            else
+            {
+                m_JustEnteredFPS = false;
 
-            //    if (!m_JustLeftFPS)
-            //    {
-            //        m_JustLeftFPS = true;
-            //    }
+                if (!m_JustLeftFPS)
+                {
+                    m_JustLeftFPS = true;
+                }
 
-            //    if (m_JumpUnitPC.m_Abilities.Length == 0)
-            //    {
-            //        m_E.m_Active = false;
-            //    }
+                if (m_JumpUnitPC.m_Abilities.Length == 0)
+                {
+                    m_E.m_Active = false;
+                }
 
-            //    else
-            //    {
-            //        m_E.m_Active = true;
-            //    }
+                else
+                {
+                    m_E.m_Active = true;
+                }
 
-            //    m_CardOne.m_Active = false;
-            //    m_CardTwo.m_Active = false;
-            //    m_CardThree.m_Active = false;
-            //}
+                m_CardOne.m_Active = false;
+                m_CardTwo.m_Active = false;
+                m_CardThree.m_Active = false;
+            }
 
-            //if (m_JumpUnitPC.m_Abilities.Length > 0)
-            //{
-            //    RotateCard(m_CardOneOffset, m_CurrentOrderOne, dt);
-            //}
+            if (m_JumpUnitPC.m_Abilities.Length > 0)
+            {
+                RotateCard(m_CardOneOffset, m_CurrentOrderOne, dt);
+            }
 
-            //if (m_JumpUnitPC.m_Abilities.Length > 1)
-            //{
-            //    RotateCard(m_CardTwoOffset, m_CurrentOrderTwo, dt);
-            //}
+            if (m_JumpUnitPC.m_Abilities.Length > 1)
+            {
+                RotateCard(m_CardTwoOffset, m_CurrentOrderTwo, dt);
+            }
 
-            //if (m_JumpUnitPC.m_Abilities.Length > 2)
-            //{
-            //    RotateCard(m_CardThreeOffset, m_CurrentOrderThree, dt);
-            //}
+            if (m_JumpUnitPC.m_Abilities.Length > 2)
+            {
+                RotateCard(m_CardThreeOffset, m_CurrentOrderThree, dt);
+            }
         }
         public void Update(float dt)
         {
