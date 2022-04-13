@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 586
+                "EntityHead": 592
             }
         },
         {
@@ -4215,13 +4215,15 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
-                            332,
                             268,
-                            391,
+                            332,
+                            586,
                             160,
+                            391,
                             217,
                             167,
-                            275
+                            275,
+                            590
                         ]
                     },
                     "Transform": {
@@ -4679,6 +4681,152 @@
                             }
                         ],
                         "Path ID": 5
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 586
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 43.5,
+                            "y": 3.0,
+                            "z": -7.517000198364258
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            12511840695917210930,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 216
+                    },
+                    "Name": {
+                        "Name": "Moving Path"
+                    },
+                    "Path": {
+                        "Points": [
+                            {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 0.800000011920929,
+                                "y": -2.0999999046325685,
+                                "z": 0.6000000238418579
+                            },
+                            {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": -7.900000095367432
+                            },
+                            {
+                                "x": -0.30000001192092898,
+                                "y": 3.5,
+                                "z": -7.900000095367432
+                            },
+                            {
+                                "x": -1.0,
+                                "y": 3.5,
+                                "z": 2.5
+                            },
+                            {
+                                "x": -1.0,
+                                "y": -2.299999952316284,
+                                "z": 2.5
+                            },
+                            {
+                                "x": -1.0,
+                                "y": -2.299999952316284,
+                                "z": 2.5
+                            },
+                            {
+                                "x": -1.0,
+                                "y": -2.299999952316284,
+                                "z": 2.5
+                            }
+                        ],
+                        "Path ID": 20
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 590
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 42.70000076293945,
+                            "y": 3.0,
+                            "z": -15.300000190734864
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            12511840695917210930,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 216
+                    },
+                    "Name": {
+                        "Name": "Moving Path"
+                    },
+                    "Path": {
+                        "Points": [
+                            {
+                                "x": 0.800000011920929,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 0.800000011920929,
+                                "y": 0.0,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 0.800000011920929,
+                                "y": 3.5,
+                                "z": 0.0
+                            },
+                            {
+                                "x": 0.0,
+                                "y": 3.5,
+                                "z": 13.800000190734864
+                            },
+                            {
+                                "x": 0.0,
+                                "y": -2.0,
+                                "z": 13.800000190734864
+                            },
+                            {
+                                "x": 0.0,
+                                "y": -2.0,
+                                "z": 13.800000190734864
+                            },
+                            {
+                                "x": 0.0,
+                                "y": -2.0,
+                                "z": 13.800000190734864
+                            }
+                        ],
+                        "Path ID": 21
                     }
                 }
             ]
@@ -25347,8 +25495,8 @@
                         },
                         "Position": {
                             "x": 43.52799987792969,
-                            "y": 3.0480000972747804,
-                            "z": -10.902000427246094
+                            "y": 1.6480000019073487,
+                            "z": -6.6020002365112309
                         }
                     },
                     "RigidForce": {
@@ -25447,9 +25595,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 43.22800064086914,
+                            "x": 43.02799987792969,
                             "y": 0.14800000190734864,
-                            "z": -4.4019999504089359
+                            "z": -4.650000095367432
                         }
                     },
                     "RigidForce": {
@@ -25480,14 +25628,14 @@
                     },
                     "BoundingBox": {
                         "Min Point": {
-                            "x": -1.0,
+                            "x": -0.23999999463558198,
                             "y": -1.0,
-                            "z": -1.0
+                            "z": -0.23999999463558198
                         },
                         "Max Point": {
-                            "x": 1.0,
+                            "x": 0.23999999463558198,
                             "y": 1.0,
-                            "z": 1.0
+                            "z": 0.23999999463558198
                         },
                         "Is Collide": false
                     },
@@ -25495,7 +25643,8 @@
                         "Modified Components": [
                             5691439207370049121,
                             17008353085049151909,
-                            9876869069201391077
+                            9876869069201391077,
+                            3617555656175080491
                         ],
                         "Prefab GID": 302
                     },
@@ -26913,6 +27062,116 @@
             ]
         },
         {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        16415915133639986106,
+                        223102351977301267,
+                        1871702054972469046
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 587
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            591
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Dialogue Camera"
+                    },
+                    "Path Follower": {
+                        "Path ID": 20,
+                        "Distance": 0.0,
+                        "Travel Speed": 1.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": true
+                    },
+                    "Camera": {
+                        "Active": false,
+                        "Camera Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Radius": 1.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
+                        "Theta": 90.0,
+                        "Azimuth": 0.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 589
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": []
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Unnamed Entity"
+                    },
+                    "Path Follower": {
+                        "Path ID": 0,
+                        "Distance": 0.0,
+                        "Travel Speed": 0.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": false
+                    },
+                    "Camera": {
+                        "Active": true,
+                        "Camera Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Radius": 1.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
+                        "Theta": 90.0,
+                        "Azimuth": 0.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
+                    }
+                }
+            ]
+        },
+        {
             "HDBbase": [
                 {
                     "Guid": [
@@ -26961,7 +27220,7 @@
                         }
                     },
                     "Animator": {
-                        "Current Animation": "Armature|Walk",
+                        "Current Animation": "Armature|Idle",
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
@@ -26987,9 +27246,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": 43.49100112915039,
-                            "y": 0.7909647822380066,
-                            "z": -6.9227190017700199
+                            "x": 42.99100112915039,
+                            "y": 0.5910000205039978,
+                            "z": -4.7230000495910648
                         }
                     },
                     "RigidForce": {
@@ -27467,7 +27726,7 @@
                     "Rotation": {
                         "Rotation": {
                             "x": 0.0,
-                            "y": 90.0,
+                            "y": 270.0,
                             "z": 0.0
                         }
                     },
@@ -34317,7 +34576,7 @@
                         "Texture": "Transition",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
@@ -34340,7 +34599,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -2718.1044921875,
+                            "x": -2765.718505859375,
                             "y": 0.0,
                             "z": 3.0
                         }
@@ -35028,6 +35287,122 @@
                         }
                     },
                     "Is Jus An Invis Collider Fren": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        15172211932757996706,
+                        16415915133639986106,
+                        223102351977301267,
+                        1871702054972469046
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 588
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            1871702054972469046
+                        ],
+                        "Prefab GID": 587
+                    },
+                    "Name": {
+                        "Name": "DC4"
+                    },
+                    "Path Follower": {
+                        "Path ID": 20,
+                        "Distance": 0.0,
+                        "Travel Speed": 1.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": true
+                    },
+                    "Camera": {
+                        "Active": false,
+                        "Camera Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Radius": 1.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
+                        "Theta": 90.0,
+                        "Azimuth": 90.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 591
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            1871702054972469046,
+                            223102351977301267,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 587
+                    },
+                    "Name": {
+                        "Name": "DC5"
+                    },
+                    "Path Follower": {
+                        "Path ID": 21,
+                        "Distance": 0.0,
+                        "Travel Speed": 1.0,
+                        "Back and Forth": false,
+                        "Reversed": false,
+                        "Pause Travel": true
+                    },
+                    "Camera": {
+                        "Active": false,
+                        "Camera Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Radius": 1.0,
+                        "Max Radius": 2.0,
+                        "Min Radius": 2.0,
+                        "Zoom Rate": 1.0,
+                        "Theta": 90.0,
+                        "Azimuth": 90.0,
+                        "Min Theta": 55.0,
+                        "Max Theta": 95.0
+                    }
                 }
             ]
         },
