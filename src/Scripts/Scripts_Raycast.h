@@ -6,40 +6,25 @@
 namespace MONO_RAYCAST
 {
 
-	MONO_EXPORT MonoArray* rayaab(uint32_t cam_id)
+	MONO_EXPORT uint32_t rayaab(uint32_t cam_id)
 	{
-		std::vector<uint32_t> ids{};
-		tools::query Query;
-		Query.m_Must.AddFromComponents<boundingbox, transform, paperback::component::entity>();
-		Query.m_NoneOf.AddFromComponents<prefab>();
-
 		auto m_obj = PPB.GetEntityInfo(cam_id);
 		camera* m_cam = m_obj.m_pArchetype->FindComponent<camera>(m_obj.m_PoolDetails);
 
 		glm::vec3 CamPos { m_cam->m_Position };
 		glm::vec3 RayDir = PPB.GetViewportMousePosition(m_cam->m_Projection, m_cam->m_View);
 
-		PPB.ForEach(PPB.Search(Query), [&](boundingbox& BoundingBox, transform& Transform, paperback::component::entity& Entity) noexcept
-		{
-			float t = 0;
-			if (RayAabb(paperback::Vector3f{ CamPos.x, CamPos.y, CamPos.z },
-						paperback::Vector3f{ RayDir.x, RayDir.y, RayDir.z },
-						Transform.m_Position + BoundingBox.Min,
-						Transform.m_Position + BoundingBox.Max,
-						t))
-			{
-				ids.push_back(Entity.m_GlobalIndex);
-			}
-		});
+		glm::vec3 EndPos{ CamPos + RayDir * 20.0f };
 
-		MonoArray* temp_array = mono_array_new(mono_domain_get(), mono_get_uint32_class(), ids.size());
+		paperback::Vector3f converted_start{ CamPos.x, CamPos.y, CamPos.z };
+		paperback::Vector3f converted_end{ EndPos.x, EndPos.y, EndPos.z };
+		std::vector<paperback::u32> ExcludeList;
 
-		for (size_t i = 0 ; i != ids.size() ; ++i)
-		{
-			mono_array_set(temp_array, uint32_t, i, ids[i]);
-		}
+		auto [Hit_ID, HitDist] = PPB.QueryRaycastClosest(converted_start    // Start Ray
+													   , converted_end      // End Ray
+													   , ExcludeList);		// Excluded Entities
 
-		return temp_array;
+		return Hit_ID == paperback::settings::invalid_index_v ? 0 : Hit_ID;
 	}
 
 	void AddInternals()

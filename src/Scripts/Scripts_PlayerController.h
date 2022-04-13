@@ -35,50 +35,42 @@ namespace MONO_PLAYERCONTROLLER
 	}
 
 	// Player Grow
-	MONO_EXPORT bool GetGrowStatus(void* address)
+	MONO_EXPORT MonoArray* GetAbilities(void* address)
 	{
 		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_GrowAvailable;
+		{
+			MonoArray* temp_array = mono_array_new(mono_domain_get(), mono_get_uint32_class(), reinterpret_cast<player_controller*>(address)->m_Abilities.size());
 
-		return false;
+			for (size_t i = 0; i != reinterpret_cast<player_controller*>(address)->m_Abilities.size(); ++i)
+			{
+				mono_array_set(temp_array, int32_t, i, reinterpret_cast<player_controller*>(address)->m_Abilities[i]);
+			}
+
+			return temp_array;
+		}
+
+		return {};
 	}
 
-	MONO_EXPORT void SetGrowStatus(void* address, bool value)
+	MONO_EXPORT void AddAbility(void* address, int32_t ability)
 	{
 		if (address)
-			reinterpret_cast<player_controller*>(address)->m_GrowAvailable = value;
+			reinterpret_cast<player_controller*>(address)->m_Abilities.push_back(static_cast<player_controller::Ability>(ability));
 	}
 
-
-	// Player Shrink
-	MONO_EXPORT bool GetShrinkStatus(void* address)
+	MONO_EXPORT void RotateAbility(void* address)
 	{
 		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_ShrinkAvailable;
+		{
+			auto& abilities { reinterpret_cast<player_controller*>(address)->m_Abilities };
 
-		return false;
-	}
-
-	MONO_EXPORT void SetShrinkStatus(void* address, bool value)
-	{
-		if (address)
-			reinterpret_cast<player_controller*>(address)->m_ShrinkAvailable = value;
-	}
-
-
-	// Player Freeze
-	MONO_EXPORT bool GetFreezeStatus(void* address)
-	{
-		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_FreezeAvailable;
-
-		return false;
-	}
-
-	MONO_EXPORT void SetFreezeStatus(void* address, bool value)
-	{
-		if (address)
-			reinterpret_cast<player_controller*>(address)->m_FreezeAvailable = value;
+			if (abilities.size() > 1)
+			{
+				player_controller::Ability first_ability = *(abilities.begin());
+				abilities.erase(abilities.begin());
+				abilities.push_back(first_ability);
+			}
+		}
 	}
 
 	MONO_EXPORT int GetCheckpointID(void* address)
@@ -102,16 +94,9 @@ namespace MONO_PLAYERCONTROLLER
 		mono_add_internal_call("CSScript.PlayerController::SetFPSMode(void*,bool)", &MONO_PLAYERCONTROLLER::SetFPSMode);
 
 		// Player Grow
-		mono_add_internal_call("CSScript.PlayerController::GetGrowStatus(void*)", &MONO_PLAYERCONTROLLER::GetGrowStatus);
-		mono_add_internal_call("CSScript.PlayerController::SetGrowStatus(void*,bool)", &MONO_PLAYERCONTROLLER::SetGrowStatus);
-
-		// Player Shrink
-		mono_add_internal_call("CSScript.PlayerController::GetShrinkStatus(void*)", &MONO_PLAYERCONTROLLER::GetShrinkStatus);
-		mono_add_internal_call("CSScript.PlayerController::SetShrinkStatus(void*,bool)", &MONO_PLAYERCONTROLLER::SetShrinkStatus);
-
-		// Player Freeze
-		mono_add_internal_call("CSScript.PlayerController::GetFreezeStatus(void*)", &MONO_PLAYERCONTROLLER::GetFreezeStatus);
-		mono_add_internal_call("CSScript.PlayerController::SetFreezeStatus(void*,bool)", &MONO_PLAYERCONTROLLER::SetFreezeStatus);
+		mono_add_internal_call("CSScript.PlayerController::GetAbilities(void*)", &MONO_PLAYERCONTROLLER::GetAbilities);
+		mono_add_internal_call("CSScript.PlayerController::Add_Ability(void*,int)", &MONO_PLAYERCONTROLLER::AddAbility);
+		mono_add_internal_call("CSScript.PlayerController::Rotate_Abilities(void*)", &MONO_PLAYERCONTROLLER::RotateAbility);
 
 		mono_add_internal_call("CSScript.PlayerController::GetCheckpointID(void*)", &MONO_PLAYERCONTROLLER::GetCheckpointID);
 		mono_add_internal_call("CSScript.PlayerController::SetCheckpointID(void*,int)", &MONO_PLAYERCONTROLLER::SetCheckpointID);

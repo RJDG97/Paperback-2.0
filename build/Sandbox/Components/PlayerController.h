@@ -7,17 +7,23 @@ struct player_controller
 		.m_pName = "Player Controller"
 	};
 
+	enum Ability
+	{
+		FREEZE,
+		GROW,
+		SHRINK,
+		NONE
+	};
+
 	std::vector<paperback::u64>       m_ControllerGuid{ };
 	float                             m_MovementForce = 3.0f;
 	float                             m_JumpForce = 0.0f;
 	float                             m_CameraRotationSpeed = 0.0f;
 	float                             m_CameraRadius = 0.0f;
 	bool                              m_PlayerStatus = true;
-	bool                              m_OnGround = true;;
+	bool                              m_OnGround = true;
 	bool                              m_FPSMode = false;
-	bool                              m_GrowAvailable = false;
-	bool                              m_ShrinkAvailable = false;
-	bool                              m_FreezeAvailable = false;
+	std::vector<Ability>			  m_Abilities{};
 	int                               m_CheckpointID = -1;
 };
 
@@ -53,9 +59,7 @@ namespace RR_PlayerController
 		   .property( "Player Active Status", &player_controller::m_PlayerStatus )
 		   .property( "Player On Ground Status", &player_controller::m_OnGround)
 		   .property( "Player FPS Status", &player_controller::m_FPSMode)
-		   .property( "Player Grow Available", &player_controller::m_GrowAvailable)(rttr::policy::prop::as_reference_wrapper)
-		   .property( "Player Shrink Available", &player_controller::m_ShrinkAvailable)(rttr::policy::prop::as_reference_wrapper)
-		   .property( "Player Freeze Available", &player_controller::m_FreezeAvailable)(rttr::policy::prop::as_reference_wrapper)
+		   .property( "Player Abilities", &player_controller::m_Abilities)(rttr::policy::prop::as_reference_wrapper)
 		   .property( "Checkpoint ID", &player_controller::m_CheckpointID);
     }
 }

@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 574
+                "EntityHead": 577
             }
         },
         {
@@ -27186,9 +27186,7 @@
                         "Player Active Status": true,
                         "Player On Ground Status": true,
                         "Player FPS Status": false,
-                        "Player Grow Available": true,
-                        "Player Shrink Available": true,
-                        "Player Freeze Available": true,
+                        "Player Abilities": [],
                         "Checkpoint ID": -1
                     },
                     "Light": {
@@ -27275,6 +27273,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 2
@@ -27434,9 +27433,7 @@
                         "Player Active Status": false,
                         "Player On Ground Status": true,
                         "Player FPS Status": false,
-                        "Player Grow Available": false,
-                        "Player Shrink Available": false,
-                        "Player Freeze Available": false,
+                        "Player Abilities": [],
                         "Checkpoint ID": -1
                     },
                     "Light": {
@@ -27523,6 +27520,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -27692,9 +27690,7 @@
                         "Player Active Status": false,
                         "Player On Ground Status": true,
                         "Player FPS Status": false,
-                        "Player Grow Available": true,
-                        "Player Shrink Available": true,
-                        "Player Freeze Available": true,
+                        "Player Abilities": [],
                         "Checkpoint ID": -1
                     },
                     "Player Interaction": {
@@ -27785,6 +27781,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 2
@@ -27945,9 +27942,7 @@
                         "Player Active Status": false,
                         "Player On Ground Status": true,
                         "Player FPS Status": false,
-                        "Player Grow Available": false,
-                        "Player Shrink Available": false,
-                        "Player Freeze Available": false,
+                        "Player Abilities": [],
                         "Checkpoint ID": -1
                     },
                     "Player Interaction": {
@@ -28038,6 +28033,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -28233,6 +28229,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -28407,6 +28404,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -28580,6 +28578,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -28753,6 +28752,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -28926,6 +28926,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -29098,6 +29099,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -29270,6 +29272,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -29443,6 +29446,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -29642,6 +29646,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -29876,6 +29881,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -30087,6 +30093,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -30298,6 +30305,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -30509,6 +30517,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -30720,6 +30729,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -30953,6 +30963,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 1
@@ -31170,6 +31181,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -31385,6 +31397,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -31587,6 +31600,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -31764,6 +31778,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -31941,6 +31956,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -32118,6 +32134,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -32295,6 +32312,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -32491,6 +32509,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -32694,6 +32713,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -32877,6 +32897,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -33075,6 +33096,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -33243,6 +33265,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -33390,6 +33413,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -33537,6 +33561,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -33682,6 +33707,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -33829,6 +33855,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -33977,6 +34004,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -34145,6 +34173,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -34293,6 +34322,7 @@
                             },
                             "Enable Uniform Scaling?": true
                         },
+                        "Particle Affected by Gravity?": false,
                         "Particle Has Destination?": false,
                         "Enable Emitter Prewarm?": false,
                         "Particle Spawn Location": 0
@@ -34386,7 +34416,7 @@
                         "Texture": "Transition",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": true
+                        "Active": false
                     },
                     "Scale": {
                         "Scale": {
@@ -34409,7 +34439,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -2756.09814453125,
+                            "x": -2755.6484375,
                             "y": 0.0,
                             "z": 3.0
                         }
@@ -50617,7 +50647,11 @@
                         }
                     },
                     "Prefab": {
-                        "Prefab Instances GID": []
+                        "Prefab Instances GID": [
+                            574,
+                            575,
+                            576
+                        ]
                     },
                     "Rotation": {
                         "Rotation": {
@@ -55534,6 +55568,352 @@
                     },
                     "Name": {
                         "Name": "Bag"
+                    }
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        9604788041699812520,
+                        5691439207370049121,
+                        14486341741652966143,
+                        8536778051349317767,
+                        17008353085049151909,
+                        5509481706028819786,
+                        14351128073332756358,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        17639936325783395793,
+                        11993994361337810638,
+                        1362145481980459455
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 574
+                    },
+                    "Mesh": {
+                        "Model": "JumpToy",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 43.75938034057617,
+                            "y": 0.9435678720474243,
+                            "z": -6.570711612701416
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.20000000298023225,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.20000000298023225,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [],
+                        "Prefab GID": 463
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": true,
+                        "Enable Shrink Ability?": false,
+                        "Enable Freeze Ability?": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 575
+                    },
+                    "Mesh": {
+                        "Model": "JumpToy",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 43.75899887084961,
+                            "y": 0.9440000057220459,
+                            "z": -6.571000099182129
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.20000000298023225,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.20000000298023225,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            1362145481980459455
+                        ],
+                        "Prefab GID": 463
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": false,
+                        "Enable Shrink Ability?": true,
+                        "Enable Freeze Ability?": false
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 576
+                    },
+                    "Mesh": {
+                        "Model": "JumpToy",
+                        "Texture": "JumpToy_BaseColour.dds",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0010000000474974514,
+                            "y": 0.0010000000474974514,
+                            "z": 0.0010000000474974514
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rigidbody": {
+                        "Acceleration": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Velocity": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 43.75899887084961,
+                            "y": 0.9440000057220459,
+                            "z": -6.571000099182129
+                        }
+                    },
+                    "RigidForce": {
+                        "Static Friction": 0.0,
+                        "Dynamic Friction": 0.0,
+                        "Restitution": 0.0,
+                        "Force": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Moment": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Threshold": 0.25,
+                        "Gravity Affected": false,
+                        "Collision Affected": false,
+                        "Gravity Active": false
+                    },
+                    "EntityScript": {
+                        "Script ID": [
+                            {
+                                "ID": "CollectedInteractable"
+                            }
+                        ]
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -0.5,
+                            "y": -0.20000000298023225,
+                            "z": -0.5
+                        },
+                        "Max Point": {
+                            "x": 0.5,
+                            "y": 0.20000000298023225,
+                            "z": 0.5
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            1362145481980459455
+                        ],
+                        "Prefab GID": 463
+                    },
+                    "Name": {
+                        "Name": "Ability Collectible"
+                    },
+                    "Mass": {
+                        "Mass": 0.0,
+                        "Inv Mass": 0.0
+                    },
+                    "": {},
+                    "Ability Collectible": {
+                        "Enable Grow Ability?": false,
+                        "Enable Shrink Ability?": false,
+                        "Enable Freeze Ability?": true
                     }
                 }
             ]

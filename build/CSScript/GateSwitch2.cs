@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSScript
 {
-    class GateSwitch2
+    class GateSwitch2 : MonoBehaviour
     {
         UInt32 m_ID;
         Int32 m_ChildID;

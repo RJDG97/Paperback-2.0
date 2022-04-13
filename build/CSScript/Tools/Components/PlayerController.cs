@@ -13,6 +13,14 @@ namespace CSScript
     {
         private void* m_Address;
 
+        public enum Ability
+        {
+            FREEZE,
+            GROW,
+            SHRINK,
+            NONE
+        }
+
         public PlayerController(UInt32 id)
         {
             m_Address = getaddress(id);
@@ -30,39 +38,11 @@ namespace CSScript
             }
         }
 
-        public bool m_GrowAvailable
+        public Int32[] m_Abilities
         {
             get
             {
-                return GetGrowStatus(m_Address);
-            }
-            set 
-            {
-                SetGrowStatus(m_Address, value);
-            }
-        }
-
-        public bool m_ShrinkAvailable
-        {
-            get
-            {
-                return GetShrinkStatus(m_Address);
-            }
-            set 
-            {
-                SetShrinkStatus(m_Address, value);
-            }
-        }
-
-        public bool m_FreezeAvailable
-        {
-            get
-            {
-                return GetFreezeStatus(m_Address);
-            }
-            set 
-            {
-                SetFreezeStatus(m_Address, value);
+                return GetAbilities(m_Address);
             }
         }
 
@@ -78,6 +58,16 @@ namespace CSScript
             }
         }
 
+        public void AddAbility(Ability ability)
+        {
+            Add_Ability(m_Address, (Int32)ability);
+        }
+
+        public void RotateAbilities()
+        {
+            Rotate_Abilities(m_Address);
+        }
+
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
@@ -88,22 +78,13 @@ namespace CSScript
         private extern static void SetFPSMode(void* address, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetGrowStatus(void* address);
+        private extern static Int32[] GetAbilities(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetGrowStatus(void* address, bool value);
+        private extern static void Add_Ability(void* address, int value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetShrinkStatus(void* address);
-
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetShrinkStatus(void* address, bool value);
-
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetFreezeStatus(void* address);
-
-        [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetFreezeStatus(void* address, bool value);
+        private extern static void Rotate_Abilities(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static int GetCheckpointID(void* address);

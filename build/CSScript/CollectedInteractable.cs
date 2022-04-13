@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,20 +71,20 @@ namespace CSScript
                 {
                     if ( m_InteractableAbility.m_Grow )
                     {
-                        m_JumpUnitController.m_GrowAvailable = true;
-                        m_PushUnitController.m_GrowAvailable = true;
+                        m_JumpUnitController.AddAbility(PlayerController.Ability.GROW);
+                        m_PushUnitController.AddAbility(PlayerController.Ability.GROW);
                         m_InteractableAbility.m_Grow = false;
                     }
                     else if ( m_InteractableAbility.m_Shrink )
                     {
-                        m_JumpUnitController.m_ShrinkAvailable = true;
-                        m_PushUnitController.m_ShrinkAvailable = true;
+                        m_JumpUnitController.AddAbility(PlayerController.Ability.SHRINK);
+                        m_PushUnitController.AddAbility(PlayerController.Ability.SHRINK);
                         m_InteractableAbility.m_Shrink = false;
                     }
                     else if ( m_InteractableAbility.m_Freeze )
                     {
-                        m_JumpUnitController.m_FreezeAvailable = true;
-                        m_PushUnitController.m_FreezeAvailable = true;
+                        m_JumpUnitController.AddAbility(PlayerController.Ability.FREEZE);
+                        m_PushUnitController.AddAbility(PlayerController.Ability.FREEZE);
                         m_InteractableAbility.m_Freeze = false;
                     }
 

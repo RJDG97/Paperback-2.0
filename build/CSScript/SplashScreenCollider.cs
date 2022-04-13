@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSScript
 {
-    class SplashScreenCollider
+    class SplashScreenCollider : MonoBehaviour
     {
         UInt32 m_ID;
 
