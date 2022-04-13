@@ -13,7 +13,8 @@
 
 #include "Mono.h"
 #include "../Sandbox/Systems/SoundSystem.h"
-#include "../Sandbox/Systems/ScriptingSystem.h"
+
+struct scripting_system;
 
 namespace MONO_APPLICATION
 {
@@ -57,13 +58,6 @@ namespace MONO_APPLICATION
 
 		PPB.GetSystem<sound_system>().StopTriggeredSoundEvent(static_cast<size_t>(sound_tag));
 	}
-
-	MONO_EXPORT void NotifyDone()
-    {
-        std::mutex mutex;
-        const std::lock_guard<std::mutex> lock(mutex);
-        ++( PPB.FindSystem<scripting_system>()->m_Counter );
-    }
 
 	void AddInternals()
 	{

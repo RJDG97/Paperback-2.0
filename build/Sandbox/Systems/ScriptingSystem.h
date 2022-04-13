@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "Mono.h"
+#include "paperback_camera.h"
+#include "paperback_input.h"
 #include "Scripts/IScripts.h"
 
 struct scripting_system : paperback::system::pausable_instance
