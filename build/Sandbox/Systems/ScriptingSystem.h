@@ -55,16 +55,16 @@ struct scripting_system : paperback::system::pausable_instance
 	void OnStateLoad( void ) noexcept
 	{
 		// Run each entity with the entity script component
-		//ForEach( Search( m_QueryEntityScripts ), [&]( paperback::component::entity& Dynamic_Entity, entityscript& script ) noexcept
-		//{
-		//	// check for an instance of this entity's script
-		//	auto entry_found = scriptlist.find( Dynamic_Entity.m_GlobalIndex );
+		ForEach( Search( m_QueryEntityScripts ), [&]( paperback::component::entity& Dynamic_Entity, entityscript& script ) noexcept
+		{
+			// check for an instance of this entity's script
+			auto entry_found = scriptlist.find( Dynamic_Entity.m_GlobalIndex );
 
-		//	if ( entry_found == scriptlist.end() )
-		//	{
-		//		AddScript( Dynamic_Entity.m_GlobalIndex, script.m_ScriptID );
-		//	}
-		//});
+			if ( entry_found == scriptlist.end() )
+			{
+				AddScript( Dynamic_Entity.m_GlobalIndex, script.m_ScriptID );
+			}
+		});
 	}
 
 
@@ -78,26 +78,26 @@ struct scripting_system : paperback::system::pausable_instance
 		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
 		{
 			// check for an instance of this entity's script
-			//auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
-			//if (entry_found != scriptlist.end()) {
+			if (entry_found != scriptlist.end()) {
 
-			////	AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
-			////}
-
-			////else {
-
-			//	for (auto& to_update : entry_found->second.m_Info)
-			//	{
-			//		m_Coordinator.Increment_TotalProcesses();
-			//		to_update.second->PreUpdate(m_Coordinator.DeltaTime());
-			//	}
+			//	AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
 			//}
-		});
+
+			//else {
+
+				//for (auto& to_update : entry_found->second.m_Info)
+				////{
+				//	m_Coordinator.Increment_TotalProcesses();
+					entry_found->second->PreUpdate(m_Coordinator.DeltaTime());/*
+				}*/
+			}
+		});/*
 
 		while (!m_Coordinator.CompareProcesses())
 		{
-		}
+		}*/
 	}
 
 	PPB_FORCEINLINE
@@ -114,85 +114,75 @@ struct scripting_system : paperback::system::pausable_instance
 		// Run each entity with the entity script component
 		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
 		{
-			//// check for an instance of this entity's script
-			//auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+			// check for an instance of this entity's script
+			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
-			//if (entry_found != scriptlist.end()) {/*
+			if (entry_found != scriptlist.end()) {/*
 
-			//	AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
-			//}
+				AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+			}
 
-			//else {*/
+			else {*/
 
-			//	for (auto& to_update : entry_found->second.m_Info)
-			//	{
-			//		m_Coordinator.Increment_TotalProcesses();
-			//		to_update.second->Update(m_Coordinator.DeltaTime()); 
-			//	}
-			//}
-		});
+					//m_Coordinator.Increment_TotalProcesses();
+					entry_found->second->Update(m_Coordinator.DeltaTime());
+			}
+		});/*
 
 		while (!m_Coordinator.CompareProcesses())
 		{
-		}
+		}*/
 	}
 
 	void AddScript(uint32_t entity_id, std::vector<entityscript::ScriptID> script_ids)
 	{
-		/*ScriptsInfo new_info{};
-
-		for (auto& script_id : script_ids)
+		if (script_ids.size() == 1)
 		{
 			std::unique_ptr<Script> p_script{ std::make_unique<Script>() };
 
 			if (p_script)
 			{
-				p_script->Init(script_id.m_ID);
+				p_script->Init(script_ids[0].m_ID);
 				p_script->Start(entity_id);
-				new_info.m_Info.push_back({ script_id.m_ID, std::move(p_script) });
+
+				scriptlist.insert({ entity_id, std::move(p_script) });
 			}
 		}
-
-		scriptlist.insert({ entity_id, std::move(new_info) });*/
 	}
 
 	void CompileScripts()
 	{
-		//// Update Mono DLL
-		//if (m_pMono->UpdateDLL()) {
-		//	// For each entity with a script component, update instance
-		//	for (auto& s : scriptlist) {
-		//		for (auto& i : s.second.m_Info)
-		//			i.second->ScriptUpdate();
-		//	}
+		// Update Mono DLL
+		if (m_pMono->UpdateDLL()) {
+			// For each entity with a script component, update instance
+			for (auto& s : scriptlist) {
+				s.second->ScriptUpdate();
+			}
 
-		//	DEBUG_PRINT("Compile Success");
-		//}
+			DEBUG_PRINT("Compile Success");
+		}
 
-		//else
-		//	DEBUG_PRINT("Compile Fail");
+		else
+			DEBUG_PRINT("Compile Fail");
 	}
 
 	void CallReset()
 	{
-		//ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
-		//{
-		//	// check for an instance of this entity's script
-		//	auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		{
+			// check for an instance of this entity's script
+			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
-		//	if (entry_found == scriptlist.end()) {
+			if (entry_found == scriptlist.end()) {
 
-		//		AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
-		//	}
+				AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+			}
 
-		//	else {
+			else {
 
-		//		for (auto& to_update : entry_found->second.m_Info)
-		//		{
-		//			to_update.second->Reset();
-		//		}
-		//	}
-		//});
+				entry_found->second->Reset();
+			}
+		});
 	}
 
 	void OnSystemTerminated(void) noexcept

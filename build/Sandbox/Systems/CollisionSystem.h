@@ -122,30 +122,19 @@ struct collision_system : paperback::system::pausable_instance
                                     // Current Entity is NOT Colliding with Other Entity
                                     if (!Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex)) {
 
-                                        for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
-                                        {
                                             m_Coordinator.SetTotalProcesses(1);
                                             m_Coordinator.SetProcessesCompleted(0);
-                                            to_update.second->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
-
-                                            while (!m_Coordinator.CompareProcesses())
-                                            {
-                                                std::cout << "a" << std::endl;
-                                            }
-                                        }
+                                            //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
 
                                         if (!(BV || BV2))
                                         {
-                                            for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                            m_Coordinator.SetTotalProcesses(1);
+                                            m_Coordinator.SetProcessesCompleted(0);
+                                            //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionEnter(Entity.m_GlobalIndex);
+
+
+                                            while (!m_Coordinator.CompareProcesses())
                                             {
-                                                m_Coordinator.SetTotalProcesses(1);
-                                                m_Coordinator.SetProcessesCompleted(0);
-                                                to_update.second->OnCollisionEnter(Entity.m_GlobalIndex);
-
-
-                                                while (!m_Coordinator.CompareProcesses())
-                                                {
-                                                }
                                             }
                                         }
 
@@ -153,30 +142,24 @@ struct collision_system : paperback::system::pausable_instance
                                     // Current Entity is ALREADY Colliding with Other Entity
                                     else
                                     {
-                                        for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+                                        m_Coordinator.SetTotalProcesses(1);
+                                        m_Coordinator.SetProcessesCompleted(0);
+                                        //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
+
+
+                                        while (!m_Coordinator.CompareProcesses())
                                         {
-                                            m_Coordinator.SetTotalProcesses(1);
-                                            m_Coordinator.SetProcessesCompleted(0);
-                                            to_update.second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
-
-
-                                            while (!m_Coordinator.CompareProcesses())
-                                            {
-                                            }
                                         }
 
                                         if (!(BV || BV2))
                                         {
-                                            for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                            m_Coordinator.SetTotalProcesses(1);
+                                            m_Coordinator.SetProcessesCompleted(0);
+                                            //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionStay(Entity.m_GlobalIndex);
+
+
+                                            while (!m_Coordinator.CompareProcesses())
                                             {
-                                                m_Coordinator.SetTotalProcesses(1);
-                                                m_Coordinator.SetProcessesCompleted(0);
-                                                to_update.second->OnCollisionStay(Entity.m_GlobalIndex);
-
-
-                                                while (!m_Coordinator.CompareProcesses())
-                                                {
-                                                }
                                             }
                                         }
                                     }
@@ -207,30 +190,24 @@ struct collision_system : paperback::system::pausable_instance
                             //Current Entity is Colliding with Other Entity in the prev frame
                             else if (Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex))
                             {
-                                for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
+                                m_Coordinator.SetTotalProcesses(1);
+                                m_Coordinator.SetProcessesCompleted(0);
+                                //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
+
+
+                                while (!m_Coordinator.CompareProcesses())
                                 {
-                                    m_Coordinator.SetTotalProcesses(1);
-                                    m_Coordinator.SetProcessesCompleted(0);
-                                    to_update.second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
-
-
-                                    while (!m_Coordinator.CompareProcesses())
-                                    {
-                                    }
                                 }
 
                                 if (!(BV || BV2))
                                 {
-                                    for (auto& to_update : scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex].m_Info)
+                                    m_Coordinator.SetTotalProcesses(1);
+                                    m_Coordinator.SetProcessesCompleted(0);
+                                    //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionExit(Entity.m_GlobalIndex);
+
+
+                                    while (!m_Coordinator.CompareProcesses())
                                     {
-                                        m_Coordinator.SetTotalProcesses(1);
-                                        m_Coordinator.SetProcessesCompleted(0);
-                                        to_update.second->OnCollisionExit(Entity.m_GlobalIndex);
-
-
-                                        while (!m_Coordinator.CompareProcesses())
-                                        {
-                                        }
                                     }
                                 }
 
