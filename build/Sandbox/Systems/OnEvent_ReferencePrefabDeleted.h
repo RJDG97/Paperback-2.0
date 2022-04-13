@@ -18,8 +18,8 @@ struct onevent_ReferencePrefabDeleted_system : paperback::system::instance
 
         if ( PrefabInfo.m_pArchetype )
         {
-            auto& Prefab = PrefabInfo.m_pArchetype->GetComponent<prefab>(PrefabInfo.m_PoolDetails);
-            Prefab.RemovePrefabInstance(InstanceGID);
+            auto Prefab = PrefabInfo.m_pArchetype->FindComponent<prefab>( PrefabInfo.m_PoolDetails );
+            if ( Prefab ) Prefab->RemovePrefabInstance( InstanceGID );
         }
     }
 };
