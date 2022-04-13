@@ -2,7 +2,7 @@
 *\file         GateSwitch2.cs
 *\brief        GateSwitch2.cs Script
 *
-*\author	     Mok Wen Qing, 100% Code Contribution
+*\author	     Renzo Garcia, 100% Code Contribution
 *
 *\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
 			         or disclosure of this file or its contents without the prior
