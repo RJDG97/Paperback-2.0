@@ -66,8 +66,10 @@ namespace paperback::physics
         // Ensure No Double Insertion
         auto NodeIT = m_EntityToIndexMap.find( Entity.m_GlobalIndex );
 
-        PPB_ASSERT_MSG( NodeIT != m_EntityToIndexMap.end()
-                      , "Insert Node (ERROR): Node Already Exists" );
+        if ( NodeIT != m_EntityToIndexMap.end() )
+        {
+            ERROR_PRINT(("Inserting Node Into AABB Tree AGAIN: EntityGID " + std::to_string(Entity.m_GlobalIndex)).c_str() );
+        }
 
         // Append Node
         auto  Index = AppendNode( );

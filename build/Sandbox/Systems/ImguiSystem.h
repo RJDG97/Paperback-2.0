@@ -543,9 +543,9 @@ struct imgui_system : paperback::system::instance
                 }
 
                 // Added Tree Initialization -> Bottom Pannel Scene Loading
-                PPB.ResetTree();
+                //PPB.ResetTree();
                 PPB.OpenEditScene(FilePath, EntityInfoPath);
-                PPB.InitializeTree();
+                //PPB.InitializeTree();
 
                 //use filesystem to check if there is a .texture file & .mesh file (eventually)
                 EDITOR_TRACE_PRINT(FileName + " Loaded");

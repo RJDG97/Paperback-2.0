@@ -1,4 +1,15 @@
-﻿using System;
+﻿/**********************************************************************************
+*\file         ElevatorPlatform.cs
+*\brief        ElevatorPlatform.cs Script
+*
+*\author	     Mok Wen Qing, 100% Code Contribution
+*
+*\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
+			         or disclosure of this file or its contents without the prior
+			         written consent of DigiPen Institute of Technology is prohibited.
+**********************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;

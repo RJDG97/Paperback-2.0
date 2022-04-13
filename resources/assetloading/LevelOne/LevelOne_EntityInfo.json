@@ -2442,20 +2442,20 @@
                 }
             },
             "Entity Info": {
-                "Archetype Guid": 0,
+                "Archetype Guid": 6044405785993623843,
                 "PoolDetails": {
                     "Pool Key": 0,
-                    "Pool Index": 525
+                    "Pool Index": 0
                 },
                 "Validation": {
                     "Validation ID": 0
                 }
             },
             "Entity Info": {
-                "Archetype Guid": 0,
+                "Archetype Guid": 3630720907892530463,
                 "PoolDetails": {
                     "Pool Key": 0,
-                    "Pool Index": 244
+                    "Pool Index": 8
                 },
                 "Validation": {
                     "Validation ID": 0
@@ -5252,10 +5252,10 @@
                 }
             },
             "Entity Info": {
-                "Archetype Guid": 0,
+                "Archetype Guid": 3630720907892530463,
                 "PoolDetails": {
-                    "Pool Key": 4294967295,
-                    "Pool Index": 526
+                    "Pool Key": 0,
+                    "Pool Index": 9
                 },
                 "Validation": {
                     "Validation ID": 0
@@ -5264,18 +5264,18 @@
             "Entity Info": {
                 "Archetype Guid": 0,
                 "PoolDetails": {
-                    "Pool Key": 4294967295,
-                    "Pool Index": 527
-                },
-                "Validation": {
-                    "Validation ID": 0
-                }
-            },
-            "Entity Info": {
-                "Archetype Guid": 0,
-                "PoolDetails": {
-                    "Pool Key": 4294967295,
+                    "Pool Key": 0,
                     "Pool Index": 528
+                },
+                "Validation": {
+                    "Validation ID": 0
+                }
+            },
+            "Entity Info": {
+                "Archetype Guid": 6044405785993623843,
+                "PoolDetails": {
+                    "Pool Key": 0,
+                    "Pool Index": 1
                 },
                 "Validation": {
                     "Validation ID": 0
