@@ -124,6 +124,8 @@ namespace CSScript
                 m_Sound.m_Trigger = true;
                 m_Mesh.m_Model = "Button_GateON";
             }
+
+            Application.NotifyDone();
         }
 
         public void OnCollisionStay(UInt32 ID)
@@ -142,6 +144,8 @@ namespace CSScript
                 // m_Sound.m_Trigger = true;
                 m_Mesh.m_Model = "Button_GateON";
             }
+
+            Application.NotifyDone();
         }
 
         public void OnCollisionExit(UInt32 ID)
@@ -153,6 +157,8 @@ namespace CSScript
                 m_Sound.m_Trigger = true;
                 m_Mesh.m_Model = "Button_GateOFF";
             }
+
+            Application.NotifyDone();
         }
 
         public void Reset()

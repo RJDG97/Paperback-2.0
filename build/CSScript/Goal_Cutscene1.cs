@@ -54,12 +54,18 @@ namespace CSScript
             //{
                 Application.ChangeScene("LoadingOne");
             //}
+
+            Application.NotifyDone();
         }
         public void OnCollisionStay(UInt32 ID)
         {
+
+            Application.NotifyDone();
         }
         public void OnCollisionExit(UInt32 ID)
         {
+
+            Application.NotifyDone();
         }
         public void Reset()
         {

@@ -115,6 +115,8 @@ namespace CSScript
                     m_Mesh.m_Model = m_OnModel;
                 }
             }
+
+            Application.NotifyDone();
         }
 
         public void OnCollisionStay(UInt32 ID)
@@ -136,6 +138,8 @@ namespace CSScript
                     m_Mesh.m_Model = m_OnModel;
                 }
             }
+
+            Application.NotifyDone();
         }
 
         public void OnCollisionExit(UInt32 ID)
@@ -150,6 +154,8 @@ namespace CSScript
                 m_Sound.m_Trigger = true;
                 --m_NumTop;
             }
+
+            Application.NotifyDone();
         }
         public void Reset()
         {

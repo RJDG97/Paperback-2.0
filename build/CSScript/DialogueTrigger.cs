@@ -65,14 +65,18 @@ namespace CSScript
                 dialogue_text.m_Index = 0;
                 m_Activated = true;
             }
+
+            Application.NotifyDone();
         }
 
         public void OnCollisionStay(UInt32 ID)
         {
+            Application.NotifyDone();
         }
 
         public void OnCollisionExit(UInt32 ID)
         {
+            Application.NotifyDone();
         }
         public void Reset()
         {

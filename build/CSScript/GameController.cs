@@ -401,12 +401,18 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+
+            Application.NotifyDone();
         }
         public void OnCollisionStay(UInt32 ID)
         {
+
+            Application.NotifyDone();
         }
         public void OnCollisionExit(UInt32 ID)
         {
+
+            Application.NotifyDone();
         }
         public void Reset()
         {
@@ -615,6 +621,7 @@ namespace CSScript
 
         private void CastHoveredRay()
         {
+            bool m_Hovered = false;
             UInt32 cam_id = 0;
 
             if (m_JumpUnitPC.m_FPSMode)
@@ -661,7 +668,7 @@ namespace CSScript
                                         mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 17);
 
                                 mesh.m_Model = mesh.m_Model + "_Freeze_Hovered";
-                                return;
+                                m_Hovered = true;
                             }
                         }
 
@@ -686,7 +693,7 @@ namespace CSScript
                                         mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 15);
 
                                 mesh.m_Model = mesh.m_Model + "_Grow_Hovered";
-                                return;
+                                m_Hovered = true;
                             }
                         }
 
@@ -711,7 +718,7 @@ namespace CSScript
                                         mesh.m_Model = mesh.m_Model.Substring(0, mesh.m_Model.Length - 17);
 
                                 mesh.m_Model = mesh.m_Model + "_Shrink_Hovered";
-                                return;
+                                m_Hovered = true;
                             }
                         }
 
@@ -721,8 +728,11 @@ namespace CSScript
             }
 
             //doesn't find anything that is hovered over
-            RevertHovered(true);
-            m_HoveredID = 0;
+            if (!m_Hovered)
+            {
+                RevertHovered(true);
+                m_HoveredID = 0;
+            }
         }
 
         private void CastRay(UInt32 id)
@@ -755,7 +765,6 @@ namespace CSScript
                             collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
 
                             ChangeBar();
-                            return;
                         }
 
                         else if (name.m_Name == "PlatformSlopeA")
@@ -765,7 +774,6 @@ namespace CSScript
                             Child child  = new Child(collided_id);
                             Child nextchild  = new Child((UInt32)child.m_ParentID);
                             FreezeAnim((UInt32)nextchild.m_ParentID);
-                            return;
                         }
 
                         else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
@@ -773,7 +781,6 @@ namespace CSScript
                             RevertHovered(false);
                             m_HoveredID = 0;
                             FreezeAnim(collided_id);
-                            return;
                         }
 
                         break;
@@ -795,7 +802,6 @@ namespace CSScript
                             m_SelectedID = collided_id;
                             m_AbilityUsed = Ability.GROW;
                             ChangeBar();
-                            return;
                         }
 
                         break;
@@ -817,7 +823,6 @@ namespace CSScript
                             m_SelectedID = collided_id;
                             m_AbilityUsed = Ability.SHRINK;
                             ChangeBar();
-                            return;
                         }
 
                         break;

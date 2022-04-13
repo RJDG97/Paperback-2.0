@@ -143,6 +143,8 @@ namespace CSScript
             {
                 ++m_NumPassengers;
             }
+
+            Application.NotifyDone();
         }
 
         public void OnCollisionStay(UInt32 ID)
@@ -165,10 +167,14 @@ namespace CSScript
                 box_transform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
                 ++m_NumPassengers;
             }
+
+            Application.NotifyDone();
         }
 
         public void OnCollisionExit(UInt32 ID)
         {
+
+            Application.NotifyDone();
 
         }
         public void Reset()

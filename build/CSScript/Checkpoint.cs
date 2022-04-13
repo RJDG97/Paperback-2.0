@@ -123,13 +123,17 @@ namespace CSScript
                 m_RedCPEmitter.m_Lifetime = 5.0f;
                 m_BlueCPEmitter.m_Lifetime = 5.0f;
             }
+
+            Application.NotifyDone();
         }
         public void OnCollisionStay(UInt32 ID)
         {
+            Application.NotifyDone();
         }
 
         public void OnCollisionExit(UInt32 ID)
         {
+            Application.NotifyDone();
         }
         public void Reset()
         {

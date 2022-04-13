@@ -79,12 +79,18 @@ namespace CSScript
         public void OnCollisionEnter(UInt32 ID)
         {
 
+            Application.NotifyDone();
+
         }
         public void OnCollisionStay(UInt32 ID)
         {
+
+            Application.NotifyDone();
         }
         public void OnCollisionExit(UInt32 ID)
         {
+
+            Application.NotifyDone();
         }
 
         public void Reset()

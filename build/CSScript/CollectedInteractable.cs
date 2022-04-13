@@ -107,16 +107,18 @@ namespace CSScript
                     m_InteractableEmitter.m_Lifetime = 0.0f;
                 }
             }
+
+            Application.NotifyDone();
         }
 
         public void OnCollisionStay(UInt32 ID)
         {
-            
+            Application.NotifyDone();
         }
 
         public void OnCollisionExit(UInt32 ID)
         {
-
+            Application.NotifyDone();
         }
         public void Reset()
         {
