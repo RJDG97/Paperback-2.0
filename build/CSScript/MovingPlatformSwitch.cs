@@ -66,21 +66,24 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            if (m_ChildID != -1 && m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
+            if (m_ChildID != -1)
             {
-                m_ChildPathFollower.m_Reversed = true;
-                m_ChildPathFollower.m_PauseTravel = false;
-                m_Activated = false;
-            }
+                if (m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
+                {
+                    m_ChildPathFollower.m_Reversed = true;
+                    m_ChildPathFollower.m_PauseTravel = false;
+                    m_Activated = false;
+                }
 
-            if (m_ChildFreezable.m_Frozen)
-            {
-                m_ChildEmitter.m_Lifetime = 0.5f;
-            }
+                if (m_ChildFreezable.m_Frozen)
+                {
+                    m_ChildEmitter.m_Lifetime = 0.5f;
+                }
 
-            else
-            {
-                m_ChildEmitter.m_Lifetime = 0.0f;
+                else
+                {
+                    m_ChildEmitter.m_Lifetime = 0.0f;
+                }
             }
 
             Application.NotifyDone();

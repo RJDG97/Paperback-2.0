@@ -75,24 +75,27 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            if ((m_Rotation.m_Value.y % 180.0f) < 1.0f && (m_Rotation.m_Value.y % 180.0f) > -1.0f)
+            if (m_ChildID != -1)
             {
-                m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
-                                                                  m_InitialBBOffset.y, m_InitialBBOffset.z);
-            }
+                if ((m_Rotation.m_Value.y % 180.0f) < 1.0f && (m_Rotation.m_Value.y % 180.0f) > -1.0f)
+                {
+                    m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
+                                                                      m_InitialBBOffset.y, m_InitialBBOffset.z);
+                }
 
-            else if ((m_Rotation.m_Value.y % 180.0f) < 91.0f && (m_Rotation.m_Value.y % 180.0f) > 89.0f)
-            {
-                m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x,
-                                                                      m_InitialBBOffset.y,
-                                                                      m_InitialBBOffset.z - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
-            }
+                else if ((m_Rotation.m_Value.y % 180.0f) < 91.0f && (m_Rotation.m_Value.y % 180.0f) > 89.0f)
+                {
+                    m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x,
+                                                                          m_InitialBBOffset.y,
+                                                                          m_InitialBBOffset.z - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
+                }
 
-            if (m_NumTop == 0 && !m_Activated && !m_ChildFreezable.m_Frozen)
-            {
-                m_ChildAnimator.m_Reversed = true;
-                m_ChildAnimator.m_PauseAnimation = false;
-                m_ChildAnimator.m_PauseAtTime = 0;
+                if (m_NumTop == 0 && !m_Activated && !m_ChildFreezable.m_Frozen)
+                {
+                    m_ChildAnimator.m_Reversed = true;
+                    m_ChildAnimator.m_PauseAnimation = false;
+                    m_ChildAnimator.m_PauseAtTime = 0;
+                }
             }
 
             Application.NotifyDone();
