@@ -105,29 +105,29 @@ struct scripting_system : paperback::system::pausable_instance
 	PPB_FORCEINLINE
 	void Update(void) noexcept
 	{
-		if (m_Interval > 0.0f)
-		{
-			m_Interval -= DeltaTime();
-		}
+		//if (m_Interval > 0.0f)
+		//{
+		//	m_Interval -= DeltaTime();
+		//}
 
-		else
-		{
-			std::cout << "a" << std::endl;
-			m_Interval = 50.0f;
-			scriptlist.clear();
+		//else
+		//{
+		//	std::cout << "a" << std::endl;
+		//	m_Interval = 50.0f;
+		//	scriptlist.clear();
 
-			// Run each entity with the entity script component
-			ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
-			{
-				// check for an instance of this entity's script
-				auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+		//	// Run each entity with the entity script component
+		//	ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		//	{
+		//		// check for an instance of this entity's script
+		//		auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
-				if (entry_found == scriptlist.end())
-				{
-					AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
-				}
-			});
-		}
+		//		if (entry_found == scriptlist.end())
+		//		{
+		//			AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+		//		}
+		//	});
+		//}
 	}
 
 	PPB_FORCEINLINE
