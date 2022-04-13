@@ -44845,7 +44845,7 @@
                     "Path Follower": {
                         "Path ID": 20,
                         "Distance": 0.0,
-                        "Travel Speed": 1.0,
+                        "Travel Speed": 3.0,
                         "Back and Forth": false,
                         "Reversed": false,
                         "Pause Travel": true
@@ -55983,7 +55983,7 @@
                     "Path Follower": {
                         "Path ID": 21,
                         "Distance": 0.0,
-                        "Travel Speed": 1.0,
+                        "Travel Speed": 3.0,
                         "Back and Forth": false,
                         "Reversed": false,
                         "Pause Travel": true
