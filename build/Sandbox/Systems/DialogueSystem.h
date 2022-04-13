@@ -1,3 +1,14 @@
+/**********************************************************************************
+*\file         DialogueSystem.h
+*\brief        DialogueSystem.h
+*
+*\author       Mok Wen Qing, 100% Code Contribution
+*
+*\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
+			   or disclosure of this file or its contents without the prior
+			   written consent of DigiPen Institute of Technology is prohibited.
+**********************************************************************************/
+
 #pragma once
 #ifndef _DIALOGUESYSTEM_H_
 #define _DIALOGUESYSTEM_H_
