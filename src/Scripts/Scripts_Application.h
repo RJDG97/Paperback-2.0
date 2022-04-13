@@ -11,8 +11,10 @@
 
 #pragma once
 
-#include "Mono.h"
 #include "../Sandbox/Systems/SoundSystem.h"
+#include "../Sandbox/Systems/ScriptingSystem.h"
+
+struct scripting_system;
 
 namespace MONO_APPLICATION
 {
@@ -57,6 +59,11 @@ namespace MONO_APPLICATION
 		PPB.GetSystem<sound_system>().StopTriggeredSoundEvent(static_cast<size_t>(sound_tag));
 	}
 
+	MONO_EXPORT void NotifyDone()
+	{
+		PPB.Increment_ProcessesCompleted();
+	}
+
 	void AddInternals()
 	{
 		mono_add_internal_call("CSScript.Application::Quit()", &MONO_APPLICATION::Quit);
@@ -66,6 +73,7 @@ namespace MONO_APPLICATION
 		mono_add_internal_call("CSScript.Application::Trigger3DTaggedSound(string,single,single,single,single,single,single,uint)", &MONO_APPLICATION::Trigger3DTaggedSound);
 		mono_add_internal_call("CSScript.Application::StopTaggedSound(string)", &MONO_APPLICATION::StopTaggedSound);
 		mono_add_internal_call("CSScript.Application::StopTaggedSoundComp(uint)", &MONO_APPLICATION::StopTaggedSoundComp);
+		mono_add_internal_call("CSScript.Application::NotifyDone()", &MONO_APPLICATION::NotifyDone);
 	}
 
 }

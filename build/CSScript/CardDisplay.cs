@@ -397,7 +397,7 @@ namespace CSScript
                 {
                     switch (m_Abilities[2])
                     {
-                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard"; break;
+                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard_Unselected"; break;
                         case Ability.GROW: mesh.m_Texture = "GrowCard_Unselected"; break;
                         case Ability.SHRINK: mesh.m_Texture = "ShrinkCard_Unselected"; break;
                     }
