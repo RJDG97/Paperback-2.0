@@ -485,6 +485,42 @@ namespace paperback::coordinator
         void BroadcastEvent( T_ARGS&&... Args ) const noexcept;
 
 
+
+
+
+
+
+
+		PPB_INLINE
+        int GetTotalProcesses( void ) noexcept;
+
+		PPB_INLINE
+        int GetProcessesCompleted( void ) noexcept;
+
+		PPB_INLINE
+        void SetTotalProcesses( int Value ) noexcept;
+
+		PPB_INLINE
+        void SetProcessesCompleted( int Value ) noexcept;
+
+		PPB_INLINE
+        void Increment_TotalProcesses( void ) noexcept;
+
+		PPB_INLINE
+        void Increment_ProcessesCompleted( void ) noexcept;
+
+		PPB_INLINE
+		bool CompareProcesses( void ) noexcept;
+
+
+
+
+
+
+
+
+
+
 		/*
         /*! Friend Classes
         */
@@ -523,6 +559,11 @@ namespace paperback::coordinator
 		bool								m_bGamePaused = false;
 		float                               m_MouseSensitivityRatio = 1.0f;
 		float                               m_SceneTransitionDelay = settings::scene_transition_delay_v;
+
+
+		int m_TotalProcesses = 0;
+		int m_ProcessesCompleted = 0;
+		std::mutex m_MonoMutex;
 	};
 }
 

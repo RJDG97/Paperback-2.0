@@ -87,7 +87,6 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            Debug.Log("PreUpdate ElevatorSwitch: " + m_ID.ToString());
             m_PlatformOffset.m_PosOffset = new Tools.MathLib.Vector3(m_PlatformOffset.m_PosOffset.x ,
                                                                      m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0f * m_PlatformSpeed,
                                                                      m_PlatformOffset.m_PosOffset.z);
@@ -131,10 +130,13 @@ namespace CSScript
             {
                 m_PlatformSlopeAEmitter.m_Lifetime = 0.5f;
             }
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
+            Application.NotifyDone();
         }
 
 
@@ -144,8 +146,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log("OnCollisionEnter ElevatorSwitch: " + m_ID.ToString());
-            if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
+                if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
                 {
                     if (!m_ElevatorFreezable.m_Frozen)
                     {
@@ -181,7 +182,6 @@ namespace CSScript
 
         public void OnCollisionStay(UInt32 ID)
         {
-            Debug.Log("OnCollisionStay ElevatorSwitch: " + m_ID.ToString());
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
             {
                 if (!m_ElevatorFreezable.m_Frozen && !m_Activated)
@@ -218,7 +218,6 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
-            Debug.Log("OnCollisionExit ElevatorSwitch: " + m_ID.ToString());
             if (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID))
             {
                 if (m_Mesh.m_Model.Substring(m_Mesh.m_Model.Length - 2, 2) == "ON")

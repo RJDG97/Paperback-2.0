@@ -52,11 +52,12 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
-            Debug.Log("Update LoadingBar1: " + m_ID.ToString());
             m_Timer += dt;
 
             m_Scale.m_Value = new Tools.MathLib.Vector3((m_MaxBarScale * (m_Timer / (m_LoadingTime + 0.1f))), 
@@ -67,6 +68,8 @@ namespace CSScript
 
             if (m_Timer >= m_LoadingTime)
                 Application.ChangeScene("LevelOne");
+
+            Application.NotifyDone();
         }
         public void Destroy()
         {

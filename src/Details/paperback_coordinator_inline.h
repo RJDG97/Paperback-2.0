@@ -1232,6 +1232,75 @@ namespace paperback::coordinator
 	}
 
 
+
+
+
+
+
+
+
+
+	PPB_INLINE
+    int instance::GetTotalProcesses( void ) noexcept
+	{
+        const std::lock_guard<std::mutex> lock( m_MonoMutex );
+		return m_TotalProcesses;
+	}
+
+	PPB_INLINE
+    int instance::GetProcessesCompleted( void ) noexcept
+	{
+		const std::lock_guard<std::mutex> lock( m_MonoMutex );
+		return m_ProcessesCompleted;
+	}
+
+	PPB_INLINE
+    void instance::SetTotalProcesses( int Value ) noexcept
+	{
+		const std::lock_guard<std::mutex> lock( m_MonoMutex );
+		m_TotalProcesses = Value;
+	}
+
+	PPB_INLINE
+    void instance::SetProcessesCompleted( int Value ) noexcept
+	{
+		const std::lock_guard<std::mutex> lock( m_MonoMutex );
+		m_ProcessesCompleted = Value;
+	}
+
+	PPB_INLINE
+    void instance::Increment_TotalProcesses( void ) noexcept
+	{
+		const std::lock_guard<std::mutex> lock( m_MonoMutex );
+		++m_TotalProcesses;
+	}
+
+	PPB_INLINE
+    void instance::Increment_ProcessesCompleted( void ) noexcept
+	{
+		const std::lock_guard<std::mutex> lock( m_MonoMutex );
+		++m_ProcessesCompleted;
+	}
+
+	PPB_INLINE
+	bool instance::CompareProcesses( void ) noexcept
+	{
+		const std::lock_guard<std::mutex> lock( m_MonoMutex );
+		return ( m_TotalProcesses == m_ProcessesCompleted );
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//-----------------------------------
 	// Protected - Register for Archetype
 	//-----------------------------------

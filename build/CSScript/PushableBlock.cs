@@ -49,11 +49,12 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
-            Debug.Log("Update PushableBlock: " + m_ID.ToString());
             if (m_PrevGravActive && !m_Rigidforce.m_GravityActive)
             {
                 m_Rigidforce.m_CollisionAffected = false;
@@ -69,6 +70,8 @@ namespace CSScript
                 case -1: m_ParticleEmitter.m_Lifetime = 1.0f; m_ParticleEmitter.m_ParticleTexture = "ShrinkParticle"; break;
                 case 0:  m_ParticleEmitter.m_Lifetime = 0.0f; break;
             }
+
+            Application.NotifyDone();
         }
 
         public void Destroy()

@@ -112,12 +112,11 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
-            Debug.Log("Update CardDisplay: " + m_ID.ToString());
-
             if (m_RotateTimes > 0)
             {
                 switch (m_Abilities.Count)
@@ -277,6 +276,8 @@ namespace CSScript
             {
                 RotateCard(m_CardThreeOffset, m_CurrentOrderThree, dt);
             }
+
+            Application.NotifyDone();
         }
 
         public void Destroy()
@@ -396,7 +397,7 @@ namespace CSScript
                 {
                     switch (m_Abilities[2])
                     {
-                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard"; break;
+                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard_Unselected"; break;
                         case Ability.GROW: mesh.m_Texture = "GrowCard_Unselected"; break;
                         case Ability.SHRINK: mesh.m_Texture = "ShrinkCard_Unselected"; break;
                     }

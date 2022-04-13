@@ -59,25 +59,34 @@ struct scripting_system : paperback::system::pausable_instance
 	PPB_FORCEINLINE
 	void PreUpdate(void) noexcept
 	{
+		m_Coordinator.SetTotalProcesses(0);
+		m_Coordinator.SetProcessesCompleted(0);
+
 		// Run each entity with the entity script component
 		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
-			{
-				// check for an instance of this entity's script
-				auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+		{
+			// check for an instance of this entity's script
+			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
-				if (entry_found == scriptlist.end()) {
+			if (entry_found == scriptlist.end()) {
 
-					AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+			//	AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+			//}
+
+			//else {
+
+				for (auto& to_update : entry_found->second.m_Info)
+				{
+					to_update.second->PreUpdate(m_Coordinator.DeltaTime());
+					m_Coordinator.Increment_TotalProcesses();
 				}
+			}
+		});
 
-				else {
+		while (!m_Coordinator.CompareProcesses())
+		{
 
-					for (auto& to_update : entry_found->second.m_Info)
-					{
-						to_update.second->PreUpdate(m_Coordinator.DeltaTime());
-					}
-				}
-			});
+		}
 	}
 
 	PPB_FORCEINLINE
@@ -88,25 +97,34 @@ struct scripting_system : paperback::system::pausable_instance
 	PPB_FORCEINLINE
 	void PostUpdate(void) noexcept
 	{
+		m_Coordinator.SetTotalProcesses(0);
+		m_Coordinator.SetProcessesCompleted(0);
+
 		// Run each entity with the entity script component
 		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
 		{
 			// check for an instance of this entity's script
 			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
-			if (entry_found == scriptlist.end()) {
+			if (entry_found != scriptlist.end()) {/*
 
 				AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
 			}
 
-			else {
+			else {*/
 
 				for (auto& to_update : entry_found->second.m_Info)
 				{
 					to_update.second->Update(m_Coordinator.DeltaTime()); 
+					m_Coordinator.Increment_TotalProcesses();
 				}
 			}
 		});
+
+		while (!m_Coordinator.CompareProcesses())
+		{
+
+		}
 	}
 
 	void AddScript(uint32_t entity_id, std::vector<entityscript::ScriptID> script_ids)

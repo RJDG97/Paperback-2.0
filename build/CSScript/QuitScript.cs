@@ -30,13 +30,16 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
-            Debug.Log("Update QuitScript: " + m_ID.ToString());
             if (Input.IsKeyPress(Input.PB_ESCAPE))
                 Application.Quit();
+
+            Application.NotifyDone();
         }
         public void Destroy()
         {
