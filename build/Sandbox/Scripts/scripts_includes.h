@@ -81,3 +81,4 @@
 //standard scripts
 #include "MainMenu_Mode.h"
 #include "Game_Mode.h"
+#include "SplashScreen_Mode.h"

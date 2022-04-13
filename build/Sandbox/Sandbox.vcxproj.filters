@@ -511,5 +511,8 @@
     <ClInclude Include="Components\PureCollider.h">
       <Filter>Source Files\Components\Details\Tags</Filter>
     </ClInclude>
+    <ClInclude Include="Scripts\SplashScreen_Mode.h">
+      <Filter>Source Files\Scripts\Details</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

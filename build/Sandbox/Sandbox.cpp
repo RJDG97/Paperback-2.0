@@ -235,7 +235,8 @@ void InitializeGame()
             gamma_disable_button_mainmenu_script,
             gamma_enable_button_mainmenu_script,
             fullscreen_disable_button_mainmenu_script,
-            fullscreen_enable_button_mainmenu_script
+            fullscreen_enable_button_mainmenu_script,
+            splashscreen_mode_script
         >();
 
 
