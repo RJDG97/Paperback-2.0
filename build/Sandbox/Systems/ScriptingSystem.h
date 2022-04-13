@@ -68,7 +68,7 @@ struct scripting_system : paperback::system::pausable_instance
 			// check for an instance of this entity's script
 			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
-			if (entry_found == scriptlist.end()) {
+			if (entry_found != scriptlist.end()) {
 
 			//	AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
 			//}
@@ -77,15 +77,14 @@ struct scripting_system : paperback::system::pausable_instance
 
 				for (auto& to_update : entry_found->second.m_Info)
 				{
-					to_update.second->PreUpdate(m_Coordinator.DeltaTime());
 					m_Coordinator.Increment_TotalProcesses();
+					to_update.second->PreUpdate(m_Coordinator.DeltaTime());
 				}
 			}
 		});
 
 		while (!m_Coordinator.CompareProcesses())
 		{
-
 		}
 	}
 
@@ -115,15 +114,14 @@ struct scripting_system : paperback::system::pausable_instance
 
 				for (auto& to_update : entry_found->second.m_Info)
 				{
-					to_update.second->Update(m_Coordinator.DeltaTime()); 
 					m_Coordinator.Increment_TotalProcesses();
+					to_update.second->Update(m_Coordinator.DeltaTime()); 
 				}
 			}
 		});
 
 		while (!m_Coordinator.CompareProcesses())
 		{
-
 		}
 	}
 
