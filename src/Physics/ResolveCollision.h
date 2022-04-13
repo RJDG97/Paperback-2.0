@@ -1,3 +1,15 @@
+/**********************************************************************************
+*\file         ResolveCollision.h
+*\brief        ResolveCollision.h
+*
+*\author	   Lee Jian Yan, 50% Code Contribution
+*\author	   Bryan Low, 50% Code Contribution
+*
+*\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
+					 or disclosure of this file or its contents without the prior
+					 written consent of DigiPen Institute of Technology is prohibited.
+**********************************************************************************/
+
 #ifndef RESOLVE_COLLISION_H
 #define RESOLVE_COLLISION_H
 
