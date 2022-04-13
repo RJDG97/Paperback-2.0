@@ -112,6 +112,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
@@ -275,6 +276,8 @@ namespace CSScript
             {
                 RotateCard(m_CardThreeOffset, m_CurrentOrderThree, dt);
             }
+
+            Application.NotifyDone();
         }
 
         public void Destroy()

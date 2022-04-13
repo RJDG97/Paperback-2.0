@@ -82,11 +82,15 @@ namespace CSScript
             {
                 m_ChildEmitter.m_Lifetime = 0.0f;
             }
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
-            
+
+            Application.NotifyDone();
+
         }
         public void Destroy()
         {

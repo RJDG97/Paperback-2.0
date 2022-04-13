@@ -130,10 +130,13 @@ namespace CSScript
             {
                 m_PlatformSlopeAEmitter.m_Lifetime = 0.5f;
             }
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
+            Application.NotifyDone();
         }
 
 

@@ -75,6 +75,8 @@ namespace CSScript
         public void PreUpdate(float dt)
         {
 
+            Application.NotifyDone();
+
         }
 
         public void Update(float dt)
@@ -116,6 +118,8 @@ namespace CSScript
 
 
             m_PrevPlatformPos = m_ParentTransform.m_Position;
+
+            Application.NotifyDone();
         }
         public void Destroy()
         {

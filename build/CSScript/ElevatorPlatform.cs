@@ -83,6 +83,8 @@ namespace CSScript
             {
                 m_Elevator.m_UnitUnder = false;
             }
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
@@ -100,6 +102,8 @@ namespace CSScript
             }
 
             m_PrevTransform = m_Transform.m_Position;
+
+            Application.NotifyDone();
         }
 
         public void Destroy()

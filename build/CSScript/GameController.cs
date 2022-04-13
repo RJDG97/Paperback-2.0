@@ -109,6 +109,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
@@ -390,6 +391,8 @@ namespace CSScript
                                                                              m_InnerBarInitialPos.z);
                 }
             }
+
+            Application.NotifyDone();
         }
 
         public void Destroy()

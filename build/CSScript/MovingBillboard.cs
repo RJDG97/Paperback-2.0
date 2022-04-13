@@ -37,6 +37,8 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
@@ -50,6 +52,8 @@ namespace CSScript
             {
                 m_ParticleEmitter.m_Lifetime = 0.0f;
             }
+
+            Application.NotifyDone();
         }
 
         public void Destroy()

@@ -94,11 +94,14 @@ namespace CSScript
                 m_ChildAnimator.m_PauseAnimation = false;
                 m_ChildAnimator.m_PauseAtTime = 0;
             }
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
 
+            Application.NotifyDone();
         }
 
         public void Destroy()

@@ -53,6 +53,8 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
@@ -67,6 +69,8 @@ namespace CSScript
 
             if (m_Timer >= m_LoadingTime)
                 Application.ChangeScene("LevelThree");
+
+            Application.NotifyDone();
         }
         public void Destroy()
         {

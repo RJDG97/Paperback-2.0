@@ -34,10 +34,14 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+
+            Application.NotifyDone();
         }
 
         public void Update(float dt)
         {
+
+            Application.NotifyDone();
         }
 
         public void Destroy()
