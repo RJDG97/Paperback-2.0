@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     ShowWindow(GetConsoleWindow(), SW_SHOW);
 #else
-    ShowWindow(GetConsoleWindow(), SW_SHOW);
+    ShowWindow(GetConsoleWindow(), SW_HIDE);
 #endif
 
     /*
@@ -256,6 +256,8 @@ void InitializeGame()
             auto Gamepad_Movement            = PPB.RegisterBinding<paperback::input::binding::Gamepad_EntityMovement>();
             auto Gamepad_Rotate              = PPB.RegisterBinding<paperback::input::binding::Gamepad_Camera_Rotate>();
 
+            auto Gamepad_LftThbBttn          = PPB.RegisterBinding<paperback::input::binding::GamepadLeftStick_Button>();
+            auto Gamepad_RgtThbBttn          = PPB.RegisterBinding<paperback::input::binding::GamepadRghtStick_Button>();
             auto Gamepad_SelectBttn          = PPB.RegisterBinding<paperback::input::binding::SelectUIButton>();
             auto Gamepad_PrevButton          = PPB.RegisterBinding<paperback::input::binding::PrevButton>();
             auto Gamepad_NextButton          = PPB.RegisterBinding<paperback::input::binding::NextButton>();
@@ -296,6 +298,8 @@ void InitializeGame()
 
 
             // Gamepad Bindings
+            PPB.AssignBindingToAction( Gamepad_LftThbBttn,GLFW_GAMEPAD_BUTTON_LEFT_THUMB,   input::device::type::id::GAMEPAD );
+            PPB.AssignBindingToAction( Gamepad_RgtThbBttn,GLFW_GAMEPAD_BUTTON_RIGHT_THUMB,  input::device::type::id::GAMEPAD );
             PPB.AssignBindingToAction( Gamepad_Movement,  GLFW_GAMEPAD_BUTTON_LEFT_THUMB,   input::device::type::id::GAMEPAD );
             PPB.AssignBindingToAction( Gamepad_Rotate,    GLFW_GAMEPAD_BUTTON_RIGHT_THUMB,  input::device::type::id::GAMEPAD );
             PPB.AssignBindingToAction( Jump_Action,       GLFW_GAMEPAD_BUTTON_B,            input::device::type::id::GAMEPAD, paperback::input::action::BroadcastStatus::PRESSED );

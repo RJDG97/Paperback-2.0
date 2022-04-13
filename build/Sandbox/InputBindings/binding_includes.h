@@ -1000,6 +1000,66 @@ namespace paperback::input::binding
 
         END_INPUT_ACTION
     END_BINDING_CONSTRUCT
+
+
+    BEGIN_BINDING_CONSTRUCT(GamepadLeftStick_Button)
+        BEGIN_INPUT_ACTION
+
+            //if (PPB.IsGamepadButtonPress(GLFW_GAMEPAD_BUTTON_LEFT_THUMB))
+            //{
+
+                auto GP = m_Coordinator.FindGamepad();
+
+                if (GP)
+                {
+
+                    auto Axes = GP->m_State.m_LeftAxis;
+
+                    if (Axes.y > 0.5f || Axes.x > 0.5f)
+                    {
+
+                        m_Coordinator.GetSystem<ui_system>().NextButtonIndex();
+                    }
+                    else if (Axes.y < 0.5f || Axes.x < 0.5f)
+                    {
+
+                        m_Coordinator.GetSystem<ui_system>().PrevButtonIndex();
+                    }
+                }
+            //}
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
+
+    BEGIN_BINDING_CONSTRUCT(GamepadRghtStick_Button)
+        BEGIN_INPUT_ACTION
+
+            //if (PPB.IsGamepadButtonPress(GLFW_GAMEPAD_BUTTON_RIGHT_THUMB))
+            //{
+
+                auto GP = m_Coordinator.FindGamepad();
+
+                if (GP)
+                {
+
+                    auto Axes = GP->m_State.m_RightAxis;
+
+                    if (Axes.y > 0.5f || Axes.x > 0.5f)
+                    {
+
+                        m_Coordinator.GetSystem<ui_system>().NextButtonIndex();
+                    }
+                    else if (Axes.y < 0.5f || Axes.x < 0.5f)
+                    {
+
+                        m_Coordinator.GetSystem<ui_system>().PrevButtonIndex();
+                    }
+                }
+            //}
+
+        END_INPUT_ACTION
+    END_BINDING_CONSTRUCT
+
     //-----------------------------------
     //         Window Bindings
     //-----------------------------------
