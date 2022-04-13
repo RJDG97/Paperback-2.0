@@ -1,3 +1,13 @@
+/**********************************************************************************
+*\file         Light.h
+*\brief        Light.h
+*
+*\author       Malcolm Lim, 100% Code Contribution
+*
+*\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
+			   or disclosure of this file or its contents without the prior
+			   written consent of DigiPen Institute of Technology is prohibited.
+**********************************************************************************/
 #pragma once
 
 struct light

@@ -137,7 +137,7 @@ struct window_system : paperback::system::instance
         {
 
             m_Init = true;
-            FullScreen();
+            //FullScreen();
         }
     }
 
