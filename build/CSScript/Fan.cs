@@ -30,7 +30,6 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            Debug.Log("Update Fan: " + m_ID.ToString());
             m_Rotation.m_Value += m_Speed;
             if (m_Rotation.m_Value.y >= 360) {
                 m_Rotation.m_Value = new Tools.MathLib.Vector3(0.0f, m_Rotation.m_Value.y - 360.0f, 0.0f);

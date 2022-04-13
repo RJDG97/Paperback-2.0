@@ -35,10 +35,9 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log("OnCollisionEnter Goal_Cutscene: " + m_ID.ToString());
             //if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             //{
-            Application.ChangeScene("LoadingOne");
+                Application.ChangeScene("LoadingOne");
             //}
         }
         public void OnCollisionStay(UInt32 ID)

@@ -43,7 +43,6 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log("OnCollisonEnter DialogueTrigger: " + m_ID.ToString());
             if (!m_Activated && (ID == m_JumpUnitID || ID == m_PushUnitID))
             {
                 DialogueText dialogue_text = new DialogueText((UInt32)Player.GetDialogueTextID());

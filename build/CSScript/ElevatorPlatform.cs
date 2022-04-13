@@ -63,7 +63,6 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            Debug.Log("PreUpdate ElevatorPlatform: " + m_ID.ToString());
             if (JumpUnitUnder || PushUnitUnder || BlockUnder)
             {
                 m_Elevator.m_UnitUnder = true;
@@ -78,7 +77,6 @@ namespace CSScript
         public void Update(float dt)
         {
 
-            Debug.Log("Update ElevatorPlatform: " + m_ID.ToString());
             if (m_Transform.m_Position.y < m_PrevTransform.y || m_Transform.m_Position.y > m_PrevTransform.y)
             {
 
@@ -99,7 +97,6 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log("OnCollisionEnter ElevatorPlatform: " + m_ID.ToString());
             if (ID == m_JumpUnitID)
             {
                 Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
@@ -146,7 +143,6 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
-            Debug.Log("OnCollisionExit ElevatorPlatform: " + m_ID.ToString());
             if (ID == m_JumpUnitID)
             {
                 JumpUnitUnder = false;

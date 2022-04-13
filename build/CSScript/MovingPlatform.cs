@@ -68,7 +68,6 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            Debug.Log("Update MovingPlatform: " + m_ID.ToString());
             if (m_NumPassengers > 0)
             {
                 m_NumPassengers = 0;
@@ -113,7 +112,6 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log("OnCollisionEnter MovingPlatform: " + m_ID.ToString());
             if (ID == m_JumpUnitID)
             {
                 ++m_NumPassengers;
@@ -132,7 +130,6 @@ namespace CSScript
 
         public void OnCollisionStay(UInt32 ID)
         {
-            Debug.Log("OnCollisionStay MovingPlatform: " + m_ID.ToString());
             if (ID == m_JumpUnitID)
             {
                 m_JumpUnitTransform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;

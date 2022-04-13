@@ -35,7 +35,6 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log("OnCollisionEnter Goal_Level2: " + m_ID.ToString());
             if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
             {
                 Application.ChangeScene("GameWin_LevelTwo");

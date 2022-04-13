@@ -36,8 +36,7 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            Debug.Log("OnCollisionEnter SplashScreenCollider: " + m_ID.ToString());
-            Application.ChangeScene("MainMenu");
+                Application.ChangeScene("MainMenu");
         }
         public void OnCollisionStay(UInt32 ID)
         {
