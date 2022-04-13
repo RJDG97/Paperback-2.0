@@ -235,12 +235,13 @@ struct collision_system : paperback::system::pausable_instance
 
                                         entry_found->second->OnCollisionExit(Entity.m_GlobalIndex);
 
-                                    //while (!m_Coordinator.CompareProcesses())
-                                    //{
-                                    //}
-                                }
+                                        //while (!m_Coordinator.CompareProcesses())
+                                        //{
+                                        //}
+                                    }
 
-                                Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
+                                    Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
+                                }
                             }
                         }
                     }
