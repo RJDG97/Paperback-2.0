@@ -1,3 +1,14 @@
+/**********************************************************************************
+*\file         EditorPanels_inline.h
+*\brief        EditorPanels_inline.h
+*
+*\author	   Adele Sim, 100% Code Contribution
+*
+*\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
+					 or disclosure of this file or its contents without the prior
+					 written consent of DigiPen Institute of Technology is prohibited.
+**********************************************************************************/
+
 #pragma once
 #include "Editor/EditorPanels.h"
 

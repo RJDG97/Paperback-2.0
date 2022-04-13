@@ -14,6 +14,8 @@
 #include "Mono.h"
 #include "../Sandbox/Systems/SoundSystem.h"
 
+struct scripting_system;
+
 namespace MONO_APPLICATION
 {
 	MONO_EXPORT void Quit()
