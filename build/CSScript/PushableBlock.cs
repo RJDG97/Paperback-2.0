@@ -42,6 +42,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update, PusahbleBlock:" + m_ID.ToString());
             if (m_PrevGravActive && !m_Rigidforce.m_GravityActive)
             {
                 m_Rigidforce.m_CollisionAffected = false;

@@ -64,6 +64,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Debug.Log("PreUpdate, Gate Switch2:" + m_ID.ToString());
             if ((m_Rotation.m_Value.y % 180.0f) < 1.0f && (m_Rotation.m_Value.y % 180.0f) > -1.0f)
             {
                 m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),

@@ -92,6 +92,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update, Game Controller:" + m_ID.ToString());
             if (m_RayCastTimer > 0.0f)
                 m_RayCastTimer -= dt;
 

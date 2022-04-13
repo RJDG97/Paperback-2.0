@@ -68,6 +68,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update, Moving Platform:" + m_ID.ToString());
             if (m_NumPassengers > 0)
             {
                 m_NumPassengers = 0;

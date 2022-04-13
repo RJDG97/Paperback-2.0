@@ -63,6 +63,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Debug.Log("PreUpdate, Elevator Platform:" + m_ID.ToString());
             if (JumpUnitUnder || PushUnitUnder || BlockUnder)
             {
                 m_Elevator.m_UnitUnder = true;
@@ -76,6 +77,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update, Elevator Platform:" + m_ID.ToString());
 
             if (m_Transform.m_Position.y < m_PrevTransform.y || m_Transform.m_Position.y > m_PrevTransform.y)
             {

@@ -92,6 +92,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Debug.Log("PreUpdate :" + m_ID.ToString());
             if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
             {
                 m_JustLeftFPS = false;
@@ -214,6 +215,7 @@ namespace CSScript
         }
         public void Update(float dt)
         {
+            Debug.Log(m_ID.ToString());
         }
 
         public void Destroy()

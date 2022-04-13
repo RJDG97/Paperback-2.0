@@ -76,6 +76,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Debug.Log("PreUpdate, Elevator Switch:" + m_ID.ToString());
             m_PlatformOffset.m_PosOffset = new Tools.MathLib.Vector3(m_PlatformOffset.m_PosOffset.x ,
                                                                      m_PlatformStartY + m_ElevatorAnimator.m_CurrentTime / 48.0f * m_PlatformSpeed,
                                                                      m_PlatformOffset.m_PosOffset.z);

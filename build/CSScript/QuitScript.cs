@@ -23,6 +23,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
+            Debug.Log("Update, Quit Script:" + m_ID.ToString());
             if (Input.IsKeyPress(Input.PB_ESCAPE))
                 Application.Quit();
         }

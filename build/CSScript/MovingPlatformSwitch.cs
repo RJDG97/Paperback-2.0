@@ -55,6 +55,7 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
+            Debug.Log("PreUpdate, Moving Platform Switch:" + m_ID.ToString());
             if (m_ChildID != -1 && m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
             {
                 m_ChildPathFollower.m_Reversed = true;
