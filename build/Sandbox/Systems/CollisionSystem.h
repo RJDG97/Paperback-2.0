@@ -124,14 +124,24 @@ struct collision_system : paperback::system::pausable_instance
 
                                             //m_Coordinator.SetTotalProcesses(1);
                                             //m_Coordinator.SetProcessesCompleted(0);
-                                            //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
+
+                                        auto entry_found = scripting_sys->scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+
+                                        if (entry_found == scripting_sys->scriptlist.end()) {
+
+                                            entry_found->second->OnCollisionEnter(Dynamic_Entity.m_GlobalIndex);
+                                        }
 
                                         if (!(BV || BV2))
                                         {
                                             //m_Coordinator.SetTotalProcesses(1);
                                             //m_Coordinator.SetProcessesCompleted(0);
-                                            ////scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionEnter(Entity.m_GlobalIndex);
+                                            auto entry_found = scripting_sys->scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
+                                            if (entry_found == scripting_sys->scriptlist.end()) {
+
+                                                entry_found->second->OnCollisionEnter(Entity.m_GlobalIndex);
+                                            }
 
                                             //while (!m_Coordinator.CompareProcesses())
                                             //{
@@ -144,8 +154,13 @@ struct collision_system : paperback::system::pausable_instance
                                     {
                                         //m_Coordinator.SetTotalProcesses(1);
                                         //m_Coordinator.SetProcessesCompleted(0);
-                                        ////scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
 
+                                        auto entry_found = scripting_sys->scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+
+                                        if (entry_found == scripting_sys->scriptlist.end()) {
+
+                                            entry_found->second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
+                                        }
 
                                         //while (!m_Coordinator.CompareProcesses())
                                         //{
@@ -155,7 +170,13 @@ struct collision_system : paperback::system::pausable_instance
                                         {
                                             /*m_Coordinator.SetTotalProcesses(1);
                                             m_Coordinator.SetProcessesCompleted(0);*/
-                                            //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionStay(Entity.m_GlobalIndex);
+
+                                            auto entry_found = scripting_sys->scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+
+                                            if (entry_found == scripting_sys->scriptlist.end()) {
+
+                                                entry_found->second->OnCollisionStay(Entity.m_GlobalIndex);
+                                            }
 
 
                                             //while (!m_Coordinator.CompareProcesses())
@@ -192,8 +213,13 @@ struct collision_system : paperback::system::pausable_instance
                             {
                                 /*m_Coordinator.SetTotalProcesses(1);
                                 m_Coordinator.SetProcessesCompleted(0);*/
-                                //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
 
+                                auto entry_found = scripting_sys->scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+
+                                if (entry_found == scripting_sys->scriptlist.end()) {
+
+                                    entry_found->second->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
+                                }
 
                                 //while (!m_Coordinator.CompareProcesses())
                                 //{
@@ -203,8 +229,11 @@ struct collision_system : paperback::system::pausable_instance
                                 {
                                     /*m_Coordinator.SetTotalProcesses(1);
                                     m_Coordinator.SetProcessesCompleted(0);*/
-                                    //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionExit(Entity.m_GlobalIndex);
+                                    auto entry_found = scripting_sys->scriptlist.find(Dynamic_Entity.m_GlobalIndex);
 
+                                    if (entry_found == scripting_sys->scriptlist.end()) {
+
+                                        entry_found->second->OnCollisionExit(Entity.m_GlobalIndex);
 
                                     //while (!m_Coordinator.CompareProcesses())
                                     //{
