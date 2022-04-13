@@ -214,12 +214,12 @@ struct physics_system : paperback::system::pausable_instance
                 
             }
             // Update Rotation Only For Active Player
-            if ( Controller && RigidBody && Rot && (std::fabs(RigidBody->m_Velocity.x) > 0.1f || std::fabs(RigidBody->m_Velocity.y) > 0.04f || std::fabs(RigidBody->m_Velocity.z) > 0.1f) )
+            if ( Controller && Controller->m_PlayerStatus && RigidBody && Rot && (std::fabs(RigidBody->m_Velocity.x) > 0.1f || std::fabs(RigidBody->m_Velocity.y) > 0.04f || std::fabs(RigidBody->m_Velocity.z) > 0.1f) )
             {
                 auto Debug = m_Coordinator.FindSystem<debug_system>();
 
                 // If Any Movement Key Is Pressed & Player Is Not Jumping ( Jumping resets the velocity on collision )
-                if ( MovementEnabled() && Controller->m_PlayerStatus )
+                if ( MovementEnabled() )
                 {
                     if ( Debug && ((Inter && !Inter->m_bPushOrPull) || !Inter) )
                     {
@@ -260,7 +260,7 @@ struct physics_system : paperback::system::pausable_instance
                 if ( RigidBody->m_Velocity.y < -0.01f )
                     BroadcastGlobalEvent<Event_OnFalling>( Entity );
             }
-            else if ( Controller )
+            else
             {
                 BroadcastGlobalEvent<Event_OnStatic>( Entity );
             }
