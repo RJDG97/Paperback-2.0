@@ -195,9 +195,9 @@ struct collision_system : paperback::system::pausable_instance
                                 //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionExit(Dynamic_Entity.m_GlobalIndex);
 
 
-                                while (!m_Coordinator.CompareProcesses())
-                                {
-                                }
+                                //while (!m_Coordinator.CompareProcesses())
+                                //{
+                                //}
 
                                 if (!(BV || BV2))
                                 {
@@ -206,9 +206,9 @@ struct collision_system : paperback::system::pausable_instance
                                     //scripting_sys->scriptlist[Dynamic_Entity.m_GlobalIndex]->OnCollisionExit(Entity.m_GlobalIndex);
 
 
-                                    while (!m_Coordinator.CompareProcesses())
-                                    {
-                                    }
+                                    //while (!m_Coordinator.CompareProcesses())
+                                    //{
+                                    //}
                                 }
 
                                 Boundingbox->m_CollisionState.at(Dynamic_Entity.m_GlobalIndex) = false;
