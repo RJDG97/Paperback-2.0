@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 475
+                "EntityHead": 591
             }
         },
         {
@@ -743,6 +743,208 @@
                     "Name": {
                         "Name": "Instruction Manual 7"
                     }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 471
+                    },
+                    "Mesh": {
+                        "Model": "LearningArea",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 270.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -48.599998474121097,
+                            "y": 14.800000190734864,
+                            "z": -57.5
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 475
+                    },
+                    "Name": {
+                        "Name": "Signs 1"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 588
+                    },
+                    "Mesh": {
+                        "Model": "LearningArea",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.009999999776482582,
+                            "y": 0.009999999776482582,
+                            "z": 0.009999999776482582
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -41.79999923706055,
+                            "y": 14.800000190734864,
+                            "z": -14.399999618530274
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143
+                        ],
+                        "Prefab GID": 475
+                    },
+                    "Name": {
+                        "Name": "Signs 2"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 589
+                    },
+                    "Mesh": {
+                        "Model": "CubbyHoleThisWay_Right",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.019999999552965165,
+                            "y": 0.019999999552965165,
+                            "z": 0.019999999552965165
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 180.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 15.899999618530274,
+                            "y": 14.800000190734864,
+                            "z": -31.399999618530275
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 475
+                    },
+                    "Name": {
+                        "Name": "Signs 3"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 590
+                    },
+                    "Mesh": {
+                        "Model": "CubbyHoleThisWay_Left",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.014999999664723874,
+                            "y": 0.014999999664723874,
+                            "z": 0.014999999664723874
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 90.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -14.199999809265137,
+                            "y": 14.800000190734864,
+                            "z": 56.70000076293945
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            5691439207370049121,
+                            17008353085049151909,
+                            14486341741652966143,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 475
+                    },
+                    "Name": {
+                        "Name": "Signs 4"
+                    }
                 }
             ]
         },
@@ -1082,6 +1284,55 @@
                     },
                     "Name": {
                         "Name": "Instruction Manual"
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 475
+                    },
+                    "Mesh": {
+                        "Model": "LearningArea",
+                        "Texture": "",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": true,
+                        "Active": true
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            471,
+                            588,
+                            589,
+                            590
+                        ]
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Name": {
+                        "Name": "Signs"
                     }
                 }
             ]
@@ -42693,597 +42944,6 @@
                 {
                     "Guid": [
                         0,
-                        10055872472107209861,
-                        17008353085049151909,
-                        3617555656175080491,
-                        16415915133639986106,
-                        12326225187096344837
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 526
-                    },
-                    "Prefab": {
-                        "Prefab Instances GID": [
-                            527,
-                            528,
-                            529,
-                            530,
-                            531,
-                            532,
-                            533,
-                            534
-                        ]
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -57.70000076293945,
-                            "y": 6.599999904632568,
-                            "z": 8.100000381469727
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 10.0,
-                            "y": 10.0,
-                            "z": 10.0
-                        },
-                        "Diffuse": {
-                            "x": 10.0,
-                            "y": 10.0,
-                            "z": 10.0
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
-                        17008353085049151909,
-                        3617555656175080491,
-                        15172211932757996706,
-                        16415915133639986106,
-                        12326225187096344837
-                    ]
-                },
-                {
-                    "Entity": {
-                        "Global Index": 527
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -37.96196746826172,
-                            "y": 16.104564666748048,
-                            "z": -26.357450485229493
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            12326225187096344837
-                        ],
-                        "Prefab GID": 526
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 5.0,
-                            "y": 5.0,
-                            "z": 5.0
-                        },
-                        "Diffuse": {
-                            "x": 0.05000000074505806,
-                            "y": 0.05000000074505806,
-                            "z": 0.05000000074505806
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 528
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -31.22151756286621,
-                            "y": 9.420713424682618,
-                            "z": -32.5362548828125
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            12326225187096344837
-                        ],
-                        "Prefab GID": 526
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 2.0,
-                            "y": 2.0,
-                            "z": 2.0
-                        },
-                        "Diffuse": {
-                            "x": 0.4000000059604645,
-                            "y": 0.4000000059604645,
-                            "z": 0.4000000059604645
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 529
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -37.96196746826172,
-                            "y": 13.141122817993164,
-                            "z": -26.38243865966797
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            12326225187096344837
-                        ],
-                        "Prefab GID": 526
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 3.0,
-                            "y": 3.0,
-                            "z": 3.0
-                        },
-                        "Diffuse": {
-                            "x": 0.029999999329447748,
-                            "y": 0.029999999329447748,
-                            "z": 0.029999999329447748
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 530
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -45.107906341552737,
-                            "y": 10.291115760803223,
-                            "z": -35.80870819091797
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            12326225187096344837
-                        ],
-                        "Prefab GID": 526
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 3.0,
-                            "y": 3.0,
-                            "z": 3.0
-                        },
-                        "Diffuse": {
-                            "x": 0.029999999329447748,
-                            "y": 0.029999999329447748,
-                            "z": 0.029999999329447748
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 531
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -18.157766342163087,
-                            "y": 10.200908660888672,
-                            "z": -8.261432647705079
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            12326225187096344837
-                        ],
-                        "Prefab GID": 526
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 4.0,
-                            "y": 4.0,
-                            "z": 4.0
-                        },
-                        "Diffuse": {
-                            "x": 3.0,
-                            "y": 3.0,
-                            "z": 3.0
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 532
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -33.97798538208008,
-                            "y": 9.930116653442383,
-                            "z": -38.763545989990237
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            12326225187096344837
-                        ],
-                        "Prefab GID": 526
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 2.0,
-                            "y": 2.0,
-                            "z": 2.0
-                        },
-                        "Diffuse": {
-                            "x": 0.029999999329447748,
-                            "y": 0.029999999329447748,
-                            "z": 0.029999999329447748
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 533
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -28.24083709716797,
-                            "y": 10.185545921325684,
-                            "z": -17.222347259521486
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            12326225187096344837
-                        ],
-                        "Prefab GID": 526
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 2.0,
-                            "y": 2.0,
-                            "z": 2.0
-                        },
-                        "Diffuse": {
-                            "x": 3.0,
-                            "y": 3.0,
-                            "z": 3.0
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                },
-                {
-                    "Entity": {
-                        "Global Index": 534
-                    },
-                    "Transform": {
-                        "Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Position": {
-                            "x": -28.122018814086915,
-                            "y": 10.185545921325684,
-                            "z": -3.498603582382202
-                        }
-                    },
-                    "BoundingBox": {
-                        "Min Point": {
-                            "x": -1.0,
-                            "y": -1.0,
-                            "z": -1.0
-                        },
-                        "Max Point": {
-                            "x": 1.0,
-                            "y": 1.0,
-                            "z": 1.0
-                        },
-                        "Is Collide": false
-                    },
-                    "ReferencePrefab": {
-                        "Modified Components": [
-                            17008353085049151909,
-                            12326225187096344837
-                        ],
-                        "Prefab GID": 526
-                    },
-                    "Name": {
-                        "Name": "Point Light"
-                    },
-                    "Light": {
-                        "Light Offset": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        },
-                        "Ambient": {
-                            "x": 3.0,
-                            "y": 3.0,
-                            "z": 3.0
-                        },
-                        "Diffuse": {
-                            "x": 3.0,
-                            "y": 3.0,
-                            "z": 3.0
-                        },
-                        "Specular": {
-                            "x": 0.0,
-                            "y": 0.0,
-                            "z": 0.0
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "Unnamed Archetype": [
-                {
-                    "Guid": [
-                        0,
                         9604788041699812520,
                         5691439207370049121,
                         13107566195444653040,
@@ -55538,7 +55198,7 @@
                         "Texture": "Transition",
                         "Shadow Bias": 1,
                         "Cast Shadow": true,
-                        "Active": false
+                        "Active": true
                     },
                     "Scale": {
                         "Scale": {
@@ -55561,7 +55221,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -2755.934326171875,
+                            "x": -2721.107666015625,
                             "y": 0.0,
                             "z": 3.0
                         }
@@ -55576,6 +55236,608 @@
                         "Name": "Transition"
                     },
                     "": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        17008353085049151909,
+                        3617555656175080491,
+                        15172211932757996706,
+                        16415915133639986106,
+                        12326225187096344837,
+                        2162303849123872336
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 527
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -37.96196746826172,
+                            "y": 16.104564666748048,
+                            "z": -26.357450485229493
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 526
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 5.0,
+                            "y": 5.0,
+                            "z": 5.0
+                        },
+                        "Diffuse": {
+                            "x": 0.05000000074505806,
+                            "y": 0.05000000074505806,
+                            "z": 0.05000000074505806
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 528
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -31.22151756286621,
+                            "y": 9.420713424682618,
+                            "z": -32.5362548828125
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 526
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 2.0
+                        },
+                        "Diffuse": {
+                            "x": 0.4000000059604645,
+                            "y": 0.4000000059604645,
+                            "z": 0.4000000059604645
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 529
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -37.96196746826172,
+                            "y": 13.141122817993164,
+                            "z": -26.38243865966797
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 526
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Diffuse": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 530
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -45.107906341552737,
+                            "y": 10.291115760803223,
+                            "z": -35.80870819091797
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 526
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Diffuse": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 531
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -18.157766342163087,
+                            "y": 10.200908660888672,
+                            "z": -8.261432647705079
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 526
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 4.0,
+                            "y": 4.0,
+                            "z": 4.0
+                        },
+                        "Diffuse": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 532
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -33.97798538208008,
+                            "y": 9.930116653442383,
+                            "z": -38.763545989990237
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 526
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 2.0
+                        },
+                        "Diffuse": {
+                            "x": 0.029999999329447748,
+                            "y": 0.029999999329447748,
+                            "z": 0.029999999329447748
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 533
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -28.24083709716797,
+                            "y": 10.185545921325684,
+                            "z": -17.222347259521486
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 526
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 2.0,
+                            "y": 2.0,
+                            "z": 2.0
+                        },
+                        "Diffuse": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
+                },
+                {
+                    "Entity": {
+                        "Global Index": 534
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -28.122018814086915,
+                            "y": 10.185545921325684,
+                            "z": -3.498603582382202
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            12326225187096344837
+                        ],
+                        "Prefab GID": 526
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Diffuse": {
+                            "x": 3.0,
+                            "y": 3.0,
+                            "z": 3.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
+                }
+            ]
+        },
+        {
+            "Unnamed Archetype": [
+                {
+                    "Guid": [
+                        0,
+                        10055872472107209861,
+                        17008353085049151909,
+                        3617555656175080491,
+                        16415915133639986106,
+                        12326225187096344837,
+                        2162303849123872336
+                    ]
+                },
+                {
+                    "Entity": {
+                        "Global Index": 526
+                    },
+                    "Prefab": {
+                        "Prefab Instances GID": [
+                            527,
+                            528,
+                            529,
+                            530,
+                            531,
+                            532,
+                            533,
+                            534
+                        ]
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -57.70000076293945,
+                            "y": 6.599999904632568,
+                            "z": 8.100000381469727
+                        }
+                    },
+                    "BoundingBox": {
+                        "Min Point": {
+                            "x": -1.0,
+                            "y": -1.0,
+                            "z": -1.0
+                        },
+                        "Max Point": {
+                            "x": 1.0,
+                            "y": 1.0,
+                            "z": 1.0
+                        },
+                        "Is Collide": false
+                    },
+                    "Name": {
+                        "Name": "Point Light"
+                    },
+                    "Light": {
+                        "Light Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Ambient": {
+                            "x": 10.0,
+                            "y": 10.0,
+                            "z": 10.0
+                        },
+                        "Diffuse": {
+                            "x": 10.0,
+                            "y": 10.0,
+                            "z": 10.0
+                        },
+                        "Specular": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Is Jus An Invis Collider Fren": {}
                 }
             ]
         },
