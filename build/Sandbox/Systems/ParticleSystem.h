@@ -1,3 +1,14 @@
+/**********************************************************************************
+*\file         ParticleSystem.h
+*\brief        ParticleSystem.h
+*
+*\author       Lee Jun Pu, 100% Code Contribution
+*
+*\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
+               or disclosure of this file or its contents without the prior
+               written consent of DigiPen Institute of Technology is prohibited.
+**********************************************************************************/
+
 #pragma once
 #ifndef PARTICLE_SYSTEM
 #define PARTICLE_SYSTEM
