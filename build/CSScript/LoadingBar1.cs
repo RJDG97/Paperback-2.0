@@ -1,4 +1,15 @@
-﻿using System;
+﻿/**********************************************************************************
+*\file         LoadingBar1.cs
+*\brief        LoadingBar1.cs Script
+*
+*\author	     Renzo Garcia, 100% Code Contribution
+*
+*\copyright    Copyright (c) 2022 DigiPen Institute of Technology. Reproduction
+			         or disclosure of this file or its contents without the prior
+			         written consent of DigiPen Institute of Technology is prohibited.
+**********************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
