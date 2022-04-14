@@ -22,24 +22,24 @@ namespace MONO_NAME
 		return m_name;
 	}
 
-	MONO_EXPORT MonoString* GetName(uint32_t ID)
+	MONO_EXPORT MonoString* GetName(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return mono_string_new(mono_domain_get(), m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails)->m_Value.c_str());
+		if (address)
+			return mono_string_new(mono_domain_get(), reinterpret_cast<name*>(address)->m_Value.c_str());
 
 		return {};
 	}
 
-	MONO_EXPORT void SetName(uint32_t ID, MonoString* value)
+	MONO_EXPORT void SetName(void* address, MonoString* value)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails)->m_Value = mono_string_to_utf8(value);
+		if (address)
+			reinterpret_cast<name*>(address)->m_Value = mono_string_to_utf8(value);
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Name::getaddress(uint)", &MONO_NAME::GetAddress);
-		mono_add_internal_call("CSScript.Name::getname(uint)", &MONO_NAME::GetName);
-		mono_add_internal_call("CSScript.Name::setname(uint,string)", &MONO_NAME::SetName);
+		mono_add_internal_call("CSScript.Name::getname(void*)", &MONO_NAME::GetName);
+		mono_add_internal_call("CSScript.Name::setname(void*,string)", &MONO_NAME::SetName);
 	}
 }

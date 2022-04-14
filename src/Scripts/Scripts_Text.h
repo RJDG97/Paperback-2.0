@@ -31,56 +31,56 @@ namespace MONO_TEXT
 		return m_text;
 	}
 
-	MONO_EXPORT std::string GetFont(uint32_t ID)
+	MONO_EXPORT std::string GetFont(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return m_obj.m_pArchetype->FindComponent<text>(m_obj.m_PoolDetails)->m_Font;
+		if (address)
+			return reinterpret_cast<text*>(address)->m_Font;
 
 		return {};
 	}
 
-	MONO_EXPORT std::string GetText(uint32_t ID)
+	MONO_EXPORT std::string GetText(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return m_obj.m_pArchetype->FindComponent<text>(m_obj.m_PoolDetails)->m_Text;
+		if (address)
+			return reinterpret_cast<text*>(address)->m_Text;
 
 		return {};
 	}
 
-	MONO_EXPORT paperback::Vector3f GetColor(uint32_t ID)
+	MONO_EXPORT paperback::Vector3f GetColor(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return m_obj.m_pArchetype->FindComponent<text>(m_obj.m_PoolDetails)->m_Color;
+		if (address)
+			return reinterpret_cast<text*>(address)->m_Color;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetFont(uint32_t ID, std::string value)
+	MONO_EXPORT void SetFont(void* address, std::string value)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-		m_obj.m_pArchetype->FindComponent<text>(m_obj.m_PoolDetails)->m_Font = value;
+		if (address)
+			reinterpret_cast<text*>(address)->m_Font = value;
 	}
 
-	MONO_EXPORT void SetText(uint32_t ID, std::string value)
+	MONO_EXPORT void SetText(void* address, std::string value)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-		m_obj.m_pArchetype->FindComponent<text>(m_obj.m_PoolDetails)->m_Text = value;
+		if (address)
+			reinterpret_cast<text*>(address)->m_Text = value;
 	}
 
-	MONO_EXPORT void SetColor(uint32_t ID, float x, float y, float z)
+	MONO_EXPORT void SetColor(void* address, float x, float y, float z)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-		m_obj.m_pArchetype->FindComponent<text>(m_obj.m_PoolDetails)->m_Color = {x, y ,z};
+		if (address)
+			reinterpret_cast<text*>(address)->m_Color = {x, y ,z};
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Text::getaddress(uint)", &MONO_TEXT::GetAddress);
-		mono_add_internal_call("CSScript.Text::getfont(uint)", &MONO_TEXT::GetFont);
-		mono_add_internal_call("CSScript.Text::setfont(uint,string)", &MONO_TEXT::SetFont);
-		mono_add_internal_call("CSScript.Text::gettext(uint)", &MONO_TEXT::GetText);
-		mono_add_internal_call("CSScript.Text::settext(uint,string)", &MONO_TEXT::SetText);
-		mono_add_internal_call("CSScript.Text::getcolor(uint)", &MONO_TEXT::GetColor);
-		mono_add_internal_call("CSScript.Text::setcolor(uint,single,single,single)", &MONO_TEXT::SetColor);
+		mono_add_internal_call("CSScript.Text::getfont(void*)", &MONO_TEXT::GetFont);
+		mono_add_internal_call("CSScript.Text::setfont(void*,string)", &MONO_TEXT::SetFont);
+		mono_add_internal_call("CSScript.Text::gettext(void*)", &MONO_TEXT::GetText);
+		mono_add_internal_call("CSScript.Text::settext(void*,string)", &MONO_TEXT::SetText);
+		mono_add_internal_call("CSScript.Text::getcolor(void*)", &MONO_TEXT::GetColor);
+		mono_add_internal_call("CSScript.Text::setcolor(void*,single,single,single)", &MONO_TEXT::SetColor);
 	}
 }

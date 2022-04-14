@@ -1,6 +1,6 @@
 /**********************************************************************************
-*\file         Scripts_AABB.h
-*\brief        Scripts_AABB.h
+*\file         Scripts_Child.h
+*\brief        Scripts_Child.h
 *
 *\author	   Mok Wen Qing, 100% Code Contribution
 *
@@ -13,35 +13,33 @@
 
 #include "Mono.h"
 
-namespace MONO_AABB
+namespace MONO_CHILD
 {
 	MONO_EXPORT void* GetAddress(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-		void* m_aabb = m_obj.m_pArchetype->FindComponent<aabb>(m_obj.m_PoolDetails);
+		void* m_child = m_obj.m_pArchetype->FindComponent<child>(m_obj.m_PoolDetails);
 
 #ifdef PAPERBACK_DEBUG
-		if (!m_aabb)
+		if (!m_child)
 		{
 			name* Name = m_obj.m_pArchetype->FindComponent<name>(m_obj.m_PoolDetails);
-			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no AABB component." << std::endl;
+			std::cout << "Object with ID " + std::to_string(ID) + " and name " + Name->m_Value + " has no Child component." << std::endl;
 		}
 #endif
 
-		return m_aabb;
+		return m_child;
 	}
 
-	MONO_EXPORT bool GetCollided(void* address)
+	MONO_EXPORT int32_t GetParentID(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<aabb*>(address)->m_Collided;
-
-		return {};
+		auto m_obj = PPB.GetEntityInfo(ID);
+		return m_obj.m_pArchetype->FindComponent<child>(m_obj.m_PoolDetails)->m_ParentGlobalIndex;
 	}
 
 	void AddInternalCall()
 	{
-		mono_add_internal_call("CSScript.AABB::getaddress(uint)", &MONO_AABB::GetAddress);
-		mono_add_internal_call("CSScript.AABB::getcollided(void*)", &MONO_AABB::GetCollided);
+		mono_add_internal_call("CSScript.Child::getaddress(uint)", &MONO_CHILD::GetAddress);
+		mono_add_internal_call("CSScript.Child::getparentid(uint)", &MONO_CHILD::GetParentID);
 	}
 }

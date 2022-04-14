@@ -23,10 +23,9 @@ namespace CSScript
     public unsafe class Sound
     {
         private void* m_Address;
-        UInt32 m_ID;
+
         public Sound(UInt32 id)
         {
-            m_ID = id;
             m_Address = getaddress(id);
         }
 
@@ -34,11 +33,11 @@ namespace CSScript
         {
             get
             {
-                return getsoundid(m_ID);
+                return getsoundid(m_Address);
             }
             set
             {
-                setsoundid(m_ID, value);
+                setsoundid(m_Address, value);
             }
         }
 
@@ -46,11 +45,11 @@ namespace CSScript
         {
             get
             {
-                return getsoundplaytag(m_ID);
+                return getsoundplaytag(m_Address);
             }
             set
             {
-                setsoundplaytag(m_ID, value);
+                setsoundplaytag(m_Address, value);
             }
         }
 
@@ -58,11 +57,11 @@ namespace CSScript
         {
             get
             {
-                return getis3dsound(m_ID);
+                return getis3dsound(m_Address);
             }
             set
             {
-                setis3dsound(m_ID, value);
+                setis3dsound(m_Address, value);
             }
         }
 
@@ -70,11 +69,11 @@ namespace CSScript
         {
             get
             {
-                return getistriggerable(m_ID);
+                return getistriggerable(m_Address);
             }
             set
             {
-                setistriggerable(m_ID, value);
+                setistriggerable(m_Address, value);
             }
         }
 
@@ -82,11 +81,11 @@ namespace CSScript
         {
             get
             {
-                return gettrigger(m_ID);
+                return gettrigger(m_Address);
             }
             set
             {
-                settrigger(m_ID, value);
+                settrigger(m_Address, value);
             }
         }
 
@@ -94,33 +93,33 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static string getsoundid(UInt32 ID);
+        private extern static string getsoundid(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setsoundid(UInt32 ID, String value);
+        private extern static void setsoundid(void* address, String value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static UInt32 getsoundplaytag(UInt32 ID);
+        private extern static UInt32 getsoundplaytag(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setsoundplaytag(UInt32 ID, UInt32 value);
+        private extern static void setsoundplaytag(void* address, UInt32 value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getis3dsound(UInt32 ID);
+        private extern static bool getis3dsound(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setis3dsound(UInt32 ID, bool value);
+        private extern static void setis3dsound(void* address, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getistriggerable(UInt32 ID);
+        private extern static bool getistriggerable(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setistriggerable(UInt32 ID, bool value);
+        private extern static void setistriggerable(void* address, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool gettrigger(UInt32 ID);
+        private extern static bool gettrigger(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void settrigger(UInt32 ID, bool value);
+        private extern static void settrigger(void* address, bool value);
     }
 }

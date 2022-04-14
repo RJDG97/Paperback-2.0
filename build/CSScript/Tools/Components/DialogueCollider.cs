@@ -23,10 +23,9 @@ namespace CSScript
     public unsafe class DialogueCollider
     {
         private void* m_Address;
-        UInt32 ID;
+
         public DialogueCollider(UInt32 id)
         {
-            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -34,11 +33,11 @@ namespace CSScript
         {
             get
             {
-                return getdialoguename(ID);
+                return getdialoguename(m_Address);
             }
             set
             {
-                setdialoguename(ID, value);
+                setdialoguename(m_Address, value);
             }
         }
 
@@ -46,9 +45,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String getdialoguename(UInt32 address);
+        private extern static String getdialoguename(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setdialoguename(UInt32 address, String value);
+        private extern static void setdialoguename(void* address, String value);
     }
 }

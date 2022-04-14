@@ -23,10 +23,9 @@ namespace CSScript
     public unsafe class PathFollower
     {
         private void* m_Address;
-        UInt32 ID;
+
         public PathFollower(UInt32 id)
         {
-            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -34,11 +33,11 @@ namespace CSScript
         {
             get
             {
-                return getpathid(ID);
+                return getpathid(m_Address);
             }
             set
             {
-                setpathid(ID, value);
+                setpathid(m_Address, value);
             }
         }
 
@@ -46,11 +45,11 @@ namespace CSScript
         {
             get
             {
-                return getdistance(ID);
+                return getdistance(m_Address);
             }
             set
             {
-                setdistance(ID, value);
+                setdistance(m_Address, value);
             }
         }
 
@@ -58,11 +57,11 @@ namespace CSScript
         {
             get
             {
-                return gettravelspeed(ID);
+                return gettravelspeed(m_Address);
             }
             set
             {
-                settravelspeed(ID, value);
+                settravelspeed(m_Address, value);
             }
         }
 
@@ -70,12 +69,12 @@ namespace CSScript
         {
             get
             {
-                return getbackandforth(ID);
+                return getbackandforth(m_Address);
             }
             set
             {
                 //m_Position = value;
-                setbackandforth(ID, value);
+                setbackandforth(m_Address, value);
             }
         }
 
@@ -83,11 +82,11 @@ namespace CSScript
         {
             get
             {
-                return getreversed(ID);
+                return getreversed(m_Address);
             }
             set
             {
-                setreversed(ID, value);
+                setreversed(m_Address, value);
             }
         }
 
@@ -95,12 +94,12 @@ namespace CSScript
         {
             get
             {
-                return getpausetravel(ID);
+                return getpausetravel(m_Address);
             }
             set
             {
                 //m_Position = value;
-                setpausetravel(ID, value);
+                setpausetravel(m_Address, value);
             }
         }
 
@@ -108,39 +107,39 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static int getpathid(UInt32 ID);
+        private extern static int getpathid(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setpathid(UInt32 ID, int path_id);
+        private extern static void setpathid(void* address, int path_id);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getdistance(UInt32 ID);
+        private extern static float getdistance(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setdistance(UInt32 ID, float distance);
+        private extern static void setdistance(void* address, float distance);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float gettravelspeed(UInt32 ID);
+        private extern static float gettravelspeed(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void settravelspeed(UInt32 ID, float travel_speed);
+        private extern static void settravelspeed(void* address, float travel_speed);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getbackandforth(UInt32 ID);
+        private extern static bool getbackandforth(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setbackandforth(UInt32 ID, bool back_and_forth);
+        private extern static void setbackandforth(void* address, bool back_and_forth);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getreversed(UInt32 ID);
+        private extern static bool getreversed(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setreversed(UInt32 ID, bool traversed);
+        private extern static void setreversed(void* address, bool traversed);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getpausetravel(UInt32 ID);
+        private extern static bool getpausetravel(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setpausetravel(UInt32 ID, bool stopped);
+        private extern static void setpausetravel(void* address, bool stopped);
     }
 }

@@ -23,10 +23,9 @@ namespace CSScript
     public unsafe class Offset
     {
         private void* m_Address;
-        UInt32 ID;
+
         public Offset(UInt32 id)
         {
-            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -34,11 +33,11 @@ namespace CSScript
         {
             get
             {
-                return getposoffset(ID);
+                return getposoffset(m_Address);
             }
             set
             {
-                setposoffset(ID, value.x, value.y, value.z);
+                setposoffset(m_Address, value.x, value.y, value.z);
             }
         }
 
@@ -46,11 +45,11 @@ namespace CSScript
         {
             get
             {
-                return getrotoffset(ID);
+                return getrotoffset(m_Address);
             }
             set
             {
-                setrotoffset(ID, value.x, value.y, value.z);
+                setrotoffset(m_Address, value.x, value.y, value.z);
             }
         }
 
@@ -58,11 +57,11 @@ namespace CSScript
         {
             get
             {
-                return getscaleoffset(ID);
+                return getscaleoffset(m_Address);
             }
             set
             {
-                setscaleoffset(ID, value.x, value.y, value.z);
+                setscaleoffset(m_Address, value.x, value.y, value.z);
             }
         }
 
@@ -70,21 +69,21 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getposoffset(UInt32 ID);
+        private extern static Tools.MathLib.Vector3 getposoffset(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setposoffset(UInt32 ID, float x, float y, float z);
+        private extern static void setposoffset(void* address, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getrotoffset(UInt32 ID);
+        private extern static Tools.MathLib.Vector3 getrotoffset(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setrotoffset(UInt32 ID, float x, float y, float z);
+        private extern static void setrotoffset(void* address, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getscaleoffset(UInt32 ID);
+        private extern static Tools.MathLib.Vector3 getscaleoffset(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setscaleoffset(UInt32 ID, float x, float y, float z);
+        private extern static void setscaleoffset(void* address, float x, float y, float z);
     }
 }

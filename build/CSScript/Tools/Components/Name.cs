@@ -23,10 +23,9 @@ namespace CSScript
     public unsafe class Name
     {
         private void* m_Address;
-        UInt32 ID;
+
         public Name(UInt32 id)
         {
-            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -34,11 +33,11 @@ namespace CSScript
         {
             get
             {
-                return getname(ID);
+                return getname(m_Address);
             }
             set
             {
-                setname(ID, value);
+                setname(m_Address, value);
             }
         }
 
@@ -46,9 +45,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static string getname(UInt32 address);
+        private extern static string getname(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setname(UInt32 address, string value);
+        private extern static void setname(void* address, string value);
     }
 }

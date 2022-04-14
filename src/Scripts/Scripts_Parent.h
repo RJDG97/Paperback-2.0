@@ -31,10 +31,11 @@ namespace MONO_PARENT
 		return m_parent;
 	}
 
-	MONO_EXPORT int32_t GetChildIDOfName(uint32_t ID, MonoString* child_name)
+	MONO_EXPORT int32_t GetChildIDOfName(void* address, MonoString* child_name)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			std::unordered_set<paperback::u32>& ids = m_obj.m_pArchetype->FindComponent<parent>(m_obj.m_PoolDetails)->m_ChildrenGlobalIndexes;
+		if (address)
+		{
+			std::unordered_set<paperback::u32>& ids = reinterpret_cast<parent*>(address)->m_ChildrenGlobalIndexes;
 
 			for (auto id : ids)
 			{
@@ -44,11 +45,14 @@ namespace MONO_PARENT
 				if (mono_string_to_utf8(child_name) == m_name.m_Value)
 					return id;
 			}
+		}
+
+		return {-1};
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Parent::getaddress(uint)", &MONO_PARENT::GetAddress);
-		mono_add_internal_call("CSScript.Parent::getchildidofname(uint,string)", &MONO_PARENT::GetChildIDOfName);
+		mono_add_internal_call("CSScript.Parent::getchildidofname(void*,string)", &MONO_PARENT::GetChildIDOfName);
 	}
 }
