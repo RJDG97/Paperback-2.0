@@ -56,7 +56,7 @@ public:
 		if (m_pClass) {
 
 			str = "." + m_ScriptClass + ":getInst()";
-			m_pMonoObj = Mono::GetInstanced().GetClassInstance(str.c_str(), m_pClass, m_Handle);
+			m_pMonoObj = Mono::GetInstanced().GetClassInstance(str.c_str(), m_pClass, &m_Handle);
 
 			if (m_pMonoObj) {
 
