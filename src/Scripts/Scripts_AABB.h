@@ -31,10 +31,10 @@ namespace MONO_AABB
 		return m_aabb;
 	}
 
-	MONO_EXPORT bool GetCollided(void* address)
+	MONO_EXPORT bool GetCollided(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<aabb*>(address)->m_Collided;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return  m_obj.m_pArchetype->FindComponent<aabb>(m_obj.m_PoolDetails)->m_Collided;
 
 		return {};
 	}
@@ -42,6 +42,6 @@ namespace MONO_AABB
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.AABB::getaddress(uint)", &MONO_AABB::GetAddress);
-		mono_add_internal_call("CSScript.AABB::getcollided(void*)", &MONO_AABB::GetCollided);
+		mono_add_internal_call("CSScript.AABB::getcollided(uint)", &MONO_AABB::GetCollided);
 	}
 }

@@ -31,6 +31,127 @@ namespace MONO_SOUND
 		return m_sound;
 	}
 
+	MONO_EXPORT MonoString* GetSoundID(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			return mono_string_new(mono_domain_get(), soun->m_SoundID.c_str());
+
+		return {};
+	}
+
+	MONO_EXPORT void SetSoundID(uint32_t ID, MonoString* value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			soun->m_SoundID = mono_string_to_utf8(value);
+	}
+
+	MONO_EXPORT uint32_t GetSoundPlayTag(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			return static_cast<uint32_t>(soun->m_SoundPlayTag);
+
+		return {};
+	}
+
+	MONO_EXPORT void SetSoundPlayTag(uint32_t ID, uint32_t value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			soun->m_SoundPlayTag = value;
+	}
+
+	MONO_EXPORT bool GetIs3DSound(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			return soun->m_Is3DSound;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetIs3DSound(uint32_t ID, bool value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			soun->m_Is3DSound = value;
+	}
+
+	MONO_EXPORT bool GetIsTriggerable(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			return soun->m_IsTriggerable;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetIsTriggerable(uint32_t ID, bool value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			soun->m_IsTriggerable = value;
+	}
+
+	MONO_EXPORT bool GetTrigger(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			return soun->m_Trigger;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetTrigger(uint32_t ID, bool value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto soun = obj.m_pArchetype->FindComponent<sound>(obj.m_PoolDetails);
+
+		if (soun)
+			soun->m_Trigger = value;
+	}
+
+	/*
 	MONO_EXPORT MonoString* GetSoundID(void* address)
 	{
 		if (address)
@@ -99,20 +220,20 @@ namespace MONO_SOUND
 	{
 		if (address)
 			reinterpret_cast<sound*>(address)->m_Trigger = value;
-	}
+	}*/
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Sound::getaddress(uint)", &MONO_SOUND::GetAddress);
-		mono_add_internal_call("CSScript.Sound::getsoundid(void*)", &MONO_SOUND::GetSoundID);
-		mono_add_internal_call("CSScript.Sound::setsoundid(void*,string)", &MONO_SOUND::SetSoundID);
-		mono_add_internal_call("CSScript.Sound::getsoundplaytag(void*)", &MONO_SOUND::GetSoundPlayTag);
-		mono_add_internal_call("CSScript.Sound::setsoundplaytag(void*,uint)", &MONO_SOUND::SetSoundPlayTag);
-		mono_add_internal_call("CSScript.Sound::getis3dsound(void*)", &MONO_SOUND::GetIs3DSound);
-		mono_add_internal_call("CSScript.Sound::setis3dsound(void*,bool)", &MONO_SOUND::SetIs3DSound);
-		mono_add_internal_call("CSScript.Sound::getistriggerable(void*)", &MONO_SOUND::GetIsTriggerable);
-		mono_add_internal_call("CSScript.Sound::setistriggerable(void*,bool)", &MONO_SOUND::SetIsTriggerable);
-		mono_add_internal_call("CSScript.Sound::gettrigger(void*)", &MONO_SOUND::GetTrigger);
-		mono_add_internal_call("CSScript.Sound::settrigger(void*,bool)", &MONO_SOUND::SetTrigger);
+		mono_add_internal_call("CSScript.Sound::getsoundid(uint)", &MONO_SOUND::GetSoundID);
+		mono_add_internal_call("CSScript.Sound::setsoundid(uint,string)", &MONO_SOUND::SetSoundID);
+		mono_add_internal_call("CSScript.Sound::getsoundplaytag(uint)", &MONO_SOUND::GetSoundPlayTag);
+		mono_add_internal_call("CSScript.Sound::setsoundplaytag(uint,uint)", &MONO_SOUND::SetSoundPlayTag);
+		mono_add_internal_call("CSScript.Sound::getis3dsound(uint)", &MONO_SOUND::GetIs3DSound);
+		mono_add_internal_call("CSScript.Sound::setis3dsound(uint,bool)", &MONO_SOUND::SetIs3DSound);
+		mono_add_internal_call("CSScript.Sound::getistriggerable(uint)", &MONO_SOUND::GetIsTriggerable);
+		mono_add_internal_call("CSScript.Sound::setistriggerable(uint,bool)", &MONO_SOUND::SetIsTriggerable);
+		mono_add_internal_call("CSScript.Sound::gettrigger(uint)", &MONO_SOUND::GetTrigger);
+		mono_add_internal_call("CSScript.Sound::settrigger(uint,bool)", &MONO_SOUND::SetTrigger);
 	}
 }

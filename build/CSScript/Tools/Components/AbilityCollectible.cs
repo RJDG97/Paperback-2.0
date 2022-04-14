@@ -23,9 +23,10 @@ namespace CSScript
     public unsafe class AbilityCollectible
     {
         private void* m_Address;
-
+        UInt32 ID;
         public AbilityCollectible(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +34,11 @@ namespace CSScript
         {
             get
             {
-                return GetGrowStatus( m_Address );
+                return GetGrowStatus(ID);
             }
             set
             {
-                SetGrowStatus( m_Address, value );
+                SetGrowStatus(ID, value );
             }
         }
 
@@ -45,11 +46,11 @@ namespace CSScript
         {
             get
             {
-                return GetShrinkStatus( m_Address );
+                return GetShrinkStatus(ID);
             }
             set
             {
-                SetShrinkStatus( m_Address, value );
+                SetShrinkStatus(ID, value );
             }
         }
 
@@ -57,11 +58,11 @@ namespace CSScript
         {
             get
             {
-                return GetFreezeStatus( m_Address );
+                return GetFreezeStatus(ID);
             }
             set
             {
-                SetFreezeStatus( m_Address, value );
+                SetFreezeStatus(ID, value );
             }
         }
 
@@ -69,21 +70,21 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetGrowStatus(void* address);
+        private extern static bool GetGrowStatus(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetShrinkStatus(void* address);
+        private extern static bool GetShrinkStatus(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetFreezeStatus(void* address);
+        private extern static bool GetFreezeStatus(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetGrowStatus(void* address, bool status);
+        private extern static void SetGrowStatus(UInt32 address, bool status);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetShrinkStatus(void* address, bool status);
+        private extern static void SetShrinkStatus(UInt32 address, bool status);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetFreezeStatus(void* address, bool status);
+        private extern static void SetFreezeStatus(UInt32 address, bool status);
     }
 }

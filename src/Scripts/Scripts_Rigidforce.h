@@ -31,7 +31,188 @@ namespace MONO_RIGIDFORCE
 		return m_rigidforce;
 	}
 
-	MONO_EXPORT float GetStaticFriction(void* address)
+	MONO_EXPORT float GetStaticFriction(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_staticFriction;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetStaticFriction(uint32_t ID, float value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_staticFriction = value;
+	}
+
+	MONO_EXPORT float GetDynamicFriction(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_dynamicFriction;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetDynamicFriction(uint32_t ID, float value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_dynamicFriction = value;
+	}
+
+	MONO_EXPORT paperback::Vector3f GetForces(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_Forces;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetForces(uint32_t ID, float X, float Y, float Z)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_Forces = { X, Y, Z };
+	}
+
+	MONO_EXPORT paperback::Vector3f GetMomentum(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_Momentum;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetMomentum(uint32_t ID, float X, float Y, float Z)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_Momentum = { X, Y, Z };
+	}
+
+	MONO_EXPORT float GetRestitution(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_Restitution;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetRestitution(uint32_t ID, float value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_Restitution = value;
+	}
+
+	MONO_EXPORT bool GetGravityAffected(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_GravityAffected;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetGravityAffected(uint32_t ID, bool value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_GravityAffected = value;
+	}
+	
+	MONO_EXPORT bool GetCollisionAffected(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_CollisionAffected;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetCollisionAffected(uint32_t ID, bool value)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_CollisionAffected = value;
+	}
+
+	MONO_EXPORT bool GetGravityActive(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidforce>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_GravityActive;
+
+		return {};
+	}
+	
+	/*MONO_EXPORT float GetStaticFriction(void* address)
 	{
 		if (address)
 			return reinterpret_cast<rigidforce*>(address)->m_staticFriction;
@@ -135,25 +316,25 @@ namespace MONO_RIGIDFORCE
 			return reinterpret_cast<rigidforce*>(address)->m_GravityActive;
 
 		return {};
-	}
+	}*/
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Rigidforce::getaddress(uint)", &MONO_RIGIDFORCE::GetAddress);
-		mono_add_internal_call("CSScript.Rigidforce::getstaticfriction(void*)", &MONO_RIGIDFORCE::GetStaticFriction);
-		mono_add_internal_call("CSScript.Rigidforce::setstaticfriction(void*,single)", &MONO_RIGIDFORCE::SetStaticFriction);
-		mono_add_internal_call("CSScript.Rigidforce::getdynamicfriction(void*)", &MONO_RIGIDFORCE::GetDynamicFriction);
-		mono_add_internal_call("CSScript.Rigidforce::setdynamicfriction(void*,single)", &MONO_RIGIDFORCE::SetDynamicFriction);
-		mono_add_internal_call("CSScript.Rigidforce::getforces(void*)", &MONO_RIGIDFORCE::GetForces);
-		mono_add_internal_call("CSScript.Rigidforce::setforces(void*,single,single,single)", &MONO_RIGIDFORCE::SetForces);
-		mono_add_internal_call("CSScript.Rigidforce::getmomentum(void*)", &MONO_RIGIDFORCE::GetMomentum);
-		mono_add_internal_call("CSScript.Rigidforce::setmomentum(void*,single,single,single)", &MONO_RIGIDFORCE::SetMomentum);
-		mono_add_internal_call("CSScript.Rigidforce::getrestitution(void*)", &MONO_RIGIDFORCE::GetRestitution);
-		mono_add_internal_call("CSScript.Rigidforce::setrestitution(void*,single)", &MONO_RIGIDFORCE::SetRestitution);
-		mono_add_internal_call("CSScript.Rigidforce::getgravityaffected(void*)", &MONO_RIGIDFORCE::GetGravityAffected);
-		mono_add_internal_call("CSScript.Rigidforce::setgravityaffected(void*,bool)", &MONO_RIGIDFORCE::SetGravityAffected);
-		mono_add_internal_call("CSScript.Rigidforce::getcollisionaffected(void*)", &MONO_RIGIDFORCE::GetCollisionAffected);
-		mono_add_internal_call("CSScript.Rigidforce::setcollisionaffected(void*,bool)", &MONO_RIGIDFORCE::SetCollisionAffected);
-		mono_add_internal_call("CSScript.Rigidforce::getgravityactive(void*)", &MONO_RIGIDFORCE::GetGravityActive);
+		mono_add_internal_call("CSScript.Rigidforce::getstaticfriction(uint)", &MONO_RIGIDFORCE::GetStaticFriction);
+		mono_add_internal_call("CSScript.Rigidforce::setstaticfriction(uint,single)", &MONO_RIGIDFORCE::SetStaticFriction);
+		mono_add_internal_call("CSScript.Rigidforce::getdynamicfriction(uint)", &MONO_RIGIDFORCE::GetDynamicFriction);
+		mono_add_internal_call("CSScript.Rigidforce::setdynamicfriction(uint,single)", &MONO_RIGIDFORCE::SetDynamicFriction);
+		mono_add_internal_call("CSScript.Rigidforce::getforces(uint)", &MONO_RIGIDFORCE::GetForces);
+		mono_add_internal_call("CSScript.Rigidforce::setforces(uint,single,single,single)", &MONO_RIGIDFORCE::SetForces);
+		mono_add_internal_call("CSScript.Rigidforce::getmomentum(uint)", &MONO_RIGIDFORCE::GetMomentum);
+		mono_add_internal_call("CSScript.Rigidforce::setmomentum(uint,single,single,single)", &MONO_RIGIDFORCE::SetMomentum);
+		mono_add_internal_call("CSScript.Rigidforce::getrestitution(uint)", &MONO_RIGIDFORCE::GetRestitution);
+		mono_add_internal_call("CSScript.Rigidforce::setrestitution(uint,single)", &MONO_RIGIDFORCE::SetRestitution);
+		mono_add_internal_call("CSScript.Rigidforce::getgravityaffected(uint)", &MONO_RIGIDFORCE::GetGravityAffected);
+		mono_add_internal_call("CSScript.Rigidforce::setgravityaffected(uint,bool)", &MONO_RIGIDFORCE::SetGravityAffected);
+		mono_add_internal_call("CSScript.Rigidforce::getcollisionaffected(uint)", &MONO_RIGIDFORCE::GetCollisionAffected);
+		mono_add_internal_call("CSScript.Rigidforce::setcollisionaffected(uint,bool)", &MONO_RIGIDFORCE::SetCollisionAffected);
+		mono_add_internal_call("CSScript.Rigidforce::getgravityactive(uint)", &MONO_RIGIDFORCE::GetGravityActive);
 	}
 }

@@ -23,9 +23,11 @@ namespace CSScript
     public unsafe class Rigidforce
     {
         private void* m_Address;
+        UInt32 m_ID;
 
         public Rigidforce(UInt32 id)
         {
+            m_ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +35,11 @@ namespace CSScript
         {
             get
             {
-                return getstaticfriction(m_Address);
+                return getstaticfriction(m_ID);
             }
             set
             {
-                setstaticfriction(m_Address, value);
+                setstaticfriction(m_ID, value);
             }
         }
 
@@ -45,11 +47,11 @@ namespace CSScript
         {
             get
             {
-                return getdynamicfriction(m_Address);
+                return getdynamicfriction(m_ID);
             }
             set
             {
-                setdynamicfriction(m_Address, value);
+                setdynamicfriction(m_ID, value);
             }
         }
 
@@ -57,11 +59,11 @@ namespace CSScript
         {
             get
             {
-                return getforces(m_Address);
+                return getforces(m_ID);
             }
             set
             {
-                setforces(m_Address, value.x, value.y, value.z);
+                setforces(m_ID, value.x, value.y, value.z);
             }
         }
 
@@ -69,11 +71,11 @@ namespace CSScript
         {
             get
             {
-                return getmomentum(m_Address);
+                return getmomentum(m_ID);
             }
             set
             {
-                setmomentum(m_Address, value.x, value.y, value.z);
+                setmomentum(m_ID, value.x, value.y, value.z);
             }
         }
 
@@ -81,11 +83,11 @@ namespace CSScript
         {
             get
             {
-                return getrestitution(m_Address);
+                return getrestitution(m_ID);
             }
             set
             {
-                setrestitution(m_Address, value);
+                setrestitution(m_ID, value);
             }
         }
 
@@ -93,11 +95,11 @@ namespace CSScript
         {
             get
             {
-                return getcollisionaffected(m_Address);
+                return getcollisionaffected(m_ID);
             }
             set
             {
-                setcollisionaffected(m_Address, value);
+                setcollisionaffected(m_ID, value);
             }
         }
 
@@ -105,18 +107,18 @@ namespace CSScript
         {
             get
             {
-                return getgravityaffected(m_Address);
+                return getgravityaffected(m_ID);
             }
             set
             {
-                setgravityaffected(m_Address, value);
+                setgravityaffected(m_ID, value);
             }
         }
         public bool m_GravityActive
         {
             get
             {
-                return getgravityactive(m_Address);
+                return getgravityactive(m_ID);
             }
         }
 
@@ -124,48 +126,48 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getstaticfriction(void* address);
+        private extern static float getstaticfriction(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstaticfriction(void* address, float value);
+        private extern static void setstaticfriction(UInt32 ID, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getdynamicfriction(void* address);
+        private extern static float getdynamicfriction(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setdynamicfriction(void* address, float value);
+        private extern static void setdynamicfriction(UInt32 ID, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getforces(void* address);
+        private extern static Tools.MathLib.Vector3 getforces(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setforces(void* address, float x, float y, float z);
+        private extern static void setforces(UInt32 ID, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getmomentum(void* address);
+        private extern static Tools.MathLib.Vector3 getmomentum(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setmomentum(void* address, float x, float y, float z);
+        private extern static void setmomentum(UInt32 ID, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getrestitution(void* address);
+        private extern static float getrestitution(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setrestitution(void* address, float value);
+        private extern static void setrestitution(UInt32 ID, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getgravityaffected(void* address);
+        private extern static bool getgravityaffected(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setgravityaffected(void* address, bool value);
+        private extern static void setgravityaffected(UInt32 ID, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getcollisionaffected(void* address);
+        private extern static bool getcollisionaffected(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setcollisionaffected(void* address, bool value);
+        private extern static void setcollisionaffected(UInt32 ID, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getgravityactive(void* address);
+        private extern static bool getgravityactive(UInt32 ID);
     }
 }

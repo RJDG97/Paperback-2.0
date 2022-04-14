@@ -23,9 +23,10 @@ namespace CSScript
     public unsafe class Scale
     {
         private void* m_Address;
-
+        UInt32 m_ID;
         public Scale(UInt32 id)
         {
+            m_ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +34,11 @@ namespace CSScript
         {
             get
             {
-                return getvalue(m_Address);
+                return getvalue(m_ID);
             }
             set
             {
-                setvalue(m_Address, value.x, value.y, value.z);
+                setvalue(m_ID, value.x, value.y, value.z);
             }
         }
 
@@ -45,9 +46,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getvalue(void* address);
+        private extern static Tools.MathLib.Vector3 getvalue(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setvalue(void* address, float x, float y, float z);
+        private extern static void setvalue(UInt32 ID, float x, float y, float z);
     }
 }

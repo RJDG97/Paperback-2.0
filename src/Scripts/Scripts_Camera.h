@@ -31,43 +31,39 @@ namespace MONO_CAMERA
 		return m_camera;
 	}
 
-	MONO_EXPORT bool GetActive(void* address)
+	MONO_EXPORT bool GetActive(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<camera*>(address)->m_Active;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<camera>(m_obj.m_PoolDetails)->m_Active;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetActive(void* address, bool value)
+	MONO_EXPORT void SetActive(uint32_t ID, bool value)
 	{
-		if (address)
-			reinterpret_cast<camera*>(address)->m_Active = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<camera>(m_obj.m_PoolDetails)->m_Active = value;
 	}
 
-	MONO_EXPORT paperback::Vector3f GetPos(void* address)
+	MONO_EXPORT paperback::Vector3f GetPos(uint32_t ID)
 	{
-		if (address)
-		{
-			glm::vec3 pos{ reinterpret_cast<camera*>(address)->m_Position };
+		auto m_obj = PPB.GetEntityInfo(ID);
+			glm::vec3 pos{ m_obj.m_pArchetype->FindComponent<camera>(m_obj.m_PoolDetails)->m_Position };
 			return { pos.x, pos.y, pos.z };
-		}
-
-		return {};
 	}
 
-	MONO_EXPORT void SetPos(void* address, float x, float y, float z)
+	MONO_EXPORT void SetPos(uint32_t ID, float x, float y, float z)
 	{
-		if (address)
-			reinterpret_cast<camera*>(address)->m_Position = {x, y, z};
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<camera>(m_obj.m_PoolDetails)->m_Position = {x, y, z};
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Camera::getaddress(uint)", &MONO_CAMERA::GetAddress);
-		mono_add_internal_call("CSScript.Camera::getactive(void*)", &MONO_CAMERA::GetActive);
-		mono_add_internal_call("CSScript.Camera::setactive(void*,bool)", &MONO_CAMERA::SetActive);
-		mono_add_internal_call("CSScript.Camera::getpos(void*)", &MONO_CAMERA::GetPos);
-		mono_add_internal_call("CSScript.Camera::setpos(void*,single,single,single)", &MONO_CAMERA::SetPos);
+		mono_add_internal_call("CSScript.Camera::getactive(uint)", &MONO_CAMERA::GetActive);
+		mono_add_internal_call("CSScript.Camera::setactive(uint,bool)", &MONO_CAMERA::SetActive);
+		mono_add_internal_call("CSScript.Camera::getpos(uint)", &MONO_CAMERA::GetPos);
+		mono_add_internal_call("CSScript.Camera::setpos(uint,single,single,single)", &MONO_CAMERA::SetPos);
 	}
 }

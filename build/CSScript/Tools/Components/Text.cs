@@ -23,9 +23,11 @@ namespace CSScript
     public unsafe class Text
     {
         private void* m_Address;
+        UInt32 ID;
 
         public Text(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +35,11 @@ namespace CSScript
         {
             get
             {
-                return getfont(m_Address);
+                return getfont(ID);
             }
             set
             {
-                setfont(m_Address, value);
+                setfont(ID, value);
             }
         }
 
@@ -45,11 +47,11 @@ namespace CSScript
         {
             get
             {
-                return gettext(m_Address);
+                return gettext(ID);
             }
             set
             {
-                settext(m_Address, value);
+                settext(ID, value);
             }
         }
 
@@ -57,11 +59,11 @@ namespace CSScript
         {
             get
             {
-                return getcolor(m_Address);
+                return getcolor(ID);
             }
             set
             {
-                setcolor(m_Address, value.x, value.y, value.z);
+                setcolor(ID, value.x, value.y, value.z);
             }
         }
 
@@ -69,21 +71,21 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String getfont(void* address);
+        private extern static String getfont(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setfont(void* address, String value);
+        private extern static void setfont(UInt32 address, String value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String gettext(void* address);
+        private extern static String gettext(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void settext(void* address, String value);
+        private extern static void settext(UInt32 address, String value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getcolor(void* address);
+        private extern static Tools.MathLib.Vector3 getcolor(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setcolor(void* address, float x, float y, float z);
+        private extern static void setcolor(UInt32 address, float x, float y, float z);
     }
 }
