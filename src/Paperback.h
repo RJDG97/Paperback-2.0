@@ -25,7 +25,7 @@
 #endif
 
 // Define This To Enable/Disable Installer Build
-//#define PAPERBACK_INSTALLER_BUILD
+#define PAPERBACK_INSTALLER_BUILD
 
 //----------------------------------
 // STL
