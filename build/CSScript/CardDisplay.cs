@@ -356,22 +356,22 @@ namespace CSScript
                 }
             }
 
-            switch(m_Abilities.Count)
-            {
-                case 0: break;
-                case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;
+            //switch(m_Abilities.Count)
+            //{
+            //    case 0: break;
+            //    case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;
 
-                case 2:
-                    ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
-                    ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
-                    break;
+            //    case 2:
+            //        ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+            //        ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+            //        break;
 
-                case 3:
-                    ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
-                    ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
-                    ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
-                    break;
-            }
+            //    case 3:
+            //        ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+            //        ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+            //        ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+            //        break;
+            //}
         }
 
         private void ChangeCardTexture(Mesh mesh, int destination)
