@@ -43556,13 +43556,13 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 1000000.0,
                         "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
+                        "Emission Interval": 0.10000000149011612,
                         "Emission Rate": 1,
                         "Emission Cap": 100,
                         "Particle Texture Name": "GrowParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 3.0,
+                            "Max Lifetime": 4.0
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
@@ -43604,12 +43604,12 @@
                         },
                         "Generate Particle Scale": {
                             "Min Scale": {
-                                "x": 0.05000000074505806,
+                                "x": 0.10000000149011612,
                                 "y": 0.0010000000474974514,
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -43747,13 +43747,13 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 1000000.0,
                         "Emitter Timer": 0.30000001192092898,
-                        "Emission Interval": 0.30000001192092898,
+                        "Emission Interval": 0.10000000149011612,
                         "Emission Rate": 1,
                         "Emission Cap": 100,
                         "Particle Texture Name": "ShrinkParticle",
                         "Generate Particle Lifetime": {
-                            "Min Lifetime": 2.0,
-                            "Max Lifetime": 3.0
+                            "Min Lifetime": 3.0,
+                            "Max Lifetime": 4.0
                         },
                         "Generate Particle Position": "",
                         "Generate Particle Velocity": {
@@ -43795,12 +43795,12 @@
                         },
                         "Generate Particle Scale": {
                             "Min Scale": {
-                                "x": 0.05000000074505806,
+                                "x": 0.10000000149011612,
                                 "y": 0.0010000000474974514,
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.15000000596046449,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -44944,9 +44944,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -47.63999938964844,
+                            "x": -47.48532485961914,
                             "y": 7.765651226043701,
-                            "z": -26.76099967956543
+                            "z": -26.941789627075197
                         }
                     },
                     "RigidForce": {
@@ -45063,7 +45063,7 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.5,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.05000000074505806,
+                        "Emission Interval": 0.07000000029802323,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "WalkParticle",
@@ -45116,7 +45116,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.20000000298023225,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -45455,9 +45455,9 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -32.75299835205078,
+                            "x": -49.325862884521487,
                             "y": 7.775599956512451,
-                            "z": -27.549999237060548
+                            "z": -26.93642234802246
                         }
                     },
                     "RigidForce": {
@@ -45575,7 +45575,7 @@
                     "Particle Emitter": {
                         "Emitter Lifetime": 0.5,
                         "Emitter Timer": 0.0,
-                        "Emission Interval": 0.05000000074505806,
+                        "Emission Interval": 0.07000000029802323,
                         "Emission Rate": 1,
                         "Emission Cap": 20,
                         "Particle Texture Name": "WalkParticle",
@@ -45628,7 +45628,7 @@
                                 "z": 0.0010000000474974514
                             },
                             "Max Scale": {
-                                "x": 0.20000000298023225,
+                                "x": 0.25,
                                 "y": 0.003000000026077032,
                                 "z": 0.003000000026077032
                             },
@@ -55321,7 +55321,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -2741.109375,
+                            "x": -2726.329833984375,
                             "y": 0.0,
                             "z": 3.0
                         }
