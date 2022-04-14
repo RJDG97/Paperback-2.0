@@ -214,13 +214,13 @@
                     "Button": {
                         "Button Textures": [
                             {
-                                "ID": ""
+                                "ID": "QuitToMainMenuButton_Unselected"
                             },
                             {
-                                "ID": ""
+                                "ID": "QuitToMainMenuButton_Selected"
                             },
                             {
-                                "ID": ""
+                                "ID": "QuitToMainMenuButton_Unselected"
                             }
                         ],
                         "Button State": 0,

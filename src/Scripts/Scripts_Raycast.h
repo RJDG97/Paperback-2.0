@@ -32,7 +32,8 @@ namespace MONO_RAYCAST
 
 		auto [Hit_ID, HitDist] = PPB.QueryRaycastClosest(converted_start    // Start Ray
 													   , converted_end      // End Ray
-													   , ExcludeList);		// Excluded Entities
+													   , ExcludeList		// Excluded Entities
+													   , true);	
 
 		return Hit_ID == paperback::settings::invalid_index_v ? 0 : Hit_ID;
 	}
