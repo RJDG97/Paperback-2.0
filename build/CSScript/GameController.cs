@@ -757,28 +757,30 @@ namespace CSScript
 
                         if ( name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard")
                         {
-                            PathFollower path_follower = new PathFollower(collided_id);
-                            Freezable freezable = new Freezable(collided_id);
-
-                            freezable.m_Frozen = true;
-                            path_follower.m_PauseTravel = true;
-
-                            m_AbilityActive = true;
-                            m_SelectedID = collided_id;
-                            m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
-
-                            RevertHovered(false);
-                            m_HoveredID = 0;
                             Mesh collided_mesh = new Mesh(collided_id);
-                            collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+
+                            if (collided_mesh.m_Model.Contains("_Hovered"))
+                            {
+                                PathFollower path_follower = new PathFollower(collided_id);
+                                Freezable freezable = new Freezable(collided_id);
+
+                                freezable.m_Frozen = true;
+                                path_follower.m_PauseTravel = true;
+
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+                                RevertHovered(false);
+                                m_HoveredID = 0;
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+                            }
 
                             ChangeBar();
                         }
 
                         else if (name.m_Name == "PlatformSlopeA")
                         {
-                            RevertHovered(false);
-                            m_HoveredID = 0;
                             Child child  = new Child(collided_id);
                             Child nextchild  = new Child((UInt32)child.m_ParentID);
                             FreezeAnim((UInt32)nextchild.m_ParentID);
@@ -786,8 +788,6 @@ namespace CSScript
 
                         else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                         {
-                            RevertHovered(false);
-                            m_HoveredID = 0;
                             FreezeAnim(collided_id);
                         }
 
@@ -798,18 +798,22 @@ namespace CSScript
                     {
                         if (Tools.Tag.IsPushable(collided_id))
                         {
-                            Pushable pushable = new Pushable(collided_id);
-                            Grow(collided_id);
-                                    
-                            RevertHovered(false);
-                            m_HoveredID = 0;
                             Mesh collided_mesh = new Mesh(collided_id);
-                            collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
 
-                            m_AbilityActive = true;
-                            m_SelectedID = collided_id;
-                            m_AbilityUsed = Ability.GROW;
-                            ChangeBar();
+                            if (collided_mesh.m_Model.Contains("_Hovered"))
+                            {
+                                Pushable pushable = new Pushable(collided_id);
+                                Grow(collided_id);
+                                    
+                                RevertHovered(false);
+                                m_HoveredID = 0;
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
+
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.GROW;
+                                ChangeBar();
+                            }
                         }
 
                         break;
@@ -819,18 +823,22 @@ namespace CSScript
                     {
                         if (Tools.Tag.IsPushable(collided_id))
                         {
-                            Pushable pushable = new Pushable(collided_id);
-                            Shrink(collided_id);
-                                    
-                            RevertHovered(false);
-                            m_HoveredID = 0;
                             Mesh collided_mesh = new Mesh(collided_id);
-                            collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
 
-                            m_AbilityActive = true;
-                            m_SelectedID = collided_id;
-                            m_AbilityUsed = Ability.SHRINK;
-                            ChangeBar();
+                            if (collided_mesh.m_Model.Contains("_Hovered"))
+                            {
+                                Pushable pushable = new Pushable(collided_id);
+                                Shrink(collided_id);
+                                    
+                                RevertHovered(false);
+                                m_HoveredID = 0;
+                                collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
+
+                                m_AbilityActive = true;
+                                m_SelectedID = collided_id;
+                                m_AbilityUsed = Ability.SHRINK;
+                                ChangeBar();
+                            }
                         }
 
                         break;
@@ -841,18 +849,24 @@ namespace CSScript
 
         private void FreezeAnim(UInt32 ID)
         {
-            Freezable freezable = new Freezable(ID);
-            freezable.m_Frozen = true;
-
-            m_AbilityActive = true;
-            m_SelectedID = ID;
-            m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
-
-            Animator animator = new Animator(ID);
             Mesh collided_mesh = new Mesh(ID);
-            collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
-            animator.m_PauseAnimation = true;
-            ChangeBar();
+
+            if (collided_mesh.m_Model.Contains("_Hovered"))
+            {
+                RevertHovered(false);
+                m_HoveredID = 0;
+                Freezable freezable = new Freezable(ID);
+                freezable.m_Frozen = true;
+
+                m_AbilityActive = true;
+                m_SelectedID = ID;
+                m_AbilityUsed = Ability.STOP_MOVING_PLATFORM;
+
+                Animator animator = new Animator(ID);
+                collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+                animator.m_PauseAnimation = true;
+                ChangeBar();
+            }
         }
 
         private void Grow(UInt32 ID)
