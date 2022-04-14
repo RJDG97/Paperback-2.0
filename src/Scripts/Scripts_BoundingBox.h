@@ -31,38 +31,38 @@ namespace MONO_BOUNDINGBOX
 		return m_boundingbox;
 	}
 
-	MONO_EXPORT paperback::Vector3f GetMin(void* address)
+	MONO_EXPORT paperback::Vector3f GetMin(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<boundingbox*>(address)->Min;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<boundingbox>(m_obj.m_PoolDetails)->Min;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetMin(void* address, float x, float y, float z)
+	MONO_EXPORT void SetMin(uint32_t ID, float x, float y, float z)
 	{
-		if (address)
-			reinterpret_cast<boundingbox*>(address)->Min = {x, y, z};
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<boundingbox>(m_obj.m_PoolDetails)->Min = {x, y, z};
 	}
 
-	MONO_EXPORT paperback::Vector3f GetMax(void* address)
+	MONO_EXPORT paperback::Vector3f GetMax(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<boundingbox*>(address)->Max;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<boundingbox>(m_obj.m_PoolDetails)->Max;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetMax(void* address, float x, float y, float z)
+	MONO_EXPORT void SetMax(uint32_t ID, float x, float y, float z)
 	{
-		if (address)
-			reinterpret_cast<boundingbox*>(address)->Max = { x, y, z };
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<boundingbox>(m_obj.m_PoolDetails)->Max = { x, y, z };
 	}
 
-	MONO_EXPORT bool GetCollided(void* address)
+	MONO_EXPORT bool GetCollided(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<boundingbox*>(address)->m_Collided;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<boundingbox>(m_obj.m_PoolDetails)->m_Collided;
 
 		return {};
 	}
@@ -70,10 +70,10 @@ namespace MONO_BOUNDINGBOX
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.BoundingBox::getaddress(uint)", &MONO_BOUNDINGBOX::GetAddress);
-		mono_add_internal_call("CSScript.BoundingBox::getmin(void*)", &MONO_BOUNDINGBOX::GetMin);
-		mono_add_internal_call("CSScript.BoundingBox::setmin(void*,single,single,single)", &MONO_BOUNDINGBOX::SetMin);
-		mono_add_internal_call("CSScript.BoundingBox::getmax(void*)", &MONO_BOUNDINGBOX::GetMax);
-		mono_add_internal_call("CSScript.BoundingBox::setmax(void*,single,single,single)", &MONO_BOUNDINGBOX::SetMax);
-		mono_add_internal_call("CSScript.BoundingBox::getcollided(void*)", &MONO_BOUNDINGBOX::GetCollided);
+		mono_add_internal_call("CSScript.BoundingBox::getmin(uint)", &MONO_BOUNDINGBOX::GetMin);
+		mono_add_internal_call("CSScript.BoundingBox::setmin(uint,single,single,single)", &MONO_BOUNDINGBOX::SetMin);
+		mono_add_internal_call("CSScript.BoundingBox::getmax(uint)", &MONO_BOUNDINGBOX::GetMax);
+		mono_add_internal_call("CSScript.BoundingBox::setmax(uint,single,single,single)", &MONO_BOUNDINGBOX::SetMax);
+		mono_add_internal_call("CSScript.BoundingBox::getcollided(uint)", &MONO_BOUNDINGBOX::GetCollided);
 	}
 }

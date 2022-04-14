@@ -356,7 +356,7 @@ namespace CSScript
                 }
             }
 
-            switch (m_Abilities.Count)
+            switch(m_Abilities.Count)
             {
                 case 0: break;
                 case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;

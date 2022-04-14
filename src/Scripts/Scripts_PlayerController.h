@@ -31,100 +31,100 @@ namespace MONO_PLAYERCONTROLLER
 		return m_playercontroller;
 	}
 
-	MONO_EXPORT bool GetFPSMode(void* address)
+	MONO_EXPORT bool GetFPSMode(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_FPSMode;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_FPSMode;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetFPSMode(void* address, bool value)
+	MONO_EXPORT void SetFPSMode(uint32_t ID, bool value)
 	{
-		if (address)
-			reinterpret_cast<player_controller*>(address)->m_FPSMode = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_FPSMode = value;
 	}
 
 	// Player Grow
-	MONO_EXPORT bool GetGrowStatus(void* address)
+	MONO_EXPORT bool GetGrowStatus(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_GrowAvailable;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_GrowAvailable;
 
 		return false;
 	}
 
-	MONO_EXPORT void SetGrowStatus(void* address, bool value)
+	MONO_EXPORT void SetGrowStatus(uint32_t ID, bool value)
 	{
-		if (address)
-			reinterpret_cast<player_controller*>(address)->m_GrowAvailable = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_GrowAvailable = value;
 	}
 
 
 	// Player Shrink
-	MONO_EXPORT bool GetShrinkStatus(void* address)
+	MONO_EXPORT bool GetShrinkStatus(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_ShrinkAvailable;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_ShrinkAvailable;
 
 		return false;
 	}
 
-	MONO_EXPORT void SetShrinkStatus(void* address, bool value)
+	MONO_EXPORT void SetShrinkStatus(uint32_t ID, bool value)
 	{
-		if (address)
-			reinterpret_cast<player_controller*>(address)->m_ShrinkAvailable = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_ShrinkAvailable = value;
 	}
 
 
 	// Player Freeze
-	MONO_EXPORT bool GetFreezeStatus(void* address)
+	MONO_EXPORT bool GetFreezeStatus(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_FreezeAvailable;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_FreezeAvailable;
 
 		return false;
 	}
 
-	MONO_EXPORT void SetFreezeStatus(void* address, bool value)
+	MONO_EXPORT void SetFreezeStatus(uint32_t ID, bool value)
 	{
-		if (address)
-			reinterpret_cast<player_controller*>(address)->m_FreezeAvailable = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_FreezeAvailable = value;
 	}
 
-	MONO_EXPORT int GetCheckpointID(void* address)
+	MONO_EXPORT int GetCheckpointID(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<player_controller*>(address)->m_CheckpointID;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_CheckpointID;
 
 		return false;
 	}
 
-	MONO_EXPORT void SetCheckpointID(void* address, int value)
+	MONO_EXPORT void SetCheckpointID(uint32_t ID, int value)
 	{
-		if (address)
-			reinterpret_cast<player_controller*>(address)->m_CheckpointID = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<player_controller>(m_obj.m_PoolDetails)->m_CheckpointID = value;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.PlayerController::getaddress(uint)", &MONO_PLAYERCONTROLLER::GetAddress);
-		mono_add_internal_call("CSScript.PlayerController::GetFPSMode(void*)", &MONO_PLAYERCONTROLLER::GetFPSMode);
-		mono_add_internal_call("CSScript.PlayerController::SetFPSMode(void*,bool)", &MONO_PLAYERCONTROLLER::SetFPSMode);
+		mono_add_internal_call("CSScript.PlayerController::GetFPSMode(uint)", &MONO_PLAYERCONTROLLER::GetFPSMode);
+		mono_add_internal_call("CSScript.PlayerController::SetFPSMode(uint,bool)", &MONO_PLAYERCONTROLLER::SetFPSMode);
 
 		// Player Grow
-		mono_add_internal_call("CSScript.PlayerController::GetGrowStatus(void*)", &MONO_PLAYERCONTROLLER::GetGrowStatus);
-		mono_add_internal_call("CSScript.PlayerController::SetGrowStatus(void*,bool)", &MONO_PLAYERCONTROLLER::SetGrowStatus);
+		mono_add_internal_call("CSScript.PlayerController::GetGrowStatus(uint)", &MONO_PLAYERCONTROLLER::GetGrowStatus);
+		mono_add_internal_call("CSScript.PlayerController::SetGrowStatus(uint,bool)", &MONO_PLAYERCONTROLLER::SetGrowStatus);
 
 		// Player Shrink
-		mono_add_internal_call("CSScript.PlayerController::GetShrinkStatus(void*)", &MONO_PLAYERCONTROLLER::GetShrinkStatus);
-		mono_add_internal_call("CSScript.PlayerController::SetShrinkStatus(void*,bool)", &MONO_PLAYERCONTROLLER::SetShrinkStatus);
+		mono_add_internal_call("CSScript.PlayerController::GetShrinkStatus(uint)", &MONO_PLAYERCONTROLLER::GetShrinkStatus);
+		mono_add_internal_call("CSScript.PlayerController::SetShrinkStatus(uint,bool)", &MONO_PLAYERCONTROLLER::SetShrinkStatus);
 
 		// Player Freeze
-		mono_add_internal_call("CSScript.PlayerController::GetFreezeStatus(void*)", &MONO_PLAYERCONTROLLER::GetFreezeStatus);
-		mono_add_internal_call("CSScript.PlayerController::SetFreezeStatus(void*,bool)", &MONO_PLAYERCONTROLLER::SetFreezeStatus);
+		mono_add_internal_call("CSScript.PlayerController::GetFreezeStatus(uint)", &MONO_PLAYERCONTROLLER::GetFreezeStatus);
+		mono_add_internal_call("CSScript.PlayerController::SetFreezeStatus(uint,bool)", &MONO_PLAYERCONTROLLER::SetFreezeStatus);
 
-		mono_add_internal_call("CSScript.PlayerController::GetCheckpointID(void*)", &MONO_PLAYERCONTROLLER::GetCheckpointID);
-		mono_add_internal_call("CSScript.PlayerController::SetCheckpointID(void*,int)", &MONO_PLAYERCONTROLLER::SetCheckpointID);
+		mono_add_internal_call("CSScript.PlayerController::GetCheckpointID(uint)", &MONO_PLAYERCONTROLLER::GetCheckpointID);
+		mono_add_internal_call("CSScript.PlayerController::SetCheckpointID(uint,int)", &MONO_PLAYERCONTROLLER::SetCheckpointID);
 	}
 }

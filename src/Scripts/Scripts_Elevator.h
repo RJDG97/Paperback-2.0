@@ -31,56 +31,56 @@ namespace MONO_ELEVATOR
 		return m_elevator;
 	}
 
-	MONO_EXPORT float GetStartTime(void* address)
+	MONO_EXPORT float GetStartTime(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<elevator*>(address)->m_StartTime;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<elevator>(m_obj.m_PoolDetails)->m_StartTime;
 
 		return {};
 	}
 
-	MONO_EXPORT float GetStopTime(void* address)
+	MONO_EXPORT float GetStopTime(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<elevator*>(address)->m_StopTime;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<elevator>(m_obj.m_PoolDetails)->m_StopTime;
 
 		return {};
 	}
 
-	MONO_EXPORT bool GetUnitUnder(void* address)
+	MONO_EXPORT bool GetUnitUnder(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<elevator*>(address)->m_UnitUnder;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<elevator>(m_obj.m_PoolDetails)->m_UnitUnder;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetStartTime(void* address, float value)
+	MONO_EXPORT void SetStartTime(uint32_t ID, float value)
 	{
-		if (address)
-			reinterpret_cast<elevator*>(address)->m_StartTime = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<elevator>(m_obj.m_PoolDetails)->m_StartTime = value;
 	}
 
-	MONO_EXPORT void SetStopTime(void* address, float value)
+	MONO_EXPORT void SetStopTime(uint32_t ID, float value)
 	{
-		if (address)
-			reinterpret_cast<elevator*>(address)->m_StopTime = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<elevator>(m_obj.m_PoolDetails)->m_StopTime = value;
 	}
 
-	MONO_EXPORT void SetUnitUnder(void* address, bool value)
+	MONO_EXPORT void SetUnitUnder(uint32_t ID, bool value)
 	{
-		if (address)
-			reinterpret_cast<elevator*>(address)->m_UnitUnder = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<elevator>(m_obj.m_PoolDetails)->m_UnitUnder = value;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Elevator::getaddress(uint)", &MONO_ELEVATOR::GetAddress);
-		mono_add_internal_call("CSScript.Elevator::getstarttime(void*)", &MONO_ELEVATOR::GetStartTime);
-		mono_add_internal_call("CSScript.Elevator::getstoptime(void*)", &MONO_ELEVATOR::GetStopTime);
-		mono_add_internal_call("CSScript.Elevator::getunitunder(void*)", &MONO_ELEVATOR::GetUnitUnder);
-		mono_add_internal_call("CSScript.Elevator::setstarttime(void*,single)", &MONO_ELEVATOR::SetStartTime);
-		mono_add_internal_call("CSScript.Elevator::setstoptime(void*,single)", &MONO_ELEVATOR::SetStopTime);
-		mono_add_internal_call("CSScript.Elevator::setunitunder(void*,bool)", &MONO_ELEVATOR::SetUnitUnder);
+		mono_add_internal_call("CSScript.Elevator::getstarttime(uint)", &MONO_ELEVATOR::GetStartTime);
+		mono_add_internal_call("CSScript.Elevator::getstoptime(uint)", &MONO_ELEVATOR::GetStopTime);
+		mono_add_internal_call("CSScript.Elevator::getunitunder(uint)", &MONO_ELEVATOR::GetUnitUnder);
+		mono_add_internal_call("CSScript.Elevator::setstarttime(uint,single)", &MONO_ELEVATOR::SetStartTime);
+		mono_add_internal_call("CSScript.Elevator::setstoptime(uint,single)", &MONO_ELEVATOR::SetStopTime);
+		mono_add_internal_call("CSScript.Elevator::setunitunder(uint,bool)", &MONO_ELEVATOR::SetUnitUnder);
 	}
 }

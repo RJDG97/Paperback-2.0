@@ -23,9 +23,11 @@ namespace CSScript
     public unsafe class Elevator
     {
         private void* m_Address;
+        UInt32 ID;
 
         public Elevator(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +35,11 @@ namespace CSScript
         {
             get
             {
-                return getstarttime(m_Address);
+                return getstarttime(ID);
             }
             set
             {
-                setstarttime(m_Address, value);
+                setstarttime(ID, value);
             }
         }
 
@@ -45,11 +47,11 @@ namespace CSScript
         {
             get
             {
-                return getstoptime(m_Address);
+                return getstoptime(ID);
             }
             set
             {
-                setstoptime(m_Address, value);
+                setstoptime(ID, value);
             }
         }
 
@@ -57,12 +59,12 @@ namespace CSScript
         {
             get
             {
-                return getunitunder(m_Address);
+                return getunitunder(ID);
             }
 
             set
             {
-                setunitunder(m_Address, value);
+                setunitunder(ID, value);
             }
         }
 
@@ -70,21 +72,21 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getstarttime(void* address);
+        private extern static float getstarttime(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstarttime(void* address, float value);
+        private extern static void setstarttime(UInt32 address, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getstoptime(void* address);
+        private extern static float getstoptime(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstoptime(void* address, float value);
+        private extern static void setstoptime(UInt32 address, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getunitunder(void* address);
+        private extern static bool getunitunder(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setunitunder(void* address, bool value);
+        private extern static void setunitunder(UInt32 address, bool value);
     }
 }

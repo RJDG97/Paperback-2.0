@@ -23,17 +23,19 @@ namespace CSScript
     public unsafe class Child
     {
         private void* m_Address;
+        UInt32 ID;
 
         public Child(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
-        public Int32 m_ParentID
+        public UInt32 m_ParentID
         {
             get
             {
-                return getparentid(m_Address);
+                return getparentid(ID);
             }
         }
 
@@ -41,6 +43,6 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Int32 getparentid(void* address);
+        private extern static UInt32 getparentid(UInt32 ID);
     }
 }

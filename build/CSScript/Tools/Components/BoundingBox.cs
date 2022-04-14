@@ -23,9 +23,10 @@ namespace CSScript
     public unsafe class BoundingBox
     {
         private void* m_Address;
-
+        UInt32 ID;
         public BoundingBox(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +34,11 @@ namespace CSScript
         {
             get
             {
-                return getmin(m_Address);
+                return getmin(ID);
             }
             set
             {
-                setmin(m_Address, value.x, value.y, value.z);
+                setmin(ID, value.x, value.y, value.z);
             }
         }
 
@@ -45,11 +46,11 @@ namespace CSScript
         {
             get
             {
-                return getmax(m_Address);
+                return getmax(ID);
             }
             set
             {
-                setmax(m_Address, value.x, value.y, value.z);
+                setmax(ID, value.x, value.y, value.z);
             }
         }
 
@@ -57,7 +58,7 @@ namespace CSScript
         {
             get
             {
-                return getcollided(m_Address);
+                return getcollided(ID);
             }
         }
 
@@ -66,18 +67,18 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getmin(void* address);
+        private extern static Tools.MathLib.Vector3 getmin(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setmin(void* address, float x, float y, float z);
+        private extern static void setmin(UInt32 ID, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getmax(void* address);
+        private extern static Tools.MathLib.Vector3 getmax(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setmax(void* address, float x, float y, float z);
+        private extern static void setmax(UInt32 ID, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getcollided(void* address);
+        private extern static bool getcollided(UInt32 ID);
     }
 }
