@@ -337,6 +337,7 @@ struct dialogue_system : paperback::system::pausable_instance
 				}
 
 				Camera.m_Active = false;
+				m_Coordinator.SetToggleEnabled(false);
 			});
 
 			ForEach(Search(Query_Camera), [&](camera& Camera, name& Name, path_follower& PathFollower) noexcept
@@ -374,6 +375,7 @@ struct dialogue_system : paperback::system::pausable_instance
 					});
 					
 					m_CameraDone = true;
+					m_Coordinator.SetToggleEnabled(true);
 				}
 			});
 		}

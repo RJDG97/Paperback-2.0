@@ -216,7 +216,6 @@ namespace CSScript
                         Ability first = m_Abilities[0];
                         m_Abilities.RemoveAt(0);
                         m_Abilities.Add(first);
-                        Debug.Log(m_Abilities[0].ToString());
                         m_CooldownTimer = 0.15f;
 
                         ++m_RotateTimes;
@@ -414,8 +413,6 @@ namespace CSScript
                     break;
                 }
             }
-
-            Debug.Log(mesh.m_Texture);
         }
 
         private void RotateCard(Offset offset, int destination, float dt)

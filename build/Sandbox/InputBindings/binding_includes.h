@@ -906,7 +906,7 @@ namespace paperback::input::binding
 
             bool ValidSwap = true;
 
-            if ( !m_Coordinator.GetPauseBool() )
+            if ( !m_Coordinator.GetPauseBool() && m_Coordinator.GetToggleEnabled())
             {
                 m_Coordinator.ForEach( m_Coordinator.Search( Query ), [&]( player_controller& Controller, camera& Camera, rigidforce& RF, rigidbody& RB, mass& Mass, player_interaction* Interaction ) -> bool
                 {

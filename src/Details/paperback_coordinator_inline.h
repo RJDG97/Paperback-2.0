@@ -1235,6 +1235,18 @@ namespace paperback::coordinator
 
 
 
+	PPB_INLINE
+	bool instance::GetToggleEnabled(void) noexcept
+	{
+		return m_ToggleEnabled;
+	}
+
+
+	PPB_INLINE
+	void instance::SetToggleEnabled(bool value) noexcept
+	{
+		m_ToggleEnabled = value;
+	}
 
 
 
