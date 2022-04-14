@@ -46,6 +46,25 @@ struct scripting_system : paperback::system::pausable_instance
 	PPB_INLINE
 	void OnStateChange( void ) noexcept
 	{
+		ForEach(Search(m_QueryEntityScripts), [&](paperback::component::entity& Dynamic_Entity, entityscript& script) noexcept
+		{
+			// check for an instance of this entity's script
+			auto entry_found = scriptlist.find(Dynamic_Entity.m_GlobalIndex);
+
+			if (entry_found != scriptlist.end()) {
+
+				//	AddScript(Dynamic_Entity.m_GlobalIndex, script.m_ScriptID);
+				//}
+
+				//else {
+
+				for (auto& to_update : entry_found->second.m_Info)
+				{
+					to_update.second->ChangeScene();
+				}
+			}
+		});
+
 		scriptlist.clear();
 	}
 

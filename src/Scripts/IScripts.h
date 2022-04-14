@@ -34,6 +34,8 @@ class Script
 
 	MonoMethod* m_pReset = nullptr;
 
+	uint32_t m_Handle;
+
 	// Class Name
 	std::string m_ScriptClass;
 
@@ -54,7 +56,7 @@ public:
 		if (m_pClass) {
 
 			str = "." + m_ScriptClass + ":getInst()";
-			m_pMonoObj = Mono::GetInstanced().GetClassInstance(str.c_str(), m_pClass);
+			m_pMonoObj = Mono::GetInstanced().GetClassInstance(str.c_str(), m_pClass, &m_Handle);
 
 			if (m_pMonoObj) {
 
@@ -83,6 +85,11 @@ public:
 				m_pReset = Mono::GetInstanced().ImportFunction(m_pClass, m_pMonoObj, str.c_str());
 			}
 		}
+	}
+
+	void ChangeScene()
+	{
+		mono_gchandle_free(m_Handle);
 	}
 
 	void Start(uint32_t ID)

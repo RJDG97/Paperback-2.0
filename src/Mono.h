@@ -60,7 +60,7 @@ public:
 
 			if (m_pMainClass) {
 				// Describe Method for main
-				m_pMainObj = GetClassInstance(".MainApplication:getInst()", m_pMainClass);
+				m_pMainObj = GetClassInstance(".MainApplication:getInst()", m_pMainClass, nullptr);
 
 				if (m_pMainObj) {
 					// Reference handler for specified class
@@ -134,7 +134,7 @@ public:
 		}
 	}
 
-	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass)
+	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass, uint32_t* handle)
 	{
 		MonoObject* m_pMonoObj = nullptr;
 
@@ -146,6 +146,10 @@ public:
 				MonoObject* mono_exception = nullptr;
 				// Reference object for specified class
 				m_pMonoObj = mono_runtime_invoke(mono_main_method, nullptr, nullptr, &mono_exception);
+
+				if (handle)
+					*handle = mono_gchandle_new(m_pMonoObj, true);
+
 				// Exception Handling
 				MonoException(mono_exception);
 			}
