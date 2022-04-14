@@ -160,10 +160,10 @@ public:
 		return m_pMonoObj;
 	}
 
-	MonoObject* ThreadCallback(MonoMethod* method, MonoObject* exception)
+	MonoObject* ThreadCallback(MonoObject* m_pObj, MonoMethod* exception)
 	{
-		mono_jit_thread_attach(m_pMonoDomain);
-		return mono_runtime_invoke(method, nullptr, nullptr, &exception);
+		//mono_jit_thread_attach(m_pMonoDomain);
+		//return mono_runtime_invoke(m_pObj, nullptr, nullptr, &exception);
 	}
 
 	void MonoException(MonoObject* exception)
@@ -185,6 +185,7 @@ public:
 		if (m_pFn)
 		{
 			MonoObject* exception = nullptr;
+			mono_jit_thread_attach(m_pMonoDomain);
 			// Get function
 			fn = mono_runtime_invoke(m_pFn, m_pObj, nullptr, &exception);
 			if (exception)	// Exception Handling
@@ -203,6 +204,7 @@ public:
 		if (m_pFn && m_pObj)
 		{
 			MonoObject* exception = nullptr;
+			mono_jit_thread_attach(m_pMonoDomain);
 			if (m_Arguments)	// Get function w arguments
 				fn = mono_runtime_invoke(m_pFn, m_pObj, m_Arguments, &exception);
 			else	// Get function without params
