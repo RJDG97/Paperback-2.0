@@ -51,12 +51,12 @@ public:
 	{
 		std::string str;
 		// Assign Class 
-		m_pClass = Mono::GetInstanced().ImportClass("CSScript", m_ScriptClass.c_str(), m_Handle);
+		m_pClass = Mono::GetInstanced().ImportClass("CSScript", m_ScriptClass.c_str());
 
 		if (m_pClass) {
 
 			str = "." + m_ScriptClass + ":getInst()";
-			m_pMonoObj = Mono::GetInstanced().GetClassInstance(str.c_str(), m_pClass);
+			m_pMonoObj = Mono::GetInstanced().GetClassInstance(str.c_str(), m_pClass, m_Handle);
 
 			if (m_pMonoObj) {
 
