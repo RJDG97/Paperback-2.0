@@ -74,14 +74,17 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            if (JumpUnitUnder || PushUnitUnder || BlockUnder)
+            if (m_Child != null && m_Transform != null && m_Elevator != null && m_Sound != null && JumpUnitTransform != null && PushUnitTransform != null)
             {
-                m_Elevator.m_UnitUnder = true;
-            }
+                if (JumpUnitUnder || PushUnitUnder || BlockUnder)
+                {
+                    m_Elevator.m_UnitUnder = true;
+                }
 
-            else
-            {
-                m_Elevator.m_UnitUnder = false;
+                else
+                {
+                    m_Elevator.m_UnitUnder = false;
+                }
             }
 
             Application.NotifyDone();
@@ -89,19 +92,21 @@ namespace CSScript
 
         public void Update(float dt)
         {
-
-            if (m_Transform.m_Position.y < m_PrevTransform.y || m_Transform.m_Position.y > m_PrevTransform.y)
+            if (m_Child != null && m_Transform != null && m_Elevator != null && m_Sound != null && JumpUnitTransform != null && PushUnitTransform != null)
             {
+                if (m_Transform.m_Position.y < m_PrevTransform.y || m_Transform.m_Position.y > m_PrevTransform.y)
+                {
 
-                m_Sound.m_Trigger = true;
+                    m_Sound.m_Trigger = true;
+                }
+                else
+                {
+
+                    Application.StopTaggedSoundComp(m_Sound.m_SoundPlayTag);
+                }
+
+                m_PrevTransform = m_Transform.m_Position;
             }
-            else
-            {
-
-                Application.StopTaggedSoundComp(m_Sound.m_SoundPlayTag);
-            }
-
-            m_PrevTransform = m_Transform.m_Position;
 
             Application.NotifyDone();
         }
@@ -112,43 +117,46 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (ID == m_JumpUnitID)
+            if (m_Child != null && m_Transform != null && m_Elevator != null && m_Sound != null && JumpUnitTransform != null && PushUnitTransform != null)
             {
-                Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
-                Tools.MathLib.Vector3 dir_vec = JumpUnitTransform.m_Position - m_Transform.m_Position;
-
-                float dot_prod = dir_vec.y * down_vec.y;
-
-                if (dot_prod > 0.0f)
+                if (ID == m_JumpUnitID)
                 {
-                    JumpUnitUnder = true;
+                    Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
+                    Tools.MathLib.Vector3 dir_vec = JumpUnitTransform.m_Position - m_Transform.m_Position;
+
+                    float dot_prod = dir_vec.y * down_vec.y;
+
+                    if (dot_prod > 0.0f)
+                    {
+                        JumpUnitUnder = true;
+                    }
                 }
-            }
 
-            else if (ID == m_PushUnitID)
-            {
-                Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
-                Tools.MathLib.Vector3 dir_vec = PushUnitTransform.m_Position - m_Transform.m_Position;
-
-                float dot_prod = dir_vec.y * down_vec.y;
-
-                if (dot_prod > 0.0f)
+                else if (ID == m_PushUnitID)
                 {
-                    PushUnitUnder = true;
+                    Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
+                    Tools.MathLib.Vector3 dir_vec = PushUnitTransform.m_Position - m_Transform.m_Position;
+
+                    float dot_prod = dir_vec.y * down_vec.y;
+
+                    if (dot_prod > 0.0f)
+                    {
+                        PushUnitUnder = true;
+                    }
                 }
-            }
 
-            else if (Tools.Tag.IsPushable(ID))
-            {
-                Transform BlockTransform = new Transform((UInt32)ID);
-                Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
-                Tools.MathLib.Vector3 dir_vec = BlockTransform.m_Position - m_Transform.m_Position;
-
-                float dot_prod = dir_vec.y * down_vec.y;
-
-                if (dot_prod > 0.0f)
+                else if (Tools.Tag.IsPushable(ID))
                 {
-                    BlockUnder = true;
+                    Transform BlockTransform = new Transform((UInt32)ID);
+                    Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
+                    Tools.MathLib.Vector3 dir_vec = BlockTransform.m_Position - m_Transform.m_Position;
+
+                    float dot_prod = dir_vec.y * down_vec.y;
+
+                    if (dot_prod > 0.0f)
+                    {
+                        BlockUnder = true;
+                    }
                 }
             }
 
@@ -161,27 +169,30 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
-            if (ID == m_JumpUnitID)
+            if (m_Child != null && m_Transform != null && m_Elevator != null && m_Sound != null && JumpUnitTransform != null && PushUnitTransform != null)
             {
-                JumpUnitUnder = false;
-            }
-
-            else if (ID == m_PushUnitID)
-            {
-                PushUnitUnder = false;
-            }
-
-            else if (Tools.Tag.IsPushable(ID))
-            {
-                Transform BlockTransform = new Transform((UInt32)ID);
-                Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
-                Tools.MathLib.Vector3 dir_vec = BlockTransform.m_Position - m_Transform.m_Position;
-
-                float dot_prod = dir_vec.y * down_vec.y;
-
-                if (dot_prod > 0.0f)
+                if (ID == m_JumpUnitID)
                 {
-                    BlockUnder = false;
+                    JumpUnitUnder = false;
+                }
+
+                else if (ID == m_PushUnitID)
+                {
+                    PushUnitUnder = false;
+                }
+
+                else if (Tools.Tag.IsPushable(ID))
+                {
+                    Transform BlockTransform = new Transform((UInt32)ID);
+                    Tools.MathLib.Vector3 down_vec = new Tools.MathLib.Vector3(0.0f, -1.0f, 0.0f);
+                    Tools.MathLib.Vector3 dir_vec = BlockTransform.m_Position - m_Transform.m_Position;
+
+                    float dot_prod = dir_vec.y * down_vec.y;
+
+                    if (dot_prod > 0.0f)
+                    {
+                        BlockUnder = false;
+                    }
                 }
             }
 

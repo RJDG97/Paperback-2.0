@@ -78,33 +78,37 @@ namespace CSScript
 
         public void OnCollisionEnter( UInt32 ID )
         {
-            if ( !m_Activated && m_JumpID != -1 && m_PushID != -1 )
+            if (m_InteractableSound != null && m_InteractableAbility != null && m_InteractableMesh != null && m_InteractableEmitter != null &&
+                m_JumpUnitController != null && m_JumpUnitCamera != null && m_PushUnitController != null && m_PushUnitCamera != null)
             {
-                if ( ID == m_JumpID || ID == m_PushID )
+                if (!m_Activated && m_JumpID != -1 && m_PushID != -1)
                 {
-                    if ( m_InteractableAbility.m_Grow )
+                    if (ID == m_JumpID || ID == m_PushID)
                     {
-                        m_JumpUnitController.m_GrowAvailable = true;
-                        m_PushUnitController.m_GrowAvailable = true;
-                        m_InteractableAbility.m_Grow = false;
-                    }
-                    else if ( m_InteractableAbility.m_Shrink )
-                    {
-                        m_JumpUnitController.m_ShrinkAvailable = true;
-                        m_PushUnitController.m_ShrinkAvailable = true;
-                        m_InteractableAbility.m_Shrink = false;
-                    }
-                    else if ( m_InteractableAbility.m_Freeze )
-                    {
-                        m_JumpUnitController.m_FreezeAvailable = true;
-                        m_PushUnitController.m_FreezeAvailable = true;
-                        m_InteractableAbility.m_Freeze = false;
-                    }
+                        if (m_InteractableAbility.m_Grow)
+                        {
+                            m_JumpUnitController.m_GrowAvailable = true;
+                            m_PushUnitController.m_GrowAvailable = true;
+                            m_InteractableAbility.m_Grow = false;
+                        }
+                        else if (m_InteractableAbility.m_Shrink)
+                        {
+                            m_JumpUnitController.m_ShrinkAvailable = true;
+                            m_PushUnitController.m_ShrinkAvailable = true;
+                            m_InteractableAbility.m_Shrink = false;
+                        }
+                        else if (m_InteractableAbility.m_Freeze)
+                        {
+                            m_JumpUnitController.m_FreezeAvailable = true;
+                            m_PushUnitController.m_FreezeAvailable = true;
+                            m_InteractableAbility.m_Freeze = false;
+                        }
 
-                    m_Activated = true;
-                    m_InteractableSound.m_Trigger = true;
-                    m_InteractableMesh.m_Active = false;
-                    m_InteractableEmitter.m_Lifetime = 0.0f;
+                        m_Activated = true;
+                        m_InteractableSound.m_Trigger = true;
+                        m_InteractableMesh.m_Active = false;
+                        m_InteractableEmitter.m_Lifetime = 0.0f;
+                    }
                 }
             }
 

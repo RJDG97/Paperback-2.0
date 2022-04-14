@@ -66,23 +66,27 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            if (m_ChildID != -1)
+            if (m_Parent != null && m_Sound != null && m_Mesh != null && m_ChildFreezable != null
+                && m_ChildPathFollower != null && m_ChildEmitter != null && m_PlatformSound != null)
             {
-                if (m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
+                if (m_ChildID != -1)
                 {
-                    m_ChildPathFollower.m_Reversed = true;
-                    m_ChildPathFollower.m_PauseTravel = false;
-                    m_Activated = false;
-                }
+                    if (m_NumTop == 0 && !m_ChildFreezable.m_Frozen)
+                    {
+                        m_ChildPathFollower.m_Reversed = true;
+                        m_ChildPathFollower.m_PauseTravel = false;
+                        m_Activated = false;
+                    }
 
-                if (m_ChildFreezable.m_Frozen)
-                {
-                    m_ChildEmitter.m_Lifetime = 0.5f;
-                }
+                    if (m_ChildFreezable.m_Frozen)
+                    {
+                        m_ChildEmitter.m_Lifetime = 0.5f;
+                    }
 
-                else
-                {
-                    m_ChildEmitter.m_Lifetime = 0.0f;
+                    else
+                    {
+                        m_ChildEmitter.m_Lifetime = 0.0f;
+                    }
                 }
             }
 
@@ -101,21 +105,25 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
+            if (m_Parent != null && m_Sound != null && m_Mesh != null && m_ChildFreezable != null
+                && m_ChildPathFollower != null && m_ChildEmitter != null && m_PlatformSound != null)
             {
-                if (!m_ChildFreezable.m_Frozen)
+                if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
                 {
-                    m_ChildPathFollower.m_PauseTravel = false;
-                    m_ChildPathFollower.m_Reversed = false;
-                    m_Sound.m_Trigger = true;
-                    m_PlatformSound.m_Trigger = true;
-                    ++m_NumTop;
-                    m_Activated = true;
-                }
+                    if (!m_ChildFreezable.m_Frozen)
+                    {
+                        m_ChildPathFollower.m_PauseTravel = false;
+                        m_ChildPathFollower.m_Reversed = false;
+                        m_Sound.m_Trigger = true;
+                        m_PlatformSound.m_Trigger = true;
+                        ++m_NumTop;
+                        m_Activated = true;
+                    }
 
-                if (m_Mesh.m_Model == m_OffModel)
-                {
-                    m_Mesh.m_Model = m_OnModel;
+                    if (m_Mesh.m_Model == m_OffModel)
+                    {
+                        m_Mesh.m_Model = m_OnModel;
+                    }
                 }
             }
 
@@ -124,16 +132,25 @@ namespace CSScript
 
         public void OnCollisionStay(UInt32 ID)
         {
-            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
+            if (m_Parent != null && m_Sound != null && m_Mesh != null && m_ChildFreezable != null
+                && m_ChildPathFollower != null && m_ChildEmitter != null && m_PlatformSound != null)
             {
-                if (!m_ChildFreezable.m_Frozen && !m_Activated)
+                if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
                 {
-                    m_ChildPathFollower.m_PauseTravel = false;
-                    m_ChildPathFollower.m_Reversed = false;
-                    m_Sound.m_Trigger = true;
-                    m_PlatformSound.m_Trigger = true;
-                    ++m_NumTop;
-                    m_Activated = true;
+                    if (!m_ChildFreezable.m_Frozen && !m_Activated)
+                    {
+                        m_ChildPathFollower.m_PauseTravel = false;
+                        m_ChildPathFollower.m_Reversed = false;
+                        m_Sound.m_Trigger = true;
+                        m_PlatformSound.m_Trigger = true;
+                        ++m_NumTop;
+                        m_Activated = true;
+                    }
+
+                    if (m_Mesh.m_Model == m_OffModel)
+                    {
+                        m_Mesh.m_Model = m_OnModel;
+                    }
                 }
 
                 if (m_Mesh.m_Model == m_OffModel)
@@ -147,15 +164,19 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
-            if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
+            if (m_Parent != null && m_Sound != null && m_Mesh != null && m_ChildFreezable != null
+                && m_ChildPathFollower != null && m_ChildEmitter != null && m_PlatformSound != null)
             {
-                if (m_Mesh.m_Model == m_OnModel)
+                if (m_ChildID != -1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID()) || Tools.Tag.IsPushable(ID))
                 {
-                    m_Mesh.m_Model = m_OffModel;
-                }
+                    if (m_Mesh.m_Model == m_OnModel)
+                    {
+                        m_Mesh.m_Model = m_OffModel;
+                    }
 
-                m_Sound.m_Trigger = true;
-                --m_NumTop;
+                    m_Sound.m_Trigger = true;
+                    --m_NumTop;
+                }
             }
 
             Application.NotifyDone();

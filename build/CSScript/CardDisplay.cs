@@ -117,164 +117,170 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (m_RotateTimes > 0)
+            if (m_JumpUnitPC != null && m_PushUnitPC != null &&
+                m_CardOne != null && m_CardOneOffset != null &&
+                m_CardTwo != null && m_CardTwoOffset != null &&
+                m_CardThree != null && m_CardThreeOffset != null)
             {
-                switch (m_Abilities.Count)
+                if (m_RotateTimes > 0)
                 {
-                    case 0: { break; }
-                    case 1: { m_RotateTimes = 0; break; }
-                    
-                    case 2:
+                    switch (m_Abilities.Count)
                     {
-                        int temp = m_CurrentOrderOne;
-                        m_CurrentOrderOne = m_CurrentOrderTwo;
-                        m_CurrentOrderTwo = temp;
-                        --m_RotateTimes;
-                        break;
+                        case 0: { break; }
+                        case 1: { m_RotateTimes = 0; break; }
+
+                        case 2:
+                            {
+                                int temp = m_CurrentOrderOne;
+                                m_CurrentOrderOne = m_CurrentOrderTwo;
+                                m_CurrentOrderTwo = temp;
+                                --m_RotateTimes;
+                                break;
+                            }
+
+                        case 3:
+                            {
+                                int temp = m_CurrentOrderTwo;
+                                m_CurrentOrderTwo = m_CurrentOrderOne;
+                                m_CurrentOrderOne = m_CurrentOrderThree;
+                                m_CurrentOrderThree = temp;
+                                --m_RotateTimes;
+                                break;
+                            }
                     }
 
-                    case 3:
+                    switch (m_Abilities.Count)
                     {
-                        int temp = m_CurrentOrderTwo;
-                        m_CurrentOrderTwo = m_CurrentOrderOne;
-                        m_CurrentOrderOne = m_CurrentOrderThree;
-                        m_CurrentOrderThree = temp;
-                            --m_RotateTimes;
-                        break;
+                        case 0: break;
+                        case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;
+
+                        case 2:
+                            ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                            ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                            break;
+
+                        case 3:
+                            ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
+                            ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
+                            ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
+                            break;
                     }
                 }
 
-                switch (m_Abilities.Count)
-                {
-                    case 0: break;
-                    case 1: ChangeCardTexture(m_CardOne, m_CurrentOrderOne); break;
-
-                    case 2:
-                        ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
-                        ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
-                        break;
-
-                    case 3:
-                        ChangeCardTexture(m_CardOne, m_CurrentOrderOne);
-                        ChangeCardTexture(m_CardTwo, m_CurrentOrderTwo);
-                        ChangeCardTexture(m_CardThree, m_CurrentOrderThree);
-                        break;
-                }
-            }
-
-            if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
-            {
-                m_E.m_Active = false;
-
-                switch (m_Abilities.Count)
-                {
-                    case 0:
-                    {
-                        m_CardOne.m_Active = false;
-                        m_CardTwo.m_Active = false;
-                        m_CardThree.m_Active = false;
-                        break;
-                    }
-
-                    case 1:
-                    {
-                        m_CardOne.m_Active = true;
-                        m_CardTwo.m_Active = false;
-                        m_CardThree.m_Active = false;
-                        break;
-                    }
-                        
-                    case 2:
-                    {
-                        m_CardOne.m_Active = true;
-                        m_CardTwo.m_Active = true;
-                        m_CardThree.m_Active = false;
-                        break;
-                    }
-                        
-                    case 3:
-                    {
-                        m_CardOne.m_Active = true;
-                        m_CardTwo.m_Active = true;
-                        m_CardThree.m_Active = true;
-                        break;
-                    }
-                }
-
-                if (m_CooldownTimer > 0.0f)
-                {
-                    m_CooldownTimer -= dt;
-                }
-
-                if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)) && m_Abilities.Count > 1 && m_CooldownTimer < 0.0f)
-                {
-                    Ability first = m_Abilities[0];
-                    m_Abilities.RemoveAt(0);
-                    m_Abilities.Add(first);
-                    Debug.Log(m_Abilities[0].ToString());
-                    m_CooldownTimer = 0.15f;
-
-                    ++m_RotateTimes;
-                }
-            }
-
-            else
-            {
-                if (m_Abilities.Count == 0)
+                if (m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode)
                 {
                     m_E.m_Active = false;
+
+                    switch (m_Abilities.Count)
+                    {
+                        case 0:
+                            {
+                                m_CardOne.m_Active = false;
+                                m_CardTwo.m_Active = false;
+                                m_CardThree.m_Active = false;
+                                break;
+                            }
+
+                        case 1:
+                            {
+                                m_CardOne.m_Active = true;
+                                m_CardTwo.m_Active = false;
+                                m_CardThree.m_Active = false;
+                                break;
+                            }
+
+                        case 2:
+                            {
+                                m_CardOne.m_Active = true;
+                                m_CardTwo.m_Active = true;
+                                m_CardThree.m_Active = false;
+                                break;
+                            }
+
+                        case 3:
+                            {
+                                m_CardOne.m_Active = true;
+                                m_CardTwo.m_Active = true;
+                                m_CardThree.m_Active = true;
+                                break;
+                            }
+                    }
+
+                    if (m_CooldownTimer > 0.0f)
+                    {
+                        m_CooldownTimer -= dt;
+                    }
+
+                    if ((Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)) && m_Abilities.Count > 1 && m_CooldownTimer < 0.0f)
+                    {
+                        Ability first = m_Abilities[0];
+                        m_Abilities.RemoveAt(0);
+                        m_Abilities.Add(first);
+                        Debug.Log(m_Abilities[0].ToString());
+                        m_CooldownTimer = 0.15f;
+
+                        ++m_RotateTimes;
+                    }
                 }
 
                 else
                 {
-                    m_E.m_Active = true;
+                    if (m_Abilities.Count == 0)
+                    {
+                        m_E.m_Active = false;
+                    }
+
+                    else
+                    {
+                        m_E.m_Active = true;
+                    }
+
+                    m_CardOne.m_Active = false;
+                    m_CardTwo.m_Active = false;
+                    m_CardThree.m_Active = false;
                 }
 
-                m_CardOne.m_Active = false;
-                m_CardTwo.m_Active = false;
-                m_CardThree.m_Active = false;
-            }
-
-            if (m_Abilities.Count < 3) //keep checking if not all abilities are picked up
-            {
-                if (m_JumpUnitPC.m_FreezeAvailable)
+                if (m_Abilities.Count < 3) //keep checking if not all abilities are picked up
                 {
-                    if (!m_Abilities.Any(x => x == Ability.STOP_MOVING_PLATFORM))
+                    if (m_JumpUnitPC.m_FreezeAvailable)
                     {
-                        AddCard(Ability.STOP_MOVING_PLATFORM);
+                        if (!m_Abilities.Any(x => x == Ability.STOP_MOVING_PLATFORM))
+                        {
+                            AddCard(Ability.STOP_MOVING_PLATFORM);
+                        }
+                    }
+
+                    if (m_JumpUnitPC.m_GrowAvailable)
+                    {
+                        if (!m_Abilities.Any(x => x == Ability.GROW))
+                        {
+                            AddCard(Ability.GROW);
+                        }
+                    }
+
+                    if (m_JumpUnitPC.m_ShrinkAvailable)
+                    {
+                        if (!m_Abilities.Any(x => x == Ability.SHRINK))
+                        {
+                            AddCard(Ability.SHRINK);
+                        }
                     }
                 }
 
-                if (m_JumpUnitPC.m_GrowAvailable)
+                if (m_Abilities.Count > 0)
                 {
-                    if (!m_Abilities.Any(x => x == Ability.GROW))
-                    {
-                        AddCard(Ability.GROW);
-                    }
+                    RotateCard(m_CardOneOffset, m_CurrentOrderOne, dt);
                 }
 
-                if (m_JumpUnitPC.m_ShrinkAvailable)
+                if (m_Abilities.Count > 1)
                 {
-                    if (!m_Abilities.Any(x => x == Ability.SHRINK))
-                    {
-                        AddCard(Ability.SHRINK);
-                    }
+                    RotateCard(m_CardTwoOffset, m_CurrentOrderTwo, dt);
                 }
-            }
 
-            if (m_Abilities.Count > 0)
-            {
-                RotateCard(m_CardOneOffset, m_CurrentOrderOne, dt);
-            }
-
-            if (m_Abilities.Count > 1)
-            {
-                RotateCard(m_CardTwoOffset, m_CurrentOrderTwo, dt);
-            }
-
-            if (m_Abilities.Count > 2)
-            {
-                RotateCard(m_CardThreeOffset, m_CurrentOrderThree, dt);
+                if (m_Abilities.Count > 2)
+                {
+                    RotateCard(m_CardThreeOffset, m_CurrentOrderThree, dt);
+                }
             }
 
             Application.NotifyDone();

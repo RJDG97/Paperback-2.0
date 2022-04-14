@@ -81,44 +81,47 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (m_Child.m_ParentID != -1)
+            if (m_ParentTransform != null && m_JumpUnitTransform != null && m_PushUnitTransform != null && m_ParentSound != null)
             {
-                if (m_NumPassengers > 0)
+                if (m_Child.m_ParentID != -1)
                 {
-                    m_NumPassengers = 0;
-                }
-
-                if ((m_PrevPlatformPos.x < m_ParentTransform.m_Position.x || m_PrevPlatformPos.x > m_ParentTransform.m_Position.x) ||
-                    (m_PrevPlatformPos.z < m_ParentTransform.m_Position.z || m_PrevPlatformPos.z > m_ParentTransform.m_Position.z))
-                {
-
-
-                    if (m_Starting)
+                    if (m_NumPassengers > 0)
                     {
-
-                        //Application.Trigger3DTaggedSound("SFX_Train_Loop", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, 0.0f, 0.0f, 0.0f, m_ID);
-                        m_ParentSound.m_Trigger = true;
+                        m_NumPassengers = 0;
                     }
 
-                    if (m_Starting == false)
+                    if ((m_PrevPlatformPos.x < m_ParentTransform.m_Position.x || m_PrevPlatformPos.x > m_ParentTransform.m_Position.x) ||
+                        (m_PrevPlatformPos.z < m_ParentTransform.m_Position.z || m_PrevPlatformPos.z > m_ParentTransform.m_Position.z))
                     {
-                        //Application.Trigger3DTaggedSound("SFX_Train_Start", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, m_ParentRigidbody.m_Velocity.x, m_ParentRigidbody.m_Velocity.y, m_ParentRigidbody.m_Velocity.z, m_ID);
-                        m_Starting = true;
-                        //m_ParentSound.m_Trigger = true;
+
+
+                        if (m_Starting)
+                        {
+
+                            //Application.Trigger3DTaggedSound("SFX_Train_Loop", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, 0.0f, 0.0f, 0.0f, m_ID);
+                            m_ParentSound.m_Trigger = true;
+                        }
+
+                        if (m_Starting == false)
+                        {
+                            //Application.Trigger3DTaggedSound("SFX_Train_Start", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, m_ParentRigidbody.m_Velocity.x, m_ParentRigidbody.m_Velocity.y, m_ParentRigidbody.m_Velocity.z, m_ID);
+                            m_Starting = true;
+                            //m_ParentSound.m_Trigger = true;
+                        }
                     }
+
+                    if ((m_PrevPlatformPos.x >= m_ParentTransform.m_Position.x - 0.01f && m_PrevPlatformPos.x <= m_ParentTransform.m_Position.x + 0.01f) &&
+                        (m_PrevPlatformPos.z >= m_ParentTransform.m_Position.z - 0.01f && m_PrevPlatformPos.z <= m_ParentTransform.m_Position.z + 0.01f))
+                    {
+
+                        m_Starting = false;
+
+                        Application.StopTaggedSoundComp(m_ParentSound.m_SoundPlayTag);
+                        //Application.Trigger3DTaggedSound("SFX_Train_Stop", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, m_ParentRigidbody.m_Velocity.x, m_ParentRigidbody.m_Velocity.y, m_ParentRigidbody.m_Velocity.z, m_ID);
+                    }
+
+                    m_PrevPlatformPos = m_ParentTransform.m_Position;
                 }
-
-                if ((m_PrevPlatformPos.x >= m_ParentTransform.m_Position.x - 0.01f && m_PrevPlatformPos.x <= m_ParentTransform.m_Position.x + 0.01f) &&
-                    (m_PrevPlatformPos.z >= m_ParentTransform.m_Position.z - 0.01f && m_PrevPlatformPos.z <= m_ParentTransform.m_Position.z + 0.01f))
-                {
-
-                    m_Starting = false;
-
-                    Application.StopTaggedSoundComp(m_ParentSound.m_SoundPlayTag);
-                    //Application.Trigger3DTaggedSound("SFX_Train_Stop", m_ParentTransform.m_Position.x, m_ParentTransform.m_Position.y, m_ParentTransform.m_Position.z, m_ParentRigidbody.m_Velocity.x, m_ParentRigidbody.m_Velocity.y, m_ParentRigidbody.m_Velocity.z, m_ID);
-                }
-
-                m_PrevPlatformPos = m_ParentTransform.m_Position;
             }
 
             Application.NotifyDone();
@@ -129,19 +132,22 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (ID == m_JumpUnitID)
+            if (m_ParentTransform != null && m_JumpUnitTransform != null && m_PushUnitTransform != null && m_ParentSound != null)
             {
-                ++m_NumPassengers;
-            }
+                if (ID == m_JumpUnitID)
+                {
+                    ++m_NumPassengers;
+                }
 
-            else if (ID == m_PushUnitID)
-            {
-                ++m_NumPassengers;
-            }
+                else if (ID == m_PushUnitID)
+                {
+                    ++m_NumPassengers;
+                }
 
-            else if (Tools.Tag.IsPushable(ID))
-            {
-                ++m_NumPassengers;
+                else if (Tools.Tag.IsPushable(ID))
+                {
+                    ++m_NumPassengers;
+                }
             }
 
             Application.NotifyDone();
@@ -149,23 +155,26 @@ namespace CSScript
 
         public void OnCollisionStay(UInt32 ID)
         {
-            if (ID == m_JumpUnitID)
+            if (m_ParentTransform != null && m_JumpUnitTransform != null && m_PushUnitTransform != null && m_ParentSound != null)
             {
-                m_JumpUnitTransform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
-                ++m_NumPassengers;
-            }
+                if (ID == m_JumpUnitID)
+                {
+                    m_JumpUnitTransform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
+                    ++m_NumPassengers;
+                }
 
-            else if (ID == m_PushUnitID)
-            {
-                m_PushUnitTransform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
-                ++m_NumPassengers;
-            }
+                else if (ID == m_PushUnitID)
+                {
+                    m_PushUnitTransform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
+                    ++m_NumPassengers;
+                }
 
-            else if (Tools.Tag.IsPushable(ID))
-            {
-                Transform box_transform = new Transform(ID);
-                box_transform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
-                ++m_NumPassengers;
+                else if (Tools.Tag.IsPushable(ID))
+                {
+                    Transform box_transform = new Transform(ID);
+                    box_transform.m_Position += m_ParentTransform.m_Position - m_PrevPlatformPos;
+                    ++m_NumPassengers;
+                }
             }
 
             Application.NotifyDone();

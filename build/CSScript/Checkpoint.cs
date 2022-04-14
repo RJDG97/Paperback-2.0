@@ -97,31 +97,39 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (!m_Activated && m_RedCPID != -1 && m_BlueCPID != -1)
+            if (m_Sound != null && m_Parent != null && m_Name != null &&
+                m_RedCPTransform != null && m_BlueCPTransform != null &&
+                m_RedCPEmitter != null && m_BlueCPEmitter != null &&
+                m_JumpUnitTransform != null && m_PushUnitTransform != null &&
+                m_JumpUnitRigidforce != null && m_PushUnitRigidforce != null &&
+                m_JumpUnitController != null && m_PushUnitController != null)
             {
-                if (ID == m_JumpID)
+                if (!m_Activated && m_RedCPID != -1 && m_BlueCPID != -1)
                 {
-                    m_Sound.m_Trigger = true;
-                    m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
-                    m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
-                    m_Activated = true;
-                    m_JumpUnitController.m_CheckpointID = (int)m_ID;
-                    m_PushUnitController.m_CheckpointID = (int)m_ID;
-                }
+                    if (ID == m_JumpID)
+                    {
+                        m_Sound.m_Trigger = true;
+                        m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                        m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                        m_Activated = true;
+                        m_JumpUnitController.m_CheckpointID = (int)m_ID;
+                        m_PushUnitController.m_CheckpointID = (int)m_ID;
+                    }
 
-                else if (ID == m_PushID)
-                {
-                    m_Sound.m_Trigger = true;
-                    m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
-                    m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
-                    m_Activated = true;
-                    m_JumpUnitController.m_CheckpointID = (int)m_ID;
-                    m_PushUnitController.m_CheckpointID = (int)m_ID;
-                }
+                    else if (ID == m_PushID)
+                    {
+                        m_Sound.m_Trigger = true;
+                        m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                        m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                        m_Activated = true;
+                        m_JumpUnitController.m_CheckpointID = (int)m_ID;
+                        m_PushUnitController.m_CheckpointID = (int)m_ID;
+                    }
 
-                // Set Emitter Lifetime
-                m_RedCPEmitter.m_Lifetime = 5.0f;
-                m_BlueCPEmitter.m_Lifetime = 5.0f;
+                    // Set Emitter Lifetime
+                    m_RedCPEmitter.m_Lifetime = 5.0f;
+                    m_BlueCPEmitter.m_Lifetime = 5.0f;
+                }
             }
 
             Application.NotifyDone();
@@ -137,13 +145,21 @@ namespace CSScript
         }
         public void Reset()
         {
-            if (m_JumpUnitController.m_CheckpointID == (int)m_ID)
+            if (m_Sound != null && m_Parent != null && m_Name != null &&
+                m_RedCPTransform != null && m_BlueCPTransform != null &&
+                m_RedCPEmitter != null && m_BlueCPEmitter != null &&
+                m_JumpUnitTransform != null && m_PushUnitTransform != null &&
+                m_JumpUnitRigidforce != null && m_PushUnitRigidforce != null &&
+                m_JumpUnitController != null && m_PushUnitController != null)
             {
-                m_Sound.m_Trigger = true;
-                m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
-                m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
-                m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
-                m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                if (m_JumpUnitController.m_CheckpointID == (int)m_ID)
+                {
+                    m_Sound.m_Trigger = true;
+                    m_PushUnitTransform.m_Position = m_RedCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                    m_PushUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                    m_JumpUnitTransform.m_Position = m_BlueCPTransform.m_Position + new Tools.MathLib.Vector3(0.0f, 0.2f, 0.0f);
+                    m_JumpUnitRigidforce.m_Momentum = new Tools.MathLib.Vector3(0.0f, 0.0f, 0.0f);
+                }
             }
         }
     }
