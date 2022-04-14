@@ -134,7 +134,7 @@ public:
 		}
 	}
 
-	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass)
+	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass, guint32& handle)
 	{
 		MonoObject* m_pMonoObj = nullptr;
 
@@ -146,6 +146,7 @@ public:
 				MonoObject* mono_exception = nullptr;
 				// Reference object for specified class
 				m_pMonoObj = mono_runtime_invoke(mono_main_method, nullptr, nullptr, &mono_exception);
+				handle = mono_gchandle_new(m_pMonoObj, true);
 				// Exception Handling
 				MonoException(mono_exception);
 			}
