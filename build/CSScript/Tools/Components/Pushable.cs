@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class Pushable
     {
-        private void* m_Address;
         UInt32 ID;
         public Pushable(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public Int32 m_State

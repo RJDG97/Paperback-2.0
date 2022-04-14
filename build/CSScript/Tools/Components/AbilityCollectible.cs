@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class AbilityCollectible
     {
-        private void* m_Address;
         UInt32 ID;
         public AbilityCollectible(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public bool m_Grow

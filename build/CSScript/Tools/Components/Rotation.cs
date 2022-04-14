@@ -22,13 +22,11 @@ namespace CSScript
 {
     public unsafe class Rotation
     {
-        private void* m_Address;
         UInt32 ID;
         public Rotation(UInt32 id)
         {
 
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public Tools.MathLib.Vector3 m_Value

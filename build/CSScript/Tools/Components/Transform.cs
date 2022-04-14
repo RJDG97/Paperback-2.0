@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class Transform
     {
-        private void* m_Address;
         UInt32 ID;
         public Transform(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public Tools.MathLib.Vector3 m_Offset

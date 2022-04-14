@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class Offset
     {
-        private void* m_Address;
         UInt32 ID;
         public Offset(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public Tools.MathLib.Vector3 m_PosOffset

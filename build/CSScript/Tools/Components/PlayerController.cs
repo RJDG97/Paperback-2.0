@@ -22,13 +22,11 @@ namespace CSScript
 {
     public unsafe class PlayerController
     {
-        private void* m_Address;
         UInt32 ID;
 
         public PlayerController(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public bool m_FPSMode

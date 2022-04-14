@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class Mesh
     {
-        private void* m_Address;
         UInt32 ID;
         public Mesh(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public string m_Model

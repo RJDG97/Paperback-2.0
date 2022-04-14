@@ -22,7 +22,6 @@ namespace CSScript
 {
     public unsafe class CollisionLayer
     {
-        private void* m_Address;
         UInt32 ID;
         public enum CollisionLayerEnum : sbyte
         {
@@ -54,7 +53,6 @@ namespace CSScript
         public CollisionLayer(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public CollisionLayerEnum m_CollisionLayer

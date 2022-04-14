@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class DialogueText
     {
-        private void* m_Address;
         UInt32 ID;
         public DialogueText(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public String m_DialogueName

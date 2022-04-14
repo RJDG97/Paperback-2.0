@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class AABB
     {
-        private void* m_Address;
         UInt32 ID;
         public AABB(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public int m_Collided

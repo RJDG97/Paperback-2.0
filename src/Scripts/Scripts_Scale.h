@@ -36,12 +36,7 @@ namespace MONO_SCALE
 
 		auto obj = PPB.GetEntityInfo(ID);
 
-		auto scal = obj.m_pArchetype->FindComponent<scale>(obj.m_PoolDetails);
-
-		if (scal)
-			return scal->m_Value;
-
-		return {};
+		return obj.m_pArchetype->FindComponent<scale>(obj.m_PoolDetails)->m_Value;
 	}
 
 	MONO_EXPORT void SetValue(uint32_t ID, float x, float y, float z)
@@ -49,10 +44,7 @@ namespace MONO_SCALE
 
 		auto obj = PPB.GetEntityInfo(ID);
 
-		auto scal = obj.m_pArchetype->FindComponent<scale>(obj.m_PoolDetails);
-
-		if (scal)
-			scal->m_Value = {x, y, z};
+		obj.m_pArchetype->FindComponent<scale>(obj.m_PoolDetails)->m_Value = { x, y, z };
 	}
 	
 	/*MONO_EXPORT paperback::Vector3f GetValue(void* address)

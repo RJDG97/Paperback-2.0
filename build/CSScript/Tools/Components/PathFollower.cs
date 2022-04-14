@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class PathFollower
     {
-        private void* m_Address;
         UInt32 ID;
         public PathFollower(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public int m_PathID

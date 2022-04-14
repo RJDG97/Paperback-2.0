@@ -22,13 +22,11 @@ namespace CSScript
 {
   public unsafe class ParticleEmitter
   {
-    private void* m_Address;
     UInt32 ID;
 
     public ParticleEmitter(UInt32 id)
     {
             ID = id;
-            m_Address = getaddress(id);
     }
 
     public float m_Lifetime

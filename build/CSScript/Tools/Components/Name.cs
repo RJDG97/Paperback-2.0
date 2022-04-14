@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class Name
     {
-        private void* m_Address;
         UInt32 ID;
         public Name(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public String m_Name

@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class Parent
     {
-        private void* m_Address;
         UInt32 ID;
         public Parent(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public Int32 GetChildIDofName(String child_name)

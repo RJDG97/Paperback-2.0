@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class Sound
     {
-        private void* m_Address;
         UInt32 m_ID;
         public Sound(UInt32 id)
         {
             m_ID = id;
-            m_Address = getaddress(id);
         }
 
         public string m_SoundID

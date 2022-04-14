@@ -22,12 +22,10 @@ namespace CSScript
 {
     public unsafe class Camera
     {
-        private void* m_Address;
         UInt32 ID;
         public Camera(UInt32 id)
         {
             ID = id;
-            m_Address = getaddress(id);
         }
 
         public bool m_Active
