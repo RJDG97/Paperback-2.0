@@ -23,40 +23,40 @@ namespace MONO_TRANSFORM
 		return m_transform;
 	}
 
-	MONO_EXPORT paperback::Vector3f GetOffset(void* address)
+	MONO_EXPORT paperback::Vector3f GetOffset(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<transform*>(address)->m_Offset;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails)->m_Offset;
 
 		return {};
 	}
 
-	MONO_EXPORT paperback::Vector3f GetPosition(void* address)
+	MONO_EXPORT paperback::Vector3f GetPosition(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<transform*>(address)->m_Position;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails)->m_Position;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetOffset(void* address, float x, float y, float z)
+	MONO_EXPORT void SetOffset(uint32_t ID, float x, float y, float z)
 	{
-		if (address)
-			reinterpret_cast<transform*>(address)->m_Offset = {x, y, z};
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails)->m_Offset = {x, y, z};
 	}
 
-	MONO_EXPORT void SetPosition(void* address, float x, float y, float z)
+	MONO_EXPORT void SetPosition(uint32_t ID, float x, float y, float z)
 	{
-		if (address)
-			reinterpret_cast<transform*>(address)->m_Position = { x, y, z };
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails)->m_Position = { x, y, z };
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Transform::getaddress(uint)", &MONO_TRANSFORM::GetAddress);
-		mono_add_internal_call("CSScript.Transform::getoffset(void*)", &MONO_TRANSFORM::GetOffset);
-		mono_add_internal_call("CSScript.Transform::setoffset(void*,single,single,single)", &MONO_TRANSFORM::SetOffset);
-		mono_add_internal_call("CSScript.Transform::getposition(void*)", &MONO_TRANSFORM::GetPosition);
-		mono_add_internal_call("CSScript.Transform::setposition(void*,single,single,single)", &MONO_TRANSFORM::SetPosition);
+		mono_add_internal_call("CSScript.Transform::getoffset(uint)", &MONO_TRANSFORM::GetOffset);
+		mono_add_internal_call("CSScript.Transform::setoffset(uint,single,single,single)", &MONO_TRANSFORM::SetOffset);
+		mono_add_internal_call("CSScript.Transform::getposition(uint)", &MONO_TRANSFORM::GetPosition);
+		mono_add_internal_call("CSScript.Transform::setposition(uint,single,single,single)", &MONO_TRANSFORM::SetPosition);
 	}
 }

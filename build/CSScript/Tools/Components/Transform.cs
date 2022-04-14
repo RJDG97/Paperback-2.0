@@ -23,8 +23,10 @@ namespace CSScript
     public unsafe class Transform
     {
         private void* m_Address;
+        UInt32 ID;
         public Transform(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -32,11 +34,11 @@ namespace CSScript
         {
             get
             {
-                return getoffset(m_Address);
+                return getoffset(ID);
             }
             set
             {
-                setoffset(m_Address, value.x, value.y, value.z);
+                setoffset(ID, value.x, value.y, value.z);
             }
         }
 
@@ -44,12 +46,12 @@ namespace CSScript
         {
             get
             {
-                return getposition(m_Address);
+                return getposition(ID);
             }
             set
             {
                 //m_Position = value;
-                setposition(m_Address, value.x, value.y, value.z);
+                setposition(ID, value.x, value.y, value.z);
             }
         }
 
@@ -57,15 +59,15 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getoffset(void* address);
+        private extern static Tools.MathLib.Vector3 getoffset(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setoffset(void* address, float x, float y, float z);
+        private extern static void setoffset(UInt32 address, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getposition(void* address);
+        private extern static Tools.MathLib.Vector3 getposition(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setposition(void* address, float x, float y, float z);
+        private extern static void setposition(UInt32 address, float x, float y, float z);
     }
 }
