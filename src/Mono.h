@@ -134,7 +134,7 @@ public:
 		}
 	}
 
-	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass, guint32& handle)
+	MonoObject* GetClassInstance(const char* m_pFnDesc, MonoClass* m_pClass, uint32_t& handle)
 	{
 		MonoObject* m_pMonoObj = nullptr;
 

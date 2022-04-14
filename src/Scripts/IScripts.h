@@ -34,7 +34,7 @@ class Script
 
 	MonoMethod* m_pReset = nullptr;
 
-	guint32 m_Handle;
+	uint32_t m_Handle;
 
 	// Class Name
 	std::string m_ScriptClass;
