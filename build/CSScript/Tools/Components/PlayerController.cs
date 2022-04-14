@@ -23,9 +23,11 @@ namespace CSScript
     public unsafe class PlayerController
     {
         private void* m_Address;
+        UInt32 ID;
 
         public PlayerController(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +35,11 @@ namespace CSScript
         {
             get
             {
-                return GetFPSMode(m_Address);
+                return GetFPSMode(ID);
             }
             set 
             {
-                SetFPSMode(m_Address, value);
+                SetFPSMode(ID, value);
             }
         }
 
@@ -45,11 +47,11 @@ namespace CSScript
         {
             get
             {
-                return GetGrowStatus(m_Address);
+                return GetGrowStatus(ID);
             }
             set 
             {
-                SetGrowStatus(m_Address, value);
+                SetGrowStatus(ID, value);
             }
         }
 
@@ -57,11 +59,11 @@ namespace CSScript
         {
             get
             {
-                return GetShrinkStatus(m_Address);
+                return GetShrinkStatus(ID);
             }
             set 
             {
-                SetShrinkStatus(m_Address, value);
+                SetShrinkStatus(ID, value);
             }
         }
 
@@ -69,11 +71,11 @@ namespace CSScript
         {
             get
             {
-                return GetFreezeStatus(m_Address);
+                return GetFreezeStatus(ID);
             }
             set 
             {
-                SetFreezeStatus(m_Address, value);
+                SetFreezeStatus(ID, value);
             }
         }
 
@@ -81,11 +83,11 @@ namespace CSScript
         {
             get
             {
-                return GetCheckpointID(m_Address);
+                return GetCheckpointID(ID);
             }
             set
             {
-                SetCheckpointID(m_Address, value);
+                SetCheckpointID(ID, value);
             }
         }
 
@@ -93,33 +95,33 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetFPSMode(void* address);
+        private extern static bool GetFPSMode(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetFPSMode(void* address, bool value);
+        private extern static void SetFPSMode(UInt32 ID, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetGrowStatus(void* address);
+        private extern static bool GetGrowStatus(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetGrowStatus(void* address, bool value);
+        private extern static void SetGrowStatus(UInt32 ID, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetShrinkStatus(void* address);
+        private extern static bool GetShrinkStatus(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetShrinkStatus(void* address, bool value);
+        private extern static void SetShrinkStatus(UInt32 ID, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool GetFreezeStatus(void* address);
+        private extern static bool GetFreezeStatus(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetFreezeStatus(void* address, bool value);
+        private extern static void SetFreezeStatus(UInt32 ID, bool value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static int GetCheckpointID(void* address);
+        private extern static int GetCheckpointID(UInt32 IDs);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void SetCheckpointID(void* address, int value);
+        private extern static void SetCheckpointID(UInt32 ID, int value);
     }
 }

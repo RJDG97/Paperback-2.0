@@ -31,17 +31,15 @@ namespace MONO_CHILD
 		return m_child;
 	}
 
-	MONO_EXPORT int32_t GetParentID(void* address)
+	MONO_EXPORT int32_t GetParentID(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<child*>(address)->m_ParentGlobalIndex;
-
-		return {-1};
+		auto m_obj = PPB.GetEntityInfo(ID);
+		return m_obj.m_pArchetype->FindComponent<child>(m_obj.m_PoolDetails)->m_ParentGlobalIndex;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Child::getaddress(uint)", &MONO_CHILD::GetAddress);
-		mono_add_internal_call("CSScript.Child::getparentid(void*)", &MONO_CHILD::GetParentID);
+		mono_add_internal_call("CSScript.Child::getparentid(uint)", &MONO_CHILD::GetParentID);
 	}
 }
