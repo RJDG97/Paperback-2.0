@@ -21,7 +21,7 @@ namespace CSScript
     {
         UInt32 m_ID;
         Rotation m_Rotation;
-        Sound m_Sound;
+        //Sound m_Sound;
         Tools.MathLib.Vector3 m_Speed;
 
         public static AbilitySpin getInst()
@@ -43,7 +43,7 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (m_Rotation != null && m_Sound != null)
+            if (m_Rotation != null)
             {
                 m_Rotation.m_Value += m_Speed;
                 if (m_Rotation.m_Value.y >= 360)

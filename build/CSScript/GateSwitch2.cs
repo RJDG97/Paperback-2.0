@@ -118,7 +118,7 @@ namespace CSScript
         public void OnCollisionEnter(UInt32 ID)
         {
             if (m_Sound != null && m_Parent != null && m_BoundingBox != null && m_Mesh != null && m_Rotation != null &&
-                m_ChildFreezable != null && m_ChildBoundingBox != null && m_ChildAnimator != null && m_ChildTransform != null != null)
+                m_ChildFreezable != null && m_ChildBoundingBox != null && m_ChildAnimator != null && m_ChildTransform != null)
             {
                 if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
                 {

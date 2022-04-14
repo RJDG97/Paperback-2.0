@@ -47,11 +47,8 @@ namespace CSScript
             m_ID = ID;
             m_Child = new Child(m_ID);
 
-            if (m_Child.m_ParentID != -1)
-            {
-                m_ParentTransform = new Transform((UInt32)m_Child.m_ParentID);
-                m_ParentSound = new Sound((UInt32)m_Child.m_ParentID);
-            }
+            m_ParentTransform = new Transform((UInt32)m_Child.m_ParentID);
+            m_ParentSound = new Sound((UInt32)m_Child.m_ParentID);
 
             m_JumpUnitID = Player.GetJumpUnitID();
 
