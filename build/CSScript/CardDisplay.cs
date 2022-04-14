@@ -353,46 +353,46 @@ namespace CSScript
 
         private void ChangeCardTexture(Mesh mesh, int destination)
         {
-            switch (destination)
-            {
-                case 1:
-                {
-                    switch (m_Abilities[0])
-                    {
-                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard"; break;
-                        case Ability.GROW: mesh.m_Texture = "GrowCard"; break;
-                        case Ability.SHRINK: mesh.m_Texture = "ShrinkCard"; break;
-                    }
+            //switch (destination)
+            //{
+            //    case 1:
+            //    {
+            //        switch (m_Abilities[0])
+            //        {
+            //            case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard"; break;
+            //            case Ability.GROW: mesh.m_Texture = "GrowCard"; break;
+            //            case Ability.SHRINK: mesh.m_Texture = "ShrinkCard"; break;
+            //        }
 
-                    break;
-                }
+            //        break;
+            //    }
 
-                case 2:
-                {
-                    switch (m_Abilities[1])
-                    {
-                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard_Unselected"; break;
-                        case Ability.GROW: mesh.m_Texture = "GrowCard_Unselected"; break;
-                        case Ability.SHRINK: mesh.m_Texture = "ShrinkCard_Unselected"; break;
-                    }
+            //    case 2:
+            //    {
+            //        switch (m_Abilities[1])
+            //        {
+            //            case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard_Unselected"; break;
+            //            case Ability.GROW: mesh.m_Texture = "GrowCard_Unselected"; break;
+            //            case Ability.SHRINK: mesh.m_Texture = "ShrinkCard_Unselected"; break;
+            //        }
 
-                    break;
-                }
+            //        break;
+            //    }
 
-                case 3:
-                {
-                    switch (m_Abilities[2])
-                    {
-                        case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard"; break;
-                        case Ability.GROW: mesh.m_Texture = "GrowCard_Unselected"; break;
-                        case Ability.SHRINK: mesh.m_Texture = "ShrinkCard_Unselected"; break;
-                    }
+            //    case 3:
+            //    {
+            //        switch (m_Abilities[2])
+            //        {
+            //            case Ability.STOP_MOVING_PLATFORM: mesh.m_Texture = "FreezeCard"; break;
+            //            case Ability.GROW: mesh.m_Texture = "GrowCard_Unselected"; break;
+            //            case Ability.SHRINK: mesh.m_Texture = "ShrinkCard_Unselected"; break;
+            //        }
 
-                    break;
-                }
-            }
+            //        break;
+            //    }
+            //}
 
-            Debug.Log(mesh.m_Texture);
+            //Debug.Log(mesh.m_Texture);
         }
 
         private void RotateCard(Offset offset, int destination, float dt)

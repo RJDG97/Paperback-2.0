@@ -116,10 +116,10 @@ namespace CSScript
                     m_Activated = true;
                 }
 
-                if (m_Mesh.m_Model == m_OffModel)
-                {
-                    m_Mesh.m_Model = m_OnModel;
-                }
+                //if (m_Mesh.m_Model == m_OffModel)
+                //{
+                //    m_Mesh.m_Model = m_OnModel;
+                //}
             }
         }
 
