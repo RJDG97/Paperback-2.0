@@ -322,7 +322,8 @@ namespace paperback::coordinator
 		PPB_INLINE
 		std::tuple<physics::AABB_Tree::EntityGID, float> QueryRaycastClosest( const paperback::Vector3f&               StartRay
 										                                    , const paperback::Vector3f&               EndRay
-														                    , std::span<physics::AABB_Tree::EntityGID> ExcludeList = {} ) noexcept;
+														                    , std::span<physics::AABB_Tree::EntityGID> ExcludeList = {}
+																			, bool                                     ExcludeBV = false ) noexcept;
 
 		PPB_INLINE
 		std::tuple<physics::AABB_Tree::EntityGID, float> QueryMultipleRaycastClosest( std::span<std::pair<paperback::Vector3f, paperback::Vector3f>>  StartEndPairs         

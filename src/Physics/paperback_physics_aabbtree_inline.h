@@ -216,7 +216,8 @@ namespace paperback::physics
     PPB_INLINE
     std::tuple<AABB_Tree::EntityGID, float> AABB_Tree::QueryRaycastClosest( const paperback::Vector3f& RayStart
                                                                           , const paperback::Vector3f& RayEnd
-                                                                          , std::span<EntityGID>       ExcludeList ) noexcept
+                                                                          , std::span<EntityGID>       ExcludeList
+                                                                          , bool                       ExcludeBV ) noexcept
     {
         std::pair<EntityGID, float> CurrentPair = std::make_pair( settings::invalid_index_v, 0.0f );
         std::pair<EntityGID, float> ClosestPair = std::make_pair( settings::invalid_index_v, FLT_MAX );
@@ -239,7 +240,7 @@ namespace paperback::physics
                                   {
                                       auto [BV, PureCollider] = Info.m_pArchetype->FindComponents<bounding_volume, pure_collider_tag>( Info.m_PoolDetails );
 
-                                      if ( !BV && !PureCollider )
+                                      if ( (ExcludeBV && !PureCollider) || (!ExcludeBV && !BV && !PureCollider) )
                                       {
                                           ClosestPair.first = CurrentPair.first;
                                           ClosestPair.second = CurrentPair.second;
