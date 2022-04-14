@@ -55,20 +55,23 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (m_PrevGravActive && !m_Rigidforce.m_GravityActive)
+            if (m_Rigidforce != null && m_Mass != null && m_Transform != null && m_Pushable != null && m_ParticleEmitter != null)
             {
-                m_Rigidforce.m_CollisionAffected = false;
-                m_Rigidforce.m_GravityAffected = false;
-                m_Mass.m_Mass = 0.0f;
-            }
+                if (m_PrevGravActive && !m_Rigidforce.m_GravityActive)
+                {
+                    m_Rigidforce.m_CollisionAffected = false;
+                    m_Rigidforce.m_GravityAffected = false;
+                    m_Mass.m_Mass = 0.0f;
+                }
 
-            m_PrevGravActive = m_Rigidforce.m_GravityActive;
+                m_PrevGravActive = m_Rigidforce.m_GravityActive;
 
-            switch (m_Pushable.m_State)
-            {
-                case 1:  m_ParticleEmitter.m_Lifetime = 1.0f; m_ParticleEmitter.m_ParticleTexture = "GrowParticle";   break;
-                case -1: m_ParticleEmitter.m_Lifetime = 1.0f; m_ParticleEmitter.m_ParticleTexture = "ShrinkParticle"; break;
-                case 0:  m_ParticleEmitter.m_Lifetime = 0.0f; break;
+                switch (m_Pushable.m_State)
+                {
+                    case 1: m_ParticleEmitter.m_Lifetime = 1.0f; m_ParticleEmitter.m_ParticleTexture = "GrowParticle"; break;
+                    case -1: m_ParticleEmitter.m_Lifetime = 1.0f; m_ParticleEmitter.m_ParticleTexture = "ShrinkParticle"; break;
+                    case 0: m_ParticleEmitter.m_Lifetime = 0.0f; break;
+                }
             }
 
             Application.NotifyDone();

@@ -114,281 +114,285 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (m_RayCastTimer > 0.0f)
-                m_RayCastTimer -= dt;
-
-            if (m_HoverRayCastTimer > 0.0f)
-                m_HoverRayCastTimer -= dt;
-
-
-            if ((Input.IsKeyPress(Input.PB_Q) || Input.IsKeyPress(Input.PB_GAMEPAD_BUTTON_Y))  && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
+            if (m_JumpUnitCamera != null && m_PushUnitCamera != null && m_JumpUnitPC != null && m_PushUnitPC != null &&
+                m_SFX != null && m_AbilityBar != null && m_InnerBar != null)
             {
-                m_SFX.m_Trigger = true;
-                Player.TogglePlayers();
-            }
-
-            if (!m_AbilityActive && m_RayCastTimer < 0.0f && (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)))
-            {
-                if (m_JumpUnitPC.m_FPSMode)
-                {
-                    CastRay(m_JumpID);
-                    m_RayCastTimer = 0.1f;
-                }
-
-                else if (m_PushUnitPC.m_FPSMode)
-                {
-                    CastRay(m_PushID);
-                    m_RayCastTimer = 0.1f;
-                }
-            }
-
-            CheckAbilitiesUnlocked();
-
-            if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
-            {
-                m_JustLeftFPS = false;
-
-                if (!m_JustEnteredFPS)
-                {
-                    m_JustEnteredFPS = true;
-                    ChangeToUnhovered();
-                }
+                if (m_RayCastTimer > 0.0f)
+                    m_RayCastTimer -= dt;
 
                 if (m_HoverRayCastTimer > 0.0f)
                     m_HoverRayCastTimer -= dt;
 
-                if (m_HoverRayCastTimer <= 0.0f)
+
+                if ((Input.IsKeyPress(Input.PB_Q) || Input.IsKeyPress(Input.PB_GAMEPAD_BUTTON_Y)) && !(m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode))
                 {
-                    m_HoverRayCastTimer = 0.15f;
-                    CastHoveredRay();
+                    m_SFX.m_Trigger = true;
+                    Player.TogglePlayers();
                 }
 
-                if (m_AbilitySwapCoolDownTimer > 0.0f)
-                    m_AbilitySwapCoolDownTimer -= dt;
-
-                if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)))
+                if (!m_AbilityActive && m_RayCastTimer < 0.0f && (Input.IsMousePress(Input.PB_MOUSE_BUTTON_1) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_RIGHT_BUMPER)))
                 {
-                    RevertHovered(true);
-                    m_HoveredID = 0;
-                    RevertUnhovered();
-
-                    m_AbilitySwapCoolDownTimer = 0.15f;
-                    Ability first = m_Abilities[0];
-                    m_Abilities.RemoveAt(0);
-                    m_Abilities.Add(first);
-
-                    ChangeToUnhovered();
-                }
-            }
-
-            else
-            {
-                m_JustEnteredFPS = false;
-
-                if (!m_JustLeftFPS)
-                {
-                    m_JustLeftFPS = true;
-                    RevertHovered(false);
-                    RevertUnhovered();
-                }
-            }
-
-            if (m_AbilityActive)
-            {
-                if (m_AbilityTimer > m_AbilityDuration)
-                {
-                    m_AbilityActive = false;
-                    m_AbilityTimer = 0.0f;
-
-                    m_AbilityBar.m_Active = false;
-                    m_InnerBar.m_Active = false;
-
-                    switch (m_AbilityUsed)
+                    if (m_JumpUnitPC.m_FPSMode)
                     {
-                        case Ability.STOP_MOVING_PLATFORM:
-                        {
-                            Name name = new Name(m_SelectedID);
-                            Freezable freezable = new Freezable((UInt32)m_SelectedID);
-                            freezable.m_Frozen = false;
+                        CastRay(m_JumpID);
+                        m_RayCastTimer = 0.1f;
+                    }
 
-                            if (name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard")
-                            {
-                                PathFollower path_follower = new PathFollower(m_SelectedID);
-                                path_follower.m_PauseTravel = false;
-                            
-                                Mesh collided_mesh = new Mesh(m_SelectedID);
-                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Freeze")
-                                {
-                                    collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
-                                }
+                    else if (m_PushUnitPC.m_FPSMode)
+                    {
+                        CastRay(m_PushID);
+                        m_RayCastTimer = 0.1f;
+                    }
+                }
 
-                                if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
-                                    if (m_AbilityUsed == m_Abilities[0])
-                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze_Unhovered";
-                            }
+                CheckAbilitiesUnlocked();
 
-                            else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
-                            {
-                                Animator animator = new Animator(m_SelectedID);
+                if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                {
+                    m_JustLeftFPS = false;
 
-                                Mesh collided_mesh = new Mesh(m_SelectedID);
-                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Freeze")
-                                {
-                                    collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
-                                }
+                    if (!m_JustEnteredFPS)
+                    {
+                        m_JustEnteredFPS = true;
+                        ChangeToUnhovered();
+                    }
 
-                                if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
-                                    if (m_AbilityUsed == m_Abilities[0])
-                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze_Unhovered";
+                    if (m_HoverRayCastTimer > 0.0f)
+                        m_HoverRayCastTimer -= dt;
 
-                                animator.m_PauseAnimation = false;
-                            }
+                    if (m_HoverRayCastTimer <= 0.0f)
+                    {
+                        m_HoverRayCastTimer = 0.15f;
+                        CastHoveredRay();
+                    }
 
-                            break;
-                        }
+                    if (m_AbilitySwapCoolDownTimer > 0.0f)
+                        m_AbilitySwapCoolDownTimer -= dt;
 
-                        case Ability.GROW:
-                        {
-                            Shrink(m_SelectedID);
-                            Mesh collided_mesh = new Mesh(m_SelectedID);
-                            if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 5, 5) == "_Grow")
-                            {
-                                collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
-                            }
+                    if (m_Abilities.Count > 1 && m_AbilitySwapCoolDownTimer < 0.0f && (Input.IsKeyPress(Input.PB_TAB) || Input.IsGamepadButtonPressDown(Input.PB_GAMEPAD_BUTTON_X)))
+                    {
+                        RevertHovered(true);
+                        m_HoveredID = 0;
+                        RevertUnhovered();
 
-                            if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
-                            {
-                                if (m_Abilities[0] == Ability.GROW)
-                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Grow_Unhovered";
+                        m_AbilitySwapCoolDownTimer = 0.15f;
+                        Ability first = m_Abilities[0];
+                        m_Abilities.RemoveAt(0);
+                        m_Abilities.Add(first);
 
-                                else if (m_Abilities[0] == Ability.SHRINK)
-                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink_Unhovered";
-                            }
-
-                            break;
-                        }
-
-                        case Ability.SHRINK:
-                        {
-                            Grow(m_SelectedID);
-                            Mesh collided_mesh = new Mesh(m_SelectedID);
-                            if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Shrink")
-                            {
-                                collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
-                            }
-                                    
-                            if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
-                            {
-                                if (m_Abilities[0] == Ability.GROW)
-                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Grow_Unhovered";
-
-                                else if (m_Abilities[0] == Ability.SHRINK)
-                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink_Unhovered";
-                            }
-
-                            break;
-                        }
+                        ChangeToUnhovered();
                     }
                 }
 
                 else
                 {
-                    if (m_AbilityTimer > m_AbilityDuration - 1.0f)
+                    m_JustEnteredFPS = false;
+
+                    if (!m_JustLeftFPS)
                     {
-                        m_FlickerCooldownTimer += dt;
+                        m_JustLeftFPS = true;
+                        RevertHovered(false);
+                        RevertUnhovered();
+                    }
+                }
 
-                        if (m_FlickerCooldownTimer > m_FlickerCooldownDuration)
+                if (m_AbilityActive)
+                {
+                    if (m_AbilityTimer > m_AbilityDuration)
+                    {
+                        m_AbilityActive = false;
+                        m_AbilityTimer = 0.0f;
+
+                        m_AbilityBar.m_Active = false;
+                        m_InnerBar.m_Active = false;
+
+                        switch (m_AbilityUsed)
                         {
-                            m_FlickerCooldownTimer = 0.0f;
-
-                            switch (m_AbilityUsed)
-                            {
-                                case Ability.STOP_MOVING_PLATFORM:
+                            case Ability.STOP_MOVING_PLATFORM:
                                 {
-                                    Mesh collided_mesh = new Mesh(m_SelectedID);
+                                    Name name = new Name(m_SelectedID);
+                                    Freezable freezable = new Freezable((UInt32)m_SelectedID);
+                                    freezable.m_Frozen = false;
 
-                                    if (collided_mesh.m_Model.Length <= 7)
+                                    if (name.m_Name == "Moving Platform" || name.m_Name == "Moving Billboard")
                                     {
-                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
-                                    }
+                                        PathFollower path_follower = new PathFollower(m_SelectedID);
+                                        path_follower.m_PauseTravel = false;
 
-                                    else
-                                    {
+                                        Mesh collided_mesh = new Mesh(m_SelectedID);
                                         if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Freeze")
                                         {
                                             collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                                         }
 
-                                        else
-                                        {
-                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
-                                        }
+                                        if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                                            if (m_AbilityUsed == m_Abilities[0])
+                                                collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze_Unhovered";
                                     }
 
-                                    break;
-                                }
-
-                                case Ability.GROW:
-                                {
-                                    Mesh collided_mesh = new Mesh(m_SelectedID);
-
-                                    if (collided_mesh.m_Model.Length <= 5)
+                                    else if (name.m_Name == "Elevator" || name.m_Name == "Gate")
                                     {
-                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
-                                    }
+                                        Animator animator = new Animator(m_SelectedID);
 
-                                    else
-                                    {
-                                        if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 5, 5) == "_Grow")
-                                        {
-                                            collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
-                                        }
-
-                                        else
-                                        {
-                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
-                                        }
-                                    }
-
-                                    break;
-                                }
-
-                                case Ability.SHRINK:
-                                {
-                                    Mesh collided_mesh = new Mesh(m_SelectedID);
-
-                                    if (collided_mesh.m_Model.Length <= 7)
-                                    {
-                                        collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
-                                    }
-
-                                    else
-                                    {
-                                        if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Shrink")
+                                        Mesh collided_mesh = new Mesh(m_SelectedID);
+                                        if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Freeze")
                                         {
                                             collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
                                         }
 
-                                        else
-                                        {
-                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
-                                        }
+                                        if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                                            if (m_AbilityUsed == m_Abilities[0])
+                                                collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze_Unhovered";
+
+                                        animator.m_PauseAnimation = false;
                                     }
 
                                     break;
                                 }
-                            }
+
+                            case Ability.GROW:
+                                {
+                                    Shrink(m_SelectedID);
+                                    Mesh collided_mesh = new Mesh(m_SelectedID);
+                                    if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 5, 5) == "_Grow")
+                                    {
+                                        collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
+                                    }
+
+                                    if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                                    {
+                                        if (m_Abilities[0] == Ability.GROW)
+                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Grow_Unhovered";
+
+                                        else if (m_Abilities[0] == Ability.SHRINK)
+                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink_Unhovered";
+                                    }
+
+                                    break;
+                                }
+
+                            case Ability.SHRINK:
+                                {
+                                    Grow(m_SelectedID);
+                                    Mesh collided_mesh = new Mesh(m_SelectedID);
+                                    if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Shrink")
+                                    {
+                                        collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                    }
+
+                                    if ((m_JumpUnitPC.m_FPSMode || m_PushUnitPC.m_FPSMode) && m_Abilities.Count > 0)
+                                    {
+                                        if (m_Abilities[0] == Ability.GROW)
+                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Grow_Unhovered";
+
+                                        else if (m_Abilities[0] == Ability.SHRINK)
+                                            collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink_Unhovered";
+                                    }
+
+                                    break;
+                                }
                         }
                     }
 
-                    m_AbilityTimer += dt;
-                    m_InnerBarOffset.m_ScaleOffset = new Tools.MathLib.Vector3(m_InnerBarInitialScale.x * (m_AbilityDuration - m_AbilityTimer) * m_InverseAbilityDuration,
-                                                                               m_InnerBarOffset.m_ScaleOffset.y,
-                                                                               m_InnerBarOffset.m_ScaleOffset.z);
+                    else
+                    {
+                        if (m_AbilityTimer > m_AbilityDuration - 1.0f)
+                        {
+                            m_FlickerCooldownTimer += dt;
 
-                    m_InnerBarOffset.m_PosOffset = new Tools.MathLib.Vector3(m_InnerBarInitialPos.x - (m_InnerBarInitialScale.x * (m_AbilityTimer) * m_InverseAbilityDuration) * 200.0f,
-                                                                             m_InnerBarInitialPos.y,
-                                                                             m_InnerBarInitialPos.z);
+                            if (m_FlickerCooldownTimer > m_FlickerCooldownDuration)
+                            {
+                                m_FlickerCooldownTimer = 0.0f;
+
+                                switch (m_AbilityUsed)
+                                {
+                                    case Ability.STOP_MOVING_PLATFORM:
+                                        {
+                                            Mesh collided_mesh = new Mesh(m_SelectedID);
+
+                                            if (collided_mesh.m_Model.Length <= 7)
+                                            {
+                                                collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+                                            }
+
+                                            else
+                                            {
+                                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Freeze")
+                                                {
+                                                    collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                                }
+
+                                                else
+                                                {
+                                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Freeze";
+                                                }
+                                            }
+
+                                            break;
+                                        }
+
+                                    case Ability.GROW:
+                                        {
+                                            Mesh collided_mesh = new Mesh(m_SelectedID);
+
+                                            if (collided_mesh.m_Model.Length <= 5)
+                                            {
+                                                collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
+                                            }
+
+                                            else
+                                            {
+                                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 5, 5) == "_Grow")
+                                                {
+                                                    collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 5);
+                                                }
+
+                                                else
+                                                {
+                                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Grow";
+                                                }
+                                            }
+
+                                            break;
+                                        }
+
+                                    case Ability.SHRINK:
+                                        {
+                                            Mesh collided_mesh = new Mesh(m_SelectedID);
+
+                                            if (collided_mesh.m_Model.Length <= 7)
+                                            {
+                                                collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
+                                            }
+
+                                            else
+                                            {
+                                                if (collided_mesh.m_Model.Substring(collided_mesh.m_Model.Length - 7, 7) == "_Shrink")
+                                                {
+                                                    collided_mesh.m_Model = collided_mesh.m_Model.Substring(0, collided_mesh.m_Model.Length - 7);
+                                                }
+
+                                                else
+                                                {
+                                                    collided_mesh.m_Model = collided_mesh.m_Model + "_Shrink";
+                                                }
+                                            }
+
+                                            break;
+                                        }
+                                }
+                            }
+                        }
+
+                        m_AbilityTimer += dt;
+                        m_InnerBarOffset.m_ScaleOffset = new Tools.MathLib.Vector3(m_InnerBarInitialScale.x * (m_AbilityDuration - m_AbilityTimer) * m_InverseAbilityDuration,
+                                                                                   m_InnerBarOffset.m_ScaleOffset.y,
+                                                                                   m_InnerBarOffset.m_ScaleOffset.z);
+
+                        m_InnerBarOffset.m_PosOffset = new Tools.MathLib.Vector3(m_InnerBarInitialPos.x - (m_InnerBarInitialScale.x * (m_AbilityTimer) * m_InverseAbilityDuration) * 200.0f,
+                                                                                 m_InnerBarInitialPos.y,
+                                                                                 m_InnerBarInitialPos.z);
+                    }
                 }
             }
 
@@ -416,9 +420,13 @@ namespace CSScript
         }
         public void Reset()
         {
-            if (m_AbilityActive)
+            if (m_JumpUnitCamera != null && m_PushUnitCamera != null && m_JumpUnitPC != null && m_PushUnitPC != null &&
+                m_SFX != null && m_AbilityBar != null && m_InnerBar != null)
             {
-                m_AbilityTimer = m_AbilityDuration + 1.0f;
+                if (m_AbilityActive)
+                {
+                    m_AbilityTimer = m_AbilityDuration + 1.0f;
+                }
             }
         }
 

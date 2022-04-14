@@ -56,14 +56,17 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (!m_Activated && (ID == m_JumpUnitID || ID == m_PushUnitID))
+            if (m_DialogueCollider != null)
             {
-                DialogueText dialogue_text = new DialogueText((UInt32)Player.GetDialogueTextID());
-                dialogue_text.m_DialogueName = m_DialogueCollider.m_DialogueName;
-                dialogue_text.m_ElapsedTime = 0.0f;
-                dialogue_text.m_State = 1;
-                dialogue_text.m_Index = 0;
-                m_Activated = true;
+                if (!m_Activated && (ID == m_JumpUnitID || ID == m_PushUnitID))
+                {
+                    DialogueText dialogue_text = new DialogueText((UInt32)Player.GetDialogueTextID());
+                    dialogue_text.m_DialogueName = m_DialogueCollider.m_DialogueName;
+                    dialogue_text.m_ElapsedTime = 0.0f;
+                    dialogue_text.m_State = 1;
+                    dialogue_text.m_Index = 0;
+                    m_Activated = true;
+                }
             }
 
             Application.NotifyDone();

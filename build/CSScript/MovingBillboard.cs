@@ -43,14 +43,17 @@ namespace CSScript
 
         public void Update(float dt)
         {
-            if (m_Freezable.m_Frozen)
+            if (m_Freezable != null && m_ParticleEmitter != null)
             {
-                m_ParticleEmitter.m_Lifetime = 0.5f;
-            }
+                if (m_Freezable.m_Frozen)
+                {
+                    m_ParticleEmitter.m_Lifetime = 0.5f;
+                }
 
-            else
-            {
-                m_ParticleEmitter.m_Lifetime = 0.0f;
+                else
+                {
+                    m_ParticleEmitter.m_Lifetime = 0.0f;
+                }
             }
 
             Application.NotifyDone();

@@ -50,9 +50,12 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
+            if (m_BoundingBox != null)
             {
-                Application.ChangeScene("GameWin_LevelTwo");
+                if ((ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() /*|| collision with blocks*/))
+                {
+                    Application.ChangeScene("GameWin_LevelTwo");
+                }
             }
 
             Application.NotifyDone();

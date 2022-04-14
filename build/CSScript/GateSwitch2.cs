@@ -75,26 +75,30 @@ namespace CSScript
 
         public void PreUpdate(float dt)
         {
-            if (m_ChildID != -1)
+            if (m_Sound != null && m_Parent != null && m_BoundingBox != null && m_Mesh != null && m_Rotation != null &&
+                m_ChildFreezable != null && m_ChildBoundingBox != null && m_ChildAnimator != null && m_ChildTransform != null)
             {
-                if ((m_Rotation.m_Value.y % 180.0f) < 1.0f && (m_Rotation.m_Value.y % 180.0f) > -1.0f)
+                if (m_ChildID != -1)
                 {
-                    m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
-                                                                      m_InitialBBOffset.y, m_InitialBBOffset.z);
-                }
+                    if ((m_Rotation.m_Value.y % 180.0f) < 1.0f && (m_Rotation.m_Value.y % 180.0f) > -1.0f)
+                    {
+                        m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.x - m_InitialBoundingBoxMin.x)),
+                                                                          m_InitialBBOffset.y, m_InitialBBOffset.z);
+                    }
 
-                else if ((m_Rotation.m_Value.y % 180.0f) < 91.0f && (m_Rotation.m_Value.y % 180.0f) > 89.0f)
-                {
-                    m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x,
-                                                                          m_InitialBBOffset.y,
-                                                                          m_InitialBBOffset.z - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
-                }
+                    else if ((m_Rotation.m_Value.y % 180.0f) < 91.0f && (m_Rotation.m_Value.y % 180.0f) > 89.0f)
+                    {
+                        m_ChildTransform.m_Offset = new Tools.MathLib.Vector3(m_InitialBBOffset.x,
+                                                                              m_InitialBBOffset.y,
+                                                                              m_InitialBBOffset.z - (m_ChildAnimator.m_CurrentTime / 48.0f * (m_InitialBoundingBoxMax.z - m_InitialBoundingBoxMin.z)));
+                    }
 
-                if (m_NumTop == 0 && !m_Activated && !m_ChildFreezable.m_Frozen)
-                {
-                    m_ChildAnimator.m_Reversed = true;
-                    m_ChildAnimator.m_PauseAnimation = false;
-                    m_ChildAnimator.m_PauseAtTime = 0;
+                    if (m_NumTop == 0 && !m_Activated && !m_ChildFreezable.m_Frozen)
+                    {
+                        m_ChildAnimator.m_Reversed = true;
+                        m_ChildAnimator.m_PauseAnimation = false;
+                        m_ChildAnimator.m_PauseAtTime = 0;
+                    }
                 }
             }
 
@@ -113,19 +117,23 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
-            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
+            if (m_Sound != null && m_Parent != null && m_BoundingBox != null && m_Mesh != null && m_Rotation != null &&
+                m_ChildFreezable != null && m_ChildBoundingBox != null && m_ChildAnimator != null && m_ChildTransform != null != null)
             {
-                if (!m_ChildFreezable.m_Frozen)
+                if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
                 {
-                    m_ChildAnimator.m_Reversed = false;
-                    m_ChildAnimator.m_PauseAnimation = false;
-                    m_ChildAnimator.m_PauseAtTime = 48;
-                    ++m_NumTop;
-                    m_Activated = true;
-                }
+                    if (!m_ChildFreezable.m_Frozen)
+                    {
+                        m_ChildAnimator.m_Reversed = false;
+                        m_ChildAnimator.m_PauseAnimation = false;
+                        m_ChildAnimator.m_PauseAtTime = 48;
+                        ++m_NumTop;
+                        m_Activated = true;
+                    }
 
-                m_Sound.m_Trigger = true;
-                m_Mesh.m_Model = "Button_GateON";
+                    m_Sound.m_Trigger = true;
+                    m_Mesh.m_Model = "Button_GateON";
+                }
             }
 
             Application.NotifyDone();
@@ -133,19 +141,23 @@ namespace CSScript
 
         public void OnCollisionStay(UInt32 ID)
         {
-            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
+            if (m_Sound != null && m_Parent != null && m_BoundingBox != null && m_Mesh != null && m_Rotation != null &&
+                m_ChildFreezable != null && m_ChildBoundingBox != null && m_ChildAnimator != null && m_ChildTransform != null)
             {
-                if (!m_ChildFreezable.m_Frozen && !m_Activated)
+                if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
                 {
-                    m_ChildAnimator.m_Reversed = false;
-                    m_ChildAnimator.m_PauseAnimation = false;
-                    m_ChildAnimator.m_PauseAtTime = 48;
-                    ++m_NumTop;
-                    m_Activated = true;
-                }
+                    if (!m_ChildFreezable.m_Frozen && !m_Activated)
+                    {
+                        m_ChildAnimator.m_Reversed = false;
+                        m_ChildAnimator.m_PauseAnimation = false;
+                        m_ChildAnimator.m_PauseAtTime = 48;
+                        ++m_NumTop;
+                        m_Activated = true;
+                    }
 
-                // m_Sound.m_Trigger = true;
-                m_Mesh.m_Model = "Button_GateON";
+                    // m_Sound.m_Trigger = true;
+                    m_Mesh.m_Model = "Button_GateON";
+                }
             }
 
             Application.NotifyDone();
@@ -153,12 +165,16 @@ namespace CSScript
 
         public void OnCollisionExit(UInt32 ID)
         {
-            if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
+            if (m_Sound != null && m_Parent != null && m_BoundingBox != null && m_Mesh != null && m_Rotation != null &&
+                m_ChildFreezable != null && m_ChildBoundingBox != null && m_ChildAnimator != null && m_ChildTransform != null)
             {
-                --m_NumTop;
-                m_Activated = false;
-                m_Sound.m_Trigger = true;
-                m_Mesh.m_Model = "Button_GateOFF";
+                if (m_ChildID != 1 && (ID == Player.GetJumpUnitID() || ID == Player.GetPushUnitID() || Tools.Tag.IsPushable(ID)))
+                {
+                    --m_NumTop;
+                    m_Activated = false;
+                    m_Sound.m_Trigger = true;
+                    m_Mesh.m_Model = "Button_GateOFF";
+                }
             }
 
             Application.NotifyDone();

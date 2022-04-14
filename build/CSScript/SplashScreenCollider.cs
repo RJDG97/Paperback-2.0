@@ -51,7 +51,10 @@ namespace CSScript
 
         public void OnCollisionEnter(UInt32 ID)
         {
+            if (m_BoundingBox != null)
+            {
                 Application.ChangeScene("MainMenu");
+            }
 
             Application.NotifyDone();
         }
