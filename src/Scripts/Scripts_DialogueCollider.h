@@ -31,24 +31,24 @@ namespace MONO_DIALOGUECOLLIDER
 		return m_dialoguecollider;
 	}
 
-	MONO_EXPORT MonoString* GetDialogueName(uint32_t ID)
+	MONO_EXPORT MonoString* GetDialogueName(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return mono_string_new(mono_domain_get(), m_obj.m_pArchetype->FindComponent<dialogue_collider>(m_obj.m_PoolDetails)->m_DialogueName.c_str());
+		if (address)
+			return mono_string_new(mono_domain_get(), reinterpret_cast<dialogue_collider*>(address)->m_DialogueName.c_str());
 
 		return {};
 	}
 
-	MONO_EXPORT void SetDialogueName(uint32_t ID, MonoString* value)
+	MONO_EXPORT void SetDialogueName(void* address, MonoString* value)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			m_obj.m_pArchetype->FindComponent<dialogue_collider>(m_obj.m_PoolDetails)->m_DialogueName = mono_string_to_utf8(value);
+		if (address)
+			reinterpret_cast<dialogue_collider*>(address)->m_DialogueName = mono_string_to_utf8(value);
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.DialogueCollider::getaddress(uint)", &MONO_DIALOGUECOLLIDER::GetAddress);
-		mono_add_internal_call("CSScript.DialogueCollider::getdialoguename(uint)", &MONO_DIALOGUECOLLIDER::GetDialogueName);
-		mono_add_internal_call("CSScript.DialogueCollider::setdialoguename(uint,string)", &MONO_DIALOGUECOLLIDER::SetDialogueName);
+		mono_add_internal_call("CSScript.DialogueCollider::getdialoguename(void*)", &MONO_DIALOGUECOLLIDER::GetDialogueName);
+		mono_add_internal_call("CSScript.DialogueCollider::setdialoguename(void*,string)", &MONO_DIALOGUECOLLIDER::SetDialogueName);
 	}
 }

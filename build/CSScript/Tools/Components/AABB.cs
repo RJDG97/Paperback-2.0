@@ -22,17 +22,18 @@ namespace CSScript
 {
     public unsafe class AABB
     {
-        UInt32 ID;
+        private void* m_Address;
+
         public AABB(UInt32 id)
         {
-            ID = id;
+            m_Address = getaddress(id);
         }
 
         public int m_Collided
         {
             get
             {
-                return getcollided(ID);
+                return getcollided(m_Address);
             }
         }
 
@@ -40,6 +41,6 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static int getcollided(UInt32 address);
+        private extern static int getcollided(void* address);
     }
 }

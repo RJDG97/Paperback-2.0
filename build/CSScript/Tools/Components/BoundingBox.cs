@@ -22,10 +22,12 @@ namespace CSScript
 {
     public unsafe class BoundingBox
     {
+        private void* m_Address;
         UInt32 ID;
         public BoundingBox(UInt32 id)
         {
             ID = id;
+            m_Address = getaddress(id);
         }
 
         public Tools.MathLib.Vector3 Min

@@ -22,22 +22,22 @@ namespace CSScript
 {
   public unsafe class ParticleEmitter
   {
-    UInt32 ID;
+    private void* m_Address;
 
     public ParticleEmitter(UInt32 id)
     {
-            ID = id;
+      m_Address = getaddress(id);
     }
 
     public float m_Lifetime
     {
       get
       {
-        return GetEmitterLifetime(ID);
+        return GetEmitterLifetime(m_Address);
       }
       set
       {
-        SetEmitterLifetime(ID, value);
+        SetEmitterLifetime(m_Address, value);
       }
     }
 
@@ -45,11 +45,11 @@ namespace CSScript
     {
         get
         {
-            return GetParticleTexture(ID);
+            return GetParticleTexture(m_Address);
         }
         set
         {
-            SetParticleTexture(ID, value);
+            SetParticleTexture(m_Address, value);
         }
     }
 
@@ -57,11 +57,11 @@ namespace CSScript
         {
         get
         {
-            return GetEmissionRate(ID);
+            return GetEmissionRate(m_Address);
         }
         set
         {
-            SetEmissionRate(ID, value);
+            SetEmissionRate(m_Address, value);
         }
     }
 
@@ -69,22 +69,22 @@ namespace CSScript
     private extern static void* getaddress( UInt32 ID );
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    private extern static float GetEmitterLifetime(UInt32 ID);
+    private extern static float GetEmitterLifetime( void* address );
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    private extern static void SetEmitterLifetime(UInt32 ID, float time );
+    private extern static void SetEmitterLifetime( void* address, float time );
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    private extern static String GetParticleTexture(UInt32 ID);
+    private extern static String GetParticleTexture(void* address);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    private extern static void SetParticleTexture(UInt32 ID, String texture);
+    private extern static void SetParticleTexture(void* address, String texture);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    private extern static int GetEmissionRate(UInt32 ID);
+    private extern static int GetEmissionRate(void* address);
 
     [MethodImplAttribute(MethodImplOptions.InternalCall)]
-    private extern static void SetEmissionRate(UInt32 ID, int value);
+    private extern static void SetEmissionRate(void* address, int value);
 
     }
 }

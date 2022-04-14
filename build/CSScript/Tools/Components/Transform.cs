@@ -22,21 +22,21 @@ namespace CSScript
 {
     public unsafe class Transform
     {
-        UInt32 ID;
+        private void* m_Address;
         public Transform(UInt32 id)
         {
-            ID = id;
+            m_Address = getaddress(id);
         }
 
         public Tools.MathLib.Vector3 m_Offset
         {
             get
             {
-                return getoffset(ID);
+                return getoffset(m_Address);
             }
             set
             {
-                setoffset(ID, value.x, value.y, value.z);
+                setoffset(m_Address, value.x, value.y, value.z);
             }
         }
 
@@ -44,12 +44,12 @@ namespace CSScript
         {
             get
             {
-                return getposition(ID);
+                return getposition(m_Address);
             }
             set
             {
                 //m_Position = value;
-                setposition(ID, value.x, value.y, value.z);
+                setposition(m_Address, value.x, value.y, value.z);
             }
         }
 
@@ -57,15 +57,15 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getoffset(UInt32 address);
+        private extern static Tools.MathLib.Vector3 getoffset(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setoffset(UInt32 address, float x, float y, float z);
+        private extern static void setoffset(void* address, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getposition(UInt32 address);
+        private extern static Tools.MathLib.Vector3 getposition(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setposition(UInt32 address, float x, float y, float z);
+        private extern static void setposition(void* address, float x, float y, float z);
     }
 }

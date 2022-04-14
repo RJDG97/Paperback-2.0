@@ -22,21 +22,22 @@ namespace CSScript
 {
     public unsafe class Pushable
     {
-        UInt32 ID;
+        private void* m_Address;
+
         public Pushable(UInt32 id)
         {
-            ID = id;
+            m_Address = getaddress(id);
         }
 
         public Int32 m_State
         {
             get
             {
-                return getstate(ID);
+                return getstate(m_Address);
             }
             set
             {
-                setstate(ID, value);
+                setstate(m_Address, value);
             }
         }
 
@@ -44,9 +45,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Int32 getstate(UInt32 ID);
+        private extern static Int32 getstate(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstate(UInt32 ID, Int32 state);
+        private extern static void setstate(void* address, Int32 state);
     }
 }

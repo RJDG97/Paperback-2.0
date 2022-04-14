@@ -31,56 +31,56 @@ namespace MONO_OFFSET
 		return m_offset;
 	}
 
-	MONO_EXPORT paperback::Vector3f GetPosOffset(uint32_t ID)
+	MONO_EXPORT paperback::Vector3f GetPosOffset(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return  m_obj.m_pArchetype->FindComponent<offset>(m_obj.m_PoolDetails)->m_PosOffset;
+		if (address)
+			return reinterpret_cast<offset*>(address)->m_PosOffset;
 
 		return {};
 	}
 
-	MONO_EXPORT paperback::Vector3f GetRotOffset(uint32_t ID)
+	MONO_EXPORT paperback::Vector3f GetRotOffset(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return  m_obj.m_pArchetype->FindComponent<offset>(m_obj.m_PoolDetails)->m_RotOffset;
+		if (address)
+			return reinterpret_cast<offset*>(address)->m_RotOffset;
 
 		return {};
 	}
 
-	MONO_EXPORT paperback::Vector3f GetScaleOffset(uint32_t ID)
+	MONO_EXPORT paperback::Vector3f GetScaleOffset(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return  m_obj.m_pArchetype->FindComponent<offset>(m_obj.m_PoolDetails)->m_ScaleOffset;
+		if (address)
+			return reinterpret_cast<offset*>(address)->m_ScaleOffset;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetPosOffset(uint32_t ID, float x, float y, float z)
+	MONO_EXPORT void SetPosOffset(void* address, float x, float y, float z)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			m_obj.m_pArchetype->FindComponent<offset>(m_obj.m_PoolDetails)->m_PosOffset = {x, y, z};
+		if (address)
+			reinterpret_cast<offset*>(address)->m_PosOffset = {x, y, z};
 	}
 
-	MONO_EXPORT void SetRotOffset(uint32_t ID, float x, float y, float z)
+	MONO_EXPORT void SetRotOffset(void* address, float x, float y, float z)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			m_obj.m_pArchetype->FindComponent<offset>(m_obj.m_PoolDetails)->m_RotOffset = { x, y, z };
+		if (address)
+			reinterpret_cast<offset*>(address)->m_RotOffset = { x, y, z };
 	}
 
-	MONO_EXPORT void SetScaleOffset(uint32_t ID, float x, float y, float z)
+	MONO_EXPORT void SetScaleOffset(void* address, float x, float y, float z)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			m_obj.m_pArchetype->FindComponent<offset>(m_obj.m_PoolDetails)->m_ScaleOffset = { x, y, z };
+		if (address)
+			reinterpret_cast<offset*>(address)->m_ScaleOffset = { x, y, z };
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Offset::getaddress(uint)", &MONO_OFFSET::GetAddress);
-		mono_add_internal_call("CSScript.Offset::getposoffset(uint)", &MONO_OFFSET::GetPosOffset);
-		mono_add_internal_call("CSScript.Offset::setposoffset(uint,single,single,single)", &MONO_OFFSET::SetPosOffset);
-		mono_add_internal_call("CSScript.Offset::getrotoffset(uint)", &MONO_OFFSET::GetRotOffset);
-		mono_add_internal_call("CSScript.Offset::setrotoffset(uint,single,single,single)", &MONO_OFFSET::SetRotOffset);
-		mono_add_internal_call("CSScript.Offset::getscaleoffset(uint)", &MONO_OFFSET::GetScaleOffset);
-		mono_add_internal_call("CSScript.Offset::setscaleoffset(uint,single,single,single)", &MONO_OFFSET::SetScaleOffset);
+		mono_add_internal_call("CSScript.Offset::getposoffset(void*)", &MONO_OFFSET::GetPosOffset);
+		mono_add_internal_call("CSScript.Offset::setposoffset(void*,single,single,single)", &MONO_OFFSET::SetPosOffset);
+		mono_add_internal_call("CSScript.Offset::getrotoffset(void*)", &MONO_OFFSET::GetRotOffset);
+		mono_add_internal_call("CSScript.Offset::setrotoffset(void*,single,single,single)", &MONO_OFFSET::SetRotOffset);
+		mono_add_internal_call("CSScript.Offset::getscaleoffset(void*)", &MONO_OFFSET::GetScaleOffset);
+		mono_add_internal_call("CSScript.Offset::setscaleoffset(void*,single,single,single)", &MONO_OFFSET::SetScaleOffset);
 	}
 }

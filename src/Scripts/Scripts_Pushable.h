@@ -31,24 +31,24 @@ namespace MONO_PUSHABLE
 		return m_pushable;
 	}
 
-	MONO_EXPORT int32_t GetState(uint32_t ID)
+	MONO_EXPORT int32_t GetState(void* address)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			return m_obj.m_pArchetype->FindComponent<pushable>(m_obj.m_PoolDetails)->m_State;
+		if (address)
+			return reinterpret_cast<pushable*>(address)->m_State;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetState(uint32_t ID, int32_t state)
+	MONO_EXPORT void SetState(void* address, int32_t state)
 	{
-		auto m_obj = PPB.GetEntityInfo(ID);
-			m_obj.m_pArchetype->FindComponent<pushable>(m_obj.m_PoolDetails)->m_State = state;
+		if (address)
+			reinterpret_cast<pushable*>(address)->m_State = state;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Pushable::getaddress(uint)", &MONO_PUSHABLE::GetAddress);
-		mono_add_internal_call("CSScript.Pushable::getstate(uint)", &MONO_PUSHABLE::GetState);
-		mono_add_internal_call("CSScript.Pushable::setstate(uint,int)", &MONO_PUSHABLE::SetState);
+		mono_add_internal_call("CSScript.Pushable::getstate(void*)", &MONO_PUSHABLE::GetState);
+		mono_add_internal_call("CSScript.Pushable::setstate(void*,int)", &MONO_PUSHABLE::SetState);
 	}
 }

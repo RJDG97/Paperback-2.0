@@ -22,11 +22,13 @@ namespace CSScript
 {
     public unsafe class Elevator
     {
+        private void* m_Address;
         UInt32 ID;
 
         public Elevator(UInt32 id)
         {
             ID = id;
+            m_Address = getaddress(id);
         }
 
         public float m_StartTime

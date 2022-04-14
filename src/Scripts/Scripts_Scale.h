@@ -31,23 +31,7 @@ namespace MONO_SCALE
 		return m_scale;
 	}
 
-	MONO_EXPORT paperback::Vector3f GetValue(uint32_t ID)
-	{
-
-		auto obj = PPB.GetEntityInfo(ID);
-
-		return obj.m_pArchetype->FindComponent<scale>(obj.m_PoolDetails)->m_Value;
-	}
-
-	MONO_EXPORT void SetValue(uint32_t ID, float x, float y, float z)
-	{
-
-		auto obj = PPB.GetEntityInfo(ID);
-
-		obj.m_pArchetype->FindComponent<scale>(obj.m_PoolDetails)->m_Value = { x, y, z };
-	}
-	
-	/*MONO_EXPORT paperback::Vector3f GetValue(void* address)
+	MONO_EXPORT paperback::Vector3f GetValue(void* address)
 	{
 		if (address)
 			return reinterpret_cast<scale*>(address)->m_Value;
@@ -59,12 +43,12 @@ namespace MONO_SCALE
 	{
 		if (address)
 			reinterpret_cast<scale*>(address)->m_Value = {x, y, z};
-	}*/
+	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Scale::getaddress(uint)", &MONO_SCALE::GetAddress);
-		mono_add_internal_call("CSScript.Scale::getvalue(uint)", &MONO_SCALE::GetValue);
-		mono_add_internal_call("CSScript.Scale::setvalue(uint,single,single,single)", &MONO_SCALE::SetValue);
+		mono_add_internal_call("CSScript.Scale::getvalue(void*)", &MONO_SCALE::GetValue);
+		mono_add_internal_call("CSScript.Scale::setvalue(void*,single,single,single)", &MONO_SCALE::SetValue);
 	}
 }

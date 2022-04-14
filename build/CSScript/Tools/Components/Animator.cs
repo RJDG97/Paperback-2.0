@@ -22,21 +22,22 @@ namespace CSScript
 {
     public unsafe class Animator
     {
-        UInt32 ID;
+        private void* m_Address;
+
         public Animator(UInt32 id)
         {
-            ID = id;
+            m_Address = getaddress(id);
         }
 
         public string m_CurrentAnimationName
         {
             get
             {
-                return getcurrentanimationname(ID);
+                return getcurrentanimationname(m_Address);
             }
             set
             {
-                setcurrentanimationname(ID, value);
+                setcurrentanimationname(m_Address, value);
             }
         }
 
@@ -44,11 +45,11 @@ namespace CSScript
         {
             get
             {
-                return getcurrentanimationtime(ID);
+                return getcurrentanimationtime(m_Address);
             }
             set
             {
-                setcurrentanimationtime(ID, value);
+                setcurrentanimationtime(m_Address, value);
             }
         }
 
@@ -56,11 +57,11 @@ namespace CSScript
         {
             get
             {
-                return getplayonce(ID);
+                return getplayonce(m_Address);
             }
             set
             {
-                setplayonce(ID, value);
+                setplayonce(m_Address, value);
             }
         }
 
@@ -68,7 +69,7 @@ namespace CSScript
         {
             get
             {
-                return getfinishedanimating(ID);
+                return getfinishedanimating(m_Address);
             }
         }
 
@@ -76,11 +77,11 @@ namespace CSScript
         {
             get
             {
-                return getpauseanimation(ID);
+                return getpauseanimation(m_Address);
             }
             set
             {
-                setpauseanimation(ID, value);
+                setpauseanimation(m_Address, value);
             }
         }
 
@@ -88,11 +89,11 @@ namespace CSScript
         {
             get
             {
-                return getpauseattime(ID);
+                return getpauseattime(m_Address);
             }
             set
             {
-                setpauseattime(ID, value);
+                setpauseattime(m_Address, value);
             }
         }
 
@@ -100,11 +101,11 @@ namespace CSScript
         {
             get
             {
-                return getreversed(ID);
+                return getreversed(m_Address);
             }
             set
             {
-                setreversed(ID, value);
+                setreversed(m_Address, value);
             }
         }
 
@@ -112,42 +113,42 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static string getcurrentanimationname(UInt32 address);
+        private extern static string getcurrentanimationname(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setcurrentanimationname(UInt32 address, string new_name);
+        private extern static void setcurrentanimationname(void* address, string new_name);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getcurrentanimationtime(UInt32 address);
+        private extern static float getcurrentanimationtime(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setcurrentanimationtime(UInt32 address, float time);
+        private extern static void setcurrentanimationtime(void* address, float time);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getplayonce(UInt32 address);
+        private extern static bool getplayonce(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setplayonce(UInt32 address, bool play_once);
+        private extern static void setplayonce(void* address, bool play_once);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getfinishedanimating(UInt32 address);
+        private extern static bool getfinishedanimating(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getpauseanimation(UInt32 address);
+        private extern static bool getpauseanimation(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setpauseanimation(UInt32 address, bool pause_animation);
+        private extern static void setpauseanimation(void* address, bool pause_animation);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getpauseattime(UInt32 address);
+        private extern static float getpauseattime(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setpauseattime(UInt32 address, float time);
+        private extern static void setpauseattime(void* address, float time);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getreversed(UInt32 address);
+        private extern static bool getreversed(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setreversed(UInt32 address, bool reversed);
+        private extern static void setreversed(void* address, bool reversed);
     }
 }

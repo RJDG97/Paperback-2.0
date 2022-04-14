@@ -22,21 +22,22 @@ namespace CSScript
 {
     public unsafe class Mesh
     {
-        UInt32 ID;
+        private void* m_Address;
+
         public Mesh(UInt32 id)
         {
-            ID = id;
+            m_Address = getaddress(id);
         }
 
         public string m_Model
         {
             get
             {
-                return getmodel(ID);
+                return getmodel(m_Address);
             }
             set
             {
-                setmodel(ID, value);
+                setmodel(m_Address, value);
             }
         }
 
@@ -44,11 +45,11 @@ namespace CSScript
         {
             get
             {
-                return gettexture(ID);
+                return gettexture(m_Address);
             }
             set
             {
-                settexture(ID, value);
+                settexture(m_Address, value);
             }
         }
 
@@ -56,11 +57,11 @@ namespace CSScript
         {
             get
             {
-                return getbias(ID);
+                return getbias(m_Address);
             }
             set
             {
-                setbias(ID, value);
+                setbias(m_Address, value);
             }
         }
 
@@ -68,11 +69,11 @@ namespace CSScript
         {
             get
             {
-                return getactive(ID);
+                return getactive(m_Address);
             }
             set
             {
-                setactive(ID, value);
+                setactive(m_Address, value);
             }
         }
 
@@ -80,27 +81,27 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static string getmodel(UInt32 address);
+        private extern static string getmodel(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setmodel(UInt32 address, string model);
+        private extern static void setmodel(void* address, string model);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static string gettexture(UInt32 address);
+        private extern static string gettexture(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void settexture(UInt32 address, string texture);
+        private extern static void settexture(void* address, string texture);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static int getbias(UInt32 address);
+        private extern static int getbias(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setbias(UInt32 address, int bias);
+        private extern static void setbias(void* address, int bias);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getactive(UInt32 address);
+        private extern static bool getactive(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setactive(UInt32 address, bool active);
+        private extern static void setactive(void* address, bool active);
     }
 }

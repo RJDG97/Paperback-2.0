@@ -22,22 +22,22 @@ namespace CSScript
 {
     public unsafe class Rotation
     {
-        UInt32 ID;
+        private void* m_Address;
+
         public Rotation(UInt32 id)
         {
-
-            ID = id;
+            m_Address = getaddress(id);
         }
 
         public Tools.MathLib.Vector3 m_Value
         {
             get
             {
-                return getvalue(ID);
+                return getvalue(m_Address);
             }
             set
             {
-                setvalue(ID, value.x, value.y, value.z);
+                setvalue(m_Address, value.x, value.y, value.z);
             }
         }
 
@@ -45,9 +45,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getvalue(UInt32 ID);
+        private extern static Tools.MathLib.Vector3 getvalue(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setvalue(UInt32 ID, float x, float y, float z);
+        private extern static void setvalue(void* address, float x, float y, float z);
     }
 }

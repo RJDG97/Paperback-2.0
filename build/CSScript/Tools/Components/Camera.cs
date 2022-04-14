@@ -22,21 +22,22 @@ namespace CSScript
 {
     public unsafe class Camera
     {
-        UInt32 ID;
+        private void* m_Address;
+
         public Camera(UInt32 id)
         {
-            ID = id;
+            m_Address = getaddress(id);
         }
 
         public bool m_Active
         {
             get
             {
-                return getactive(ID);
+                return getactive(m_Address);
             }
             set
             {
-                setactive(ID, value);
+                setactive(m_Address, value);
             }
         }
 
@@ -44,11 +45,11 @@ namespace CSScript
         {
             get
             {
-                return getpos(ID);
+                return getpos(m_Address);
             }
             set
             {
-                setpos(ID, value.x, value.y, value.z);
+                setpos(m_Address, value.x, value.y, value.z);
             }
         }
 
@@ -56,15 +57,15 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getactive(UInt32 address);
+        private extern static bool getactive(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setactive(UInt32 address, bool mass);
+        private extern static void setactive(void* address, bool mass);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getpos(UInt32 address);
+        private extern static Tools.MathLib.Vector3 getpos(void* address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setpos(UInt32 address, float x, float y, float z);
+        private extern static void setpos(void* address, float x, float y, float z);
     }
 }
