@@ -31,24 +31,24 @@ namespace MONO_ROTATION
 		return m_rotation;
 	}
 
-	MONO_EXPORT paperback::Vector3f GetValue(void* address)
+	MONO_EXPORT paperback::Vector3f GetValue(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<rotation*>(address)->m_Value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<rotation>(m_obj.m_PoolDetails)->m_Value;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetValue(void* address, float x, float y, float z)
+	MONO_EXPORT void SetValue(uint32_t ID, float x, float y, float z)
 	{
-		if (address)
-			reinterpret_cast<rotation*>(address)->m_Value = {x, y, z};
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<rotation>(m_obj.m_PoolDetails)->m_Value = {x, y, z};
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Rotation::getaddress(uint)", &MONO_ROTATION::GetAddress);
-		mono_add_internal_call("CSScript.Rotation::getvalue(void*)", &MONO_ROTATION::GetValue);
-		mono_add_internal_call("CSScript.Rotation::setvalue(void*,single,single,single)", &MONO_ROTATION::SetValue);
+		mono_add_internal_call("CSScript.Rotation::getvalue(uint)", &MONO_ROTATION::GetValue);
+		mono_add_internal_call("CSScript.Rotation::setvalue(uint,single,single,single)", &MONO_ROTATION::SetValue);
 	}
 }

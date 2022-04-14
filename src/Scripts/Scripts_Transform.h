@@ -26,17 +26,14 @@ namespace MONO_TRANSFORM
 	MONO_EXPORT paperback::Vector3f GetOffset(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-			return m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails)->m_Offset;
-
-		return {};
+		return m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails)->m_Offset;
 	}
 
 	MONO_EXPORT paperback::Vector3f GetPosition(uint32_t ID)
 	{
 		auto m_obj = PPB.GetEntityInfo(ID);
-			return m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails)->m_Position;
+		return m_obj.m_pArchetype->FindComponent<transform>(m_obj.m_PoolDetails)->m_Position;
 
-		return {};
 	}
 
 	MONO_EXPORT void SetOffset(uint32_t ID, float x, float y, float z)
