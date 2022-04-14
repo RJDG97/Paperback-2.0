@@ -142,11 +142,6 @@ struct collision_system : paperback::system::pausable_instance
                                         for (auto& to_update : scripting_sys->scriptlist[Entity.m_GlobalIndex].m_Info)
                                         {
                                             to_update.second->OnCollisionStay(Dynamic_Entity.m_GlobalIndex);
-
-
-                                            while (!m_Coordinator.CompareProcesses())
-                                            {
-                                            }
                                         }
 
                                         if (!(BV || BV2))
