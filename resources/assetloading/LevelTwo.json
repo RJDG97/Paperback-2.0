@@ -44918,7 +44918,7 @@
                         }
                     },
                     "Animator": {
-                        "Current Animation": "Armature|Walk",
+                        "Current Animation": "Armature|Idle",
                         "Play Once": false,
                         "Pause Animation": false,
                         "Current Time": 0.0,
