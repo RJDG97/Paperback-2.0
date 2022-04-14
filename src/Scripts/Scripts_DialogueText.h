@@ -31,88 +31,88 @@ namespace MONO_DIALOGUETEXT
 		return m_dialoguetext;
 	}
 
-	MONO_EXPORT MonoString* GetDialogueName(void* address)
+	MONO_EXPORT MonoString* GetDialogueName(uint32_t ID)
 	{
-		if (address)
-			return mono_string_new(mono_domain_get(), reinterpret_cast<dialogue_text*>(address)->m_DialogueName.c_str());
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return mono_string_new(mono_domain_get(), m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_DialogueName.c_str());
 
 		return {};
 	}
 
-	MONO_EXPORT void SetDialogueName(void* address, MonoString* value)
+	MONO_EXPORT void SetDialogueName(uint32_t ID, MonoString* value)
 	{
-		if (address)
-			reinterpret_cast<dialogue_text*>(address)->m_DialogueName = mono_string_to_utf8(value);
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_DialogueName = mono_string_to_utf8(value);
 	}
 
-	MONO_EXPORT float GetElapsedTime(void* address)
+	MONO_EXPORT float GetElapsedTime(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<dialogue_text*>(address)->m_ElapsedTime;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_ElapsedTime;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetElapsedTime(void* address, float value)
+	MONO_EXPORT void SetElapsedTime(uint32_t ID, float value)
 	{
-		if (address)
-			reinterpret_cast<dialogue_text*>(address)->m_ElapsedTime = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_ElapsedTime = value;
 	}
 
-	MONO_EXPORT uint32_t GetState(void* address)
+	MONO_EXPORT uint32_t GetState(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<dialogue_text*>(address)->m_State;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_State;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetState(void* address, uint32_t value)
+	MONO_EXPORT void SetState(uint32_t ID, uint32_t value)
 	{
-		if (address)
-			reinterpret_cast<dialogue_text*>(address)->m_State = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_State = value;
 	}
 
-	MONO_EXPORT paperback::Vector3f GetInitialScale(void* address)
+	MONO_EXPORT paperback::Vector3f GetInitialScale(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<dialogue_text*>(address)->m_InitialScale;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_InitialScale;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetInitialScale(void* address, float x, float y, float z)
+	MONO_EXPORT void SetInitialScale(uint32_t ID, float x, float y, float z)
 	{
-		if (address)
-			reinterpret_cast<dialogue_text*>(address)->m_InitialScale = { x, y, z };
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_InitialScale = { x, y, z };
 	}
 
-	MONO_EXPORT uint32_t GetIndex(void* address)
+	MONO_EXPORT uint32_t GetIndex(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<dialogue_text*>(address)->m_CurrentIndex;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_CurrentIndex;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetIndex(void* address, uint32_t value)
+	MONO_EXPORT void SetIndex(uint32_t ID, uint32_t value)
 	{
-		if (address)
-			reinterpret_cast<dialogue_text*>(address)->m_CurrentIndex = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<dialogue_text>(m_obj.m_PoolDetails)->m_CurrentIndex = value;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.DialogueText::getaddress(uint)", &MONO_DIALOGUETEXT::GetAddress);
-		mono_add_internal_call("CSScript.DialogueText::getdialoguename(void*)", &MONO_DIALOGUETEXT::GetDialogueName);
-		mono_add_internal_call("CSScript.DialogueText::setdialoguename(void*,string)", &MONO_DIALOGUETEXT::SetDialogueName);
-		mono_add_internal_call("CSScript.DialogueText::getelapsedtime(void*)", &MONO_DIALOGUETEXT::GetElapsedTime);
-		mono_add_internal_call("CSScript.DialogueText::setelapsedtime(void*,single)", &MONO_DIALOGUETEXT::SetElapsedTime);
-		mono_add_internal_call("CSScript.DialogueText::getstate(void*)", &MONO_DIALOGUETEXT::GetState);
-		mono_add_internal_call("CSScript.DialogueText::setstate(void*,uint)", &MONO_DIALOGUETEXT::SetState);
-		mono_add_internal_call("CSScript.DialogueText::getinitialscale(void*)", &MONO_DIALOGUETEXT::GetInitialScale);
-		mono_add_internal_call("CSScript.DialogueText::setinitialscale(void*,single,single,single)", &MONO_DIALOGUETEXT::SetInitialScale);
-		mono_add_internal_call("CSScript.DialogueText::getindex(void*)", &MONO_DIALOGUETEXT::GetIndex);
-		mono_add_internal_call("CSScript.DialogueText::setindex(void*,uint)", &MONO_DIALOGUETEXT::SetIndex);
+		mono_add_internal_call("CSScript.DialogueText::getdialoguename(uint)", &MONO_DIALOGUETEXT::GetDialogueName);
+		mono_add_internal_call("CSScript.DialogueText::setdialoguename(uint,string)", &MONO_DIALOGUETEXT::SetDialogueName);
+		mono_add_internal_call("CSScript.DialogueText::getelapsedtime(uint)", &MONO_DIALOGUETEXT::GetElapsedTime);
+		mono_add_internal_call("CSScript.DialogueText::setelapsedtime(uint,single)", &MONO_DIALOGUETEXT::SetElapsedTime);
+		mono_add_internal_call("CSScript.DialogueText::getstate(uint)", &MONO_DIALOGUETEXT::GetState);
+		mono_add_internal_call("CSScript.DialogueText::setstate(uint,uint)", &MONO_DIALOGUETEXT::SetState);
+		mono_add_internal_call("CSScript.DialogueText::getinitialscale(uint)", &MONO_DIALOGUETEXT::GetInitialScale);
+		mono_add_internal_call("CSScript.DialogueText::setinitialscale(uint,single,single,single)", &MONO_DIALOGUETEXT::SetInitialScale);
+		mono_add_internal_call("CSScript.DialogueText::getindex(uint)", &MONO_DIALOGUETEXT::GetIndex);
+		mono_add_internal_call("CSScript.DialogueText::setindex(uint,uint)", &MONO_DIALOGUETEXT::SetIndex);
 	}
 }

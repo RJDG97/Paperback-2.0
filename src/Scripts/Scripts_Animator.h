@@ -31,113 +31,113 @@ namespace MONO_ANIMATOR
 		return m_animator;
 	}
 
-	MONO_EXPORT std::string GetCurrentAnimationName(void* address)
+	MONO_EXPORT std::string GetCurrentAnimationName(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<animator*>(address)->m_CurrentAnimationName;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_CurrentAnimationName;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetCurrentAnimationName(void* address, MonoString* new_name)
+	MONO_EXPORT void SetCurrentAnimationName(uint32_t ID, MonoString* new_name)
 	{
-		if (address)
-			reinterpret_cast<animator*>(address)->m_CurrentAnimationName = mono_string_to_utf8(new_name);
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_CurrentAnimationName = mono_string_to_utf8(new_name);
 	}
 
-	MONO_EXPORT float GetCurrentAnimationTime(void* address)
+	MONO_EXPORT float GetCurrentAnimationTime(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<animator*>(address)->m_CurrentTime;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_CurrentTime;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetCurrentAnimationTime(void* address, float time)
+	MONO_EXPORT void SetCurrentAnimationTime(uint32_t ID, float time)
 	{
-		if (address)
-			reinterpret_cast<animator*>(address)->m_CurrentTime = time;
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_CurrentTime = time;
 	}
 
-	MONO_EXPORT bool GetPlayOnce(void* address)
+	MONO_EXPORT bool GetPlayOnce(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<animator*>(address)->m_PlayOnce;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_PlayOnce;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetPlayOnce(void* address, bool play_once)
+	MONO_EXPORT void SetPlayOnce(uint32_t ID, bool play_once)
 	{
-		if (address)
-			reinterpret_cast<animator*>(address)->m_PlayOnce = play_once;
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_PlayOnce = play_once;
 	}
 
-	MONO_EXPORT bool GetFinishedAnimating(void* address)
+	MONO_EXPORT bool GetFinishedAnimating(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<animator*>(address)->m_FinishedAnimating;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_FinishedAnimating;
 
 		return {};
 	}
 
-	MONO_EXPORT bool GetPauseAnimation(void* address)
+	MONO_EXPORT bool GetPauseAnimation(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<animator*>(address)->m_PauseAnimation;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_PauseAnimation;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetPauseAnimation(void* address, bool play_once)
+	MONO_EXPORT void SetPauseAnimation(uint32_t ID, bool play_once)
 	{
-		if (address)
-			reinterpret_cast<animator*>(address)->m_PauseAnimation = play_once;
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_PauseAnimation = play_once;
 	}
 
-	MONO_EXPORT float GetPauseAtTime(void* address)
+	MONO_EXPORT float GetPauseAtTime(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<animator*>(address)->m_PauseAtTime;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_PauseAtTime;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetPauseAtTime(void* address, float time)
+	MONO_EXPORT void SetPauseAtTime(uint32_t ID, float time)
 	{
-		if (address)
-			reinterpret_cast<animator*>(address)->m_PauseAtTime = time;
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_PauseAtTime = time;
 	}
 
-	MONO_EXPORT bool GetReversed(void* address)
+	MONO_EXPORT bool GetReversed(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<animator*>(address)->m_Reversed;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_Reversed;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetReversed(void* address, bool reversed)
+	MONO_EXPORT void SetReversed(uint32_t ID, bool reversed)
 	{
-		if (address)
-			reinterpret_cast<animator*>(address)->m_Reversed = reversed;
+		auto m_obj = PPB.GetEntityInfo(ID);
+		m_obj.m_pArchetype->FindComponent<animator>(m_obj.m_PoolDetails)->m_Reversed = reversed;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Animator::getaddress(uint)", &MONO_ANIMATOR::GetAddress);
-		mono_add_internal_call("CSScript.Animator::getcurrentanimationname(void*)", &MONO_ANIMATOR::GetCurrentAnimationName);
-		mono_add_internal_call("CSScript.Animator::setcurrentanimationname(void*,string)", &MONO_ANIMATOR::SetCurrentAnimationName);
-		mono_add_internal_call("CSScript.Animator::getcurrentanimationtime(void*)", &MONO_ANIMATOR::GetCurrentAnimationTime);
-		mono_add_internal_call("CSScript.Animator::setcurrentanimationtime(void*,single)", &MONO_ANIMATOR::SetCurrentAnimationTime);
-		mono_add_internal_call("CSScript.Animator::getplayonce(void*)", &MONO_ANIMATOR::GetPlayOnce);
-		mono_add_internal_call("CSScript.Animator::setplayonce(void*,bool)", &MONO_ANIMATOR::SetPlayOnce);
-		mono_add_internal_call("CSScript.Animator::getfinishedanimating(void*)", &MONO_ANIMATOR::GetFinishedAnimating);
-		mono_add_internal_call("CSScript.Animator::getpauseanimation(void*)", &MONO_ANIMATOR::GetPauseAnimation);
-		mono_add_internal_call("CSScript.Animator::setpauseanimation(void*,bool)", &MONO_ANIMATOR::SetPauseAnimation);
-		mono_add_internal_call("CSScript.Animator::getpauseattime(void*)", &MONO_ANIMATOR::GetPauseAtTime);
-		mono_add_internal_call("CSScript.Animator::setpauseattime(void*,single)", &MONO_ANIMATOR::SetPauseAtTime);
-		mono_add_internal_call("CSScript.Animator::getreversed(void*)", &MONO_ANIMATOR::GetReversed);
-		mono_add_internal_call("CSScript.Animator::setreversed(void*,bool)", &MONO_ANIMATOR::SetReversed);
+		mono_add_internal_call("CSScript.Animator::getcurrentanimationname(uint)", &MONO_ANIMATOR::GetCurrentAnimationName);
+		mono_add_internal_call("CSScript.Animator::setcurrentanimationname(uint,string)", &MONO_ANIMATOR::SetCurrentAnimationName);
+		mono_add_internal_call("CSScript.Animator::getcurrentanimationtime(uint)", &MONO_ANIMATOR::GetCurrentAnimationTime);
+		mono_add_internal_call("CSScript.Animator::setcurrentanimationtime(uint,single)", &MONO_ANIMATOR::SetCurrentAnimationTime);
+		mono_add_internal_call("CSScript.Animator::getplayonce(uint)", &MONO_ANIMATOR::GetPlayOnce);
+		mono_add_internal_call("CSScript.Animator::setplayonce(uint,bool)", &MONO_ANIMATOR::SetPlayOnce);
+		mono_add_internal_call("CSScript.Animator::getfinishedanimating(uint)", &MONO_ANIMATOR::GetFinishedAnimating);
+		mono_add_internal_call("CSScript.Animator::getpauseanimation(uint)", &MONO_ANIMATOR::GetPauseAnimation);
+		mono_add_internal_call("CSScript.Animator::setpauseanimation(uint,bool)", &MONO_ANIMATOR::SetPauseAnimation);
+		mono_add_internal_call("CSScript.Animator::getpauseattime(uint)", &MONO_ANIMATOR::GetPauseAtTime);
+		mono_add_internal_call("CSScript.Animator::setpauseattime(uint,single)", &MONO_ANIMATOR::SetPauseAtTime);
+		mono_add_internal_call("CSScript.Animator::getreversed(uint)", &MONO_ANIMATOR::GetReversed);
+		mono_add_internal_call("CSScript.Animator::setreversed(uint,bool)", &MONO_ANIMATOR::SetReversed);
 	}
 }

@@ -31,40 +31,40 @@ namespace MONO_MASS
 		return m_mass;
 	}
 
-	MONO_EXPORT float GetMass(void* address)
+	MONO_EXPORT float GetMass(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<mass*>(address)->m_Mass;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<mass>(m_obj.m_PoolDetails)->m_Mass;
 
 		return {};
 	}
 
-	MONO_EXPORT float GetInvMass(void* address)
+	MONO_EXPORT float GetInvMass(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<mass*>(address)->m_InvMass;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<mass>(m_obj.m_PoolDetails)->m_InvMass;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetMass(void* address, float value)
+	MONO_EXPORT void SetMass(uint32_t ID, float value)
 	{
-		if (address)
-			reinterpret_cast<mass*>(address)->m_Mass = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<mass>(m_obj.m_PoolDetails)->m_Mass = value;
 	}
 
-	MONO_EXPORT void SetInvMass(void* address, float value)
+	MONO_EXPORT void SetInvMass(uint32_t ID, float value)
 	{
-		if (address)
-			reinterpret_cast<mass*>(address)->m_InvMass = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<mass>(m_obj.m_PoolDetails)->m_InvMass = value;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Mass::getaddress(uint)", &MONO_MASS::GetAddress);
-		mono_add_internal_call("CSScript.Mass::getmass(void*)", &MONO_MASS::GetMass);
-		mono_add_internal_call("CSScript.Mass::getinvmass(void*)", &MONO_MASS::GetInvMass);
-		mono_add_internal_call("CSScript.Mass::setmass(void*,single)", &MONO_MASS::SetMass);
-		mono_add_internal_call("CSScript.Mass::setinvmass(void*,single)", &MONO_MASS::SetInvMass);
+		mono_add_internal_call("CSScript.Mass::getmass(uint)", &MONO_MASS::GetMass);
+		mono_add_internal_call("CSScript.Mass::getinvmass(uint)", &MONO_MASS::GetInvMass);
+		mono_add_internal_call("CSScript.Mass::setmass(uint,single)", &MONO_MASS::SetMass);
+		mono_add_internal_call("CSScript.Mass::setinvmass(uint,single)", &MONO_MASS::SetInvMass);
 	}
 }

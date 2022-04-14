@@ -31,56 +31,56 @@ namespace MONO_ABILITYCOLLECTIBLE
 		return m_abilitycollectible;
 	}
 
-	MONO_EXPORT bool GetGrowStatus( void* address )
+	MONO_EXPORT bool GetGrowStatus(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<ability_collectible*>(address)->m_Grow;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<ability_collectible>(m_obj.m_PoolDetails)->m_Grow;
 
 		return false;
 	}
 
-	MONO_EXPORT bool GetShrinkStatus( void* address )
+	MONO_EXPORT bool GetShrinkStatus(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<ability_collectible*>(address)->m_Shrink;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<ability_collectible>(m_obj.m_PoolDetails)->m_Shrink;
 
 		return false;
 	}
 
-	MONO_EXPORT bool GetFreezeStatus( void* address )
+	MONO_EXPORT bool GetFreezeStatus(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<ability_collectible*>(address)->m_Freeze;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<ability_collectible>(m_obj.m_PoolDetails)->m_Freeze;
 
 		return false;
 	}
 
-	MONO_EXPORT void SetGrowStatus( void* address, bool status )
+	MONO_EXPORT void SetGrowStatus(uint32_t ID, bool status )
 	{
-		if (address)
-			reinterpret_cast<ability_collectible*>(address)->m_Grow = status;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<ability_collectible>(m_obj.m_PoolDetails)->m_Grow = status;
 	}
 
-	MONO_EXPORT void SetShrinkStatus( void* address, bool status )
+	MONO_EXPORT void SetShrinkStatus(uint32_t ID, bool status )
 	{
-		if (address)
-			reinterpret_cast<ability_collectible*>(address)->m_Shrink = status;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<ability_collectible>(m_obj.m_PoolDetails)->m_Shrink = status;
 	}
 
-	MONO_EXPORT void SetFreezeStatus( void* address, bool status )
+	MONO_EXPORT void SetFreezeStatus(uint32_t ID, bool status )
 	{
-		if (address)
-			reinterpret_cast<ability_collectible*>(address)->m_Freeze = status;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<ability_collectible>(m_obj.m_PoolDetails)->m_Freeze = status;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.AbilityCollectible::getaddress(uint)",       &MONO_ABILITYCOLLECTIBLE::GetAddress);
-		mono_add_internal_call("CSScript.AbilityCollectible::GetGrowStatus(void*)",   &MONO_ABILITYCOLLECTIBLE::GetGrowStatus);
-		mono_add_internal_call("CSScript.AbilityCollectible::GetShrinkStatus(void*)", &MONO_ABILITYCOLLECTIBLE::GetShrinkStatus);
-		mono_add_internal_call("CSScript.AbilityCollectible::GetFreezeStatus(void*)", &MONO_ABILITYCOLLECTIBLE::GetFreezeStatus);
-		mono_add_internal_call("CSScript.AbilityCollectible::SetGrowStatus(void*,bool)", &MONO_ABILITYCOLLECTIBLE::SetGrowStatus);
-		mono_add_internal_call("CSScript.AbilityCollectible::SetShrinkStatus(void*,bool)", &MONO_ABILITYCOLLECTIBLE::SetShrinkStatus);
-		mono_add_internal_call("CSScript.AbilityCollectible::SetFreezeStatus(void*,bool)", &MONO_ABILITYCOLLECTIBLE::SetFreezeStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::GetGrowStatus(uint)",   &MONO_ABILITYCOLLECTIBLE::GetGrowStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::GetShrinkStatus(uint)", &MONO_ABILITYCOLLECTIBLE::GetShrinkStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::GetFreezeStatus(uint)", &MONO_ABILITYCOLLECTIBLE::GetFreezeStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::SetGrowStatus(uint,bool)", &MONO_ABILITYCOLLECTIBLE::SetGrowStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::SetShrinkStatus(uint,bool)", &MONO_ABILITYCOLLECTIBLE::SetShrinkStatus);
+		mono_add_internal_call("CSScript.AbilityCollectible::SetFreezeStatus(uint,bool)", &MONO_ABILITYCOLLECTIBLE::SetFreezeStatus);
 	}
 }

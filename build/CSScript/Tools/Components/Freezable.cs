@@ -23,9 +23,11 @@ namespace CSScript
     public unsafe class Freezable
     {
         private void* m_Address;
+        UInt32 ID;
 
         public Freezable(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +35,11 @@ namespace CSScript
         {
             get
             {
-                return getfrozen(m_Address);
+                return getfrozen(ID);
             }
             set
             {
-                setfrozen(m_Address, value);
+                setfrozen(ID, value);
             }
         }
 
@@ -45,9 +47,9 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static bool getfrozen(void* address);
+        private extern static bool getfrozen(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setfrozen(void* address, bool value);
+        private extern static void setfrozen(UInt32 ID, bool value);
     }
 }

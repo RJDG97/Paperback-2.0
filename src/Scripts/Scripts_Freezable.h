@@ -31,24 +31,24 @@ namespace MONO_FREEZABLE
 		return m_freezable;
 	}
 
-	MONO_EXPORT bool GetFrozen(void* address)
+	MONO_EXPORT bool GetFrozen(uint32_t ID)
 	{
-		if (address)
-			return reinterpret_cast<freezable*>(address)->m_Frozen;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			return m_obj.m_pArchetype->FindComponent<freezable>(m_obj.m_PoolDetails)->m_Frozen;
 
 		return {};
 	}
 
-	MONO_EXPORT void SetFrozen(void* address, bool value)
+	MONO_EXPORT void SetFrozen(uint32_t ID, bool value)
 	{
-		if (address)
-			reinterpret_cast<freezable*>(address)->m_Frozen = value;
+		auto m_obj = PPB.GetEntityInfo(ID);
+			m_obj.m_pArchetype->FindComponent<freezable>(m_obj.m_PoolDetails)->m_Frozen = value;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Freezable::getaddress(uint)", &MONO_FREEZABLE::GetAddress);
-		mono_add_internal_call("CSScript.Freezable::getfrozen(void*)", &MONO_FREEZABLE::GetFrozen);
-		mono_add_internal_call("CSScript.Freezable::setfrozen(void*,bool)", &MONO_FREEZABLE::SetFrozen);
+		mono_add_internal_call("CSScript.Freezable::getfrozen(uint)", &MONO_FREEZABLE::GetFrozen);
+		mono_add_internal_call("CSScript.Freezable::setfrozen(uint,bool)", &MONO_FREEZABLE::SetFrozen);
 	}
 }

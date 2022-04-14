@@ -23,9 +23,10 @@ namespace CSScript
     public unsafe class DialogueText
     {
         private void* m_Address;
-
+        UInt32 ID;
         public DialogueText(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +34,11 @@ namespace CSScript
         {
             get
             {
-                return getdialoguename(m_Address);
+                return getdialoguename(ID);
             }
             set
             {
-                setdialoguename(m_Address, value);
+                setdialoguename(ID, value);
             }
         }
 
@@ -45,11 +46,11 @@ namespace CSScript
         {
             get
             {
-                return getelapsedtime(m_Address);
+                return getelapsedtime(ID);
             }
             set
             {
-                setelapsedtime(m_Address, value);
+                setelapsedtime(ID, value);
             }
         }
 
@@ -57,11 +58,11 @@ namespace CSScript
         {
             get
             {
-                return getstate(m_Address);
+                return getstate(ID);
             }
             set
             {
-                setstate(m_Address, value);
+                setstate(ID, value);
             }
         }
 
@@ -69,11 +70,11 @@ namespace CSScript
         {
             get
             {
-                return getinitialscale(m_Address);
+                return getinitialscale(ID);
             }
             set
             {
-                setinitialscale(m_Address, value.x, value.y, value.z);
+                setinitialscale(ID, value.x, value.y, value.z);
             }
         }
 
@@ -81,11 +82,11 @@ namespace CSScript
         {
             get
             {
-                return getindex(m_Address);
+                return getindex(ID);
             }
             set
             {
-                setindex(m_Address, value);
+                setindex(ID, value);
             }
         }
 
@@ -93,33 +94,33 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static String getdialoguename(void* address);
+        private extern static String getdialoguename(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setdialoguename(void* address, String value);
+        private extern static void setdialoguename(UInt32 address, String value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getelapsedtime(void* address);
+        private extern static float getelapsedtime(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setelapsedtime(void* address, float value);
+        private extern static void setelapsedtime(UInt32 address, float value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static UInt32 getstate(void* address);
+        private extern static UInt32 getstate(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setstate(void* address, UInt32 value);
+        private extern static void setstate(UInt32 address, UInt32 value);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getinitialscale(void* address);
+        private extern static Tools.MathLib.Vector3 getinitialscale(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setinitialscale(void* address, float x, float y, float z);
+        private extern static void setinitialscale(UInt32 address, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static UInt32 getindex(void* address);
+        private extern static UInt32 getindex(UInt32 address);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setindex(void* address, UInt32 value);
+        private extern static void setindex(UInt32 address, UInt32 value);
     }
 }

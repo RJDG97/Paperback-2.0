@@ -23,9 +23,11 @@ namespace CSScript
     public unsafe class Mass
     {
         private void* m_Address;
+        UInt32 ID;
 
         public Mass(UInt32 id)
         {
+            ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +35,11 @@ namespace CSScript
         {
             get
             {
-                return getmass(m_Address);
+                return getmass(ID);
             }
             set
             {
-                setmass(m_Address, value);
+                setmass(ID, value);
             }
         }
 
@@ -45,11 +47,11 @@ namespace CSScript
         {
             get
             {
-                return getinvmass(m_Address);
+                return getinvmass(ID);
             }
             set
             {
-                setinvmass(m_Address, value);
+                setinvmass(ID, value);
             }
         }
 
@@ -57,15 +59,15 @@ namespace CSScript
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getmass(void* address);
+        private extern static float getmass(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setmass(void* address, float mass);
+        private extern static void setmass(UInt32 ID, float mass);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float getinvmass(void* address);
+        private extern static float getinvmass(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setinvmass(void* address, float inv_mass);
+        private extern static void setinvmass(UInt32 ID, float inv_mass);
     }
 }
