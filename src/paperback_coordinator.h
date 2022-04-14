@@ -488,7 +488,11 @@ namespace paperback::coordinator
 
 
 
+		PPB_INLINE
+		bool GetToggleEnabled(void) noexcept;
 
+		PPB_INLINE
+		void SetToggleEnabled(bool value) noexcept;
 
 
 		PPB_INLINE
@@ -560,6 +564,8 @@ namespace paperback::coordinator
 		float                               m_MouseSensitivityRatio = 1.0f;
 		float                               m_SceneTransitionDelay = settings::scene_transition_delay_v;
 
+
+		bool m_ToggleEnabled = true;
 
 		int m_TotalProcesses = 0;
 		int m_ProcessesCompleted = 0;

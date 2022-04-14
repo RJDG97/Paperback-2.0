@@ -130,7 +130,7 @@ struct collision_system : paperback::system::pausable_instance
 
                                             while (!m_Coordinator.CompareProcesses())
                                             {
-                                                std::cout << "a" << std::endl;
+
                                             }
                                         }
 

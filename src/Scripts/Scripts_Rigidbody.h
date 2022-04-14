@@ -30,7 +30,7 @@ namespace MONO_RIGIDBODY
 
 		return m_rigidbody;
 	}
-
+	/*
 	MONO_EXPORT paperback::Vector3f GetAccel(void* address)
 	{
 		if (address)
@@ -66,15 +66,77 @@ namespace MONO_RIGIDBODY
 			return reinterpret_cast<rigidbody*>(address)->m_Velocity.x;//.MagnitudeSq();
 		else
 			return 0.0f;
+	}*/
+
+
+	MONO_EXPORT paperback::Vector3f GetAccel(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidbody>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_Accel;
+
+		return {};
+	}
+
+	MONO_EXPORT paperback::Vector3f GetVelocity(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidbody>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_Velocity;
+
+		return {};
+	}
+
+	MONO_EXPORT void SetAccel(uint32_t ID, float X, float Y, float Z)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidbody>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_Accel = {X, Y, Z};
+	}
+
+	MONO_EXPORT void SetVelocity(uint32_t ID, float X, float Y, float Z)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidbody>(obj.m_PoolDetails);
+
+		if (rigid)
+			rigid->m_Velocity = { X, Y, Z };
+	}
+
+	MONO_EXPORT float VelocityMagnitudeSquared(uint32_t ID)
+	{
+
+		auto obj = PPB.GetEntityInfo(ID);
+
+		auto rigid = obj.m_pArchetype->FindComponent<rigidbody>(obj.m_PoolDetails);
+
+		if (rigid)
+			return rigid->m_Velocity.x;//.MagnitudeSq();
+		else
+			return 0.0f;
 	}
 
 	void AddInternalCall()
 	{
 		mono_add_internal_call("CSScript.Rigidbody::getaddress(uint)", &MONO_RIGIDBODY::GetAddress);
-		mono_add_internal_call("CSScript.Rigidbody::getaccel(void*)", &MONO_RIGIDBODY::GetAccel);
-		mono_add_internal_call("CSScript.Rigidbody::getvelocity(void*)", &MONO_RIGIDBODY::GetVelocity);
-		mono_add_internal_call("CSScript.Rigidbody::setaccel(void*,single,single,single)", &MONO_RIGIDBODY::SetAccel);
-		mono_add_internal_call("CSScript.Rigidbody::setvelocity(void*,single,single,single)", &MONO_RIGIDBODY::SetVelocity);
-		mono_add_internal_call("CSScript.Rigidbody::VelocityMagnitudeSquared(void*)", &MONO_RIGIDBODY::VelocityMagnitudeSquared);
+		mono_add_internal_call("CSScript.Rigidbody::getaccel(uint)", &MONO_RIGIDBODY::GetAccel);
+		mono_add_internal_call("CSScript.Rigidbody::getvelocity(uint)", &MONO_RIGIDBODY::GetVelocity);
+		mono_add_internal_call("CSScript.Rigidbody::setaccel(uint,single,single,single)", &MONO_RIGIDBODY::SetAccel);
+		mono_add_internal_call("CSScript.Rigidbody::setvelocity(uint,single,single,single)", &MONO_RIGIDBODY::SetVelocity);
+		mono_add_internal_call("CSScript.Rigidbody::VelocityMagnitudeSquared(uint)", &MONO_RIGIDBODY::VelocityMagnitudeSquared);
 	}
 }

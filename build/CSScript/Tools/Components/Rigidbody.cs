@@ -23,9 +23,11 @@ namespace CSScript
     public unsafe class Rigidbody
     {
         private void* m_Address;
+        UInt32 m_ID;
 
         public Rigidbody(UInt32 id)
         {
+            m_ID = id;
             m_Address = getaddress(id);
         }
 
@@ -33,11 +35,12 @@ namespace CSScript
         {
             get
             {
-                return getaccel(m_Address);
+                //return getaccel(m_Address);
+                return getaccel(m_ID);
             }
             set
             {
-                setaccel(m_Address, value.x, value.y, value.z);
+                setaccel(m_ID, value.x, value.y, value.z);
             }
         }
 
@@ -45,36 +48,36 @@ namespace CSScript
         {
             get
             {
-                return getvelocity(m_Address);
+                return getvelocity(m_ID);
             }
             set
             {
-                setvelocity(m_Address, value.x, value.y, value.z);
+                setvelocity(m_ID, value.x, value.y, value.z);
             }
         }
 
         public float VelocityMagSq()
         {
 
-            return VelocityMagnitudeSquared(m_Address);
+            return VelocityMagnitudeSquared(m_ID);
         }
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
         private extern static void* getaddress(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getaccel(void* address);
+        private extern static Tools.MathLib.Vector3 getaccel(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setaccel(void* address, float x, float y, float z);
+        private extern static void setaccel(UInt32 ID, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static Tools.MathLib.Vector3 getvelocity(void* address);
+        private extern static Tools.MathLib.Vector3 getvelocity(UInt32 ID);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static void setvelocity(void* address, float x, float y, float z);
+        private extern static void setvelocity(UInt32 ID, float x, float y, float z);
 
         [MethodImplAttribute(MethodImplOptions.InternalCall)]
-        private extern static float VelocityMagnitudeSquared(void* address);
+        private extern static float VelocityMagnitudeSquared(UInt32 ID);
     }
 }
