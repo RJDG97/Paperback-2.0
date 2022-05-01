@@ -1022,7 +1022,7 @@ namespace paperback::input::binding
 
                 auto GP = m_Coordinator.FindGamepad();
 
-                if (GP)
+                if (GP && PPB.GetSystem<ui_system>().m_StickUITimer <= 0.0f)
                 {
 
                     auto Axes = GP->m_State.m_LeftAxis;
@@ -1031,11 +1031,13 @@ namespace paperback::input::binding
                     {
 
                         m_Coordinator.GetSystem<ui_system>().NextButtonIndex();
+                        PPB.GetSystem<ui_system>().m_StickUITimer = .2f;
                     }
-                    else if (Axes.y < 0.5f || Axes.x < 0.5f)
+                    else if (Axes.y < -0.5f || Axes.x < -0.5f)
                     {
 
                         m_Coordinator.GetSystem<ui_system>().PrevButtonIndex();
+                        PPB.GetSystem<ui_system>().m_StickUITimer = .2f;
                     }
                 }
             //}
@@ -1051,7 +1053,7 @@ namespace paperback::input::binding
 
                 auto GP = m_Coordinator.FindGamepad();
 
-                if (GP)
+                if (GP && PPB.GetSystem<ui_system>().m_StickUITimer <= 0.0f)
                 {
 
                     auto Axes = GP->m_State.m_RightAxis;
@@ -1060,11 +1062,13 @@ namespace paperback::input::binding
                     {
 
                         m_Coordinator.GetSystem<ui_system>().NextButtonIndex();
+                        PPB.GetSystem<ui_system>().m_StickUITimer = .2f;
                     }
-                    else if (Axes.y < 0.5f || Axes.x < 0.5f)
+                    else if (Axes.y < -0.5f || Axes.x < -0.5f)
                     {
 
                         m_Coordinator.GetSystem<ui_system>().PrevButtonIndex();
+                        PPB.GetSystem<ui_system>().m_StickUITimer = .2f;
                     }
                 }
             //}

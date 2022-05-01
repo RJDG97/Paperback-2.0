@@ -33,6 +33,7 @@ struct ui_system : paperback::system::instance
     std::string  m_CurrentButtonHovered{};
     size_t       m_CurrentButtonIndex{}; //for use with controller UI navigation
     size_t       m_MaximumButtonIndex{};
+    float        m_StickUITimer{};
     bool         m_Picked = false;
     bool         m_ControllerUIMode = false;
     bool         m_EditorMode = false;
@@ -238,6 +239,9 @@ struct ui_system : paperback::system::instance
 
         if (m_MaximumButtonIndex == 0)
             UpdateMaximumIndex();
+
+        if (m_StickUITimer > 0.0f)
+            m_StickUITimer -= PPB.DeltaTime();
     }
 
     PPB_INLINE
