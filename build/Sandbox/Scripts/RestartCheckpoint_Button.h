@@ -39,6 +39,7 @@ struct restartcheckpoint_button_script : paperback::script::button_interface // 
         PPB.TogglePause(false);
 
         PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::PAUSE), false);
+        PPB.GetSystem<ui_system>().ToggleLayerObjects(static_cast<int>(UI_LAYER::RESTART_CHECKPOINT), false);
         PPB.GetSystem<scripting_system>().CallReset();
     }
 };

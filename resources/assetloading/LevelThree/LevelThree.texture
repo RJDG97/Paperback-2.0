@@ -58,5 +58,6 @@
   "FreezeParticle": "../../resources/textures/UI/Particles/FreezeParticle.dds 0",
   "GrowParticle": "../../resources/textures/UI/Particles/GrowParticle.dds 0",
   "ShrinkParticle": "../../resources/textures/UI/Particles/ShrinkParticle.dds 0",
-  "Transition": "../../resources/textures/UI/transition.dds 0"
+  "Transition": "../../resources/textures/UI/transition.dds 0",
+  "AreYouSurePanel": "../../resources/textures/UI/Menus/Backgrounds/AreYouSurePanel_Mirrored.dds 0"
 }

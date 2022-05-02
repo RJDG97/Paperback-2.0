@@ -2,7 +2,7 @@
     "Entities": [
         {
             "Archetype Manager": {
-                "EntityHead": 526
+                "EntityHead": 533
             }
         },
         {
@@ -1139,6 +1139,7 @@
                     },
                     "Prefab": {
                         "Prefab Instances GID": [
+                            526,
                             387,
                             388,
                             389,
@@ -1156,6 +1157,7 @@
                             469,
                             470,
                             471,
+                            530,
                             472,
                             473,
                             474,
@@ -1163,18 +1165,22 @@
                             476,
                             477,
                             478,
+                            531,
                             479,
                             480,
                             481,
+                            528,
                             482,
                             483,
                             484,
                             485,
+                            532,
                             486,
                             487,
                             488,
                             489,
-                            490
+                            490,
+                            529
                         ]
                     },
                     "Rotation": {
@@ -2051,7 +2057,7 @@
                         ],
                         "Button State": 0,
                         "Layer Grouping": 2,
-                        "Script Guid": 11551997379440525767,
+                        "Script Guid": 14628665925099219530,
                         "Active Status": false,
                         "Button Index": 4
                     }
@@ -2120,7 +2126,7 @@
                         ],
                         "Button State": 0,
                         "Layer Grouping": 2,
-                        "Script Guid": 7207962730480403526,
+                        "Script Guid": 9105825325533828983,
                         "Active Status": false,
                         "Button Index": 3
                     }
@@ -3710,6 +3716,416 @@
                         "Script Guid": 11675726734796814778,
                         "Active Status": false,
                         "Button Index": 3
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 526
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "AreYouSurePanel",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            5691439207370049121,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 386
+                    },
+                    "Name": {
+                        "Name": "RestartBackground_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 3,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 528
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "YesButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 150.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 215.0,
+                            "y": -70.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 386
+                    },
+                    "Name": {
+                        "Name": "RestartConfirmButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "YesButton_Unselected"
+                            },
+                            {
+                                "ID": "YesButton_Selected"
+                            },
+                            {
+                                "ID": "YesButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 3,
+                        "Script Guid": 11551997379440525767,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 529
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "NoButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 150.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -215.0,
+                            "y": -70.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520,
+                            17008353085049151909
+                        ],
+                        "Prefab GID": 386
+                    },
+                    "Name": {
+                        "Name": "RestartCancelButton_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "NoButton_Unselected"
+                            },
+                            {
+                                "ID": "NoButton_Selected"
+                            },
+                            {
+                                "ID": "NoButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 3,
+                        "Script Guid": 5489461476413655714,
+                        "Active Status": false,
+                        "Button Index": 1
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 530
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "AreYouSurePanel",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 1920.0,
+                            "y": 1080.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.8999999761581421
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            9604788041699812520,
+                            2550044418833058707,
+                            5691439207370049121,
+                            17008353085049151909,
+                            16415915133639986106
+                        ],
+                        "Prefab GID": 386
+                    },
+                    "Name": {
+                        "Name": "RestartCheckpointBackground_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            },
+                            {
+                                "ID": ""
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 14,
+                        "Script Guid": 0,
+                        "Active Status": false,
+                        "Button Index": 0
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 531
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "YesButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 150.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": 215.0,
+                            "y": -70.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            17008353085049151909,
+                            16415915133639986106,
+                            2550044418833058707,
+                            9604788041699812520
+                        ],
+                        "Prefab GID": 386
+                    },
+                    "Name": {
+                        "Name": "RestartCheckpointConfirm_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "YesButton_Unselected"
+                            },
+                            {
+                                "ID": "YesButton_Selected"
+                            },
+                            {
+                                "ID": "YesButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 14,
+                        "Script Guid": 7207962730480403526,
+                        "Active Status": false,
+                        "Button Index": 2
+                    }
+                },
+                {
+                    "Entity": {
+                        "Global Index": 532
+                    },
+                    "Mesh": {
+                        "Model": "Quad",
+                        "Texture": "NoButton_Unselected",
+                        "Shadow Bias": 1,
+                        "Cast Shadow": false,
+                        "Active": false
+                    },
+                    "Scale": {
+                        "Scale": {
+                            "x": 400.0,
+                            "y": 150.0,
+                            "z": 0.0
+                        }
+                    },
+                    "Rotation": {
+                        "Rotation": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 180.0
+                        }
+                    },
+                    "Transform": {
+                        "Offset": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0
+                        },
+                        "Position": {
+                            "x": -215.0,
+                            "y": -70.0,
+                            "z": 1.0
+                        }
+                    },
+                    "ReferencePrefab": {
+                        "Modified Components": [
+                            16415915133639986106,
+                            17008353085049151909,
+                            9604788041699812520,
+                            2550044418833058707
+                        ],
+                        "Prefab GID": 386
+                    },
+                    "Name": {
+                        "Name": "RestartCheckpointCancel_Pause"
+                    },
+                    "Button": {
+                        "Button Textures": [
+                            {
+                                "ID": "NoButton_Unselected"
+                            },
+                            {
+                                "ID": "NoButton_Selected"
+                            },
+                            {
+                                "ID": "NoButton_Unselected"
+                            }
+                        ],
+                        "Button State": 0,
+                        "Layer Grouping": 14,
+                        "Script Guid": 17974826967711004575,
+                        "Active Status": false,
+                        "Button Index": 1
                     }
                 }
             ]
@@ -53116,7 +53532,7 @@
                             "z": 0.0
                         },
                         "Position": {
-                            "x": -2721.01708984375,
+                            "x": -2717.029296875,
                             "y": 0.0,
                             "z": 3.0
                         }
