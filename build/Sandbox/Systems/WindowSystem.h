@@ -107,7 +107,6 @@ struct window_system : paperback::system::instance
         }
 
         glfwMakeContextCurrent(m_pWindow);
-        glfwSwapInterval(1);
         glfwSetInputMode(m_pWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
         
         glfwSetKeyCallback(m_pWindow, KeyboardCallback);
@@ -224,6 +223,7 @@ struct window_system : paperback::system::instance
             m_Height = 1080;
             GLFWWindowMaximizeCallback(m_pWindow, 1);
             glfwSetWindowMonitor(m_pWindow, glfwGetPrimaryMonitor(), 0, 0, m_Width, m_Height, GLFW_DONT_CARE);
+            glfwSwapInterval(1);
         }
         else
         {
@@ -233,6 +233,7 @@ struct window_system : paperback::system::instance
             m_Height = E.m_Height;
             glfwSetWindowMonitor(m_pWindow, NULL, 250, 250, E.m_Width, E.m_Height, GLFW_DONT_CARE);
             GLFWWindowMaximizeCallback(m_pWindow, 1);
+            glfwSwapInterval(1);
         }
 
         m_UpdateResolution = true;
